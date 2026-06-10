@@ -24,9 +24,11 @@ i18n
       de: { translation: deTranslations },
       es: { translation: esTranslations },
     },
-    fallbackLng: 'en',
+       fallbackLng: 'en',
     interpolation: {
       escapeValue: false,
+      prefix: '<${{',
+      suffix: '}}>$',
     },
   });
 

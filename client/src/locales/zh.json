@@ -524,7 +524,7 @@
     "heroTitle": "织就绿洲",
     "heroSubtitle": "东霄羊绒的温暖与愿景",
     "heroDesc": "从库布齐沙漠的第一棵沙柳，到世界绒都的璀璨明珠。东霄羊绒不仅是一种产品，更是来自鄂尔多斯绿洲的承诺。温暖您的肌肤，守护我们的星球。",
-    "chapterLabel": "第{{number}}章",
+    "chapterLabel": "第<${{number}}>$章",
     "chapters": {
       "1": {
         "title": "源起——从黄沙到翠绿的生态奇迹",

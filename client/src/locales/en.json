@@ -114,7 +114,7 @@
     "title": "Our Products",
     "description": "Explore our complete collection of premium cashmere products, from luxurious sweaters to cozy accessories.",
     "searchPlaceholder": "Search products...",
-    "searchResults": "{{count}} result{{count !== 1 ? 's' : ''}} for \"{{query}}\"",
+    "searchResults": "<${{count}}>$ result<${{count !== 1 ? 's' : ''}}>$ for \"<${{query}}>$\"",
     "categoriesLabel": "Categories",
     "categories": {
       "all": "All Products",
@@ -124,7 +124,7 @@
       "socks": "Socks",
       "accessories": "Accessories"
     },
-    "showingProducts": "Showing {{start}}–{{end}} of {{total}}",
+    "showingProducts": "Showing <${{start}}>$–<${{end}}>$ of <${{total}}>$",
     "premiumCashmere": "Premium Cashmere",
     "material": "Material",
     "micron": "Micron",
@@ -646,7 +646,7 @@
     "heroTitle": "Weaving the Oasis",
     "heroSubtitle": "The Warmth and Vision of DongXiao Cashmere",
     "heroDesc": "From the first saulex in the Kubuqi Desert to the shining pearl of the Cashmere Capital. DongXiao Cashmere is not just a product—it's a promise from the Ordos oasis. Warm your skin, protect our planet.",
-    "chapterLabel": "Chapter {{number}}",
+    "chapterLabel": "Chapter <${{number}}>$",
     "chapters": {
       "1": {
         "title": "Origins: From Desert to Green Oasis",
