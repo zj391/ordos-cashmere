@@ -296,5 +296,6 @@ export default function Production() {
 
       <Footer />
     </div>
+    </>
   );
 }

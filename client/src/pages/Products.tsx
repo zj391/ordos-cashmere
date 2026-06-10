@@ -380,5 +380,6 @@ export default function Products() {
       <FAQ />
       <Footer />
     </div>
+    </>
   );
 }

@@ -242,5 +242,6 @@ export default function Contact() {
 
       <Footer />
     </div>
+    </>
   );
 }

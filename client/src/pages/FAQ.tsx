@@ -138,5 +138,6 @@ export default function FAQ() {
 
       <Footer />
     </div>
+    </>
   );
 }

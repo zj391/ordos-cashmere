@@ -232,5 +232,6 @@ export default function BrandStory() {
 
       <Footer />
     </div>
+    </>
   );
 }
