@@ -1,0 +1,39 @@
+# DONGXIAO® CASHMERE - robots.txt
+# Optimized for Google, Bing, and other search engines
+
+User-agent: *
+Allow: /
+Allow: /products
+Allow: /about
+Allow: /contact
+Disallow: /admin
+Disallow: /api
+Disallow: /private
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /search?*
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+
+# Specific rules for Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Specific rules for Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Specific rules for Baidu (Chinese search engine)
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://erdosdx.com/sitemap.xml
+Sitemap: https://erdosdx.com/sitemap-en.xml
+Sitemap: https://erdosdx.com/sitemap-zh.xml
+
+# Request rate
+Request-rate: 30/1m
