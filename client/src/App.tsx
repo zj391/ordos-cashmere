@@ -27,6 +27,7 @@ import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
 import TestPage from "@/pages/TestPage";
 
 function Router() {
+  console.log(">>> Router component loaded");
   return (
     <Switch>
       <Route path="/" component={Home} />
