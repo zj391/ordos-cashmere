@@ -52,6 +52,7 @@ const trpcClient = trpc.createClient({
   ],
 });
 
+// trigger rebuild
 createRoot(document.getElementById("root")!).render(
   <trpc.Provider client={trpcClient} queryClient={queryClient}>
     <QueryClientProvider client={queryClient}>

@@ -26,6 +26,9 @@ import BlogPost from "@/pages/BlogPost";
 import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
 import TestPage from "@/pages/TestPage";
 
+// @ts-ignore
+(window as any).__APP_ROUTES__ = "/privacy-policy|/test|/brand-story";
+
 function Router() {
   console.log(">>> Router component loaded");
   return (
@@ -42,7 +45,7 @@ function Router() {
       <Route path="/blog" component={Blog} />
       <Route path="/blog/:slug" component={BlogPost} />
       <Route path="/contact" component={Contact} />
-      <Route path="/privacy-policy"><PrivacyPolicyPage /></Route>
+      <Route path="/privacy-policy" component={PrivacyPolicyPage} />
       <Route path="/test" component={TestPage} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
