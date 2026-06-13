@@ -3,6 +3,7 @@
   "buildCommand": "vite build",
   "outputDirectory": "client/dist",
   "framework": "vite",
+  "github": { "enabled": false },
   "rewrites": [
     { "source": "/privacy-policy", "destination": "/privacy-policy.html" },
     { "source": "/((?!assets/).*)", "destination": "/index.html" }
