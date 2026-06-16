@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "buildCommand": "vite build",
+  "buildCommand": "npm install --no-audit --no-fund && npx vite build",
   "outputDirectory": "client/dist",
-  "framework": "vite",
+  "framework": null,
   "github": { "enabled": false },
   "rewrites": [
-    { "source": "/privacy-policy", "destination": "/privacy-policy.html" },
+    { "source": "/privacy-policy", "destination": "/index.html" },
+    { "source": "/test", "destination": "/index.html" },
     { "source": "/((?!assets/).*)", "destination": "/index.html" }
   ]
 }

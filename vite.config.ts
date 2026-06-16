@@ -18,9 +18,5 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     emptyOutDir: true,
-    cache: false,
-    rollupOptions: {
-      cache: false,
-    },
   },
 })

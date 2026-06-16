@@ -22,7 +22,7 @@ import Production from "./pages/Production";
 import BrandStory from "@/pages/BrandStory";
 import FAQ from "@/pages/FAQ";
 import Blog from "@/pages/Blog";
-import BlogPost from "@/pages/BlogPost";
+import BlogPost from "./pages/BlogPost";
 import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
 import TestPage from "@/pages/TestPage";
 
