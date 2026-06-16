@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "buildCommand": "npm install --no-audit --no-fund && npx vite build",
+  "buildCommand": "pnpm install --frozen-lockfile=false && pnpm exec vite build",
   "outputDirectory": "client/dist",
   "framework": null,
   "github": { "enabled": false },
   "rewrites": [
+    { "source": "/admin", "destination": "/index.html" },
     { "source": "/privacy-policy", "destination": "/index.html" },
     { "source": "/test", "destination": "/index.html" },
     { "source": "/((?!assets/).*)", "destination": "/index.html" }

@@ -25,6 +25,7 @@ import Blog from "@/pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
 import TestPage from "@/pages/TestPage";
+import Admin from "@/pages/Admin";
 
 // @ts-ignore
 (window as any).__APP_ROUTES__ = "/privacy-policy|/test|/brand-story";
@@ -47,6 +48,7 @@ function Router() {
       <Route path="/contact" component={Contact} />
       <Route path="/privacy-policy" component={PrivacyPolicyPage} />
       <Route path="/test" component={TestPage} />
+      <Route path="/admin" component={Admin} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
