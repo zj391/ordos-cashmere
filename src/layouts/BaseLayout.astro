@@ -7,6 +7,7 @@ import '@/styles/global.css';
 import { TRANSLATIONS, LOCALE_HREFLANG, type Locale } from '@/lib/i18n';
 import { SEO, SITE_URL, SITE_INFO, generateHreflangs } from '@/lib/seo';
 import { breadcrumbSchema, faqPageSchema, servicesSchema, PAGE_BREADCRUMB, SERVICES, type FAQItem } from '@/lib/schema';
+import AIChatWidget from '@/components/islands/AIChatWidget.tsx';
 
 export interface Props {
   locale: Locale;
@@ -255,6 +256,9 @@ if (_schema === 'faq' && faqs && faqs.length > 0) {
     <slot name="footer" />
     <slot name="floating" />
     <slot name="cookie-consent" />
+
+    <!-- AI 24h 智能客服（由 FloatingChatButtons 的 AI 按钮触发打开） -->
+    <AIChatWidget client:idle locale={locale} />
 
     <!-- IP 识别 + 访客画像（页面浏览/停留时长聚合） -->
     <script is:inline>
