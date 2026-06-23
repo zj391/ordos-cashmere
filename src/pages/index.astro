@@ -1,0 +1,30 @@
+---
+/**
+ * 根路径处理：
+ * - 根据浏览器语言自动跳转到对应语种子目录
+ * - 或显示语种选择 landing
+ */
+import { LOCALES } from '@/lib/i18n';
+
+const acceptLanguage = Astro.request.headers.get('accept-language') || '';
+const langCode = acceptLanguage.split(',')[0]?.split('-')[0]?.toLowerCase() || 'en';
+
+const localeMap: Record<string, string> = {
+  en: 'en', de: 'de', fr: 'fr', ja: 'ja', ko: 'kr', zh: 'cn',
+};
+
+const targetLocale = localeMap[langCode] || 'en';
+return Astro.redirect(`/${targetLocale}/`, 302);
+---
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>DONGXIAO® Cashmere</title>
+  <meta http-equiv="refresh" content="0; url=/{targetLocale}/">
+</head>
+<body>
+  <p>Redirecting to <a href="/{targetLocale}/">/{targetLocale}/</a>...</p>
+</body>
+</html>

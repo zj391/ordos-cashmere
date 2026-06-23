@@ -1,0 +1,74 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
+import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
+import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
+
+export function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const { locale: rawLocale } = Astro.params;
+const locale = pickLocale(rawLocale);
+
+const title = locale === 'cn' ? '常见问题' : locale === 'de' ? 'FAQ' : locale === 'fr' ? 'FAQ' : locale === 'ja' ? 'よくある質問' : locale === 'kr' ? '자주 묻는 질문' : 'FAQ';
+const subtitle = locale === 'cn' ? '羊绒采购常见问题与解答' : 'Common questions about cashmere sourcing';
+
+const faq: Array<{ q: string; a: string }> = locale === 'cn' ? [
+  { q: '起订量（MOQ）是多少？', a: '原料：100kg起订。纱线/面料：50kg/200m起订。成衣代工：100件/款起订。' },
+  { q: '交货期多久？', a: '原料15-25天，纱线20-30天，面料30-45天，成衣代工45-60天（含打样）。' },
+  { q: '可以提供样品吗？', a: '可以。免费提供A4大小色卡样，付费提供完整样品（可冲抵正式订单金额）。' },
+  { q: '付款方式？', a: 'T/T 30%定金 + 70%尾款（发货前）。新客户首次合作建议L/C at sight。' },
+  { q: '支持哪些贸易条款？', a: 'FOB、CIF、DDP均可。我们可代办出口报关与海运/空运。' },
+  { q: '是否提供OEM/ODM？', a: '是的。我们有专业设计团队支持OEM贴牌、ODM定制开发，最小起订100件/款。' },
+] : locale === 'de' ? [
+  { q: 'Was ist die MOQ?', a: 'Rohmaterial: 100kg. Garn: 50kg. Stoff: 200m. Bekleidung: 100 Stk./Modell.' },
+  { q: 'Wie lang ist die Lieferzeit?', a: 'Rohmaterial 15-25 Tage, Garn 20-30 Tage, Stoff 30-45 Tage, Bekleidung 45-60 Tage.' },
+  { q: 'Können Muster zur Verfügung gestellt werden?', a: 'Ja. Kostenlose Farbkarte, kostenpflichtige Muster (rückerstattbar bei Bestellung).' },
+  { q: 'Welche Zahlungsbedingungen?', a: 'T/T 30% Anzahlung + 70% vor Versand.' },
+  { q: 'Unterstützen Sie OEM/ODM?', a: 'Ja. Eigenes Designteam für OEM/ODM mit MOQ 100 Stk.' },
+] : [
+  { q: 'What is the MOQ?', a: 'Raw material: 100kg. Yarn: 50kg. Fabric: 200m. Garment OEM: 100pcs/style.' },
+  { q: 'What is the lead time?', a: 'Raw material 15-25 days, yarn 20-30 days, fabric 30-45 days, garment 45-60 days (incl. sampling).' },
+  { q: 'Do you provide samples?', a: 'Yes. Free color cards, paid full samples (refundable against bulk order).' },
+  { q: 'What are the payment terms?', a: 'T/T 30% deposit + 70% before shipment. L/C at sight accepted for new customers.' },
+  { q: 'What trade terms do you support?', a: 'FOB, CIF, DDP. We handle export customs and arrange sea/air freight.' },
+  { q: 'Do you offer OEM/ODM?', a: 'Yes. In-house design team supports OEM and ODM. MOQ 100pcs/style.' },
+];
+---
+
+<BaseLayout locale={locale} pageKey="faq" path="/faq" schema="faq" faqs={faq}>
+  <Navigation slot="header" locale={locale} currentPath={`/${locale}/faq`} />
+
+  <section class="pt-32 pb-12 bg-gradient-to-br from-brand-ink to-brand-chocolate text-white">
+    <div class="hero-overlay absolute inset-0"></div>
+    <div class="container-narrow relative z-10">
+      <h1 class="font-display text-5xl md:text-6xl font-light leading-tight mb-6">{title}</h1>
+      <p class="text-xl text-white/80">{subtitle}</p>
+    </div>
+  </section>
+
+  <section class="section-padding bg-background">
+    <div class="container-narrow max-w-3xl">
+      <div class="space-y-4">
+        {faq.map((item) => (
+          <details class="group border border-border rounded-lg p-6 cursor-pointer">
+            <summary class="flex justify-between items-center font-medium text-lg list-none">
+              <span>{item.q}</span>
+              <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="mt-4 text-muted-foreground leading-relaxed">{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" locale={locale} />
+  <FloatingChatButtons slot="floating" locale={locale} />
+  <CookieConsent slot="cookie-consent" locale={locale} />
+</BaseLayout>

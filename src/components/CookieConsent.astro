@@ -1,0 +1,80 @@
+---
+/**
+ * Cookie Consent (GDPR 合规)
+ * 6 国统一组件，EU 地区强制
+ */
+interface Props {
+  locale: string;
+}
+
+const { locale } = Astro.props;
+
+const messages: Record<string, { title: string; desc: string; accept: string; decline: string; settings: string }> = {
+  en: { title: 'We value your privacy', desc: 'We use cookies to enhance browsing, analyze traffic, and personalize content. By clicking "Accept", you consent to our use of cookies.', accept: 'Accept All', decline: 'Decline', settings: 'Cookie Settings' },
+  de: { title: 'Wir schätzen Ihre Privatsphäre', desc: 'Wir verwenden Cookies zur Verbesserung des Browsens, Traffic-Analyse und Personalisierung. Mit "Akzeptieren" stimmen Sie zu.', accept: 'Alle akzeptieren', decline: 'Ablehnen', settings: 'Cookie-Einstellungen' },
+  fr: { title: 'Nous respectons votre vie privée', desc: 'Nous utilisons des cookies pour améliorer la navigation, analyser le trafic et personnaliser le contenu.', accept: 'Tout accepter', decline: 'Refuser', settings: 'Paramètres des cookies' },
+  ja: { title: 'プライバシーを尊重します', desc: 'ブラウジング向上、トラフィック分析、コンテンツのパーソナライズのためにCookieを使用しています。', accept: 'すべて受け入れる', decline: '拒否', settings: 'Cookie設定' },
+  kr: { title: '개인정보를 존중합니다', desc: '브라우징 개선, 트래픽 분석, 콘텐츠 개인화를 위해 쿠키를 사용합니다.', accept: '모두 수락', decline: '거부', settings: '쿠키 설정' },
+  cn: { title: '尊重您的隐私', desc: '我们使用 Cookie 改善浏览体验、分析流量和个性化内容。点击"接受"即表示同意。', accept: '全部接受', decline: '拒绝', settings: 'Cookie 设置' },
+};
+
+const m = messages[locale] || messages.en;
+---
+
+<div
+  id="cookie-banner"
+  class="hidden fixed bottom-0 left-0 right-0 z-[55] bg-card border-t border-border shadow-2xl p-4 md:p-6"
+  role="dialog"
+  aria-labelledby="cookie-title"
+>
+  <div class="container-narrow flex flex-col md:flex-row items-start md:items-center gap-4">
+    <div class="flex-1">
+      <h2 id="cookie-title" class="font-medium text-base mb-1">{m.title}</h2>
+      <p class="text-sm text-muted-foreground">{m.desc}</p>
+    </div>
+    <div class="flex flex-wrap gap-2">
+      <button
+        type="button"
+        class="px-4 py-2 text-sm font-medium border border-border rounded-md hover:bg-accent transition-colors"
+        onclick="window.__HERMES_COOKIE_DECLINE__?.()"
+      >
+        {m.decline}
+      </button>
+      <button
+        type="button"
+        class="px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+        onclick="window.__HERMES_COOKIE_ACCEPT__?.()"
+      >
+        {m.accept}
+      </button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function() {
+    const STORAGE_KEY = 'dongxiao_cookie_consent';
+    const banner = document.getElementById('cookie-banner');
+    if (!banner) return;
+
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) {
+      // 延迟显示避免页面抖动
+      setTimeout(function() { banner.classList.remove('hidden'); }, 1500);
+    }
+
+    window.__HERMES_COOKIE_ACCEPT__ = function() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ status: 'accepted', ts: Date.now() }));
+      banner.classList.add('hidden');
+      window.dataLayer?.push({ event: 'cookie_consent', consent: 'accepted' });
+    };
+    window.__HERMES_COOKIE_DECLINE__ = function() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ status: 'declined', ts: Date.now() }));
+      banner.classList.add('hidden');
+      window.dataLayer?.push({ event: 'cookie_consent', consent: 'declined' });
+    };
+    window.__HERMES_OPEN_COOKIE__ = function() {
+      banner.classList.remove('hidden');
+    };
+  })();
+</script>

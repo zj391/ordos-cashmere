@@ -1,0 +1,66 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
+import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
+import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
+
+export function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const { locale: rawLocale } = Astro.params;
+const locale = pickLocale(rawLocale);
+
+const privacyPolicy: Record<string, { title: string; sections: Array<{ h: string; p: string }> }> = {
+  en: {
+    title: 'Privacy Policy',
+    sections: [
+      { h: '1. Information We Collect', p: 'We collect personal information you voluntarily provide, including name, email, phone, company, country, and product interests. We also collect browsing data via Google Analytics.' },
+      { h: '2. How We Use Your Information', p: 'Your information is used to respond to inquiries, provide quotations, and improve our services. We do not sell your data to third parties.' },
+      { h: '3. Cookies', p: 'We use essential cookies for site functionality and analytics cookies (Google Analytics) to understand user behavior. You may decline analytics cookies via our cookie banner.' },
+      { h: '4. Data Sharing', p: 'We share data with: (a) WhatsApp/WeChat when you contact us; (b) our CRM/email service providers; (c) Google Analytics. We require all processors to comply with GDPR.' },
+      { h: '5. Your Rights (GDPR)', p: 'You have the right to access, rectify, delete, or restrict processing of your personal data. Contact us at dongxiaocashmere@erdosdx.com.' },
+      { h: '6. Data Retention', p: 'Inquiry data is retained for 3 years for business purposes. Analytics data is retained for 14 months per Google Analytics default.' },
+      { h: '7. Contact', p: 'For privacy inquiries: dongxiaocashmere@erdosdx.com' },
+    ],
+  },
+  cn: {
+    title: '隐私政策',
+    sections: [
+      { h: '1. 信息收集', p: '我们收集您主动提供的个人信息（姓名、邮箱、电话、公司、国家、产品兴趣），以及通过 Google Analytics 收集的浏览数据。' },
+      { h: '2. 信息用途', p: '用于回复询盘、提供报价、改善服务。我们不会向第三方出售您的数据。' },
+      { h: '3. Cookie', p: '我们使用必要 Cookie 维持网站功能，使用 Google Analytics 分析用户行为。您可通过 Cookie 横幅拒绝分析 Cookie。' },
+      { h: '4. 数据共享', p: '数据共享对象：WhatsApp/微信、CRM/邮件服务商、Google Analytics。我们要求所有处理方遵守 GDPR。' },
+      { h: '5. 您的权利（GDPR）', p: '您有权访问、更正、删除或限制处理您的个人数据。请联系 dongxiaocashmere@erdosdx.com。' },
+      { h: '6. 数据保留', p: '询盘数据保留 3 年，分析数据按 Google Analytics 默认保留 14 个月。' },
+      { h: '7. 联系', p: '隐私相关咨询：dongxiaocashmere@erdosdx.com' },
+    ],
+  },
+};
+
+const policy = privacyPolicy[locale] || privacyPolicy.en;
+---
+
+<BaseLayout locale={locale} pageKey="privacy" path="/privacy-policy">
+  <Navigation slot="header" locale={locale} currentPath={`/${locale}/privacy-policy`} />
+
+  <section class="pt-32 pb-12">
+    <div class="container-narrow">
+      <h1 class="font-display text-4xl md:text-5xl font-light leading-tight mb-12">{policy.title}</h1>
+      <div class="prose max-w-3xl">
+        {policy.sections.map((s) => (
+          <div class="mb-8">
+            <h2 class="text-xl font-medium mb-3">{s.h}</h2>
+            <p class="text-muted-foreground leading-relaxed">{s.p}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" locale={locale} />
+  <FloatingChatButtons slot="floating" locale={locale} />
+  <CookieConsent slot="cookie-consent" locale={locale} />
+</BaseLayout>

@@ -1,0 +1,121 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
+import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
+import SEOFaq from '@/components/SEOFaq.astro';
+import GarmentOemInquiryForm from '@/components/islands/GarmentOemInquiryForm.tsx';
+import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
+
+export function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const { locale: rawLocale } = Astro.params;
+const locale = pickLocale(rawLocale);
+
+const t: Record<string, Record<string, string>> = {
+  en: {
+    title: 'Cashmere Garment OEM/ODM',
+    subtitle: 'From sketch to shipment. 23+ years serving global brands. MOQ 100pcs.',
+    sectionProcess: 'Our Process',
+    sectionCategories: 'Product Categories',
+    cta: 'Start Your Project',
+    process1: 'Design Brief',
+    process2: 'Sampling',
+    process3: 'Production',
+    process4: 'QC & Shipment',
+    cat1: 'Sweaters & Cardigans',
+    cat2: 'Coats & Outerwear',
+    cat3: 'Dresses & Skirts',
+    cat4: 'Scarves & Shawls',
+    cat5: 'Hats & Accessories',
+    cat6: 'Custom Development',
+  },
+  cn: {
+    title: '羊绒成衣 OEM/ODM 代工',
+    subtitle: '从设计到出货，23年服务全球品牌，MOQ 100件起',
+    sectionProcess: '服务流程',
+    sectionCategories: '产品类目',
+    cta: '开始您的项目',
+    process1: '需求沟通',
+    process2: '打样确认',
+    process3: '量产交付',
+    process4: '品控出货',
+    cat1: '羊绒衫/开衫',
+    cat2: '羊绒大衣/外套',
+    cat3: '羊绒裙',
+    cat4: '羊绒围巾/披肩',
+    cat5: '羊绒帽/配饰',
+    cat6: '定制开发',
+  },
+  de: { title: 'Kaschmir-Bekleidung OEM/ODM', subtitle: 'Vom Entwurf bis zum Versand. MOQ 100 Stk.', sectionProcess: 'Unser Prozess', sectionCategories: 'Produktkategorien', cta: 'Projekt starten', process1: 'Design-Brief', process2: 'Muster', process3: 'Produktion', process4: 'QC & Versand', cat1: 'Pullover', cat2: 'Mäntel', cat3: 'Kleider', cat4: 'Schals', cat5: 'Hüte', cat6: 'Sonderentwicklung' },
+  fr: { title: 'Vêtements cachemire OEM/ODM', subtitle: 'Du design à l\'expédition. MOQ 100 pièces.', sectionProcess: 'Notre processus', sectionCategories: 'Catégories', cta: 'Démarrer', process1: 'Brief', process2: 'Échantillon', process3: 'Production', process4: 'QC & Expédition', cat1: 'Pulls', cat2: 'Manteaux', cat3: 'Robes', cat4: 'Écharpes', cat5: 'Chapeaux', cat6: 'Développement custom' },
+  ja: { title: 'カシミア衣料 OEM/ODM', subtitle: 'デザインから出荷まで。MOQ 100枚〜', sectionProcess: 'プロセス', sectionCategories: '製品カテゴリ', cta: 'プロジェクト開始', process1: 'デザイン', process2: 'サンプル', process3: '生産', process4: 'QC・出荷', cat1: 'セーター', cat2: 'コート', cat3: 'ドレス', cat4: 'スカーフ', cat5: '帽子', cat6: 'カスタム開発' },
+  kr: { title: '캐시미어 의류 OEM/ODM', subtitle: '디자인부터 출하까지. MOQ 100pcs~', sectionProcess: '프로세스', sectionCategories: '제품 카테고리', cta: '프로젝트 시작', process1: '디자인', process2: '샘플', process3: '생산', process4: 'QC·출하', cat1: '스웨터', cat2: '코트', cat3: '드레스', cat4: '스카프', cat5: '모자', cat6: '맞춤 개발' },
+};
+const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
+
+const process = [
+  { step: '01', title: T('process1'), desc: locale === 'cn' ? '需求沟通、款式确认' : 'Brief & design confirmation' },
+  { step: '02', title: T('process2'), desc: locale === 'cn' ? '7-15天快速打样' : '7-15 days sampling' },
+  { step: '03', title: T('process3'), desc: locale === 'cn' ? '30-45天量产' : '30-45 days production' },
+  { step: '04', title: T('process4'), desc: locale === 'cn' ? '100% QC检验' : '100% QC inspection' },
+];
+
+const categories = [T('cat1'), T('cat2'), T('cat3'), T('cat4'), T('cat5'), T('cat6')];
+---
+
+<BaseLayout locale={locale} pageKey="garmentOem" path="/garment-oem">
+  <Navigation slot="header" locale={locale} currentPath={`/${locale}/garment-oem`} />
+
+  <section class="pt-32 pb-20 bg-gradient-to-br from-brand-chocolate to-brand-ink text-white">
+    <div class="hero-overlay absolute inset-0"></div>
+    <div class="container-narrow relative z-10">
+      <h1 class="font-display text-5xl md:text-6xl font-light leading-tight mb-6 max-w-3xl">{T('title')}</h1>
+      <p class="text-xl text-white/80 max-w-2xl">{T('subtitle')}</p>
+    </div>
+  </section>
+
+  <section class="section-padding bg-background">
+    <div class="container-narrow">
+      <h2 class="font-display text-3xl md:text-4xl font-light mb-12">{T('sectionCategories')}</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-20">
+        {categories.map((cat) => (
+          <div class="border border-border rounded-lg p-8 hover:border-primary transition-colors cursor-pointer group">
+            <h3 class="font-display text-2xl group-hover:text-primary transition-colors">{cat}</h3>
+          </div>
+        ))}
+      </div>
+
+      <h2 class="font-display text-3xl md:text-4xl font-light mb-12">{T('sectionProcess')}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+        {process.map((p) => (
+          <div class="border-l-2 border-primary pl-6">
+            <div class="font-display text-4xl font-light text-primary mb-2">{p.step}</div>
+            <h3 class="text-xl font-medium mb-2">{p.title}</h3>
+            <p class="text-sm text-muted-foreground">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-16">
+        <GarmentOemInquiryForm client:load locale={locale} />
+      </div>
+    </div>
+  </section>
+
+  <SEOFaq faqs={[
+    locale === 'cn'
+      ? { q: '羊绒成衣代工的起订量是多少？', a: '基础款羊绒衫起订100件/款/色，羊绒大衣200件/款起，复杂定制款500件起。小批量可议但单价较高。' }
+      : { q: 'What is the MOQ for cashmere garment OEM?', a: 'Basic cashmere sweaters start at 100pcs/style/color, cashmere coats at 200pcs/style, complex custom designs at 500pcs+. Smaller quantities negotiable with higher unit price.' },
+    locale === 'cn'
+      ? { q: '羊绒代工的交期多久？', a: '打样7-15天，量产30-45天（含面料采购），总周期约45-60天。如需加急可协商。' }
+      : { q: 'How long does cashmere OEM production take?', a: 'Sampling 7-15 days, bulk production 30-45 days (including fabric sourcing), total cycle approximately 45-60 days. Rush orders negotiable.' },
+  ]} />
+
+  <Footer slot="footer" locale={locale} />
+  <FloatingChatButtons slot="floating" locale={locale} />
+  <CookieConsent slot="cookie-consent" locale={locale} />
+</BaseLayout>

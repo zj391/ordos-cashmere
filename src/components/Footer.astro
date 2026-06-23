@@ -1,0 +1,147 @@
+---
+/**
+ * 底部 Footer - 6 国统一结构，本地化内容
+ */
+import { type Locale, localePath, LOCALES, LOCALE_NAMES, LOCALE_FLAGS } from '@/lib/i18n';
+import { SITE_INFO } from '@/lib/seo';
+import footerLabels from '@/data/footer-labels.json';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const fl = (k: string): string => {
+  const m = (footerLabels as Record<string, Record<string, string>>)[locale];
+  const raw = m?.[k] || (footerLabels as any).en[k] || '';
+  return raw.replace('{year}', String(new Date().getFullYear()));
+};
+
+const productLinks = [
+  { href: '/raw-material', labelKey: 'nav.rawMaterial' },
+  { href: '/yarn-fabric', labelKey: 'nav.yarnFabric' },
+  { href: '/garment-oem', labelKey: 'nav.garmentOem' },
+];
+const companyLinks = [
+  { href: '/ordos-origin', labelKey: 'nav.ordosOrigin' },
+  { href: '/factory', labelKey: 'nav.factory' },
+  { href: '/blog', labelKey: 'nav.blog' },
+  { href: '/contact', labelKey: 'nav.contact' },
+];
+const resourceLinks = [
+  { href: '/download', labelKey: 'nav.download' },
+  { href: '/faq', labelKey: 'nav.faq' },
+];
+---
+
+<footer class="border-t border-border bg-secondary/30 mt-20">
+  <div class="container-narrow py-16">
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-12">
+      <!-- Brand -->
+      <div class="col-span-2">
+        <div class="font-display text-xl font-medium text-primary mb-3">
+          DONGXIAO<sup class="text-xs">®</sup> CASHMERE
+        </div>
+        <p class="text-sm text-muted-foreground leading-relaxed mb-4 max-w-sm">
+          {fl('footer.tagline')}
+        </p>
+        <div class="text-xs text-muted-foreground space-y-1">
+          <div>{fl('footer.address')}</div>
+          <div class="text-primary font-medium">{fl('footer.certifications')}</div>
+        </div>
+      </div>
+
+      <!-- Products -->
+      <div>
+        <h4 class="font-medium text-sm uppercase tracking-wider mb-4">{fl('footer.products')}</h4>
+        <ul class="space-y-2 text-sm">
+          {productLinks.map((l) => (
+            <li>
+              <a href={localePath(locale, l.href)} class="text-muted-foreground hover:text-primary transition-colors">
+                {fl(l.labelKey)}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <h4 class="font-medium text-sm uppercase tracking-wider mb-4">{fl('footer.company')}</h4>
+        <ul class="space-y-2 text-sm">
+          {companyLinks.map((l) => (
+            <li>
+              <a href={localePath(locale, l.href)} class="text-muted-foreground hover:text-primary transition-colors">
+                {fl(l.labelKey)}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div>
+        <h4 class="font-medium text-sm uppercase tracking-wider mb-4">{fl('footer.resources')}</h4>
+        <ul class="space-y-2 text-sm">
+          {resourceLinks.map((l) => (
+            <li>
+              <a href={localePath(locale, l.href)} class="text-muted-foreground hover:text-primary transition-colors">
+                {fl(l.labelKey)}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h4 class="font-medium text-sm uppercase tracking-wider mb-4">{fl('footer.contact')}</h4>
+        <ul class="space-y-2 text-sm text-muted-foreground">
+          <li>
+            <a href={`https://wa.me/${SITE_INFO.whatsapp.replace(/[^\d]/g, '')}`} class="hover:text-primary transition-colors">
+              WhatsApp: {SITE_INFO.phone}
+            </a>
+          </li>
+          <li>
+            <a href={`mailto:${SITE_INFO.email}`} class="hover:text-primary transition-colors">
+              {SITE_INFO.email}
+            </a>
+          </li>
+          <li>
+            WeChat: {SITE_INFO.wechatId}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Languages -->
+    <div class="flex flex-wrap gap-3 pb-6 border-b border-border">
+      <span class="text-xs uppercase tracking-wider text-muted-foreground">Languages:</span>
+      {LOCALES.map((loc) => {
+        const strippedPath = Astro.url.pathname.replace(/^\/[a-z]{2,3}/, '') || '/';
+        return (
+          <a
+            href={localePath(loc, strippedPath)}
+            class:list={[
+              'text-xs flex items-center gap-1 hover:text-primary transition-colors',
+              loc === locale ? 'text-primary font-medium' : 'text-muted-foreground',
+            ]}
+          >
+            {LOCALE_FLAGS[loc]} {LOCALE_NAMES[loc]}
+          </a>
+        );
+      })}
+    </div>
+
+    <!-- Bottom -->
+    <div class="pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
+      <div>{fl('footer.copyright')}</div>
+      <div class="flex flex-wrap gap-4">
+        <a href={localePath(locale, '/privacy-policy')} class="hover:text-primary transition-colors">{fl('footer.privacy')}</a>
+        <button type="button" onclick="window.__HERMES_OPEN_COOKIE__?.()" class="hover:text-primary transition-colors cursor-pointer">{fl('footer.cookie')}</button>
+        <a href="/sitemap-index.xml" class="hover:text-primary transition-colors">{fl('footer.sitemap')}</a>
+      </div>
+    </div>
+  </div>
+</footer>

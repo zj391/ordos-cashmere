@@ -1,0 +1,61 @@
+---
+/**
+ * Blog 详情页（占位 - W5 任务：接 CMS）
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
+import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
+import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
+
+export function getStaticPaths() {
+  return LOCALES.flatMap((locale) =>
+    [
+      { slug: 'how-to-identify-premium-cashmere', title: 'How to Identify Premium Cashmere: 6 Key Metrics' },
+      { slug: 'cashmere-oem-guide', title: 'Cashmere OEM Guide' },
+      { slug: 'oekotex-gcs-importance', title: 'Why OEKO-TEX & GCS Matter' },
+    ].map((post) => ({
+      params: { locale, slug: post.slug },
+      props: { title: post.title },
+    }))
+  );
+}
+
+const { locale: rawLocale } = Astro.params;
+const locale = pickLocale(rawLocale);
+const { title } = Astro.props;
+---
+
+<BaseLayout locale={locale} pageKey="blog" path={`/blog/${Astro.params.slug}`}>
+  <Navigation slot="header" locale={locale} currentPath={`/${locale}/blog`} />
+
+  <article class="pt-32 pb-16 container-narrow max-w-3xl">
+    <div class="text-xs uppercase tracking-wider text-muted-foreground mb-3">Blog</div>
+    <h1 class="font-display text-4xl md:text-5xl font-light leading-tight mb-6">{title}</h1>
+    <div class="text-sm text-muted-foreground mb-12">2026-05-20 · 8 min read</div>
+
+    <div class="prose prose-lg max-w-none">
+      <p class="text-lg leading-relaxed mb-6">
+        {locale === 'cn'
+          ? '完整博客内容将在 W5 接入 CMS 后填充。当前页面作为模板展示。'
+          : 'Full blog content will be populated after W5 CMS integration. This page serves as template.'}
+      </p>
+      <p class="leading-relaxed mb-6">
+        {locale === 'cn'
+          ? '本文将详细介绍羊绒采购的核心要点，包括如何辨别优质羊绒、供应商审核要点、合作流程等。'
+          : 'This article covers the essentials of cashmere sourcing, including how to identify premium cashmere, supplier vetting, and partnership process.'}
+      </p>
+      <h2 class="font-display text-2xl mt-12 mb-4">1. {locale === 'cn' ? '细度指标' : 'Fineness Metrics'}</h2>
+      <p class="leading-relaxed mb-6">
+        {locale === 'cn'
+          ? '细度是衡量羊绒品质最重要的指标，行业标准通常在 14.5-16.5μm 之间。'
+          : 'Fineness is the most important quality metric. Industry standard ranges 14.5-16.5μm.'}
+      </p>
+    </div>
+  </article>
+
+  <Footer slot="footer" locale={locale} />
+  <FloatingChatButtons slot="floating" locale={locale} />
+  <CookieConsent slot="cookie-consent" locale={locale} />
+</BaseLayout>

@@ -1,0 +1,269 @@
+---
+/**
+ * BaseLayout - 6 国子目录网站基础布局
+ * 自动处理：hreflang / TDK / Schema / GA4 / Cookie Consent
+ */
+import '@/styles/global.css';
+import { TRANSLATIONS, LOCALE_HREFLANG, type Locale } from '@/lib/i18n';
+import { SEO, SITE_URL, SITE_INFO, generateHreflangs } from '@/lib/seo';
+import { breadcrumbSchema, faqPageSchema, servicesSchema, PAGE_BREADCRUMB, SERVICES, type FAQItem } from '@/lib/schema';
+
+export interface Props {
+  locale: Locale;
+  pageKey: string;
+  path?: string;
+  title?: string;
+  description?: string;
+  keywords?: string[];
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  canonicalPath?: string;
+  schema?: 'home' | 'raw-material' | 'yarn-fabric' | 'garment-oem' | 'factory' | 'ordos-origin' | 'contact' | 'blog' | 'faq' | 'products' | 'general';
+  noIndex?: boolean;
+  faqs?: FAQItem[]; // 用于 FAQ 页
+}
+
+const {
+  locale,
+  pageKey: _pageKey,
+  path = '/',
+  title,
+  description,
+  keywords,
+  ogImage = 'https://erdosdx.com/images/og-default.svg',
+  ogType = 'website',
+  canonicalPath,
+  schema: _schema = 'general',
+  noIndex = false,
+  faqs,
+} = Astro.props as Props;
+
+const translation = TRANSLATIONS[locale];
+const seo = SEO[locale];
+const pageSEO = (seo as any)[_pageKey];
+
+const finalTitle: string = String(title ?? pageSEO?.title ?? 'DONGXIAO® Cashmere');
+const finalDescription: string = String(description ?? pageSEO?.description ?? '');
+const finalKeywords: string[] = keywords ?? pageSEO?.keywords ?? [];
+
+const canonical = canonicalPath
+  ? `${SITE_URL}/${locale}${canonicalPath}`
+  : `${SITE_URL}/${locale}${path}`;
+
+const hreflangs = generateHreflangs(path);
+
+// GEO Schema - 全部页面都加 Organization + LocalBusiness
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: SITE_INFO.name,
+  legalName: SITE_INFO.legalName,
+  url: SITE_URL,
+  logo: `${SITE_URL}/logo.svg`,
+  foundingDate: String(SITE_INFO.foundingYear),
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: SITE_INFO.address,
+    addressLocality: SITE_INFO.city,
+    addressRegion: SITE_INFO.region,
+    addressCountry: SITE_INFO.country,
+  },
+  contactPoint: [{
+    '@type': 'ContactPoint',
+    telephone: SITE_INFO.phone,
+    contactType: 'sales',
+    availableLanguage: ['English', 'Chinese', 'German', 'French', 'Japanese', 'Korean'],
+    areaServed: 'Worldwide',
+  }],
+  sameAs: Object.values(SITE_INFO.social),
+};
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': `${SITE_URL}/#localbusiness`,
+  name: SITE_INFO.name,
+  description: finalDescription,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: SITE_INFO.city,
+    addressRegion: SITE_INFO.region,
+    addressCountry: SITE_INFO.country,
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: SITE_INFO.latitude,
+    longitude: SITE_INFO.longitude,
+  },
+  telephone: SITE_INFO.phone,
+  priceRange: '$$$',
+};
+
+const pageSchema = (() => {
+  switch (_schema) {
+    case 'home':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: SITE_INFO.name,
+        url: SITE_URL,
+        inLanguage: ['en', 'de', 'fr', 'ja', 'ko', 'zh-CN'],
+      };
+    case 'ordos-origin':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Place',
+        name: 'Ordos Cashmere Region',
+        description: 'Premium cashmere production region in Inner Mongolia, China',
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: SITE_INFO.latitude,
+          longitude: SITE_INFO.longitude,
+        },
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: SITE_INFO.city,
+          addressRegion: SITE_INFO.region,
+          addressCountry: SITE_INFO.country,
+        },
+      };
+    case 'products':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        name: 'Cashmere Products Catalog',
+        description: finalDescription,
+        numberOfItems: 591,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Cashmere Hats & Beanies' },
+          { '@type': 'ListItem', position: 2, name: 'Cashmere Scarves & Wraps' },
+          { '@type': 'ListItem', position: 3, name: 'Cashmere Sweaters' },
+          { '@type': 'ListItem', position: 4, name: 'Cashmere Accessories' },
+          { '@type': 'ListItem', position: 5, name: 'Cashmere Yarn' },
+        ],
+      };
+    default:
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: finalTitle,
+        description: finalDescription,
+        inLanguage: LOCALE_HREFLANG[locale],
+      };
+  }
+})();
+
+const allSchemas: any[] = [orgSchema, localBusinessSchema, pageSchema];
+
+// 面包屑导航 Schema
+const bc = PAGE_BREADCRUMB[_pageKey];
+if (bc) {
+  allSchemas.push(breadcrumbSchema(locale, bc(locale)));
+}
+
+// 服务 Schema（首页 + 内容页）
+if (_schema === 'home' || ['raw-material', 'yarn-fabric', 'garment-oem', 'factory'].includes(_schema)) {
+  allSchemas.push(servicesSchema(SERVICES[locale]));
+}
+
+// FAQ Schema（FAQ 页）
+if (_schema === 'faq' && faqs && faqs.length > 0) {
+  allSchemas.push(faqPageSchema(faqs));
+}
+---
+
+<!DOCTYPE html>
+<html lang={LOCALE_HREFLANG[locale]}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- TDK -->
+    <title>{finalTitle}</title>
+    <meta name="description" content={finalDescription} />
+    <meta name="keywords" content={finalKeywords.join(', ')} />
+    {noIndex && <meta name="robots" content="noindex,nofollow" />}
+
+    <!-- Canonical -->
+    <link rel="canonical" href={canonical} />
+
+    <!-- hreflang 多语言 -->
+    {hreflangs.map((hl: any) => (
+      <link rel="alternate" hreflang={hl.lang} href={hl.href} />
+    ))}
+
+    <!-- GEO Meta -->
+    <meta name="geo.region" content="CN-15" />
+    <meta name="geo.placename" content="Ordos, Inner Mongolia" />
+    <meta name="geo.position" content={`${SITE_INFO.latitude};${SITE_INFO.longitude}`} />
+    <meta name="ICBM" content={`${SITE_INFO.latitude}, ${SITE_INFO.longitude}`} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={finalTitle} />
+    <meta property="og:description" content={finalDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content={SITE_INFO.name} />
+    <meta property="og:locale" content={LOCALE_HREFLANG[locale]} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={finalTitle} />
+    <meta name="twitter:description" content={finalDescription} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Google Search Console 验证 -->
+    <meta name="google-site-verification" content="google029578c30ed5c01f" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- JSON-LD Schema -->
+    {allSchemas.map((s: any) => (
+      <script type="application/ld+json" set:html={JSON.stringify(s, null, 0)} is:inline />
+    ))}
+
+    <!-- GA4 -->
+    <script is:inline define:vars={{ locale, gaId: 'G-PLACEHOLDER' }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', gaId, {
+        send_page_view: true,
+        locale: locale,
+        custom_map: { dimension1: 'locale' }
+      });
+      window.__HERMES_LOCALE__ = locale;
+      window.__HERMES_GA_ID__ = gaId;
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER"></script>
+  </head>
+
+  <body>
+    <slot name="header" />
+    <main><slot /></main>
+    <slot name="footer" />
+    <slot name="floating" />
+    <slot name="cookie-consent" />
+
+    <!-- IP 识别 -->
+    <script is:inline>
+      (function() {
+        const lang = (navigator.language || 'en').toLowerCase();
+        const isChinaIP = /^(zh|zh-cn|zh-hans)/i.test(lang);
+        window.__HERMES_REGION__ = isChinaIP ? 'CN' : 'GLOBAL';
+        window.__HERMES_HIGHLIGHT__ = isChinaIP ? 'wechat' : 'whatsapp';
+      })();
+    </script>
+  </body>
+</html>

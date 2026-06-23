@@ -1,0 +1,3 @@
+# Vercel 兼容性兜底
+# Astro 已经处理了 i18n 路由，这里只是最后的兜底
+/*    /index.html   200

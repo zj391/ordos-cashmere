@@ -1,0 +1,628 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "products": "Produits",
+    "brandStory": "Notre histoire",
+    "production": "Production",
+    "about": "À propos",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "whatsapp": "WhatsApp",
+    "sweaters": "Pulls",
+    "scarves": "Écharpes",
+    "blankets": "Couvertures",
+    "socks": "Chaussettes",
+    "accessories": "Accessoires",
+    "premiumSupplier": "Fournisseur de cachemire premium",
+    "headerDesc": "Depuis 2002 | Plus de 23 ans d'excellence | Certifié ISO | Fournisseur B2B mondial",
+    "blog": "Blog",
+    "whatsApp": "WhatsApp"
+  },
+  "hero": {
+    "tagline": "FOURNISSEUR MONDIAL DE CASHMERE B2B",
+    "title": "Cashmere Premium pour Marques Mondiales",
+    "description": "Approuvé par les détaillants et distributeurs internationaux. 1 200+ tonnes de cachemire traité annuellement. Certifié ISO. 23+ ans d'excellence.",
+    "cta": "Explorer les Produits",
+    "contact": "Contactez-nous"
+  },
+  "about": {
+    "title": "À Propos de DONGXIAO® CASHMERE",
+    "since": "Depuis 2002 | 23+ Ans d'Excellence | Certifié ISO | Fournisseur B2B Mondial",
+    "description": "Erdos Dongxiao Cashmere Products Factory - Fournisseur grossiste de cachemire premium de Mongolie intérieure.",
+    "established": "Fondé en 2002",
+    "experience": "23+ ans d'expérience dans l'industrie",
+    "capacity": "Capacité de production annuelle de 1 200+ tonnes",
+    "customers": "500+ clients dans 50+ pays",
+    "productSweatersSpecs": [
+      "Gauge fin (12GG-16GG)",
+      "Couleurs personnalisées",
+      "MOQ: 100 pièces"
+    ],
+    "productScarvesSpecs": [
+      "100% cachemire ou mélangé",
+      "Tailles et motifs personnalisés",
+      "MOQ: 200 pièces"
+    ],
+    "productBlanketsSpecs": [
+      "Couvertures cachemire premium",
+      "Tailles personnalisées jusqu'à 300cm x 200cm",
+      "MOQ: 50 pièces"
+    ],
+    "productAccessoriesSpecs": [
+      "Gants, chapeaux, cache-oreilles",
+      "Options de personnalisation",
+      "MOQ: 300 pièces"
+    ],
+    "productFabricsSpecs": [
+      "Tissus cachemire et yak",
+      "GSM et largeur personnalisés",
+      "MOQ: 500 mètres"
+    ],
+    "productWorstedSpecs": [
+      "Qualité premium",
+      "Gauge fin",
+      "Applications de luxe"
+    ]
+  },
+  "products": {
+    "title": "Produits en cachemire",
+    "subtitle": "Produits en cachemire haut de gamme fabriques dans notre usine de Mongolie-Interieure. Prix direct usine, OEM/ODM pris en charge. 100% cachemire pur avec tracabilite complete.",
+    "filterAll": "Tous les produits",
+    "searchPlaceholder": "Rechercher par nom, ID, materiau...",
+    "sortBy": "Trier par",
+    "sortDefault": "Par defaut",
+    "sortPriceAsc": "Prix : croissant",
+    "sortPriceDesc": "Prix : decroissant",
+    "sortMoqAsc": "MOQ : croissant",
+    "moq": "MOQ",
+    "material": "Materiau",
+    "micron": "Micron",
+    "colors": "Couleurs",
+    "requestQuote": "Demander un devis",
+    "viewDetails": "Voir les details",
+    "noResults": "Aucun produit ne correspond a vos filtres",
+    "closeButton": "Fermer",
+    "productSpecs": "Specifications du produit",
+    "leadTime": "Delai de livraison",
+    "sampleTime": "Delai d'echantillon",
+    "price": "Prix",
+    "selectColor": "Couleur",
+    "selectColorPrompt": "Choisir une variante de couleur",
+    "requestInquiry": "Demander maintenant",
+    "inquiryNote": "Nous repondrons sous 24 heures avec un devis",
+    "productIdLabel": "ID du produit",
+    "loadMore": "Charger plus"
+  },
+  "faq": {
+    "title": "Questions Fréquemment Posées",
+    "description": "Trouvez des réponses aux questions courantes sur nos produits, services et processus de commande.",
+    "categories": {
+      "moq": "Quantité Minimum de Commande",
+      "sampling": "Échantillonnage & Personnalisation",
+      "quality": "Qualité & Certificats",
+      "logistics": "Expédition & Logistique"
+    }
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "description": "Contactez notre équipe commerciale pour les prix de gros, les commandes personnalisées et les solutions B2B.",
+    "whatsapp": "WhatsApp : +86 156 6185 3999",
+    "email": "Email : dongxiaocashmere@erdosdx.com",
+    "toastSuccess": "Merci pour votre demande ! Nous vous contacterons bientôt.",
+    "section": {
+      "pageTitle": "Contactez-nous",
+      "pageDescription": "Contactez notre équipe pour les demandes de gros, les commandes personnalisées et les partenariats commerciaux.",
+      "whatsappTitle": "WhatsApp",
+      "fastResponse": "Réponse rapide",
+      "emailTitle": "Email",
+      "respondWithin": "Nous répondons sous 24 heures",
+      "locationTitle": "Localisation",
+      "innerMongolia": "Mongolie Intérieure, Chine",
+      "factoryName": "Usine de Cachemire Dongxiao d'Ordos",
+      "sendMessageTitle": "Envoyez-nous un Message",
+      "fullName": "Nom Complet *",
+      "yourName": "Votre nom",
+      "emailAddress": "Adresse Email *",
+      "yourEmail": "votre@email.com",
+      "companyName": "Nom de l'Entreprise",
+      "yourCompany": "Votre entreprise",
+      "phoneNumber": "Numéro de Téléphone",
+      "yourPhone": "+1 (555) 000-0000",
+      "productInterest": "Intérêt Produit",
+      "selectProduct": "Sélectionnez une catégorie de produit",
+      "cashmereHats": "Bonnets en Cachemire",
+      "sweatersKnitwear": "Pulls & Tricot",
+      "scarvesWraps": "Écharpes & Châles",
+      "accessories": "Accessoires",
+      "cashmereYarn": "Fil de Cachemire",
+      "other": "Autre",
+      "estimatedQuantity": "Quantité Estimée de Commande",
+      "quantityPlaceholder": "ex: 500 pièces",
+      "message": "Message *",
+      "messagePlaceholder": "Parlez-nous de votre demande...",
+      "sendInquiry": "Envoyer la Demande"
+    },
+    "form": {
+      "companyName": "Nom de l'Entreprise",
+      "contactName": "Nom du Contact",
+      "email": "Email",
+      "phone": "Téléphone",
+      "country": "Pays",
+      "productCategory": "Catégorie de Produit",
+      "quantity": "Quantité Estimée",
+      "specifications": "Spécifications",
+      "message": "Message Complémentaire",
+      "submit": "Soumettre & Chatter sur WhatsApp",
+      "emailUs": "Nous Envoyer un Email"
+    }
+  },
+  "inquiry": {
+    "enhanced": {
+      "title": "Obtenez Votre Devis Aujourd'hui",
+      "companyName": "Nom de l'Entreprise",
+      "companyNamePlaceholder": "Nom de votre entreprise",
+      "contactName": "Nom du Contact",
+      "contactNamePlaceholder": "Votre nom",
+      "email": "Email",
+      "emailPlaceholder": "votre@email.com",
+      "phone": "Téléphone",
+      "phonePlaceholder": "+1 (555) 123-4567",
+      "country": "Pays",
+      "selectCountry": "Sélectionnez un pays",
+      "productCategory": "Catégorie de Produit",
+      "selectCategory": "Sélectionnez une catégorie",
+      "quantity": "Quantité Estimée (pcs)",
+      "quantityPlaceholder": "ex: 1000, 5000, 10000+",
+      "specifications": "Spécifications (Jauge, Couleur, etc.)",
+      "specificationsPlaceholder": "ex: 7GG, Beige, 100% Cachemire",
+      "additionalMessage": "Message Additionnel",
+      "messagePlaceholder": "Parlez-nous de vos exigences, besoins de personnalisation ou délai...",
+      "quickResponseTitle": "Réponse Rapide Garantie",
+      "quickResponseDesc": "Notre équipe commerciale répond généralement dans les 24 heures. Vous serez connecté via WhatsApp pour une communication plus rapide.",
+      "submitting": "Soumission...",
+      "submitAndChat": "Soumettre & Chatter sur WhatsApp",
+      "emailUs": "Nous Envoyer un Email",
+      "thankYouTitle": "Merci !",
+      "thankYouMessage": "Votre demande a été soumise avec succès. Vous serez redirigé vers WhatsApp pour continuer la conversation avec notre équipe commerciale.",
+      "requiredField": "*",
+      "errors": {
+        "fillRequired": "Veuillez remplir tous les champs obligatoires",
+        "submitFailed": "Échec de la soumission de la demande. Veuillez réessayer."
+      },
+      "successToast": "Demande soumise ! Redirection vers WhatsApp..."
+    },
+    "form": {
+      "title": "Formulaire de Demande de Produit",
+      "subtitle": "Remplissez le formulaire ci-dessous pour soumettre votre demande de produit. Notre équipe répondra dans les 24 heures.",
+      "companyInfo": "Informations sur l'Entreprise",
+      "companyName": "Nom de l'Entreprise *",
+      "companyNamePlaceholder": "Nom de votre entreprise",
+      "contactName": "Nom du Contact *",
+      "contactNamePlaceholder": "Votre nom",
+      "emailAddress": "Adresse Email *",
+      "emailPlaceholder": "votre@email.com",
+      "phoneNumber": "Numéro de Téléphone *",
+      "phonePlaceholder": "+1 (555) 000-0000",
+      "country": "Pays *",
+      "selectCountry": "Sélectionnez votre pays",
+      "productInquiry": "Demande de Produit",
+      "productCategory": "Catégorie de Produit *",
+      "selectProductCategory": "Sélectionnez la catégorie de produit",
+      "quantityRequired": "Quantité Requise *",
+      "quantityPlaceholder": "ex: 500 pièces, 1000 mètres",
+      "specifications": "Spécifications (Optionnel)",
+      "specificationsPlaceholder": "ex: Couleur, jauge, mélange de matériaux, etc.",
+      "additionalMessage": "Message Additionnel (Optionnel)",
+      "messagePlaceholder": "Parlez-nous de vos exigences, budget, délai ou autres détails...",
+      "submitting": "Soumission...",
+      "submitInquiry": "Soumettre la Demande",
+      "whatsApp": "WhatsApp",
+      "requiredFields": "* Champs obligatoires. Nous respectons votre vie privée et ne partagerons jamais vos informations.",
+      "otherWays": "Autres Moyens de Nous Contacter",
+      "email": "Email",
+      "responseTime": "Délai de Réponse",
+      "within24hours": "Dans les 24 heures",
+      "successMessage": "Merci ! Votre demande a été envoyée. Nous vous contacterons bientôt.",
+      "errorMessage": "Une erreur s'est produite. Veuillez réessayer ou nous contacter via WhatsApp.",
+      "errors": {
+        "companyNameRequired": "Le nom de l'entreprise est requis",
+        "contactNameRequired": "Le nom du contact est requis",
+        "emailRequired": "L'email est requis",
+        "emailInvalid": "Veuillez entrer une adresse email valide",
+        "phoneRequired": "Le numéro de téléphone est requis",
+        "countryRequired": "Le pays est requis",
+        "productCategoryRequired": "La catégorie de produit est requise",
+        "quantityRequired": "La quantité est requise"
+      }
+    }
+  },
+  "subscription": {
+    "title": "Restez Informé",
+    "description": "Recevez les derniers conseils d'entretien du cachemire, les guides de style et les insights de l'industrie dans votre boîte mail",
+    "placeholder": "Entrez votre adresse email",
+    "subscribe": "S'abonner",
+    "subscribing": "Abonnement en cours...",
+    "success": "Abonnement réussi à notre blog !",
+    "successTitle": "Abonnement Confirmé !",
+    "successMessage": "Merci de vous être abonné. Vous recevrez nos derniers articles et mises à jour dans votre boîte mail. Votre rapport industriel gratuit est en route !",
+    "privacy": "Nous respectons votre vie privée. Désabonnez-vous à tout moment.",
+    "incentive": "Abonnez-vous Maintenant & Obtenez un Rapport Industriel Gratuit",
+    "incentiveDescription": "Accès exclusif à notre analyse de marché complète et nos prévisions de tendances",
+    "bonus": "Bonus Gratuit : Rapport Industriel",
+    "bonusMessage": "Consultez votre email pour votre rapport industriel gratuit !",
+    "shareTitle": "Partagez Votre Succès",
+    "shareDescription": "Parlez de cette ressource précieuse à votre réseau",
+    "shareMessage": "Je viens de m'abonner au blog de DONGXIAO® CASHMERE et j'ai obtenu un rapport industriel gratuit ! Découvrez les insights et tendances du marché du cachemire premium.",
+    "customizeShare": "Personnalisez Votre Message",
+    "shareOn": "Partager sur",
+    "shareButton": "Partager",
+    "copyMessage": "Copier le Message",
+    "messageCopied": "Message copié dans le presse-papiers !",
+    "errors": {
+      "emailRequired": "L'email est requis",
+      "invalidEmail": "Veuillez entrer une adresse email valide",
+      "submitFailed": "Échec de l'abonnement. Veuillez réessayer."
+    },
+    "benefits": {
+      "marketAnalysis": "Analyse du Marché",
+      "marketAnalysisDesc": "Insights complets",
+      "trendForecasts": "Prévisions de Tendances",
+      "trendForecastsDesc": "Prédictions de l'industrie",
+      "weeklyUpdates": "Mises à Jour Hebdomadaires",
+      "weeklyUpdatesDesc": "Derniers articles"
+    }
+  },
+  "socialShare": {
+    "shareLabel": "Partager :",
+    "shareOnFacebook": "Partager sur Facebook",
+    "shareOnTwitter": "Partager sur Twitter",
+    "shareOnLinkedIn": "Partager sur LinkedIn",
+    "shareOnWhatsApp": "Partager sur WhatsApp",
+    "shareViaEmail": "Partager par e-mail",
+    "platformLinkedIn": "LinkedIn",
+    "platformFacebook": "Facebook",
+    "platformTwitter": "Twitter",
+    "platformWhatsApp": "WhatsApp"
+  },
+  "whatsAppButton": {
+    "chatTitle": "Chat WhatsApp",
+    "chatIntro": "Salut ! 👋 Nous sommes là pour aider. Chattez avec nous sur WhatsApp pour un support instantané.",
+    "quickMessage": "Message rapide :",
+    "startChat": "Démarrer le Chat",
+    "replyTime": "Nous répondons généralement en quelques minutes",
+    "tooltip": "Chattez avec nous sur WhatsApp",
+    "chatWithUs": "Chattez avec nous",
+    "questionsChat": "Des questions ? Chattez avec nous ! 💬"
+  },
+  "footer": {
+    "copyright": "© 2002 DONGXIAO® CASHMERE. Tous droits réservés.",
+    "quickLinks": "Liens rapides",
+    "company": "Entreprise",
+    "products": "Produits",
+    "support": "Support",
+    "follow": "Suivez-nous",
+    "companyDesc": "Produits de cachemire en gros premium du premier fournisseur de Mongolie intérieure. Plus de 30 ans d'expertise en tricots de luxe.",
+    "location": "Mongolie intérieure, Chine",
+    "whatsapp": "WhatsApp",
+    "categories": "Catégories",
+    "b2bServices": "Services B2B",
+    "wholesalePricing": "Prix de gros",
+    "customOrders": "Commandes personnalisées",
+    "moq": "MOQ: 50-100 pcs",
+    "fastShipping": "Livraison rapide",
+    "allRights": "Tous droits réservés.",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation"
+  },
+  "home": {
+    "advantages": {
+      "oekoTexCertified": "Certifié OEKO-TEX®",
+      "oekoTexDesc": "Sans danger pour la peau des bébés. Assurance qualité premium.",
+      "lowMoq": "MOQ faible",
+      "lowMoqDesc": "100 pièces par design. Parfait pour les startups.",
+      "freeSamples": "Échantillons gratuits",
+      "freeSamplesDesc": "Contrôle qualité avant les commandes en gros.",
+      "fastSampling": "Échantillonnage rapide",
+      "fastSamplingDesc": "7-10 jours pour les tests de marché."
+    },
+    "tagline": "FOURNISSEUR B2B MONDIAL DE CACHEMIRE",
+    "heroTitle": "Cachemire Premium pour Marques Mondiales",
+    "heroDescription": "Approuvé par les détaillants et distributeurs internationaux. Plus de 1 200 tonnes de cachemire transformées annuellement. Certifié ISO. Plus de 23 ans d'excellence.",
+    "exploreProducts": "Explorer les produits",
+    "requestSample": "Demander un échantillon",
+    "aboutFactory": "Notre usine",
+    "factoryName": "Usine de cachemire Erdos Dongxiao",
+    "established": "Établie en 2002",
+    "yearsExcellence": "Plus de 23 ans d'excellence",
+    "annualCapacity": "Capacité de production annuelle",
+    "depilatedCashmere": "1 200 tonnes de cachemire épilé",
+    "cashmereYarn": "1 500 tonnes de fil de cachemire",
+    "scarvesShawls": "2 millions de cachemires et châles",
+    "knitwear": "5 millions de pièces de bonneterie cachemire",
+    "woolFabrics": "1 million de mètres de tissus lainage-cachemire",
+    "worstedFabrics": "1 million de mètres de tissus cachemire peigné",
+    "facilityDescription": "Notre installation est équipée d'une variété de machines à tricoter avancées et de métiers à navette pour répondre aux commandes de toutes tailles avec précision et qualité.",
+    "certificationsTitle": "Certifications et normes",
+    "iso9001": "ISO 9001 - Gestion de la qualité",
+    "iso14001": "ISO 14001 - Gestion environnementale",
+    "ohsas18001": "OHSAS 18001 - Santé et sécurité au travail",
+    "oekoTex": "OEKO-TEX® STANDARD 100",
+    "bsci": "BSCI - Conformité sociale commerciale",
+    "abtf": "THE GOOD CASHMERE STANDARD by AbTF",
+    "ourExpertise": "Notre expertise",
+    "comprehensiveProductRange": "Gamme complète de produits",
+    "completeSolutions": "Du cachemire brut aux vêtements finis, nous offrons des solutions complètes pour votre marque",
+    "productCategories": "Catégories de produits",
+    "specificationsMaterials": "Spécifications et matériaux",
+    "gaugeOptions": "Options de jauge",
+    "gaugeOptionsValue": "3GG, 5GG, 7GG, 12GG, 16GG, 18GG et plus",
+    "materialBlends": "Mélanges de matériaux",
+    "materialBlendsValue": "100% cachemire, mélangé laine, velours, lainage coton et plus",
+    "customization": "Personnalisation",
+    "customizationValue": "Personnalisation complète disponible pour les couleurs, motifs et spécifications",
+    "globalReach": "Portée mondiale",
+    "trustedWorldwide": "Approuvé dans le monde entier",
+    "globalReachDesc": "Nos produits atteignent les clients au Japon, en Corée, en Europe, aux États-Unis et au-delà",
+    "countriesCount": "Plus de 50 pays",
+    "countriesDesc": "Au service des marques mondiales et des détaillants",
+    "premiumBrands": "Marques premium",
+    "brandsList": "VC, CC, AB, BB, TWC, BO, PA, EV, JL, KG, TO, JOE, TSE, AEO et plus",
+    "reliableShipping": "Expédition fiable",
+    "shippingDesc": "Livraison rapide et sécurisée dans le monde entier",
+    "readyPartner": "Prêt à vous associer à nous?",
+    "contactTeam": "Contactez notre équipe aujourd'hui pour les prix de gros, les commandes personnalisées et les solutions B2B exclusives adaptées à vos besoins.",
+    "whatsAppUs": "Nous contacter sur WhatsApp",
+    "getInTouch": "Nous contacter",
+    "whyChoose": "Pourquoi choisir DONGXIAO®?",
+    "yearsExcellenceTitle": "Plus de 23 ans d'excellence",
+    "yearsExcellenceDesc": "Plus de deux décennies d'expertise prouvée dans la production de cachemire et l'approvisionnement B2B mondial",
+    "productionCapacity": "Capacité de production massive",
+    "productionCapacityDesc": "Plus de 1 200 tonnes de cachemire, 5 millions de pièces de bonneterie, 2 millions de châles annuellement",
+    "flexibleMoq": "MOQ flexible",
+    "flexibleMoqDesc": "Quantités minimums basses (100 pièces) parfaites pour les startups et petites marques",
+    "fastSamplingTitle": "Échantillonnage rapide",
+    "fastSamplingTitleDesc": "Échantillonnage en 7-10 jours avec échantillons gratuits pour les premiers clients",
+    "globalReachTitle": "Portée mondiale",
+    "globalReachTitleDesc": "Au service de plus de 50 pays avec des partenariats de confiance au Japon, en Corée, en Europe, aux États-Unis",
+    "sustainablePractices": "Pratiques durables",
+    "sustainablePracticesDesc": "Certifié ISO 14001 avec engagement envers la responsabilité environnementale",
+    "industryCertifications": "Certifications industrielles",
+    "industryCertificationsDesc": "Sept certifications internationalement reconnues démontrant notre engagement envers la qualité, la sécurité et la durabilité"
+  },
+  "advantagesAndCertifications": {
+    "whyChooseTitle": "Pourquoi choisir DONGXIAO®?",
+    "whyChooseSubtitle": "Avantages leaders de l'industrie soutenus par des certifications et un bilan éprouvé",
+    "advantagesSectionTitle": "Nos Avantages",
+    "advantages": {
+      "quality": {
+        "title": "Plus de 23 ans d'excellence",
+        "description": "Plus de deux décennies d'expertise prouvée dans la production de cachemire et l'approvisionnement mondial B2B"
+      },
+      "capacity": {
+        "title": "Capacité de production massive",
+        "description": "Plus de 1 200 tonnes de cachemire, 5 millions de pièces de bonneterie, 2 millions de châles annuellement"
+      },
+      "flexibility": {
+        "title": "MOQ flexible",
+        "description": "Quantités minimums basses (100 pièces) parfaites pour les startups et petites marques"
+      },
+      "sampling": {
+        "title": "Échantillonnage rapide",
+        "description": "Échantillonnage en 7-10 jours avec échantillons gratuits pour les premiers clients"
+      },
+      "global": {
+        "title": "Portée mondiale",
+        "description": "Au service de plus de 50 pays avec des partenariats de confiance au Japon, en Corée, en Europe, aux États-Unis"
+      },
+      "sustainability": {
+        "title": "Pratiques durables",
+        "description": "Certifié ISO 14001 avec engagement envers la responsabilité environnementale"
+      }
+    },
+    "certificationsTitle": "Certifications de l'Industrie",
+    "certificationsSubtitle": "Sept certifications internationalement reconnues démontrant notre engagement envers la qualité, la sécurité et la durabilité",
+    "certified": "Certifié:",
+    "certifications": {
+      "iso9001": {
+        "name": "ISO 9001",
+        "description": "Système de Gestion de la Qualité",
+        "benefit": "Assure une qualité de produit constante et la satisfaction du client"
+      },
+      "iso14001": {
+        "name": "ISO 14001",
+        "description": "Gestion Environnementale",
+        "benefit": "Démontre l'engagement envers des pratiques durables et respectueuses de l'environnement"
+      },
+      "ohsas18001": {
+        "name": "OHSAS 18001",
+        "description": "Santé et Sécurité au Travail",
+        "benefit": "Protège la sécurité des travailleurs et maintient des conditions de travail saines"
+      },
+      "enms": {
+        "name": "EnMS",
+        "description": "Système de Gestion de l'Énergie",
+        "benefit": "Réduit la consommation d'énergie et les coûts opérationnels"
+      },
+      "oekotext": {
+        "name": "OEKO-TEX® STANDARD 100",
+        "description": "Norme de Sécurité Textile",
+        "benefit": "Sûr pour la peau de bébé - certification de sécurité textile la plus élevée"
+      },
+      "bsci": {
+        "name": "BSCI",
+        "description": "Business Social Compliance Initiative",
+        "benefit": "Assure des pratiques laborales éthiques et la responsabilité sociale"
+      },
+      "goodcashmere": {
+        "name": "THE GOOD CASHMERE STANDARD",
+        "description": "par AbTF (Association of Bretton Woods)",
+        "benefit": "Norme de qualité et de traçabilité premium du cachemire"
+      }
+    },
+    "certificationBenefitsTitle": "Ce que nos certifications signifient pour vous",
+    "qualityAssurance": {
+      "title": "Assurance Qualité",
+      "description": "La certification ISO 9001 garantit des normes de qualité constantes pour tous nos produits. Chaque article undergo un contrôle de qualité rigoureux avant expédition."
+    },
+    "safetyCompliance": {
+      "title": "Sécurité et Conformité",
+      "description": "La certification OEKO-TEX® assure que notre cachemire est sûr pour les peaux sensibles, y compris la peau de bébé. Tous les produits répondent aux normes de sécurité internationales."
+    },
+    "environmentalResponsibility": {
+      "title": "Responsabilité Environnementale",
+      "description": "Les certifications ISO 14001 et EnMS démontrent notre engagement envers des pratiques durables et la réduction de notre impact environnemental."
+    },
+    "ethicalPractices": {
+      "title": "Pratiques Éthiques",
+      "description": "La certification BSCI assure des pratiques laborales équitables et des opérations commerciales éthiques dans toute notre chaîne d'approvisionnement."
+    },
+    "statsSectionTitle": "Confiance et Crédibilité",
+    "yearsInBusiness": {
+      "value": "Années d'Activité",
+      "since": "Depuis 2002"
+    },
+    "industryCertifications": {
+      "value": "Certifications de l'Industrie",
+      "subtitle": "Internationalement Reconnues"
+    },
+    "countriesServed": {
+      "value": "Pays Servis",
+      "subtitle": "Distribution Mondiale"
+    },
+    "tonsAnnually": {
+      "value": "Tonnes Annuellement",
+      "subtitle": "Capacité de Production"
+    }
+  },
+  "cta": {
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "exploreProducts": "Explore Products",
+    "getQuoteWhatsApp": "Get Quote on WhatsApp",
+    "viewFaq": "View FAQ"
+  },
+  "testimonials": {
+    "title": "What Our Customers Say",
+    "subtitle": "Trusted by leading brands and retailers across Europe, North America, and beyond. Real feedback from real partners.",
+    "keyStrength": "Key Strength:",
+    "countriesServed": "Countries Served",
+    "countriesServedDesc": "Global distribution network",
+    "satisfiedClients": "Satisfied Clients",
+    "satisfiedClientsDesc": "Long-term partnerships",
+    "onTimeDelivery": "On-Time Delivery",
+    "onTimeDeliveryDesc": "Reliable logistics",
+    "averageRating": "Average Rating",
+    "averageRatingDesc": "Customer satisfaction",
+    "joinPartners": "Join Our Growing Network of Partners",
+    "joinPartnersDesc": "Experience the DONGXIAO® difference. Connect with our team today to discuss your wholesale cashmere needs.",
+    "whatsAppUs": "WhatsApp Us",
+    "emailUs": "Email: dongxiaocashmere@erdosdx.com",
+    "testimonial1": {
+      "text": "Travailler avec DONGXIAO® a été transformateur pour notre entreprise. Leur qualité est exceptionnelle et la flexibilité du MOQ nous a permis de lancer notre ligne de cachemire premium sans investissement initial massif. Le délai d'échantillonnage de 7-10 jours est incroyablement rapide.",
+      "highlight": "Qualité exceptionnelle, échantillonnage rapide et MOQ flexible"
+    },
+    "testimonial2": {
+      "text": "Nous approvisionnons du cachemire auprès de DONGXIAO® depuis plus de trois ans maintenant. Leur cohérence est remarquable—chaque lot répond à nos normes de qualité strictes. La certification OEKO-TEX® nous donne confiance lors de la vente à nos clients premium.",
+      "highlight": "Qualité constante, certifications fiables, capacité impressionnante"
+    },
+    "testimonial3": {
+      "text": "DONGXIAO® se distingue par sa transparence et sa communication. De la demande initiale à la livraison finale, ils nous tiennent informés à chaque étape. La qualité de leurs produits en cachemire est de classe mondiale.",
+      "highlight": "Communication transparente, qualité mondiale, prix compétitifs"
+    }
+  },
+  "caseStudies": {
+    "title": "Histoires de Succès",
+    "description": "Découvrez comment les principales marques européennes et américaines s'associent avec DONGXIAO® pour développer leurs activités cachemire.",
+    "industry": "Industrie",
+    "theChallenge": "Le Défi",
+    "ourSolution": "Notre Solution",
+    "keyResults": "Résultats Clés",
+    "longTermPartnership": "Partenariat à Long Terme",
+    "longTermPartnershipDesc": "Ces marques continuent de faire confiance à DONGXIAO® pour leurs besoins en cachemire et ont élargi leurs commandes au fil des ans.",
+    "readyToWrite": "Prêt à Écrire Votre Histoire de Succès?",
+    "readyToWriteDesc": "Rejoignez des centaines de marques dans le monde qui font confiance à DONGXIAO® pour des produits cachemire premium. Discutons de comment nous pouvons vous aider à croître.",
+    "startYourProject": "Démarrez Votre Projet",
+    "requestFreeConsultation": "Demander une Consultation Gratuite"
+  },
+  "esgCommitment": {
+    "tagline": "Durabilité",
+    "title": "Notre Engagement ESG",
+    "description": "Chez DONGXIAO® CASHMERE, la durabilité n'est pas qu'un objectif—elle est intégrée à chaque étape de notre processus de production. Nous nous engageons à créer des produits cachemire premium tout en protégeant notre planète et en soutenant nos communautés.",
+    "environmental": "Environnemental",
+    "environmentalDesc": "Approvisionnement durable et production écologique",
+    "environmentalDetails": {
+      "circularWater": "Systèmes de traitement de l'eau circulaires",
+      "plantDyes": "Colorants végétaux et processus naturels",
+      "carbonNeutral": "Objectif de fabrication neutre en carbone d'ici 2030",
+      "renewableEnergy": "Intégration de l'énergie renouvelable"
+    },
+    "social": "Social",
+    "socialDesc": "Pratiques de travail équitables et soutien communautaire",
+    "socialDetails": {
+      "fairWages": "Salaires équitables et conditions de travail sûres",
+      "bsci": "Certifié BSCI et OHSAS 18001",
+      "wellness": "Programmes de bien-être des employés",
+      "community": "Initiatives de développement communautaire local"
+    },
+    "governance": "Gouvernance",
+    "governanceDesc": "Transparence et pratiques commerciales éthiques",
+    "governanceDetails": {
+      "iso9001": "Gestion de la qualité ISO 9001",
+      "traceability": "Plein traçabilité de la chaîne d'approvisionnement",
+      "audits": "Audits réguliers par des tiers",
+      "ethical": "Engagements d'approvisionnement éthique"
+    },
+    "impactByNumbers": "Notre Impact en Chiffres",
+    "waterReduction": "Réduction de l'Eau",
+    "waterReductionDesc": "Grâce à des systèmes de recyclage avancés",
+    "ethicalSourcing": "Approvisionnement Éthique",
+    "ethicalSourcingDesc": "Tout le cachemire de fournisseurs certifiés",
+    "fairTradeJobs": "Emplois Commerce Équitable",
+    "fairTradeJobsDesc": "Soutenant les communautés locales",
+    "certifications": "Certifications",
+    "certificationsDesc": "Normes ESG internationales",
+    "certifiedVerified": "Certifié et Vérifié",
+    "goodCashmereStandard": "Le Standard Bon Cashmere (AbTF)",
+    "goodCashmereStandardDesc": "Assure le bien-être animal, la responsabilité environnementale et les pratiques de travail équitables dans toute la chaîne d'approvisionnement.",
+    "oekoTex": "OEKO-TEX® STANDARD 100",
+    "oekoTexDesc": "Garantit que nos produits sont exempts de substances nocives et sans danger pour la santé humaine.",
+    "bsci": "BSCI (Initiative de Conformité Sociale des Entreprises)",
+    "bsciDesc": "Démontre notre engagement envers des pratiques commerciales responsables et éthiques dans la fabrication.",
+    "iso14001": "ISO 14001 (Gestion Environnementale)",
+    "iso14001Desc": "Vérifie notre approche systématique pour minimiser l'impact environnemental et améliorer la durabilité.",
+    "joinUs": "Rejoignez-nous pour faire la différence. Quand vous choisissez DONGXIAO® CASHMERE, vous choisissez la qualité, la durabilité et la responsabilité.",
+    "learnMore": "En Savoir Plus Sur Nos Initiatives de Durabilité"
+  },
+  "privacy": {
+    "title": "Politique de Confidentialité",
+    "lastUpdated": "Dernière mise à jour :",
+    "section1Title": "Informations que nous collectons",
+    "section1P1": "Nous collectons les informations que vous nous fournissez directement, notamment : nom, adresse e-mail, numéro de téléphone, nom de entreprise et toute autre information que vous choisissez de fournir lorsqe vous nous contactez via nos formulaires web ou WhatsApp.",
+    "section1P2": "Nous collectons également automatiquement certaines informations techniques lorsque vouslez notre site web, notamment votre adresse IP, le type de navigateur, les pages visitées et l'URL de référencement.",
+    "section2Title": "Comment nous utilisons vos informations",
+    "section2P1": "Nous utilisons les informations collectées pour : répondre à vos demandes et fournir une assistance client ; vous envoyer des informations sur les produits et des communications promotionnelles (vous pouvez vous désinscrire à tout moment) ; améliorer notre site web et nos services ; et respecter nos obligations légales.",
+    "section3Title": "Partage des informations",
+    "section3P1": "Nous ne vendons, n'échangeons ni ne transférons autrement vos informations personnelles à des tiers sans votre consentement, sauf comme décrit dans cette politique ou comme requis par la loi.",
+    "section3P2": "Nous pouvons partager des informations avec des fournisseurs de services qui nous aident à exploiter notre site web et à mener nos activités, tels que les fournisseurs d'hébergement et les services analytiques. Ces parties sont obligées de garder vos informations confidentielles et de les utiliser uniquement aux fins pour lesquelles nous les leur divulguons.",
+    "section4Title": "Conservation des données",
+    "section4P1": "Nous conservons vos informations personnelles aussi longtemps que nécessaire pour atteindre les objectifs pour lesquels elles ont été collectées, y compris pour satisfaire à toute exigence légale, comptable ou de reporting.",
+    "section5Title": "Vos droits",
+    "section5P1": "Selon votre localisation, vous pouvez avoir certains droits concernant vos informations personnelles, notamment : le droit d'accéder, de corriger ou de supprimer vos données personnelles ; le droit de vous opposer ou de restreindre certains traitements ; le droit à la portabilité des données ; et le droit de retirer votre consentement à tout moment.",
+    "section5P2": "Pour exercer l'un de ces droits, veuillez nous contacter en utilisant les informations fournies ci-dessous.",
+    "section6Title": "Sécurité",
+    "section6P1": "Nous mettons en œuvre des mesures de sécurité techniques et organisationnelles appropriées pour protéger vos informations personnelles contre tout accès non autorisé, alteration, divulgation ou destruction. Cependant, aucune méthode de transmission sur Internet ou de stockage électronique n'est 100% sécurisée.",
+    "section7Title": "Cookies et technologies de suivi",
+    "section7P1": "Nous utilisons des cookies et des technologies de suivi similaires pour collecter des informations sur vos activités de navigation. Vous pouvez contrôler les cookies via les paramètres de votre navigateur.",
+    "section8Title": "Liens tiers",
+    "section8P1": "Notre site web peut contenir des liens vers des sites web tiers. Nous ne sommes pas responsables des pratiques de confidentialité de ces sites externes. Nous vous encourageons à consulter leurs politiques de confidentialité.",
+    "section9Title": "Confidentialité des enfants",
+    "section9P1": "Notre site web n'est pas destiné aux enfants de moins de 16 ans. Nous ne collectons pas sciemment d'informations personnelles auprès des enfants.",
+    "section10Title": "Modifications de cette politique de confidentialité",
+    "section10P1": "Nous pouvons mettre à jour cette politique de confidentialité de temps à autre. Nous vous notifierons tout changement en публикуя la nouvelle politique sur cette page et en mettant à jour la date de «Dernière mise à jour».",
+    "section11Title": "Nous contacter",
+    "section11P1": "Si vous avez des questions concernant cette politique de confidentialité ou souhaitez exercer vos droits, veuillez nous contacter :",
+    "contactEmail": "E-mail :",
+    "contactPhone": "Téléphone :",
+    "contactAddress": "Adresse :"
+  }
+}

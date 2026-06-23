@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 24 30% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 24 30% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 24 30% 10%;
+    --primary: 24 30% 17%;
+    --primary-foreground: 36 33% 96%;
+    --secondary: 36 25% 92%;
+    --secondary-foreground: 24 30% 17%;
+    --muted: 36 25% 92%;
+    --muted-foreground: 24 10% 45%;
+    --accent: 36 35% 88%;
+    --accent-foreground: 24 30% 17%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 36 20% 86%;
+    --input: 36 20% 86%;
+    --ring: 24 30% 17%;
+    --radius: 0.25rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer utilities {
+  .container-narrow {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .scroll-fade {
+    animation: scroll-fade 0.6s ease-out;
+  }
+
+  @keyframes scroll-fade {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* Brand premium typography */
+.font-display {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+/* Smooth scroll for hash navigation */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hero gradient overlay */
+.hero-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(26, 22, 18, 0.85) 0%,
+    rgba(92, 62, 42, 0.6) 50%,
+    rgba(26, 22, 18, 0.4) 100%
+  );
+}

@@ -45,6 +45,29 @@ pids
 *.seed
 *.pid.lock
 *.bak
+*.backup
+
+# Astro
+.astro/
+
+# Old Vite SPA artifacts (kept locally but not pushed)
+client/dist/
+client/dist_bak/
+client/dist_old/
+client/dist2/
+client/client/
+client/src/*.bak
+client/src/*.backup
+client/src/locales/
+
+# Manus / Manus-built artifacts
+.manus-logs/
+
+# Build/test scripts (one-off debug scripts)
+capture.mjs
+check-vite.mjs
+rollup-direct.mjs
+*.test.mjs
 
 # Coverage directory used by tools like istanbul
 coverage/

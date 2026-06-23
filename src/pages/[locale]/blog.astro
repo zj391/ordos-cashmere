@@ -1,0 +1,67 @@
+---
+/**
+ * Blog 列表 - 6 国本地化内容（占位，后续接 CMS 或 MDX）
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
+import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
+import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
+
+export function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const { locale: rawLocale } = Astro.params;
+const locale = pickLocale(rawLocale);
+
+const t: Record<string, Record<string, string>> = {
+  en: { title: 'Cashmere Insights', subtitle: 'Industry guides and B2B sourcing tips' },
+  cn: { title: '羊绒行业洞察', subtitle: '行业指南与 B2B 采购技巧' },
+  de: { title: 'Kaschmir-Einblicke', subtitle: 'Branchenführer und B2B-Beschaffungstipps' },
+  fr: { title: 'Aperçus cachemire', subtitle: 'Guides sectoriels et conseils B2B' },
+  ja: { title: 'カシミアインサイト', subtitle: '業界ガイドと B2B 調達のヒント' },
+  kr: { title: '캐시미어 인사이트', subtitle: '산업 가이드 및 B2B 소싱 팁' },
+};
+const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
+
+// 占位 blog 文章（后续接 CMS 后从数据源读取）
+const posts = [
+  { title: locale === 'cn' ? '如何辨别优质羊绒：6 个关键指标' : 'How to Identify Premium Cashmere: 6 Key Metrics', date: '2026-05-20', excerpt: locale === 'cn' ? '从细度到长度，从净绒率到色泽，全方位解析...' : 'From fineness to length, yield to color...' },
+  { title: locale === 'cn' ? '羊绒代工合作：流程、MOQ 与交期详解' : 'Cashmere OEM: Process, MOQ & Lead Time', date: '2026-05-15', excerpt: locale === 'cn' ? '一份完整的 OEM 合作指南...' : 'A complete OEM partnership guide...' },
+  { title: locale === 'cn' ? 'OEKO-TEX 与 GCS 认证对采购的意义' : 'Why OEKO-TEX & GCS Matter for B2B Sourcing', date: '2026-05-10', excerpt: locale === 'cn' ? '认证不只是标签...' : 'Certifications are not just labels...' },
+  { title: locale === 'cn' ? '从牧场到工厂：羊绒产业链溯源' : 'From Pasture to Factory: Cashmere Supply Chain Traceability', date: '2026-05-05', excerpt: locale === 'cn' ? '了解每一根羊绒背后的故事...' : 'The story behind every fiber...' },
+];
+---
+
+<BaseLayout locale={locale} pageKey="blog" path="/blog">
+  <Navigation slot="header" locale={locale} currentPath={`/${locale}/blog`} />
+
+  <section class="pt-32 pb-12 bg-gradient-to-br from-brand-ink to-brand-chocolate text-white">
+    <div class="hero-overlay absolute inset-0"></div>
+    <div class="container-narrow relative z-10">
+      <h1 class="font-display text-5xl md:text-6xl font-light leading-tight mb-6">{T('title')}</h1>
+      <p class="text-xl text-white/80">{T('subtitle')}</p>
+    </div>
+  </section>
+
+  <section class="section-padding bg-background">
+    <div class="container-narrow">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {posts.map((p) => (
+          <article class="border border-border rounded-lg p-8 hover:border-primary hover:shadow-lg transition-all group">
+            <div class="text-xs text-muted-foreground uppercase tracking-wider mb-3">{p.date}</div>
+            <h3 class="font-display text-2xl mb-3 group-hover:text-primary transition-colors">{p.title}</h3>
+            <p class="text-muted-foreground leading-relaxed mb-4">{p.excerpt}</p>
+            <span class="text-sm text-primary font-medium">{locale === 'cn' ? '阅读全文 →' : 'Read more →'}</span>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" locale={locale} />
+  <FloatingChatButtons slot="floating" locale={locale} />
+  <CookieConsent slot="cookie-consent" locale={locale} />
+</BaseLayout>

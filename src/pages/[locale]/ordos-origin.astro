@@ -1,0 +1,312 @@
+---
+/**
+ * Ordos Origin - 鄂尔多斯产地 GEO 专题页
+ * 最高 SEO 价值页面：详细地理优势、牧场、产区溯源
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
+import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
+import SEOFaq from '@/components/SEOFaq.astro';
+import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
+import { SITE_INFO, SEO } from '@/lib/seo';
+
+export function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const { locale: rawLocale } = Astro.params;
+const locale = pickLocale(rawLocale);
+
+const i18n: Record<string, Record<string, string>> = {
+  en: {
+    heroTagline: 'CASHMERE ORIGIN',
+    heroTitle: 'From Ordos, Inner Mongolia — The World\'s Finest Cashmere',
+    heroSubtitle: 'Born at 39°N latitude, 1,300m elevation. Where the Albus goat grazes on pristine plateau grasslands.',
+    sectionGeo: 'Geographic Advantage',
+    sectionGeoP1: 'Ordos sits in the heart of Inner Mongolia, on the eastern edge of the Kubuqi Desert. The region\'s unique geography — high altitude, cold winters, and arid plateau grasslands — creates ideal conditions for cashmere goats to develop the longest, finest, warmest underdown.',
+    sectionGeoP2: 'The annual temperature swing (from -28°C in winter to 28°C in summer) stimulates goats to grow the finest fibers, with mean diameter of 14.5-16.5μm — significantly finer than cashmere from other regions.',
+    sectionHeritage: 'Heritage & Traceability',
+    sectionHeritageP: 'For over 4,000 years, nomadic herders in Ordos have refined the art of cashmere harvesting. Today, our cooperative of 2,300+ herder families maintains sustainable grazing practices on 850,000 hectares of certified grassland — each bale traceable to its source herd.',
+    sectionCert: 'Certifications',
+    sectionStats: 'By the Numbers',
+    statGoats: 'Albus White Goats',
+    statHectares: 'Hectares of Pasture',
+    statHerder: 'Herder Families',
+    statFineness: 'Average Fineness',
+    ctaTitle: 'Source from the Origin',
+    ctaSubtitle: 'Talk to our cashmere specialists about direct-from-Ordos sourcing',
+  },
+  de: {
+    heroTagline: 'KASCHMIR-HERKUNFT',
+    heroTitle: 'Aus Ordos, Innere Mongolei — Das feinste Kaschmir der Welt',
+    heroSubtitle: 'Auf 39° N Breite, 1300m Höhe geboren. Wo die Albus-Ziege auf unberührten Hochlandweiden grast.',
+    sectionGeo: 'Geografischer Vorteil',
+    sectionGeoP1: 'Ordos liegt im Herzen der Inneren Mongolei. Die einzigartige Geografie schafft ideale Bedingungen.',
+    sectionGeoP2: 'Der jährliche Temperatursprung stimuliert Ziegen, die feinsten Fasern zu entwickeln.',
+    sectionHeritage: 'Erbe & Rückverfolgbarkeit',
+    sectionHeritageP: 'Über 4.000 Jahre Kaschmir-Ernte. Heute pflegt unsere Genossenschaft nachhaltige Weidepraktiken.',
+    sectionCert: 'Zertifizierungen',
+    sectionStats: 'In Zahlen',
+    statGoats: 'Albus weiße Ziegen',
+    statHectares: 'Hektar Weideland',
+    statHerder: 'Hirtenfamilien',
+    statFineness: 'Durchschnittliche Feinheit',
+    ctaTitle: 'Direkt vom Ursprung beziehen',
+    ctaSubtitle: 'Sprechen Sie mit unseren Kaschmir-Spezialisten über Direktbeschaffung aus Ordos',
+  },
+  fr: {
+    heroTagline: 'ORIGINE DU CACHEMIRE',
+    heroTitle: 'D\'Ordos, Mongolie Intérieure — Le cachemire le plus fin du monde',
+    heroSubtitle: 'Né à 39° N, 1300m d\'altitude. Où la chèvre Albus paît sur des prairies de plateau.',
+    sectionGeo: 'Avantage géographique',
+    sectionGeoP1: 'Ordos se trouve au cœur de la Mongolie Intérieure. Sa géographie unique crée des conditions idéales.',
+    sectionGeoP2: 'Les écarts de température annuels stimulent les chèvres à développer les fibres les plus fines.',
+    sectionHeritage: 'Patrimoine et traçabilité',
+    sectionHeritageP: 'Plus de 4000 ans de récolte de cachemire. Notre coopérative maintient des pratiques durables.',
+    sectionCert: 'Certifications',
+    sectionStats: 'En chiffres',
+    statGoats: 'Chèvres blanches Albus',
+    statHectares: 'Hectares de pâturage',
+    statHerder: 'Familles d\'éleveurs',
+    statFineness: 'Finesse moyenne',
+    ctaTitle: 'Approvisionner depuis l\'origine',
+    ctaSubtitle: 'Parlez à nos spécialistes cachemire de l\'approvisionnement direct depuis Ordos',
+  },
+  ja: {
+    heroTagline: 'カシミアの原産地',
+    heroTitle: '内モンゴル・オルドスから — 世界最高級カシミア',
+    heroSubtitle: '北緯39度、標高1300m。アルバス山羊が手付かずの高原草原で放牧されます。',
+    sectionGeo: '地理的優位性',
+    sectionGeoP1: 'オルドスは内モンゴルの中心に位置し、独特な地理的条件が最高級カシミアを育みます。',
+    sectionGeoP2: '年間を通じた大きな気温差が、山羊に最も細い繊維の成長を促します。',
+    sectionHeritage: '伝統とトレーサビリティ',
+    sectionHeritageP: '4000年以上のカシミア採取の歴史。私たちの協同組合は持続可能な放牧を維持しています。',
+    sectionCert: '認証',
+    sectionStats: '数字で見る',
+    statGoats: 'アルバス白山羊',
+    statHectares: '牧草地（ヘクタール）',
+    statHerder: '遊牧民家族',
+    statFineness: '平均細度',
+    ctaTitle: '原産地から直接調達',
+    ctaSubtitle: 'オルドス直送カシミアについて、専門家にご相談ください',
+  },
+  kr: {
+    heroTagline: '캐시미어 원산지',
+    heroTitle: '내몽골 오르도스에서 — 세계 최고급 캐시미어',
+    heroSubtitle: '북위 39도, 해발 1300m. 알버스 산양이 깨끗한 고원 초원에서 방목합니다.',
+    sectionGeo: '지리적 우위',
+    sectionGeoP1: '오르도스는 내몽골 중심부에 위치하며, 독특한 지리적 조건이 최고급 캐시미어를 키웁니다.',
+    sectionGeoP2: '연중 큰 기온 차가 산양에게 가장 가는 섬유 성장을 촉진합니다.',
+    sectionHeritage: '전통과 추적성',
+    sectionHeritageP: '4000년 이상의 캐시미어 채취 역사. 우리의 협동조합은 지속 가능한 방목을 유지합니다.',
+    sectionCert: '인증',
+    sectionStats: '숫자로 보는',
+    statGoats: '알버스 흰 산양',
+    statHectares: '초원 (헥타르)',
+    statHerder: '목축민 가족',
+    statFineness: '평균 세밀도',
+    ctaTitle: '원산지에서 직접 조달',
+    ctaSubtitle: '오르도스 직송 캐시미어에 대해 전문가와 상담하세요',
+  },
+  cn: {
+    heroTagline: '羊绒原产地',
+    heroTitle: '来自鄂尔多斯，世界顶级羊绒产区',
+    heroSubtitle: '北纬39度，海拔1300米。阿尔巴斯白绒山羊在纯净高原草原上自由放牧。',
+    sectionGeo: '地理优势',
+    sectionGeoP1: '鄂尔多斯位于内蒙古高原腹地，库布齐沙漠东缘。高海拔、干旱大陆性气候为羊绒山羊提供了理想的生长环境，孕育出最长、最细、最保暖的羊绒纤维。',
+    sectionGeoP2: '巨大的年温差（冬季-28℃至夏季28℃）刺激山羊生长出最细的羊绒，平均细度14.5-16.5μm，远超其他产区。',
+    sectionHeritage: '传承与溯源',
+    sectionHeritageP: '4000多年羊绒采集历史。如今我们的2300+牧户合作社在85万公顷认证草原上保持可持续放牧——每包羊绒都可追溯到源头牧场。',
+    sectionCert: '认证体系',
+    sectionStats: '数据说话',
+    statGoats: '阿尔巴斯白绒山羊',
+    statHectares: '认证草原（公顷）',
+    statHerder: '牧户合作社',
+    statFineness: '平均细度',
+    ctaTitle: '源头直采',
+    ctaSubtitle: '与我们的羊绒专家洽谈鄂尔多斯源头直供方案',
+  },
+};
+
+const t = (k: string) => i18n[locale]?.[k] || i18n.en[k] || k;
+
+// 产区统计数据
+const stats = [
+  { value: '320,000+', label: t('statGoats') },
+  { value: '850,000', label: t('statHectares') },
+  { value: '2,300+', label: t('statHerder') },
+  { value: '15.2μm', label: t('statFineness') },
+];
+
+// 认证
+const certs = ['ISO 9001', 'OEKO-TEX®', 'GCS', 'BSCI', 'Sedex', 'SFA', 'The Good Cashmere Standard'];
+---
+
+<BaseLayout
+  locale={locale}
+  pageKey="ordosOrigin"
+  path="/ordos-origin"
+  schema="ordos-origin"
+>
+  <Navigation slot="header" locale={locale} currentPath={`/${locale}/ordos-origin`} />
+
+  <!-- HERO -->
+  <section class="relative pt-32 pb-20 bg-gradient-to-br from-brand-ink via-brand-chocolate to-brand-camel text-white overflow-hidden">
+    <div class="hero-overlay absolute inset-0"></div>
+    <svg class="absolute inset-0 w-full h-full opacity-[0.08]" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="ordos-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+          <path d="M 30 10 L 35 25 L 50 30 L 35 35 L 30 50 L 25 35 L 10 30 L 25 25 Z" fill="white" opacity="0.3"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#ordos-pattern)"/>
+    </svg>
+    <div class="container-narrow relative z-10">
+      <div class="text-xs tracking-[0.3em] uppercase mb-4 text-white/70">{t('heroTagline')}</div>
+      <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-light leading-tight mb-6 max-w-4xl text-balance">
+        {t('heroTitle')}
+      </h1>
+      <p class="text-xl text-white/80 max-w-2xl leading-relaxed">
+        {t('heroSubtitle')}
+      </p>
+    </div>
+  </section>
+
+  <!-- GEO Coordinate Cards -->
+  <section class="py-12 bg-secondary/30 border-b border-border">
+    <div class="container-narrow">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="text-center md:text-left">
+          <div class="text-xs uppercase tracking-wider text-muted-foreground mb-1">Latitude</div>
+          <div class="font-display text-3xl">39°36'N</div>
+        </div>
+        <div class="text-center md:text-left">
+          <div class="text-xs uppercase tracking-wider text-muted-foreground mb-1">Longitude</div>
+          <div class="font-display text-3xl">109°46'E</div>
+        </div>
+        <div class="text-center md:text-left">
+          <div class="text-xs uppercase tracking-wider text-muted-foreground mb-1">Elevation</div>
+          <div class="font-display text-3xl">1,300m</div>
+        </div>
+        <div class="text-center md:text-left">
+          <div class="text-xs uppercase tracking-wider text-muted-foreground mb-1">Climate</div>
+          <div class="font-display text-3xl">Continental</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Geographic Advantage -->
+  <section class="section-padding bg-background">
+    <div class="container-narrow">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div>
+          <div class="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-3">01</div>
+          <h2 class="font-display text-4xl md:text-5xl font-light leading-tight mb-6">
+            {t('sectionGeo')}
+          </h2>
+          <p class="text-muted-foreground leading-relaxed mb-4">{t('sectionGeoP1')}</p>
+          <p class="text-muted-foreground leading-relaxed">{t('sectionGeoP2')}</p>
+        </div>
+        <div class="space-y-6">
+          <!-- Google Maps embed - 鄂尔多斯 -->
+          <div class="aspect-[4/3] rounded-lg overflow-hidden border border-border">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3755.789!2d109.7813!3d39.6086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMznCsDM2JzMxLjAiTiAxMDnCsDQ2JzUyLjciRQ!5e0!3m2!1sen!2sus!4v1700000000000"
+              width="100%" height="100%" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              title="Ordos, Inner Mongolia, China"
+            ></iframe>
+          </div>
+          <!-- Baidu Maps for cn locale -->
+          {locale === 'cn' && (
+            <div class="aspect-[4/3] rounded-lg overflow-hidden border border-border">
+              <iframe
+                src="https://map.baidu.com/embed?coord=39.6086,109.7813&zoom=12&size=600|450&marker=鄂尔多斯"
+                width="100%" height="100%" style="border:0;" loading="lazy"
+                title="鄂尔多斯"
+              ></iframe>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="section-padding bg-primary text-primary-foreground">
+    <div class="container-narrow">
+      <div class="text-xs tracking-[0.3em] uppercase text-primary-foreground/70 mb-3">{t('sectionStats')}</div>
+      <h2 class="font-display text-4xl md:text-5xl font-light mb-12">Ordos by the Numbers</h2>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        {stats.map((s) => (
+          <div>
+            <div class="font-display text-5xl md:text-6xl font-light mb-2">{s.value}</div>
+            <div class="text-sm text-primary-foreground/70 uppercase tracking-wider">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Heritage -->
+  <section class="section-padding bg-background">
+    <div class="container-narrow">
+      <div class="max-w-3xl mx-auto text-center">
+        <div class="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-3">02</div>
+        <h2 class="font-display text-4xl md:text-5xl font-light leading-tight mb-6">
+          {t('sectionHeritage')}
+        </h2>
+        <p class="text-muted-foreground leading-relaxed text-lg">
+          {t('sectionHeritageP')}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section class="py-16 bg-secondary/30 border-y border-border">
+    <div class="container-narrow text-center">
+      <div class="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-3">03</div>
+      <h2 class="font-display text-3xl md:text-4xl font-light mb-8">{t('sectionCert')}</h2>
+      <div class="flex flex-wrap justify-center gap-4">
+        {certs.map((cert) => (
+          <div class="px-4 py-2 bg-card border border-border rounded-md text-sm font-medium">{cert}</div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding bg-background">
+    <div class="container-narrow text-center">
+      <h2 class="font-display text-4xl md:text-5xl font-light mb-4">{t('ctaTitle')}</h2>
+      <p class="text-muted-foreground mb-8 max-w-2xl mx-auto">{t('ctaSubtitle')}</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href={`/${locale}/contact`} class="inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground rounded-md font-medium hover:bg-primary/90 transition-all">
+          {locale === 'cn' ? '联系源头' : 'Contact Source'}
+        </a>
+        <a href={`/${locale}/raw-material`} class="inline-flex items-center justify-center px-8 py-4 border border-border rounded-md hover:bg-accent transition-all">
+          {locale === 'cn' ? '查看原料' : 'View Materials'}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <SEOFaq title={locale === 'cn' ? '关于鄂尔多斯产地' : 'About Ordos Origin'} faqs={[
+    locale === 'cn'
+      ? { q: '为什么鄂尔多斯羊绒品质最好？', a: '鄂尔多斯位于北纬39度、海拔1300米的高原，年温差近60℃，独特气候让阿尔巴斯白绒山羊生长出最细（14.5-16.5μm）、最长（34-42mm）的羊绒纤维，是世界公认的顶级羊绒产区。' }
+      : { q: 'Why is Ordos cashmere the finest in the world?', a: 'Ordos sits at 39°N latitude and 1,300m elevation on the Inner Mongolia plateau. The annual temperature swing of nearly 60°C (-28°C to 28°C) stimulates Albus white cashmere goats to grow the finest (14.5-16.5μm) and longest (34-42mm) cashmere fibers — globally recognized as the premium cashmere origin.' },
+    locale === 'cn'
+      ? { q: '什么是阿尔巴斯白绒山羊？', a: '阿尔巴斯白绒山羊是鄂尔多斯特有的珍稀品种，国家地理标志保护产品。其羊绒细度、长度、净绒率均优于普通山羊，是内蒙古白绒的代表品种。' }
+      : { q: 'What is the Albus white cashmere goat?', a: 'Albus white cashmere goats are an indigenous rare breed from Ordos, protected as a National Geographic Indication product. Their cashmere surpasses ordinary goats in fineness, length, and yield ratio — representing the finest Inner Mongolia white cashmere.' },
+    locale === 'cn'
+      ? { q: '如何验证羊绒来自鄂尔多斯？', a: '正宗鄂尔多斯羊绒需具备：产地证明、阿尔巴斯山羊血统证书、分梳工厂产地溯源。我们的每包羊绒都可追溯到具体牧场和牧户。' }
+      : { q: 'How to verify cashmere originates from Ordos?', a: 'Authentic Ordos cashmere requires: origin certificate, Albus goat pedigree certificate, dehairing factory traceability. Every bale we supply is traceable to specific pasture and herder family.' },
+  ]} />
+
+  <Footer slot="footer" locale={locale} />
+  <FloatingChatButtons slot="floating" locale={locale} />
+  <CookieConsent slot="cookie-consent" locale={locale} />
+</BaseLayout>

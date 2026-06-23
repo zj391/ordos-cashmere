@@ -1,0 +1,117 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
+import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
+import SEOFaq from '@/components/SEOFaq.astro';
+import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
+
+export function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const { locale: rawLocale } = Astro.params;
+const locale = pickLocale(rawLocale);
+
+const t: Record<string, Record<string, string>> = {
+  en: { title: 'Factory Strength', subtitle: '38,000 sqm · 500+ workers · 1,200t annual capacity · ISO certified', sectionScale: 'Scale & Capacity', sectionEquipment: 'Equipment', sectionCert: 'Certifications', cta: 'Visit Our Factory' },
+  cn: { title: '工厂实力', subtitle: '38,000平米厂房 · 500+员工 · 年产能1,200吨 · ISO认证', sectionScale: '规模与产能', sectionEquipment: '生产设备', sectionCert: '资质认证', cta: '预约考察' },
+  de: { title: 'Fabrikstärke', subtitle: '38.000 qm · 500+ Mitarbeiter · 1.200t Jahreskapazität · ISO-zertifiziert', sectionScale: 'Maßstab', sectionEquipment: 'Ausrüstung', sectionCert: 'Zertifizierungen', cta: 'Werk besuchen' },
+  fr: { title: 'Force de l\'usine', subtitle: '38 000 m² · 500+ employés · 1 200t capacité · Certifié ISO', sectionScale: 'Échelle', sectionEquipment: 'Équipement', sectionCert: 'Certifications', cta: 'Visiter l\'usine' },
+  ja: { title: '工場の強み', subtitle: '38,000平米 · 500名+ · 年間1,200トン · ISO認証', sectionScale: '規模・能力', sectionEquipment: '設備', sectionCert: '認証', cta: '工場見学' },
+  kr: { title: '공장 강점', subtitle: '38,000 sqm · 500+ 직원 · 연 1,200톤 · ISO 인증', sectionScale: '규모', sectionEquipment: '설비', sectionCert: '인증', cta: '공장 방문' },
+};
+const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
+
+const scale = [
+  { value: '38,000', label: locale === 'cn' ? '平方米厂房' : 'sqm Factory' },
+  { value: '500+', label: locale === 'cn' ? '员工' : 'Employees' },
+  { value: '1,200t', label: locale === 'cn' ? '年产能' : 'Annual Capacity' },
+  { value: '50+', label: locale === 'cn' ? '出口国家' : 'Countries' },
+  { value: '23+', label: locale === 'cn' ? '行业经验' : 'Years' },
+  { value: '7', label: locale === 'cn' ? '国际认证' : 'Certifications' },
+];
+
+const equipment = [
+  { name: locale === 'cn' ? '意大利梳绒机' : 'Italian Dehairing', spec: '12 lines' },
+  { name: locale === 'cn' ? '日本岛精横机' : 'Shima Seiki Flatbed', spec: '48 machines' },
+  { name: locale === 'cn' ? '德国斯托尔电脑横机' : 'Stoll CMS', spec: '24 machines' },
+  { name: locale === 'cn' ? '意大利络筒机' : 'Italian Winding', spec: '8 lines' },
+  { name: locale === 'cn' ? '瑞士乌斯特检测仪' : 'Uster Tester', spec: '6 units' },
+  { name: locale === 'cn' ? '全自动包装线' : 'Auto Packing', spec: '4 lines' },
+];
+
+const certs = ['ISO 9001:2015', 'OEKO-TEX® Standard 100', 'Good Cashmere Standard', 'BSCI', 'Sedex SMETA', 'WRAP', 'SFA'];
+---
+
+<BaseLayout locale={locale} pageKey="factory" path="/factory">
+  <Navigation slot="header" locale={locale} currentPath={`/${locale}/factory`} />
+
+  <section class="pt-32 pb-20 bg-gradient-to-br from-brand-ink to-brand-chocolate text-white">
+    <div class="hero-overlay absolute inset-0"></div>
+    <div class="container-narrow relative z-10">
+      <h1 class="font-display text-5xl md:text-6xl font-light leading-tight mb-6">{T('title')}</h1>
+      <p class="text-xl text-white/80 max-w-2xl">{T('subtitle')}</p>
+    </div>
+  </section>
+
+  <section class="section-padding bg-background">
+    <div class="container-narrow space-y-20">
+      <!-- Scale -->
+      <div>
+        <h2 class="font-display text-3xl md:text-4xl font-light mb-8">{T('sectionScale')}</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+          {scale.map((s) => (
+            <div class="border border-border rounded-lg p-8">
+              <div class="font-display text-4xl font-light mb-2">{s.value}</div>
+              <div class="text-sm text-muted-foreground uppercase tracking-wider">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Equipment -->
+      <div>
+        <h2 class="font-display text-3xl md:text-4xl font-light mb-8">{T('sectionEquipment')}</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {equipment.map((e) => (
+            <div class="flex justify-between items-center border border-border rounded-lg p-6">
+              <span class="font-medium">{e.name}</span>
+              <span class="text-muted-foreground text-sm">{e.spec}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Certs -->
+      <div>
+        <h2 class="font-display text-3xl md:text-4xl font-light mb-8">{T('sectionCert')}</h2>
+        <div class="flex flex-wrap gap-3">
+          {certs.map((c) => (
+            <div class="px-5 py-3 bg-secondary/50 border border-border rounded-md text-sm font-medium">{c}</div>
+          ))}
+        </div>
+      </div>
+
+      <div class="text-center">
+        <a href={`/${locale}/contact?type=visit`} class="inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground rounded-md font-medium hover:bg-primary/90 transition-all">
+          {T('cta')} →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <SEOFaq faqs={[
+    locale === 'cn'
+      ? { q: '能否预约到工厂参观？', a: '可以。我们接受B2B客户的工厂参观预约，提前7天联系即可。参观内容包括原料分梳车间、纺纱车间、针织车间、成品检验线、仓库等。' }
+      : { q: 'Can I visit the factory?', a: 'Yes, we accept B2B client factory visit appointments with 7-day advance notice. The visit covers raw material dehairing workshop, spinning workshop, knitting workshop, finished product QC line, and warehouse.' },
+    locale === 'cn'
+      ? { q: '工厂有哪些国际认证？', a: 'ISO 9001:2015 质量管理体系、OEKO-TEX Standard 100、Good Cashmere Standard (GCS)、BSCI 社会责任审核、Sedex SMETA、WRAP、SFA。可在下载中心下载证书PDF。' }
+      : { q: 'What international certifications does the factory have?', a: 'ISO 9001:2015 Quality Management, OEKO-TEX Standard 100, Good Cashmere Standard (GCS), BSCI social compliance, Sedex SMETA, WRAP, SFA. Certificate PDFs available in Download Center.' },
+  ]} />
+
+  <Footer slot="footer" locale={locale} />
+  <FloatingChatButtons slot="floating" locale={locale} />
+  <CookieConsent slot="cookie-consent" locale={locale} />
+</BaseLayout>

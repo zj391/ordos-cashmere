@@ -1,0 +1,422 @@
+---
+/**
+ * 首页 - 6 国通用模板，TDK/文案/Schema 由 locale 动态注入
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
+import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
+import SEOFaq from '@/components/SEOFaq.astro';
+import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
+import { SEO, SITE_INFO } from '@/lib/seo';
+
+export function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const { locale: rawLocale } = Astro.params;
+if (!isLocale(rawLocale)) {
+  return Astro.redirect('/en/');
+}
+const locale = pickLocale(rawLocale);
+
+// 首页内容（每个语种独立的 hero/features/CTA 文案）
+const heroContent: Record<string, {
+  tagline: string;
+  title: string;
+  subtitle: string;
+  cta: string;
+  ctaSecondary: string;
+  badge: string;
+  metrics: Array<{ value: string; label: string }>;
+  features: Array<{ icon: string; title: string; desc: string }>;
+  trustTitle: string;
+  trustLogos: string[];
+}> = {
+  en: {
+    tagline: 'SOURCE FACTORY · ORDOS · SINCE 2002',
+    title: 'Premium Cashmere,\nDirect from Ordos',
+    subtitle: '23+ years manufacturing raw cashmere, yarn, fabric & OEM knitwear for global B2B brands. ISO certified. 50+ countries. 1,200+ tons annual capacity.',
+    cta: 'Request a Quote',
+    ctaSecondary: 'Download Catalog',
+    badge: 'B2B Wholesale Only',
+    metrics: [
+      { value: '23+', label: 'Years of Excellence' },
+      { value: '50+', label: 'Countries Served' },
+      { value: '1,200t', label: 'Annual Capacity' },
+      { value: 'ISO 9001', label: 'Certified' },
+    ],
+    features: [
+      { icon: 'mountain', title: 'Ordos Origin', desc: 'Born in the world\'s premium cashmere region - Inner Mongolia, China' },
+      { icon: 'shield', title: 'Quality Certified', desc: 'ISO 9001, OEKO-TEX®, GCS - international quality assurance' },
+      { icon: 'globe', title: 'Global Shipping', desc: 'FOB, CIF, DDP terms. Direct delivery to EU, US, JP, KR ports' },
+      { icon: 'factory', title: 'Source Factory', desc: '38,000 sqm facility. 500+ skilled workers. No middleman' },
+    ],
+    trustTitle: 'Trusted by global brands',
+    trustLogos: ['ISO 9001', 'OEKO-TEX', 'GCS', 'BSCI', 'Sedex', 'WRAP'],
+  },
+  de: {
+    tagline: 'QUELLFABRIK · ORDOS · SEIT 2002',
+    title: 'Premium Kaschmir,\ndirekt aus Ordos',
+    subtitle: '23+ Jahre Herstellung von Rohkaschmir, Garn, Stoff und OEM-Strickwaren für globale B2B-Marken. ISO-zertifiziert. 50+ Länder.',
+    cta: 'Angebot anfordern',
+    ctaSecondary: 'Katalog herunterladen',
+    badge: 'Nur B2B-Großhandel',
+    metrics: [
+      { value: '23+', label: 'Jahre Exzellenz' },
+      { value: '50+', label: 'Belieferte Länder' },
+      { value: '1.200t', label: 'Jahreskapazität' },
+      { value: 'ISO 9001', label: 'Zertifiziert' },
+    ],
+    features: [
+      { icon: 'mountain', title: 'Ordos Herkunft', desc: 'Geboren in der Premium-Kaschmirregion - Innere Mongolei' },
+      { icon: 'shield', title: 'Qualitätszertifiziert', desc: 'ISO 9001, OEKO-TEX®, GCS' },
+      { icon: 'globe', title: 'Weltweiter Versand', desc: 'FOB, CIF, DDP Lieferung' },
+      { icon: 'factory', title: 'Quellfabrik', desc: '38.000 qm Anlage. 500+ Mitarbeiter' },
+    ],
+    trustTitle: 'Vertrauen globaler Marken',
+    trustLogos: ['ISO 9001', 'OEKO-TEX', 'GCS', 'BSCI', 'Sedex', 'WRAP'],
+  },
+  fr: {
+    tagline: 'USINE SOURCE · ORDOS · DEPUIS 2002',
+    title: 'Cachemire Premium,\ndirectement d\'Ordos',
+    subtitle: '23+ ans de fabrication de cachemire brut, fil, tissu et tricot OEM pour marques B2B. Certifié ISO.',
+    cta: 'Demander un devis',
+    ctaSecondary: 'Télécharger le catalogue',
+    badge: 'B2B uniquement',
+    metrics: [
+      { value: '23+', label: 'Ans d\'excellence' },
+      { value: '50+', label: 'Pays servis' },
+      { value: '1 200t', label: 'Capacité annuelle' },
+      { value: 'ISO 9001', label: 'Certifié' },
+    ],
+    features: [
+      { icon: 'mountain', title: 'Origine Ordos', desc: 'Né dans la région premium du cachemire' },
+      { icon: 'shield', title: 'Qualité certifiée', desc: 'ISO 9001, OEKO-TEX®, GCS' },
+      { icon: 'globe', title: 'Livraison mondiale', desc: 'FOB, CIF, DDP' },
+      { icon: 'factory', title: 'Usine source', desc: '38 000 m², 500+ employés' },
+    ],
+    trustTitle: 'La confiance des marques mondiales',
+    trustLogos: ['ISO 9001', 'OEKO-TEX', 'GCS', 'BSCI', 'Sedex', 'WRAP'],
+  },
+  ja: {
+    tagline: '源流工場 · オルドス · 2002年創業',
+    title: 'プレミアム・カシミア、\nオルドスから直送',
+    subtitle: '23年以上の実績。原料カシミア、糸、生地、OEMニットをグローバルB2Bブランドへ供給。ISO認証取得。',
+    cta: '見積もり依頼',
+    ctaSecondary: 'カタログダウンロード',
+    badge: 'B2B専門',
+    metrics: [
+      { value: '23年+', label: '業界経験' },
+      { value: '50+', label: '供給国' },
+      { value: '1,200t', label: '年間生産能力' },
+      { value: 'ISO 9001', label: '認証' },
+    ],
+    features: [
+      { icon: 'mountain', title: 'オルドス起源', desc: '世界のプレミアム・カシミア産地で誕生' },
+      { icon: 'shield', title: '品質認証', desc: 'ISO 9001、OEKO-TEX®、GCS' },
+      { icon: 'globe', title: 'グローバル配送', desc: 'FOB、CIF、DDP対応' },
+      { icon: 'factory', title: '源流工場', desc: '38,000平米、500名以上の従業員' },
+    ],
+    trustTitle: 'グローバルブランドに信頼される',
+    trustLogos: ['ISO 9001', 'OEKO-TEX', 'GCS', 'BSCI', 'Sedex', 'WRAP'],
+  },
+  kr: {
+    tagline: '소스 팩토리 · 오르도스 · 2002년 창업',
+    title: '프리미엄 캐시미어,\n오르도스에서 직송',
+    subtitle: '23년 이상의 제조 경험. 원료, 원사, 직물, OEM 니트웨어를 글로벌 B2B 브랜드에 공급.',
+    cta: '견적 요청',
+    ctaSecondary: '카탈로그 다운로드',
+    badge: 'B2B 전문',
+    metrics: [
+      { value: '23+', label: '업계 경험' },
+      { value: '50+', label: '공급 국가' },
+      { value: '1,200t', label: '연간 생산 능력' },
+      { value: 'ISO 9001', label: '인증' },
+    ],
+    features: [
+      { icon: 'mountain', title: '오르도스 원산지', desc: '세계 최고급 캐시미어 산지에서 태어남' },
+      { icon: 'shield', title: '품질 인증', desc: 'ISO 9001, OEKO-TEX®, GCS' },
+      { icon: 'globe', title: '글로벌 배송', desc: 'FOB, CIF, DDP' },
+      { icon: 'factory', title: '소스 팩토리', desc: '38,000 sqm, 500+ 직원' },
+    ],
+    trustTitle: '글로벌 브랜드의 신뢰',
+    trustLogos: ['ISO 9001', 'OEKO-TEX', 'GCS', 'BSCI', 'Sedex', 'WRAP'],
+  },
+  cn: {
+    tagline: '源头工厂 · 鄂尔多斯 · 始于2002',
+    title: '高端羊绒，\n鄂尔多斯源头直供',
+    subtitle: '23年专注B2B羊绒出口。原料、纱线、面料、成衣代工全产业链。ISO认证，供应全球50+国家。',
+    cta: '立即询盘',
+    ctaSecondary: '下载目录',
+    badge: 'B2B源头工厂',
+    metrics: [
+      { value: '23年+', label: '行业经验' },
+      { value: '50+', label: '供应国家' },
+      { value: '1,200吨', label: '年产能' },
+      { value: 'ISO 9001', label: '认证' },
+    ],
+    features: [
+      { icon: 'mountain', title: '鄂尔多斯产地', desc: '世界顶级羊绒产区，源头直供' },
+      { icon: 'shield', title: '权威认证', desc: 'ISO 9001、OEKO-TEX®、GCS' },
+      { icon: 'globe', title: '全球物流', desc: 'FOB、CIF、DDP多种条款' },
+      { icon: 'factory', title: '源头工厂', desc: '38,000平米厂房，500+员工' },
+    ],
+    trustTitle: '全球品牌信任之选',
+    trustLogos: ['ISO 9001', 'OEKO-TEX', 'GCS', 'BSCI', 'Sedex', 'WRAP'],
+  },
+};
+
+const c = heroContent[locale];
+const seo = SEO[locale];
+---
+
+<BaseLayout
+  locale={locale}
+  pageKey="home"
+  path="/"
+  schema="home"
+>
+  <Navigation slot="header" locale={locale} currentPath={`/${locale}/`} />
+
+  <!-- HERO -->
+  <section class="relative min-h-[90vh] flex items-center bg-gradient-to-br from-brand-ink via-brand-chocolate to-brand-camel text-white overflow-hidden">
+    <div class="hero-overlay absolute inset-0"></div>
+    <!-- 背景纹理 -->
+    <svg class="absolute inset-0 w-full h-full opacity-[0.06]" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="cashmere-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M 0 20 Q 10 10, 20 20 T 40 20" stroke="white" stroke-width="1" fill="none"/>
+          <path d="M 0 30 Q 10 20, 20 30 T 40 30" stroke="white" stroke-width="1" fill="none"/>
+          <path d="M 0 10 Q 10 0, 20 10 T 40 10" stroke="white" stroke-width="1" fill="none"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#cashmere-pattern)"/>
+    </svg>
+    <div class="container-narrow relative z-10 py-20">
+      <div class="max-w-3xl">
+        <div class="inline-block px-3 py-1 border border-white/30 rounded-full text-xs tracking-wider mb-6 backdrop-blur-sm">
+          {c.badge}
+        </div>
+        <div class="text-xs tracking-[0.3em] uppercase mb-6 text-white/70">{c.tagline}</div>
+        <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-light leading-[1.05] mb-6 text-balance">
+          {c.title.split('\n').map((line) => <>{line}<br /></>)}
+        </h1>
+        <p class="text-lg md:text-xl text-white/80 mb-10 max-w-2xl leading-relaxed">
+          {c.subtitle}
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href={`/${locale}/contact`}
+            class="inline-flex items-center justify-center px-8 py-4 bg-white text-brand-ink font-medium rounded-md hover:bg-white/90 transition-all hover:scale-[1.02]"
+          >
+            {c.cta}
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <a
+            href={`/${locale}/download`}
+            class="inline-flex items-center justify-center px-8 py-4 border border-white/40 text-white font-medium rounded-md hover:bg-white/10 transition-all backdrop-blur-sm"
+          >
+            {c.ctaSecondary}
+          </a>
+        </div>
+      </div>
+
+      <!-- Metrics Bar -->
+      <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-4xl">
+        {c.metrics.map((m) => (
+          <div class="border-l-2 border-white/30 pl-4">
+            <div class="font-display text-3xl md:text-4xl font-light">{m.value}</div>
+            <div class="text-xs md:text-sm text-white/70 mt-1 uppercase tracking-wider">{m.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section-padding bg-background">
+    <div class="container-narrow">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        {c.features.map((f) => (
+          <div class="group">
+            <div class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {f.icon === 'mountain' && <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 21l6-9 4 6 4-4 4 7H3z" />}
+                {f.icon === 'shield' && <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />}
+                {f.icon === 'globe' && <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />}
+                {f.icon === 'factory' && <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 3h1m4-3h1m-1 3h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />}
+              </svg>
+            </div>
+            <h3 class="font-display text-xl mb-2">{f.title}</h3>
+            <p class="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Categories Teaser -->
+  <section class="section-padding bg-secondary/30">
+    <div class="container-narrow">
+      <div class="max-w-3xl mb-12">
+        <div class="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-3">
+          {locale === 'cn' ? '产品矩阵' : 'Product Range'}
+        </div>
+        <h2 class="font-display text-4xl md:text-5xl font-light leading-tight mb-4">
+          {locale === 'cn' ? '全产业链羊绒供应' :
+           locale === 'de' ? 'Komplette Kaschmir-Lieferkette' :
+           locale === 'fr' ? 'Chaîne complète du cachemire' :
+           locale === 'ja' ? 'カシミア全産業チェーン' :
+           locale === 'kr' ? '캐시미어 전산업체인 공급' :
+           'Complete Cashmere Supply Chain'}
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <a href={`/${locale}/raw-material`} class="group block bg-card rounded-lg overflow-hidden border border-border hover:border-primary transition-all hover:shadow-xl">
+          <div class="aspect-[4/3] bg-gradient-to-br from-brand-cream to-brand-sand relative overflow-hidden">
+            <div class="absolute inset-0 flex items-center justify-center text-brand-ink font-display text-3xl">Raw Material</div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-display text-2xl mb-2 group-hover:text-primary transition-colors">
+              {locale === 'cn' ? '羊绒原料' : locale === 'de' ? 'Rohkaschmir' : locale === 'fr' ? 'Cachemire brut' : locale === 'ja' ? '原料カシミア' : locale === 'kr' ? '원료 캐시미어' : 'Cashmere Raw Material'}
+            </h3>
+            <p class="text-sm text-muted-foreground">
+              {locale === 'cn' ? '白绒/青绒/紫绒，细度14.5-16.5μm，源头直供' :
+               'White, brown, purple cashmere · 14.5-16.5μm · Direct from source'}
+            </p>
+          </div>
+        </a>
+
+        <a href={`/${locale}/yarn-fabric`} class="group block bg-card rounded-lg overflow-hidden border border-border hover:border-primary transition-all hover:shadow-xl">
+          <div class="aspect-[4/3] bg-gradient-to-br from-brand-sand to-brand-camel relative overflow-hidden">
+            <div class="absolute inset-0 flex items-center justify-center text-white font-display text-3xl">Yarn & Fabric</div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-display text-2xl mb-2 group-hover:text-primary transition-colors">
+              {locale === 'cn' ? '纱线/面料' : locale === 'de' ? 'Garn & Stoff' : locale === 'fr' ? 'Fil & Tissu' : locale === 'ja' ? '糸・生地' : locale === 'kr' ? '원사·직물' : 'Yarn & Fabric'}
+            </h3>
+            <p class="text-sm text-muted-foreground">
+              {locale === 'cn' ? '26/2、28/2、36/2 精纺/粗纺' :
+               '26/2 · 28/2 · 36/2 · Worsted & Woolen'}
+            </p>
+          </div>
+        </a>
+
+        <a href={`/${locale}/garment-oem`} class="group block bg-card rounded-lg overflow-hidden border border-border hover:border-primary transition-all hover:shadow-xl">
+          <div class="aspect-[4/3] bg-gradient-to-br from-brand-chocolate to-brand-ink relative overflow-hidden">
+            <div class="absolute inset-0 flex items-center justify-center text-white font-display text-3xl">OEM Garment</div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-display text-2xl mb-2 group-hover:text-primary transition-colors">
+              {locale === 'cn' ? '成衣代工' : locale === 'de' ? 'Bekleidung OEM' : locale === 'fr' ? 'Vêtement OEM' : locale === 'ja' ? '衣料OEM' : locale === 'kr' ? '의류 OEM' : 'Garment OEM'}
+            </h3>
+            <p class="text-sm text-muted-foreground">
+              {locale === 'cn' ? '大衣/衫/裙/围巾，MOQ 100件' :
+               'Coats · Sweaters · Dresses · Scarves · MOQ 100pcs'}
+            </p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ordos Origin Teaser -->
+  <section class="section-padding bg-background">
+    <div class="container-narrow">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-3">
+            {locale === 'cn' ? '产地溯源' : 'Origin Story'}
+          </div>
+          <h2 class="font-display text-4xl md:text-5xl font-light leading-tight mb-6">
+            {locale === 'cn' ? '鄂尔多斯：世界顶级羊绒产区' :
+             locale === 'de' ? 'Ordos: Premium-Kaschmirregion' :
+             locale === 'fr' ? 'Ordos : Région du cachemire' :
+             locale === 'ja' ? 'オルドス：世界の最高級カシミア産地' :
+             locale === 'kr' ? '오르도스: 세계 최고 캐시미어 산지' :
+             'Ordos: The World\'s Premium Cashmere Region'}
+          </h2>
+          <p class="text-muted-foreground leading-relaxed mb-6">
+            {locale === 'cn' ? '鄂尔多斯位于内蒙古，北纬39度，海拔1300米，年均气温6℃，独特的高原大陆性气候孕育了阿尔巴斯白绒山羊——世界顶级羊绒品种' :
+             locale === 'de' ? 'Ordos liegt in der Inneren Mongolei auf 1300m Höhe. Das einzigartige Hochlandklima bringt die Albus-Kaschmirziege hervor – die Premium-Kaschmirrasse der Welt.' :
+             locale === 'fr' ? 'Ordos, située à 1300m d\'altitude en Mongolie Intérieure, abrite la chèvre Albus – la race qui produit le cachemire le plus premium au monde.' :
+             locale === 'ja' ? 'オルドスは内モンゴル、標高1300mに位置。独特の高原大陸性気候が、世界最高級カシミア品種「アルバス山羊」を育みます。' :
+             locale === 'kr' ? '오르도스는 내몽골 해발 1300m에 위치. 독특한 고원 대륙성 기후가 세계 최고급 캐시미어 품종 알버스 산양을 키웁니다.' :
+             'Located in Inner Mongolia at 1,300m altitude, Ordos\'s unique continental plateau climate nurtures the Albus goat — the world\'s premium cashmere breed.'}
+          </p>
+          <a href={`/${locale}/ordos-origin`} class="inline-flex items-center text-primary font-medium hover:gap-2 transition-all">
+            {locale === 'cn' ? '探索鄂尔多斯产地' : 'Explore Ordos Origin'}
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+        <div class="aspect-[4/3] rounded-lg overflow-hidden bg-gradient-to-br from-brand-sand to-brand-camel">
+          <!-- 占位图，部署时换上真实图片 -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust -->
+  <section class="py-16 bg-secondary/30 border-y border-border">
+    <div class="container-narrow text-center">
+      <div class="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-6">{c.trustTitle}</div>
+      <div class="flex flex-wrap justify-center gap-6 md:gap-10">
+        {c.trustLogos.map((logo) => (
+          <div class="font-display text-xl md:text-2xl text-muted-foreground/70 font-light">{logo}</div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="section-padding bg-primary text-primary-foreground">
+    <div class="container-narrow text-center">
+      <h2 class="font-display text-4xl md:text-5xl font-light mb-4 text-balance">
+        {locale === 'cn' ? '准备好开始您的羊绒采购了吗？' :
+         locale === 'de' ? 'Bereit, Ihre Kaschmir-Beschaffung zu starten?' :
+         locale === 'fr' ? 'Prêt à démarrer votre sourcing cachemire ?' :
+         locale === 'ja' ? 'カシミア調達を始めますか？' :
+         locale === 'kr' ? '캐시미어 소싱을 시작하시겠습니까?' :
+         'Ready to start your cashmere sourcing?'}
+      </h2>
+      <p class="text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
+        {locale === 'cn' ? '获取免费样品、报价单和认证文件，24小时内回复' :
+         'Get free samples, quotation, and certifications within 24 hours'}
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href={`/${locale}/contact`} class="inline-flex items-center justify-center px-8 py-4 bg-background text-foreground rounded-md font-medium hover:bg-background/90 transition-all">
+          {locale === 'cn' ? '立即询盘' : 'Request Quote'}
+        </a>
+        <a href={`https://wa.me/${SITE_INFO.whatsapp.replace(/[^\d]/g, '')}`} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 border border-primary-foreground/30 rounded-md hover:bg-primary-foreground/10 transition-all">
+          WhatsApp Chat
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <SEOFaq faqs={[
+    locale === 'cn'
+      ? { q: '你们是工厂还是贸易商？', a: '东霄羊绒是鄂尔多斯源头工厂，2002年成立，自有牧场、原料分梳厂、纺纱厂、针织厂。23年专注B2B出口，无中间商。' }
+      : { q: 'Are you a factory or trading company?', a: 'DONGXIAO® Cashmere is a source factory in Ordos, established 2002. We own the pasture, dehairing facility, spinning mill, and knitting factory. 23+ years B2B export, no middleman.' },
+    locale === 'cn'
+      ? { q: '主要出口哪些国家？', a: '我们服务于全球50+国家的B2B客户，主要市场包括欧盟（德国、法国、意大利、英国）、美国、日本、韩国、俄罗斯等。' }
+      : { q: 'Which countries do you export to?', a: 'We serve B2B clients in 50+ countries. Main markets include EU (Germany, France, Italy, UK), USA, Japan, Korea, Russia, and more.' },
+    locale === 'cn'
+      ? { q: '如何确保羊绒品质？', a: '从原料到成品全链路把控：阿尔巴斯山羊血统认证 → 牧场溯源 → 原料分梳 → 纱线支数控制 → 成品 100% 检验。ISO 9001 + OEKO-TEX + GCS 认证。' }
+      : { q: 'How do you ensure cashmere quality?', a: 'Full-process control: Albus goat pedigree → pasture traceability → dehairing → yarn count control → 100% finished product QC. ISO 9001 + OEKO-TEX + GCS certified.' },
+    locale === 'cn'
+      ? { q: '能否贴牌做自有品牌？', a: '可以。我们提供OEM贴牌和ODM设计开发服务，最小起订100件/款。可加您的品牌标签、洗水标、包装。' }
+      : { q: 'Can you do private label / OEM?', a: 'Yes. We offer OEM private label and ODM design development. Minimum 100pcs/style. We can add your brand labels, care labels, and packaging.' },
+  ]} />
+
+  <Footer slot="footer" locale={locale} />
+  <FloatingChatButtons slot="floating" locale={locale} />
+  <CookieConsent slot="cookie-consent" locale={locale} />
+</BaseLayout>

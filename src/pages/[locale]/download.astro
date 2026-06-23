@@ -1,0 +1,61 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
+import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
+import DownloadGate from '@/components/islands/DownloadGate.tsx';
+import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
+
+export function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const { locale: rawLocale } = Astro.params;
+const locale = pickLocale(rawLocale);
+
+const t: Record<string, Record<string, string>> = {
+  en: { title: 'Download Center', subtitle: 'Catalogs, specifications, and certifications. B2B buyers only.' },
+  cn: { title: '资料下载中心', subtitle: '产品目录、技术规格、认证文件。B2B采购专用。' },
+  de: { title: 'Download-Center', subtitle: 'Kataloge, Spezifikationen, Zertifizierungen.' },
+  fr: { title: 'Centre de téléchargement', subtitle: 'Catalogues, spécifications, certifications.' },
+  ja: { title: 'ダウンロードセンター', subtitle: 'カタログ、仕様、認証。B2Bバイヤー専用。' },
+  kr: { title: '다운로드 센터', subtitle: '카탈로그, 사양, 인증.' },
+};
+const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
+
+const downloads = [
+  { type: 'catalog', title: locale === 'cn' ? '产品目录 2024' : 'Product Catalog 2024', size: '12.4 MB', format: 'PDF' },
+  { type: 'specs', title: locale === 'cn' ? '羊绒原料规格表' : 'Raw Material Specifications', size: '2.1 MB', format: 'PDF' },
+  { type: 'cert', title: locale === 'cn' ? 'ISO 9001 证书' : 'ISO 9001 Certificate', size: '0.8 MB', format: 'PDF' },
+  { type: 'cert', title: locale === 'cn' ? 'OEKO-TEX 证书' : 'OEKO-TEX Certificate', size: '1.2 MB', format: 'PDF' },
+  { type: 'cert', title: 'Good Cashmere Standard', size: '0.9 MB', format: 'PDF' },
+  { type: 'report', title: locale === 'cn' ? '工厂验厂报告' : 'Factory Audit Report', size: '5.6 MB', format: 'PDF' },
+];
+---
+
+<BaseLayout locale={locale} pageKey="download" path="/download">
+  <Navigation slot="header" locale={locale} currentPath={`/${locale}/download`} />
+
+  <section class="pt-32 pb-20 bg-gradient-to-br from-brand-sand to-brand-camel text-white">
+    <div class="hero-overlay absolute inset-0"></div>
+    <div class="container-narrow relative z-10">
+      <h1 class="font-display text-5xl md:text-6xl font-light leading-tight mb-6">{T('title')}</h1>
+      <p class="text-xl text-white/80 max-w-2xl">{T('subtitle')}</p>
+    </div>
+  </section>
+
+  <section class="section-padding bg-background">
+    <div class="container-narrow">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {downloads.map((d) => (
+          <DownloadGate client:load locale={locale} type={d.type} title={d.title} size={d.size} format={d.format} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" locale={locale} />
+  <FloatingChatButtons slot="floating" locale={locale} />
+  <CookieConsent slot="cookie-consent" locale={locale} />
+</BaseLayout>

@@ -1,0 +1,92 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
+import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
+import ContactForm from '@/components/islands/ContactForm.tsx';
+import SEOFaq from '@/components/SEOFaq.astro';
+import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
+import { SITE_INFO } from '@/lib/seo';
+
+export function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const { locale: rawLocale } = Astro.params;
+const locale = pickLocale(rawLocale);
+
+const t: Record<string, Record<string, string>> = {
+  en: { title: 'Contact Us', subtitle: 'Get a quote within 24 hours', address: 'Address', phone: 'Phone', whatsapp: 'WhatsApp', wechat: 'WeChat', email: 'Email', hours: 'Business Hours' },
+  cn: { title: '联系我们', subtitle: '24小时内获取报价', address: '地址', phone: '电话', whatsapp: 'WhatsApp', wechat: '微信', email: '邮箱', hours: '工作时间' },
+  de: { title: 'Kontakt', subtitle: 'Angebot innerhalb von 24 Stunden', address: 'Adresse', phone: 'Telefon', whatsapp: 'WhatsApp', wechat: 'WeChat', email: 'E-Mail', hours: 'Geschäftszeiten' },
+  fr: { title: 'Contact', subtitle: 'Devis sous 24 heures', address: 'Adresse', phone: 'Téléphone', whatsapp: 'WhatsApp', wechat: 'WeChat', email: 'Email', hours: 'Horaires' },
+  ja: { title: 'お問い合わせ', subtitle: '24時間以内に見積もり', address: '住所', phone: '電話', whatsapp: 'WhatsApp', wechat: '微信', email: 'メール', hours: '営業時間' },
+  kr: { title: '문의', subtitle: '24시간 내 견적', address: '주소', phone: '전화', whatsapp: 'WhatsApp', wechat: '위챗', email: '이메일', hours: '영업시간' },
+};
+const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
+---
+
+<BaseLayout locale={locale} pageKey="contact" path="/contact">
+  <Navigation slot="header" locale={locale} currentPath={`/${locale}/contact`} />
+
+  <section class="pt-32 pb-12 bg-gradient-to-br from-brand-ink to-brand-chocolate text-white">
+    <div class="hero-overlay absolute inset-0"></div>
+    <div class="container-narrow relative z-10">
+      <h1 class="font-display text-5xl md:text-6xl font-light leading-tight mb-6">{T('title')}</h1>
+      <p class="text-xl text-white/80">{T('subtitle')}</p>
+    </div>
+  </section>
+
+  <section class="section-padding bg-background">
+    <div class="container-narrow">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <!-- Contact Info -->
+        <div class="space-y-6">
+          <div class="border-l-2 border-primary pl-4">
+            <div class="text-xs uppercase tracking-wider text-muted-foreground mb-1">{T('address')}</div>
+            <div class="text-base">{SITE_INFO.address}</div>
+          </div>
+          <div class="border-l-2 border-primary pl-4">
+            <div class="text-xs uppercase tracking-wider text-muted-foreground mb-1">{T('phone')}</div>
+            <a href={`tel:${SITE_INFO.phone}`} class="text-base hover:text-primary">{SITE_INFO.phone}</a>
+          </div>
+          <div class="border-l-2 border-primary pl-4">
+            <div class="text-xs uppercase tracking-wider text-muted-foreground mb-1">{T('whatsapp')}</div>
+            <a href={`https://wa.me/${SITE_INFO.whatsapp.replace(/[^\d]/g, '')}`} target="_blank" class="text-base hover:text-primary">{SITE_INFO.phone}</a>
+          </div>
+          <div class="border-l-2 border-primary pl-4">
+            <div class="text-xs uppercase tracking-wider text-muted-foreground mb-1">{T('wechat')}</div>
+            <div class="text-base font-mono">{SITE_INFO.wechatId}</div>
+          </div>
+          <div class="border-l-2 border-primary pl-4">
+            <div class="text-xs uppercase tracking-wider text-muted-foreground mb-1">{T('email')}</div>
+            <a href={`mailto:${SITE_INFO.email}`} class="text-base hover:text-primary">{SITE_INFO.email}</a>
+          </div>
+          <div class="border-l-2 border-primary pl-4">
+            <div class="text-xs uppercase tracking-wider text-muted-foreground mb-1">{T('hours')}</div>
+            <div class="text-base">Mon-Sat 9:00-18:00 (GMT+8)</div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="lg:col-span-2">
+          <ContactForm client:load locale={locale} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" locale={locale} />
+  <FloatingChatButtons slot="floating" locale={locale} />
+  <CookieConsent slot="cookie-consent" locale={locale} />
+</BaseLayout>
+
+---
+
+<style>
+  /* Contact page specific micro-animations */
+  details[open] summary svg {
+    transform: rotate(180deg);
+  }
+</style>

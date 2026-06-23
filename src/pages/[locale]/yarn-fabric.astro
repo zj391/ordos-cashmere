@@ -1,0 +1,104 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
+import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
+import SEOFaq from '@/components/SEOFaq.astro';
+import YarnFabricInquiryForm from '@/components/islands/YarnFabricInquiryForm.tsx';
+import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
+
+export function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const { locale: rawLocale } = Astro.params;
+const locale = pickLocale(rawLocale);
+
+const t: Record<string, Record<string, string>> = {
+  en: { title: 'Cashmere Yarn & Woven Fabric', subtitle: 'Premium counts · Custom colors · Worsted & woolen', sectionYarn: 'Cashmere Yarn', sectionFabric: 'Cashmere Woven Fabric', cta: 'Request Quotation', spec1: 'Counts', spec2: 'Composition', spec3: 'Twist', spec4: 'Color', spec5: 'MOQ', spec6: 'Lead Time' },
+  cn: { title: '羊绒纱线 / 羊绒面料', subtitle: '精纺/粗纺 · 定制颜色 · 工厂直供', sectionYarn: '羊绒纱线', sectionFabric: '羊绒面料', cta: '立即询盘', spec1: '支数', spec2: '成分', spec3: '捻度', spec4: '颜色', spec5: '起订量', spec6: '交期' },
+  de: { title: 'Kaschmirgarn & Webstoff', subtitle: 'Premium-Feinheiten · Sonderfarben', sectionYarn: 'Kaschmirgarn', sectionFabric: 'Kaschmir-Webstoff', cta: 'Angebot', spec1: 'Feinheit', spec2: 'Zusammensetzung', spec3: 'Drehung', spec4: 'Farbe', spec5: 'MOQ', spec6: 'Lieferzeit' },
+  fr: { title: 'Fil & tissu cachemire', subtitle: 'Titres premium · Couleurs personnalisées', sectionYarn: 'Fil cachemire', sectionFabric: 'Tissu cachemire', cta: 'Devis', spec1: 'Titres', spec2: 'Composition', spec3: 'Torsion', spec4: 'Couleur', spec5: 'MOQ', spec6: 'Délai' },
+  ja: { title: 'カシミア糸・生地', subtitle: 'プレミアム番手・カスタムカラー', sectionYarn: 'カシミア糸', sectionFabric: 'カシミア織物', cta: '見積もり', spec1: '番手', spec2: '混率', spec3: '撚り', spec4: 'カラー', spec5: 'MOQ', spec6: '納期' },
+  kr: { title: '캐시미어 원사·직물', subtitle: '프리미엄 번수 · 맞춤 색상', sectionYarn: '캐시미어 원사', sectionFabric: '캐시미어 직물', cta: '견적', spec1: '번수', spec2: '혼용률', spec3: '꼬임', spec4: '색상', spec5: 'MOQ', spec6: '납기' },
+};
+const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
+
+const yarnSpecs = [
+  { label: T('spec1'), value: '26/2 · 28/2 · 36/2 · 48/2' },
+  { label: T('spec2'), value: locale === 'cn' ? '100%山羊绒 / 混纺' : '100% Cashmere / Blends' },
+  { label: T('spec3'), value: 'Z twist · Custom' },
+  { label: T('spec4'), value: locale === 'cn' ? 'Pantone定制' : 'Pantone custom' },
+  { label: T('spec5'), value: '50kg' },
+  { label: T('spec6'), value: locale === 'cn' ? '20-30天' : '20-30 days' },
+];
+
+const fabricSpecs = [
+  { label: locale === 'cn' ? '克重' : 'Weight', value: '180-450 g/m²' },
+  { label: locale === 'cn' ? '幅宽' : 'Width', value: '150cm' },
+  { label: locale === 'cn' ? '成分' : 'Composition', value: locale === 'cn' ? '100%山羊绒' : '100% Cashmere' },
+  { label: locale === 'cn' ? '织法' : 'Weave', value: locale === 'cn' ? '平纹/斜纹/缎纹' : 'Plain / Twill / Satin' },
+  { label: locale === 'cn' ? '起订量' : 'MOQ', value: '200m' },
+  { label: locale === 'cn' ? '交期' : 'Lead Time', value: locale === 'cn' ? '30-45天' : '30-45 days' },
+];
+---
+
+<BaseLayout locale={locale} pageKey="yarnFabric" path="/yarn-fabric">
+  <Navigation slot="header" locale={locale} currentPath={`/${locale}/yarn-fabric`} />
+
+  <section class="pt-32 pb-20 bg-gradient-to-br from-brand-sand to-brand-camel text-white">
+    <div class="hero-overlay absolute inset-0"></div>
+    <div class="container-narrow relative z-10">
+      <h1 class="font-display text-5xl md:text-6xl font-light leading-tight mb-6 max-w-3xl">{T('title')}</h1>
+      <p class="text-xl text-white/80 max-w-2xl">{T('subtitle')}</p>
+    </div>
+  </section>
+
+  <section class="section-padding bg-background">
+    <div class="container-narrow space-y-20">
+      <!-- Yarn -->
+      <div>
+        <h2 class="font-display text-3xl md:text-4xl font-light mb-8">{T('sectionYarn')}</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {yarnSpecs.map((s) => (
+            <div class="border border-border rounded-lg p-6">
+              <div class="text-xs uppercase tracking-wider text-muted-foreground mb-2">{s.label}</div>
+              <div class="text-lg">{s.value}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Fabric -->
+      <div>
+        <h2 class="font-display text-3xl md:text-4xl font-light mb-8">{T('sectionFabric')}</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {fabricSpecs.map((s) => (
+            <div class="border border-border rounded-lg p-6">
+              <div class="text-xs uppercase tracking-wider text-muted-foreground mb-2">{s.label}</div>
+              <div class="text-lg">{s.value}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="mt-12">
+        <YarnFabricInquiryForm client:load locale={locale} />
+      </div>
+    </div>
+  </section>
+
+  <SEOFaq faqs={[
+    locale === 'cn'
+      ? { q: '羊绒纱线支数是什么意思？', a: '支数表示纱线的细度，例如26/2表示双股26支纱线。数字越大纱线越细：26/2用于厚款毛衣，36/2-48/2用于薄款内衣和春夏针织。' }
+      : { q: 'What do cashmere yarn count numbers mean?', a: 'Count indicates yarn fineness. 26/2 means 2-ply 26-count yarn. Higher numbers mean finer yarn: 26/2 for thick sweaters, 36/2-48/2 for lightweight knitwear and spring/summer garments.' },
+    locale === 'cn'
+      ? { q: '精纺和粗纺羊绒有什么区别？', a: '精纺纱线（26/2及以上）表面光滑，适合贴身穿的高级针织；粗纺纱线（14/2-20/2）表面有绒感，保暖性更强，适合外套和冬季毛衣。' }
+      : { q: 'What is the difference between worsted and woolen cashmere?', a: 'Worsted yarn (26/2+) has smooth surface, ideal for next-to-skin luxury knitwear. Woolen yarn (14/2-20/2) has fuzzy texture with stronger warmth retention, ideal for outerwear and winter sweaters.' },
+  ]} />
+
+  <Footer slot="footer" locale={locale} />
+  <FloatingChatButtons slot="floating" locale={locale} />
+  <CookieConsent slot="cookie-consent" locale={locale} />
+</BaseLayout>
