@@ -256,13 +256,64 @@ if (_schema === 'faq' && faqs && faqs.length > 0) {
     <slot name="floating" />
     <slot name="cookie-consent" />
 
-    <!-- IP 识别 -->
+    <!-- IP 识别 + 访客画像（页面浏览/停留时长聚合） -->
     <script is:inline>
       (function() {
         const lang = (navigator.language || 'en').toLowerCase();
         const isChinaIP = /^(zh|zh-cn|zh-hans)/i.test(lang);
         window.__HERMES_REGION__ = isChinaIP ? 'CN' : 'GLOBAL';
         window.__HERMES_HIGHLIGHT__ = isChinaIP ? 'wechat' : 'whatsapp';
+
+        // 真实 IP + 国别由 Vercel /api/track-event 解析（基于 x-vercel-ip-country）
+        // 这里只发页面浏览/停留事件
+        function ping(eventName, extra) {
+          try {
+            fetch('/api/track-event', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(Object.assign({
+                event_name: eventName,
+                locale: window.__HERMES_LOCALE__,
+                region: window.__HERMES_REGION__,
+                path: location.pathname,
+                referrer: document.referrer || '',
+                title: document.title,
+              }, extra || {})),
+              keepalive: true,
+            }).catch(() => {});
+          } catch (e) {}
+        }
+
+        // 页面浏览
+        ping('page_view', { ts: Date.now() });
+
+        // 停留时长：每 15 秒 ping 一次 + 离开时最后一次
+        let dwellTotal = 0;
+        const dwellStart = Date.now();
+        setInterval(function() {
+          dwellTotal = Math.round((Date.now() - dwellStart) / 1000);
+          ping('dwell_tick', { dwell_seconds: dwellTotal });
+        }, 15000);
+
+        // 离开页：发送最后一次停留时长
+        window.addEventListener('beforeunload', function() {
+          dwellTotal = Math.round((Date.now() - dwellStart) / 1000);
+          ping('page_unload', { dwell_seconds: dwellTotal });
+        });
+
+        // 滚动深度（25/50/75/100%）
+        let scrollMarks = {};
+        window.addEventListener('scroll', function() {
+          const docH = document.documentElement.scrollHeight - window.innerHeight;
+          if (docH <= 0) return;
+          const pct = Math.round((window.scrollY / docH) * 100);
+          [25, 50, 75, 100].forEach(function(m) {
+            if (pct >= m && !scrollMarks[m]) {
+              scrollMarks[m] = true;
+              ping('scroll_depth', { depth_pct: m });
+            }
+          });
+        });
       })();
     </script>
   </body>

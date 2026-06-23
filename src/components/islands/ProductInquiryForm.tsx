@@ -58,6 +58,26 @@ export default function ProductInquiryForm({
       if (!res.ok) throw new Error();
       setStatus('success');
       (e.target as HTMLFormElement).reset();
+
+      // GA4 提交事件（按产品类型分流）
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'inquiry_submit', {
+          event_category: 'b2b_lead',
+          event_label: productType,
+          locale,
+          inquiry_type: productType,
+        });
+      }
+      // 后台 track（独立于 GA4，走 /api/track-event）
+      fetch('/api/track-event', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          event_name: 'inquiry_submit',
+          product_type: productType,
+          locale,
+        }),
+      }).catch(() => {});
     } catch {
       setStatus('error');
     } finally {

@@ -87,6 +87,26 @@ export default function ContactForm({ locale }: Props) {
       if (!res.ok) throw new Error();
       setStatus('success');
       (e.target as HTMLFormElement).reset();
+
+      // GA4 提交事件（通用 contact 表单，按 type 分流）
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'contact_submit', {
+          event_category: 'b2b_lead',
+          event_label: type,
+          locale,
+          inquiry_type: type,
+        });
+      }
+      // 后台 track
+      fetch('/api/track-event', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          event_name: 'contact_submit',
+          inquiry_type: type,
+          locale,
+        }),
+      }).catch(() => {});
     } catch {
       setStatus('error');
     } finally {
