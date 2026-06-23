@@ -1,6 +1,7 @@
 ---
 /**
- * Blog 列表 - 6 国本地化内容（占位，后续接 CMS 或 MDX）
+ * Blog 列表 - 从 src/content/blog/{locale}/*.md 读取
+ * 由 scripts/generate-blog.mjs + GitHub Actions 每日自动生成
  */
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Navigation from '@/components/Navigation.astro';
@@ -8,6 +9,7 @@ import Footer from '@/components/Footer.astro';
 import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
 import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
+import { getCollection } from 'astro:content';
 
 export function getStaticPaths() {
   return LOCALES.map((locale) => ({ params: { locale } }));
@@ -26,13 +28,18 @@ const t: Record<string, Record<string, string>> = {
 };
 const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
 
-// 占位 blog 文章（后续接 CMS 后从数据源读取）
-const posts = [
-  { title: locale === 'cn' ? '如何辨别优质羊绒：6 个关键指标' : 'How to Identify Premium Cashmere: 6 Key Metrics', date: '2026-05-20', excerpt: locale === 'cn' ? '从细度到长度，从净绒率到色泽，全方位解析...' : 'From fineness to length, yield to color...' },
-  { title: locale === 'cn' ? '羊绒代工合作：流程、MOQ 与交期详解' : 'Cashmere OEM: Process, MOQ & Lead Time', date: '2026-05-15', excerpt: locale === 'cn' ? '一份完整的 OEM 合作指南...' : 'A complete OEM partnership guide...' },
-  { title: locale === 'cn' ? 'OEKO-TEX 与 GCS 认证对采购的意义' : 'Why OEKO-TEX & GCS Matter for B2B Sourcing', date: '2026-05-10', excerpt: locale === 'cn' ? '认证不只是标签...' : 'Certifications are not just labels...' },
-  { title: locale === 'cn' ? '从牧场到工厂：羊绒产业链溯源' : 'From Pasture to Factory: Cashmere Supply Chain Traceability', date: '2026-05-05', excerpt: locale === 'cn' ? '了解每一根羊绒背后的故事...' : 'The story behind every fiber...' },
-];
+// 从 Content Collections 读取该 locale 的所有博客（按发布日期倒序）
+const allPosts = await getCollection('blog', ({ id }) => id.startsWith(`${locale}/`));
+const posts = allPosts
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
+  .map((p) => ({
+    slug: p.id.replace(`${locale}/`, '').replace(/\.md$/, ''),
+    title: p.data.title,
+    excerpt: p.data.excerpt,
+    date: p.data.publishDate.toISOString().slice(0, 10),
+    tags: p.data.tags,
+  }));
+
 ---
 
 <BaseLayout locale={locale} pageKey="blog" path="/blog">
@@ -50,12 +57,12 @@ const posts = [
     <div class="container-narrow">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {posts.map((p) => (
-          <article class="border border-border rounded-lg p-8 hover:border-primary hover:shadow-lg transition-all group">
+          <a href={`/${locale}/blog/${p.slug}`} class="block border border-border rounded-lg p-8 hover:border-primary hover:shadow-lg transition-all group">
             <div class="text-xs text-muted-foreground uppercase tracking-wider mb-3">{p.date}</div>
             <h3 class="font-display text-2xl mb-3 group-hover:text-primary transition-colors">{p.title}</h3>
             <p class="text-muted-foreground leading-relaxed mb-4">{p.excerpt}</p>
             <span class="text-sm text-primary font-medium">{locale === 'cn' ? '阅读全文 →' : 'Read more →'}</span>
-          </article>
+          </a>
         ))}
       </div>
     </div>

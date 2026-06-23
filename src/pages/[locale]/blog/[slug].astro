@@ -1,58 +1,118 @@
 ---
 /**
- * Blog 详情页（占位 - W5 任务：接 CMS）
+ * Blog 详情页 - 从 src/content/blog/{locale}/{slug}.md 读取
+ * 由 scripts/generate-blog.mjs + GitHub Actions 每日自动生成
  */
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Navigation from '@/components/Navigation.astro';
 import Footer from '@/components/Footer.astro';
 import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
-import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
+import { LOCALES, pickLocale } from '@/lib/i18n';
+import { getCollection, render } from 'astro:content';
 
-export function getStaticPaths() {
-  return LOCALES.flatMap((locale) =>
-    [
-      { slug: 'how-to-identify-premium-cashmere', title: 'How to Identify Premium Cashmere: 6 Key Metrics' },
-      { slug: 'cashmere-oem-guide', title: 'Cashmere OEM Guide' },
-      { slug: 'oekotex-gcs-importance', title: 'Why OEKO-TEX & GCS Matter' },
-    ].map((post) => ({
-      params: { locale, slug: post.slug },
-      props: { title: post.title },
-    }))
-  );
+export async function getStaticPaths() {
+  const all = await getCollection('blog');
+  return all.map((post) => {
+    const [locale, ...rest] = post.id.split('/');
+    const slug = rest.join('/').replace(/\.md$/, '');
+    return {
+      params: { locale, slug },
+      props: { post },
+    };
+  });
 }
 
-const { locale: rawLocale } = Astro.params;
-const locale = pickLocale(rawLocale);
-const { title } = Astro.props;
+const { post } = Astro.props;
+const locale = pickLocale(Astro.params.locale);
+const { Content } = await render(post);
+
+// Schema.org Article + BlogPosting for SEO
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.excerpt,
+  datePublished: post.data.publishDate.toISOString(),
+  dateModified: (post.data.updatedDate || post.data.publishDate).toISOString(),
+  author: {
+    '@type': 'Organization',
+    name: post.data.author,
+  },
+  keywords: (post.data.targetKeywords || []).join(', '),
+  inLanguage: locale,
+  articleSection: 'B2B Cashmere Sourcing',
+};
+
+const t: Record<string, Record<string, string>> = {
+  en: { backToBlog: '← Back to Blog', readTime: 'min read', publishedOn: 'Published', tags: 'Tags' },
+  cn: { backToBlog: '← 返回博客', readTime: '分钟阅读', publishedOn: '发布于', tags: '标签' },
+  de: { backToBlog: '← Zurück zum Blog', readTime: 'Min. Lesezeit', publishedOn: 'Veröffentlicht', tags: 'Schlagwörter' },
+  fr: { backToBlog: '← Retour au blog', readTime: 'min de lecture', publishedOn: 'Publié le', tags: 'Mots-clés' },
+  ja: { backToBlog: '← ブログに戻る', readTime: '分読む', publishedOn: '公開日', tags: 'タグ' },
+  kr: { backToBlog: '← 블로그로', readTime: '분 소요', publishedOn: '게시일', tags: '태그' },
+};
+const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
+
+// 估算阅读时间（按 200 wpm）
+const wordCount = post.body?.split(/\s+/).length || 0;
+const readMin = Math.max(1, Math.round(wordCount / 200));
 ---
 
-<BaseLayout locale={locale} pageKey="blog" path={`/blog/${Astro.params.slug}`}>
-  <Navigation slot="header" locale={locale} currentPath={`/${locale}/blog`} />
+<BaseLayout
+  locale={locale}
+  pageKey="blog"
+  path={`/blog/${Astro.params.slug}`}
+  title={post.data.title}
+  description={post.data.excerpt}
+  ogType="article"
+  schema="blog"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} is:inline />
+  </Fragment>
+
+  <Navigation slot="header" locale={locale} currentPath={`/${locale}/blog/${Astro.params.slug}`} />
 
   <article class="pt-32 pb-16 container-narrow max-w-3xl">
-    <div class="text-xs uppercase tracking-wider text-muted-foreground mb-3">Blog</div>
-    <h1 class="font-display text-4xl md:text-5xl font-light leading-tight mb-6">{title}</h1>
-    <div class="text-sm text-muted-foreground mb-12">2026-05-20 · 8 min read</div>
+    <a href={`/${locale}/blog`} class="text-sm text-muted-foreground hover:text-primary mb-8 inline-block">{T('backToBlog')}</a>
+
+    <header class="mb-12">
+      <h1 class="font-display text-4xl md:text-5xl font-light leading-tight mb-6">{post.data.title}</h1>
+      <p class="text-xl text-muted-foreground leading-relaxed mb-6">{post.data.excerpt}</p>
+      <div class="flex flex-wrap items-center gap-4 text-sm text-muted-foreground border-y border-border py-4">
+        <span><strong class="text-foreground">{T('publishedOn')}:</strong> {post.data.publishDate.toISOString().slice(0, 10)}</span>
+        <span>·</span>
+        <span>{readMin} {T('readTime')}</span>
+        <span>·</span>
+        <span><strong class="text-foreground">{post.data.author}</strong></span>
+      </div>
+      {post.data.tags.length > 0 && (
+        <div class="flex flex-wrap gap-2 mt-4">
+          {post.data.tags.map((tag) => (
+            <span class="text-xs px-2 py-1 bg-muted text-muted-foreground rounded-full">{tag}</span>
+          ))}
+        </div>
+      )}
+    </header>
 
     <div class="prose prose-lg max-w-none">
-      <p class="text-lg leading-relaxed mb-6">
-        {locale === 'cn'
-          ? '完整博客内容将在 W5 接入 CMS 后填充。当前页面作为模板展示。'
-          : 'Full blog content will be populated after W5 CMS integration. This page serves as template.'}
-      </p>
-      <p class="leading-relaxed mb-6">
-        {locale === 'cn'
-          ? '本文将详细介绍羊绒采购的核心要点，包括如何辨别优质羊绒、供应商审核要点、合作流程等。'
-          : 'This article covers the essentials of cashmere sourcing, including how to identify premium cashmere, supplier vetting, and partnership process.'}
-      </p>
-      <h2 class="font-display text-2xl mt-12 mb-4">1. {locale === 'cn' ? '细度指标' : 'Fineness Metrics'}</h2>
-      <p class="leading-relaxed mb-6">
-        {locale === 'cn'
-          ? '细度是衡量羊绒品质最重要的指标，行业标准通常在 14.5-16.5μm 之间。'
-          : 'Fineness is the most important quality metric. Industry standard ranges 14.5-16.5μm.'}
-      </p>
+      <Content />
     </div>
+
+    <footer class="mt-16 pt-8 border-t border-border">
+      <div class="bg-muted/50 border border-border rounded-lg p-6">
+        <h3 class="font-display text-xl mb-2">{locale === 'cn' ? '需要报价？' : 'Need a quotation?'}</h3>
+        <p class="text-muted-foreground mb-4">
+          {locale === 'cn'
+            ? '我们的 B2B 团队 24 小时内回复所有询盘。提供产品类型、数量、目的地港口即可。'
+            : 'Our B2B team replies to all inquiries within 24 hours. Share product type, quantity, and destination port.'}
+        </p>
+        <a href={`/${locale}/contact`} class="inline-block px-6 py-3 bg-primary text-primary-foreground rounded-md font-medium hover:bg-primary/90 transition-colors">
+          {locale === 'cn' ? '提交询盘 →' : 'Submit Inquiry →'}
+        </a>
+      </div>
+    </footer>
   </article>
 
   <Footer slot="footer" locale={locale} />

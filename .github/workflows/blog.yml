@@ -1,0 +1,81 @@
+name: Daily GEO Blog
+
+# 每天 UTC 02:00 (北京时间 10:00) 自动生成一篇 GEO SEO 博客
+# 内容由 scripts/generate-blog.mjs 调 LLM 生成 → 翻译 6 国 → 写入 src/content/blog/
+# 自动 commit + push，触发 Vercel 重新部署
+
+on:
+  schedule:
+    # 每天 02:00 UTC (北京时间 10:00)
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    # 允许手动触发（GitHub UI → Actions → Daily GEO Blog → Run workflow）
+    inputs:
+      topic:
+        description: 'Blog topic (English)'
+        required: false
+        default: 'How B2B cashmere buyers can verify Ordos origin and avoid mislabeling'
+      keywords:
+        description: 'Target keywords (comma-separated)'
+        required: false
+        default: 'Ordos cashmere manufacturer,B2B cashmere sourcing,Inner Mongolia cashmere factory'
+
+jobs:
+  generate-blog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install
+        run: npm install --no-audit --no-fund
+
+      - name: Generate blog
+        env:
+          LLM_API_URL: ${{ secrets.LLM_API_URL }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          LLM_MODEL: ${{ secrets.LLM_MODEL }}
+          SITE_DOMAIN: ${{ secrets.SITE_DOMAIN }}
+          SITE_NAME: ${{ secrets.SITE_NAME }}
+          TOPIC: ${{ github.event.inputs.topic || 'How B2B cashmere buyers can verify Ordos origin and avoid mislabeling' }}
+          KEYWORDS: ${{ github.event.inputs.keywords || 'Ordos cashmere manufacturer,B2B cashmere sourcing,Inner Mongolia cashmere factory' }}
+        run: node scripts/generate-blog.mjs
+
+      - name: Verify build
+        run: npm run build
+
+      - name: Detect changes
+        id: changes
+        run: |
+          if git diff --quiet HEAD -- src/content/blog/; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No new blog files generated (LLM may have failed)."
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "New blog files detected:"
+            git diff --name-only HEAD -- src/content/blog/
+          fi
+
+      - name: Commit and push
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/content/blog/
+          SLUG=$(ls src/content/blog/en/ | head -1 | sed 's/.md$//')
+          git commit -m "feat(blog): ${SLUG}"
+          git push origin master
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "::error::Daily GEO blog generation failed. Check the run logs at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
