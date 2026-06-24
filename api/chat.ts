@@ -126,6 +126,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       success: false,
       error: 'llm_not_configured',
       message: 'Chat service not configured. Set LLM_API_URL, LLM_API_KEY, LLM_MODEL in Vercel env.',
+      debug: {
+        LLM_API_URL_set: !!LLM_API_URL,
+        LLM_API_KEY_set: !!LLM_API_KEY,
+        LLM_API_KEY_length: LLM_API_KEY ? LLM_API_KEY.length : 0,
+        LLM_API_KEY_preview: LLM_API_KEY ? LLM_API_KEY.substring(0, 6) + '...' : 'EMPTY',
+        LLM_MODEL_set: !!LLM_MODEL,
+        env_uppercase_keys: Object.keys(process.env).filter(k => k.includes('LLM')),
+        env_lowercase_keys: Object.keys(process.env).filter(k => k.toLowerCase().includes('llm')),
+      }
     });
   }
 
