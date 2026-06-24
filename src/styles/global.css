@@ -89,4 +89,5 @@ html {
     rgba(92, 62, 42, 0.6) 50%,
     rgba(26, 22, 18, 0.4) 100%
   );
+  pointer-events: none;
 }
