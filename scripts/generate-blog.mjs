@@ -129,21 +129,37 @@ async function translateToLocale(english, locale) {
 
 Keep all factual numbers (MOQ, lead times, micron counts, certifications) unchanged. Keep all proper nouns unchanged: Ordos, Inner Mongolia, ${SITE_NAME}, ISO9001, OEKO-TEX, GOTS, Tianjin, Shanghai. Translate naturally for B2B buyers, not literally. Adapt marketing tone to local culture.
 
-Output format: Return ONLY the translated JSON with the same field structure. No markdown fences, no explanations.
+Output format: Return ONLY the translated JSON with the same field structure. No markdown fences, no explanations, no preamble.
 
-CRITICAL: Frontmatter field names ("title", "excerpt", "slug", "tags", "targetKeywords", "geoRegion", "relatedProducts", "content") must NOT be translated. Only their VALUES are translated. The "slug" field should remain the same English kebab-case. The "geoRegion" value should be translated to its local equivalent or kept as code (GLOBAL/EU/JP/KR/CN-15/NA). The "relatedProducts" array must stay as English codes: ["raw_material", "yarn_fabric", "garment_oem"].`;
+CRITICAL: Frontmatter field names ("title", "excerpt", "slug", "tags", "targetKeywords", "geoRegion", "relatedProducts", "content") must NOT be translated. Only their VALUES are translated. The "slug" field should remain the same English kebab-case. The "geoRegion" value should be translated to its local equivalent or kept as code (GLOBAL/EU/JP/KR/CN-15/NA). The "relatedProducts" array must stay as English codes: ["raw_material", "yarn_fabric", "garment_oem"].
+
+CRITICAL: Escape any internal double quotes inside string values (e.g. write \\"example\\" not "example"). The JSON must parse cleanly with JSON.parse() on the first try.`;
 
   const userMsg = `English source:\n\n${JSON.stringify(english, null, 2)}\n\nTranslate to ${locale.name}. Return only JSON.`;
 
   const out = await callLLM(
     [{ role: 'system', content: sys }, { role: 'user', content: userMsg }],
-    { temperature: 0.3, max_tokens: 3500 }
+    { temperature: 0.3, max_tokens: 4000 }
   );
 
+  // 尝试解析；失败时尝试常见的修复
   const cleaned = out.replace(/^```json?\n?/i, '').replace(/\n?```$/i, '').trim();
   try {
     return JSON.parse(cleaned);
-  } catch (e) {
+  } catch (e1) {
+    console.warn(`  ! ${locale.code} first parse failed, attempting fix...`);
+    // 尝试找到第一个 { 到最后一个 } 之间的内容
+    const start = cleaned.indexOf('{');
+    const end = cleaned.lastIndexOf('}');
+    if (start >= 0 && end > start) {
+      const sliced = cleaned.slice(start, end + 1);
+      try {
+        return JSON.parse(sliced);
+      } catch (e2) {
+        console.error(`Translation to ${locale.code} failed:`, sliced.slice(0, 500));
+        throw new Error(`Invalid JSON for ${locale.code}`);
+      }
+    }
     console.error(`Translation to ${locale.code} failed:`, cleaned.slice(0, 500));
     throw new Error(`Invalid JSON for ${locale.code}`);
   }
@@ -196,8 +212,16 @@ async function main() {
 
   for (const locale of LOCALES.filter(l => l.code !== 'en')) {
     console.log(`-> Translating to ${locale.name} (${locale.code})...`);
-    const translated = await translateToLocale(english, locale);
-    await writeBlogFile(locale.code, translated);
+    try {
+      const translated = await translateToLocale(english, locale);
+      await writeBlogFile(locale.code, translated);
+    } catch (e) {
+      console.error(`   ! ${locale.code} failed: ${e.message}`);
+      console.error(`   ! Falling back to English content for ${locale.code}`);
+      // Fallback: 用英文源 + 语言标记写一份，保证所有 locale 都有文件
+      const fallback = { ...english, language: locale.code };
+      await writeBlogFile(locale.code, fallback);
+    }
   }
 
   console.log(`\nDone. New blog "${english.slug}" generated in 6 locales.`);
