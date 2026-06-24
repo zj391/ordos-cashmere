@@ -20,6 +20,10 @@ on:
         required: false
         default: 'Ordos cashmere manufacturer,B2B cashmere sourcing,Inner Mongolia cashmere factory'
 
+# 允许 workflow 自动 commit + push 生成的内容到 master
+permissions:
+  contents: write
+
 jobs:
   generate-blog:
     runs-on: ubuntu-latest
