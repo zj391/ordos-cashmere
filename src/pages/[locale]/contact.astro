@@ -30,8 +30,7 @@ const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
 <BaseLayout locale={locale} pageKey="contact" path="/contact">
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/contact`} />
 
-  <section class="pt-32 pb-12 bg-gradient-to-br from-brand-ink to-brand-chocolate text-white">
-    <div class="hero-overlay absolute inset-0"></div>
+  <section class="pt-24 pb-8 bg-gradient-to-br from-brand-ink to-brand-chocolate text-white">
     <div class="container-narrow relative z-10">
       <h1 class="font-display text-5xl md:text-6xl font-light leading-tight mb-6">{T('title')}</h1>
       <p class="text-xl text-white/80">{T('subtitle')}</p>
