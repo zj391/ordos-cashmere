@@ -17,12 +17,13 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 function getEnv(name: string, fallback: string): string {
-  return process.env[name] || fallback;
+  // Vercel 环境变量名限制小写，所以读大写 + 小写双兼容
+  return process.env[name] || process.env[name.toLowerCase()] || fallback;
 }
 
-const LLM_API_URL = getEnv('LLM_API_URL', 'https://openrouter.ai/api/v1/chat/completions');
-const LLM_API_KEY=getEnv('LLM_A' + 'PI_KEY', '');
-const LLM_MODEL = getEnv('LLM_MODEL', 'openrouter/free');
+const LLM_API_URL = getEnv('LLM_API_URL', 'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions');
+const LLM_API_KEY = getEnv('LLM_API_KEY', '');
+const LLM_MODEL = getEnv('LLM_MODEL', 'gemini-2.0-flash');
 const SITE_NAME = getEnv('SITE_NAME', 'DONGXIAO Cashmere');
 const SITE_DOMAIN = getEnv('SITE_DOMAIN', 'erdosdx.com');
 
