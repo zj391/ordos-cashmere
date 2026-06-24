@@ -76,7 +76,7 @@ const seo = tdk[locale] || tdk.en;
   keywords={seo.keywords}
   schema="products"
 >
-  <Navigation slot="nav" locale={locale} />
+  <Navigation slot="header" locale={locale} currentPath={`/${locale}/products`} />
 
   <!-- Page header -->
   <section class="bg-stone-50 border-b border-stone-200">
