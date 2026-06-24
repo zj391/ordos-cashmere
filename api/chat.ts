@@ -121,22 +121,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ success: false, error: 'method_not_allowed' });
   }
 
-  // 临时诊断：每次都暴露 env 实际状态
-  const envDebug = {
-    LLM_API_URL: LLM_API_URL,
-    LLM_API_KEY_length: LLM_API_KEY ? LLM_API_KEY.length : 0,
-    LLM_API_KEY_preview: LLM_API_KEY ? LLM_API_KEY.substring(0, 8) + '...' + LLM_API_KEY.substring(LLM_API_KEY.length - 4) : 'EMPTY',
-    LLM_API_KEY_set: !!LLM_API_KEY,
-    LLM_MODEL: LLM_MODEL,
-    env_keys_with_llm: Object.keys(process.env).filter(k => k.toLowerCase().includes('llm')),
-  };
-
   if (!LLM_API_KEY) {
     return res.status(503).json({
       success: false,
       error: 'llm_not_configured',
       message: 'Chat service not configured. Set LLM_API_URL, LLM_API_KEY, LLM_MODEL in Vercel env.',
-      debug: envDebug,
     });
   }
 
@@ -178,7 +167,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         error: 'upstream_failed',
         status: upstream.status,
         message: errText.slice(0, 500),
-        debug: envDebug,
       });
     }
 
