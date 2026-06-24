@@ -56,6 +56,8 @@ jobs:
       - name: Detect changes
         id: changes
         run: |
+          # git add -N 让 untracked 文件进入 diff 范围
+          git add -N src/content/blog/
           if git diff --quiet HEAD -- src/content/blog/; then
             echo "changed=false" >> $GITHUB_OUTPUT
             echo "No new blog files generated (LLM may have failed)."
