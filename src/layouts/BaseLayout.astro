@@ -242,7 +242,9 @@ if (_schema === 'faq' && faqs && faqs.length > 0) {
       gtag('config', gaId, {
         send_page_view: true,
         locale: locale,
-        custom_map: { dimension1: 'locale' }
+        custom_map: { dimension1: 'locale' },
+        cookie_domain: 'erdosdx.com',
+        cookie_flags: 'SameSite=None;Secure',
       });
       window.__HERMES_LOCALE__ = locale;
       window.__HERMES_GA_ID__ = gaId;
