@@ -10,7 +10,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 const N8N_WEBHOOK = process.env.N8N_WEBHOOK_URL;
-const HERMES_INBOUND_TOKEN=proces...N_TOKEN || '');
+const HERMES_INBOUND_TOKEN=process.env.HERMES_INBOUND_TOKEN || '';
 const SUPABASE_URL = process.env.PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_ANON_KEY;
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
