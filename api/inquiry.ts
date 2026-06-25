@@ -243,7 +243,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       };
       const hermesHeaders: Record<string, string> = { 'Content-Type': 'application/json' };
       if (HERMES_INBOUND_TOKEN) hermesHeaders['X-Hermes-Token'] = HERMES_INBOUND_TOKEN;
-      fetch('https://' + (req.headers.host || 'erdosdx.com') + '/api/hermes-inbound', {
+      fetch('https://www.erdosdx.com/api/hermes-inbound', {
         method: 'POST',
         headers: hermesHeaders,
         body: JSON.stringify(hermesPayload),
