@@ -1,6 +1,11 @@
 ---
 /**
- * 首页 - 6 国通用模板，TDK/文案/Schema 由 locale 动态注入
+ * 首页 - 6 国通用模板
+ * 设计语言：奢侈羊绒 + 工艺感 + 来源可追溯
+ *  - 大字衬线标题（Cormorant Garamond）
+ *  - 真实场景图（Unsplash）+ 自绘 SVG 装饰
+ *  - 不对称布局 / 留白有节奏
+ *  - 6 国翻译文案
  */
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Navigation from '@/components/Navigation.astro';
@@ -21,7 +26,6 @@ if (!isLocale(rawLocale)) {
 }
 const locale = pickLocale(rawLocale);
 
-// 首页内容（每个语种独立的 hero/features/CTA 文案）
 const heroContent: Record<string, {
   tagline: string;
   title: string;
@@ -30,9 +34,7 @@ const heroContent: Record<string, {
   ctaSecondary: string;
   badge: string;
   metrics: Array<{ value: string; label: string }>;
-  features: Array<{ icon: string; title: string; desc: string }>;
   trustTitle: string;
-  trustLogos: string[];
 }> = {
   en: {
     tagline: 'SOURCE FACTORY · ORDOS · SINCE 2002',
@@ -42,112 +44,77 @@ const heroContent: Record<string, {
     ctaSecondary: 'Download Catalog',
     badge: 'B2B Wholesale Only',
     metrics: [
-      { value: '23+', label: 'Years of Excellence' },
-      { value: '50+', label: 'Countries Served' },
+      { value: '23+', label: 'Years' },
+      { value: '50+', label: 'Countries' },
       { value: '1,200t', label: 'Annual Capacity' },
       { value: 'ISO 9001', label: 'Certified' },
     ],
-    features: [
-      { icon: 'mountain', title: 'Ordos Origin', desc: 'Born in the world\'s premium cashmere region - Inner Mongolia, China' },
-      { icon: 'shield', title: 'Quality Certified', desc: 'ISO 9001, OEKO-TEX®, GCS - international quality assurance' },
-      { icon: 'globe', title: 'Global Shipping', desc: 'FOB, CIF, DDP terms. Direct delivery to EU, US, JP, KR ports' },
-      { icon: 'factory', title: 'Source Factory', desc: '38,000 sqm facility. 500+ skilled workers. No middleman' },
-    ],
-    trustTitle: 'Trusted by global brands',
-    trustLogos: ['ISO 9001', 'OEKO-TEX', 'GCS', 'BSCI', 'Sedex', 'WRAP'],
+    trustTitle: 'Certifications & Compliance',
   },
   de: {
     tagline: 'QUELLFABRIK · ORDOS · SEIT 2002',
     title: 'Premium Kaschmir,\ndirekt aus Ordos',
-    subtitle: '23+ Jahre Herstellung von Rohkaschmir, Garn, Stoff und OEM-Strickwaren für globale B2B-Marken. ISO-zertifiziert. 50+ Länder.',
+    subtitle: '23+ Jahre Herstellung von Rohkaschmir, Garn, Stoff und OEM-Strickwaren für globale B2B-Marken. ISO-zertifiziert. 50+ Länder. 1.200+ Tonnen Jahreskapazität.',
     cta: 'Angebot anfordern',
     ctaSecondary: 'Katalog herunterladen',
     badge: 'Nur B2B-Großhandel',
     metrics: [
-      { value: '23+', label: 'Jahre Exzellenz' },
-      { value: '50+', label: 'Belieferte Länder' },
+      { value: '23+', label: 'Jahre' },
+      { value: '50+', label: 'Länder' },
       { value: '1.200t', label: 'Jahreskapazität' },
       { value: 'ISO 9001', label: 'Zertifiziert' },
     ],
-    features: [
-      { icon: 'mountain', title: 'Ordos Herkunft', desc: 'Geboren in der Premium-Kaschmirregion - Innere Mongolei' },
-      { icon: 'shield', title: 'Qualitätszertifiziert', desc: 'ISO 9001, OEKO-TEX®, GCS' },
-      { icon: 'globe', title: 'Weltweiter Versand', desc: 'FOB, CIF, DDP Lieferung' },
-      { icon: 'factory', title: 'Quellfabrik', desc: '38.000 qm Anlage. 500+ Mitarbeiter' },
-    ],
-    trustTitle: 'Vertrauen globaler Marken',
-    trustLogos: ['ISO 9001', 'OEKO-TEX', 'GCS', 'BSCI', 'Sedex', 'WRAP'],
+    trustTitle: 'Zertifizierungen & Compliance',
   },
   fr: {
     tagline: 'USINE SOURCE · ORDOS · DEPUIS 2002',
     title: 'Cachemire Premium,\ndirectement d\'Ordos',
-    subtitle: '23+ ans de fabrication de cachemire brut, fil, tissu et tricot OEM pour marques B2B. Certifié ISO.',
+    subtitle: '23+ ans de fabrication de cachemire brut, fil, tissu et tricot OEM pour marques B2B. Certifié ISO. 50+ pays. 1 200+ tonnes de capacité annuelle.',
     cta: 'Demander un devis',
     ctaSecondary: 'Télécharger le catalogue',
     badge: 'B2B uniquement',
     metrics: [
-      { value: '23+', label: 'Ans d\'excellence' },
-      { value: '50+', label: 'Pays servis' },
-      { value: '1 200t', label: 'Capacité annuelle' },
+      { value: '23+', label: 'Ans' },
+      { value: '50+', label: 'Pays' },
+      { value: '1 200t', label: 'Capacité' },
       { value: 'ISO 9001', label: 'Certifié' },
     ],
-    features: [
-      { icon: 'mountain', title: 'Origine Ordos', desc: 'Né dans la région premium du cachemire' },
-      { icon: 'shield', title: 'Qualité certifiée', desc: 'ISO 9001, OEKO-TEX®, GCS' },
-      { icon: 'globe', title: 'Livraison mondiale', desc: 'FOB, CIF, DDP' },
-      { icon: 'factory', title: 'Usine source', desc: '38 000 m², 500+ employés' },
-    ],
-    trustTitle: 'La confiance des marques mondiales',
-    trustLogos: ['ISO 9001', 'OEKO-TEX', 'GCS', 'BSCI', 'Sedex', 'WRAP'],
+    trustTitle: 'Certifications & Conformité',
   },
   ja: {
     tagline: '源流工場 · オルドス · 2002年創業',
     title: 'プレミアム・カシミア、\nオルドスから直送',
-    subtitle: '23年以上の実績。原料カシミア、糸、生地、OEMニットをグローバルB2Bブランドへ供給。ISO認証取得。',
+    subtitle: '23年以上の実績。原料カシミア、糸、生地、OEMニットをグローバルB2Bブランドへ供給。ISO認証取得。50ヶ国以上。年間生産能力1,200トン超。',
     cta: '見積もり依頼',
     ctaSecondary: 'カタログダウンロード',
     badge: 'B2B専門',
     metrics: [
       { value: '23年+', label: '業界経験' },
       { value: '50+', label: '供給国' },
-      { value: '1,200t', label: '年間生産能力' },
+      { value: '1,200t', label: '年間生産' },
       { value: 'ISO 9001', label: '認証' },
     ],
-    features: [
-      { icon: 'mountain', title: 'オルドス起源', desc: '世界のプレミアム・カシミア産地で誕生' },
-      { icon: 'shield', title: '品質認証', desc: 'ISO 9001、OEKO-TEX®、GCS' },
-      { icon: 'globe', title: 'グローバル配送', desc: 'FOB、CIF、DDP対応' },
-      { icon: 'factory', title: '源流工場', desc: '38,000平米、500名以上の従業員' },
-    ],
-    trustTitle: 'グローバルブランドに信頼される',
-    trustLogos: ['ISO 9001', 'OEKO-TEX', 'GCS', 'BSCI', 'Sedex', 'WRAP'],
+    trustTitle: '認証 & コンプライアンス',
   },
   kr: {
     tagline: '소스 팩토리 · 오르도스 · 2002년 창업',
     title: '프리미엄 캐시미어,\n오르도스에서 직송',
-    subtitle: '23년 이상의 제조 경험. 원료, 원사, 직물, OEM 니트웨어를 글로벌 B2B 브랜드에 공급.',
+    subtitle: '23년 이상의 제조 경험. 원료, 원사, 직물, OEM 니트웨어를 글로벌 B2B 브랜드에 공급. ISO 인증. 50개국 이상. 연간 생산 능력 1,200톤 이상.',
     cta: '견적 요청',
     ctaSecondary: '카탈로그 다운로드',
     badge: 'B2B 전문',
     metrics: [
-      { value: '23+', label: '업계 경험' },
-      { value: '50+', label: '공급 국가' },
-      { value: '1,200t', label: '연간 생산 능력' },
+      { value: '23+', label: '년 경험' },
+      { value: '50+', label: '공급국' },
+      { value: '1,200t', label: '연간 생산' },
       { value: 'ISO 9001', label: '인증' },
     ],
-    features: [
-      { icon: 'mountain', title: '오르도스 원산지', desc: '세계 최고급 캐시미어 산지에서 태어남' },
-      { icon: 'shield', title: '품질 인증', desc: 'ISO 9001, OEKO-TEX®, GCS' },
-      { icon: 'globe', title: '글로벌 배송', desc: 'FOB, CIF, DDP' },
-      { icon: 'factory', title: '소스 팩토리', desc: '38,000 sqm, 500+ 직원' },
-    ],
-    trustTitle: '글로벌 브랜드의 신뢰',
-    trustLogos: ['ISO 9001', 'OEKO-TEX', 'GCS', 'BSCI', 'Sedex', 'WRAP'],
+    trustTitle: '인증 & 규정 준수',
   },
   cn: {
     tagline: '源头工厂 · 鄂尔多斯 · 始于2002',
     title: '高端羊绒，\n鄂尔多斯源头直供',
-    subtitle: '23年专注B2B羊绒出口。原料、纱线、面料、成衣代工全产业链。ISO认证，供应全球50+国家。',
+    subtitle: '23年专注B2B羊绒出口。原料、纱线、面料、成衣代工全产业链。ISO 9001、OEKO-TEX、GCS 认证。供应全球50+国家。年产能1,200吨。',
     cta: '立即询盘',
     ctaSecondary: '下载目录',
     badge: 'B2B源头工厂',
@@ -157,245 +124,367 @@ const heroContent: Record<string, {
       { value: '1,200吨', label: '年产能' },
       { value: 'ISO 9001', label: '认证' },
     ],
-    features: [
-      { icon: 'mountain', title: '鄂尔多斯产地', desc: '世界顶级羊绒产区，源头直供' },
-      { icon: 'shield', title: '权威认证', desc: 'ISO 9001、OEKO-TEX®、GCS' },
-      { icon: 'globe', title: '全球物流', desc: 'FOB、CIF、DDP多种条款' },
-      { icon: 'factory', title: '源头工厂', desc: '38,000平米厂房，500+员工' },
-    ],
-    trustTitle: '全球品牌信任之选',
-    trustLogos: ['ISO 9001', 'OEKO-TEX', 'GCS', 'BSCI', 'Sedex', 'WRAP'],
+    trustTitle: '资质 & 合规',
   },
+};
+
+const t = (cn: string, en: string) => locale === 'cn' ? cn : en;
+const t6 = (cn: string, en: string, de: string, fr: string, ja: string, kr: string) => {
+  const m: Record<string, string> = { cn, en, de, fr, ja, kr };
+  return m[locale] || en;
 };
 
 const c = heroContent[locale];
 const seo = SEO[locale];
+
+// 真实图：Unsplash 直链（cashmere / wool / factory / herd / thread 类）
+// 用 Unsplash 公共图源 (images.unsplash.com)，可热链无需 API key
+const IMG = {
+  heroFactory: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1600&q=80',
+  rawHerd: 'https://images.unsplash.com/photo-1518715308788-3005759c61d3?auto=format&fit=crop&w=1400&q=80',
+  yarn: 'https://images.unsplash.com/photo-1605518216938-7c31b7b14ad0?auto=format&fit=crop&w=1200&q=80',
+  garments: 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=1200&q=80',
+  ordosLandscape: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1600&q=80',
+  factoryFloor: 'https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=1200&q=80',
+  detailFiber: 'https://images.unsplash.com/photo-1601244005535-a48d21d951ac?auto=format&fit=crop&w=1200&q=80',
+};
 ---
 
-<BaseLayout
-  locale={locale}
-  pageKey="home"
-  path="/"
-  schema="home"
->
+<BaseLayout locale={locale} pageKey="home" path="/" schema="home">
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/`} />
 
-  <!-- HERO -->
-  <section class="relative min-h-[90vh] flex items-center bg-gradient-to-br from-brand-ink via-brand-chocolate to-brand-camel text-white overflow-hidden">
-    <div class="hero-overlay absolute inset-0"></div>
-    <!-- 背景纹理 -->
-    <svg class="absolute inset-0 w-full h-full opacity-[0.06]" xmlns="http://www.w3.org/2000/svg">
+  <!-- ============ HERO ============ -->
+  <section class="relative bg-brand-ink text-white overflow-hidden">
+    <!-- 背景工厂图 + 暗化叠层 -->
+    <div class="absolute inset-0">
+      <img src={IMG.heroFactory} alt="Cashmere production facility" class="w-full h-full object-cover opacity-40" loading="eager" />
+      <div class="absolute inset-0 bg-gradient-to-r from-brand-ink via-brand-ink/80 to-transparent"></div>
+    </div>
+    <!-- 羊绒纤维纹理 -->
+    <svg class="absolute inset-0 w-full h-full opacity-[0.05] pointer-events-none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
       <defs>
-        <pattern id="cashmere-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-          <path d="M 0 20 Q 10 10, 20 20 T 40 20" stroke="white" stroke-width="1" fill="none"/>
-          <path d="M 0 30 Q 10 20, 20 30 T 40 30" stroke="white" stroke-width="1" fill="none"/>
-          <path d="M 0 10 Q 10 0, 20 10 T 40 10" stroke="white" stroke-width="1" fill="none"/>
+        <pattern id="fibers" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+          <path d="M0 30 Q15 22, 30 30 T60 30" stroke="white" stroke-width="0.5" fill="none"/>
+          <path d="M0 38 Q15 30, 30 38 T60 38" stroke="white" stroke-width="0.5" fill="none"/>
+          <path d="M0 22 Q15 14, 30 22 T60 22" stroke="white" stroke-width="0.5" fill="none"/>
         </pattern>
       </defs>
-      <rect width="100%" height="100%" fill="url(#cashmere-pattern)"/>
+      <rect width="100%" height="100%" fill="url(#fibers)"/>
     </svg>
-    <div class="container-narrow relative z-10 py-20">
-      <div class="max-w-3xl">
-        <div class="inline-block px-3 py-1 border border-white/30 rounded-full text-xs tracking-wider mb-6 backdrop-blur-sm">
-          {c.badge}
+
+    <div class="relative container-narrow min-h-[88vh] flex items-center py-24">
+      <div class="max-w-2xl">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="h-px w-12 bg-brand-gold"></span>
+          <span class="text-xs tracking-[0.4em] text-brand-gold uppercase font-medium">{c.tagline}</span>
         </div>
-        <div class="text-xs tracking-[0.3em] uppercase mb-6 text-white/70">{c.tagline}</div>
-        <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-light leading-[1.05] mb-6 text-balance">
-          {c.title.split('\n').map((line) => <>{line}<br /></>)}
-        </h1>
-        <p class="text-lg md:text-xl text-white/80 mb-10 max-w-2xl leading-relaxed">
+        <h1 class="font-serif text-6xl md:text-8xl font-light leading-[1.02] mb-8" set:html={c.title.replace(/\n/g, '<br/>')} />
+        <p class="text-lg md:text-xl text-white/75 mb-12 leading-relaxed max-w-xl font-light">
           {c.subtitle}
         </p>
-        <div class="flex flex-wrap gap-4">
-          <a
-            href={`/${locale}/contact`}
-            class="inline-flex items-center justify-center px-8 py-4 bg-white text-brand-ink font-medium rounded-md hover:bg-white/90 transition-all hover:scale-[1.02]"
-          >
+        <div class="flex flex-wrap items-center gap-6">
+          <a href={`/${locale}/contact`} class="group inline-flex items-center gap-3 px-10 py-5 bg-brand-gold text-brand-ink font-medium tracking-wider hover:bg-white transition-colors">
             {c.cta}
-            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
             </svg>
           </a>
-          <a
-            href={`/${locale}/download`}
-            class="inline-flex items-center justify-center px-8 py-4 border border-white/40 text-white font-medium rounded-md hover:bg-white/10 transition-all backdrop-blur-sm"
-          >
+          <a href={`/${locale}/download`} class="group inline-flex items-center gap-2 text-white border-b border-white/40 pb-1 hover:border-brand-gold hover:text-brand-gold transition-colors">
             {c.ctaSecondary}
           </a>
         </div>
       </div>
+    </div>
 
-      <!-- Metrics Bar -->
-      <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-4xl">
+    <!-- 滚动指示 -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/40 text-xs tracking-widest uppercase animate-pulse">
+      Scroll
+    </div>
+  </section>
+
+  <!-- ============ METRICS BAR（细线分隔） ============ -->
+  <section class="border-y border-border bg-background py-12">
+    <div class="container-narrow">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 md:divide-x md:divide-border">
         {c.metrics.map((m) => (
-          <div class="border-l-2 border-white/30 pl-4">
-            <div class="font-display text-3xl md:text-4xl font-light">{m.value}</div>
-            <div class="text-xs md:text-sm text-white/70 mt-1 uppercase tracking-wider">{m.label}</div>
+          <div class="md:px-10 first:md:pl-0 last:md:pr-0 text-center md:text-left">
+            <div class="font-serif text-4xl md:text-5xl text-brand-chocolate font-light leading-none mb-2">{m.value}</div>
+            <div class="text-xs tracking-[0.2em] uppercase text-muted-foreground">{m.label}</div>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Features -->
-  <section class="section-padding bg-background">
+  <!-- ============ 产地故事（不对称：大图 + 文字） ============ -->
+  <section class="py-24 md:py-32 bg-background overflow-hidden">
     <div class="container-narrow">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-        {c.features.map((f) => (
-          <div class="group">
-            <div class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {f.icon === 'mountain' && <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 21l6-9 4 6 4-4 4 7H3z" />}
-                {f.icon === 'shield' && <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />}
-                {f.icon === 'globe' && <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />}
-                {f.icon === 'factory' && <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 3h1m4-3h1m-1 3h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />}
-              </svg>
-            </div>
-            <h3 class="font-display text-xl mb-2">{f.title}</h3>
-            <p class="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- 左侧大图（占 7/12） -->
+        <div class="lg:col-span-7 relative">
+          <div class="aspect-[5/6] overflow-hidden">
+            <img src={IMG.ordosLandscape} alt="Ordos plateau, Inner Mongolia" class="w-full h-full object-cover" loading="lazy" />
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Product Categories Teaser -->
-  <section class="section-padding bg-secondary/30">
-    <div class="container-narrow">
-      <div class="max-w-3xl mb-12">
-        <div class="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-3">
-          {locale === 'cn' ? '产品矩阵' : 'Product Range'}
+          <!-- 浮动小图（地理坐标装饰） -->
+          <div class="hidden md:block absolute -bottom-12 -right-12 w-48 aspect-square overflow-hidden border-8 border-background shadow-2xl">
+            <img src={IMG.rawHerd} alt="Cashmere goats on Ordos plateau" class="w-full h-full object-cover" loading="lazy" />
+          </div>
         </div>
-        <h2 class="font-display text-4xl md:text-5xl font-light leading-tight mb-4">
-          {locale === 'cn' ? '全产业链羊绒供应' :
-           locale === 'de' ? 'Komplette Kaschmir-Lieferkette' :
-           locale === 'fr' ? 'Chaîne complète du cachemire' :
-           locale === 'ja' ? 'カシミア全産業チェーン' :
-           locale === 'kr' ? '캐시미어 전산업체인 공급' :
-           'Complete Cashmere Supply Chain'}
-        </h2>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <a href={`/${locale}/raw-material`} class="group block bg-card rounded-lg overflow-hidden border border-border hover:border-primary transition-all hover:shadow-xl">
-          <div class="aspect-[4/3] bg-gradient-to-br from-brand-cream to-brand-sand relative overflow-hidden">
-            <div class="absolute inset-0 flex items-center justify-center text-brand-ink font-display text-3xl">Raw Material</div>
+        <!-- 右侧文字（占 5/12，错位下沉） -->
+        <div class="lg:col-span-5 lg:pl-8 lg:pt-16">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="h-px w-8 bg-brand-gold"></span>
+            <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">
+              {t('产地溯源', 'Origin Story')}
+            </span>
           </div>
-          <div class="p-6">
-            <h3 class="font-display text-2xl mb-2 group-hover:text-primary transition-colors">
-              {locale === 'cn' ? '羊绒原料' : locale === 'de' ? 'Rohkaschmir' : locale === 'fr' ? 'Cachemire brut' : locale === 'ja' ? '原料カシミア' : locale === 'kr' ? '원료 캐시미어' : 'Cashmere Raw Material'}
-            </h3>
-            <p class="text-sm text-muted-foreground">
-              {locale === 'cn' ? '白绒/青绒/紫绒，细度14.5-16.5μm，源头直供' :
-               'White, brown, purple cashmere · 14.5-16.5μm · Direct from source'}
-            </p>
-          </div>
-        </a>
-
-        <a href={`/${locale}/yarn-fabric`} class="group block bg-card rounded-lg overflow-hidden border border-border hover:border-primary transition-all hover:shadow-xl">
-          <div class="aspect-[4/3] bg-gradient-to-br from-brand-sand to-brand-camel relative overflow-hidden">
-            <div class="absolute inset-0 flex items-center justify-center text-white font-display text-3xl">Yarn & Fabric</div>
-          </div>
-          <div class="p-6">
-            <h3 class="font-display text-2xl mb-2 group-hover:text-primary transition-colors">
-              {locale === 'cn' ? '纱线/面料' : locale === 'de' ? 'Garn & Stoff' : locale === 'fr' ? 'Fil & Tissu' : locale === 'ja' ? '糸・生地' : locale === 'kr' ? '원사·직물' : 'Yarn & Fabric'}
-            </h3>
-            <p class="text-sm text-muted-foreground">
-              {locale === 'cn' ? '26/2、28/2、36/2 精纺/粗纺' :
-               '26/2 · 28/2 · 36/2 · Worsted & Woolen'}
-            </p>
-          </div>
-        </a>
-
-        <a href={`/${locale}/garment-oem`} class="group block bg-card rounded-lg overflow-hidden border border-border hover:border-primary transition-all hover:shadow-xl">
-          <div class="aspect-[4/3] bg-gradient-to-br from-brand-chocolate to-brand-ink relative overflow-hidden">
-            <div class="absolute inset-0 flex items-center justify-center text-white font-display text-3xl">OEM Garment</div>
-          </div>
-          <div class="p-6">
-            <h3 class="font-display text-2xl mb-2 group-hover:text-primary transition-colors">
-              {locale === 'cn' ? '成衣代工' : locale === 'de' ? 'Bekleidung OEM' : locale === 'fr' ? 'Vêtement OEM' : locale === 'ja' ? '衣料OEM' : locale === 'kr' ? '의류 OEM' : 'Garment OEM'}
-            </h3>
-            <p class="text-sm text-muted-foreground">
-              {locale === 'cn' ? '大衣/衫/裙/围巾，MOQ 100件' :
-               'Coats · Sweaters · Dresses · Scarves · MOQ 100pcs'}
-            </p>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Ordos Origin Teaser -->
-  <section class="section-padding bg-background">
-    <div class="container-narrow">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div>
-          <div class="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-3">
-            {locale === 'cn' ? '产地溯源' : 'Origin Story'}
-          </div>
-          <h2 class="font-display text-4xl md:text-5xl font-light leading-tight mb-6">
-            {locale === 'cn' ? '鄂尔多斯：世界顶级羊绒产区' :
-             locale === 'de' ? 'Ordos: Premium-Kaschmirregion' :
-             locale === 'fr' ? 'Ordos : Région du cachemire' :
-             locale === 'ja' ? 'オルドス：世界の最高級カシミア産地' :
-             locale === 'kr' ? '오르도스: 세계 최고 캐시미어 산지' :
-             'Ordos: The World\'s Premium Cashmere Region'}
-          </h2>
-          <p class="text-muted-foreground leading-relaxed mb-6">
-            {locale === 'cn' ? '鄂尔多斯位于内蒙古，北纬39度，海拔1300米，年均气温6℃，独特的高原大陆性气候孕育了阿尔巴斯白绒山羊——世界顶级羊绒品种' :
-             locale === 'de' ? 'Ordos liegt in der Inneren Mongolei auf 1300m Höhe. Das einzigartige Hochlandklima bringt die Albus-Kaschmirziege hervor – die Premium-Kaschmirrasse der Welt.' :
-             locale === 'fr' ? 'Ordos, située à 1300m d\'altitude en Mongolie Intérieure, abrite la chèvre Albus – la race qui produit le cachemire le plus premium au monde.' :
-             locale === 'ja' ? 'オルドスは内モンゴル、標高1300mに位置。独特の高原大陸性気候が、世界最高級カシミア品種「アルバス山羊」を育みます。' :
-             locale === 'kr' ? '오르도스는 내몽골 해발 1300m에 위치. 독특한 고원 대륙성 기후가 세계 최고급 캐시미어 품종 알버스 산양을 키웁니다.' :
-             'Located in Inner Mongolia at 1,300m altitude, Ordos\'s unique continental plateau climate nurtures the Albus goat — the world\'s premium cashmere breed.'}
+          <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight mb-6 text-brand-ink" set:html={t6(
+            '鄂尔多斯：<br/>世界顶级羊绒产区',
+            'Ordos:<br/>The World\'s Premium Cashmere Region',
+            'Ordos:<br/>Premium-Kaschmirregion',
+            'Ordos :<br/>Région du cachemire premium',
+            'オルドス：<br/>世界の最高級カシミア産地',
+            '오르도스:<br/>세계 최고급 캐시미어 산지'
+          )} />
+          <p class="text-muted-foreground leading-relaxed mb-8">
+            {t6(
+              '鄂尔多斯位于内蒙古，北纬39度，海拔1300米，年均气温6℃。独特的高原大陆性气候孕育了阿尔巴斯白绒山羊——世界顶级羊绒品种，每根纤维细度仅14.5微米。',
+              'Located in Inner Mongolia at 1,300m altitude, Ordos\'s unique continental plateau climate nurtures the Albus goat — the world\'s premium cashmere breed, with each fiber measuring just 14.5 microns.',
+              'Ordos liegt in der Inneren Mongolei auf 1300m Höhe. Das einzigartige Hochlandklima bringt die Albus-Kaschmirziege hervor.',
+              'Ordos, située à 1300m d\'altitude en Mongolie-Intérieure, abrite la chèvre Albus.',
+              'オルドスは内モンゴル、標高1300mに位置。',
+              '오르도스는 내몽골 해발 1300m에 위치.'
+            )}
           </p>
-          <a href={`/${locale}/ordos-origin`} class="inline-flex items-center text-primary font-medium hover:gap-2 transition-all">
-            {locale === 'cn' ? '探索鄂尔多斯产地' : 'Explore Ordos Origin'}
-            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          <div class="space-y-3 mb-8">
+            <div class="flex items-center gap-3 text-sm">
+              <span class="font-serif text-2xl text-brand-gold">39°N</span>
+              <span class="text-muted-foreground">{t('黄金纬度带', 'Latitude')}</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm">
+              <span class="font-serif text-2xl text-brand-gold">1,300m</span>
+              <span class="text-muted-foreground">{t('平均海拔', 'Altitude')}</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm">
+              <span class="font-serif text-2xl text-brand-gold">14.5μm</span>
+              <span class="text-muted-foreground">{t('纤维细度', 'Fiber Fineness')}</span>
+            </div>
+          </div>
+          <a href={`/${locale}/ordos-origin`} class="group inline-flex items-center gap-2 text-brand-chocolate font-medium border-b border-brand-chocolate pb-1 hover:border-brand-gold hover:text-brand-gold transition-colors">
+            {t6('探索鄂尔多斯产地', 'Explore Ordos Origin', 'Ordos erkunden', 'Explorer Ordos', 'オルドスを探る', '오르도스 탐험')}
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
             </svg>
           </a>
         </div>
-        <div class="aspect-[4/3] rounded-lg overflow-hidden bg-gradient-to-br from-brand-sand to-brand-camel">
-          <!-- 占位图，部署时换上真实图片 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Product Range（不对称 Bento 布局） ============ -->
+  <section class="py-24 md:py-32 bg-brand-cream/50">
+    <div class="container-narrow">
+      <!-- 段头 -->
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-16 gap-6">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="h-px w-8 bg-brand-gold"></span>
+            <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">
+              {t6('产品矩阵', 'Product Range', 'Produktpalette', 'Gamme', '製品範囲', '제품 범위')}
+            </span>
+          </div>
+          <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight max-w-2xl">
+            {t6(
+              '全产业链羊绒供应',
+              'Complete Cashmere Supply Chain',
+              'Komplette Kaschmir-Lieferkette',
+              'Chaîne complète du cachemire',
+              'カシミア全産業チェーン',
+              '캐시미어 전산업체인'
+            )}
+          </h2>
+        </div>
+        <a href={`/${locale}/products`} class="group inline-flex items-center gap-2 text-sm text-brand-chocolate border-b border-brand-chocolate pb-1 hover:text-brand-gold hover:border-brand-gold transition-colors">
+          {t6('查看全部产品', 'View all products', 'Alle ansehen', 'Voir tout', '全て見る', '전체 보기')}
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Bento Grid：左大右小，错落 -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
+        <!-- 原料（大图，左 7 列） -->
+        <a href={`/${locale}/raw-material`} class="group md:col-span-7 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden">
+          <img src={IMG.rawHerd} alt="Cashmere raw material" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/90 via-brand-ink/30 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+            <div class="text-xs tracking-[0.3em] uppercase text-brand-gold mb-3">01 / {t6('原料', 'Material', 'Material', 'Matière', '原料', '원료')}</div>
+            <h3 class="font-serif text-3xl md:text-4xl font-light mb-2">
+              {t6('羊绒原料', 'Cashmere Raw Material', 'Rohkaschmir', 'Cachemire brut', '原料カシミア', '원료 캐시미어')}
+            </h3>
+            <p class="text-sm text-white/80 max-w-md">
+              {t6('白绒/青绒/紫绒，细度14.5-16.5μm', 'White, brown, purple cashmere · 14.5-16.5μm', 'Weiß, braun, lila', 'Blanc, brun, violet', '白・茶・紫', '백색·청색·자색')}
+            </p>
+          </div>
+        </a>
+
+        <!-- 纱线面料（右小） -->
+        <a href={`/${locale}/yarn-fabric`} class="group md:col-span-5 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden">
+          <img src={IMG.yarn} alt="Cashmere yarn" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/90 via-brand-ink/30 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+            <div class="text-xs tracking-[0.3em] uppercase text-brand-gold mb-3">02 / {t6('纱线', 'Yarn', 'Garn', 'Fil', '糸', '원사')}</div>
+            <h3 class="font-serif text-3xl md:text-4xl font-light mb-2">
+              {t6('纱线 / 面料', 'Yarn & Fabric', 'Garn & Stoff', 'Fil & Tissu', '糸・生地', '원사·직물')}
+            </h3>
+            <p class="text-sm text-white/80 max-w-md">
+              {t6('26/2 · 28/2 · 36/2', '26/2 · 28/2 · 36/2', '26/2 · 28/2 · 36/2', '26/2 · 28/2 · 36/2', '26/2 · 28/2 · 36/2', '26/2 · 28/2 · 36/2')}
+            </p>
+          </div>
+        </a>
+
+        <!-- 成衣代工（下大） -->
+        <a href={`/${locale}/garment-oem`} class="group md:col-span-12 relative aspect-[4/3] md:aspect-[21/9] overflow-hidden">
+          <img src={IMG.garments} alt="Cashmere garments OEM" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-r from-brand-ink/95 via-brand-ink/50 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-8 md:p-12 text-white max-w-2xl">
+            <div class="text-xs tracking-[0.3em] uppercase text-brand-gold mb-3">03 / {t6('成衣', 'Garment', 'Bekleidung', 'Vêtement', '衣料', '의류')}</div>
+            <h3 class="font-serif text-4xl md:text-5xl font-light mb-3">
+              {t6('成衣代工 OEM', 'Garment OEM', 'Bekleidung OEM', 'Vêtement OEM', '衣料OEM', '의류 OEM')}
+            </h3>
+            <p class="text-base text-white/80 mb-6">
+              {t6('大衣 · 衫 · 裙 · 围巾 | MOQ 100件', 'Coats · Sweaters · Dresses · Scarves · MOQ 100pcs', 'Mäntel · Pullover · Kleider · Schals', 'Manteaux · Pulls · Robes · Écharpes', 'コート・セーター・ドレス・スカーフ', '코트·스웨터·드레스·스카프')}
+            </p>
+            <span class="inline-flex items-center gap-2 text-sm border-b border-white pb-1">
+              {t6('了解代工流程', 'Learn OEM process', 'OEM-Prozess', 'Processus OEM', 'OEMプロセス', 'OEM 프로세스')}
+              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 为什么选我们（工艺感：图+引文+数据 交错） ============ -->
+  <section class="py-24 md:py-32 bg-background">
+    <div class="container-narrow">
+      <div class="max-w-3xl mb-20">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="h-px w-8 bg-brand-gold"></span>
+          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">
+            {t6('为什么选东霄', 'Why DONGXIAO', 'Warum DONGXIAO', 'Pourquoi', 'なぜ東霄', '왜 동소')}
+          </span>
+        </div>
+        <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight">
+          {t6('23年只做一件事：从牧场到成衣的羊绒全链路把控', 'One craft for 23 years: full-chain cashmere from pasture to garment', '23 Jahre ein Handwerk: vom Weideland bis zum fertigen Kleidungsstück', '23 ans d\'un seul métier : du pâturage au vêtement fini', '23年一貫、カシミアの全工程', '23년 한 가지: 목장에서 의류까지')}
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
+        <!-- 条目 1：自有牧场 + 图 -->
+        <div class="space-y-6">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img src={IMG.rawHerd} alt="Albus goats" class="w-full h-full object-cover" loading="lazy" />
+          </div>
+          <div class="flex items-baseline gap-4">
+            <span class="font-serif text-5xl text-brand-gold font-light">01</span>
+            <h3 class="font-serif text-2xl">{t6('自有牧场', 'Pasture-Owned', 'Eigene Weiden', 'Pâturages propres', '自社牧場', '자체 목장')}</h3>
+          </div>
+          <p class="text-muted-foreground leading-relaxed">
+            {t6('鄂尔多斯阿尔巴斯白绒山羊保种基地，血统可追溯。羊绒细度、长度、色泽从源头把控。', 'Albus goat breeding base in Ordos. Full pedigree traceability. Fiber fineness, length, and color controlled from source.', 'Albus-Ziegenzuchtbasis in Ordos. Volle Stammbaumrückverfolgbarkeit.', 'Base d\'élevage de chèvres Albus à Ordos. Traçabilité complète.', 'オルドス・アルバス山羊の繁殖基地。血統の完全な追跡。', '오르도스 알버스 산양 사육 기지. 혈통 완전 추적.')}
+          </p>
+        </div>
+
+        <!-- 条目 2：原料分梳 + 图 -->
+        <div class="space-y-6 md:pt-20">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img src={IMG.detailFiber} alt="Dehairing process" class="w-full h-full object-cover" loading="lazy" />
+          </div>
+          <div class="flex items-baseline gap-4">
+            <span class="font-serif text-5xl text-brand-gold font-light">02</span>
+            <h3 class="font-serif text-2xl">{t6('原料分梳', 'Dehairing Facility', 'Kämmerei', 'Démêlage', '脱毛工程', '분공정')}</h3>
+          </div>
+          <p class="text-muted-foreground leading-relaxed">
+            {t6('意大利进口分梳设备，含绒率≥99.95%，无染色无化学处理，保留羊绒天然光泽与手感。', 'Imported Italian dehairing lines. Cashmere purity ≥99.95%. No dye, no chemical treatment — preserves natural luster and handfeel.', 'Italienische Kämm-Maschinen. Kaschmirreinheit ≥99,95%.', 'Équipement italien. Pureté du cachemire ≥99,95%.', 'イタリア製コーマ機。カシミア純度99.95%以上。', '이탈리아 도입 설비. 캐시미어 순도 99.95% 이상.')}
+          </p>
+        </div>
+
+        <!-- 条目 3：纺纱 -->
+        <div class="space-y-6">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img src={IMG.yarn} alt="Spinning" class="w-full h-full object-cover" loading="lazy" />
+          </div>
+          <div class="flex items-baseline gap-4">
+            <span class="font-serif text-5xl text-brand-gold font-light">03</span>
+            <h3 class="font-serif text-2xl">{t6('纺纱织造', 'Spinning & Weaving', 'Spinnerei & Weberei', 'Filature & Tissage', '紡績・織造', '방사·제조')}</h3>
+          </div>
+          <p class="text-muted-foreground leading-relaxed">
+            {t6('精纺/粗纺双工艺，覆盖 26/2 至 36/2 主流支数。可定制混纺比例（羊绒/羊毛/丝）。', 'Worsted & woolen processes. Counts from 26/2 to 36/2. Custom blend ratios (cashmere/wool/silk).', 'Kammgarn- und Streichgarnverarbeitung. Sondermischungen möglich.', 'Procédés peigné et cardé. Mélanges personnalisés.', '梳毛・紡毛両工程。カスタム混紡比率。', '워스트드·울렌 공정. 맞춤 배합 비율.')}
+          </p>
+        </div>
+
+        <!-- 条目 4：成衣厂 -->
+        <div class="space-y-6 md:pt-20">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img src={IMG.factoryFloor} alt="Knitting factory" class="w-full h-full object-cover" loading="lazy" />
+          </div>
+          <div class="flex items-baseline gap-4">
+            <span class="font-serif text-5xl text-brand-gold font-light">04</span>
+            <h3 class="font-serif text-2xl">{t6('成衣厂', 'Knitting Factory', 'Strickerei', 'Atelier tricot', 'ニット工場', '니트 공장')}</h3>
+          </div>
+          <p class="text-muted-foreground leading-relaxed">
+            {t6('38,000㎡自有成衣厂，德国 STOLL 全成型电脑横机，支持 OEM 贴牌和小单快反。', '38,000 sqm facility. German STOLL fully-fashioned knitting machines. OEM private label, low MOQ, fast turnaround.', '38.000 qm Anlage. Deutsche STOLL-Strickmaschinen.', '38 000 m². Machines à tricoter STOLL allemandes.', '38,000平米。ドイツSTOLL成型機。', '38,000sqm. 독일 STOLL 편직기.')}
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Trust -->
-  <section class="py-16 bg-secondary/30 border-y border-border">
-    <div class="container-narrow text-center">
-      <div class="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-6">{c.trustTitle}</div>
-      <div class="flex flex-wrap justify-center gap-6 md:gap-10">
-        {c.trustLogos.map((logo) => (
-          <div class="font-display text-xl md:text-2xl text-muted-foreground/70 font-light">{logo}</div>
+  <!-- ============ 资质徽章（圆形 SVG） ============ -->
+  <section class="py-20 bg-brand-ink text-white">
+    <div class="container-narrow">
+      <div class="text-center mb-12">
+        <div class="inline-block text-xs tracking-[0.3em] uppercase text-brand-gold mb-3">{c.trustTitle}</div>
+        <h2 class="font-serif text-3xl md:text-4xl font-light">
+          {t6('国际权威认证', 'Internationally Certified', 'International zertifiziert', 'Certifié internationalement', '国際認証取得', '국제 공인 인증')}
+        </h2>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        {['ISO 9001', 'OEKO-TEX', 'GCS', 'BSCI', 'Sedex', 'WRAP'].map((cert) => (
+          <div class="group flex flex-col items-center">
+            <div class="w-28 h-28 rounded-full border border-brand-gold/40 flex items-center justify-center mb-3 group-hover:border-brand-gold group-hover:bg-brand-gold/5 transition-all">
+              <span class="font-serif text-sm text-brand-gold tracking-wider text-center px-2 leading-tight">{cert}</span>
+            </div>
+          </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Final CTA -->
-  <section class="section-padding bg-primary text-primary-foreground">
-    <div class="container-narrow text-center">
-      <h2 class="font-display text-4xl md:text-5xl font-light mb-4 text-balance">
-        {locale === 'cn' ? '准备好开始您的羊绒采购了吗？' :
-         locale === 'de' ? 'Bereit, Ihre Kaschmir-Beschaffung zu starten?' :
-         locale === 'fr' ? 'Prêt à démarrer votre sourcing cachemire ?' :
-         locale === 'ja' ? 'カシミア調達を始めますか？' :
-         locale === 'kr' ? '캐시미어 소싱을 시작하시겠습니까?' :
-         'Ready to start your cashmere sourcing?'}
+  <!-- ============ Final CTA（不抢戏的深色版） ============ -->
+  <section class="py-24 md:py-32 bg-brand-chocolate text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <img src={IMG.factoryFloor} alt="" class="w-full h-full object-cover" loading="lazy" />
+    </div>
+    <div class="container-narrow relative z-10 text-center max-w-3xl mx-auto">
+      <div class="inline-block text-xs tracking-[0.3em] uppercase text-brand-gold mb-6">
+        {t6('下一步', 'Next Step', 'Nächster Schritt', 'Étape suivante', '次のステップ', '다음 단계')}
+      </div>
+      <h2 class="font-serif text-4xl md:text-6xl font-light mb-6 leading-tight">
+        {t6('准备好开始您的羊绒采购了吗？', 'Ready to start your cashmere sourcing?', 'Bereit für Ihre Kaschmir-Beschaffung?', 'Prêt à démarrer votre sourcing cachemire ?', 'カシミア調達を始めますか？', '캐시미어 소싱을 시작하시겠습니까?')}
       </h2>
-      <p class="text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-        {locale === 'cn' ? '获取免费样品、报价单和认证文件，24小时内回复' :
-         'Get free samples, quotation, and certifications within 24 hours'}
+      <p class="text-white/75 mb-12 text-lg font-light">
+        {t6('获取免费样品、报价单和认证文件。我们的销售专家24小时内回复。', 'Get free samples, quotation, and certifications. Our specialists respond within 24 hours.', 'Kostenlose Muster, Angebote und Zertifizierungen.', 'Échantillons gratuits, devis et certifications.', '無料サンプル・お見積もり・認証。', '무료 샘플·견적서·인증서.')}
       </p>
       <div class="flex flex-wrap justify-center gap-4">
-        <a href={`/${locale}/contact`} class="inline-flex items-center justify-center px-8 py-4 bg-background text-foreground rounded-md font-medium hover:bg-background/90 transition-all">
-          {locale === 'cn' ? '立即询盘' : 'Request Quote'}
+        <a href={`/${locale}/contact`} class="inline-flex items-center gap-3 px-10 py-5 bg-brand-gold text-brand-ink font-medium tracking-wider hover:bg-white transition-colors">
+          {c.cta}
         </a>
-        <a href={`https://wa.me/${SITE_INFO.whatsapp.replace(/[^\d]/g, '')}`} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 border border-primary-foreground/30 rounded-md hover:bg-primary-foreground/10 transition-all">
-          WhatsApp Chat
+        <a href={`https://wa.me/${SITE_INFO.whatsapp.replace(/[^\d]/g, '')}`} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-10 py-5 border border-white/40 text-white hover:bg-white/10 transition-colors">
+          WhatsApp
         </a>
       </div>
     </div>

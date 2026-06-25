@@ -3,6 +3,7 @@
  * B2B 转化漏斗：留资 → 自动发资料链接
  */
 import { useState } from 'react';
+import { COUNTRIES, LOCALE_TO_FIELD } from '@/data/countries';
 
 interface Props {
   locale: string;
@@ -76,7 +77,14 @@ export default function DownloadGate({ locale, type, title, size, format }: Prop
           <input name="name" required placeholder={L('name')} className="w-full px-3 py-2 border border-border rounded-md text-sm" />
           <input name="email" type="email" required placeholder={L('email')} className="w-full px-3 py-2 border border-border rounded-md text-sm" />
           <input name="company" required placeholder={L('company')} className="w-full px-3 py-2 border border-border rounded-md text-sm" />
-          <input name="country" required placeholder={L('country')} className="w-full px-3 py-2 border border-border rounded-md text-sm" />
+          <select name="country" required defaultValue="" className="w-full px-3 py-2 border border-border rounded-md text-sm bg-white">
+            <option value="" disabled>—</option>
+            {COUNTRIES.map((c) => {
+              const field = LOCALE_TO_FIELD[locale] || 'name_en';
+              const label = c[field] || c.name_en;
+              return <option key={c.code} value={c.code}>{label}</option>;
+            })}
+          </select>
           <div className="flex gap-2 pt-2">
             <button type="submit" disabled={submitting} className="flex-1 px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:bg-primary/90 disabled:opacity-50">
               {submitting ? L('submitting') : L('download')}

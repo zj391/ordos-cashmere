@@ -3,6 +3,7 @@
  * 支持 3 种询盘类型：原料 / 纱线面料 / 成衣代工
  */
 import { useState } from 'react';
+import { COUNTRIES, LOCALE_TO_FIELD } from '@/data/countries';
 
 interface Props {
   locale: string;
@@ -145,7 +146,14 @@ export default function ContactForm({ locale }: Props) {
         </div>
         <div>
           <label className="block text-sm font-medium mb-2">{L(locale, 'country')}</label>
-          <input type="text" name="country" required className="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+          <select name="country" required defaultValue="" className="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary bg-white">
+            <option value="" disabled>—</option>
+            {COUNTRIES.map((c) => {
+              const field = LOCALE_TO_FIELD[locale] || 'name_en';
+              const label = c[field] || c.name_en;
+              return <option key={c.code} value={c.code}>{label}</option>;
+            })}
+          </select>
         </div>
         <div>
           <label className="block text-sm font-medium mb-2">{L(locale, 'email')}</label>
