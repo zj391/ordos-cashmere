@@ -1,4 +1,7 @@
 ---
+/**
+ * Garment OEM 产品页
+ */
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Navigation from '@/components/Navigation.astro';
 import Footer from '@/components/Footer.astro';
@@ -17,90 +20,150 @@ const locale = pickLocale(rawLocale);
 
 const t: Record<string, Record<string, string>> = {
   en: {
-    title: 'Cashmere Garment OEM/ODM',
-    subtitle: 'From sketch to shipment. 23+ years serving global brands. MOQ 100pcs.',
-    sectionProcess: 'Our Process',
-    sectionCategories: 'Product Categories',
-    cta: 'Start Your Project',
-    process1: 'Design Brief',
-    process2: 'Sampling',
-    process3: 'Production',
-    process4: 'QC & Shipment',
-    cat1: 'Sweaters & Cardigans',
-    cat2: 'Coats & Outerwear',
-    cat3: 'Dresses & Skirts',
-    cat4: 'Scarves & Shawls',
-    cat5: 'Hats & Accessories',
-    cat6: 'Custom Development',
+    tagline: '03 / GARMENT OEM',
+    title: 'Cashmere Garment\nOEM / ODM',
+    subtitle: 'From sketch to shipment. 23+ years serving global B2B brands. MOQ 100pcs. German STOLL fully-fashioned knitting.',
+    catTitle: 'What we make',
+    catSub: 'Six core categories, plus custom development for special designs.',
+    processTitle: 'How we work',
+    processSub: 'A 4-step process refined over 23 years and 1,200+ projects.',
+    inquiryTitle: 'Start your project',
+    inquirySub: 'Share your design or tech-pack. We respond with feasibility, sample plan, and indicative pricing within 48 hours.',
   },
   cn: {
-    title: '羊绒成衣 OEM/ODM 代工',
-    subtitle: '从设计到出货，23年服务全球品牌，MOQ 100件起',
-    sectionProcess: '服务流程',
-    sectionCategories: '产品类目',
-    cta: '开始您的项目',
-    process1: '需求沟通',
-    process2: '打样确认',
-    process3: '量产交付',
-    process4: '品控出货',
-    cat1: '羊绒衫/开衫',
-    cat2: '羊绒大衣/外套',
-    cat3: '羊绒裙',
-    cat4: '羊绒围巾/披肩',
-    cat5: '羊绒帽/配饰',
-    cat6: '定制开发',
+    tagline: '03 / 成衣代工',
+    title: '羊绒成衣\nOEM / ODM',
+    subtitle: '从设计到出货，23年服务全球B2B品牌。MOQ 100件起。德国 STOLL 全成型电脑横机。',
+    catTitle: '产品类目',
+    catSub: '六大核心品类，支持特殊款式的定制开发。',
+    processTitle: '服务流程',
+    processSub: '23 年、1200+ 项目打磨出的 4 步流程。',
+    inquiryTitle: '开始您的项目',
+    inquirySub: '提供设计稿或技术包，48 小时内回复可行性、打样方案和初步报价。',
   },
-  de: { title: 'Kaschmir-Bekleidung OEM/ODM', subtitle: 'Vom Entwurf bis zum Versand. MOQ 100 Stk.', sectionProcess: 'Unser Prozess', sectionCategories: 'Produktkategorien', cta: 'Projekt starten', process1: 'Design-Brief', process2: 'Muster', process3: 'Produktion', process4: 'QC & Versand', cat1: 'Pullover', cat2: 'Mäntel', cat3: 'Kleider', cat4: 'Schals', cat5: 'Hüte', cat6: 'Sonderentwicklung' },
-  fr: { title: 'Vêtements cachemire OEM/ODM', subtitle: 'Du design à l\'expédition. MOQ 100 pièces.', sectionProcess: 'Notre processus', sectionCategories: 'Catégories', cta: 'Démarrer', process1: 'Brief', process2: 'Échantillon', process3: 'Production', process4: 'QC & Expédition', cat1: 'Pulls', cat2: 'Manteaux', cat3: 'Robes', cat4: 'Écharpes', cat5: 'Chapeaux', cat6: 'Développement custom' },
-  ja: { title: 'カシミア衣料 OEM/ODM', subtitle: 'デザインから出荷まで。MOQ 100枚〜', sectionProcess: 'プロセス', sectionCategories: '製品カテゴリ', cta: 'プロジェクト開始', process1: 'デザイン', process2: 'サンプル', process3: '生産', process4: 'QC・出荷', cat1: 'セーター', cat2: 'コート', cat3: 'ドレス', cat4: 'スカーフ', cat5: '帽子', cat6: 'カスタム開発' },
-  kr: { title: '캐시미어 의류 OEM/ODM', subtitle: '디자인부터 출하까지. MOQ 100pcs~', sectionProcess: '프로세스', sectionCategories: '제품 카테고리', cta: '프로젝트 시작', process1: '디자인', process2: '샘플', process3: '생산', process4: 'QC·출하', cat1: '스웨터', cat2: '코트', cat3: '드레스', cat4: '스카프', cat5: '모자', cat6: '맞춤 개발' },
+  de: { tagline: '03 / BEKLEIDUNG OEM', title: 'Kaschmir-Bekleidung\nOEM / ODM', subtitle: 'Vom Entwurf bis zum Versand. MOQ 100 Stk.', catTitle: 'Was wir machen', catSub: 'Sechs Kernkategorien.', processTitle: 'Unser Prozess', processSub: '4-Schritte-Prozess.', inquiryTitle: 'Projekt starten', inquirySub: 'Antwort innerhalb von 48 Stunden.' },
+  fr: { tagline: '03 / VÊTEMENT OEM', title: 'Vêtements cachemire\nOEM / ODM', subtitle: 'Du design à l\'expédition. MOQ 100 pièces.', catTitle: 'Catégories', catSub: 'Six catégories principales.', processTitle: 'Processus', processSub: 'Processus en 4 étapes.', inquiryTitle: 'Démarrer', inquirySub: 'Réponse sous 48h.' },
+  ja: { tagline: '03 / 衣料OEM', title: 'カシミア衣料\nOEM / ODM', subtitle: 'デザインから出荷まで。MOQ 100枚〜', catTitle: '製品カテゴリ', catSub: '6つの主要カテゴリ。', processTitle: 'プロセス', processSub: '4ステップのプロセス。', inquiryTitle: 'プロジェクト開始', inquirySub: '48時間以内に返信。' },
+  kr: { tagline: '03 / 의류 OEM', title: '캐시미어 의류\nOEM / ODM', subtitle: '디자인부터 출하까지. MOQ 100pcs~', catTitle: '제품 카테고리', catSub: '6개 핵심 카테고리.', processTitle: '프로세스', processSub: '4단계 프로세스.', inquiryTitle: '프로젝트 시작', inquirySub: '48시간 이내 회신.' },
 };
 const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
 
 const process = [
-  { step: '01', title: T('process1'), desc: locale === 'cn' ? '需求沟通、款式确认' : 'Brief & design confirmation' },
-  { step: '02', title: T('process2'), desc: locale === 'cn' ? '7-15天快速打样' : '7-15 days sampling' },
-  { step: '03', title: T('process3'), desc: locale === 'cn' ? '30-45天量产' : '30-45 days production' },
-  { step: '04', title: T('process4'), desc: locale === 'cn' ? '100% QC检验' : '100% QC inspection' },
+  { step: '01', title: locale === 'cn' ? '需求沟通' : 'Design Brief', desc: locale === 'cn' ? '需求沟通、款式确认、面料/支数选择' : 'Brief, design, fabric & count selection' },
+  { step: '02', title: locale === 'cn' ? '打样确认' : 'Sampling', desc: locale === 'cn' ? '7-15 天快速打样' : '7-15 days sampling' },
+  { step: '03', title: locale === 'cn' ? '量产交付' : 'Production', desc: locale === 'cn' ? '30-45 天量产' : '30-45 days production' },
+  { step: '04', title: locale === 'cn' ? '品控出货' : 'QC & Shipment', desc: locale === 'cn' ? '100% QC 检验 + FOB 出货' : '100% QC + FOB shipment' },
 ];
 
-const categories = [T('cat1'), T('cat2'), T('cat3'), T('cat4'), T('cat5'), T('cat6')];
+const categories = [
+  { num: '01', name: locale === 'cn' ? '羊绒衫/开衫' : 'Sweaters & Cardigans', desc: locale === 'cn' ? '圆领/V领/高领' : 'Crew / V-neck / Turtleneck' },
+  { num: '02', name: locale === 'cn' ? '羊绒大衣/外套' : 'Coats & Outerwear', desc: locale === 'cn' ? '长款/短款/披肩' : 'Long / Short / Wrap' },
+  { num: '03', name: locale === 'cn' ? '羊绒裙' : 'Dresses & Skirts', desc: locale === 'cn' ? '连衣裙/半裙' : 'Dresses / Skirts' },
+  { num: '04', name: locale === 'cn' ? '围巾/披肩' : 'Scarves & Shawls', desc: locale === 'cn' ? '染色/提花' : 'Solid / Jacquard' },
+  { num: '05', name: locale === 'cn' ? '帽/配饰' : 'Hats & Accessories', desc: locale === 'cn' ? '冷帽/手套' : 'Beanies / Gloves' },
+  { num: '06', name: locale === 'cn' ? '定制开发' : 'Custom Development', desc: locale === 'cn' ? 'ODM 全流程' : 'Full ODM cycle' },
+];
+
+const IMG = {
+  hero: '/images/knit-shawl.jpg',
+  process: '/images/cashmere-fiber.jpg',
+};
 ---
 
 <BaseLayout locale={locale} pageKey="garmentOem" path="/garment-oem">
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/garment-oem`} />
 
-  <section class="pt-24 pb-12 bg-gradient-to-br from-brand-chocolate to-brand-ink text-white">
-    <div class="container-narrow relative z-10">
-      <h1 class="font-display text-5xl md:text-6xl font-light leading-tight mb-6 max-w-3xl">{T('title')}</h1>
-      <p class="text-xl text-white/80 max-w-2xl">{T('subtitle')}</p>
+  <section class="relative bg-brand-ink text-white overflow-hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-2 min-h-[70vh]">
+      <div class="flex items-center py-20 lg:py-0 px-6 lg:pl-12">
+        <div class="max-w-xl">
+          <div class="flex items-center gap-3 mb-8">
+            <span class="h-px w-12 bg-brand-gold"></span>
+            <span class="text-xs tracking-[0.4em] text-brand-gold uppercase font-medium">{T('tagline')}</span>
+          </div>
+          <h1 class="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-8" set:html={T('title').replace(/\n/g, '<br/>')} />
+          <p class="text-lg text-white/75 leading-relaxed max-w-md font-light">{T('subtitle')}</p>
+        </div>
+      </div>
+      <div class="relative aspect-[4/3] lg:aspect-auto overflow-hidden">
+        <img src={IMG.hero} alt="Cashmere garments" class="absolute inset-0 w-full h-full object-cover opacity-80" />
+        <div class="absolute inset-0 bg-gradient-to-l from-transparent to-brand-ink/60"></div>
+      </div>
     </div>
   </section>
 
-  <section class="section-padding bg-background">
+  <!-- Categories：6 格 + 编号 -->
+  <section class="py-24 md:py-32 bg-background">
     <div class="container-narrow">
-      <h2 class="font-display text-3xl md:text-4xl font-light mb-12">{T('sectionCategories')}</h2>
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-20">
-        {categories.map((cat) => (
-          <div class="border border-border rounded-lg p-8 hover:border-primary transition-colors cursor-pointer group">
-            <h3 class="font-display text-2xl group-hover:text-primary transition-colors">{cat}</h3>
+      <div class="max-w-2xl mb-16">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="h-px w-8 bg-brand-gold"></span>
+          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">{locale === 'cn' ? '品类' : 'Categories'}</span>
+        </div>
+        <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{T('catTitle')}</h2>
+        <p class="text-muted-foreground leading-relaxed">{T('catSub')}</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
+        {categories.map((c) => (
+          <div class="bg-background p-10 hover:bg-brand-cream/30 transition-colors group cursor-pointer">
+            <div class="font-serif text-5xl text-brand-gold/40 font-light mb-4 group-hover:text-brand-gold/80 transition-colors">{c.num}</div>
+            <h3 class="font-serif text-2xl mb-2 group-hover:text-brand-chocolate transition-colors">{c.name}</h3>
+            <p class="text-sm text-muted-foreground">{c.desc}</p>
           </div>
         ))}
       </div>
+    </div>
+  </section>
 
-      <h2 class="font-display text-3xl md:text-4xl font-light mb-12">{T('sectionProcess')}</h2>
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+  <!-- Process：4 步 + 大图 -->
+  <section class="py-24 md:py-32 bg-brand-cream/50 border-y border-border">
+    <div class="container-narrow">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
+        <div class="lg:col-span-5">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="h-px w-8 bg-brand-gold"></span>
+            <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">{locale === 'cn' ? '流程' : 'Process'}</span>
+          </div>
+          <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{T('processTitle')}</h2>
+        </div>
+        <div class="lg:col-span-7 lg:pt-6">
+          <p class="text-muted-foreground leading-relaxed text-lg">{T('processSub')}</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
         {process.map((p) => (
-          <div class="border-l-2 border-primary pl-6">
-            <div class="font-display text-4xl font-light text-primary mb-2">{p.step}</div>
-            <h3 class="text-xl font-medium mb-2">{p.title}</h3>
-            <p class="text-sm text-muted-foreground">{p.desc}</p>
+          <div class="relative pt-8 border-t border-brand-chocolate/30">
+            <div class="font-serif text-6xl text-brand-chocolate font-light mb-4">{p.step}</div>
+            <h3 class="font-serif text-xl mb-2">{p.title}</h3>
+            <p class="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
           </div>
         ))}
       </div>
+    </div>
+  </section>
 
-      <div class="mt-16">
-        <GarmentOemInquiryForm client:load locale={locale} />
+  <!-- Inquiry -->
+  <section class="py-24 md:py-32 bg-background">
+    <div class="container-narrow">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="h-px w-8 bg-brand-gold"></span>
+            <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">{locale === 'cn' ? '询盘' : 'Inquiry'}</span>
+          </div>
+          <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight mb-6">{T('inquiryTitle')}</h2>
+          <p class="text-muted-foreground leading-relaxed mb-8">{T('inquirySub')}</p>
+          <ul class="space-y-3 text-sm text-muted-foreground">
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-gold"></span>{locale === 'cn' ? 'OEM 贴牌 + ODM 设计开发' : 'OEM private label + ODM design'}</li>
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-gold"></span>{locale === 'cn' ? '支持小单快反 (100 件起)' : 'Low MOQ from 100pcs'}</li>
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-gold"></span>{locale === 'cn' ? '加急 7 天打样' : '7-day rush sampling'}</li>
+          </ul>
+        </div>
+        <div>
+          <GarmentOemInquiryForm client:load locale={locale} />
+        </div>
       </div>
     </div>
   </section>

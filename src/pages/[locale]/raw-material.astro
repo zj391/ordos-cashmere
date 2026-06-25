@@ -1,4 +1,8 @@
 ---
+/**
+ * Raw Material 产品页 - 与首页统一设计语言
+ * Hero 真实图 + 文字 / 等级：大图卡 / 规格：6 数据块 / 询盘表单
+ */
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Navigation from '@/components/Navigation.astro';
 import Footer from '@/components/Footer.astro';
@@ -17,93 +21,181 @@ const locale = pickLocale(rawLocale);
 
 const t: Record<string, Record<string, string>> = {
   en: {
-    heroTagline: 'RAW CASHMERE',
-    heroTitle: 'Premium Raw Cashmere Fiber',
-    heroSubtitle: 'White, brown, purple cashmere direct from Ordos. 14.5-16.5μm. Dehaired, ready for spinning.',
-    sectionSpecs: 'Specifications',
-    sectionGrades: 'Cashmere Grades',
-    sectionInquiry: 'Request Quotation',
+    tagline: '01 / RAW CASHMERE',
+    title: 'Premium Raw\nCashmere Fiber',
+    subtitle: 'White, brown, purple cashmere direct from Ordos. 14.5-16.5μm. Dehaired, ready for spinning.',
+    gradesTitle: 'Three grades.\nOne origin.',
+    gradesSub: 'All from Albus goats on the Ordos plateau. Graded by fiber fineness, hand-sorted for purity.',
+    specsTitle: 'Specifications',
+    specsSub: 'Tight QC at every step. Every lot ships with certificate of analysis.',
+    inquiryTitle: 'Request a quotation',
+    inquirySub: 'Our specialists respond within 24 hours with sample, pricing, and certifications.',
   },
   cn: {
-    heroTagline: '羊绒原料',
-    heroTitle: '高端羊绒原料',
-    heroSubtitle: '白绒/青绒/紫绒，鄂尔多斯源头直供。细度14.5-16.5μm，分梳后可直接纺纱。',
-    sectionSpecs: '规格参数',
-    sectionGrades: '羊绒分级',
-    sectionInquiry: '立即询盘',
+    tagline: '01 / 羊绒原料',
+    title: '高端羊绒原料',
+    subtitle: '白绒/青绒/紫绒，鄂尔多斯源头直供。细度14.5-16.5μm，分梳后可直接纺纱。',
+    gradesTitle: '三个等级。\n一个产地。',
+    gradesSub: '全部来自鄂尔多斯高原阿尔巴斯白绒山羊。按纤维细度分级，手工分拣保证纯度。',
+    specsTitle: '规格参数',
+    specsSub: '全流程严格质检。每批次随货附检验报告。',
+    inquiryTitle: '立即询盘',
+    inquirySub: '24小时内回复样品、报价和认证文件。',
   },
-  de: { heroTagline: 'ROHKASCHMIR', heroTitle: 'Premium Rohkaschmir', heroSubtitle: 'Weiß, Braun, Lila Kaschmir. 14.5-16.5μm.', sectionSpecs: 'Spezifikationen', sectionGrades: 'Kaschmir-Qualitäten', sectionInquiry: 'Angebot anfordern' },
-  fr: { heroTagline: 'CACHEMIRE BRUT', heroTitle: 'Cachemire brut premium', heroSubtitle: 'Cachemire blanc, brun, violet. 14.5-16.5μm.', sectionSpecs: 'Spécifications', sectionGrades: 'Grades de cachemire', sectionInquiry: 'Demander un devis' },
-  ja: { heroTagline: '原料カシミア', heroTitle: 'プレミアム原料カシミア', heroSubtitle: '白・青・紫カシミア。14.5-16.5μm。', sectionSpecs: '仕様', sectionGrades: 'カシミア等級', sectionInquiry: '見積もり依頼' },
-  kr: { heroTagline: '원료 캐시미어', heroTitle: '프리미엄 원료 캐시미어', heroSubtitle: '백색, 청색, 자색 캐시미어. 14.5-16.5μm.', sectionSpecs: '사양', sectionGrades: '캐시미어 등급', sectionInquiry: '견적 요청' },
+  de: { tagline: '01 / ROHKASCHMIR', title: 'Premium\nRohkaschmir', subtitle: 'Weiß, Braun, Lila Kaschmir aus Ordos. 14.5-16.5μm.', gradesTitle: 'Drei Qualitäten.\nEine Herkunft.', gradesSub: 'Alle von Albus-Ziegen aus Ordos.', specsTitle: 'Spezifikationen', specsSub: 'Strenge QC bei jedem Schritt.', inquiryTitle: 'Angebot anfordern', inquirySub: 'Antwort innerhalb von 24 Stunden.' },
+  fr: { tagline: '01 / CACHEMIRE BRUT', title: 'Cachemire brut\npremium', subtitle: 'Blanc, brun, violet d\'Ordos. 14.5-16.5μm.', gradesTitle: 'Trois grades.\nUne origine.', gradesSub: 'Tous de chèvres Albus d\'Ordos.', specsTitle: 'Spécifications', specsSub: 'QC strict à chaque étape.', inquiryTitle: 'Demander un devis', inquirySub: 'Réponse sous 24h.' },
+  ja: { tagline: '01 / 原料カシミア', title: 'プレミアム\n原料カシミア', subtitle: '白・青・紫カシミア。14.5-16.5μm。', gradesTitle: '三つの等級。\n一つの産地。', gradesSub: 'オルドスのアルバス山羊から。', specsTitle: '仕様', specsSub: '各段階で厳格なQC。', inquiryTitle: '見積もり依頼', inquirySub: '24時間以内に返信。' },
+  kr: { tagline: '01 / 원료 캐시미어', title: '프리미엄\n원료 캐시미어', subtitle: '백색, 청색, 자색. 14.5-16.5μm.', gradesTitle: '세 가지 등급.\n하나의 원산지.', gradesSub: '오르도스 알버스 산양.', specsTitle: '사양', specsSub: '모든 단계에서 엄격한 QC.', inquiryTitle: '견적 요청', inquirySub: '24시간 이내 회신.' },
 };
 const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
 
 const grades = [
-  {
-    name: locale === 'cn' ? '白绒' : 'White Cashmere',
-    desc: locale === 'cn' ? '阿尔巴斯白山羊，细度14.5-15.5μm，最高级别' : 'Albus white goat, 14.5-15.5μm, finest grade',
-    color: 'bg-brand-cream',
-  },
-  {
-    name: locale === 'cn' ? '青绒' : 'Brown Cashmere',
-    desc: locale === 'cn' ? '细度15.5-16.5μm，性价比高' : '15.5-16.5μm, great value',
-    color: 'bg-brand-sand',
-  },
-  {
-    name: locale === 'cn' ? '紫绒' : 'Purple Cashmere',
-    desc: locale === 'cn' ? '紫山羊，深色，适合混色产品' : 'Purple goat, deep tones, for blends',
-    color: 'bg-brand-camel',
-  },
+  { code: 'W', key: 'white' },
+  { key: 'brown' },
+  { key: 'purple' },
 ];
+const gradeData: Record<string, { name: string; desc: string; fineness: string; color: string }> = {
+  white: { name: locale === 'cn' ? '白绒' : 'White Cashmere', desc: locale === 'cn' ? '阿尔巴斯白山羊，最高级别' : 'Albus white goat, finest grade', fineness: '14.5-15.5μm', color: 'from-brand-cream to-brand-sand' },
+  brown: { name: locale === 'cn' ? '青绒' : 'Brown Cashmere', desc: locale === 'cn' ? '性价比高，主流规格' : 'Best value, mainstream spec', fineness: '15.5-16.5μm', color: 'from-brand-sand to-brand-camel' },
+  purple: { name: locale === 'cn' ? '紫绒' : 'Purple Cashmere', desc: locale === 'cn' ? '深色，适合混色产品' : 'Deep tones, for blends', fineness: '15.5-16.5μm', color: 'from-brand-camel to-brand-chocolate' },
+};
 
 const specs = [
-  { label: locale === 'cn' ? '细度' : 'Fineness', value: '14.5-16.5μm' },
-  { label: locale === 'cn' ? '长度' : 'Length', value: '34-42mm' },
-  { label: locale === 'cn' ? '净绒率' : 'Yield', value: '≥45%' },
-  { label: locale === 'cn' ? '含杂率' : 'Impurity', value: '≤0.3%' },
-  { label: locale === 'cn' ? '最短起订量' : 'MOQ', value: '100kg' },
-  { label: locale === 'cn' ? '交货期' : 'Lead Time', value: locale === 'cn' ? '15-25天' : '15-25 days' },
+  { label: locale === 'cn' ? '细度' : 'Fineness', value: '14.5-16.5', unit: 'μm' },
+  { label: locale === 'cn' ? '长度' : 'Length', value: '34-42', unit: 'mm' },
+  { label: locale === 'cn' ? '净绒率' : 'Yield', value: '≥45', unit: '%' },
+  { label: locale === 'cn' ? '含杂率' : 'Impurity', value: '≤0.3', unit: '%' },
+  { label: locale === 'cn' ? '最短起订量' : 'MOQ', value: '100', unit: 'kg' },
+  { label: locale === 'cn' ? '交货期' : 'Lead Time', value: locale === 'cn' ? '15-25' : '15-25', unit: locale === 'cn' ? '天' : 'days' },
 ];
+
+// 真实图
+const IMG = {
+  hero: '/images/ordos-landscape.jpg',
+  cashmereFiber: '/images/cashmere-fiber.jpg',
+};
 ---
 
 <BaseLayout locale={locale} pageKey="rawMaterial" path="/raw-material">
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/raw-material`} />
 
-  <section class="pt-24 pb-12 bg-gradient-to-br from-brand-ink via-brand-chocolate to-brand-camel text-white">
-    <div class="container-narrow relative z-10">
-      <div class="text-xs tracking-[0.3em] uppercase mb-4 text-white/70">{T('heroTagline')}</div>
-      <h1 class="font-display text-5xl md:text-6xl font-light leading-tight mb-6 max-w-3xl">{T('heroTitle')}</h1>
-      <p class="text-xl text-white/80 max-w-2xl">{T('heroSubtitle')}</p>
+  <!-- HERO：左文字 / 右大图 -->
+  <section class="relative bg-brand-ink text-white overflow-hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-2 min-h-[70vh]">
+      <div class="flex items-center py-20 lg:py-0 px-6 lg:pl-12">
+        <div class="max-w-xl">
+          <div class="flex items-center gap-3 mb-8">
+            <span class="h-px w-12 bg-brand-gold"></span>
+            <span class="text-xs tracking-[0.4em] text-brand-gold uppercase font-medium">{T('tagline')}</span>
+          </div>
+          <h1 class="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-8" set:html={T('title').replace(/\n/g, '<br/>')} />
+          <p class="text-lg text-white/75 leading-relaxed max-w-md font-light">{T('subtitle')}</p>
+        </div>
+      </div>
+      <div class="relative aspect-[4/3] lg:aspect-auto overflow-hidden">
+        <img src={IMG.hero} alt="Ordos plateau" class="absolute inset-0 w-full h-full object-cover opacity-80" />
+        <div class="absolute inset-0 bg-gradient-to-l from-transparent to-brand-ink/60"></div>
+      </div>
     </div>
   </section>
 
-  <section class="section-padding bg-background">
+  <!-- Grades：大图卡（不对称，1 大 2 小） -->
+  <section class="py-24 md:py-32 bg-background">
     <div class="container-narrow">
-      <h2 class="font-display text-3xl md:text-4xl font-light mb-12">{T('sectionGrades')}</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-        {grades.map((g) => (
-          <div class={`aspect-[4/5] rounded-lg ${g.color} relative overflow-hidden group`}>
-            <div class="absolute inset-0 flex flex-col justify-end p-8 text-white">
-              <h3 class="font-display text-3xl mb-2">{g.name}</h3>
-              <p class="text-sm opacity-80">{g.desc}</p>
+      <div class="max-w-2xl mb-16">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="h-px w-8 bg-brand-gold"></span>
+          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">{locale === 'cn' ? '羊绒分级' : 'Grades'}</span>
+        </div>
+        <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight mb-4" set:html={T('gradesTitle').replace(/\n/g, '<br/>')} />
+        <p class="text-muted-foreground leading-relaxed">{T('gradesSub')}</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
+        <!-- 白绒：大卡 + 真实图 -->
+        <div class="md:col-span-7 relative aspect-[4/5] md:aspect-[4/5] overflow-hidden group">
+          <img src={IMG.cashmereFiber} alt="White cashmere" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/95 via-brand-ink/30 to-transparent"></div>
+          <div class="absolute top-6 right-6 font-serif text-7xl text-brand-gold/30 font-light">01</div>
+          <div class="absolute bottom-0 left-0 p-8 text-white">
+            <div class="text-xs tracking-[0.3em] uppercase text-brand-gold mb-2">White</div>
+            <h3 class="font-serif text-3xl md:text-4xl font-light mb-2">{gradeData.white.name}</h3>
+            <p class="text-sm text-white/80 mb-3">{gradeData.white.desc}</p>
+            <div class="font-serif text-2xl text-brand-gold">{gradeData.white.fineness}</div>
+          </div>
+        </div>
+
+        <!-- 青绒 + 紫绒：两个堆叠小卡 -->
+        <div class="md:col-span-5 grid grid-rows-2 gap-4 md:gap-6">
+          <div class={`relative aspect-[4/3] md:aspect-auto overflow-hidden bg-gradient-to-br ${gradeData.brown.color}`}>
+            <div class="absolute top-4 right-4 font-serif text-5xl text-white/30 font-light">02</div>
+            <div class="absolute bottom-0 left-0 p-6 text-brand-ink">
+              <div class="text-xs tracking-[0.3em] uppercase opacity-60 mb-2">Brown</div>
+              <h3 class="font-serif text-2xl md:text-3xl font-light mb-1">{gradeData.brown.name}</h3>
+              <p class="text-xs opacity-80 mb-2">{gradeData.brown.desc}</p>
+              <div class="font-serif text-lg">{gradeData.brown.fineness}</div>
+            </div>
+          </div>
+          <div class={`relative aspect-[4/3] md:aspect-auto overflow-hidden bg-gradient-to-br ${gradeData.purple.color}`}>
+            <div class="absolute top-4 right-4 font-serif text-5xl text-white/30 font-light">03</div>
+            <div class="absolute bottom-0 left-0 p-6 text-white">
+              <div class="text-xs tracking-[0.3em] uppercase text-brand-gold mb-2">Purple</div>
+              <h3 class="font-serif text-2xl md:text-3xl font-light mb-1">{gradeData.purple.name}</h3>
+              <p class="text-xs opacity-80 mb-2">{gradeData.purple.desc}</p>
+              <div class="font-serif text-lg text-brand-gold">{gradeData.purple.fineness}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Specs：6 个数据块（细线分隔，serif 大数字） -->
+  <section class="py-24 bg-brand-cream/50 border-y border-border">
+    <div class="container-narrow">
+      <div class="max-w-2xl mb-16">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="h-px w-8 bg-brand-gold"></span>
+          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">{locale === 'cn' ? '规格' : 'Specs'}</span>
+        </div>
+        <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{T('specsTitle')}</h2>
+        <p class="text-muted-foreground leading-relaxed">{T('specsSub')}</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-px bg-border">
+        {specs.map((s) => (
+          <div class="bg-background p-8 md:p-10">
+            <div class="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4">{s.label}</div>
+            <div class="flex items-baseline gap-1">
+              <span class="font-serif text-4xl md:text-5xl text-brand-chocolate font-light">{s.value}</span>
+              <span class="text-sm text-muted-foreground">{s.unit}</span>
             </div>
           </div>
         ))}
       </div>
+    </div>
+  </section>
 
-      <h2 class="font-display text-3xl md:text-4xl font-light mb-12">{T('sectionSpecs')}</h2>
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
-        {specs.map((s) => (
-          <div class="border border-border rounded-lg p-6">
-            <div class="text-xs uppercase tracking-wider text-muted-foreground mb-2">{s.label}</div>
-            <div class="font-display text-2xl">{s.value}</div>
+  <!-- Inquiry：表单 + 文字 -->
+  <section class="py-24 md:py-32 bg-background">
+    <div class="container-narrow">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="h-px w-8 bg-brand-gold"></span>
+            <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">{locale === 'cn' ? '询盘' : 'Inquiry'}</span>
           </div>
-        ))}
-      </div>
-
-      <div class="mt-16">
-        <RawMaterialInquiryForm client:load locale={locale} />
+          <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight mb-6">{T('inquiryTitle')}</h2>
+          <p class="text-muted-foreground leading-relaxed mb-8">{T('inquirySub')}</p>
+          <ul class="space-y-3 text-sm text-muted-foreground">
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-gold"></span>{locale === 'cn' ? '免费样品（运费到付）' : 'Free sample (freight collect)'}</li>
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-gold"></span>{locale === 'cn' ? '附检验报告 + 产地证明' : 'COA + origin certificate included'}</li>
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-gold"></span>{locale === 'cn' ? 'FOB 天津/上海' : 'FOB Tianjin / Shanghai'}</li>
+          </ul>
+        </div>
+        <div>
+          <RawMaterialInquiryForm client:load locale={locale} />
+        </div>
       </div>
     </div>
   </section>

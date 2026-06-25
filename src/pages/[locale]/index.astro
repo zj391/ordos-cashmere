@@ -137,16 +137,12 @@ const t6 = (cn: string, en: string, de: string, fr: string, ja: string, kr: stri
 const c = heroContent[locale];
 const seo = SEO[locale];
 
-// 真实图：Unsplash 直链（cashmere / wool / factory / herd / thread 类）
-// 用 Unsplash 公共图源 (images.unsplash.com)，可热链无需 API key
+// 真实图：从 Unsplash 下载到 public/images/（验证过内容匹配）
+// 三张真图错位复用：雪山 + 纤维特写 + 针织披肩
 const IMG = {
-  heroFactory: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1600&q=80',
-  rawHerd: 'https://images.unsplash.com/photo-1518715308788-3005759c61d3?auto=format&fit=crop&w=1400&q=80',
-  yarn: 'https://images.unsplash.com/photo-1605518216938-7c31b7b14ad0?auto=format&fit=crop&w=1200&q=80',
-  garments: 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=1200&q=80',
-  ordosLandscape: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1600&q=80',
-  factoryFloor: 'https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=1200&q=80',
-  detailFiber: 'https://images.unsplash.com/photo-1601244005535-a48d21d951ac?auto=format&fit=crop&w=1200&q=80',
+  ordosLandscape: '/images/ordos-landscape.jpg',  // 雪山云海
+  cashmereFiber: '/images/cashmere-fiber.jpg',    // 白色织物特写
+  knitShawl: '/images/knit-shawl.jpg',            // 米色针织披肩
 };
 ---
 
@@ -157,7 +153,7 @@ const IMG = {
   <section class="relative bg-brand-ink text-white overflow-hidden">
     <!-- 背景工厂图 + 暗化叠层 -->
     <div class="absolute inset-0">
-      <img src={IMG.heroFactory} alt="Cashmere production facility" class="w-full h-full object-cover opacity-40" loading="eager" />
+      <img src={IMG.knitShawl} alt="Cashmere production facility" class="w-full h-full object-cover opacity-40" loading="eager" />
       <div class="absolute inset-0 bg-gradient-to-r from-brand-ink via-brand-ink/80 to-transparent"></div>
     </div>
     <!-- 羊绒纤维纹理 -->
@@ -226,8 +222,11 @@ const IMG = {
             <img src={IMG.ordosLandscape} alt="Ordos plateau, Inner Mongolia" class="w-full h-full object-cover" loading="lazy" />
           </div>
           <!-- 浮动小图（地理坐标装饰） -->
-          <div class="hidden md:block absolute -bottom-12 -right-12 w-48 aspect-square overflow-hidden border-8 border-background shadow-2xl">
-            <img src={IMG.rawHerd} alt="Cashmere goats on Ordos plateau" class="w-full h-full object-cover" loading="lazy" />
+          <div class="hidden md:block absolute -bottom-12 -right-12 w-48 aspect-square overflow-hidden border-8 border-background shadow-2xl bg-gradient-to-br from-brand-camel to-brand-chocolate flex items-center justify-center">
+            <div class="text-center text-white">
+              <div class="font-serif text-4xl text-brand-gold font-light">2002</div>
+              <div class="text-[10px] tracking-[0.3em] uppercase mt-1 opacity-80">Founded</div>
+            </div>
           </div>
         </div>
         <!-- 右侧文字（占 5/12，错位下沉） -->
@@ -315,8 +314,20 @@ const IMG = {
       <!-- Bento Grid：左大右小，错落 -->
       <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
         <!-- 原料（大图，左 7 列） -->
-        <a href={`/${locale}/raw-material`} class="group md:col-span-7 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden">
-          <img src={IMG.rawHerd} alt="Cashmere raw material" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+        <a href={`/${locale}/raw-material`} class="group md:col-span-7 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden bg-gradient-to-br from-brand-ink via-brand-chocolate to-brand-camel">
+          <!-- 抽象纤维纹理 -->
+          <svg class="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <defs>
+              <pattern id="fibers-1" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                <path d="M0 40 Q20 30, 40 40 T80 40" stroke="#B8956A" stroke-width="1" fill="none"/>
+                <path d="M0 50 Q20 40, 40 50 T80 50" stroke="#B8956A" stroke-width="0.5" fill="none"/>
+                <path d="M0 30 Q20 20, 40 30 T80 30" stroke="#B8956A" stroke-width="0.5" fill="none"/>
+                <path d="M0 60 Q20 50, 40 60 T80 60" stroke="#B8956A" stroke-width="1" fill="none"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#fibers-1)"/>
+          </svg>
+          <div class="absolute top-8 right-8 font-serif text-[120px] text-brand-gold/20 font-light leading-none">01</div>
           <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/90 via-brand-ink/30 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
             <div class="text-xs tracking-[0.3em] uppercase text-brand-gold mb-3">01 / {t6('原料', 'Material', 'Material', 'Matière', '原料', '원료')}</div>
@@ -331,7 +342,7 @@ const IMG = {
 
         <!-- 纱线面料（右小） -->
         <a href={`/${locale}/yarn-fabric`} class="group md:col-span-5 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden">
-          <img src={IMG.yarn} alt="Cashmere yarn" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          <img src={IMG.cashmereFiber} alt="Cashmere yarn" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
           <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/90 via-brand-ink/30 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
             <div class="text-xs tracking-[0.3em] uppercase text-brand-gold mb-3">02 / {t6('纱线', 'Yarn', 'Garn', 'Fil', '糸', '원사')}</div>
@@ -346,7 +357,7 @@ const IMG = {
 
         <!-- 成衣代工（下大） -->
         <a href={`/${locale}/garment-oem`} class="group md:col-span-12 relative aspect-[4/3] md:aspect-[21/9] overflow-hidden">
-          <img src={IMG.garments} alt="Cashmere garments OEM" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          <img src={IMG.knitShawl} alt="Cashmere garments OEM" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
           <div class="absolute inset-0 bg-gradient-to-r from-brand-ink/95 via-brand-ink/50 to-transparent"></div>
           <div class="absolute bottom-0 left-0 p-8 md:p-12 text-white max-w-2xl">
             <div class="text-xs tracking-[0.3em] uppercase text-brand-gold mb-3">03 / {t6('成衣', 'Garment', 'Bekleidung', 'Vêtement', '衣料', '의류')}</div>
@@ -386,8 +397,17 @@ const IMG = {
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
         <!-- 条目 1：自有牧场 + 图 -->
         <div class="space-y-6">
-          <div class="aspect-[4/3] overflow-hidden">
-            <img src={IMG.rawHerd} alt="Albus goats" class="w-full h-full object-cover" loading="lazy" />
+          <div class="aspect-[4/3] overflow-hidden bg-gradient-to-br from-brand-ink to-brand-chocolate relative">
+            <svg class="absolute inset-0 w-full h-full opacity-30" viewBox="0 0 100 75" preserveAspectRatio="xMidYMid slice">
+              <!-- 抽象羊只剪影 -->
+              <ellipse cx="20" cy="50" rx="6" ry="3" fill="#B8956A" opacity="0.4"/>
+              <ellipse cx="35" cy="48" rx="7" ry="3.5" fill="#B8956A" opacity="0.5"/>
+              <ellipse cx="55" cy="52" rx="6" ry="3" fill="#B8956A" opacity="0.4"/>
+              <ellipse cx="70" cy="49" rx="7" ry="3.5" fill="#B8956A" opacity="0.5"/>
+              <ellipse cx="85" cy="51" rx="6" ry="3" fill="#B8956A" opacity="0.4"/>
+              <path d="M0 65 L100 65 L100 75 L0 75 Z" fill="#1A1612"/>
+            </svg>
+            <div class="absolute top-6 right-6 font-serif text-7xl text-brand-gold/30 font-light">01</div>
           </div>
           <div class="flex items-baseline gap-4">
             <span class="font-serif text-5xl text-brand-gold font-light">01</span>
@@ -401,7 +421,7 @@ const IMG = {
         <!-- 条目 2：原料分梳 + 图 -->
         <div class="space-y-6 md:pt-20">
           <div class="aspect-[4/3] overflow-hidden">
-            <img src={IMG.detailFiber} alt="Dehairing process" class="w-full h-full object-cover" loading="lazy" />
+            <img src={IMG.cashmereFiber} alt="Dehairing process" class="w-full h-full object-cover" loading="lazy" />
           </div>
           <div class="flex items-baseline gap-4">
             <span class="font-serif text-5xl text-brand-gold font-light">02</span>
@@ -415,7 +435,7 @@ const IMG = {
         <!-- 条目 3：纺纱 -->
         <div class="space-y-6">
           <div class="aspect-[4/3] overflow-hidden">
-            <img src={IMG.yarn} alt="Spinning" class="w-full h-full object-cover" loading="lazy" />
+            <img src={IMG.cashmereFiber} alt="Spinning" class="w-full h-full object-cover" loading="lazy" />
           </div>
           <div class="flex items-baseline gap-4">
             <span class="font-serif text-5xl text-brand-gold font-light">03</span>
@@ -428,8 +448,20 @@ const IMG = {
 
         <!-- 条目 4：成衣厂 -->
         <div class="space-y-6 md:pt-20">
-          <div class="aspect-[4/3] overflow-hidden">
-            <img src={IMG.factoryFloor} alt="Knitting factory" class="w-full h-full object-cover" loading="lazy" />
+          <div class="aspect-[4/3] overflow-hidden bg-gradient-to-br from-brand-camel to-brand-sand relative">
+            <!-- 抽象针织纹理 -->
+            <svg class="absolute inset-0 w-full h-full opacity-40" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <defs>
+                <pattern id="knit" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path d="M0 5 Q5 0, 10 5 T20 5" stroke="#5C3E2A" stroke-width="1" fill="none"/>
+                  <path d="M0 15 Q5 10, 10 15 T20 15" stroke="#5C3E2A" stroke-width="1" fill="none"/>
+                  <path d="M5 0 Q0 5, 5 10 T5 20" stroke="#5C3E2A" stroke-width="0.5" fill="none"/>
+                  <path d="M15 0 Q10 5, 15 10 T15 20" stroke="#5C3E2A" stroke-width="0.5" fill="none"/>
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#knit)"/>
+            </svg>
+            <div class="absolute top-6 right-6 font-serif text-7xl text-brand-ink/30 font-light">04</div>
           </div>
           <div class="flex items-baseline gap-4">
             <span class="font-serif text-5xl text-brand-gold font-light">04</span>
@@ -466,8 +498,17 @@ const IMG = {
 
   <!-- ============ Final CTA（不抢戏的深色版） ============ -->
   <section class="py-24 md:py-32 bg-brand-chocolate text-white relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10">
-      <img src={IMG.factoryFloor} alt="" class="w-full h-full object-cover" loading="lazy" />
+    <div class="absolute inset-0 opacity-20">
+      <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <defs>
+          <pattern id="cta-fibers" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+            <path d="M0 30 Q15 22, 30 30 T60 30" stroke="#B8956A" stroke-width="0.5" fill="none"/>
+            <path d="M0 38 Q15 30, 30 38 T60 38" stroke="#B8956A" stroke-width="0.5" fill="none"/>
+            <path d="M0 22 Q15 14, 30 22 T60 22" stroke="#B8956A" stroke-width="0.5" fill="none"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#cta-fibers)"/>
+      </svg>
     </div>
     <div class="container-narrow relative z-10 text-center max-w-3xl mx-auto">
       <div class="inline-block text-xs tracking-[0.3em] uppercase text-brand-gold mb-6">

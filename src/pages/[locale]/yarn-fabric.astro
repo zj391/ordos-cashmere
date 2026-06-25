@@ -1,4 +1,7 @@
 ---
+/**
+ * Yarn & Fabric 产品页
+ */
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Navigation from '@/components/Navigation.astro';
 import Footer from '@/components/Footer.astro';
@@ -16,74 +19,164 @@ const { locale: rawLocale } = Astro.params;
 const locale = pickLocale(rawLocale);
 
 const t: Record<string, Record<string, string>> = {
-  en: { title: 'Cashmere Yarn & Woven Fabric', subtitle: 'Premium counts · Custom colors · Worsted & woolen', sectionYarn: 'Cashmere Yarn', sectionFabric: 'Cashmere Woven Fabric', cta: 'Request Quotation', spec1: 'Counts', spec2: 'Composition', spec3: 'Twist', spec4: 'Color', spec5: 'MOQ', spec6: 'Lead Time' },
-  cn: { title: '羊绒纱线 / 羊绒面料', subtitle: '精纺/粗纺 · 定制颜色 · 工厂直供', sectionYarn: '羊绒纱线', sectionFabric: '羊绒面料', cta: '立即询盘', spec1: '支数', spec2: '成分', spec3: '捻度', spec4: '颜色', spec5: '起订量', spec6: '交期' },
-  de: { title: 'Kaschmirgarn & Webstoff', subtitle: 'Premium-Feinheiten · Sonderfarben', sectionYarn: 'Kaschmirgarn', sectionFabric: 'Kaschmir-Webstoff', cta: 'Angebot', spec1: 'Feinheit', spec2: 'Zusammensetzung', spec3: 'Drehung', spec4: 'Farbe', spec5: 'MOQ', spec6: 'Lieferzeit' },
-  fr: { title: 'Fil & tissu cachemire', subtitle: 'Titres premium · Couleurs personnalisées', sectionYarn: 'Fil cachemire', sectionFabric: 'Tissu cachemire', cta: 'Devis', spec1: 'Titres', spec2: 'Composition', spec3: 'Torsion', spec4: 'Couleur', spec5: 'MOQ', spec6: 'Délai' },
-  ja: { title: 'カシミア糸・生地', subtitle: 'プレミアム番手・カスタムカラー', sectionYarn: 'カシミア糸', sectionFabric: 'カシミア織物', cta: '見積もり', spec1: '番手', spec2: '混率', spec3: '撚り', spec4: 'カラー', spec5: 'MOQ', spec6: '納期' },
-  kr: { title: '캐시미어 원사·직물', subtitle: '프리미엄 번수 · 맞춤 색상', sectionYarn: '캐시미어 원사', sectionFabric: '캐시미어 직물', cta: '견적', spec1: '번수', spec2: '혼용률', spec3: '꼬임', spec4: '색상', spec5: 'MOQ', spec6: '납기' },
+  en: {
+    tagline: '02 / YARN & FABRIC',
+    title: 'Cashmere Yarn\n& Woven Fabric',
+    subtitle: 'Premium counts · Custom colors · Worsted & woolen processes from our spinning mill.',
+    yarnTitle: 'Cashmere Yarn',
+    yarnSub: 'Spun at our facility in Ordos. Counts from 26/2 to 48/2. 100% cashmere or custom blends with wool, silk, or recycled fibers.',
+    fabricTitle: 'Cashmere Woven Fabric',
+    fabricSub: 'Woven on Italian looms. Plain, twill, and satin weaves. From 180 g/m² (lightweight) to 450 g/m² (heavy outerwear).',
+    inquiryTitle: 'Request a quotation',
+    inquirySub: 'Tell us your spec. We respond with sample swatches, pricing, and lead time within 24 hours.',
+  },
+  cn: {
+    tagline: '02 / 纱线 / 面料',
+    title: '羊绒纱线\n与羊绒面料',
+    subtitle: '精纺/粗纺双工艺 · 定制颜色 · 源头工厂直供',
+    yarnTitle: '羊绒纱线',
+    yarnSub: '鄂尔多斯工厂纺纱，26/2 至 48/2 主流支数。100% 山羊绒或与羊毛、真丝、再生纤维定制混纺。',
+    fabricTitle: '羊绒面料',
+    fabricSub: '意大利进口织机，平纹/斜纹/缎纹，克重 180-450 g/m² 覆盖全场景。',
+    inquiryTitle: '立即询盘',
+    inquirySub: '告诉我们您的规格，24 小时内回复样品小样、报价和交期。',
+  },
+  de: { tagline: '02 / GARN & STOFF', title: 'Kaschmirgarn\n& Webstoff', subtitle: 'Premium-Feinheiten · Sonderfarben', yarnTitle: 'Kaschmirgarn', yarnSub: '26/2 bis 48/2. 100% Kaschmir oder Mischungen.', fabricTitle: 'Kaschmir-Webstoff', fabricSub: 'Italienische Webstühle. 180-450 g/m².', inquiryTitle: 'Angebot anfordern', inquirySub: 'Antwort innerhalb von 24 Stunden.' },
+  fr: { tagline: '02 / FIL & TISSU', title: 'Fil & tissu\ncachemire', subtitle: 'Titres premium · Couleurs personnalisées', yarnTitle: 'Fil cachemire', yarnSub: 'Titres 26/2 à 48/2.', fabricTitle: 'Tissu cachemire', fabricSub: 'Métiers italiens. 180-450 g/m².', inquiryTitle: 'Demander un devis', inquirySub: 'Réponse sous 24h.' },
+  ja: { tagline: '02 / 糸・生地', title: 'カシミア糸\n& 織物', subtitle: 'プレミアム番手・カスタムカラー', yarnTitle: 'カシミア糸', yarnSub: '26/2〜48/2番手。', fabricTitle: 'カシミア織物', fabricSub: 'イタリア製織機。180-450 g/m²。', inquiryTitle: '見積もり依頼', inquirySub: '24時間以内に返信。' },
+  kr: { tagline: '02 / 원사·직물', title: '캐시미어 원사\n& 직물', subtitle: '프리미엄 번수 · 맞춤 색상', yarnTitle: '캐시미어 원사', yarnSub: '26/2~48/2 번수.', fabricTitle: '캐시미어 직물', fabricSub: '이탈리아 제직기. 180-450 g/m².', inquiryTitle: '견적 요청', inquirySub: '24시간 이내 회신.' },
 };
 const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
 
 const yarnSpecs = [
-  { label: T('spec1'), value: '26/2 · 28/2 · 36/2 · 48/2' },
-  { label: T('spec2'), value: locale === 'cn' ? '100%山羊绒 / 混纺' : '100% Cashmere / Blends' },
-  { label: T('spec3'), value: 'Z twist · Custom' },
-  { label: T('spec4'), value: locale === 'cn' ? 'Pantone定制' : 'Pantone custom' },
-  { label: T('spec5'), value: '50kg' },
-  { label: T('spec6'), value: locale === 'cn' ? '20-30天' : '20-30 days' },
+  { label: locale === 'cn' ? '支数' : 'Counts', value: '26/2 · 28/2', unit: '' },
+  { label: locale === 'cn' ? '细支' : 'Fine', value: '36/2 · 48/2', unit: '' },
+  { label: locale === 'cn' ? '成分' : 'Composition', value: locale === 'cn' ? '100%山羊绒' : '100% Cashmere', unit: '' },
+  { label: locale === 'cn' ? '混纺' : 'Blends', value: locale === 'cn' ? '羊毛/真丝' : 'Wool / Silk', unit: '' },
+  { label: locale === 'cn' ? '起订量' : 'MOQ', value: '50', unit: 'kg' },
+  { label: locale === 'cn' ? '交期' : 'Lead Time', value: locale === 'cn' ? '20-30' : '20-30', unit: locale === 'cn' ? '天' : 'days' },
 ];
 
 const fabricSpecs = [
-  { label: locale === 'cn' ? '克重' : 'Weight', value: '180-450 g/m²' },
-  { label: locale === 'cn' ? '幅宽' : 'Width', value: '150cm' },
-  { label: locale === 'cn' ? '成分' : 'Composition', value: locale === 'cn' ? '100%山羊绒' : '100% Cashmere' },
-  { label: locale === 'cn' ? '织法' : 'Weave', value: locale === 'cn' ? '平纹/斜纹/缎纹' : 'Plain / Twill / Satin' },
-  { label: locale === 'cn' ? '起订量' : 'MOQ', value: '200m' },
-  { label: locale === 'cn' ? '交期' : 'Lead Time', value: locale === 'cn' ? '30-45天' : '30-45 days' },
+  { label: locale === 'cn' ? '克重' : 'Weight', value: '180-450', unit: 'g/m²' },
+  { label: locale === 'cn' ? '幅宽' : 'Width', value: '150', unit: 'cm' },
+  { label: locale === 'cn' ? '成分' : 'Composition', value: locale === 'cn' ? '100%山羊绒' : '100% Cashmere', unit: '' },
+  { label: locale === 'cn' ? '织法' : 'Weave', value: locale === 'cn' ? '平/斜/缎' : 'Plain/Twill/Satin', unit: '' },
+  { label: locale === 'cn' ? '起订量' : 'MOQ', value: '200', unit: 'm' },
+  { label: locale === 'cn' ? '交期' : 'Lead Time', value: locale === 'cn' ? '30-45' : '30-45', unit: locale === 'cn' ? '天' : 'days' },
 ];
+
+const IMG = {
+  hero: '/images/cashmere-fiber.jpg',
+  knit: '/images/knit-shawl.jpg',
+};
 ---
 
 <BaseLayout locale={locale} pageKey="yarnFabric" path="/yarn-fabric">
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/yarn-fabric`} />
 
-  <section class="pt-24 pb-12 bg-gradient-to-br from-brand-sand to-brand-camel text-white">
-    <div class="container-narrow relative z-10">
-      <h1 class="font-display text-5xl md:text-6xl font-light leading-tight mb-6 max-w-3xl">{T('title')}</h1>
-      <p class="text-xl text-white/80 max-w-2xl">{T('subtitle')}</p>
+  <section class="relative bg-brand-ink text-white overflow-hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-2 min-h-[70vh]">
+      <div class="flex items-center py-20 lg:py-0 px-6 lg:pl-12 order-2 lg:order-1">
+        <div class="max-w-xl">
+          <div class="flex items-center gap-3 mb-8">
+            <span class="h-px w-12 bg-brand-gold"></span>
+            <span class="text-xs tracking-[0.4em] text-brand-gold uppercase font-medium">{T('tagline')}</span>
+          </div>
+          <h1 class="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-8" set:html={T('title').replace(/\n/g, '<br/>')} />
+          <p class="text-lg text-white/75 leading-relaxed max-w-md font-light">{T('subtitle')}</p>
+        </div>
+      </div>
+      <div class="relative aspect-[4/3] lg:aspect-auto overflow-hidden order-1 lg:order-2">
+        <img src={IMG.hero} alt="Cashmere fiber" class="absolute inset-0 w-full h-full object-cover opacity-80" />
+        <div class="absolute inset-0 bg-gradient-to-l from-transparent to-brand-ink/60"></div>
+      </div>
     </div>
   </section>
 
-  <section class="section-padding bg-background">
-    <div class="container-narrow space-y-20">
-      <!-- Yarn -->
-      <div>
-        <h2 class="font-display text-3xl md:text-4xl font-light mb-8">{T('sectionYarn')}</h2>
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {yarnSpecs.map((s) => (
-            <div class="border border-border rounded-lg p-6">
-              <div class="text-xs uppercase tracking-wider text-muted-foreground mb-2">{s.label}</div>
-              <div class="text-lg">{s.value}</div>
-            </div>
-          ))}
+  <!-- Yarn 段 -->
+  <section class="py-24 md:py-32 bg-background">
+    <div class="container-narrow">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
+        <div class="lg:col-span-5">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="h-px w-8 bg-brand-gold"></span>
+            <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">02A</span>
+          </div>
+          <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{T('yarnTitle')}</h2>
+        </div>
+        <div class="lg:col-span-7 lg:pt-6">
+          <p class="text-muted-foreground leading-relaxed text-lg">{T('yarnSub')}</p>
         </div>
       </div>
 
-      <!-- Fabric -->
-      <div>
-        <h2 class="font-display text-3xl md:text-4xl font-light mb-8">{T('sectionFabric')}</h2>
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {fabricSpecs.map((s) => (
-            <div class="border border-border rounded-lg p-6">
-              <div class="text-xs uppercase tracking-wider text-muted-foreground mb-2">{s.label}</div>
-              <div class="text-lg">{s.value}</div>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-px bg-border">
+        {yarnSpecs.map((s, i) => (
+          <div class="bg-background p-8 md:p-10">
+            <div class="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4 flex items-baseline justify-between">
+              <span>{s.label}</span>
+              <span class="font-serif text-sm text-brand-gold/50">{String(i+1).padStart(2,'0')}</span>
             </div>
-          ))}
+            <div class="flex items-baseline gap-1">
+              <span class="font-serif text-3xl md:text-4xl text-brand-chocolate font-light">{s.value}</span>
+              {s.unit && <span class="text-sm text-muted-foreground">{s.unit}</span>}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Fabric 段：大图 + 数据 -->
+  <section class="py-24 md:py-32 bg-brand-cream/50">
+    <div class="container-narrow">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="order-2 lg:order-1">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="h-px w-8 bg-brand-gold"></span>
+            <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">02B</span>
+          </div>
+          <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight mb-6">{T('fabricTitle')}</h2>
+          <p class="text-muted-foreground leading-relaxed text-lg mb-8">{T('fabricSub')}</p>
+          <div class="grid grid-cols-2 gap-px bg-border">
+            {fabricSpecs.slice(0, 4).map((s, i) => (
+              <div class="bg-brand-cream/50 p-5">
+                <div class="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-2">{s.label}</div>
+                <div class="flex items-baseline gap-1">
+                  <span class="font-serif text-2xl text-brand-chocolate font-light">{s.value}</span>
+                  {s.unit && <span class="text-xs text-muted-foreground">{s.unit}</span>}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="order-1 lg:order-2 aspect-[4/5] overflow-hidden">
+          <img src={IMG.knit} alt="Cashmere woven fabric" class="w-full h-full object-cover" />
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="mt-12">
-        <YarnFabricInquiryForm client:load locale={locale} />
+  <!-- Inquiry -->
+  <section class="py-24 md:py-32 bg-background">
+    <div class="container-narrow">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="h-px w-8 bg-brand-gold"></span>
+            <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">{locale === 'cn' ? '询盘' : 'Inquiry'}</span>
+          </div>
+          <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight mb-6">{T('inquiryTitle')}</h2>
+          <p class="text-muted-foreground leading-relaxed mb-8">{T('inquirySub')}</p>
+          <ul class="space-y-3 text-sm text-muted-foreground">
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-gold"></span>{locale === 'cn' ? '免费色卡 + 纱线小样' : 'Free color card + yarn sample'}</li>
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-gold"></span>{locale === 'cn' ? 'Pantone 定制颜色' : 'Pantone custom color matching'}</li>
+            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-gold"></span>{locale === 'cn' ? '小单快反 7 天打样' : 'Quick sampling in 7 days'}</li>
+          </ul>
+        </div>
+        <div>
+          <YarnFabricInquiryForm client:load locale={locale} />
+        </div>
       </div>
     </div>
   </section>
