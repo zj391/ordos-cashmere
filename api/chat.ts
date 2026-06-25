@@ -130,16 +130,51 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const { messages = [], locale = 'en' } = (req.body || {}) as {
+    const { messages = [], locale = 'en', email, company } = (req.body || {}) as {
       messages: Array<{ role: string; content: string }>;
       locale: string;
+      email?: string;
+      company?: string;
     };
 
     if (!Array.isArray(messages) || messages.length === 0) {
       return res.status(400).json({ success: false, error: 'messages_required' });
     }
 
-    const sysPrompt = SYSTEM_PROMPTS[locale] || SYSTEM_PROMPTS.en;
+    let sysPrompt = SYSTEM_PROMPTS[locale] || SYSTEM_PROMPTS.en;
+
+    // 老客户识别：查 Supabase known_customers
+    const supabaseUrl = getEnv('SUPABASE_URL', '');
+    const supabaseKey = getEnv('SUPABASE_SERVICE_KEY', '') || getEnv('SUPABASE_ANON_KEY', '');
+    if (email && supabaseUrl && supabaseKey) {
+      try {
+        const lookup = await fetch(
+          `${supabaseUrl}/rest/v1/known_customers?contact_email=eq.${encodeURIComponent(email)}&select=grade,company_name,contact_name,lifetime_value_usd,total_orders,total_inquiries,tags,notes&limit=1`,
+          { headers: { 'apikey': supabaseKey, 'Authorization': `Bearer ${supabaseKey}` } }
+        );
+        if (lookup.ok) {
+          const rows: any[] = await lookup.json();
+          if (rows.length > 0) {
+            const k = rows[0];
+            const ctx = [
+              `[已知客户档案] 您正在与以下已建档客户沟通，请据此调整服务优先级与议价空间：`,
+              `公司：${k.company_name}${company && company !== k.company_name ? `（本次填写的公司名："${company}"与档案不一致，请礼貌核实）` : ''}`,
+              `联系人：${k.contact_name || '-'}`,
+              `客户等级：${k.grade || '未分级'}`,
+              `历史询盘：${k.total_inquiries ?? 0} 次`,
+              `历史成交：${k.total_orders ?? 0} 笔`,
+              `累计金额：USD ${(k.lifetime_value_usd ?? 0).toLocaleString()}`,
+              `标签：${(k.tags || []).join(', ') || '-'}`,
+              k.notes ? `备注：${k.notes}` : '',
+            ].filter(Boolean).join('\n');
+            sysPrompt = sysPrompt + '\n\n' + ctx;
+          }
+        }
+      } catch (e) {
+        // 静默失败，不影响主流程
+      }
+    }
+
 
     const upstream = await fetch(LLM_API_URL, {
       method: 'POST',

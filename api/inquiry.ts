@@ -10,7 +10,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 const N8N_WEBHOOK = process.env.N8N_WEBHOOK_URL;
-const HERMES_API = process.env.HERMES_API_URL;
+const HERMES_INBOUND_TOKEN=proces...N_TOKEN || '');
 const SUPABASE_URL = process.env.PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_ANON_KEY;
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
@@ -234,16 +234,19 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       }).catch(err => console.error('n8n error:', err));
     }
 
-    // 4. 推送 Hermes
-    if (HERMES_API) {
-      fetch(HERMES_API, {
+    // 4. 推送 Hermes 接收端（Vercel 同项目 /api/hermes-inbound；不需公网穿透）
+    {
+      const hermesPayload = {
+        source: 'website',
+        event: 'inquiry',
+        data: { ...data, inquiry_id: inquiryId, known_customer: known },
+      };
+      const hermesHeaders: Record<string, string> = { 'Content-Type': 'application/json' };
+      if (HERMES_INBOUND_TOKEN) hermesHeaders['X-Hermes-Token'] = HERMES_INBOUND_TOKEN;
+      fetch('https://' + (req.headers.host || 'erdosdx.com') + '/api/hermes-inbound', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          source: 'website',
-          event: 'inquiry',
-          data: { ...data, inquiry_id: inquiryId, known_customer: known },
-        }),
+        headers: hermesHeaders,
+        body: JSON.stringify(hermesPayload),
       }).catch(err => console.error('Hermes error:', err));
     }
 
