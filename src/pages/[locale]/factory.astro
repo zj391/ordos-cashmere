@@ -1,4 +1,7 @@
 ---
+/**
+ * Factory 工厂介绍页
+ */
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Navigation from '@/components/Navigation.astro';
 import Footer from '@/components/Footer.astro';
@@ -15,89 +18,175 @@ const { locale: rawLocale } = Astro.params;
 const locale = pickLocale(rawLocale);
 
 const t: Record<string, Record<string, string>> = {
-  en: { title: 'Factory Strength', subtitle: '38,000 sqm · 500+ workers · 1,200t annual capacity · ISO certified', sectionScale: 'Scale & Capacity', sectionEquipment: 'Equipment', sectionCert: 'Certifications', cta: 'Visit Our Factory' },
-  cn: { title: '工厂实力', subtitle: '38,000平米厂房 · 500+员工 · 年产能1,200吨 · ISO认证', sectionScale: '规模与产能', sectionEquipment: '生产设备', sectionCert: '资质认证', cta: '预约考察' },
-  de: { title: 'Fabrikstärke', subtitle: '38.000 qm · 500+ Mitarbeiter · 1.200t Jahreskapazität · ISO-zertifiziert', sectionScale: 'Maßstab', sectionEquipment: 'Ausrüstung', sectionCert: 'Zertifizierungen', cta: 'Werk besuchen' },
-  fr: { title: 'Force de l\'usine', subtitle: '38 000 m² · 500+ employés · 1 200t capacité · Certifié ISO', sectionScale: 'Échelle', sectionEquipment: 'Équipement', sectionCert: 'Certifications', cta: 'Visiter l\'usine' },
-  ja: { title: '工場の強み', subtitle: '38,000平米 · 500名+ · 年間1,200トン · ISO認証', sectionScale: '規模・能力', sectionEquipment: '設備', sectionCert: '認証', cta: '工場見学' },
-  kr: { title: '공장 강점', subtitle: '38,000 sqm · 500+ 직원 · 연 1,200톤 · ISO 인증', sectionScale: '규모', sectionEquipment: '설비', sectionCert: '인증', cta: '공장 방문' },
+  en: {
+    tagline: 'OUR FACTORY',
+    title: 'Factory\nStrength',
+    subtitle: '38,000 sqm · 500+ workers · 1,200t annual capacity · ISO certified source facility in Ordos.',
+    scaleTitle: 'Scale & capacity',
+    scaleSub: 'A vertically integrated facility, from dehairing to finished knitwear.',
+    equipTitle: 'Equipment',
+    equipSub: 'Italian, German, Japanese, Swiss machinery. Best-in-class for cashmere.',
+    certTitle: 'Certifications',
+    ctaTitle: 'Visit our factory',
+    ctaSub: 'B2B clients welcome for on-site visits. 7-day advance notice.',
+    cta: 'Schedule a visit',
+  },
+  cn: {
+    tagline: '工厂实力',
+    title: '工厂\n实力',
+    subtitle: '38,000平米厂房 · 500+员工 · 年产能1,200吨 · ISO认证源头工厂',
+    scaleTitle: '规模与产能',
+    scaleSub: '全产业链垂直整合，从原料分梳到成衣出厂。',
+    equipTitle: '生产设备',
+    equipSub: '意大利、德国、日本、瑞士设备，全球顶级羊绒生产配置。',
+    certTitle: '资质认证',
+    ctaTitle: '预约考察',
+    ctaSub: '欢迎 B2B 客户实地考察，提前 7 天预约。',
+    cta: '预约参观',
+  },
+  de: { tagline: 'FABRIK', title: 'Fabrik-\nstärke', subtitle: '38.000 qm · 500+ Mitarbeiter · 1.200t Jahreskapazität', scaleTitle: 'Maßstab', scaleSub: 'Vertikal integriert.', equipTitle: 'Ausrüstung', equipSub: 'Italienische, deutsche, japanische, schweizer Maschinen.', certTitle: 'Zertifizierungen', ctaTitle: 'Werk besuchen', ctaSub: '7 Tage Vorlauf.', cta: 'Besuch planen' },
+  fr: { tagline: 'USINE', title: 'Force de\nl\'usine', subtitle: '38 000 m² · 500+ · 1 200t capacité', scaleTitle: 'Échelle', scaleSub: 'Intégration verticale.', equipTitle: 'Équipement', equipSub: 'Machines italiennes, allemandes, japonaises, suisses.', certTitle: 'Certifications', ctaTitle: 'Visiter l\'usine', ctaSub: 'Préavis 7 jours.', cta: 'Planifier' },
+  ja: { tagline: '工場', title: '工場の\n強み', subtitle: '38,000平米 · 500名+ · 年間1,200トン', scaleTitle: '規模・能力', scaleSub: '垂直統合。', equipTitle: '設備', equipSub: '伊・独・日・スイス製。', certTitle: '認証', ctaTitle: '工場見学', ctaSub: '7日前予約。', cta: '予約' },
+  kr: { tagline: '공장', title: '공장\n강점', subtitle: '38,000 sqm · 500+ · 연 1,200톤', scaleTitle: '규모', scaleSub: '수직 통합.', equipTitle: '설비', equipSub: '이탈리아·독일·일본·스위스.', certTitle: '인증', ctaTitle: '공장 방문', ctaSub: '7일 사전 예약.', cta: '예약' },
 };
 const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
 
 const scale = [
-  { value: '38,000', label: locale === 'cn' ? '平方米厂房' : 'sqm Factory' },
-  { value: '500+', label: locale === 'cn' ? '员工' : 'Employees' },
-  { value: '1,200t', label: locale === 'cn' ? '年产能' : 'Annual Capacity' },
-  { value: '50+', label: locale === 'cn' ? '出口国家' : 'Countries' },
-  { value: '23+', label: locale === 'cn' ? '行业经验' : 'Years' },
-  { value: '7', label: locale === 'cn' ? '国际认证' : 'Certifications' },
+  { value: '38,000', unit: 'm²', label: locale === 'cn' ? '厂房面积' : 'Factory Area' },
+  { value: '500+', unit: '', label: locale === 'cn' ? '员工' : 'Employees' },
+  { value: '1,200', unit: 't', label: locale === 'cn' ? '年产能' : 'Annual Capacity' },
+  { value: '50+', unit: '', label: locale === 'cn' ? '出口国家' : 'Export Countries' },
+  { value: '23+', unit: 'yrs', label: locale === 'cn' ? '行业经验' : 'Years of Excellence' },
+  { value: '7', unit: '', label: locale === 'cn' ? '国际认证' : 'Certifications' },
 ];
 
 const equipment = [
-  { name: locale === 'cn' ? '意大利梳绒机' : 'Italian Dehairing', spec: '12 lines' },
+  { name: locale === 'cn' ? '意大利梳绒机' : 'Italian Dehairing Lines', spec: '12 lines' },
   { name: locale === 'cn' ? '日本岛精横机' : 'Shima Seiki Flatbed', spec: '48 machines' },
-  { name: locale === 'cn' ? '德国斯托尔电脑横机' : 'Stoll CMS', spec: '24 machines' },
-  { name: locale === 'cn' ? '意大利络筒机' : 'Italian Winding', spec: '8 lines' },
+  { name: locale === 'cn' ? '德国斯托尔电脑横机' : 'Stoll CMS Knitting', spec: '24 machines' },
+  { name: locale === 'cn' ? '意大利络筒机' : 'Italian Winding Lines', spec: '8 lines' },
   { name: locale === 'cn' ? '瑞士乌斯特检测仪' : 'Uster Tester', spec: '6 units' },
-  { name: locale === 'cn' ? '全自动包装线' : 'Auto Packing', spec: '4 lines' },
+  { name: locale === 'cn' ? '全自动包装线' : 'Auto Packing Lines', spec: '4 lines' },
 ];
 
-const certs = ['ISO 9001:2015', 'OEKO-TEX® Standard 100', 'Good Cashmere Standard', 'BSCI', 'Sedex SMETA', 'WRAP', 'SFA'];
+const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 'Sedex SMETA', 'WRAP', 'SFA'];
 ---
 
 <BaseLayout locale={locale} pageKey="factory" path="/factory">
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/factory`} />
 
-  <section class="pt-24 pb-12 bg-gradient-to-br from-brand-ink to-brand-chocolate text-white">
-    <div class="container-narrow relative z-10">
-      <h1 class="font-display text-5xl md:text-6xl font-light leading-tight mb-6">{T('title')}</h1>
-      <p class="text-xl text-white/80 max-w-2xl">{T('subtitle')}</p>
+  <!-- HERO -->
+  <section class="relative bg-brand-ink text-white overflow-hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-2 min-h-[60vh]">
+      <div class="flex items-center py-20 lg:py-0 px-6 lg:pl-12 order-2 lg:order-1">
+        <div class="max-w-xl">
+          <div class="flex items-center gap-3 mb-8">
+            <span class="h-px w-12 bg-brand-gold"></span>
+            <span class="text-xs tracking-[0.4em] text-brand-gold uppercase font-medium">{T('tagline')}</span>
+          </div>
+          <h1 class="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-8" set:html={T('title').replace(/\n/g, '<br/>')} />
+          <p class="text-lg text-white/75 leading-relaxed max-w-md font-light">{T('subtitle')}</p>
+        </div>
+      </div>
+      <div class="relative aspect-[4/3] lg:aspect-auto overflow-hidden order-1 lg:order-2">
+        <img src="/images/cashmere-fiber.jpg" alt="Cashmere fiber detail" class="absolute inset-0 w-full h-full object-cover opacity-80" />
+        <div class="absolute inset-0 bg-gradient-to-l from-transparent to-brand-ink/60"></div>
+      </div>
     </div>
   </section>
 
-  <section class="section-padding bg-background">
-    <div class="container-narrow space-y-20">
-      <!-- Scale -->
-      <div>
-        <h2 class="font-display text-3xl md:text-4xl font-light mb-8">{T('sectionScale')}</h2>
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-          {scale.map((s) => (
-            <div class="border border-border rounded-lg p-8">
-              <div class="font-display text-4xl font-light mb-2">{s.value}</div>
-              <div class="text-sm text-muted-foreground uppercase tracking-wider">{s.label}</div>
+  <!-- Scale：6 数据块 -->
+  <section class="py-24 md:py-32 bg-background">
+    <div class="container-narrow">
+      <div class="max-w-2xl mb-16">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="h-px w-8 bg-brand-gold"></span>
+          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">01 / {T('scaleTitle')}</span>
+        </div>
+        <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{T('scaleTitle')}</h2>
+        <p class="text-muted-foreground leading-relaxed">{T('scaleSub')}</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-px bg-border">
+        {scale.map((s, i) => (
+          <div class="bg-background p-8 md:p-10 hover:bg-brand-cream/30 transition-colors group">
+            <div class="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4 flex items-baseline justify-between">
+              <span>{s.label}</span>
+              <span class="font-serif text-sm text-brand-gold/50">{String(i+1).padStart(2,'0')}</span>
             </div>
-          ))}
-        </div>
-      </div>
-
-      <!-- Equipment -->
-      <div>
-        <h2 class="font-display text-3xl md:text-4xl font-light mb-8">{T('sectionEquipment')}</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {equipment.map((e) => (
-            <div class="flex justify-between items-center border border-border rounded-lg p-6">
-              <span class="font-medium">{e.name}</span>
-              <span class="text-muted-foreground text-sm">{e.spec}</span>
+            <div class="flex items-baseline gap-1">
+              <span class="font-serif text-4xl md:text-5xl text-brand-chocolate font-light group-hover:text-brand-gold transition-colors">{s.value}</span>
+              {s.unit && <span class="text-sm text-muted-foreground">{s.unit}</span>}
             </div>
-          ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Equipment -->
+  <section class="py-24 md:py-32 bg-brand-cream/50 border-y border-border">
+    <div class="container-narrow">
+      <div class="max-w-2xl mb-16">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="h-px w-8 bg-brand-gold"></span>
+          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">02 / {T('equipTitle')}</span>
         </div>
+        <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{T('equipTitle')}</h2>
+        <p class="text-muted-foreground leading-relaxed">{T('equipSub')}</p>
       </div>
 
-      <!-- Certs -->
-      <div>
-        <h2 class="font-display text-3xl md:text-4xl font-light mb-8">{T('sectionCert')}</h2>
-        <div class="flex flex-wrap gap-3">
-          {certs.map((c) => (
-            <div class="px-5 py-3 bg-secondary/50 border border-border rounded-md text-sm font-medium">{c}</div>
-          ))}
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
+        {equipment.map((e, i) => (
+          <div class="bg-brand-cream/30 p-6 md:p-8 flex justify-between items-center group hover:bg-background transition-colors">
+            <div class="flex items-baseline gap-3">
+              <span class="font-serif text-sm text-brand-gold/50">{String(i+1).padStart(2,'0')}</span>
+              <span class="font-serif text-xl group-hover:text-brand-chocolate transition-colors">{e.name}</span>
+            </div>
+            <span class="text-sm text-muted-foreground">{e.spec}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section class="py-24 md:py-32 bg-background">
+    <div class="container-narrow">
+      <div class="max-w-2xl mb-16">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="h-px w-8 bg-brand-gold"></span>
+          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">03 / {T('certTitle')}</span>
         </div>
+        <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight">{T('certTitle')}</h2>
       </div>
 
-      <div class="text-center">
-        <a href={`/${locale}/contact?type=visit`} class="inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground rounded-md font-medium hover:bg-primary/90 transition-all">
-          {T('cta')} →
-        </a>
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6">
+        {certs.map((cert) => (
+          <div class="aspect-square rounded-full border border-brand-gold/40 flex items-center justify-center hover:border-brand-gold hover:bg-brand-gold/5 transition-all group">
+            <span class="font-serif text-sm text-brand-gold tracking-wider text-center px-2 leading-tight">{cert}</span>
+          </div>
+        ))}
       </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 md:py-32 bg-brand-chocolate text-white">
+    <div class="container-narrow text-center">
+      <div class="flex items-center justify-center gap-3 mb-4">
+        <span class="h-px w-8 bg-brand-gold"></span>
+        <span class="text-xs tracking-[0.3em] uppercase text-brand-gold">{locale === 'cn' ? '下一步' : 'Next Step'}</span>
+        <span class="h-px w-8 bg-brand-gold"></span>
+      </div>
+      <h2 class="font-serif text-4xl md:text-5xl font-light mb-4 text-balance">{T('ctaTitle')}</h2>
+      <p class="text-white/75 mb-8 max-w-2xl mx-auto">{T('ctaSub')}</p>
+      <a href={`/${locale}/contact?type=visit`} class="inline-flex items-center gap-2 px-10 py-5 bg-brand-gold text-brand-ink font-medium tracking-wider hover:bg-white transition-colors">
+        {T('cta')}
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
     </div>
   </section>
 

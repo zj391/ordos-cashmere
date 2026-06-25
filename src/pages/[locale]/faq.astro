@@ -42,25 +42,32 @@ const faq: Array<{ q: string; a: string }> = locale === 'cn' ? [
 <BaseLayout locale={locale} pageKey="faq" path="/faq" schema="faq" faqs={faq}>
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/faq`} />
 
-  <section class="pt-24 pb-8 bg-gradient-to-br from-brand-ink to-brand-chocolate text-white">
-    <div class="container-narrow relative z-10">
-      <h1 class="font-display text-5xl md:text-6xl font-light leading-tight mb-6">{title}</h1>
-      <p class="text-xl text-white/80">{subtitle}</p>
+  <section class="relative bg-brand-ink text-white overflow-hidden">
+    <div class="container-narrow py-24 md:py-32">
+      <div class="flex items-center gap-3 mb-8">
+        <span class="h-px w-12 bg-brand-gold"></span>
+        <span class="text-xs tracking-[0.4em] text-brand-gold uppercase font-medium">FAQ</span>
+      </div>
+      <h1 class="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-8 text-balance">{title}</h1>
+      <p class="text-lg text-white/75 leading-relaxed max-w-xl font-light">{subtitle}</p>
     </div>
   </section>
 
-  <section class="section-padding bg-background">
+  <section class="py-24 md:py-32 bg-background">
     <div class="container-narrow max-w-3xl">
       <div class="space-y-4">
-        {faq.map((item) => (
-          <details class="group border border-border rounded-lg p-6 cursor-pointer">
+        {faq.map((item, i) => (
+          <details class="group border border-border rounded-lg p-6 cursor-pointer hover:border-brand-gold transition-colors">
             <summary class="flex justify-between items-center font-medium text-lg list-none">
-              <span>{item.q}</span>
-              <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span class="flex items-baseline gap-3">
+                <span class="font-serif text-sm text-brand-gold/50">{String(i+1).padStart(2,'0')}</span>
+                <span>{item.q}</span>
+              </span>
+              <svg class="w-5 h-5 transition-transform group-open:rotate-180 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
             </summary>
-            <p class="mt-4 text-muted-foreground leading-relaxed">{item.a}</p>
+            <p class="mt-4 text-muted-foreground leading-relaxed pl-8">{item.a}</p>
           </details>
         ))}
       </div>

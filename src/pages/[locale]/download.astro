@@ -37,16 +37,20 @@ const downloads = [
 <BaseLayout locale={locale} pageKey="download" path="/download">
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/download`} />
 
-  <section class="pt-24 pb-12 bg-gradient-to-br from-brand-sand to-brand-camel text-white">
-    <div class="container-narrow relative z-10">
-      <h1 class="font-display text-5xl md:text-6xl font-light leading-tight mb-6">{T('title')}</h1>
-      <p class="text-xl text-white/80 max-w-2xl">{T('subtitle')}</p>
+  <section class="relative bg-brand-ink text-white overflow-hidden">
+    <div class="container-narrow py-24 md:py-32">
+      <div class="flex items-center gap-3 mb-8">
+        <span class="h-px w-12 bg-brand-gold"></span>
+        <span class="text-xs tracking-[0.4em] text-brand-gold uppercase font-medium">{locale === 'cn' ? '资料下载' : 'Downloads'}</span>
+      </div>
+      <h1 class="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-8 text-balance">{T('title')}</h1>
+      <p class="text-lg text-white/75 leading-relaxed max-w-xl font-light">{T('subtitle')}</p>
     </div>
   </section>
 
-  <section class="section-padding bg-background">
+  <section class="py-24 md:py-32 bg-background">
     <div class="container-narrow">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {downloads.map((d) => (
           <DownloadGate client:load locale={locale} type={d.type} title={d.title} size={d.size} format={d.format} />
         ))}

@@ -45,22 +45,29 @@ const posts = allPosts
 <BaseLayout locale={locale} pageKey="blog" path="/blog">
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/blog`} />
 
-  <section class="pt-24 pb-8 bg-gradient-to-br from-brand-ink to-brand-chocolate text-white">
-    <div class="container-narrow relative z-10">
-      <h1 class="font-display text-5xl md:text-6xl font-light leading-tight mb-6">{T('title')}</h1>
-      <p class="text-xl text-white/80">{T('subtitle')}</p>
+  <section class="relative bg-brand-ink text-white overflow-hidden">
+    <div class="container-narrow py-24 md:py-32">
+      <div class="flex items-center gap-3 mb-8">
+        <span class="h-px w-12 bg-brand-gold"></span>
+        <span class="text-xs tracking-[0.4em] text-brand-gold uppercase font-medium">{locale === 'cn' ? '博客' : 'Blog'}</span>
+      </div>
+      <h1 class="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-8 text-balance">{T('title')}</h1>
+      <p class="text-lg text-white/75 leading-relaxed max-w-xl font-light">{T('subtitle')}</p>
     </div>
   </section>
 
-  <section class="section-padding bg-background">
+  <section class="py-24 md:py-32 bg-background">
     <div class="container-narrow">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {posts.map((p) => (
-          <a href={`/${locale}/blog/${p.slug}`} class="block border border-border rounded-lg p-8 hover:border-primary hover:shadow-lg transition-all group">
-            <div class="text-xs text-muted-foreground uppercase tracking-wider mb-3">{p.date}</div>
-            <h3 class="font-display text-2xl mb-3 group-hover:text-primary transition-colors">{p.title}</h3>
-            <p class="text-muted-foreground leading-relaxed mb-4">{p.excerpt}</p>
-            <span class="text-sm text-primary font-medium">{locale === 'cn' ? '阅读全文 →' : 'Read more →'}</span>
+          <a href={`/${locale}/blog/${p.slug}`} class="group block border border-border p-8 hover:border-brand-gold hover:shadow-lg transition-all duration-300">
+            <div class="text-xs text-muted-foreground tracking-wider mb-3 font-mono">{p.date}</div>
+            <h3 class="font-serif text-2xl mb-3 group-hover:text-brand-chocolate transition-colors leading-tight">{p.title}</h3>
+            <p class="text-muted-foreground leading-relaxed mb-6 text-sm">{p.excerpt}</p>
+            <span class="inline-flex items-center gap-2 text-sm text-brand-chocolate font-medium border-b border-brand-chocolate pb-0.5 group-hover:border-brand-gold group-hover:text-brand-gold transition-colors">
+              {locale === 'cn' ? '阅读全文' : 'Read more'}
+              <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </span>
           </a>
         ))}
       </div>

@@ -152,24 +152,27 @@ const certs = ['ISO 9001', 'OEKO-TEX®', 'GCS', 'BSCI', 'Sedex', 'SFA', 'The Goo
 >
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/ordos-origin`} />
 
-  <!-- HERO -->
-  <section class="relative pt-24 pb-12 bg-gradient-to-br from-brand-ink via-brand-chocolate to-brand-camel text-white overflow-hidden">
-    <svg class="absolute inset-0 w-full h-full opacity-[0.08]" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="ordos-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-          <path d="M 30 10 L 35 25 L 50 30 L 35 35 L 30 50 L 25 35 L 10 30 L 25 25 Z" fill="white" opacity="0.3"/>
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#ordos-pattern)"/>
-    </svg>
-    <div class="container-narrow relative z-10">
-      <div class="text-xs tracking-[0.3em] uppercase mb-4 text-white/70">{t('heroTagline')}</div>
-      <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-light leading-tight mb-6 max-w-4xl text-balance">
-        {t('heroTitle')}
-      </h1>
-      <p class="text-xl text-white/80 max-w-2xl leading-relaxed">
-        {t('heroSubtitle')}
-      </p>
+  <!-- HERO：左文字 / 右真实图 -->
+  <section class="relative bg-brand-ink text-white overflow-hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-2 min-h-[70vh]">
+      <div class="flex items-center py-20 lg:py-0 px-6 lg:pl-12 order-2 lg:order-1">
+        <div class="max-w-xl">
+          <div class="flex items-center gap-3 mb-8">
+            <span class="h-px w-12 bg-brand-gold"></span>
+            <span class="text-xs tracking-[0.4em] text-brand-gold uppercase font-medium">{t('heroTagline')}</span>
+          </div>
+          <h1 class="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-8 text-balance">
+            {t('heroTitle')}
+          </h1>
+          <p class="text-lg text-white/75 leading-relaxed max-w-md font-light">
+            {t('heroSubtitle')}
+          </p>
+        </div>
+      </div>
+      <div class="relative aspect-[4/3] lg:aspect-auto overflow-hidden order-1 lg:order-2">
+        <img src="/images/ordos-landscape.jpg" alt="Ordos plateau" class="absolute inset-0 w-full h-full object-cover opacity-80" />
+        <div class="absolute inset-0 bg-gradient-to-l from-transparent to-brand-ink/60"></div>
+      </div>
     </div>
   </section>
 
@@ -179,19 +182,19 @@ const certs = ['ISO 9001', 'OEKO-TEX®', 'GCS', 'BSCI', 'Sedex', 'SFA', 'The Goo
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
         <div class="text-center md:text-left">
           <div class="text-xs uppercase tracking-wider text-muted-foreground mb-1">Latitude</div>
-          <div class="font-display text-3xl">39°36'N</div>
+          <div class="font-serif text-3xl">39°36'N</div>
         </div>
         <div class="text-center md:text-left">
           <div class="text-xs uppercase tracking-wider text-muted-foreground mb-1">Longitude</div>
-          <div class="font-display text-3xl">109°46'E</div>
+          <div class="font-serif text-3xl">109°46'E</div>
         </div>
         <div class="text-center md:text-left">
           <div class="text-xs uppercase tracking-wider text-muted-foreground mb-1">Elevation</div>
-          <div class="font-display text-3xl">1,300m</div>
+          <div class="font-serif text-3xl">1,300m</div>
         </div>
         <div class="text-center md:text-left">
           <div class="text-xs uppercase tracking-wider text-muted-foreground mb-1">Climate</div>
-          <div class="font-display text-3xl">Continental</div>
+          <div class="font-serif text-3xl">Continental</div>
         </div>
       </div>
     </div>
@@ -203,7 +206,7 @@ const certs = ['ISO 9001', 'OEKO-TEX®', 'GCS', 'BSCI', 'Sedex', 'SFA', 'The Goo
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
         <div>
           <div class="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-3">01</div>
-          <h2 class="font-display text-4xl md:text-5xl font-light leading-tight mb-6">
+          <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight mb-6">
             {t('sectionGeo')}
           </h2>
           <p class="text-muted-foreground leading-relaxed mb-4">{t('sectionGeoP1')}</p>
@@ -237,11 +240,11 @@ const certs = ['ISO 9001', 'OEKO-TEX®', 'GCS', 'BSCI', 'Sedex', 'SFA', 'The Goo
   <section class="section-padding bg-primary text-primary-foreground">
     <div class="container-narrow">
       <div class="text-xs tracking-[0.3em] uppercase text-primary-foreground/70 mb-3">{t('sectionStats')}</div>
-      <h2 class="font-display text-4xl md:text-5xl font-light mb-12">Ordos by the Numbers</h2>
+      <h2 class="font-serif text-4xl md:text-5xl font-light mb-12">Ordos by the Numbers</h2>
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
         {stats.map((s) => (
           <div>
-            <div class="font-display text-5xl md:text-6xl font-light mb-2">{s.value}</div>
+            <div class="font-serif text-5xl md:text-6xl font-light mb-2">{s.value}</div>
             <div class="text-sm text-primary-foreground/70 uppercase tracking-wider">{s.label}</div>
           </div>
         ))}
@@ -254,7 +257,7 @@ const certs = ['ISO 9001', 'OEKO-TEX®', 'GCS', 'BSCI', 'Sedex', 'SFA', 'The Goo
     <div class="container-narrow">
       <div class="max-w-3xl mx-auto text-center">
         <div class="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-3">02</div>
-        <h2 class="font-display text-4xl md:text-5xl font-light leading-tight mb-6">
+        <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight mb-6">
           {t('sectionHeritage')}
         </h2>
         <p class="text-muted-foreground leading-relaxed text-lg">
@@ -268,7 +271,7 @@ const certs = ['ISO 9001', 'OEKO-TEX®', 'GCS', 'BSCI', 'Sedex', 'SFA', 'The Goo
   <section class="py-16 bg-secondary/30 border-y border-border">
     <div class="container-narrow text-center">
       <div class="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-3">03</div>
-      <h2 class="font-display text-3xl md:text-4xl font-light mb-8">{t('sectionCert')}</h2>
+      <h2 class="font-serif text-3xl md:text-4xl font-light mb-8">{t('sectionCert')}</h2>
       <div class="flex flex-wrap justify-center gap-4">
         {certs.map((cert) => (
           <div class="px-4 py-2 bg-card border border-border rounded-md text-sm font-medium">{cert}</div>
@@ -280,13 +283,21 @@ const certs = ['ISO 9001', 'OEKO-TEX®', 'GCS', 'BSCI', 'Sedex', 'SFA', 'The Goo
   <!-- CTA -->
   <section class="section-padding bg-background">
     <div class="container-narrow text-center">
-      <h2 class="font-display text-4xl md:text-5xl font-light mb-4">{t('ctaTitle')}</h2>
+      <div class="flex items-center justify-center gap-3 mb-4">
+        <span class="h-px w-8 bg-brand-gold"></span>
+        <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">{locale === 'cn' ? '下一步' : 'Next Step'}</span>
+        <span class="h-px w-8 bg-brand-gold"></span>
+      </div>
+      <h2 class="font-serif text-4xl md:text-5xl font-light mb-4 text-balance">{t('ctaTitle')}</h2>
       <p class="text-muted-foreground mb-8 max-w-2xl mx-auto">{t('ctaSubtitle')}</p>
       <div class="flex flex-wrap justify-center gap-4">
-        <a href={`/${locale}/contact`} class="inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground rounded-md font-medium hover:bg-primary/90 transition-all">
+        <a href={`/${locale}/contact`} class="inline-flex items-center gap-2 px-8 py-4 bg-brand-gold text-brand-ink font-medium tracking-wider hover:bg-white transition-colors">
           {locale === 'cn' ? '联系源头' : 'Contact Source'}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
         </a>
-        <a href={`/${locale}/raw-material`} class="inline-flex items-center justify-center px-8 py-4 border border-border rounded-md hover:bg-accent transition-all">
+        <a href={`/${locale}/raw-material`} class="inline-flex items-center px-8 py-4 border border-brand-chocolate text-brand-chocolate font-medium hover:bg-brand-chocolate hover:text-white transition-colors">
           {locale === 'cn' ? '查看原料' : 'View Materials'}
         </a>
       </div>

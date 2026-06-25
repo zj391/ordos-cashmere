@@ -1,4 +1,7 @@
 ---
+/**
+ * Privacy Policy - 6 国通用
+ */
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Navigation from '@/components/Navigation.astro';
 import Footer from '@/components/Footer.astro';
@@ -38,6 +41,54 @@ const privacyPolicy: Record<string, { title: string; sections: Array<{ h: string
       { h: '7. 联系', p: '隐私相关咨询：dongxiaocashmere@erdosdx.com' },
     ],
   },
+  de: {
+    title: 'Datenschutzerklärung',
+    sections: [
+      { h: '1. Erhobene Informationen', p: 'Wir erheben freiwillig bereitgestellte personenbezogene Daten (Name, E-Mail, Telefon, Firma, Land, Produktinteressen) sowie Browserdaten über Google Analytics.' },
+      { h: '2. Verwendung', p: 'Ihre Daten werden zur Beantwortung von Anfragen, Angebotserstellung und Serviceverbesserung verwendet. Wir verkaufen Ihre Daten nicht an Dritte.' },
+      { h: '3. Cookies', p: 'Wir verwenden notwendige Cookies für die Website-Funktionalität und Analyse-Cookies (Google Analytics). Sie können Analyse-Cookies über unser Banner ablehnen.' },
+      { h: '4. Datenweitergabe', p: 'Datenweitergabe an: WhatsApp/WeChat, CRM/E-Mail-Dienste, Google Analytics. Alle Auftragsverarbeiter sind DSGVO-konform.' },
+      { h: '5. Ihre Rechte (DSGVO)', p: 'Sie haben das Recht auf Auskunft, Berichtigung, Löschung oder Einschränkung Ihrer personenbezogenen Daten. Kontakt: dongxiaocashmere@erdosdx.com.' },
+      { h: '6. Speicherdauer', p: 'Anfragedaten 3 Jahre; Analysedaten 14 Monate gemäß Google Analytics Standard.' },
+      { h: '7. Kontakt', p: 'Datenschutzanfragen: dongxiaocashmere@erdosdx.com' },
+    ],
+  },
+  fr: {
+    title: 'Politique de confidentialité',
+    sections: [
+      { h: '1. Informations collectées', p: 'Nous collectons les informations personnelles fournies volontairement (nom, e-mail, téléphone, société, pays, intérêts produits) ainsi que les données de navigation via Google Analytics.' },
+      { h: '2. Utilisation', p: 'Vos informations servent à répondre aux demandes, établir des devis et améliorer nos services. Nous ne vendons pas vos données à des tiers.' },
+      { h: '3. Cookies', p: 'Nous utilisons des cookies essentiels et des cookies analytiques (Google Analytics). Vous pouvez refuser les cookies analytiques via notre bannière.' },
+      { h: '4. Partage des données', p: 'Partage avec : WhatsApp/WeChat, CRM/e-mail, Google Analytics. Tous les sous-traitants sont conformes au RGPD.' },
+      { h: '5. Vos droits (RGPD)', p: 'Vous avez le droit d\'accéder, rectifier, supprimer ou limiter le traitement de vos données. Contact : dongxiaocashmere@erdosdx.com.' },
+      { h: '6. Conservation', p: 'Données de demande : 3 ans. Données analytiques : 14 mois (Google Analytics par défaut).' },
+      { h: '7. Contact', p: 'Pour toute question : dongxiaocashmere@erdosdx.com' },
+    ],
+  },
+  ja: {
+    title: 'プライバシーポリシー',
+    sections: [
+      { h: '1. 収集する情報', p: 'お名前、メールアドレス、電話番号、会社、国、製品関心など、お客様が提供された情報と、Google Analytics による閲覧データを収集します。' },
+      { h: '2. 利用目的', p: 'お問い合わせへの回答、お見積もり、サービス改善に使用します。第三者に販売することはありません。' },
+      { h: '3. Cookie', p: 'サイト機能に必要な Cookie と、Google Analytics の分析 Cookie を使用します。Cookie バナーで分析 Cookie を拒否できます。' },
+      { h: '4. データ共有', p: 'WhatsApp/WeChat、CRM/メールサービス、Google Analytics と共有します。すべて GDPR 準拠です。' },
+      { h: '5. お客様の権利 (GDPR)', p: '個人データへのアクセス、訂正、削除、処理制限の権利があります。dongxiaocashmere@erdosdx.com までご連絡ください。' },
+      { h: '6. 保持期間', p: 'お問い合わせデータ 3 年。分析データ 14 ヶ月（Google Analytics デフォルト）。' },
+      { h: '7. お問い合わせ', p: 'プライバシー関連：dongxiaocashmere@erdosdx.com' },
+    ],
+  },
+  kr: {
+    title: '개인정보 처리방침',
+    sections: [
+      { h: '1. 수집 정보', p: '이름, 이메일, 전화번호, 회사, 국가, 제품 관심사 등 자발적으로 제공된 정보와 Google Analytics 浏览 데이터를 수집합니다.' },
+      { h: '2. 이용 목적', p: '문의 응답, 견적 제공, 서비스 개선에 사용됩니다. 제3자에게 판매하지 않습니다.' },
+      { h: '3. Cookie', p: '사이트 기능에 필수적인 Cookie와 Google Analytics 분석 Cookie를 사용합니다. Cookie 배너에서 분석 Cookie를 거부할 수 있습니다.' },
+      { h: '4. 데이터 공유', p: 'WhatsApp/WeChat, CRM/이메일 서비스, Google Analytics와 공유. 모든 처리자는 GDPR 준수.' },
+      { h: '5. 귀하의 권리 (GDPR)', p: '개인 데이터에 대한 접근, 정정, 삭제, 처리 제한 권리가 있습니다. dongxiaocashmere@erdosdx.com으로 연락.' },
+      { h: '6. 보관 기간', p: '문의 데이터 3년, 분석 데이터 14개월(Google Analytics 기본).' },
+      { h: '7. 연락처', p: '개인정보 관련 문의: dongxiaocashmere@erdosdx.com' },
+    ],
+  },
 };
 
 const policy = privacyPolicy[locale] || privacyPolicy.en;
@@ -46,14 +97,26 @@ const policy = privacyPolicy[locale] || privacyPolicy.en;
 <BaseLayout locale={locale} pageKey="privacy" path="/privacy-policy">
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/privacy-policy`} />
 
-  <section class="pt-32 pb-12">
-    <div class="container-narrow">
-      <h1 class="font-display text-4xl md:text-5xl font-light leading-tight mb-12">{policy.title}</h1>
-      <div class="prose max-w-3xl">
-        {policy.sections.map((s) => (
-          <div class="mb-8">
-            <h2 class="text-xl font-medium mb-3">{s.h}</h2>
-            <p class="text-muted-foreground leading-relaxed">{s.p}</p>
+  <section class="relative bg-brand-ink text-white overflow-hidden">
+    <div class="container-narrow py-24 md:py-32">
+      <div class="flex items-center gap-3 mb-8">
+        <span class="h-px w-12 bg-brand-gold"></span>
+        <span class="text-xs tracking-[0.4em] text-brand-gold uppercase font-medium">LEGAL</span>
+      </div>
+      <h1 class="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-8 text-balance">{policy.title}</h1>
+    </div>
+  </section>
+
+  <section class="py-24 md:py-32 bg-background">
+    <div class="container-narrow max-w-3xl">
+      <div class="space-y-12">
+        {policy.sections.map((s, i) => (
+          <div>
+            <div class="flex items-baseline gap-3 mb-4">
+              <span class="font-serif text-sm text-brand-gold/50">{String(i+1).padStart(2,'0')}</span>
+              <h2 class="font-serif text-2xl text-brand-ink">{s.h}</h2>
+            </div>
+            <p class="text-muted-foreground leading-relaxed pl-8">{s.p}</p>
           </div>
         ))}
       </div>

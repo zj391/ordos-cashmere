@@ -1,4 +1,7 @@
 ---
+/**
+ * Contact 联系页
+ */
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Navigation from '@/components/Navigation.astro';
 import Footer from '@/components/Footer.astro';
@@ -17,12 +20,30 @@ const { locale: rawLocale } = Astro.params;
 const locale = pickLocale(rawLocale);
 
 const t: Record<string, Record<string, string>> = {
-  en: { title: 'Contact Us', subtitle: 'Get a quote within 24 hours', address: 'Address', phone: 'Phone', whatsapp: 'WhatsApp', wechat: 'WeChat', email: 'Email', hours: 'Business Hours' },
-  cn: { title: '联系我们', subtitle: '24小时内获取报价', address: '地址', phone: '电话', whatsapp: 'WhatsApp', wechat: '微信', email: '邮箱', hours: '工作时间' },
-  de: { title: 'Kontakt', subtitle: 'Angebot innerhalb von 24 Stunden', address: 'Adresse', phone: 'Telefon', whatsapp: 'WhatsApp', wechat: 'WeChat', email: 'E-Mail', hours: 'Geschäftszeiten' },
-  fr: { title: 'Contact', subtitle: 'Devis sous 24 heures', address: 'Adresse', phone: 'Téléphone', whatsapp: 'WhatsApp', wechat: 'WeChat', email: 'Email', hours: 'Horaires' },
-  ja: { title: 'お問い合わせ', subtitle: '24時間以内に見積もり', address: '住所', phone: '電話', whatsapp: 'WhatsApp', wechat: '微信', email: 'メール', hours: '営業時間' },
-  kr: { title: '문의', subtitle: '24시간 내 견적', address: '주소', phone: '전화', whatsapp: 'WhatsApp', wechat: '위챗', email: '이메일', hours: '영업시간' },
+  en: {
+    tagline: 'GET IN TOUCH',
+    title: 'Contact\nOur Specialists',
+    subtitle: 'Get a quote within 24 hours. Our sales team responds via email, WhatsApp, or WeChat.',
+    infoTitle: 'Direct channels',
+    infoSub: 'Choose the channel that suits you. All routes reach the same team.',
+    formTitle: 'Send an inquiry',
+    formSub: 'Tell us what you need. We respond with sample, pricing, and lead time.',
+    address: 'Address', phone: 'Phone', whatsapp: 'WhatsApp', wechat: 'WeChat', email: 'Email', hours: 'Business Hours',
+  },
+  cn: {
+    tagline: '联系我们',
+    title: '联系\n销售专家',
+    subtitle: '24小时内获取报价。销售团队通过邮件、WhatsApp 或微信回复。',
+    infoTitle: '直接联系方式',
+    infoSub: '选择适合您的渠道，所有方式都直达同一团队。',
+    formTitle: '发送询盘',
+    formSub: '告诉我们您的需求，回复样品、报价和交期。',
+    address: '地址', phone: '电话', whatsapp: 'WhatsApp', wechat: '微信', email: '邮箱', hours: '工作时间',
+  },
+  de: { tagline: 'KONTAKT', title: 'Kontakt\nzu Spezialisten', subtitle: 'Angebot innerhalb 24h.', infoTitle: 'Direkte Kanäle', infoSub: 'Wählen Sie den passenden Kanal.', formTitle: 'Anfrage senden', formSub: 'Erzählen Sie uns, was Sie brauchen.', address: 'Adresse', phone: 'Telefon', whatsapp: 'WhatsApp', wechat: 'WeChat', email: 'E-Mail', hours: 'Geschäftszeiten' },
+  fr: { tagline: 'CONTACT', title: 'Contact\nspécialistes', subtitle: 'Devis sous 24h.', infoTitle: 'Canaux directs', infoSub: 'Choisissez votre canal.', formTitle: 'Envoyer une demande', formSub: 'Dites-nous ce dont vous avez besoin.', address: 'Adresse', phone: 'Téléphone', whatsapp: 'WhatsApp', wechat: 'WeChat', email: 'Email', hours: 'Horaires' },
+  ja: { tagline: 'お問い合わせ', title: 'お問い合わせ\n specialist', subtitle: '24時間以内に見積もり。', infoTitle: '直接連絡', infoSub: 'ご希望のチャネルを。', formTitle: '問い合わせ送信', formSub: 'ご要望をお知らせください。', address: '住所', phone: '電話', whatsapp: 'WhatsApp', wechat: '微信', email: 'メール', hours: '営業時間' },
+  kr: { tagline: '문의', title: '문의\nspecialist', subtitle: '24시간 내 견적.', infoTitle: '직접 연락', infoSub: '원하는 채널을 선택하세요.', formTitle: '문의 보내기', formSub: '필요한 것을 알려주세요.', address: '주소', phone: '전화', whatsapp: 'WhatsApp', wechat: '위챗', email: '이메일', hours: '영업시간' },
 };
 const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
 ---
@@ -30,46 +51,101 @@ const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
 <BaseLayout locale={locale} pageKey="contact" path="/contact">
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/contact`} />
 
-  <section class="pt-24 pb-8 bg-gradient-to-br from-brand-ink to-brand-chocolate text-white">
-    <div class="container-narrow relative z-10">
-      <h1 class="font-display text-5xl md:text-6xl font-light leading-tight mb-6">{T('title')}</h1>
-      <p class="text-xl text-white/80">{T('subtitle')}</p>
+  <!-- HERO -->
+  <section class="relative bg-brand-ink text-white overflow-hidden">
+    <div class="container-narrow py-24 md:py-32">
+      <div class="flex items-center gap-3 mb-8">
+        <span class="h-px w-12 bg-brand-gold"></span>
+        <span class="text-xs tracking-[0.4em] text-brand-gold uppercase font-medium">{T('tagline')}</span>
+      </div>
+      <h1 class="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-8" set:html={T('title').replace(/\n/g, '<br/>')} />
+      <p class="text-lg text-white/75 leading-relaxed max-w-xl font-light">{T('subtitle')}</p>
     </div>
   </section>
 
-  <section class="section-padding bg-background">
+  <section class="py-24 md:py-32 bg-background">
     <div class="container-narrow">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-        <!-- Contact Info -->
-        <div class="space-y-6">
-          <div class="border-l-2 border-primary pl-4">
-            <div class="text-xs uppercase tracking-wider text-muted-foreground mb-1">{T('address')}</div>
-            <div class="text-base">{SITE_INFO.address}</div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <!-- Left: Contact info (5 列) -->
+        <div class="lg:col-span-5">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="h-px w-8 bg-brand-gold"></span>
+            <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">01 / {T('infoTitle')}</span>
           </div>
-          <div class="border-l-2 border-primary pl-4">
-            <div class="text-xs uppercase tracking-wider text-muted-foreground mb-1">{T('phone')}</div>
-            <a href={`tel:${SITE_INFO.phone}`} class="text-base hover:text-primary">{SITE_INFO.phone}</a>
-          </div>
-          <div class="border-l-2 border-primary pl-4">
-            <div class="text-xs uppercase tracking-wider text-muted-foreground mb-1">{T('whatsapp')}</div>
-            <a href={`https://wa.me/${SITE_INFO.whatsapp.replace(/[^\d]/g, '')}`} target="_blank" class="text-base hover:text-primary">{SITE_INFO.phone}</a>
-          </div>
-          <div class="border-l-2 border-primary pl-4">
-            <div class="text-xs uppercase tracking-wider text-muted-foreground mb-1">{T('wechat')}</div>
-            <div class="text-base font-mono">{SITE_INFO.wechatId}</div>
-          </div>
-          <div class="border-l-2 border-primary pl-4">
-            <div class="text-xs uppercase tracking-wider text-muted-foreground mb-1">{T('email')}</div>
-            <a href={`mailto:${SITE_INFO.email}`} class="text-base hover:text-primary">{SITE_INFO.email}</a>
-          </div>
-          <div class="border-l-2 border-primary pl-4">
-            <div class="text-xs uppercase tracking-wider text-muted-foreground mb-1">{T('hours')}</div>
-            <div class="text-base">Mon-Sat 9:00-18:00 (GMT+8)</div>
+          <h2 class="font-serif text-3xl md:text-4xl font-light leading-tight mb-4">{T('infoTitle')}</h2>
+          <p class="text-muted-foreground leading-relaxed mb-10">{T('infoSub')}</p>
+
+          <div class="space-y-6">
+            <div class="flex gap-4 group">
+              <div class="w-10 h-10 rounded-full bg-brand-cream flex items-center justify-center shrink-0 group-hover:bg-brand-gold transition-colors">
+                <svg class="w-5 h-5 text-brand-chocolate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </div>
+              <div>
+                <div class="text-xs uppercase tracking-wider text-muted-foreground mb-1">{T('address')}</div>
+                <div class="text-base">{SITE_INFO.address}</div>
+              </div>
+            </div>
+
+            <div class="flex gap-4 group">
+              <div class="w-10 h-10 rounded-full bg-brand-cream flex items-center justify-center shrink-0 group-hover:bg-brand-gold transition-colors">
+                <svg class="w-5 h-5 text-brand-chocolate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              </div>
+              <div>
+                <div class="text-xs uppercase tracking-wider text-muted-foreground mb-1">{T('phone')}</div>
+                <a href={`tel:${SITE_INFO.phone}`} class="text-base hover:text-brand-gold transition-colors">{SITE_INFO.phone}</a>
+              </div>
+            </div>
+
+            <div class="flex gap-4 group">
+              <div class="w-10 h-10 rounded-full bg-brand-cream flex items-center justify-center shrink-0 group-hover:bg-brand-gold transition-colors">
+                <svg class="w-5 h-5 text-brand-chocolate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </div>
+              <div>
+                <div class="text-xs uppercase tracking-wider text-muted-foreground mb-1">{T('email')}</div>
+                <a href={`mailto:${SITE_INFO.email}`} class="text-base hover:text-brand-gold transition-colors">{SITE_INFO.email}</a>
+              </div>
+            </div>
+
+            <div class="flex gap-4 group">
+              <div class="w-10 h-10 rounded-full bg-brand-cream flex items-center justify-center shrink-0 group-hover:bg-brand-gold transition-colors">
+                <svg class="w-5 h-5 text-brand-chocolate" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              </div>
+              <div>
+                <div class="text-xs uppercase tracking-wider text-muted-foreground mb-1">{T('whatsapp')}</div>
+                <a href={`https://wa.me/${SITE_INFO.whatsapp.replace(/[^\d]/g, '')}`} target="_blank" class="text-base hover:text-brand-gold transition-colors">{SITE_INFO.phone}</a>
+              </div>
+            </div>
+
+            <div class="flex gap-4 group">
+              <div class="w-10 h-10 rounded-full bg-brand-cream flex items-center justify-center shrink-0 group-hover:bg-brand-gold transition-colors">
+                <svg class="w-5 h-5 text-brand-chocolate" fill="currentColor" viewBox="0 0 24 24"><path d="M8.5 13.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm7 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM12 2C6.48 2 2 6.48 2 12c0 1.65.42 3.21 1.16 4.6L2 22l5.4-1.16A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+              </div>
+              <div>
+                <div class="text-xs uppercase tracking-wider text-muted-foreground mb-1">{T('wechat')}</div>
+                <div class="text-base font-mono">{SITE_INFO.wechatId}</div>
+              </div>
+            </div>
+
+            <div class="flex gap-4 group">
+              <div class="w-10 h-10 rounded-full bg-brand-cream flex items-center justify-center shrink-0 group-hover:bg-brand-gold transition-colors">
+                <svg class="w-5 h-5 text-brand-chocolate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <div>
+                <div class="text-xs uppercase tracking-wider text-muted-foreground mb-1">{T('hours')}</div>
+                <div class="text-base">Mon-Sat 9:00-18:00 (GMT+8)</div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Form -->
-        <div class="lg:col-span-2">
+        <!-- Right: Form (7 列) -->
+        <div class="lg:col-span-7 lg:pl-8 lg:pt-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="h-px w-8 bg-brand-gold"></span>
+            <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">02 / {T('formTitle')}</span>
+          </div>
+          <h2 class="font-serif text-3xl md:text-4xl font-light leading-tight mb-4">{T('formTitle')}</h2>
+          <p class="text-muted-foreground leading-relaxed mb-10">{T('formSub')}</p>
           <ContactForm client:load locale={locale} />
         </div>
       </div>
@@ -80,12 +156,3 @@ const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
   <FloatingChatButtons slot="floating" locale={locale} />
   <CookieConsent slot="cookie-consent" locale={locale} />
 </BaseLayout>
-
----
-
-<style>
-  /* Contact page specific micro-animations */
-  details[open] summary svg {
-    transform: rotate(180deg);
-  }
-</style>
