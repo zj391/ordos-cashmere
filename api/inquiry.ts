@@ -14,7 +14,11 @@ const HERMES_INBOUND_TOKEN=process.env.HERMES_INBOUND_TOKEN || '';
 const SUPABASE_URL = process.env.PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_ANON_KEY;
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const FROM_EMAIL = process.env.FROM_EMAIL || 'sales@erdosdx.com';
+// Gmail SMTP (inquiry confirmations + internal notifications)
+const GMAIL_USER = process.env.GMAIL_USER || '';
+const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD || '';
+const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL || GMAIL_USER;
+const FROM_EMAIL = process.env.FROM_EMAIL || (GMAIL_USER ? `DONGXIAO Cashmere <${GMAIL_USER}>` : 'sales@erdosdx.com');
 const REPLY_TO = process.env.REPLY_TO || 'dongxiaocashmere@erdosdx.com';
 const WHATSAPP_NUMBER = process.env.WHATSAPP_NUMBER || '+861****3999';
 const WECHAT_ID = process.env.WECHAT_ID || 'dongxiaocashmere';
@@ -115,23 +119,38 @@ const REPLY_EMAIL_TEMPLATE = (locale: string, data: InquiryPayload) => {
   };
 };
 
-async function sendEmail(payload: { to: string; subject: string; html: string }) {
-  if (!RESEND_API_KEY) return;
-  await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${RESEND_API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      from: FROM_EMAIL,
-      to: payload.to,
-      subject: payload.subject,
-      html: payload.html,
-      reply_to: REPLY_TO,
-    }),
-  });
+async function sendEmail(payload: { to: string; subject: string; html: string; replyTo?: string; tag?: string }): Promise<{ ok: boolean; id?: string; error?: string }> {
+  if (!RESEND_API_KEY) return { ok: false, error: 'no_api_key' };
+  try {
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: FROM_EMAIL,
+        to: payload.to,
+        subject: payload.subject,
+        html: payload.html,
+        reply_to: payload.replyTo || REPLY_TO,
+        tags: payload.tag ? [{ name: 'category', value: payload.tag }] : undefined,
+      }),
+    });
+    if (!res.ok) {
+      const err = await res.text();
+      console.error('Resend error:', res.status, err);
+      return { ok: false, error: err };
+    }
+    const data = await res.json();
+    return { ok: true, id: data.id };
+  } catch (e: any) {
+    console.error('sendEmail exception:', e);
+    return { ok: false, error: String(e) };
+  }
 }
+
+
 
 async function lookupKnownCustomer(email: string, company: string) {
   if (!SUPABASE_URL || !SUPABASE_KEY) return null;
@@ -252,11 +271,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // 5. 自动回执邮件（如果配置了 Resend）
     const reply = REPLY_EMAIL_TEMPLATE(data.locale, data);
-    sendEmail({ to: data.email, ...reply }).catch(err => console.error('Email error:', err));
-
-    // 6. 通知销售团队（内部抄送）
-    sendEmail({
-      to: REPLY_TO,
+    const customerEmailResult = sendEmail({ to: data.email, ...reply, tag: 'inquiry-reply' })
+      .catch(err => { console.error('Email error:', err); return { ok: false, error: String(err) }; });
+    const internalEmailResult = sendEmail({
+      to: NOTIFICATION_EMAIL,
+      replyTo: data.email,
+      tag: 'internal-notification',
       subject: `[New Inquiry] ${data.company} (${data.country}) - ${inquiryType}`,
       html: `
         <h2>New Inquiry Received</h2>
@@ -271,13 +291,20 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         <p><strong>Locale:</strong> ${data.locale}</p>
         <p><strong>Inquiry ID:</strong> ${inquiryId}</p>
       `,
-    }).catch(err => console.error('Internal email error:', err));
+    }).catch(err => { console.error('Internal email error:', err); return { ok: false, error: String(err) }; });
 
+
+
+    const customerEmail = await customerEmailResult;
+    const internalEmail = await internalEmailResult;
     return res.status(200).json({
       success: true,
       inquiry_id: inquiryId,
       known_customer: !!known,
-      reply_sent: !!RESEND_API_KEY,
+      emails: {
+        customer_reply: { sent: customerEmail.ok, id: customerEmail.id, error: customerEmail.error },
+        internal_notification: { sent: internalEmail.ok, id: internalEmail.id, error: internalEmail.error },
+      },
     });
   } catch (err) {
     console.error('Inquiry error:', err);
