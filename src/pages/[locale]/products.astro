@@ -114,11 +114,17 @@ const seo = tdk[locale] || tdk.en;
   <!-- Products Explorer (React Island) -->
   <section class="container-narrow py-12">
     <ProductsExplorer
-      client:load
+      client:only="react"
       summaries={summaries}
       categories={categories}
       labels={labels}
-    />
+    >
+      <!-- SSR fallback：React 岛未 hydrate 前显示 -->
+      <div slot="fallback" class="text-center py-16 text-muted-foreground">
+        <div class="inline-block w-8 h-8 border-2 border-brand-gold border-t-transparent rounded-full animate-spin mb-4"></div>
+        <p>{locale === 'cn' ? '加载 591 款产品中…' : 'Loading 591 products…'}</p>
+      </div>
+    </ProductsExplorer>
   </section>
 
   <!-- SEO Content Block -->
