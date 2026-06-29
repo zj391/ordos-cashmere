@@ -262,6 +262,44 @@ if (_schema === 'faq' && faqs && faqs.length > 0) {
     <!-- AI 24h 智能客服（由 FloatingChatButtons 的 AI 按钮触发打开） -->
     <AIChatWidget client:idle locale={locale} />
 
+    <!-- Scroll Reveal（轻量 IntersectionObserver，无依赖） -->
+    <script is:inline>
+      (function() {
+        if (!('IntersectionObserver' in window)) {
+          // 老浏览器兜底：直接全部显示
+          document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale')
+            .forEach(function(el) { el.classList.add('reveal-visible'); });
+          return;
+        }
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('reveal-visible');
+              observer.unobserve(entry.target); // 一次性，进入后不再观察
+            }
+          });
+        }, {
+          threshold: 0.12,
+          rootMargin: '0px 0px -60px 0px' // 提前 60px 触发，避免太晚
+        });
+        function watch() {
+          document.querySelectorAll('.reveal:not(.reveal-visible), .reveal-left:not(.reveal-visible), .reveal-right:not(.reveal-visible), .reveal-scale:not(.reveal-visible)')
+            .forEach(function(el) { observer.observe(el); });
+        }
+        // 初始 + 监听 DOM 变化（React islands 加载后会有新元素）
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', watch);
+        } else {
+          watch();
+        }
+        // 兜底：3 秒后强制全部显示（防止 JS 异常卡住内容）
+        setTimeout(function() {
+          document.querySelectorAll('.reveal:not(.reveal-visible), .reveal-left:not(.reveal-visible), .reveal-right:not(.reveal-visible), .reveal-scale:not(.reveal-visible)')
+            .forEach(function(el) { el.classList.add('reveal-visible'); });
+        }, 3000);
+      })();
+    </script>
+
     <!-- IP 识别 + 访客画像（页面浏览/停留时长聚合） -->
     <script is:inline>
       (function() {

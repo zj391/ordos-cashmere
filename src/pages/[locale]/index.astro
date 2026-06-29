@@ -202,8 +202,8 @@ const IMG = {
   <section class="border-y border-border bg-background py-12">
     <div class="container-narrow">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 md:divide-x md:divide-border">
-        {c.metrics.map((m) => (
-          <div class="md:px-10 first:md:pl-0 last:md:pr-0 text-center md:text-left">
+        {c.metrics.map((m, i) => (
+          <div class={`md:px-10 first:md:pl-0 last:md:pr-0 text-center md:text-left reveal`} data-reveal-delay={i + 1}>
             <div class="font-serif text-4xl md:text-5xl text-brand-chocolate font-light leading-none mb-2">{m.value}</div>
             <div class="text-xs tracking-[0.2em] uppercase text-muted-foreground">{m.label}</div>
           </div>
@@ -217,8 +217,8 @@ const IMG = {
     <div class="container-narrow">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <!-- 左侧大图（占 7/12） -->
-        <div class="lg:col-span-7 relative">
-          <div class="aspect-[5/6] overflow-hidden">
+        <div class="lg:col-span-7 relative reveal-left">
+          <div class="aspect-[5/6] overflow-hidden hover-zoom">
             <img src={IMG.ordosLandscape} alt="Ordos plateau, Inner Mongolia" class="w-full h-full object-cover" loading="lazy" />
           </div>
           <!-- 浮动小图（地理坐标装饰） -->
@@ -230,7 +230,7 @@ const IMG = {
           </div>
         </div>
         <!-- 右侧文字（占 5/12，错位下沉） -->
-        <div class="lg:col-span-5 lg:pl-8 lg:pt-16">
+        <div class="lg:col-span-5 lg:pl-8 lg:pt-16 reveal-right" data-reveal-delay="1">
           <div class="flex items-center gap-3 mb-6">
             <span class="h-px w-8 bg-brand-gold"></span>
             <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">
@@ -314,7 +314,7 @@ const IMG = {
       <!-- Bento Grid：左大右小，错落 -->
       <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
         <!-- 原料（大图，左 7 列） -->
-        <a href={`/${locale}/raw-material`} class="group md:col-span-7 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden bg-gradient-to-br from-brand-ink via-brand-chocolate to-brand-camel">
+        <a href={`/${locale}/raw-material`} class="group md:col-span-7 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden bg-gradient-to-br from-brand-ink via-brand-chocolate to-brand-camel hover-lift reveal" data-reveal-delay="1">
           <!-- 抽象纤维纹理 -->
           <svg class="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
             <defs>
@@ -341,7 +341,7 @@ const IMG = {
         </a>
 
         <!-- 纱线面料（右小） -->
-        <a href={`/${locale}/yarn-fabric`} class="group md:col-span-5 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden">
+        <a href={`/${locale}/yarn-fabric`} class="group md:col-span-5 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden hover-lift reveal" data-reveal-delay="2">
           <img src={IMG.cashmereFiber} alt="Cashmere yarn" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
           <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/90 via-brand-ink/30 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
@@ -356,7 +356,7 @@ const IMG = {
         </a>
 
         <!-- 成衣代工（下大） -->
-        <a href={`/${locale}/garment-oem`} class="group md:col-span-12 relative aspect-[4/3] md:aspect-[21/9] overflow-hidden">
+        <a href={`/${locale}/garment-oem`} class="group md:col-span-12 relative aspect-[4/3] md:aspect-[21/9] overflow-hidden hover-lift reveal" data-reveal-delay="3">
           <img src={IMG.knitShawl} alt="Cashmere garments OEM" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
           <div class="absolute inset-0 bg-gradient-to-r from-brand-ink/95 via-brand-ink/50 to-transparent"></div>
           <div class="absolute bottom-0 left-0 p-8 md:p-12 text-white max-w-2xl">
@@ -396,7 +396,7 @@ const IMG = {
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
         <!-- 条目 1：自有牧场 + 图 -->
-        <div class="space-y-6">
+        <div class="space-y-6 reveal" data-reveal-delay="1">
           <div class="aspect-[4/3] overflow-hidden bg-gradient-to-br from-brand-ink to-brand-chocolate relative">
             <svg class="absolute inset-0 w-full h-full opacity-30" viewBox="0 0 100 75" preserveAspectRatio="xMidYMid slice">
               <!-- 抽象羊只剪影 -->
@@ -419,7 +419,7 @@ const IMG = {
         </div>
 
         <!-- 条目 2：原料分梳 + 图 -->
-        <div class="space-y-6 md:pt-20">
+        <div class="space-y-6 md:pt-20 reveal" data-reveal-delay="2">
           <div class="aspect-[4/3] overflow-hidden">
             <img src={IMG.cashmereFiber} alt="Dehairing process" class="w-full h-full object-cover" loading="lazy" />
           </div>
@@ -433,8 +433,8 @@ const IMG = {
         </div>
 
         <!-- 条目 3：纺纱 -->
-        <div class="space-y-6">
-          <div class="aspect-[4/3] overflow-hidden">
+        <div class="space-y-6 reveal" data-reveal-delay="3">
+          <div class="aspect-[4/3] overflow-hidden hover-zoom">
             <img src={IMG.cashmereFiber} alt="Spinning" class="w-full h-full object-cover" loading="lazy" />
           </div>
           <div class="flex items-baseline gap-4">
@@ -447,7 +447,7 @@ const IMG = {
         </div>
 
         <!-- 条目 4：成衣厂 -->
-        <div class="space-y-6 md:pt-20">
+        <div class="space-y-6 md:pt-20 reveal" data-reveal-delay="4">
           <div class="aspect-[4/3] overflow-hidden bg-gradient-to-br from-brand-camel to-brand-sand relative">
             <!-- 抽象针织纹理 -->
             <svg class="absolute inset-0 w-full h-full opacity-40" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
@@ -510,7 +510,7 @@ const IMG = {
         <rect width="100%" height="100%" fill="url(#cta-fibers)"/>
       </svg>
     </div>
-    <div class="container-narrow relative z-10 text-center max-w-3xl mx-auto">
+    <div class="container-narrow relative z-10 text-center max-w-3xl mx-auto reveal">
       <div class="inline-block text-xs tracking-[0.3em] uppercase text-brand-gold mb-6">
         {t6('下一步', 'Next Step', 'Nächster Schritt', 'Étape suivante', '次のステップ', '다음 단계')}
       </div>
