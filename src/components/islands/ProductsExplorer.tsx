@@ -1,9 +1,29 @@
 import { useState, useMemo, useEffect } from "react";
-import type { ProductWithCategory, Category } from "@/data/products";
+import type { Product, Category } from "@/data/products";
+
+// 轻量摘要（用于卡片列表展示，节省 props 体积）
+// 字段极度精简：id+name 用于卡片标题，categoryId 用于筛选，price 用于排序
+// 其他字段（image/material/moq 等）从 /data/products.json 异步加载后填充
+interface ProductSummary {
+  id: string;
+  name: string;
+  categoryId: string;
+  price: string;
+}
+
+// 卡片用视图模型（summary + 详情合并）
+interface ProductCardItem extends ProductSummary {
+  categoryName: string;
+  image: string;
+  material: string;
+  micron: string;
+  currency: string;
+  moq: number;
+}
 
 interface Props {
-  products: ProductWithCategory[];
-  categories: Category[];
+  summaries: ProductSummary[];          // 轻量：每产品 ~200 字节
+  categories: Array<Pick<Category, 'id' | 'name'>>;
   labels: {
     filterAll: string;
     searchPlaceholder: string;
@@ -30,12 +50,109 @@ interface Props {
   };
 }
 
-export default function ProductsExplorer({ products, categories, labels }: Props) {
+export default function ProductsExplorer({ summaries, categories, labels }: Props) {
   const [activeCategory, setActiveCategory] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<string>("default");
-  const [selectedProduct, setSelectedProduct] = useState<ProductWithCategory | null>(null);
+  // selectedProduct 可以是 summary 派生对象（点击瞬间）或 full Product（详情加载后）
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  // 帮助函数：把任意入口（含 summary）转成 Product 形状（缺失字段填空字符串），modal 能立即渲染
+  const openProduct = (item: ProductCardItem | Product) => {
+    // 优先用 allDetails 里的全量；否则用 item 字段兜底（缺失则空）
+    const full = allDetails?.[item.id];
+    if (full) {
+      setSelectedProduct(full);
+    } else {
+      // 详情 JSON 还没回来，用 card item 字段拼一个最小 Product
+      const card = item as ProductCardItem;
+      setSelectedProduct({
+        id: card.id,
+        name: card.name,
+        price: card.price,
+        currency: card.currency,
+        moq: card.moq,
+        material: card.material,
+        micron: card.micron,
+        colors: [],
+        description: '',
+        images: card.image ? [card.image] : [],
+        weight: '',
+        lead: '',
+        sample_time: '',
+        tags: [],
+        categoryName: card.categoryName,
+      } as Product);
+    }
+  };
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  // 全量产品缓存：id → 完整 Product（详情懒加载用）
+  const [allDetails, setAllDetails] = useState<Record<string, Product> | null>(null);
+  const [detailsLoading, setDetailsLoading] = useState(false);
+
+  // 岛 hydrate 后立即 fetch 完整产品 JSON（24KB gz，远小于 1.1MB inline props）
+  useEffect(() => {
+    if (allDetails !== null) return;
+    let cancelled = false;
+    setDetailsLoading(true);
+    fetch('/data/products.json')
+      .then(r => r.ok ? r.json() : Promise.reject(r.statusText))
+      .then((data: { categories: (Category & { products: Product[] })[] }) => {
+        if (cancelled) return;
+        const map: Record<string, Product> = {};
+        const catNameMap: Record<string, string> = {};
+        for (const cat of data.categories) {
+          catNameMap[cat.id] = cat.name;
+          for (const p of cat.products) {
+            map[p.id] = { ...p, categoryName: cat.name };
+          }
+        }
+        setAllDetails(map);
+      })
+      .catch(err => console.error('Failed to load products:', err))
+      .finally(() => { if (!cancelled) setDetailsLoading(false); });
+    return () => { cancelled = true; };
+  }, [allDetails]);
+
+  // 打开 modal 时用缓存查详情（如果 details 已就绪，把 summary 替换为 full Product）
+  useEffect(() => {
+    if (selectedProduct && allDetails) {
+      const full = allDetails[selectedProduct.id];
+      if (full && full !== selectedProduct) {
+        setSelectedProduct(full);
+      }
+    }
+  }, [allDetails, selectedProduct]);
+
+  // 派生卡片视图模型：合并 summary + allDetails
+  const cards: ProductCardItem[] = useMemo(() => {
+    if (!allDetails) {
+      // 详情还没加载：先渲染基础骨架（id + name + categoryId），图/material 等留空
+      return summaries.map((s) => ({
+        ...s,
+        categoryName: '',
+        image: '',
+        material: '',
+        micron: '',
+        currency: 'USD',
+        moq: 0,
+      }));
+    }
+    return summaries.map((s) => {
+      const full = allDetails[s.id];
+      return {
+        id: s.id,
+        name: s.name,
+        categoryId: s.categoryId,
+        price: s.price,
+        categoryName: full?.categoryName || '',
+        image: full?.images?.[0] || '',
+        material: full?.material || '',
+        micron: full?.micron || '',
+        currency: full?.currency || 'USD',
+        moq: full?.moq || 0,
+      };
+    });
+  }, [summaries, allDetails]);
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -64,7 +181,7 @@ export default function ProductsExplorer({ products, categories, labels }: Props
   }, []);
 
   const filtered = useMemo(() => {
-    let result = activeCategory === "all" ? products : products.filter((p) => p.categoryId === activeCategory);
+    let result = activeCategory === "all" ? cards : cards.filter((p) => p.categoryId === activeCategory);
 
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
@@ -72,8 +189,7 @@ export default function ProductsExplorer({ products, categories, labels }: Props
         (p) =>
           p.name.toLowerCase().includes(q) ||
           p.id.toLowerCase().includes(q) ||
-          p.material.toLowerCase().includes(q) ||
-          (p.tags || []).some((t) => t.toLowerCase().includes(q))
+          (p.material && p.material.toLowerCase().includes(q))
       );
     }
 
@@ -86,7 +202,7 @@ export default function ProductsExplorer({ products, categories, labels }: Props
     }
 
     return result;
-  }, [products, activeCategory, searchQuery, sortBy]);
+  }, [cards, activeCategory, searchQuery, sortBy]);
 
   const [displayCount, setDisplayCount] = useState(24);
 
@@ -113,10 +229,10 @@ export default function ProductsExplorer({ products, categories, labels }: Props
                 : "bg-white text-stone-700 border-stone-300 hover:border-stone-900"
             }`}
           >
-            {labels.filterAll} ({products.length})
+            {labels.filterAll} ({summaries.length})
           </button>
           {categories.map((cat) => {
-            const count = products.filter((p) => p.categoryId === cat.id).length;
+            const count = summaries.filter((p) => p.categoryId === cat.id).length;
             return (
               <button
                 key={cat.id}
@@ -171,10 +287,10 @@ export default function ProductsExplorer({ products, categories, labels }: Props
             >
               <div
                 className="aspect-square bg-stone-100 cursor-pointer overflow-hidden"
-                onClick={() => setSelectedProduct(p)}
+                onClick={() => openProduct(p)}
               >
                 <img
-                  src={`/products/mic/${p.images[0]}`}
+                  src={`/products/mic/${p.image}`}
                   alt={p.name}
                   loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
@@ -184,7 +300,7 @@ export default function ProductsExplorer({ products, categories, labels }: Props
                 <p className="text-xs text-stone-500 uppercase tracking-wider mb-1">{p.categoryName}</p>
                 <h3
                   className="text-sm font-medium text-stone-900 mb-2 line-clamp-2 cursor-pointer hover:text-amber-700"
-                  onClick={() => setSelectedProduct(p)}
+                  onClick={() => openProduct(p)}
                 >
                   {p.name}
                 </h3>
@@ -216,7 +332,7 @@ export default function ProductsExplorer({ products, categories, labels }: Props
                   ))}
                 </div>
                 <button
-                  onClick={() => setSelectedProduct(p)}
+                  onClick={() => openProduct(p)}
                   className="w-full px-3 py-2 bg-stone-900 text-white text-xs hover:bg-amber-700 transition-colors"
                 >
                   {labels.requestQuote}

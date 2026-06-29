@@ -12,7 +12,7 @@ import SEOFaq from '@/components/SEOFaq.astro';
 import ProductsExplorer from '@/components/islands/ProductsExplorer.tsx';
 import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
 import { SEO, SITE_INFO } from '@/lib/seo';
-import { getAllProducts, products as productsData } from '@/data/products';
+import { getProductSummaries, products as productsData } from '@/data/products';
 import { getProductLabels } from '@/lib/product-labels';
 
 export function getStaticPaths() {
@@ -25,8 +25,8 @@ if (!isLocale(rawLocale)) {
 }
 const locale = pickLocale(rawLocale);
 
-// 加载产品数据 + 翻译
-const allProducts = getAllProducts();
+// 加载产品摘要 + 翻译（避免 591 个产品 JSON 全部塞进 island props）
+const summaries = getProductSummaries();
 const categories = productsData.categories;
 const labels = getProductLabels(locale);
 
@@ -115,7 +115,7 @@ const seo = tdk[locale] || tdk.en;
   <section class="container-narrow py-12">
     <ProductsExplorer
       client:load
-      products={allProducts}
+      summaries={summaries}
       categories={categories}
       labels={labels}
     />

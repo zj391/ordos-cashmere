@@ -15,6 +15,8 @@ export interface Product {
   lead: string;
   sample_time: string;
   tags: string[];
+  // 运行时由 ProductsExplorer 从 JSON 注入（不属于原始 schema）
+  categoryName?: string;
 }
 
 export interface Category {
@@ -68,4 +70,24 @@ export function getCategoryById(id: string): Category | null {
 
 export function getProductImageUrl(imageName: string): string {
   return `/products/mic/${imageName}`;
+}
+
+// 轻量摘要，用于 ProductsExplorer 岛 props（避免 1MB+ inline JSON）
+// 字段极度精简：只保留卡片必需 + 价格（用于排序）
+export interface ProductSummary {
+  id: string;
+  name: string;
+  categoryId: string;
+  price: string; // 用于排序
+}
+
+export function getProductSummaries(): ProductSummary[] {
+  return products.categories.flatMap((cat) =>
+    cat.products.map((p) => ({
+      id: p.id,
+      name: p.name,
+      categoryId: cat.id,
+      price: p.price,
+    }))
+  );
 }
