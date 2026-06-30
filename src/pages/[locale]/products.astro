@@ -570,9 +570,8 @@ const labelsJson = JSON.stringify(labels);
         if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
       });
 
-      // 初次渲染：调用 render() 让分页 + 页码信息显示
-      // （卡片本身已经 SSR 渲染好了，render() 会重新渲染 grid + 初始化分页）
-      // 为了不破坏 SSR 的卡片内容，单独调 renderPagination
+      // 初次渲染：SSR 已渲染 24 张卡片 + 分页
+      bindCardEvents(); // 绑定卡片 click → openModal
       (function initPagination() {
         const total = products.length;
         const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
