@@ -210,10 +210,11 @@ const labelsJson = JSON.stringify(labels);
   </section>
 
   <!-- 弹窗：左右双栏布局，图片左信息右，整页可视无需下拉 -->
-  <div id="product-modal" class="fixed inset-0 z-[100] hidden bg-black/70 backdrop-blur-sm overflow-y-auto" role="dialog" aria-modal="true">
-    <div class="min-h-full flex items-center justify-center p-4 sm:p-8" id="modal-backdrop">
-      <!-- max-w-5xl 给左右两栏足够空间；max-h-[85vh] + grid 让两栏各自滚动 -->
-      <div class="bg-white max-w-5xl w-full max-h-[85vh] grid grid-cols-1 md:grid-cols-2 overflow-hidden shadow-2xl relative" id="modal-content">
+  <div id="product-modal" class="fixed inset-0 z-[100] hidden bg-black/70 backdrop-blur-sm" role="dialog" aria-modal="true">
+    <div class="absolute inset-0 flex items-center justify-center p-2 sm:p-4 md:p-8" id="modal-backdrop">
+      <!-- h-[100dvh] 用动态视口单位（移动端不被地址栏影响） -->
+      <!-- 减去 padding 后 max-h，确保左右两栏 + CTA 都在视口内 -->
+      <div class="bg-white max-w-5xl w-full h-full md:h-auto md:max-h-[90vh] grid grid-cols-1 md:grid-cols-2 overflow-hidden shadow-2xl relative" id="modal-content">
         <!-- 内容由 JS 填充 -->
       </div>
     </div>
