@@ -477,10 +477,11 @@ const labelsJson = JSON.stringify(labels);
               : '') +
           '</div>' +
 
-          // 右栏 - 信息（flex 列布局：内容区独立滚动 + CTA 永远固定在底部）
-                    '<div class="flex flex-col overflow-hidden min-h-0 md:h-full md:flex-1">' +
+          // 右栏 - 信息（position: relative 让底部 absolute CTA 相对它定位）
+                    '<div class="relative flex flex-col overflow-hidden min-h-0 md:flex-1 md:min-h-0">' +
                       // 内容区：占据中间所有空间，内部滚动
-                      '<div class="flex-1 overflow-y-auto p-6 sm:p-8 min-h-0">' +
+                      // pb-32 给底部 CTA 留空间（避免文字被 CTA 盖住）
+                      '<div class="flex-1 overflow-y-auto p-6 sm:p-8 pb-32 min-h-0">' +
                         '<p class="text-xs text-stone-500 uppercase tracking-[0.2em] mb-2">' + escapeHtml(p.categoryName || '') + '</p>' +
                         '<h2 class="text-xl sm:text-2xl font-serif text-stone-900 leading-tight mb-2">' + escapeHtml(p.name) + '</h2>' +
                         '<p class="text-xs text-stone-500 mb-5">' + escapeHtml(labels.productIdLabel) + ': <span class="font-mono">' + escapeHtml(p.id) + '</span></p>' +
@@ -515,8 +516,8 @@ const labelsJson = JSON.stringify(labels);
                         (p.description ? '<div class="mb-6"><p class="text-sm text-stone-700 leading-relaxed">' + escapeHtml(p.description) + '</p></div>' : '') +
                       '</div>' +
 
-                      // 底部 CTA：永远固定（flex-shrink-0 + shadow 让它浮起来）
-                      '<div class="flex-shrink-0 p-4 sm:p-6 border-t border-stone-200 bg-white shadow-[0_-4px_12px_-2px_rgba(0,0,0,0.06)]">' +
+                      // 底部 CTA：position absolute 浮在右栏底部，scroll 内容时不动
+                      '<div class="absolute bottom-0 left-0 right-0 p-4 sm:p-6 border-t border-stone-200 bg-white shadow-[0_-4px_12px_-2px_rgba(0,0,0,0.06)] z-10">' +
                         // 上一个/下一个 导航
                         '<div class="flex items-center justify-between gap-3 mb-3">' +
                           '<button id="modal-prev" class="flex items-center gap-1 text-xs text-stone-600 hover:text-stone-900 transition-colors disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Previous product">' +
