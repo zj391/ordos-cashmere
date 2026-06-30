@@ -212,8 +212,9 @@ const labelsJson = JSON.stringify(labels);
   <!-- 弹窗：全屏遮罩 + 居中弹窗 -->
   <div id="product-modal" class="fixed inset-0 z-[100] hidden bg-black/70 backdrop-blur-sm overflow-y-auto" role="dialog" aria-modal="true">
     <div class="min-h-full flex items-center justify-center p-2 sm:p-4 md:p-8" id="modal-backdrop">
-      <!-- 移动端 h-[100dvh] 动态视口单位（不被地址栏影响）撑满，桌面用 max-h -->
-      <div class="bg-white w-full max-w-5xl md:max-h-[90vh] h-[100dvh] md:h-auto grid grid-cols-1 md:grid-cols-2 overflow-hidden shadow-2xl relative" id="modal-content">
+      <!-- 移动端 h-[100dvh] 动态视口单位撑满，桌面用 max-h -->
+      <!-- flex 布局（不是 grid）：让左右两栏天然等高，flex-1 内容区 + flex-shrink-0 CTA 稳定 -->
+      <div class="bg-white w-full max-w-5xl md:max-h-[90vh] h-[100dvh] md:h-auto flex flex-col md:flex-row overflow-hidden shadow-2xl relative" id="modal-content">
         <!-- 内容由 JS 填充 -->
       </div>
     </div>
@@ -465,8 +466,8 @@ const labelsJson = JSON.stringify(labels);
 
         // 左栏：图片画廊（独立滚动）；右栏：产品信息（独立滚动）
         modalContent.innerHTML = (
-          // 左栏 - 图片
-          '<div class="relative bg-stone-50 flex flex-col">' +
+          // 左栏 - 图片（移动端固定高度 240px，桌面让 flex-1 撑满）
+          '<div class="relative bg-stone-50 flex flex-col h-56 md:h-auto md:flex-1 flex-shrink-0">' +
             '<button id="modal-close" class="absolute top-3 right-3 z-10 w-9 h-9 inline-flex items-center justify-center bg-white/90 hover:bg-white text-stone-700 hover:text-stone-900 text-xl leading-none rounded-full shadow-md transition-colors" aria-label="' + escapeHtml(labels.closeButton) + '">×</button>' +
             '<div id="modal-main-img" class="flex-1 flex items-center justify-center p-6 min-h-[280px]">' +
               (mainImg ? '<img src="' + mainImg + '" alt="' + escapeHtml(p.name) + '" class="max-w-full max-h-[50vh] object-contain" />' : '<div class="text-stone-300">No image</div>') +
