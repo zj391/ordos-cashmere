@@ -209,12 +209,12 @@ const labelsJson = JSON.stringify(labels);
     </div>
   </section>
 
-  <!-- 弹窗：左右双栏布局，图片左信息右，整页可视无需下拉 -->
+  <!-- 弹窗：固定全屏 + flex 居中，宽度 max-w-5xl，高度自适应内容但不超过视口 -->
   <div id="product-modal" class="fixed inset-0 z-[100] hidden bg-black/70 backdrop-blur-sm" role="dialog" aria-modal="true">
-    <div class="absolute inset-0 flex items-center justify-center p-2 sm:p-4 md:p-8" id="modal-backdrop">
-      <!-- h-[100dvh] 用动态视口单位（移动端不被地址栏影响） -->
-      <!-- 减去 padding 后 max-h，确保左右两栏 + CTA 都在视口内 -->
-      <div class="bg-white max-w-5xl w-full h-full md:h-auto md:max-h-[90vh] grid grid-cols-1 md:grid-cols-2 overflow-hidden shadow-2xl relative" id="modal-content">
+    <div class="absolute inset-0 flex items-center justify-center p-2 sm:p-4 md:p-8 overflow-y-auto" id="modal-backdrop">
+      <!-- w-full 占据可用宽度，max-w-5xl 限制最大 -->
+      <!-- min-h-0 + max-h-[calc(100vh-2rem)] 避免移动端高度溢出 -->
+      <div class="bg-white w-full max-w-5xl max-h-[calc(100vh-1rem)] sm:max-h-[calc(100vh-2rem)] md:max-h-[90vh] grid grid-cols-1 md:grid-cols-2 overflow-hidden shadow-2xl relative" id="modal-content">
         <!-- 内容由 JS 填充 -->
       </div>
     </div>
