@@ -476,50 +476,62 @@ const labelsJson = JSON.stringify(labels);
               : '') +
           '</div>' +
 
-          // 右栏 - 信息（独立滚动，整页可见不需要下拉整页）
-          '<div class="flex flex-col overflow-y-auto">' +
-            '<div class="p-6 sm:p-8 flex-1">' +
-              '<p class="text-xs text-stone-500 uppercase tracking-[0.2em] mb-2">' + escapeHtml(p.categoryName || '') + '</p>' +
-              '<h2 class="text-xl sm:text-2xl font-serif text-stone-900 leading-tight mb-2">' + escapeHtml(p.name) + '</h2>' +
-              '<p class="text-xs text-stone-500 mb-5">' + escapeHtml(labels.productIdLabel) + ': <span class="font-mono">' + escapeHtml(p.id) + '</span></p>' +
+          // 右栏 - 信息（flex 列布局：内容区独立滚动 + CTA 永远固定在底部）
+                    '<div class="flex flex-col overflow-hidden">' +
+                      // 内容区：占据中间所有空间，内部滚动
+                      '<div class="flex-1 overflow-y-auto p-6 sm:p-8">' +
+                        '<p class="text-xs text-stone-500 uppercase tracking-[0.2em] mb-2">' + escapeHtml(p.categoryName || '') + '</p>' +
+                        '<h2 class="text-xl sm:text-2xl font-serif text-stone-900 leading-tight mb-2">' + escapeHtml(p.name) + '</h2>' +
+                        '<p class="text-xs text-stone-500 mb-5">' + escapeHtml(labels.productIdLabel) + ': <span class="font-mono">' + escapeHtml(p.id) + '</span></p>' +
 
-              // 价格 + MOQ 大字突出
-              '<div class="flex items-baseline gap-4 mb-6 pb-5 border-b border-stone-200">' +
-                '<div>' +
-                  '<p class="text-xs text-stone-500 uppercase tracking-wider mb-1">' + escapeHtml(labels.price) + '</p>' +
-                  '<p class="text-2xl font-serif text-amber-700">$' + escapeHtml(p.price || '') + '</p>' +
-                '</div>' +
-                '<div class="w-px h-10 bg-stone-200"></div>' +
-                '<div>' +
-                  '<p class="text-xs text-stone-500 uppercase tracking-wider mb-1">' + escapeHtml(labels.moq) + '</p>' +
-                  '<p class="text-lg font-medium text-stone-900">' + (p.moq || 0) + ' <span class="text-xs text-stone-500">pcs</span></p>' +
-                '</div>' +
-              '</div>' +
+                        // 价格 + MOQ 大字突出
+                        '<div class="flex items-baseline gap-4 mb-6 pb-5 border-b border-stone-200">' +
+                          '<div>' +
+                            '<p class="text-xs text-stone-500 uppercase tracking-wider mb-1">' + escapeHtml(labels.price) + '</p>' +
+                            '<p class="text-2xl font-serif text-amber-700">$' + escapeHtml(p.price || '') + '</p>' +
+                          '</div>' +
+                          '<div class="w-px h-10 bg-stone-200"></div>' +
+                          '<div>' +
+                            '<p class="text-xs text-stone-500 uppercase tracking-wider mb-1">' + escapeHtml(labels.moq) + '</p>' +
+                            '<p class="text-lg font-medium text-stone-900">' + (p.moq || 0) + ' <span class="text-xs text-stone-500">pcs</span></p>' +
+                          '</div>' +
+                        '</div>' +
 
-              // 规格表
-              '<div class="mb-5">' +
-                '<h3 class="text-sm font-medium text-stone-900 mb-3">' + escapeHtml(labels.productSpecs) + '</h3>' +
-                '<dl class="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">' +
-                  specRow(labels.material, p.material) +
-                  specRow(labels.micron, p.micron) +
-                  specRow(labels.leadTime, p.lead) +
-                  specRow(labels.sampleTime, p.sample_time) +
-                  (p.weight ? specRow('Weight', p.weight) : '') +
-                '</dl>' +
-              '</div>' +
+                        // 规格表
+                        '<div class="mb-5">' +
+                          '<h3 class="text-sm font-medium text-stone-900 mb-3">' + escapeHtml(labels.productSpecs) + '</h3>' +
+                          '<dl class="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">' +
+                            specRow(labels.material, p.material) +
+                            specRow(labels.micron, p.micron) +
+                            specRow(labels.leadTime, p.lead) +
+                            specRow(labels.sampleTime, p.sample_time) +
+                            (p.weight ? specRow('Weight', p.weight) : '') +
+                          '</dl>' +
+                        '</div>' +
 
-              (colors ? '<div class="mb-5"><p class="text-xs text-stone-500 uppercase tracking-wider mb-2">' + escapeHtml(labels.colors) + '</p><div class="flex flex-wrap gap-2">' + colors + '</div></div>' : '') +
+                        (colors ? '<div class="mb-5"><p class="text-xs text-stone-500 uppercase tracking-wider mb-2">' + escapeHtml(labels.colors) + '</p><div class="flex flex-wrap gap-2">' + colors + '</div></div>' : '') +
 
-              (p.description ? '<div class="mb-6"><p class="text-sm text-stone-700 leading-relaxed">' + escapeHtml(p.description) + '</p></div>' : '') +
-            '</div>' +
+                        (p.description ? '<div class="mb-6"><p class="text-sm text-stone-700 leading-relaxed">' + escapeHtml(p.description) + '</p></div>' : '') +
+                      '</div>' +
 
-            // 底部 CTA 固定
-            '<div class="p-6 sm:p-8 pt-0 border-t border-stone-200 bg-white">' +
-              '<button id="modal-inquiry" class="w-full px-6 py-3 bg-amber-700 text-white hover:bg-amber-800 transition-colors font-medium tracking-wide">' + escapeHtml(labels.requestInquiry) + '</button>' +
-              '<p class="text-xs text-stone-500 text-center mt-2">' + escapeHtml(labels.inquiryNote) + '</p>' +
-            '</div>' +
-          '</div>'
-        );
+                      // 底部 CTA：永远固定（flex-shrink-0 + shadow 让它浮起来）
+                      '<div class="flex-shrink-0 p-4 sm:p-6 border-t border-stone-200 bg-white shadow-[0_-4px_12px_-2px_rgba(0,0,0,0.06)]">' +
+                        // 上一个/下一个 导航
+                        '<div class="flex items-center justify-between gap-3 mb-3">' +
+                          '<button id="modal-prev" class="flex items-center gap-1 text-xs text-stone-600 hover:text-stone-900 transition-colors disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Previous product">' +
+                            '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>' +
+                            '<span>Previous</span>' +
+                          '</button>' +
+                          '<button id="modal-next" class="flex items-center gap-1 text-xs text-stone-600 hover:text-stone-900 transition-colors disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Next product">' +
+                            '<span>Next</span>' +
+                            '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>' +
+                          '</button>' +
+                        '</div>' +
+                        '<button id="modal-inquiry" class="w-full px-6 py-3 bg-amber-700 text-white hover:bg-amber-800 transition-colors font-medium tracking-wide">' + escapeHtml(labels.requestInquiry) + '</button>' +
+                        '<p class="text-xs text-stone-500 text-center mt-2">' + escapeHtml(labels.inquiryNote) + '</p>' +
+                      '</div>' +
+                    '</div>'
+                  );
 
         modal.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
@@ -552,6 +564,20 @@ const labelsJson = JSON.stringify(labels);
           );
           window.location.href = '/contact?subject=' + subject + '&body=' + body;
         });
+
+        // Prev / Next：在当前 filtered 列表里切换
+        const filteredNow = getFiltered();
+        const idx = filteredNow.findIndex((x) => x.id === p.id);
+        const prevBtn = document.getElementById('modal-prev');
+        const nextBtn = document.getElementById('modal-next');
+        if (idx <= 0) prevBtn.disabled = true;
+        if (idx >= filteredNow.length - 1) nextBtn.disabled = true;
+        prevBtn.addEventListener('click', () => {
+          if (idx > 0) openModal(filteredNow[idx - 1]);
+        });
+        nextBtn.addEventListener('click', () => {
+          if (idx < filteredNow.length - 1) openModal(filteredNow[idx + 1]);
+        });
       }
 
       function specRow(label, value) {
@@ -565,9 +591,14 @@ const labelsJson = JSON.stringify(labels);
         document.body.style.overflow = '';
       }
 
-      // ESC 关闭
+      // ESC 关闭，← → 切换产品
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+        if (modal.classList.contains('hidden')) return;
+        if (e.key === 'Escape') { closeModal(); return; }
+        const prevBtn = document.getElementById('modal-prev');
+        const nextBtn = document.getElementById('modal-next');
+        if (e.key === 'ArrowLeft' && prevBtn && !prevBtn.disabled) prevBtn.click();
+        if (e.key === 'ArrowRight' && nextBtn && !nextBtn.disabled) nextBtn.click();
       });
 
       // 初次渲染：SSR 已渲染 24 张卡片 + 分页
