@@ -209,12 +209,11 @@ const labelsJson = JSON.stringify(labels);
     </div>
   </section>
 
-  <!-- 弹窗：固定全屏 + flex 居中，宽度 max-w-5xl，高度自适应内容但不超过视口 -->
-  <div id="product-modal" class="fixed inset-0 z-[100] hidden bg-black/70 backdrop-blur-sm" role="dialog" aria-modal="true">
-    <div class="absolute inset-0 flex items-center justify-center p-2 sm:p-4 md:p-8 overflow-y-auto" id="modal-backdrop">
-      <!-- w-full 占据可用宽度，max-w-5xl 限制最大 -->
-      <!-- min-h-0 + max-h-[calc(100vh-2rem)] 避免移动端高度溢出 -->
-      <div class="bg-white w-full max-w-5xl max-h-[calc(100vh-1rem)] sm:max-h-[calc(100vh-2rem)] md:max-h-[90vh] grid grid-cols-1 md:grid-cols-2 overflow-hidden shadow-2xl relative" id="modal-content">
+  <!-- 弹窗：全屏遮罩 + 居中弹窗 -->
+  <div id="product-modal" class="fixed inset-0 z-[100] hidden bg-black/70 backdrop-blur-sm overflow-y-auto" role="dialog" aria-modal="true">
+    <div class="min-h-full flex items-center justify-center p-2 sm:p-4 md:p-8" id="modal-backdrop">
+      <!-- 移动端 h-[100dvh] 动态视口单位（不被地址栏影响）撑满，桌面用 max-h -->
+      <div class="bg-white w-full max-w-5xl md:max-h-[90vh] h-[100dvh] md:h-auto grid grid-cols-1 md:grid-cols-2 overflow-hidden shadow-2xl relative" id="modal-content">
         <!-- 内容由 JS 填充 -->
       </div>
     </div>
