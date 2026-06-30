@@ -477,9 +477,9 @@ const labelsJson = JSON.stringify(labels);
           '</div>' +
 
           // 右栏 - 信息（flex 列布局：内容区独立滚动 + CTA 永远固定在底部）
-                    '<div class="flex flex-col overflow-hidden">' +
+                    '<div class="flex flex-col overflow-hidden h-full min-h-0">' +
                       // 内容区：占据中间所有空间，内部滚动
-                      '<div class="flex-1 overflow-y-auto p-6 sm:p-8">' +
+                      '<div class="flex-1 overflow-y-auto p-6 sm:p-8 min-h-0">' +
                         '<p class="text-xs text-stone-500 uppercase tracking-[0.2em] mb-2">' + escapeHtml(p.categoryName || '') + '</p>' +
                         '<h2 class="text-xl sm:text-2xl font-serif text-stone-900 leading-tight mb-2">' + escapeHtml(p.name) + '</h2>' +
                         '<p class="text-xs text-stone-500 mb-5">' + escapeHtml(labels.productIdLabel) + ': <span class="font-mono">' + escapeHtml(p.id) + '</span></p>' +
