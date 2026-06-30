@@ -1,7 +1,8 @@
 ---
 /**
  * 产品列表页 - 6 国通用
- * 加载全部 591 个产品 + 5 个分类，支持筛选/搜索/排序/弹窗
+ * 全部 591 个产品 + 5 个分类，筛选/搜索/排序/弹窗用 vanilla JS 增强
+ * 不依赖 React 岛（避免 Astro 5 + React 19 hydration 不兼容）
  */
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Navigation from '@/components/Navigation.astro';
@@ -9,10 +10,9 @@ import Footer from '@/components/Footer.astro';
 import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
 import SEOFaq from '@/components/SEOFaq.astro';
-import ProductsExplorer from '@/components/islands/ProductsExplorer.tsx';
 import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
 import { SEO, SITE_INFO } from '@/lib/seo';
-import { getProductSummaries, products as productsData } from '@/data/products';
+import { products as productsData } from '@/data/products';
 import { getProductLabels } from '@/lib/product-labels';
 
 export function getStaticPaths() {
@@ -25,8 +25,14 @@ if (!isLocale(rawLocale)) {
 }
 const locale = pickLocale(rawLocale);
 
-// 加载产品摘要 + 翻译（避免 591 个产品 JSON 全部塞进 island props）
-const summaries = getProductSummaries();
+// 扁平化产品列表（附加 categoryId / categoryName），用于渲染卡片
+const allProducts = productsData.categories.flatMap((cat) =>
+  cat.products.map((p) => ({
+    ...p,
+    categoryId: cat.id,
+    categoryName: cat.name,
+  }))
+);
 const categories = productsData.categories;
 const labels = getProductLabels(locale);
 
@@ -49,8 +55,8 @@ const tdk: Record<string, { title: string; description: string; keywords: string
   },
   ja: {
     title: 'カシミヤ製品 - 591スタイル | オルdos工場直販 | DONGXIAO®',
-    description: 'オルdos工場直販カシミヤ製品591点:帽子、マフラー、セーター、アクセサリー、糸。OEM/ODM対応。工場価格、100%ピュアカシミヤ、ISO認証。MOQ 100個。',
-    keywords: ['カシミヤ製品', 'カシミヤカタログ', 'B2B カシミヤ卸売', 'OEM カシミヤ'],
+    description: 'オルdos工場直販カシミア製品591点:帽子、マフラー、セーター、アクセサリー、糸。OEM/ODM対応。工場価格、100%ピュアカシミア、ISO認証。MOQ 100個。',
+    keywords: ['カシミア製品', 'カシミアカタログ', 'B2B カシミア卸売', 'OEM カシミア'],
   },
   kr: {
     title: '캐시미어 제품 - 591가지 스타일 | 어얼어스 공장 직송 | DONGXIAO®',
@@ -65,6 +71,12 @@ const tdk: Record<string, { title: string; description: string; keywords: string
 };
 
 const seo = tdk[locale] || tdk.en;
+
+// 一次性把 591 个产品序列化成 JSON，inline 到 <script id="products-data">
+// 给前端 vanilla JS 用（筛选/搜索/弹窗）
+const productsJson = JSON.stringify(allProducts);
+const categoriesJson = JSON.stringify(categories);
+const labelsJson = JSON.stringify(labels);
 ---
 
 <BaseLayout
@@ -83,8 +95,8 @@ const seo = tdk[locale] || tdk.en;
     <div class="container-narrow py-12 sm:py-16">
       <div class="flex items-center gap-3 mb-4"><span class="h-px w-8 bg-brand-gold"></span><span class="text-xs tracking-[0.3em] uppercase text-brand-camel">
         {locale === 'cn' ? '工厂直供 · 全品类' : 'Factory Direct · Full Catalog'}
-      </p>
-      </span></div><h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-light text-brand-ink mb-4">
+      </span></div>
+      <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-light text-brand-ink mb-4">
         {labels.title}
       </h1>
       <p class="text-muted-foreground max-w-3xl leading-relaxed">
@@ -111,21 +123,100 @@ const seo = tdk[locale] || tdk.en;
     </div>
   </section>
 
-  <!-- Products Explorer (React Island) -->
-  <section class="container-narrow py-12">
-    <ProductsExplorer
-      client:only="react"
-      summaries={summaries}
-      categories={categories}
-      labels={labels}
-    >
-      <!-- SSR fallback：React 岛未 hydrate 前显示 -->
-      <div slot="fallback" class="text-center py-16 text-muted-foreground">
-        <div class="inline-block w-8 h-8 border-2 border-brand-gold border-t-transparent rounded-full animate-spin mb-4"></div>
-        <p>{locale === 'cn' ? '加载 591 款产品中…' : 'Loading 591 products…'}</p>
+  <!-- Filter bar (静态渲染，按钮 + 搜索 + 排序) -->
+  <section class="container-narrow py-8">
+    <div class="flex flex-col lg:flex-row gap-4 mb-6 lg:items-center lg:justify-between">
+      <div id="filter-buttons" class="flex flex-wrap gap-2">
+        <button data-cat="all" class="filter-btn px-4 py-2 text-sm border bg-stone-900 text-white border-stone-900 transition-colors">
+          {labels.filterAll} ({allProducts.length})
+        </button>
+        {categories.map((cat) => (
+          <button data-cat={cat.id} class="filter-btn px-4 py-2 text-sm border bg-white text-stone-700 border-stone-300 hover:border-stone-900 transition-colors">
+            {cat.name} ({cat.products.length})
+          </button>
+        ))}
       </div>
-    </ProductsExplorer>
+      <div class="flex flex-col sm:flex-row gap-2">
+        <input
+          id="search-input"
+          type="text"
+          placeholder={labels.searchPlaceholder}
+          class="px-4 py-2 text-sm border border-stone-300 bg-white focus:outline-none focus:border-stone-900 min-w-[200px]"
+        />
+        <select
+          id="sort-select"
+          class="px-4 py-2 text-sm border border-stone-300 bg-white focus:outline-none focus:border-stone-900"
+        >
+          {labels.sortOptions.map((opt) => (
+            <option value={opt.value}>{opt.label}</option>
+          ))}
+        </select>
+      </div>
+    </div>
+    <p id="result-count" class="text-sm text-stone-600 mb-4"></p>
+
+    <!-- 591 个产品卡片（全部静态渲染，初始只显示前 24 个，其余懒加载） -->
+    <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {allProducts.slice(0, 24).map((p) => (
+        <div
+          class="product-card bg-white border border-stone-200 overflow-hidden hover:shadow-lg transition-shadow group"
+          data-id={p.id}
+          data-cat={p.categoryId}
+          data-name={p.name.toLowerCase()}
+          data-material={(p.material || '').toLowerCase()}
+          data-price={p.price}
+          data-moq={p.moq}
+        >
+          <div class="aspect-square bg-stone-100 cursor-pointer overflow-hidden product-img-wrap">
+            {p.images && p.images[0] && (
+              <img
+                src={`/products/mic/${p.images[0]}`}
+                alt={p.name}
+                loading="lazy"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+            )}
+          </div>
+          <div class="p-4">
+            <p class="text-xs text-stone-500 uppercase tracking-wider mb-1">{p.categoryName}</p>
+            <h3 class="product-name text-sm font-medium text-stone-900 mb-2 line-clamp-2 cursor-pointer hover:text-amber-700">
+              {p.name}
+            </h3>
+            <div class="space-y-1 text-xs text-stone-600 mb-3">
+              <div class="flex justify-between"><span>{labels.material}:</span><span class="font-medium">{p.material}</span></div>
+              <div class="flex justify-between"><span>{labels.micron}:</span><span class="font-medium">{p.micron}</span></div>
+              <div class="flex justify-between"><span>{labels.price}:</span><span class="font-medium text-amber-700">${p.price} {p.currency}</span></div>
+              <div class="flex justify-between"><span>{labels.moq}:</span><span class="font-medium">{p.moq} pcs</span></div>
+            </div>
+            {(p.colors || []).length > 0 && (
+              <div class="flex flex-wrap gap-1 mb-3">
+                {(p.colors || []).slice(0, 4).map((c) => (
+                  <span class="text-xs px-2 py-0.5 bg-stone-100 text-stone-700 rounded">{c}</span>
+                ))}
+              </div>
+            )}
+            <button class="view-detail-btn w-full px-3 py-2 bg-stone-900 text-white text-xs hover:bg-amber-700 transition-colors">
+              {labels.requestQuote}
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div id="load-more-wrap" class="text-center mt-8 hidden">
+      <button id="load-more-btn" class="px-8 py-3 bg-stone-900 text-white hover:bg-amber-700 transition-colors text-sm">
+        {labels.loadMore ? labels.loadMore + ' (...)' : 'Load More'}
+      </button>
+    </div>
   </section>
+
+  <!-- 弹窗：默认隐藏，由 JS 控制 -->
+  <div id="product-modal" class="fixed inset-0 z-[100] hidden bg-black/70 overflow-y-auto" role="dialog">
+    <div class="min-h-full flex items-center justify-center p-4" id="modal-backdrop">
+      <div class="bg-white max-w-4xl w-full max-h-[90vh] overflow-y-auto" id="modal-content">
+        <!-- 内容由 JS 填充 -->
+      </div>
+    </div>
+  </div>
 
   <!-- SEO Content Block -->
   <section class="bg-brand-cream/30 border-t border-border">
@@ -159,7 +250,251 @@ const seo = tdk[locale] || tdk.en;
       : { q: 'What is the lead time?', a: 'Stock products ship within 7 days. OEM custom orders 30-35 days. We offer DDP/FOB/CIF trade terms.' },
   ]} />
 
+  <!-- 隐藏的 JSON 数据源（vanilla JS 用） -->
+  <script id="products-data" type="application/json" set:html={productsJson}></script>
+  <script id="categories-data" type="application/json" set:html={categoriesJson}></script>
+  <script id="labels-data" type="application/json" set:html={labelsJson}></script>
+
+  <!-- 交互逻辑：vanilla JS，零依赖 -->
+  <script is:inline>
+    (function() {
+      const products = JSON.parse(document.getElementById('products-data').textContent);
+      const categories = JSON.parse(document.getElementById('categories-data').textContent);
+      const labels = JSON.parse(document.getElementById('labels-data').textContent);
+
+      const PAGE_SIZE = 24;
+      let activeCat = 'all';
+      let searchQ = '';
+      let sortBy = 'default';
+      let visibleCount = PAGE_SIZE;
+
+      // ---------- 筛选/搜索/排序 ----------
+      const filterButtons = document.querySelectorAll('#filter-buttons .filter-btn');
+      filterButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          activeCat = btn.getAttribute('data-cat');
+          filterButtons.forEach((b) => {
+            if (b === btn) {
+              b.classList.add('bg-stone-900', 'text-white', 'border-stone-900');
+              b.classList.remove('bg-white', 'text-stone-700', 'border-stone-300');
+            } else {
+              b.classList.remove('bg-stone-900', 'text-white', 'border-stone-900');
+              b.classList.add('bg-white', 'text-stone-700', 'border-stone-300');
+            }
+          });
+          visibleCount = PAGE_SIZE;
+          render();
+        });
+      });
+
+      document.getElementById('search-input').addEventListener('input', (e) => {
+        searchQ = e.target.value.trim().toLowerCase();
+        visibleCount = PAGE_SIZE;
+        render();
+      });
+
+      document.getElementById('sort-select').addEventListener('change', (e) => {
+        sortBy = e.target.value;
+        render();
+      });
+
+      function getFiltered() {
+        let result = products;
+        if (activeCat !== 'all') result = result.filter((p) => p.categoryId === activeCat);
+        if (searchQ) {
+          result = result.filter((p) =>
+            (p.name && p.name.toLowerCase().includes(searchQ)) ||
+            (p.id && p.id.toLowerCase().includes(searchQ)) ||
+            (p.material && p.material.toLowerCase().includes(searchQ))
+          );
+        }
+        if (sortBy === 'price-asc') {
+          result = [...result].sort((a, b) => parseFloat((a.price || '0').split('-')[0]) - parseFloat((b.price || '0').split('-')[0]));
+        } else if (sortBy === 'price-desc') {
+          result = [...result].sort((a, b) => parseFloat((b.price || '0').split('-')[0]) - parseFloat((a.price || '0').split('-')[0]));
+        } else if (sortBy === 'moq-asc') {
+          result = [...result].sort((a, b) => (a.moq || 0) - (b.moq || 0));
+        }
+        return result;
+      }
+
+      function render() {
+        const filtered = getFiltered();
+        document.getElementById('result-count').textContent =
+          labels.showingProducts ? labels.showingProducts(filtered.length) : ('Showing ' + filtered.length + ' products');
+
+        const grid = document.getElementById('product-grid');
+        const slice = filtered.slice(0, visibleCount);
+        grid.innerHTML = slice.map(cardHtml).join('');
+
+        // Load More
+        const wrap = document.getElementById('load-more-wrap');
+        const btn = document.getElementById('load-more-btn');
+        if (filtered.length > visibleCount) {
+          wrap.classList.remove('hidden');
+          btn.textContent = (labels.loadMore || 'Load More') + ' (' + (filtered.length - visibleCount) + ')';
+          btn.onclick = () => {
+            visibleCount += PAGE_SIZE;
+            render();
+          };
+        } else {
+          wrap.classList.add('hidden');
+        }
+
+        bindCardEvents();
+      }
+
+      function cardHtml(p) {
+        const img = (p.images && p.images[0]) ? '/products/mic/' + p.images[0] : '';
+        const colors = (p.colors || []).slice(0, 4).map((c) =>
+          '<span class="text-xs px-2 py-0.5 bg-stone-100 text-stone-700 rounded">' + escapeHtml(c) + '</span>'
+        ).join('');
+        return (
+          '<div class="product-card bg-white border border-stone-200 overflow-hidden hover:shadow-lg transition-shadow group" data-id="' + escapeHtml(p.id) + '">' +
+            '<div class="aspect-square bg-stone-100 cursor-pointer overflow-hidden product-img-wrap">' +
+              (img ? '<img src="' + img + '" alt="' + escapeHtml(p.name) + '" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />' : '') +
+            '</div>' +
+            '<div class="p-4">' +
+              '<p class="text-xs text-stone-500 uppercase tracking-wider mb-1">' + escapeHtml(p.categoryName || '') + '</p>' +
+              '<h3 class="product-name text-sm font-medium text-stone-900 mb-2 line-clamp-2 cursor-pointer hover:text-amber-700">' + escapeHtml(p.name) + '</h3>' +
+              '<div class="space-y-1 text-xs text-stone-600 mb-3">' +
+                '<div class="flex justify-between"><span>' + escapeHtml(labels.material) + ':</span><span class="font-medium">' + escapeHtml(p.material || '') + '</span></div>' +
+                '<div class="flex justify-between"><span>' + escapeHtml(labels.micron) + ':</span><span class="font-medium">' + escapeHtml(p.micron || '') + '</span></div>' +
+                '<div class="flex justify-between"><span>' + escapeHtml(labels.price) + ':</span><span class="font-medium text-amber-700">$' + escapeHtml(p.price || '') + ' ' + escapeHtml(p.currency || '') + '</span></div>' +
+                '<div class="flex justify-between"><span>' + escapeHtml(labels.moq) + ':</span><span class="font-medium">' + (p.moq || 0) + ' pcs</span></div>' +
+              '</div>' +
+              (colors ? '<div class="flex flex-wrap gap-1 mb-3">' + colors + '</div>' : '') +
+              '<button class="view-detail-btn w-full px-3 py-2 bg-stone-900 text-white text-xs hover:bg-amber-700 transition-colors">' + escapeHtml(labels.requestQuote) + '</button>' +
+            '</div>' +
+          '</div>'
+        );
+      }
+
+      function escapeHtml(s) {
+        if (s == null) return '';
+        return String(s)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      // ---------- 弹窗 ----------
+      const modal = document.getElementById('product-modal');
+      const modalContent = document.getElementById('modal-content');
+      const modalBackdrop = document.getElementById('modal-backdrop');
+
+      function bindCardEvents() {
+        document.querySelectorAll('.product-card .product-img-wrap, .product-card .product-name, .product-card .view-detail-btn').forEach((el) => {
+          el.addEventListener('click', (e) => {
+            const card = e.currentTarget.closest('.product-card');
+            const id = card.getAttribute('data-id');
+            const product = products.find((p) => p.id === id);
+            if (product) openModal(product);
+          });
+        });
+      }
+
+      function openModal(p) {
+        const images = (p.images || []);
+        const mainImg = images[0] ? '/products/mic/' + images[0] : '';
+        const thumbs = images.map((img, i) =>
+          '<button class="modal-thumb flex-shrink-0 w-16 h-16 border-2 ' + (i === 0 ? 'border-amber-700' : 'border-stone-200') + '" data-i="' + i + '">' +
+            '<img src="/products/mic/' + img + '" alt="' + escapeHtml(p.name) + ' ' + (i+1) + '" class="w-full h-full object-cover" />' +
+          '</button>'
+        ).join('');
+        const colors = (p.colors || []).map((c) =>
+          '<span class="text-xs px-3 py-1 bg-stone-100 text-stone-700 border border-stone-200">' + escapeHtml(c) + '</span>'
+        ).join('');
+
+        modalContent.innerHTML = (
+          '<div class="p-4 sm:p-6">' +
+            '<div class="flex justify-between items-start mb-4">' +
+              '<div>' +
+                '<p class="text-xs text-stone-500 uppercase tracking-wider mb-1">' + escapeHtml(p.categoryName || '') + '</p>' +
+                '<h2 class="text-xl sm:text-2xl font-serif text-stone-900">' + escapeHtml(p.name) + '</h2>' +
+                '<p class="text-xs text-stone-500 mt-1">' + escapeHtml(labels.productIdLabel) + ': ' + escapeHtml(p.id) + '</p>' +
+              '</div>' +
+              '<button id="modal-close" class="text-stone-500 hover:text-stone-900 text-2xl leading-none" aria-label="' + escapeHtml(labels.closeButton) + '">×</button>' +
+            '</div>' +
+            '<div id="modal-main-img" class="aspect-square bg-stone-100 mb-4 overflow-hidden">' +
+              (mainImg ? '<img src="' + mainImg + '" alt="' + escapeHtml(p.name) + '" class="w-full h-full object-cover" />' : '') +
+            '</div>' +
+            (images.length > 1 ? '<div class="flex gap-2 mb-4 overflow-x-auto">' + thumbs + '</div>' : '') +
+            '<div class="border-t border-stone-200 pt-4">' +
+              '<h3 class="text-sm font-medium text-stone-900 mb-3">' + escapeHtml(labels.productSpecs) + '</h3>' +
+              '<div class="grid grid-cols-2 gap-3 text-sm">' +
+                '<div><p class="text-xs text-stone-500">' + escapeHtml(labels.material) + '</p><p class="font-medium">' + escapeHtml(p.material || '') + '</p></div>' +
+                '<div><p class="text-xs text-stone-500">' + escapeHtml(labels.micron) + '</p><p class="font-medium">' + escapeHtml(p.micron || '') + '</p></div>' +
+                '<div><p class="text-xs text-stone-500">' + escapeHtml(labels.price) + '</p><p class="font-medium text-amber-700">$' + escapeHtml(p.price || '') + ' ' + escapeHtml(p.currency || '') + '</p></div>' +
+                '<div><p class="text-xs text-stone-500">' + escapeHtml(labels.moq) + '</p><p class="font-medium">' + (p.moq || 0) + ' pcs</p></div>' +
+                '<div><p class="text-xs text-stone-500">' + escapeHtml(labels.leadTime) + '</p><p class="font-medium">' + escapeHtml(p.lead || '') + '</p></div>' +
+                '<div><p class="text-xs text-stone-500">' + escapeHtml(labels.sampleTime) + '</p><p class="font-medium">' + escapeHtml(p.sample_time || '') + '</p></div>' +
+                (p.weight ? '<div class="col-span-2"><p class="text-xs text-stone-500">Weight</p><p class="font-medium">' + escapeHtml(p.weight) + '</p></div>' : '') +
+              '</div>' +
+              (colors ? '<div class="mt-4"><p class="text-xs text-stone-500 mb-2">' + escapeHtml(labels.colors) + '</p><div class="flex flex-wrap gap-2">' + colors + '</div></div>' : '') +
+              '<p class="mt-4 text-sm text-stone-700 leading-relaxed">' + escapeHtml(p.description || '') + '</p>' +
+              '<button id="modal-inquiry" class="w-full mt-6 px-6 py-3 bg-amber-700 text-white hover:bg-amber-800 transition-colors">' + escapeHtml(labels.requestInquiry) + '</button>' +
+              '<p class="text-xs text-stone-500 text-center mt-2">' + escapeHtml(labels.inquiryNote) + '</p>' +
+            '</div>' +
+          '</div>'
+        );
+
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+
+        // Close handlers
+        document.getElementById('modal-close').addEventListener('click', closeModal);
+        modalBackdrop.addEventListener('click', (e) => {
+          if (e.target === modalBackdrop) closeModal();
+        });
+
+        // Thumbnails
+        modalContent.querySelectorAll('.modal-thumb').forEach((t) => {
+          t.addEventListener('click', () => {
+            const i = parseInt(t.getAttribute('data-i'));
+            const newImg = '/products/mic/' + images[i];
+            modalContent.querySelector('#modal-main-img img').src = newImg;
+            modalContent.querySelectorAll('.modal-thumb').forEach((tt, idx) => {
+              tt.classList.toggle('border-amber-700', idx === i);
+              tt.classList.toggle('border-stone-200', idx !== i);
+            });
+          });
+        });
+
+        // Inquiry → mailto
+        document.getElementById('modal-inquiry').addEventListener('click', () => {
+          const subject = encodeURIComponent('Inquiry: ' + p.name + ' (' + p.id + ')');
+          const body = encodeURIComponent(
+            'Hi,\n\nI\'m interested in: ' + p.name + '\nProduct ID: ' + p.id + '\nCategory: ' + (p.categoryName || '') + '\nMaterial: ' + (p.material || '') + '\nMOQ: ' + (p.moq || 0) + ' pcs\n\nPlease send me more details, pricing, and lead time.\n\nThank you.'
+          );
+          window.location.href = '/contact?subject=' + subject + '&body=' + body;
+        });
+      }
+
+      function closeModal() {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+
+      // ESC 关闭
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+      });
+
+      // 初次渲染（绑定卡片事件）
+      bindCardEvents();
+
+      // 初始结果数
+      const rc = document.getElementById('result-count');
+      rc.textContent = labels.showingProducts ? labels.showingProducts(products.length) : ('Showing ' + products.length + ' products');
+    })();
+  </script>
+
   <Footer slot="footer" locale={locale} />
   <FloatingChatButtons slot="floating" locale={locale} />
   <CookieConsent slot="cookie-consent" locale={locale} />
 </BaseLayout>
+</content>
+</invoke>
