@@ -451,88 +451,173 @@ const labelsJson = JSON.stringify(labels);
         });
       }
 
+      // 颜色名 → 大致色相（hash 后映射到一组固定颜色）；不命中走灰色
+      // 仅用于「文字色名 + 圆色块」的视觉化兜底（products.json 颜色都是文字）
+      const COLOR_PALETTE = [
+        '#1f2937', // 黑
+        '#f5f5f4', // 白
+        '#7c2d12', // 棕
+        '#9a3412', // 焦糖
+        '#a16207', // 驼
+        '#365314', // 墨绿
+        '#1e3a8a', // 藏青
+        '#7e22ce', // 紫
+        '#9f1239', // 酒红
+        '#b91c1c', // 红
+        '#ca8a04', // 芥末
+        '#52525b', // 灰
+      ];
+      const COLOR_KEYWORDS = [
+        ['black', '黑'], ['white', '白', 'ivory', 'cream'], ['brown', '棕', 'chocolate'], ['tan', 'caramel', '焦糖', 'beige'],
+        ['camel', '驼', 'khaki'], ['green', 'forest', '墨绿', 'olive'],
+        ['navy', '藏青', 'blue'], ['purple', '紫', 'lavender'], ['burgundy', 'wine', '酒红', 'maroon'],
+        ['red', '红', 'crimson'], ['mustard', 'yellow', '芥末', '黄', 'gold'], ['grey', 'gray', '灰', 'silver'],
+      ];
+      function colorNameToHex(name) {
+        const s = (name || '').toLowerCase();
+        for (let i = 0; i < COLOR_KEYWORDS.length; i++) {
+          for (const kw of COLOR_KEYWORDS[i]) {
+            if (s.includes(kw)) return COLOR_PALETTE[i];
+          }
+        }
+        return null; // 命中不了（如「多种颜色可选」）走文字 fallback
+      }
+      function swatchHtml(name) {
+        const hex = colorNameToHex(name);
+        const isLight = hex === '#f5f5f4' || hex === '#ca8a04';
+        const ring = isLight ? 'ring-1 ring-stone-300' : '';
+        const chip = hex
+          ? '<span class="inline-block w-4 h-4 rounded-full ' + ring + '" style="background:' + hex + '"></span>'
+          : '<span class="inline-block w-4 h-4 rounded-full bg-stone-200 border border-dashed border-stone-400"></span>';
+        return '<span class="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 bg-stone-50 text-stone-700 border border-stone-200">' +
+                 chip + '<span>' + escapeHtml(name) + '</span>' +
+               '</span>';
+      }
+
+      // 内联 SVG 图标（specs 行首），零依赖
+      function specIcon(kind) {
+        const common = 'class="w-3.5 h-3.5 text-stone-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"';
+        if (kind === 'material') return '<svg ' + common + '><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h10"/></svg>';
+        if (kind === 'micron')   return '<svg ' + common + '><circle cx="12" cy="12" r="8" stroke-width="1.8"/><circle cx="12" cy="12" r="3" stroke-width="1.8" fill="currentColor"/></svg>';
+        if (kind === 'lead')     return '<svg ' + common + '><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 8v4l3 2M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>';
+        if (kind === 'sample')   return '<svg ' + common + '><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20 7l-8 8-4-4M20 7v6h-6"/></svg>';
+        if (kind === 'weight')   return '<svg ' + common + '><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 6h18l-2 13H5L3 6zM8 6V4a4 4 0 018 0v2"/></svg>';
+        return '';
+      }
+      // 规格表行：图标 + label + value
+      function specRowIcon(icon, label, value) {
+        if (!value) return '';
+        return '<div class="flex items-start gap-2 py-1.5">' +
+                 specIcon(icon) +
+                 '<div class="min-w-0 flex-1">' +
+                   '<dt class="text-[11px] uppercase tracking-wider text-stone-500 leading-none mb-0.5">' + escapeHtml(label) + '</dt>' +
+                   '<dd class="text-sm text-stone-900 font-medium leading-snug">' + escapeHtml(value) + '</dd>' +
+                 '</div>' +
+               '</div>';
+      }
+
       function openModal(p) {
         const images = (p.images || []);
         const mainImg = images[0] ? '/products/mic/' + images[0] : '';
-        const thumbs = images.map((img, i) =>
-          '<button class="modal-thumb flex-shrink-0 w-14 h-14 border ' + (i === 0 ? 'border-amber-700' : 'border-stone-200') + ' hover:border-stone-900 transition-colors" data-i="' + i + '">' +
+
+        // 缩略图：图片缩略 + 视频 / 360° 占位（灰显，无后端资源先做视觉占位）
+        const imgThumbs = images.map((img, i) =>
+          '<button class="modal-thumb group/thumb relative flex-shrink-0 w-16 h-16 border ' + (i === 0 ? 'border-amber-700 ring-1 ring-amber-700' : 'border-stone-200 hover:border-stone-900') + ' transition-colors overflow-hidden" data-i="' + i + '" title="' + escapeHtml(p.name) + ' #' + (i+1) + '">' +
             '<img src="/products/mic/' + img + '" alt="' + escapeHtml(p.name) + ' ' + (i+1) + '" class="w-full h-full object-cover" />' +
+            '<span class="absolute bottom-0 right-0 px-1 text-[9px] leading-tight bg-black/60 text-white">' + (i+1) + '/' + images.length + '</span>' +
           '</button>'
         ).join('');
-        const colors = (p.colors || []).map((c) =>
-          '<span class="text-xs px-3 py-1 bg-stone-100 text-stone-700 border border-stone-200">' + escapeHtml(c) + '</span>'
-        ).join('');
+        // 视频/360° 占位（data-i="video" / "360"，点击不做事只视觉占位）
+        const mediaSlots =
+          '<button class="modal-media-slot flex-shrink-0 w-16 h-16 border border-dashed border-stone-300 bg-stone-50 flex flex-col items-center justify-center text-stone-500 hover:border-stone-500 hover:text-stone-700 transition-colors" data-kind="video" title="Product video (coming soon)">' +
+            '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>' +
+            '<span class="text-[9px] mt-0.5">Video</span>' +
+          '</button>' +
+          '<button class="modal-media-slot flex-shrink-0 w-16 h-16 border border-dashed border-stone-300 bg-stone-50 flex flex-col items-center justify-center text-stone-500 hover:border-stone-500 hover:text-stone-700 transition-colors" data-kind="360" title="360° view (coming soon)">' +
+            '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 8c0-2 3.5-4 8-4s8 2 8 4-3.5 4-8 4-8-2-8-4zM4 8v8c0 2 3.5 4 8 4s8-2 8-4V8M12 12v8"/></svg>' +
+            '<span class="text-[9px] mt-0.5">360°</span>' +
+          '</button>';
+
+        // 颜色：色块 + 文字（products.json 颜色字段是文字名）
+        const colors = (p.colors || []).map(swatchHtml).join('');
 
         // 左栏：图片画廊（独立滚动）；右栏：产品信息（独立滚动）
         modalContent.innerHTML = (
-          // 左栏 - 图片（移动端固定高度 240px，桌面让 flex-1 撑满）
-          '<div class="relative bg-stone-50 flex flex-col h-56 md:h-auto md:flex-1 flex-shrink-0">' +
+          // 左栏 - 图片区（60% 宽：md:basis-3/5；移动端固定 240px 高度）
+          '<div class="relative bg-stone-50 flex flex-col h-60 md:h-auto md:basis-3/5 md:flex-1 flex-shrink-0">' +
+            // 关闭按钮：左上图层
             '<button id="modal-close" class="absolute top-3 right-3 z-10 w-9 h-9 inline-flex items-center justify-center bg-white/90 hover:bg-white text-stone-700 hover:text-stone-900 text-xl leading-none rounded-full shadow-md transition-colors" aria-label="' + escapeHtml(labels.closeButton) + '">×</button>' +
-            '<div id="modal-main-img" class="flex-1 flex items-center justify-center p-6 min-h-[280px]">' +
-              (mainImg ? '<img src="' + mainImg + '" alt="' + escapeHtml(p.name) + '" class="max-w-full max-h-[50vh] object-contain" />' : '<div class="text-stone-300">No image</div>') +
+            // 主图
+            '<div id="modal-main-img" class="flex-1 flex items-center justify-center p-6 md:p-8 min-h-[280px] cursor-zoom-in" data-zoom="open">' +
+              (mainImg ? '<img src="' + mainImg + '" alt="' + escapeHtml(p.name) + '" class="max-w-full max-h-[55vh] object-contain" />' : '<div class="text-stone-300">No image</div>') +
             '</div>' +
-            (images.length > 1
-              ? '<div class="flex gap-2 px-4 pb-4 overflow-x-auto">' + thumbs + '</div>'
-              : '') +
+            // 缩略图 + 媒体占位（横向滚动）
+            '<div class="flex gap-2 px-4 pb-4 overflow-x-auto">' +
+              imgThumbs + mediaSlots +
+            '</div>' +
           '</div>' +
 
-          // 右栏 - 信息（position: relative 让底部 absolute CTA 相对它定位）
-                    '<div class="relative flex flex-col overflow-hidden min-h-0 md:flex-1 md:min-h-0">' +
-                      // 内容区：占据中间所有空间，内部滚动
-                      // pb-32 给底部 CTA 留空间（避免文字被 CTA 盖住）
-                      '<div class="flex-1 overflow-y-auto p-6 sm:p-8 pb-32 min-h-0">' +
-                        '<p class="text-xs text-stone-500 uppercase tracking-[0.2em] mb-2">' + escapeHtml(p.categoryName || '') + '</p>' +
-                        '<h2 class="text-xl sm:text-2xl font-serif text-stone-900 leading-tight mb-2">' + escapeHtml(p.name) + '</h2>' +
-                        '<p class="text-xs text-stone-500 mb-5">' + escapeHtml(labels.productIdLabel) + ': <span class="font-mono">' + escapeHtml(p.id) + '</span></p>' +
+          // 右栏 - 信息（40% 宽：md:basis-2/5）
+          '<div class="relative flex flex-col overflow-hidden min-h-0 md:basis-2/5 md:flex-1 md:min-h-0">' +
+            // 内容区：占据中间所有空间，内部滚动
+            // pb-40 给底部 CTA 留 160px 空间（避免文字被 CTA 盖住）
+            '<div class="flex-1 overflow-y-auto p-6 sm:p-8 pb-40 min-h-0">' +
+              // 分类 + 标题 + ID
+              '<p class="text-xs text-stone-500 uppercase tracking-[0.2em] mb-2">' + escapeHtml(p.categoryName || '') + '</p>' +
+              '<h2 class="text-xl sm:text-2xl font-serif text-stone-900 leading-tight mb-2">' + escapeHtml(p.name) + '</h2>' +
+              '<p class="text-xs text-stone-500 mb-5">' + escapeHtml(labels.productIdLabel) + ': <span class="font-mono">' + escapeHtml(p.id) + '</span></p>' +
 
-                        // 价格 + MOQ 大字突出
-                        '<div class="flex items-baseline gap-4 mb-6 pb-5 border-b border-stone-200">' +
-                          '<div>' +
-                            '<p class="text-xs text-stone-500 uppercase tracking-wider mb-1">' + escapeHtml(labels.price) + '</p>' +
-                            '<p class="text-2xl font-serif text-amber-700">$' + escapeHtml(p.price || '') + '</p>' +
-                          '</div>' +
-                          '<div class="w-px h-10 bg-stone-200"></div>' +
-                          '<div>' +
-                            '<p class="text-xs text-stone-500 uppercase tracking-wider mb-1">' + escapeHtml(labels.moq) + '</p>' +
-                            '<p class="text-lg font-medium text-stone-900">' + (p.moq || 0) + ' <span class="text-xs text-stone-500">pcs</span></p>' +
-                          '</div>' +
-                        '</div>' +
+              // 价格 + MOQ 大字突出
+              '<div class="flex items-baseline gap-4 mb-6 pb-5 border-b border-stone-200">' +
+                '<div>' +
+                  '<p class="text-xs text-stone-500 uppercase tracking-wider mb-1">' + escapeHtml(labels.price) + '</p>' +
+                  '<p class="text-2xl font-serif text-amber-700">$' + escapeHtml(p.price || '') + '</p>' +
+                '</div>' +
+                '<div class="w-px h-10 bg-stone-200"></div>' +
+                '<div>' +
+                  '<p class="text-xs text-stone-500 uppercase tracking-wider mb-1">' + escapeHtml(labels.moq) + '</p>' +
+                  '<p class="text-lg font-medium text-stone-900">' + (p.moq || 0) + ' <span class="text-xs text-stone-500">pcs</span></p>' +
+                '</div>' +
+              '</div>' +
 
-                        // 规格表
-                        '<div class="mb-5">' +
-                          '<h3 class="text-sm font-medium text-stone-900 mb-3">' + escapeHtml(labels.productSpecs) + '</h3>' +
-                          '<dl class="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">' +
-                            specRow(labels.material, p.material) +
-                            specRow(labels.micron, p.micron) +
-                            specRow(labels.leadTime, p.lead) +
-                            specRow(labels.sampleTime, p.sample_time) +
-                            (p.weight ? specRow('Weight', p.weight) : '') +
-                          '</dl>' +
-                        '</div>' +
+              // 规格表：图标 + 标签 + 值（行式布局，更紧凑）
+              '<div class="mb-5">' +
+                '<h3 class="text-sm font-medium text-stone-900 mb-3">' + escapeHtml(labels.productSpecs) + '</h3>' +
+                '<div class="divide-y divide-stone-100 border border-stone-200 rounded-md px-3 bg-white">' +
+                  specRowIcon('material', labels.material, p.material) +
+                  specRowIcon('micron',   labels.micron,   p.micron) +
+                  specRowIcon('lead',     labels.leadTime,    p.lead) +
+                  specRowIcon('sample',   labels.sampleTime,  p.sample_time) +
+                  specRowIcon('weight',   'Weight',           p.weight) +
+                '</div>' +
+              '</div>' +
 
-                        (colors ? '<div class="mb-5"><p class="text-xs text-stone-500 uppercase tracking-wider mb-2">' + escapeHtml(labels.colors) + '</p><div class="flex flex-wrap gap-2">' + colors + '</div></div>' : '') +
+              // 颜色：色块 + 文字
+              (colors ? '<div class="mb-5"><p class="text-xs text-stone-500 uppercase tracking-wider mb-2">' + escapeHtml(labels.colors) + '</p><div class="flex flex-wrap gap-2">' + colors + '</div></div>' : '') +
 
-                        (p.description ? '<div class="mb-6"><p class="text-sm text-stone-700 leading-relaxed">' + escapeHtml(p.description) + '</p></div>' : '') +
-                      '</div>' +
+              // 描述
+              (p.description ? '<div class="mb-6"><p class="text-sm text-stone-700 leading-relaxed">' + escapeHtml(p.description) + '</p></div>' : '') +
+            '</div>' +
 
-                      // 底部 CTA：position absolute 浮在右栏底部，scroll 内容时不动
-                      '<div class="absolute bottom-0 left-0 right-0 p-4 sm:p-6 border-t border-stone-200 bg-white shadow-[0_-4px_12px_-2px_rgba(0,0,0,0.06)] z-10">' +
-                        // 上一个/下一个 导航
-                        '<div class="flex items-center justify-between gap-3 mb-3">' +
-                          '<button id="modal-prev" class="flex items-center gap-1 text-xs text-stone-600 hover:text-stone-900 transition-colors disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Previous product">' +
-                            '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>' +
-                            '<span>Previous</span>' +
-                          '</button>' +
-                          '<button id="modal-next" class="flex items-center gap-1 text-xs text-stone-600 hover:text-stone-900 transition-colors disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Next product">' +
-                            '<span>Next</span>' +
-                            '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>' +
-                          '</button>' +
-                        '</div>' +
-                        '<button id="modal-inquiry" class="w-full px-6 py-3 bg-amber-700 text-white hover:bg-amber-800 transition-colors font-medium tracking-wide">' + escapeHtml(labels.requestInquiry) + '</button>' +
-                        '<p class="text-xs text-stone-500 text-center mt-2">' + escapeHtml(labels.inquiryNote) + '</p>' +
-                      '</div>' +
-                    '</div>'
-                  );
+            // 底部 CTA：position absolute 浮在右栏底部，scroll 内容时不动
+            // 高度 ≈ prev/next(28) + mb-3(12) + button(48) + mt-2(8) + p(16+16) + note(16) ≈ 144px；用 pb-40 留 160px 缓冲
+            '<div class="absolute bottom-0 left-0 right-0 p-4 sm:p-6 border-t border-stone-200 bg-white shadow-[0_-4px_12px_-2px_rgba(0,0,0,0.06)] z-10">' +
+              // 上一个/下一个 导航
+              '<div class="flex items-center justify-between gap-3 mb-3">' +
+                '<button id="modal-prev" class="flex items-center gap-1 text-xs text-stone-600 hover:text-stone-900 transition-colors disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Previous product">' +
+                  '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>' +
+                  '<span>Previous</span>' +
+                '</button>' +
+                '<button id="modal-next" class="flex items-center gap-1 text-xs text-stone-600 hover:text-stone-900 transition-colors disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Next product">' +
+                  '<span>Next</span>' +
+                  '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>' +
+                '</button>' +
+              '</div>' +
+              '<button id="modal-inquiry" class="w-full px-6 py-3 bg-amber-700 text-white hover:bg-amber-800 transition-colors font-medium tracking-wide">' + escapeHtml(labels.requestInquiry) + '</button>' +
+              '<p class="text-xs text-stone-500 text-center mt-2">' + escapeHtml(labels.inquiryNote) + '</p>' +
+            '</div>' +
+          '</div>'
+        );
 
         modal.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
@@ -543,7 +628,7 @@ const labelsJson = JSON.stringify(labels);
           if (e.target === modalBackdrop) closeModal();
         });
 
-        // Thumbnails
+        // Thumbnails（图片缩略图）
         modalContent.querySelectorAll('.modal-thumb').forEach((t) => {
           t.addEventListener('click', () => {
             const i = parseInt(t.getAttribute('data-i'));
@@ -551,11 +636,31 @@ const labelsJson = JSON.stringify(labels);
             const mainImgEl = modalContent.querySelector('#modal-main-img img');
             if (mainImgEl) mainImgEl.src = newImg;
             modalContent.querySelectorAll('.modal-thumb').forEach((tt, idx) => {
-              tt.classList.toggle('border-amber-700', idx === i);
-              tt.classList.toggle('border-stone-200', idx !== i);
+              const active = idx === i;
+              tt.classList.toggle('border-amber-700', active);
+              tt.classList.toggle('ring-1', active);
+              tt.classList.toggle('ring-amber-700', active);
+              tt.classList.toggle('border-stone-200', !active);
             });
           });
         });
+
+        // 媒体占位点击：闪一下 toast 提示（不做事，等以后接视频/360°）
+        modalContent.querySelectorAll('.modal-media-slot').forEach((s) => {
+          s.addEventListener('click', () => {
+            const kind = s.getAttribute('data-kind');
+            const msg = kind === 'video' ? 'Product video coming soon' : '360° view coming soon';
+            showToast(msg);
+          });
+        });
+
+        // 主图点击 → 简版 lightbox（关弹窗前先关 lightbox）
+        const mainImgWrap = modalContent.querySelector('#modal-main-img');
+        if (mainImgWrap && mainImg) {
+          mainImgWrap.addEventListener('click', () => {
+            openLightbox(mainImg, p.name);
+          });
+        }
 
         // Inquiry → /contact?subject=...&body=...
         document.getElementById('modal-inquiry').addEventListener('click', () => {
@@ -592,10 +697,66 @@ const labelsJson = JSON.stringify(labels);
         document.body.style.overflow = '';
       }
 
+      // ---------- Lightbox（主图点击放大）+ Toast ----------
+      // Lightbox 节点 lazy 注入
+      let lightboxEl = null;
+      function openLightbox(src, alt) {
+        if (!lightboxEl) {
+          lightboxEl = document.createElement('div');
+          lightboxEl.id = 'lightbox';
+          lightboxEl.className = 'fixed inset-0 z-[300] bg-black/90 flex items-center justify-center p-4 cursor-zoom-out';
+          lightboxEl.innerHTML = '<img class="max-w-full max-h-full object-contain" />';
+          lightboxEl.addEventListener('click', closeLightbox);
+          document.body.appendChild(lightboxEl);
+        }
+        lightboxEl.querySelector('img').src = src;
+        lightboxEl.querySelector('img').alt = alt || '';
+        lightboxEl.classList.remove('hidden');
+        lightboxEl.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      }
+      function closeLightbox() {
+        if (!lightboxEl) return;
+        lightboxEl.style.display = 'none';
+        // 还原 modal 锁定的 scroll（如果 modal 仍开着）
+        if (!modal.classList.contains('hidden')) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = '';
+        }
+      }
+
+      // Toast 节点 lazy 注入
+      let toastEl = null;
+      let toastTimer = null;
+      function showToast(msg) {
+        if (!toastEl) {
+          toastEl = document.createElement('div');
+          toastEl.id = 'app-toast';
+          toastEl.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 z-[400] px-4 py-2 bg-stone-900 text-white text-sm rounded-md shadow-lg transition-opacity duration-200 opacity-0 pointer-events-none';
+          document.body.appendChild(toastEl);
+        }
+        toastEl.textContent = msg;
+        // force reflow then fade in
+        toastEl.style.opacity = '0';
+        requestAnimationFrame(() => {
+          toastEl.style.opacity = '1';
+        });
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toastEl.style.opacity = '0';
+        }, 1800);
+      }
+
       // ESC 关闭，← → 切换产品
       document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          // 优先关 lightbox，再关 modal
+          if (lightboxEl && lightboxEl.style.display !== 'none') { closeLightbox(); return; }
+          if (!modal.classList.contains('hidden')) { closeModal(); return; }
+          return;
+        }
         if (modal.classList.contains('hidden')) return;
-        if (e.key === 'Escape') { closeModal(); return; }
         const prevBtn = document.getElementById('modal-prev');
         const nextBtn = document.getElementById('modal-next');
         if (e.key === 'ArrowLeft' && prevBtn && !prevBtn.disabled) prevBtn.click();
