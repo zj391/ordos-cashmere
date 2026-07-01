@@ -21,19 +21,18 @@ const navItems = [
   { href: localePath(locale, '/garment-oem'), labelKey: 'nav.garmentOem' },
   { href: localePath(locale, '/ordos-origin'), labelKey: 'nav.ordosOrigin' },
   { href: localePath(locale, '/factory'), labelKey: 'nav.factory' },
-  { href: localePath(locale, '/download'), labelKey: 'nav.download' },
   { href: localePath(locale, '/blog'), labelKey: 'nav.blog' },
   { href: localePath(locale, '/contact'), labelKey: 'nav.contact' },
 ];
 
 // 翻译文本
 const labels: Record<string, Record<string, string>> = {
-  en: { 'nav.home': 'Home', 'nav.products': 'Products', 'nav.rawMaterial': 'Raw Material', 'nav.yarnFabric': 'Yarn & Fabric', 'nav.garmentOem': 'Garment OEM', 'nav.ordosOrigin': 'Ordos Origin', 'nav.factory': 'Factory', 'nav.download': 'Download', 'nav.blog': 'Blog', 'nav.contact': 'Contact', 'nav.menuToggle': 'Menu' },
-  de: { 'nav.home': 'Start', 'nav.products': 'Produkte', 'nav.rawMaterial': 'Rohmaterial', 'nav.yarnFabric': 'Garn & Stoff', 'nav.garmentOem': 'Bekleidung OEM', 'nav.ordosOrigin': 'Ordos Herkunft', 'nav.factory': 'Fabrik', 'nav.download': 'Download', 'nav.blog': 'Blog', 'nav.contact': 'Kontakt', 'nav.menuToggle': 'Menü' },
-  fr: { 'nav.home': 'Accueil', 'nav.products': 'Produits', 'nav.rawMaterial': 'Matière Première', 'nav.yarnFabric': 'Fil & Tissu', 'nav.garmentOem': 'Vêtement OEM', 'nav.ordosOrigin': 'Origine Ordos', 'nav.factory': 'Usine', 'nav.download': 'Télécharger', 'nav.blog': 'Blog', 'nav.contact': 'Contact', 'nav.menuToggle': 'Menu' },
-  ja: { 'nav.home': 'ホーム', 'nav.products': '製品', 'nav.rawMaterial': '原料', 'nav.yarnFabric': '糸・生地', 'nav.garmentOem': '衣料OEM', 'nav.ordosOrigin': 'オルドス起源', 'nav.factory': '工場', 'nav.download': 'ダウンロード', 'nav.blog': 'ブログ', 'nav.contact': 'お問い合わせ', 'nav.menuToggle': 'メニュー' },
-  kr: { 'nav.home': '홈', 'nav.products': '제품', 'nav.rawMaterial': '원료', 'nav.yarnFabric': '원사·직물', 'nav.garmentOem': '의류 OEM', 'nav.ordosOrigin': '오르도스 원산지', 'nav.factory': '공장', 'nav.download': '다운로드', 'nav.blog': '블로그', 'nav.contact': '문의', 'nav.menuToggle': '메뉴' },
-  cn: { 'nav.home': '首页', 'nav.products': '产品', 'nav.rawMaterial': '羊绒原料', 'nav.yarnFabric': '纱线/面料', 'nav.garmentOem': '成衣代工', 'nav.ordosOrigin': '鄂尔多斯产地', 'nav.factory': '工厂实力', 'nav.download': '下载中心', 'nav.blog': '博客', 'nav.contact': '联系我们', 'nav.menuToggle': '菜单' },
+  en: { 'nav.home': 'Home', 'nav.products': 'Products', 'nav.rawMaterial': 'Raw Material', 'nav.yarnFabric': 'Yarn & Fabric', 'nav.garmentOem': 'Garment OEM', 'nav.ordosOrigin': 'Ordos Origin', 'nav.factory': 'Factory', 'nav.blog': 'Blog', 'nav.contact': 'Contact', 'nav.menuToggle': 'Menu' },
+  de: { 'nav.home': 'Start', 'nav.products': 'Produkte', 'nav.rawMaterial': 'Rohmaterial', 'nav.yarnFabric': 'Garn & Stoff', 'nav.garmentOem': 'Bekleidung OEM', 'nav.ordosOrigin': 'Ordos Herkunft', 'nav.factory': 'Fabrik', 'nav.blog': 'Blog', 'nav.contact': 'Kontakt', 'nav.menuToggle': 'Menü' },
+  fr: { 'nav.home': 'Accueil', 'nav.products': 'Produits', 'nav.rawMaterial': 'Matière Première', 'nav.yarnFabric': 'Fil & Tissu', 'nav.garmentOem': 'Vêtement OEM', 'nav.ordosOrigin': 'Origine Ordos', 'nav.factory': 'Usine', 'nav.blog': 'Blog', 'nav.contact': 'Contact', 'nav.menuToggle': 'Menu' },
+  ja: { 'nav.home': 'ホーム', 'nav.products': '製品', 'nav.rawMaterial': '原料', 'nav.yarnFabric': '糸・生地', 'nav.garmentOem': '衣料OEM', 'nav.ordosOrigin': 'オルドス起源', 'nav.factory': '工場', 'nav.blog': 'ブログ', 'nav.contact': 'お問い合わせ', 'nav.menuToggle': 'メニュー' },
+  kr: { 'nav.home': '홈', 'nav.products': '제품', 'nav.rawMaterial': '원료', 'nav.yarnFabric': '원사·직물', 'nav.garmentOem': '의류 OEM', 'nav.ordosOrigin': '오르도스 원산지', 'nav.factory': '공장', 'nav.blog': '블로그', 'nav.contact': '문의', 'nav.menuToggle': '메뉴' },
+  cn: { 'nav.home': '首页', 'nav.products': '产品', 'nav.rawMaterial': '羊绒原料', 'nav.yarnFabric': '纱线/面料', 'nav.garmentOem': '成衣代工', 'nav.ordosOrigin': '鄂尔多斯产地', 'nav.factory': '工厂实力', 'nav.blog': '博客', 'nav.contact': '联系我们', 'nav.menuToggle': '菜单' },
 };
 
 const t = (key: string) => labels[locale]?.[key] || labels.en[key] || key;
