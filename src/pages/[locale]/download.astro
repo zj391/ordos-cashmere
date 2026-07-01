@@ -58,6 +58,24 @@ const downloads = [
     </div>
   </section>
 
+  <!-- 底部 CTA：看完资料 → 跳到联系 -->
+  <section class="pb-24 md:pb-32 bg-background">
+    <div class="container-narrow">
+      <div class="text-center max-w-2xl mx-auto">
+        <p class="text-sm text-muted-foreground mb-4">
+          {locale === 'cn' ? '没找到需要的资料？' : "Didn't find what you need?"}
+        </p>
+        <a
+          href={locale === 'cn' ? '/cn/contact' : `/${locale}/contact`}
+          class="inline-flex items-center gap-2 px-8 py-3 bg-stone-900 text-white hover:bg-amber-700 transition-colors text-sm"
+        >
+          {locale === 'cn' ? '联系我们获取更多资料' : 'Contact Us for More Resources'}
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <Footer slot="footer" locale={locale} />
   <FloatingChatButtons slot="floating" locale={locale} />
   <CookieConsent slot="cookie-consent" locale={locale} />
