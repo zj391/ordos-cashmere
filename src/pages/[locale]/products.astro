@@ -210,10 +210,9 @@ const labelsJson = JSON.stringify(labels);
   </section>
 
   <!-- 弹窗：全屏遮罩 + 居中弹窗 -->
-  <div id="product-modal" class="fixed inset-0 z-[100] hidden bg-black/70 backdrop-blur-sm overflow-y-auto" role="dialog" aria-modal="true">
+  <div id="product-modal" class="fixed inset-0 z-[200] hidden bg-black/75 overflow-y-auto" role="dialog" aria-modal="true">
     <div class="min-h-full flex items-center justify-center p-2 sm:p-4 md:p-8" id="modal-backdrop">
-      <!-- 移动端 h-[100dvh] 动态视口单位撑满，桌面用 max-h -->
-      <!-- flex 布局（不是 grid）：让左右两栏天然等高，flex-1 内容区 + flex-shrink-0 CTA 稳定 -->
+      <!-- 桌面：max-h-90vh；移动：h-100dvh 撑满（避免地址栏影响） -->
       <div class="bg-white w-full max-w-5xl md:max-h-[90vh] h-[100dvh] md:h-auto flex flex-col md:flex-row overflow-hidden shadow-2xl relative" id="modal-content">
         <!-- 内容由 JS 填充 -->
       </div>
