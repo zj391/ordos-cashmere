@@ -234,6 +234,9 @@ if (_schema === 'faq' && faqs && faqs.length > 0) {
       <script type="application/ld+json" set:html={JSON.stringify(s, null, 0)} is:inline />
     ))}
 
+    <!-- Page-level head slot (article:*, extra JSON-LD, etc.) -->
+    <slot name="head" />
+
     <!-- GA4 -->
     <script is:inline define:vars={{ locale, gaId: 'G-723D6NZQQS' }}>
       window.dataLayer = window.dataLayer || [];
