@@ -134,7 +134,14 @@ const t = (key: string) => labels[locale]?.[key] || labels.en[key] || key;
 </header>
 
 <script is:inline>
-  document.getElementById('mobile-menu-toggle')?.addEventListener('click', () => {
-    document.getElementById('mobile-menu')?.classList.toggle('hidden');
+  // 移动端菜单：点 hamburger 切换 + 点链接后自动关
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  toggle?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+  // 点 mobile menu 里的任何链接后自动关
+  menu?.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => menu.classList.add('hidden'));
   });
 </script>
