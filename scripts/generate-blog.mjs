@@ -22,6 +22,7 @@ import path from 'node:path';
 
 const ROOT = path.resolve(new URL('.', import.meta.url).pathname, '..');
 const BLOG_DIR = path.join(ROOT, 'src/content/blog');
+const TOPICS_FILE = path.join(ROOT, 'scripts/topics.json');
 
 function envGet(name, fallback = '') {
   // 直接读 process.env（globalThis.process 在 Node ESM 里 .env 不挂在 globalThis）
@@ -47,14 +48,49 @@ const LOCALES = [
   { code: 'kr', name: 'Korean',   hreflang: 'ko' },
 ];
 
-const TOPIC = envGet('TOPIC', 'How B2B cashmere buyers can verify Ordos origin and avoid mislabeling');
-const KEYWORDS = envGet('KEYWORDS', 'Ordos cashmere manufacturer,B2B cashmere sourcing,Inner Mongolia cashmere factory,Cashmere origin verification,China cashmere exporter').split(',').map(k => k.trim());
+let TOPIC = envGet('TOPIC', '');
+let KEYWORDS = envGet('KEYWORDS', '').split(',').map(k => k.trim()).filter(Boolean);
 
 if (!k) {
   console.error('API key not configured. Set the API key env var before running:');
   console.error('  export API_URL=https://openrouter.ai/api/v1/chat/completions');
   console.error('  export MODEL=anthropic/claude-3.5-sonnet');
   process.exit(1);
+}
+
+// 主题选择：env 显式传 > topics.json 随机抽（跳过已存在）> 报错退出
+async function pickTopic() {
+  if (TOPIC) {
+    // env 显式传：用 slugify 生成 slug（用户自己提供主题，不去重）
+    return { topic: TOPIC, keywords: KEYWORDS, slug: TOPIC.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').slice(0, 80), explicit: true };
+  }
+  let topics = [];
+  try {
+    topics = JSON.parse(await fs.readFile(TOPICS_FILE, 'utf-8'));
+  } catch {
+    console.error('Cannot read', TOPICS_FILE, '- falling back to default topic.');
+    return {
+      topic: 'How B2B cashmere buyers can verify Ordos origin and avoid mislabeling',
+      keywords: ['Ordos cashmere manufacturer','B2B cashmere sourcing','Inner Mongolia cashmere factory','Cashmere origin verification','China cashmere exporter'],
+      slug: 'ordos-cashmere-manufacturer-verify-origin-avoid-mislabeling',
+      explicit: false,
+    };
+  }
+  // 收集已存在的 slug（任意 locale 下存在即视为已生成）
+  const existing = new Set();
+  for (const loc of LOCALES) {
+    try {
+      const files = await fs.readdir(path.join(BLOG_DIR, loc.code));
+      for (const f of files) if (f.endsWith('.md')) existing.add(f.replace(/\.md$/, ''));
+    } catch {}
+  }
+  const available = topics.filter(t => !existing.has(t.slug));
+  if (available.length === 0) {
+    console.log('All', topics.length, 'topics already published. Nothing to do.');
+    return null;
+  }
+  const pick = available[Math.floor(Math.random() * available.length)];
+  return { topic: pick.topic, keywords: pick.keywords, slug: pick.slug, explicit: false, remaining: available.length - 1, total: topics.length };
 }
 
 function slugify(text) {
@@ -199,14 +235,27 @@ async function writeBlogFile(locale, post) {
 
 async function main() {
   console.log(`\nGEO Blog Generator`);
-  console.log(`  Topic: ${TOPIC}`);
+
+  const selection = await pickTopic();
+  if (!selection) return;  // all topics published
+  // selection 覆盖 let TOPIC / KEYWORDS（让 generateEnglish / translateToLocale 内部读到的也对）
+  if (!selection.explicit) {
+    TOPIC = selection.topic;
+    KEYWORDS = selection.keywords;
+  }
+
+  console.log(`  Topic: ${selection.explicit ? TOPIC : selection.topic}`);
+  if (!selection.explicit) {
+    console.log(`  Slug:  ${selection.slug}  (random: ${selection.remaining + 1}/${selection.total} remaining)`);
+  }
   console.log(`  Model: ${LLM_MODEL}`);
   console.log(`  Locales: ${LOCALES.map(l => l.code).join(', ')}\n`);
 
   console.log('-> Generating English source...');
   const english = await generateEnglish();
+  if (!selection.explicit) english.slug = selection.slug;  // 锁定 topics.json 的 slug
   console.log(`   Title: ${english.title}`);
-  console.log(`   Slug: ${english.slug}\n`);
+  console.log(`   Slug:  ${english.slug}\n`);
 
   await writeBlogFile('en', english);
 
@@ -214,12 +263,14 @@ async function main() {
     console.log(`-> Translating to ${locale.name} (${locale.code})...`);
     try {
       const translated = await translateToLocale(english, locale);
+      if (!selection.explicit) translated.slug = selection.slug;
       await writeBlogFile(locale.code, translated);
     } catch (e) {
       console.error(`   ! ${locale.code} failed: ${e.message}`);
       console.error(`   ! Falling back to English content for ${locale.code}`);
       // Fallback: 用英文源 + 语言标记写一份，保证所有 locale 都有文件
       const fallback = { ...english, language: locale.code };
+      if (!selection.explicit) fallback.slug = selection.slug;
       await writeBlogFile(locale.code, fallback);
     }
   }
