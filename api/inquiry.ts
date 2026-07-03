@@ -181,8 +181,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const userAgent = req.headers['user-agent'] || '';
     const country = req.headers['x-vercel-ip-country'] || 'unknown';
 
-    // 解析 quantity（数字）
-    const qty = data.quantity ? parseFloat(data.quantity.replace(/[^0-9.]/g, '')) : null;
+    // 解析 quantity（兼容数字和字符串 — 前端可能两种都发）
+    const qty = data.quantity != null
+      ? parseFloat(String(data.quantity).replace(/[^0-9.]/g, '')) || null
+      : null;
 
     const inquiryType = INQUIRY_TYPE_MAP[data.type];
 
