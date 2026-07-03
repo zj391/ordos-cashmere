@@ -78,8 +78,9 @@ export default function ContactForm({ locale }: Props) {
     setStatus('idle');
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData.entries());
+    data.type = type;  // /api/inquiry 需要 type 字段（raw/yarn/garment）
     try {
-      const endpoint = type === 'raw' ? '/api/inquiry/raw' : type === 'yarn' ? '/api/inquiry/yarn' : '/api/inquiry/garment';
+      const endpoint = '/api/inquiry';  // 走 /api/inquiry (自带 Resend 发邮件)
       const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
