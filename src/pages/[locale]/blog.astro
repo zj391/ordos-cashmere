@@ -40,9 +40,45 @@ const posts = allPosts
     tags: p.data.tags,
   }));
 
+// ItemList JSON-LD: 让 Google 把博客列表做成富结果
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: T('title'),
+  description: T('subtitle'),
+  numberOfItems: posts.length,
+  itemListElement: posts.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    url: `https://erdosdx.com/${locale}/blog/${p.slug}`,
+    name: p.title,
+  })),
+};
+
+// BreadcrumbList JSON-LD: 首页 > Blog
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `https://erdosdx.com/${locale}/` },
+    { '@type': 'ListItem', position: 2, name: locale === 'cn' ? '博客' : 'Blog', item: `https://erdosdx.com/${locale}/blog` },
+  ],
+};
+
 ---
 
 <BaseLayout locale={locale} pageKey="blog" path="/blog">
+  <Fragment slot="head" set:html={(() => {
+    // Astro 5 限制：{} 里不能 return JSX 数组，用 set:html + 字符串拼接
+    const itemListJson = JSON.stringify(itemListSchema);
+    const breadcrumbJson = JSON.stringify(breadcrumbSchema);
+    return `
+    <!-- Blog list ItemList + Breadcrumb JSON-LD -->
+    <script type="application/ld+json">${itemListJson}</script>
+    <script type="application/ld+json">${breadcrumbJson}</script>
+  `;
+  })()} />
+
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/blog`} />
 
   <section class="relative bg-brand-ink text-white overflow-hidden">
