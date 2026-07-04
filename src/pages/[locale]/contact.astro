@@ -49,6 +49,64 @@ const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
 ---
 
 <BaseLayout locale={locale} pageKey="contact" path="/contact">
+  <Fragment slot="head" set:html={(() => {
+    // ContactPage JSON-LD：让 Google 直接显示地址/电话/营业时间
+    const t = SITE_INFO?.contact || {};
+    const contactJson = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'ContactPage',
+      '@id': `https://erdosdx.com/${locale}/contact`,
+      name: locale === 'cn' ? '联系东霄羊绒' : 'Contact DONGXIAO Cashmere',
+      description: locale === 'cn'
+        ? '联系鄂尔多斯源头工厂，24小时内回复所有询盘'
+        : 'Contact our Ordos source factory directly. 24h inquiry response.',
+      mainEntity: {
+        '@type': 'Organization',
+        '@id': 'https://erdosdx.com/#organization',
+        name: 'DONGXIAO Cashmere',
+        legalName: 'Ordos Dongxiao Cashmere Co., Ltd.',
+        url: 'https://erdosdx.com',
+        logo: 'https://erdosdx.com/logo.svg',
+        foundingDate: '2002',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Ordos Industrial Park, Inner Mongolia',
+          addressLocality: 'Ordos',
+          addressRegion: 'Inner Mongolia',
+          postalCode: '017000',
+          addressCountry: 'CN',
+        },
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: 39.6086,
+          longitude: 109.7813,
+        },
+        contactPoint: [{
+          '@type': 'ContactPoint',
+          telephone: '+86-156-6185-3999',
+          contactType: 'sales',
+          areaServed: 'Worldwide',
+          availableLanguage: ['English', 'Chinese', 'German', 'French', 'Japanese', 'Korean'],
+          hoursAvailable: {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+            opens: '08:00',
+            closes: '18:00',
+          },
+        }],
+        sameAs: [
+          'https://www.linkedin.com/company/dongxiao-cashmere',
+          'https://www.instagram.com/dongxiaocashmere',
+          'https://www.facebook.com/dongxiaocashmere',
+          'https://www.youtube.com/@dongxiaocashmere',
+        ],
+      },
+    });
+    return `
+    <script type="application/ld+json">${contactJson}</script>
+  `;
+  })()} />
+
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/contact`} />
 
   <!-- HERO -->
