@@ -88,6 +88,23 @@ const labelsJson = JSON.stringify(labels);
   keywords={seo.keywords}
   schema="products"
 >
+  <Fragment slot="head" set:html={(() => {
+    // Astro 5 限制：{} 里不能 return JSX 元素数组，用 set:html + 字符串拼接
+    // BaseLayout 已用 'products' schema 自动生成 ItemList（按分类）
+    // 这里只补 BreadcrumbList
+    const breadcrumbJson = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `https://erdosdx.com/${locale}/` },
+        { '@type': 'ListItem', position: 2, name: locale === 'cn' ? '产品' : 'Products', item: `https://erdosdx.com/${locale}/products` },
+      ],
+    });
+    return `
+    <script type="application/ld+json">${breadcrumbJson}</script>
+  `;
+  })()} />
+
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/products`} />
 
   <!-- Page header -->
