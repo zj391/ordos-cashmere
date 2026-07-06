@@ -1,0 +1,45 @@
+name: Daily Lead Pipeline
+
+on:
+  schedule:
+    # Every day at 09:00 UTC (17:00 China time)
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+    # Allow manual run from GitHub Actions UI
+
+jobs:
+  orchestrator:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
+      NOTIFICATION_EMAIL: ${{ secrets.NOTIFICATION_EMAIL }}
+      DEV_BCC: ${{ secrets.DEV_BCC }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install --no-audit --prefer-offline
+
+      - name: Run orchestrator
+        run: node scripts/leads/orchestrator.mjs --max-emails 22
+        env:
+          # Override REPORT_TO to deliver report via GitHub
+          REPORT_TO: ${{ secrets.NOTIFICATION_EMAIL }}
+
+      - name: On failure notify
+        if: failure()
+        run: |
+          echo "Daily lead pipeline failed at $(date)"
+          # Optional: add Slack/email notification here
