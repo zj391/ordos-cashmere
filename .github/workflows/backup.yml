@@ -1,0 +1,35 @@
+name: Weekly Supabase Backup
+
+on:
+  schedule:
+    # Every Sunday at 03:00 UTC (11:00 China time)
+    - cron: '0 3 * * 0'
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run backup
+        run: node scripts/leads/backup.mjs --out backup --keep 12
+        # keep 12 = 12 weeks of weekly backups (3 months)
+
+      - name: Upload backup artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: supabase-backup-${{ github.run_id }}
+          path: backup/
+          retention-days: 90
+          # GitHub keeps artifacts 90 days by default
+EOF
