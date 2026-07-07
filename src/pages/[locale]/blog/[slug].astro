@@ -3,6 +3,7 @@
  * Blog 详情页 - 从 src/content/blog/{locale}/{slug}.md 读取
  * 由 scripts/generate-blog.mjs + GitHub Actions 每日自动生成
  */
+export const prerender = true;
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Navigation from '@/components/Navigation.astro';
 import Footer from '@/components/Footer.astro';
