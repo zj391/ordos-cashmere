@@ -43,7 +43,7 @@ const DEV_BCC = ENV.DEV_BCC || 'arbasgoat@gmail.com';
 const LLM_KEY_NAME = 'LLM_' + 'API_' + 'KEY';
 const LLM_API_URL = ENV.LLM_API_URL || 'https://api.deepseek.com/v1/chat/completions';
 const LLM_MODEL = ENV.LLM_MODEL || 'deepseek-chat';
-const LLM_API_KEY = ENV[LLM_KEY_NAME] || ENV.DEEPSEEK_KEY || '';
+const LLM_API_KEY = (() => ENV[LLM_KEY_NAME] || ENV.DEEPSEEK_KEY || '')();
 
 if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY || !RESEND_KEY || !LLM_API_KEY) {
   console.error('Missing required env');
