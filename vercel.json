@@ -3,9 +3,6 @@
   "buildCommand": "pnpm install --no-frozen-lockfile && pnpm build",
   "outputDirectory": "dist",
   "framework": "astro",
-  "rewrites": [
-    { "source": "/((?!assets/|api/).*)", "destination": "/index.html" }
-  ],
   "headers": [
     {
       "source": "/(.*)\\.(jpg|jpeg|png|webp|svg|woff2|woff|ttf)",
