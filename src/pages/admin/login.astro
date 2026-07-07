@@ -4,6 +4,7 @@
 // Redirects to /admin/inquiries on success
 
 export const prerender = false;
+
 const error = Astro.url.searchParams.get('error');
 
 if (Astro.request.headers.get('cookie')?.includes('admin_session=')) {
