@@ -6,6 +6,7 @@
  * 6 国 i18n：内部 messages 多语言
  */
 import { useState, useRef, useEffect } from 'react';
+import React from 'react';
 
 interface Props {
   locale: string;
@@ -161,6 +162,10 @@ export default function AIChatWidget({ locale }: Props) {
     setBusy(true);
     setOffline(false);
 
+    // 立刻加一个空的 assistant 消息（流式输出容器）
+    const placeholderIdx = next.length;
+    setMessages([...next, { role: 'assistant', content: '', ts: Date.now() }]);
+
     try {
       const res = await fetch('/api/chat', {
         method: 'POST',
@@ -176,28 +181,42 @@ export default function AIChatWidget({ locale }: Props) {
       if (!res.ok || !data.success) {
         if (data.error === 'llm_not_configured') {
           setOffline(true);
-          setMessages([
-            ...next,
-            { role: 'assistant', content: t.offline, ts: Date.now() },
-          ]);
+          setMessages((cur) => {
+            const copy = [...cur];
+            copy[placeholderIdx] = { role: 'assistant', content: t.offline, ts: Date.now() };
+            return copy;
+          });
         } else {
-          setMessages([
-            ...next,
-            { role: 'assistant', content: t.errorOffline, ts: Date.now() },
-          ]);
+          setMessages((cur) => {
+            const copy = [...cur];
+            copy[placeholderIdx] = { role: 'assistant', content: t.errorOffline, ts: Date.now() };
+            return copy;
+          });
         }
         return;
       }
 
-      setMessages([
-        ...next,
-        { role: 'assistant', content: data.reply || '...', ts: Date.now() },
-      ]);
+      // 打字机效果：逐字显示 AI 回复
+      const full = data.reply || '...';
+      const CHARS_PER_TICK = 3;  // 每 tick 显示 3 字符
+      const TICK_MS = 18;        // 每 tick 18ms（≈180 字符/秒，接近自然阅读速度）
+      let i = 0;
+      const tick = () => {
+        i = Math.min(i + CHARS_PER_TICK, full.length);
+        setMessages((cur) => {
+          const copy = [...cur];
+          copy[placeholderIdx] = { role: 'assistant', content: full.slice(0, i), ts: Date.now() };
+          return copy;
+        });
+        if (i < full.length) setTimeout(tick, TICK_MS);
+      };
+      tick();
     } catch (e) {
-      setMessages([
-        ...next,
-        { role: 'assistant', content: t.errorOffline, ts: Date.now() },
-      ]);
+      setMessages((cur) => {
+        const copy = [...cur];
+        copy[placeholderIdx] = { role: 'assistant', content: t.errorOffline, ts: Date.now() };
+        return copy;
+      });
     } finally {
       setBusy(false);
     }
