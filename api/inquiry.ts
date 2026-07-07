@@ -235,6 +235,31 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       }
     }
 
+    // 2.5 同步 leads 表 + AI 评分
+    {
+      const protocol = (req.headers && (req.headers["x-forwarded-proto"] || "https")) || "https";
+      const host = (req.headers && (req.headers["x-forwarded-host"] || req.headers.host)) || "erdosdx.com";
+      fetch(protocol + "://" + host + "/api/sync-inquiry-to-lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: data.email,
+          contact_name: data.name,
+          company_name: data.company,
+          country: country,
+          phone: data.phone,
+          inquiry_id: inquiryId,
+          industry: "unknown",
+          company_size: "unknown",
+          job_title: data.job_title,
+          source: "inbound_inquiry",
+          source_detail: "inquiry_form_" + (data.inquiry_type || "unknown"),
+          quantity: data.quantity,
+          message: data.message,
+        }),
+      }).catch((err) => console.error("sync-inquiry-to-lead error:", err));
+    }
+
     // 3. 触发 n8n（lead 分层、AI 客服启动、风控检查）
     if (N8N_WEBHOOK) {
       fetch(N8N_WEBHOOK, {
