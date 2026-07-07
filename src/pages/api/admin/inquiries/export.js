@@ -1,9 +1,9 @@
-import type { APIRoute } from 'astro';
+
 
 const SUPABASE_URL = process.env.PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || '';
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || '';
 
-export const GET: APIRoute = async ({ url }) => {
+export const GET = async ({ url }) => {
   if (!SUPABASE_URL || !SUPABASE_KEY) {
     return new Response('Supabase not configured', { status: 500 });
   }
@@ -14,7 +14,7 @@ export const GET: APIRoute = async ({ url }) => {
   const search = url.searchParams.get('q') || '';
 
   let q = '/rest/v1/inquiries?order=created_at.desc&limit=1000';
-  const filters: string[] = [];
+  const filters = [];
   if (grade) filters.push(`lead_grade=eq.${grade}`);
   if (status) filters.push(`status=eq.${status}`);
   if (country) filters.push(`country=eq.${country}`);
@@ -27,10 +27,10 @@ export const GET: APIRoute = async ({ url }) => {
   if (!res.ok) {
     return new Response('Supabase error: ' + (await res.text()), { status: 500 });
   }
-  const rows: any[] = await res.json();
+  const rows = await res.json();
 
   const headers = ['id', 'created_at', 'contact_name', 'company_name', 'email', 'phone', 'country', 'locale', 'inquiry_type', 'product_interest', 'quantity_kg', 'quantity_m', 'quantity_pcs', 'lead_grade', 'status', 'message', 'utm_source', 'utm_medium', 'utm_campaign', 'referrer'];
-  const esc = (v: any) => {
+  const esc = (v) => {
     if (v === null || v === undefined) return '';
     const s = String(v);
     if (s.includes(',') || s.includes('"') || s.includes('\n')) {
@@ -52,3 +52,4 @@ export const GET: APIRoute = async ({ url }) => {
     },
   });
 };
+

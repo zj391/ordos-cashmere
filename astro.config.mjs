@@ -35,4 +35,8 @@ export default defineConfig({
   vite: { ssr: { noExternal: ['react-i18next', 'react-helmet-async'] } },
   build: { inlineStylesheets: 'auto', compressHTML: true },
   compressJS: true,
+  // Disable Astro 5's built-in CSRF check that blocks cross-origin form POSTs.
+  // The admin login form posts from the same origin, but curl/browser tests
+  // from external origins get 403 without this disabled.
+  security: { checkOrigin: false },
 });

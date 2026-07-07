@@ -1,9 +1,9 @@
-import type { APIRoute } from 'astro';
+
 
 const SUPABASE_URL = process.env.PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || '';
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || '';
 
-export const POST: APIRoute = async ({ params, request, redirect }) => {
+export const POST = async ({ params, request, redirect }) => {
   const { id } = params;
   const form = await request.formData();
   const status = form.get('status')?.toString();
@@ -15,7 +15,7 @@ export const POST: APIRoute = async ({ params, request, redirect }) => {
   }
 
   // Update inquiry
-  const update: any = {};
+  const update = {};
   if (status) update.status = status;
   if (lead_grade !== null) update.lead_grade = lead_grade || null;
 
@@ -57,3 +57,4 @@ export const POST: APIRoute = async ({ params, request, redirect }) => {
 
   return redirect(`/admin/inquiries/${id}`);
 };
+
