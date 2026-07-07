@@ -5,11 +5,12 @@ import tailwind from '@astrojs/tailwind';
 import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
-// hybrid: static by default, opt-in SSR via 'export const prerender = false'
-// Required so /api/admin/* (server-rendered with cookies + Supabase) work on Vercel
+// Astro 5: 'hybrid' option was removed - static is default
+// and now behaves as hybrid (prerender = false opts into SSR).
+// @astrojs/vercel adapter generates serverless functions for SSR routes.
 export default defineConfig({
   site: 'https://erdosdx.com',
-  output: 'hybrid',
+  output: 'static',
   adapter: vercel({
     webAnalytics: { enabled: false },
     edgeMiddleware: false,
