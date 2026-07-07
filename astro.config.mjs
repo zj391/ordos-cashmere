@@ -10,6 +10,7 @@ export default defineConfig({
   output: 'static',
   adapter: vercel({
     webAnalytics: { enabled: false },
+    edgeMiddleware: false,
   }),
   integrations: [
     react(),
