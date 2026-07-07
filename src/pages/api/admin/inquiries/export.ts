@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 
 const ROOT = path.resolve(new URL('.', import.meta.url).pathname, '../..');
+export const prerender = false;
 const ENV = (() => {
   const out = {};
   try {

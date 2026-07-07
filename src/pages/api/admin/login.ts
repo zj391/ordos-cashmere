@@ -3,6 +3,7 @@ import type { APIRoute } from 'astro';
 export const POST: APIRoute = async ({ request, cookies, redirect }) => {
   const form = await request.formData();
   const password = form.get('password')?.toString() || '';
+export const prerender = false;
   const expected = process.env.ADMIN_PASSWORD || 'erdosdx2026';
 
   if (password !== expected) {
