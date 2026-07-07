@@ -112,21 +112,63 @@ interface Msg {
 }
 
 const GREETINGS: Record<string, string> = {
-  en: 'Hello! I\'m the DONGXIAO® AI assistant. I can answer questions about MOQ, lead times, sampling, certifications, and our Ordos factory. How can I help?',
-  cn: '您好！我是 DONGXIAO® AI 助理。可以回答 MOQ、交期、样品、资质、鄂尔多斯工厂相关问题。请问需要什么帮助？',
-  de: 'Hallo! Ich bin der DONGXIAO® KI-Assistent. Ich beantworte Fragen zu MOQ, Lieferzeiten, Mustern, Zertifizierungen und unserer Ordos-Fabrik. Wie kann ich helfen?',
-  fr: 'Bonjour ! Je suis l\'assistant IA DONGXIAO®. Je réponds aux questions sur MOQ, délais, échantillons, certifications et notre usine d\'Ordos. Comment puis-je aider ?',
-  ja: 'こんにちは！DONGXIAO® AI アシスタントです。MOQ、リードタイム、サンプル、認証、オルドス工場についてお答えします。ご用件は？',
-  kr: '안녕하세요! DONGXIAO® AI 어시스턴트입니다. MOQ, 리드타임, 샘플, 인증, 오르도스 공장에 대한 질문에 답할 수 있습니다. 무엇을 도와드릴까요?',
+  en: 'Hello! I\'m the DONGXIAO® AI assistant. I can answer questions about our 6 product lines (raw cashmere, yarn, fabric, garment OEM, scarves, hats & accessories) and B2B terms (MOQ, lead time, sampling, certifications, payment, factory visit). How can I help?',
+  cn: '您好！我是 DONGXIAO® AI 助理。可以回答 6 大产品线（羊绒原料、纱线、面料、成衣代工、围巾、帽子配饰）与 B2B 条款（MOQ、交期、样品、认证、付款、验厂）相关问题。请问需要什么帮助？',
+  de: 'Hallo! Ich bin der DONGXIAO® KI-Assistent. Ich beantworte Fragen zu unseren 6 Produktlinien (Rohkaschmir, Garn, Stoff, Bekleidung OEM, Schals, Muetzen & Accessoires) und B2B-Bedingungen (MOQ, Lieferzeit, Muster, Zertifizierungen, Zahlung, Werksbesuch). Wie kann ich helfen?',
+  fr: 'Bonjour ! Je suis l\'assistant IA DONGXIAO®. Je reponds aux questions sur nos 6 gammes (cachemire brut, fil, tissu, vetement OEM, echarpes, bonnets & accessoires) et conditions B2B (MOQ, delai, echantillons, certifications, paiement, visite d\'usine). Comment puis-je aider ?',
+  ja: 'こんにちは！DONGXIAO® AI アシスタントです。6 つの製品ライン（原毛、糸、生地、衣料OEM、スカーフ、帽子・アクセサリー）と B2B 条件（MOQ、リードタイム、サンプル、認証、支払い、工場見学）についてお答えします。ご用件は？',
+  kr: '안녕하세요! DONGXIAO® AI 어시스턴트입니다. 6개 제품 라인(원료, 원사, 원단, 의류 OEM, 스카프, 모자·액세서리)과 B2B 조건(MOQ, 리드타임, 샘플, 인증, 결제, 공장 방문)에 대한 질문에 답할 수 있습니다. 무엇을 도와드릴까요?',
 };
 
 const SUGGESTED: Record<string, string[]> = {
-  en: ['What is your MOQ?', 'Lead time for raw material?', 'Do you offer samples?', 'Factory audit welcome?'],
-  cn: ['起订量多少？', '原料交期多久？', '可以提供样品吗？', '可以验厂吗？'],
-  de: ['Was ist Ihre MOQ?', 'Lieferzeit für Rohmaterial?', 'Bieten Sie Muster an?', 'Werksaudit möglich?'],
-  fr: ['Quel est votre MOQ ?', 'Délai pour matière première ?', 'Proposez-vous des échantillons ?', 'Audit d\'usine possible ?'],
-  ja: ['MOQはいくらですか？', '原料のリードタイムは？', 'サンプルは提供可能ですか？', '工場監査は可能ですか？'],
-  kr: ['MOQ가 얼마인가요?', '원료 리드타임은?', '샘플 제공되나요?', '공장 심사 가능한가요?'],
+  en: [
+    'What is your MOQ for raw cashmere?',
+    'Lead time for OEM sweater orders?',
+    'Do you provide samples? Free or paid?',
+    'Which certifications do you have?',
+    'Can we visit your Ordos factory?',
+    'Payment terms for first order?',
+  ],
+  cn: [
+    '羊绒原料起订量多少？',
+    '成衣代工交期多久？',
+    '可以提供样品吗？',
+    '你们有哪些认证？',
+    '可以参观鄂尔多斯工厂吗？',
+    '新客户首单付款方式？',
+  ],
+  de: [
+    'Was ist Ihre MOQ fuer Rohkaschmir?',
+    'Lieferzeit fuer OEM-Strick?',
+    'Stellen Sie Muster zur Verfuegung?',
+    'Welche Zertifizierungen haben Sie?',
+    'Koennen wir Ihre Ordos-Fabrik besuchen?',
+    'Zahlungsbedingungen fuer Erstauftrag?',
+  ],
+  fr: [
+    'Quel est votre MOQ pour cachemire brut ?',
+    'Delai pour commande OEM tricot ?',
+    'Fournissez-vous des echantillons ?',
+    'Quelles certifications avez-vous ?',
+    'Peut-on visiter votre usine Ordos ?',
+    'Conditions de paiement premiere commande ?',
+  ],
+  ja: [
+    'カシミア原毛のMOQは？',
+    'OEMニットの納期は？',
+    'サンプルは提供できますか？',
+    '認証は何がありますか？',
+    'オルドス工場を見学できますか？',
+    '初回注文の支払条件は？',
+  ],
+  kr: [
+    '캐시미어 원료 MOQ는?',
+    'OEM 니트 납기는?',
+    '샘플 제공되나요?',
+    '인증은 무엇이 있나요?',
+    '오르도스 공장 방문 가능한가요?',
+    '첫 주문 결제 조건은?',
+  ],
 };
 
 export default function AIChatWidget({ locale }: Props) {
