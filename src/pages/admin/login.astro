@@ -1,0 +1,83 @@
+---
+// Admin login page - simple password auth
+// POST /api/admin/login sets httpOnly cookie if password matches
+// Redirects to /admin/inquiries on success
+
+const error = Astro.url.searchParams.get('error');
+
+if (Astro.request.headers.get('cookie')?.includes('admin_session=')) {
+  return Astro.redirect('/admin/inquiries');
+}
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login — DONGXIAO Cashmere</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #f5f5f4;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .card {
+      background: white;
+      border-radius: 0.75rem;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      max-width: 24rem;
+      width: 100%;
+    }
+    h1 { font-size: 1.25rem; margin-bottom: 0.5rem; color: #1c1917; }
+    p { font-size: 0.875rem; color: #57534e; margin-bottom: 1.5rem; }
+    label { display: block; font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem; color: #292524; }
+    input {
+      width: 100%;
+      padding: 0.625rem 0.75rem;
+      border: 1px solid #d6d3d1;
+      border-radius: 0.375rem;
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+    }
+    input:focus { outline: none; border-color: #44403c; }
+    button {
+      width: 100%;
+      padding: 0.625rem;
+      background: #1c1917;
+      color: white;
+      border: none;
+      border-radius: 0.375rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    button:hover { background: #44403c; }
+    .err {
+      color: #b91c1c;
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      background: #fee2e2;
+      border-radius: 0.375rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Admin Login</h1>
+    <p>DONGXIAO Cashmere internal dashboard</p>
+    {error && <div class="err">Invalid password. Try again.</div>}
+    <form method="POST" action="/api/admin/login">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required autofocus>
+      <button type="submit">Sign in</button>
+    </form>
+  </div>
+</body>
+</html>
