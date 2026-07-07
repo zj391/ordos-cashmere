@@ -14,11 +14,11 @@ on:
       topic:
         description: 'Blog topic (English)'
         required: false
-        default: 'How B2B cashmere buyers can verify Ordos origin and avoid mislabeling'
+        default: ''
       keywords:
         description: 'Target keywords (comma-separated)'
         required: false
-        default: 'Ordos cashmere manufacturer,B2B cashmere sourcing,Inner Mongolia cashmere factory'
+        default: ''
 
 # 允许 workflow 自动 commit + push 生成的内容到 master
 permissions:
@@ -50,8 +50,12 @@ jobs:
           LLM_MODEL: ${{ secrets.LLM_MODEL }}
           SITE_DOMAIN: ${{ secrets.SITE_DOMAIN }}
           SITE_NAME: ${{ secrets.SITE_NAME }}
-          TOPIC: ${{ github.event.inputs.topic || 'How B2B cashmere buyers can verify Ordos origin and avoid mislabeling' }}
-          KEYWORDS: ${{ github.event.inputs.keywords || 'Ordos cashmere manufacturer,B2B cashmere sourcing,Inner Mongolia cashmere factory' }}
+          # When inputs are empty (cron trigger), pickTopic() in generate-blog.mjs
+          # falls through to topics.json random selection (deduplicated against
+          # existing published slugs). Manual workflow_dispatch can pass a topic
+          # to force a specific article.
+          TOPIC: ${{ github.event.inputs.topic }}
+          KEYWORDS: ${{ github.event.inputs.keywords }}
         run: node scripts/generate-blog.mjs
 
       - name: Verify build
