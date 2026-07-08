@@ -8,6 +8,7 @@
  * 5. 推送 Hermes 私有化系统
  */
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { renderCustomerEmail } from './email-templates';
 
 const N8N_WEBHOOK = process.env.N8N_WEBHOOK_URL;
 const HERMES_INBOUND_TOKEN=process.env.HERMES_INBOUND_TOKEN || '';
@@ -32,7 +33,9 @@ interface InquiryPayload {
   email: string;
   phone?: string;
   quantity?: string;
+  delivery_date?: string;       // 期望交期
   message?: string;
+  attachments?: Array<{ name: string; type: string; dataUrl: string }>;  // base64 inline
   utm_source?: string;
   utm_medium?: string;
   utm_campaign?: string;
@@ -45,80 +48,6 @@ const INQUIRY_TYPE_MAP = {
   yarn: 'yarn_fabric',
   garment: 'garment_oem',
 } as const;
-
-const INQUIRY_LABEL = {
-  en: {
-    raw_material: 'Raw Cashmere Material Inquiry',
-    yarn_fabric: 'Cashmere Yarn & Fabric Inquiry',
-    garment_oem: 'Cashmere Garment OEM Inquiry',
-  },
-  cn: {
-    raw_material: '羊绒原料询盘',
-    yarn_fabric: '羊绒纱线/面料询盘',
-    garment_oem: '羊绒成衣代工询盘',
-  },
-} as const;
-
-const REPLY_EMAIL_TEMPLATE = (locale: string, data: InquiryPayload) => {
-  const isCN = locale === 'cn';
-  const type = INQUIRY_TYPE_MAP[data.type];
-  const label = (INQUIRY_LABEL[isCN ? 'cn' : 'en'] as any)[type];
-
-  if (isCN) {
-    return {
-      subject: `【东霄羊绒】已收到您的${label}，24小时内回复`,
-      html: `
-        <div style="font-family:'PingFang SC','Microsoft YaHei',sans-serif;max-width:600px;margin:0 auto;padding:20px;color:#1A1612;">
-          <div style="border-bottom:2px solid #5C3E2A;padding-bottom:20px;margin-bottom:20px;">
-            <h1 style="font-size:24px;margin:0;color:#5C3E2A;">东霄羊绒</h1>
-            <p style="margin:5px 0 0;font-size:12px;color:#A8875E;letter-spacing:2px;">DONGXIAO® CASHMERE · ORDOS</p>
-          </div>
-          <p>尊敬的 <strong>${data.name}</strong> 您好，</p>
-          <p>感谢您对东霄羊绒的关注。我们已收到您关于<strong>${label}</strong>的咨询。</p>
-          <table style="width:100%;border-collapse:collapse;margin:20px 0;font-size:14px;">
-            <tr style="background:#F5F1EA;"><td style="padding:8px 12px;width:120px;">公司</td><td style="padding:8px 12px;">${data.company}</td></tr>
-            <tr><td style="padding:8px 12px;background:#F5F1EA;">国家</td><td style="padding:8px 12px;">${data.country}</td></tr>
-            <tr style="background:#F5F1EA;"><td style="padding:8px 12px;">询盘类型</td><td style="padding:8px 12px;">${label}</td></tr>
-            ${data.quantity ? `<tr><td style="padding:8px 12px;background:#F5F1EA;">预计数量</td><td style="padding:8px 12px;">${data.quantity}</td></tr>` : ''}
-          </table>
-          <p>我们的销售专家将在<strong>24小时内</strong>通过微信或邮件与您联系，提供详细报价、产品资料和样品方案。</p>
-          <div style="background:#F5F1EA;padding:20px;border-radius:8px;margin:20px 0;">
-            <p style="margin:0 0 10px;"><strong>📱 微信：</strong>${WECHAT_ID}</p>
-            <p style="margin:0;"><strong>📞 电话：</strong>${WHATSAPP_NUMBER}</p>
-          </div>
-          <p style="font-size:12px;color:#888;margin-top:30px;">本邮件由系统自动发送，请勿直接回复。如有紧急事宜，请通过微信或WhatsApp联系我们。</p>
-        </div>
-      `,
-    };
-  }
-
-  return {
-    subject: `[DONGXIAO Cashmere] Your ${label} received - reply within 24h`,
-    html: `
-      <div style="font-family:Inter,system-ui,sans-serif;max-width:600px;margin:0 auto;padding:20px;color:#1A1612;">
-        <div style="border-bottom:2px solid #5C3E2A;padding-bottom:20px;margin-bottom:20px;">
-          <h1 style="font-size:24px;margin:0;color:#5C3E2A;font-weight:400;">DONGXIAO<sup style="font-size:12px;">®</sup> CASHMERE</h1>
-          <p style="margin:5px 0 0;font-size:12px;color:#A8875E;letter-spacing:2px;">PREMIUM CASHMERE · ORDOS · SINCE 2002</p>
-        </div>
-        <p>Dear <strong>${data.name}</strong>,</p>
-        <p>Thank you for your interest in DONGXIAO® Cashmere. We have received your inquiry regarding <strong>${label}</strong>.</p>
-        <table style="width:100%;border-collapse:collapse;margin:20px 0;font-size:14px;">
-          <tr style="background:#F5F1EA;"><td style="padding:8px 12px;width:140px;">Company</td><td style="padding:8px 12px;">${data.company}</td></tr>
-          <tr><td style="padding:8px 12px;background:#F5F1EA;">Country</td><td style="padding:8px 12px;">${data.country}</td></tr>
-          <tr style="background:#F5F1EA;"><td style="padding:8px 12px;">Inquiry Type</td><td style="padding:8px 12px;">${label}</td></tr>
-          ${data.quantity ? `<tr><td style="padding:8px 12px;background:#F5F1EA;">Quantity</td><td style="padding:8px 12px;">${data.quantity}</td></tr>` : ''}
-        </table>
-        <p>Our sales specialist will contact you via <strong>WhatsApp or email within 24 hours</strong>, providing detailed quotation, product catalogs, and sampling arrangements.</p>
-        <div style="background:#F5F1EA;padding:20px;border-radius:8px;margin:20px 0;">
-          <p style="margin:0 0 10px;"><strong>📱 WhatsApp:</strong> ${WHATSAPP_NUMBER}</p>
-          <p style="margin:0;"><strong>📧 Email:</strong> ${REPLY_TO}</p>
-        </div>
-        <p style="font-size:12px;color:#888;margin-top:30px;">This is an automated email. Please do not reply directly. For urgent matters, contact us via WhatsApp.</p>
-      </div>
-    `,
-  };
-};
-
 async function sendEmail(payload: { to: string; subject: string; html: string; replyTo?: string; tag?: string }): Promise<{ ok: boolean; id?: string; error?: string }> {
   if (!RESEND_API_KEY) return { ok: false, error: 'no_api_key' };
   try {
@@ -297,7 +226,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // 5. 自动回执邮件（如果配置了 Resend）
-    const reply = REPLY_EMAIL_TEMPLATE(data.locale, data);
+    const reply = renderCustomerEmail(data.locale, data);
     const customerEmailResult = sendEmail({ to: data.email, ...reply, tag: 'inquiry-reply' })
       .catch(err => { console.error('Email error:', err); return { ok: false, error: String(err) }; });
     const internalEmailResult = sendEmail({
