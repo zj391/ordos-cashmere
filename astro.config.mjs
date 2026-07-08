@@ -23,6 +23,38 @@ export default defineConfig({
         defaultLocale: 'en',
         locales: { en: 'en', de: 'de', fr: 'fr', ja: 'ja', kr: 'ko', cn: 'zh' },
       },
+      // Exclude admin/API routes from sitemap (already disallowed in robots.txt).
+      filter: (page) => !page.includes('/admin') && !page.includes('/api/'),
+      // Add lastmod + per-page priority for better SEO signals.
+      // Static pages get higher priority; blog posts get 0.7; category hub pages
+      // and product detail pages get 0.8 (high value for B2B keywords).
+      serialize: (item) => {
+        const url = item.url;
+        const path = url.replace(/^https?:\/\/[^/]+/, '');
+        let priority = 0.5;
+        let changefreq = 'monthly';
+        if (path === '/' || /^\/(en|cn|de|fr|ja|kr)?\/?$/.test(path)) {
+          priority = 1.0; changefreq = 'weekly';
+        } else if (path.includes('/blog/')) {
+          priority = 0.7; changefreq = 'monthly';
+        } else if (path.match(/\/(scarves|hats-accessories|yarn|garment-oem|fabric|raw-material|products)\//)) {
+          priority = 0.8; changefreq = 'weekly';
+        } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/(scarves|hats-accessories|yarn|garment-oem|fabric|raw-material|products)/)) {
+          priority = 0.8; changefreq = 'weekly';
+        } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/products\/[a-z0-9-]+/)) {
+          priority = 0.8; changefreq = 'weekly';
+        } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/blog\/[a-z0-9-]+/)) {
+          priority = 0.7; changefreq = 'monthly';
+        } else {
+          priority = 0.6; changefreq = 'monthly';
+        }
+        return {
+          ...item,
+          lastmod: new Date(),
+          changefreq,
+          priority,
+        };
+      },
     }),
     tailwind({ applyBaseStyles: false }),
   ],

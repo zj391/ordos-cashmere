@@ -1,0 +1,404 @@
+---
+/**
+ * 产品类别着陆页 - SEO 优化
+ * 路由: /[locale]/products/scarves, /hats-accessories, /yarn, /garment-oem, /accessories
+ *
+ * 每个类别有独立的 SEO TDK（针对长尾关键词），列出该类别下所有产品。
+ * 591 个产品被组织成 5 个 hub 页 × 6 国 = 30 个 URL。
+ */
+export const prerender = true;
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
+import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
+import SEOFaq from '@/components/SEOFaq.astro';
+import { LOCALES, isLocale, pickLocale } from '@/lib/i18n';
+import { SEO, SITE_INFO } from '@/lib/seo';
+import { products as productsData, getCategoryById } from '@/data/products';
+
+// 把产品 JSON 的 category id 映射到 URL slug
+// (Astro hoists getStaticPaths before top-level const, so we declare inline below.)
+const CATEGORY_SLUGS_DEFS = {
+  hats: { id: 'hats', slug: 'hats-accessories', name: 'Cashmere Hats & Beanies' },
+  scarves: { id: 'scarves', slug: 'scarves', name: 'Cashmere Scarves & Wraps' },
+  sweaters: { id: 'sweaters', slug: 'garment-oem', name: 'Cashmere Sweaters & Knitwear' },
+  accessories: { id: 'accessories', slug: 'hats-accessories', name: 'Cashmere Accessories' },
+  yarn: { id: 'yarn', slug: 'yarn', name: 'Cashmere Yarn & Fiber' },
+};
+
+// 反向：URL slug → 类别 id
+const SLUG_TO_CATEGORY_DEFS = {};
+for (const catId of Object.keys(CATEGORY_SLUGS_DEFS)) {
+  const m = CATEGORY_SLUGS_DEFS[catId];
+  if (!SLUG_TO_CATEGORY_DEFS[m.slug]) SLUG_TO_CATEGORY_DEFS[m.slug] = catId;
+}
+
+export function getStaticPaths() {
+  const paths = [];
+    // Astro/Rollup hoists getStaticPaths before top-level consts.
+  // Recreate the maps locally so the order is guaranteed.
+  const CATEGORY_SLUGS = {
+    hats: { id: 'hats', slug: 'hats-accessories', name: 'Cashmere Hats & Beanies' },
+    scarves: { id: 'scarves', slug: 'scarves', name: 'Cashmere Scarves & Wraps' },
+    sweaters: { id: 'sweaters', slug: 'garment-oem', name: 'Cashmere Sweaters & Knitwear' },
+    accessories: { id: 'accessories', slug: 'hats-accessories', name: 'Cashmere Accessories' },
+    yarn: { id: 'yarn', slug: 'yarn', name: 'Cashmere Yarn & Fiber' },
+  };
+  const slugs = Array.from(new Set(Object.values(CATEGORY_SLUGS).map((c) => c.slug)));
+  for (const locale of LOCALES) {
+    for (const slug of slugs) {
+      paths.push({ params: { locale, category: slug } });
+    }
+  }
+  return paths;
+}
+
+const { locale: rawLocale, category: slug } = Astro.params;
+if (!isLocale(rawLocale)) { return Astro.redirect('/en/'); }
+const locale = pickLocale(rawLocale);
+if (!slug || !SLUG_TO_CATEGORY_DEFS[slug]) { return Astro.redirect('/' + locale + '/products'); }
+
+const catId = SLUG_TO_CATEGORY_DEFS[slug];
+const category = getCategoryById(catId);
+if (!category) { return Astro.redirect('/' + locale + '/products'); }
+
+const products = category.products;
+
+// 按 locale 翻译名称 + 描述 + FAQ
+const tdk = {
+  scarves: {
+    en: {
+      title: 'Wholesale Cashmere Scarves & Wraps | Custom Manufacturer | DONGXIAO®',
+      description: 'Wholesale cashmere scarves, wraps, shawls, and ponchos from Ordos factory. 100% pure Inner Mongolian cashmere. Custom logo, private label, MOQ 50pcs. OEM/ODM service for global brands.',
+      keywords: ['cashmere scarves wholesale', 'cashmere wraps', 'cashmere shawls manufacturer', 'custom cashmere scarves', 'private label scarves', 'OEM cashmere scarves', 'Mongolian cashmere scarves'],
+      h1: 'Wholesale Cashmere Scarves, Wraps & Shawls',
+      intro: 'Premium cashmere scarves direct from our Ordos factory. We manufacture 208 styles of solid, printed, fringed, and woven-logo scarves for fashion brands, retailers, and gift buyers worldwide.',
+      bullets: ['Solid / printed / fringed / woven logo options', '100% Inner Mongolian cashmere, 14.5-15.5μm', 'Custom packaging & hangtags', 'MOQ 50 pieces per style'],
+      faqs: [
+        { q: 'What is the MOQ for cashmere scarves?', a: 'MOQ is 50 pieces per style. Mixed colors welcome within the same style.' },
+        { q: 'Can you add my logo to the scarf?', a: 'Yes — woven logo, printed label, or custom hangtag. Lead time +5-10 days for logo development.' },
+        { q: 'What sizes are available?', a: 'Standard sizes: 180×30cm (scarf), 200×70cm (wrap), 180×180cm (shawl). Custom sizes available for orders 500+ pcs.' },
+        { q: 'Do you ship to my country?', a: 'Yes. FOB Tianjin/Shanghai, CIF, DDP. We handle export customs and arrange LCL/FCL sea freight worldwide.' },
+      ],
+    },
+    cn: {
+      title: '羊绒围巾披肩批发 | 定制代工 | DONGXIAO® 鄂尔多斯源头工厂',
+      description: '羊绒围巾、披肩、shawl、poncho 批发。100% 内蒙古纯羊绒。支持定制 logo、私人标签、OEM/ODM。MOQ 50 件起。',
+      keywords: ['羊绒围巾批发', '羊绒披肩', '定制羊绒围巾', '羊绒围巾代工', 'OEM 羊绒围巾', '内蒙古羊绒围巾'],
+      h1: '羊绒围巾、披肩、披帛批发',
+      intro: '来自鄂尔多斯源头工厂的优质羊绒围巾。提供 208 种素色、印花、流苏、织造 logo 款式，服务全球品牌、零售商、礼品采购商。',
+      bullets: ['素色 / 印花 / 流苏 / 织造 logo 多种工艺', '100% 内蒙古羊绒，细度 14.5-15.5μm', '定制包装与吊牌', 'MOQ 每款 50 件'],
+      faqs: [
+        { q: '羊绒围巾的起订量是多少？', a: '每款 50 件起。同款支持混色下单。' },
+        { q: '可以在围巾上加我自己的 logo 吗？', a: '可以。织造 logo、印花标签、定制吊牌均可。logo 开发需 +5-10 天。' },
+        { q: '有哪些尺寸可选？', a: '标准尺寸：180×30cm（围巾）、200×70cm（披肩）、180×180cm（披帛）。500 件以上可定制尺寸。' },
+        { q: '可以发到我所在的国家吗？', a: '可以。FOB 天津/上海、CIF、DDP 均可。我们代办出口报关与海运（散货/整柜）。' },
+      ],
+    },
+    de: {
+      title: 'Kaschmir-Schals & Tücher Großhandel | Custom Hersteller | DONGXIAO®',
+      description: 'Kaschmir-Schals, Tücher, Shawls und Ponchos aus der Ordos-Fabrik im Großhandel. 100% reines mongolisches Kaschmir. Logo-Druck, Private Label, MOQ 50 Stk.',
+      keywords: ['Kaschmir Schals Großhandel', 'Kaschmir Tücher', 'custom Kaschmir Schals', 'private label Schals'],
+      h1: 'Kaschmir-Schals, Tücher & Shawls im Großhandel',
+      intro: 'Premium-Kaschmir-Schals direkt aus unserer Ordos-Fabrik. Wir fertigen 208 Modelle.',
+      bullets: ['Uni / Druck / Fransen / Logo-Webung', '100% mongolisches Kaschmir', 'MOQ 50 Stk. pro Modell'],
+      faqs: [{ q: 'Was ist die MOQ?', a: '50 Stück pro Modell.' }],
+    },
+    fr: {
+      title: 'Écharpes & étoles cachemire en gros | Fabricant sur mesure | DONGXIAO®',
+      description: 'Écharpes, étoles, châles et ponchos en cachemire de l\'usine d\'Ordos. MOQ 50 pièces.',
+      keywords: ['écharpes cachemire gros', 'étoles cachemire', 'fabricant cachemire sur mesure'],
+      h1: 'Écharpes, étoles et châles en cachemire',
+      intro: 'Cachemire premium de notre usine d\'Ordos. 208 modèles.',
+      bullets: ['Uni / imprimé / franges / logo tissé', 'MOQ 50 pièces'],
+      faqs: [{ q: 'Quel est le MOQ ?', a: '50 pièces par modèle.' }],
+    },
+    ja: {
+      title: 'カシミアスカーフ・ショール卸売 | カスタム製造 | DONGXIAO®',
+      description: 'オルドス工場からのカシミアスカーフ、ショール、ポンチョの卸売。MOQ 50枚。',
+      keywords: ['カシミアスカーフ卸売', 'カシミアショール', 'カスタムカシミア'],
+      h1: 'カシミアスカーフ・ショール卸売',
+      intro: 'オルドス工場から直接。カシミア100%。208スタイル。',
+      bullets: ['無地・プリント・フリンジ・織ロゴ', 'MOQ 50枚'],
+      faqs: [{ q: 'MOQは？', a: '1スタイル50枚〜' }],
+    },
+    kr: {
+      title: '캐시미어 스카프·숄 도매 | 맞춤 제조 | DONGXIAO®',
+      description: '오르도스 공장에서 직접. 100% 내몽골 캐시미어. MOQ 50pcs.',
+      keywords: ['캐시미어 스카프 도매', '캐시미어 숄', '맞춤 캐시미어 스카프'],
+      h1: '캐시미어 스카프·숄 도매',
+      intro: '오르도스 공장 직송. 프리미엄 캐시미어. 208종.',
+      bullets: ['무지/프린트/프린지/직조 로고', 'MOQ 50pcs'],
+      faqs: [{ q: 'MOQ는?', a: '스타일당 50pcs.' }],
+    },
+  },
+  'garment-oem': {
+    en: {
+      title: 'Cashmere Sweater Manufacturer | OEM/ODM Knitwear | DONGXIAO®',
+      description: 'OEM/ODM cashmere sweater manufacturer from Ordos. 166 styles: cardigans, pullovers, vests, dresses. CAD pattern, sampling, bulk production. MOQ 100pcs/style.',
+      keywords: ['cashmere sweater manufacturer', 'OEM cashmere knitwear', 'ODM cashmere sweater', 'private label knitwear', 'cashmere cardigan wholesale'],
+      h1: 'Cashmere Sweater OEM/ODM Manufacturer',
+      intro: 'Full-package cashmere knitwear manufacturing. 166 styles from our 38,000 sqm facility with German STOLL fully-fashioned knitting machines.',
+      bullets: ['CAD pattern development', 'In-house design team', 'German STOLL machines', 'MOQ 100 pieces per style'],
+      faqs: [
+        { q: 'Do you offer OEM for cashmere sweaters?', a: 'Yes — we offer full-package OEM including pattern, sample, and bulk. MOQ 100pcs/style.' },
+        { q: 'What yarn counts do you use?', a: '2/26 Nm to 2/60 Nm. White, brown, purple cashmere. Custom blend ratios available.' },
+        { q: 'How long does sampling take?', a: '7-10 days for counter-sample, 30-35 days for production-ready sample.' },
+      ],
+    },
+    cn: {
+      title: '羊绒衫代工 OEM/ODM | 针织源头工厂 | DONGXIAO®',
+      description: '羊绒衫 OEM/ODM 代工厂。166 款式：开衫、套头衫、背心、连衣裙。CAD 制版、打样、大货。MOQ 100件/款。',
+      keywords: ['羊绒衫代工', 'OEM 羊绒针织', 'ODM 羊绒衫', '羊绒开衫批发'],
+      h1: '羊绒衫 OEM/ODM 代工',
+      intro: '羊绒针织全包代工。166 款式，38,000 平米工厂，德国 STOLL 全成型机器。',
+      bullets: ['CAD 制版开发', '内部设计团队', '德国 STOLL 设备', 'MOQ 100 件/款'],
+      faqs: [
+        { q: '提供羊绒衫 OEM 吗？', a: '是的。我们提供制版、打样、大货全包 OEM 服务。MOQ 100 件/款。' },
+        { q: '用哪些纱线支数？', a: '2/26 Nm 至 2/60 Nm。白绒、青绒、紫绒。可定制混纺比例。' },
+      ],
+    },
+    de: {
+      title: 'Kaschmir-Pullover Hersteller | OEM/ODM | DONGXIAO®',
+      description: 'OEM/ODM Kaschmir-Strickwaren aus Ordos. 166 Modelle. MOQ 100 Stk.',
+      keywords: ['Kaschmir Pullover Hersteller', 'OEM Kaschmir Strick'],
+      h1: 'Kaschmir-Pullover OEM/ODM',
+      intro: 'Full-Service Strickwarenfertigung. 166 Modelle.',
+      bullets: ['CAD Schnittentwicklung', 'MOQ 100 Stk.'],
+      faqs: [{ q: 'Bieten Sie OEM?', a: 'Ja, ab 100 Stk.' }],
+    },
+    fr: {
+      title: 'Fabricant pulls cachemire | OEM/ODM | DONGXIAO®',
+      description: 'Fabricant OEM/ODM de pulls en cachemire d\'Ordos. 166 modèles. MOQ 100pcs.',
+      keywords: ['pull cachemire fabricant', 'OEM cachemire tricot'],
+      h1: 'Pull cachemire OEM/ODM',
+      intro: 'Fabrication complète de tricots. 166 modèles.',
+      bullets: ['Patron CAO', 'MOQ 100 pièces'],
+      faqs: [{ q: 'MOQ?', a: '100 pièces par modèle.' }],
+    },
+    ja: {
+      title: 'カシミアセーター OEM/ODM 製造 | DONGXIAO®',
+      description: 'オルドスのカシミア OEM/ODM 工場。166スタイル。MOQ 100枚。',
+      keywords: ['カシミアセーター OEM', 'ODM カシミア'],
+      h1: 'カシミアセーター OEM/ODM',
+      intro: 'フルパッケージ製造。166スタイル。',
+      bullets: ['CAD パターン', 'MOQ 100枚'],
+      faqs: [{ q: 'MOQは？', a: '100枚/スタイル。' }],
+    },
+    kr: {
+      title: '캐시미어 스웨터 OEM/ODM 제조 | DONGXIAO®',
+      description: '오르도스 OEM/ODM 캐시미어 니트 공장. 166종. MOQ 100pcs.',
+      keywords: ['캐시미어 스웨터 OEM', 'ODM 캐시미어 니트'],
+      h1: '캐시미어 스웨터 OEM/ODM',
+      intro: '풀패키지 니트 제조. 166종.',
+      bullets: ['CAD 패턴', 'MOQ 100pcs'],
+      faqs: [{ q: 'MOQ는?', a: '스타일당 100pcs.' }],
+    },
+  },
+  yarn: {
+    en: {
+      title: 'Cashmere Yarn Wholesale | 2/26 to 2/60 Nm | DONGXIAO®',
+      description: 'Wholesale cashmere yarn direct from Ordos spinner. 2/26 to 2/60 Nm. White, brown, purple cashmere. Cone or hank. MOQ 50kg.',
+      keywords: ['cashmere yarn wholesale', 'cashmere yarn manufacturer', 'Mongolian cashmere yarn', '2/26 cashmere yarn', 'cashmere yarn cone'],
+      h1: 'Cashmere Yarn Wholesale - Cone & Hank',
+      intro: 'Premium cashmere yarn spun in our Ordos facility. 73 yarn configurations for machine knitting, hand knitting, and weaving.',
+      bullets: ['2/26 Nm to 2/60 Nm counts', 'White / brown / purple cashmere', 'Cone or hank packaging', 'MOQ 50kg per count'],
+      faqs: [
+        { q: 'What is the MOQ for cashmere yarn?', a: '50kg per yarn count. Mixed counts within the same color accepted.' },
+        { q: 'Do you offer custom yarn counts?', a: 'Yes — for orders 200kg+, we can spin custom counts between 2/16 and 2/80 Nm.' },
+      ],
+    },
+    cn: {
+      title: '羊绒纱线批发 | 2/26 至 2/60 Nm | DONGXIAO®',
+      description: '羊绒纱线批发。2/26 至 2/60 Nm。白绒/青绒/紫绒。筒纱或绞纱。MOQ 50kg。',
+      keywords: ['羊绒纱线批发', '羊绒纱线代工', '内蒙古羊绒纱', '2/26 羊绒纱', '羊绒纱线筒纱'],
+      h1: '羊绒纱线批发 - 筒纱与绞纱',
+      intro: '鄂尔多斯纺纱厂生产的优质羊绒纱线。73 种规格，适用于机织、手织、梭织。',
+      bullets: ['2/26 至 2/60 Nm 多种支数', '白/青/紫羊绒', '筒纱或绞纱包装', 'MOQ 每支 50kg'],
+      faqs: [
+        { q: '羊绒纱起订量？', a: '每支 50kg。同色混支可接单。' },
+      ],
+    },
+    de: {
+      title: 'Kaschmirgarn Großhandel | 2/26 bis 2/60 Nm | DONGXIAO®',
+      description: 'Kaschmirgarn im Großhandel. 2/26 bis 2/60 Nm.',
+      keywords: ['Kaschmirgarn Großhandel', 'Kaschmirgarn Hersteller'],
+      h1: 'Kaschmirgarn Großhandel',
+      intro: 'Premium-Kaschmirgarn aus unserer Spinnerei in Ordos.',
+      bullets: ['2/26 bis 2/60 Nm', 'MOQ 50kg'],
+      faqs: [{ q: 'MOQ?', a: '50kg pro Garnstärke.' }],
+    },
+    fr: {
+      title: 'Fil de cachemire en gros | 2/26 à 2/60 Nm | DONGXIAO®',
+      description: 'Fil de cachemire en gros. 2/26 à 2/60 Nm.',
+      keywords: ['fil cachemire gros', 'fabricant fil cachemire'],
+      h1: 'Fil de cachemire en gros',
+      intro: 'Fil de cachemire premium de notre filature.',
+      bullets: ['2/26 à 2/60 Nm', 'MOQ 50kg'],
+      faqs: [{ q: 'MOQ?', a: '50kg.' }],
+    },
+    ja: {
+      title: 'カシミア糸卸売 | 2/26〜2/60 Nm | DONGXIAO®',
+      description: 'カシミア糸卸売。',
+      keywords: ['カシミア糸卸売', 'カシミア糸製造'],
+      h1: 'カシミア糸卸売',
+      intro: 'オルドス紡績工場から。',
+      bullets: ['2/26〜2/60 Nm', 'MOQ 50kg'],
+      faqs: [{ q: 'MOQは？', a: '50kg。' }],
+    },
+    kr: {
+      title: '캐시미어 원사 도매 | 2/26~2/60 Nm | DONGXIAO®',
+      description: '캐시미어 원사 도매.',
+      keywords: ['캐시미어 원사 도매', '캐시미어 원사 제조'],
+      h1: '캐시미어 원사 도매',
+      intro: '오르도스 방적 공장 직송.',
+      bullets: ['2/26~2/60 Nm', 'MOQ 50kg'],
+      faqs: [{ q: 'MOQ?', a: '50kg.' }],
+    },
+  },
+  'hats-accessories': {
+    en: {
+      title: 'Cashmere Hats, Beanies & Accessories Wholesale | DONGXIAO®',
+      description: 'Wholesale cashmere hats, beanies, gloves, socks, headbands. 144 styles direct from Ordos. Logo embroidery available. MOQ 50pcs.',
+      keywords: ['cashmere hats wholesale', 'cashmere beanies', 'cashmere gloves wholesale', 'cashmere socks manufacturer', 'cashmere accessories wholesale'],
+      h1: 'Cashmere Hats & Accessories Wholesale',
+      intro: 'Cashmere hats, beanies, gloves, socks, and headbands. 144 styles for retailers and private-label buyers.',
+      bullets: ['66 hat styles + 78 accessory styles', 'Logo embroidery available', 'Custom packaging', 'MOQ 50pcs per style'],
+      faqs: [
+        { q: 'Can you embroider my logo on cashmere hats?', a: 'Yes — flat embroidery, 3D puff embroidery, or woven labels. No minimum on embroidery orders.' },
+      ],
+    },
+    cn: {
+      title: '羊绒帽子与配饰批发 | DONGXIAO®',
+      description: '羊绒帽子、毛线帽、手套、袜子、发带批发。144 款式。支持 logo 刺绣。MOQ 50件。',
+      keywords: ['羊绒帽子批发', '羊绒毛线帽', '羊绒手套批发', '羊绒袜子代工'],
+      h1: '羊绒帽子与配饰批发',
+      intro: '羊绒帽子、毛线帽、手套、袜子、发带。144 款式，适合零售商与品牌方。',
+      bullets: ['66 帽款 + 78 配饰款', '支持 logo 刺绣', '定制包装', 'MOQ 每款 50 件'],
+      faqs: [
+        { q: '帽子上能刺绣我自己的 logo 吗？', a: '可以。平绣、3D 立体绣、织造标签均可。刺绣无最小起订量限制。' },
+      ],
+    },
+    de: {
+      title: 'Kaschmir-Mützen & Accessoires Großhandel | DONGXIAO®',
+      description: 'Kaschmir-Mützen, Beanies, Handschuhe, Socken. 144 Modelle.',
+      keywords: ['Kaschmir Mützen Großhandel', 'Kaschmir Beanies'],
+      h1: 'Kaschmir-Mützen & Accessoires',
+      intro: '144 Modelle für Einzelhändler.',
+      bullets: ['Logo-Stickerei verfügbar', 'MOQ 50 Stk.'],
+      faqs: [{ q: 'Logo-Stickerei?', a: 'Ja, ab 1 Stück.' }],
+    },
+    fr: {
+      title: 'Bonnets et accessoires cachemire en gros | DONGXIAO®',
+      description: 'Bonnets, gants, chaussettes en cachemire. 144 modèles.',
+      keywords: ['bonnets cachemire gros', 'gants cachemire'],
+      h1: 'Bonnets & accessoires cachemire',
+      intro: '144 modèles pour détaillants.',
+      bullets: ['Broderie logo', 'MOQ 50 pièces'],
+      faqs: [{ q: 'Broderie logo?', a: 'Oui.' }],
+    },
+    ja: {
+      title: 'カシミア帽子・アクセサリー卸売 | DONGXIAO®',
+      description: 'カシミア帽子、ビーニー、手袋、靴下。144スタイル。',
+      keywords: ['カシミア帽子卸売', 'カシミアビーニー'],
+      h1: 'カシミア帽子・アクセサリー',
+      intro: '144スタイル。',
+      bullets: ['ロゴ刺繍可', 'MOQ 50枚'],
+      faqs: [{ q: 'ロゴ刺繍？', a: 'はい。' }],
+    },
+    kr: {
+      title: '캐시미어 모자·액세서리 도매 | DONGXIAO®',
+      description: '캐시미어 모자, 비니, 장갑, 양말. 144종.',
+      keywords: ['캐시미어 모자 도매', '캐시미어 비니'],
+      h1: '캐시미어 모자·액세서리',
+      intro: '144종.',
+      bullets: ['로고 자수 가능', 'MOQ 50pcs'],
+      faqs: [{ q: '로고 자수?', a: '네.' }],
+    },
+  },
+};
+
+const t = tdk[slug]?.[locale] || tdk[slug]?.en;
+if (!t) return Astro.redirect(`/${locale}/products`);
+
+// Build page-specific schema.org ItemList of all products in this category
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: t.h1,
+  description: t.description,
+  numberOfItems: products.length,
+  itemListElement: products.slice(0, 20).map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: p.name,
+    url: `${SITE_INFO.url}/${locale}/products/${p.id}`,
+  })),
+};
+---
+
+<BaseLayout locale={locale} pageKey="products" path={`/${locale}/products/${slug}`} title={t.title} description={t.description} keywords={t.keywords} schema="general">
+  <Navigation slot="header" locale={locale} currentPath={`/${locale}/products/${slug}`} />
+
+  <section class="bg-brand-ink text-white py-20 md:py-28">
+    <div class="container-narrow">
+      <span class="text-xs tracking-[0.4em] text-brand-gold uppercase">{CATEGORY_SLUGS_DEFS[catId].name}</span>
+      <h1 class="font-display text-4xl md:text-5xl font-light mt-4 mb-6">{t.h1}</h1>
+      <p class="text-lg md:text-xl max-w-3xl opacity-90">{t.intro}</p>
+      <ul class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-2 max-w-3xl">
+        {t.bullets.map((b) => (
+          <li class="flex items-start gap-2 text-sm opacity-90">
+            <span class="text-brand-gold mt-1">•</span>
+            <span>{b}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 bg-background">
+    <div class="container-narrow">
+      <h2 class="font-display text-3xl font-light mb-8">{t.h1} — {products.length} styles</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {products.map((p) => (
+          <a
+            href={`/${locale}/products/${p.id}`}
+            class="group block border border-border rounded-lg overflow-hidden hover:border-primary transition-colors"
+          >
+            <div class="aspect-square bg-secondary/30 overflow-hidden">
+              <img
+                src={`/products/${catId === 'hats' || catId === 'accessories' ? 'hats' : catId === 'sweaters' ? 'sweaters' : catId}/${p.images[0]}`}
+                alt={p.name}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-3">
+              <h3 class="text-xs font-medium leading-snug line-clamp-2 mb-1">{p.name}</h3>
+              <p class="text-[10px] text-muted-foreground">USD {p.price} · MOQ {p.moq} pcs</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <SEOFaq faqs={t.faqs} title="Frequently Asked Questions" />
+
+  <section class="py-16 bg-brand-ink text-white">
+    <div class="container-narrow text-center">
+      <h2 class="font-display text-3xl font-light mb-4">Ready to order {category.name}?</h2>
+      <p class="opacity-90 mb-8 max-w-2xl mx-auto">Send your inquiry with target quantity, preferred specifications, and destination country. We reply within 24 hours with FOB/CIF pricing.</p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href={`/${locale}/contact`} class="inline-block px-8 py-3 bg-brand-gold text-brand-ink rounded-sm font-medium hover:bg-brand-gold/90">Request a Quote</a>
+        <a href={`/${locale}/products`} class="inline-block px-8 py-3 border border-white/30 rounded-sm hover:bg-white/10">View All Products</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" locale={locale} />
+  <FloatingChatButtons slot="footer" locale={locale} />
+  <CookieConsent slot="footer" locale={locale} />
+</BaseLayout>

@@ -22,6 +22,7 @@ export interface Props {
   schema?: 'home' | 'raw-material' | 'yarn-fabric' | 'garment-oem' | 'factory' | 'ordos-origin' | 'contact' | 'blog' | 'faq' | 'products' | 'general';
   noIndex?: boolean;
   faqs?: FAQItem[]; // 用于 FAQ 页
+  customSchemas?: any[]; // 额外的 JSON-LD schema（Product/BreadcrumbList 等）
 }
 
 const {
@@ -37,6 +38,7 @@ const {
   schema: _schema = 'general',
   noIndex = false,
   faqs,
+  customSchemas = [],
 } = Astro.props as Props;
 
 const translation = TRANSLATIONS[locale];
@@ -155,6 +157,13 @@ const pageSchema = (() => {
 })();
 
 const allSchemas: any[] = [orgSchema, localBusinessSchema, pageSchema];
+
+// Append any caller-supplied custom schemas (Product, BreadcrumbList, etc.)
+if (customSchemas.length) {
+  for (const s of customSchemas) {
+    if (s) allSchemas.push(s);
+  }
+}
 
 // 面包屑导航 Schema
 const bc = PAGE_BREADCRUMB[_pageKey];
