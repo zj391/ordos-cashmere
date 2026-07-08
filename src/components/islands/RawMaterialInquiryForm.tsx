@@ -64,6 +64,10 @@ export default function RawMaterialInquiryForm({ locale }: { locale: string }) {
           label: { en: 'Phone / WhatsApp', cn: '电话/微信', de: 'Telefon', fr: 'Téléphone', ja: '電話', kr: '전화' },
         },
         {
+          name: 'delivery_date', type: 'date',
+          label: { en: 'Required Delivery Date', cn: '期望交货日期', de: 'Wunschliefertermin', fr: 'Date de livraison souhaitée', ja: '希望納期', kr: '희망 납기일' },
+        },
+        {
           name: 'cashmere_grade', type: 'select', required: true, fullWidth: true,
           label: {
             en: 'Cashmere Grade *', cn: '羊绒品类 *', de: 'Kaschmir-Sorte *',
@@ -90,7 +94,14 @@ export default function RawMaterialInquiryForm({ locale }: { locale: string }) {
           name: 'message', type: 'textarea', fullWidth: true,
           label: { en: 'Additional Requirements', cn: '其他要求', de: 'Zusätzliche Anforderungen', fr: 'Exigences supplémentaires', ja: 'その他のご要望', kr: '추가 요구사항' },
         },
+        {
+          name: 'reference_image', type: 'file', fullWidth: true,
+          accept: 'image/*,application/pdf',
+          maxMb: 2,
+          label: { en: 'Reference Image / Spec PDF', cn: '参考图片 / 规格 PDF', de: 'Referenzbild / Spec-PDF', fr: 'Image de référence / Spec PDF', ja: '参考画像 / 仕様 PDF', kr: '참고 이미지 / 사양 PDF' },
+        },
       ]}
+      enableAttachments={true}
     />
   );
 }

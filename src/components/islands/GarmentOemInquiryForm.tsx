@@ -64,6 +64,10 @@ export default function GarmentOemInquiryForm({ locale }: { locale: string }) {
           label: { en: 'Phone / WhatsApp', cn: '电话/微信', de: 'Telefon', fr: 'Téléphone', ja: '電話', kr: '전화' },
         },
         {
+          name: 'delivery_date', type: 'date',
+          label: { en: 'Required Delivery Date', cn: '期望交货日期', de: 'Wunschliefertermin', fr: 'Date de livraison souhaitee', ja: '希望納期', kr: '희망 납기일' },
+        },
+        {
           name: 'garment_type', type: 'select', required: true, fullWidth: true,
           label: {
             en: 'Garment Type *', cn: '服装类型 *', de: 'Bekleidungstyp *',
