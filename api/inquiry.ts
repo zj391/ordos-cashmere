@@ -300,19 +300,6 @@ const FONTS: Record<string, string> = {
   kr: "'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif",
 };
 
-interface InquiryPayload {
-  type: 'raw' | 'yarn' | 'garment';
-  name: string;
-  company: string;
-  country: string;
-  email: string;
-  phone?: string;
-  quantity?: string;
-  delivery_date?: string;
-  message?: string;
-  attachments?: Array<{ name: string; type: string; dataUrl: string }>;
-}
-
 const I18N: Record<string, {
   subject: (label: string) => string;
   greeting: (name: string) => string;
@@ -405,7 +392,7 @@ const I18N: Record<string, {
     fieldQuantity: '예상 수량', fieldDelivery: '희망 납기일',
     fieldPhone: '전화', fieldMessage: '메시지',
     fieldAttachments: '첨부파일',
-    promise: '당사 영업 담당자가 <strong>24시간 이내에 WhatsApp 또는 이메일</strong>로 연락드려 상세 견적, 제품 카탈로그, 샘플 안내를 제공해 드리겠습니다.`,
+    promise: '당사 영업 담당자가 <strong>24시간 이내에 WhatsApp 또는 이메일</strong>로 연락드려 상세 견적, 제품 카탈로그, 샘플 안내를 제공해 드리겠습니다.',
     wechatLabel: 'WeChat', whatsappLabel: 'WhatsApp', emailLabel: '이메일',
     footer: '이 이메일은 자동 발송되었습니다. 직접 회신하지 마시고, 긴급한 사항은 WhatsApp으로 연락 주십시오.',
     receiptTitle: '프리미엄 캐시미어 · 오르도스 · 2002년 설립',
@@ -473,7 +460,7 @@ function renderCustomerEmail(locale: string, data: InquiryPayload): { subject: s
 <body style="margin:0;padding:0;background:#F5F1EA;font-family:${font};">
   <div style="max-width:600px;margin:0 auto;background:#fff;padding:0;">
     <div style="border-bottom:2px solid #5C3E2A;padding:30px 30px 20px;${isCN ? 'font-family:' + font : ''}">
-      <h1 style="font-size:24px;margin:0;color:#5C3E2A;font-weight:${isCN ? '600' : '400'};">${isCN ? '东霄羊绒' : 'DONGXIAO<sup style=\"font-size:12px;\">®</sup> CASHMERE'}</h1>
+      <h1 style="font-size:24px;margin:0;color:#5C3E2A;font-weight:${isCN ? '600' : '400'};">${isCN ? '东霄羊绒' : 'DONGXIAO<sup>®</sup> CASHMERE'}</h1>
       <p style="margin:5px 0 0;font-size:12px;color:#A8875E;letter-spacing:2px;">${t.receiptTitle}</p>
     </div>
     <div style="padding:30px;">
