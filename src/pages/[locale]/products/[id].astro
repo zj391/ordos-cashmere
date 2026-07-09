@@ -53,6 +53,9 @@ const locale = pickLocale(rawLocale);
 const { product } = Astro.props;
 if (!product || !id) { return Astro.redirect('/' + locale + '/products'); }
 
+// Resolved detail data (per-product overrides or per-category fallback)
+const detail = (product as any).detail || null;
+
 const category = getCategoryById(product.categoryId);
 if (!category) { return Astro.redirect('/' + locale + '/products'); }
 
@@ -261,23 +264,211 @@ const breadcrumbSchema = {
     </div>
   </section>
 
-  <!-- SEO content section - text-heavy for long-tail keyword coverage -->
-  <section class="py-12 bg-secondary/20">
-    <div class="container-narrow max-w-3xl">
-      <h2 class="font-display text-2xl font-light mb-4">About this {category.name.toLowerCase()}</h2>
-      <p class="text-sm leading-relaxed text-foreground/80 mb-4">
-        Manufactured in our 38,000 sqm facility in Ordos, Inner Mongolia — the world's premium cashmere region. Every piece is made from {product.material} with fiber fineness of {product.micron}, sourced directly from local Albus goat herders with full pedigree traceability.
-      </p>
-      <p class="text-sm leading-relaxed text-foreground/80 mb-4">
-        Our factory has been producing cashmere knitwear since 2002, supplying global fashion brands, retailers, and trading companies. We hold ISO 9001:2015, OEKO-TEX Standard 100, and GOTS (on request) certifications. Every order passes through our 5-stage quality control: incoming material, in-process, pre-finishing, post-finishing, and pre-shipment inspection.
-      </p>
-      <p class="text-sm leading-relaxed text-foreground/80">
-        For OEM/ODM projects, our in-house design team develops patterns, samples, and tech-packs. MOQ is {product.moq} pieces per style with {product.lead} lead time. Sample development takes {product.sample_time}. We support custom logo (woven, printed, embroidered), custom packaging, and private label programs.
-      </p>
+  <!-- 7-9 expanded: imfieldcashmere-style 13-section product page -->
+
+  {detail && (
+    <>
+
+  <!-- Section 1: Material Story -->
+  {detail.materialStory && (
+    <section class="py-12 bg-secondary/20">
+      <div class="container-narrow max-w-3xl">
+        <h2 class="font-display text-2xl font-light mb-4">Material & Craftsmanship</h2>
+        <p class="text-base leading-relaxed text-foreground/80">{detail.materialStory[locale]}</p>
+      </div>
+    </section>
+  )}
+
+  <!-- Section 2: Manufacturing Process -->
+  {detail.process && (
+    <section class="py-12 bg-background">
+      <div class="container-narrow max-w-3xl">
+        <h2 class="font-display text-2xl font-light mb-4">Manufacturing Process</h2>
+        <p class="text-base leading-relaxed text-foreground/80 mb-6">{detail.process[locale]}</p>
+        {detail.processSteps && (
+          <ol class="space-y-3">
+            {detail.processSteps.map((step, i) => (
+              <li class="flex gap-4">
+                <span class="flex-shrink-0 w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-display text-sm">{i + 1}</span>
+                <span class="text-sm leading-relaxed pt-1">{step[locale]}</span>
+              </li>
+            ))}
+          </ol>
+        )}
+      </div>
+    </section>
+  )}
+
+  <!-- Section 3: Custom Service (6 bullets) -->
+  {detail.customServiceBullets && (
+    <section class="py-12 bg-secondary/20">
+      <div class="container-narrow">
+        <h2 class="font-display text-2xl font-light mb-6 text-center">{detail.customServiceTitle?.[locale] || 'Custom Manufacturing Service'}</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {detail.customServiceBullets.map((b) => (
+            <div class="bg-card border border-border rounded-lg p-5">
+              <div class="flex items-start gap-3">
+                <span class="text-brand-gold text-lg">✓</span>
+                <span class="text-sm leading-relaxed">{b[locale]}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Section 4: Why Choose Us (6 USPs) -->
+  {detail.whyChooseBullets && (
+    <section class="py-12 bg-background">
+      <div class="container-narrow">
+        <h2 class="font-display text-2xl font-light mb-8 text-center">{detail.whyChooseTitle?.[locale] || 'Why Choose Our Factory'}</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {detail.whyChooseBullets.map((b, i) => (
+            <div class="text-center">
+              <div class="w-12 h-12 bg-brand-gold/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                <span class="text-brand-gold font-display text-lg">{i + 1}</span>
+              </div>
+              <p class="text-sm leading-relaxed">{b[locale]}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Section 5: Comparison Table (e.g. Cashmere vs Pashmina) -->
+  {detail.comparisonPoints && detail.comparisonTitle && (
+    <section class="py-12 bg-secondary/20">
+      <div class="container-narrow">
+        <h2 class="font-display text-2xl font-light mb-6 text-center">{detail.comparisonTitle[locale]}</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full bg-card border border-border rounded-lg overflow-hidden">
+            <thead class="bg-primary text-primary-foreground">
+              <tr>
+                <th class="text-left p-3 font-medium text-sm">Feature</th>
+                <th class="text-left p-3 font-medium text-sm">Cashmere</th>
+                <th class="text-left p-3 font-medium text-sm">{detail.comparisonOther}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {detail.comparisonPoints.map((p, i) => (
+                <tr class={i % 2 === 0 ? 'bg-background' : 'bg-secondary/10'}>
+                  <td class="p-3 text-sm font-medium">{p.label?.[locale] || ''}</td>
+                  <td class="p-3 text-sm">{p.cashmere?.[locale] || ''}</td>
+                  <td class="p-3 text-sm">{p.other?.[locale] || ''}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Section 6: Applications / Use Cases -->
+  {detail.applicationScenarios && (
+    <section class="py-12 bg-background">
+      <div class="container-narrow">
+        <h2 class="font-display text-2xl font-light mb-6 text-center">{detail.applicationsTitle?.[locale] || 'Applications'}</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+          {detail.applicationScenarios.map((s) => (
+            <div class="border border-border rounded-lg p-4 bg-card">
+              <p class="text-sm leading-relaxed">{s[locale]}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Section 7: OEM Workflow (3-5 steps) -->
+  {detail.oemWorkflow && detail.oemWorkflow.length > 0 && (
+    <section class="py-12 bg-secondary/20">
+      <div class="container-narrow">
+        <h2 class="font-display text-2xl font-light mb-6 text-center">OEM/ODM Workflow</h2>
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-4 max-w-5xl mx-auto">
+          {detail.oemWorkflow.map((step, i) => (
+            <div class="bg-card border border-border rounded-lg p-4 text-center">
+              <div class="w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center mx-auto mb-3 font-display">{i + 1}</div>
+              <p class="text-xs text-foreground/80 leading-relaxed">{typeof step === 'string' ? step : step[locale]}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Section 8: Care Instructions -->
+  {detail.careInstructions && (
+    <section class="py-12 bg-background">
+      <div class="container-narrow max-w-3xl">
+        <h2 class="font-display text-2xl font-light mb-4">Care Instructions</h2>
+        <p class="text-base leading-relaxed text-foreground/80">{detail.careInstructions[locale]}</p>
+      </div>
+    </section>
+  )}
+
+  <!-- Section 9: Sample Policy -->
+  {detail.samplePolicy && (
+    <section class="py-12 bg-secondary/20">
+      <div class="container-narrow max-w-3xl">
+        <h2 class="font-display text-2xl font-light mb-4">Sample Policy</h2>
+        <p class="text-base leading-relaxed text-foreground/80">{detail.samplePolicy[locale]}</p>
+      </div>
+    </section>
+  )}
+
+  <!-- Section 10: Certifications -->
+  {detail.certifications && (
+    <section class="py-12 bg-background">
+      <div class="container-narrow max-w-3xl">
+        <h2 class="font-display text-2xl font-light mb-4">Certifications</h2>
+        <div class="flex flex-wrap gap-2">
+          {detail.certifications.map((c) => (
+            <span class="text-sm px-3 py-1.5 border border-border rounded-full bg-card">{c}</span>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Section 11: Product-specific FAQ (4-6 Q&A) -->
+  {detail.faq && detail.faq.length > 0 && (
+    <section class="py-12 bg-secondary/20">
+      <div class="container-narrow max-w-3xl">
+        <h2 class="font-display text-2xl font-light mb-6">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          {detail.faq.map((f) => (
+            <details class="bg-card border border-border rounded-lg p-4 group">
+              <summary class="font-medium text-base cursor-pointer flex items-center justify-between">
+                <span>{f.q[locale]}</span>
+                <span class="text-brand-gold text-xl group-open:rotate-45 transition-transform">+</span>
+              </summary>
+              <p class="text-sm leading-relaxed text-foreground/80 mt-3">{f.a[locale]}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+    </>
+  )}
+
+  <!-- Section 12: Inquiry CTA -->
+  <section class="py-16 bg-brand-ink text-white">
+    <div class="container-narrow text-center">
+      <h2 class="font-display text-3xl font-light mb-4">Request a Quotation</h2>
+      <p class="opacity-90 mb-8 max-w-2xl mx-auto">Send your target specs (quantity, gauge, color, customization). Our specialists respond within 24 hours with sample, pricing, and lead time.</p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href={`/${locale}/contact?product=${product.id}`} class="inline-block px-8 py-3 bg-brand-gold text-brand-ink rounded-sm font-medium hover:bg-brand-gold/90">{t.buyCta}</a>
+        <a href={`/${locale}/factory`} class="inline-block px-8 py-3 border border-white/30 rounded-sm hover:bg-white/10">Factory Tour</a>
+      </div>
     </div>
   </section>
 
-  <!-- Related products -->
+  <!-- Section 13: Related products -->
   {related.length > 0 && (
     <section class="py-16 bg-background">
       <div class="container-narrow">
