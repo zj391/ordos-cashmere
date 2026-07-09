@@ -39,6 +39,18 @@ for await (const file of walk(apiDir)) {
   if (!file.endsWith('.astro.mjs')) continue;
   const src = await readFile(file, 'utf8');
   // Skip if already endpoint-form (no page wrapper)
+  // But always re-apply if we see _handlers (the previous broken fix) — replace it
+  if (src.includes('export { _handlers, page }')) {
+    // Re-rewrite: extract names and add named exports
+    const handlerNames = [...src.matchAll(/^const ([A-Z]+)\s*=/gm)].map(m => m[1]);
+    if (handlerNames.length > 0) {
+      let out = src.replace(/export \{ _handlers, page \};/, `export { ${handlerNames.join(', ')}, _handlers, page };`);
+      await writeFile(file, out);
+      console.log(`[fix-endpoint-build] re-rewrote ${file.replace(root + '/', '')} → adds named exports {${handlerNames.join(', ')}}`);
+      fixed++;
+      continue;
+    }
+  }
   if (!src.includes('export { page }')) continue;
   // Extract handler names from const X = ...
   const handlerNames = [...src.matchAll(/^const ([A-Z]+)\s*=/gm)].map(m => m[1]);
@@ -51,8 +63,8 @@ for await (const file of walk(apiDir)) {
       //   1) Astro SSR adapter's mod.page() check passes
       //   2) renderEndpoint()'s mod[method] lookup works
       let out = src
-        .replace(/\nconst _page[\s\S]*?\nconst page = \(\) => _page;\n\nexport \{ page \};/m,
-               `\nconst _handlers = { ${handlerNames.join(', ')} };\nconst page = () => _handlers;\nexport { _handlers, page };`);
+          .replace(/\nconst _page[\s\S]*?\nconst page = \(\) => _page;\n\nexport \{ page \};/m,
+                   `\nconst _handlers = { ${handlerNames.join(', ')} };\nconst page = () => _handlers;\nexport { ${handlerNames.join(', ')}, _handlers, page };`);
   // Safety check
   if (!out.includes(`const _handlers`)) {
     console.error(`[fix-endpoint-build] FAILED to rewrite ${file}`);
