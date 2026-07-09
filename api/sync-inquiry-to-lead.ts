@@ -317,9 +317,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       email_next_due_at: nextAction === 'day_0_email' ? new Date().toISOString() : null,
       converted_to_inquiry: data.inquiry_id || null,
       converted_to_customer: false,
-      // Extra fields (use if schema supports; PostgREST ignores unknown cols)
-      enrichment_data: enriched as any,
-      lead_reasoning: reasoning,
     };
 
     const inserted = await sb('/leads', {
