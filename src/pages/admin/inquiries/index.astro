@@ -21,7 +21,7 @@ let error = '';
 
 if (SUPABASE_URL && SUPABASE_KEY) {
   try {
-    let q = '/rest/v1/inquiries?order=created_at.desc&limit=200&select=id,created_at,contact_name,company_name,country,email,phone,inquiry_type,locale,product_interest,quantity_kg,quantity_m,quantity_pcs,lead_grade,lead_score,status,message';
+    let q = '/rest/v1/inquiries?order=created_at.desc&limit=200&select=id,created_at,contact_name,company_name,country,email,phone,inquiry_type,locale,product_interest,quantity_kg,quantity_m,quantity_pcs,lead_grade,status,message';
     const filters: string[] = [];
     if (grade) filters.push(`lead_grade=eq.${grade}`);
     if (status) filters.push(`status=eq.${status}`);
