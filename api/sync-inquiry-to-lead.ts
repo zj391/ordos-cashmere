@@ -258,7 +258,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // 2. Enrich: auto-detect industry + company_size + region + deal_size
     // Pass inquiry_type explicitly (not from source_detail) so estimateDealSize works.
-    const inquiryTypeForEnrich = data.inquiry_type
+    // Map short codes (raw/yarn/garment) to long codes (raw_material/yarn_fabric/garment_oem)
+    // so estimateDealSize can recognize them.
+    const shortToLong = { raw: 'raw_material', yarn: 'yarn_fabric', garment: 'garment_oem' };
+    const inquiryTypeForEnrich = shortToLong[data.inquiry_type]
+      || (data.inquiry_type && data.inquiry_type.includes('_') ? data.inquiry_type : null)
       || (data.source_detail || '').replace('inquiry_form_', '')
       || 'unknown';
     const enriched = {
