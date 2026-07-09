@@ -257,13 +257,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // 2. Enrich: auto-detect industry + company_size + region + deal_size
+    // Pass inquiry_type explicitly (not from source_detail) so estimateDealSize works.
+    const inquiryTypeForEnrich = data.inquiry_type
+      || (data.source_detail || '').replace('inquiry_form_', '')
+      || 'unknown';
     const enriched = {
       company: data.company_name || '',
       country: data.country || '',
       industry: data.industry && data.industry !== 'unknown' ? data.industry : inferIndustry(data.company_name, data.message),
       company_size: data.company_size && data.company_size !== 'unknown' ? data.company_size : inferCompanySize(data.company_name, data.email),
       region_tier: inferRegionTier(data.country),
-      deal_size: estimateDealSize(data.inquiry_type || (data.source_detail || '').replace('inquiry_form_', ''), data.quantity),
+      deal_size: estimateDealSize(inquiryTypeForEnrich, data.quantity),
       job: data.job_title || null,
       quantity: data.quantity || null,
       message_excerpt: (data.message || '').slice(0, 200),

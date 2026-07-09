@@ -182,6 +182,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           job_title: data.job_title,
           source: "inbound_inquiry",
           source_detail: "inquiry_form_" + (data.inquiry_type || "unknown"),
+          inquiry_type: data.inquiry_type || data.type,
           quantity: data.quantity,
           message: data.message,
         }),
