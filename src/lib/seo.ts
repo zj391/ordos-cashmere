@@ -4,6 +4,7 @@
  */
 
 import { LOCALE_HREFLANG, type Locale } from './i18n';
+import { SEO_KEYWORDS } from '@/data/seo-keywords';
 
 export const SITE_URL = 'https://erdosdx.com';
 
@@ -83,27 +84,81 @@ export const SEO: Record<Locale, LocaleSEO> = {
     rawMaterial: {
       title: 'Premium Raw Cashmere Material | White, Brown, Grey | Direct from Ordos Factory',
       description: 'Buy premium raw cashmere fiber directly from Ordos factory. White, brown (qing), purple (zi) cashmere. 14.5-16.5μm fineness. Bulk pricing for global B2B buyers.',
-      keywords: ['raw cashmere fiber', 'white cashmere', 'brown cashmere', 'cashmere raw material wholesale', 'dehaired cashmere', 'combed cashmere'],
+      keywords: [
+        'raw cashmere fiber', 'white cashmere', 'brown cashmere', 'cashmere raw material wholesale',
+        'dehaired cashmere', 'combed cashmere',
+        // 7-8 SEO long-tail
+        'dehaired cashmere tops', 'greasy cashmere goat wool', '14.5μm superfine cashmere',
+        'white raw cashmere bulk supply', 'cashmere noil', 'cashmere combed top wholesale',
+        'Ordos dehaired cashmere', 'Mongolian greasy cashmere fiber',
+        'where to buy bulk raw Mongolian cashmere', 'best Ordos cashmere fiber supplier China',
+        'superfine white cashmere dehaired top factory', 'eco-friendly scoured cashmere fiber wholesale',
+      ],
     },
     yarnFabric: {
       title: 'Cashmere Yarn & Woven Fabric | Worsted & Woolen | B2B Wholesale',
       description: 'Premium cashmere yarn (26/2, 28/2, 36/2) and woven fabric (worsted & woolen) for B2B buyers. Custom counts, colors, blends. Direct from Ordos spinning mill.',
-      keywords: ['cashmere yarn wholesale', 'cashmere woven fabric', 'worsted cashmere', 'woolen cashmere', 'cashmere yarn 26/2', 'cashmere yarn 28/2'],
+      keywords: [
+        'cashmere yarn wholesale', 'cashmere woven fabric', 'worsted cashmere', 'woolen cashmere',
+        'cashmere yarn 26/2', 'cashmere yarn 28/2',
+        // 7-8 SEO long-tail
+        '100% cashmere yarn', 'worsted cashmere yarn', 'wool cashmere blend yarn',
+        'hand knitting cashmere yarn', 'dyed cashmere yarn manufacturer',
+        'fine count cashmere yarn 2/48Nm 2/60Nm', 'cashmere yarn for sweater making',
+        'mixed Ordos Mongolian cashmere yarn',
+        'high quality worsted cashmere yarn from Inner Mongolia',
+        'anti-pilling cashmere blend yarn for knitwear brand',
+        'customized color cashmere yarn bulk order supplier',
+        'cashmere coating fabric', 'woven cashmere fabric', 'cashmere jacquard fabric',
+        'lightweight cashmere fabric', 'cashmere silk blend fabric', 'thick cashmere wool fabric for coats',
+        'soft cashmere woven fabric for luxury overcoat',
+        'sustainable cashmere silk fabric manufacturer OEM',
+        'lightweight cashmere fabric for women clothing',
+      ],
     },
     garmentOem: {
       title: 'Cashmere Garment OEM/ODM | Sweater, Coat & Dress Manufacturer',
       description: 'Full-service cashmere garment OEM/ODM: sweaters, cardigans, coats, dresses, scarves. Custom design, sampling, production. MOQ 100pcs. 23+ years experience serving global brands.',
-      keywords: ['cashmere sweater OEM', 'cashmere garment manufacturer', 'private label cashmere', 'custom cashmere knitwear', 'cashmere coat manufacturer'],
+      keywords: [
+        'cashmere sweater OEM', 'cashmere garment manufacturer', 'private label cashmere',
+        'custom cashmere knitwear', 'cashmere coat manufacturer',
+        // 7-8 SEO long-tail
+        'custom cashmere sweater wholesale', 'cashmere coat manufacturer',
+        'cashmere scarf shawl factory', 'private label cashmere knitwear',
+        'cashmere hat glove wholesale', 'luxury cashmere blanket supplier',
+        'private label cashmere sweater factory Ordos China',
+        'small MOQ cashmere coat manufacturer',
+        'wholesale cashmere shawl with custom logo',
+        'OEKO-TEX certified cashmere clothing supplier',
+      ],
     },
     factory: {
       title: 'Factory Strength | 23+ Years Cashmere Production | Ordos Industrial Park',
       description: '38,000 sqm Ordos factory. 500+ employees. 1,200+ tons annual capacity. ISO 9001, OEKO-TEX, GCS certified. Direct from source, no middleman.',
-      keywords: ['cashmere factory', 'Ordos manufacturer', 'ISO certified cashmere', 'OEKO-TEX cashmere'],
+      keywords: [
+        'cashmere factory', 'Ordos manufacturer', 'ISO certified cashmere', 'OEKO-TEX cashmere',
+        // 7-8 SEO long-tail - factory/brand/scale
+        'Ordos cashmere factory', 'Mongolian cashmere supplier', 'Inner Mongolia cashmere mill',
+        'China cashmere manufacturer', 'full chain cashmere factory', 'raw cashmere factory',
+        'cashmere yarn spinning mill', 'custom cashmere clothing factory',
+        'wholesale cashmere supplier', 'cashmere OEM ODM factory',
+        'bulk cashmere raw material supplier', 'sustainable cashmere factory',
+        'full industrial chain cashmere manufacturer Ordos',
+        'cashmere factory with Mongolia raw material source',
+        'direct cashmere mill no middleman', 'large capacity cashmere factory bulk export',
+        'ISO OEKO-TEX cashmere supplier China',
+      ],
     },
     ordosOrigin: {
       title: 'Ordos Cashmere Origin | Inner Mongolia Heritage & Quality',
       description: 'Discover why Ordos, Inner Mongolia is the world\'s premium cashmere origin. Albus goat breeding, climate, traceability, and sustainable grazing practices.',
-      keywords: ['Ordos cashmere origin', 'Inner Mongolia cashmere', 'Albus goat', 'cashmere terroir', 'sustainable cashmere'],
+      keywords: [
+        'Ordos cashmere origin', 'Inner Mongolia cashmere', 'Albus goat', 'cashmere terroir', 'sustainable cashmere',
+        // 7-8 SEO long-tail - dual origin
+        'Ordos & Mongolian cashmere supplier', '100% Ordos cashmere',
+        'pure Mongolian raw cashmere', 'Inner Mongolia Ordos cashmere factory',
+        'mixed Ordos Mongolian cashmere yarn', 'premium cashmere from Ordos and Mongolia',
+      ],
     },
     contact: {
       title: 'Contact Dongxiao Cashmere | WhatsApp +86-156-6185-3999',

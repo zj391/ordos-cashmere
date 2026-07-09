@@ -1,0 +1,133 @@
+---
+/**
+ * Certifications - dedicated SEO hub (7-8)
+ * Target: ISO OEKO-TEX cashmere supplier / OEKO-TEX certified cashmere clothing
+ * Route: /[locale]/certifications × 6 locales = 6 URLs
+ */
+export const prerender = true;
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
+import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
+import SEOFaq from '@/components/SEOFaq.astro';
+import { LOCALES, isLocale, pickLocale } from '@/lib/i18n';
+
+export function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const { locale: rawLocale } = Astro.params;
+if (!isLocale(rawLocale)) { return Astro.redirect('/en/certifications'); }
+const locale = pickLocale(rawLocale);
+
+const tdk = {
+  en: {
+    title: 'ISO 9001 & OEKO-TEX Certified Cashmere Supplier | DONGXIAO®',
+    description: 'OEKO-TEX Standard 100, ISO 9001:2015, GOTS (on request), RWS certified cashmere factory. Audit reports available for B2B buyers. Download certificates.',
+    h1: 'Certified Cashmere Manufacturer',
+    intro: 'Every shipment ships with full documentation. We hold the certifications global B2B buyers require — and the audit reports to back them up.',
+    bullets: [
+      'ISO 9001:2015 (Quality Management)',
+      'OEKO-TEX Standard 100 (Class I — safe for babies)',
+      'GOTS (Global Organic Textile Standard) — on request for orders 500kg+',
+      'RWS (Responsible Wool Standard) — for blended products',
+    ],
+    faqs: [
+      { q: 'Are your certifications available for download?', a: 'Yes — visit our Download Center for current PDF certificates. We also share audit reports under NDA for serious buyers.' },
+      { q: 'Do you test for harmful substances?', a: 'Yes — OEKO-TEX Standard 100 tests for formaldehyde, heavy metals, pesticides, and 300+ harmful substances. Tests run annually at Hohenstein and SGS.' },
+      { q: 'Can you provide GOTS certification for organic cashmere?', a: 'Yes — for orders 500kg+ sourced from certified organic farms. Lead time +30 days for certification processing.' },
+      { q: 'What about REACH compliance for EU buyers?', a: 'All our dyestuffs and auxiliaries are REACH-compliant. SDS available on request.' },
+    ],
+  },
+  cn: {
+    title: 'ISO 9001 + OEKO-TEX 认证羊绒工厂 | DONGXIAO®',
+    description: 'OEKO-TEX 100、ISO 9001:2015、GOTS（按需）、RWS 认证羊绒工厂。',
+    h1: '认证羊绒制造商',
+    intro: '每批货附完整文件。国际 B2B 采购商所需的全部认证。',
+    bullets: ['ISO 9001:2015', 'OEKO-TEX 100 一类（婴儿级安全）', 'GOTS（500kg+ 按需）', 'RWS（混纺产品）'],
+    faqs: [{ q: '认证可下载？', a: '是，下载中心 PDF 证书。' }],
+  },
+};
+
+const t = tdk[locale] || tdk.en;
+const faqs = t.faqs || tdk.en.faqs;
+
+const certList = [
+  { code: 'ISO 9001', name: 'ISO 9001:2015', scope: 'Quality Management System', year: 'Since 2018', icon: '🏆' },
+  { code: 'OEKO-TEX', name: 'OEKO-TEX Standard 100 (Class I)', scope: 'Tested for harmful substances — safe for babies & toddlers', year: 'Since 2020', icon: '🛡️' },
+  { code: 'GOTS', name: 'GOTS (on request)', scope: 'Global Organic Textile Standard — for organic cashmere', year: 'On request', icon: '🌱' },
+  { code: 'RWS', name: 'RWS (Responsible Wool Standard)', scope: 'Animal welfare + land management for blended products', year: 'Since 2022', icon: '🐑' },
+  { code: 'BSCI', name: 'BSCI (Business Social Compliance)', scope: 'Social compliance + worker welfare audit', year: 'Since 2019', icon: '🤝' },
+  { code: 'Sedex', name: 'Sedex SMETA 4-Pillar', scope: 'Ethical Trade audit (Labor, Health, Safety, Environment)', year: 'Since 2020', icon: '📋' },
+];
+
+const certSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'DONGXIAO® Cashmere',
+  award: certList.map((c) => ({
+    '@type': 'CreativeWork',
+    name: c.code,
+    description: c.scope,
+  })),
+  hasCredential: certList.map((c) => ({
+    '@type': 'EducationalOccupationalCredential',
+    credentialCategory: 'certification',
+    name: c.code,
+    recognizedBy: { '@type': 'Organization', name: c.code },
+  })),
+};
+---
+
+<BaseLayout
+  locale={locale}
+  pageKey="factory"
+  path={'/' + locale + '/certifications'}
+  title={t.title}
+  description={t.description}
+  keywords={['ISO OEKO-TEX cashmere supplier', 'OEKO-TEX certified cashmere clothing supplier', 'ISO 9001 cashmere', 'GOTS certified cashmere', 'RWS cashmere supplier']}
+  schema="factory"
+  customSchemas={[certSchema]}
+>
+  <Navigation slot="header" locale={locale} currentPath={'/' + locale + '/certifications'} />
+
+  <section class="bg-brand-ink text-white py-20 md:py-28">
+    <div class="container-narrow">
+      <span class="text-xs tracking-[0.4em] text-brand-gold uppercase">Certifications & Compliance</span>
+      <h1 class="font-display text-4xl md:text-5xl font-light mt-4 mb-6">{t.h1}</h1>
+      <p class="text-lg md:text-xl max-w-3xl opacity-90">{t.intro}</p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-background">
+    <div class="container-narrow">
+      <h2 class="font-display text-3xl font-light mb-8 text-center">Active Certifications</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {certList.map((c) => (
+          <div class="border border-border rounded-lg p-6 bg-card">
+            <div class="text-3xl mb-3">{c.icon}</div>
+            <h3 class="font-medium text-lg mb-1">{c.name}</h3>
+            <p class="text-xs text-brand-gold uppercase tracking-wider mb-3">{c.code} · {c.year}</p>
+            <p class="text-sm text-foreground/80">{c.scope}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <SEOFaq faqs={faqs} title="Frequently Asked Questions" />
+
+  <section class="py-16 bg-secondary/20">
+    <div class="container-narrow text-center">
+      <h2 class="font-display text-3xl font-light mb-4">Download certificates & audit reports</h2>
+      <p class="opacity-80 mb-8 max-w-2xl mx-auto">All current PDF certificates are available in our Download Center. For audit reports and additional documentation, contact us under NDA.</p>
+      <a href={'/' + locale + '/download'} class="inline-block px-8 py-3 bg-primary text-primary-foreground rounded-sm font-medium hover:bg-primary/90">Visit Download Center</a>
+    </div>
+  </section>
+
+  <Footer slot="footer" locale={locale} />
+  <FloatingChatButtons slot="footer" locale={locale} />
+  <CookieConsent slot="footer" locale={locale} />
+</BaseLayout>

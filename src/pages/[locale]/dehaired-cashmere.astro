@@ -1,0 +1,144 @@
+---
+/**
+ * Dehaired Cashmere Tops - dedicated SEO hub (7-8)
+ * Target: dehaired cashmere tops / cashmere combed top wholesale / Ordos dehaired cashmere
+ * Route: /[locale]/dehaired-cashmere × 6 locales = 6 URLs
+ */
+export const prerender = true;
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
+import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
+import SEOFaq from '@/components/SEOFaq.astro';
+import { LOCALES, isLocale, pickLocale } from '@/lib/i18n';
+import { products as productsData } from '@/data/products';
+
+export function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const { locale: rawLocale } = Astro.params;
+if (!isLocale(rawLocale)) { return Astro.redirect('/en/dehaired-cashmere'); }
+const locale = pickLocale(rawLocale);
+
+const tdk = {
+  en: {
+    title: 'Dehaired Cashmere Tops Wholesale | Combed Cashmere from Ordos | DONGXIAO',
+    description: 'Dehaired cashmere tops (combed) direct from Ordos. 14.5-15.5μm superfine. White, brown, purple. Bulk supply for global spinners. MOQ 100kg.',
+    h1: 'Dehaired Cashmere Tops from Ordos',
+    intro: 'Combed, sorted, and ready for spinning. Our dehaired cashmere is produced in a 38,000 sqm facility in Ordos, Inner Mongolia — the world\'s premium cashmere origin.',
+    bullets: [
+      'Italian-imported dehairing lines',
+      'Cashmere purity ≥99.95%',
+      'No dye, no chemical treatment',
+      'Hand-sorted for fiber length + micron uniformity',
+    ],
+    faqs: [
+      { q: 'What is the MOQ for dehaired cashmere tops?', a: 'MOQ is 100kg per grade/color. Mixed grades available within the same color.' },
+      { q: 'What micron ranges do you offer?', a: 'White: 14.5-15.5μm. Brown: 15.5-16.5μm. Purple: 15.5-16.5μm. Custom micron sorting on request.' },
+      { q: 'Do you offer eco-friendly scoured cashmere?', a: 'Yes — our standard scoured cashmere uses plant-based detergents. GOTS organic certification available on request for orders 500kg+.' },
+      { q: 'What is the lead time?', a: 'In-stock grades ship in 7-10 days. Custom micron sorting: 20-25 days.' },
+    ],
+  },
+  cn: {
+    title: '羊绒分梳套毛批发 | 鄂尔多斯分梳羊绒 | DONGXIAO®',
+    description: '鄂尔多斯源头分梳套毛，直供全球纺纱厂。14.5-15.5μm 超细，白/青/紫多色可选。MOQ 100kg。',
+    h1: '鄂尔多斯源头分梳套毛',
+    intro: '分梳+手拣+可直接纺纱。38,000 平米鄂尔多斯工厂，世界顶级羊绒产区。',
+    bullets: ['意大利进口分梳设备', '羊绒纯度 ≥99.95%', '无染色无化学处理', '按细度+长度手拣分级'],
+    faqs: [
+      { q: '羊绒分梳套毛起订量？', a: '每色 100kg。同色可混级。' },
+      { q: '细度范围？', a: '白绒 14.5-15.5μm，青绒 15.5-16.5μm，紫绒 15.5-16.5μm。可按需定制。' },
+    ],
+  },
+};
+
+const t = tdk[locale] || tdk.en;
+
+const dehairedFaqs = t.faqs || tdk.en.faqs;
+
+const productCounts = {
+  raw: productsData.categories.find((c) => c.id === 'raw'),
+};
+
+const dehairedSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Dehaired Cashmere Tops',
+  description: t.description,
+  brand: { '@type': 'Brand', name: 'DONGXIAO®' },
+  manufacturer: { '@type': 'Organization', name: 'Ordos Dongxiao Cashmere Co., Ltd.' },
+  category: 'Cashmere Raw Material',
+  offers: {
+    '@type': 'AggregateOffer',
+    priceCurrency: 'USD',
+    lowPrice: '75',
+    highPrice: '120',
+    offerCount: 3,
+    availability: 'https://schema.org/InStock',
+  },
+};
+---
+
+<BaseLayout
+  locale={locale}
+  pageKey="raw-material"
+  path={'/' + locale + '/dehaired-cashmere'}
+  title={t.title}
+  description={t.description}
+  keywords={['dehaired cashmere tops', 'cashmere combed top wholesale', 'Ordos dehaired cashmere', 'superfine white cashmere dehaired top factory', 'eco-friendly scoured cashmere fiber wholesale']}
+  schema="general"
+  customSchemas={[dehairedSchema]}
+>
+  <Navigation slot="header" locale={locale} currentPath={'/' + locale + '/dehaired-cashmere'} />
+
+  <section class="bg-brand-ink text-white py-20 md:py-28">
+    <div class="container-narrow">
+      <span class="text-xs tracking-[0.4em] text-brand-gold uppercase">Dehaired Cashmere Tops</span>
+      <h1 class="font-display text-4xl md:text-5xl font-light mt-4 mb-6">{t.h1}</h1>
+      <p class="text-lg md:text-xl max-w-3xl opacity-90">{t.intro}</p>
+      <ul class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-2 max-w-3xl">
+        {t.bullets.map((b) => (
+          <li class="flex items-start gap-2 text-sm opacity-90">
+            <span class="text-brand-gold mt-1">•</span>
+            <span>{b}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-16 bg-background">
+    <div class="container-narrow max-w-4xl">
+      <h2 class="font-display text-3xl font-light mb-6">Dehairing Process</h2>
+      <p class="text-base leading-relaxed text-foreground/80 mb-4">
+        Our dehairing line uses Italian-imported equipment that mechanically separates the fine underdown (cashmere) from the coarse guard hair. The process is purely mechanical — no chemicals, no dye, no water waste. Output is then hand-sorted by trained workers to ensure uniform fiber length and micron consistency.
+      </p>
+      <p class="text-base leading-relaxed text-foreground/80 mb-4">
+        <strong>Yield:</strong> 1 ton of raw (greasy) cashmere produces approximately 350kg of dehaired cashmere, depending on grade. White cashmere has the highest yield (40-45%), brown 30-35%, purple 25-30%.
+      </p>
+      <p class="text-base leading-relaxed text-foreground/80">
+        <strong>Quality control:</strong> Every batch is tested for fiber diameter (laser scan), length (comb sorter), and purity (visual + microscope). A certificate of analysis ships with every order.
+      </p>
+    </div>
+  </section>
+
+  <SEOFaq faqs={dehairedFaqs} title="Frequently Asked Questions" />
+
+  <section class="py-16 bg-brand-ink text-white">
+    <div class="container-narrow text-center">
+      <h2 class="font-display text-3xl font-light mb-4">Order dehaired cashmere today</h2>
+      <p class="opacity-90 mb-8 max-w-2xl mx-auto">Send your inquiry with target quantity, micron spec, and color. Free samples available for orders over 200kg.</p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href={'/' + locale + '/contact'} class="inline-block px-8 py-3 bg-brand-gold text-brand-ink rounded-sm font-medium hover:bg-brand-gold/90">Request a Quote</a>
+        <a href={'/' + locale + '/products'} class="inline-block px-8 py-3 border border-white/30 rounded-sm hover:bg-white/10">View All Products</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" locale={locale} />
+  <FloatingChatButtons slot="footer" locale={locale} />
+  <CookieConsent slot="footer" locale={locale} />
+</BaseLayout>

@@ -1,0 +1,156 @@
+---
+/**
+ * Private Label Cashmere - dedicated SEO hub (7-8)
+ * Target: private label cashmere knitwear / private label cashmere sweater factory
+ * Route: /[locale]/private-label-cashmere × 6 locales = 6 URLs
+ */
+export const prerender = true;
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
+import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
+import SEOFaq from '@/components/SEOFaq.astro';
+import { LOCALES, isLocale, pickLocale } from '@/lib/i18n';
+
+export function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const { locale: rawLocale } = Astro.params;
+if (!isLocale(rawLocale)) { return Astro.redirect('/en/private-label-cashmere'); }
+const locale = pickLocale(rawLocale);
+
+const tdk = {
+  en: {
+    title: 'Private Label Cashmere Knitwear | OEM/ODM Manufacturer | DONGXIAO®',
+    description: 'Private label cashmere sweaters, scarves, hats for global brands. Custom labels, hangtags, packaging. MOQ 100pcs/style. 23+ years OEM/ODM experience. Ordos factory direct.',
+    h1: 'Private Label Cashmere Manufacturer',
+    intro: 'Build your own cashmere brand with our 23+ years of OEM/ODM experience. From yarn selection to final packaging, we handle every step under your label.',
+    bullets: [
+      'Custom woven labels, printed labels, or hangtags',
+      'Custom packaging (boxes, polybags, tissue paper)',
+      'Pattern + sample development in 7-10 days',
+      'Bulk production 30-45 days',
+      'MOQ 100 pieces per style',
+    ],
+    faqs: [
+      { q: 'What is the MOQ for private label cashmere?', a: 'MOQ is 100 pieces per style. We can mix colors within a style to help meet MOQ.' },
+      { q: 'How long does sampling take?', a: 'Counter-sample: 7-10 days. Production-ready sample with your labels: 14-21 days.' },
+      { q: 'Can you handle custom packaging?', a: 'Yes — boxes, polybags, tissue paper, hangtags, barcodes. We can source or work with your supplied packaging.' },
+      { q: 'Do you offer design support?', a: 'Yes — in-house design team can develop tech packs from sketches, reference photos, or trend briefs.' },
+    ],
+  },
+  cn: {
+    title: '羊绒私人标签代工 | OEM/ODM 贴牌生产 | DONGXIAO®',
+    description: '羊绒衫/围巾/帽子 贴牌代工。定制标签、吊牌、包装。MOQ 100件/款。23年 OEM/ODM 经验。',
+    h1: '羊绒私人标签代工',
+    intro: '23年 OEM/ODM 经验，从纱线选择到包装一站式贴牌。',
+    bullets: ['定制织标/印标/吊牌', '定制包装（盒/袋/纸）', '打样 7-10 天', '大货 30-45 天', 'MOQ 每款 100 件'],
+    faqs: [{ q: '羊绒贴牌起订量？', a: '每款 100 件。' }],
+  },
+};
+
+const t = tdk[locale] || tdk.en;
+const faqs = t.faqs || tdk.en.faqs;
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Private Label Cashmere Manufacturing',
+  provider: { '@type': 'Organization', name: 'DONGXIAO® Cashmere' },
+  areaServed: 'Worldwide',
+  serviceType: 'OEM/ODM Cashmere Manufacturing',
+  description: t.description,
+};
+---
+
+<BaseLayout
+  locale={locale}
+  pageKey="garment-oem"
+  path={'/' + locale + '/private-label-cashmere'}
+  title={t.title}
+  description={t.description}
+  keywords={['private label cashmere', 'private label cashmere knitwear', 'private label cashmere sweater factory', 'cashmere OEM ODM', 'custom cashmere knitwear', 'cashmere hat glove wholesale', 'wholesale cashmere shawl with custom logo']}
+  schema="general"
+  customSchemas={[serviceSchema]}
+>
+  <Navigation slot="header" locale={locale} currentPath={'/' + locale + '/private-label-cashmere'} />
+
+  <section class="bg-brand-ink text-white py-20 md:py-28">
+    <div class="container-narrow">
+      <span class="text-xs tracking-[0.4em] text-brand-gold uppercase">Private Label · OEM · ODM</span>
+      <h1 class="font-display text-4xl md:text-5xl font-light mt-4 mb-6">{t.h1}</h1>
+      <p class="text-lg md:text-xl max-w-3xl opacity-90">{t.intro}</p>
+      <ul class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-2 max-w-3xl">
+        {t.bullets.map((b) => (
+          <li class="flex items-start gap-2 text-sm opacity-90">
+            <span class="text-brand-gold mt-1">•</span>
+            <span>{b}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-16 bg-background">
+    <div class="container-narrow max-w-4xl">
+      <h2 class="font-display text-3xl font-light mb-6">Our Private Label Process</h2>
+      <ol class="space-y-6">
+        <li class="flex gap-4">
+          <span class="flex-shrink-0 w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-display text-lg">1</span>
+          <div>
+            <h3 class="font-medium text-lg mb-1">Design & Tech Pack</h3>
+            <p class="text-sm text-foreground/80">Share your sketch, reference photo, or tech pack. Our in-house design team develops full tech packs including yarn spec, gauge, measurements, and colorway.</p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span class="flex-shrink-0 w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-display text-lg">2</span>
+          <div>
+            <h3 class="font-medium text-lg mb-1">Counter Sample</h3>
+            <p class="text-sm text-foreground/80">We knit a counter sample in 7-10 days. Sample cost is refundable against orders 500+ pcs.</p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span class="flex-shrink-0 w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-display text-lg">3</span>
+          <div>
+            <h3 class="font-medium text-lg mb-1">Sample Approval & Labels</h3>
+            <p class="text-sm text-foreground/80">You approve the sample. We produce custom woven/printed labels, hangtags, and packaging. Production-ready sample in 14-21 days.</p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span class="flex-shrink-0 w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-display text-lg">4</span>
+          <div>
+            <h3 class="font-medium text-lg mb-1">Bulk Production</h3>
+            <p class="text-sm text-foreground/80">30-45 days for garments, 30-45 days for scarves/hats. 5-stage QC: incoming material, in-process, pre-finishing, post-finishing, pre-shipment.</p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span class="flex-shrink-0 w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-display text-lg">5</span>
+          <div>
+            <h3 class="font-medium text-lg mb-1">Shipping & After-Sales</h3>
+            <p class="text-sm text-foreground/80">FOB Tianjin/Shanghai, CIF, DDP. Door-to-door logistics for DDP. After-sales support for quality issues within 30 days of receipt.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <SEOFaq faqs={faqs} title="Frequently Asked Questions" />
+
+  <section class="py-16 bg-brand-ink text-white">
+    <div class="container-narrow text-center">
+      <h2 class="font-display text-3xl font-light mb-4">Start your private label project</h2>
+      <p class="opacity-90 mb-8 max-w-2xl mx-auto">Send your reference, tech pack, or just a sketch. We'll reply within 24 hours with a feasibility assessment and quote.</p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href={'/' + locale + '/contact'} class="inline-block px-8 py-3 bg-brand-gold text-brand-ink rounded-sm font-medium hover:bg-brand-gold/90">Start Your Project</a>
+        <a href={'/' + locale + '/garment-oem'} class="inline-block px-8 py-3 border border-white/30 rounded-sm hover:bg-white/10">View Garment OEM Page</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" locale={locale} />
+  <FloatingChatButtons slot="footer" locale={locale} />
+  <CookieConsent slot="footer" locale={locale} />
+</BaseLayout>

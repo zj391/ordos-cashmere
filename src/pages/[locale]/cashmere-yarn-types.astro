@@ -1,0 +1,174 @@
+---
+/**
+ * Cashmere Yarn Types - dedicated SEO hub (7-8)
+ * Target: cashmere yarn 2/48Nm 2/60Nm / worsted cashmere yarn / dyed cashmere yarn
+ * Route: /[locale]/cashmere-yarn-types × 6 locales = 6 URLs
+ */
+export const prerender = true;
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
+import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
+import SEOFaq from '@/components/SEOFaq.astro';
+import { LOCALES, isLocale, pickLocale } from '@/lib/i18n';
+
+export function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const { locale: rawLocale } = Astro.params;
+if (!isLocale(rawLocale)) { return Astro.redirect('/en/cashmere-yarn-types'); }
+const locale = pickLocale(rawLocale);
+
+const tdk = {
+  en: {
+    title: 'Cashmere Yarn Types | 2/26 to 2/60 Nm | Worsted & Woolen | DONGXIAO®',
+    description: 'Cashmere yarn 2/26 to 2/60 Nm. Worsted, woolen, dyed, bleached. 100% cashmere + blends (wool, silk). Custom Nm counts and colors. Bulk wholesale from Ordos.',
+    h1: 'Cashmere Yarn Types & Specifications',
+    intro: 'Choose from 73 yarn configurations for hand knitting, machine knitting, and weaving. Custom Nm counts and color matching available.',
+    bullets: [
+      'Counts: 2/26 Nm to 2/60 Nm (stock); 2/16 to 2/80 Nm (custom 200kg+)',
+      'Process: Worsted (smooth) or Woolen (soft, lofty)',
+      'Colors: Natural white, brown, purple + 200+ dyed colors',
+      'Blends: 100% cashmere, cashmere/wool, cashmere/silk',
+    ],
+    faqs: [
+      { q: 'What is the difference between worsted and woolen cashmere yarn?', a: 'Worsted yarn is spun with parallel fibers for a smooth, strong thread ideal for machine knitting and weaving. Woolen yarn is spun with random fiber orientation for a softer, loftier feel — perfect for hand knitting and chunky sweaters.' },
+      { q: 'What Nm count should I use for a 12-gauge sweater?', a: 'For 12-gauge machine knitting, use 2/48 Nm or 2/60 Nm. For 7-gauge (chunky), use 2/26 Nm or 2/32 Nm.' },
+      { q: 'Can I get custom dye colors?', a: 'Yes — Pantone match for orders 5kg+ per color. Lab dip approval in 5-7 days. Bulk production 15-20 days after approval.' },
+      { q: 'Do you offer anti-pilling treated yarn?', a: 'Yes — both standard and anti-pilling treated. Anti-pilling is recommended for garments that will see heavy use (sweaters, socks).' },
+    ],
+  },
+  cn: {
+    title: '羊绒纱线规格 | 2/26 至 2/60 Nm | 精纺/粗纺 | DONGXIAO®',
+    description: '羊绒纱线 2/26 至 2/60 Nm。精纺/粗纺/染色/漂白。100% 羊绒 + 混纺。',
+    h1: '羊绒纱线规格',
+    intro: '73 种纱线配置可选，手织/机织/梭织。',
+    bullets: ['2/26 至 2/60 Nm（常备）；2/16 至 2/80 Nm（200kg+ 定制）', '精纺/粗纺', '200+ 染色', '100% 羊绒/羊绒羊毛/羊绒真丝'],
+    faqs: [{ q: '精纺和粗纺区别？', a: '精纺纤维平行，光滑结实适合机织；粗纺纤维随机，柔软蓬松适合手织。' }],
+  },
+};
+
+const t = tdk[locale] || tdk.en;
+const faqs = t.faqs || tdk.en.faqs;
+
+const yarnTypes = [
+  { nm: '2/26', use: 'Chunky knit, 5-7 gauge', weight: '~770 dtex', stock: true },
+  { nm: '2/32', use: 'Mid-gauge knit, 9 gauge', weight: '~625 dtex', stock: true },
+  { nm: '2/36', use: 'Standard knit, 12 gauge', weight: '~555 dtex', stock: true },
+  { nm: '2/48', use: 'Fine knit, 14-16 gauge', weight: '~415 dtex', stock: true },
+  { nm: '2/60', use: 'Ultra-fine knit, 18 gauge', weight: '~335 dtex', stock: true },
+  { nm: 'Custom', use: '2/16 to 2/80', weight: 'On request', stock: false, note: '200kg+ MOQ' },
+];
+
+const yarnSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: t.h1,
+  description: t.description,
+  numberOfItems: yarnTypes.length,
+  itemListElement: yarnTypes.map((y, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: `${y.nm} Nm cashmere yarn`,
+    description: `${y.use} (${y.weight})${y.note ? ' — ' + y.note : ''}`,
+  })),
+};
+---
+
+<BaseLayout
+  locale={locale}
+  pageKey="yarn-fabric"
+  path={'/' + locale + '/cashmere-yarn-types'}
+  title={t.title}
+  description={t.description}
+  keywords={['cashmere yarn wholesale', 'worsted cashmere yarn', 'wool cashmere blend yarn', 'hand knitting cashmere yarn', 'dyed cashmere yarn manufacturer', 'fine count cashmere yarn', 'anti-pilling cashmere blend yarn']}
+  schema="general"
+  customSchemas={[yarnSchema]}
+>
+  <Navigation slot="header" locale={locale} currentPath={'/' + locale + '/cashmere-yarn-types'} />
+
+  <section class="bg-brand-ink text-white py-20 md:py-28">
+    <div class="container-narrow">
+      <span class="text-xs tracking-[0.4em] text-brand-gold uppercase">Yarn Specifications</span>
+      <h1 class="font-display text-4xl md:text-5xl font-light mt-4 mb-6">{t.h1}</h1>
+      <p class="text-lg md:text-xl max-w-3xl opacity-90">{t.intro}</p>
+      <ul class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-2 max-w-3xl">
+        {t.bullets.map((b) => (
+          <li class="flex items-start gap-2 text-sm opacity-90">
+            <span class="text-brand-gold mt-1">•</span>
+            <span>{b}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-16 bg-background">
+    <div class="container-narrow">
+      <h2 class="font-display text-3xl font-light mb-8">Standard Yarn Counts (Nm)</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full border border-border rounded-lg overflow-hidden">
+          <thead class="bg-secondary/30">
+            <tr>
+              <th class="text-left p-3 font-medium">Count (Nm)</th>
+              <th class="text-left p-3 font-medium">Typical Use</th>
+              <th class="text-left p-3 font-medium">Weight</th>
+              <th class="text-left p-3 font-medium">Stock</th>
+            </tr>
+          </thead>
+          <tbody>
+            {yarnTypes.map((y) => (
+              <tr class="border-t border-border">
+                <td class="p-3 font-mono">{y.nm}</td>
+                <td class="p-3">{y.use}{y.note && <span class="text-xs text-muted-foreground"> — {y.note}</span>}</td>
+                <td class="p-3 text-sm text-muted-foreground">{y.weight}</td>
+                <td class="p-3 text-sm">
+                  {y.stock ? (
+                    <span class="text-green-600">In stock</span>
+                  ) : (
+                    <span class="text-amber-600">On request</span>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-secondary/20">
+    <div class="container-narrow max-w-4xl">
+      <h2 class="font-display text-3xl font-light mb-6">Worsted vs Woolen — which to choose?</h2>
+      <p class="text-base leading-relaxed text-foreground/80 mb-4">
+        <strong>Worsted cashmere</strong> is spun from long, parallel-aligned fibers using a combing process. The result is a smooth, dense, strong yarn with a slight sheen — perfect for 12+ gauge machine knitting, fine-gauge scarves, and suiting-weight woven fabrics. Worsted yarn holds its shape through wear and washing.
+      </p>
+      <p class="text-base leading-relaxed text-foreground/80 mb-4">
+        <strong>Woolen cashmere</strong> is spun from shorter fibers with random orientation. The result is a softer, loftier, lighter yarn with more air trapped between fibers — perfect for hand knitting, chunky sweaters, and felted applications. Woolen cashmere feels warmer for its weight but pills more easily.
+      </p>
+      <p class="text-base leading-relaxed text-foreground/80">
+        Most knitwear (sweaters, cardigans, accessories) uses a balanced approach: worsted-spun yarn with a light woolen finish for both strength and softness. Custom spinning available for 200kg+ orders.
+      </p>
+    </div>
+  </section>
+
+  <SEOFaq faqs={faqs} title="Frequently Asked Questions" />
+
+  <section class="py-16 bg-brand-ink text-white">
+    <div class="container-narrow text-center">
+      <h2 class="font-display text-3xl font-light mb-4">Order cashmere yarn today</h2>
+      <p class="opacity-90 mb-8 max-w-2xl mx-auto">Stock counts ship within 7 days. Custom Nm counts and Pantone dye colors: 15-25 days.</p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href={'/' + locale + '/contact'} class="inline-block px-8 py-3 bg-brand-gold text-brand-ink rounded-sm font-medium hover:bg-brand-gold/90">Request a Quote</a>
+        <a href={'/' + locale + '/yarn-fabric'} class="inline-block px-8 py-3 border border-white/30 rounded-sm hover:bg-white/10">View Yarn & Fabric Page</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" locale={locale} />
+  <FloatingChatButtons slot="footer" locale={locale} />
+  <CookieConsent slot="footer" locale={locale} />
+</BaseLayout>
