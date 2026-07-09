@@ -4,7 +4,7 @@
  */
 
 import { LOCALE_HREFLANG, type Locale } from './i18n';
-import { SEO_KEYWORDS } from '@/data/seo-keywords';
+import { SEO_KEYWORDS, getSeoKeywords } from '@/data/seo-keywords';
 
 export const SITE_URL = 'https://erdosdx.com';
 
@@ -84,10 +84,8 @@ export const SEO: Record<Locale, LocaleSEO> = {
     rawMaterial: {
       title: 'Premium Raw Cashmere Material | White, Brown, Grey | Direct from Ordos Factory',
       description: 'Buy premium raw cashmere fiber directly from Ordos factory. White, brown (qing), purple (zi) cashmere. 14.5-16.5μm fineness. Bulk pricing for global B2B buyers.',
-      keywords: [
-        'raw cashmere fiber', 'white cashmere', 'brown cashmere', 'cashmere raw material wholesale',
+      keywords: ['raw cashmere fiber', 'white cashmere', 'brown cashmere', 'cashmere raw material wholesale',
         'dehaired cashmere', 'combed cashmere',
-        // 7-8 SEO long-tail
         'dehaired cashmere tops', 'greasy cashmere goat wool', '14.5μm superfine cashmere',
         'white raw cashmere bulk supply', 'cashmere noil', 'cashmere combed top wholesale',
         'Ordos dehaired cashmere', 'Mongolian greasy cashmere fiber',
@@ -98,10 +96,8 @@ export const SEO: Record<Locale, LocaleSEO> = {
     yarnFabric: {
       title: 'Cashmere Yarn & Woven Fabric | Worsted & Woolen | B2B Wholesale',
       description: 'Premium cashmere yarn (26/2, 28/2, 36/2) and woven fabric (worsted & woolen) for B2B buyers. Custom counts, colors, blends. Direct from Ordos spinning mill.',
-      keywords: [
-        'cashmere yarn wholesale', 'cashmere woven fabric', 'worsted cashmere', 'woolen cashmere',
+      keywords: ['cashmere yarn wholesale', 'cashmere woven fabric', 'worsted cashmere', 'woolen cashmere',
         'cashmere yarn 26/2', 'cashmere yarn 28/2',
-        // 7-8 SEO long-tail
         '100% cashmere yarn', 'worsted cashmere yarn', 'wool cashmere blend yarn',
         'hand knitting cashmere yarn', 'dyed cashmere yarn manufacturer',
         'fine count cashmere yarn 2/48Nm 2/60Nm', 'cashmere yarn for sweater making',
@@ -119,10 +115,8 @@ export const SEO: Record<Locale, LocaleSEO> = {
     garmentOem: {
       title: 'Cashmere Garment OEM/ODM | Sweater, Coat & Dress Manufacturer',
       description: 'Full-service cashmere garment OEM/ODM: sweaters, cardigans, coats, dresses, scarves. Custom design, sampling, production. MOQ 100pcs. 23+ years experience serving global brands.',
-      keywords: [
-        'cashmere sweater OEM', 'cashmere garment manufacturer', 'private label cashmere',
+      keywords: ['cashmere sweater OEM', 'cashmere garment manufacturer', 'private label cashmere',
         'custom cashmere knitwear', 'cashmere coat manufacturer',
-        // 7-8 SEO long-tail
         'custom cashmere sweater wholesale', 'cashmere coat manufacturer',
         'cashmere scarf shawl factory', 'private label cashmere knitwear',
         'cashmere hat glove wholesale', 'luxury cashmere blanket supplier',
@@ -135,9 +129,7 @@ export const SEO: Record<Locale, LocaleSEO> = {
     factory: {
       title: 'Factory Strength | 23+ Years Cashmere Production | Ordos Industrial Park',
       description: '38,000 sqm Ordos factory. 500+ employees. 1,200+ tons annual capacity. ISO 9001, OEKO-TEX, GCS certified. Direct from source, no middleman.',
-      keywords: [
-        'cashmere factory', 'Ordos manufacturer', 'ISO certified cashmere', 'OEKO-TEX cashmere',
-        // 7-8 SEO long-tail - factory/brand/scale
+      keywords: ['cashmere factory', 'Ordos manufacturer', 'ISO certified cashmere', 'OEKO-TEX cashmere',
         'Ordos cashmere factory', 'Mongolian cashmere supplier', 'Inner Mongolia cashmere mill',
         'China cashmere manufacturer', 'full chain cashmere factory', 'raw cashmere factory',
         'cashmere yarn spinning mill', 'custom cashmere clothing factory',
@@ -152,9 +144,7 @@ export const SEO: Record<Locale, LocaleSEO> = {
     ordosOrigin: {
       title: 'Ordos Cashmere Origin | Inner Mongolia Heritage & Quality',
       description: 'Discover why Ordos, Inner Mongolia is the world\'s premium cashmere origin. Albus goat breeding, climate, traceability, and sustainable grazing practices.',
-      keywords: [
-        'Ordos cashmere origin', 'Inner Mongolia cashmere', 'Albus goat', 'cashmere terroir', 'sustainable cashmere',
-        // 7-8 SEO long-tail - dual origin
+      keywords: ['Ordos cashmere origin', 'Inner Mongolia cashmere', 'Albus goat', 'cashmere terroir', 'sustainable cashmere',
         'Ordos & Mongolian cashmere supplier', '100% Ordos cashmere',
         'pure Mongolian raw cashmere', 'Inner Mongolia Ordos cashmere factory',
         'mixed Ordos Mongolian cashmere yarn', 'premium cashmere from Ordos and Mongolia',
@@ -200,27 +190,27 @@ export const SEO: Record<Locale, LocaleSEO> = {
     rawMaterial: {
       title: 'Premium Rohkaschmir | Weiß, Braun, Grau | Direkt ab Werk Ordos',
       description: 'Premium-Rohkaschmir direkt ab Werk Ordos kaufen. Weiß, Braun, Lila Kaschmir. 14.5-16.5μm Feinheit. Mengenpreise für B2B-Käufer.',
-      keywords: ['Rohkaschmir', 'weißes Kaschmir', 'braunes Kaschmir', 'Kaschmir Großhandel'],
+      keywords: getSeoKeywords('de', 'raw'),
     },
     yarnFabric: {
       title: 'Kaschmirgarn & Webstoff | Kammgarn & Streichgarn | B2B',
       description: 'Premium-Kaschmirgarn und Webstoff für B2B-Käufer. Individuelle Feinheiten, Farben, Mischungen. Direkt aus der Ordos-Spinnerei.',
-      keywords: ['Kaschmirgarn', 'Kaschmirstoff', 'Kammgarn Kaschmir'],
+      keywords: getSeoKeywords('de', 'yarn'),
     },
     garmentOem: {
       title: 'Kaschmir-Strickwaren OEM/ODM | Pullover, Mantel Hersteller',
       description: 'Full-Service Kaschmir-Strickwaren OEM/ODM: Pullover, Strickjacken, Mäntel, Kleider, Schals. Eigenes Design, Muster, Produktion. MOQ 100 Stk.',
-      keywords: ['Kaschmir Pullover OEM', 'Kaschmir Mantel Hersteller', 'Private Label Kaschmir'],
+      keywords: getSeoKeywords('de', 'garment'),
     },
     factory: {
       title: 'Fabrikstärke | 23+ Jahre Kaschmirproduktion | Ordos Industriepark',
       description: '38.000 qm Fabrik in Ordos. 500+ Mitarbeiter. 1.200+ Tonnen Jahreskapazität. ISO 9001, OEKO-TEX zertifiziert. Direkt vom Erzeuger.',
-      keywords: ['Kaschmirfabrik', 'Ordos Hersteller'],
+      keywords: getSeoKeywords('de', 'factory'),
     },
     ordosOrigin: {
       title: 'Ordos Kaschmir Herkunft | Innere Mongolei Erbe & Qualität',
       description: 'Erfahren Sie, warum Ordos, Innere Mongolei die Premium-Kaschmirherkunft der Welt ist. Albus-Ziegen, Klima, Rückverfolgbarkeit.',
-      keywords: ['Ordos Kaschmir Herkunft', 'Innere Mongolei Kaschmir'],
+      keywords: getSeoKeywords('de', 'origin'),
     },
     contact: {
       title: 'Kontakt | Dongxiao Cashmere | WhatsApp +86-156-6185-3999',
@@ -262,27 +252,27 @@ export const SEO: Record<Locale, LocaleSEO> = {
     rawMaterial: {
       title: 'Cachemire Brut Premium | Blanc, Brun, Gris | Usine Ordos',
       description: 'Achetez du cachemire brut directement de l\'usine d\'Ordos. Blanc, brun, violet. Finesse 14.5-16.5μm. Prix de gros pour acheteurs B2B.',
-      keywords: ['cachemire brut', 'cachemire blanc', 'cachemire brun'],
+      keywords: getSeoKeywords('fr', 'raw'),
     },
     yarnFabric: {
       title: 'Fil & Tissu Cachemire | Peigné & Cardé | B2B',
       description: 'Fil et tissu de cachemire premium pour acheteurs B2B. Titres, couleurs, mélanges personnalisés.',
-      keywords: ['fil cachemire', 'tissu cachemire'],
+      keywords: getSeoKeywords('fr', 'yarn'),
     },
     garmentOem: {
       title: 'Vêtements Cachemire OEM/ODM | Pull, Manteau Fabricant',
       description: 'Service complet OEM/ODM vêtements cachemire: pulls, cardigans, manteaux, robes. MOQ 100pcs.',
-      keywords: ['pull cachemire OEM', 'manteau cachemire fabricant'],
+      keywords: getSeoKeywords('fr', 'garment'),
     },
     factory: {
       title: 'Force de l\'Usine | 23+ Ans Production Cachemire | Ordos',
       description: 'Usine de 38 000 m² à Ordos. 500+ employés. 1 200+ tonnes de capacité annuelle. Certifié ISO, OEKO-TEX.',
-      keywords: ['usine cachemire', 'fabricant Ordos'],
+      keywords: getSeoKeywords('fr', 'factory'),
     },
     ordosOrigin: {
       title: 'Origine Cachemire Ordos | Patrimoine Mongolie Intérieure',
       description: 'Découvrez pourquoi Ordos, Mongolie Intérieure est l\'origine premium du cachemire mondial.',
-      keywords: ['origine cachemire Ordos'],
+      keywords: getSeoKeywords('fr', 'origin'),
     },
     contact: {
       title: 'Contact | Dongxiao Cashmere | WhatsApp +86-156-6185-3999',
@@ -324,27 +314,27 @@ export const SEO: Record<Locale, LocaleSEO> = {
     rawMaterial: {
       title: 'プレミアム原料カシミア | 白・青・紫 | オルドス工場直送',
       description: 'オルドス工場から直接原料カシミアを購入。白、青、紫カシミア。14.5-16.5μm。大量ロット価格でグローバル B2B バイヤーへ。',
-      keywords: ['原料カシミア', '白カシミア', 'カシミア卸売'],
+      keywords: getSeoKeywords('ja', 'raw'),
     },
     yarnFabric: {
       title: 'カシミア糸・生地 | 梳毛・紡毛 | B2B 卸売',
       description: 'B2B バイヤー向けプレミアムカシミア糸と織物。カスタム番手・色・混紡。オルドス紡績工場直送。',
-      keywords: ['カシミア糸', 'カシミア生地'],
+      keywords: getSeoKeywords('ja', 'yarn'),
     },
     garmentOem: {
       title: 'カシミア衣料 OEM/ODM | セーター・コート製造',
       description: 'カシミア衣料のフルサービス OEM/ODM：セーター、カーディガン、コート、ドレス。マザーム OEM 100枚から対応。',
-      keywords: ['カシミアセーター OEM', 'カシミア コート 製造'],
+      keywords: getSeoKeywords('ja', 'garment'),
     },
     factory: {
       title: '工場の強み | 23年以上のカシミア生産 | オルドス工業団地',
       description: '38,000平方メートル のオルドス工場。500名以上の従業員。年間1,200トン以上の生産能力。ISO、OEKO-TEX 認証取得。',
-      keywords: ['カシミア工場', 'オルドス 製造'],
+      keywords: getSeoKeywords('ja', 'factory'),
     },
     ordosOrigin: {
       title: 'オルドス カシミアの起源 | 内モンゴルの遺産と品質',
       description: 'オルドス（内モンゴル）が世界の高級カシミア産地である理由を発見してください。',
-      keywords: ['オルドス カシミア 起源', '内モンゴル カシミア'],
+      keywords: getSeoKeywords('ja', 'origin'),
     },
     contact: {
       title: 'お問い合わせ | Dongxiao Cashmere | WhatsApp +86-156-6185-3999',
@@ -386,27 +376,27 @@ export const SEO: Record<Locale, LocaleSEO> = {
     rawMaterial: {
       title: '프리미엄 원료 캐시미어 | 백색, 청색, 자색 | 오르도스 공장 직송',
       description: '오르도스 공장에서 직접 프리미엄 원료 캐시미어 구매. 백색, 청색, 자색. 14.5-16.5μm.',
-      keywords: ['원료 캐시미어', '백색 캐시미어'],
+      keywords: getSeoKeywords('kr', 'raw'),
     },
     yarnFabric: {
       title: '캐시미어 원사 & 직물 | 소모사 & 방모사 | B2B 도매',
       description: 'B2B 바이어를 위한 프리미엄 캐시미어 원사 및 직물.',
-      keywords: ['캐시미어 원사', '캐시미어 직물'],
+      keywords: getSeoKeywords('kr', 'yarn'),
     },
     garmentOem: {
       title: '캐시미어 의류 OEM/ODM | 스웨터, 코트 제조',
       description: '캐시미어 의류 풀서비스 OEM/ODM: 스웨터, 카디건, 코트, 드레스.',
-      keywords: ['캐시미어 스웨터 OEM'],
+      keywords: getSeoKeywords('kr', 'garment'),
     },
     factory: {
       title: '공장 강점 | 23년 이상의 캐시미어 생산',
       description: '38,000 sqm 오르도스 공장. 500명 이상 직원. 연 1,200톤 이상 생산 능력. ISO, OEKO-TEX 인증.',
-      keywords: ['캐시미어 공장'],
+      keywords: getSeoKeywords('kr', 'factory'),
     },
     ordosOrigin: {
       title: '오르도스 캐시미어 원산지 | 내몽골 유산',
       description: '오르도스, 내몽골이 세계 최고급 캐시미어 원산지인 이유를 알아보세요.',
-      keywords: ['오르도스 캐시미어 원산지'],
+      keywords: getSeoKeywords('kr', 'origin'),
     },
     contact: {
       title: '문의 | Dongxiao Cashmere | WhatsApp +86-156-6185-3999',
