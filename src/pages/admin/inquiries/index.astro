@@ -21,7 +21,7 @@ let error = '';
 
 if (SUPABASE_URL && SUPABASE_KEY) {
   try {
-    let q = '/rest/v1/inquiries?order=created_at.desc&limit=200&select=id,created_at,contact_name,company_name,country,email,phone,inquiry_type,locale,product_interest,quantity_kg,quantity_m,quantity_pcs,lead_grade,status,message';
+    let q = '/rest/v1/inquiries?order=created_at.desc&limit=200&select=id,created_at,contact_name,company_name,country,email,phone,inquiry_type,locale,product_interest,quantity_kg,quantity_m,quantity_pcs,lead_grade,lead_score,status,message';
     const filters: string[] = [];
     if (grade) filters.push(`lead_grade=eq.${grade}`);
     if (status) filters.push(`status=eq.${status}`);
@@ -111,8 +111,29 @@ function badgeStatus(s: string | null) {
     .b-qualified { background: #d1fae5; color: #065f46; }
     .b-won { background: #a7f3d0; color: #047857; }
     .b-lost { background: #fee2e2; color: #991b1b; }
+    /* Row tinting by grade */
+    tr.row-a { background: #f0fdf4; }
+    tr.row-a:hover { background: #dcfce7; }
+    tr.row-b { background: #fffbeb; }
+    tr.row-b:hover { background: #fef3c7; }
+    tr.row-d { background: #fef2f2; }
+    tr.row-d:hover { background: #fee2e2; }
+    /* Grade distribution bar chart */
+    .dist { max-width: 1400px; margin: 0 auto 1rem; background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid #e7e5e4; }
+    .dist h3 { font-size: 0.75rem; text-transform: uppercase; color: #57534e; margin-bottom: 0.75rem; font-weight: 600; }
+    .dist-rows { display: flex; flex-direction: column; gap: 0.4rem; }
+    .dist-row { display: grid; grid-template-columns: 60px 1fr 60px; align-items: center; gap: 0.75rem; font-size: 0.875rem; }
+    .dist-label { font-weight: 600; }
+    .dist-bar { background: #f5f5f4; height: 1.25rem; border-radius: 0.25rem; overflow: hidden; }
+    .dist-fill { height: 100%; transition: width 0.3s; }
+    .dist-fill-a { background: linear-gradient(90deg, #10b981, #34d399); }
+    .dist-fill-b { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+    .dist-fill-c { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+    .dist-fill-d { background: linear-gradient(90deg, #ef4444, #f87171); }
+    .dist-count { font-weight: 600; text-align: right; }
     .err { background: #fee2e2; color: #991b1b; padding: 0.75rem 1rem; border-radius: 0.5rem; max-width: 1400px; margin: 0 auto 1rem; }
     .empty { padding: 3rem; text-align: center; color: #78716c; }
+    .score-cell { font-family: ui-monospace, monospace; font-size: 0.75rem; color: #57534e; }
   </style>
 </head>
 <body>
@@ -133,6 +154,44 @@ function badgeStatus(s: string | null) {
     <div class="stat"><div class="stat-label">C-grade</div><div class="stat-value">{byGrade['C'] || 0}</div></div>
     <div class="stat"><div class="stat-label">Uncontacted</div><div class="stat-value">{byStatus['new'] || 0}</div></div>
     <div class="stat"><div class="stat-label">Qualified</div><div class="stat-value">{byStatus['qualified'] || 0}</div></div>
+  </div>
+
+  <div class="dist">
+    <h3>Lead Grade Distribution</h3>
+    <div class="dist-rows">
+      {(() => {
+        const total = Math.max(1, inquiries.length);
+        const a = byGrade['A'] || 0;
+        const b = byGrade['B'] || 0;
+        const c = byGrade['C'] || 0;
+        const d = byGrade['D'] || 0;
+        const max = Math.max(1, a, b, c, d);
+        return (
+          <>
+            <div class="dist-row">
+              <div class="dist-label" style="color:#065f46">A</div>
+              <div class="dist-bar"><div class="dist-fill dist-fill-a" style={`width:${(a/max)*100}%`}></div></div>
+              <div class="dist-count">{a} ({Math.round((a/total)*100)}%)</div>
+            </div>
+            <div class="dist-row">
+              <div class="dist-label" style="color:#92400e">B</div>
+              <div class="dist-bar"><div class="dist-fill dist-fill-b" style={`width:${(b/max)*100}%`}></div></div>
+              <div class="dist-count">{b} ({Math.round((b/total)*100)}%)</div>
+            </div>
+            <div class="dist-row">
+              <div class="dist-label" style="color:#1e40af">C</div>
+              <div class="dist-bar"><div class="dist-fill dist-fill-c" style={`width:${(c/max)*100}%`}></div></div>
+              <div class="dist-count">{c} ({Math.round((c/total)*100)}%)</div>
+            </div>
+            <div class="dist-row">
+              <div class="dist-label" style="color:#991b1b">D</div>
+              <div class="dist-bar"><div class="dist-fill dist-fill-d" style={`width:${(d/max)*100}%`}></div></div>
+              <div class="dist-count">{d} ({Math.round((d/total)*100)}%)</div>
+            </div>
+          </>
+        );
+      })()}
+    </div>
   </div>
 
   <form class="filters" method="GET">
@@ -183,12 +242,13 @@ function badgeStatus(s: string | null) {
           <th>Product</th>
           <th>Qty</th>
           <th>Grade</th>
+          <th>Score</th>
           <th>Status</th>
         </tr>
       </thead>
       <tbody>
         {inquiries.map((i) => (
-          <tr>
+          <tr class={`row-${(i.lead_grade || 'ungraded').toLowerCase()}`}>
             <td>{fmtDate(i.created_at)}</td>
             <td><a href={`/admin/inquiries/${i.id}`}>{i.contact_name}</a></td>
             <td>{i.company_name}</td>
@@ -197,6 +257,7 @@ function badgeStatus(s: string | null) {
             <td>{i.product_interest || '—'}</td>
             <td>{i.quantity_kg || i.quantity_m || i.quantity_pcs || '—'}</td>
             <td set:html={badgeGrade(i.lead_grade)} />
+            <td class="score-cell">{i.lead_score ?? '—'}</td>
             <td set:html={badgeStatus(i.status)} />
           </tr>
         ))}
