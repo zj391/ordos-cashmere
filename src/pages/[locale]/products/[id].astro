@@ -185,8 +185,8 @@ const breadcrumbSchema = {
               {galleryImages.map((img, i) => (
                 <button
                   type="button"
+                  data-gallery-thumb={img}
                   class="aspect-square bg-secondary/30 rounded overflow-hidden ring-1 ring-border hover:ring-2 hover:ring-primary transition-all"
-                  onclick={`document.getElementById('main-product-img').src='${img}'`}
                   aria-label={`View image ${i + 1}`}
                 >
                   <img src={img} alt={`${product.name} view ${i + 1}`} class="w-full h-full object-cover" loading="lazy" />
@@ -269,10 +269,10 @@ const breadcrumbSchema = {
           <div class="flex flex-wrap gap-3 mb-3">
             <button
               type="button"
-              onclick="document.getElementById('inquiry-form').classList.toggle('hidden'); this.textContent = this.textContent === 'Request Quote ▼' ? 'Hide Form ▲' : 'Request Quote ▼'"
+              data-inquiry-toggle
               class="inline-block px-6 py-3 bg-primary text-primary-foreground rounded-sm font-medium hover:bg-primary/90"
             >
-              {t.buyCta} ▼
+              Request Quote ▼
             </button>
             <a href={`/${locale}/factory`} class="inline-block px-6 py-3 border border-border rounded-sm hover:bg-secondary">Factory Tour</a>
             <a href={`/${locale}/contact?product=${product.id}`} class="inline-block px-6 py-3 border border-border rounded-sm hover:bg-secondary">Contact Page</a>
@@ -635,6 +635,34 @@ const breadcrumbSchema = {
       </div>
     </section>
   )}
+
+  <!-- Client-side interactivity (7-9): image gallery + inquiry form toggle -->
+  <script>
+    // Image gallery: click thumbnail swaps main image
+    document.addEventListener('DOMContentLoaded', function() {
+      const mainImg = document.getElementById('main-product-img');
+      const thumbs = document.querySelectorAll('[data-gallery-thumb]');
+      thumbs.forEach(function(t) {
+        t.addEventListener('click', function() {
+          if (mainImg && t.dataset.galleryThumb) {
+            mainImg.src = t.dataset.galleryThumb;
+          }
+        });
+      });
+
+      // Inquiry form toggle
+      const btn = document.querySelector('[data-inquiry-toggle]');
+      const form = document.getElementById('inquiry-form');
+      if (btn && form) {
+        btn.addEventListener('click', function() {
+          form.classList.toggle('hidden');
+          btn.textContent = btn.textContent.indexOf('Hide') === -1
+            ? 'Hide Form \u25B2'
+            : 'Request Quote \u25BC';
+        });
+      }
+    });
+  </script>
 
   <Footer slot="footer" locale={locale} />
   <FloatingChatButtons slot="footer" locale={locale} />
