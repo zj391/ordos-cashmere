@@ -174,18 +174,23 @@ const breadcrumbSchema = {
         <span class="text-foreground">{product.name}</span>
       </nav>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-        <!-- Image gallery -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-12">
+        <!-- Image gallery: 1 large + 4 thumbnails (imfieldcashmere style) -->
         <div>
-          <div class="aspect-square bg-secondary/30 rounded-lg overflow-hidden mb-4">
-            <img src={primaryImage} alt={product.name} class="w-full h-full object-cover" loading="eager" />
+          <div class="aspect-square bg-secondary/30 rounded-lg overflow-hidden mb-4 ring-1 ring-border">
+            <img id="main-product-img" src={primaryImage} alt={product.name} class="w-full h-full object-cover transition-opacity" loading="eager" />
           </div>
           {galleryImages.length > 1 && (
             <div class="grid grid-cols-4 gap-2">
               {galleryImages.map((img, i) => (
-                <div class="aspect-square bg-secondary/30 rounded overflow-hidden">
+                <button
+                  type="button"
+                  class="aspect-square bg-secondary/30 rounded overflow-hidden ring-1 ring-border hover:ring-2 hover:ring-primary transition-all"
+                  onclick={`document.getElementById('main-product-img').src='${img}'`}
+                  aria-label={`View image ${i + 1}`}
+                >
                   <img src={img} alt={`${product.name} view ${i + 1}`} class="w-full h-full object-cover" loading="lazy" />
-                </div>
+                </button>
               ))}
             </div>
           )}
@@ -194,48 +199,56 @@ const breadcrumbSchema = {
         <!-- Product info -->
         <div>
           <span class="text-xs tracking-widest text-muted-foreground uppercase">{category.name}</span>
-          <h1 class="font-display text-3xl md:text-4xl font-light mt-2 mb-4">{product.name}</h1>
+          <h1 class="font-display text-3xl md:text-4xl font-light mt-2 mb-3">{product.name}</h1>
 
-          <div class="flex items-baseline gap-3 mb-6">
+          <div class="flex items-baseline gap-3 mb-4">
             <span class="text-2xl font-medium">USD {product.price}</span>
             <span class="text-sm text-muted-foreground">/ piece</span>
           </div>
 
+          <!-- Quick info badges (imf style) -->
+          <div class="flex flex-wrap gap-2 mb-5">
+            <span class="text-xs px-2.5 py-1 border border-border rounded-full bg-secondary/20">{product.material}</span>
+            <span class="text-xs px-2.5 py-1 border border-border rounded-full bg-secondary/20">{product.micron}</span>
+            <span class="text-xs px-2.5 py-1 border border-border rounded-full bg-secondary/20">MOQ {product.moq} pcs</span>
+            <span class="text-xs px-2.5 py-1 border border-border rounded-full bg-secondary/20">Lead {product.lead}</span>
+          </div>
+
           <p class="text-base text-foreground/80 mb-6">{product.description}</p>
 
-          <!-- Spec table -->
+          <!-- Spec table (imf 2-column style) -->
           <div class="border border-border rounded-lg overflow-hidden mb-6">
             <table class="w-full text-sm">
               <tbody>
                 <tr class="border-b border-border">
-                  <td class="px-4 py-3 bg-secondary/30 font-medium w-1/3">Material</td>
+                  <td class="px-4 py-3 bg-secondary/40 font-medium w-2/5">Material</td>
                   <td class="px-4 py-3">{product.material}</td>
                 </tr>
                 <tr class="border-b border-border">
-                  <td class="px-4 py-3 bg-secondary/30 font-medium">Fiber fineness</td>
+                  <td class="px-4 py-3 bg-secondary/40 font-medium">Fiber fineness</td>
                   <td class="px-4 py-3">{product.micron}</td>
                 </tr>
                 <tr class="border-b border-border">
-                  <td class="px-4 py-3 bg-secondary/30 font-medium">MOQ</td>
+                  <td class="px-4 py-3 bg-secondary/40 font-medium">MOQ</td>
                   <td class="px-4 py-3">{product.moq} pieces per style</td>
                 </tr>
                 <tr class="border-b border-border">
-                  <td class="px-4 py-3 bg-secondary/30 font-medium">Lead time</td>
+                  <td class="px-4 py-3 bg-secondary/40 font-medium">Lead time</td>
                   <td class="px-4 py-3">{product.lead}</td>
                 </tr>
                 <tr class="border-b border-border">
-                  <td class="px-4 py-3 bg-secondary/30 font-medium">Sample time</td>
+                  <td class="px-4 py-3 bg-secondary/40 font-medium">Sample time</td>
                   <td class="px-4 py-3">{product.sample_time}</td>
                 </tr>
                 {product.weight && (
                   <tr class="border-b border-border">
-                    <td class="px-4 py-3 bg-secondary/30 font-medium">Weight</td>
+                    <td class="px-4 py-3 bg-secondary/40 font-medium">Weight</td>
                     <td class="px-4 py-3">{product.weight}</td>
                   </tr>
                 )}
                 {product.colors && product.colors.length > 0 && (
                   <tr>
-                    <td class="px-4 py-3 bg-secondary/30 font-medium">Colors</td>
+                    <td class="px-4 py-3 bg-secondary/40 font-medium">Colors</td>
                     <td class="px-4 py-3">{product.colors.join(', ')}</td>
                   </tr>
                 )}
@@ -252,10 +265,52 @@ const breadcrumbSchema = {
             </div>
           )}
 
-          <!-- CTA -->
-          <div class="flex flex-wrap gap-3">
-            <a href={`/${locale}/contact?product=${product.id}`} class="inline-block px-6 py-3 bg-primary text-primary-foreground rounded-sm font-medium hover:bg-primary/90">{t.buyCta}</a>
+          <!-- CTA + same-page inquiry form toggle (imf style) -->
+          <div class="flex flex-wrap gap-3 mb-3">
+            <button
+              type="button"
+              onclick="document.getElementById('inquiry-form').classList.toggle('hidden'); this.textContent = this.textContent === 'Request Quote ▼' ? 'Hide Form ▲' : 'Request Quote ▼'"
+              class="inline-block px-6 py-3 bg-primary text-primary-foreground rounded-sm font-medium hover:bg-primary/90"
+            >
+              {t.buyCta} ▼
+            </button>
             <a href={`/${locale}/factory`} class="inline-block px-6 py-3 border border-border rounded-sm hover:bg-secondary">Factory Tour</a>
+            <a href={`/${locale}/contact?product=${product.id}`} class="inline-block px-6 py-3 border border-border rounded-sm hover:bg-secondary">Contact Page</a>
+          </div>
+
+          <!-- Same-page inquiry form (hidden by default) -->
+          <div id="inquiry-form" class="hidden mt-6 p-6 border-2 border-primary rounded-lg bg-card">
+            <h3 class="font-display text-xl mb-4">Quick Inquiry for {product.name}</h3>
+            <form
+              method="POST"
+              action="/api/inquiry"
+              class="space-y-3"
+            >
+              <input type="hidden" name="type" value="raw" />
+              <input type="hidden" name="inquiry_type" value="raw" />
+              <input type="hidden" name="product" value={product.id} />
+              <input type="hidden" name="locale" value={locale} />
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <input type="text" name="name" required placeholder="Your name *" class="px-3 py-2 border border-border rounded text-sm" />
+                <input type="email" name="email" required placeholder="Email *" class="px-3 py-2 border border-border rounded text-sm" />
+                <input type="text" name="company" placeholder="Company" class="px-3 py-2 border border-border rounded text-sm" />
+                <input type="text" name="country" placeholder="Country (US/DE/JP/...)" class="px-3 py-2 border border-border rounded text-sm" />
+                <input type="tel" name="phone" placeholder="Phone / WhatsApp" class="px-3 py-2 border border-border rounded text-sm" />
+                <input type="text" name="quantity" placeholder={product.moq ? `Quantity (MOQ ${product.moq})` : 'Quantity'} class="px-3 py-2 border border-border rounded text-sm" />
+              </div>
+              <textarea
+                name="message"
+                rows={3}
+                placeholder={`Inquiry details for ${product.name}...`}
+                class="w-full px-3 py-2 border border-border rounded text-sm"
+              ></textarea>
+              <div class="flex items-center gap-3">
+                <button type="submit" class="px-5 py-2.5 bg-primary text-primary-foreground rounded-sm font-medium hover:bg-primary/90 text-sm">
+                  Send Inquiry
+                </button>
+                <span class="text-xs text-muted-foreground">Reply within 24 hours · ISO 9001 + OEKO-TEX</span>
+              </div>
+            </form>
           </div>
 
           <p class="text-xs text-muted-foreground mt-4">Direct factory pricing. FOB Tianjin/Shanghai, CIF, DDP. OEM/ODM supported. ISO 9001 + OEKO-TEX certified.</p>
@@ -465,6 +520,89 @@ const breadcrumbSchema = {
         <a href={`/${locale}/contact?product=${product.id}`} class="inline-block px-8 py-3 bg-brand-gold text-brand-ink rounded-sm font-medium hover:bg-brand-gold/90">{t.buyCta}</a>
         <a href={`/${locale}/factory`} class="inline-block px-8 py-3 border border-white/30 rounded-sm hover:bg-white/10">Factory Tour</a>
       </div>
+    </div>
+  </section>
+
+  <!-- Section 12b: Model Show & Styling (imf style - 7-9) -->
+  <section class="py-12 bg-secondary/20">
+    <div class="container-narrow">
+      <h2 class="font-display text-2xl font-light mb-6 text-center">Model Show & Styling</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {galleryImages.slice(0, 3).map((img, i) => (
+          <figure class="bg-card border border-border rounded-lg overflow-hidden">
+            <div class="aspect-[3/4] overflow-hidden bg-secondary/30">
+              <img src={img} alt={`${product.name} model view ${i + 1}`} class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <figcaption class="p-3 text-xs text-center text-muted-foreground">
+              {i === 0 ? 'Front view' : i === 1 ? 'Side view' : 'Back / Detail'}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+      <p class="text-center text-sm text-foreground/70 mt-6 max-w-2xl mx-auto">
+        Model wearing size M (170cm / 56kg). Styling tip: pair with our cashmere scarf or beanie for a complete winter look. Contact us for lookbook samples.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 12c: Transportation & Delivery (imf style - 7-9) -->
+  <section class="py-12 bg-background">
+    <div class="container-narrow">
+      <h2 class="font-display text-2xl font-light mb-6 text-center">Transportation & Delivery</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {[
+          { title: 'FOB Tianjin/Shanghai', desc: 'We deliver to your nominated forwarder at the nearest Chinese port. Most common for orders 500+ pcs.' },
+          { title: 'CIF Your Port', desc: 'We arrange ocean freight + insurance to your nearest seaport. Door-to-port service.' },
+          { title: 'DDP Door-to-Door', desc: 'We handle everything: customs, duties, last-mile delivery to your warehouse. EU/US customers only.' },
+        ].map((opt) => (
+          <div class="border border-border rounded-lg p-5 bg-card">
+            <h3 class="font-medium text-base mb-2 text-primary">{opt.title}</h3>
+            <p class="text-sm text-foreground/80 leading-relaxed">{opt.desc}</p>
+          </div>
+        ))}
+      </div>
+      <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
+        <div class="p-3 bg-secondary/30 rounded">
+          <div class="font-display text-2xl text-primary">15-20d</div>
+          <div class="text-muted-foreground">Sea (Asia)</div>
+        </div>
+        <div class="p-3 bg-secondary/30 rounded">
+          <div class="font-display text-2xl text-primary">25-35d</div>
+          <div class="text-muted-foreground">Sea (EU/US)</div>
+        </div>
+        <div class="p-3 bg-secondary/30 rounded">
+          <div class="font-display text-2xl text-primary">5-7d</div>
+          <div class="text-muted-foreground">Air (Express)</div>
+        </div>
+        <div class="p-3 bg-secondary/30 rounded">
+          <div class="font-display text-2xl text-primary">7-10d</div>
+          <div class="text-muted-foreground">Sample</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 12d: Customer Reviews placeholder (imf style - 7-9) -->
+  <section class="py-12 bg-secondary/20">
+    <div class="container-narrow">
+      <h2 class="font-display text-2xl font-light mb-6 text-center">Customer Reviews</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {[
+          { name: 'Sarah M.', country: 'United States', role: 'Boutique Owner', text: 'The cashmere quality exceeded our expectations. Our customers love the soft hand feel and the fit is consistent across sizes.' },
+          { name: 'Marcus K.', country: 'Germany', role: 'Wholesale Distributor', text: 'Reliable lead times and great communication from the team. We have been sourcing for 3 years and quality stays consistent.' },
+          { name: 'Yuki T.', country: 'Japan', role: 'Brand Designer', text: 'Beautiful cashmere, perfect for our luxury collection. The custom Pantone color matching was spot on.' },
+        ].map((r) => (
+          <figure class="bg-card border border-border rounded-lg p-5">
+            <div class="flex items-center gap-1 mb-3 text-brand-gold text-sm">★★★★★</div>
+            <blockquote class="text-sm italic text-foreground/80 leading-relaxed mb-4">"{r.text}"</blockquote>
+            <figcaption class="text-xs">
+              <div class="font-medium">{r.name}</div>
+              <div class="text-muted-foreground">{r.role} · {r.country}</div>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+      <p class="text-center text-xs text-muted-foreground mt-4">Sample reviews. Verified reviews coming soon.</p>
     </div>
   </section>
 
