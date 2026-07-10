@@ -183,9 +183,15 @@ const breadcrumbSchema = {
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-12">
         <!-- Image gallery: 1 large + 4 thumbnails (imfieldcashmere style) -->
         <div>
-          <div class="aspect-square bg-secondary/30 rounded-lg overflow-hidden mb-4 ring-1 ring-border">
+          <button
+            type="button"
+            data-lightbox-trigger
+            data-lightbox-src={primaryImage}
+            aria-label="Open image viewer"
+            class="aspect-square bg-secondary/30 rounded-lg overflow-hidden mb-4 ring-1 ring-border w-full block hover:ring-2 hover:ring-primary transition-all cursor-zoom-in"
+          >
             <img id="main-product-img" src={primaryImage} alt={product.name} class="w-full h-full object-cover transition-opacity" loading="eager" />
-          </div>
+          </button>
           {galleryImages.length > 1 && (
             <div class="grid grid-cols-4 gap-2">
               {galleryImages.map((img, i) => (
@@ -194,6 +200,7 @@ const breadcrumbSchema = {
                   data-gallery-thumb={img}
                   class="aspect-square bg-secondary/30 rounded overflow-hidden ring-1 ring-border hover:ring-2 hover:ring-primary transition-all"
                   aria-label={`View image ${i + 1}`}
+                  onclick={`document.getElementById('main-product-img').src='${img}'; document.querySelector('[data-lightbox-trigger]')?.setAttribute('data-lightbox-src', '${img}')`}
                 >
                   <img src={img} alt={`${product.name} view ${i + 1}`} class="w-full h-full object-cover" loading="lazy" />
                 </button>
@@ -679,6 +686,130 @@ const breadcrumbSchema = {
         document.addEventListener('DOMContentLoaded', init);
       } else {
         init();
+      }
+    })();
+  </script>
+
+  <!-- Image Lightbox Modal (7-9): click main image or thumbnail to open -->
+  <div
+    id="image-lightbox"
+    data-lightbox
+    role="dialog"
+    aria-modal="true"
+    aria-label="Product image viewer"
+    class="fixed inset-0 z-50 hidden bg-black/90 items-center justify-center p-4 md:p-8"
+    onclick="if(event.target===this) document.getElementById('image-lightbox-close')?.click()"
+  >
+    <button
+      id="image-lightbox-close"
+      type="button"
+      aria-label="Close"
+      onclick="document.getElementById('image-lightbox').classList.add('hidden'); document.body.style.overflow='';"
+      class="absolute top-4 right-4 z-10 text-white hover:text-brand-gold p-2 text-3xl leading-none w-12 h-12 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors"
+    >
+      ×
+    </button>
+
+    <button
+      type="button"
+      id="lightbox-prev"
+      aria-label="Previous image"
+      onclick="var lb=document.getElementById('image-lightbox');var i=lb.dataset.idx||0;i=parseInt(i,10);i=(i-1+lb.dataset.total)%lb.dataset.total;lb.dataset.idx=i;document.getElementById('lightbox-img').src=lb.dataset.imgs.split('|')[i];"
+      class="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 text-white hover:text-brand-gold w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-2xl"
+    >
+      ‹
+    </button>
+
+    <button
+      type="button"
+      id="lightbox-next"
+      aria-label="Next image"
+      onclick="var lb=document.getElementById('image-lightbox');var i=lb.dataset.idx||0;i=parseInt(i,10);i=(i+1)%lb.dataset.total;lb.dataset.idx=i;document.getElementById('lightbox-img').src=lb.dataset.imgs.split('|')[i];"
+      class="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 text-white hover:text-brand-gold w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-2xl"
+    >
+      ›
+    </button>
+
+    <figure class="max-w-5xl max-h-[85vh] mx-auto flex flex-col items-center">
+      <img
+        id="lightbox-img"
+        src={primaryImage}
+        alt={product.name}
+        class="max-w-full max-h-[70vh] object-contain rounded-md shadow-2xl"
+      />
+      <figcaption class="mt-4 text-white text-center">
+        <div class="text-sm opacity-80 mb-1">{product.name}</div>
+        <div class="flex items-center justify-center gap-3 mt-3">
+          <span class="text-xs opacity-70" id="lightbox-counter">1 / {galleryImages.length}</span>
+          <button
+            type="button"
+            onclick="document.getElementById('image-lightbox-close').click(); document.querySelector('[data-inquiry-toggle]')?.scrollIntoView({behavior:'smooth', block:'start'}); setTimeout(function(){document.querySelector('[data-inquiry-toggle]')?.click();}, 600); return false;"
+            class="inline-flex items-center gap-2 px-5 py-2 bg-brand-gold text-brand-ink rounded-sm font-medium hover:bg-brand-gold/90 text-sm"
+          >
+            {t.buyCta} →
+          </button>
+        </div>
+      </figcaption>
+    </figure>
+  </div>
+
+  <!-- Lightbox open/close logic + arrow keys -->
+  <script is:inline>
+    (function() {
+      function lbOpen(src, imgs, idx) {
+        var lb = document.getElementById('image-lightbox');
+        if (!lb) return;
+        lb.classList.remove('hidden');
+        lb.classList.add('flex');
+        lb.dataset.imgs = imgs.join('|');
+        lb.dataset.total = imgs.length;
+        lb.dataset.idx = idx;
+        document.getElementById('lightbox-img').src = src;
+        var c = document.getElementById('lightbox-counter');
+        if (c) c.textContent = (idx + 1) + ' / ' + imgs.length;
+        document.body.style.overflow = 'hidden';
+      }
+      function lbClose() {
+        var lb = document.getElementById('image-lightbox');
+        if (!lb) return;
+        lb.classList.add('hidden');
+        lb.classList.remove('flex');
+        document.body.style.overflow = '';
+      }
+      window.__lbOpen = lbOpen;
+      window.__lbClose = lbClose;
+
+      function initLightbox() {
+        var trigger = document.querySelector('[data-lightbox-trigger]');
+        var thumbs = document.querySelectorAll('[data-gallery-thumb]');
+        var imgs = [];
+        thumbs.forEach(function(t) {
+          imgs.push(t.dataset.galleryThumb);
+        });
+        var mainSrc = trigger ? (trigger.dataset.lightboxSrc || '') : '';
+        if (mainSrc && imgs.indexOf(mainSrc) === -1) imgs.unshift(mainSrc);
+
+        if (trigger) {
+          trigger.addEventListener('click', function(e) {
+            e.preventDefault();
+            var src = trigger.dataset.lightboxSrc || mainSrc;
+            lbOpen(src, imgs, imgs.indexOf(src) >= 0 ? imgs.indexOf(src) : 0);
+          });
+        }
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+          var lb = document.getElementById('image-lightbox');
+          if (!lb || lb.classList.contains('hidden')) return;
+          if (e.key === 'Escape') lbClose();
+          else if (e.key === 'ArrowLeft') document.getElementById('lightbox-prev').click();
+          else if (e.key === 'ArrowRight') document.getElementById('lightbox-next').click();
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLightbox);
+      } else {
+        initLightbox();
       }
     })();
   </script>
