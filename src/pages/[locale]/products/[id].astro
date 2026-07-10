@@ -76,36 +76,42 @@ const tdk = {
     description: `${p.name}. ${p.material}, ${p.micron}. Wholesale from Ordos factory. MOQ ${p.moq} pcs. Lead time ${p.lead}. Sample ${p.sample_time}. Factory pricing for global B2B buyers.`,
     keywords: [`${p.name}`, `wholesale cashmere ${c.toLowerCase()}`, `${p.material} ${c.toLowerCase()}`, `cashmere manufacturer ${p.id}`, `OEM ${c.toLowerCase()}`, 'cashmere wholesale', 'Ordos cashmere factory'],
     buyCta: 'Request Quote',
+    hideFormCta: 'Hide Form',
   }),
   cn: (p, c) => ({
     title: `${p.name} | 羊绒${c}批发 | DONGXIAO® 鄂尔多斯源头工厂`,
     description: `${p.name}。${p.material}，${p.micron}。源头工厂批发。MOQ ${p.moq} 件。交期 ${p.lead}。打样 ${p.sample_time}。全球 B2B 采购商工厂价。`,
     keywords: [p.name, `羊绒${c}批发`, `${p.material}${c}`, `羊绒代工 ${p.id}`, `OEM ${c}`, '羊绒厂家', '鄂尔多斯羊绒'],
-    buyCta: '询盘',
+    buyCta: '立即询盘',
+    hideFormCta: '收起表单',
   }),
   de: (p, c) => ({
     title: `${p.name} | Kaschmir ${c} Großhandel | DONGXIAO®`,
     description: `${p.name}. ${p.material}, ${p.micron}. Großhandel ab Ordos-Fabrik. MOQ ${p.moq} Stk. Lieferzeit ${p.lead}.`,
     keywords: [p.name, `Kaschmir ${c} Großhandel`, `OEM ${c}`],
     buyCta: 'Anfrage',
+    hideFormCta: 'Formular schließen',
   }),
   fr: (p, c) => ({
     title: `${p.name} | Cachemire ${c} en gros | DONGXIAO®`,
     description: `${p.name}. ${p.material}, ${p.micron}. Vente en gros depuis l'usine d'Ordos. MOQ ${p.moq} pièces.`,
     keywords: [p.name, `cachemire ${c} gros`, `OEM ${c}`],
     buyCta: 'Demande',
+    hideFormCta: 'Masquer',
   }),
   ja: (p, c) => ({
     title: `${p.name} | カシミア${c}卸売 | DONGXIAO®`,
     description: `${p.name}。${p.material}、${p.micron}。オルドス工場から卸売。MOQ ${p.moq}枚。`,
     keywords: [p.name, `カシミア${c}卸売`, `OEM ${c}`],
     buyCta: '問い合わせ',
+    hideFormCta: '閉じる',
   }),
   kr: (p, c) => ({
     title: `${p.name} | 캐시미어 ${c} 도매 | DONGXIAO®`,
     description: `${p.name}. ${p.material}, ${p.micron}. 오르도스 공장 도매. MOQ ${p.moq}pcs.`,
     keywords: [p.name, `캐시미어 ${c} 도매`, `OEM ${c}`],
     buyCta: '문의',
+    hideFormCta: '닫기',
   }),
 };
 
@@ -270,9 +276,10 @@ const breadcrumbSchema = {
             <button
               type="button"
               data-inquiry-toggle
+              onclick="var f=document.getElementById('inquiry-form');var b=this;f.classList.toggle('hidden');b.textContent=f.classList.contains('hidden')?'{{t.buyCta}} ▼':'{{t.hideFormCta}} ▲';return false;"
               class="inline-block px-6 py-3 bg-primary text-primary-foreground rounded-sm font-medium hover:bg-primary/90"
             >
-              Request Quote ▼
+              {t.buyCta} ▼
             </button>
             <a href={`/${locale}/factory`} class="inline-block px-6 py-3 border border-border rounded-sm hover:bg-secondary">Factory Tour</a>
             <a href={`/${locale}/contact?product=${product.id}`} class="inline-block px-6 py-3 border border-border rounded-sm hover:bg-secondary">Contact Page</a>
