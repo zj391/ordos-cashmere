@@ -637,31 +637,43 @@ const breadcrumbSchema = {
   )}
 
   <!-- Client-side interactivity (7-9): image gallery + inquiry form toggle -->
-  <script>
-    // Image gallery: click thumbnail swaps main image
-    document.addEventListener('DOMContentLoaded', function() {
-      const mainImg = document.getElementById('main-product-img');
-      const thumbs = document.querySelectorAll('[data-gallery-thumb]');
-      thumbs.forEach(function(t) {
-        t.addEventListener('click', function() {
-          if (mainImg && t.dataset.galleryThumb) {
-            mainImg.src = t.dataset.galleryThumb;
-          }
-        });
-      });
+  <script is:inline>
+    (function() {
+      function init() {
+        // Image gallery: click thumbnail swaps main image
+        var mainImg = document.getElementById('main-product-img');
+        var thumbs = document.querySelectorAll('[data-gallery-thumb]');
+        for (var i = 0; i < thumbs.length; i++) {
+          thumbs[i].addEventListener('click', (function(thumb) {
+            return function() {
+              if (mainImg && thumb.dataset.galleryThumb) {
+                mainImg.src = thumb.dataset.galleryThumb;
+              }
+            };
+          })(thumbs[i]));
+        }
 
-      // Inquiry form toggle
-      const btn = document.querySelector('[data-inquiry-toggle]');
-      const form = document.getElementById('inquiry-form');
-      if (btn && form) {
-        btn.addEventListener('click', function() {
-          form.classList.toggle('hidden');
-          btn.textContent = btn.textContent.indexOf('Hide') === -1
-            ? 'Hide Form \u25B2'
-            : 'Request Quote \u25BC';
-        });
+        // Inquiry form toggle
+        var btn = document.querySelector('[data-inquiry-toggle]');
+        var form = document.getElementById('inquiry-form');
+        if (btn && form) {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            form.classList.toggle('hidden');
+            btn.textContent = btn.textContent.indexOf('Hide') === -1
+              ? 'Hide Form \u25B2'
+              : 'Request Quote \u25BC';
+          });
+        }
       }
-    });
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
   </script>
 
   <Footer slot="footer" locale={locale} />
