@@ -671,13 +671,15 @@ const breadcrumbSchema = {
         var btn = document.querySelector('[data-inquiry-toggle]');
         var form = document.getElementById('inquiry-form');
         if (btn && form) {
+          var showText = btn.textContent.trim();
+          // Extract hide text by removing trailing ▼ (show) → ▲ (hide)
+          var hideText = showText.replace(/[\u25BC\u2193]\s*$/, '\u25B2').replace(/$/, ' \u25B2');
           btn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             form.classList.toggle('hidden');
-            btn.textContent = btn.textContent.indexOf('Hide') === -1
-              ? 'Hide Form \u25B2'
-              : 'Request Quote \u25BC';
+            var isHidden = form.classList.contains('hidden');
+            btn.textContent = isHidden ? showText : hideText;
           });
         }
       }
