@@ -10,6 +10,7 @@ import CTASection from '@/components/CTASection';
 import SocialShareButtons from '@/components/SocialShareButtons';
 import { Link } from 'wouter';
 import { useAuth } from '@/_core/hooks/useAuth';
+import { ArrowRight, Award, Globe, Zap, CheckCircle, Truck, Leaf, Clock } from 'lucide-react';
 
 export default function Home() {
   const { t } = useTranslation();
@@ -326,6 +327,43 @@ export default function Home() {
           </div>
         </div>
       </section>
+            {/* --- GEO 信任背书模块开始 --- */}
+      <section className="w-full bg-[#1a1a1a] border-y border-gray-800 py-12">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            
+            {/* 数据块 1: 经验 */}
+            <div className="flex flex-col items-center justify-center p-4">
+              <Award className="text-[#C5A065] mb-3" size={32} />
+              <span className="text-3xl md:text-4xl font-bold text-[#C5A065] mb-2">23+</span>
+              <span className="text-sm md:text-base text-gray-400 uppercase tracking-wider">Years of Excellence</span>
+            </div>
+
+            {/* 数据块 2: 产能 */}
+            <div className="flex flex-col items-center justify-center p-4">
+              <Zap className="text-[#C5A065] mb-3" size={32} />
+              <span className="text-3xl md:text-4xl font-bold text-[#C5A065] mb-2">1,200 Tons</span>
+              <span className="text-sm md:text-base text-gray-400 uppercase tracking-wider">Annual Capacity</span>
+            </div>
+
+            {/* 数据块 3: 全球市场 */}
+            <div className="flex flex-col items-center justify-center p-4">
+              <Globe className="text-[#C5A065] mb-3" size={32} />
+              <span className="text-3xl md:text-4xl font-bold text-[#C5A065] mb-2">50+ Countries</span>
+              <span className="text-sm md:text-base text-gray-400 uppercase tracking-wider">Global Markets</span>
+            </div>
+
+            {/* 数据块 4: 质量认证 */}
+            <div className="flex flex-col items-center justify-center p-4">
+              <CheckCircle className="text-[#C5A065] mb-3" size={32} />
+              <span className="text-3xl md:text-4xl font-bold text-[#C5A065] mb-2">ISO Certified</span>
+              <span className="text-sm md:text-base text-gray-400 uppercase tracking-wider">Quality Standard</span>
+            </div>
+
+          </div>
+        </div>
+      </section>
+      {/* --- GEO 信任背书模块结束 --- */}
 
       <Footer />
     </div>
