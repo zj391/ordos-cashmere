@@ -24,12 +24,15 @@ import { SEO, SITE_INFO } from '@/lib/seo';
 import { getProductById, getAllProducts, getCategoryById } from '@/data/products';
 
 // 类别 id 映射到产品图目录
+// 2026-07-13 修复: 实际图片在 /products/mic/ 目录下 (curl /products/mic/prod_025_00.webp = 200),
+// 而不是 /products/scarves/ 或 /products/hats/ 等 (curl /products/scarves/prod_025_00.webp = 404).
+// 之前映射到 scarves/hats 等导致所有产品图 404 不可见.
 const CATEGORY_IMAGE_DIR = {
-  hats: 'hats',
-  scarves: 'scarves',
-  sweaters: 'sweaters',
-  accessories: 'hats', // accessories 用 hats 目录（同子目录）
-  yarn: 'scarves', // yarn 用 scarves 目录（视觉上接近）
+  hats: 'mic',
+  scarves: 'mic',
+  sweaters: 'mic',
+  accessories: 'mic',
+  yarn: 'mic',
 };
 
 export function getStaticPaths() {
