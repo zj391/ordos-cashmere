@@ -850,13 +850,34 @@ const breadcrumbSchema = {
         var mainSrc = trigger ? (trigger.dataset.lightboxSrc || '') : '';
         if (mainSrc && imgs.indexOf(mainSrc) === -1) imgs.unshift(mainSrc);
 
+        function openAt(src) {
+          var idx = imgs.indexOf(src);
+          lbOpen(src, imgs, idx >= 0 ? idx : 0);
+        }
+
         if (trigger) {
           trigger.addEventListener('click', function(e) {
             e.preventDefault();
-            var src = trigger.dataset.lightboxSrc || mainSrc;
-            lbOpen(src, imgs, imgs.indexOf(src) >= 0 ? imgs.indexOf(src) : 0);
+            e.stopPropagation();
+            openAt(trigger.dataset.lightboxSrc || mainSrc);
           });
         }
+        // Thumbnails: open lightbox at the thumbnail's index
+        thumbs.forEach(function(t) {
+          t.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            // First swap the main image, then open lightbox
+            var mainImg = document.getElementById('main-product-img');
+            if (mainImg && t.dataset.galleryThumb) {
+              mainImg.src = t.dataset.galleryThumb;
+            }
+            if (trigger && t.dataset.galleryThumb) {
+              trigger.dataset.lightboxSrc = t.dataset.galleryThumb;
+            }
+            openAt(t.dataset.galleryThumb);
+          });
+        });
         // Keyboard navigation
         document.addEventListener('keydown', function(e) {
           var lb = document.getElementById('image-lightbox');
