@@ -200,7 +200,6 @@ const breadcrumbSchema = {
                   data-gallery-thumb={img}
                   class="aspect-square bg-secondary/30 rounded overflow-hidden ring-1 ring-border hover:ring-2 hover:ring-primary transition-all"
                   aria-label={`View image ${i + 1}`}
-                  onclick={`document.getElementById('main-product-img').src='${img}'; document.querySelector('[data-lightbox-trigger]')?.setAttribute('data-lightbox-src', '${img}')`}
                 >
                   <img src={img} alt={`${product.name} view ${i + 1}`} class="w-full h-full object-cover" loading="lazy" />
                 </button>
@@ -344,7 +343,6 @@ const breadcrumbSchema = {
             <button
               type="button"
               data-inquiry-toggle
-              onclick="var f=document.getElementById('inquiry-form');var b=this;f.classList.toggle('hidden');b.textContent=f.classList.contains('hidden')?'{{t.buyCta}} ▼':'{{t.hideFormCta}} ▲';return false;"
               class="inline-block px-6 py-3 bg-primary text-primary-foreground rounded-sm font-medium hover:bg-primary/90"
             >
               {t.buyCta} ▼
