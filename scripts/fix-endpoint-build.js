@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 /**
  * Post-build fix for Astro 5.18 + @astrojs/vercel 9.0.5 bug:
- * Compiled .astro files lack named GET/POST exports; Vercel adapter
- * calls mod.GET which is undefined and falls through to 404.
+ * Compiled .astro files lack named GET/POST exports.
  *
- * Simple fix: append `export const GET = page;` near the existing
- * `export { page };` statement (page is already defined).
- * Works for SSR pages where mod.page() === renders the page directly.
+ * Detect both `const GET` and `const POST` declarations anywhere in the file,
+ * accounting for any leading whitespace from Astro's prettier-formatted output,
+ * and rewrite to add named exports.
  */
 import { readdir, readFile, writeFile } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
@@ -32,28 +31,42 @@ for await (const file of walk(pagesDir)) {
   let src = await readFile(file, 'utf8');
 
   // Skip if already has named GET export
-  if (/^export\s+\{[^}]*\bGET\b[^}]*\}/m.test(src)) {
+  if (/export\s+(const\s+GET\b|\{\s*[^}]*\bGET\b)/m.test(src)) {
     continue;
   }
 
-  // Only process files that have `const page = () => _page;`
-  // (i.e. real .astro pages, not API endpoints which already have
-  // GET/POST/ALL handlers)
-  if (!src.includes('const page = () => _page;')) {
+  // Detect any `const GET = ...` and `const POST = ...` declarations in the file
+  // (allowing arbitrary leading whitespace from Astro's formatting)
+  const hasGET = /^\s*const\s+GET\s*=/m.test(src);
+  const hasPOST = /^\s*const\s+POST\s*=/m.test(src);
+
+  if (hasGET || hasPOST) {
+    const names = [];
+    if (hasGET) names.push('GET');
+    if (hasPOST) names.push('POST');
+    // Strip any pre-existing `export { page };` to avoid duplicate page export
+    let out = src.replace(/^export\s*\{\s*page\s*\};\s*$/m, '');
+    // Drop the bad `export const GET = page;` if it was added in Case A pass
+    out = out.replace(/^export\s+const\s+GET\s*=\s*page;\s*$/m, '');
+    const exportLine = '\nexport { ' + names.join(', ') + ' };';
+    out = out.trimEnd() + exportLine + '\n';
+    await writeFile(file, out);
+    console.log('[fix-endpoint-build] patched ' + file.replace(root + '/', '') + ' -> added {' + names.join(', ') + '}');
+    fixed++;
     continue;
   }
 
-  // Inject: `export const GET = page;` right after the page declaration
-  // (so Vercel adapter's mod.GET lookup resolves to the page function)
-  const out = src.replace(
-    'const page = () => _page;',
-    'const page = () => _page;\nexport const GET = page;'
-  );
-
-  if (out === src) continue; // no change
-
-  await writeFile(file, out);
-  console.log('[fix-endpoint-build] patched ' + file.replace(root + '/', '') + ' -> added export const GET = page;');
-  fixed++;
+  // Plain page (Case A): has `const page = () => _page;`
+  if (src.includes('const page = () => _page;')) {
+    const out = src.replace(
+      'const page = () => _page;',
+      'const page = () => _page;\nexport const GET = page;'
+    );
+    if (out !== src) {
+      await writeFile(file, out);
+      console.log('[fix-endpoint-build] patched ' + file.replace(root + '/', '') + ' -> added GET=page');
+      fixed++;
+    }
+  }
 }
 console.log('[fix-endpoint-build] done. ' + fixed + ' file(s) patched.');
