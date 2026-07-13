@@ -188,7 +188,7 @@
       },
       "production2": {
         "question": "What product specifications do you offer?",
-        "answer": "We offer complete gauge specifications from 3GG to 18GG for knitwear. Our products include cashmere sweaters, scarves, shawls, blankets, socks, gloves, knee pads, and home accessories. We work with 100% cashmere, cashmere-wool blends, and other premium fiber combinations."
+        "answer": "We offer complete gauge specifications from 3GG to 18GG for knitwear. Our products include cashmere sweaters, scarves, shawls, blankets, socks, gloves, knee pads, and  accessories. We work with 100% cashmere, cashmere-wool blends, and other premium fiber combinations."
       },
       "logistics1": {
         "question": "What countries do you ship to?",
@@ -421,8 +421,8 @@
   },
   "home": {
     "tagline": "GLOBAL B2B CASHMERE SUPPLIER",
-    "heroTitle": "Premium Cashmere for Global Brands",
-    "heroDescription": "Trusted by international retailers and distributors. 1,200+ tons of cashmere processed annually. ISO certified. 23+ years of excellence.",
+    "heroTitle": "Ordos Cashmere Source Factory: Full-Chain Manufacturing from Raw Fleece to Garments",
+    "heroDescription": "Established in 2002. 38,000 sqm Facility. 1,200t Annual Capacity. Equipped with Italian Dehairing Lines & German STOLL Machines.",
     "exploreProducts": "Explore Products",
     "requestSample": "Request Sample",
     "aboutFactory": "About Our Factory",
