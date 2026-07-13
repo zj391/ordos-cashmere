@@ -3,14 +3,13 @@
 // POST /api/admin/login sets httpOnly cookie if password matches
 // Redirects to /admin/inquiries on success
 //
-// 7-9: prerender must be false because this page reads the
-// admin_session cookie at request time to redirect logged-in users
-// to /admin/inquiries. The Astro 5.18 + @astrojs/vercel 9.0.5
-// SSR dispatch bug is worked around by the post-build script
-// (scripts/fix-endpoint-build.js) which adds named `GET` exports
-// to every .astro.mjs page file.
+// 7-9: Astro 5.18 + @astrojs/vercel 9.0.5 SSR dispatch bug — mod.GET
+// is missing because Vercel's adapter expects named exports for SSR
+// routes. Workaround: redirect from middleware (set on /admin/*) to
+// /admin/inquiries if logged in, via client-side JS. This page is
+// prerendered statically so no SSR dispatch is needed.
 
-export const prerender = false;
+export const prerender = true;
 
 const error = Astro.url.searchParams.get('error');
 
@@ -88,5 +87,12 @@ if (Astro.request.headers.get('cookie')?.includes('admin_session=')) {
       <button type="submit">Sign in</button>
     </form>
   </div>
+  <script>
+    // If admin cookie is present, redirect to inquiries immediately
+    // (server-side check skipped because page is prerendered).
+    if (document.cookie.includes('admin_session=')) {
+      window.location.replace('/admin/inquiries');
+    }
+  </script>
 </body>
 </html>
