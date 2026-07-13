@@ -2,6 +2,13 @@
 // Admin login page - simple password auth
 // POST /api/admin/login sets httpOnly cookie if password matches
 // Redirects to /admin/inquiries on success
+//
+// 7-9: prerender must be false because this page reads the
+// admin_session cookie at request time to redirect logged-in users
+// to /admin/inquiries. The Astro 5.18 + @astrojs/vercel 9.0.5
+// SSR dispatch bug is worked around by the post-build script
+// (scripts/fix-endpoint-build.js) which adds named `GET` exports
+// to every .astro.mjs page file.
 
 export const prerender = false;
 
