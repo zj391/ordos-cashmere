@@ -269,6 +269,67 @@ const breadcrumbSchema = {
             </table>
           </div>
 
+          <!-- Technical Specifications (imf-derived 15-field spec, 7-9) -->
+          {detail?.technicalSpecs && (
+            <details class="border border-border rounded-lg mb-6 group">
+              <summary class="px-4 py-3 bg-secondary/30 font-medium cursor-pointer flex items-center justify-between text-sm">
+                <span>Technical Specifications <span class="text-xs text-muted-foreground ml-2">(15 fields per imfieldcashmere model)</span></span>
+                <span class="text-brand-gold text-xl group-open:rotate-45 transition-transform">+</span>
+              </summary>
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                  <tbody>
+                    {detail.technicalSpecs.material && (
+                      <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium w-2/5">Material</td><td class="px-4 py-2">{detail.technicalSpecs.material[locale]}</td></tr>
+                    )}
+                    {detail.technicalSpecs.knitting && (
+                      <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">Knitting Technology</td><td class="px-4 py-2">{detail.technicalSpecs.knitting[locale]}</td></tr>
+                    )}
+                    {detail.technicalSpecs.pattern && (
+                      <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">Pattern</td><td class="px-4 py-2">{detail.technicalSpecs.pattern[locale]}</td></tr>
+                    )}
+                    {detail.technicalSpecs.weight && (
+                      <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">Weight</td><td class="px-4 py-2">{detail.technicalSpecs.weight[locale]}</td></tr>
+                    )}
+                    {detail.technicalSpecs.sizes && (
+                      <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">Sizes</td><td class="px-4 py-2">{detail.technicalSpecs.sizes[locale]}</td></tr>
+                    )}
+                    {detail.technicalSpecs.colors && (
+                      <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">Color Options</td><td class="px-4 py-2">{detail.technicalSpecs.colors[locale]}</td></tr>
+                    )}
+                    {detail.technicalSpecs.season && (
+                      <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">Season</td><td class="px-4 py-2">{detail.technicalSpecs.season[locale]}</td></tr>
+                    )}
+                    {detail.technicalSpecs.function && (
+                      <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">Function</td><td class="px-4 py-2">{detail.technicalSpecs.function[locale]}</td></tr>
+                    )}
+                    {detail.technicalSpecs.gender && (
+                      <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">Gender</td><td class="px-4 py-2">{detail.technicalSpecs.gender[locale]}</td></tr>
+                    )}
+                    {detail.technicalSpecs.technology && (
+                      <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">Technology</td><td class="px-4 py-2">{detail.technicalSpecs.technology[locale]}</td></tr>
+                    )}
+                    {detail.technicalSpecs.elasticity && (
+                      <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">Elasticity</td><td class="px-4 py-2">{detail.technicalSpecs.elasticity[locale]}</td></tr>
+                    )}
+                    {detail.technicalSpecs.origin && (
+                      <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">Origin</td><td class="px-4 py-2">{detail.technicalSpecs.origin[locale]}</td></tr>
+                    )}
+                    {detail.technicalSpecs.careMethod && (
+                      <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">Care</td><td class="px-4 py-2">{detail.technicalSpecs.careMethod[locale]}</td></tr>
+                    )}
+                    {detail.technicalSpecs.customization && (
+                      <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">Customization</td><td class="px-4 py-2">{detail.technicalSpecs.customization[locale]}</td></tr>
+                    )}
+                    {detail.technicalSpecs.moq && (
+                      <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">MOQ</td><td class="px-4 py-2">{detail.technicalSpecs.moq[locale]}</td></tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </details>
+          )}
+
           <!-- Tags -->
           {product.tags && product.tags.length > 0 && (
             <div class="flex flex-wrap gap-2 mb-6">

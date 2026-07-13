@@ -56,6 +56,25 @@ export interface ProductDetail {
   samplePolicy?: I18n;
   // Section 13: Certifications
   certifications?: I18n[];
+  // Section 14: Technical specifications (imfieldcashmere 15-field spec table)
+  technicalSpecs?: {
+    material?: I18n;
+    knitting?: I18n;
+    collar?: I18n;
+    pattern?: I18n;
+    weight?: I18n;
+    season?: I18n;
+    sizes?: I18n;
+    colors?: I18n;
+    function?: I18n;
+    gender?: I18n;
+    moq?: I18n;
+    careMethod?: I18n;
+    customization?: I18n;
+    origin?: I18n;
+    technology?: I18n;
+    elasticity?: I18n;
+  };
 }
 
 export type ProductDetailMap = Record<string, ProductDetail>;
@@ -68,6 +87,23 @@ const t = (en: string, cn: string, de: string, fr: string, ja: string, kr: strin
   ({ en, cn, de, fr, ja, kr });
 
 const scarves: ProductDetail = {
+  technicalSpecs: {
+    material: t('100% Inner Mongolia Grade A cashmere', '100% 内蒙古 A 级羊绒', '100% kaschmir aus der Inneren Mongolei Güteklasse A', '100% cachemire Mongolie Intérieure grade A', '100% 内モンゴル A 級カシミア', '100% 내몽골 A 등급 캐시미어'),
+    knitting: t('Jacquard woven on Toyota JAT810 looms', '丰田 JAT810 织机提花', 'Jacquard auf Toyota JAT810 Webstühlen', 'Jacquard sur métiers Toyota JAT810', '豊田 JAT810 ジャカード織機', '도요타 JAT810 자카드 직기'),
+    pattern: t('Solid / Striped / Jacquard / Print (customizable)', '素色 / 条纹 / 提花 / 印花 (可定制)', 'Uni / Gestreift / Jacquard / Druck', 'Uni / Rayé / Jacquard / Imprimé', '無地 / ストライプ / ジャカード / プリント', '무지 / 줄무늬 / 자카드 / 프린트'),
+    weight: t('100-220 g/pc (size dependent)', '100-220 g/件 (按尺寸)', '100-220 g/Stück', '100-220 g/pièce', '100-220 g/枚', '100-220 g/매'),
+    season: t('Autumn / Winter / Spring', '秋冬春', 'Herbst / Winter / Frühling', 'Automne / Hiver / Printemps', '秋冬春', '가을 / 겨울 / 봄'),
+    sizes: t('180x35cm, 190x45cm, 200x70cm (customizable)', '180x35, 190x45, 200x70 cm (可定制)', '180x35, 190x45, 200x70 cm (anpassbar)', '180x35, 190x45, 200x70 cm (personnalisable)', '180x35, 190x45, 200x70 cm (カスタマイズ可)', '180x35, 190x45, 200x70 cm (맞춤 가능)'),
+    colors: t('Pantone PMS matching, custom dyes 5kg+ per color', 'Pantone PMS 配色，定制染色 5kg+ 起', 'Pantone PMS Matching, kundenspezifische Farben 5kg+', 'Correspondance Pantone PMS', 'Pantone PMS マッチング, カスタム染色 5kg〜', 'Pantone PMS 매칭, 맞춤 염색 5kg 이상'),
+    function: t('Warmth, fashion accessory, gift', '保暖, 时尚单品, 礼品', 'Wärme, Mode-Accessoire, Geschenk', 'Chaleur, accessoire mode, cadeau', '防寒、ファッション小物、ギフト', '보온, 패션 소품, 선물'),
+    gender: t('Unisex', '中性', 'Unisex', 'Unisexe', 'ユニセックス', '유니섹스'),
+    moq: t('50 pieces per design', '每款 50 件', '50 Stück pro Design', '50 pièces par design', 'デザイン 50 枚〜', '디자인당 50개'),
+    careMethod: t('Dry clean recommended; hand wash cold; lay flat dry', '建议干洗；冷水手洗；平铺晾干', 'Chemische Reinigung empfohlen; Handwäsche kalt', 'Nettoyage à sec recommandé; lavage main froid', 'ドライクリーニング推奨; 冷水手洗い', '드라이클리닝 권장; 찬물 손빨래'),
+    customization: t('Woven label / Hangtag / Pantone color / Logo embroidery', '织标 / 吊牌 / Pantone 染色 / Logo 刺绣', 'Weblabel / Hangtag / Pantone / Logo-Stickerei', 'Étiquette tissée / Hangtag / Pantone / Broderie logo', '織りラベル / ハンタグ / Pantone / ロゴ刺繍', '직조 라벨 / 행태그 / Pantone / 로고 자수'),
+    origin: t('Inner Mongolia, China', '中国内蒙古', 'Innere Mongolei, China', 'Mongolie Intérieure, Chine', '中国内モンゴル', '중국 내몽골'),
+    technology: t('Jacquard weaving, 5 picks/cm', '提花织造，5 纬/cm', 'Jacquard-Weberei, 5 Schuss/cm', 'Tissage jacquard, 5 duites/cm', 'ジャカード織, 5 打ち込み/cm', '자카드 직조, 5 위/cm'),
+    elasticity: t('Natural drape, 8% stretch', '自然垂感，8% 弹性', 'Natürlicher Fall, 8% Dehnung', 'Drapé naturel, 8% stretch', '自然なドレープ, 8% ストレッチ', '자연스러운 드레이프, 8% 신축'),
+  },
   materialStory: t(
     'Our cashmere scarves are woven from Grade A Mongolian cashmere fiber (14.5-15.5μm) sourced directly from contracted Albus goat herders on the Ordos plateau. The fiber is dehaired on Italian Capstan lines, then worsted-spun into 2/48 Nm yarn before weaving on Japanese Toyota JAT810 looms.',
     '我们的羊绒围巾采用 A 级蒙古羊绒纤维 (14.5-15.5μm)，直接采购自鄂尔多斯高原签约的阿尔巴斯白绒山羊牧民。纤维在意大利 Capstan 设备上分梳后，纺成 2/48 Nm 精纺纱线，再在丰田 JAT810 织机上织造。',
@@ -163,6 +199,23 @@ const scarves: ProductDetail = {
 
 // Defaults for other categories (shorter for time)
 const sweaters: ProductDetail = {
+  technicalSpecs: {
+    material: t('100% Inner Mongolia Grade A cashmere', '100% 内蒙古 A 级羊绒', '100% kaschmir aus der Inneren Mongolei Güteklasse A', '100% cachemire Mongolie Intérieure grade A', '100% 内モンゴル A 級カシミア', '100% 내몽골 A 등급 캐시미어'),
+    knitting: t('Knitted on German STOLL CMS 530 HP, 5-16 gauge', '德国 STOLL CMS 530 HP 编织，5-16 针', 'Deutsche STOLL CMS 530 HP, 5-16 Gauge', 'Allemandes STOLL CMS 530 HP, 5-16 jauges', 'ドイツ STOLL CMS 530 HP, 5-16 ゲージ', '독일 STOLL CMS 530 HP, 5-16 게이지'),
+    pattern: t('Cable / Aran / Plain / Rib / Jacquard (customizable)', '麻花 / 阿兰 / 平面 / 罗纹 / 提花 (可定制)', 'Zopf / Aran / Glatt / Rippe / Jacquard', 'Câble / Aran / Plat / Côtes / Jacquard', 'ケーブル / アラン / 無地 / リブ / ジャカード', '케이블 / 아란 / 무지 / 립 / 자카드'),
+    weight: t('180-450 g/pc (size + gauge dependent)', '180-450 g/件 (尺寸 + 针型)', '180-450 g/Stück', '180-450 g/pièce', '180-450 g/枚', '180-450 g/매'),
+    season: t('Autumn / Winter (FW)', '秋冬', 'Herbst / Winter (HW)', 'Automne / Hiver', '秋冬', '가을 / 겨울'),
+    sizes: t('XS / S / M / L / XL / XXL (customizable)', 'XS / S / M / L / XL / XXL (可定制)', 'XS / S / M / L / XL / XXL (anpassbar)', 'XS / S / M / L / XL / XXL', 'XS / S / M / L / XL / XXL', 'XS / S / M / L / XL / XXL'),
+    colors: t('Pantone PMS matching 5kg+ per color', 'Pantone PMS 配色，5kg+ 起', 'Pantone PMS, 5kg+ pro Farbe', 'Pantone PMS, 5kg+ par couleur', 'Pantone PMS, 5kg〜/色', 'Pantone PMS, 색상당 5kg 이상'),
+    function: t('Thermal insulation, breathability, comfort', '保暖、透气、舒适', 'Wärmeisolierung, Atmungsaktivität', 'Isolation thermique, respirabilité', '保温, 透湿性, 快適', '보온, 통기성, 편안함'),
+    gender: t('Unisex / Men / Women', '男女 / 男 / 女', 'Unisex / Herren / Damen', 'Unisexe / Homme / Femme', 'ユニセックス / メンズ / ウィメンズ', '유니섹스 / 남성 / 여성'),
+    moq: t('100 pieces per style', '每款 100 件', '100 Stück pro Stil', '100 pièces par style', 'スタイル 100 枚〜', '스타일당 100개'),
+    careMethod: t('Hand wash cold or dry clean; lay flat dry', '冷水手洗或干洗；平铺晾干', 'Handwäsche kalt oder Chemische Reinigung', 'Lavage main froid ou nettoyage à sec', '冷水手洗いまたはドライクリーニング', '찬물 손빨래 또는 드라이클리닝'),
+    customization: t('Custom knit patterns / Labels / Embroidery / Packaging', '定制针织图案 / 标签 / 刺绣 / 包装', 'Kundenspezifische Muster / Etiketten / Stickerei / Verpackung', 'Motifs personnalisés / Étiquettes / Broderie', 'カスタムパターン / ラベル / 刺繍 / 包装', '맞춤 패턴 / 라벨 / 자수 / 패키징'),
+    origin: t('Inner Mongolia, China', '中国内蒙古', 'Innere Mongolei, China', 'Mongolie Intérieure', '中国内モンゴル', '중국 내몽골'),
+    technology: t('Whole garment knitting, 12-gauge', '整件针织，12 针', 'Ganzstrick, 12 Gauge', 'Tricot intégral, 12 jauges', 'ホールガーメント編み, 12 ゲージ', '홀가먼트 편성, 12 게이지'),
+    elasticity: t('Natural elasticity, retains shape', '自然弹性，保形', 'Natürliche Elastizität, formstabil', 'Élasticité naturelle, conserve la forme', '自然な伸縮性, 形状保持', '자연 신축성, 형태 유지'),
+  },
   materialStory: t('Knitted on German STOLL CMS 530 HP knitting machines, our cashmere sweaters use 2/26 to 2/48 Nm yarn depending on gauge. 5-gauge for chunky, 12-gauge for fine-gauge knits.', '我们的羊绒衫使用德国 STOLL CMS 530 HP 电脑横机，2/26 至 2/48 Nm 纱线。5 针粗针，12 针细针。', 'Auf deutschen STOLL CMS 530 HP Strickmaschinen, 2/26 bis 2/48 Nm Garn.', 'Sur machines à tricoter allemandes STOLL CMS 530 HP.', 'ドイツの STOLL CMS 530 HP 編み機, 2/26 〜 2/48 Nm 糸。', '독일 STOLL CMS 530 HP 니팅머신, 2/26 ~ 2/48 Nm 원사.'),
   process: t('12-stage process: dehairing → spinning → knitting → linking → mending → washing → softening → pressing → QC → labeling → packaging.', '12 道工序：分梳 → 纺纱 → 编织 → 缝合 → 修补 → 水洗 → 柔软 → 整烫 → 质检 → 贴标 → 包装。', '12-stufiger Prozess: Enthaaren → Spinnen → Stricken → Vernähen → Stopfen → Waschen → Weichmachen → Bügeln → QC → Etikettieren → Verpacken.', 'Processus en 12 étapes: désourlage → filage → tricotage → assemblage → remaillage → lavage → adoucissement → repassage → QC → étiquetage → emballage.', '12 工程: 脱毛 → 紡績 → 編み → リンキング → 補修 → 洗い → 柔軟 → プレス → QC → ラベル → 包装。', '12단계 공정: 제모 → 방적 → 편성 → 링킹 → 수선 → 수세 → 유연화 → 다림질 → QC → 라벨링 → 패키징.'),
   customServiceTitle: t('Custom Cashmere Sweater Manufacturing', '羊绒衫定制服务', 'Maßgefertigte Kaschmirpullover-Herstellung', 'Fabrication de pulls en cachemire sur mesure', 'カスタムカシミアセーター製造', '맞춤 캐시미어 스웨터 제조'),
@@ -203,20 +256,90 @@ const sweaters: ProductDetail = {
 };
 
 const hats: ProductDetail = {
-  ...sweaters,
+  technicalSpecs: {
+    material: t('100% Inner Mongolia Grade A cashmere', '100% 内蒙古 A 级羊绒', '100% kaschmir Inneren Mongolei Güteklasse A', '100% cachemire Mongolie grade A', '100% 内モンゴル A 級カシミア', '100% 내몽골 A 등급 캐시미어'),
+    knitting: t('12-gauge Shima Seiki knitting machines', '日本 Shima Seiki 12 针电脑横机', '12-Gauge Shima Seiki', 'Shima Seiki 12 jauges', '12 ゲージ島精機', '12 게이지 시마세이기'),
+    pattern: t('Cable / Plain / Rib / Slouchy', '麻花 / 平面 / 罗纹 / 堆堆帽', 'Zopf / Glatt / Rippe / Schlabber', 'Câble / Plat / Côtes / Souple', 'ケーブル / 無地 / リブ / ルーズ', '케이블 / 무지 / 립 / 늘어짐'),
+    weight: t('80-180 g/pc', '80-180 g/件', '80-180 g/Stück', '80-180 g/pièce', '80-180 g/枚', '80-180 g/매'),
+    season: t('Autumn / Winter', '秋冬', 'Herbst / Winter', 'Automne / Hiver', '秋冬', '가을 / 겨울'),
+    sizes: t('Adult (56-60cm) / Child (48-54cm) (customizable)', '成人 (56-60cm) / 儿童 (48-54cm) (可定制)', 'Erwachsene 56-60cm / Kind 48-54cm', 'Adulte 56-60cm / Enfant 48-54cm', '大人 56-60cm / 子供 48-54cm', '성인 56-60cm / 아동 48-54cm'),
+    colors: t('Pantone PMS matching, custom dyes', 'Pantone PMS 配色，定制染色', 'Pantone PMS, kundenspezifische Farben', 'Pantone PMS, couleurs personnalisées', 'Pantone PMS, カスタム染色', 'Pantone PMS, 맞춤 염색'),
+    function: t('Warmth, head protection, fashion', '保暖、护头、时尚', 'Wärme, Kopfschutz, Mode', 'Chaleur, protection, mode', '防寒, 頭保護, ファッション', '보온, 머리 보호, 패션'),
+    gender: t('Unisex', '中性', 'Unisex', 'Unisexe', 'ユニセックス', '유니섹스'),
+    moq: t('100 pieces per design', '每款 100 件', '100 Stück pro Design', '100 pièces par design', 'デザイン 100 枚〜', '디자인당 100개'),
+    careMethod: t('Hand wash cold; reshape and dry flat', '冷水手洗；整形平铺晾干', 'Handwäsche kalt; in Form trocknen', 'Lavage main froid; sécher à plat', '冷水手洗い; 平干し', '찬물 손빨래; 모양 잡아 평건조'),
+    customization: t('Custom knit patterns / Woven label / Cuff embroidery', '定制针织图案 / 织标 / 帽边刺绣', 'Kundenspezifische Muster / Weblabel / Bündchen-Stickerei', 'Motifs / Étiquette / Broderie revers', 'カスタムパターン / 織りラベル / 縁刺繍', '맞춤 패턴 / 직조 라벨 / 챙 자수'),
+    origin: t('Inner Mongolia, China', '中国内蒙古', 'Innere Mongolei, China', 'Mongolie Intérieure', '中国内モンゴル', '중국 내몽골'),
+    technology: t('Shima Seiki whole garment, 12 gauge', 'Shima Seiki 整件，12 针', 'Shima Seiki Ganzstrick, 12 Gauge', 'Shima Seiki intégral 12 jauges', '島精機ホールガーメント, 12 ゲージ', '시마세이기 홀가먼트, 12 게이지'),
+    elasticity: t('Rib cuff for snug fit', '罗纹帽边贴头', 'Ripp-Bündchen für festen Sitz', 'Côte élastiquée pour ajustement', 'リブ編みのフィット感', '립 단면 밀착'),
+  },
   materialStory: t('Knitted on 12-gauge Shima Seiki machines, our cashmere hats and beanies use 2/26 Nm woolen-spun yarn for soft, lofty texture. Hand-finished seams.', '我们的羊绒帽子用日本 Shima Seiki 12 针电脑横机，2/26 Nm 粗纺纱线，手工缝合。', 'Auf 12-Gauge Shima Seiki Maschinen, 2/26 Nm Streichgarn.', 'Sur machines Shima Seiki 12 jauges, fil 2/26 Nm cardé.', '12 ゲージ島精機, 2/26 Nm 梳毛糸。', '12 게이지 시마세이기, 2/26 Nm 울렌 원사.'),
   customServiceTitle: t('Custom Cashmere Hat Manufacturing', '羊绒帽子定制服务', 'Maßgefertigte Kaschmirhutherstellung', 'Fabrication de chapeaux en cachemire sur mesure', 'カスタムカシミア帽子製造', '맞춤 캐시미어 모자 제조'),
   whyChooseTitle: t('Why Choose Our Cashmere Hat Factory', '为什么选择我们的羊绒帽子工厂', 'Warum Sie unsere Kaschmirhutfabrik wählen sollten', 'Pourquoi choisir notre usine de chapeaux en cachemire', 'なぜ当社のカシミア帽子工場を選ぶのか', '저희 캐시미어 모자 공장을 선택해야 하는 이유'),
+  customServiceBullets: scarves.customServiceBullets,
+  whyChooseBullets: scarves.whyChooseBullets,
+  applicationsTitle: t('Hat Applications', '帽子应用场景', 'Hut-Anwendungen', 'Applications de chapeaux', '帽子の用途', '모자 용도'),
+  applicationScenarios: [
+    t('Cold-weather outdoor wear', '寒冷天气户外', 'Kaltwetter-Outdoor', 'Plein air par temps froid', '寒冷地アウトドア', '추운 날 야외 활동'),
+    t('Winter capsule collections', '冬季胶囊系列', 'Winter-Kapselkollektionen', 'Capsules hiver', 'ウィンターカプセル', '겨울 캡슐 컬렉션'),
+    t('Ski resort gear and gifts', '滑雪场装备和礼品', 'Skigebiet-Ausrüstung und Geschenke', 'Équipement de ski et cadeaux', 'スキー場のギアとギフト', '스키장 용품 및 선물'),
+    t('Streetwear and lifestyle', '街头潮牌和生活方式', 'Streetwear und Lifestyle', 'Streetwear et lifestyle', 'ストリートウェアとライフスタイル', '스트리트웨어 및 라이프스타일'),
+    t('Custom embroidery for hotels', '酒店定制刺绣', 'Hotel-Stickerei', 'Broderie personnalisée pour hôtels', 'ホテル用カスタム刺繍', '호텔 맞춤 자수'),
+    t('Corporate gift sets', '企业礼品套装', 'Firmengeschenksets', "Coffrets cadeaux d'entreprise", '法人ギフトセット', '기업 선물 세트'),
+  ],
+  careInstructions: t('Hand wash in cool water with cashmere shampoo. Reshape and dry flat. Avoid wearing the same hat two days in a row to preserve shape.', '冷水手洗用羊绒专用洗涤剂。整形后平铺晾干。避免连续两天戴同一顶帽子保持形状。', 'Handwäsche kalt; in Form trocknen.', 'Lavage main; sécher à plat.', 'カシミアシャンプーで手洗い。平干し。', '캐시미어 샴푸 손빨래. 모양 잡아 평건조.'),
+  certifications: ['ISO 9001:2015', 'OEKO-TEX Standard 100', 'BSCI'],
+  faq: [
+    { q: t('What sizes do hats come in?', '帽子有哪些尺寸？', 'Welche Größen gibt es?', 'Quelles tailles disponibles?', 'サイズ展開は?', '사이즈 옵션은?'), a: t('Adult (56-60cm), youth (52-56cm), and child (48-54cm). Custom sizes available.', '成人 (56-60cm)、青少年 (52-56cm)、儿童 (48-54cm)。支持定制尺寸。', 'Erwachsen 56-60cm, Jugend 52-56cm, Kind 48-54cm.', 'Adulte 56-60cm, jeune 52-56cm, enfant 48-54cm.', '大人 56-60, ユース 52-56, 子供 48-54。', '성인 56-60, 청소년 52-56, 아동 48-54.') },
+    { q: t('Can you add custom patches or labels?', '能加定制徽章或标签吗？', 'Können Patches oder Etiketten angepasst werden?', 'Patches ou étiquettes personnalisés?', 'カスタムパッチやラベルは?', '맞춤 패치 또는 라벨 가능한가요?'), a: t('Yes, woven labels, leather patches, embroidered logos. Min order 200pcs per design.', '可织唛、皮标、绣花 logo。每款起订 200 件。', 'Weblabel, Leder-Patches, Logo-Stickerei. 200 Stück Mindestmenge.', 'Étiquettes tissées, patches cuir, logos brodés. 200 pcs min.', '織りラベル, 革パッチ, ロゴ刺繍。200枚〜。', '직조 라벨, 가죽 패치, 로고 자수. 200개 이상.' ) },
+    { q: t('Are reversible or 2-in-1 designs possible?', '能双面或二合一设计吗？', 'Reversible oder 2-in-1 Designs?', 'Designs réversibles ou 2-en-1?', 'リバーシブルや 2-in-1?', '양면 또는 2-in-1 가능한가요?'), a: t('Yes, we offer reversible beanies (2-color or 2-pattern inner+outer) and convertible neck warmers.', '可双面针织帽（双色内外）+ 转换式围脖。', 'Ja, reversible Beanies und konvertierbare Halswärmer.', 'Oui, bonnets réversibles et cache-cous convertibles.', 'はい、リバーシブルビーニー+変換ネックウォーマー。', '예, 양면 비니 + 변환 넥워머.' ) },
+    { q: t('What is the defect tolerance?', '次品容许度？', 'Fehlertoleranz?', 'Tolérance aux défauts?', '不良許容は?', '불량 허용 기준?'), a: t('Less than 1.5% for hats. Critical defects: zero tolerance. Major: 0.5%, minor: 1%.', '帽子次品率 < 1.5%。严重缺陷零容忍；主要 0.5%，次要 1%。', 'Unter 1,5%. Kritisch: 0. Haupt: 0,5%.', 'Moins de 1,5%.', '1.5% 未満。', '1.5% 미만.' ) },
+  ],
 };
 
 const accessories: ProductDetail = {
-  ...scarves,
+  technicalSpecs: {
+    material: t('100% Inner Mongolia Grade A cashmere', '100% 内蒙古 A 级羊绒', '100% kaschmir Inneren Mongolei Güteklasse A', '100% cachemire Mongolie grade A', '100% 内モンゴル A 級カシミア', '100% 내몽골 A 등급 캐시미어'),
+    knitting: t('Mixed: knitted or woven per item type', '混合：针织或机织按品类', 'Gemischt: gestrickt oder gewebt', 'Mixte: tricoté ou tissé', '混合: ニットまたは織物', '혼합: 편성 또는 직조'),
+    pattern: t('Plain / Cable / Rib / Argyle (customizable)', '素色 / 麻花 / 罗纹 / 菱形 (可定制)', 'Uni / Zopf / Rippe / Argyle', 'Uni / Câble / Côtes / Argyle', '無地 / ケーブル / リブ / アーガイル', '무지 / 케이블 / 립 / 아가일'),
+    weight: t('50-300 g/pc (item + size dependent)', '50-300 g/件 (品类 + 尺寸)', '50-300 g/Stück', '50-300 g/pièce', '50-300 g/枚', '50-300 g/매'),
+    season: t('Autumn / Winter / Year-round', '秋冬 / 四季', 'Herbst / Winter / Ganzjährig', 'Automne / Hiver / Toute l\'année', '秋冬 / 周年', '가을 / 겨울 / 연중'),
+    sizes: t('XS-XXL / One-size (item dependent)', 'XS-XXL / 均码 (按品类)', 'XS-XXL / Einheitsgröße', 'XS-XXL / Taille unique', 'XS-XXL / フリーサイズ', 'XS-XXL / 프리사이즈'),
+    colors: t('Pantone PMS matching', 'Pantone PMS 配色', 'Pantone PMS', 'Pantone PMS', 'Pantone PMS', 'Pantone PMS'),
+    function: t('Warmth, layering, gift', '保暖、叠搭、礼品', 'Wärme, Schichtung, Geschenk', 'Chaleur, superposition, cadeau', '防寒, レイヤード, ギフト', '보온, 레이어드, 선물'),
+    gender: t('Unisex', '中性', 'Unisex', 'Unisexe', 'ユニセックス', '유니섹스'),
+    moq: t('50-100 pieces per design', '每款 50-100 件', '50-100 Stück pro Design', '50-100 pièces par design', 'デザイン 50-100 枚', '디자인당 50-100개'),
+    careMethod: t('Hand wash cold; lay flat dry', '冷水手洗；平铺晾干', 'Handwäsche kalt; liegend trocknen', 'Lavage main; séchage à plat', '冷水手洗い; 平干し', '찬물 손빨래; 평건조'),
+    customization: t('Woven label / Packaging / Embroidery', '织标 / 包装 / 刺绣', 'Weblabel / Verpackung / Stickerei', 'Étiquette / Emballage / Broderie', '織りラベル / 包装 / 刺繍', '직조 라벨 / 패키징 / 자수'),
+    origin: t('Inner Mongolia, China', '中国内蒙古', 'Innere Mongolei, China', 'Mongolie Intérieure', '中国内モンゴル', '중국 내몽골'),
+    technology: t('Various (knit or woven per item)', '多种 (按品类针织或机织)', 'Verschieden', 'Divers', '各種', '다양'),
+    elasticity: t('Rib cuff or elasticated (per item)', '罗纹或弹力 (按品类)', 'Rippbund oder elastisch', 'Côte élastique', 'リブまたは伸縮性', '립 또는 신축성'),
+  },
   materialStory: t('Knitted or woven on the same equipment as our scarves. Cashmere gloves use 2/26 Nm worsted, beanies and socks use soft woolen-spun 2/26-2/32 Nm.', '我们的羊绒配饰用与围巾相同的设备。手套用 2/26 Nm 精纺，帽子袜子用 2/26-2/32 Nm 粗纺。', 'Auf derselben Ausrüstung wie unsere Schals hergestellt. Handschuhe 2/26 Nm Kammgarn, Mützen und Socken 2/26-2/32 Nm Streichgarn.', 'Fabriqué sur le même équipement que nos écharpes.', 'スカーフと同じ設備。グローブは 2/26 Nm 梳毛、帽子・靴下は 2/26-2/32 Nm 梳毛。', '스카프와 동일한 설비. 장갑은 2/26 Nm 워스티드, 모자/양말은 2/26-2/32 Nm 울렌.'),
   customServiceTitle: t('Custom Cashmere Accessories Manufacturing', '羊绒配饰定制服务', 'Maßgefertigte Kaschmir-Accessoires', 'Fabrication d\'accessoires en cachemire sur mesure', 'カスタムカシミアアクセサリ', '맞춤 캐시미어 액세서리'),
   whyChooseTitle: t('Why Choose Our Cashmere Accessories Factory', '为什么选择我们的羊绒配饰工厂', 'Warum Sie unsere Kaschmir-Accessoires-Fabrik wählen sollten', 'Pourquoi choisir notre usine d\'accessoires', 'なぜ当社のカシミアアクセサリ工場を選ぶのか', '저희 캐시미어 액세서리 공장을 선택해야 하는 이유'),
+  customServiceBullets: scarves.customServiceBullets,
+  whyChooseBullets: scarves.whyChooseBullets,
 };
 
 const yarn: ProductDetail = {
+  technicalSpecs: {
+    material: t('100% Inner Mongolia Grade A cashmere', '100% 内蒙古 A 级羊绒', '100% kaschmir Inneren Mongolei Güteklasse A', '100% cachemire Mongolie grade A', '100% 内モンゴル A 級カシミア', '100% 내몽골 A 등급 캐시미어'),
+    knitting: t('Worsted on Italian Sant\'Agostino / French NCSI frames', '意大利 Sant\'Agostino / 法国 NCSI 细纱机', 'Italienische Sant\'Agostino / Französische NCSI', 'Sant\'Agostino italien / NCSI français', 'イタリア Sant\'Agostino / フランス NCSI 紡機', '이탈리아 Sant\'Agostino / 프랑스 NCSI 방적기'),
+    pattern: t('Single strand; 2-ply twisted', '单股；2 股合捻', 'Einfachstrang; 2-fach gezwirnt', 'Monobrins; 2 bouts retordus', '単糸; 双糸撚り', '단사; 2합사'),
+    weight: t('Per kg (1-cone = 50g-1kg depending on count)', '按公斤 (1 筒 50g-1kg 取决于支数)', 'Pro kg (1 Spule = 50g-1kg)', 'Par kg (1 cône = 50g-1kg)', 'kg単位 (1コーン = 50g-1kg)', 'kg당 (1 cone = 50g-1kg)'),
+    season: t('Year-round', '全年', 'Ganzjährig', 'Toute l\'année', '周年', '연중'),
+    sizes: t('2/26 Nm to 2/60 Nm (custom counts 50kg+ MOQ)', '2/26 至 2/60 Nm (定制支数 50kg+ 起)', '2/26 bis 2/60 Nm', '2/26 à 2/60 Nm', '2/26 〜 2/60 Nm', '2/26 ~ 2/60 Nm'),
+    colors: t('Bleached / Natural white / Top-dyed / Hank-dyed', '漂白 / 本白 / 染纱 / 绞染', 'Gebleicht / Naturweiß / Strang- / Flottengfärbt', 'Blanchi / Naturel / Teint en masse / Teint en écheveau', '漂白 / 生成り / トップ染め / かせ染め', '표백 / 본화 / 톱염 / 꼬임염'),
+    function: t('Knitting, weaving, machine + hand knit', '针织、机织、机织 + 手织', 'Stricken, Weben, Maschine + Hand', 'Tricotage, tissage, machine + main', 'ニット, 織物, 機械+手編み', '편성, 직조, 기계 + 손'),
+    gender: t('Unisex', '中性', 'Unisex', 'Unisexe', 'ユニセックス', '유니섹스'),
+    moq: t('1 kg per color per count', '每支每色 1 kg', '1 kg pro Farbe pro Stärke', '1 kg par couleur par titre', '色ごと番手 1kg〜', '색상·번수당 1kg'),
+    careMethod: t('Store in dry place; handle gently to preserve loft', '存放干燥处；轻柔处理保持蓬松', 'Trocken lagern; sanft behandeln', 'Stocker au sec; manipuler doucement', '乾燥保存; 優しく取り扱い', '건조 보관; 부드럽게 취급'),
+    customization: t('Custom count / color / cone size / oil content', '定制支数 / 颜色 / 筒规格 / 含油率', 'Kundenspezifische Stärke / Farbe / Spulengröße / Ölgehalt', 'Personnalisé: titre / couleur / cône / huile', 'カスタム番手/色/コーンサイズ/油分', '맞춤 번수 / 색상 / cone 사이즈 / 오일 함량'),
+    origin: t('Inner Mongolia, China', '中国内蒙古', 'Innere Mongolei, China', 'Mongolie Intérieure', '中国内モンゴル', '중국 내몽골'),
+    technology: t('Worsted spinning (semi-worsted optional)', '精纺 (可选半精纺)', 'Kammgarn (Semi-Worsted optional)', 'Peigné (semi-peigné en option)', '梳毛紡績', '워스티드 방적 (반워스티드 옵션)'),
+    elasticity: t('8-12% stretch', '8-12% 弹性', '8-12% Dehnung', '8-12% stretch', '8-12% ストレッチ', '8-12% 신축'),
+  },
   materialStory: t('Worsted-spun on Italian Sant\'Agostino frames, our 2/26 to 2/60 Nm yarn uses Albus goat cashmere, hand-sorted and OFDA-tested per batch.', '我们的 2/26 至 2/60 Nm 精纺纱线在意大利 Sant\'Agostino 细纱机上纺制，使用阿尔巴斯白山羊绒，每批手工分拣 + OFDA 测试。', 'Kammgarn auf italienischen Sant\'Agostino-Spinnmaschinen, 2/26 bis 2/60 Nm.', 'Filé peigné sur métiers italiens Sant\'Agostino.', 'イタリア Sant\'Agostino 紡機, 2/26 〜 2/60 Nm。', '이탈리아 Sant\'Agostino 방적기, 2/26 ~ 2/60 Nm.'),
   process: t('6 stages: dehaired → gilled → combed → drawn → roving → spun. Each stage has its own QC checkpoint.', '6 道工序: 分梳 → 针梳 → 精梳 → 并条 → 粗纱 → 细纱。每道有 QC 节点。', '6 Stufen: enthaart → genadelt → gekämmt → gestreckt → Vorgarn → gesponnen.', '6 étapes: désourlage → aiguilletage → peignage → étirage → boudinage → filage.', '6 工程: 脱毛 → ギリング → コーミング → ドローイング → ロービング → 紡績。', '6단계: 제모 → 길링 → 코밍 → 드로잉 → 로빙 → 방적.'),
   customServiceTitle: t('Custom Cashmere Yarn Spinning', '羊绒纱线定制', 'Maßgefertigtes Kaschmirgarn-Spinnen', 'Filage de cachemire personnalisé', 'カスタムカシミア糸紡績', '맞춤 캐시미어 원사 방적'),
