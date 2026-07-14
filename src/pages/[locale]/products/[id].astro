@@ -231,7 +231,14 @@ const breadcrumbSchema = {
 
           <p class="text-base text-foreground/80 mb-6">{product.description}</p>
 
-          <!-- Spec table (imf 2-column style) -->
+          <!-- Detailed Description (imf-derived, 7-10) -->
+{product.detailedDescription && (
+          <div class="mb-6 pb-5 border-b border-border">
+            <p class="text-base text-foreground/80 leading-relaxed">{product.detailedDescription}</p>
+          </div>
+)}
+
+                    <!-- Spec table (imf 2-column style) -->
           <div class="border border-border rounded-lg overflow-hidden mb-6">
             <table class="w-full text-sm">
               <tbody>
@@ -281,6 +288,24 @@ const breadcrumbSchema = {
               <div class="overflow-x-auto">
                 <table class="w-full text-sm">
                   <tbody>
+                    {product.collar && (
+                      <tr class="border-t border-border">
+                        <td class="px-4 py-2 bg-secondary/20 font-medium">Collar</td>
+                        <td class="px-4 py-2">{product.collar}</td>
+                      </tr>
+                    )}
+                    {product.sampleCost && (
+                      <tr class="border-t border-border">
+                        <td class="px-4 py-2 bg-secondary/20 font-medium">Sample Cost</td>
+                        <td class="px-4 py-2">{product.sampleCost}</td>
+                      </tr>
+                    )}
+                    {product.packaging && (
+                      <tr class="border-t border-border">
+                        <td class="px-4 py-2 bg-secondary/20 font-medium">Packaging</td>
+                        <td class="px-4 py-2">{product.packaging}</td>
+                      </tr>
+                    )}
                     {detail.technicalSpecs.material && (
                       <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium w-2/5">Material</td><td class="px-4 py-2">{detail.technicalSpecs.material[locale]}</td></tr>
                     )}
