@@ -1,11 +1,11 @@
 // SEO Configuration for DONGXIAO® CASHMERE
-
 export const seoConfig = {
   // Site Information
   siteName: 'DONGXIAO® CASHMERE',
   siteUrl: 'https://erdosdx.com',
-  description: 'Premium wholesale cashmere products from Inner Mongolia. 30+ years of expertise in luxury knitwear, sweaters, scarves, hats, and accessories for international B2B buyers.',
-  
+  // ✅ 优化点 1: 全局描述强化“原料+纱线+成衣”全产业链及原产地优势
+  description: 'Leading manufacturer from Ordos, Inner Mongolia. Specializing in Grade A raw cashmere, high-count cashmere yarn (2/28Nm), and custom OEM knitwear for global luxury brands.',
+
   // Social Media
   socialMedia: {
     linkedin: 'https://www.linkedin.com/company/dongxiao-cashmere',
@@ -33,9 +33,11 @@ export const seoConfig = {
   // Page Metadata
   pages: {
     home: {
-      title: 'DONGXIAO®CASHMERE - Premium Wholesale Cashmere & Luxury Knitwear | B2B',
-      description: 'Discover premium wholesale cashmere products from Inner Mongolia\'s leading supplier. 30+ years of expertise in luxury knitwear for international B2B buyers.',
-      keywords: 'cashmere wholesale, luxury knitwear, B2B cashmere supplier, Inner Mongolia cashmere, premium cashmere products, wholesale sweaters, cashmere scarves',
+      title: 'DONGXIAO®CASHMERE - Raw Material, Yarn & OEM Knitwear Manufacturer | B2B',
+      // ✅ 优化点 2: 首页描述融入专业参数，精准吸引B2B买家
+      description: 'Your trusted B2B partner for premium cashmere. Sourcing Grade A raw cashmere fiber, 2/28Nm pure cashmere yarn, and providing private label knitwear manufacturing directly from Inner Mongolia.',
+      // ✅ 优化点 3: 首页核心关键词扩充（涵盖原料、纱线、OEM）
+      keywords: 'cashmere manufacturer, raw cashmere supplier, cashmere yarn factory, dehaired cashmere, 2/28Nm cashmere yarn, OEM knitwear China, private label cashmere, Inner Mongolia cashmere wholesale, B2B cashmere supplier',
       ogImage: 'https://erdosdx.com/og-home.png',
       ogType: 'website',
     },
@@ -128,10 +130,14 @@ export const seoConfig = {
       'cashmere sweaters bulk',
       'B2B cashmere supplier',
       'wholesale cashmere Canada',
-      'luxury knitwear New York',
       'sustainable cashmere',
-      'eco-friendly knitwear',
       'ethical cashmere production',
+      // ✅ 北美区新增：原料与纱线
+      'raw cashmere supplier USA',
+      'cashmere yarn manufacturer',
+      'bulk cashmere fiber',
+      'dehaired cashmere wholesale',
+      'private label knitwear USA',
     ],
     europe: [
       'cashmere wholesale Europe',
@@ -139,8 +145,14 @@ export const seoConfig = {
       'premium cashmere Germany',
       'wholesale cashmere Paris',
       'bulk knitwear Italy',
-      'B2B cashmere Barcelona',
       'cashmere distributor London',
+      // ✅ 欧洲区新增：德/法本地化B2B词 + 原料纱线
+      'Kaschmirgarn Großhandel',       // 德语：羊绒纱线批发
+      'Strickwaren Hersteller',        // 德语：针织品制造商
+      'Fil de cachemire',              // 法语：羊绒纱线
+      'Façonnier maille',              // 法语：针织代工商
+      'raw cashmere supplier Europe',
+      'cashmere yarn wholesale UK',
     ],
     asiaPacific: [
       'cashmere wholesale Asia',
@@ -148,8 +160,16 @@ export const seoConfig = {
       'luxury cashmere supplier',
       'wholesale cashmere Korea',
       'bulk knitwear Australia',
-      'B2B cashmere Singapore',
       'cashmere importer Tokyo',
+      // ✅ 亚太区新增：日/韩本地化B2B词 + 原料纱线
+      'カシミヤ糸 卸売',             // 日语：羊绒纱线批发
+      'カシミヤ原料',                // 日语：羊绒原料
+      'ニット OEM',                  // 日语：针织代工
+      '캐시미어 원사',               // 韩语：羊绒纱线
+      '캐시미어 도매',               // 韩语：羊绒批发
+      '의류 OEM',                    // 韩语：服装代工
+      'raw cashmere supplier Asia',
+      'OEM knitwear supplier',
     ],
   },
 
