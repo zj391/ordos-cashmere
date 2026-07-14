@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 /**
- * Post-build fix for Astro 5.18 + @astrojs/vercel 9.0.5 bug:
- * Compiled .astro files lack named GET/POST exports.
- *
- * Detect both `const GET` and `const POST` declarations anywhere in the file,
- * accounting for any leading whitespace from Astro's prettier-formatted output,
- * and rewrite to add named exports.
+ * Post-build fix for Astro 5.18 + @astrojs/vercel 9.0.5 bugs:
+ * 1. Compiled .astro files lack named GET/POST exports.
+ * 2. Endpoint files have leftover `const page = () => _page;` wrapper
+ *    that confuses Vercel adapter (which calls mod.page() expecting a function
+ *    for SSR rendering, but the wrapper returns an Object for endpoints).
+ *    For endpoints we must REMOVE the _page wrapper.
  */
 import { readdir, readFile, writeFile } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
@@ -25,47 +25,60 @@ async function* walk(dir) {
   }
 }
 
+// Regex to remove the leftover _page wrapper from endpoint files.
+// Pattern: const _page = Object.freeze(...Symbol.toStringTag, { value: 'Module' }));
+//          const page = () => _page;
+// (Multiline content with /*#__PURE__*/ comment marker)
+const _PAGE_WRAPPER_RE = /const _page = \/\*#__PURE__\*\/Object\.freeze\([\s\S]*?Symbol\.toStringTag, \{ value: 'Module' \}\)\);[\s]*?const page = \(\) => _page;[\s]*?/g;
+
 let fixed = 0;
 for await (const file of walk(pagesDir)) {
   if (!file.endsWith('.astro.mjs')) continue;
   let src = await readFile(file, 'utf8');
+  let changed = false;
 
-  // Skip if already has named GET export
-  if (/export\s+(const\s+GET\b|\{\s*[^}]*\bGET\b)/m.test(src)) {
-    continue;
-  }
-
-  // Detect any `const GET = ...` and `const POST = ...` declarations in the file
-  // (allowing arbitrary leading whitespace from Astro's formatting)
+  // Detect endpoint: has const GET or const POST declaration
   const hasGET = /^\s*const\s+GET\s*=/m.test(src);
   const hasPOST = /^\s*const\s+POST\s*=/m.test(src);
 
   if (hasGET || hasPOST) {
-    const names = [];
-    if (hasGET) names.push('GET');
-    if (hasPOST) names.push('POST');
-    // Strip any pre-existing `export { page };` to avoid duplicate page export
-    let out = src.replace(/^export\s*\{\s*page\s*\};\s*$/m, '');
-    // Drop the bad `export const GET = page;` if it was added in Case A pass
-    out = out.replace(/^export\s+const\s+GET\s*=\s*page;\s*$/m, '');
-    const exportLine = '\nexport { ' + names.join(', ') + ' };';
-    out = out.trimEnd() + exportLine + '\n';
-    await writeFile(file, out);
-    console.log('[fix-endpoint-build] patched ' + file.replace(root + '/', '') + ' -> added {' + names.join(', ') + '}');
-    fixed++;
+    // Add named export if missing
+    if (!/export\s+(const\s+GET\b|\{\s*[^}]*\bGET\b)/m.test(src)) {
+      const names = [];
+      if (hasGET) names.push('GET');
+      if (hasPOST) names.push('POST');
+      const exportLine = '\nexport { ' + names.join(', ') + ' };';
+      src = src.trimEnd() + exportLine + '\n';
+      changed = true;
+    }
+
+    // Remove the leftover _page wrapper (causes Vercel adapter to break)
+    const beforeWrapper = src.length;
+    src = src.replace(_PAGE_WRAPPER_RE, '');
+    if (src.length !== beforeWrapper) {
+      changed = true;
+    }
+
+    if (changed) {
+      await writeFile(file, src);
+      console.log('[fix-endpoint-build] patched ' + file.replace(root + '/', '') + ' -> removed _page wrapper' + (hasGET ? ' + GET' : '') + (hasPOST ? ' + POST' : ''));
+      fixed++;
+    }
     continue;
   }
 
-  // Plain page (Case A): has `const page = () => _page;`
+  // Plain page: has `const page = () => _page;`
   if (src.includes('const page = () => _page;')) {
-    const out = src.replace(
-      'const page = () => _page;',
-      'const page = () => _page;\nexport const GET = page;'
-    );
-    if (out !== src) {
-      await writeFile(file, out);
-      console.log('[fix-endpoint-build] patched ' + file.replace(root + '/', '') + ' -> added GET=page');
-      fixed++;
+    if (!/export\s+(const\s+GET\b|\{\s*[^}]*\bGET\b)/m.test(src)) {
+      const out = src.replace(
+        'const page = () => _page;',
+        'const page = () => _page;\nexport const GET = page;'
+      );
+      if (out !== src) {
+        await writeFile(file, out);
+        console.log('[fix-endpoint-build] patched ' + file.replace(root + '/', '') + ' -> added GET=page');
+        fixed++;
+      }
     }
   }
 }
