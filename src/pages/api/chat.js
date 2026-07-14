@@ -1,16 +1,15 @@
 /**
  * AI 24h 智能客服 endpoint (Astro 5 SSR)
  * POST /api/chat
- * Provider: OpenAI 兼容 API (DeepSeek / OpenRouter / Manus Forge 任一)
+ * Provider: Google Gemini (generativelanguage.googleapis.com)
  *
  * Environment variables (set in Vercel project settings):
- *   LLM_API_URL    - chat completions endpoint
- *                    e.g. https://api.deepseek.com/v1/chat/completions
- *                    e.g. https://openrouter.ai/api/v1/chat/completions
- *   LLM_API_KEY    - API key
- *   LLM_MODEL      - model name
- *                    e.g. deepseek-chat
- *                    e.g. anthropic/claude-3.5-sonnet
+ *   LLM_API_URL   - Gemini endpoint (default: https://generativelanguage.googleapis.com/v1beta)
+ *   LLM_API_KEY   - Google AI Studio API key
+ *   LLM_MODEL     - model name (default: gemini-2.5-flash)
+ *                   e.g. gemini-2.5-flash, gemini-2.5-pro, gemini-1.5-flash
+ *
+ * Set these in: Vercel project → Settings → Environment Variables
  */
 import { buildKnowledgeSection } from '../../data/chat-knowledge';
 
@@ -18,9 +17,9 @@ function getEnv(name, fallback) {
   return process.env[name] || process.env[name.toLowerCase()] || fallback;
 }
 
-const LLM_API_URL = getEnv('LLM_API_URL', 'https://api.deepseek.com/v1/chat/completions');
-const LLM_API_KEY = getEnv('DEEPSEEK_KEY', getEnv('LLM_API_KEY', ''));
-const LLM_MODEL = getEnv('LLM_MODEL', 'deepseek-chat');
+const LLM_API_URL = getEnv('LLM_API_URL', 'https://generativelanguage.googleapis.com/v1beta');
+const LLM_API_KEY = getEnv('GEMINI_API_KEY', getEnv('LLM_API_KEY', getEnv('DEEPSEEK_KEY', '')));
+const LLM_MODEL = getEnv('LLM_MODEL', 'gemini-2.5-flash');
 const SITE_NAME = getEnv('SITE_NAME', 'DONGXIAO Cashmere');
 const SITE_DOMAIN = getEnv('SITE_DOMAIN', 'erdosdx.com');
 
@@ -64,6 +63,37 @@ B2B 도매 문의를 전문적이고 간결하게 답변하세요. MOQ, 리드�
 공식 견적이나 샘플을 원하시면 이 페이지의 문의 양식으로 안내하세요. 답변은 120단어 이내(상세 요청 시 제외).`,
 };
 
+function convertToGemini(messages, systemInstruction) {
+  // Gemini uses {role, parts:[{text}]} format
+  // systemInstruction is separate
+  const contents = [];
+  let systemText = systemInstruction;
+  for (const m of messages) {
+    if (m.role === 'system') {
+      systemText += '\n\n' + m.content;
+    } else {
+      contents.push({
+        role: m.role === 'assistant' ? 'model' : 'user',
+        parts: [{ text: m.content }],
+      });
+    }
+  }
+  return {
+    systemInstruction: { parts: [{ text: systemText }] },
+    contents,
+    generationConfig: {
+      temperature: 0.4,
+      maxOutputTokens: 600,
+    },
+  };
+}
+
+function extractGeminiReply(data) {
+  // Gemini response: { candidates: [{ content: { parts: [{ text }] } }] }
+  const cand = data?.candidates?.[0];
+  return cand?.content?.parts?.map(p => p.text || '').join('') || '';
+}
+
 export const POST = async ({ request }) => {
   // CORS
   if (request.method === 'OPTIONS') {
@@ -81,7 +111,7 @@ export const POST = async ({ request }) => {
     return new Response(JSON.stringify({
       success: false,
       error: 'llm_not_configured',
-      message: 'Chat service not configured.',
+      message: 'Chat service not configured. Set GEMINI_API_KEY in Vercel env.',
     }), {
       status: 503,
       headers: { 'Content-Type': 'application/json' },
@@ -98,7 +128,6 @@ export const POST = async ({ request }) => {
     }
 
     let sysPrompt = SYSTEM_PROMPTS[locale] || SYSTEM_PROMPTS.en;
-    // Append structured product/FAQ knowledge base for grounded answers.
     sysPrompt = sysPrompt + '\n\n' + buildKnowledgeSection(locale);
 
     // Known customer lookup (Supabase)
@@ -108,7 +137,7 @@ export const POST = async ({ request }) => {
       try {
         const lookup = await fetch(
           `${supabaseUrl}/rest/v1/known_customers?contact_email=eq.${encodeURIComponent(email)}&select=grade,company_name,contact_name,lifetime_value_usd,total_orders,total_inquiries,tags,notes&limit=1`,
-          { headers: { 'apikey': supabaseKey, 'Authorization': `Bearer ${supabaseKey}` } }
+          { headers: { apikey: supabaseKey, 'Authorization': `Bearer ${supabaseKey}` } }
         );
         if (lookup.ok) {
           const rows = await lookup.json();
@@ -129,23 +158,19 @@ export const POST = async ({ request }) => {
       } catch (e) { /* silent */ }
     }
 
-    const upstream = await fetch(LLM_API_URL, {
+    // Build Gemini request body
+    const trimmedMessages = messages.slice(-10).map(m => ({ role: m.role, content: m.content }));
+    const geminiBody = convertToGemini(trimmedMessages, sysPrompt);
+
+    // Gemini API endpoint: :generateContent (not :generateMessage)
+    const url = `${LLM_API_URL}/models/${LLM_MODEL}:generateContent?key=${LLM_API_KEY}`;
+
+    const upstream = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${LLM_API_KEY}`,
-        'HTTP-Referer': `https://${SITE_DOMAIN}`,
-        'X-Title': SITE_NAME,
       },
-      body: JSON.stringify({
-        model: LLM_MODEL,
-        messages: [
-          { role: 'system', content: sysPrompt },
-          ...messages.slice(-10).map((m) => ({ role: m.role, content: m.content })),
-        ],
-        temperature: 0.4,
-        max_tokens: 600,
-      }),
+      body: JSON.stringify(geminiBody),
     });
 
     if (!upstream.ok) {
@@ -161,13 +186,13 @@ export const POST = async ({ request }) => {
     }
 
     const data = await upstream.json();
-    const reply = data?.choices?.[0]?.message?.content || '';
+    const reply = extractGeminiReply(data);
 
     return new Response(JSON.stringify({
       success: true,
       reply,
       model: LLM_MODEL,
-      usage: data?.usage,
+      usage: data?.usageMetadata,
     }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
