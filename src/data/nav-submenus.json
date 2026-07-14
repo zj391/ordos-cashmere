@@ -1,0 +1,273 @@
+{
+  "hats": [
+    {
+      "key": "beanies",
+      "en": "Beanies",
+      "cn": "毛线帽",
+      "de": "Beanies",
+      "fr": "Bonnets",
+      "ja": "ビーニー",
+      "kr": "비니"
+    },
+    {
+      "key": "caps",
+      "en": "Caps & Hats",
+      "cn": "帽子",
+      "de": "Kappen & Hüte",
+      "fr": "Casquettes",
+      "ja": "キャップ",
+      "kr": "캡 & 모자"
+    },
+    {
+      "key": "scarves",
+      "en": "Scarves",
+      "cn": "围巾",
+      "de": "Schals",
+      "fr": "Écharpes",
+      "ja": "マフラー",
+      "kr": "스카프"
+    },
+    {
+      "key": "gloves",
+      "en": "Gloves",
+      "cn": "手套",
+      "de": "Handschuhe",
+      "fr": "Gants",
+      "ja": "手袋",
+      "kr": "장갑"
+    },
+    {
+      "key": "socks",
+      "en": "Socks",
+      "cn": "袜子",
+      "de": "Socken",
+      "fr": "Chaussettes",
+      "ja": "靴下",
+      "kr": "양말"
+    },
+    {
+      "key": "kids",
+      "en": "For Kids",
+      "cn": "儿童款",
+      "de": "Kinder",
+      "fr": "Enfants",
+      "ja": "子供用",
+      "kr": "어린이"
+    }
+  ],
+  "sweaters": [
+    {
+      "key": "cardigan",
+      "en": "Cardigans",
+      "cn": "开衫",
+      "de": "Strickjacken",
+      "fr": "Cardigans",
+      "ja": "カーディガン",
+      "kr": "카디건"
+    },
+    {
+      "key": "pullover",
+      "en": "Pullovers",
+      "cn": "套头衫",
+      "de": "Pullover",
+      "fr": "Pulls",
+      "ja": "プルオーバー",
+      "kr": "풀오버"
+    },
+    {
+      "key": "turtleneck",
+      "en": "Turtleneck",
+      "cn": "高领",
+      "de": "Rollkragen",
+      "fr": "Col roulé",
+      "ja": "タートルネック",
+      "kr": "터틀넥"
+    },
+    {
+      "key": "vneck",
+      "en": "V-Neck",
+      "cn": "V领",
+      "de": "V-Ausschnitt",
+      "fr": "Col en V",
+      "ja": "Vネック",
+      "kr": "V넥"
+    },
+    {
+      "key": "crew",
+      "en": "Crew Neck",
+      "cn": "圆领",
+      "de": "Rundhals",
+      "fr": "Col rond",
+      "ja": "クルーネック",
+      "kr": "크ру neck"
+    },
+    {
+      "key": "hoodie",
+      "en": "Hoodies",
+      "cn": "连帽衫",
+      "de": "Kapuzenpullover",
+      "fr": "Hoodies",
+      "ja": "パーカー",
+      "kr": "후디"
+    },
+    {
+      "key": "vest",
+      "en": "Vests",
+      "cn": "背心",
+      "de": "Westen",
+      "fr": "Gilets",
+      "ja": "ベスト",
+      "kr": "조끼"
+    },
+    {
+      "key": "women",
+      "en": "For Women",
+      "cn": "女士款",
+      "de": "Damen",
+      "fr": "Femme",
+      "ja": "レディース",
+      "kr": "여성용"
+    },
+    {
+      "key": "men",
+      "en": "For Men",
+      "cn": "男士款",
+      "de": "Herren",
+      "fr": "Homme",
+      "ja": "メンズ",
+      "kr": "남성용"
+    }
+  ],
+  "scarves": [
+    {
+      "key": "wool",
+      "en": "Wool Scarves",
+      "cn": "羊毛围巾",
+      "de": "Wollschals",
+      "fr": "Écharpes Laine",
+      "ja": "ウールマフラー",
+      "kr": "울 스카프"
+    },
+    {
+      "key": "cashmere",
+      "en": "Cashmere Scarves",
+      "cn": "羊绒围巾",
+      "de": "Kaschmirschals",
+      "fr": "Écharpes Cachemire",
+      "ja": "カシミアマフラー",
+      "kr": "캐시미어 스카프"
+    },
+    {
+      "key": "shawl",
+      "en": "Shawls",
+      "cn": "披肩",
+      "de": "Schultertücher",
+      "fr": "Châles",
+      "ja": "ショール",
+      "kr": "숄"
+    },
+    {
+      "key": "wrap",
+      "en": "Wraps",
+      "cn": "包巾",
+      "de": "Wraps",
+      "fr": "Wraps",
+      "ja": "ラップ",
+      "kr": "래핑"
+    },
+    {
+      "key": "printed",
+      "en": "Printed",
+      "cn": "印花",
+      "de": "Bedruckt",
+      "fr": "Imprimé",
+      "ja": "プリント",
+      "kr": "프린트"
+    },
+    {
+      "key": "plain",
+      "en": "Plain Dyed",
+      "cn": "素色",
+      "de": "Unifarben",
+      "fr": "Uni Teint",
+      "ja": "無地染め",
+      "kr": "단색"
+    }
+  ],
+  "accessories": [
+    {
+      "key": "pants",
+      "en": "Pants",
+      "cn": "裤子",
+      "de": "Hosen",
+      "fr": "Pantalons",
+      "ja": "パンツ",
+      "kr": "바지"
+    },
+    {
+      "key": "socks",
+      "en": "Socks",
+      "cn": "袜子",
+      "de": "Socken",
+      "fr": "Chaussettes",
+      "ja": "靴下",
+      "kr": "양말"
+    },
+    {
+      "key": "leggings",
+      "en": "Leggings",
+      "cn": "打底裤",
+      "de": "Leggings",
+      "fr": "Leggings",
+      "ja": "レギンス",
+      "kr": "레깅스"
+    },
+    {
+      "key": "gloves",
+      "en": "Gloves",
+      "cn": "手套",
+      "de": "Handschuhe",
+      "fr": "Gants",
+      "ja": "手袋",
+      "kr": "장갑"
+    }
+  ],
+  "yarn": [
+    {
+      "key": "worsted",
+      "en": "Worsted",
+      "cn": "精纺",
+      "de": "Kammgarn",
+      "fr": "Peigné",
+      "ja": "梳毛",
+      "kr": "소면사"
+    },
+    {
+      "key": "woolen",
+      "en": "Woolen",
+      "cn": "粗纺",
+      "de": "Streichgarn",
+      "fr": "Cardé",
+      "ja": "紡毛",
+      "kr": "방모사"
+    },
+    {
+      "key": "machine",
+      "en": "Machine Knitting",
+      "cn": "机织用",
+      "de": "Maschinenstrick",
+      "fr": "Tricotage Machine",
+      "ja": "マシン編",
+      "kr": "기계 편물"
+    },
+    {
+      "key": "hand",
+      "en": "Hand Knitting",
+      "cn": "手编用",
+      "de": "Handstrick",
+      "fr": "Tricotage Main",
+      "ja": "手編",
+      "kr": "수작업"
+    }
+  ]
+}

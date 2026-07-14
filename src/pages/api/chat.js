@@ -17,9 +17,14 @@ function getEnv(name, fallback) {
   return process.env[name] || process.env[name.toLowerCase()] || fallback;
 }
 
-const LLM_API_URL = getEnv('LLM_API_URL', 'https://generativelanguage.googleapis.com/v1beta');
+// OpenRouter is the configured provider (key prefix sk-or-v1).
+// OpenRouter uses OpenAI-compatible API at https://openrouter.ai/api/v1/chat/completions.
+// We always use OpenAI-compatible format unless URL explicitly says Gemini.
+const LLM_API_URL_RAW = getEnv('LLM_API_URL', '');
+const LLM_API_URL = LLM_API_URL_RAW || 'https://openrouter.ai/api/v1';
+const LLM_PROVIDER = (LLM_API_URL.includes('googleapis') || LLM_API_URL.includes('gemini')) ? 'gemini' : 'openai';
 const LLM_API_KEY = getEnv('GEMINI_API_KEY', getEnv('LLM_API_KEY', getEnv('DEEPSEEK_KEY', '')));
-const LLM_MODEL = getEnv('LLM_MODEL', 'gemini-2.5-flash');
+const LLM_MODEL = getEnv('LLM_MODEL', 'meta-llama/llama-3.1-8b-instruct:free');
 const SITE_NAME = getEnv('SITE_NAME', 'DONGXIAO Cashmere');
 const SITE_DOMAIN = getEnv('SITE_DOMAIN', 'erdosdx.com');
 
@@ -158,20 +163,40 @@ export const POST = async ({ request }) => {
       } catch (e) { /* silent */ }
     }
 
-    // Build Gemini request body
     const trimmedMessages = messages.slice(-10).map(m => ({ role: m.role, content: m.content }));
-    const geminiBody = convertToGemini(trimmedMessages, sysPrompt);
+    let url, fetchOptions;
 
-    // Gemini API endpoint: :generateContent (not :generateMessage)
-    const url = `${LLM_API_URL}/models/${LLM_MODEL}:generateContent?key=${LLM_API_KEY}`;
+    if (LLM_PROVIDER === 'gemini') {
+      // Gemini API: :generateContent with ?key= query param, systemInstruction separate
+      const geminiBody = convertToGemini(trimmedMessages, sysPrompt);
+      url = `${LLM_API_URL}/models/${LLM_MODEL}:generateContent?key=${LLM_API_KEY}`;
+      fetchOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(geminiBody),
+      };
+    } else {
+      // OpenAI-compatible: chat completions with Bearer auth
+      url = `${LLM_API_URL}/chat/completions`;
+      fetchOptions = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${LLM_API_KEY}`,
+        },
+        body: JSON.stringify({
+          model: LLM_MODEL,
+          messages: [
+            { role: 'system', content: sysPrompt },
+            ...trimmedMessages,
+          ],
+          temperature: 0.4,
+          max_tokens: 600,
+        }),
+      };
+    }
 
-    const upstream = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(geminiBody),
-    });
+    const upstream = await fetch(url, fetchOptions);
 
     if (!upstream.ok) {
       const errText = await upstream.text().catch(() => '');
@@ -186,7 +211,9 @@ export const POST = async ({ request }) => {
     }
 
     const data = await upstream.json();
-    const reply = extractGeminiReply(data);
+    const reply = LLM_PROVIDER === 'gemini'
+      ? extractGeminiReply(data)
+      : (data?.choices?.[0]?.message?.content || '');
 
     return new Response(JSON.stringify({
       success: true,

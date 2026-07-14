@@ -1,9 +1,11 @@
 ---
 /**
  * 顶部导航（响应式 + 多语言切换器）
+ * 含产品分类下拉菜单
  */
 import { LOCALES, LOCALE_NAMES, LOCALE_FLAGS, type Locale } from '@/lib/i18n';
 import { localePath } from '@/lib/i18n';
+import submenusData from '@/data/nav-submenus.json';
 
 interface Props {
   locale: Locale;
@@ -12,10 +14,10 @@ interface Props {
 
 const { locale, currentPath = '/' } = Astro.props;
 
-// 主导航（每个语种本地化 label）
+// 主导航
 const navItems = [
   { href: localePath(locale, '/'), labelKey: 'nav.home' },
-  { href: localePath(locale, '/products'), labelKey: 'nav.products' },
+  { href: localePath(locale, '/products'), labelKey: 'nav.products', hasSubmenu: 'all' },
   { href: localePath(locale, '/raw-material'), labelKey: 'nav.rawMaterial' },
   { href: localePath(locale, '/yarn-fabric'), labelKey: 'nav.yarnFabric' },
   { href: localePath(locale, '/garment-oem'), labelKey: 'nav.garmentOem' },
@@ -25,17 +27,65 @@ const navItems = [
   { href: localePath(locale, '/contact'), labelKey: 'nav.contact' },
 ];
 
+// 5 个产品分类的 tab 配置 (跟 products.astro 一致)
+const productTabs = [
+  { key: 'hats', href: localePath(locale, '/products/hats'), en: 'Cashmere Hats', cn: '羊绒帽子' },
+  { key: 'sweaters', href: localePath(locale, '/products/sweaters'), en: 'Sweaters', cn: '羊绒衫' },
+  { key: 'scarves', href: localePath(locale, '/products/scarves'), en: 'Scarves & Wraps', cn: '围巾披肩' },
+  { key: 'accessories', href: localePath(locale, '/products/accessories'), en: 'Accessories', cn: '配饰' },
+  { key: 'yarn', href: localePath(locale, '/products/yarn'), en: 'Yarn & Fiber', cn: '纱线' },
+];
+
 // 翻译文本
 const labels: Record<string, Record<string, string>> = {
-  en: { 'nav.home': 'Home', 'nav.products': 'Products', 'nav.rawMaterial': 'Raw Material', 'nav.yarnFabric': 'Yarn & Fabric', 'nav.garmentOem': 'Garment OEM', 'nav.ordosOrigin': 'Ordos Origin', 'nav.factory': 'Factory', 'nav.blog': 'Blog', 'nav.contact': 'Contact', 'nav.menuToggle': 'Menu' },
-  de: { 'nav.home': 'Start', 'nav.products': 'Produkte', 'nav.rawMaterial': 'Rohmaterial', 'nav.yarnFabric': 'Garn & Stoff', 'nav.garmentOem': 'Bekleidung OEM', 'nav.ordosOrigin': 'Ordos Herkunft', 'nav.factory': 'Fabrik', 'nav.blog': 'Blog', 'nav.contact': 'Kontakt', 'nav.menuToggle': 'Menü' },
-  fr: { 'nav.home': 'Accueil', 'nav.products': 'Produits', 'nav.rawMaterial': 'Matière Première', 'nav.yarnFabric': 'Fil & Tissu', 'nav.garmentOem': 'Vêtement OEM', 'nav.ordosOrigin': 'Origine Ordos', 'nav.factory': 'Usine', 'nav.blog': 'Blog', 'nav.contact': 'Contact', 'nav.menuToggle': 'Menu' },
-  ja: { 'nav.home': 'ホーム', 'nav.products': '製品', 'nav.rawMaterial': '原料', 'nav.yarnFabric': '糸・生地', 'nav.garmentOem': '衣料OEM', 'nav.ordosOrigin': 'オルドス起源', 'nav.factory': '工場', 'nav.blog': 'ブログ', 'nav.contact': 'お問い合わせ', 'nav.menuToggle': 'メニュー' },
-  kr: { 'nav.home': '홈', 'nav.products': '제품', 'nav.rawMaterial': '원료', 'nav.yarnFabric': '원사·직물', 'nav.garmentOem': '의류 OEM', 'nav.ordosOrigin': '오르도스 원산지', 'nav.factory': '공장', 'nav.blog': '블로그', 'nav.contact': '문의', 'nav.menuToggle': '메뉴' },
-  cn: { 'nav.home': '首页', 'nav.products': '产品', 'nav.rawMaterial': '羊绒原料', 'nav.yarnFabric': '纱线/面料', 'nav.garmentOem': '成衣代工', 'nav.ordosOrigin': '鄂尔多斯产地', 'nav.factory': '工厂实力', 'nav.blog': '博客', 'nav.contact': '联系我们', 'nav.menuToggle': '菜单' },
+  en: {
+    'nav.home': 'Home', 'nav.products': 'Products', 'nav.rawMaterial': 'Raw Material',
+    'nav.yarnFabric': 'Yarn & Fabric', 'nav.garmentOem': 'Garment OEM',
+    'nav.ordosOrigin': 'Ordos Origin', 'nav.factory': 'Factory', 'nav.blog': 'Blog',
+    'nav.contact': 'Contact', 'nav.menuToggle': 'Menu',
+    'nav.viewAll': 'View All →', 'nav.byCategory': 'By Category',
+  },
+  de: {
+    'nav.home': 'Start', 'nav.products': 'Produkte', 'nav.rawMaterial': 'Rohmaterial',
+    'nav.yarnFabric': 'Garn & Stoff', 'nav.garmentOem': 'Bekleidung OEM',
+    'nav.ordosOrigin': 'Ordos Herkunft', 'nav.factory': 'Fabrik', 'nav.blog': 'Blog',
+    'nav.contact': 'Kontakt', 'nav.menuToggle': 'Menü',
+    'nav.viewAll': 'Alle anzeigen →', 'nav.byCategory': 'Nach Kategorie',
+  },
+  fr: {
+    'nav.home': 'Accueil', 'nav.products': 'Produits', 'nav.rawMaterial': 'Matière Première',
+    'nav.yarnFabric': 'Fil & Tissu', 'nav.garmentOem': 'Vêtement OEM',
+    'nav.ordosOrigin': 'Origine Ordos', 'nav.factory': 'Usine', 'nav.blog': 'Blog',
+    'nav.contact': 'Contact', 'nav.menuToggle': 'Menu',
+    'nav.viewAll': 'Voir tout →', 'nav.byCategory': 'Par catégorie',
+  },
+  ja: {
+    'nav.home': 'ホーム', 'nav.products': '製品', 'nav.rawMaterial': '原料',
+    'nav.yarnFabric': '糸・生地', 'nav.garmentOem': '衣料OEM',
+    'nav.ordosOrigin': 'オルドス起源', 'nav.factory': '工場', 'nav.blog': 'ブログ',
+    'nav.contact': 'お問い合わせ', 'nav.menuToggle': 'メニュー',
+    'nav.viewAll': 'すべて見る →', 'nav.byCategory': 'カテゴリ別',
+  },
+  kr: {
+    'nav.home': '홈', 'nav.products': '제품', 'nav.rawMaterial': '원료',
+    'nav.yarnFabric': '원사·직물', 'nav.garmentOem': '의류 OEM',
+    'nav.ordosOrigin': '오르도스 원산지', 'nav.factory': '공장', 'nav.blog': '블로그',
+    'nav.contact': '문의', 'nav.menuToggle': '메뉴',
+    'nav.viewAll': '전체 보기 →', 'nav.byCategory': '카테고리별',
+  },
+  cn: {
+    'nav.home': '首页', 'nav.products': '产品', 'nav.rawMaterial': '羊绒原料',
+    'nav.yarnFabric': '纱线/面料', 'nav.garmentOem': '成衣代工',
+    'nav.ordosOrigin': '鄂尔多斯产地', 'nav.factory': '工厂实力', 'nav.blog': '博客',
+    'nav.contact': '联系我们', 'nav.menuToggle': '菜单',
+    'nav.viewAll': '查看全部 →', 'nav.byCategory': '按分类',
+  },
 };
 
 const t = (key: string) => labels[locale]?.[key] || labels.en[key] || key;
+
+// submenu helper
+const subLabel = (sub: any) => sub[locale] || sub.en || sub.cn;
 ---
 
 <header class="sticky top-0 z-40 w-full border-b border-border bg-background shadow-sm">
@@ -51,17 +101,61 @@ const t = (key: string) => labels[locale]?.[key] || labels.en[key] || key;
     </a>
 
     <!-- Desktop Nav -->
-    <nav class="hidden lg:flex items-center gap-6 text-sm">
-      {navItems.slice(0, 8).map((item) => (
-        <a
-          href={item.href}
-          class:list={[
-            'transition-colors hover:text-primary',
-            currentPath === item.href ? 'text-primary font-medium' : 'text-muted-foreground',
-          ]}
-        >
-          {t(item.labelKey)}
-        </a>
+    <nav class="hidden lg:flex items-center gap-1 text-sm">
+      {navItems.map((item) => (
+        <div class="relative group">
+          <a
+            href={item.href}
+            class:list={[
+              'inline-flex items-center gap-1 px-3 py-2 transition-colors hover:text-primary',
+              currentPath === item.href ? 'text-primary font-medium' : 'text-muted-foreground',
+            ]}
+          >
+            {t(item.labelKey)}
+            {item.hasSubmenu && (
+              <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            )}
+          </a>
+          {item.hasSubmenu === 'all' && (
+            <!-- Mega Menu Dropdown -->
+            <div class="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <div class="bg-popover border border-border rounded-lg shadow-xl p-6 w-[800px] max-w-[calc(100vw-2rem)]">
+                <div class="grid grid-cols-5 gap-4">
+                  {productTabs.map((tab) => (
+                    <div class="space-y-2">
+                      <a
+                        href={tab.href}
+                        class="block font-semibold text-sm text-foreground hover:text-primary transition-colors border-b border-border pb-1.5"
+                      >
+                        {locale === 'cn' ? tab.cn : tab.en}
+                      </a>
+                      <ul class="space-y-1">
+                        {(submenusData as any)[tab.key]?.slice(0, 6).map((sub: any) => (
+                          <li>
+                            <a
+                              href={`${tab.href}?submenu=${sub.key}`}
+                              class="block text-xs text-muted-foreground hover:text-primary transition-colors py-0.5"
+                            >
+                              {subLabel(sub)}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+                <div class="mt-4 pt-4 border-t border-border flex items-center justify-between">
+                  <span class="text-xs text-muted-foreground">{t('nav.byCategory')}</span>
+                  <a href={localePath(locale, '/products')} class="text-xs font-medium text-primary hover:underline">
+                    {t('nav.viewAll')}
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
       ))}
     </nav>
 
@@ -122,25 +216,48 @@ const t = (key: string) => labels[locale]?.[key] || labels.en[key] || key;
   <nav id="mobile-menu" class="lg:hidden hidden border-t border-border bg-background">
     <div class="container-narrow py-4 space-y-1">
       {navItems.map((item) => (
-        <a
-          href={item.href}
-          class="block py-2 text-sm text-foreground hover:text-primary transition-colors"
-        >
-          {t(item.labelKey)}
-        </a>
+        <div>
+          <a
+            href={item.href}
+            class="block py-2 text-sm font-medium text-foreground hover:text-primary transition-colors"
+          >
+            {t(item.labelKey)}
+          </a>
+          {item.hasSubmenu === 'all' && (
+            <div class="pl-4 space-y-1 mt-1 mb-2 border-l-2 border-border ml-2">
+              {productTabs.map((tab) => (
+                <div class="space-y-1">
+                  <a
+                    href={tab.href}
+                    class="block text-xs font-medium text-muted-foreground hover:text-primary transition-colors py-1"
+                  >
+                    {locale === 'cn' ? tab.cn : tab.en}
+                  </a>
+                  {(submenusData as any)[tab.key]?.slice(0, 4).map((sub: any) => (
+                    <a
+                      href={`${tab.href}?submenu=${sub.key}`}
+                      class="block text-xs text-muted-foreground/80 hover:text-primary transition-colors py-0.5 pl-3"
+                    >
+                      · {subLabel(sub)}
+                    </a>
+                  ))}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       ))}
     </div>
   </nav>
 </header>
 
 <script is:inline>
-  // 移动端菜单：点 hamburger 切换 + 点链接后自动关
+  // 移动端菜单
   const toggle = document.getElementById('mobile-menu-toggle');
   const menu = document.getElementById('mobile-menu');
   toggle?.addEventListener('click', () => {
     menu?.classList.toggle('hidden');
   });
-  // 点 mobile menu 里的任何链接后自动关
   menu?.querySelectorAll('a').forEach((a) => {
     a.addEventListener('click', () => menu.classList.add('hidden'));
   });
