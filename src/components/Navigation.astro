@@ -158,11 +158,15 @@ const groupLabel = (groupKey: string, group: any) => {
           {item.hasSubmenu && (
             <!-- Mega Menu: 4 groups (Style / Material / Use / Audience) with fade-in animation -->
             <div
-              class={`mega-menu absolute top-full pt-3 opacity-0 invisible
-                     group-hover:opacity-100 group-hover:visible
-                     transition-all duration-300 ease-out z-50
-                     -translate-y-2 group-hover:translate-y-0
-                     ${item.menuPos === 'left' ? 'left-0' : item.menuPos === 'right' ? 'right-0' : 'left-1/2 -translate-x-1/2'}`}
+              class:list={[
+                'mega-menu absolute top-full pt-3 opacity-0 invisible',
+                'group-hover:opacity-100 group-hover:visible',
+                'transition-all duration-300 ease-out z-50',
+                '-translate-y-2 group-hover:translate-y-0',
+                item.menuPos === 'left' && 'left-0',
+                item.menuPos === 'right' && 'right-0',
+                (!item.menuPos || item.menuPos === 'center') && 'left-1/2 -translate-x-1/2',
+              ]}
               data-mega-menu
             >
               <div class="bg-popover/95 backdrop-blur-md border border-border rounded-xl shadow-2xl p-8 w-[min(1100px,calc(100vw-2rem))]">
