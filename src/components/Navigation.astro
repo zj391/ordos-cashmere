@@ -16,13 +16,14 @@ const { locale, currentPath = '/' } = Astro.props;
 
 // 主导航
 // Pura-style: 5 product category tabs each with own submenu
-// Plus 4 informational pages (no submenu)
+// Plus 5 informational pages (no submenu)
+// menuPos: 'left' | 'center' | 'right' - controls mega menu alignment
 const navItems = [
-  { href: localePath(locale, '/products/hats'), labelKey: 'nav.hats', hasSubmenu: 'hats' },
-  { href: localePath(locale, '/products/sweaters'), labelKey: 'nav.sweaters', hasSubmenu: 'sweaters' },
-  { href: localePath(locale, '/products/scarves'), labelKey: 'nav.scarves', hasSubmenu: 'scarves' },
-  { href: localePath(locale, '/products/accessories'), labelKey: 'nav.accessories', hasSubmenu: 'accessories' },
-  { href: localePath(locale, '/products/yarn'), labelKey: 'nav.yarn', hasSubmenu: 'yarn' },
+  { href: localePath(locale, '/products/hats'), labelKey: 'nav.hats', hasSubmenu: 'hats', menuPos: 'left' },
+  { href: localePath(locale, '/products/sweaters'), labelKey: 'nav.sweaters', hasSubmenu: 'sweaters', menuPos: 'center' },
+  { href: localePath(locale, '/products/scarves'), labelKey: 'nav.scarves', hasSubmenu: 'scarves', menuPos: 'center' },
+  { href: localePath(locale, '/products/accessories'), labelKey: 'nav.accessories', hasSubmenu: 'accessories', menuPos: 'right' },
+  { href: localePath(locale, '/products/yarn'), labelKey: 'nav.yarn', hasSubmenu: 'yarn', menuPos: 'right' },
   { href: localePath(locale, '/raw-material'), labelKey: 'nav.rawMaterial' },
   { href: localePath(locale, '/ordos-origin'), labelKey: 'nav.ordosOrigin' },
   { href: localePath(locale, '/factory'), labelKey: 'nav.factory' },
@@ -160,10 +161,16 @@ const groupLabel = (groupKey: string, group: any) => {
               class="mega-menu absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 invisible
                      group-hover:opacity-100 group-hover:visible
                      transition-all duration-300 ease-out z-50
-                     -translate-y-2 group-hover:translate-y-0"
+                     -translate-y-2 group-hover:translate-y-0
+                     [&:nth-child(1)]:left-0 [&:nth-child(1)]:translate-x-0
+                     [&:nth-child(2)]:left-1/4 [&:nth-child(2)]:-translate-x-1/4
+                     [&:nth-child(3)]:left-1/2 [&:nth-child(3)]:-translate-x-1/2
+                     [&:nth-child(4)]:left-3/4 [&:nth-child(4)]:-translate-x-3/4
+                     [&:nth-child(5)]:left-full [&:nth-child(5)]:-translate-x-full
+                     [&:nth-child(n+6)]:left-1/2 [&:nth-child(n+6)]:-translate-x-1/2"
               data-mega-menu
             >
-              <div class="bg-popover border border-border rounded-xl shadow-2xl p-8 w-[min(1100px,calc(100vw-2rem))]">
+              <div class="bg-popover/95 backdrop-blur-md border border-border rounded-xl shadow-2xl p-8 w-[min(1100px,calc(100vw-2rem))]">
                 <div class="grid grid-cols-4 gap-8">
                   {Object.entries((submenusData as any)[item.hasSubmenu] || {}).map(([groupKey, group]: [string, any]) => (
                     <div class="space-y-3">
