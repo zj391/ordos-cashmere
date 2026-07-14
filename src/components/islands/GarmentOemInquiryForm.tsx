@@ -73,7 +73,7 @@ export default function GarmentOemInquiryForm({ locale }: { locale: string }) {
             en: 'Garment Type *', cn: '服装类型 *', de: 'Bekleidungstyp *',
             fr: 'Type de vêtement *', ja: '衣料タイプ *', kr: '의류 유형 *',
           },
-                  {
+        {
           name: 'material_preference',
           type: 'select',
           multiple: true,
