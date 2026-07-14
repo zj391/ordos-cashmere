@@ -73,6 +73,14 @@ export default function GarmentOemInquiryForm({ locale }: { locale: string }) {
             en: 'Garment Type *', cn: '服装类型 *', de: 'Bekleidungstyp *',
             fr: 'Type de vêtement *', ja: '衣料タイプ *', kr: '의류 유형 *',
           },
+          options: {
+            sweater: { en: 'Sweater / Knitwear', cn: '羊绒衫/针织衫', de: 'Pullover / Strick', fr: 'Pull / Tricot', ja: 'セーター/ニット', kr: '스웨터/니트' },
+            coat: { en: 'Cashmere Coat', cn: '羊绒大衣', de: 'Kaschmirmantel', fr: 'Manteau cachemire', ja: 'カシミアコート', kr: '캐시미어 코트' },
+            scarf: { en: 'Scarf / Shawl', cn: '围巾/披肩', de: 'Schal / Tuch', fr: 'Écharpe / Châle', ja: 'スカーフ/ショール', kr: '스카프/숄' },
+            hat: { en: 'Hat / Beanie', cn: '帽子/毛线帽', de: 'Mütze', fr: 'Bonnet', ja: '帽子/ビーニー', kr: '모자/비니' },
+            other: { en: 'Other', cn: '其他', de: 'Andere', fr: 'Autre', ja: 'その他', kr: '기타' },
+          },
+        },
         {
           name: 'material_preference',
           type: 'select',
@@ -92,15 +100,7 @@ export default function GarmentOemInquiryForm({ locale }: { locale: string }) {
             cotton: { en: 'Cotton', cn: '棉', de: 'Baumwolle', fr: 'Coton', ja: 'コットン', kr: '면' },
             blend: { en: 'Wool/Cashmere Blend', cn: '毛绒混纺', de: 'Wolle/Kaschmir-Mischung', fr: 'Mélange laine/cachemire', ja: 'ウール/カシミア混紡', kr: '울/캐시미어 혼방' },
             sustainable: { en: 'Recycled / Sustainable', cn: '再生/环保面料', de: 'Recycelt / Nachhaltig', fr: 'Recyclé / Durable', ja: 'リサイクル/サステナブル', kr: '재활용/지속가능한 소재' },
-            other: { en: 'Other (please specify in details)', cn: '其他（请在详情中说明）', de: 'Andere (bitte im Detail angeben)', fr: 'Autre (préciser dans les détails)', ja: 'その他（詳細に記載してください）', kr: '기타 (상세 내용에 기재해 주세요)',
-          }
-        },
-          options: {
-            sweater: { en: 'Sweater / Knitwear', cn: '羊绒衫/针织衫', de: 'Pullover / Strick', fr: 'Pull / Tricot', ja: 'セーター/ニット', kr: '스웨터/니트' },
-            coat: { en: 'Cashmere Coat', cn: '羊绒大衣', de: 'Kaschmirmantel', fr: 'Manteau cachemire', ja: 'カシミアコート', kr: '캐시미어 코트' },
-            scarf: { en: 'Scarf / Shawl', cn: '围巾/披肩', de: 'Schal / Tuch', fr: 'Écharpe / Châle', ja: 'スカーフ/ショール', kr: '스카프/숄' },
-            hat: { en: 'Hat / Beanie', cn: '帽子/毛线帽', de: 'Mütze', fr: 'Bonnet', ja: '帽子/ビーニー', kr: '모자/비니' },
-            other: { en: 'Other', cn: '其他', de: 'Andere', fr: 'Autre', ja: 'その他', kr: '기타' }
+            other: { en: 'Other (please specify in details)', cn: '其他（请在详情中说明）', de: 'Andere (bitte im Detail angeben)', fr: 'Autre (préciser dans les détails)', ja: 'その他（詳細に記載してください）', kr: '기타 (상세 내용에 기재해 주세요)' },
           },
         },
         {
