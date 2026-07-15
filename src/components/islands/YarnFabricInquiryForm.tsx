@@ -108,6 +108,7 @@ export default function YarnFabricInquiryForm({ locale }: { locale: string }) {
           label: { en: 'Additional Requirements', cn: '其他要求', de: 'Zusätzliche Anforderungen', fr: 'Exigences supplémentaires', ja: 'その他のご要望', kr: '추가 요구사항' },
         },
       ]}
+      enableAttachments={true}
     />
   );
 }

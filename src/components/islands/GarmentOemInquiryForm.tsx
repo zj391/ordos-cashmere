@@ -130,6 +130,7 @@ export default function GarmentOemInquiryForm({ locale }: { locale: string }) {
           label: { en: 'Project Details', cn: '项目详情', de: 'Projektdetails', fr: 'Détails du projet', ja: 'プロジェクト詳細', kr: '프로젝트 상세' },
         },
       ]}
+      enableAttachments={true}
     />
   );
 }

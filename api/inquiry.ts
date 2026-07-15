@@ -47,9 +47,17 @@ const INQUIRY_TYPE_MAP = {
   yarn: 'yarn_fabric',
   garment: 'garment_oem',
 } as const;
-async function sendEmail(payload: { to: string; subject: string; html: string; replyTo?: string; tag?: string }): Promise<{ ok: boolean; id?: string; error?: string }> {
+async function sendEmail(payload: { to: string; subject: string; html: string; replyTo?: string; tag?: string; attachments?: Array<{ name: string; type: string; dataUrl: string }> }): Promise<{ ok: boolean; id?: string; error?: string }> {
   if (!RESEND_API_KEY) return { ok: false, error: 'no_api_key' };
   try {
+    // Resend attachments API: array of {filename, content (base64)} per https://resend.com/docs/api-reference/emails/send-email
+    // dataUrl is "data:<mime>;base64,<payload>" — strip the prefix to get raw base64.
+    const resendAttachments = (payload.attachments || []).map((a) => {
+      const base64 = a.dataUrl.includes('base64,')
+        ? a.dataUrl.split('base64,')[1]
+        : a.dataUrl;
+      return { filename: a.name, content: base64 };
+    });
     const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
@@ -63,6 +71,7 @@ async function sendEmail(payload: { to: string; subject: string; html: string; r
         html: payload.html,
         reply_to: payload.replyTo || REPLY_TO,
         tags: payload.tag ? [{ name: 'category', value: payload.tag }] : undefined,
+        attachments: resendAttachments.length > 0 ? resendAttachments : undefined,
       }),
     });
     if (!res.ok) {
@@ -227,7 +236,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // 5. 自动回执邮件（如果配置了 Resend）
     const reply = renderCustomerEmail(data.locale, data);
-    const customerEmailResult = sendEmail({ to: data.email, ...reply, tag: 'inquiry-reply' })
+    const customerEmailResult = sendEmail({ to: data.email, ...reply, tag: 'inquiry-reply', attachments: data.attachments })
       .catch(err => { console.error('Email error:', err); return { ok: false, error: String(err) }; });
     const internalEmailResult = sendEmail({
       to: NOTIFICATION_EMAIL,
@@ -246,7 +255,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         <p><strong>Message:</strong> ${data.message || 'N/A'}</p>
         <p><strong>Locale:</strong> ${data.locale}</p>
         <p><strong>Inquiry ID:</strong> ${inquiryId}</p>
+        <p><strong>Attachments:</strong> ${(data.attachments && data.attachments.length) ? data.attachments.length : 0}</p>
       `,
+      attachments: data.attachments,
     }).catch(err => { console.error('Internal email error:', err); return { ok: false, error: String(err) }; });
 
 
