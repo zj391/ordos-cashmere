@@ -19,6 +19,8 @@ interface FieldDef {
   accept?: string;
   /** max file size in MB (defaults to 2) */
   maxMb?: number;
+  /** for type='file': allow multiple files. Defaults to true. */
+  multiple?: boolean;
 }
 
 interface Props {
@@ -68,7 +70,7 @@ export default function ProductInquiryForm({
       return;
     }
     // Attachments to JSON payload (base64 inline)
-    const payload = { ...data, locale, type: productType };
+    const payload: Record<string, unknown> = { ...data, locale, type: productType };
     if (enableAttachments && attachments.length > 0) {
       payload.attachments = attachments;
     }
