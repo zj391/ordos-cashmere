@@ -18,12 +18,18 @@ const { locale, currentPath = '/' } = Astro.props;
 // Pura-style: 5 product category tabs each with own submenu
 // Plus 5 informational pages (no submenu)
 // menuPos: 'left' | 'center' | 'right' - controls mega menu alignment
+// 把 URL 直接指向 /products 列表页（不是 /products/[slug] 详情页）
+// 子分类链接带 ?cat=hats&byStyle=beanies 等参数，由 products.astro 的 JS 读 URL 应用 filter。
+// 历史原因：[category].astro 把 hats 和 accessories 合并到 hats-accessories 单 hub，
+// mega menu 子项要独立 filter 所以走总列表页更直接。
+const productListHref = localePath(locale, '/products');
+
 const navItems = [
-  { href: localePath(locale, '/products/hats'), labelKey: 'nav.hats', hasSubmenu: 'hats', menuPos: 'left' },
-  { href: localePath(locale, '/products/sweaters'), labelKey: 'nav.sweaters', hasSubmenu: 'sweaters', menuPos: 'center' },
-  { href: localePath(locale, '/products/scarves'), labelKey: 'nav.scarves', hasSubmenu: 'scarves', menuPos: 'center' },
-  { href: localePath(locale, '/products/accessories'), labelKey: 'nav.accessories', hasSubmenu: 'accessories', menuPos: 'right' },
-  { href: localePath(locale, '/products/yarn'), labelKey: 'nav.yarn', hasSubmenu: 'yarn', menuPos: 'right' },
+  { href: `${productListHref}?cat=hats`, labelKey: 'nav.hats', hasSubmenu: 'hats', menuPos: 'left' },
+  { href: `${productListHref}?cat=sweaters`, labelKey: 'nav.sweaters', hasSubmenu: 'sweaters', menuPos: 'center' },
+  { href: `${productListHref}?cat=scarves`, labelKey: 'nav.scarves', hasSubmenu: 'scarves', menuPos: 'center' },
+  { href: `${productListHref}?cat=accessories`, labelKey: 'nav.accessories', hasSubmenu: 'accessories', menuPos: 'right' },
+  { href: `${productListHref}?cat=yarn`, labelKey: 'nav.yarn', hasSubmenu: 'yarn', menuPos: 'right' },
   { href: localePath(locale, '/raw-material'), labelKey: 'nav.rawMaterial' },
   { href: localePath(locale, '/ordos-origin'), labelKey: 'nav.ordosOrigin' },
   { href: localePath(locale, '/factory'), labelKey: 'nav.factory' },
@@ -125,7 +131,7 @@ const groupLabel = (groupKey: string, group: any) => {
 };
 ---
 
-<header class="sticky top-0 z-40 w-full border-b border-border bg-background shadow-sm">
+<header class="sticky top-0 z-40 w-full border-b border-border bg-background shadow-sm relative">
   <div class="container-narrow flex h-16 items-center justify-between">
     <!-- Logo -->
     <a href={localePath(locale, '/')} class="flex items-center gap-2 group">
@@ -138,9 +144,9 @@ const groupLabel = (groupKey: string, group: any) => {
     </a>
 
     <!-- Desktop Nav -->
-    <nav class="hidden lg:flex items-center gap-1 text-sm">
+    <nav class="hidden lg:flex items-center gap-1 text-sm" id="desktop-nav">
       {navItems.map((item) => (
-        <div class="relative group">
+        <div class="relative group/item" data-mega-trigger={item.hasSubmenu || ''}>
           <a
             href={item.href}
             class:list={[
@@ -150,65 +156,78 @@ const groupLabel = (groupKey: string, group: any) => {
           >
             {t(item.labelKey)}
             {item.hasSubmenu && (
-              <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-3 h-3 transition-transform group-hover/item:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
             )}
           </a>
-          {item.hasSubmenu && (
-            <!-- Mega Menu: 4 groups (Style / Material / Use / Audience) with fade-in animation -->
-            <div
-              class:list={[
-                'mega-menu absolute top-full pt-3 opacity-0 invisible',
-                'group-hover:opacity-100 group-hover:visible',
-                'transition-all duration-300 ease-out z-50',
-                '-translate-y-2 group-hover:translate-y-0',
-                item.menuPos === 'left' && 'left-0',
-                item.menuPos === 'right' && 'right-0',
-                (!item.menuPos || item.menuPos === 'center') && 'left-1/2 -translate-x-1/2',
-              ]}
-              data-mega-menu
-            >
-              <div class="bg-popover/95 backdrop-blur-md border border-border rounded-xl shadow-2xl p-8 w-[min(1100px,calc(100vw-2rem))]">
-                <div class="grid grid-cols-4 gap-8">
-                  {Object.entries((submenusData as any)[item.hasSubmenu] || {}).map(([groupKey, group]: [string, any]) => (
-                    <div class="space-y-3">
-                      <h3 class="text-xs font-bold uppercase tracking-wider text-primary border-b border-border pb-2">
-                        {groupLabel(groupKey, group)}
-                      </h3>
-                      <ul class="space-y-1.5">
-                        {group.items?.map((sub: any) => (
-                          <li>
-                            <a
-                              href={`${item.href}?${groupKey}=${sub.key}`}
-                              class="block text-sm text-muted-foreground hover:text-primary hover:translate-x-1 transition-all duration-150 py-0.5"
-                            >
-                              {subLabel(sub)}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-                <div class="mt-6 pt-5 border-t border-border flex items-center justify-between">
-                  <a
-                    href={item.href}
-                    class="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:gap-2 transition-all"
-                  >
-                    {t('nav.viewAll')}
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </a>
-                  <span class="text-xs text-muted-foreground">{Object.keys((submenusData as any)[item.hasSubmenu] || {}).length} categories</span>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       ))}
     </nav>
+
+    <!-- Mega Menu container (rendered once, content swapped by JS based on hovered nav item) -->
+    {navItems.filter((i) => i.hasSubmenu).map((item) => (
+      <div
+        data-mega-panel={item.hasSubmenu}
+        class="absolute left-0 right-0 top-full w-full bg-white border-t border-border shadow-[0_24px_48px_-12px_rgba(0,0,0,0.15)] opacity-0 invisible pointer-events-none transition-all duration-300 ease-out z-50"
+      >
+        <div class="container-narrow py-10 grid grid-cols-[1fr_320px] gap-12">
+          <!-- Left: 4 category groups -->
+          <div class="grid grid-cols-4 gap-8">
+            {Object.entries((submenusData as any)[item.hasSubmenu] || {})
+              .filter(([k]) => k !== 'feature')
+              .map(([groupKey, group]: [string, any]) => (
+              <div class="space-y-4">
+                <h3 class="text-xs font-bold uppercase tracking-[0.12em] text-primary border-b border-border pb-2 mb-3">
+                  {groupLabel(groupKey, group)}
+                </h3>
+                <ul class="space-y-2">
+                  {group.items?.map((sub: any) => (
+                    <li>
+                      <a
+                        href={`${item.href}&${groupKey}=${sub.key}`}
+                        class="block text-sm text-muted-foreground hover:text-primary hover:translate-x-1 transition-all duration-150 py-0.5"
+                      >
+                        {subLabel(sub)}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <!-- Right: featured card (Pura-style) -->
+          {(() => {
+            const feature = (submenusData as any)[item.hasSubmenu]?.feature;
+            if (!feature) return null;
+            return (
+              <a href={feature.href?.[locale] || feature.href?.en || '#'} class="group/feature block relative overflow-hidden rounded-md bg-stone-50">
+                <div class="aspect-[4/3] overflow-hidden">
+                  <img
+                    src={feature.image}
+                    alt=""
+                    loading="lazy"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover/feature:scale-105"
+                  />
+                </div>
+                <div class="p-5 space-y-2">
+                  <div class="text-[10px] uppercase tracking-[0.15em] text-muted-foreground font-medium">
+                    {feature.eyebrow?.[locale] || feature.eyebrow?.en || ''}
+                  </div>
+                  <div class="font-display text-base text-foreground leading-snug">
+                    {feature.title?.[locale] || feature.title?.en || ''}
+                  </div>
+                  <div class="text-sm text-primary font-medium inline-flex items-center gap-1.5 pt-1">
+                    {feature.cta?.[locale] || feature.cta?.en || ''}
+                  </div>
+                </div>
+              </a>
+            );
+          })()}
+        </div>
+      </div>
+    ))}
 
     <!-- Right side -->
     <div class="flex items-center gap-3">
@@ -312,4 +331,74 @@ const groupLabel = (groupKey: string, group: any) => {
   menu?.querySelectorAll('a').forEach((a) => {
     a.addEventListener('click', () => menu.classList.add('hidden'));
   });
+
+  // Pura-style mega menu: show panel matching the hovered nav item.
+  // Single shared overlay prevents z-index/overflow pain from per-item positioning.
+  (function () {
+    const triggers = document.querySelectorAll('[data-mega-trigger]');
+    const panels = document.querySelectorAll('[data-mega-panel]');
+    if (!triggers.length || !panels.length) return;
+
+    let activeKey = null;
+    let hideTimer = null;
+
+    function show(key) {
+      if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+      if (key === activeKey) return;
+      activeKey = key;
+      panels.forEach((p) => {
+        if (p.getAttribute('data-mega-panel') === key) {
+          p.classList.remove('opacity-0', 'invisible', 'pointer-events-none');
+          p.classList.add('opacity-100', 'visible', 'pointer-events-auto');
+        } else {
+          p.classList.add('opacity-0', 'invisible', 'pointer-events-none');
+          p.classList.remove('opacity-100', 'visible', 'pointer-events-auto');
+        }
+      });
+    }
+
+    function scheduleHide() {
+      if (hideTimer) clearTimeout(hideTimer);
+      hideTimer = setTimeout(() => {
+        activeKey = null;
+        panels.forEach((p) => {
+          p.classList.add('opacity-0', 'invisible', 'pointer-events-none');
+          p.classList.remove('opacity-100', 'visible', 'pointer-events-auto');
+        });
+      }, 120); // small grace period so cursor can move from trigger to panel
+    }
+
+    triggers.forEach((t) => {
+      const key = t.getAttribute('data-mega-trigger');
+      if (!key) return;
+      t.addEventListener('mouseenter', () => show(key));
+      t.addEventListener('mouseleave', scheduleHide);
+    });
+
+    panels.forEach((p) => {
+      p.addEventListener('mouseenter', () => {
+        if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+      });
+      p.addEventListener('mouseleave', scheduleHide);
+    });
+
+    // Touch / keyboard: tap-to-toggle for accessibility
+    triggers.forEach((t) => {
+      const a = t.querySelector('a');
+      if (!a) return;
+      a.addEventListener('click', (e) => {
+        const key = t.getAttribute('data-mega-trigger');
+        if (!key) return;
+        // If panel for this key is hidden, prevent navigation and show it
+        if (activeKey !== key) {
+          e.preventDefault();
+          show(key);
+        }
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && activeKey) scheduleHide();
+    });
+  })();
 </script>
