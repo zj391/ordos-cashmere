@@ -15,6 +15,7 @@ import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
 import { SEO, SITE_INFO } from '@/lib/seo';
 import { products as productsData } from '@/data/products';
 import { getProductLabels } from '@/lib/product-labels';
+import { tagAllProducts, PRODUCT_TAG_RULES } from '@/data/product-tags';
 
 export function getStaticPaths() {
   return LOCALES.map((locale) => ({ params: { locale } }));
@@ -36,6 +37,17 @@ const allProducts = productsData.categories.flatMap((cat) =>
 );
 const categories = productsData.categories;
 const labels = getProductLabels(locale);
+
+// Pre-tag every product once at build time so URL params (e.g. ?byStyle=beanies)
+// from the mega menu can filter the product grid client-side.
+const productTagsMap = tagAllProducts();
+
+// Build a serializable tags index: { productId: ["byStyle=beanies", "byMaterial=100pct-cashmere", ...] }
+const productTagsJson = JSON.stringify(
+  Object.fromEntries(
+    Array.from(productTagsMap.entries()).map(([id, tags]) => [id, Array.from(tags)])
+  )
+);
 
 // 各语言 TDK
 const tdk: Record<string, { title: string; description: string; keywords: string[] }> = {
@@ -78,6 +90,134 @@ const seo = tdk[locale] || tdk.en;
 const productsJson = JSON.stringify(allProducts);
 const categoriesJson = JSON.stringify(categories);
 const labelsJson = JSON.stringify(labels);
+
+// Active subcategory labels for the "You are viewing: …" chip strip.
+// Localized so the chip text matches the user's locale (en/de/fr/ja/kr/cn).
+const SUB_LABELS: Record<string, Record<string, Record<string, Record<string, string>>>> = {
+  hats: {
+    byStyle: {
+      beanies: { en: "Beanies", cn: "毛线帽", de: "Beanies", fr: "Bonnets", ja: "ビーニー", kr: "비니" },
+      caps: { en: "Caps & Visors", cn: "棒球帽", de: "Kappen", fr: "Casquettes", ja: "キャップ", kr: "캡" },
+      berets: { en: "Berets", cn: "贝雷帽", de: "Berets", fr: "Bérets", ja: "ベレー帽", kr: "베레모" },
+      headbands: { en: "Headbands", cn: "头巾", de: "Stirnbänder", fr: "Bandeaux", ja: "ヘッドバンド", kr: "헤드밴드" },
+    },
+    byMaterial: {
+      '100pct-cashmere': { en: "100% Cashmere", cn: "100%羊绒", de: "100% Kaschmir", fr: "100% Cachemire", ja: "100%カシミア", kr: "100% 캐시미어" },
+    },
+    byUse: {
+      winter: { en: "Winter Warmth", cn: "冬季保暖", de: "Winterwärme", fr: "Chaleur hivernale", ja: "冬の防寒", kr: "겨울 보온" },
+      sport: { en: "Outdoor / Sport", cn: "户外运动", de: "Outdoor/Sport", fr: "Plein air/Sport", ja: "アウトドア/スポーツ", kr: "아웃도어/스포츠" },
+      fashion: { en: "Fashion Statement", cn: "时尚单品", de: "Mode-Statement", fr: "Pièce mode", ja: "ファッション", kr: "패션" },
+    },
+    byAudience: {
+      women: { en: "For Women", cn: "女士款", de: "Damen", fr: "Femme", ja: "レディース", kr: "여성용" },
+      men: { en: "For Men", cn: "男士款", de: "Herren", fr: "Homme", ja: "メンズ", kr: "남성용" },
+      kids: { en: "For Kids", cn: "儿童款", de: "Kinder", fr: "Enfants", ja: "子供用", kr: "어린이" },
+      unisex: { en: "Unisex", cn: "中性款", de: "Unisex", fr: "Unisexe", ja: "ユニセックス", kr: "유니섹스" },
+    },
+  },
+  sweaters: {
+    byStyle: {
+      cardigan: { en: "Cardigans", cn: "开衫", de: "Strickjacken", fr: "Cardigans", ja: "カーディガン", kr: "카디건" },
+      pullover: { en: "Pullovers", cn: "套头衫", de: "Pullover", fr: "Pulls", ja: "プルオーバー", kr: "풀오버" },
+      turtleneck: { en: "Turtleneck", cn: "高领", de: "Rollkragen", fr: "Col roulé", ja: "タートルネック", kr: "터틀넥" },
+      vneck: { en: "V-Neck", cn: "V领", de: "V-Ausschnitt", fr: "Col en V", ja: "Vネック", kr: "V넥" },
+      crew: { en: "Crew Neck", cn: "圆领", de: "Rundhals", fr: "Col rond", ja: "クルーネック", kr: "크루넥" },
+      vest: { en: "Vests", cn: "背心", de: "Westen", fr: "Gilets", ja: "ベスト", kr: "조끼" },
+      zip: { en: "Zip-up", cn: "拉链衫", de: "Reißverschluss", fr: "Zippé", ja: "ジップアップ", kr: "집업" },
+    },
+    byMaterial: {
+      '100pct-cashmere': { en: "100% Cashmere", cn: "100%羊绒", de: "100% Kaschmir", fr: "100% Cachemire", ja: "100%カシミア", kr: "100% 캐시미어" },
+      'wool-cashmere': { en: "Cashmere / Wool", cn: "羊绒/羊毛", de: "Kaschmir/Wolle", fr: "Cachemire/Laine", ja: "カシミア/ウール", kr: "캐시미어/울" },
+      'two-ply': { en: "2-Ply / 4-Ply", cn: "2股/4股", de: "2-fach / 4-fach", fr: "2-Fils / 4-Fils", ja: "2PLY/4PLY", kr: "2PLY/4PLY" },
+    },
+    byGauge: {
+      heavy: { en: "Heavy (3-7gg)", cn: "厚款(3-7针)", de: "Schwer (3-7 Gauge)", fr: "Épais (jauge 3-7)", ja: "厚手(3-7ゲージ)", kr: "두꺼움 (3-7게이지)" },
+      'gauge-12': { en: "12 Gauge (Fine)", cn: "12针(细)", de: "12 Gauge (Fein)", fr: "Jauge 12 (Fin)", ja: "12ゲージ(細目)", kr: "12게이지(가는)" },
+      'gauge-16': { en: "16 Gauge (Ultra-fine)", cn: "16针(超细)", de: "16 Gauge (Sehr fein)", fr: "Jauge 16 (Très fin)", ja: "16ゲージ(極細)", kr: "16게이지(극세)" },
+    },
+    byUse: {
+      winter: { en: "Winter Wear", cn: "冬季穿着", de: "Winterbekleidung", fr: "Hiver", ja: "冬物", kr: "겨울용" },
+      'spring-fall': { en: "Spring / Fall", cn: "春秋季", de: "Frühling/Herbst", fr: "Printemps/Automne", ja: "春/秋", kr: "봄/가을" },
+      office: { en: "Office / Business", cn: "商务办公", de: "Büro/Geschäft", fr: "Bureau", ja: "オフィス/ビジネス", kr: "오피스/비즈니스" },
+    },
+  },
+  scarves: {
+    byStyle: {
+      scarf: { en: "Scarves", cn: "围巾", de: "Schals", fr: "Écharpes", ja: "マフラー", kr: "스카프" },
+      shawl: { en: "Shawls", cn: "披肩", de: "Schultertücher", fr: "Châles", ja: "ショール", kr: "숄" },
+      wrap: { en: "Wraps", cn: "包巾", de: "Wraps", fr: "Wraps", ja: "ラップ", kr: "랩" },
+      poncho: { en: "Ponchos", cn: "斗篷", de: "Ponchos", fr: "Ponchos", ja: "ポンチョ", kr: "폰초" },
+      pashmina: { en: "Pashmina-Style", cn: "羊绒披肩款", de: "Pashmina-Stil", fr: "Style Pashmina", ja: "パシュミナ風", kr: "파시미나 스타일" },
+    },
+    byMaterial: {
+      '100pct-cashmere': { en: "100% Cashmere", cn: "100%羊绒", de: "100% Kaschmir", fr: "100% Cachemire", ja: "100%カシミア", kr: "100% 캐시미어" },
+      'wool-cashmere': { en: "Cashmere / Wool", cn: "羊绒/羊毛", de: "Kaschmir/Wolle", fr: "Cachemire/Laine", ja: "カシミア/ウール", kr: "캐시미어/울" },
+    },
+    byPattern: {
+      plain: { en: "Plain Dyed", cn: "素色", de: "Unifarben", fr: "Uni Teint", ja: "無地染め", kr: "단색" },
+      printed: { en: "Printed", cn: "印花", de: "Bedruckt", fr: "Imprimé", ja: "プリント", kr: "프린트" },
+      tassel: { en: "Tasseled", cn: "流苏", de: "Quasten", fr: "Pompons", ja: "タッセル", kr: "태슬" },
+    },
+    byUse: {
+      winter: { en: "Winter", cn: "冬季", de: "Winter", fr: "Hiver", ja: "冬", kr: "겨울" },
+      'spring-fall': { en: "Spring / Fall", cn: "春秋", de: "Frühling/Herbst", fr: "Printemps/Automne", ja: "春/秋", kr: "봄/가을" },
+      travel: { en: "Travel", cn: "旅行", de: "Reise", fr: "Voyage", ja: "旅行", kr: "여행" },
+      gift: { en: "Gift", cn: "礼品", de: "Geschenk", fr: "Cadeau", ja: "ギフト", kr: "선물" },
+      hijab: { en: "Hijab / Religious", cn: "头巾/宗教", de: "Hijab", fr: "Hijab", ja: "ヒジャブ", kr: "히잡" },
+    },
+  },
+  accessories: {
+    byType: {
+      gloves: { en: "Gloves & Mittens", cn: "手套", de: "Handschuhe", fr: "Gants", ja: "手袋", kr: "장갑" },
+      socks: { en: "Socks", cn: "袜子", de: "Socken", fr: "Chaussettes", ja: "靴下", kr: "양말" },
+      leggings: { en: "Leggings", cn: "打底裤", de: "Leggings", fr: "Leggings", ja: "レギンス", kr: "레깅스" },
+      pants: { en: "Pants & Trousers", cn: "裤子", de: "Hosen", fr: "Pantalons", ja: "パンツ", kr: "바지" },
+    },
+    byMaterial: {
+      '100pct-cashmere': { en: "100% Cashmere", cn: "100%羊绒", de: "100% Kaschmir", fr: "100% Cachemire", ja: "100%カシミア", kr: "100% 캐시미어" },
+    },
+    byUse: {
+      winter: { en: "Winter", cn: "冬季", de: "Winter", fr: "Hiver", ja: "冬", kr: "겨울" },
+      lounge: { en: "Loungewear", cn: "家居", de: "Loungewear", fr: "Loungewear", ja: "ラウンジ", kr: "라운지웨어" },
+    },
+  },
+  yarn: {
+    byCount: {
+      '2-26': { en: "2/26 Nm", cn: "2/26 Nm", de: "2/26 Nm", fr: "2/26 Nm", ja: "2/26 Nm", kr: "2/26 Nm" },
+      '2-36': { en: "2/36 Nm", cn: "2/36 Nm", de: "2/36 Nm", fr: "2/36 Nm", ja: "2/36 Nm", kr: "2/36 Nm" },
+      '2-48': { en: "2/48 Nm", cn: "2/48 Nm", de: "2/48 Nm", fr: "2/48 Nm", ja: "2/48 Nm", kr: "2/48 Nm" },
+      '2-60': { en: "2/60 Nm", cn: "2/60 Nm", de: "2/60 Nm", fr: "2/60 Nm", ja: "2/60 Nm", kr: "2/60 Nm" },
+    },
+    byType: {
+      woolen: { en: "Woolen", cn: "粗纺", de: "Streichgarn", fr: "Cardé", ja: "紡毛", kr: "방모사" },
+    },
+    byUse: {
+      machine: { en: "Machine Knitting", cn: "机织用", de: "Maschinenstrick", fr: "Tricotage Machine", ja: "マシン編", kr: "기계 편물" },
+      hand: { en: "Hand Knitting", cn: "手编用", de: "Handstrick", fr: "Tricotage Main", ja: "手編", kr: "수작업" },
+      weaving: { en: "Weaving", cn: "梭织用", de: "Weberei", fr: "Tissage", ja: "織物", kr: "제직" },
+    },
+    byForm: {
+      cone: { en: "Cone", cn: "筒子纱", de: "Konus", fr: "Cône", ja: "コーン", kr: "콘사" },
+    },
+  },
+};
+
+// Map mega-menu group keys to UI labels (e.g. byStyle -> "By Style").
+const GROUP_LABELS: Record<string, Record<string, string>> = {
+  byStyle: { en: 'By Style', cn: '按款式', de: 'Nach Stil', fr: 'Par style', ja: 'スタイル別', kr: '스타일별' },
+  byMaterial: { en: 'By Material', cn: '按材质', de: 'Nach Material', fr: 'Par matière', ja: '素材別', kr: '소재별' },
+  byUse: { en: 'By Use', cn: '按用途', de: 'Nach Verwendung', fr: 'Par usage', ja: '用途別', kr: '용도별' },
+  byAudience: { en: 'By Audience', cn: '按人群', de: 'Nach Zielgruppe', fr: 'Par public', ja: '対象別', kr: '대상별' },
+  byType: { en: 'By Type', cn: '按类型', de: 'Nach Typ', fr: 'Par type', ja: 'タイプ別', kr: '유형별' },
+  byPattern: { en: 'By Pattern', cn: '按花型', de: 'Nach Muster', fr: 'Par motif', ja: '柄別', kr: '패턴별' },
+  byGauge: { en: 'By Gauge', cn: '按机号', de: 'Nach Gauge', fr: 'Par jauge', ja: 'ゲージ別', kr: '게이지별' },
+  byCount: { en: 'By Yarn Count', cn: '按支数', de: 'Nach Garnfeinheit', fr: 'Par titrage', ja: '番手別', kr: '번수별' },
+  byForm: { en: 'By Form', cn: '按形态', de: 'Nach Form', fr: 'Par forme', ja: '形状別', kr: '형태별' },
+};
+
+const subLabelsJson = JSON.stringify(SUB_LABELS);
+const groupLabelsJson = JSON.stringify(GROUP_LABELS);
 ---
 
 <BaseLayout
@@ -173,6 +313,12 @@ const labelsJson = JSON.stringify(labels);
     </div>
     <p id="result-count" class="text-sm text-stone-600 mb-4"></p>
 
+    <!-- Active subcategory chips (populated by JS from URL params). Hidden when no active tags. -->
+    <div id="active-chips" class="hidden flex flex-wrap items-center gap-2 mb-4">
+      <span class="text-xs text-stone-500 uppercase tracking-wider mr-1" data-chip-prefix></span>
+      <!-- chips injected by JS -->
+    </div>
+
     <!-- 591 个产品卡片（全部静态渲染，初始只显示前 24 个，其余懒加载） -->
     <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       {allProducts.slice(0, 24).map((p) => (
@@ -264,6 +410,9 @@ const labelsJson = JSON.stringify(labels);
   <script id="products-data" type="application/json" set:html={productsJson}></script>
   <script id="categories-data" type="application/json" set:html={categoriesJson}></script>
   <script id="labels-data" type="application/json" set:html={labelsJson}></script>
+  <script id="product-tags-data" type="application/json" set:html={productTagsJson}></script>
+  <script id="sub-labels-data" type="application/json" set:html={subLabelsJson}></script>
+  <script id="group-labels-data" type="application/json" set:html={groupLabelsJson}></script>
 
   <!-- 交互逻辑：vanilla JS，零依赖 -->
   <script is:inline>
@@ -272,12 +421,20 @@ const labelsJson = JSON.stringify(labels);
       const products = JSON.parse(document.getElementById('products-data').textContent);
       const categories = JSON.parse(document.getElementById('categories-data').textContent);
       const labels = JSON.parse(document.getElementById('labels-data').textContent);
+      const productTags = JSON.parse(document.getElementById('product-tags-data').textContent);
+      const subLabels = JSON.parse(document.getElementById('sub-labels-data').textContent);
+      const groupLabels = JSON.parse(document.getElementById('group-labels-data').textContent);
 
       const PAGE_SIZE = 24;
       let activeCat = 'all';
       let searchQ = '';
       let sortBy = 'default';
       let currentPage = 1;
+      // Active subcategory filters from URL (e.g. ?byStyle=beanies&byMaterial=100pct-cashmere).
+      // Mega menu links use ?groupKey=subKey; multiple params AND together.
+      const activeTags = new Set();
+
+      // ---------- Parse URL params on load ----------
 
       // ---------- 筛选/搜索/排序 ----------
       const filterButtons = document.querySelectorAll('#filter-buttons .filter-btn');
@@ -310,9 +467,136 @@ const labelsJson = JSON.stringify(labels);
         render();
       });
 
+      // ---------- Mega-menu URL params: ?byStyle=beanies&byMaterial=100pct-cashmere ----------
+      // Read URL params at load. Each ?groupKey=subKey is one filter.
+      // Auto-derive activeCat from the first URL tag if no explicit ?cat=... given.
+      function readUrlParams() {
+        const params = new URLSearchParams(window.location.search);
+        const KNOWN_GROUPS = Object.keys(subLabels.hats || {}).concat(
+          Object.keys(subLabels.sweaters || {}),
+          Object.keys(subLabels.scarves || {}),
+          Object.keys(subLabels.accessories || {}),
+          Object.keys(subLabels.yarn || {})
+        );
+        const seen = new Set();
+        for (const [group, sub] of params.entries()) {
+          if (KNOWN_GROUPS.includes(group)) {
+            activeTags.add(`${group}=${sub}`);
+            seen.add(group);
+          }
+        }
+        // Auto-set category from first active tag if no explicit cat
+        if (!params.get('cat') && activeTags.size > 0) {
+          for (const catId of Object.keys(subLabels)) {
+            for (const group of Object.keys(subLabels[catId] || {})) {
+              if (seen.has(group)) { activeCat = catId; break; }
+            }
+            if (activeCat !== 'all') break;
+          }
+        }
+      }
+
+      function clearAllTags() {
+        activeTags.clear();
+        // Remove tag params from URL without reloading
+        const url = new URL(window.location.href);
+        for (const group of Object.keys(groupLabels)) {
+          url.searchParams.delete(group);
+        }
+        url.searchParams.delete('cat');
+        window.history.replaceState({}, '', url.toString());
+        // Reset category filter to all
+        activeCat = 'all';
+        // Also reset category button UI
+        filterButtons.forEach((b) => {
+          if (b.getAttribute('data-cat') === 'all') {
+            b.classList.add('bg-stone-900', 'text-white', 'border-stone-900');
+            b.classList.remove('bg-white', 'text-stone-700', 'border-stone-300');
+          } else {
+            b.classList.remove('bg-stone-900', 'text-white', 'border-stone-900');
+            b.classList.add('bg-white', 'text-stone-700', 'border-stone-300');
+          }
+        });
+        render();
+      }
+
+      function removeTag(group, sub) {
+        activeTags.delete(`${group}=${sub}`);
+        const url = new URL(window.location.href);
+        url.searchParams.delete(group);
+        window.history.replaceState({}, '', url.toString());
+        // If no more tags, reset to all-categories
+        if (activeTags.size === 0) {
+          activeCat = 'all';
+          filterButtons.forEach((b) => {
+            if (b.getAttribute('data-cat') === 'all') {
+              b.classList.add('bg-stone-900', 'text-white', 'border-stone-900');
+              b.classList.remove('bg-white', 'text-stone-700', 'border-stone-300');
+            } else {
+              b.classList.remove('bg-stone-900', 'text-white', 'border-stone-900');
+              b.classList.add('bg-white', 'text-stone-700', 'border-stone-300');
+            }
+          });
+        }
+        render();
+      }
+
+      function renderActiveChips() {
+        const container = document.getElementById('active-chips');
+        if (!container || activeTags.size === 0) {
+          if (container) container.classList.add('hidden');
+          return;
+        }
+        container.classList.remove('hidden');
+        const localeKey = window.__LOCALE__ || 'en';
+        const prefix = labels.activeFilterPrefix?.[localeKey] || labels.activeFilterPrefix?.en || 'Filtered by:';
+        const clearAll = labels.clearAll?.[localeKey] || labels.clearAll?.en || 'Clear all';
+        // Rebuild contents
+        container.innerHTML = '';
+        const prefixEl = document.createElement('span');
+        prefixEl.className = 'text-xs text-stone-500 uppercase tracking-wider mr-1';
+        prefixEl.textContent = prefix + ' ';
+        container.appendChild(prefixEl);
+        for (const tag of activeTags) {
+          const [group, sub] = tag.split('=');
+          const subText = subLabels[activeCat]?.[group]?.[sub]?.[localeKey] || subLabels[activeCat]?.[group]?.[sub]?.en || sub;
+          const chip = document.createElement('button');
+          chip.type = 'button';
+          chip.className = 'inline-flex items-center gap-1 px-3 py-1 text-xs border border-stone-300 bg-white hover:border-stone-900 transition-colors';
+          chip.innerHTML = `<span>${subText}</span><span aria-hidden="true">&times;</span>`;
+          chip.addEventListener('click', () => removeTag(group, sub));
+          container.appendChild(chip);
+        }
+        const clearBtn = document.createElement('button');
+        clearBtn.type = 'button';
+        clearBtn.className = 'ml-2 text-xs text-stone-500 hover:text-stone-900 underline';
+        clearBtn.textContent = clearAll;
+        clearBtn.addEventListener('click', clearAllTags);
+        container.appendChild(clearBtn);
+      }
+
       function getFiltered() {
         let result = products;
         if (activeCat !== 'all') result = result.filter((p) => p.categoryId === activeCat);
+        // Apply tag filters (AND across groups, OR within a group)
+        if (activeTags.size > 0) {
+          // Group tags by groupKey
+          const byGroup = {};
+          for (const tag of activeTags) {
+            const [g, s] = tag.split('=');
+            (byGroup[g] ||= []).push(s);
+          }
+          result = result.filter((p) => {
+            const productTagsForId = productTags[p.id] || [];
+            // Every active group must have at least one matching subKey on the product
+            for (const group of Object.keys(byGroup)) {
+              const subs = byGroup[group];
+              const matchInGroup = subs.some((sub) => productTagsForId.includes(`${group}=${sub}`));
+              if (!matchInGroup) return false;
+            }
+            return true;
+          });
+        }
         if (searchQ) {
           result = result.filter((p) =>
             (p.name && p.name.toLowerCase().includes(searchQ)) ||
@@ -331,6 +615,7 @@ const labelsJson = JSON.stringify(labels);
       }
 
       function render() {
+        renderActiveChips();
         const filtered = getFiltered();
         document.getElementById('result-count').textContent =
           labels.showingProducts ? labels.showingProducts(filtered.length) : ('Showing ' + filtered.length + ' products');
@@ -587,11 +872,30 @@ const labelsJson = JSON.stringify(labels);
 
       // 初次渲染：SSR 已渲染 24 张卡片 + 分页
       bindCardEvents(); // 绑定卡片 click → openModal
+
+      // ---------- Init: read URL params, apply filter, render ----------
+      readUrlParams();
+      // If URL auto-set activeCat (from mega-menu link), update the category button UI
+      if (activeCat !== 'all') {
+        filterButtons.forEach((b) => {
+          if (b.getAttribute('data-cat') === activeCat) {
+            b.classList.add('bg-stone-900', 'text-white', 'border-stone-900');
+            b.classList.remove('bg-white', 'text-stone-700', 'border-stone-300');
+          } else {
+            b.classList.remove('bg-stone-900', 'text-white', 'border-stone-900');
+            b.classList.add('bg-white', 'text-stone-700', 'border-stone-300');
+          }
+        });
+      }
+
       (function initPagination() {
-        const total = products.length;
-        const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+        renderActiveChips();
+        // Get total filtered count for pagination, but render full SSR list first
+        const filtered = getFiltered();
+        const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
         currentPage = 1;
-        renderPagination(total, totalPages);
+        renderPagination(filtered.length, totalPages);
+        render(); // re-render with filters applied
       })();
     })();
   </script>

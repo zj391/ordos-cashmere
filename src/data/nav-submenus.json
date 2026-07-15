@@ -1,30 +1,31 @@
 {
   "hats": {
+    "feature": {
+      "image": "/images/knit-shawl.jpg",
+      "eyebrow": { "en": "B2B Catalog 2026", "cn": "B2B 选品目录", "de": "B2B Katalog", "fr": "Catalogue B2B", "ja": "B2Bカタログ", "kr": "B2B 카탈로그" },
+      "title": { "en": "Cashmere Hats — OEM from 100pcs", "cn": "羊绒帽 — 起订 100 件", "de": "Kaschmir-Hüte — OEM ab 100 Stk", "fr": "Bonnets cachemire — OEM dès 100 pcs", "ja": "カシミア帽 — OEM 100枚〜", "kr": "캐시미어 모자 — OEM 100pcs부터" },
+      "href": { "en": "/en/products?cat=hats", "de": "/de/products?cat=hats", "fr": "/fr/products?cat=hats", "ja": "/ja/products?cat=hats", "kr": "/kr/products?cat=hats", "cn": "/cn/products?cat=hats" },
+      "cta": { "en": "Browse catalog →", "cn": "查看目录 →", "de": "Katalog ansehen →", "fr": "Voir le catalogue →", "ja": "カタログを見る →", "kr": "카탈로그 보기 →" }
+    },
     "byStyle": {
       "label": { "en": "By Style", "cn": "按款式", "de": "Nach Stil", "fr": "Par style", "ja": "スタイル別", "kr": "스타일별" },
       "items": [
         { "key": "beanies", "en": "Beanies", "cn": "毛线帽", "de": "Beanies", "fr": "Bonnets", "ja": "ビーニー", "kr": "비니" },
         { "key": "caps", "en": "Caps & Visors", "cn": "棒球帽", "de": "Kappen", "fr": "Casquettes", "ja": "キャップ", "kr": "캡" },
         { "key": "berets", "en": "Berets", "cn": "贝雷帽", "de": "Berets", "fr": "Bérets", "ja": "ベレー帽", "kr": "베레모" },
-        { "key": "hoodies", "en": "Hooded Beanies", "cn": "连帽帽", "de": "Kapuzenmützen", "fr": "Bonnets à capuche", "ja": "フードビーニー", "kr": "후드 비니" },
-        { "key": "headbands", "en": "Headbands", "cn": "头巾", "de": "Stirnbänder", "fr": "Bandeaux", "ja": "ヘッドバンド", "kr": "헤드밴드" },
-        { "key": "balaclavas", "en": "Balaclavas", "cn": "全脸罩", "de": "Balaclavas", "fr": "Cagoules", "ja": "バラクラバ", "kr": "바라클라바" }
+        { "key": "headbands", "en": "Headbands", "cn": "头巾", "de": "Stirnbänder", "fr": "Bandeaux", "ja": "ヘッドバンド", "kr": "헤드밴드" }
       ]
     },
     "byMaterial": {
       "label": { "en": "By Material", "cn": "按材质", "de": "Nach Material", "fr": "Par matière", "ja": "素材別", "kr": "소재별" },
       "items": [
-        { "key": "100pct-cashmere", "en": "100% Cashmere", "cn": "100%羊绒", "de": "100% Kaschmir", "fr": "100% Cachemire", "ja": "100%カシミア", "kr": "100% 캐시미어" },
-        { "key": "wool-cashmere", "en": "Cashmere / Wool", "cn": "羊绒/羊毛混纺", "de": "Kaschmir/Wolle", "fr": "Cachemire/Laine", "ja": "カシミア/ウール", "kr": "캐시미어/울" },
-        { "key": "silk-cashmere", "en": "Cashmere / Silk", "cn": "羊绒/真丝混纺", "de": "Kaschmir/Seide", "fr": "Cachemire/Soie", "ja": "カシミア/シルク", "kr": "캐시미어/실크" },
-        { "key": "gcs-certified", "en": "GCS Certified", "cn": "GCS认证", "de": "GCS-zertifiziert", "fr": "Certifié GCS", "ja": "GCS認定", "kr": "GCS 인증" }
+        { "key": "100pct-cashmere", "en": "100% Cashmere", "cn": "100%羊绒", "de": "100% Kaschmir", "fr": "100% Cachemire", "ja": "100%カシミア", "kr": "100% 캐시미어" }
       ]
     },
     "byUse": {
       "label": { "en": "By Use", "cn": "按用途", "de": "Nach Verwendung", "fr": "Par usage", "ja": "用途別", "kr": "용도별" },
       "items": [
         { "key": "winter", "en": "Winter Warmth", "cn": "冬季保暖", "de": "Winterwärme", "fr": "Chaleur hivernale", "ja": "冬の防寒", "kr": "겨울 보온" },
-        { "key": "spring-fall", "en": "Spring / Fall", "cn": "春秋", "de": "Frühling/Herbst", "fr": "Printemps/Automne", "ja": "春/秋", "kr": "봄/가을" },
         { "key": "sport", "en": "Outdoor / Sport", "cn": "户外运动", "de": "Outdoor/Sport", "fr": "Plein air/Sport", "ja": "アウトドア/スポーツ", "kr": "아웃도어/스포츠" },
         { "key": "fashion", "en": "Fashion Statement", "cn": "时尚单品", "de": "Mode-Statement", "fr": "Pièce mode", "ja": "ファッション", "kr": "패션" }
       ]
@@ -40,6 +41,13 @@
     }
   },
   "sweaters": {
+    "feature": {
+      "image": "/images/cashmere-fiber.jpg",
+      "eyebrow": { "en": "Garment OEM", "cn": "成衣代工", "de": "Bekleidung OEM", "fr": "Vêtement OEM", "ja": "衣料OEM", "kr": "의류 OEM" },
+      "title": { "en": "Sweaters — 3 to 16 gauge", "cn": "羊绒衫 — 3 针到 16 针", "de": "Pullover — 3 bis 16 Gauge", "fr": "Pulls — jauge 3 à 16", "ja": "セーター — 3〜16ゲージ", "kr": "스웨터 — 3~16 게이지" },
+      "href": { "en": "/en/products?cat=sweaters", "de": "/de/products?cat=sweaters", "fr": "/fr/products?cat=sweaters", "ja": "/ja/products?cat=sweaters", "kr": "/kr/products?cat=sweaters", "cn": "/cn/products?cat=sweaters" },
+      "cta": { "en": "Request quote →", "cn": "立即询盘 →", "de": "Angebot anfragen →", "fr": "Demander un devis →", "ja": "見積もり依頼 →", "kr": "견적 요청 →" }
+    },
     "byStyle": {
       "label": { "en": "By Style", "cn": "按款式", "de": "Nach Stil", "fr": "Par style", "ja": "スタイル別", "kr": "스타일별" },
       "items": [
@@ -48,7 +56,6 @@
         { "key": "turtleneck", "en": "Turtleneck", "cn": "高领", "de": "Rollkragen", "fr": "Col roulé", "ja": "タートルネック", "kr": "터틀넥" },
         { "key": "vneck", "en": "V-Neck", "cn": "V领", "de": "V-Ausschnitt", "fr": "Col en V", "ja": "Vネック", "kr": "V넥" },
         { "key": "crew", "en": "Crew Neck", "cn": "圆领", "de": "Rundhals", "fr": "Col rond", "ja": "クルーネック", "kr": "크루넥" },
-        { "key": "hoodie", "en": "Hoodies", "cn": "连帽衫", "de": "Kapuzenpullover", "fr": "Hoodies", "ja": "パーカー", "kr": "후디" },
         { "key": "vest", "en": "Vests", "cn": "背心", "de": "Westen", "fr": "Gilets", "ja": "ベスト", "kr": "조끼" },
         { "key": "zip", "en": "Zip-up", "cn": "拉链衫", "de": "Reißverschluss", "fr": "Zippé", "ja": "ジップアップ", "kr": "집업" }
       ]
@@ -57,17 +64,14 @@
       "label": { "en": "By Material", "cn": "按材质", "de": "Nach Material", "fr": "Par matière", "ja": "素材別", "kr": "소재별" },
       "items": [
         { "key": "100pct-cashmere", "en": "100% Cashmere", "cn": "100%羊绒", "de": "100% Kaschmir", "fr": "100% Cachemire", "ja": "100%カシミア", "kr": "100% 캐시미어" },
-        { "key": "wool-cashmere", "en": "Cashmere / Wool", "cn": "羊绒/羊毛混纺", "de": "Kaschmir/Wolle", "fr": "Cachemire/Laine", "ja": "カシミア/ウール", "kr": "캐시미어/울" },
-        { "key": "silk-cashmere", "en": "Cashmere / Silk", "cn": "羊绒/真丝", "de": "Kaschmir/Seide", "fr": "Cachemire/Soie", "ja": "カシミア/シルク", "kr": "캐시미어/실크" },
+        { "key": "wool-cashmere", "en": "Cashmere / Wool", "cn": "羊绒/羊毛", "de": "Kaschmir/Wolle", "fr": "Cachemire/Laine", "ja": "カシミア/ウール", "kr": "캐시미어/울" },
         { "key": "two-ply", "en": "2-Ply / 4-Ply", "cn": "2股/4股", "de": "2-fach / 4-fach", "fr": "2-Fils / 4-Fils", "ja": "2PLY/4PLY", "kr": "2PLY/4PLY" }
       ]
     },
     "byGauge": {
       "label": { "en": "By Gauge", "cn": "按机号", "de": "Nach Gauge", "fr": "Par jauge", "ja": "ゲージ別", "kr": "게이지별" },
       "items": [
-        { "key": "gauge-3", "en": "3 Gauge (Heavy)", "cn": "3针(厚)", "de": "3 Gauge (Schwer)", "fr": "Jauge 3 (Lourd)", "ja": "3ゲージ(厚手)", "kr": "3게이지(두꺼움)" },
-        { "key": "gauge-5", "en": "5 Gauge", "cn": "5针", "de": "5 Gauge", "fr": "Jauge 5", "ja": "5ゲージ", "kr": "5게이지" },
-        { "key": "gauge-7", "en": "7 Gauge", "cn": "7针", "de": "7 Gauge", "fr": "Jauge 7", "ja": "7ゲージ", "kr": "7게이지" },
+        { "key": "heavy", "en": "Heavy (3-7gg)", "cn": "厚款(3-7针)", "de": "Schwer (3-7 Gauge)", "fr": "Épais (jauge 3-7)", "ja": "厚手(3-7ゲージ)", "kr": "두꺼움 (3-7게이지)" },
         { "key": "gauge-12", "en": "12 Gauge (Fine)", "cn": "12针(细)", "de": "12 Gauge (Fein)", "fr": "Jauge 12 (Fin)", "ja": "12ゲージ(細目)", "kr": "12게이지(가는)" },
         { "key": "gauge-16", "en": "16 Gauge (Ultra-fine)", "cn": "16针(超细)", "de": "16 Gauge (Sehr fein)", "fr": "Jauge 16 (Très fin)", "ja": "16ゲージ(極細)", "kr": "16게이지(극세)" }
       ]
@@ -77,12 +81,18 @@
       "items": [
         { "key": "winter", "en": "Winter Wear", "cn": "冬季穿着", "de": "Winterbekleidung", "fr": "Hiver", "ja": "冬物", "kr": "겨울용" },
         { "key": "spring-fall", "en": "Spring / Fall", "cn": "春秋季", "de": "Frühling/Herbst", "fr": "Printemps/Automne", "ja": "春/秋", "kr": "봄/가을" },
-        { "key": "transitional", "en": "Transitional", "cn": "过渡季", "de": "Übergang", "fr": "Mi-saison", "ja": "中間", "kr": "환절기" },
         { "key": "office", "en": "Office / Business", "cn": "商务办公", "de": "Büro/Geschäft", "fr": "Bureau", "ja": "オフィス/ビジネス", "kr": "오피스/비즈니스" }
       ]
     }
   },
   "scarves": {
+    "feature": {
+      "image": "/images/knit-shawl.jpg",
+      "eyebrow": { "en": "Custom Scarf", "cn": "围巾定制", "de": "Schal-Manufaktur", "fr": "Écharpes sur mesure", "ja": "スカーフOEM", "kr": "스카프 맞춤" },
+      "title": { "en": "Scarves & Wraps — your label", "cn": "围巾披肩 — 贴牌定制", "de": "Schals & Tücher — Eigenmarke", "fr": "Écharpes & châles — marque propre", "ja": "スカーフ&ショール — プライベートブランド", "kr": "스카프&숄 — 자체 브랜드" },
+      "href": { "en": "/en/products?cat=scarves", "de": "/de/products?cat=scarves", "fr": "/fr/products?cat=scarves", "ja": "/ja/products?cat=scarves", "kr": "/kr/products?cat=scarves", "cn": "/cn/products?cat=scarves" },
+      "cta": { "en": "Custom options →", "cn": "定制选项 →", "de": "Optionen ansehen →", "fr": "Options sur mesure →", "ja": "カスタムオプション →", "kr": "맞춤 옵션 →" }
+    },
     "byStyle": {
       "label": { "en": "By Style", "cn": "按款式", "de": "Nach Stil", "fr": "Par style", "ja": "スタイル別", "kr": "스타일별" },
       "items": [
@@ -97,9 +107,7 @@
       "label": { "en": "By Material", "cn": "按材质", "de": "Nach Material", "fr": "Par matière", "ja": "素材別", "kr": "소재별" },
       "items": [
         { "key": "100pct-cashmere", "en": "100% Cashmere", "cn": "100%羊绒", "de": "100% Kaschmir", "fr": "100% Cachemire", "ja": "100%カシミア", "kr": "100% 캐시미어" },
-        { "key": "wool-cashmere", "en": "Cashmere / Wool", "cn": "羊绒/羊毛", "de": "Kaschmir/Wolle", "fr": "Cachemire/Laine", "ja": "カシミア/ウール", "kr": "캐시미어/울" },
-        { "key": "silk-cashmere", "en": "Cashmere / Silk", "cn": "羊绒/真丝", "de": "Kaschmir/Seide", "fr": "Cachemire/Soie", "ja": "カシミア/シルク", "kr": "캐시미어/실크" },
-        { "key": "baby-cashmere", "en": "Baby Cashmere", "cn": "Baby羊绒", "de": "Baby-Kaschmir", "fr": "Baby Cachemire", "ja": "ベビーカシミア", "kr": "베이비 캐시미어" }
+        { "key": "wool-cashmere", "en": "Cashmere / Wool", "cn": "羊绒/羊毛", "de": "Kaschmir/Wolle", "fr": "Cachemire/Laine", "ja": "カシミア/ウール", "kr": "캐시미어/울" }
       ]
     },
     "byPattern": {
@@ -107,8 +115,6 @@
       "items": [
         { "key": "plain", "en": "Plain Dyed", "cn": "素色", "de": "Unifarben", "fr": "Uni Teint", "ja": "無地染め", "kr": "단색" },
         { "key": "printed", "en": "Printed", "cn": "印花", "de": "Bedruckt", "fr": "Imprimé", "ja": "プリント", "kr": "프린트" },
-        { "key": "jacquard", "en": "Jacquard", "cn": "提花", "de": "Jacquard", "fr": "Jacquard", "ja": "ジャカード", "kr": "자카드" },
-        { "key": "ombre", "en": "Ombré / Gradient", "cn": "渐变", "de": "Ombré", "fr": "Ombré", "ja": "オンブレ", "kr": "옴브레" },
         { "key": "tassel", "en": "Tasseled", "cn": "流苏", "de": "Quasten", "fr": "Pompons", "ja": "タッセル", "kr": "태슬" }
       ]
     },
@@ -124,51 +130,54 @@
     }
   },
   "accessories": {
+    "feature": {
+      "image": "/images/cashmere-fiber.jpg",
+      "eyebrow": { "en": "Travel Sets", "cn": "旅行套装", "de": "Reise-Sets", "fr": "Sets de voyage", "ja": "トラベルセット", "kr": "여행 세트" },
+      "title": { "en": "Gifts that travel well", "cn": "礼盒装 · 出行优选", "de": "Reise-Geschenke", "fr": "Cadeaux à emporter", "ja": "トラベルギフト", "kr": "여행 선물 세트" },
+      "href": { "en": "/en/products?cat=accessories", "de": "/de/products?cat=accessories", "fr": "/fr/products?cat=accessories", "ja": "/ja/products?cat=accessories", "kr": "/kr/products?cat=accessories", "cn": "/cn/products?cat=accessories" },
+      "cta": { "en": "See gift sets →", "cn": "查看礼盒 →", "de": "Sets ansehen →", "fr": "Voir les coffrets →", "ja": "ギフトセット →", "kr": "선물 세트 보기 →" }
+    },
     "byType": {
       "label": { "en": "By Type", "cn": "按类型", "de": "Nach Typ", "fr": "Par type", "ja": "タイプ別", "kr": "유형별" },
       "items": [
         { "key": "gloves", "en": "Gloves & Mittens", "cn": "手套", "de": "Handschuhe", "fr": "Gants", "ja": "手袋", "kr": "장갑" },
         { "key": "socks", "en": "Socks", "cn": "袜子", "de": "Socken", "fr": "Chaussettes", "ja": "靴下", "kr": "양말" },
         { "key": "leggings", "en": "Leggings", "cn": "打底裤", "de": "Leggings", "fr": "Leggings", "ja": "レギンス", "kr": "레깅스" },
-        { "key": "pants", "en": "Pants & Trousers", "cn": "裤子", "de": "Hosen", "fr": "Pantalons", "ja": "パンツ", "kr": "바지" },
-        { "key": "eye-mask", "en": "Sleep Masks", "cn": "眼罩", "de": "Schlafmasken", "fr": "Masques de nuit", "ja": "アイマスク", "kr": "수면안대" },
-        { "key": "travel-set", "en": "Travel Sets", "cn": "旅行套装", "de": "Reise-Sets", "fr": "Sets de voyage", "ja": "トラベルセット", "kr": "여행 세트" }
+        { "key": "pants", "en": "Pants & Trousers", "cn": "裤子", "de": "Hosen", "fr": "Pantalons", "ja": "パンツ", "kr": "바지" }
       ]
     },
     "byMaterial": {
       "label": { "en": "By Material", "cn": "按材质", "de": "Nach Material", "fr": "Par matière", "ja": "素材別", "kr": "소재별" },
       "items": [
-        { "key": "100pct-cashmere", "en": "100% Cashmere", "cn": "100%羊绒", "de": "100% Kaschmir", "fr": "100% Cachemire", "ja": "100%カシミア", "kr": "100% 캐시미어" },
-        { "key": "wool-cashmere", "en": "Cashmere / Wool", "cn": "羊绒/羊毛", "de": "Kaschmir/Wolle", "fr": "Cachemire/Laine", "ja": "カシミア/ウール", "kr": "캐시미어/울" },
-        { "key": "blend", "en": "Blended Yarn", "cn": "混纺", "de": "Mischgarn", "fr": "Fil mélangé", "ja": "混紡糸", "kr": "혼방사" }
+        { "key": "100pct-cashmere", "en": "100% Cashmere", "cn": "100%羊绒", "de": "100% Kaschmir", "fr": "100% Cachemire", "ja": "100%カシミア", "kr": "100% 캐시미어" }
       ]
     },
     "byUse": {
       "label": { "en": "By Use", "cn": "按用途", "de": "Nach Verwendung", "fr": "Par usage", "ja": "用途別", "kr": "용도별" },
       "items": [
         { "key": "winter", "en": "Winter", "cn": "冬季", "de": "Winter", "fr": "Hiver", "ja": "冬", "kr": "겨울" },
-        { "key": "spring-fall", "en": "Spring / Fall", "cn": "春秋", "de": "Frühling/Herbst", "fr": "Printemps/Automne", "ja": "春/秋", "kr": "봄/가을" },
-        { "key": "sport", "en": "Sport", "cn": "运动", "de": "Sport", "fr": "Sport", "ja": "スポーツ", "kr": "스포츠" },
         { "key": "lounge", "en": "Loungewear", "cn": "家居", "de": "Loungewear", "fr": "Loungewear", "ja": "ラウンジ", "kr": "라운지웨어" }
       ]
     }
   },
   "yarn": {
+    "feature": {
+      "image": "/images/ordos-landscape.jpg",
+      "eyebrow": { "en": "From the goat", "cn": "原料直供", "de": "Vom Tier", "fr": "De la chèvre", "ja": "山羊から", "kr": "염소로부터" },
+      "title": { "en": "2/26 — 2/60 Nm cashmere yarn", "cn": "2/26 — 2/60 Nm 羊绒纱线", "de": "2/26 — 2/60 Nm Kaschmirgarn", "fr": "2/26 — 2/60 Nm fil cachemire", "ja": "2/26〜2/60 Nm カシミア糸", "kr": "2/26 — 2/60 Nm 캐시미어 원사" },
+      "href": { "en": "/en/products?cat=yarn", "de": "/de/products?cat=yarn", "fr": "/fr/products?cat=yarn", "ja": "/ja/products?cat=yarn", "kr": "/kr/products?cat=yarn", "cn": "/cn/products?cat=yarn" },
+      "cta": { "en": "Spec sheet →", "cn": "规格书 →", "de": "Datenblatt →", "fr": "Fiche technique →", "ja": "スペック →", "kr": "사양서 →" }
+    },
     "byCount": {
       "label": { "en": "By Yarn Count", "cn": "按支数", "de": "Nach Garnfeinheit", "fr": "Par titrage", "ja": "番手別", "kr": "번수별" },
       "items": [
-        { "key": "2-26", "en": "2/26 Nm", "cn": "2/26 Nm", "de": "2/26 Nm", "fr": "2/26 Nm", "ja": "2/26 Nm", "kr": "2/26 Nm" },
-        { "key": "2-36", "en": "2/36 Nm", "cn": "2/36 Nm", "de": "2/36 Nm", "fr": "2/36 Nm", "ja": "2/36 Nm", "kr": "2/36 Nm" },
-        { "key": "2-48", "en": "2/48 Nm", "cn": "2/48 Nm", "de": "2/48 Nm", "fr": "2/48 Nm", "ja": "2/48 Nm", "kr": "2/48 Nm" },
-        { "key": "2-60", "en": "2/60 Nm", "cn": "2/60 Nm", "de": "2/60 Nm", "fr": "2/60 Nm", "ja": "2/60 Nm", "kr": "2/60 Nm" }
+        { "key": "2-26", "en": "2/26 Nm", "cn": "2/26 Nm", "de": "2/26 Nm", "fr": "2/26 Nm", "ja": "2/26 Nm", "kr": "2/26 Nm" }
       ]
     },
     "byType": {
       "label": { "en": "By Yarn Type", "cn": "按纱型", "de": "Nach Garnart", "fr": "Par type de fil", "ja": "糸タイプ別", "kr": "사 종류별" },
       "items": [
-        { "key": "worsted", "en": "Worsted", "cn": "精纺", "de": "Kammgarn", "fr": "Peigné", "ja": "梳毛", "kr": "소면사" },
-        { "key": "woolen", "en": "Woolen", "cn": "粗纺", "de": "Streichgarn", "fr": "Cardé", "ja": "紡毛", "kr": "방모사" },
-        { "key": "semi-worsted", "en": "Semi-Worsted", "cn": "半精纺", "de": "Halbkammgarn", "fr": "Semi-Peigné", "ja": "セミ梳毛", "kr": "준소면사" }
+        { "key": "woolen", "en": "Woolen", "cn": "粗纺", "de": "Streichgarn", "fr": "Cardé", "ja": "紡毛", "kr": "방모사" }
       ]
     },
     "byUse": {
@@ -182,9 +191,7 @@
     "byForm": {
       "label": { "en": "By Form", "cn": "按形态", "de": "Nach Form", "fr": "Par forme", "ja": "形状別", "kr": "형태별" },
       "items": [
-        { "key": "cone", "en": "Cone", "cn": "筒子纱", "de": "Konus", "fr": "Cône", "ja": "コーン", "kr": "콘사" },
-        { "key": "hank", "en": "Hank", "cn": "绞纱", "de": "Strang", "fr": "Écheveau", "ja": "かせ", "kr": "연사" },
-        { "key": "ball", "en": "Ball", "cn": "团纱", "de": "Knäuel", "fr": "Pelote", "ja": "玉", "kr": "볼" }
+        { "key": "cone", "en": "Cone", "cn": "筒子纱", "de": "Konus", "fr": "Cône", "ja": "コーン", "kr": "콘사" }
       ]
     }
   }
