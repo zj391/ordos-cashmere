@@ -251,22 +251,26 @@ if (_schema === 'faq' && faqs && faqs.length > 0) {
     <!-- Page-level head slot (article:*, extra JSON-LD, etc.) -->
     <slot name="head" />
 
-    <!-- GA4 -->
-    <script is:inline define:vars={{ locale, gaId: 'G-723D6NZQQS' }}>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', gaId, {
-        send_page_view: true,
-        locale: locale,
-        custom_map: { dimension1: 'locale' },
-        cookie_domain: 'erdosdx.com',
-        cookie_flags: 'SameSite=None;Secure',
-      });
-      window.__HERMES_LOCALE__ = locale;
-      window.__HERMES_GA_ID__ = gaId;
-    </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-723D6NZQQS"></script>
+    <!-- GA4 (only loads if PUBLIC_GA4_ID env var is set; respects cookie consent later) -->
+    {import.meta.env.PUBLIC_GA4_ID && (
+      <>
+        <script is:inline define:vars={{ locale, gaId: import.meta.env.PUBLIC_GA4_ID }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', gaId, {
+            send_page_view: true,
+            locale: locale,
+            custom_map: { dimension1: 'locale' },
+            cookie_domain: 'erdosdx.com',
+            cookie_flags: 'SameSite=None;Secure',
+          });
+          window.__HERMES_LOCALE__ = locale;
+          window.__HERMES_GA_ID__ = gaId;
+        </script>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA4_ID}`}></script>
+      </>
+    )}
   </head>
 
   <body>
