@@ -21,7 +21,7 @@
  * shared-secret header.
  */
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { submitToIndexNow, submitFullSitemap } from '../src/lib/indexnow';
+import { submitToIndexNow, submitFullSitemap } from '../src/lib/indexnow.js';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
