@@ -1,0 +1,245 @@
+---
+/**
+ * Admin /admin/products/[id]/edit — inline edit form for one product.
+ *
+ * Layout: a 2-column form: left = the editable fields, right = image previews + meta.
+ * Submits to POST /api/admin/products/[id] which PATCHes the row.
+ *
+ * Phase 2 status: backend wired (POST handler reads JSON file / Supabase depending on env).
+ * The Supabase migration is documented in docs/products-table.sql.
+ */
+export const prerender = false;
+import AdminLayout from '@/layouts/AdminLayout.astro';
+import { LOCALES } from '@/lib/i18n';
+import { products as productsData, getCategoryImageUrl } from '@/data/products';
+
+function getAdminLocale(req: Request): string {
+  const cookieHeader = req.headers.get('cookie') || '';
+  const m = cookieHeader.match(/(?:^|;\s*)admin-locale=([^;]+)/);
+  if (m && LOCALES.some((l) => l.code === m[1])) return m[1]!;
+  return LOCALES[0].code;
+}
+const locale = getAdminLocale(Astro.request);
+
+const { id } = Astro.params;
+
+// Locate the product in the static catalog
+let found: { category: string; categoryId: string; cat: any; product: any } | null = null;
+for (const cat of productsData.categories) {
+  const product = cat.products.find((p) => p.id === id);
+  if (product) {
+    found = { category: cat.name, categoryId: cat.id, cat, product };
+    break;
+  }
+}
+
+if (!found) {
+  // Show a friendly 404 inside the admin chrome
+  return new Response('Product not found', { status: 404 });
+}
+
+const L = (en: string, cn: string) => (locale === 'cn' ? cn : en);
+const p = found.product;
+const cover = p.images?.[0] ?? '';
+
+// Read ?saved=1 query to show confirmation; ?saved=preview = form wired but backend stub.
+const url = new URL(Astro.request.url);
+const justSaved = url.searchParams.get('saved') === '1';
+const savedPreview = url.searchParams.get('saved') === 'preview';
+const saveError = url.searchParams.get('error') || '';
+const noSupabase = url.searchParams.get('notice') === 'no_supabase';
+---
+<AdminLayout locale={locale} activeNav="products" title={L('Edit product', '编辑产品')} breadcrumb={[L('Products', '产品管理'), p.name]}>
+  <a href={`/admin/products?cat=${found.categoryId}`} class="mb-4 inline-flex items-center gap-1 text-sm text-stone-600 hover:text-primary">
+    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+    {L('Back to product list', '返回产品列表')}
+  </a>
+
+  {justSaved && (
+    <div class="mb-4 rounded-md border border-emerald-300 bg-emerald-50 p-3 text-sm text-emerald-800">
+      ✓ {L('Saved to Supabase. Reload the catalog to see the change.', '已写入 Supabase。重新加载产品列表可见变更。')}
+    </div>
+  )}
+  {savedPreview && noSupabase && (
+    <div class="mb-4 rounded-md border border-amber-300 bg-amber-50 p-3 text-sm text-amber-900">
+      ⚠️ {L('Form submitted, but no Supabase credentials / products table found. Backend is in preview-only mode. See docs/products-table.sql.', '表单已提交，但缺少 Supabase 凭证或 products 表。Backend 当前为 preview 模式。详见 docs/products-table.sql。')}
+    </div>
+  )}
+  {savedPreview && !noSupabase && (
+    <div class="mb-4 rounded-md border border-emerald-300 bg-emerald-50 p-3 text-sm text-emerald-800">
+      ✓ {L('Preview saved.', '预览已保存。')}
+    </div>
+  )}
+  {saveError && (
+    <div class="mb-4 rounded-md border border-red-300 bg-red-50 p-3 text-sm text-red-800">
+      ✗ {decodeURIComponent(saveError)}
+    </div>
+  )}
+
+  <form method="post" action={`/api/admin/products/${p.id}`} class="grid gap-6 lg:grid-cols-3">
+    <!-- Left: editable fields -->
+    <div class="lg:col-span-2 space-y-6">
+      <!-- Basics -->
+      <div class="rounded-lg border border-stone-200 bg-white p-5">
+        <h3 class="mb-4 text-sm font-medium text-stone-500 uppercase tracking-wider">{L('Basics', '基本信息')}</h3>
+        <div class="grid gap-4 md:grid-cols-2">
+          <label class="block md:col-span-2">
+            <span class="mb-1 block text-sm font-medium text-stone-700">{L('Product name', '产品名称')}</span>
+            <input
+              name="name"
+              value={p.name}
+              required
+              class="w-full rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            />
+          </label>
+          <label class="block">
+            <span class="mb-1 block text-sm font-medium text-stone-700">{L('Code', '编号')}</span>
+            <input
+              name="code"
+              value={(p as any).code ?? ''}
+              placeholder="DX-XX-000"
+              class="w-full rounded-md border border-stone-300 px-3 py-2 font-mono text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            />
+          </label>
+          <label class="block">
+            <span class="mb-1 block text-sm font-medium text-stone-700">{L('MOQ', '起订量')}</span>
+            <input
+              type="number"
+              name="moq"
+              value={p.moq}
+              min="1"
+              class="w-full rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            />
+          </label>
+          <label class="block">
+            <span class="mb-1 block text-sm font-medium text-stone-700">{L('Price', '价格')}</span>
+            <input
+              name="price"
+              value={p.price}
+              placeholder="9.2-16.5"
+              class="w-full rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            />
+          </label>
+          <label class="block">
+            <span class="mb-1 block text-sm font-medium text-stone-700">{L('Currency', '货币')}</span>
+            <select name="currency" class="w-full rounded-md border border-stone-300 px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary">
+              <option value="USD" selected={(p as any).currency === 'USD'}>USD</option>
+              <option value="EUR" selected={(p as any).currency === 'EUR'}>EUR</option>
+              <option value="CNY" selected={(p as any).currency === 'CNY'}>CNY</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <!-- Spec -->
+      <div class="rounded-lg border border-stone-200 bg-white p-5">
+        <h3 class="mb-4 text-sm font-medium text-stone-500 uppercase tracking-wider">{L('Specifications', '规格参数')}</h3>
+        <div class="grid gap-4 md:grid-cols-2">
+          <label class="block md:col-span-2">
+            <span class="mb-1 block text-sm font-medium text-stone-700">{L('Material', '材质')}</span>
+            <input
+              name="material"
+              value={p.material}
+              class="w-full rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            />
+          </label>
+          <label class="block">
+            <span class="mb-1 block text-sm font-medium text-stone-700">{L('Micron (μm)', '细度 (μm)')}</span>
+            <input
+              name="micron"
+              value={p.micron}
+              placeholder="14–15.5"
+              class="w-full rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            />
+          </label>
+          <label class="block">
+            <span class="mb-1 block text-sm font-medium text-stone-700">{L('Lead time', '交货期')}</span>
+            <input
+              name="lead"
+              value={p.lead}
+              placeholder="30–35 days"
+              class="w-full rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            />
+          </label>
+          <label class="block md:col-span-2">
+            <span class="mb-1 block text-sm font-medium text-stone-700">{L('Description', '描述')}</span>
+            <textarea
+              name="description"
+              rows="4"
+              class="w-full rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            >{p.description}</textarea>
+          </label>
+        </div>
+      </div>
+
+      <!-- Submit row -->
+      <div class="flex items-center justify-between">
+        <a href={`/admin/products?cat=${found.categoryId}`} class="text-sm text-stone-600 hover:text-primary">
+          {L('Cancel', '取消')}
+        </a>
+        <button
+          type="submit"
+          class="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+        >
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          {L('Save changes', '保存')}
+        </button>
+      </div>
+    </div>
+
+    <!-- Right: previews + meta -->
+    <div class="space-y-4">
+      <!-- Cover preview -->
+      <div class="rounded-lg border border-stone-200 bg-white p-4">
+        <div class="mb-2 text-xs uppercase tracking-wider text-stone-500">{L('Cover image', '封面图')}</div>
+        {cover ? (
+          <img src={getCategoryImageUrl(cover)} alt={p.name} class="aspect-square w-full rounded border border-stone-200 object-cover" />
+        ) : (
+          <div class="aspect-square w-full rounded border border-stone-200 bg-stone-100 flex items-center justify-center text-xs text-stone-400">
+            {L('No image', '无图片')}
+          </div>
+        )}
+        <input type="hidden" name="cover" value={cover} />
+        <p class="mt-2 text-xs text-stone-500">
+          {L('Image uploads require Supabase Storage integration. See TODO in module placeholder.', '图片上传需要 Supabase Storage 集成 — 见占位页 TODO。')}
+        </p>
+      </div>
+
+      <!-- Meta -->
+      <div class="rounded-lg border border-stone-200 bg-white p-4">
+        <div class="mb-3 text-xs uppercase tracking-wider text-stone-500">{L('Product meta', '产品元数据')}</div>
+        <dl class="space-y-2 text-sm">
+          <div class="flex justify-between">
+            <dt class="text-stone-500">{L('ID', 'ID')}</dt>
+            <dd class="font-mono text-stone-700">{p.id}</dd>
+          </div>
+          <div class="flex justify-between">
+            <dt class="text-stone-500">{L('Category', '类别')}</dt>
+            <dd class="text-stone-700">{found.category}</dd>
+          </div>
+          <div class="flex justify-between">
+            <dt class="text-stone-500">{L('Image count', '图片数')}</dt>
+            <dd class="text-stone-700">{p.images?.length ?? 0}</dd>
+          </div>
+          <div class="flex justify-between">
+            <dt class="text-stone-500">{L('Sample time', '打样周期')}</dt>
+            <dd class="text-stone-700">{p.sample_time || '—'}</dd>
+          </div>
+        </dl>
+      </div>
+
+      <!-- Quick preview links -->
+      <div class="rounded-lg border border-stone-200 bg-white p-4">
+        <div class="mb-2 text-xs uppercase tracking-wider text-stone-500">{L('Quick links', '快捷链接')}</div>
+        <div class="space-y-1 text-sm">
+          <a href={`/${locale === 'cn' ? '' : locale + '/'}products/${p.id}`} target="_blank" rel="noopener" class="block text-primary hover:underline">
+            {L('View on site →', '在网站上查看 →')}
+          </a>
+          <a href="/api/admin/products/export.csv" class="block text-stone-500 hover:text-primary">
+            {L('Export all (CSV)', '导出全部 (CSV)')}
+          </a>
+        </div>
+      </div>
+    </div>
+  </form>
+</AdminLayout>

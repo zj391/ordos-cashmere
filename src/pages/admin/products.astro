@@ -239,9 +239,12 @@ const paginationLinksHtml = (() => {
             <td class="px-3 py-2 hidden md:table-cell text-right tabular-nums text-stone-700">{p.moq}</td>
             <td class="px-3 py-2 hidden lg:table-cell text-stone-600 line-clamp-1 text-xs">{p.material}</td>
             <td class="px-3 py-2">
-              <button class="rounded-md border border-stone-300 bg-white px-2 py-1 text-xs text-stone-400 cursor-not-allowed" disabled title={L('Phase 2', 'Phase 2 启用')}>
+              <a
+                href={`/admin/products/${p.id}/edit`}
+                class="inline-block rounded-md border border-stone-300 bg-white px-2 py-1 text-xs text-stone-700 hover:bg-stone-50"
+              >
                 {L('Edit', '编辑')}
-              </button>
+              </a>
             </td>
           </tr>
         ))}
