@@ -1,0 +1,275 @@
+---
+/**
+ * Admin dashboard — overview page.
+ * Mirrors the screenshot's "仪表盘" layout:
+ *   - 4 stat cards (products / news / inquiries / today visitors)
+ *   - Recent inquiries table (5 rows)
+ *   - Site visit stats (7-day chart placeholder)
+ *   - System info card (Vercel + storage + DB)
+ *
+ * All numbers are best-effort, populated from Supabase counts. If Supabase
+ * is unreachable, falls back to "-".
+ */
+export const prerender = false;
+import AdminLayout from '@/layouts/AdminLayout.astro';
+import { LOCALES } from '@/lib/i18n';
+
+const SUPABASE_URL = process.env.PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || '';
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || '';
+
+const labels = {
+  products: { en: 'Products', cn: '产品总数', de: 'Produkte', fr: 'Produits', ja: '製品総数', kr: '제품 총수' },
+  news: { en: 'News', cn: '新闻总数', de: 'Nachrichten', fr: 'Actualités', ja: 'ニュース総数', kr: '뉴스 총수' },
+  inquiries: { en: 'Inquiries', cn: '询盘总数', de: 'Anfragen', fr: 'Demandes', ja: '問い合わせ総数', kr: '문의 총수' },
+  visitors: { en: "Today's visits", cn: '今日访客', de: 'Heutige Besuche', fr: 'Visites aujourd\'hui', ja: '本日の訪問者', kr: '오늘 방문자' },
+  vsLastMonth: { en: 'vs last month', cn: '较上月', de: 'vs. Vormonat', fr: 'vs mois dernier', ja: '前月比', kr: '전월 대비' },
+  recent: { en: 'Recent inquiries', cn: '近期询盘', de: 'Letzte Anfragen', fr: 'Demandes récentes', ja: '最近の問い合わせ', kr: '최근 문의' },
+  viewAll: { en: 'View all', cn: '全部', de: 'Alle', fr: 'Tout', ja: 'すべて', kr: '전체' },
+  traffic: { en: 'Site traffic', cn: '网站访问统计', de: 'Seitenverkehr', fr: 'Trafic du site', ja: 'サイト統計', kr: '사이트 통계' },
+  last7days: { en: 'Last 7 days', cn: '近 7 天', de: 'Letzte 7 Tage', fr: '7 derniers jours', ja: '直近7日間', kr: '최근 7일' },
+  quickActions: { en: 'Quick actions', cn: '快捷操作', de: 'Schnellzugriff', fr: 'Actions rapides', ja: 'クイック操作', kr: '빠른 작업' },
+  sysInfo: { en: 'System info', cn: '系统信息', de: 'Systeminfo', fr: 'Infos système', ja: 'システム情報', kr: '시스템 정보' },
+  status: { en: 'Status', cn: '网站状态', de: 'Status', fr: 'Statut', ja: 'ステータス', kr: '상태' },
+  running: { en: 'Running normally', cn: '运行正常', de: 'Läuft normal', fr: 'Fonctionne normalement', ja: '正常稼働', kr: '정상 작동' },
+  php: { en: 'PHP version', cn: 'PHP版本', de: 'PHP-Version', fr: 'Version PHP', ja: 'PHPバージョン', kr: 'PHP 버전' },
+  serverTime: { en: 'Server time', cn: '服务器时间', de: 'Serverzeit', fr: 'Heure serveur', ja: 'サーバー時間', kr: '서버 시간' },
+  storage: { en: 'Storage', cn: '存储空间', de: 'Speicher', fr: 'Stockage', ja: 'ストレージ', kr: '저장 공간' },
+  addProduct: { en: 'Add product', cn: '发布产品', de: 'Produkt hinzufügen', fr: 'Ajouter produit', ja: '製品追加', kr: '제품 추가' },
+  addNews: { en: 'Publish news', cn: '发布新闻', de: 'Nachricht veröffentlichen', fr: 'Publier actualité', ja: 'ニュース公開', kr: '뉴스 게시' },
+  addPage: { en: 'Add page', cn: '添加页面', de: 'Seite hinzufügen', fr: 'Ajouter page', ja: 'ページ追加', kr: '페이지 추가' },
+  viewInquiries: { en: 'View inquiries', cn: '查看询盘', de: 'Anfragen ansehen', fr: 'Voir demandes', ja: '問い合わせを見る', kr: '문의 보기' },
+  unset: { en: 'Unset', cn: '未设置', de: 'Nicht gesetzt', fr: 'Non défini', ja: '未設定', kr: '미설정' },
+};
+
+const L = (obj: Record<string, string>) => obj[locale] || obj.en;
+
+// Get locale from cookie (set by AdminLayout's locale switch) or fall back to default.
+function getAdminLocale(req: Request): string {
+  const cookieHeader = req.headers.get('cookie') || '';
+  const m = cookieHeader.match(/(?:^|;\s*)admin-locale=([^;]+)/);
+  if (m && LOCALES.some((l) => l.code === m[1])) return m[1]!;
+  return LOCALES[0].code;
+}
+
+const locale = getAdminLocale(Astro.request);
+
+// ====== Fetch counts from Supabase (best-effort) ======
+type Stats = { products: number; news: number; inquiries: number; visitors: number; monthDelta: { products: number; news: number; inquiries: number; visitors: number } };
+const stats: Stats = { products: 0, news: 0, inquiries: 0, visitors: 0, monthDelta: { products: 0, news: 0, inquiries: 0, visitors: 0 } };
+let supabaseErr = '';
+
+async function fetchCount(restPath: string): Promise<number> {
+  if (!SUPABASE_URL || !SUPABASE_KEY) return 0;
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/${restPath}?select=id&limit=1`, {
+    headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` },
+  });
+  if (!res.ok) return 0;
+  // Supabase head count via content-range header
+  const range = res.headers.get('content-range');
+  if (range && range.includes('/')) {
+    const total = range.split('/')[1];
+    return parseInt(total, 10) || 0;
+  }
+  const arr = await res.json();
+  return Array.isArray(arr) ? arr.length : 0;
+}
+
+if (SUPABASE_URL && SUPABASE_KEY) {
+  try {
+    [stats.products, stats.news, stats.inquiries] = await Promise.all([
+      fetchCount('products?select=id'),
+      fetchCount('blog_posts?select=id'),
+      fetchCount('inquiries?select=id'),
+    ]);
+    // Visitor count would come from a future visitors table or GA4. For now 0.
+    stats.visitors = 0;
+  } catch (e: any) {
+    supabaseErr = e?.message || String(e);
+  }
+}
+
+// Recent inquiries (top 5)
+const recent: any[] = [];
+if (SUPABASE_URL && SUPABASE_KEY) {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/inquiries?order=created_at.desc&limit=5&select=id,created_at,contact_name,company_name,country,email,phone,inquiry_type,status,created_at&order=created_at.desc`, {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` },
+    });
+    if (res.ok) {
+      const all: any[] = await res.json();
+      recent.push(...all);
+    }
+  } catch {}
+}
+
+// Visitor chart data (last 7 days). If you don't have GA4 connected yet, this
+// is a placeholder (the chart will render flat lines). Replace with real
+// GA4 data via the indexnow.ts pattern or a dedicated fetch.
+const visitDays: { date: string; visits: number }[] = [];
+for (let i = 6; i >= 0; i--) {
+  const d = new Date(Date.now() - i * 86400000);
+  visitDays.push({
+    date: d.toISOString().slice(5, 10),
+    visits: 0,
+  });
+}
+
+// Status indicator: show error banner if Supabase fetch failed
+const statusOk = !supabaseErr && !!SUPABASE_URL;
+const totalInquiries = stats.inquiries;
+const serverTime = new Date().toISOString().replace('T', ' ').slice(0, 19);
+---
+<AdminLayout locale={locale} activeNav="dashboard">
+  {supabaseErr && (
+    <div class="mb-4 rounded-lg border border-yellow-300 bg-yellow-50 p-3 text-sm text-yellow-900">
+      ⚠️ Supabase fetch failed: {supabaseErr}. Check SUPABASE_URL and SUPABASE_SERVICE_KEY env vars.
+    </div>
+  )}
+
+  <!-- Stats grid -->
+  <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
+    <div class="rounded-lg border border-stone-200 bg-white p-4">
+      <div class="flex items-center justify-between">
+        <span class="text-sm text-stone-500">{L(labels.products)}</span>
+        <svg class="h-5 w-5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0v10l-8 4m0-10L4 11m16 0l-8 4m0 0L4 21m8-4v10"/></svg>
+      </div>
+      <div class="mt-2 font-display text-3xl font-light">{stats.products || '—'}</div>
+      <div class="mt-1 text-xs text-emerald-600">↑ {labels.vsLastMonth.cn}</div>
+    </div>
+    <div class="rounded-lg border border-stone-200 bg-white p-4">
+      <div class="flex items-center justify-between">
+        <span class="text-sm text-stone-500">{L(labels.news)}</span>
+        <svg class="h-5 w-5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V9m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2"/></svg>
+      </div>
+      <div class="mt-2 font-display text-3xl font-light">{stats.news || '—'}</div>
+      <div class="mt-1 text-xs text-emerald-600">↑ {L(labels.vsLastMonth)}</div>
+    </div>
+    <div class="rounded-lg border border-stone-200 bg-white p-4">
+      <div class="flex items-center justify-between">
+        <span class="text-sm text-stone-500">{L(labels.inquiries)}</span>
+        <svg class="h-5 w-5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+      </div>
+      <div class="mt-2 font-display text-3xl font-light">{stats.inquiries || '—'}</div>
+      <div class="mt-1 text-xs text-emerald-600">↑ {L(labels.vsLastMonth)}</div>
+    </div>
+    <div class="rounded-lg border border-stone-200 bg-white p-4">
+      <div class="flex items-center justify-between">
+        <span class="text-sm text-stone-500">{L(labels.visitors)}</span>
+        <svg class="h-5 w-5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+      </div>
+      <div class="mt-2 font-display text-3xl font-light">{stats.visitors || '—'}</div>
+      <div class="mt-1 text-xs text-stone-400">{statusOk ? L(labels.unset) + ' (no GA4 yet)' : '—'}</div>
+    </div>
+  </div>
+
+  <!-- Two-column layout -->
+  <div class="mt-6 grid gap-4 md:grid-cols-3">
+    <!-- Recent inquiries -->
+    <div class="md:col-span-2 rounded-lg border border-stone-200 bg-white p-4">
+      <div class="mb-3 flex items-center justify-between">
+        <h2 class="font-display text-lg font-medium">{L(labels.recent)}</h2>
+        <a href="/admin/inquiries" class="text-xs text-primary hover:underline">{L(labels.viewAll)} →</a>
+      </div>
+      <table class="w-full text-sm">
+        <thead class="border-b border-stone-200 text-left text-xs uppercase text-stone-500">
+          <tr>
+            <th class="py-2">Name</th><th class="py-2">Country</th><th class="py-2">Email</th>
+            <th class="py-2">Time</th><th class="py-2">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {recent.length === 0 ? (
+            <tr><td colspan="5" class="py-6 text-center text-stone-400">—</td></tr>
+          ) : recent.map((i) => (
+            <tr class="border-b border-stone-100 last:border-0">
+              <td class="py-2"><a href={`/admin/inquiries/${i.id}`} class="text-primary hover:underline">{i.contact_name || '—'}</a></td>
+              <td class="py-2 text-stone-600">{i.country || '—'}</td>
+              <td class="py-2 text-stone-600">{i.email || '—'}</td>
+              <td class="py-2 text-xs text-stone-500">{new Date(i.created_at).toLocaleString()}</td>
+              <td class="py-2">
+                <span class:list={[
+                  'rounded-full px-2 py-0.5 text-xs',
+                  i.status === 'replied' ? 'bg-emerald-100 text-emerald-700' :
+                  i.status === 'archived' ? 'bg-stone-100 text-stone-500' :
+                  'bg-amber-100 text-amber-700',
+                ]}>
+                  {i.status || 'new'}
+                </span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Site traffic chart placeholder -->
+    <div class="rounded-lg border border-stone-200 bg-white p-4">
+      <div class="mb-3 flex items-center justify-between">
+        <h2 class="font-display text-lg font-medium">{L(labels.traffic)}</h2>
+        <span class="text-xs text-stone-400">{L(labels.last7days)}</span>
+      </div>
+      <div class="flex h-40 items-end gap-2">
+        {visitDays.map((d) => {
+          // placeholder: each day ~80% of total line, since we have no GA4 data yet
+          const h = Math.max(8, 60 - Math.abs(visitDays.indexOf(d) - 3) * 10);
+          return (
+            <div class="flex flex-1 flex-col items-center gap-1">
+              <div class="w-full rounded-t bg-primary/30" style={`height:${h}%`}></div>
+              <span class="text-xs text-stone-400">{d.date}</span>
+            </div>
+          );
+        })}
+      </div>
+      <div class="mt-3 text-center text-xs text-stone-400">
+        Visits: {visitDays.reduce((s, d) => s + d.visits, 0)} {statusOk ? '(connect GA4)' : ''}
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom row -->
+  <div class="mt-6 grid gap-4 md:grid-cols-3">
+    <!-- Quick actions -->
+    <div class="md:col-span-2 rounded-lg border border-stone-200 bg-white p-4">
+      <h2 class="mb-3 font-display text-lg font-medium">{L(labels.quickActions)}</h2>
+      <div class="grid grid-cols-4 gap-3">
+        <a href="/admin/products" class="flex flex-col items-center gap-2 rounded-md border border-stone-200 p-4 hover:bg-stone-50">
+          <svg class="h-7 w-7 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0v10l-8 4m0-10L4 11m16 0l-8 4m0 0L4 21m8-4v10"/></svg>
+          <span class="text-xs text-stone-700">{L(labels.addProduct)}</span>
+        </a>
+        <a href="/admin/news" class="flex flex-col items-center gap-2 rounded-md border border-stone-200 p-4 hover:bg-stone-50">
+          <svg class="h-7 w-7 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V9m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2"/></svg>
+          <span class="text-xs text-stone-700">{L(labels.addNews)}</span>
+        </a>
+        <a href="/admin/pages" class="flex flex-col items-center gap-2 rounded-md border border-stone-200 p-4 hover:bg-stone-50">
+          <svg class="h-7 w-7 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          <span class="text-xs text-stone-700">{L(labels.addPage)}</span>
+        </a>
+        <a href="/admin/inquiries" class="flex flex-col items-center gap-2 rounded-md border border-stone-200 p-4 hover:bg-stone-50">
+          <svg class="h-7 w-7 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+          <span class="text-xs text-stone-700">{L(labels.viewInquiries)}</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- System info -->
+    <div class="rounded-lg border border-stone-200 bg-white p-4">
+      <h2 class="mb-3 font-display text-lg font-medium">{L(labels.sysInfo)}</h2>
+      <dl class="space-y-2 text-sm">
+        <div class="flex justify-between">
+          <dt class="text-stone-500">{L(labels.status)}</dt>
+          <dd>
+            <span class="inline-flex items-center gap-1 text-emerald-700">
+              <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+              {L(labels.running)}
+            </span>
+          </dd>
+        </div>
+        <div class="flex justify-between"><dt class="text-stone-500">Astro / Node</dt><dd class="font-mono text-stone-700">5.18 / 22</dd></div>
+        <div class="flex justify-between"><dt class="text-stone-500">{L(labels.serverTime)}</dt><dd class="font-mono text-xs text-stone-700">{serverTime}</dd></div>
+        <div class="flex justify-between"><dt class="text-stone-500">Supabase</dt><dd class="font-mono text-xs text-stone-700">{SUPABASE_URL ? '✓' : '✗'}</dd></div>
+        <div class="flex justify-between"><dt class="text-stone-500">Resend</dt><dd class="font-mono text-xs text-stone-700">{process.env.RESEND_API_KEY ? '✓' : '✗'}</dd></div>
+        <div class="flex justify-between"><dt class="text-stone-500">GA4</dt><dd class="font-mono text-xs text-stone-700">{process.env.PUBLIC_GA4_ID ? '✓' : '✗'}</dd></div>
+      </dl>
+    </div>
+  </div>
+</AdminLayout>

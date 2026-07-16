@@ -1,0 +1,156 @@
+---
+/**
+ * Admin dashboard layout — used by ALL /admin/* pages (no locale prefix;
+ * the admin panel is shared across all 6 locales, with the locale only
+ * affecting UI labels via the locale prop).
+ *
+ * Mirrors the reference screenshot's structure:
+ *  - Top bar: brand + breadcrumb + locale switch + View site + Logout
+ *  - Left sidebar: 12 module links (admin-nav.ts)
+ *  - Main content area: page header (h1 + actions slot) + body slot
+ *
+ * Usage:
+ *   ---
+ *   import AdminLayout from '@/layouts/AdminLayout.astro';
+ *   ---
+ *   <AdminLayout locale={locale} activeNav="products" title="Products">
+ *     <p slot="actions"><a href="...">+ Add</a></p>
+ *     ... main content ...
+ *   </AdminLayout>
+ */
+import '@/styles/global.css';
+import { ADMIN_NAV_ITEMS } from '@/data/admin-nav';
+import { LOCALES } from '@/lib/i18n';
+
+interface Props {
+  locale: string;
+  /** key in ADMIN_NAV_ITEMS — used to highlight active sidebar link */
+  activeNav: string;
+  /** page title shown in the top bar; defaults to active nav label */
+  title?: string;
+  /** optional breadcrumb path segments under the top title */
+  breadcrumb?: string[];
+}
+
+const { locale, activeNav, title, breadcrumb = [] } = Astro.props;
+
+const activeItem = ADMIN_NAV_ITEMS.find((n) => n.key === activeNav);
+const pageTitle = title || (activeItem?.label[locale as keyof typeof activeItem.label] ?? activeItem?.label.en ?? 'Admin');
+const tNav = {
+  logout: { en: 'Log out', cn: '退出登录', de: 'Abmelden', fr: 'Déconnexion', ja: 'ログアウト', kr: '로그아웃' },
+  logoutTitle: { en: 'Log out', cn: '退出登录', de: 'Abmelden', fr: 'Se déconnecter', ja: 'ログアウト', kr: '로그아웃' },
+  modules: { en: 'Modules', cn: '模块', de: 'Module', fr: 'Modules', ja: 'モジュール', kr: '모듈' },
+  langLabel: { en: 'Language', cn: '语言', de: 'Sprache', fr: 'Langue', ja: '言語', kr: '언어' },
+  viewSite: { en: 'View site', cn: '查看站点', de: 'Site ansehen', fr: 'Voir le site', ja: 'サイトを見る', kr: '사이트 보기' },
+};
+const L = (obj: Record<string, string>) => obj[locale] || obj.en;
+
+const navItems = ADMIN_NAV_ITEMS.map((n) => ({
+  key: n.key,
+  href: n.path ? `/admin/${n.path}` : '/admin',
+  icon: n.icon,
+  label: n.label[locale as keyof typeof n.label] || n.label.en,
+  badge: n.badge,
+}));
+---
+<!DOCTYPE html>
+<html lang={locale} class="h-full bg-stone-50">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{pageTitle} · Admin · DONGXIAO</title>
+  <meta name="robots" content="noindex,nofollow" />
+</head>
+<body class="h-full font-sans text-stone-900 antialiased">
+  <div class="flex min-h-full flex-col">
+    <!-- ====== TOP BAR ====== -->
+    <header class="sticky top-0 z-30 border-b border-stone-200 bg-white shadow-sm">
+      <div class="flex h-14 items-center gap-4 px-4 md:px-6">
+        <a href="/admin" class="flex items-center gap-2 font-display text-lg font-medium text-stone-900">
+          <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          DONGXIAO Admin
+        </a>
+
+        {breadcrumb.length > 0 && (
+          <nav class="ml-4 hidden items-center gap-2 text-sm md:flex" aria-label="Breadcrumb">
+            <span class="text-stone-500">{breadcrumb[0]}</span>
+            {breadcrumb.slice(1).map((seg) => (
+              <span class="flex items-center gap-2">
+                <svg class="h-4 w-4 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                <span class="font-medium text-stone-700">{seg}</span>
+              </span>
+            ))}
+          </nav>
+        )}
+
+        <div class="ml-auto flex items-center gap-3">
+          <!-- locale switch (changes UI labels only; URLs stay /admin/...) -->
+          <label for="admin-locale" class="sr-only">{L(tNav.langLabel)}</label>
+          <select
+            id="admin-locale"
+            class="rounded-md border border-stone-300 bg-white px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            onchange="localStorage.setItem('admin-locale', this.value); window.location.reload();"
+          >
+            {LOCALES.map((l) => (
+              <option value={l.code} selected={l.code === locale}>
+                {l.label[l.code as keyof typeof l.label] || l.code.toUpperCase()}
+              </option>
+            ))}
+          </select>
+
+          <a href={`/${locale === 'cn' ? '' : locale + '/'}`} target="_blank" rel="noopener" class="hidden text-sm text-stone-600 hover:text-primary md:inline">{L(tNav.viewSite)}</a>
+
+          <form method="post" action="/api/admin/logout">
+            <button type="submit" title={L(tNav.logoutTitle)} class="rounded-md border border-stone-300 bg-white px-3 py-1 text-sm text-stone-700 hover:bg-stone-100">{L(tNav.logout)}</button>
+          </form>
+        </div>
+      </div>
+    </header>
+
+    <div class="flex flex-1">
+      <!-- ====== SIDEBAR ====== -->
+      <aside class="hidden w-60 shrink-0 border-r border-stone-200 bg-white md:block">
+        <div class="sticky top-14 p-4">
+          <h2 class="px-2 text-xs font-semibold uppercase tracking-wider text-stone-500">{L(tNav.modules)}</h2>
+          <ul class="mt-2 space-y-1">
+            {navItems.map((n) => (
+              <li>
+                <a
+                  href={n.href}
+                  class:list={[
+                    'flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors',
+                    n.key === activeNav
+                      ? 'bg-primary text-primary-foreground font-medium'
+                      : 'text-stone-700 hover:bg-stone-100',
+                  ]}
+                  aria-current={n.key === activeNav ? 'page' : undefined}
+                >
+                  <Fragment set:html={n.icon} />
+                  <span class="flex-1">{n.label}</span>
+                  {n.badge && (
+                    <span class:list={[
+                      'rounded-full px-2 py-0.5 text-xs font-medium',
+                      n.key === activeNav ? 'bg-white/20' : 'bg-red-100 text-red-700',
+                    ]}>{n.badge}</span>
+                  )}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </aside>
+
+      <!-- ====== MAIN CONTENT ====== -->
+      <main class="flex-1 overflow-x-hidden bg-stone-50">
+        <div class="mx-auto max-w-7xl px-4 py-6 md:px-8">
+          <div class="mb-6 flex items-center justify-between gap-4">
+            <h1 class="font-display text-2xl font-light text-stone-900">{pageTitle}</h1>
+            <div class="flex shrink-0 items-center gap-2"><slot name="actions" /></div>
+          </div>
+          <slot />
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

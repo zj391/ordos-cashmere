@@ -1,0 +1,17 @@
+---
+export const prerender = false;
+import AdminLayout from '@/layouts/AdminLayout.astro';
+import ModulePlaceholder from '@/components/admin/ModulePlaceholder.astro';
+import { LOCALES } from '@/lib/i18n';
+
+function getAdminLocale(req: Request): string {
+  const cookieHeader = req.headers.get('cookie') || '';
+  const m = cookieHeader.match(/(?:^|;\s*)admin-locale=([^;]+)/);
+  if (m && LOCALES.some((l) => l.code === m[1])) return m[1]!;
+  return LOCALES[0].code;
+}
+const locale = getAdminLocale(Astro.request);
+---
+<AdminLayout locale={locale} activeNav="pages">
+  <ModulePlaceholder locale={locale} module="pages" />
+</AdminLayout>

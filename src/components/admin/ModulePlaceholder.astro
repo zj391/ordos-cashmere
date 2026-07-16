@@ -1,0 +1,148 @@
+---
+/**
+ * Reusable placeholder for any admin module that hasn't been implemented yet.
+ * Each module page imports this and passes its key + i18n labels.
+ * When the module is implemented, replace the placeholder with real content.
+ *
+ * Example:
+ *   ---
+ *   import ModulePlaceholder from '@/components/admin/ModulePlaceholder.astro';
+ *   ---
+ *   <ModulePlaceholder locale={locale} module="products" />
+ *
+ * The placeholder shows:
+ *  - "This module is not implemented yet" message
+ *  - "TODO roadmap" with the planned features
+ *  - "Open in Supabase" link if a table is associated
+ *  - Empty state CTA
+ */
+export interface Props {
+  locale: string;
+  /** matches a key in ADMIN_NAV_ITEMS */
+  module: 'products' | 'news' | 'pages' | 'images' | 'inquiries' | 'seo' | 'contact' | 'banner' | 'cases' | 'downloads' | 'system';
+}
+
+const { locale, module } = Astro.props as Props;
+
+const todoByModule: Record<string, string[]> = {
+  products: [
+    'List 591 products from products.json (paginated 50/page, sorted by category + name)',
+    'Inline edit form (name, price, MOQ, material, lead time, image URL)',
+    'Add / delete product modal (POST /api/admin/products + DELETE /api/admin/products/[id])',
+    'Bulk actions: delete selected, export CSV, import from products.json',
+    'Image upload to Supabase Storage (public bucket products/)',
+    'Tag filter (hats/sweaters/scarves/accessories/yarn × byStyle/byMaterial/...) — uses product-tags.ts',
+    'Multi-locale name/description fields (cn/en/de/fr/ja/kr)',
+  ],
+  news: [
+    'List blog posts in src/content/blog/[locale]/*.md (Astro content collections)',
+    'New post editor: title (auto-translate to 5 locales via LLM), tags, hero image, slug',
+    'Auto-trigger GH Action to regenerate blog post after edit',
+    'Pin post / draft / publish toggle',
+    'Schedule publish date',
+    'SEO preview (TDK)',
+  ],
+  pages: [
+    'List static pages (about, contact, /[locale]/...) with i18n completeness indicator',
+    'Edit page body via TipTap / Markdown editor',
+    'Custom HTML/React component injection (per-page code slots)',
+    'Preview before publish (Visual Editor iframe)',
+  ],
+  images: [
+    'Upload to Supabase Storage (public bucket media/)',
+    'Tag folder + alt text (multilingual)',
+    'Bulk rename / replace across products',
+    'Optimized variants (WebP / avif, sizes)',
+    'Usage tracker (which product / page uses this image)',
+  ],
+  inquiries: [
+    'See /admin/inquiries (already implemented)',
+    'Add: bulk status update, lead-grade filter UI improvements, sort by columns',
+    'Add: per-page reply template library',
+    'Add: export CSV with attachment manifest',
+  ],
+  seo: [
+    'Edit TDK for each page × 6 locales (title / description / keywords)',
+    'SEO health score (gzip page weight, image alt, internal-link count, heading order)',
+    'Sitemap preview + IndexNow re-submit trigger button',
+    'JSON-LD schema editor (Organization, Product, FAQ)',
+    'Hreflang correctness checker',
+  ],
+  contact: [
+    'Edit SITE_INFO in src/lib/seo.ts (name, address, phone, WhatsApp, WeChat, lat/lng)',
+    'Multi-country office addresses (HQ Ordos + future EU/US branches)',
+    'Social handles (LinkedIn / Instagram / Facebook / YouTube)',
+    'Test connection: ping email/phone/WeChat from this page',
+  ],
+  banner: [
+    'List Hero banner slides (5 slides max)',
+    'Upload hero image, headline, CTA label + href',
+    'Sortable order (drag handle or up/down buttons)',
+    'Per-locale banner variants',
+    'Schedule banner visibility window (date range)',
+  ],
+  cases: [
+    'Add case study (brand logo + project description + outcome stats + photos)',
+    'Tag by industry (fashion brand / distributor / online retailer)',
+    'Featured toggle (homepage / category pages)',
+  ],
+  downloads: [
+    'Upload resource (PDF catalog / spec sheet / photos zip)',
+    'Title + description + locale + tags',
+    'Track downloads (count + last 30 days)',
+  ],
+  system: [
+    'Vercel deployment status (last 10 deploys)',
+    'Supabase tables row counts + DB size',
+    'Resend quota remaining + recent bounces',
+    'IndexNow last submission status',
+    'GA4 realtime active users',
+    'Show env vars (masked values) + Vercel link',
+    'Cache invalidation trigger button',
+  ],
+};
+
+const labels = {
+  todoRoadmap: { en: 'TODO roadmap', cn: 'TODO 路线图', de: 'TODO-Plan', fr: 'Plan TODO', ja: 'TODO ロードマップ', kr: 'TODO 로드맵' },
+  notImplemented: {
+    en: 'This module is not yet implemented.',
+    cn: '此模块暂未实现。',
+    de: 'Dieses Modul ist noch nicht implementiert.',
+    fr: 'Ce module n\'est pas encore implémenté.',
+    ja: 'このモジュールはまだ実装されていません。',
+    kr: '이 모듈은 아직 구현되지 않았습니다.',
+  },
+  hint: {
+    en: 'The page is wired up to the admin nav, middleware (cookie auth), and shared layout. To enable, follow the TODO list and implement the API endpoints in src/pages/api/admin/.',
+    cn: '页面已连接到 admin 导航、中间件（cookie 认证）和共享布局。要启用，请按 TODO 列表在 src/pages/api/admin/ 实现 API endpoints。',
+    de: 'Die Seite ist mit der Admin-Nav, Middleware (Cookie-Auth) und dem freigegebenen Layout verkabelt.',
+    fr: 'La page est reliée à la nav admin, au middleware (cookie d\'auth) et au layout partagé.',
+    ja: 'ページは admin ナビ、ミドルウェア (cookie 認証)、共有レイアウトに接続されています。',
+    kr: '페이지는 관리자 nav, 미들웨어 (cookie 인증), 공유 레이아웃에 연결되어 있습니다.',
+  },
+};
+const L = (obj: Record<string, string>) => obj[locale] || obj.en;
+const todos = todoByModule[module] || [];
+---
+<div class="rounded-lg border-2 border-dashed border-stone-300 bg-white p-8 text-center">
+  <div class="mx-auto mb-4 inline-flex h-14 w-14 items-center justify-center rounded-full bg-amber-100">
+    <svg class="h-7 w-7 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M5 19h14a2 2 0 001.84-2.75L13.74 4a2 2 0 00-3.48 0L3.16 16.25A2 2 0 005 19z"/></svg>
+  </div>
+  <h2 class="text-lg font-medium text-stone-900">{L(labels.notImplemented)}</h2>
+  <p class="mx-auto mt-2 max-w-2xl text-sm text-stone-600">{L(labels.hint)}</p>
+</div>
+
+<div class="mt-6 rounded-lg border border-stone-200 bg-white p-6">
+  <h3 class="mb-4 flex items-center gap-2 font-display text-lg font-medium">
+    <svg class="h-5 w-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+    {L(labels.todoRoadmap)}
+  </h3>
+  <ol class="space-y-2 text-sm">
+    {todos.map((t, i) => (
+      <li class="flex gap-3">
+        <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-stone-300 text-xs font-medium text-stone-500">{i + 1}</span>
+        <span class="text-stone-700">{t}</span>
+      </li>
+    ))}
+  </ol>
+</div>
