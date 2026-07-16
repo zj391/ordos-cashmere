@@ -1,8 +1,18 @@
 ---
+/**
+ * Admin /admin/products — product catalog management.
+ *
+ * Lists 591 products with pagination (50/page), category + search filter,
+ * and the actions banner the screenshot reference's product-management screen shows.
+ *
+ * Phase 1: read-only list. Phase 2 (next commit) will add inline edit + add/delete.
+ * The page reads from /src/data/products.ts (compile-time JSON) because Vercel
+ * serverless FS is read-only — admin edits go to Supabase (separate migration).
+ */
 export const prerender = false;
 import AdminLayout from '@/layouts/AdminLayout.astro';
-import ModulePlaceholder from '@/components/admin/ModulePlaceholder.astro';
 import { LOCALES } from '@/lib/i18n';
+import { products as productsData, getCategoryImageUrl } from '@/data/products';
 
 function getAdminLocale(req: Request): string {
   const cookieHeader = req.headers.get('cookie') || '';
@@ -11,7 +21,265 @@ function getAdminLocale(req: Request): string {
   return LOCALES[0].code;
 }
 const locale = getAdminLocale(Astro.request);
+
+// Flatten products with category info for admin display (matches the
+// site/render pattern used elsewhere).
+type AdminProduct = {
+  id: string;
+  category: string;
+  categoryId: string;
+  name: string;
+  code: string;
+  price: string;
+  moq: number;
+  material: string;
+  imageCount: number;
+  cover: string;
+  tags: string[];
+};
+const allProducts: AdminProduct[] = [];
+for (const cat of productsData.categories) {
+  for (const p of cat.products) {
+    allProducts.push({
+      id: p.id,
+      category: cat.name,
+      categoryId: cat.id,
+      name: p.name,
+      code: (p as any).code ?? '',
+      price: p.price,
+      moq: p.moq,
+      material: p.material,
+      imageCount: p.images?.length ?? 0,
+      cover: p.images?.[0] ?? '',
+      tags: Array.isArray((p as any).tags) ? (p as any).tags : [],
+    });
+  }
+}
+
+// URL filters
+const url = new URL(Astro.request.url);
+const q = (url.searchParams.get('q') || '').trim().toLowerCase();
+const cat = url.searchParams.get('cat') || '';
+const page = Math.max(1, parseInt(url.searchParams.get('page') || '1', 10) || 1);
+const perPage = 50;
+
+// Apply filters
+const filtered = allProducts.filter((p) => {
+  if (cat && p.categoryId !== cat) return false;
+  if (q) {
+    const haystack = (p.name + ' ' + p.code + ' ' + p.material + ' ' + p.category).toLowerCase();
+    if (!haystack.includes(q)) return false;
+  }
+  return true;
+});
+
+const total = filtered.length;
+const totalPages = Math.max(1, Math.ceil(total / perPage));
+const startIdx = (page - 1) * perPage;
+const paged = filtered.slice(startIdx, startIdx + perPage);
+
+// Per-category counts (for filter pills)
+const categoryCounts = new Map<string, number>();
+for (const p of allProducts) {
+  categoryCounts.set(p.categoryId, (categoryCounts.get(p.categoryId) || 0) + 1);
+}
+
+// CSV escape
+function csvCell(v: unknown): string {
+  const s = String(v ?? '');
+  return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+}
+
+const L = (en: string, cn: string) => (locale === 'cn' ? cn : en);
+
+// Build CSV URL preserving filters
+const csvParams = new URLSearchParams();
+if (q) csvParams.set('q', url.searchParams.get('q') || '');
+if (cat) csvParams.set('cat', cat);
+const csvUrl = `/api/admin/products/export.csv?${csvParams.toString()}`;
+
+const buildPageHref = (p: number) => {
+  const params = new URLSearchParams(url.searchParams);
+  params.set('page', String(p));
+  return `?${params.toString()}`;
+};
 ---
-<AdminLayout locale={locale} activeNav="products">
-  <ModulePlaceholder locale={locale} module="products" />
+<AdminLayout locale={locale} activeNav="products" title={L('Products', '产品管理')}>
+  <!-- Toolbar -->
+  <div slot="actions" class="flex items-center gap-2">
+    <a href={csvUrl} class="inline-flex items-center gap-1 rounded-md border border-stone-300 bg-white px-3 py-1.5 text-sm text-stone-700 hover:bg-stone-50">
+      <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+      {L('Export CSV', '导出 CSV')}
+    </a>
+    <button class="inline-flex items-center gap-1 rounded-md border border-stone-300 bg-white px-3 py-1.5 text-sm text-stone-400 cursor-not-allowed" disabled title={L('Available after Supabase migration', 'Supabase 迁移后启用')}>
+      <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+      {L('Add Product', '新增产品')}
+    </button>
+  </div>
+
+  <!-- Stats -->
+  <div class="mb-6 grid grid-cols-2 gap-3 md:grid-cols-5">
+    {[
+      { label: 'Total', val: allProducts.length, sub: '' },
+      { label: 'Hats', val: categoryCounts.get('hats') ?? 0, sub: `${(categoryCounts.get('hats') ?? 0)} products` },
+      { label: 'Sweaters', val: categoryCounts.get('sweaters') ?? 0, sub: '' },
+      { label: 'Scarves', val: categoryCounts.get('scarves') ?? 0, sub: '' },
+      { label: 'Accessories', val: (categoryCounts.get('accessories') ?? 0) + (categoryCounts.get('yarn') ?? 0), sub: 'Accessories + Yarn' },
+    ].map((stat) => (
+      <div class="rounded-lg border border-stone-200 bg-white px-4 py-3">
+        <div class="text-xs uppercase tracking-wider text-stone-500">{stat.label}</div>
+        <div class="font-display text-2xl font-light">{stat.val}</div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Filter bar -->
+  <form method="get" class="mb-4 flex items-center gap-2 rounded-lg border border-stone-200 bg-white p-3">
+    <div class="flex-1">
+      <input
+        type="text"
+        name="q"
+        value={q}
+        placeholder={L('Search products by name, code, or material', '按名称/编号/材质搜索产品')}
+        class="w-full rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+      />
+    </div>
+    <select
+      name="cat"
+      class="rounded-md border border-stone-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
+      onchange="this.form.submit()"
+    >
+      <option value="">{L('All categories', '全部类别')}</option>
+      <option value="hats" selected={cat === 'hats'}>{L('Hats', '帽子')}</option>
+      <option value="sweaters" selected={cat === 'sweaters'}>{L('Sweaters', '毛衫')}</option>
+      <option value="scarves" selected={cat === 'scarves'}>{L('Scarves', '围巾')}</option>
+      <option value="accessories" selected={cat === 'accessories'}>{L('Accessories', '配饰')}</option>
+      <option value="yarn" selected={cat === 'yarn'}>{L('Yarn', '纱线')}</option>
+    </select>
+    <button type="submit" class="rounded-md bg-stone-900 px-4 py-2 text-sm text-white hover:bg-stone-700">
+      {L('Search', '搜索')}
+    </button>
+    {(q || cat) && (
+      <a href="/admin/products" class="rounded-md border border-stone-300 px-3 py-2 text-sm text-stone-600 hover:bg-stone-50">
+        {L('Reset', '重置')}
+      </a>
+    )}
+  </form>
+
+  <!-- Result line -->
+  <div class="mb-3 flex items-center justify-between text-sm text-stone-600">
+    <div>
+      {L('Showing', '显示')} <span class="font-medium text-stone-900">{total.toLocaleString()}</span> {L('products', '产品')}
+      {q && <> — {L('matched', '匹配')} "<span class="text-stone-900">{q}</span>"</>}
+      {cat && <> — {L('in', '在')} <span class="text-stone-900">{cat}</span></>}
+    </div>
+    <div class="text-xs text-stone-400">
+      {L('Page', '页')} {page} / {totalPages}
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="overflow-hidden rounded-lg border border-stone-200 bg-white">
+    <table class="w-full text-sm">
+      <thead class="bg-stone-50 text-left text-xs uppercase tracking-wider text-stone-500">
+        <tr>
+          <th class="px-3 py-2 w-14">
+            <input type="checkbox" disabled class="rounded" title={L('Bulk select (Phase 2)', '批量选择 — Phase 2')} />
+          </th>
+          <th class="px-3 py-2 w-16">{L('Image', '图片')}</th>
+          <th class="px-3 py-2">{L('Product', '产品')}</th>
+          <th class="px-3 py-2 hidden md:table-cell">{L('Category', '类别')}</th>
+          <th class="px-3 py-2 hidden lg:table-cell text-right">{L('Price', '价格')}</th>
+          <th class="px-3 py-2 hidden md:table-cell text-right">{L('MOQ', '起订量')}</th>
+          <th class="px-3 py-2 hidden lg:table-cell">{L('Material', '材质')}</th>
+          <th class="px-3 py-2 w-24">{L('Actions', '操作')}</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-stone-100">
+        {paged.length === 0 ? (
+          <tr><td colspan="8" class="px-3 py-12 text-center text-stone-400">{L('No products match your filters.', '没有匹配的产品。')}</td></tr>
+        ) : paged.map((p) => (
+          <tr class="hover:bg-stone-50">
+            <td class="px-3 py-2">
+              <input type="checkbox" disabled class="rounded" />
+            </td>
+            <td class="px-3 py-2">
+              {p.cover ? (
+                <img
+                  src={getCategoryImageUrl(p.cover)}
+                  alt={p.name}
+                  class="h-10 w-10 rounded border border-stone-200 object-cover"
+                  loading="lazy"
+                />
+              ) : (
+                <div class="h-10 w-10 rounded border border-stone-200 bg-stone-100"></div>
+              )}
+            </td>
+            <td class="px-3 py-2">
+              <div class="font-medium text-stone-900 line-clamp-1">{p.name}</div>
+              <div class="text-xs text-stone-400 font-mono">{p.id}{p.code ? ` · ${p.code}` : ''}</div>
+            </td>
+            <td class="px-3 py-2 hidden md:table-cell">
+              <span class="inline-block rounded-full bg-stone-100 px-2 py-0.5 text-xs text-stone-600">{p.category}</span>
+            </td>
+            <td class="px-3 py-2 hidden lg:table-cell text-right tabular-nums text-stone-700">{p.price}</td>
+            <td class="px-3 py-2 hidden md:table-cell text-right tabular-nums text-stone-700">{p.moq}</td>
+            <td class="px-3 py-2 hidden lg:table-cell text-stone-600 line-clamp-1 text-xs">{p.material}</td>
+            <td class="px-3 py-2">
+              <button class="rounded-md border border-stone-300 bg-white px-2 py-1 text-xs text-stone-400 cursor-not-allowed" disabled title={L('Phase 2', 'Phase 2 启用')}>
+                {L('Edit', '编辑')}
+              </button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  {totalPages > 1 ? (
+    <div class="mt-4 flex items-center justify-between text-sm">
+      <div class="text-stone-500">
+        {L('Page', '页')} <span class="font-medium text-stone-900">{page}</span> / {totalPages}
+        <span class="ml-2 text-stone-400">·</span>
+        <span class="ml-2">{(startIdx + 1).toLocaleString()}–{Math.min(startIdx + perPage, total).toLocaleString()} {L('of', '于')} {total.toLocaleString()}</span>
+      </div>
+      <nav class="flex items-center gap-1">
+        {page > 1 ? (
+          <a href={buildPageHref(1)} class="rounded border border-stone-300 px-3 py-1 text-stone-700 hover:bg-stone-50">«</a>
+        ) : <span class="rounded border border-stone-200 px-3 py-1 text-stone-300">«</span>}
+        {page > 1 ? (
+          <a href={buildPageHref(page - 1)} class="rounded border border-stone-300 px-3 py-1 text-stone-700 hover:bg-stone-50">‹</a>
+        ) : <span class="rounded border border-stone-200 px-3 py-1 text-stone-300">‹</span>}
+        {/* Compact pagination window */}
+        {(() => {
+          const pages: number[] = [];
+          for (let p = Math.max(1, page - 2); p <= Math.min(totalPages, page + 2); p++) pages.push(p);
+          return pages.map((p) => (
+            <a
+              href={buildPageHref(p)}
+              class:list={[
+                'rounded border px-3 py-1',
+                p === page
+                  ? 'border-primary bg-primary text-primary-foreground'
+                  : 'border-stone-300 text-stone-700 hover:bg-stone-50',
+              ]}
+            >
+              {p}
+            </a>
+          ));
+        })()}
+        {page < totalPages ? (
+          <a href={buildPageHref(page + 1)} class="rounded border border-stone-300 px-3 py-1 text-stone-700 hover:bg-stone-50">›</a>
+        ) : <span class="rounded border border-stone-200 px-3 py-1 text-stone-300">›</span>}
+        {page < totalPages ? (
+          <a href={buildPageHref(totalPages)} class="rounded border border-stone-300 px-3 py-1 text-stone-700 hover:bg-stone-50">»</a>
+        ) : <span class="rounded border border-stone-200 px-3 py-1 text-stone-300">»</span>}
+      </nav>
+    </div>
+  ) : (
+    <div class="mt-4 text-center text-xs text-stone-400">
+      {L('All', '全部')} {total} {L('products shown on one page.', '产品在单页显示。')}
+    </div>
+  )}
 </AdminLayout>
