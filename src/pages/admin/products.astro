@@ -103,6 +103,19 @@ const buildPageHref = (p: number) => {
   params.set('page', String(p));
   return `?${params.toString()}`;
 };
+
+// Pagination window HTML (Astro 5 doesn't allow JSX arrays from .map with class:list —
+// render as string and use set:html, see memory note about "{} return JSX arrays").
+const paginationLinksHtml = (() => {
+  const pages: number[] = [];
+  for (let p = Math.max(1, page - 2); p <= Math.min(totalPages, page + 2); p++) pages.push(p);
+  return pages.map((p) => {
+    const cls = p === page
+      ? 'rounded border px-3 py-1 border-primary bg-primary text-primary-foreground'
+      : 'rounded border px-3 py-1 border-stone-300 text-stone-700 hover:bg-stone-50';
+    return `<a href="${buildPageHref(p)}" class="${cls}">${p}</a>`;
+  }).join('');
+})();
 ---
 <AdminLayout locale={locale} activeNav="products" title={L('Products', '产品管理')}>
   <!-- Toolbar -->
@@ -252,23 +265,7 @@ const buildPageHref = (p: number) => {
           <a href={buildPageHref(page - 1)} class="rounded border border-stone-300 px-3 py-1 text-stone-700 hover:bg-stone-50">‹</a>
         ) : <span class="rounded border border-stone-200 px-3 py-1 text-stone-300">‹</span>}
         {/* Compact pagination window */}
-        {(() => {
-          const pages: number[] = [];
-          for (let p = Math.max(1, page - 2); p <= Math.min(totalPages, page + 2); p++) pages.push(p);
-          return pages.map((p) => (
-            <a
-              href={buildPageHref(p)}
-              class:list={[
-                'rounded border px-3 py-1',
-                p === page
-                  ? 'border-primary bg-primary text-primary-foreground'
-                  : 'border-stone-300 text-stone-700 hover:bg-stone-50',
-              ]}
-            >
-              {p}
-            </a>
-          ));
-        })()}
+        <Fragment set:html={paginationLinksHtml} />
         {page < totalPages ? (
           <a href={buildPageHref(page + 1)} class="rounded border border-stone-300 px-3 py-1 text-stone-700 hover:bg-stone-50">›</a>
         ) : <span class="rounded border border-stone-200 px-3 py-1 text-stone-300">›</span>}
