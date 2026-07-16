@@ -85,6 +85,25 @@ jobs:
           git commit -m "feat(blog): ${SLUG}"
           git push origin master
 
+      - name: Submit URLs to IndexNow (Bing + Yandex + DuckDuckGo)
+        if: steps.changes.outputs.changed == 'true'
+        # Wait 60s for Vercel to deploy the new blog post before submitting.
+        run: |
+          sleep 60
+          SLUG=$(ls src/content/blog/en/ | head -1 | sed 's/.md$//')
+          # All 6 locales of this new post
+          URLS=$(for L in en de fr ja kr cn; do
+            echo "\"https://erdosdx.com/${L}/blog/${SLUG}/\""
+          done | paste -sd, -)
+          # Wrap in a JSON array
+          PAYLOAD="[$URLS]"
+          echo "Submitting to IndexNow: $PAYLOAD"
+          curl -sS -X POST "https://erdosdx.com/api/indexnow" \
+            -H "Content-Type: application/json" \
+            -d "{\"urls\":${PAYLOAD}}" | tee /tmp/indexnow-resp.json
+          STATUS=$(node -e "const r=require('/tmp/indexnow-resp.json');console.log(r.ok?'OK':'FAIL')")
+          echo "::notice title=IndexNow::$STATUS"
+
       - name: Notify on failure
         if: failure()
         run: |

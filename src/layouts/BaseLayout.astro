@@ -235,6 +235,11 @@ if (_schema === 'faq' && faqs && faqs.length > 0) {
     <!-- Google Search Console 验证 -->
     <meta name="google-site-verification" content="google029578c30ed5c01f" />
 
+    <!-- IndexNow (Bing + Yandex + DuckDuckGo + Seznam + Naver): when a new product or
+         blog post is published, ping https://api.indexnow.org/indexnow with the URL.
+         See src/lib/indexnow.ts for the submit() helper. -->
+    <meta name="indexnow" content="erdosdx.com" />
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
