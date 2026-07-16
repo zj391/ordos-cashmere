@@ -49,6 +49,12 @@ interface InquiryPayload {
   utm_campaign?: string;
   referrer?: string;
   ga_client_id?: string;
+  // Lead-scoring fields (added 2026-07-08). Optional — only present when the
+  // W2 lead-form fields are visible on a particular inquiry page.
+  industry?: string;
+  company_size?: string;
+  job_title?: string;
+  inquiry_type?: string;
 }
 
 const INQUIRY_TYPE_MAP = {
@@ -286,7 +292,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     // 5. 自动回执邮件（如果配置了 Resend）
     const reply = renderCustomerEmail(data.locale, data);
     const customerEmailResult = sendEmail({ to: data.email, ...reply, tag: 'inquiry-reply', attachments: data.attachments })
-      .catch(err => { console.error('Email error:', err); return { ok: false, error: String(err) }; });
+      .catch(err => { console.error('Email error:', err); return { ok: false as const, id: undefined, error: String(err) }; });
     const internalEmailResult = sendEmail({
       to: NOTIFICATION_EMAIL,
       replyTo: data.email,
@@ -307,7 +313,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         <p><strong>Attachments:</strong> ${(data.attachments && data.attachments.length) ? data.attachments.length : 0}</p>
       `,
       attachments: data.attachments,
-    }).catch(err => { console.error('Internal email error:', err); return { ok: false, error: String(err) }; });
+    }).catch(err => { console.error('Internal email error:', err); return { ok: false as const, id: undefined, error: String(err) }; });
 
 
 
@@ -318,8 +324,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       inquiry_id: inquiryId,
       known_customer: !!known,
       emails: {
-        customer_reply: { sent: customerEmail.ok, id: customerEmail.id, error: customerEmail.error },
-        internal_notification: { sent: internalEmail.ok, id: internalEmail.id, error: internalEmail.error },
+        customer_reply: { sent: customerEmail?.ok ?? false, id: customerEmail?.id, error: customerEmail?.error },
+        internal_notification: { sent: internalEmail?.ok ?? false, id: internalEmail?.id, error: internalEmail?.error },
       },
     });
   } catch (err) {
