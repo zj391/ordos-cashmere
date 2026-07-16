@@ -11,6 +11,15 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 const N8N_WEBHOOK = process.env.N8N_WEBHOOK_URL;
 const HERMES_INBOUND_TOKEN=process.env.HERMES_INBOUND_TOKEN || '';
+// WeChat / enterprise WeChat notification. Generic POST to a webhook URL with
+// the inquiry summary. The webhook can be:
+//   - WeChat Work (企业微信) group robot: https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=xxx
+//   - Server 酱 (sct.ftqq.com): https://sctapi.ftqq.com/<SendKey>.send
+//   - Custom: any HTTPS endpoint accepting JSON POST.
+// Body shape is a generic message payload; if the webhook is a WeChat Work robot
+// (which expects {msgtype: 'text', text: {content: '...'}}), the integration point
+// is one of the format helpers below.
+const WECHAT_WEBHOOK_URL = process.env.WECHAT_WEBHOOK_URL || '';
 const SUPABASE_URL = process.env.PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_ANON_KEY;
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
@@ -87,7 +96,37 @@ async function sendEmail(payload: { to: string; subject: string; html: string; r
   }
 }
 
+/**
+ * WeChat / enterprise WeChat notification helpers.
+ * - WeChat Work (企业微信) group robot at qyapi.weixin.qq.com uses {msgtype:'text', text:{content}}
+ * - Server 酱 at ftqq.com/sctapi uses {title, desp}
+ * - Generic webhook falls back to {subject, message}
+ */
+function formatInquiryForWeChat(data: InquiryPayload, inquiryId: string, known: any | null): string {
+  const knownLine = known ? `👤 老客户 (${known.grade || 'ungraded'})` : '🆕 新客户';
+  const attCount = (data.attachments && data.attachments.length) || 0;
+  const attLine = attCount > 0 ? `\n📎 附件: ${attCount} 个` : '';
+  return `🔔 新询盘 [${(data.type || '?').toUpperCase()}]
 
+👤 ${data.name} <${data.email}>
+🏢 ${data.company} (${data.country})
+📦 ${data.quantity || 'N/A'}
+${knownLine}${attLine}
+🌐 ${data.locale} | #${inquiryId}
+
+${data.message ? '💬 ' + data.message.slice(0, 200) : ''}`;
+}
+
+function buildWeChatPayload(message: string, webhookUrl: string): unknown {
+  if (webhookUrl.includes('qyapi.weixin.qq.com')) {
+    return { msgtype: 'text', text: { content: message } };
+  }
+  if (webhookUrl.includes('ftqq.com') || webhookUrl.includes('sctapi')) {
+    const title = message.split('\n')[0].slice(0, 50);
+    return { title, desp: message };
+  }
+  return { subject: 'New inquiry', message };
+}
 
 async function lookupKnownCustomer(email: string, company: string) {
   if (!SUPABASE_URL || !SUPABASE_KEY) return null;
@@ -232,6 +271,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         headers: hermesHeaders,
         body: JSON.stringify(hermesPayload),
       }).catch(err => console.error('Hermes error:', err));
+    }
+
+    // 5. 推送微信/企业微信通知 (fire-and-forget，failure 不阻塞主流程)
+    if (WECHAT_WEBHOOK_URL) {
+      const msg = formatInquiryForWeChat(data, String(inquiryId || 'pending'), known);
+      fetch(WECHAT_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(buildWeChatPayload(msg, WECHAT_WEBHOOK_URL)),
+      }).catch(err => console.error('WeChat webhook error:', err));
     }
 
     // 5. 自动回执邮件（如果配置了 Resend）
