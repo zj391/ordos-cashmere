@@ -127,4 +127,50 @@ export const POST = async ({ request, redirect }) => {
 
 // Use POST so we can render a JSON 405 if a future GET is mistakenly added.
 export const GET = async () =>
-  new Response('Use POST to create a product.', { status: 405 });
+  new Response(JSON.stringify({
+    note: 'Use POST to create a product. This endpoint also serves as a Supabase self-check.',
+    diag: await diagSupabase(),
+  }), {
+    status: 200,
+    headers: { 'Content-Type': 'application/json' },
+  });
+
+/** Self-check: are SUPABASE_URL + SUPABASE_SERVICE_KEY set, and can we read products? */
+async function diagSupabase() {
+  const out = {
+    supabase_url_set: Boolean(SUPABASE_URL),
+    supabase_url_prefix: SUPABASE_URL ? SUPABASE_URL.slice(0, 30) : null,
+    service_key_set: Boolean(process.env.SUPABASE_SERVICE_KEY),
+    anon_key_set: Boolean(KEY),
+    products_table: null,
+    error: null,
+  };
+  if (!SUPABASE_URL || !KEY) {
+    out.error = 'missing_env_vars';
+    return out;
+  }
+  try {
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/products?select=id&limit=1`, {
+      headers: {
+        apikey: KEY,
+        Authorization: 'Bearer ' + KEY,
+      },
+    });
+    if (!r.ok) {
+      const text = await r.text();
+      out.products_table = { reachable: false, status: r.status };
+      out.error = text.length < 500 ? text : text.slice(0, 500);
+      return out;
+    }
+    const rows = await r.json();
+    out.products_table = {
+      reachable: true,
+      row_count_sample: Array.isArray(rows) ? rows.length : 0,
+      sample_id: rows?.[0]?.id ?? null,
+    };
+    return out;
+  } catch (e) {
+    out.error = e && e.message ? e.message : String(e);
+    return out;
+  }
+}

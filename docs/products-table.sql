@@ -11,9 +11,29 @@
 -- product_images and product_translations) and are out of scope for the
 -- current admin UI — file upload requires Supabase Storage, not the SQL schema.
 
+-- The categories lookup table is a small static mapping matching the IDs
+-- already used in src/data/products.json (hats / sweaters / scarves / accessories / yarn).
+-- We declare it BEFORE products so the FK reference resolves.
+create table if not exists public.categories (
+  id    text primary key,
+  name  text not null,        -- default English name
+  -- audit
+  created_at timestamptz default now()
+);
+
+-- Seed the canonical category rows so the products.category_id FK has valid
+-- targets out of the box. id values must match products.json exactly.
+insert into public.categories (id, name) values
+  ('hats',        'Cashmere Hats & Beanies'),
+  ('sweaters',    'Cashmere Sweaters'),
+  ('scarves',     'Cashmere Scarves & Shawls'),
+  ('accessories', 'Cashmere Accessories'),
+  ('yarn',        'Cashmere Yarn')
+on conflict (id) do nothing;
+
 create table if not exists public.products (
   id                text primary key,                              -- matches products.json `id` field, e.g. "hats-100"
-  category_id       text not null references public.categories(id),  -- 'hats' | 'sweaters' | 'scarves' | 'accessories' | 'yarn' (categories table not created here; create when needed)
+  category_id       text not null references public.categories(id),
   code              text,                                          -- SKU / product code, e.g. "DX-HA-000"
   name              text not null,                                 -- default English name
   moq               integer,                                       -- minimum order quantity
@@ -40,9 +60,11 @@ create index if not exists products_updated_at_idx on public.products (updated_a
 -- RLS: admin-only writes, public read (the storefront queries the same table via
 -- anon key when anon select is granted).
 alter table public.products enable row level security;
+alter table public.categories enable row level security;
 
 -- Public catalog read (anon + authenticated)
 create policy products_read_all on public.products for select using (true);
+create policy categories_read_all on public.categories for select using (true);
 
 -- Writes require service_role; the backend uses the service_role key for PATCH,
 -- so no per-user policies are needed for now. Add later when a role-based admin
