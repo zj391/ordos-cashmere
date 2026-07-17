@@ -232,7 +232,7 @@ const serverTime = new Date().toISOString().replace('T', ' ').slice(0, 19);
     <div class="md:col-span-2 rounded-lg border border-stone-200 bg-white p-4">
       <h2 class="mb-3 font-display text-lg font-medium">{L(labels.quickActions)}</h2>
       <div class="grid grid-cols-4 gap-3">
-        <a href="/admin/products" class="flex flex-col items-center gap-2 rounded-md border border-stone-200 p-4 hover:bg-stone-50">
+        <a href="/admin/products/new" class="flex flex-col items-center gap-2 rounded-md border border-stone-200 p-4 hover:bg-stone-50">
           <svg class="h-7 w-7 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0v10l-8 4m0-10L4 11m16 0l-8 4m0 0L4 21m8-4v10"/></svg>
           <span class="text-xs text-stone-700">{L(labels.addProduct)}</span>
         </a>

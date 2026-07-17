@@ -124,10 +124,10 @@ const paginationLinksHtml = (() => {
       <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
       {L('Export CSV', '导出 CSV')}
     </a>
-    <button class="inline-flex items-center gap-1 rounded-md border border-stone-300 bg-white px-3 py-1.5 text-sm text-stone-400 cursor-not-allowed" disabled title={L('Available after Supabase migration', 'Supabase 迁移后启用')}>
+    <a href="/admin/products/new" class="inline-flex items-center gap-1 rounded-md border border-stone-300 bg-white px-3 py-1.5 text-sm text-stone-700 hover:bg-stone-50">
       <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
       {L('Add Product', '新增产品')}
-    </button>
+    </a>
   </div>
 
   <!-- Stats -->

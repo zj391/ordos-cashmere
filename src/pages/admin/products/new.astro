@@ -1,0 +1,233 @@
+---
+/**
+ * Admin /admin/products/new — create a new product.
+ *
+ * Mirrors the edit.astro layout so the form feels familiar: left = editable
+ * fields, right = ID/category/cover-preview meta panel.
+ *
+ * The ID field is editable on this page (it's locked on edit). The default
+ * is "{categoryId}-{timestamp}" which is short, unique, and matches the
+ * existing id convention in products.json ("hats-100", "sweaters-042", …).
+ * Admins can override if they want something custom like "DX-HAT-FW26-001".
+ *
+ * On submit: POST /api/admin/products/new → INSERT into Supabase products table.
+ * With Supabase unset: redirects back with saved=preview&notice=no_supabase so
+ * the form wiring can be verified without 500ing. Identical UX to the edit
+ * page stub path so the behaviour is predictable.
+ */
+export const prerender = false;
+import AdminLayout from '@/layouts/AdminLayout.astro';
+import { LOCALES } from '@/lib/i18n';
+import { products as productsData } from '@/data/products';
+
+function getAdminLocale(req: Request): string {
+  const cookieHeader = req.headers.get('cookie') || '';
+  const m = cookieHeader.match(/(?:^|;\s*)admin-locale=([^;]+)/);
+  if (m && LOCALES.some((l) => l.code === m[1])) return m[1]!;
+  return LOCALES[0].code;
+}
+const locale = getAdminLocale(Astro.request);
+
+const L = (en: string, cn: string) => (locale === 'cn' ? cn : en);
+
+// Build the category dropdown from the static catalog. We don't add a "new
+// category" affordance here because the categories table is managed separately
+// (see docs/products-table.sql TODO).
+const categoryOptions = productsData.categories.map((c) => ({ id: c.id, name: c.name }));
+
+// Suggest a fresh default id like "hats-{epochSeconds}". The admin can change
+// it in the form before submitting. We use epoch seconds rather than ms to keep
+// ids short and human-scannable.
+const suggestedId = `${categoryOptions[0]?.id ?? 'misc'}-${Math.floor(Date.now() / 1000)}`;
+
+const url = new URL(Astro.request.url);
+const justSaved = url.searchParams.get('saved') === '1';
+const savedPreview = url.searchParams.get('saved') === 'preview';
+const saveError = url.searchParams.get('error') || '';
+const noSupabase = url.searchParams.get('notice') === 'no_supabase';
+const duplicateId = url.searchParams.get('error_code') === 'duplicate_id';
+---
+<AdminLayout locale={locale} activeNav="products" title={L('Add product', '新增产品')} breadcrumb={[L('Products', '产品管理'), L('Add', '新增')]}>
+  <a href="/admin/products" class="mb-4 inline-flex items-center gap-1 text-sm text-stone-600 hover:text-primary">
+    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+    {L('Back to product list', '返回产品列表')}
+  </a>
+
+  {justSaved && (
+    <div class="mb-4 rounded-md border border-emerald-300 bg-emerald-50 p-3 text-sm text-emerald-800">
+      ✓ {L('Created in Supabase. Reload the catalog to see the new row.', '已在 Supabase 创建。重新加载产品列表可见新行。')}
+    </div>
+  )}
+  {savedPreview && noSupabase && (
+    <div class="mb-4 rounded-md border border-amber-300 bg-amber-50 p-3 text-sm text-amber-900">
+      ⚠️ {L('Form submitted, but no Supabase credentials / products table found. Backend is in preview-only mode. See docs/products-table.sql.', '表单已提交，但缺少 Supabase 凭证或 products 表。Backend 当前为 preview 模式。详见 docs/products-table.sql。')}
+    </div>
+  )}
+  {duplicateId && (
+    <div class="mb-4 rounded-md border border-red-300 bg-red-50 p-3 text-sm text-red-800">
+      ✗ {L('That product ID already exists. Pick a different one.', '该产品 ID 已存在，请换一个。')}
+    </div>
+  )}
+  {saveError && !duplicateId && (
+    <div class="mb-4 rounded-md border border-red-300 bg-red-50 p-3 text-sm text-red-800">
+      ✗ {decodeURIComponent(saveError)}
+    </div>
+  )}
+
+  <form method="post" action="/api/admin/products/new" class="grid gap-6 lg:grid-cols-3">
+    <!-- Left: editable fields -->
+    <div class="lg:col-span-2 space-y-6">
+      <!-- Identity -->
+      <div class="rounded-lg border border-stone-200 bg-white p-5">
+        <h3 class="mb-4 text-sm font-medium text-stone-500 uppercase tracking-wider">{L('Identity', '标识')}</h3>
+        <div class="grid gap-4 md:grid-cols-2">
+          <label class="block">
+            <span class="mb-1 block text-sm font-medium text-stone-700">{L('Product ID', '产品 ID')}</span>
+            <input
+              name="id"
+              value={suggestedId}
+              required
+              pattern="[a-z0-9\-]+"
+              title={L('Lowercase letters, digits, hyphens only', '仅允许小写字母、数字、连字符')}
+              class="w-full rounded-md border border-stone-300 px-3 py-2 font-mono text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            />
+            <span class="mt-1 block text-xs text-stone-500">
+              {L('Primary key. Lowercase + hyphens + digits only. Must be unique.', '主键。仅小写字母/数字/连字符,必须唯一。')}
+            </span>
+          </label>
+          <label class="block">
+            <span class="mb-1 block text-sm font-medium text-stone-700">{L('Category', '类别')}</span>
+            <select name="category_id" required class="w-full rounded-md border border-stone-300 px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary">
+              {categoryOptions.map((c) => (
+                <option value={c.id}>{c.name}</option>
+              ))}
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <!-- Basics -->
+      <div class="rounded-lg border border-stone-200 bg-white p-5">
+        <h3 class="mb-4 text-sm font-medium text-stone-500 uppercase tracking-wider">{L('Basics', '基本信息')}</h3>
+        <div class="grid gap-4 md:grid-cols-2">
+          <label class="block md:col-span-2">
+            <span class="mb-1 block text-sm font-medium text-stone-700">{L('Product name', '产品名称')}</span>
+            <input
+              name="name"
+              required
+              placeholder={L('Fold-up Pure Cashmere Hat', '可翻折纯羊绒帽')}
+              class="w-full rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            />
+          </label>
+          <label class="block">
+            <span class="mb-1 block text-sm font-medium text-stone-700">{L('Code', '编号')}</span>
+            <input
+              name="code"
+              placeholder="DX-XX-000"
+              class="w-full rounded-md border border-stone-300 px-3 py-2 font-mono text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            />
+          </label>
+          <label class="block">
+            <span class="mb-1 block text-sm font-medium text-stone-700">{L('MOQ', '起订量')}</span>
+            <input
+              type="number"
+              name="moq"
+              value="100"
+              min="1"
+              class="w-full rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            />
+          </label>
+          <label class="block">
+            <span class="mb-1 block text-sm font-medium text-stone-700">{L('Price', '价格')}</span>
+            <input
+              name="price"
+              placeholder="9.2-16.5"
+              class="w-full rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            />
+          </label>
+          <label class="block">
+            <span class="mb-1 block text-sm font-medium text-stone-700">{L('Currency', '货币')}</span>
+            <select name="currency" class="w-full rounded-md border border-stone-300 px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary">
+              <option value="USD" selected>USD</option>
+              <option value="EUR">EUR</option>
+              <option value="CNY">CNY</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <!-- Spec -->
+      <div class="rounded-lg border border-stone-200 bg-white p-5">
+        <h3 class="mb-4 text-sm font-medium text-stone-500 uppercase tracking-wider">{L('Specifications', '规格参数')}</h3>
+        <div class="grid gap-4 md:grid-cols-2">
+          <label class="block md:col-span-2">
+            <span class="mb-1 block text-sm font-medium text-stone-700">{L('Material', '材质')}</span>
+            <input
+              name="material"
+              placeholder="100% Cashmere"
+              class="w-full rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            />
+          </label>
+          <label class="block">
+            <span class="mb-1 block text-sm font-medium text-stone-700">{L('Micron (μm)', '细度 (μm)')}</span>
+            <input
+              name="micron"
+              placeholder="14–15.5"
+              class="w-full rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            />
+          </label>
+          <label class="block">
+            <span class="mb-1 block text-sm font-medium text-stone-700">{L('Lead time', '交货期')}</span>
+            <input
+              name="lead"
+              placeholder="30–35 days"
+              class="w-full rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            />
+          </label>
+          <label class="block md:col-span-2">
+            <span class="mb-1 block text-sm font-medium text-stone-700">{L('Description', '描述')}</span>
+            <textarea
+              name="description"
+              rows="4"
+              placeholder={L('What makes this product worth listing?', '这个产品值得上架的原因?')}
+              class="w-full rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            ></textarea>
+          </label>
+        </div>
+      </div>
+
+      <!-- Submit row -->
+      <div class="flex items-center justify-between">
+        <a href="/admin/products" class="text-sm text-stone-600 hover:text-primary">
+          {L('Cancel', '取消')}
+        </a>
+        <button
+          type="submit"
+          class="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+        >
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          {L('Create product', '创建产品')}
+        </button>
+      </div>
+    </div>
+
+    <!-- Right: meta -->
+    <div class="space-y-4">
+      <div class="rounded-lg border border-stone-200 bg-white p-4">
+        <div class="mb-2 text-xs uppercase tracking-wider text-stone-500">{L('Before you create', '创建前请阅读')}</div>
+        <ul class="space-y-2 text-xs text-stone-600">
+          <li>• {L('Pick a unique ID — it cannot be changed later.', 'ID 必须唯一,创建后无法修改。')}</li>
+          <li>• {L('Image upload is not in this form yet — leave cover blank for now, or use the edit page later.', '本表单暂不支持图片上传,可创建后通过编辑页补。')}</li>
+          <li>• {L('Without Supabase configured this form runs in preview mode (no row is written).', '未配置 Supabase 时,表单运行在预览模式(不会写入数据)。')}</li>
+        </ul>
+      </div>
+
+      <div class="rounded-lg border border-stone-200 bg-white p-4">
+        <div class="mb-2 text-xs uppercase tracking-wider text-stone-500">{L('Schema reference', 'Schema 参考')}</div>
+        <p class="text-xs text-stone-600">
+          {L('Required columns: id, category_id, name. Optional: code/moq/price/currency/material/micron/lead/description. See docs/products-table.sql.', '必填列:id、category_id、name。可选:code/moq/price/currency/material/micron/lead/description。详见 docs/products-table.sql。')}
+        </p>
+      </div>
+    </div>
+  </form>
+</AdminLayout>
