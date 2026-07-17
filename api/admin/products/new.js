@@ -21,10 +21,10 @@
  *   - Other DB error → redirect with truncated Supabase error in /edit?error=
  */
 const SUPABASE_URL = process.env.PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || '';
-// Accept either SUPABASE_KEY or SUPABASE_SERVICE_KEY. We added the alias
-// because Vercel env-var naming conventions vary across projects and the
-// service-role key is the correct credential for this admin-write path.
-const KEY = process.env.SUPABASE_KEY || process.env.SUPABASE_SERVICE_KEY || '';
+// Use the service-role key when available — this is an admin write path and
+// the service role bypasses RLS. Fall back to the public/anon key only for
+// legacy deployments that haven't provisioned a service role yet.
+const KEY = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_KEY || '';
 
 /** Insert one row into the `products` table. Returns null if Supabase unreachable. */
 async function insertSupabaseProduct(row) {
