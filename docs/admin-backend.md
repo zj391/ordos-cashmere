@@ -6,7 +6,7 @@ Supabase when the following environment variables are present on Vercel:
 | Variable | Where to find it |
 |----------|------------------|
 | `SUPABASE_URL` (or `PUBLIC_SUPABASE_URL`) | Supabase project → Settings → API → Project URL |
-| `SUPABASE_SERVICE_KEY` | Supabase project → Settings → API → `service_role` (secret) |
+| `SUPABASE_SERVICE_KEY` (or `SUPABASE_KEY`) | Supabase project → Settings → API → `service_role` (secret). Either name works. |
 
 Add both in **Vercel → ordos-cashmere-v2 → Settings → Environment Variables**
 (Production + Preview). After that, redeploy and the form buttons will
@@ -42,28 +42,37 @@ Run [`verify-products-schema.sql`](./verify-products-schema.sql). Expected:
 - 2 indexes on `products` (category_id, updated_at)
 
 ### 2. End-to-end check (in browser)
-Hit `https://erdosdx.com/api/admin/_diag`. Expected JSON:
+Hit `https://erdosdx.com/api/admin/products/new` (GET). Expected JSON:
 
 ```json
 {
-  "config": {
+  "note": "Use POST to create a product. This endpoint also serves as a Supabase self-check.",
+  "diag": {
     "supabase_url_set": true,
     "supabase_url_prefix": "https://xxxxxxxxxxxxx.supabase",
-    "service_key_set": true
-  },
-  "products_table": {
-    "reachable": true,
-    "row_count_sample": 0,
-    "sample_id": null
-  },
-  "error": null
+    "service_key_set": true,
+    "supabase_key_alias_set": false,
+    "key_resolved": true,
+    "products_table": {
+      "reachable": true,
+      "row_count_sample": 0,
+      "sample_id": null
+    },
+    "error": null
+  }
 }
 ```
 
-If `error` is `"missing_env_vars"`: Vercel env vars aren't deployed yet
-(re-trigger a redeploy after adding them).
-If `error` is a SQL string starting with `PGRST…`: the table isn't
-created yet, or the schema differs from `products-table.sql`.
+Field meanings:
+- `supabase_url_set` — `SUPABASE_URL` (or `PUBLIC_SUPABASE_URL`) is set
+- `service_key_set` — `SUPABASE_SERVICE_KEY` is set (canonical name)
+- `supabase_key_alias_set` — `SUPABASE_KEY` is set (alias accepted for compat)
+- `key_resolved` — at least one of the above two names is set (this is what the code actually uses)
+- `products_table.reachable` — single-row read succeeded against the `products` table
+- `products_table.row_count_sample` — number of rows in the LIMIT 1 sample (always 0 or 1)
+
+If `error` is `"missing_env_vars"`: no Supabase URL or no key on Vercel — check the env var names match what you set.
+If `error` is a SQL string starting with `PGRST…`: the table isn't created yet, or the schema differs from `products-table.sql`.
 
 ### 3. UI round-trip
 1. Visit `/admin/products/` → click **Add Product**.

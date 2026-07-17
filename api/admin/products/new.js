@@ -21,7 +21,10 @@
  *   - Other DB error → redirect with truncated Supabase error in /edit?error=
  */
 const SUPABASE_URL = process.env.PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || '';
-const KEY = process.env.SUPABASE_KEY || '';
+// Accept either SUPABASE_KEY or SUPABASE_SERVICE_KEY. We added the alias
+// because Vercel env-var naming conventions vary across projects and the
+// service-role key is the correct credential for this admin-write path.
+const KEY = process.env.SUPABASE_KEY || process.env.SUPABASE_SERVICE_KEY || '';
 
 /** Insert one row into the `products` table. Returns null if Supabase unreachable. */
 async function insertSupabaseProduct(row) {
@@ -135,17 +138,21 @@ export const GET = async () =>
     headers: { 'Content-Type': 'application/json' },
   });
 
-/** Self-check: are SUPABASE_URL + SUPABASE_SERVICE_KEY set, and can we read products? */
+/** Self-check: are SUPABASE_URL + a Supabase key set, and can we read products? */
 async function diagSupabase() {
+  const serviceKey = process.env.SUPABASE_SERVICE_KEY || '';
+  const keyAlias = process.env.SUPABASE_KEY || '';
+  const resolved = serviceKey || keyAlias;
   const out = {
     supabase_url_set: Boolean(SUPABASE_URL),
     supabase_url_prefix: SUPABASE_URL ? SUPABASE_URL.slice(0, 30) : null,
-    service_key_set: Boolean(process.env.SUPABASE_SERVICE_KEY),
-    anon_key_set: Boolean(KEY),
+    service_key_set: Boolean(serviceKey),
+    supabase_key_alias_set: Boolean(keyAlias),
+    key_resolved: Boolean(resolved),
     products_table: null,
     error: null,
   };
-  if (!SUPABASE_URL || !KEY) {
+  if (!SUPABASE_URL || !resolved) {
     out.error = 'missing_env_vars';
     return out;
   }
