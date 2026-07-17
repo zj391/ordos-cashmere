@@ -1,10 +1,10 @@
 import { defineMiddleware } from 'astro:middleware';
 
-const PUBLIC_ADMIN_PATHS = ['/admin/login'];
+const PUBLIC_ADMIN_PATHS = ['/admin/login/'];
 
 /**
  * Gate every /admin/* path behind an `admin_session` cookie.
- * Public: only /admin/login. Everything else redirects to login if not authed.
+ * Public: only /admin/login/. Everything else redirects to login if not authed.
  * /api/admin/* is also gated except login/logout so the form can post and clear.
  */
 export const onRequest = defineMiddleware(async (context, next) => {
@@ -17,7 +17,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
   }
 
   // Public endpoints
-  if (pathname === '/admin/login' || pathname === '/api/admin/auth') {
+  if (pathname === '/admin/login/' || pathname === '/api/admin/auth') {
     return next();
   }
 
@@ -30,7 +30,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
         headers: { 'Content-Type': 'application/json' },
       });
     }
-    return context.redirect('/admin/login');
+    return context.redirect('/admin/login/');
   }
 
   return next();

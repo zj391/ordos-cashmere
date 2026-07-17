@@ -50,7 +50,7 @@ const saveError = url.searchParams.get('error') || '';
 const noSupabase = url.searchParams.get('notice') === 'no_supabase';
 ---
 <AdminLayout locale={locale} activeNav="products" title={L('Edit product', '编辑产品')} breadcrumb={[L('Products', '产品管理'), p.name]}>
-  <a href={`/admin/products?cat=${found.categoryId}`} class="mb-4 inline-flex items-center gap-1 text-sm text-stone-600 hover:text-primary">
+  <a href={`/admin/products/?cat=${found.categoryId}`} class="mb-4 inline-flex items-center gap-1 text-sm text-stone-600 hover:text-primary">
     <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
     {L('Back to product list', '返回产品列表')}
   </a>
@@ -174,7 +174,7 @@ const noSupabase = url.searchParams.get('notice') === 'no_supabase';
 
       <!-- Submit row -->
       <div class="flex items-center justify-between">
-        <a href={`/admin/products?cat=${found.categoryId}`} class="text-sm text-stone-600 hover:text-primary">
+        <a href={`/admin/products/?cat=${found.categoryId}`} class="text-sm text-stone-600 hover:text-primary">
           {L('Cancel', '取消')}
         </a>
         <button

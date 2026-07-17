@@ -64,6 +64,16 @@ export default defineConfig({
     routing: { prefixDefaultLocale: true },
     fallback: { 'cn': 'en', 'ja': 'en', 'kr': 'en', 'de': 'en', 'fr': 'en' },
   },
+  // Force all routes to be emitted WITH a trailing slash. With
+  // trailingSlash: 'ignore' (the Astro 5 default) the build emits BOTH
+  // /foo and /foo/index.html, and the no-slash version is a meta-refresh
+  // HTML pointing back at the slash URL. That shell page gets served
+  // by Vercel's static layer and overrides our SSR function — every
+  // visit to /admin/login hits a self-redirect. Pinning to 'always'
+  // makes the build emit only /admin/login/index.html (no redirect
+  // shell) and matches the existing /[locale]/.../{id}/ link patterns
+  // across the site.
+  trailingSlash: 'always',
   vite: { ssr: { noExternal: ['react-i18next', 'react-helmet-async'] } },
   build: { inlineStylesheets: 'auto', compressHTML: true },
   compressJS: true,

@@ -1,7 +1,7 @@
 /**
  * Admin inquiries (Vercel Node API endpoint, independent function).
- *   POST /api/admin/inquiries?id=123    (body: status, lead_grade, notes)
- *   GET  /api/admin/inquiries?action=export[&grade=&status=&country=&q=]
+ *   POST /api/admin/inquiries/?id=123    (body: status, lead_grade, notes)
+ *   GET  /api/admin/inquiries/?action=export[&grade=&status=&country=&q=]
  */
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
@@ -22,7 +22,26 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       res.status(500).send('Supabase not configured');
       return;
     }
-    const body = (req.body || {}) as Record<string, string>;
+    const ct = String(req.headers['content-type'] || '');
+    let body: Record<string, string> = {};
+    if (typeof req.body === 'object' && req.body && !Buffer.isBuffer(req.body)) {
+      body = req.body as Record<string, string>;
+    } else if (typeof req.body === 'string') {
+      if (ct.includes('application/x-www-form-urlencoded')) {
+        const params = new URLSearchParams(req.body);
+        for (const [k, v] of params) body[k] = v;
+      } else if (ct.includes('multipart/form-data')) {
+        const re = /name="([^"]+)"\r\n\r\n([^\r\n]*)/g;
+        let m: RegExpExecArray | null;
+        while ((m = re.exec(req.body))) body[m[1]] = decodeURIComponent(m[2].replace(/\+/g, ' '));
+      }
+    } else if (Buffer.isBuffer(req.body)) {
+      const raw = (req.body as Buffer).toString('utf8');
+      if (ct.includes('application/x-www-form-urlencoded')) {
+        const params = new URLSearchParams(raw);
+        for (const [k, v] of params) body[k] = v;
+      }
+    }
     const status = body.status;
     const lead_grade = body.lead_grade || null;
     const notes = body.notes;

@@ -1,12 +1,12 @@
 ---
 // Admin login page - simple password auth
 // POST /api/admin/auth?action=login sets httpOnly cookie if password matches
-// Redirects to /admin/inquiries on success
+// Redirects to /admin/inquiries/ on success
 //
 // 7-9: Astro 5.18 + @astrojs/vercel 9.0.5 SSR dispatch bug — mod.GET
 // is missing because Vercel's adapter expects named exports for SSR
 // routes. Workaround: redirect from middleware (set on /admin/*) to
-// /admin/inquiries if logged in, via client-side JS. This page is
+// /admin/inquiries/ if logged in, via client-side JS. This page is
 // prerendered statically so no SSR dispatch is needed.
 
 export const prerender = true;
@@ -18,7 +18,7 @@ const error = url.searchParams.get('error');
 // Only redirect if the cookie value is truthy (not just present in header
 // as the substring match can hit stale cookies that survived a partial
 // cleanup). This avoids the loop seen when admin_session= is present
-// with no value — we'd otherwise push to /admin/inquiries and back.
+// with no value — we'd otherwise push to /admin/inquiries/ and back.
 const cookieHeader = Astro.request.headers.get('cookie') || '';
 const sessionMatch = /(?:^|;\s*)admin_session=([^;]*)/.exec(cookieHeader);
 const sessionValue = sessionMatch ? decodeURIComponent(sessionMatch[1] || '').trim() : '';
@@ -26,7 +26,7 @@ const hasValidSession = sessionValue.length > 0;
 
 if (hasValidSession) {
   // 308 so the browser does not resend a POST body on retry.
-  return Astro.redirect('/admin/inquiries', 308);
+  return Astro.redirect('/admin/inquiries/', 308);
 }
 
 const errorText = error ? 'Invalid password. Try again.' : null;

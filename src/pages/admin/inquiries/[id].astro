@@ -3,7 +3,7 @@
 // /admin/inquiries/[id]
 // - Show all fields
 // - Form to update status, lead_grade, notes
-// - Submit POSTs to /api/admin/inquiries?id=…
+// - Submit POSTs to /api/admin/inquiries/?id=…
 
 export const prerender = false;
 const { id } = Astro.params;
@@ -85,7 +85,7 @@ function fmtDate(iso: string) {
     <div class="header">
       <h1>Inquiry #{id}</h1>
       <div class="actions">
-        <a href="/admin/inquiries">← Back to list</a>
+        <a href="/admin/inquiries/">← Back to list</a>
         <a href="/api/admin/auth?action=logout">Logout</a>
       </div>
     </div>
@@ -143,7 +143,7 @@ function fmtDate(iso: string) {
 
         <div class="card">
           <h2>Update</h2>
-          <form method="POST" action={`/api/admin/inquiries?id=${id}`}>
+          <form method="POST" action={`/api/admin/inquiries/?id=${id}`}>
             <label for="status">Status</label>
             <select name="status" id="status">
               <option value="new" selected={inquiry.status === 'new'}>new</option>

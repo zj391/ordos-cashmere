@@ -1,6 +1,6 @@
 ---
 /**
- * Admin /admin/products — product catalog management.
+ * Admin /admin/products/ — product catalog management.
  *
  * Lists 591 products with pagination (50/page), category + search filter,
  * and the actions banner the screenshot reference's product-management screen shows.
@@ -173,7 +173,7 @@ const paginationLinksHtml = (() => {
       {L('Search', '搜索')}
     </button>
     {(q || cat) && (
-      <a href="/admin/products" class="rounded-md border border-stone-300 px-3 py-2 text-sm text-stone-600 hover:bg-stone-50">
+      <a href="/admin/products/" class="rounded-md border border-stone-300 px-3 py-2 text-sm text-stone-600 hover:bg-stone-50">
         {L('Reset', '重置')}
       </a>
     )}

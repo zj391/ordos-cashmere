@@ -1,6 +1,6 @@
 ---
 // Admin inquiries list
-// /admin/inquiries
+// /admin/inquiries/
 // - Table of all inquiries, filterable by grade/status/country
 // - Link to /admin/inquiries/[id] for detail
 // - CSV export link
@@ -140,7 +140,7 @@ function badgeStatus(s: string | null) {
   <div class="header">
     <h1>Inquiries</h1>
     <div class="actions">
-      <a href="/api/admin/inquiries?action=export&{url.searchParams.toString()}" class="primary">Export CSV</a>
+      <a href="/api/admin/inquiries/?action=export&{url.searchParams.toString()}" class="primary">Export CSV</a>
       <a href="/api/admin/auth?action=logout">Logout</a>
     </div>
   </div>
@@ -225,7 +225,7 @@ function badgeStatus(s: string | null) {
       <input type="text" name="country" value={country} placeholder="US / IT / DE...">
     </div>
     <button type="submit">Filter</button>
-    <a href="/admin/inquiries">Clear</a>
+    <a href="/admin/inquiries/">Clear</a>
   </form>
 
   {inquiries.length === 0 ? (
