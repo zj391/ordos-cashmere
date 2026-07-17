@@ -11,16 +11,33 @@
 
 export const prerender = true;
 
-const error = Astro.url.searchParams.get('error');
+const url = Astro.url;
+const error = url.searchParams.get('error');
 
-if (Astro.request.headers.get('cookie')?.includes('admin_session=')) {
-  return Astro.redirect('/admin/inquiries');
+// Detect a valid admin session by parsing the raw cookie header.
+// Only redirect if the cookie value is truthy (not just present in header
+// as the substring match can hit stale cookies that survived a partial
+// cleanup). This avoids the loop seen when admin_session= is present
+// with no value — we'd otherwise push to /admin/inquiries and back.
+const cookieHeader = Astro.request.headers.get('cookie') || '';
+const sessionMatch = /(?:^|;\s*)admin_session=([^;]*)/.exec(cookieHeader);
+const sessionValue = sessionMatch ? decodeURIComponent(sessionMatch[1] || '').trim() : '';
+const hasValidSession = sessionValue.length > 0;
+
+if (hasValidSession) {
+  // 308 so the browser does not resend a POST body on retry.
+  return Astro.redirect('/admin/inquiries', 308);
 }
+
+const errorText = error ? 'Invalid password. Try again.' : null;
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="expires" content="0">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Login — DONGXIAO Cashmere</title>
   <style>
@@ -80,19 +97,12 @@ if (Astro.request.headers.get('cookie')?.includes('admin_session=')) {
   <div class="card">
     <h1>Admin Login</h1>
     <p>DONGXIAO Cashmere internal dashboard</p>
-    {error && <div class="err">Invalid password. Try again.</div>}
+    {errorText && <div class="err">{errorText}</div>}
     <form method="POST" action="/api/admin/login">
       <label for="password">Password</label>
       <input type="password" id="password" name="password" required autofocus>
       <button type="submit">Sign in</button>
     </form>
   </div>
-  <script>
-    // If admin cookie is present, redirect to inquiries immediately
-    // (server-side check skipped because page is prerendered).
-    if (document.cookie.includes('admin_session=')) {
-      window.location.replace('/admin/inquiries');
-    }
-  </script>
 </body>
 </html>
