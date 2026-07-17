@@ -17,7 +17,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
   }
 
   // Public endpoints
-  if (pathname === '/admin/login' || pathname === '/api/admin/login' || pathname === '/api/admin/logout') {
+  if (pathname === '/admin/login' || pathname === '/api/admin/auth') {
     return next();
   }
 

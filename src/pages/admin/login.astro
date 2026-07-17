@@ -1,6 +1,6 @@
 ---
 // Admin login page - simple password auth
-// POST /api/admin/login sets httpOnly cookie if password matches
+// POST /api/admin/auth?action=login sets httpOnly cookie if password matches
 // Redirects to /admin/inquiries on success
 //
 // 7-9: Astro 5.18 + @astrojs/vercel 9.0.5 SSR dispatch bug — mod.GET
@@ -98,7 +98,7 @@ const errorText = error ? 'Invalid password. Try again.' : null;
     <h1>Admin Login</h1>
     <p>DONGXIAO Cashmere internal dashboard</p>
     {errorText && <div class="err">{errorText}</div>}
-    <form method="POST" action="/api/admin/login">
+    <form method="POST" action="/api/admin/auth?action=login">
       <label for="password">Password</label>
       <input type="password" id="password" name="password" required autofocus>
       <button type="submit">Sign in</button>

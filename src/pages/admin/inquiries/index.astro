@@ -140,8 +140,8 @@ function badgeStatus(s: string | null) {
   <div class="header">
     <h1>Inquiries</h1>
     <div class="actions">
-      <a href="/api/admin/inquiries/export?{url.searchParams.toString()}" class="primary">Export CSV</a>
-      <a href="/api/admin/logout">Logout</a>
+      <a href="/api/admin/inquiries?action=export&{url.searchParams.toString()}" class="primary">Export CSV</a>
+      <a href="/api/admin/auth?action=logout">Logout</a>
     </div>
   </div>
 

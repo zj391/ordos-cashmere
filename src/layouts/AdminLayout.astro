@@ -100,7 +100,7 @@ const navItems = ADMIN_NAV_ITEMS.map((n) => ({
 
           <a href={`/${locale === 'cn' ? '' : locale + '/'}`} target="_blank" rel="noopener" class="hidden text-sm text-stone-600 hover:text-primary md:inline">{L(tNav.viewSite)}</a>
 
-          <form method="post" action="/api/admin/logout">
+          <form method="post" action="/api/admin/auth?action=logout">
             <button type="submit" title={L(tNav.logoutTitle)} class="rounded-md border border-stone-300 bg-white px-3 py-1 text-sm text-stone-700 hover:bg-stone-100">{L(tNav.logout)}</button>
           </form>
         </div>

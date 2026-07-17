@@ -1,6 +1,6 @@
 /**
  * 成衣代工定制询盘表单（产品页专用）
- * Endpoint: POST /api/inquiry/garment
+ * Endpoint: POST /api/inquiry (type=garment)
  */
 import ProductInquiryForm from './ProductInquiryForm';
 
@@ -9,7 +9,7 @@ export default function GarmentOemInquiryForm({ locale }: { locale: string }) {
     <ProductInquiryForm
       locale={locale}
       productType="garment"
-      endpoint="/api/inquiry/garment"
+      endpoint="/api/inquiry"
       title={{
         en: 'Garment OEM Custom Inquiry',
         cn: '成衣代工定制询盘',

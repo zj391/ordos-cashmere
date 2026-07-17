@@ -25,7 +25,7 @@ interface FieldDef {
 
 interface Props {
   locale: string;
-  endpoint: string;            // /api/inquiry/raw etc.
+  endpoint: string;            // /api/inquiry (handler discriminates on type field)
   productType: 'raw' | 'yarn' | 'garment';
   title: Record<string, string>;
   submitLabel: Record<string, string>;

@@ -1,6 +1,6 @@
 /**
  * 纱线/面料询盘表单（产品页专用）
- * Endpoint: POST /api/inquiry/yarn
+ * Endpoint: POST /api/inquiry (type=yarn)
  */
 import ProductInquiryForm from './ProductInquiryForm';
 
@@ -9,7 +9,7 @@ export default function YarnFabricInquiryForm({ locale }: { locale: string }) {
     <ProductInquiryForm
       locale={locale}
       productType="yarn"
-      endpoint="/api/inquiry/yarn"
+      endpoint="/api/inquiry"
       title={{
         en: 'Yarn & Fabric Inquiry',
         cn: '纱线/面料询盘',

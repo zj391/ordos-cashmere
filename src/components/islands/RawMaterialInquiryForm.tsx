@@ -1,6 +1,6 @@
 /**
  * 原料批量采购询盘表单（产品页专用，无类型切换）
- * Endpoint: POST /api/inquiry/raw
+ * Endpoint: POST /api/inquiry (type=raw)
  */
 import ProductInquiryForm from './ProductInquiryForm';
 
@@ -9,7 +9,7 @@ export default function RawMaterialInquiryForm({ locale }: { locale: string }) {
     <ProductInquiryForm
       locale={locale}
       productType="raw"
-      endpoint="/api/inquiry/raw"
+      endpoint="/api/inquiry"
       title={{
         en: 'Raw Cashmere Bulk Inquiry',
         cn: '羊绒原料批量询盘',
