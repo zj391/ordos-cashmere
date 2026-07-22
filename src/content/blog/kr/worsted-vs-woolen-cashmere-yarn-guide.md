@@ -117,4 +117,4 @@ For new B2B buyers, we recommend a **trial run of 50-100kg** in your preferred s
 
 ---
 
-*Need help choosing the right yarn? [Contact our yarn team](https://erdosdx.com/en/contact) with your product specs (gauge, hand feel preference, pilling targets) and we'll send 5 sample cones for testing.*
+*Need help choosing the right yarn? [Contact our yarn team](https://www.erdosdx.com/en/contact) with your product specs (gauge, hand feel preference, pilling targets) and we'll send 5 sample cones for testing.*

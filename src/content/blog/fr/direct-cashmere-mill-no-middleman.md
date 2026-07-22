@@ -195,4 +195,4 @@ Pour les nouveaux acheteurs directs, nous recommandons une **approche en 2 étap
 
 ---
 
-*Prêt à vous approvisionner en cachemire directement depuis l'usine ? [Contactez notre équipe commerciale](https://erdosdx.com/en/contact) avec vos spécifications cibles et votre volume de commande. Nous vous fournirons un devis détaillé et suggérerons une taille de commande d'essai pour votre premier achat direct.*
+*Prêt à vous approvisionner en cachemire directement depuis l'usine ? [Contactez notre équipe commerciale](https://www.erdosdx.com/en/contact) avec vos spécifications cibles et votre volume de commande. Nous vous fournirons un devis détaillé et suggérerons une taille de commande d'essai pour votre premier achat direct.*

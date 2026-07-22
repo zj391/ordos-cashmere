@@ -158,4 +158,4 @@ For buyers requiring certifications we don't currently hold (e.g., Bluesign, Cra
 
 ---
 
-*Need certified cashmere? [Request a quote](https://erdosdx.com/en/contact) with your target certifications. We'll send current certificates with sample shipment and explain any limitations.*
+*Need certified cashmere? [Request a quote](https://www.erdosdx.com/en/contact) with your target certifications. We'll send current certificates with sample shipment and explain any limitations.*

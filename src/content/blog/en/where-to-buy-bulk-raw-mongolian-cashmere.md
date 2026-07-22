@@ -145,4 +145,4 @@ For buyers new to sourcing from China, we recommend starting with a 200-500kg tr
 
 ---
 
-*Looking to source bulk raw Mongolian cashmere for your 2026 production? [Request a quote](https://erdosdx.com/en/contact) with your target micron, color, and volume. Free 100g samples ship within 5 days.*
+*Looking to source bulk raw Mongolian cashmere for your 2026 production? [Request a quote](https://www.erdosdx.com/en/contact) with your target micron, color, and volume. Free 100g samples ship within 5 days.*

@@ -118,4 +118,4 @@ Außerdem bewahren wir Referenzmuster jeder Lieferung für 2 Jahre auf, sodass j
 
 ---
 
-*Bereit, einen chinesischen Kaschmir-Lieferanten zu überprüfen? [Fordern Sie ein Angebot an](https://erdosdx.com/en/contact) mit Ihren Spezifikationen, und wir senden OFDA-Daten für unsere Top-3-Qualitäten zusammen mit einer Faserprobe.*
+*Bereit, einen chinesischen Kaschmir-Lieferanten zu überprüfen? [Fordern Sie ein Angebot an](https://www.erdosdx.com/en/contact) mit Ihren Spezifikationen, und wir senden OFDA-Daten für unsere Top-3-Qualitäten zusammen mit einer Faserprobe.*

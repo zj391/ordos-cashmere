@@ -4,7 +4,7 @@ Disallow: /api/
 Disallow: /admin/
 
 # Sitemaps
-Sitemap: https://erdosdx.com/sitemap-index.xml
+Sitemap: https://www.erdosdx.com/sitemap-index.xml
 
 # AI crawlers - allow for GEO SEO content indexing
 User-agent: GPTBot

@@ -115,4 +115,4 @@ For B2B buyers new to cashmere yarn, we recommend starting with **2/48 Nm white*
 
 ---
 
-*Need help choosing the right yarn count? [Contact our yarn team](https://erdosdx.com/en/contact) with your design specs (target gauge, fabric weight, end-use) and we'll recommend 3 yarn options with sample cones.*
+*Need help choosing the right yarn count? [Contact our yarn team](https://www.erdosdx.com/en/contact) with your design specs (target gauge, fabric weight, end-use) and we'll recommend 3 yarn options with sample cones.*

@@ -155,4 +155,4 @@ Für Käufer, die Zertifizierungen benötigen, die wir derzeit nicht besitzen (z
 
 ---
 
-*Benötigen Sie zertifizierten Kaschmir? [Fordern Sie ein Angebot an](https://erdosdx.com/en/contact) mit Ihren gewünschten Zertifizierungen. Wir senden aktuelle Zertifikate mit der Musterlieferung und erläutern etwaige Einschränkungen.*
+*Benötigen Sie zertifizierten Kaschmir? [Fordern Sie ein Angebot an](https://www.erdosdx.com/en/contact) mit Ihren gewünschten Zertifizierungen. Wir senden aktuelle Zertifikate mit der Musterlieferung und erläutern etwaige Einschränkungen.*

@@ -112,4 +112,4 @@ Pour les acheteurs B2B novices en fil de cachemire, nous recommandons de commenc
 
 ---
 
-*Besoin d'aide pour choisir le bon numéro de fil ? [Contactez notre équipe fil](https://erdosdx.com/en/contact) avec vos spécifications de conception (jauge cible, poids du tissu, utilisation finale) et nous vous recommanderons 3 options de fil avec des cônes d'échantillon.*
+*Besoin d'aide pour choisir le bon numéro de fil ? [Contactez notre équipe fil](https://www.erdosdx.com/en/contact) avec vos spécifications de conception (jauge cible, poids du tissu, utilisation finale) et nous vous recommanderons 3 options de fil avec des cônes d'échantillon.*

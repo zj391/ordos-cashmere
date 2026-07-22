@@ -155,4 +155,4 @@ Pour les acheteurs ayant besoin de certifications que nous ne détenons pas actu
 
 ---
 
-*Vous avez besoin de cachemire certifié ? [Demandez un devis](https://erdosdx.com/en/contact) avec vos certifications cibles. Nous enverrons les certificats actuels avec l'envoi d'échantillon et expliquerons les éventuelles limitations.*
+*Vous avez besoin de cachemire certifié ? [Demandez un devis](https://www.erdosdx.com/en/contact) avec vos certifications cibles. Nous enverrons les certificats actuels avec l'envoi d'échantillon et expliquerons les éventuelles limitations.*

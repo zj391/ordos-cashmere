@@ -161,4 +161,4 @@ The trade-off: longer shipping times to Western markets (25-35 days from China v
 
 ---
 
-*Ready to start a private label cashmere project? [Contact our OEM team](https://erdosdx.com/en/contact) with your design brief. We'll provide a feasibility assessment and quote within 24 hours.*
+*Ready to start a private label cashmere project? [Contact our OEM team](https://www.erdosdx.com/en/contact) with your design brief. We'll provide a feasibility assessment and quote within 24 hours.*

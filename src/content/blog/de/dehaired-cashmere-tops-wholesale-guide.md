@@ -112,4 +112,4 @@ Bei DONGXIAO hat unsere gesamte enthaarte weiße Kaschmirwolle 14,5-15,5 μm mit
 
 ---
 
-*Bereit, enthaarte Kaschmirwolle zu beziehen? [Muster anfordern](https://erdosdx.com/en/contact) und wir versenden innerhalb von 5 Tagen 100 g jeder Qualität mit vollständigen OFDA-Daten.*
+*Bereit, enthaarte Kaschmirwolle zu beziehen? [Muster anfordern](https://www.erdosdx.com/en/contact) und wir versenden innerhalb von 5 Tagen 100 g jeder Qualität mit vollständigen OFDA-Daten.*

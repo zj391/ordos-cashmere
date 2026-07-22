@@ -6,7 +6,10 @@
 import { LOCALE_HREFLANG, type Locale } from './i18n';
 import { SEO_KEYWORDS, getSeoKeywords } from '@/data/seo-keywords';
 
-export const SITE_URL = 'https://erdosdx.com';
+// Canonical hostname must match astro.config.mjs `site` and public/robots.txt
+// Sitemap line. Vercel 308-redirects the apex (erdosdx.com) to www, so all
+// outbound URL emission (canonical, hreflang, JSON-LD schema, OG) goes to www.
+export const SITE_URL = 'https://www.erdosdx.com';
 
 export const SITE_INFO = {
   name: 'DONGXIAO® CASHMERE',

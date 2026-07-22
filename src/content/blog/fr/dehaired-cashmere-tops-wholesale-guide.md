@@ -112,4 +112,4 @@ Chez DONGXIAO, tout notre cachemire blanc délaine est de 14,5 à 15,5 μm avec 
 
 ---
 
-*Prêt à vous approvisionner en cachemire délaine ? [Demandez des échantillons](https://erdosdx.com/en/contact) et nous vous enverrons 100 g de chaque qualité avec des données OFDA complètes sous 5 jours.*
+*Prêt à vous approvisionner en cachemire délaine ? [Demandez des échantillons](https://www.erdosdx.com/en/contact) et nous vous enverrons 100 g de chaque qualité avec des données OFDA complètes sous 5 jours.*

@@ -112,4 +112,4 @@ Für B2B-Käufer, die neu im Bereich Kaschmirgarn sind, empfehlen wir, mit **2/4
 
 ---
 
-*Benötigen Sie Hilfe bei der Wahl der richtigen Garnfeinheit? [Kontaktieren Sie unser Garnteam](https://erdosdx.com/en/contact) mit Ihren Designspezifikationen (Zielstärke, Stoffgewicht, Endverwendung), und wir empfehlen Ihnen 3 Garnoptionen mit Musterkegeln.*
+*Benötigen Sie Hilfe bei der Wahl der richtigen Garnfeinheit? [Kontaktieren Sie unser Garnteam](https://www.erdosdx.com/en/contact) mit Ihren Designspezifikationen (Zielstärke, Stoffgewicht, Endverwendung), und wir empfehlen Ihnen 3 Garnoptionen mit Musterkegeln.*

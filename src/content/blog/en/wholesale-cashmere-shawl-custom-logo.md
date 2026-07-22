@@ -168,4 +168,4 @@ Total time: 4-5 weeks from logo file to approved sample shawl.
 
 ---
 
-*Need a custom label for your cashmere line? [Contact our label team](https://erdosdx.com/en/contact) with your logo file. We'll provide a digital mockup and per-unit pricing within 48 hours.*
+*Need a custom label for your cashmere line? [Contact our label team](https://www.erdosdx.com/en/contact) with your logo file. We'll provide a digital mockup and per-unit pricing within 48 hours.*

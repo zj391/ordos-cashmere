@@ -56,18 +56,18 @@ const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
     const contactJson = JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'ContactPage',
-      '@id': `https://erdosdx.com/${locale}/contact`,
+      '@id': `https://www.erdosdx.com/${locale}/contact`,
       name: locale === 'cn' ? '联系东霄羊绒' : 'Contact DONGXIAO Cashmere',
       description: locale === 'cn'
         ? '联系鄂尔多斯源头工厂，24小时内回复所有询盘'
         : 'Contact our Ordos source factory directly. 24h inquiry response.',
       mainEntity: {
         '@type': 'Organization',
-        '@id': 'https://erdosdx.com/#organization',
+        '@id': 'https://www.erdosdx.com/#organization',
         name: 'DONGXIAO Cashmere',
         legalName: 'Ordos Dongxiao Cashmere Co., Ltd.',
-        url: 'https://erdosdx.com',
-        logo: 'https://erdosdx.com/logo.svg',
+        url: 'https://www.erdosdx.com',
+        logo: 'https://www.erdosdx.com/logo.svg',
         foundingDate: '2002',
         address: {
           '@type': 'PostalAddress',

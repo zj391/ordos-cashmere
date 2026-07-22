@@ -8,10 +8,10 @@
  *
  * Usage from a build/SSR hook:
  *   import { submitToIndexNow } from '@/lib/indexnow';
- *   await submitToIndexNow('https://erdosdx.com/en/products/hats-100/');
+ *   await submitToIndexNow('https://www.erdosdx.com/en/products/hats-100/');
  *
  * Usage in a GitHub Action cron after publishing a blog post:
- *   node -e "import('./src/lib/indexnow.ts').then(m => m.submitToIndexNow('https://erdosdx.com/en/blog/my-post/'))"
+ *   node -e "import('./src/lib/indexnow.ts').then(m => m.submitToIndexNow('https://www.erdosdx.com/en/blog/my-post/'))"
  *
  * Notes:
  * - IndexNow allows up to 10,000 URLs per request.
@@ -25,7 +25,10 @@ const INDEXNOW_ENDPOINT = 'https://api.indexnow.org/indexnow';
 // Key file lives in /public/indexnow-key.txt (Vercel serves it as a static file).
 // The key is also embedded here for direct POSTs (Bing validates either path).
 const INDEXNOW_KEY = 'erdosdx-indexnow-key-2026';
-const HOST = 'erdosdx.com';
+// IndexNow host must match the canonical hostname used in URLs submitted.
+// Vercel 308-redirects erdosdx.com to www.erdosdx.com, so the host here
+// uses www to keep submission consistent with the indexed URL set.
+const HOST = 'www.erdosdx.com';
 
 interface SubmitResult {
   ok: boolean;

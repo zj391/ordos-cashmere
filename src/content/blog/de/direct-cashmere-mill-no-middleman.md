@@ -195,4 +195,4 @@ Für neue Direktkäufer empfehlen wir ein **2-stufiges Vorgehen**: Zuerst eine P
 
 ---
 
-*Bereit, Kaschmir direkt von der Mühle zu beziehen? [Kontaktieren Sie unser Vertriebsteam](https://erdosdx.com/en/contact) mit Ihren Zielvorgaben und Bestellmengen. Wir erstellen ein detailliertes Angebot und schlagen eine geeignete Probebestellmenge für Ihren ersten Direkteinkauf vor.*
+*Bereit, Kaschmir direkt von der Mühle zu beziehen? [Kontaktieren Sie unser Vertriebsteam](https://www.erdosdx.com/en/contact) mit Ihren Zielvorgaben und Bestellmengen. Wir erstellen ein detailliertes Angebot und schlagen eine geeignete Probebestellmenge für Ihren ersten Direkteinkauf vor.*

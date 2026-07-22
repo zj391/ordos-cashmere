@@ -10,7 +10,16 @@ import vercel from '@astrojs/vercel';
 // This is the canonical Astro 5 + Vercel setup as of 2026.
 
 export default defineConfig({
-  site: 'https://erdosdx.com',
+  // SEO fix 2026-07-22: use www.erdosdx.com as canonical hostname.
+  // Vercel DNS routes the apex (erdosdx.com) to www.erdosdx.com with a 308
+  // permanent redirect. Sitemap + canonical URLs were emitting the apex
+  // hostname, so every Google crawl hit a redirect before reaching the
+  // real page (84 'Redirected' entries in GSC "Why pages aren't indexed").
+  // Pinning `site` to the www hostname lets the Astro sitemap plugin,
+  // canonical link, hreflang alternates, and JSON-LD schema all emit
+  // the final URL directly. Google indexes the page on first fetch with
+  // no redirect hop, recovering the wasted crawl budget.
+  site: 'https://www.erdosdx.com',
   output: 'server',
   adapter: vercel({
     edgeMiddleware: false,

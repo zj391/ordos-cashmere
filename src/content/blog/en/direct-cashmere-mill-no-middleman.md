@@ -198,4 +198,4 @@ For new direct buyers, we recommend a **2-step approach**: first order 200-500kg
 
 ---
 
-*Ready to source cashmere direct from the mill? [Contact our sales team](https://erdosdx.com/en/contact) with your target specs and order volume. We'll provide a detailed quote and suggest a trial order size for your first direct purchase.*
+*Ready to source cashmere direct from the mill? [Contact our sales team](https://www.erdosdx.com/en/contact) with your target specs and order volume. We'll provide a detailed quote and suggest a trial order size for your first direct purchase.*

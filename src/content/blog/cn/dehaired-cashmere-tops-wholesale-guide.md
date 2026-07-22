@@ -112,4 +112,4 @@ language: "cn"
 
 ---
 
-*准备好采购分梳羊绒了吗？[申请样品](https://erdosdx.com/en/contact)，我们将在5天内寄送每种等级的100克样品及完整OFDA数据。*
+*准备好采购分梳羊绒了吗？[申请样品](https://www.erdosdx.com/en/contact)，我们将在5天内寄送每种等级的100克样品及完整OFDA数据。*

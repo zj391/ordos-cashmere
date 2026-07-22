@@ -114,4 +114,4 @@ For boutique brands growing to 200+ units per season, we offer **graduated prici
 
 ---
 
-*Have a small-batch cashmere project? [Contact our boutique team](https://erdosdx.com/en/contact) with your design brief and order quantity. We'll provide a feasibility assessment and quote within 24 hours.*
+*Have a small-batch cashmere project? [Contact our boutique team](https://www.erdosdx.com/en/contact) with your design brief and order quantity. We'll provide a feasibility assessment and quote within 24 hours.*

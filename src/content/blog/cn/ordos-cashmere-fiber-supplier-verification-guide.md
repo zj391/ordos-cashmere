@@ -118,4 +118,4 @@ language: "cn"
 
 ---
 
-*准备验证一家中国羊绒供应商？[提交询价](https://erdosdx.com/en/contact)并附上您的规格要求，我们将发送顶级3个等级的OFDA数据及纤维样品。*
+*准备验证一家中国羊绒供应商？[提交询价](https://www.erdosdx.com/en/contact)并附上您的规格要求，我们将发送顶级3个等级的OFDA数据及纤维样品。*

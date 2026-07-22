@@ -118,4 +118,4 @@ Nous conservons également des échantillons de référence de chaque expéditio
 
 ---
 
-*Prêt à vérifier un fournisseur de cachemire chinois ? [Demandez un devis](https://erdosdx.com/en/contact) avec vos spécifications, et nous vous enverrons les données OFDA pour nos 3 meilleures qualités ainsi qu'un échantillon de fibre.*
+*Prêt à vérifier un fournisseur de cachemire chinois ? [Demandez un devis](https://www.erdosdx.com/en/contact) avec vos spécifications, et nous vous enverrons les données OFDA pour nos 3 meilleures qualités ainsi qu'un échantillon de fibre.*

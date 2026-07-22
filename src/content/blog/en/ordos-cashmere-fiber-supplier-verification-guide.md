@@ -120,4 +120,4 @@ We also keep reference samples of every shipment for 2 years, so any quality dis
 
 ---
 
-*Ready to verify a Chinese cashmere supplier? [Request a quote](https://erdosdx.com/en/contact) with your specifications, and we'll send OFDA data for our top 3 grades along with sample fiber.*
+*Ready to verify a Chinese cashmere supplier? [Request a quote](https://www.erdosdx.com/en/contact) with your specifications, and we'll send OFDA data for our top 3 grades along with sample fiber.*

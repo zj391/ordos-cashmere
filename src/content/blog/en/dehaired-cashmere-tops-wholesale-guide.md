@@ -115,4 +115,4 @@ At DONGXIAO, all our dehaired white cashmere is 14.5-15.5μm with CV < 20%, and 
 
 ---
 
-*Ready to source dehaired cashmere? [Request samples](https://erdosdx.com/en/contact) and we'll ship 100g of each grade with full OFDA data within 5 days.*
+*Ready to source dehaired cashmere? [Request samples](https://www.erdosdx.com/en/contact) and we'll ship 100g of each grade with full OFDA data within 5 days.*
