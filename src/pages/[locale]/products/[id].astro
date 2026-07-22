@@ -20,7 +20,7 @@ import Footer from '@/components/Footer.astro';
 import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
 import { LOCALES, isLocale, pickLocale } from '@/lib/i18n';
-import { SEO, SITE_INFO } from '@/lib/seo';
+import { SEO, SITE_URL, SITE_INFO } from '@/lib/seo';
 import { getProductById, getAllProducts, getCategoryById } from '@/data/products';
 
 // 类别 id 映射到产品图目录
@@ -75,7 +75,10 @@ const galleryImages = product.images.map((img) => `/products/${imageDir}/${img}`
 // Per-locale TDK
 const tdk = {
   en: (p, c) => ({
-    title: `${p.name} | Wholesale Cashmere ${c} | DONGXIAO®`,
+    // SEO audit 2026-07-17 #3: drop duplicate "Cashmere" word and bury-brand issues.
+    // Pattern: "{Unique product name} | {Category} {B2B signal} | DONGXIAO®"
+    // Keep under 60 chars. c is the category (e.g. "Hats"), p.name is unique (e.g. "Fold up Pure Cashmere Hat").
+    title: `${p.name} | ${c} Wholesale — Ordos Cashmere Factory | DONGXIAO®`,
     description: `${p.name}. ${p.material}, ${p.micron}. Wholesale from Ordos factory. MOQ ${p.moq} pcs. Lead time ${p.lead}. Sample ${p.sample_time}. Factory pricing for global B2B buyers.`,
     keywords: [`${p.name}`, `wholesale cashmere ${c.toLowerCase()}`, `${p.material} ${c.toLowerCase()}`, `cashmere manufacturer ${p.id}`, `OEM ${c.toLowerCase()}`, 'cashmere wholesale', 'Ordos cashmere factory'],
     buyCta: 'Request Quote',
@@ -126,11 +129,11 @@ const productSchema = {
   '@type': 'Product',
   name: product.name,
   description: t.description,
-  image: galleryImages.map((img) => `${SITE_INFO.url}${img}`),
+  image: galleryImages.map((img) => `${SITE_URL}${img}`),
   sku: product.id,
   mpn: product.id,
   brand: { '@type': 'Brand', name: 'DONGXIAO' },
-  manufacturer: { '@type': 'Organization', name: 'DONGXIAO Cashmere', url: SITE_INFO.url },
+  manufacturer: { '@type': 'Organization', name: 'DONGXIAO Cashmere', url: SITE_URL },
   category: category.name,
   material: product.material,
   offers: {
@@ -150,10 +153,10 @@ const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_INFO.url}/${locale}/` },
-    { '@type': 'ListItem', position: 2, name: 'Products', item: `${SITE_INFO.url}/${locale}/products` },
-    { '@type': 'ListItem', position: 3, name: category.name, item: `${SITE_INFO.url}/${locale}/products/${product.categoryId === 'hats' || product.categoryId === 'accessories' ? 'hats-accessories' : product.categoryId === 'sweaters' ? 'garment-oem' : product.categoryId}` },
-    { '@type': 'ListItem', position: 4, name: product.name, item: `${SITE_INFO.url}/${locale}/products/${product.id}` },
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/${locale}/` },
+    { '@type': 'ListItem', position: 2, name: 'Products', item: `${SITE_URL}/${locale}/products` },
+    { '@type': 'ListItem', position: 3, name: category.name, item: `${SITE_URL}/${locale}/products/${product.categoryId === 'hats' || product.categoryId === 'accessories' ? 'hats-accessories' : product.categoryId === 'sweaters' ? 'garment-oem' : product.categoryId}` },
+    { '@type': 'ListItem', position: 4, name: product.name, item: `${SITE_URL}/${locale}/products/${product.id}` },
   ],
 };
 ---
@@ -161,12 +164,13 @@ const breadcrumbSchema = {
 <BaseLayout
   locale={locale}
   pageKey="products"
-  path={`/${locale}/products/${product.id}`}
+  path={`/products/${product.id}`}
   title={t.title}
   description={t.description}
   keywords={t.keywords}
   schema="general"
   customSchemas={[productSchema, breadcrumbSchema]}
+  ogImage={`${SITE_URL}${primaryImage}`}
 >
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/products/${product.id}`} />
 

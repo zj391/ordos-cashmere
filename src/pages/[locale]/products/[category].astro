@@ -15,7 +15,7 @@ import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
 import SEOFaq from '@/components/SEOFaq.astro';
 import { LOCALES, isLocale, pickLocale } from '@/lib/i18n';
-import { SEO, SITE_INFO } from '@/lib/seo';
+import { SEO, SITE_URL } from '@/lib/seo';
 import { products as productsData, getCategoryById } from '@/data/products';
 
 // 把产品 JSON 的 category id 映射到 URL slug
@@ -334,12 +334,12 @@ const itemListSchema = {
     '@type': 'ListItem',
     position: i + 1,
     name: p.name,
-    url: `${SITE_INFO.url}/${locale}/products/${p.id}`,
+    url: `${SITE_URL}/${locale}/products/${p.id}`,
   })),
 };
 ---
 
-<BaseLayout locale={locale} pageKey="products" path={`/${locale}/products/${slug}`} title={t.title} description={t.description} keywords={t.keywords} schema="general">
+<BaseLayout locale={locale} pageKey="products" path={`/products/${slug}`} title={t.title} description={t.description} keywords={t.keywords} schema="general">
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/products/${slug}`} />
 
   <section class="bg-brand-ink text-white py-20 md:py-28">
