@@ -140,3 +140,7 @@ client/public/__manus__/version.json
 .env*
 !.env.example
 backup/
+
+# 25-26 Color Card Catalog PDF renders (large, regenerated from PDF)
+docs/color-card-pages/
+docs/素材/
