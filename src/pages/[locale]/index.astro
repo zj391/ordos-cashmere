@@ -218,14 +218,29 @@ const IMG = {
 <BaseLayout locale={locale} pageKey="home" path="/" schema="home">
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/`} />
 
-  <!-- ============ HERO ============ -->
+  <!-- ============ HERO (3 张明亮图轮播 + 文字层) ============ -->
   <section class="relative bg-brand-ink text-white overflow-hidden">
-    <!-- 背景工厂图 + 暗化叠层 (Ken Burns 微动画 20s loop) -->
-    <div class="absolute inset-0">
-      <img src={IMG.heroFiber} alt="Cashmere knitwear detail" class="w-full h-full object-cover opacity-40 ken-burns" loading="eager" />
-      <div class="absolute inset-0 bg-gradient-to-r from-brand-ink via-brand-ink/80 to-transparent"></div>
+    <!-- 轮播图: 3 张明亮图自动循环 (CSS transition + 底部圆点 + JS) -->
+    <div class="absolute inset-0" data-hero-slider>
+      {[
+        { src: IMG.scarvesFolded, alt: 'Cashmere scarves — premium B2B product' },
+        { src: IMG.craftHand,    alt: 'Handwoven cashmere detail — craftsmanship' },
+        { src: IMG.mongoliaGoat, alt: 'Cashmere goats on Mongolian pasture — origin' },
+      ].map((slide, i) => (
+        <img
+          src={slide.src}
+          alt={slide.alt}
+          class={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[1500ms] ease-in-out ${
+            i === 0 ? 'opacity-100' : 'opacity-0'
+          }`}
+          loading={i === 0 ? 'eager' : 'lazy'}
+          data-hero-slide={i}
+        />
+      ))}
+      <!-- 左侧暗化叠层: 保证文字可读, 右侧保持明亮 (gradient from-left) -->
+      <div class="absolute inset-0 bg-gradient-to-r from-brand-ink/85 via-brand-ink/55 to-transparent"></div>
     </div>
-    <!-- 羊绒纤维纹理 -->
+    <!-- 羊绒纤维纹理 (装饰) -->
     <svg class="absolute inset-0 w-full h-full opacity-[0.05] pointer-events-none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
       <defs>
         <pattern id="fibers" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
@@ -244,7 +259,7 @@ const IMG = {
           <span class="text-xs tracking-[0.4em] text-brand-gold uppercase font-medium">{c.tagline}</span>
         </div>
         <h1 class="font-serif text-6xl md:text-8xl font-light leading-[1.02] mb-8" set:html={c.title.replace(/\n/g, '<br/>')} />
-        <p class="text-lg md:text-xl text-white/75 mb-12 leading-relaxed max-w-xl font-light">
+        <p class="text-lg md:text-xl text-white/85 mb-12 leading-relaxed max-w-xl font-light">
           {c.subtitle}
         </p>
         <div class="flex flex-wrap items-center gap-6">
@@ -261,11 +276,66 @@ const IMG = {
       </div>
     </div>
 
-    <!-- 滚动指示 -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/40 text-xs tracking-widest uppercase animate-pulse">
-      Scroll
+    <!-- 轮播指示器: 3 个圆点 (居中底部, 自动循环 7s/张) -->
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-3 z-10" role="tablist" aria-label="Hero slides">
+      {[0, 1, 2].map((i) => (
+        <button
+          type="button"
+          class={`w-2 h-2 rounded-full transition-all duration-300 ${
+            i === 0 ? 'bg-brand-gold w-8' : 'bg-white/40 hover:bg-white/70'
+          }`}
+          aria-label={`Slide ${i + 1}`}
+          aria-current={i === 0 ? 'true' : 'false'}
+          data-hero-dot={i}
+        />
+      ))}
     </div>
   </section>
+
+  <!-- 轮播脚本: 自动 7s 切换 + 圆点同步 + prefers-reduced-motion 禁用 -->
+  <script>
+    (() => {
+      const root = document.querySelector('[data-hero-slider]');
+      if (!root) return;
+      const slides = root.querySelectorAll('[data-hero-slide]');
+      const dots = document.querySelectorAll('[data-hero-dot]');
+      if (slides.length < 2) return;
+      const total = slides.length;
+      let current = 0;
+      let timer = null;
+
+      // 尊重用户的 reduced-motion 设置
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const show = (i) => {
+        slides.forEach((el, idx) => {
+          el.classList.toggle('opacity-100', idx === i);
+          el.classList.toggle('opacity-0', idx !== i);
+        });
+        dots.forEach((d, idx) => {
+          d.classList.toggle('bg-brand-gold', idx === i);
+          d.classList.toggle('w-8', idx === i);
+          d.classList.toggle('bg-white/40', idx !== i);
+          d.setAttribute('aria-current', idx === i ? 'true' : 'false');
+        });
+        current = i;
+      };
+
+      const next = () => show((current + 1) % total);
+      const start = () => { if (!reduceMotion) timer = setInterval(next, 7000); };
+      const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
+
+      dots.forEach((d, i) => {
+        d.addEventListener('click', () => {
+          stop();
+          show(i);
+          start();
+        });
+      });
+
+      start();
+    })();
+  </script>
 
   <!-- ============ METRICS BAR（细线分隔） ============ -->
   <section class="border-y border-border bg-background py-12">
