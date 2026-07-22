@@ -1,0 +1,180 @@
+{
+  "catalog": "25-26 Color Card Catalog",
+  "created": "2024-11-06",
+  "source": "DONGXIAO®",
+  "total_pages": 30,
+  "content_pages": 24,
+  "series": [
+    {
+      "name_en": "OXFORD",
+      "name_cn": "牛津",
+      "description": "Woollen Yarn · 30% Cashmere 70% Wool",
+      "yarn_counts": [
+        "26/2NM",
+        "6.5/1NM",
+        "4.3/1NM"
+      ],
+      "pages": {
+        "26/2NM_neutral": {
+          "page": 2,
+          "colors_count": 15,
+          "category": "neutral"
+        },
+        "26/2NM_warm": {
+          "page": 3,
+          "colors_count": 15,
+          "category": "warm"
+        },
+        "26/2NM_cool": {
+          "page": 4,
+          "colors_count": 15,
+          "category": "cool"
+        },
+        "26/2NM_pink_purple_red": {
+          "page": 5,
+          "colors_count": 15,
+          "category": "pink_purple_red"
+        },
+        "6.5/1NM_+_4.3/1NM": {
+          "page": 18,
+          "colors_count": 21,
+          "category": "mixed_thick_yarns"
+        }
+      },
+      "total_colors": 81
+    },
+    {
+      "name_en": "LONDON",
+      "name_cn": "伦敦",
+      "description": "Worsted Yarn · 50% Cashmere 50% Wool",
+      "yarn_counts": [
+        "13/1NM"
+      ],
+      "pages": {
+        "13/1NM_overview": {
+          "page": 7,
+          "colors_count": 12,
+          "category": "mixed"
+        }
+      },
+      "total_colors": 12
+    },
+    {
+      "name_en": "CAMBRIDGE",
+      "name_cn": "剑桥",
+      "description": "Woollen & Worsted Yarn · 100% Cashmere",
+      "yarn_counts": [
+        "26/2NM",
+        "36/2NM",
+        "68/3NM"
+      ],
+      "pages": {
+        "26/2NM_neutral": {
+          "page": 19,
+          "colors_count": 15,
+          "category": "neutral"
+        },
+        "26/2NM_warm": {
+          "page": 20,
+          "colors_count": 15,
+          "category": "warm"
+        },
+        "26/2NM_red": {
+          "page": 21,
+          "colors_count": 15,
+          "category": "red"
+        },
+        "26/2NM_warm_yellow": {
+          "page": 22,
+          "colors_count": 15,
+          "category": "warm_yellow"
+        },
+        "26/2NM_green_yellow": {
+          "page": 23,
+          "colors_count": 15,
+          "category": "green_yellow"
+        },
+        "26/2NM_blue": {
+          "page": 24,
+          "colors_count": 15,
+          "category": "blue"
+        },
+        "26/2NM_pink_purple": {
+          "page": 25,
+          "colors_count": 15,
+          "category": "pink_purple"
+        },
+        "36/2NM_neutral": {
+          "page": 9,
+          "colors_count": 15,
+          "category": "neutral"
+        },
+        "36/2NM_cool": {
+          "page": 10,
+          "colors_count": 15,
+          "category": "cool"
+        },
+        "68/3NM_neutral": {
+          "page": 12,
+          "colors_count": 15,
+          "category": "neutral"
+        },
+        "68/3NM_warm": {
+          "page": 13,
+          "colors_count": 15,
+          "category": "warm"
+        },
+        "68/3NM_cool": {
+          "page": 14,
+          "colors_count": 15,
+          "category": "cool"
+        },
+        "68/3NM_pink_purple_red": {
+          "page": 15,
+          "colors_count": 15,
+          "category": "pink_purple_red"
+        }
+      },
+      "total_colors": 195
+    },
+    {
+      "name_en": "PARIS",
+      "name_cn": "巴黎",
+      "description": "Worsted Yarn · 30% Cashmere 70% Wool",
+      "yarn_counts": [
+        "60/2NM"
+      ],
+      "pages": {
+        "60/2NM_neutral": {
+          "page": 28,
+          "colors_count": 15,
+          "category": "neutral"
+        },
+        "60/2NM_cool": {
+          "page": 29,
+          "colors_count": 15,
+          "category": "cool"
+        }
+      },
+      "total_colors": 30
+    }
+  ],
+  "summary": {
+    "total_series": 4,
+    "total_yarn_counts": 6,
+    "estimated_total_colors": 318,
+    "blank_pages": [
+      6,
+      8,
+      11,
+      16,
+      26,
+      30
+    ],
+    "info_pages": {
+      "page_1": "Cover - 3 series overview (LONDON/CAMBRIDGE/OXFORD)",
+      "page_17": "OXFORD yarn classification guide (natural/dyed/twisted)",
+      "page_27": "PARIS + LYON overview (horizontal landscape)"
+    }
+  }
+}

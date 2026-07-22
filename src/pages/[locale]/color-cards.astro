@@ -1,0 +1,214 @@
+---
+/**
+ * Color Card Library (CAMBRIDGE 26/2NM demo, 2026-07-22)
+ *
+ * 临时页面, 用于让你预览从 25-26 Color Card Catalog.pdf
+ * 提取的色卡数据. 真实数据建在 src/data/color-cards.ts,
+ * 后续 phase 会扩到全 318 色 (4 系列 × 6 支数).
+ *
+ * Phase 1 demo: CAMBRIDGE 26/2NM 中性色调 (page 19), 15 色
+ *
+ * Route: /[locale]/color-cards/
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
+import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
+import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
+import { colorSeries } from '@/data/color-cards';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const { locale: rawLocale } = Astro.params;
+const locale = pickLocale(rawLocale);
+
+// 取 CAMBRIDGE 26/2NM 数据
+const series = colorSeries.find((s) => s.series === 'CAMBRIDGE' && s.yarn_count === '26/2NM');
+
+// 6 国翻译 (top + filter + footer)
+const t: Record<string, Record<string, string>> = {
+  en: {
+    eyebrow: 'Colour Library · 25/26 AW',
+    title: 'CAMBRIDGE 26/2NM Colour Card',
+    subtitle: '100% Cashmere · Woollen Yarn · 15 neutral-tone shades sampled from our physical yarn archive. Click any swatch to copy its hex.',
+    filterAll: 'All 15',
+    ctaTitle: 'Need a custom colour?',
+    ctaSub: 'Our mill matches Pantone, lab-dip, and yarn-dyed samples within 7 days. MOQ 5 kg.',
+    ctaBtn: 'Request Colour Match',
+    methodologyTitle: 'How this was sampled',
+    methodologyBody: 'Each hex is the median RGB of a 50×50 pixel sample from the centre of the swatch on page 19 of our 25/26 AW catalogue. Real yarn-knit fabric, not screen-rendered colour. Variance ±5% from your physical sample request.',
+    downloadTitle: 'Download full catalogue',
+    downloadBtn: 'Get PDF (44 MB)',
+  },
+  cn: {
+    eyebrow: '色卡库 · 25/26 秋冬',
+    title: 'CAMBRIDGE 26/2NM 色卡',
+    subtitle: '100% 山羊绒 · 粗纺纱线 · 从我们物理纱线档案采样的 15 个中性色调。点击色卡复制 hex。',
+    filterAll: '全部 15',
+    ctaTitle: '需要定制颜色？',
+    ctaSub: '工厂可 7 天内匹配 Pantone / 实验室打色 / 纱线染色样品。MOQ 5 公斤起。',
+    ctaBtn: '申请配色打样',
+    methodologyTitle: '采样方法',
+    methodologyBody: '每个 hex 是色卡中心 50×50 像素的中位数 RGB（取自 25/26 AW 目录第 19 页）。真实针织布样，非屏幕渲染颜色。与您实物色卡请求的偏差 ±5%。',
+    downloadTitle: '下载完整色卡目录',
+    downloadBtn: '获取 PDF (44 MB)',
+  },
+  de: { eyebrow: 'Farbbibliothek · 25/26 AW', title: 'CAMBRIDGE 26/2NM Farbkarte', subtitle: '100% Kaschmir · Streichgarn · 15 neutrale Farbtöne.', filterAll: 'Alle 15', ctaTitle: 'Brauchen Sie eine Sonderfarbe?', ctaSub: 'Wir matchen Pantone / Labor-Dip innerhalb von 7 Tagen. MOQ 5 kg.', ctaBtn: 'Farbabgleich anfordern', methodologyTitle: 'Wie wurde das bemustert?', methodologyBody: 'Mittlere RGB eines 50×50-Pixel-Bereichs aus der Mitte jedes Farbfelds auf Seite 19.', downloadTitle: 'Vollständigen Katalog herunterladen', downloadBtn: 'PDF holen (44 MB)' },
+  fr: { eyebrow: 'Bibliothèque de couleurs · AW 25/26', title: 'Carte couleurs CAMBRIDGE 26/2NM', subtitle: '100% cachemire · Fil cardé · 15 tons neutres.', filterAll: 'Tous les 15', ctaTitle: 'Besoin d\'une couleur sur mesure ?', ctaSub: 'Nous matchons Pantone / dip labo en 7 jours. MOQ 5 kg.', ctaBtn: 'Demander une couleur', methodologyTitle: 'Méthode d\'échantillonnage', methodologyBody: 'RGB médian d\'une zone 50×50 px au centre de chaque échantillon, page 19.', downloadTitle: 'Télécharger le catalogue complet', downloadBtn: 'Obtenir le PDF (44 Mo)' },
+  ja: { eyebrow: 'カラーライブラリ · 25/26 AW', title: 'CAMBRIDGE 26/2NM カラー', subtitle: '100% カシミア · 梳毛糸 · ニュートラル15色。', filterAll: '全15色', ctaTitle: 'カスタムカラーが必要ですか？', ctaSub: '7日以内にPantone / ラボDipをマッチング。MOQ 5kg。', ctaBtn: 'カラーマッチ依頼', methodologyTitle: 'サンプリング方法', methodologyBody: '各色の中央50×50px領域の中央値RGB（25/26 AWカタログ19ページ）。', downloadTitle: 'フルカタログをダウンロード', downloadBtn: 'PDFを入手 (44 MB)' },
+  kr: { eyebrow: '컬러 라이브러리 · 25/26 AW', title: 'CAMBRIDGE 26/2NM 컬러', subtitle: '100% 캐시미어 · 울렌 실 · 15가지 뉴트럴 톤.', filterAll: '전체 15', ctaTitle: '맞춤 색상이 필요하신가요?', ctaSub: '7일 이내 Pantone / 랩 매칭. MOQ 5kg.', ctaBtn: '색상 매칭 요청', methodologyTitle: '샘플링 방법', methodologyBody: '각 색상의 중앙 50×50px 영역 중앙값 RGB.', downloadTitle: '전체 카탈로그 다운로드', downloadBtn: 'PDF 받기 (44 MB)' },
+};
+const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
+
+// 用真色卡数据
+const swatches = series?.swatches || [];
+
+// 统计
+const totalColors = swatches.length;
+---
+
+<BaseLayout locale={locale} pageKey="color-cards" path="/color-cards">
+  <Navigation slot="header" locale={locale} currentPath={`/${locale}/color-cards`} />
+
+  <!-- ============ HERO ============ -->
+  <section class="relative bg-brand-ink text-white overflow-hidden">
+    <div class="container-narrow py-24 md:py-32">
+      <div class="flex items-center gap-3 mb-8">
+        <span class="h-px w-12 bg-brand-gold"></span>
+        <span class="text-xs tracking-[0.4em] text-brand-gold uppercase font-medium">{T('eyebrow')}</span>
+      </div>
+      <h1 class="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-8 text-balance">{T('title')}</h1>
+      <p class="text-lg text-white/75 leading-relaxed max-w-2xl font-light">{T('subtitle')}</p>
+      <!-- 系列元数据条 -->
+      <div class="mt-12 flex flex-wrap gap-x-12 gap-y-4 text-sm text-white/60">
+        <div>
+          <div class="text-xs tracking-[0.2em] uppercase text-white/40 mb-1">Series</div>
+          <div class="text-white font-medium">{series?.series} · {series?.series_cn}</div>
+        </div>
+        <div>
+          <div class="text-xs tracking-[0.2em] uppercase text-white/40 mb-1">Yarn</div>
+          <div class="text-white font-medium">{series?.yarn_count} · {series?.process}</div>
+        </div>
+        <div>
+          <div class="text-xs tracking-[0.2em] uppercase text-white/40 mb-1">Composition</div>
+          <div class="text-white font-medium">{series?.composition}</div>
+        </div>
+        <div>
+          <div class="text-xs tracking-[0.2em] uppercase text-white/40 mb-1">Swatches</div>
+          <div class="text-white font-medium">{totalColors} colours</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 色卡网格 ============ -->
+  <section class="py-24 md:py-32 bg-background">
+    <div class="container-narrow">
+      <div class="flex items-end justify-between mb-12 gap-6 flex-wrap">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="h-px w-10 bg-brand-gold"></span>
+            <span class="text-xs tracking-[0.3em] uppercase text-brand-camel font-medium">Swatches</span>
+          </div>
+          <h2 class="font-serif text-3xl md:text-5xl font-light leading-tight">{T('filterAll')}</h2>
+        </div>
+        <div class="text-xs text-muted-foreground tracking-wider">
+          Hover · Click to copy hex
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+        {swatches.map((s) => (
+          <div
+            class="group relative border border-border hover:border-brand-gold transition-all duration-300 cursor-pointer overflow-hidden"
+            data-swatch-code={s.code}
+            data-swatch-hex={s.hex}
+            onclick={`navigator.clipboard.writeText('${s.hex}').then(()=>{const t=this.querySelector('.copy-toast');t.classList.remove('opacity-0');t.classList.add('opacity-100');setTimeout(()=>{t.classList.add('opacity-0');t.classList.remove('opacity-100')},1200)})`}
+          >
+            <!-- 色块 (实际颜色, 高度比宽度略大) -->
+            <div
+              class="aspect-square w-full"
+              style={`background-color: ${s.hex};`}
+            ></div>
+            <!-- 信息 -->
+            <div class="p-4 bg-background">
+              <div class="flex items-baseline justify-between mb-1">
+                <h3 class="font-serif text-base leading-tight">{s.name_en}</h3>
+              </div>
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-muted-foreground font-mono">{s.code}</span>
+                <span class="text-muted-foreground font-mono">{s.hex}</span>
+              </div>
+            </div>
+            <!-- Hover 复制提示 toast -->
+            <div class="copy-toast absolute top-3 right-3 px-3 py-1.5 bg-brand-ink text-white text-xs font-medium tracking-wider opacity-0 transition-opacity duration-300 pointer-events-none">
+              Copied ✓
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 采样方法说明 ============ -->
+  <section class="py-20 bg-brand-cream/40 border-y border-border">
+    <div class="container-narrow max-w-3xl">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="h-px w-10 bg-brand-gold"></span>
+        <span class="text-xs tracking-[0.3em] uppercase text-brand-camel font-medium">Methodology</span>
+      </div>
+      <h3 class="font-serif text-2xl md:text-3xl font-light mb-6 text-brand-ink">{T('methodologyTitle')}</h3>
+      <p class="text-muted-foreground leading-relaxed">{T('methodologyBody')}</p>
+    </div>
+  </section>
+
+  <!-- ============ CTA: 定制颜色 ============ -->
+  <section class="py-24 md:py-32 bg-background">
+    <div class="container-narrow">
+      <div class="max-w-3xl mx-auto text-center">
+        <div class="inline-block text-xs tracking-[0.3em] uppercase text-brand-gold mb-4">Custom</div>
+        <h2 class="font-serif text-4xl md:text-5xl font-light mb-6 leading-tight">{T('ctaTitle')}</h2>
+        <p class="text-muted-foreground mb-10 leading-relaxed">{T('ctaSub')}</p>
+        <a
+          href={`/${locale}/contact`}
+          class="inline-flex items-center gap-3 px-10 py-5 bg-brand-ink text-white font-medium tracking-wider hover:bg-brand-gold hover:text-brand-ink transition-colors"
+        >
+          {T('ctaBtn')}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 底部: 完整 PDF 下载 ============ -->
+  <section class="py-20 bg-brand-chocolate text-white">
+    <div class="container-narrow">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+        <div>
+          <h3 class="font-serif text-2xl md:text-3xl font-light mb-2">{T('downloadTitle')}</h3>
+          <p class="text-white/60 text-sm">25/26 AW · 30 pages · 318 swatches · 4 series</p>
+        </div>
+        <a
+          href="/download"
+          class="inline-flex items-center gap-3 px-8 py-4 bg-brand-gold text-brand-ink font-medium tracking-wider hover:bg-white transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h7a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+          </svg>
+          {T('downloadBtn')}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" locale={locale} />
+  <FloatingChatButtons slot="floating" locale={locale} />
+  <CookieConsent slot="cookie-consent" locale={locale} />
+</BaseLayout>
