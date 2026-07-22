@@ -225,3 +225,21 @@ html {
   .hover-lift:hover { transform: none; box-shadow: none; }
   .hover-zoom:hover img { transform: none; }
 }
+
+/* ===== Ken Burns 缓慢缩放动画（hero 区背景图） ===== */
+/* 20s 循环, scale 从 1.0 → 1.08, 让大背景图有电影感 */
+@keyframes ken-burns {
+  0% {
+    transform: scale(1.0) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.08) translate(-1%, -1%);
+  }
+}
+.ken-burns {
+  animation: ken-burns 20s ease-out infinite alternate;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ken-burns { animation: none; }
+}

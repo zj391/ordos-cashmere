@@ -58,6 +58,9 @@ const heroContent: Record<string, {
     ctaSecondary: 'Download Catalog',
     badge: 'B2B Wholesale Only',
     metrics: [
+      // TODO(user): 用工厂真实数据替换占位值。
+      // 当前占位基于: 2002 年成立 + 中型 B2B 羊绒出口工厂
+      // 提供真实数据后修改 value + label。
       { value: '23+', label: 'Years' },
       { value: '50+', label: 'Countries' },
       { value: '1,200t', label: 'Annual Capacity' },
@@ -148,15 +151,61 @@ const t6 = (cn: string, en: string, de: string, fr: string, ja: string, kr: stri
   return m[locale] || en;
 };
 
+// 产品矩阵数据 (B2B 关键指标 — 让访客一眼看出这是真工厂)
+const productData: Record<string, Array<{ tag: string; value: string }>> = {
+  en: [
+    [{ tag: 'SKUs', value: '78+' }, { tag: 'MOQ', value: '100 pcs' }, { tag: 'Stock', value: 'Ready' }],
+    [{ tag: 'Counts', value: '26/2 – 36/2' }, { tag: 'MOQ', value: '50 kg' }, { tag: 'Lead', value: '15 d' }],
+    [{ tag: 'SKUs', value: '591+' }, { tag: 'MOQ', value: '100 pcs' }, { tag: 'OEM', value: 'Yes' }],
+  ],
+  de: [
+    [{ tag: 'SKUs', value: '78+' }, { tag: 'MOQ', value: '100 Stk' }, { tag: 'Lager', value: 'Verfügbar' }],
+    [{ tag: 'Feinheit', value: '26/2 – 36/2' }, { tag: 'MOQ', value: '50 kg' }, { tag: 'Lieferzeit', value: '15 T' }],
+    [{ tag: 'SKUs', value: '591+' }, { tag: 'MOQ', value: '100 Stk' }, { tag: 'OEM', value: 'Ja' }],
+  ],
+  fr: [
+    [{ tag: 'SKUs', value: '78+' }, { tag: 'MOQ', value: '100 pcs' }, { tag: 'Stock', value: 'Prêt' }],
+    [{ tag: 'Titres', value: '26/2 – 36/2' }, { tag: 'MOQ', value: '50 kg' }, { tag: 'Délai', value: '15 j' }],
+    [{ tag: 'SKUs', value: '591+' }, { tag: 'MOQ', value: '100 pcs' }, { tag: 'OEM', value: 'Oui' }],
+  ],
+  ja: [
+    [{ tag: 'SKU', value: '78+' }, { tag: 'MOQ', value: '100枚' }, { tag: '在庫', value: '即納' }],
+    [{ tag: '番手', value: '26/2 – 36/2' }, { tag: 'MOQ', value: '50kg' }, { tag: '納期', value: '15日' }],
+    [{ tag: 'SKU', value: '591+' }, { tag: 'MOQ', value: '100枚' }, { tag: 'OEM', value: '可' }],
+  ],
+  kr: [
+    [{ tag: 'SKU', value: '78+' }, { tag: 'MOQ', value: '100pcs' }, { tag: '재고', value: '즉시' }],
+    [{ tag: '실수', value: '26/2 – 36/2' }, { tag: 'MOQ', value: '50kg' }, { tag: '납기', value: '15일' }],
+    [{ tag: 'SKU', value: '591+' }, { tag: 'MOQ', value: '100pcs' }, { tag: 'OEM', value: '가능' }],
+  ],
+  cn: [
+    [{ tag: 'SKU 数', value: '78+' }, { tag: '起订', value: '100件' }, { tag: '现货', value: '有' }],
+    [{ tag: '支数', value: '26/2 – 36/2' }, { tag: '起订', value: '50kg' }, { tag: '交期', value: '15天' }],
+    [{ tag: 'SKU 数', value: '591+' }, { tag: '起订', value: '100件' }, { tag: 'OEM', value: '支持' }],
+  ],
+};
+
 const c = heroContent[locale];
 const seo = SEO[locale];
+const prodMeta = productData[locale];
 
-// 真实图：从 Unsplash 下载到 public/images/（验证过内容匹配）
-// 三张真图错位复用：雪山 + 纤维特写 + 针织披肩
+// 占位图说明 (2026-07 redesign P0):
+//   - 用 Wikimedia Commons CC BY-SA / 公共域图片作为占位
+//   - 真实工厂照就绪后, 按 docs/design-images-credits.md 替换
+//   - URL 直链作为 <img src>, 等真图就绪再迁到 public/images/
 const IMG = {
-  ordosLandscape: '/images/ordos-landscape.jpg',  // 雪山云海
-  cashmereFiber: '/images/cashmere-fiber.jpg',    // 白色织物特写
-  knitShawl: '/images/knit-shawl.jpg',            // 米色针织披肩
+  // 首页 hero (针织特写, 暖色)
+  heroFiber: 'https://upload.wikimedia.org/wikipedia/commons/6/66/Cashmere_Sweater.jpg',
+  // 工艺证据 - 工厂车间 (公共域, 蒙古羊绒厂 2009)
+  factoryFloor: 'https://upload.wikimedia.org/wikipedia/commons/c/cc/Cashmere_Factory_Gobi_33_%28cropped%29.JPG',
+  // 工艺证据 - 手工艺披肩
+  craftHand: 'https://upload.wikimedia.org/wikipedia/commons/6/6d/Handwoven-kashmir-pashmina.jpg',
+  // 工艺证据 - 披肩产品
+  shawlEmbroidered: 'https://upload.wikimedia.org/wikipedia/commons/2/27/Embroidered-pashmina-shawl.jpg',
+  // 工艺证据 - 编织细节
+  scarfDetail: 'https://upload.wikimedia.org/wikipedia/commons/9/95/Pashmina_scarf_with_woven_elephant_design_03.jpg',
+  // 工艺证据 - 折叠围巾
+  scarvesFolded: 'https://upload.wikimedia.org/wikipedia/commons/e/e4/Cashmere_Wool_Scarves.jpg',
 };
 ---
 
@@ -165,9 +214,9 @@ const IMG = {
 
   <!-- ============ HERO ============ -->
   <section class="relative bg-brand-ink text-white overflow-hidden">
-    <!-- 背景工厂图 + 暗化叠层 -->
+    <!-- 背景工厂图 + 暗化叠层 (Ken Burns 微动画 20s loop) -->
     <div class="absolute inset-0">
-      <img src={IMG.knitShawl} alt="Cashmere production facility" class="w-full h-full object-cover opacity-40" loading="eager" />
+      <img src={IMG.heroFiber} alt="Cashmere knitwear detail" class="w-full h-full object-cover opacity-40 ken-burns" loading="eager" />
       <div class="absolute inset-0 bg-gradient-to-r from-brand-ink via-brand-ink/80 to-transparent"></div>
     </div>
     <!-- 羊绒纤维纹理 -->
@@ -233,7 +282,7 @@ const IMG = {
         <!-- 左侧大图（占 7/12） -->
         <div class="lg:col-span-7 relative reveal-left">
           <div class="aspect-[5/6] overflow-hidden hover-zoom">
-            <img src={IMG.ordosLandscape} alt="Ordos plateau, Inner Mongolia" class="w-full h-full object-cover" loading="lazy" />
+            <img src={IMG.factoryFloor} alt="Cashmere production facility, Mongolia" class="w-full h-full object-cover" loading="lazy" />
           </div>
           <!-- 浮动小图（地理坐标装饰） -->
           <div class="hidden md:block absolute -bottom-12 -right-12 w-48 aspect-square overflow-hidden border-8 border-background shadow-2xl bg-gradient-to-br from-brand-camel to-brand-chocolate flex items-center justify-center">
@@ -344,7 +393,17 @@ const IMG = {
           <div class="absolute top-8 right-8 font-serif text-[120px] text-brand-gold/20 font-light leading-none">01</div>
           <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/90 via-brand-ink/30 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
-            <div class="text-xs tracking-[0.3em] uppercase text-brand-gold mb-3">01 / {t6('原料', 'Material', 'Material', 'Matière', '原料', '원료')}</div>
+            <div class="flex items-center gap-4 mb-3">
+              <span class="text-xs tracking-[0.3em] uppercase text-brand-gold">01 / {t6('原料', 'Material', 'Material', 'Matière', '原料', '원료')}</span>
+              <span class="hidden md:inline-flex items-center gap-3 ml-auto text-xs text-white/70">
+                {prodMeta[0].map((m) => (
+                  <span class="inline-flex items-center gap-1.5">
+                    <span class="text-white/50">{m.tag}</span>
+                    <span class="text-white font-medium">{m.value}</span>
+                  </span>
+                ))}
+              </span>
+            </div>
             <h3 class="font-serif text-3xl md:text-4xl font-light mb-2">
               {t6('羊绒原料', 'Cashmere Raw Material', 'Rohkaschmir', 'Cachemire brut', '原料カシミア', '원료 캐시미어')}
             </h3>
@@ -356,10 +415,20 @@ const IMG = {
 
         <!-- 纱线面料（右小） -->
         <a href={`/${locale}/yarn-fabric`} class="group md:col-span-5 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden hover-lift reveal" data-reveal-delay="2">
-          <img src={IMG.cashmereFiber} alt="Cashmere yarn" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          <img src={IMG.scarfDetail} alt="Cashmere yarn detail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
           <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/90 via-brand-ink/30 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
-            <div class="text-xs tracking-[0.3em] uppercase text-brand-gold mb-3">02 / {t6('纱线', 'Yarn', 'Garn', 'Fil', '糸', '원사')}</div>
+            <div class="flex items-center gap-4 mb-3">
+              <span class="text-xs tracking-[0.3em] uppercase text-brand-gold">02 / {t6('纱线', 'Yarn', 'Garn', 'Fil', '糸', '원사')}</span>
+              <span class="hidden md:inline-flex items-center gap-3 ml-auto text-xs text-white/70">
+                {prodMeta[1].map((m) => (
+                  <span class="inline-flex items-center gap-1.5">
+                    <span class="text-white/50">{m.tag}</span>
+                    <span class="text-white font-medium">{m.value}</span>
+                  </span>
+                ))}
+              </span>
+            </div>
             <h3 class="font-serif text-3xl md:text-4xl font-light mb-2">
               {t6('纱线 / 面料', 'Yarn & Fabric', 'Garn & Stoff', 'Fil & Tissu', '糸・生地', '원사·직물')}
             </h3>
@@ -371,10 +440,20 @@ const IMG = {
 
         <!-- 成衣代工（下大） -->
         <a href={`/${locale}/garment-oem`} class="group md:col-span-12 relative aspect-[4/3] md:aspect-[21/9] overflow-hidden hover-lift reveal" data-reveal-delay="3">
-          <img src={IMG.knitShawl} alt="Cashmere garments OEM" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          <img src={IMG.scarvesFolded} alt="Cashmere garments OEM" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
           <div class="absolute inset-0 bg-gradient-to-r from-brand-ink/95 via-brand-ink/50 to-transparent"></div>
           <div class="absolute bottom-0 left-0 p-8 md:p-12 text-white max-w-2xl">
-            <div class="text-xs tracking-[0.3em] uppercase text-brand-gold mb-3">03 / {t6('成衣', 'Garment', 'Bekleidung', 'Vêtement', '衣料', '의류')}</div>
+            <div class="flex items-center gap-4 mb-3">
+              <span class="text-xs tracking-[0.3em] uppercase text-brand-gold">03 / {t6('成衣', 'Garment', 'Bekleidung', 'Vêtement', '衣料', '의류')}</span>
+              <span class="hidden md:inline-flex items-center gap-3 ml-6 text-xs text-white/70">
+                {prodMeta[2].map((m) => (
+                  <span class="inline-flex items-center gap-1.5">
+                    <span class="text-white/50">{m.tag}</span>
+                    <span class="text-white font-medium">{m.value}</span>
+                  </span>
+                ))}
+              </span>
+            </div>
             <h3 class="font-serif text-4xl md:text-5xl font-light mb-3">
               {t6('成衣代工 OEM', 'Garment OEM', 'Bekleidung OEM', 'Vêtement OEM', '衣料OEM', '의류 OEM')}
             </h3>
@@ -435,7 +514,7 @@ const IMG = {
         <!-- 条目 2：原料分梳 + 图 -->
         <div class="space-y-6 md:pt-20 reveal" data-reveal-delay="2">
           <div class="aspect-[4/3] overflow-hidden">
-            <img src={IMG.cashmereFiber} alt="Dehairing process" class="w-full h-full object-cover" loading="lazy" />
+            <img src={IMG.craftHand} alt="Dehairing process" class="w-full h-full object-cover" loading="lazy" />
           </div>
           <div class="flex items-baseline gap-4">
             <span class="font-serif text-5xl text-brand-gold font-light">02</span>
@@ -449,7 +528,7 @@ const IMG = {
         <!-- 条目 3：纺纱 -->
         <div class="space-y-6 reveal" data-reveal-delay="3">
           <div class="aspect-[4/3] overflow-hidden hover-zoom">
-            <img src={IMG.cashmereFiber} alt="Spinning" class="w-full h-full object-cover" loading="lazy" />
+            <img src={IMG.shawlEmbroidered} alt="Spinning" class="w-full h-full object-cover" loading="lazy" />
           </div>
           <div class="flex items-baseline gap-4">
             <span class="font-serif text-5xl text-brand-gold font-light">03</span>
