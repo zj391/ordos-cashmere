@@ -563,10 +563,23 @@ const IMG = {
         </h2>
       </div>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-        {['ISO 9001', 'OEKO-TEX', 'GCS', 'BSCI', 'Sedex', 'WRAP'].map((cert) => (
+        {[
+          { short: 'ISO 9001', full: 'Quality Mgmt' },
+          { short: 'OEKO-TEX', full: 'Standard 100' },
+          { short: 'GCS',      full: 'Good Cashmere' },
+          { short: 'BSCI',     full: 'Social Compliance' },
+          { short: 'Sedex',    full: 'Ethical Trade' },
+          { short: 'WRAP',     full: 'Worldwide Responsible' },
+        ].map((cert) => (
           <div class="group flex flex-col items-center">
-            <div class="w-28 h-28 rounded-full border border-brand-gold/40 flex items-center justify-center mb-3 group-hover:border-brand-gold group-hover:bg-brand-gold/5 transition-all">
-              <span class="font-serif text-sm text-brand-gold tracking-wider text-center px-2 leading-tight">{cert}</span>
+            <div class="relative w-32 h-32 flex items-center justify-center mb-3 transition-transform group-hover:scale-105">
+              <div class="absolute inset-0 rounded-full border border-brand-gold/40 group-hover:border-brand-gold transition-colors"></div>
+              <div class="absolute inset-1.5 rounded-full border border-brand-gold/20 group-hover:border-brand-gold/60 transition-colors"></div>
+              <div class="absolute inset-0 rounded-full bg-brand-gold/0 group-hover:bg-brand-gold/5 transition-colors"></div>
+              <div class="relative text-center px-2">
+                <div class="font-serif text-base text-brand-gold tracking-wider leading-tight">{cert.short}</div>
+                <div class="text-[8px] tracking-[0.15em] uppercase text-brand-gold/60 mt-1 leading-tight">{cert.full}</div>
+              </div>
             </div>
           </div>
         ))}
@@ -574,9 +587,15 @@ const IMG = {
     </div>
   </section>
 
-  <!-- ============ Final CTA（不抢戏的深色版） ============ -->
+  <!-- ============ Final CTA（深色版 + 历史工厂背景） ============ -->
   <section class="py-24 md:py-32 bg-brand-chocolate text-white relative overflow-hidden">
-    <div class="absolute inset-0 opacity-20">
+    <!-- 背景图: 历史针织厂外景, 黑白, 传承感 (knittingMill 是 DPLA 公共域图) -->
+    <div class="absolute inset-0">
+      <img src={IMG.knittingMill} alt="" aria-hidden="true" class="w-full h-full object-cover opacity-25 grayscale" loading="lazy" />
+      <div class="absolute inset-0 bg-brand-chocolate/85"></div>
+    </div>
+    <!-- 装饰纤维纹理 -->
+    <div class="absolute inset-0 opacity-10 pointer-events-none">
       <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
         <defs>
           <pattern id="cta-fibers" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
@@ -643,17 +662,31 @@ const IMG = {
           </a>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {latestPosts.map((p) => (
-            <a href={`/${locale}/blog/${p.slug}`} class="group block border border-border p-6 hover:border-brand-gold hover:shadow-lg transition-all duration-300">
-              <div class="text-xs text-muted-foreground tracking-wider mb-3 font-mono">{p.date}</div>
-              <h3 class="font-serif text-xl mb-3 group-hover:text-brand-chocolate transition-colors leading-tight line-clamp-2">{p.title}</h3>
-              <p class="text-muted-foreground leading-relaxed mb-4 text-sm line-clamp-3">{p.excerpt}</p>
-              <span class="inline-flex items-center gap-1 text-sm text-brand-chocolate font-medium">
-                {locale === 'cn' ? '阅读' : 'Read'}
-                <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-              </span>
-            </a>
-          ))}
+          {latestPosts.map((p, i) => {
+            // 3 张博客卡各一张主题图 (复用现有 IMG, 不引入新 URL, 避免 +1 网络请求)
+            const blogImg = [IMG.ordosLandscape, IMG.scarfDetail, IMG.mongoliaGoat][i] || IMG.ordosLandscape;
+            const blogAlt = [
+              'Ordos plateau landscape',
+              'Cashmere yarn and scarf detail',
+              'Cashmere goat on Mongolian pasture',
+            ][i] || '';
+            return (
+              <a href={`/${locale}/blog/${p.slug}`} class="group block border border-border overflow-hidden hover:border-brand-gold hover:shadow-lg transition-all duration-300">
+                <div class="aspect-[16/10] overflow-hidden bg-brand-cream">
+                  <img src={blogImg} alt={blogAlt} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                </div>
+                <div class="p-6">
+                  <div class="text-xs text-muted-foreground tracking-wider mb-3 font-mono">{p.date}</div>
+                  <h3 class="font-serif text-xl mb-3 group-hover:text-brand-chocolate transition-colors leading-tight line-clamp-2">{p.title}</h3>
+                  <p class="text-muted-foreground leading-relaxed mb-4 text-sm line-clamp-3">{p.excerpt}</p>
+                  <span class="inline-flex items-center gap-1 text-sm text-brand-chocolate font-medium">
+                    {locale === 'cn' ? '阅读' : 'Read'}
+                    <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                  </span>
+                </div>
+              </a>
+            );
+          })}
         </div>
       </div>
     </section>
