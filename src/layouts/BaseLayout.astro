@@ -47,7 +47,9 @@ const pageSEO = (seo as any)[_pageKey];
 
 const finalTitle: string = String(title ?? pageSEO?.title ?? 'DONGXIAO® Cashmere');
 const finalDescription: string = String(description ?? pageSEO?.description ?? '');
-const finalKeywords: string[] = keywords ?? pageSEO?.keywords ?? [];
+const finalKeywords: string[] = Array.isArray(keywords)
+  ? keywords.map((keyword) => String(keyword))
+  : String(keywords ?? pageSEO?.keywords ?? '').split(',').map((keyword) => keyword.trim()).filter(Boolean);
 
 const canonical = canonicalPath
   ? `${SITE_URL}/${locale}${canonicalPath}`
