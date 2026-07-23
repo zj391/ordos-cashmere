@@ -19,6 +19,7 @@ import Navigation from '@/components/Navigation.astro';
 import Footer from '@/components/Footer.astro';
 import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
+import ColorPicker from '@/components/product/ColorPicker.astro';
 import { LOCALES, isLocale, pickLocale } from '@/lib/i18n';
 import { SEO, SITE_URL, SITE_INFO } from '@/lib/seo';
 import { getProductById, getAllProducts, getCategoryById } from '@/data/products';
@@ -274,8 +275,13 @@ const breadcrumbSchema = {
                 )}
                 {product.colors && product.colors.length > 0 && (
                   <tr>
-                    <td class="px-4 py-3 bg-secondary/40 font-medium">Colors</td>
-                    <td class="px-4 py-3">{product.colors.join(', ')}</td>
+                    <td class="px-4 py-3 bg-secondary/40 font-medium align-top">Available Colors</td>
+                    <td class="px-4 py-3">
+                      <p class="text-xs text-muted-foreground mb-2">
+                        Shown in: {product.colors.filter((c) => !['customize', '多种颜色可选', 'multiple colors available', 'color cards'].includes(c.toLowerCase())).join(', ') || 'Custom color'}
+                      </p>
+                      <ColorPicker productId={product.id} productName={product.name} />
+                    </td>
                   </tr>
                 )}
               </tbody>
@@ -395,6 +401,7 @@ const breadcrumbSchema = {
               <input type="hidden" name="inquiry_type" value="raw" />
               <input type="hidden" name="product" value={product.id} />
               <input type="hidden" name="locale" value={locale} />
+              <input type="hidden" name="color" value="" />
               <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <input type="text" name="name" required placeholder="Your name *" class="px-3 py-2 border border-border rounded text-sm" />
                 <input type="email" name="email" required placeholder="Email *" class="px-3 py-2 border border-border rounded text-sm" />

@@ -1,0 +1,107 @@
+---
+import { colorSeries, type ColorSwatch } from '@/data/color-cards';
+
+interface Props {
+  productId: string;
+  productName: string;
+}
+
+const { productId, productName } = Astro.props;
+
+// Flatten all series into a single palette (25 swatches total: 15 CAMBRIDGE + 10 COMMON).
+// The picker intentionally shows the FULL palette — not filtered by product's own colors.
+const allSwatches: ColorSwatch[] = colorSeries.flatMap((s) => s.swatches);
+---
+
+<div
+  class="color-picker"
+  role="radiogroup"
+  aria-labelledby={`cp-label-${productId}`}
+  data-product-id={productId}
+  data-product-name={productName}
+>
+  <span id={`cp-label-${productId}`} class="sr-only">Choose a color</span>
+
+  <div class="flex flex-wrap gap-2 mb-3">
+    {allSwatches.map((sw) => (
+      <button
+        type="button"
+        role="radio"
+        aria-checked="false"
+        aria-label={`Select ${sw.name_en}`}
+        data-swatch
+        data-color-code={sw.code}
+        data-color-hex={sw.hex}
+        data-color-name={sw.name_en}
+        class="w-8 h-8 rounded-full ring-2 ring-transparent hover:ring-2 hover:ring-foreground/30 focus:outline-none focus:ring-foreground/50 transition-shadow"
+        style={`background-color: ${sw.hex}`}
+      />
+    ))}
+  </div>
+
+  <div class="flex items-center justify-between text-sm">
+    <span class="text-muted-foreground">
+      Selected: <span data-cp-selected class="font-medium text-foreground">—</span>
+    </span>
+    <button
+      type="button"
+      data-cp-copy
+      class="hidden text-xs px-3 py-1 border border-border rounded hover:bg-secondary transition-colors"
+    >
+      Copy hex
+    </button>
+  </div>
+</div>
+
+<script>
+  (function () {
+    // Find all ColorPicker instances on page
+    document.querySelectorAll('.color-picker').forEach((root) => {
+      const swatches = root.querySelectorAll('[data-swatch]');
+      const selectedEl = root.querySelector('[data-cp-selected]');
+      const copyBtn = root.querySelector('[data-cp-copy]');
+      // Hidden input lives inside #inquiry-form (added by detail page in Task 3).
+      // It's fine if it's null here — visual selection still works.
+      const hiddenInput = document.querySelector('#inquiry-form input[name="color"]');
+
+      function selectSwatch(btn) {
+        swatches.forEach((s) => {
+          s.classList.remove('ring-amber-700');
+          s.setAttribute('aria-checked', 'false');
+        });
+        btn.classList.add('ring-amber-700');
+        btn.setAttribute('aria-checked', 'true');
+        const code = btn.dataset.colorCode;
+        const name = btn.dataset.colorName;
+        const hex = btn.dataset.colorHex;
+        if (selectedEl) selectedEl.textContent = `${code} · ${name} · ${hex}`;
+        if (copyBtn) copyBtn.classList.remove('hidden');
+        if (hiddenInput) hiddenInput.value = `${code} (${name})`;
+      }
+
+      swatches.forEach((btn) => {
+        btn.addEventListener('click', () => selectSwatch(btn));
+      });
+
+      if (copyBtn) {
+        copyBtn.addEventListener('click', async () => {
+          const active = root.querySelector('.ring-amber-700');
+          if (!active) return;
+          const hex = active.dataset.colorHex;
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            try {
+              await navigator.clipboard.writeText(hex);
+              const original = copyBtn.textContent;
+              copyBtn.textContent = 'Copied!';
+              setTimeout(() => {
+                copyBtn.textContent = original;
+              }, 1500);
+            } catch (err) {
+              console.warn('Clipboard write failed', err);
+            }
+          }
+        });
+      }
+    });
+  })();
+</script>
