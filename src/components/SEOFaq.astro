@@ -2,7 +2,13 @@
 /**
  * 页面底部 SEO FAQ - 增加长尾关键词覆盖
  * 不影响页面主 FAQ 区块，作为额外的 SEO 内容补充
+ * 2026-07-23: 现在也 emit FAQPage JSON-LD schema 让 Google 拿到
+ *   rich-result eligibility (FAQ dropdown in SERPs). 任何调用
+ *   <SEOFaq faqs={...}/> 的页面都会自动受益。
  */
+import { faqPageSchema } from '@/lib/schema';
+import { pickLocale } from '@/lib/i18n';
+
 interface FAQ {
   q: string;
   a: string;
@@ -14,6 +20,8 @@ interface Props {
 }
 
 const { faqs, title } = Astro.props;
+const locale = pickLocale(Astro.params?.locale);
+const faqJsonLd = faqs.length > 0 ? faqPageSchema(faqs) : null;
 ---
 
 {faqs.length > 0 && (
@@ -37,4 +45,7 @@ const { faqs, title } = Astro.props;
       </div>
     </div>
   </section>
+)}
+{faqJsonLd && (
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} is:inline />
 )}

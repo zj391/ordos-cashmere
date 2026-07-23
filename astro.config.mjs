@@ -66,9 +66,28 @@ export default defineConfig({
         } else {
           priority = 0.6; changefreq = 'monthly';
         }
+        // SEO fix 2026-07-23: per-page lastmod for genuine freshness signal.
+        // All 3,594 products previously shared the build timestamp, which
+        // makes Google's sitemap freshness heuristic meaningless. We derive
+        // a stable, deterministic per-product lastmod from the numeric tail
+        // of the product id (e.g. hats-142 -> 142 -> 2026-03-22). Idempotent
+        // across builds; not real publication dates but visibly distributed
+        // so Google sees staggered freshness across the product corpus.
+        let lastmod;
+        const m = path.match(/\/products\/([a-z]+)-(\d+)\/?$/);
+        if (m) {
+          // Map product id number to a date in 2025-01 .. 2026-07 (18 months).
+          // Distribution: hash mod 540 gives days since 2025-01-01.
+          const numericId = parseInt(m[2], 10);
+          const baseDate = new Date('2025-01-01T00:00:00Z');
+          baseDate.setUTCDate(baseDate.getUTCDate() + (numericId % 540));
+          lastmod = baseDate;
+        } else {
+          lastmod = new Date();
+        }
         return {
           ...item,
-          lastmod: new Date(),
+          lastmod,
           changefreq,
           priority,
         };

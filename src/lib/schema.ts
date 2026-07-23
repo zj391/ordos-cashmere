@@ -31,18 +31,24 @@ export interface FAQItem {
   answer: string;
 }
 
-export function faqPageSchema(faqs: FAQItem[]) {
+export function faqPageSchema(faqs: FAQItem[] | Array<{ q: string; a: string }>) {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faqs.map((f) => ({
-      '@type': 'Question',
-      name: f.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: f.answer,
-      },
-    })),
+    mainEntity: faqs.map((f) => {
+      // Accept both {question, answer} (canonical FAQItem) and
+      // {q, a} (short-form used by SEOFaq.astro for inline FAQ blocks).
+      const question = 'question' in f ? f.question : f.q;
+      const answer = 'answer' in f ? f.answer : f.a;
+      return {
+        '@type': 'Question',
+        name: question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: answer,
+        },
+      };
+    }),
   };
 }
 
@@ -119,6 +125,10 @@ export const PAGE_BREADCRUMB: Record<string, (locale: Locale) => BreadcrumbItem[
   privacy: (locale) => [
     { name: locale === 'cn' ? '首页' : 'Home', href: '/' },
     { name: locale === 'cn' ? '隐私政策' : 'Privacy Policy', href: '/privacy-policy' },
+  ],
+  products: (locale) => [
+    { name: locale === 'cn' ? '首页' : 'Home', href: '/' },
+    { name: locale === 'cn' ? '所有产品' : 'Products', href: '/products' },
   ],
 };
 
