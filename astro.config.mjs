@@ -40,20 +40,29 @@ export default defineConfig({
       serialize: (item) => {
         const url = item.url;
         const path = url.replace(/^https?:\/\/[^/]+/, '');
+        // SEO fix 2026-07-23: rebalance priorities so Google sees a real
+        // signal hierarchy instead of treating all 3,594 product pages
+        // as equally important. John Mueller's guidance: reserve 0.8+
+        // for pages you want crawled more often; flatten product pages
+        // to 0.5 so category hubs + blog can stand out.
         let priority = 0.5;
         let changefreq = 'monthly';
         if (path === '/' || /^\/(en|cn|de|fr|ja|kr)?\/?$/.test(path)) {
           priority = 1.0; changefreq = 'weekly';
+        } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/blog\/[a-z0-9-]+\/?$/)) {
+          priority = 0.8; changefreq = 'monthly';
         } else if (path.includes('/blog/')) {
           priority = 0.7; changefreq = 'monthly';
-        } else if (path.match(/\/(scarves|hats-accessories|yarn|garment-oem|fabric|raw-material|products)\//)) {
-          priority = 0.8; changefreq = 'weekly';
-        } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/(scarves|hats-accessories|yarn|garment-oem|fabric|raw-material|products)/)) {
-          priority = 0.8; changefreq = 'weekly';
-        } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/products\/[a-z0-9-]+/)) {
-          priority = 0.8; changefreq = 'weekly';
-        } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/blog\/[a-z0-9-]+/)) {
-          priority = 0.7; changefreq = 'monthly';
+        } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/(scarves|hats-accessories|yarn|garment-oem|fabric|raw-material|products|private-label-cashmere)\/?$/)) {
+          // Category hub pages: high priority (real B2B landing pages).
+          priority = 0.9; changefreq = 'weekly';
+        } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/(factory|yarn-fabric|garment-oem|raw-material|ordos-origin|color-cards)\/?$/)) {
+          // Major topical hubs.
+          priority = 0.9; changefreq = 'weekly';
+        } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/products\/[a-z0-9-]+\/?$/)) {
+          // 3,594 product pages: scale back. Google's helpful content
+          // guidance treats near-duplicate thin pages as low value.
+          priority = 0.5; changefreq = 'monthly';
         } else {
           priority = 0.6; changefreq = 'monthly';
         }
