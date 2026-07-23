@@ -324,13 +324,7 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
                     <span className="font-medium">{p.moq} pcs</span>
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-1 mb-3">
-                  {(p.colors || []).slice(0, 4).map((c, i) => (
-                    <span key={i} className="text-xs px-2 py-0.5 bg-stone-100 text-stone-700 rounded">
-                      {c}
-                    </span>
-                  ))}
-                </div>
+                <p className="text-xs text-stone-500 mb-2">{labels.colorCardPreview}</p>
                 <button
                   onClick={() => openProduct(p)}
                   className="w-full px-3 py-2 bg-stone-900 text-white text-xs hover:bg-amber-700 transition-colors"
@@ -450,21 +444,13 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
                   )}
                 </div>
 
-                {selectedProduct.colors && selectedProduct.colors.length > 0 && (
-                  <div className="mt-4">
-                    <p className="text-xs text-stone-500 mb-2">{labels.colors}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {selectedProduct.colors.map((c, i) => (
-                        <span
-                          key={i}
-                          className="text-xs px-3 py-1 bg-stone-100 text-stone-700 border border-stone-200"
-                        >
-                          {c}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
+                <a
+                  href={`/${(window as any).__LOCALE__ || 'en'}/products/${selectedProduct.id}/`}
+                  onClick={(e) => { e.stopPropagation(); setSelectedProduct(null); }}
+                  className="mt-4 inline-block text-xs px-3 py-1.5 border border-amber-700 text-amber-700 hover:bg-amber-700 hover:text-white transition-colors"
+                >
+                  {labels.colorCardPreview}
+                </a>
 
                 <p className="mt-4 text-sm text-stone-700 leading-relaxed">{selectedProduct.description}</p>
 

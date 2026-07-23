@@ -91,7 +91,8 @@
     "requestInquiry": "今すぐ問い合わせる",
     "inquiryNote": "24時間以内にお見積りと共にご返信いたします",
     "productIdLabel": "製品ID",
-    "loadMore": "もっと読み込む"
+    "loadMore": "もっと読み込む",
+    "colorCardPreview": "25/26 カラーカードから選択可 →"
   },
   "faq": {
     "title": "よくある質問",

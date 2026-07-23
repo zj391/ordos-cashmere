@@ -353,13 +353,7 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
               <div class="flex justify-between"><span>{labels.price}:</span><span class="font-medium text-amber-700">${p.price} {p.currency}</span></div>
               <div class="flex justify-between"><span>{labels.moq}:</span><span class="font-medium">{p.moq} pcs</span></div>
             </div>
-            {(p.colors || []).length > 0 && (
-              <div class="flex flex-wrap gap-1 mb-3">
-                {(p.colors || []).slice(0, 4).map((c) => (
-                  <span class="text-xs px-2 py-0.5 bg-stone-100 text-stone-700 rounded">{c}</span>
-                ))}
-              </div>
-            )}
+            <p class="text-xs text-stone-500 mb-2">{labels.colorCardPreview}</p>
             <span class="block w-full px-3 py-2 bg-stone-900 text-white text-xs hover:bg-amber-700 transition-colors text-center">
               {labels.requestQuote}
             </span>
@@ -696,9 +690,6 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
 
       function cardHtml(p) {
         const img = (p.images && p.images[0]) ? '/products/mic/' + p.images[0] : '';
-        const colors = (p.colors || []).slice(0, 4).map((c) =>
-          '<span class="text-xs px-2 py-0.5 bg-stone-100 text-stone-700 rounded">' + escapeHtml(c) + '</span>'
-        ).join('');
         return (
           '<a href="/' + (window.__LOCALE__ || 'en') + '/products/' + escapeHtml(p.id) + '/" class="product-card block bg-white border border-stone-200 overflow-hidden hover:shadow-lg transition-shadow group" data-id="' + escapeHtml(p.id) + '">' +
             '<div class="aspect-square bg-stone-100 cursor-pointer overflow-hidden">' +
@@ -713,7 +704,7 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
                 '<div class="flex justify-between"><span>' + escapeHtml(labels.price) + ':</span><span class="font-medium text-amber-700">$' + escapeHtml(p.price || '') + ' ' + escapeHtml(p.currency || '') + '</span></div>' +
                 '<div class="flex justify-between"><span>' + escapeHtml(labels.moq) + ':</span><span class="font-medium">' + (p.moq || 0) + ' pcs</span></div>' +
               '</div>' +
-              (colors ? '<div class="flex flex-wrap gap-1 mb-3">' + colors + '</div>' : '') +
+              '<p class="text-xs text-stone-500 mb-2">' + escapeHtml(labels.colorCardPreview || 'Available in 25/26 color card →') + '</p>' +
               '<span class="block w-full px-3 py-2 bg-stone-900 text-white text-xs hover:bg-amber-700 transition-colors text-center">' + escapeHtml(labels.requestQuote) + '</span>' +
             '</div>' +
           '</a>'

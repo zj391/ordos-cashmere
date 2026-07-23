@@ -91,7 +91,8 @@
     "requestInquiry": "Demander maintenant",
     "inquiryNote": "Nous repondrons sous 24 heures avec un devis",
     "productIdLabel": "ID du produit",
-    "loadMore": "Charger plus"
+    "loadMore": "Charger plus",
+    "colorCardPreview": "Disponible en carte 25/26 couleurs →"
   },
   "faq": {
     "title": "Questions Fréquemment Posées",
