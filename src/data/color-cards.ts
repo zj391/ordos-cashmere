@@ -2,6 +2,13 @@
  * 25/26 AW 色卡数据 (从 DONGXIAO 25-26 Color Card Catalog.pdf 提取)
  * Source: docs/color-card-pages/hires/page_19_3x.png
  * Extracted: 2026-07-22 via PIL median pixel sampling
+ *
+ * COMMON series (added 2026-07-23): fallback swatches for products whose yarn
+ * color does not map to a specific catalog series (CAMBRIDGE, etc.). Approximate
+ * hex values are used for UI preview only; final yarn colors are confirmed via
+ * physical sample. The 10 colors selected are the top color names actually
+ * found in src/data/products.json (see scripts/inspect-colors.py), plus a few
+ * common cashmere neutrals (CAMEL, IVORY) for completeness.
  */
 
 export interface ColorSwatch {
@@ -14,7 +21,7 @@ export interface ColorSwatch {
 }
 
 export interface ColorSeries {
-  series: string;       // OXFORD | LONDON | CAMBRIDGE | PARIS
+  series: string;       // OXFORD | LONDON | CAMBRIDGE | PARIS | COMMON
   series_cn: string;
   yarn_count: string;   // 26/2NM | 36/2NM | etc.
   process: string;      // Woollen Yarn | Worsted Yarn | Tape Yarn
@@ -49,6 +56,27 @@ export const colorSeries: ColorSeries[] = [
       { code: "W6300", name_en: "BLACK", hex: "#000000", rgb: [0, 0, 0], category: "neutral" },
       { code: "R9470", name_en: "GRIZZLY", hex: "#777575", rgb: [119, 117, 117], category: "neutral" },
       { code: "N9095", name_en: "BARLEY", hex: "#C8AF8C", rgb: [200, 175, 140], category: "neutral" },
+    ],
+  },
+  {
+    series: "COMMON",
+    series_cn: "常用色",
+    yarn_count: "通用",
+    process: "Standard",
+    composition: "—",
+    page_in_catalog: 0,
+    swatch_count: 10,
+    swatches: [
+      { code: "COM-BR", name_en: "BROWN",    hex: "#6F4E37", rgb: [111, 78, 55],   category: "warm"    },
+      { code: "COM-NA", name_en: "NAVY",     hex: "#1F2A44", rgb: [31, 42, 68],    category: "cool"    },
+      { code: "COM-BE", name_en: "BEIGE",    hex: "#E8DCC4", rgb: [232, 220, 196], category: "neutral" },
+      { code: "COM-CA", name_en: "CAMEL",    hex: "#C19A6B", rgb: [193, 154, 107], category: "warm"    },
+      { code: "COM-IV", name_en: "IVORY",    hex: "#FFFFF0", rgb: [255, 255, 240], category: "neutral" },
+      { code: "COM-CH", name_en: "CHARCOAL", hex: "#373737", rgb: [55, 55, 55],    category: "neutral" },
+      { code: "COM-GR", name_en: "GRAY",     hex: "#808080", rgb: [128, 128, 128], category: "neutral" },
+      { code: "COM-WH", name_en: "WHITE",    hex: "#FFFFFF", rgb: [255, 255, 255], category: "neutral" },
+      { code: "COM-BL", name_en: "BLACK",    hex: "#000000", rgb: [0, 0, 0],       category: "neutral" },
+      { code: "COM-RE", name_en: "RED",      hex: "#B22222", rgb: [178, 34, 34],   category: "warm"    },
     ],
   },
 ];
