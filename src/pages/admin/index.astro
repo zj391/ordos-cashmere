@@ -202,6 +202,88 @@ const serverTime = new Date().toISOString().replace('T', ' ').slice(0, 19);
       </table>
     </div>
 
+    <!-- IndexNow Submit (Bing/Yandex/DuckDuckGo) -->
+    <section class="rounded-lg border border-stone-200 bg-white p-4 mb-4">
+      <div class="mb-3 flex items-center justify-between">
+        <h2 class="font-display text-lg font-medium">IndexNow Submit (Bing/Yandex/DuckDuckGo)</h2>
+      </div>
+      <p class="text-sm text-stone-500 mb-4">
+        IndexNow lets you instantly notify Bing, Yandex, DuckDuckGo, Seznam, and Naver of new or updated URLs.
+        Free, no API key. Sitemap-based submission covers all ~3,800 URLs in one shot.
+      </p>
+      <div class="flex flex-wrap gap-3 mb-4">
+        <button
+          type="button"
+          data-indexnow-full
+          class="rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary/90"
+        >
+          Submit full sitemap
+        </button>
+        <button
+          type="button"
+          data-indexnow-toggle
+          class="rounded-md border border-stone-300 px-4 py-2 text-sm font-medium hover:bg-stone-50"
+        >
+          Submit specific URLs
+        </button>
+      </div>
+      <div data-indexnow-urls hidden class="mb-4">
+        <label class="block text-sm font-medium mb-2">URLs (one per line, max 10,000)</label>
+        <textarea
+          data-indexnow-textarea
+          rows="6"
+          placeholder="https://www.erdosdx.com/en/products/hat-100/&#10;https://www.erdosdx.com/en/blog/my-post/"
+          class="w-full rounded-md border border-stone-300 bg-white px-3 py-2 text-sm font-mono"
+        ></textarea>
+        <button
+          type="button"
+          data-indexnow-submit-urls
+          class="mt-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary/90"
+        >
+          Submit these URLs
+        </button>
+      </div>
+      <div data-indexnow-result hidden class="mt-4 rounded-md bg-stone-50 p-3">
+        <pre data-indexnow-output class="text-xs font-mono whitespace-pre-wrap break-all"></pre>
+      </div>
+    </section>
+
+    <script is:inline>
+      (function () {
+        var resultBox = document.querySelector('[data-indexnow-result]');
+        var output = document.querySelector('[data-indexnow-output]');
+        var fullBtn = document.querySelector('[data-indexnow-full]');
+        var toggleBtn = document.querySelector('[data-indexnow-toggle]');
+        var urlsBox = document.querySelector('[data-indexnow-urls]');
+        var submitUrlsBtn = document.querySelector('[data-indexnow-submit-urls]');
+        var textarea = document.querySelector('[data-indexnow-textarea]');
+        if (!resultBox || !output || !fullBtn) return;
+        async function post(body, isFull) {
+          resultBox.hidden = false;
+          output.textContent = 'Submitting...';
+          try {
+            var url = '/api/indexnow-submit' + (isFull ? '?full=1' : '');
+            var res = await fetch(url, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(body || {}),
+            });
+            var json = await res.json();
+            output.textContent = 'HTTP ' + res.status + '\n' + JSON.stringify(json, null, 2);
+          } catch (err) {
+            output.textContent = 'Error: ' + (err && err.message || String(err));
+          }
+        }
+        fullBtn.addEventListener('click', function () { post({ full: true }, true); });
+        toggleBtn.addEventListener('click', function () { urlsBox.hidden = !urlsBox.hidden; });
+        submitUrlsBtn.addEventListener('click', function () {
+          var urls = (textarea.value || '').split('\n').map(function (s) { return s.trim(); }).filter(Boolean);
+          if (urls.length === 0) { output.textContent = 'No URLs provided'; resultBox.hidden = false; return; }
+          post({ urls: urls }, false);
+        });
+      })();
+    </script>
+
     <!-- Site traffic chart placeholder -->
     <div class="rounded-lg border border-stone-200 bg-white p-4">
       <div class="mb-3 flex items-center justify-between">
@@ -272,4 +354,91 @@ const serverTime = new Date().toISOString().replace('T', ' ').slice(0, 19);
       </dl>
     </div>
   </div>
+
+  <!-- IndexNow submit -->
+  <section class="mt-6 rounded-lg border border-stone-200 bg-white p-4">
+    <h2 class="mb-3 font-display text-lg font-medium">IndexNow Submit (Bing / Yandex / DuckDuckGo)</h2>
+    <p class="mb-4 text-sm text-stone-600">
+      IndexNow lets you instantly notify Bing, Yandex, DuckDuckGo, Seznam, and Naver of new or updated URLs.
+      Free, no API key. Sitemap-based submission covers all published pages in one click.
+    </p>
+    <div class="flex flex-wrap gap-3">
+      <button
+        type="button"
+        data-indexnow-full
+        class="rounded-md bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary/90"
+      >
+        Submit full sitemap
+      </button>
+      <button
+        type="button"
+        data-indexnow-toggle
+        class="rounded-md border border-stone-300 px-4 py-2 text-sm font-medium text-stone-700 transition-colors hover:bg-stone-50"
+      >
+        Submit specific URLs
+      </button>
+    </div>
+    <div data-indexnow-urls hidden class="mt-4">
+      <label class="mb-2 block text-sm font-medium text-stone-700">URLs (one per line)</label>
+      <textarea
+        data-indexnow-textarea
+        rows="6"
+        placeholder="https://www.erdosdx.com/en/products/hat-100/&#10;https://www.erdosdx.com/en/blog/my-post/"
+        class="w-full rounded-md border border-stone-300 bg-white px-3 py-2 font-mono text-xs focus:border-primary focus:outline-none"
+      ></textarea>
+      <button
+        type="button"
+        data-indexnow-submit-urls
+        class="mt-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary/90"
+      >
+        Submit these URLs
+      </button>
+    </div>
+    <div data-indexnow-result hidden class="mt-4 rounded-md bg-stone-50 p-3">
+      <pre data-indexnow-output class="whitespace-pre-wrap break-all font-mono text-xs text-stone-800"></pre>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      var resultBox = document.querySelector('[data-indexnow-result]');
+      var output = document.querySelector('[data-indexnow-output]');
+      var fullBtn = document.querySelector('[data-indexnow-full]');
+      var toggleBtn = document.querySelector('[data-indexnow-toggle]');
+      var urlsBox = document.querySelector('[data-indexnow-urls]');
+      var submitUrlsBtn = document.querySelector('[data-indexnow-submit-urls]');
+      var textarea = document.querySelector('[data-indexnow-textarea]');
+      if (!resultBox || !output || !fullBtn) return;
+
+      async function post(body, isFull) {
+        resultBox.hidden = false;
+        output.textContent = 'Submitting...';
+        try {
+          var url = '/api/indexnow-submit' + (isFull ? '?full=1' : '');
+          var res = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body || {}),
+          });
+          var json;
+          try { json = await res.json(); } catch (_) { json = { raw: await res.text() }; }
+          output.textContent = 'HTTP ' + res.status + '\n' + JSON.stringify(json, null, 2);
+        } catch (err) {
+          output.textContent = 'Error: ' + (err && err.message ? err.message : String(err));
+        }
+      }
+
+      fullBtn.addEventListener('click', function () { post({ full: true }, true); });
+      toggleBtn.addEventListener('click', function () { urlsBox.hidden = !urlsBox.hidden; });
+      submitUrlsBtn.addEventListener('click', function () {
+        var urls = (textarea.value || '').split('\n').map(function (s) { return s.trim(); }).filter(Boolean);
+        if (urls.length === 0) {
+          resultBox.hidden = false;
+          output.textContent = 'No URLs provided.';
+          return;
+        }
+        post({ urls: urls }, false);
+      });
+    })();
+  </script>
 </AdminLayout>
