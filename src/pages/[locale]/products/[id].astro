@@ -76,12 +76,30 @@ const galleryImages = product.images.map((img) => `/products/${imageDir}/${img}`
 // Per-locale TDK
 const tdk = {
   en: (p, c) => ({
-    // SEO audit 2026-07-17 #3: drop duplicate "Cashmere" word and bury-brand issues.
-    // Pattern: "{Unique product name} | {Category} {B2B signal} | DONGXIAO®"
-    // Keep under 60 chars. c is the category (e.g. "Hats"), p.name is unique (e.g. "Fold up Pure Cashmere Hat").
-    title: `${p.name} | ${c} Wholesale — DONGXIAO® Ordos`,
-    description: `${p.name}. ${p.material}, ${p.micron}. Wholesale from Ordos factory. MOQ ${p.moq} pcs. Lead time ${p.lead}. Sample ${p.sample_time}. Factory pricing for global B2B buyers.`,
-    keywords: [`${p.name}`, `wholesale cashmere ${c.toLowerCase()}`, `${p.material} ${c.toLowerCase()}`, `cashmere manufacturer ${p.id}`, `OEM ${c.toLowerCase()}`, 'cashmere wholesale', 'Ordos cashmere factory'],
+    // SEO A-3 (2026-07-24): front-load buyer-intent keywords + MOQ in title for SERP CTR.
+    // Pattern: "{Product name} Wholesale | Cashmere Manufacturer China | MOQ {qty}"
+    // DONGXIAO® moved to description/schema; brand word in title drops CTR.
+    title: `${p.name} Wholesale | Cashmere Manufacturer China | MOQ ${p.moq}`,
+    description: `${p.name} wholesale direct from China cashmere factory. MOQ ${p.moq} pcs. Lead time ${p.lead}. Sample ${p.sample_time}. ${p.material}, ${p.micron}. Factory pricing. OEM/ODM. DONGXIAO® Ordos.`,
+    keywords: [
+      `${p.name}`,
+      `${p.name} wholesale`,
+      `wholesale ${c.toLowerCase()}`,
+      `cashmere ${c.toLowerCase()} wholesale`,
+      `cashmere manufacturer China`,
+      `cashmere supplier China`,
+      `cashmere factory China`,
+      `buy ${c.toLowerCase()} wholesale`,
+      `bulk ${c.toLowerCase()}`,
+      `OEM ${c.toLowerCase()}`,
+      `ODM ${c.toLowerCase()}`,
+      `MOQ ${p.moq} ${c.toLowerCase()}`,
+      `${p.material} ${c.toLowerCase()}`,
+      `Ordos cashmere factory`,
+      `Inner Mongolia cashmere`,
+      `B2B cashmere supplier`,
+      `private label cashmere ${c.toLowerCase()}`,
+    ],
     buyCta: 'Request Quote',
     hideFormCta: 'Hide Form',
   }),
