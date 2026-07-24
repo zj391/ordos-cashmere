@@ -4,8 +4,9 @@
  *
  * 7-8 增强：附件上传（base64 内联）+ 期望交期 + honeypot 防 bot
  */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { COUNTRIES, LOCALE_TO_FIELD } from '@/data/countries';
+import type { CartItem } from '@/lib/inquiry-cart';
 
 interface Props {
   locale: string;
@@ -99,6 +100,23 @@ export default function ContactForm({ locale }: Props) {
   const [attachments, setAttachments] = useState<Array<{ name: string; type: string; dataUrl: string }>>([]);
   const [attachError, setAttachError] = useState<string>('');
 
+  // Cart handoff: detect ?from=cart&items=<base64> in URL and prefill form
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('from') !== 'cart') return;
+    const raw = params.get('items');
+    if (!raw) return;
+    try {
+      const json = decodeURIComponent(escape(atob(decodeURIComponent(raw))));
+      const parsed = JSON.parse(json) as CartItem[];
+      if (Array.isArray(parsed)) setCartItems(parsed);
+    } catch (err) {
+      console.warn('[contact] failed to parse cart handoff', err);
+    }
+  }, []);
+
   function readFile(file: File, maxMb: number): Promise<{ name: string; type: string; dataUrl: string }> {
     return new Promise((resolve, reject) => {
       if (file.size > maxMb * 1024 * 1024) {
@@ -141,6 +159,7 @@ export default function ContactForm({ locale }: Props) {
     }
     data.type = type;
     const payload: any = { ...data, locale, type };
+    if (cartItems.length > 0) payload.cart_items = cartItems;
     if (attachments.length > 0) payload.attachments = attachments;
     try {
       const endpoint = '/api/inquiry';
@@ -206,6 +225,24 @@ export default function ContactForm({ locale }: Props) {
         </div>
       </div>
 
+      {cartItems.length > 0 && (
+        <div className="border border-primary/30 bg-primary/5 rounded-md p-4 mb-2">
+          <h3 className="text-sm font-bold mb-2 flex items-center gap-2">
+            <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            Your Inquiry List ({cartItems.length} items)
+          </h3>
+          <ul className="text-xs space-y-1 mb-3 max-h-40 overflow-y-auto">
+            {cartItems.map((it, i) => (
+              <li key={i} className="flex justify-between gap-2">
+                <span className="truncate">{i + 1}. {it.name}{it.color ? ' [' + it.color + ']' : ''}</span>
+                <span className="text-muted-foreground whitespace-nowrap">{it.qty} pcs</span>
+              </li>
+            ))}
+          </ul>
+          <a href={`/${locale}/cart`} className="text-xs text-primary hover:underline">← Edit inquiry list</a>
+        </div>
+      )}
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-medium mb-2">{L(locale, 'name')}</label>
@@ -244,7 +281,7 @@ export default function ContactForm({ locale }: Props) {
         </div>
         <div className="md:col-span-2">
           <label className="block text-sm font-medium mb-2">{L(locale, 'message')}</label>
-          <textarea name="message" rows={5} className="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+          <textarea name="message" rows={5} defaultValue={cartItems.length > 0 ? 'INQUIRY LIST (from my saved list):\n' + cartItems.map((it, i) => `${i + 1}. ${it.name}${it.color ? ' [' + it.color + ']' : ''} — SKU ${it.id} — qty ${it.qty}${it.note ? ' — note: ' + it.note : ''}`).join('\n') + '\n\n' : ''} className="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
         </div>
         <div className="md:col-span-2">
           <label className="block text-sm font-medium mb-2">{L(locale, 'attachments')}</label>
