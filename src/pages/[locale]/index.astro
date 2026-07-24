@@ -198,8 +198,8 @@ const prodMeta = productData[locale];
 const IMG = {
   // 首页 hero (针织特写, 暖色)
   heroFiber: 'https://upload.wikimedia.org/wikipedia/commons/6/66/Cashmere_Sweater.jpg',
-  // Origin Story: 鄂尔多斯沙漠风景 (内蒙古 Otog Qianqi)
-  ordosLandscape: 'https://upload.wikimedia.org/wikipedia/commons/d/d3/Otog_Qianqi%2C_Ordos%2C_Inner_Mongolia%2C_China_-_panoramio_%289%29.jpg',
+  // Origin Story: 鄂尔多斯起源图 (用户提供的真实摄影图，替换之前的 Wikimedia 沙漠风景图)
+  ordosLandscape: '/images/home/ordos-origins.jpg',
   // Why us #1 自有牧场: 蒙古山羊在草原 (用户提供的真实摄影图，替换之前的 Wikimedia 图)
   mongoliaGoat: '/images/home/mongolia-goat.jpg',
   // Why us #4 成衣厂: 历史工厂外景 (黑白, 传承感)
@@ -358,7 +358,7 @@ const IMG = {
         <!-- 左侧大图（占 7/12） -->
         <div class="lg:col-span-7 relative reveal-left">
           <div class="aspect-[5/6] overflow-hidden hover-zoom">
-            <img src={IMG.ordosLandscape} alt="Ordos plateau landscape, Inner Mongolia" class="w-full h-full object-cover" loading="lazy" />
+            <img src={IMG.ordosLandscape} alt="Albus goat grazing on Ordos pasture at sunrise — Inner Mongolia" class="w-full h-full object-cover" loading="lazy" />
           </div>
           <!-- 浮动小图（地理坐标装饰） -->
           <div class="hidden md:block absolute -bottom-12 -right-12 w-48 aspect-square overflow-hidden border-8 border-background shadow-2xl bg-gradient-to-br from-brand-camel to-brand-chocolate flex items-center justify-center">
