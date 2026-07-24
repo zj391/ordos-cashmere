@@ -8,6 +8,7 @@ import { TRANSLATIONS, LOCALE_HREFLANG, type Locale } from '@/lib/i18n';
 import { SEO, SITE_URL, SITE_INFO, generateHreflangs } from '@/lib/seo';
 import { breadcrumbSchema, faqPageSchema, servicesSchema, PAGE_BREADCRUMB, SERVICES, type FAQItem } from '@/lib/schema';
 import AIChatWidget from '@/components/islands/AIChatWidget.tsx';
+import InquiryCart from '@/components/islands/InquiryCart.tsx';
 
 export interface Props {
   locale: Locale;
@@ -284,6 +285,9 @@ if (_schema === 'faq' && faqs && faqs.length > 0) {
 
     <!-- AI 24h 智能客服（由 FloatingChatButtons 的 AI 按钮触发打开） -->
     <AIChatWidget client:idle locale={locale} />
+
+    <!-- Inquiry cart (B2B RFQ list) — exposes window.dxCart + toast -->
+    <InquiryCart client:load locale={locale} />
 
     <!-- Scroll Reveal（轻量 IntersectionObserver，无依赖） -->
     <script is:inline>

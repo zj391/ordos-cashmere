@@ -1,0 +1,60 @@
+---
+/**
+ * /[locale]/cart — Inquiry List (B2B RFQ list) page.
+ *
+ * Server renders the layout shell + empty-state copy.
+ * Hydrates the InquiryCart React island in "full" mode to render the
+ * editable item list (qty inputs, color/note edits, remove buttons).
+ */
+export const prerender = true;
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
+import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
+import InquiryCart from '@/components/islands/InquiryCart.tsx';
+import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
+import { localePath } from '@/lib/i18n';
+
+export function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const { locale: rawLocale } = Astro.params;
+if (!isLocale(rawLocale)) { return Astro.redirect('/en/cart'); }
+const locale = pickLocale(rawLocale);
+
+const t: Record<string, Record<string, string>> = {
+  en: { tagline: 'INQUIRY LIST', title: 'Your Inquiry\nList', subtitle: 'Review the products you want a quote for, then send everything in one message.', emptyTitle: 'Your inquiry list is empty', emptyBody: 'Browse our products and click "Add to Inquiry" to start building a quote request.', emptyCta: 'Browse Products' },
+  cn: { tagline: '询价清单', title: '您的\n询价清单', subtitle: '复核您要询价的产品，然后一次性提交。', emptyTitle: '询价清单为空', emptyBody: '浏览产品并点击"加入询价单"开始组装询价请求。', emptyCta: '浏览产品' },
+  de: { tagline: 'ANFRAGELISTE', title: 'Ihre\nAnfrageliste', subtitle: 'Produkte prüfen, dann alles in einer Nachricht senden.', emptyTitle: 'Ihre Anfrageliste ist leer', emptyBody: 'Produkte ansehen und auf "Zur Anfrage hinzufügen" klicken.', emptyCta: 'Produkte ansehen' },
+  fr: { tagline: 'LISTE DE DEMANDE', title: 'Votre\nliste', subtitle: 'Vérifiez les produits, puis envoyez tout en un message.', emptyTitle: 'Votre liste est vide', emptyBody: 'Parcourez les produits et cliquez sur "Ajouter à la demande".', emptyCta: 'Voir les produits' },
+  ja: { tagline: '問い合わせリスト', title: 'あなたの\n問い合わせリスト', subtitle: '製品を確認してから、一度に送信します。', emptyTitle: 'リストは空です', emptyBody: '製品を閲覧し「問い合わせに追加」をクリックしてください。', emptyCta: '製品を見る' },
+  kr: { tagline: '문의 목록', title: '문의\n목록', subtitle: '제품을 검토한 후 한 번에 보내세요.', emptyTitle: '목록이 비어 있습니다', emptyBody: '제품을 찾아 "문의에 추가"를 클릭하세요.', emptyCta: '제품 보기' },
+};
+const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
+---
+<BaseLayout locale={locale} pageKey="cart" path="/cart" title={`Inquiry List | DONGXIAO®`} description="Review products you want a quote for and send a single inquiry to our Ordos factory.">
+  <Navigation slot="header" locale={locale} currentPath={`/${locale}/cart`} />
+
+  <section class="bg-brand-ink text-white">
+    <div class="container-narrow py-16 md:py-20">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="h-px w-12 bg-brand-gold"></span>
+        <span class="text-xs tracking-[0.4em] text-brand-gold uppercase font-medium">{T('tagline')}</span>
+      </div>
+      <h1 class="font-serif text-5xl md:text-6xl font-light leading-[1.05] mb-4" set:html={T('title').replace(/\n/g, '<br/>')} />
+      <p class="opacity-90 max-w-2xl">{T('subtitle')}</p>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-background">
+    <div class="container-narrow">
+      <InquiryCart client:load locale={locale} mode="full" />
+    </div>
+  </section>
+
+  <Footer slot="footer" locale={locale} />
+  <FloatingChatButtons slot="floating" locale={locale} />
+  <CookieConsent slot="cookie-consent" locale={locale} />
+</BaseLayout>
