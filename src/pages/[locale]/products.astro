@@ -281,6 +281,93 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
     </div>
   </section>
 
+  {locale === 'en' && (
+    <section class="py-12 md:py-16 bg-secondary/20">
+      <div class="container-narrow">
+        <h2 class="font-display text-3xl md:text-4xl font-light mb-4">Cashmere Product Formats: Which Suits Your Brand?</h2>
+        <p class="text-base text-muted-foreground mb-8 max-w-3xl">
+          Cashmere comes in 4 main formats, each with different price points, lead times, and minimum order quantities. Choose the right format based on your business model, target market, and capital.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="border border-border rounded-lg p-6 bg-card">
+            <h3 class="font-serif text-2xl mb-3">1. Raw Cashmere Fiber</h3>
+            <p class="text-sm text-muted-foreground mb-2 italic">Dehaired goat fiber, washed, ready for spinning</p>
+            <p class="text-muted-foreground leading-relaxed mb-3">Raw dehaired cashmere is the starting point for any cashmere product. We supply it in 3 forms: <strong>combed top</strong> (aligned fibers, for worsted spinning), <strong>roving</strong> (lightly twisted, for woolen spinning), and <strong>noil</strong> (short fiber, used in blends).</p>
+            <p class="text-muted-foreground leading-relaxed"><strong>Best for:</strong> Yarn manufacturers, hand-spinners, vertical mills. <strong>MOQ:</strong> 10kg per color. <strong>Lead time:</strong> 7-15 days (stock colors) or 25-35 days (custom dye).</p>
+          </div>
+
+          <div class="border border-border rounded-lg p-6 bg-card">
+            <h3 class="font-serif text-2xl mb-3">2. Cashmere Yarn</h3>
+            <p class="text-sm text-muted-foreground mb-2 italic">Spun yarn on cones, ready for knitting or weaving</p>
+            <p class="text-muted-foreground leading-relaxed mb-3">Yarn is the most flexible format — it lets you decide on gauge, twist, and ply. We offer <strong>worsted yarn</strong> (smooth, for fine-gauge knitwear), <strong>woolen yarn</strong> (fluffy, for chunky knitwear), and custom blends (cashmere/wool, cashmere/silk, cashmere/cotton).</p>
+            <p class="text-muted-foreground leading-relaxed"><strong>Best for:</strong> Knitwear brands, weaving mills, hand-knitting brands. <strong>MOQ:</strong> 1kg per color for sampling; 20kg+ for bulk. <strong>Lead time:</strong> 15-25 days (worsted), 20-30 days (woolen).</p>
+          </div>
+
+          <div class="border border-border rounded-lg p-6 bg-card">
+            <h3 class="font-serif text-2xl mb-3">3. Knit Cashmere Garments</h3>
+            <p class="text-sm text-muted-foreground mb-2 italic">Finished or semi-finished knitwear (sweaters, scarves, hats)</p>
+            <p class="text-muted-foreground leading-relaxed mb-3">Knit cashmere is what most B2B buyers come to us for. We produce sweaters, cardigans, scarves, hats, and accessories on German STOLL fully-fashioned knitting machines. Yarn → finished garment in 15-25 days.</p>
+            <p class="text-muted-foreground leading-relaxed"><strong>Best for:</strong> B2B apparel brands, private label startups, wholesale distributors. <strong>MOQ:</strong> 100 pieces per style (lower for stock designs). <strong>Lead time:</strong> 15-25 days production + 3-7 days sample approval.</p>
+          </div>
+
+          <div class="border border-border rounded-lg p-6 bg-card">
+            <h3 class="font-serif text-2xl mb-3">4. Woven Cashmere (Fabric & Garments)</h3>
+            <p class="text-sm text-muted-foreground mb-2 italic">Woven cashmere fabric or finished woven garments (coats, shawls, scarves)</p>
+            <p class="text-muted-foreground leading-relaxed mb-3">Woven cashmere (sometimes called pashmina when used for shawls) is woven on traditional looms. The fabric is denser and more structured than knit. Used for overcoats, shawls, scarves, suits. Higher material cost per piece but more luxurious drape.</p>
+            <p class="text-muted-foreground leading-relaxed"><strong>Best for:</strong> Premium outerwear brands, luxury scarf makers, tailoring houses. <strong>MOQ:</strong> 200 pieces per style. <strong>Lead time:</strong> 25-35 days (weaving is slower than knitting).</p>
+          </div>
+        </div>
+
+        <div class="mt-10 p-6 border-l-4 border-brand-gold bg-brand-gold/5 rounded-r">
+          <h3 class="font-serif text-xl mb-3">Quick Decision Matrix: Choose Your Format</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-border">
+                  <th class="text-left p-2 font-medium">If you are...</th>
+                  <th class="text-left p-2 font-medium">Start with...</th>
+                  <th class="text-left p-2 font-medium">Typical investment</th>
+                </tr>
+              </thead>
+              <tbody class="text-muted-foreground">
+                <tr class="border-b border-border">
+                  <td class="p-2">A new DTC brand launching your first 200-piece collection</td>
+                  <td class="p-2">Knit cashmere garments (private label, stock designs)</td>
+                  <td class="p-2">USD 5,000-15,000</td>
+                </tr>
+                <tr class="border-b border-border">
+                  <td class="p-2">An established knitwear brand expanding to cashmere</td>
+                  <td class="p-2">Cashmere yarn (for your own knitting)</td>
+                  <td class="p-2">USD 3,000-10,000</td>
+                </tr>
+                <tr class="border-b border-border">
+                  <td class="p-2">A yarn retailer or wholesale distributor</td>
+                  <td class="p-2">Cashmere yarn (variety of counts and colors)</td>
+                  <td class="p-2">USD 10,000-50,000</td>
+                </tr>
+                <tr class="border-b border-border">
+                  <td class="p-2">A vertical mill needing raw material</td>
+                  <td class="p-2">Raw dehaired cashmere (combed top)</td>
+                  <td class="p-2">USD 20,000+ (container-load orders)</td>
+                </tr>
+                <tr>
+                  <td class="p-2">A luxury outerwear or tailoring brand</td>
+                  <td class="p-2">Woven cashmere fabric or finished garments</td>
+                  <td class="p-2">USD 15,000-100,000+</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="mt-10 text-center">
+          <a href="/en/contact" class="inline-block px-8 py-3 bg-primary text-primary-foreground rounded-md font-medium hover:bg-primary/90 transition-colors">Discuss Your Project →</a>
+        </div>
+      </div>
+    </section>
+  )}
+
   <!-- Filter bar (静态渲染，按钮 + 搜索 + 排序) -->
   <section class="container-narrow py-8">
     <div class="flex flex-col lg:flex-row gap-4 mb-6 lg:items-center lg:justify-between">
