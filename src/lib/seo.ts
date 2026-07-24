@@ -80,8 +80,8 @@ export const SEO: Record<Locale, LocaleSEO> = {
     region: 'Global',
     market: 'Global / Europe / North America',
     home: {
-      title: 'DONGXIAO® Cashmere | Premium B2B Cashmere Manufacturer | Ordos, Inner Mongolia',
-      description: 'Leading B2B cashmere manufacturer from Ordos, Inner Mongolia, China. 23+ years producing premium raw cashmere, yarn, fabric & OEM knitwear for global brands. ISO certified, 50+ countries.',
+      title: 'Cashmere Wholesale Supplier China | Factory Direct | DONGXIAO® Ordos',
+      description: 'Wholesale cashmere direct from China factory. MOQ 100 pcs. Lead time 15-25 days. OEM/ODM knitwear, raw fiber, yarn & fabric. ISO 9001 certified. 50+ countries. DONGXIAO® Ordos.',
       keywords: ['cashmere manufacturer', 'B2B cashmere supplier', 'Ordos cashmere factory', 'Inner Mongolia cashmere', 'wholesale cashmere yarn', 'cashmere OEM', 'luxury knitwear manufacturer', 'Europe cashmere supplier', 'USA cashmere wholesale'],
     },
     rawMaterial: {
