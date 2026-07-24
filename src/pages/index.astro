@@ -14,7 +14,7 @@ const localeMap: Record<string, string> = {
 };
 
 const targetLocale = localeMap[langCode] || 'en';
-return Astro.redirect(`/${targetLocale}/`, 302);
+return Astro.redirect(`/${targetLocale}/`, 308);
 ---
 
 <!DOCTYPE html>
