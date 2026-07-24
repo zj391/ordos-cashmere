@@ -1,0 +1,206 @@
+---
+/**
+ * /[locale]/cashmere-grades — Cashmere quality grades guide (EN-only)
+ *
+ * Targets: "cashmere grade A B C", "baby cashmere vs pashmina", "cashmere micron chart"
+ * Differentiation: 23-year factory perspective on grading systems
+ */
+export const prerender = true;
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
+import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
+import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
+import { SEO, SITE_INFO } from '@/lib/seo';
+
+export function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const { locale: rawLocale } = Astro.params;
+if (!isLocale(rawLocale)) { return new Response('Not Found', { status: 404 }); }
+const locale = pickLocale(rawLocale);
+
+// Translations — 6 locales but body content is EN-only (gated below)
+const t: Record<string, Record<string, string>> = {
+  en: { tagline: 'CASHMERE GRADES', title: 'Cashmere Grades\nExplained', subtitle: 'A, B, C, baby, pashmina — what the grades actually mean and how to choose the right quality for your brand.' },
+  cn: { tagline: '羊绒等级', title: '羊绒等级\n详解', subtitle: 'A/B/C 等级、baby 羊绒、pashmina 披肩 — 等级到底意味着什么？' },
+  de: { tagline: 'KASCHMIRQUALITÄTEN', title: 'Kaschmirqualitäten\nErklärt', subtitle: 'A, B, C, Baby, Pashmina — was die Qualitätsstufen wirklich bedeuten.' },
+  fr: { tagline: 'QUALITÉS DU CACHEMIRE', title: 'Qualités du Cachemire\nExpliquées', subtitle: 'A, B, C, baby, pashmina — ce que signifient réellement les grades.' },
+  ja: { tagline: 'カシミア等級', title: 'カシミア等級\n解説', subtitle: 'A、B、C、ベビー、パシュミナ — 等級の本当の意味。' },
+  kr: { tagline: '캐시미어 등급', title: '캐시미어 등급\n설명', subtitle: 'A, B, C, 베이비, 퍼시mina — 등급의 실제 의미.' },
+};
+const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
+
+const seo = {
+  en: { title: 'Cashmere Grades A B C Explained | Micron Chart & Quality Guide | DONGXIAO®', description: 'What is Grade A vs B vs C cashmere? Baby cashmere vs pashmina? Micron chart, fiber length, and how to choose the right cashmere quality for your brand. 23-year Ordos factory guide.', keywords: ['cashmere grade a vs b', 'cashmere quality grades', 'baby cashmere vs regular', 'pashmina vs cashmere', 'cashmere micron chart', 'cashmere fiber length'] },
+  cn: { title: '羊绒等级 A B C 详解 | 纤维细度对照 | DONGXIAO®', description: '羊绒等级 A/B/C 区别，婴儿羊绒与普通羊绒、pashmina 区别。23 年源头工厂指南。', keywords: ['羊绒等级', '羊绒 A B C'] },
+  de: { title: 'Kaschmirqualitäten A B C erklärt | Mikron-Tabelle | DONGXIAO®', description: 'Was bedeutet Kaschmirqualität A vs B vs C? Baby-Kaschmir vs Pashmina? 23-Jahre-Fabrik-Leitfaden.', keywords: ['Kaschmirqualität A B C', 'Kaschmir Qualitätsstufen'] },
+  fr: { title: 'Qualités cachemire A B C expliquées | Tableau microns | DONGXIAO®', description: 'Cachemire grade A vs B vs C, baby cachemire vs pashmina. Guide usine 23 ans.', keywords: ['qualité cachemire A B C'] },
+  ja: { title: 'カシミア等級 A B C 解説 | 繊維細度表 | DONGXIAO®', description: 'カシミア A B C 等级の違い、ベビーカシミアとパシュミナの違い。23 年工場ガイド。', keywords: ['カシミア等級'] },
+  kr: { title: '캐시미어 등급 A B C 설명 | 마이크론 차트 | DONGXIAO®', description: '캐시미어 A B C 등급 차이, 베이비 캐시미어와 퍼시미나 차이.', keywords: ['캐시미어 등급'] },
+};
+const s = seo[locale] || seo.en;
+---
+<BaseLayout locale={locale} pageKey="cashmere-grades" path="/cashmere-grades" title={s.title} description={s.description} keywords={s.keywords}>
+  <Navigation slot="header" locale={locale} currentPath={`/${locale}/cashmere-grades`} />
+
+  <section class="bg-brand-ink text-white">
+    <div class="container-narrow py-16 md:py-20">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="h-px w-12 bg-brand-gold"></span>
+        <span class="text-xs tracking-[0.4em] text-brand-gold uppercase font-medium">{T('tagline')}</span>
+      </div>
+      <h1 class="font-serif text-5xl md:text-6xl font-light leading-[1.05] mb-4" set:html={T('title').replace(/\n/g, '<br/>')} />
+      <p class="opacity-90 max-w-2xl text-lg">{T('subtitle')}</p>
+    </div>
+  </section>
+
+  {locale === 'en' && (
+  <section class="py-12 md:py-16 bg-background">
+    <div class="container-narrow max-w-3xl">
+      <h2 class="font-display text-3xl md:text-4xl font-light mb-4">Why Cashmere Quality Varies So Much</h2>
+      <p class="text-muted-foreground leading-relaxed mb-4">
+        Two cashmere sweaters can both say "100% cashmere" and feel completely different. One might pill after two wears; the other lasts a decade. The difference comes down to 3 measurable factors: <strong>fiber fineness (micron)</strong>, <strong>fiber length</strong>, and <strong>down fiber content</strong>. The cashmere industry uses a rough grading system (A/B/C) to capture these, but the grades are not standardized — one supplier's "Grade A" might be another's "Grade B".
+      </p>
+      <p class="text-muted-foreground leading-relaxed">
+        Below is the framework we use internally, based on 23 years of grading fiber from Ordos and Mongolian goats.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-secondary/20">
+    <div class="container-narrow max-w-3xl">
+      <h2 class="font-display text-3xl md:text-4xl font-light mb-6">The 3 Grading Factors</h2>
+      <div class="space-y-6">
+        <div>
+          <h3 class="font-serif text-2xl mb-3">1. Fiber Fineness (Micron)</h3>
+          <p class="text-muted-foreground leading-relaxed mb-2">Measured in micrometers (μm). Lower = softer. The micron count is the diameter of individual fibers. Human hair is 50-100μm. Premium cashmere is 14-16μm.</p>
+          <p class="text-sm text-muted-foreground"><strong>Industry benchmark:</strong> 14.5-15.5μm = premium · 15.5-16.5μm = mid-market · 16.5-19μm = entry-level · 19μm+ = often blended with wool.</p>
+        </div>
+        <div>
+          <h3 class="font-serif text-2xl mb-3">2. Fiber Length</h3>
+          <p class="text-muted-foreground leading-relaxed mb-2">Longer fibers pill less and last longer. Measured in millimeters. Combed top is 28-42mm. Shorter fiber (under 28mm) is used for woolen spinning or blends.</p>
+          <p class="text-sm text-muted-foreground"><strong>Industry benchmark:</strong> 36-42mm = premium · 30-36mm = mid-market · under 30mm = entry-level or noil.</p>
+        </div>
+        <div>
+          <h3 class="font-serif text-2xl mb-3">3. Down Fiber Content</h3>
+          <p class="text-muted-foreground leading-relaxed mb-2">"Down" is the soft undercoat fiber. "Guard hair" is the coarser outer fiber. Higher down content = softer feel, less scratchiness. Cashmere is dehaired to remove guard hair.</p>
+          <p class="text-sm text-muted-foreground"><strong>Industry benchmark:</strong> Premium dehaired cashmere has 99%+ down content, under 1% guard hair.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-background">
+    <div class="container-narrow max-w-3xl">
+      <h2 class="font-display text-3xl md:text-4xl font-light mb-6">Cashmere Grades A, B, C — Industry Convention</h2>
+      <p class="text-muted-foreground leading-relaxed mb-6">
+        No global standard exists for cashmere grading. The following is the most common convention used in Chinese and Mongolian processing facilities.
+      </p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm border-collapse border border-border rounded-lg overflow-hidden">
+          <thead class="bg-secondary/40">
+            <tr>
+              <th class="text-left p-3 font-medium">Grade</th>
+              <th class="text-left p-3 font-medium">Micron (μm)</th>
+              <th class="text-left p-3 font-medium">Length (mm)</th>
+              <th class="text-left p-3 font-medium">Typical Use</th>
+              <th class="text-left p-3 font-medium">Price (per kg, raw)</th>
+            </tr>
+          </thead>
+          <tbody class="text-muted-foreground">
+            <tr class="border-t border-border">
+              <td class="p-3 font-medium text-foreground">A (Premium)</td>
+              <td class="p-3">14.0-15.5</td>
+              <td class="p-3">36-42</td>
+              <td class="p-3">Luxury knitwear, premium scarves</td>
+              <td class="p-3">USD 80-120</td>
+            </tr>
+            <tr class="border-t border-border bg-secondary/10">
+              <td class="p-3 font-medium text-foreground">B (Mid-market)</td>
+              <td class="p-3">15.5-16.5</td>
+              <td class="p-3">30-36</td>
+              <td class="p-3">Mid-range sweaters, blends</td>
+              <td class="p-3">USD 50-80</td>
+            </tr>
+            <tr class="border-t border-border">
+              <td class="p-3 font-medium text-foreground">C (Entry)</td>
+              <td class="p-3">16.5-19.0</td>
+              <td class="p-3">26-30</td>
+              <td class="p-3">Entry sweaters, accessories, blends</td>
+              <td class="p-3">USD 30-50</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-muted-foreground mt-3">Prices reflect 2025-2026 raw dehaired cashmere market. Bulk orders 100kg+ at FOB Inner Mongolia.</p>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-secondary/20">
+    <div class="container-narrow max-w-3xl">
+      <h2 class="font-display text-3xl md:text-4xl font-light mb-6">Special Cashmere Varieties</h2>
+      <div class="space-y-6">
+        <div>
+          <h3 class="font-serif text-2xl mb-3">Baby Cashmere (Baby Fiber)</h3>
+          <p class="text-muted-foreground leading-relaxed mb-2">Harvested from the underdown of goat kids (6-12 months old). The fibers are naturally finer (12.5-13.5μm) and softer than adult cashmere, but also shorter (28-32mm) and more delicate.</p>
+          <p class="text-muted-foreground leading-relaxed"><strong>Use:</strong> Ultra-luxury scarves, premium knitwear. <strong>Price:</strong> 2-3x adult Grade A cashmere. <strong>Note:</strong> Ethical concerns: harvesting from kids requires careful herder practices. Some buyers avoid baby cashmere on animal-welfare grounds.</p>
+        </div>
+        <div>
+          <h3 class="font-serif text-2xl mb-3">Pashmina</h3>
+          <p class="text-muted-foreground leading-relaxed mb-2">Strictly speaking, "pashmina" is a type of cashmere from the Changthangi goat in Kashmir (India/Pakistan), with very fine fiber (12-15μm). However, the term is now widely misused as a marketing label for any fine cashmere shawl, regardless of origin.</p>
+          <p class="text-muted-foreground leading-relaxed"><strong>Reality check:</strong> Most "pashmina" products sold today are made from Chinese or Mongolian cashmere, not Changthangi. The legal name is "cashmere" in most jurisdictions; "pashmina" is a marketing term without protected designation.</p>
+        </div>
+        <div>
+          <h3 class="font-serif text-2xl mb-3">White vs. Brown vs. Gray Cashmere</h3>
+          <p class="text-muted-foreground leading-relaxed mb-2">Most cashmere goats produce white, brown, or gray fiber. White cashmere is the most valuable because it can be dyed to any color without bleaching. Brown and gray are usually used in natural or limited colorways.</p>
+          <p class="text-muted-foreground leading-relaxed"><strong>Price impact:</strong> White cashmere is 10-15% more expensive than brown/gray at the same grade level.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-background">
+    <div class="container-narrow max-w-3xl">
+      <h2 class="font-display text-3xl md:text-4xl font-light mb-4">How to Choose the Right Grade for Your Brand</h2>
+      <p class="text-muted-foreground leading-relaxed mb-6">
+        Most new B2B buyers default to "Grade A" because they think it's the safest choice. It's not — premium grade is also the most expensive and the most delicate to knit (requires slower machine speeds, more skilled operators). Here's how to match grade to your product:
+      </p>
+      <div class="space-y-3">
+        <div class="border-l-4 border-brand-gold pl-4 py-2">
+          <p class="font-medium">Luxury scarf or premium sweater at USD 200+ retail?</p>
+          <p class="text-sm text-muted-foreground">→ Grade A (14-15.5μm, 36mm+). The hand feel justifies the price premium.</p>
+        </div>
+        <div class="border-l-4 border-brand-gold pl-4 py-2">
+          <p class="font-medium">Mid-market DTC brand (USD 80-200 retail)?</p>
+          <p class="text-sm text-muted-foreground">→ Grade B (15.5-16.5μm, 30-36mm). Best balance of quality and price.</p>
+        </div>
+        <div class="border-l-4 border-brand-gold pl-4 py-2">
+          <p class="font-medium">Entry-level fashion brand or accessories?</p>
+          <p class="text-sm text-muted-foreground">→ Grade C (16.5-19μm) or cashmere blend (70% cashmere / 30% wool). Cost-efficient without sacrificing the "cashmere" claim.</p>
+        </div>
+        <div class="border-l-4 border-brand-gold pl-4 py-2">
+          <p class="font-medium">Hand-knitting yarn brand?</p>
+          <p class="text-sm text-muted-foreground">→ Grade A or B, depending on your price point. Hand-knitters feel the difference.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-secondary/20">
+    <div class="container-narrow max-w-3xl text-center">
+      <h2 class="font-display text-3xl md:text-4xl font-light mb-4">Need Help Choosing the Right Cashmere Grade?</h2>
+      <p class="text-muted-foreground leading-relaxed mb-6">
+        Send us your product concept (target retail price, gauge, fiber preference) and we'll recommend the optimal grade + format for your brand.
+      </p>
+      <a href="/en/contact" class="inline-block px-8 py-3 bg-primary text-primary-foreground rounded-md font-medium hover:bg-primary/90 transition-colors">Get Grade Recommendations →</a>
+    </div>
+  </section>
+  )}
+
+  <Footer slot="footer" locale={locale} />
+  <FloatingChatButtons slot="floating" locale={locale} />
+  <CookieConsent slot="cookie-consent" locale={locale} />
+</BaseLayout>
