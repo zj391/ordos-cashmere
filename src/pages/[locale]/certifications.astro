@@ -127,6 +127,67 @@ const certSchema = {
     </div>
   </section>
 
+  {locale === 'en' && (
+  <section class="py-12 md:py-16 bg-secondary/20">
+    <div class="container-narrow">
+      <h2 class="font-display text-3xl md:text-4xl font-light mb-4">How to Read a Cashmere Certification: 5 Standards Explained</h2>
+      <p class="text-base text-muted-foreground mb-8 max-w-3xl">
+        The cashmere industry uses at least 5 different certification systems, and most "eco-friendly" or "ethical" claims rely on just one of them. Here's what each certification actually covers — and what it doesn't — so you can make an informed supplier decision.
+      </p>
+
+      <div class="space-y-6">
+        <div class="border border-border rounded-lg p-6 bg-card">
+          <h3 class="font-serif text-2xl mb-3">1. OEKO-TEX Standard 100 — What it Tests</h3>
+          <p class="text-muted-foreground leading-relaxed mb-3">Tests the <strong>final textile product</strong> for harmful substances (formaldehyde, heavy metals, pesticides, azo dyes). Covers 350+ substances. Validates against human-ecological safety.</p>
+          <p class="text-muted-foreground leading-relaxed mb-2"><strong>What it does NOT cover:</strong> Working conditions, environmental impact, animal welfare.</p>
+          <p class="text-muted-foreground leading-relaxed"><strong>How to verify:</strong> Look up the certificate number on <a href="https://www.oeko-tex.com/" class="text-primary hover:underline" target="_blank" rel="noopener">oeko-tex.com</a>. Expired certificates are worthless.</p>
+        </div>
+
+        <div class="border border-border rounded-lg p-6 bg-card">
+          <h3 class="font-serif text-2xl mb-3">2. BSCI (amfori BSCI) — Social Compliance</h3>
+          <p class="text-muted-foreground leading-relaxed mb-3">Audits the <strong>factory's working conditions</strong> against 11 performance areas: forced labor, child labor, working hours, wages, health & safety. Audit grade: A (best) to E (worst). Most European buyers require BSCI grade C or above.</p>
+          <p class="text-muted-foreground leading-relaxed mb-2"><strong>What it does NOT cover:</strong> Product quality, environmental impact, animal welfare.</p>
+          <p class="text-muted-foreground leading-relaxed"><strong>How to verify:</strong> Request the most recent audit report (PDF) — it includes specific findings, not just a pass/fail.</p>
+        </div>
+
+        <div class="border border-border rounded-lg p-6 bg-card">
+          <h3 class="font-serif text-2xl mb-3">3. ISO 9001 — Quality Management System</h3>
+          <p class="text-muted-foreground leading-relaxed mb-3">Certifies the factory has a documented <strong>quality management process</strong>: incoming material inspection, in-process control, final inspection, corrective action procedures.</p>
+          <p class="text-muted-foreground leading-relaxed mb-2"><strong>What it does NOT cover:</strong> Specific product quality, sustainability, social compliance.</p>
+          <p class="text-muted-foreground leading-relaxed"><strong>How to verify:</strong> ISO 9001:2015 is the current version. The certificate must list a specific factory address (not just a parent company).</p>
+        </div>
+
+        <div class="border border-border rounded-lg p-6 bg-card">
+          <h3 class="font-serif text-2xl mb-3">4. GOTS — Global Organic Textile Standard</h3>
+          <p class="text-muted-foreground leading-relaxed mb-3">Certifies the <strong>entire supply chain</strong> from raw fiber to finished product: organic fiber content (≥70% for "made with organic", ≥95% for "organic"), environmental processing, social criteria.</p>
+          <p class="text-muted-foreground leading-relaxed mb-2"><strong>What it does NOT cover:</strong> Animal welfare (no cashmere-specific standards yet), full traceability of fiber origin.</p>
+          <p class="text-muted-foreground leading-relaxed"><strong>How to verify:</strong> GOTS is the only standard that covers the whole chain. Annual audits. Expensive certification (~USD 5,000+ for a small facility).</p>
+        </div>
+
+        <div class="border border-border rounded-lg p-6 bg-card">
+          <h3 class="font-serif text-2xl mb-3">5. SFA (Sustainable Fibre Alliance) — Cashmere-Specific</h3>
+          <p class="text-muted-foreground leading-relaxed mb-3">The <strong>only certification</strong> specific to cashmere and mohair. Covers: goat welfare, grassland management, social compliance, traceability from herder to finished product. Membership-based.</p>
+          <p class="text-muted-foreground leading-relaxed mb-2"><strong>Coverage:</strong> Currently focused on Mongolia, China (Inner Mongolia/Alashan), Scotland. Herder cooperatives + processors must both be certified.</p>
+          <p class="text-muted-foreground leading-relaxed"><strong>How to verify:</strong> SFA membership list is public at <a href="https://sustainablefibre.org/" class="text-primary hover:underline" target="_blank" rel="noopener">sustainablefibre.org</a>. SFA-certified products carry a transaction certificate number.</p>
+        </div>
+      </div>
+
+      <div class="mt-10 p-6 border-l-4 border-brand-gold bg-brand-gold/5 rounded-r">
+        <h3 class="font-serif text-xl mb-3">3 Things to Ask Every Cashmere Supplier About Certifications</h3>
+        <ol class="list-decimal pl-5 space-y-2 text-muted-foreground">
+          <li><strong>"Can you send the actual PDF certificate, not a photo?"</strong> Photos can be from a different factory, year, or scope. PDFs include the certificate number you can verify.</li>
+          <li><strong>"Does the certificate cover the specific product I'll be buying, or just the parent company?"</strong> Some certificates cover the legal entity, not the actual production line.</li>
+          <li><strong>"What was the date of your most recent audit, and what were the findings?"</strong> A 5-year-old audit tells you little. A current audit with specific findings (even minor) is more credible than an expired "pass".</li>
+        </ol>
+      </div>
+
+      <div class="mt-10 text-center">
+        <a href="/en/contact" class="inline-block px-8 py-3 bg-primary text-primary-foreground rounded-md font-medium hover:bg-primary/90 transition-colors">Request Our Certification Documents →</a>
+      </div>
+    </div>
+  </section>
+  )}
+
   <Footer slot="footer" locale={locale} />
   <FloatingChatButtons slot="footer" locale={locale} />
   <CookieConsent slot="footer" locale={locale} />
