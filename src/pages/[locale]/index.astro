@@ -196,8 +196,8 @@ const prodMeta = productData[locale];
 // 7-22 修正: Cashmere_Factory_Gobi_33 实际是毛衣店图, 换成 Otog Qianqi Ordos
 //   真实沙漠风景 + Goat in Mongolia 01 真实蒙古山羊.
 const IMG = {
-  // 首页 hero (针织特写, 暖色)
-  heroFiber: 'https://upload.wikimedia.org/wikipedia/commons/6/66/Cashmere_Sweater.jpg',
+  // 首页 hero (针织特写, 暖色) - 用户提供的真实摄影图
+  heroFiber: '/images/home/hero-fiber.jpg',
   // Origin Story: 鄂尔多斯起源图 (用户提供的真实摄影图，替换之前的 Wikimedia 沙漠风景图)
   ordosLandscape: '/images/home/ordos-origins.jpg',
   // Why us #1 自有牧场: 蒙古山羊在草原 (用户提供的真实摄影图，替换之前的 Wikimedia 图)
@@ -206,12 +206,12 @@ const IMG = {
   knittingMill: 'https://upload.wikimedia.org/wikipedia/commons/5/53/Strutwear_Knitting_Company_Factory_-_DPLA_-_ada8cf1c32797fd4fd2696eaa0b78489.jpg',
   // 工艺证据 - 针织手部特写 (用户提供的真实摄影图，替换之前的 Wikimedia 披肩图)
   craftHand: '/images/home/craft-knit-detail.jpg',
-  // 工艺证据 - 披肩产品
-  shawlEmbroidered: 'https://upload.wikimedia.org/wikipedia/commons/2/27/Embroidered-pashmina-shawl.jpg',
-  // 工艺证据 - 编织细节
-  scarfDetail: 'https://upload.wikimedia.org/wikipedia/commons/9/95/Pashmina_scarf_with_woven_elephant_design_03.jpg',
-  // 工艺证据 - 折叠围巾
-  scarvesFolded: 'https://upload.wikimedia.org/wikipedia/commons/e/e4/Cashmere_Wool_Scarves.jpg',
+  // 工艺证据 - 披肩产品 (用户提供的真实摄影图)
+  shawlEmbroidered: '/images/home/shawl-embroidered.jpg',
+  // 工艺证据 - 编织细节 (用户提供的真实摄影图)
+  scarfDetail: '/images/home/scarf-detail.jpg',
+  // 工艺证据 - 折叠围巾 (用户提供的真实摄影图)
+  scarvesFolded: '/images/home/scarves-folded.jpg',
 };
 ---
 
@@ -223,7 +223,7 @@ const IMG = {
     <!-- 轮播图: 3 张明亮图自动循环 (CSS transition + 底部圆点 + JS) -->
     <div class="absolute inset-0" data-hero-slider>
       {[
-        { src: IMG.scarvesFolded, alt: 'Cashmere scarves — premium B2B product' },
+        { src: IMG.scarvesFolded, alt: 'Cashmere wrap — premium B2B apparel piece styled in urban setting' },
         { src: IMG.craftHand,    alt: 'Handwoven cashmere detail — craftsmanship' },
         { src: '/images/home/ordos-pasture.jpg', alt: 'Inner Mongolian pasture with goats and livestock — Ordos origin' },
       ].map((slide, i) => (
@@ -491,7 +491,7 @@ const IMG = {
 
         <!-- 纱线面料（右小） -->
         <a href={`/${locale}/yarn-fabric`} class="group md:col-span-5 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden hover-lift reveal" data-reveal-delay="2">
-          <img src={IMG.scarfDetail} alt="Cashmere yarn detail — 100% Inner Mongolian fiber, 14.5μm micron, B2B wholesale" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          <img src={IMG.scarfDetail} alt="Cashmere knitwear — premium winter hat and sweater for B2B wholesale" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
           <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/90 via-brand-ink/30 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
             <div class="flex items-center gap-4 mb-3">
@@ -516,7 +516,7 @@ const IMG = {
 
         <!-- 成衣代工（下大） -->
         <a href={`/${locale}/garment-oem`} class="group md:col-span-12 relative aspect-[4/3] md:aspect-[21/9] overflow-hidden hover-lift reveal" data-reveal-delay="3">
-          <img src={IMG.scarvesFolded} alt="Cashmere garments OEM — wholesale sweaters, scarves, knitwear from Ordos factory" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          <img src={IMG.scarvesFolded} alt="Cashmere shawl styling — premium B2B apparel from Ordos factory" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
           <div class="absolute inset-0 bg-gradient-to-r from-brand-ink/95 via-brand-ink/50 to-transparent"></div>
           <div class="absolute bottom-0 left-0 p-8 md:p-12 text-white max-w-2xl">
             <div class="flex items-center gap-4 mb-3">
@@ -595,7 +595,7 @@ const IMG = {
         <!-- 条目 3：纺纱 -->
         <div class="space-y-6 reveal" data-reveal-delay="3">
           <div class="aspect-[4/3] overflow-hidden hover-zoom">
-            <img src={IMG.shawlEmbroidered} alt="Cashmere spinning — worsted and woolen yarn production, 26/2 to 48/2 Nm counts" class="w-full h-full object-cover" loading="lazy" />
+            <img src={IMG.shawlEmbroidered} alt="Cashmere shawl — oversized coral wrap for B2B private label" class="w-full h-full object-cover" loading="lazy" />
           </div>
           <div class="flex items-baseline gap-4">
             <span class="font-serif text-5xl text-brand-gold font-light">03</span>
