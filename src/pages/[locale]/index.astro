@@ -200,12 +200,12 @@ const IMG = {
   heroFiber: 'https://upload.wikimedia.org/wikipedia/commons/6/66/Cashmere_Sweater.jpg',
   // Origin Story: 鄂尔多斯沙漠风景 (内蒙古 Otog Qianqi)
   ordosLandscape: 'https://upload.wikimedia.org/wikipedia/commons/d/d3/Otog_Qianqi%2C_Ordos%2C_Inner_Mongolia%2C_China_-_panoramio_%289%29.jpg',
-  // Why us #1 自有牧场: 蒙古山羊在草原 (真实梳绒标记)
-  mongoliaGoat: 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Goat_in_Mongolia_01.jpg',
+  // Why us #1 自有牧场: 蒙古山羊在草原 (用户提供的真实摄影图，替换之前的 Wikimedia 图)
+  mongoliaGoat: '/images/home/mongolia-goat.jpg',
   // Why us #4 成衣厂: 历史工厂外景 (黑白, 传承感)
   knittingMill: 'https://upload.wikimedia.org/wikipedia/commons/5/53/Strutwear_Knitting_Company_Factory_-_DPLA_-_ada8cf1c32797fd4fd2696eaa0b78489.jpg',
-  // 工艺证据 - 手工艺披肩
-  craftHand: 'https://upload.wikimedia.org/wikipedia/commons/6/6d/Handwoven-kashmir-pashmina.jpg',
+  // 工艺证据 - 针织手部特写 (用户提供的真实摄影图，替换之前的 Wikimedia 披肩图)
+  craftHand: '/images/home/craft-knit-detail.jpg',
   // 工艺证据 - 披肩产品
   shawlEmbroidered: 'https://upload.wikimedia.org/wikipedia/commons/2/27/Embroidered-pashmina-shawl.jpg',
   // 工艺证据 - 编织细节
@@ -225,7 +225,7 @@ const IMG = {
       {[
         { src: IMG.scarvesFolded, alt: 'Cashmere scarves — premium B2B product' },
         { src: IMG.craftHand,    alt: 'Handwoven cashmere detail — craftsmanship' },
-        { src: IMG.mongoliaGoat, alt: 'Cashmere goats on Mongolian pasture — origin' },
+        { src: '/images/home/ordos-pasture.jpg', alt: 'Inner Mongolian pasture with goats and livestock — Ordos origin' },
       ].map((slide, i) => (
         <img
           src={slide.src}
