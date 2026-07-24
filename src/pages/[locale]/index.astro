@@ -743,7 +743,7 @@ const IMG = {
             return (
               <a href={`/${locale}/blog/${p.slug}`} class="group block border border-border overflow-hidden hover:border-brand-gold hover:shadow-lg transition-all duration-300">
                 <div class="aspect-[16/10] overflow-hidden bg-brand-cream">
-                  <img src={blogImg} alt={blogAlt} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                  <img src={blogImg} alt={blogAlt} style="object-position: center 60%;" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
                 </div>
                 <div class="p-6">
                   <div class="text-xs text-muted-foreground tracking-wider mb-3 font-mono">{p.date}</div>
