@@ -51,17 +51,17 @@ export function getStaticPaths() {
 }
 
 const { locale: rawLocale, id } = Astro.params;
-if (!isLocale(rawLocale)) { return Astro.redirect('/en/'); }
+if (!isLocale(rawLocale)) { return new Response('Not Found', { status: 404 }); }
 const locale = pickLocale(rawLocale);
 
 const { product } = Astro.props;
-if (!product || !id) { return Astro.redirect('/' + locale + '/products'); }
+if (!product || !id) { return new Response('Not Found', { status: 404 }); }
 
 // Resolved detail data (per-product overrides or per-category fallback)
 const detail = (product as any).detail || null;
 
 const category = getCategoryById(product.categoryId);
-if (!category) { return Astro.redirect('/' + locale + '/products'); }
+if (!category) { return new Response('Not Found', { status: 404 }); }
 
 // 推荐相关产品（同类别，排除自己，最多 6 个）
 const allProducts = getAllProducts();
