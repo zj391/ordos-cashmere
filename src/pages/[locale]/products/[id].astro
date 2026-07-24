@@ -124,6 +124,28 @@ const tdk = {
 
 const t = (tdk[locale] || tdk.en)(product, category.name);
 
+// === Inquiry cart handoff data (Task 2) ===
+const imageDirForProduct = CATEGORY_IMAGE_DIR[product.categoryId] || product.categoryId;
+const productJson = JSON.stringify({
+  id: product.id,
+  name: product.name,
+  categoryId: product.categoryId,
+  image: `/products/${imageDirForProduct}/${product.images[0]}`,
+  price: product.price,
+  currency: product.currency,
+  moq: product.moq,
+  href: `/${locale}/products/${product.id}`,
+});
+const inquiryLabels = {
+  en: { add: 'Add to Inquiry', added: '✓ Added' },
+  cn: { add: '加入询价单', added: '✓ 已加入' },
+  de: { add: 'Zur Anfrage hinzufügen', added: '✓ Hinzugefügt' },
+  fr: { add: 'Ajouter à la demande', added: '✓ Ajouté' },
+  ja: { add: '問い合わせに追加', added: '✓ 追加済' },
+  kr: { add: '문의에 추가', added: '✓ 추가됨' },
+};
+const inquiryLabelSet = inquiryLabels[locale] || inquiryLabels.en;
+
 // JSON-LD Product schema
 const productSchema = {
   '@context': 'https://schema.org',
@@ -387,6 +409,14 @@ const breadcrumbSchema = {
             </button>
             <a href={`/${locale}/factory`} class="inline-block px-6 py-3 border border-border rounded-sm hover:bg-secondary">Factory Tour</a>
             <a href={`/${locale}/contact?product=${product.id}`} class="inline-block px-6 py-3 border border-border rounded-sm hover:bg-secondary">Contact Page</a>
+            <button
+              type="button"
+              data-add-to-inquiry
+              class="inline-flex items-center gap-2 px-6 py-3 border border-primary text-primary rounded-sm hover:bg-primary hover:text-primary-foreground transition-colors"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+              <span data-add-label>{inquiryLabelSet.add}</span>
+            </button>
           </div>
 
           <!-- Same-page inquiry form (hidden by default) -->
@@ -630,6 +660,14 @@ const breadcrumbSchema = {
       <p class="opacity-90 mb-8 max-w-2xl mx-auto">Send your target specs (quantity, gauge, color, customization). Our specialists respond within 24 hours with sample, pricing, and lead time.</p>
       <div class="flex flex-wrap gap-4 justify-center">
         <a href={`/${locale}/contact?product=${product.id}`} class="inline-block px-8 py-3 bg-brand-gold text-brand-ink rounded-sm font-medium hover:bg-brand-gold/90">{t.buyCta}</a>
+        <button
+          type="button"
+          data-add-to-inquiry
+          class="inline-flex items-center gap-2 px-8 py-3 border border-white/30 rounded-sm hover:bg-white/10 transition-colors"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          <span data-add-label>{inquiryLabelSet.add}</span>
+        </button>
         <a href={`/${locale}/factory`} class="inline-block px-8 py-3 border border-white/30 rounded-sm hover:bg-white/10">Factory Tour</a>
       </div>
     </div>
@@ -747,6 +785,50 @@ const breadcrumbSchema = {
       </div>
     </section>
   )}
+
+  <script type="application/json" id="dx-product-data" set:html={productJson}></script>
+  <script type="application/json" id="dx-product-labels" set:html={JSON.stringify(inquiryLabelSet)}></script>
+  <script is:inline>
+    (function () {
+      var btns = document.querySelectorAll('[data-add-to-inquiry]');
+      var dataEl = document.getElementById('dx-product-data');
+      if (!btns.length || !dataEl || !window.dxCart) return;
+      var product;
+      try { product = JSON.parse(dataEl.textContent || '{}'); } catch (e) { return; }
+      var labels = {};
+      try {
+        var lEl = document.getElementById('dx-product-labels');
+        if (lEl) labels = JSON.parse(lEl.textContent || '{}');
+      } catch (e) {}
+      function getColor() {
+        var checked = document.querySelector('input[name="color"]:checked');
+        if (checked) {
+          if (checked.dataset && checked.dataset.colorName) return checked.dataset.colorName;
+          if (checked.value) return checked.value;
+        }
+        var picker = document.querySelector('[data-color-picker] [aria-checked="true"]');
+        if (picker && picker.dataset && picker.dataset.colorName) return picker.dataset.colorName;
+        return undefined;
+      }
+      function attach(btn) {
+        var labelEl = btn.querySelector('[data-add-label]');
+        var original = labelEl ? labelEl.textContent : '';
+        btn.addEventListener('click', function () {
+          var item = {};
+          for (var k in product) item[k] = product[k];
+          item.qty = product.moq || 1;
+          var color = getColor();
+          if (color) item.color = color;
+          window.dxCart.add(item);
+          if (labelEl) {
+            labelEl.textContent = (labels && labels.added) || '✓ Added';
+            setTimeout(function () { labelEl.textContent = original; }, 1800);
+          }
+        });
+      }
+      for (var i = 0; i < btns.length; i++) attach(btns[i]);
+    })();
+  </script>
 
   <!-- Client-side interactivity (7-9): image gallery + inquiry form toggle -->
   <script is:inline>
