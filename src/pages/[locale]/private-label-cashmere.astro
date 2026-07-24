@@ -150,6 +150,62 @@ const serviceSchema = {
     </div>
   </section>
 
+  {locale === 'en' && (
+  <section class="py-12 md:py-16 bg-secondary/20">
+    <div class="container-narrow">
+      <h2 class="font-display text-3xl md:text-4xl font-light mb-4">Private Label Cashmere: 5 Decisions Before You Start</h2>
+      <p class="text-base text-muted-foreground mb-8 max-w-3xl">
+        Launching a private label cashmere brand is a 90-day project if planned well, or a 9-month struggle if you make the wrong decisions upfront. Below are the 5 questions we ask every new private label client — and the answers that work for 80% of emerging cashmere brands.
+      </p>
+
+      <div class="space-y-8">
+        <div>
+          <h3 class="font-serif text-2xl mb-3">1. Where will you sell? (DTC, Wholesale, Department Store)</h3>
+          <p class="text-muted-foreground leading-relaxed mb-2">Your sales channel determines MOQ, packaging requirements, and price point. DTC Shopify brands typically start at 100-200 pieces total (low MOQ, basic packaging, premium pricing). Wholesale brands targeting boutiques need 300-1000 pieces per SKU (higher MOQ, branded labels/hangtags, mid-market pricing). Department store buyers (Nordstrom, Galeries Lafayette, Isetan) require 1000+ pieces per SKU + full compliance documentation (BSCI, OEKO-TEX, ISO 9001).</p>
+          <p class="text-sm text-muted-foreground"><strong>Recommendation:</strong> Start with 1 channel, prove demand, then expand. Mixing channels from day 1 dilutes focus and inflates MOQ.</p>
+        </div>
+
+        <div>
+          <h3 class="font-serif text-2xl mb-3">2. What's your target micron and gauge?</h3>
+          <p class="text-muted-foreground leading-relaxed mb-2">Micron (fiber fineness) determines hand feel and price tier: 14.5-15.5μm = premium (Loro Piana tier), 15.5-16.5μm = mid-market (most DTC brands), 16.5-19μm = entry-level (less soft, more durable). Gauge (stitches per inch) determines weight and seasonality: 12gg = chunky winter, 14gg = mid-weight, 16gg = fine all-season. Most private label brands start at 15.5μm / 14gg for sweaters — the sweet spot for hand feel vs. price.</p>
+          <p class="text-sm text-muted-foreground"><strong>Cost impact:</strong> Each 0.5μm micron improvement adds ~8-12% to yarn cost. Each gauge increase (12→14→16) adds ~5-8% to knitting time.</p>
+        </div>
+
+        <div>
+          <h3 class="font-serif text-2xl mb-3">3. How will you brand? (Labels, Hangtags, Packaging)</h3>
+          <p class="text-muted-foreground leading-relaxed mb-2">Three branding levels: (a) Woven main label + care label + paper hangtag — USD 0.30-0.50 per piece, MOQ 500 labels; (b) Custom woven labels with your logo + branded packaging (silk paper, branded zip lock) + outer carton with your sticker — USD 1.20-2.00 per piece, MOQ 1000 sets; (c) Full custom packaging (printed inner box, custom tissue paper, ribbon, branded mailer) — USD 3.50-6.00 per piece, MOQ 2000+ pieces. We can source labels and packaging separately or bundle into the knitwear quote.</p>
+          <p class="text-sm text-muted-foreground"><strong>Lead time:</strong> Custom labels take 15-20 days to produce; packaging 20-30 days. Add this to your timeline if launching a new collection.</p>
+        </div>
+
+        <div>
+          <h3 class="font-serif text-2xl mb-3">4. What colors do you need? (Standard vs. Custom Pantone)</h3>
+          <p class="text-muted-foreground leading-relaxed mb-2">Standard yarn colors (we hold 200+ shades in stock — see our <a href="/en/color-cards" class="text-primary hover:underline">color cards</a>) ship in 7-10 days. Custom Pantone matching takes 25-35 days for dyeing + minimum dye lot 50kg per color. We recommend launching with 3-5 standard colors (camel, ivory, charcoal, navy, blush) and adding custom colors once you've validated sell-through. Dye-to-order cost is USD 2-4 per piece extra vs. stock yarn.</p>
+          <p class="text-sm text-muted-foreground"><strong>Inventory tip:</strong> Stock yarn is 40% cheaper than custom dye. Custom dye is 40% cheaper than "perfect" custom dye with multiple lab dips.</p>
+        </div>
+
+        <div>
+          <h3 class="font-serif text-2xl mb-3">5. How will you handle inventory risk? (MOQ, Lead Time, Reorder)</h3>
+          <p class="text-muted-foreground leading-relaxed mb-2">Cashmere has 16-25 day production lead time, so you cannot "test and reorder in 2 weeks" like fast fashion. We recommend a 3-phase inventory plan: (a) Launch order 200-500 pieces per SKU to test the market; (b) Core reorder 500-1500 pieces for proven SKUs (book capacity 60 days ahead); (c) Seasonal expansion 1500+ pieces for confirmed winners. For new brands we offer a 100-piece MOQ on standard colors/styles to lower the initial capital risk.</p>
+          <p class="text-sm text-muted-foreground"><strong>Working capital rule:</strong> Keep at least 3 reorder cycles in cash. Cash flow kills more emerging cashmere brands than product quality does.</p>
+        </div>
+      </div>
+
+      <div class="mt-10 p-6 border-l-4 border-brand-gold bg-brand-gold/5 rounded-r">
+        <h3 class="font-serif text-xl mb-3">3 Mistakes First-Time Private Label Brands Make</h3>
+        <ol class="list-decimal pl-5 space-y-2 text-muted-foreground">
+          <li><strong>Starting with too many SKUs.</strong> Five well-chosen styles outperform twenty mediocre ones. Cashmere buyers expect curated collections.</li>
+          <li><strong>Underestimating working capital.</strong> First order + customs duties + marketing = 4x the unit cost in cash needed before you see a single sale.</li>
+          <li><strong>Skipping the sample round.</strong> "Looks the same on screen" costs 6-8 weeks of rework. Always approve a physical hand-loom sample before bulk.</li>
+        </ol>
+      </div>
+
+      <div class="mt-10 text-center">
+        <a href="/en/contact?type=garment" class="inline-block px-8 py-3 bg-primary text-primary-foreground rounded-md font-medium hover:bg-primary/90 transition-colors">Discuss Your Private Label Project →</a>
+      </div>
+    </div>
+  </section>
+  )}
+
   <Footer slot="footer" locale={locale} />
   <FloatingChatButtons slot="footer" locale={locale} />
   <CookieConsent slot="footer" locale={locale} />
