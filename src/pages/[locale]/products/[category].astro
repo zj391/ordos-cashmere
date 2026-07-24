@@ -56,13 +56,13 @@ export function getStaticPaths() {
 }
 
 const { locale: rawLocale, category: slug } = Astro.params;
-if (!isLocale(rawLocale)) { return Astro.redirect('/en/'); }
+if (!isLocale(rawLocale)) { return new Response('Not Found', { status: 404 }); }
 const locale = pickLocale(rawLocale);
-if (!slug || !SLUG_TO_CATEGORY_DEFS[slug]) { return Astro.redirect('/' + locale + '/products'); }
+if (!slug || !SLUG_TO_CATEGORY_DEFS[slug]) { return new Response('Not Found', { status: 404 }); }
 
 const catId = SLUG_TO_CATEGORY_DEFS[slug];
 const category = getCategoryById(catId);
-if (!category) { return Astro.redirect('/' + locale + '/products'); }
+if (!category) { return new Response('Not Found', { status: 404 }); }
 
 const products = category.products;
 
@@ -321,7 +321,7 @@ const tdk = {
 };
 
 const t = tdk[slug]?.[locale] || tdk[slug]?.en;
-if (!t) return Astro.redirect(`/${locale}/products`);
+if (!t) return new Response('Not Found', { status: 404 });
 
 // Build page-specific schema.org ItemList of all products in this category
 const itemListSchema = {
