@@ -70,8 +70,11 @@ const related = allProducts
   .slice(0, 6);
 
 const imageDir = CATEGORY_IMAGE_DIR[product.categoryId] || product.categoryId;
-const primaryImage = `/products/${imageDir}/${product.images[0]}`;
-const galleryImages = product.images.map((img) => `/products/${imageDir}/${img}`);
+// Some catalog records repeat the same filename twice. Keep source order while
+// removing duplicates so the gallery and Product schema expose each image once.
+const uniqueProductImages = Array.from(new Set(product.images));
+const primaryImage = `/products/${imageDir}/${uniqueProductImages[0]}`;
+const galleryImages = uniqueProductImages.map((img) => `/products/${imageDir}/${img}`);
 
 // Per-locale TDK
 const tdk = {
@@ -229,17 +232,25 @@ const breadcrumbSchema = {
       </nav>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-12">
-        <!-- Image gallery: 1 large + 4 thumbnails (imfieldcashmere style) -->
+        <!-- Image gallery: unique thumbnails + desktop hover magnifier -->
         <div>
-          <button
-            type="button"
-            data-lightbox-trigger
-            data-lightbox-src={primaryImage}
-            aria-label="Open image viewer"
-            class="aspect-square bg-secondary/30 rounded-lg overflow-hidden mb-4 ring-1 ring-border w-full block hover:ring-2 hover:ring-primary transition-all cursor-zoom-in"
-          >
-            <img id="main-product-img" src={primaryImage} alt={product.name} class="w-full h-full object-cover transition-opacity" loading="eager" />
-          </button>
+          <div class="relative">
+            <button
+              type="button"
+              data-lightbox-trigger
+              data-lightbox-src={primaryImage}
+              aria-label="Open image viewer"
+              class="aspect-square bg-secondary/30 rounded-lg overflow-hidden mb-4 ring-1 ring-border w-full block hover:ring-2 hover:ring-primary transition-all cursor-zoom-in"
+            >
+              <img id="main-product-img" src={primaryImage} alt={product.name} class="w-full h-full object-cover transition-opacity" loading="eager" />
+            </button>
+            <div
+              id="product-zoom-panel"
+              aria-hidden="true"
+              class="hidden md:block absolute left-[calc(100%+1rem)] top-0 z-30 w-full aspect-square rounded-lg border border-border bg-white bg-no-repeat shadow-2xl opacity-0 invisible pointer-events-none transition-opacity duration-150"
+              style={`background-image:url('${primaryImage}');background-size:250%;background-position:50% 50%;`}
+            ></div>
+          </div>
           {galleryImages.length > 1 && (
             <div class="grid grid-cols-4 gap-2">
               {galleryImages.map((img, i) => (
@@ -854,15 +865,41 @@ const breadcrumbSchema = {
       function init() {
         // Image gallery: click thumbnail swaps main image
         var mainImg = document.getElementById('main-product-img');
+        var mainTrigger = document.querySelector('[data-lightbox-trigger]');
+        var zoomPanel = document.getElementById('product-zoom-panel');
         var thumbs = document.querySelectorAll('[data-gallery-thumb]');
+
+        function setActiveImage(src) {
+          if (!src) return;
+          if (mainImg) mainImg.src = src;
+          if (mainTrigger) mainTrigger.dataset.lightboxSrc = src;
+          if (zoomPanel) zoomPanel.style.backgroundImage = 'url("' + src.replace(/"/g, '%22') + '")';
+        }
+
         for (var i = 0; i < thumbs.length; i++) {
           thumbs[i].addEventListener('click', (function(thumb) {
             return function() {
-              if (mainImg && thumb.dataset.galleryThumb) {
-                mainImg.src = thumb.dataset.galleryThumb;
-              }
+              setActiveImage(thumb.dataset.galleryThumb);
             };
           })(thumbs[i]));
+        }
+
+        // Desktop magnifier: the panel beside the image shows the hovered area.
+        if (mainTrigger && zoomPanel && window.matchMedia('(min-width: 768px)').matches) {
+          mainTrigger.addEventListener('pointerenter', function() {
+            zoomPanel.classList.remove('opacity-0', 'invisible');
+            zoomPanel.classList.add('opacity-100', 'visible');
+          });
+          mainTrigger.addEventListener('pointermove', function(e) {
+            var rect = mainTrigger.getBoundingClientRect();
+            var x = Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100));
+            var y = Math.max(0, Math.min(100, ((e.clientY - rect.top) / rect.height) * 100));
+            zoomPanel.style.backgroundPosition = x.toFixed(2) + '% ' + y.toFixed(2) + '%';
+          });
+          mainTrigger.addEventListener('pointerleave', function() {
+            zoomPanel.classList.remove('opacity-100', 'visible');
+            zoomPanel.classList.add('opacity-0', 'invisible');
+          });
         }
 
         // Inquiry form toggle
