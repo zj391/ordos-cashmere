@@ -11,7 +11,7 @@ targetKeywords:
   - "Mongolian cashmere goat breed"
   - "Inner Mongolia cashmere goat"
   - "Alashan vs Ordos cashmere"
-relatedProducts: ["raw-material", "ordos-origin"]
+relatedProducts: ["raw_material"]
 aiGenerated: false
 sourceTopic: "goat-breed-comparison"
 ---
