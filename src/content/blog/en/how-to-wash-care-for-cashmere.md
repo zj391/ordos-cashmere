@@ -11,7 +11,7 @@ targetKeywords:
   - "cashmere pilling how to fix"
   - "how to store cashmere"
   - "can you machine wash cashmere"
-relatedProducts: ["garment-oem", "private-label-cashmere"]
+relatedProducts: ["garment_oem"]
 aiGenerated: false
 sourceTopic: "care-guide"
 ---

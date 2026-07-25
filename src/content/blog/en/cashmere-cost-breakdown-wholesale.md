@@ -11,7 +11,7 @@ targetKeywords:
   - "cashmere factory cost"
   - "cashmere cost breakdown"
   - "FOB cashmere sweater price"
-relatedProducts: ["garment-oem", "private-label-cashmere"]
+relatedProducts: ["garment_oem"]
 aiGenerated: false
 sourceTopic: "cost-breakdown"
 ---
