@@ -452,6 +452,7 @@ const breadcrumbSchema = {
           <div id="inquiry-form" class="hidden mt-6 p-6 border-2 border-primary rounded-lg bg-card">
             <h3 class="font-display text-xl mb-4">Quick Inquiry for {product.name}</h3>
             <form
+              id="quick-inquiry-form"
               method="POST"
               action="/api/inquiry"
               class="space-y-3"
@@ -821,7 +822,7 @@ const breadcrumbSchema = {
     (function () {
       var btns = document.querySelectorAll('[data-add-to-inquiry]');
       var dataEl = document.getElementById('dx-product-data');
-      if (!btns.length || !dataEl || !window.dxCart) return;
+      if (!btns.length || !dataEl) return;
       var product;
       try { product = JSON.parse(dataEl.textContent || '{}'); } catch (e) { return; }
       var labels = {};
@@ -839,6 +840,12 @@ const breadcrumbSchema = {
         if (picker && picker.dataset && picker.dataset.colorName) return picker.dataset.colorName;
         return undefined;
       }
+      var bound = false;
+      function bind() {
+        if (bound || !window.dxCart) return;
+        bound = true;
+        for (var i = 0; i < btns.length; i++) attach(btns[i]);
+      }
       function attach(btn) {
         var labelEl = btn.querySelector('[data-add-label]');
         var original = labelEl ? labelEl.textContent : '';
@@ -855,7 +862,8 @@ const breadcrumbSchema = {
           }
         });
       }
-      for (var i = 0; i < btns.length; i++) attach(btns[i]);
+      bind();
+      window.addEventListener('dx-cart-ready', bind, { once: true });
     })();
   </script>
 
@@ -932,6 +940,31 @@ const breadcrumbSchema = {
             form.classList.toggle('hidden');
             var isHidden = form.classList.contains('hidden');
             btn.textContent = isHidden ? showText : hideText;
+          });
+        }
+
+        var quickForm = document.getElementById('quick-inquiry-form');
+        if (quickForm) {
+          quickForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            var submit = quickForm.querySelector('button[type="submit"]');
+            if (submit) submit.disabled = true;
+            try {
+              var payload = Object.fromEntries(new FormData(quickForm).entries());
+              var response = await fetch('/api/inquiry', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+              });
+              var result = await response.json().catch(function() { return {}; });
+              if (!response.ok || !result.success) throw new Error(result.error || 'Submission failed');
+              quickForm.reset();
+              alert('Inquiry sent. We will reply within 24 hours.');
+            } catch (error) {
+              alert('Could not send. Please try again or use the contact page.');
+            } finally {
+              if (submit) submit.disabled = false;
+            }
           });
         }
       }

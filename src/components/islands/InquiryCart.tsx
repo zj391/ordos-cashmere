@@ -84,6 +84,9 @@ export default function InquiryCart({ locale = 'en', mode = 'toast' }: Props) {
         return () => window.removeEventListener('dx-cart-change', handler);
       },
     };
+    // Astro inline scripts may run before this island hydrates. Announce that
+    // the cart API is available so badges and product buttons can bind.
+    window.dispatchEvent(new CustomEvent('dx-cart-ready'));
     // Re-broadcast storage changes from other tabs as dx-cart-change so badges update.
     const onStorage = (e: StorageEvent) => {
       if (e.key === 'dx-inquiry-cart-v1') {

@@ -416,11 +416,12 @@ const groupLabel = (groupKey: string, group: any) => {
     });
   })();
 
-  // Inquiry cart badge — listens to dx-cart-change events from the React island
+  // Inquiry cart badge — waits for the React island to expose window.dxCart.
   (function () {
     var badge = document.querySelector('[data-cart-badge]');
-    if (!badge || !window.dxCart) return;
+    if (!badge) return;
     function render() {
+      if (!window.dxCart) return;
       var n = window.dxCart.count();
       if (n > 0) {
         badge.textContent = n > 99 ? '99+' : String(n);
@@ -432,6 +433,7 @@ const groupLabel = (groupKey: string, group: any) => {
       }
     }
     render();
+    window.addEventListener('dx-cart-ready', render);
     window.addEventListener('dx-cart-change', render);
     window.addEventListener('storage', function (e) {
       if (e.key === 'dx-inquiry-cart-v1') render();
