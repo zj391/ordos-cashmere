@@ -92,6 +92,7 @@ const labels: Record<string, Record<string, string>> = {
 };
 
 const L = (locale: string, k: string) => labels[locale]?.[k] || labels.en[k] || k;
+const CART_HANDOFF_KEY = 'dx-cart-handoff-v1';
 
 export default function ContactForm({ locale }: Props) {
   const [type, setType] = useState<'raw' | 'yarn' | 'garment'>('raw');
@@ -100,20 +101,36 @@ export default function ContactForm({ locale }: Props) {
   const [attachments, setAttachments] = useState<Array<{ name: string; type: string; dataUrl: string }>>([]);
   const [attachError, setAttachError] = useState<string>('');
 
-  // Cart handoff: detect ?from=cart&items=<base64> in URL and prefill form
+  // Cart handoff: prefer sessionStorage; keep legacy ?items=<base64> support for one version.
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const params = new URLSearchParams(window.location.search);
     if (params.get('from') !== 'cart') return;
-    const raw = params.get('items');
-    if (!raw) return;
+
+    const storedItems = sessionStorage.getItem(CART_HANDOFF_KEY);
+    if (storedItems) {
+      try {
+        const parsed = JSON.parse(storedItems) as CartItem[];
+        if (Array.isArray(parsed)) {
+          setCartItems(parsed);
+          return;
+        }
+      } catch (err) {
+        console.warn('[contact] failed to parse cart handoff from sessionStorage', err);
+      } finally {
+        sessionStorage.removeItem(CART_HANDOFF_KEY);
+      }
+    }
+
+    const legacyItems = params.get('items');
+    if (!legacyItems) return;
     try {
-      const json = decodeURIComponent(escape(atob(decodeURIComponent(raw))));
+      const json = decodeURIComponent(escape(atob(decodeURIComponent(legacyItems))));
       const parsed = JSON.parse(json) as CartItem[];
       if (Array.isArray(parsed)) setCartItems(parsed);
     } catch (err) {
-      console.warn('[contact] failed to parse cart handoff', err);
+      console.warn('[contact] failed to parse legacy cart handoff', err);
     }
   }, []);
 

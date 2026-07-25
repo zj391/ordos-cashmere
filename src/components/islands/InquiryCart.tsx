@@ -152,6 +152,8 @@ const CART_LABELS: Record<string, Record<string, string>> = {
   kr: { emptyTitle: '목록이 비어 있습니다', emptyBody: '제품을 찾아 "문의에 추가"를 클릭하세요.', emptyCta: '제품 보기', color: '색상', qty: '수량', note: '메모', notePh: '예: 맞춤 라벨, 11월 납기', remove: '삭제', itemsCount: '품목', totalQty: '개 합계', clearAll: '전체 삭제', clearConfirm: '전체 삭제하시겠습니까?', sendInquiry: '문의 보내기' },
 };
 
+const CART_HANDOFF_KEY = 'dx-cart-handoff-v1';
+
 function CartList({ items, locale }: { items: CartItem[]; locale: string }) {
   const L = (k: string) => CART_LABELS[locale]?.[k] || CART_LABELS.en[k] || k;
   if (items.length === 0) {
@@ -166,14 +168,9 @@ function CartList({ items, locale }: { items: CartItem[]; locale: string }) {
     );
   }
 
-  function buildSummary() {
-    return items.map((it) => `${it.name}${it.color ? ' [' + it.color + ']' : ''} (${it.qty} pcs)`).join(' | ');
-  }
   function sendInquiry() {
-    const summary = buildSummary();
-    const payload = btoa(unescape(encodeURIComponent(JSON.stringify(items))));
-    const url = `/${locale}/contact?from=cart&items=${encodeURIComponent(payload)}&summary=${encodeURIComponent(summary)}`;
-    window.location.href = url;
+    sessionStorage.setItem(CART_HANDOFF_KEY, JSON.stringify(items));
+    window.location.href = `/${locale}/contact?from=cart`;
   }
 
   return (
