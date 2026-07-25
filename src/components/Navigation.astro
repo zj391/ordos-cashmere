@@ -39,11 +39,11 @@ const navItems = [
 
 // 5 个产品分类的 tab 配置 (跟 products.astro 一致)
 const productTabs = [
-  { key: 'hats', href: localePath(locale, '/products/hats'), en: 'Cashmere Hats', cn: '羊绒帽子' },
-  { key: 'sweaters', href: localePath(locale, '/products/sweaters'), en: 'Sweaters', cn: '羊绒衫' },
-  { key: 'scarves', href: localePath(locale, '/products/scarves'), en: 'Scarves & Wraps', cn: '围巾披肩' },
-  { key: 'accessories', href: localePath(locale, '/products/accessories'), en: 'Accessories', cn: '配饰' },
-  { key: 'yarn', href: localePath(locale, '/products/yarn'), en: 'Yarn & Fiber', cn: '纱线' },
+  { key: 'hats', href: `${productListHref}?cat=hats`, en: 'Cashmere Hats', cn: '羊绒帽子' },
+  { key: 'sweaters', href: `${productListHref}?cat=sweaters`, en: 'Sweaters', cn: '羊绒衫' },
+  { key: 'scarves', href: `${productListHref}?cat=scarves`, en: 'Scarves & Wraps', cn: '围巾披肩' },
+  { key: 'accessories', href: `${productListHref}?cat=accessories`, en: 'Accessories', cn: '配饰' },
+  { key: 'yarn', href: `${productListHref}?cat=yarn`, en: 'Yarn & Fiber', cn: '纱线' },
 ];
 
 // 翻译文本
