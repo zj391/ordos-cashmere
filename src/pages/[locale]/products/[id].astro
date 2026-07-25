@@ -248,7 +248,7 @@ const breadcrumbSchema = {
               id="product-zoom-panel"
               aria-hidden="true"
               class="hidden md:block absolute left-[calc(100%+1rem)] top-0 z-30 w-full aspect-square rounded-lg border border-border bg-white bg-no-repeat shadow-2xl opacity-0 invisible pointer-events-none transition-opacity duration-150"
-              style={`background-image:url('${primaryImage}');background-size:250%;background-position:50% 50%;`}
+              style={`background-image:url('${primaryImage}');background-size:130%;background-position:50% 50%;`}
             ></div>
           </div>
           {galleryImages.length > 1 && (
@@ -869,12 +869,29 @@ const breadcrumbSchema = {
         var zoomPanel = document.getElementById('product-zoom-panel');
         var thumbs = document.querySelectorAll('[data-gallery-thumb]');
 
+        function updateZoomImage(src) {
+          if (!zoomPanel || !src) return;
+          zoomPanel.style.backgroundImage = 'url("' + src.replace(/"/g, '%22') + '")';
+
+          // Do not over-magnify low-resolution catalog images. Scale up only
+          // when the source contains enough pixels for a useful detail view.
+          var probe = new Image();
+          probe.onload = function() {
+            var shortestSide = Math.min(probe.naturalWidth, probe.naturalHeight);
+            var zoomScale = shortestSide >= 1000 ? 2.5 : shortestSide >= 700 ? 1.8 : 1.3;
+            zoomPanel.style.backgroundSize = (zoomScale * 100) + '%';
+          };
+          probe.src = src;
+        }
+
         function setActiveImage(src) {
           if (!src) return;
           if (mainImg) mainImg.src = src;
           if (mainTrigger) mainTrigger.dataset.lightboxSrc = src;
-          if (zoomPanel) zoomPanel.style.backgroundImage = 'url("' + src.replace(/"/g, '%22') + '")';
+          updateZoomImage(src);
         }
+
+        updateZoomImage(mainImg ? mainImg.src : '');
 
         for (var i = 0; i < thumbs.length; i++) {
           thumbs[i].addEventListener('click', (function(thumb) {
