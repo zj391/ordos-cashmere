@@ -853,10 +853,10 @@
   },
   "cta": {
     "whatsapp": "WhatsApp",
-    "email": "Email",
-    "exploreProducts": "Explore Products",
-    "getQuoteWhatsApp": "Get Quote on WhatsApp",
-    "viewFaq": "View FAQ"
+    "email": "电子邮件",
+    "exploreProducts": "浏览产品",
+    "getQuoteWhatsApp": "通过 WhatsApp 获取报价",
+    "viewFaq": "查看常见问题"
   },
   "testimonials": {
     "title": "What Our Customers Say",

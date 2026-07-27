@@ -626,9 +626,9 @@
   "cta": {
     "whatsapp": "WhatsApp",
     "email": "Email",
-    "exploreProducts": "Explore Products",
-    "getQuoteWhatsApp": "Get Quote on WhatsApp",
-    "viewFaq": "View FAQ"
+    "exploreProducts": "제품 보기",
+    "getQuoteWhatsApp": "WhatsApp으로 견적 받기",
+    "viewFaq": "자주 묻는 질문 보기"
   },
   "testimonials": {
     "title": "What Our Customers Say",
