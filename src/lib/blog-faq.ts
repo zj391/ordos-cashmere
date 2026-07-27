@@ -1,4 +1,3 @@
----
 /**
  * Auto-extract a small FAQ block from a blog post's markdown body.
  *
