@@ -11,8 +11,6 @@
  * anchored to ASCII question marks and Western interrogative words. Other
  * locales can be added later by swapping the detector set.
  */
-import type { MarkdownHeading } from 'astro';
-
 export interface BlogFAQ {
   question: string;
   answer: string;
