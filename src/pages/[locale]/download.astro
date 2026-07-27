@@ -5,7 +5,7 @@ import Navigation from '@/components/Navigation.astro';
 import Footer from '@/components/Footer.astro';
 import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
-import DownloadGate from '@/components/islands/DownloadGate.tsx';
+import DownloadsGrid from '@/components/islands/DownloadsGrid.tsx';
 import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
 
 export function getStaticPaths() {
@@ -51,11 +51,7 @@ const downloads = [
 
   <section class="py-24 md:py-32 bg-background">
     <div class="container-narrow">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {downloads.map((d) => (
-          <DownloadGate client:visible locale={locale} type={d.type} title={d.title} size={d.size} format={d.format} />
-        ))}
-      </div>
+      <DownloadsGrid client:idle locale={locale} downloads={downloads} />
     </div>
   </section>
 
