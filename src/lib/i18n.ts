@@ -79,18 +79,45 @@ export function pickLocale(value: string | undefined): Locale {
 
 /**
  * 嵌套对象 key 访问：t(translation, 'nav.home')
+ *
+ * 三级 fallback：
+ *   1. 请求的 locale 翻译（normal case）
+ *   2. 英文翻译（i18n 缺失兜底，避免向用户输出 "production.steps.step8.duration"）
+ *   3. 原始 key（最终兜底，开发期可见的提示信号）
+ *
+ * 非开发环境会吞掉 dev-only 的告警；生产环境仅做静默 fallback。
  */
+const isDev = (typeof process !== 'undefined' && process?.env?.NODE_ENV !== 'production') ||
+  (typeof import.meta !== 'undefined' && (import.meta as { env?: { DEV?: boolean } })?.env?.DEV === true);
+
 export function t(translation: Record<string, unknown>, key: string): string {
   const segments = key.split('.');
+  // 1. Look up in the requested locale first.
+  const fromRequested = lookup(translation, segments);
+  if (fromRequested != null) return fromRequested;
+  // 2. Fall back to English so the UI never renders a dotted key.
+  if (translation !== TRANSLATIONS.en) {
+    const fromEn = lookup(TRANSLATIONS.en as Record<string, unknown>, segments);
+    if (fromEn != null) return fromEn;
+  }
+  // 3. Final fallback: return the raw key. In dev only, surface a warning so we
+  // can find and backfill missing translations.
+  if (isDev && typeof console !== 'undefined') {
+    console.warn(`[i18n] missing key: ${key}`);
+  }
+  return key;
+}
+
+function lookup(translation: Record<string, unknown>, segments: string[]): string | null {
   let cursor: unknown = translation;
   for (const seg of segments) {
     if (cursor && typeof cursor === 'object' && seg in (cursor as Record<string, unknown>)) {
       cursor = (cursor as Record<string, unknown>)[seg];
     } else {
-      return key;  // fallback 到 key 字符串
+      return null;
     }
   }
-  return typeof cursor === 'string' ? cursor : key;
+  return typeof cursor === 'string' ? cursor : null;
 }
 
 /**
