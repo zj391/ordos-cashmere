@@ -22,7 +22,7 @@ import CookieConsent from '@/components/CookieConsent.astro';
 import ColorPicker from '@/components/product/ColorPicker.astro';
 import { LOCALES, isLocale, pickLocale } from '@/lib/i18n';
 import { SEO, SITE_URL, SITE_INFO } from '@/lib/seo';
-import { getProductById, getAllProducts, getCategoryById } from '@/data/products';
+import { getProductById, getAllProducts, getCategoryById, getProductsByCategory } from '@/data/products';
 
 // 类别 id 映射到产品图目录
 // 2026-07-13 修复: 实际图片在 /products/mic/ 目录下 (curl /products/mic/prod_025_00.webp = 200),
@@ -63,10 +63,9 @@ const detail = (product as any).detail || null;
 const category = getCategoryById(product.categoryId);
 if (!category) { return new Response('Not Found', { status: 404 }); }
 
-// 推荐相关产品（同类别，排除自己，最多 6 个）
-const allProducts = getAllProducts();
-const related = allProducts
-  .filter((p) => p.categoryId === product.categoryId && p.id !== product.id)
+// 推荐相关产品（同类别，排除自己，最多 6 个）— 直接从分类缓存取，O(n) filter -> O(1) lookup
+const related = getProductsByCategory(product.categoryId)
+  .filter((p) => p.id !== product.id)
   .slice(0, 6);
 
 const imageDir = CATEGORY_IMAGE_DIR[product.categoryId] || product.categoryId;
