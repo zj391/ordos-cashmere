@@ -214,6 +214,7 @@ const breadcrumbSchema = {
   keywords={t.keywords}
   schema="general"
   customSchemas={[productSchema, breadcrumbSchema]}
+  faqs={detail?.faq?.map((f) => ({ question: f.q[locale], answer: f.a[locale] }))}
   ogImage={`${SITE_URL}${primaryImage}`}
 >
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/products/${product.id}`} />

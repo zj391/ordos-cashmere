@@ -179,8 +179,10 @@ if (_schema === 'home' || ['raw-material', 'yarn-fabric', 'garment-oem', 'factor
   allSchemas.push(servicesSchema(SERVICES[locale]));
 }
 
-// FAQ Schema（FAQ 页）
-if (_schema === 'faq' && faqs && faqs.length > 0) {
+// FAQ Schema（FAQ 页 + 任何调用方显式传入 faqs 的页面）。
+// 之前只在 schema==='faq' 时触发；详情页 / 博客通常在 hero 之后渲染 <SEOFaq/>，
+// 通过 props.faqs 直接传入即可让它们自动获得 FAQPage rich result。
+if (faqs && faqs.length > 0) {
   allSchemas.push(faqPageSchema(faqs));
 }
 ---
