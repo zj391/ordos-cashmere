@@ -339,6 +339,9 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
                 src={`/products/mic/${p.images[0]}`}
                 alt={p.name}
                 loading="lazy"
+                decoding="async"
+                width={400}
+                height={400}
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
             )}
