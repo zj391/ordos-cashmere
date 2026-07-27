@@ -11,6 +11,7 @@ import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
 import { LOCALES, pickLocale } from '@/lib/i18n';
 import { getCollection, render } from 'astro:content';
+import { extractBlogFAQ } from '@/lib/blog-faq';
 
 export async function getStaticPaths() {
   const all = await getCollection('blog');
@@ -58,6 +59,9 @@ const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
 // 估算阅读时间（按 200 wpm）
 const wordCount = post.body?.split(/\s+/).length || 0;
 const readMin = Math.max(1, Math.round(wordCount / 200));
+
+// Auto-extract FAQ block from the markdown body so the page emits FAQPage JSON-LD.
+const blogFAQ = extractBlogFAQ(post.body, 4);
 ---
 
 <BaseLayout
@@ -68,6 +72,7 @@ const readMin = Math.max(1, Math.round(wordCount / 200));
   description={post.data.excerpt}
   ogType="article"
   schema="blog"
+  faqs={blogFAQ}
 >
   <Fragment slot="head">
     <Fragment set:html={(() => {
@@ -122,6 +127,23 @@ const readMin = Math.max(1, Math.round(wordCount / 200));
     <div class="prose prose-lg max-w-none">
       <Content />
     </div>
+
+    {blogFAQ.length > 0 && (
+      <details class="mt-12 border border-border rounded-lg p-6 bg-secondary/10" open>
+        <summary class="font-display text-xl cursor-pointer list-none flex items-center justify-between">
+          <span>Quick answers from this article</span>
+          <svg class="w-5 h-5 transition-transform group-open:rotate-180 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <dl class="mt-4 space-y-4">
+          {blogFAQ.map((f) => (
+            <div>
+              <dt class="font-medium">{f.question}</dt>
+              <dd class="text-sm text-muted-foreground leading-relaxed mt-1">{f.answer}</dd>
+            </div>
+          ))}
+        </dl>
+      </details>
+    )}
 
     <footer class="mt-16 pt-8 border-t border-border">
       <div class="bg-muted/50 border border-border rounded-lg p-6">
