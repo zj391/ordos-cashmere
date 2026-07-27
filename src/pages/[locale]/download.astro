@@ -53,7 +53,7 @@ const downloads = [
     <div class="container-narrow">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {downloads.map((d) => (
-          <DownloadGate client:load locale={locale} type={d.type} title={d.title} size={d.size} format={d.format} />
+          <DownloadGate client:visible locale={locale} type={d.type} title={d.title} size={d.size} format={d.format} />
         ))}
       </div>
     </div>
