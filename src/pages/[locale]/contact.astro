@@ -205,7 +205,7 @@ const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
           </div>
           <h2 class="font-serif text-3xl md:text-4xl font-light leading-tight mb-4">{T('formTitle')}</h2>
           <p class="text-muted-foreground leading-relaxed mb-10">{T('formSub')}</p>
-          <ContactForm client:load locale={locale} />
+          <ContactForm client:visible locale={locale} />
         </div>
       </div>
     </div>
