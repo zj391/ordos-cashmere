@@ -331,7 +331,7 @@ const breadcrumbSchema = {
                       <p class="text-xs text-muted-foreground mb-2">
                         Shown in: {product.colors.filter((c) => !['customize', '多种颜色可选', 'multiple colors available', 'color cards'].includes(c.toLowerCase())).join(', ') || 'Custom color'}
                       </p>
-                      <ColorPicker productId={product.id} productName={product.name} />
+                      <ColorPicker productId={product.id} productName={product.name} productColors={product.colors} />
                     </td>
                   </tr>
                 )}

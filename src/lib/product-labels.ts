@@ -38,7 +38,7 @@ export function getProductLabels(locale: Locale) {
     price: t.products?.price || "Price",
     selectColor: t.products?.selectColor || "Color",
     selectColorPrompt: t.products?.selectColorPrompt || "Choose color variant",
-    colorCardPreview: t.products?.colorCardPreview || "Available in 25/26 color card →",
+    colorCardPreview: t.products?.colorCardPreview || "Custom Pantone colors available →",
     requestInquiry: t.products?.requestInquiry || "Request Inquiry Now",
     inquiryNote: t.products?.inquiryNote || "We'll respond within 24 hours with a quote",
     productIdLabel: t.products?.productIdLabel || "Product ID",

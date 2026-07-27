@@ -1,18 +1,16 @@
 ---
-import { colorSeries, type ColorSwatch } from '@/data/color-cards';
+import { suggestedSwatchesForProduct } from '@/data/product-color-suggestions';
 
 interface Props {
   productId: string;
   productName: string;
+  productColors?: string[];
 }
 
-const { productId, productName } = Astro.props;
+const { productId, productName, productColors } = Astro.props;
 
-// Flatten all series into a single palette (25 swatches total: 15 CAMBRIDGE + 10 COMMON).
-// The picker intentionally shows the FULL palette — not filtered by product's own colors.
-const allSwatches: ColorSwatch[] = colorSeries.flatMap((s) => s.swatches);
+const swatches = suggestedSwatchesForProduct(productColors);
 ---
-
 <div
   class="color-picker"
   role="radiogroup"
@@ -23,7 +21,7 @@ const allSwatches: ColorSwatch[] = colorSeries.flatMap((s) => s.swatches);
   <span id={`cp-label-${productId}`} class="sr-only">Choose a color</span>
 
   <div class="flex flex-wrap gap-2 mb-3">
-    {allSwatches.map((sw) => (
+    {swatches.map((sw) => (
       <button
         type="button"
         role="radio"
@@ -52,16 +50,12 @@ const allSwatches: ColorSwatch[] = colorSeries.flatMap((s) => s.swatches);
     </button>
   </div>
 </div>
-
 <script>
   (function () {
-    // Find all ColorPicker instances on page
     document.querySelectorAll('.color-picker').forEach((root) => {
       const swatches = root.querySelectorAll('[data-swatch]');
       const selectedEl = root.querySelector('[data-cp-selected]');
       const copyBtn = root.querySelector('[data-cp-copy]');
-      // Hidden input lives inside #inquiry-form (added by detail page in Task 3).
-      // It's fine if it's null here — visual selection still works.
       const hiddenInput = document.querySelector('#inquiry-form input[name="color"]');
 
       function selectSwatch(btn) {
