@@ -32,6 +32,97 @@ const REPLY_TO = process.env.REPLY_TO || 'dongxiaocashmere@erdosdx.com';
 const WHATSAPP_NUMBER = process.env.WHATSAPP_NUMBER || '+861****3999';
 const WECHAT_ID = process.env.WECHAT_ID || 'dongxiaocashmere';
 
+// Per-IP token-bucket for soft rate limiting. Each IP gets a bucket refilled
+// at RATE_LIMIT_REFILL_PER_HOUR per hour up to RATE_LIMIT_BURST. The bucket is
+// held in an in-process Map; on Vercel serverless this is best-effort (each
+// invocation may have a fresh state), so we keep the limits generous and rely
+// on Supabase queries as the durable backstop below.
+const RATE_LIMIT_BURST = Number(process.env.INQUIRY_RATE_BURST || 10);
+const RATE_LIMIT_REFILL_PER_HOUR = Number(process.env.INQUIRY_RATE_REFILL_PER_HOUR || 30);
+const RATE_BUCKETS = new Map<string, { tokens: number; updatedAt: number }>();
+function rateLimitKey(req: VercelRequest): string {
+  const fwd = (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim();
+  return fwd || (req.socket?.remoteAddress) || 'unknown';
+}
+function consumeToken(key: string): { allowed: boolean; retryAfterSec: number; remaining: number } {
+  const now = Date.now();
+  const refillPerMs = RATE_LIMIT_REFILL_PER_HOUR / 3_600_000;
+  const bucket = RATE_BUCKETS.get(key) || { tokens: RATE_LIMIT_BURST, updatedAt: now };
+  const elapsed = now - bucket.updatedAt;
+  const refilled = Math.min(RATE_LIMIT_BURST, bucket.tokens + elapsed * refillPerMs);
+  if (refilled < 1) {
+    const retryAfterSec = Math.ceil((1 - refilled) / refillPerMs);
+    RATE_BUCKETS.set(key, { tokens: refilled, updatedAt: now });
+    return { allowed: false, retryAfterSec, remaining: Math.floor(refilled) };
+  }
+  const next = { tokens: refilled - 1, updatedAt: now };
+  RATE_BUCKETS.set(key, next);
+  return { allowed: true, retryAfterSec: 0, remaining: Math.floor(refilled - 1) };
+}
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+const MAX_NAME = 200;
+const MAX_COMPANY = 200;
+const MAX_COUNTRY = 100;
+const MAX_PHONE = 60;
+const MAX_EMAIL_LEN = 254;
+const MAX_QUANTITY_LEN = 80;
+const MAX_MESSAGE_LEN = 4000;
+const MAX_UTM_LEN = 200;
+const MAX_ATTACHMENT_BYTES = 2 * 1024 * 1024; // 2MB raw dataUrl
+const MAX_ATTACHMENTS = 3;
+const ALLOWED_ATTACHMENT_MIME = ['image/png', 'image/jpeg', 'image/webp', 'application/pdf'];
+
+interface ValidationResult {
+  ok: boolean;
+  errors: string[];
+}
+function validatePayload(data: Partial<InquiryPayload>): ValidationResult {
+  const errors: string[] = [];
+  if (!data.name || typeof data.name !== 'string' || data.name.length > MAX_NAME) errors.push('name');
+  if (!data.email || typeof data.email !== 'string' || data.email.length > MAX_EMAIL_LEN || !EMAIL_REGEX.test(data.email)) errors.push('email');
+  if (!data.company || typeof data.company !== 'string' || data.company.length > MAX_COMPANY) errors.push('company');
+  if (!data.country || typeof data.country !== 'string' || data.country.length > MAX_COUNTRY) errors.push('country');
+  if (data.phone && (typeof data.phone !== 'string' || data.phone.length > MAX_PHONE)) errors.push('phone');
+  if (data.quantity && (typeof data.quantity !== 'string' || data.quantity.length > MAX_QUANTITY_LEN)) errors.push('quantity');
+  if (data.message && (typeof data.message !== 'string' || data.message.length > MAX_MESSAGE_LEN)) errors.push('message');
+  for (const field of ['utm_source', 'utm_medium', 'utm_campaign'] as const) {
+    if (data[field] && (typeof data[field] !== 'string' || (data[field] as string).length > MAX_UTM_LEN)) errors.push(field);
+  }
+  if (data.attachments && !Array.isArray(data.attachments)) errors.push('attachments_shape');
+  if (Array.isArray(data.attachments)) {
+    if (data.attachments.length > MAX_ATTACHMENTS) errors.push('attachments_count');
+    for (const [i, a] of data.attachments.entries()) {
+      if (!a || typeof a !== 'object') { errors.push(`attachments[${i}]_shape`); continue; }
+      if (typeof a.name !== 'string' || a.name.length > 200) errors.push(`attachments[${i}]_name`);
+      if (typeof a.type !== 'string' || !ALLOWED_ATTACHMENT_MIME.includes(a.type)) errors.push(`attachments[${i}]_mime`);
+      if (typeof a.dataUrl !== 'string' || !a.dataUrl.startsWith('data:') || a.dataUrl.length > MAX_ATTACHMENT_BYTES) errors.push(`attachments[${i}]_size`);
+    }
+  }
+  if (!['raw', 'yarn', 'garment'].includes(data.type as string)) errors.push('type');
+  return { ok: errors.length === 0, errors };
+}
+
+async function dedupeRecentInquiry(email: string, ip: string): Promise<boolean> {
+  // Returns true if a duplicate was found (caller should reject).
+  if (!SUPABASE_URL || !SUPABASE_KEY) return false;
+  try {
+    const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+    const url = `${SUPABASE_URL}/rest/v1/inquiries?or=(email.eq.${encodeURIComponent(email)},ip_address.eq.${encodeURIComponent(ip)})&created_at=gte.${encodeURIComponent(since)}&select=id&limit=1`;
+    const res = await fetch(url, {
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+      },
+    });
+    if (!res.ok) return false;
+    const rows = await res.json();
+    return Array.isArray(rows) && rows.length > 0;
+  } catch {
+    return false;
+  }
+}
+
 interface InquiryPayload {
   type: 'raw' | 'yarn' | 'garment';
   locale: string;
@@ -157,11 +248,30 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ success: false, error: 'Method not allowed' });
   }
 
+  // Rate limit (per-IP token bucket). Return early with 429 + Retry-After.
+  const rlKey = rateLimitKey(req);
+  const rl = consumeToken(rlKey);
+  if (!rl.allowed) {
+    res.setHeader('Retry-After', String(rl.retryAfterSec));
+    return res.status(429).json({ success: false, error: 'Too many requests, please try again later.' });
+  }
+
   try {
     const data = (req.body || {}) as InquiryPayload;
+    const validation = validatePayload(data);
+    if (!validation.ok) {
+      return res.status(400).json({ success: false, error: 'Invalid inquiry payload', fields: validation.errors });
+    }
+
     const ip = (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() || req.socket?.remoteAddress || '';
     const userAgent = req.headers['user-agent'] || '';
     const country = req.headers['x-vercel-ip-country'] || 'unknown';
+
+    // Durable de-duplication: same email or same IP submitting again within 24h is dropped.
+    const duplicate = await dedupeRecentInquiry(data.email, ip);
+    if (duplicate) {
+      return res.status(200).json({ success: true, deduped: true });
+    }
 
     // 解析 quantity（兼容数字和字符串 — 前端可能两种都发）
     const qty = data.quantity != null
