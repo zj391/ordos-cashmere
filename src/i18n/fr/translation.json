@@ -14,16 +14,16 @@
     "socks": "Chaussettes",
     "accessories": "Accessoires",
     "premiumSupplier": "Fournisseur de cachemire premium",
-    "headerDesc": "Depuis 2002 | Plus de 23 ans d'excellence | Certifié ISO | Fournisseur B2B mondial",
-    "blog": "Blog",
+    "headerDesc": "Depuis 2002 | Plus de 23 ans d'excellence | Certification ISO | Fournisseur B2B international",
+    "blog": "Journal",
     "whatsApp": "WhatsApp"
   },
   "hero": {
-    "tagline": "FOURNISSEUR MONDIAL DE CASHMERE B2B",
-    "title": "Cashmere Premium pour Marques Mondiales",
-    "description": "Approuvé par les détaillants et distributeurs internationaux. 1 200+ tonnes de cachemire traité annuellement. Certifié ISO. 23+ ans d'excellence.",
-    "cta": "Explorer les Produits",
-    "contact": "Contactez-nous"
+    "tagline": "FOURNISSEUR B2B MONDIAL DE CACHEMIRE",
+    "title": "Cachemire premium pour les marques internationales",
+    "description": "La confiance des détaillants et distributeurs du monde entier. Plus de 1 200 tonnes de cachemire traitées chaque année. Certification ISO. 23 ans d'excellence.",
+    "cta": "Découvrir nos produits",
+    "contact": "Nous contacter"
   },
   "about": {
     "title": "À Propos de DONGXIAO® CASHMERE",
@@ -398,30 +398,30 @@
     "platformWhatsApp": "WhatsApp"
   },
   "whatsAppButton": {
-    "chatTitle": "Chat WhatsApp",
-    "chatIntro": "Salut ! 👋 Nous sommes là pour aider. Chattez avec nous sur WhatsApp pour un support instantané.",
+    "chatTitle": "Discussion WhatsApp",
+    "chatIntro": "Bonjour ! 👋 Notre équipe est à votre disposition. Échangez avec nous sur WhatsApp pour une réponse immédiate.",
     "quickMessage": "Message rapide :",
-    "startChat": "Démarrer le Chat",
+    "startChat": "Démarrer la discussion",
     "replyTime": "Nous répondons généralement en quelques minutes",
-    "tooltip": "Chattez avec nous sur WhatsApp",
-    "chatWithUs": "Chattez avec nous",
-    "questionsChat": "Des questions ? Chattez avec nous ! 💬"
+    "tooltip": "Discuter avec nous sur WhatsApp",
+    "chatWithUs": "Échangez avec nous",
+    "questionsChat": "Une question ? Discutons sur WhatsApp ! 💬"
   },
   "footer": {
     "copyright": "© 2002 DONGXIAO® CASHMERE. Tous droits réservés.",
     "quickLinks": "Liens rapides",
-    "company": "Entreprise",
+    "company": "La maison",
     "products": "Produits",
     "support": "Support",
-    "follow": "Suivez-nous",
-    "companyDesc": "Produits de cachemire en gros premium du premier fournisseur de Mongolie intérieure. Plus de 30 ans d'expertise en tricots de luxe.",
-    "location": "Mongolie intérieure, Chine",
+    "follow": "Nous suivre",
+    "companyDesc": "Produits de cachemire en gros premium, issus du premier fournisseur de Mongolie-Intérieure. Plus de 30 ans de savoir-faire dans la maille de luxe.",
+    "location": "Mongolie-Intérieure, Chine",
     "whatsapp": "WhatsApp",
     "categories": "Catégories",
     "b2bServices": "Services B2B",
-    "wholesalePricing": "Prix de gros",
-    "customOrders": "Commandes personnalisées",
-    "moq": "MOQ: 50-100 pcs",
+    "wholesalePricing": "Tarifs de gros",
+    "customOrders": "Commandes sur mesure",
+    "moq": "MOQ : 50 à 100 pièces",
     "fastShipping": "Livraison rapide",
     "allRights": "Tous droits réservés.",
     "privacy": "Politique de confidentialité",
@@ -609,10 +609,10 @@
   },
   "cta": {
     "whatsapp": "WhatsApp",
-    "email": "Email",
-    "exploreProducts": "Explore Products",
-    "getQuoteWhatsApp": "Get Quote on WhatsApp",
-    "viewFaq": "View FAQ"
+    "email": "E-mail",
+    "exploreProducts": "Découvrir nos produits",
+    "getQuoteWhatsApp": "Demander un devis sur WhatsApp",
+    "viewFaq": "Consulter la FAQ"
   },
   "testimonials": {
     "title": "What Our Customers Say",

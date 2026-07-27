@@ -13,15 +13,15 @@
     "blankets": "Decken",
     "socks": "Socken",
     "accessories": "Accessoires",
-    "premiumSupplier": "Premium Kaschmir-Lieferant",
+    "premiumSupplier": "Premium-Kaschmirlieferant",
     "headerDesc": "Seit 2002 | Über 23 Jahre Exzellenz | ISO-zertifiziert | Globaler B2B-Lieferant",
     "blog": "Blog",
     "whatsApp": "WhatsApp"
   },
   "hero": {
-    "tagline": "GLOBALER B2B CASHMERE-LIEFERANT",
-    "title": "Premium Cashmere für globale Marken",
-    "description": "Vertraut von internationalen Einzelhändlern und Distributoren. 1.200+ Tonnen Cashmere jährlich verarbeitet. ISO-zertifiziert. 23+ Jahre Exzellenz.",
+    "tagline": "GLOBALER B2B-KASCHMIRLIEFERANT",
+    "title": "Premium-Kaschmir für globale Marken",
+    "description": "Internationalen Einzelhändlern und Distributoren vertraut. Jährlich werden über 1.200 Tonnen Kaschmir verarbeitet. ISO-zertifiziert. Über 23 Jahre Exzellenz.",
     "cta": "Produkte entdecken",
     "contact": "Kontakt aufnehmen"
   },
@@ -398,14 +398,14 @@
     "platformWhatsApp": "WhatsApp"
   },
   "whatsAppButton": {
-    "chatTitle": "WhatsApp Chat",
-    "chatIntro": "Hi! 👋 Wir sind hier um zu helfen. Chatte mit uns auf WhatsApp für sofortige Unterstützung.",
-    "quickMessage": "Schnelle Nachricht:",
+    "chatTitle": "WhatsApp-Chat",
+    "chatIntro": "Hallo! 👋 Wir helfen Ihnen gerne weiter. Schreiben Sie uns auf WhatsApp für schnelle Unterstützung.",
+    "quickMessage": "Kurznachricht:",
     "startChat": "Chat starten",
-    "replyTime": "Wir antworten normalerweise innerhalb von Minuten",
-    "tooltip": "Chatte mit uns auf WhatsApp",
-    "chatWithUs": "Chatte mit uns",
-    "questionsChat": "Fragen? Chatte mit uns! 💬"
+    "replyTime": "Wir antworten in der Regel innerhalb weniger Minuten",
+    "tooltip": "Auf WhatsApp mit uns chatten",
+    "chatWithUs": "Mit uns chatten",
+    "questionsChat": "Fragen? Schreiben Sie uns! 💬"
   },
   "footer": {
     "copyright": "© 2002 DONGXIAO® CASHMERE. Alle Rechte vorbehalten.",
@@ -414,17 +414,17 @@
     "products": "Produkte",
     "support": "Support",
     "follow": "Folgen Sie uns",
-    "companyDesc": "Premium Kaschmir-Großhandelsprodukte vom führenden Lieferanten in der Inneren Mongolei. Über 30 Jahre Erfahrung in luxuriöser Strickware.",
+    "companyDesc": "Premium-Kaschmir im Großhandel vom führenden Lieferanten der Inneren Mongolei. Über 30 Jahre Erfahrung mit luxuriösen Strickwaren.",
     "location": "Innere Mongolei, China",
     "whatsapp": "WhatsApp",
     "categories": "Kategorien",
-    "b2bServices": "B2B-Services",
+    "b2bServices": "B2B-Dienstleistungen",
     "wholesalePricing": "Großhandelspreise",
-    "customOrders": "Kundenspezifische Bestellungen",
-    "moq": "MOQ: 50-100 Stück",
+    "customOrders": "Individuelle Aufträge",
+    "moq": "Mindestbestellmenge: 50–100 Stück",
     "fastShipping": "Schneller Versand",
     "allRights": "Alle Rechte vorbehalten.",
-    "privacy": "Datenschutzrichtlinie",
+    "privacy": "Datenschutzerklärung",
     "terms": "Nutzungsbedingungen"
   },
   "home": {
@@ -609,10 +609,10 @@
   },
   "cta": {
     "whatsapp": "WhatsApp",
-    "email": "Email",
-    "exploreProducts": "Explore Products",
-    "getQuoteWhatsApp": "Get Quote on WhatsApp",
-    "viewFaq": "View FAQ"
+    "email": "E-Mail",
+    "exploreProducts": "Produkte entdecken",
+    "getQuoteWhatsApp": "Angebot über WhatsApp anfordern",
+    "viewFaq": "FAQ ansehen"
   },
   "testimonials": {
     "title": "What Our Customers Say",
