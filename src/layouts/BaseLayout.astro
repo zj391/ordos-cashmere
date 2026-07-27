@@ -357,35 +357,27 @@ if (faqs && faqs.length > 0) {
           } catch (e) {}
         }
 
-        // 页面浏览
+        // 页面浏览 — 立即发送一次（带 keepalive，关页时浏览器仍会发出）。
         ping('page_view', { ts: Date.now() });
 
-        // 停留时长：每 15 秒 ping 一次 + 离开时最后一次
-        let dwellTotal = 0;
+        // 停留时长 + 滚动深度 — 仅在离开页时一次性发送，避免每 15s 打一次服务端。
         const dwellStart = Date.now();
-        setInterval(function() {
-          dwellTotal = Math.round((Date.now() - dwellStart) / 1000);
-          ping('dwell_tick', { dwell_seconds: dwellTotal });
-        }, 15000);
-
-        // 离开页：发送最后一次停留时长
-        window.addEventListener('beforeunload', function() {
-          dwellTotal = Math.round((Date.now() - dwellStart) / 1000);
-          ping('page_unload', { dwell_seconds: dwellTotal });
-        });
-
-        // 滚动深度（25/50/75/100%）
-        let scrollMarks = {};
+        let dwellTotal = 0;
+        const scrollMarks = { 25: false, 50: false, 75: false, 100: false };
         window.addEventListener('scroll', function() {
           const docH = document.documentElement.scrollHeight - window.innerHeight;
           if (docH <= 0) return;
           const pct = Math.round((window.scrollY / docH) * 100);
-          [25, 50, 75, 100].forEach(function(m) {
-            if (pct >= m && !scrollMarks[m]) {
-              scrollMarks[m] = true;
-              ping('scroll_depth', { depth_pct: m });
-            }
+          scrollMarks.forEach(function(_, m) {
+            if (pct >= m && !scrollMarks[m]) scrollMarks[m] = true;
           });
+        }, { passive: true });
+
+        // 离开页：合并 dwell + scroll + page_view 标志，一次性 batch 发出。
+        window.addEventListener('pagehide', function() {
+          dwellTotal = Math.round((Date.now() - dwellStart) / 1000);
+          const depth = Number(Object.entries(scrollMarks).filter(([, v]) => v).map(([k]) => Number(k)).sort((a, b) => b - a)[0] || 0);
+          ping('page_unload', { dwell_seconds: dwellTotal, scroll_depth: depth });
         });
       })();
     </script>
