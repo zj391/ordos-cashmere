@@ -62,7 +62,60 @@
       "Premium-Qualität",
       "Feine Maschenware",
       "Luxus-Anwendungen"
-    ]
+    ],
+    "pageTitle": "About Us: Premium Cashmere Manufacturer Since 2002",
+    "pageSubtitle": "A full-chain source factory integrating spinning, weaving, and garment manufacturing. ISO certified, serving global brands with 1,200+ tons annual capacity.",
+    "heroTitle": "23 Years of Manufacturing Excellence",
+    "heroDesc1": "Located in Ordos, the Cashmere Capital, our 38,000 sqm facility covers the entire production process—from raw material sorting to finished garment export.",
+    "heroDesc2": "Through scientific grazing and ecological restoration, the people of Ordos transformed flowing sand back into a thriving oasis. On this reborn land, the world's most precious Albus white cashmere goats now graze. <strong>DONGXIAO® CASHMERE</strong> was born from this miracle—not just producing cashmere, but continuing the green epic of harmony between humans and nature.",
+    "readFullStory": "Read Full Brand Story →",
+    "journeyTitle": "Our Journey",
+    "journeyFounded": "Founded",
+    "journeyFoundedDesc": "DONGXIAO CASHMERE established in Ordos, Inner Mongolia",
+    "journeyIso": "ISO Certified",
+    "journeyIsoDesc": "Achieved ISO 9001 quality management certification",
+    "journeyGlobal": "Global Expansion",
+    "journeyGlobalDesc": "Expanded to 50+ countries across Europe, America, and Asia",
+    "journeySustainability": "Sustainability Leader",
+    "journeySustainabilityDesc": "7 international certifications including OEKO-TEX® and GCS",
+    "scaleTitle": "Production Capacity & Certifications",
+    "scaleDehairing": "Tons of Dehairing Cashmere",
+    "scaleDehairingDesc": "Premium quality fiber processed annually",
+    "scaleYarn": "Tons of Cashmere Yarn",
+    "scaleYarnDesc": "High-performance spinning capacity",
+    "scaleKnitwear": "Cashmere Knitwear",
+    "scaleKnitwearDesc": "Sweaters, scarves, and accessories annually",
+    "productRangeTitle": "Complete Product Range",
+    "productSweaters": "Cashmere Sweaters",
+    "productScarves": "Scarves & Shawls",
+    "productBlankets": "Blankets & Throws",
+    "productAccessories": "Knitwear Accessories",
+    "productFabrics": "Woven Fabrics",
+    "productWorsted": "Worsted Cashmere",
+    "globalTitle": "Global Partnerships",
+    "globalDesc": "Our products are trusted by international retailers and distributors across Europe, America, Japan, Korea, and beyond. We serve over 50 countries with consistent quality and reliability.",
+    "regionEurope": "Europe",
+    "regionNorthAmerica": "North America",
+    "regionEastAsia": "East Asia",
+    "regionSoutheastAsia": "Southeast Asia",
+    "regionMiddleEast": "Middle East",
+    "regionAustralia": "Australia",
+    "regionSouthAmerica": "South America",
+    "regionAfrica": "Africa",
+    "valuesTitle": "Our Core Values",
+    "valueEcology": "Ecological Stewardship",
+    "valueEcologyDesc": "Protecting the Kubuqi Desert greening achievements and supporting scientific grazing",
+    "valueCraftsmanship": "Craftsmanship Excellence",
+    "valueCraftsmanshipDesc": "23 years of industry expertise blending traditional and modern techniques",
+    "valueTransparency": "Responsible Transparency",
+    "valueTransparencyDesc": "7 international certifications ensuring ethical and sustainable practices",
+    "valueGlobal": "Global Warmth",
+    "valueGlobalDesc": "Delivering premium products that warm hearts and protect the planet",
+    "promiseTitle": "Our Promise",
+    "promiseQuote": "Not just a sweater, but a piece of our land.",
+    "promiseDesc": "Every DONGXIAO® CASHMERE product carries the warmth of Ordos and our commitment to sustainability. We're not just producing cashmere—we're preserving a legacy of ecological restoration and human craftsmanship.",
+    "discoverStory": "Discover Our Story",
+    "contactUs": "Contact Us"
   },
   "products": {
     "title": "Kaschmirprodukte",
@@ -101,7 +154,66 @@
       "moq": "Mindestbestellmenge",
       "sampling": "Muster & Individualisierung",
       "quality": "Qualität & Zertifizierungen",
-      "logistics": "Versand & Logistik"
+      "logistics": "Versand & Logistik",
+      "production": "Production & Capacity",
+      "sustainability": "Sustainability",
+      "communication": "Communication"
+    },
+    "cta": {
+      "title": "Didn't find your answer?",
+      "description": "Our B2B sales team is here to help. Contact us directly for personalized support and inquiries.",
+      "whatsapp": "WhatsApp Us",
+      "email": "Email Us"
+    },
+    "questions": {
+      "moq1": {
+        "question": "What is your minimum order quantity (MOQ)?",
+        "answer": "Our standard MOQ is 100 pieces per design. For established clients with large order histories, we can negotiate lower MOQs. We understand that new brands need flexibility, so we work with you to find solutions that fit your business model."
+      },
+      "moq2": {
+        "question": "Do you offer free samples?",
+        "answer": "Yes, we provide free samples for qualified B2B buyers. Simply contact us with your requirements, and we will send samples at no charge. This allows you to verify our quality before committing to a bulk order."
+      },
+      "sampling1": {
+        "question": "How long does sampling take?",
+        "answer": "Our standard sampling time is 7-10 business days. This includes design confirmation, sample production, and quality inspection. For rush orders, we can expedite to 5-7 days with an additional fee. Once approved, bulk production typically takes 30-45 days depending on order size."
+      },
+      "sampling2": {
+        "question": "Can you support custom designs?",
+        "answer": "Absolutely. We specialize in custom design development. Our design team can work with your specifications, including custom colors, patterns, embroidery, and branding. We provide 3D virtual sampling technology to preview designs before production."
+      },
+      "quality1": {
+        "question": "What certifications do you have?",
+        "answer": "We hold 7 international certifications: ISO 9001 (Quality Management), ISO 14001 (Environmental Management), OHSAS 18001 (Occupational Health & Safety), EnMS (Energy Management), OEKO-TEX® Standard 100 (Textile Safety), BSCI (Business Social Compliance Initiative), and The Good Cashmere Standard by AbTF (animal welfare & sustainability)."
+      },
+      "quality2": {
+        "question": "How do you ensure cashmere quality?",
+        "answer": "We source premium cashmere with average fineness below 15μm and length exceeding 36mm. Every batch undergoes rigorous quality testing including fiber analysis, color fastness, shrinkage, and tensile strength tests. We maintain strict quality control at every production stage and provide third-party certification upon request."
+      },
+      "production1": {
+        "question": "What is your annual production capacity?",
+        "answer": "Our facility produces 1,200+ tons of dehairing cashmere, 1,500+ tons of cashmere yarn, 2+ million cashmere scarves and shawls, 5+ million cashmere knitwear pieces, and 1+ million meters of wool and cashmere fabrics annually. We have the capacity to handle large bulk orders without compromising quality."
+      },
+      "production2": {
+        "question": "What product specifications do you offer?",
+        "answer": "We offer complete gauge specifications from 3GG to 18GG for knitwear. Our products include cashmere sweaters, scarves, shawls, blankets, socks, gloves, knee pads, and  accessories. We work with 100% cashmere, cashmere-wool blends, and other premium fiber combinations."
+      },
+      "logistics1": {
+        "question": "What countries do you ship to?",
+        "answer": "We ship to 50+ countries worldwide, including North America, Europe, Asia-Pacific, Middle East, and beyond. We work with reliable logistics partners to ensure timely and safe delivery. Shipping costs and methods vary based on order size and destination."
+      },
+      "logistics2": {
+        "question": "What are the payment terms?",
+        "answer": "We offer flexible payment terms including 30% deposit with order confirmation and 70% balance before shipment. For established clients, we can negotiate terms such as 50/50 split or net 30/60 arrangements. We accept bank transfers, letters of credit (L/C), and other secure payment methods."
+      },
+      "sustainability1": {
+        "question": "What is your commitment to sustainability?",
+        "answer": "Sustainability is core to our operations. We practice ethical cashmere collection with animal welfare standards, implement circular water treatment systems, use plant-based dyes, and maintain transparent supply chain traceability. Each product has a digital \"ecological ID card\" showing its production journey from pasture to finished product."
+      },
+      "communication1": {
+        "question": "How can I contact you for inquiries?",
+        "answer": "You can reach us via WhatsApp: +86-156-6185-3999 (preferred for quick communication), Email: dongxiaocashmere@erdosdx.com, or use our online inquiry form. Our B2B sales team typically responds within 24 hours. We also maintain active profiles on LinkedIn and Instagram for industry updates."
+      }
     }
   },
   "contact": {
@@ -529,7 +641,20 @@
     "testimonial3": {
       "text": "DONGXIAO® zeichnet sich durch Transparenz und Kommunikation aus. Von der ersten Anfrage bis zur endgültigen Lieferung halten sie uns über jeden Schritt informiert. Die Qualität ihrer Kaschmirprodukte ist erstklassig.",
       "highlight": "Transparente Kommunikation, erstklassige Qualität, wettbewerbsfähige Preise"
-    }
+    },
+    "description": "Trusted by leading brands and retailers across Europe, North America, and beyond. Real feedback from real partners.",
+    "metrics": {
+      "countriesServed": "Countries Served",
+      "countriesServedDesc": "Global distribution network",
+      "satisfiedClients": "Satisfied Clients",
+      "satisfiedClientsDesc": "Long-term partnerships",
+      "onTimeDelivery": "On-Time Delivery",
+      "onTimeDeliveryDesc": "Reliable logistics",
+      "averageRating": "Average Rating",
+      "averageRatingDesc": "Customer satisfaction"
+    },
+    "ctaTitle": "Join Our Growing Network of Partners",
+    "ctaDescription": "Experience the DONGXIAO® difference. Connect with our team today to discuss your wholesale cashmere needs."
   },
   "caseStudies": {
     "title": "Erfolgsgeschichten",
@@ -625,5 +750,268 @@
     "contactEmail": "E-Mail:",
     "contactPhone": "Telefon:",
     "contactAddress": "Adresse:"
+  },
+  "production": {
+    "pageTitle": "Our Production Process",
+    "pageSubtitle": "From premium Inner Mongolian cashmere to finished luxury products. Discover how we maintain excellence at every stage.",
+    "introTitle": "Craftsmanship Meets Technology",
+    "introDescription": "Our production process combines traditional cashmere craftsmanship with modern manufacturing technology. Every step is carefully controlled to ensure the highest quality standards and customer satisfaction.",
+    "isoCertified": "ISO 9001 Certified",
+    "stateOfTheArt": "State-of-the-Art Equipment",
+    "qualityAssured": "Quality Assured",
+    "stepsTitle": "8-Step Production Process",
+    "duration": "Duration",
+    "steps": {
+      "step1": {
+        "title": "Cashmere Collection",
+        "description": "Premium cashmere sourcing from Inner Mongolia",
+        "details": [
+          "Sourced from Inner Mongolia, the world's cashmere capital",
+          "Only the finest grade cashmere fibers are selected",
+          "Strict quality control during collection process",
+          "Direct partnerships with local herders ensure authenticity",
+          "Traceability from source to production facility"
+        ],
+        "duration": "Ongoing"
+      },
+      "step2": {
+        "title": "Fiber Cleaning & Sorting",
+        "description": "Removing impurities and grading fibers",
+        "details": [
+          "Advanced cleaning technology removes dirt and debris",
+          "Fibers are sorted by length, color, and quality grade",
+          "Moisture content carefully controlled",
+          "Quality testing at every batch",
+          "Preparation for next stage processing"
+        ],
+        "duration": "2-3 days"
+      },
+      "step3": {
+        "title": "Carding & Combing",
+        "description": "Aligning fibers for spinning",
+        "details": [
+          "Fibers are carded to align and remove tangles",
+          "Fine combing ensures uniform fiber distribution",
+          "Preparation of fiber bundles for spinning",
+          "Quality control checks for consistency",
+          "Modern equipment ensures precision and efficiency"
+        ],
+        "duration": "1-2 days"
+      },
+      "step4": {
+        "title": "Spinning",
+        "description": "Converting fibers into yarn",
+        "details": [
+          "State-of-the-art spinning machinery",
+          "Precise tension control for consistent yarn quality",
+          "Multiple yarn counts available (2ply, 4ply, 6ply, etc.)",
+          "Color options: natural, dyed, or custom colors",
+          "Yarn testing for strength and durability"
+        ],
+        "duration": "2-3 days"
+      },
+      "step5": {
+        "title": "Knitting",
+        "description": "Creating finished products",
+        "details": [
+          "Advanced knitting machines for various products",
+          "Sweaters, scarves, hats, socks, and accessories",
+          "Multiple gauges available (3GG to 18GG)",
+          "Precise pattern control for consistent sizing",
+          "Quality inspection during knitting process"
+        ],
+        "duration": "3-5 days"
+      },
+      "step6": {
+        "title": "Washing & Finishing",
+        "description": "Softening and preparing for packaging",
+        "details": [
+          "Gentle washing process preserves fiber quality",
+          "Conditioning treatments enhance softness",
+          "Temperature and pH carefully controlled",
+          "Drying in controlled environment",
+          "Final quality inspection before packaging"
+        ],
+        "duration": "1-2 days"
+      },
+      "step7": {
+        "title": "Quality Control & Testing",
+        "description": "Comprehensive quality assurance",
+        "details": [
+          "OEKO-TEX® testing for safety standards",
+          "Tensile strength and durability testing",
+          "Color fastness verification",
+          "Dimensional accuracy checks",
+          "ISO 9001 certified quality procedures"
+        ],
+        "duration": "1 day"
+      },
+      "step8": {
+        "title": "Packaging & Shipping",
+        "description": "Final preparation for delivery",
+        "details": [
+          "Professional packaging with brand protection",
+          "Custom packaging options available",
+          "Labeling with care instructions",
+          "Quality documentation included",
+          "Fast shipping to 50+ countries worldwide"
+        ],
+        "duration": "1 day"
+      }
+    },
+    "qualityMetricsTitle": "Quality Metrics",
+    "metrics": {
+      "fiberGrade": {
+        "metric": "Fiber Grade",
+        "value": "Premium A+",
+        "description": "Only the finest cashmere fibers used"
+      },
+      "productionCapacity": {
+        "metric": "Production Capacity",
+        "value": "1,200+ tons/year",
+        "description": "Massive capacity for large orders"
+      },
+      "qualityPassRate": {
+        "metric": "Quality Pass Rate",
+        "value": "99.2%",
+        "description": "Strict quality control standards"
+      },
+      "leadTime": {
+        "metric": "Lead Time",
+        "value": "30-45 days",
+        "description": "Standard production timeline"
+      }
+    },
+    "certificationsTitle": "Certifications & Standards",
+    "qualityStandards": "Quality Standards",
+    "productionCapabilities": "Production Capabilities",
+    "iso9001": "ISO 9001 - Quality Management",
+    "oekoTex": "OEKO-TEX® STANDARD 100",
+    "iso14001": "ISO 14001 - Environmental",
+    "customColorOptions": "Custom color options available",
+    "gaugeOptions": "Multiple gauge options (3GG-18GG)",
+    "flexibleMoq": "Flexible MOQ starting at 100 pieces",
+    "ctaTitle": "Ready to Experience Our Quality?",
+    "ctaDescription": "Contact our team to discuss your wholesale cashmere needs and request samples of our premium products.",
+    "whatsAppUs": "WhatsApp Us",
+    "emailUs": "Email: dongxiaocashmere@erdosdx.com"
+  },
+  "brandStory": {
+    "heroTitle": "Weaving the Oasis",
+    "heroSubtitle": "The Warmth and Vision of DongXiao Cashmere",
+    "heroDesc": "From the first saulex in the Kubuqi Desert to the shining pearl of the Cashmere Capital. DongXiao Cashmere is not just a product—it's a promise from the Ordos oasis. Warm your skin, protect our planet.",
+    "chapterLabel": "Chapter <${{number}}>$",
+    "chapters": {
+      "1": {
+        "title": "Origins: From Desert to Green Oasis",
+        "content": [
+          "In the heart of Inner Mongolia, Ordos was once a land battling wind and sand. Our story doesn't begin in a workshop—it begins with the first saulex planted in the Kubuqi Desert decades ago by herders.",
+          "Through scientific grazing and ecological restoration, Ordos transformed shifting sands back into thriving grassland where the world's most precious Albus white cashmere goats now graze. DongXiao Cashmere was born in this oasis of warmth—continuing the green epic of harmony between humans and nature.",
+          "DongXiao Cashmere (DongXiao) was born in the heart of this 'Warm City'—we're not just producing cashmere, but continuing the green epic of 'harmonious coexistence between humans and nature'."
+        ],
+        "highlights": [
+          "Kubuqi Desert greening",
+          "Scientific grazing & ecological restoration",
+          "Albus white cashmere goats"
+        ],
+        "visualText": "From desert to green, from wasteland to oasis"
+      },
+      "2": {
+        "title": "Craftsmanship: 23 Years Defining Cashmere Excellence",
+        "content": [
+          "Since our founding in 2002, DongXiao has spent 23 years deepening our expertise in the cashmere industry. We've witnessed Ordos's magnificent transformation from 'raw material base' to 'World Cashmere Capital'. As a pioneer in integrated manufacturing and trade, DongXiao represents the pinnacle of Chinese manufacturing.",
+          "Scale & Precision: We produce 1,200 tons of dehired cashmere and 1,500 tons of cashmere yarn annually, with full-specification knitting technology ranging from 3GG to 18GG.",
+          "Complete Coverage: From classic cashmere sweaters and scarves to high-quality shawls, blankets, and home accessories, DongXiao meets the diverse customization needs of global buyers through our dual strengths in weaving and knitting.",
+          "Premium Partnerships: Our quality has earned long-term recognition from international first-tier brands including VC, CC, AB, BB, with products reaching Europe, America, Japan, and Korea."
+        ],
+        "highlights": [
+          "23 years industry experience",
+          "1,200 tons annual capacity",
+          "Full-specification knitting",
+          "International first-tier brand partnerships"
+        ],
+        "visualText": "23 years of dedication, defining industry standards"
+      },
+      "3": {
+        "title": "Responsibility: Seven Certifications, One ESG Commitment",
+        "content": [
+          "At DongXiao, we believe 'luxury' must be sustainable. We're one of the few companies in the industry to simultaneously hold seven international authoritative certifications.",
+          "Environment & Energy (ISO 14001, EnMS): Our factory operates under an efficient energy management system.",
+          "Social Responsibility (BSCI, OHSAS 18001): We ensure every worker is treated with respect and works in safe, dignified conditions.",
+          "Sustainability Standards (GCS by AbTF, OEKO-TEX®): We're deeply committed to the 'Good Cashmere Standard' (The Good Cashmere Standard), ensuring every step from pasture to finished garment meets animal welfare standards and is harmless to human health."
+        ],
+        "highlights": [
+          "ISO 9001",
+          "ISO 14001",
+          "OEKO-TEX®",
+          "BSCI",
+          "OHSAS 18001",
+          "EnMS",
+          "GCS by AbTF"
+        ],
+        "visualText": "Seven certifications, one ESG commitment"
+      },
+      "4": {
+        "title": "Future: Smart Pastures & Green Responsibility",
+        "content": [
+          "Looking ahead, DongXiao is committed to building a 'Smart Pasture' model. We use digital tools to monitor grassland carrying capacity, supporting Mongolian herders in scientific rotational grazing.",
+          "Transparent Supply Chain: In the future, every DongXiao cashmere garment will have an 'Ecological ID Card' — scan it to trace which regenerated grassland it came from.",
+          "Zero-Carbon Vision: As Ordos advances toward becoming the 'World Cashmere Capital', DongXiao will continue increasing investment in green technology, circular fibers, and lossless dyeing processes.",
+          "We're not just selling a cashmere sweater—we're selling a promise from the Ordos oasis. One that warms your skin and protects our planet."
+        ],
+        "highlights": [
+          "Smart Pastures",
+          "Ecological ID Card",
+          "Zero-Carbon Vision",
+          "Circular Fibers"
+        ],
+        "visualText": "Smart Pastures, Zero-Carbon Future"
+      }
+    },
+    "brandMottoTitle": "Brand Motto",
+    "brandMottoQuote": "Not just a sweater, but a piece of our land.",
+    "brandMottoDesc": "Every DongXiao Cashmere product carries the story of the Ordos oasis. We promise to provide global customers with products that not only warm skin but also warm hearts through sustainable production methods, transparent supply chains, and deep environmental care.",
+    "valuesTitle": "Our Core Values",
+    "values": {
+      "ecology": {
+        "title": "Ecological Stewardship",
+        "desc": "Protecting the Kubuqi Desert greening achievements, supporting scientific grazing and ecological balance"
+      },
+      "craftsmanship": {
+        "title": "Craftsmanship Excellence",
+        "desc": "23 years of industry expertise, blending traditional combing techniques with modern automation"
+      },
+      "transparency": {
+        "title": "Responsible Transparency",
+        "desc": "Seven international certifications, with each product having an 'Ecological ID Card'"
+      },
+      "global": {
+        "title": "Global Warmth",
+        "desc": "Delivering premium products to global customers, conveying the warmth of Ordos"
+      }
+    },
+    "ctaTitle": "Join DongXiao's Oasis Journey",
+    "ctaDesc": "Whether you're a buyer, designer, or brand, DongXiao is ready to work with you to create a better future together.",
+    "contactUs": "Contact Us",
+    "exploreProducts": "Explore Products"
+  },
+  "blog": {
+    "pageTitle": "Cashmere Insights & Tips",
+    "pageDescription": "Expert guides, styling tips, and care instructions from DONGXIAO® CASHMERE",
+    "minRead": "min read",
+    "readMore": "Read More",
+    "shareInsights": "Share These Insights",
+    "shareInsightsDesc": "Help others discover expert cashmere care and styling tips",
+    "shareTitle": "Cashmere Care & Styling Guide",
+    "shareDescription": "Expert tips from DONGXIAO® CASHMERE",
+    "ctaTitle": "Ready to Invest in Premium Cashmere?",
+    "ctaDescription": "Discover our collection of premium cashmere pieces, crafted with 23 years of expertise",
+    "shopNow": "Shop Now",
+    "getInTouch": "Get in Touch",
+    "articleNotFound": "Article Not Found",
+    "backToBlog": "Back to Blog",
+    "shareThisArticle": "Share This Article",
+    "moreArticles": "More Articles",
+    "ctaExperienceTitle": "Ready to Experience Premium Cashmere?"
   }
 }
