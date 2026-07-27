@@ -86,32 +86,52 @@ export interface ProductWithCategory extends Product {
 
 export const products: ProductsData = productsJson as unknown as ProductsData;
 
-export function getAllProducts(): ProductWithCategory[] {
-  return products.categories.flatMap((cat) =>
-    cat.products.map((p) => ({
-      ...p,
-      categoryId: cat.id,
-      categoryName: cat.name,
-      categoryImage: cat.image,
-      detail: productDetails[p.id] || productDetails[cat.id] || undefined,
-    })),
-  );
-}
+// Single in-process caches. Built lazily once per build worker.
+// Map lookups turn every O(n) scan into O(1), which matters when getStaticPaths
+// and the page body each re-touch all 591 products.
+let _allProductsCache: ProductWithCategory[] | null = null;
+let _byIdCache: Map<string, ProductWithCategory> | null = null;
+let _byCategoryCache: Map<string, ProductWithCategory[]> | null = null;
 
-export function getProductById(id: string): ProductWithCategory | null {
+function buildCaches(): void {
+  if (_allProductsCache && _byIdCache && _byCategoryCache) return;
+  const all: ProductWithCategory[] = [];
+  const byId = new Map<string, ProductWithCategory>();
+  const byCategory = new Map<string, ProductWithCategory[]>();
   for (const cat of products.categories) {
-    const found = cat.products.find((p) => p.id === id);
-    if (found) {
-      return {
-        ...found,
+    const bucket: ProductWithCategory[] = [];
+    for (const p of cat.products) {
+      const enriched: ProductWithCategory = {
+        ...p,
         categoryId: cat.id,
         categoryName: cat.name,
         categoryImage: cat.image,
-        detail: productDetails[id] || productDetails[cat.id] || undefined,
+        detail: productDetails[p.id] || productDetails[cat.id] || undefined,
       };
+      all.push(enriched);
+      byId.set(p.id, enriched);
+      bucket.push(enriched);
     }
+    byCategory.set(cat.id, bucket);
   }
-  return null;
+  _allProductsCache = all;
+  _byIdCache = byId;
+  _byCategoryCache = byCategory;
+}
+
+export function getAllProducts(): ProductWithCategory[] {
+  buildCaches();
+  return _allProductsCache!;
+}
+
+export function getProductsByCategory(categoryId: string): ProductWithCategory[] {
+  buildCaches();
+  return _byCategoryCache!.get(categoryId) || [];
+}
+
+export function getProductById(id: string): ProductWithCategory | null {
+  buildCaches();
+  return _byIdCache!.get(id) || null;
 }
 
 export function getCategoryById(id: string): Category | null {
