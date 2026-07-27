@@ -288,8 +288,11 @@ if (faqs && faqs.length > 0) {
     <!-- AI 24h 智能客服（由 FloatingChatButtons 的 AI 按钮触发打开） -->
     <AIChatWidget client:idle locale={locale} />
 
-    <!-- Inquiry cart (B2B RFQ list) — exposes window.dxCart + toast -->
-    <InquiryCart client:load locale={locale} />
+    <!-- Inquiry cart (B2B RFQ list) — client:idle so the React island defers
+         until the main thread is free; visitors who never add an item never
+         pay the hydration cost. window.dxCart is still exposed synchronously
+         on mount, and products/buttons listen for the "dx-cart-ready" event. -->
+    <InquiryCart client:idle locale={locale} />
 
     <!-- Scroll Reveal（轻量 IntersectionObserver，无依赖） -->
     <script is:inline>
