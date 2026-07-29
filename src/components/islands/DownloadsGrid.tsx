@@ -1,4 +1,3 @@
----
 /**
  * Download Gate - 资料下载前留资组件
  * 6 个静态卡片 + 单一 React 表单（client:idle），点哪个就填哪个。

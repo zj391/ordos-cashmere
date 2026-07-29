@@ -17,7 +17,6 @@ export const PRODUCT_COLOR_FAMILIES = {
   Blue: [],
   Navy: [],
   Orange: [],
-  Camel: [],
   Purple: [],
   Yellow: [],
 } as Record<string, string[]>;
