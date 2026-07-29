@@ -203,6 +203,13 @@ if (faqs && faqs.length > 0) {
     <!-- Canonical -->
     <link rel="canonical" href={canonical} />
 
+    <!-- Prefetch hints: highest-traffic pages for next-click instant -->
+    <link rel="prefetch" href={`/${locale}/products`} />
+    <link rel="prefetch" href={`/${locale}/contact`} />
+    <link rel="prefetch" href={`/${locale}/factory`} />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://api.resend.com" />
+
     <!-- hreflang 多语言 -->
     {hreflangs.map((hl: any) => (
       <link rel="alternate" hreflang={hl.lang} href={hl.href} />
