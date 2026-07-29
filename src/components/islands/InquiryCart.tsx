@@ -178,7 +178,7 @@ function CartList({ items, locale }: { items: CartItem[]; locale: string }) {
       <ul className="space-y-3">
         {items.map((it) => (
           <li key={`${it.id}-${it.color || ''}`} className="grid grid-cols-[80px_1fr_auto] gap-4 items-start bg-card border border-border rounded-lg p-4">
-            <img src={it.image} alt={it.name} className="w-20 h-20 object-cover rounded" loading="lazy" />
+            <img src={it.image} alt={it.name} className="w-20 h-20 object-cover rounded" decoding="async" loading="lazy" />
             <div className="min-w-0 space-y-2">
               <a href={it.href} className="font-medium hover:text-primary line-clamp-2 block">{it.name}</a>
               <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">

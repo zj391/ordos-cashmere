@@ -242,7 +242,7 @@ const breadcrumbSchema = {
               aria-label="Open image viewer"
               class="aspect-square bg-secondary/30 rounded-lg overflow-hidden mb-4 ring-1 ring-border w-full block hover:ring-2 hover:ring-primary transition-all cursor-zoom-in"
             >
-              <img id="main-product-img" src={primaryImage} alt={product.name} class="w-full h-full object-cover transition-opacity" loading="eager" />
+              <img id="main-product-img" src={primaryImage} alt={product.name} class="w-full h-full object-cover transition-opacity" decoding="async" loading="eager" />
             </button>
             <div
               id="product-zoom-panel"
@@ -260,7 +260,7 @@ const breadcrumbSchema = {
                   class="aspect-square bg-secondary/30 rounded overflow-hidden ring-1 ring-border hover:ring-2 hover:ring-primary transition-all"
                   aria-label={`View image ${i + 1}`}
                 >
-                  <img src={img} alt={`${product.name} view ${i + 1}`} class="w-full h-full object-cover" loading="lazy" />
+                  <img src={img} alt={`${product.name} view ${i + 1}`} class="w-full h-full object-cover" decoding="async" loading="lazy" />
                 </button>
               ))}
             </div>
@@ -711,7 +711,7 @@ const breadcrumbSchema = {
         {galleryImages.slice(0, 3).map((img, i) => (
           <figure class="bg-card border border-border rounded-lg overflow-hidden">
             <div class="aspect-[3/4] overflow-hidden bg-secondary/30">
-              <img src={img} alt={`${product.name} model view ${i + 1}`} class="w-full h-full object-cover" loading="lazy" />
+              <img src={img} alt={`${product.name} model view ${i + 1}`} class="w-full h-full object-cover" decoding="async" loading="lazy" />
             </div>
             <figcaption class="p-3 text-xs text-center text-muted-foreground">
               {i === 0 ? 'Front view' : i === 1 ? 'Side view' : 'Back / Detail'}
@@ -802,7 +802,7 @@ const breadcrumbSchema = {
                   src={`/products/${CATEGORY_IMAGE_DIR[rp.categoryId] || rp.categoryId}/${rp.images[0]}`}
                   alt={rp.name}
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                  loading="lazy"
+                  decoding="async" loading="lazy"
                 />
               </div>
               <div class="p-3">

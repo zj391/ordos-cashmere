@@ -233,7 +233,7 @@ const IMG = {
           class={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[1500ms] ease-in-out ${
             i === 0 ? 'opacity-100' : 'opacity-0'
           }`}
-          loading={i === 0 ? 'eager' : 'lazy'}
+          decoding="async" loading={i === 0 ? 'eager' : 'lazy'}
           data-hero-slide={i}
         />
       ))}
@@ -358,7 +358,7 @@ const IMG = {
         <!-- 左侧大图（占 7/12） -->
         <div class="lg:col-span-7 relative reveal-left">
           <div class="aspect-[5/6] overflow-hidden hover-zoom">
-            <img src={IMG.ordosLandscape} alt="Albus goat grazing on Ordos pasture at sunrise — Inner Mongolia" class="w-full h-full object-cover" loading="lazy" />
+            <img src={IMG.ordosLandscape} alt="Albus goat grazing on Ordos pasture at sunrise — Inner Mongolia" class="w-full h-full object-cover" decoding="async" loading="lazy" />
           </div>
           <!-- 浮动小图（地理坐标装饰） -->
           <div class="hidden md:block absolute -bottom-12 -right-12 w-48 aspect-square overflow-hidden border-8 border-background shadow-2xl bg-gradient-to-br from-brand-camel to-brand-chocolate flex items-center justify-center">
@@ -491,7 +491,7 @@ const IMG = {
 
         <!-- 纱线面料（右小） -->
         <a href={`/${locale}/yarn-fabric`} class="group md:col-span-5 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden hover-lift reveal" data-reveal-delay="2">
-          <img src={IMG.scarfDetail} alt="Cashmere knitwear — premium winter hat and sweater for B2B wholesale" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          <img src={IMG.scarfDetail} alt="Cashmere knitwear — premium winter hat and sweater for B2B wholesale" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" decoding="async" loading="lazy" />
           <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/90 via-brand-ink/30 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
             <div class="flex items-center gap-4 mb-3">
@@ -516,7 +516,7 @@ const IMG = {
 
         <!-- 成衣代工（下大） -->
         <a href={`/${locale}/garment-oem`} class="group md:col-span-12 relative aspect-[4/3] md:aspect-[21/9] overflow-hidden hover-lift reveal" data-reveal-delay="3">
-          <img src={IMG.scarvesFolded} alt="Cashmere shawl styling — premium B2B apparel from Ordos factory" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          <img src={IMG.scarvesFolded} alt="Cashmere shawl styling — premium B2B apparel from Ordos factory" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" decoding="async" loading="lazy" />
           <div class="absolute inset-0 bg-gradient-to-r from-brand-ink/95 via-brand-ink/50 to-transparent"></div>
           <div class="absolute bottom-0 left-0 p-8 md:p-12 text-white max-w-2xl">
             <div class="flex items-center gap-4 mb-3">
@@ -567,7 +567,7 @@ const IMG = {
         <!-- 条目 1：自有牧场 + 图 -->
         <div class="space-y-6 reveal" data-reveal-delay="1">
           <div class="aspect-[4/3] overflow-hidden relative">
-            <img src={IMG.mongoliaGoat} alt="Cashmere goat on Mongolian pasture, with combed fiber mark" class="w-full h-full object-cover" loading="lazy" />
+            <img src={IMG.mongoliaGoat} alt="Cashmere goat on Mongolian pasture, with combed fiber mark" class="w-full h-full object-cover" decoding="async" loading="lazy" />
           </div>
           <div class="flex items-baseline gap-4">
             <span class="font-serif text-5xl text-brand-gold font-light">01</span>
@@ -581,7 +581,7 @@ const IMG = {
         <!-- 条目 2：原料分梳 + 图 -->
         <div class="space-y-6 md:pt-20 reveal" data-reveal-delay="2">
           <div class="aspect-[4/3] overflow-hidden">
-            <img src={IMG.craftHand} alt="Cashmere dehairing process — separating fine underdown from coarse guard hair, 99.95% purity" class="w-full h-full object-cover" loading="lazy" />
+            <img src={IMG.craftHand} alt="Cashmere dehairing process — separating fine underdown from coarse guard hair, 99.95% purity" class="w-full h-full object-cover" decoding="async" loading="lazy" />
           </div>
           <div class="flex items-baseline gap-4">
             <span class="font-serif text-5xl text-brand-gold font-light">02</span>
@@ -595,7 +595,7 @@ const IMG = {
         <!-- 条目 3：纺纱 -->
         <div class="space-y-6 reveal" data-reveal-delay="3">
           <div class="aspect-[4/3] overflow-hidden hover-zoom">
-            <img src={IMG.shawlEmbroidered} alt="Cashmere yarn — natural fiber cones ready for spinning, 26/2 to 36/2 Nm counts" class="w-full h-full object-cover" loading="lazy" />
+            <img src={IMG.shawlEmbroidered} alt="Cashmere yarn — natural fiber cones ready for spinning, 26/2 to 36/2 Nm counts" class="w-full h-full object-cover" decoding="async" loading="lazy" />
           </div>
           <div class="flex items-baseline gap-4">
             <span class="font-serif text-5xl text-brand-gold font-light">03</span>
@@ -609,7 +609,7 @@ const IMG = {
         <!-- 条目 4：成衣厂 -->
         <div class="space-y-6 md:pt-20 reveal" data-reveal-delay="4">
           <div class="aspect-[4/3] overflow-hidden relative">
-            <img src={IMG.knittingMill} alt="German STOLL knitting machines — 38,000 sqm Ordos knitting facility, OEM private label" class="w-full h-full object-cover" loading="lazy" />
+            <img src={IMG.knittingMill} alt="German STOLL knitting machines — 38,000 sqm Ordos knitting facility, OEM private label" class="w-full h-full object-cover" decoding="async" loading="lazy" />
           </div>
           <div class="flex items-baseline gap-4">
             <span class="font-serif text-5xl text-brand-gold font-light">04</span>
@@ -661,7 +661,7 @@ const IMG = {
   <section class="py-24 md:py-32 bg-brand-chocolate text-white relative overflow-hidden">
     <!-- 背景图: 历史针织厂外景, 黑白, 传承感 (knittingMill 是 DPLA 公共域图) -->
     <div class="absolute inset-0">
-      <img src={IMG.knittingMill} alt="" aria-hidden="true" class="w-full h-full object-cover opacity-25 grayscale" loading="lazy" />
+      <img src={IMG.knittingMill} alt="" aria-hidden="true" class="w-full h-full object-cover opacity-25 grayscale" decoding="async" loading="lazy" />
       <div class="absolute inset-0 bg-brand-chocolate/85"></div>
     </div>
     <!-- 装饰纤维纹理 -->
@@ -743,7 +743,7 @@ const IMG = {
             return (
               <a href={`/${locale}/blog/${p.slug}`} class="group block border border-border overflow-hidden hover:border-brand-gold hover:shadow-lg transition-all duration-300">
                 <div class="aspect-[16/10] overflow-hidden bg-brand-cream">
-                  <img src={blogImg} alt={blogAlt} style="object-position: center 60%;" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                  <img src={blogImg} alt={blogAlt} style="object-position: center 60%;" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" decoding="async" loading="lazy" />
                 </div>
                 <div class="p-6">
                   <div class="text-xs text-muted-foreground tracking-wider mb-3 font-mono">{p.date}</div>
