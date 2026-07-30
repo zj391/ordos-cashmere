@@ -114,7 +114,8 @@ const scale = [
   { value: '1,200', unit: 't', label: locale === 'cn' ? '年产能' : 'Annual Capacity' },
   { value: '50+', unit: '', label: locale === 'cn' ? '出口国家' : 'Export Countries' },
   { value: '23+', unit: 'yrs', label: locale === 'cn' ? '行业经验' : 'Years of Excellence' },
-  { value: '7', unit: '', label: locale === 'cn' ? '国际认证' : 'Certifications' },
+    { value: '6', unit: '', label: locale === 'cn' ? '终童模式' : 'Business Models' },
+{ value: '7', unit: '', label: locale === 'cn' ? '国际认证' : 'Certifications' },
 ];
 const scaleItems = scale.map((s) => ({ ...s, counter: parseCounter(s.value) }));
 
@@ -385,6 +386,71 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
       </div>
     </div>
   </section>
+
+  <!-- Business Models (from PDF catalogue) -->
+
+  <section class="py-24 md:py-32 bg-background">
+
+    <div class="container-narrow">
+
+      <div class="max-w-2xl mb-16">
+
+        <div class="flex items-center gap-3 mb-4">
+
+          <span class="h-px w-8 bg-brand-gold"></span>
+
+          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">05 / {locale === 'cn' ? '\u7ec8\u7aef\u6a21\u5f0f' : 'Business Models'}</span>
+
+        </div>
+
+        <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{locale === 'cn' ? '\u591a\u5143\u5316\u7ec8\u7aef\u6a21\u5f0f' : 'Six Business Models'}</h2>
+
+        <p class="text-muted-foreground leading-relaxed">{locale === 'cn' ? '\u4ece ODM/OEM \u5236\u9020\u5230\u54c1\u724c\u52a0\u76df\u3001\u5728\u7ebf\u7ebf\u4e0b\u4e00\u4f53\u5316 \u2014 \u9002\u914d\u4e0d\u540c B2B \u5ba2\u6237\u9700\u6c42\u3002' : 'From ODM/OEM manufacturing to brand franchise and online-offline integration.'}</p>
+
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-brand-cream/30 p-6 rounded-lg hover-lift">
+          <div class="font-serif text-3xl text-brand-gold mb-2">01</div>
+          <h3 class="font-serif text-lg mb-2">{locale === 'cn' ? 'ODM/OEM \u751f\u4ea7\u52a0\u5de5' : 'ODM / OEM Manufacturing'}</h3>
+          <p class="text-sm text-muted-foreground">{locale === 'cn' ? '\u4e3a\u54c1\u724c\u65b9\u8bbe\u8ba1\u3001\u5236\u4f5c\u3001\u52a0\u5de5\u548c\u4ed3\u50a8\u4e00\u7ad9\u5f0f\u670d\u52a1\u3002' : 'Design, manufacturing and warehousing under one roof.'}</p>
+        </div>
+        <div class="bg-brand-cream/30 p-6 rounded-lg hover-lift">
+          <div class="font-serif text-3xl text-brand-gold mb-2">02</div>
+          <h3 class="font-serif text-lg mb-2">{locale === 'cn' ? '\u6765\u6837\u5b9a\u505a' : 'Sample Customization'}</h3>
+          <p class="text-sm text-muted-foreground">{locale === 'cn' ? '\u6839\u636e\u5ba2\u6237\u63d0\u4f9b\u7684\u6b3e\u5f0f\u3001\u56fe\u7eb8\u6216\u7247\u8282\u8fdb\u884c\u6837\u68c9\u3001\u7c73\u62bd\u3002' : 'Sample dyeing and weaving based on client swatches or designs.'}</p>
+        </div>
+        <div class="bg-brand-cream/30 p-6 rounded-lg hover-lift">
+          <div class="font-serif text-3xl text-brand-gold mb-2">03</div>
+          <h3 class="font-serif text-lg mb-2">{locale === 'cn' ? '\u5b9e\u4f53\u6279\u53d1' : 'Physical Wholesale'}</h3>
+          <p class="text-sm text-muted-foreground">{locale === 'cn' ? '\u9488\u7eb1\u3001\u5dfe\u3001\u88c5\u3001\u9762\u9762\u6599\u7c7b\u591a\u70c8\u7247\u4ef7\u3002' : 'Direct factory pricing on sweaters, scarves, accessories.'}</p>
+        </div>
+        <div class="bg-brand-cream/30 p-6 rounded-lg hover-lift">
+          <div class="font-serif text-3xl text-brand-gold mb-2">04</div>
+          <h3 class="font-serif text-lg mb-2">{locale === 'cn' ? '\u54c1\u724c\u52a0\u76df' : 'Brand Franchise'}</h3>
+          <p class="text-sm text-muted-foreground">{locale === 'cn' ? '\u63a5\u53d7\u56fd\u5185\u5916\u54c1\u724c\u52a0\u76df\u53ca\u4ee3\u5236\u7684\u5ba2\u6237\u3002' : 'Domestic and international brand franchise and licensing clients.'}</p>
+        </div>
+        <div class="bg-brand-cream/30 p-6 rounded-lg hover-lift">
+          <div class="font-serif text-3xl text-brand-gold mb-2">05</div>
+          <h3 class="font-serif text-lg mb-2">{locale === 'cn' ? '\u4e00\u4ef6\u4ee3\u53d1' : 'Drop Shipping'}</h3>
+          <p class="text-sm text-muted-foreground">{locale === 'cn' ? '\u5c0f\u6279\u6b21\u5ba2\u6237\u9002\u7528\u3002\u76f4\u53d1\u5ba2\u6237\u3002' : 'Small-batch dropship direct to end customers.'}</p>
+        </div>
+        <div class="bg-brand-cream/30 p-6 rounded-lg hover-lift">
+          <div class="font-serif text-3xl text-brand-gold mb-2">06</div>
+          <h3 class="font-serif text-lg mb-2">{locale === 'cn' ? '\u7ebf\u4e0a\u7ebf\u4e0b\u4e00\u4f53' : 'Online + Offline'}</h3>
+          <p class="text-sm text-muted-foreground">{locale === 'cn' ? '\u7ebf\u4e0a\u7535\u5546\u5e73\u53f0 + \u7ebf\u4e0b\u7ecf\u9500\u5546 \u4e00\u4f53\u5316\u8fd0\u4f5c\u3002' : 'E-commerce platforms plus offline retailer integration.'}</p>
+        </div>
+      </div>
+
+      <div class="mt-16 max-w-3xl mx-auto text-center">
+        <blockquote class="font-serif text-2xl md:text-3xl text-brand-chocolate font-light italic leading-snug">
+          {locale === 'cn' ? '\u201c\u8ba4\u771f\u5408\u4f5c\u3001\u4e92\u60e0\u4e92\u5229\u3001\u5171\u540c\u53d1\u5c55\u201d \u2014 \u6bcf\u4e00\u4efd\u5408\u4f5c\u90fd\u662f\u6109\u5feb\u7684\u3002' : '"Integrity cooperation, mutual benefit, common development" \u2014 every cooperation a pleasant one.'}
+        </blockquote>
+        <p class="text-xs text-muted-foreground mt-4 uppercase tracking-widest">{locale === 'cn' ? '\u2014 \u96c6\u56e2\u7406\u5ff5' : '\u2014 Our Belief'}</p>
+      </div>
+    </div>
+  </section>
+
 
   <!-- CTA -->
 
