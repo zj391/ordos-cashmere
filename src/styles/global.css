@@ -313,3 +313,12 @@ html {
     transition: none;
   }
 }
+
+
+/* ===== Scroll-aware nav (header.is-scrolled) ===== */
+header.sticky {
+  transition: box-shadow 0.3s ease, padding 0.3s ease;
+}
+header.sticky.is-scrolled {
+  box-shadow: 0 4px 20px -8px rgba(26, 22, 18, 0.12);
+}

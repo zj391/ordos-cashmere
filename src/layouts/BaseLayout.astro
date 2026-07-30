@@ -1,437 +1,455 @@
----
-/**
- * BaseLayout - 6 国子目录网站基础布局
- * 自动处理：hreflang / TDK / Schema / GA4 / Cookie Consent
- */
-import '@/styles/global.css';
-import { TRANSLATIONS, LOCALE_HREFLANG, type Locale } from '@/lib/i18n';
-import { SEO, SITE_URL, SITE_INFO, generateHreflangs } from '@/lib/seo';
-import { breadcrumbSchema, faqPageSchema, servicesSchema, PAGE_BREADCRUMB, SERVICES, type FAQItem } from '@/lib/schema';
-import AIChatWidget from '@/components/islands/AIChatWidget.tsx';
-import InquiryCart from '@/components/islands/InquiryCart.tsx';
-
-export interface Props {
-  locale: Locale;
-  pageKey: string;
-  path?: string;
-  title?: string;
-  description?: string;
-  keywords?: string[];
-  ogImage?: string;
-  ogType?: 'website' | 'article';
-  canonicalPath?: string;
-  schema?: 'home' | 'raw-material' | 'yarn-fabric' | 'garment-oem' | 'factory' | 'ordos-origin' | 'contact' | 'blog' | 'faq' | 'products' | 'general';
-  noIndex?: boolean;
-  faqs?: FAQItem[]; // 用于 FAQ 页
-  customSchemas?: any[]; // 额外的 JSON-LD schema（Product/BreadcrumbList 等）
-}
-
-const {
-  locale,
-  pageKey: _pageKey,
-  path = '/',
-  title,
-  description,
-  keywords,
-  ogImage = 'https://www.erdosdx.com/images/og-default.png',
-  ogType = 'website',
-  canonicalPath,
-  schema: _schema = 'general',
-  noIndex = false,
-  faqs,
-  customSchemas = [],
-} = Astro.props as Props;
-
-const translation = TRANSLATIONS[locale];
-const seo = SEO[locale];
-const pageSEO = (seo as any)[_pageKey];
-
-const finalTitle: string = String(title ?? pageSEO?.title ?? 'DONGXIAO® Cashmere');
-const finalDescription: string = String(description ?? pageSEO?.description ?? '');
-const finalKeywords: string[] = Array.isArray(keywords)
-  ? keywords.map((keyword) => String(keyword))
-  : String(keywords ?? pageSEO?.keywords ?? '').split(',').map((keyword) => keyword.trim()).filter(Boolean);
-
-const canonical = canonicalPath
-  ? `${SITE_URL}/${locale}${canonicalPath}`
-  : `${SITE_URL}/${locale}${path}`;
-
-const hreflangs = generateHreflangs(path);
-
-// GEO Schema - 全部页面都加 Organization + LocalBusiness
-const orgSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: SITE_INFO.name,
-  legalName: SITE_INFO.legalName,
-  url: SITE_URL,
-  logo: `${SITE_URL}/logo.svg`,
-  foundingDate: String(SITE_INFO.foundingYear),
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: SITE_INFO.address,
-    addressLocality: SITE_INFO.city,
-    addressRegion: SITE_INFO.region,
-    addressCountry: SITE_INFO.country,
-  },
-  contactPoint: [{
-    '@type': 'ContactPoint',
-    telephone: SITE_INFO.phone,
-    contactType: 'sales',
-    availableLanguage: ['English', 'Chinese', 'German', 'French', 'Japanese', 'Korean'],
-    areaServed: 'Worldwide',
-  }],
-  sameAs: Object.values(SITE_INFO.social),
-};
-
-const localBusinessSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  '@id': `${SITE_URL}/#localbusiness`,
-  name: SITE_INFO.name,
-  description: finalDescription,
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: SITE_INFO.city,
-    addressRegion: SITE_INFO.region,
-    addressCountry: SITE_INFO.country,
-  },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: SITE_INFO.latitude,
-    longitude: SITE_INFO.longitude,
-  },
-  telephone: SITE_INFO.phone,
-  priceRange: '$$$',
-};
-
-const pageSchema = (() => {
-  switch (_schema) {
-    case 'home':
-      return {
-        '@context': 'https://schema.org',
-        '@type': 'WebSite',
-        name: SITE_INFO.name,
-        url: SITE_URL,
-        inLanguage: ['en', 'de', 'fr', 'ja', 'ko', 'zh-CN'],
-      };
-    case 'ordos-origin':
-      return {
-        '@context': 'https://schema.org',
-        '@type': 'Place',
-        name: 'Ordos Cashmere Region',
-        description: 'Premium cashmere production region in Inner Mongolia, China',
-        geo: {
-          '@type': 'GeoCoordinates',
-          latitude: SITE_INFO.latitude,
-          longitude: SITE_INFO.longitude,
-        },
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: SITE_INFO.city,
-          addressRegion: SITE_INFO.region,
-          addressCountry: SITE_INFO.country,
-        },
-      };
-    case 'products':
-      return {
-        '@context': 'https://schema.org',
-        '@type': 'ItemList',
-        name: 'Cashmere Products Catalog',
-        description: finalDescription,
-        numberOfItems: 591,
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Cashmere Hats & Beanies' },
-          { '@type': 'ListItem', position: 2, name: 'Cashmere Scarves & Wraps' },
-          { '@type': 'ListItem', position: 3, name: 'Cashmere Sweaters' },
-          { '@type': 'ListItem', position: 4, name: 'Cashmere Accessories' },
-          { '@type': 'ListItem', position: 5, name: 'Cashmere Yarn' },
-        ],
-      };
-    default:
-      return {
-        '@context': 'https://schema.org',
-        '@type': 'WebPage',
-        name: finalTitle,
-        description: finalDescription,
-        inLanguage: LOCALE_HREFLANG[locale],
-      };
-  }
-})();
-
-const allSchemas: any[] = [orgSchema, localBusinessSchema, pageSchema];
-
-// Append any caller-supplied custom schemas (Product, BreadcrumbList, etc.)
-if (customSchemas.length) {
-  for (const s of customSchemas) {
-    if (s) allSchemas.push(s);
-  }
-}
-
-// 面包屑导航 Schema
-const bc = PAGE_BREADCRUMB[_pageKey];
-if (bc) {
-  allSchemas.push(breadcrumbSchema(locale, bc(locale)));
-}
-
-// 服务 Schema（首页 + 内容页）
-if (_schema === 'home' || ['raw-material', 'yarn-fabric', 'garment-oem', 'factory'].includes(_schema)) {
-  allSchemas.push(servicesSchema(SERVICES[locale]));
-}
-
-// FAQ Schema（FAQ 页 + 任何调用方显式传入 faqs 的页面）。
-// 之前只在 schema==='faq' 时触发；详情页 / 博客通常在 hero 之后渲染 <SEOFaq/>，
-// 通过 props.faqs 直接传入即可让它们自动获得 FAQPage rich result。
-if (faqs && faqs.length > 0) {
-  allSchemas.push(faqPageSchema(faqs));
-}
----
-
-<!DOCTYPE html>
-<html lang={LOCALE_HREFLANG[locale]}>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="generator" content={Astro.generator} />
-
-    <!-- TDK -->
-    <title>{finalTitle}</title>
-    <meta name="description" content={finalDescription} />
-    <meta name="keywords" content={finalKeywords.join(', ')} />
-    {noIndex && <meta name="robots" content="noindex,nofollow" />}
-
-    <!-- Canonical -->
-    <link rel="canonical" href={canonical} />
-
-    <!-- Prefetch hints: highest-traffic pages for next-click instant -->
-    <link rel="prefetch" href={`/${locale}/products`} />
-    <link rel="prefetch" href={`/${locale}/contact`} />
-    <link rel="prefetch" href={`/${locale}/factory`} />
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-    <link rel="dns-prefetch" href="https://api.resend.com" />
-
-    <!-- hreflang 多语言 -->
-    {hreflangs.map((hl: any) => (
-      <link rel="alternate" hreflang={hl.lang} href={hl.href} />
-    ))}
-
-    <!-- GEO Meta -->
-    <meta name="geo.region" content="CN-15" />
-    <meta name="geo.placename" content="Ordos, Inner Mongolia" />
-    <meta name="geo.position" content={`${SITE_INFO.latitude};${SITE_INFO.longitude}`} />
-    <meta name="ICBM" content={`${SITE_INFO.latitude}, ${SITE_INFO.longitude}`} />
-
-    <!-- Open Graph -->
-    <meta property="og:type" content={ogType} />
-    <meta property="og:title" content={finalTitle} />
-    <meta property="og:description" content={finalDescription} />
-    <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:site_name" content={SITE_INFO.name} />
-    <meta property="og:locale" content={LOCALE_HREFLANG[locale]} />
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={finalTitle} />
-    <meta name="twitter:description" content={finalDescription} />
-    <meta name="twitter:image" content={ogImage} />
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Google Search Console 验证 -->
-    <meta name="google-site-verification" content="google029578c30ed5c01f" />
-
-    <!-- IndexNow (Bing + Yandex + DuckDuckGo + Seznam + Naver): when a new product or
-         blog post is published, ping https://api.indexnow.org/indexnow with the URL.
-         See src/lib/indexnow.ts for the submit() helper. -->
-    <meta name="indexnow" content="www.erdosdx.com" />
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-    <!-- JSON-LD Schema -->
-    {allSchemas.map((s: any) => (
-      <script type="application/ld+json" set:html={JSON.stringify(s, null, 0)} is:inline />
-    ))}
-
-    <!-- Page-level head slot (article:*, extra JSON-LD, etc.) -->
-    <slot name="head" />
-
-    <!-- GA4 (only loads if PUBLIC_GA4_ID env var is set; respects cookie consent later) -->
-    {import.meta.env.PUBLIC_GA4_ID && (
-      <>
-        <script is:inline define:vars={{ locale, gaId: import.meta.env.PUBLIC_GA4_ID }}>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', gaId, {
-            send_page_view: true,
-            locale: locale,
-            custom_map: { dimension1: 'locale' },
-            cookie_domain: 'erdosdx.com',
-            cookie_flags: 'SameSite=None;Secure',
-          });
-          window.__HERMES_LOCALE__ = locale;
-          window.__HERMES_GA_ID__ = gaId;
+---
+/**
+ * BaseLayout - 6 国子目录网站基础布局
+ * 自动处理：hreflang / TDK / Schema / GA4 / Cookie Consent
+ */
+import '@/styles/global.css';
+import { TRANSLATIONS, LOCALE_HREFLANG, type Locale } from '@/lib/i18n';
+import { SEO, SITE_URL, SITE_INFO, generateHreflangs } from '@/lib/seo';
+import { breadcrumbSchema, faqPageSchema, servicesSchema, PAGE_BREADCRUMB, SERVICES, type FAQItem } from '@/lib/schema';
+import AIChatWidget from '@/components/islands/AIChatWidget.tsx';
+import InquiryCart from '@/components/islands/InquiryCart.tsx';
+
+export interface Props {
+  locale: Locale;
+  pageKey: string;
+  path?: string;
+  title?: string;
+  description?: string;
+  keywords?: string[];
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  canonicalPath?: string;
+  schema?: 'home' | 'raw-material' | 'yarn-fabric' | 'garment-oem' | 'factory' | 'ordos-origin' | 'contact' | 'blog' | 'faq' | 'products' | 'general';
+  noIndex?: boolean;
+  faqs?: FAQItem[]; // 用于 FAQ 页
+  customSchemas?: any[]; // 额外的 JSON-LD schema（Product/BreadcrumbList 等）
+}
+
+const {
+  locale,
+  pageKey: _pageKey,
+  path = '/',
+  title,
+  description,
+  keywords,
+  ogImage = 'https://www.erdosdx.com/images/og-default.png',
+  ogType = 'website',
+  canonicalPath,
+  schema: _schema = 'general',
+  noIndex = false,
+  faqs,
+  customSchemas = [],
+} = Astro.props as Props;
+
+const translation = TRANSLATIONS[locale];
+const seo = SEO[locale];
+const pageSEO = (seo as any)[_pageKey];
+
+const finalTitle: string = String(title ?? pageSEO?.title ?? 'DONGXIAO® Cashmere');
+const finalDescription: string = String(description ?? pageSEO?.description ?? '');
+const finalKeywords: string[] = Array.isArray(keywords)
+  ? keywords.map((keyword) => String(keyword))
+  : String(keywords ?? pageSEO?.keywords ?? '').split(',').map((keyword) => keyword.trim()).filter(Boolean);
+
+const canonical = canonicalPath
+  ? `${SITE_URL}/${locale}${canonicalPath}`
+  : `${SITE_URL}/${locale}${path}`;
+
+const hreflangs = generateHreflangs(path);
+
+// GEO Schema - 全部页面都加 Organization + LocalBusiness
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: SITE_INFO.name,
+  legalName: SITE_INFO.legalName,
+  url: SITE_URL,
+  logo: `${SITE_URL}/logo.svg`,
+  foundingDate: String(SITE_INFO.foundingYear),
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: SITE_INFO.address,
+    addressLocality: SITE_INFO.city,
+    addressRegion: SITE_INFO.region,
+    addressCountry: SITE_INFO.country,
+  },
+  contactPoint: [{
+    '@type': 'ContactPoint',
+    telephone: SITE_INFO.phone,
+    contactType: 'sales',
+    availableLanguage: ['English', 'Chinese', 'German', 'French', 'Japanese', 'Korean'],
+    areaServed: 'Worldwide',
+  }],
+  sameAs: Object.values(SITE_INFO.social),
+};
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': `${SITE_URL}/#localbusiness`,
+  name: SITE_INFO.name,
+  description: finalDescription,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: SITE_INFO.city,
+    addressRegion: SITE_INFO.region,
+    addressCountry: SITE_INFO.country,
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: SITE_INFO.latitude,
+    longitude: SITE_INFO.longitude,
+  },
+  telephone: SITE_INFO.phone,
+  priceRange: '$$$',
+};
+
+const pageSchema = (() => {
+  switch (_schema) {
+    case 'home':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: SITE_INFO.name,
+        url: SITE_URL,
+        inLanguage: ['en', 'de', 'fr', 'ja', 'ko', 'zh-CN'],
+      };
+    case 'ordos-origin':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Place',
+        name: 'Ordos Cashmere Region',
+        description: 'Premium cashmere production region in Inner Mongolia, China',
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: SITE_INFO.latitude,
+          longitude: SITE_INFO.longitude,
+        },
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: SITE_INFO.city,
+          addressRegion: SITE_INFO.region,
+          addressCountry: SITE_INFO.country,
+        },
+      };
+    case 'products':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        name: 'Cashmere Products Catalog',
+        description: finalDescription,
+        numberOfItems: 591,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Cashmere Hats & Beanies' },
+          { '@type': 'ListItem', position: 2, name: 'Cashmere Scarves & Wraps' },
+          { '@type': 'ListItem', position: 3, name: 'Cashmere Sweaters' },
+          { '@type': 'ListItem', position: 4, name: 'Cashmere Accessories' },
+          { '@type': 'ListItem', position: 5, name: 'Cashmere Yarn' },
+        ],
+      };
+    default:
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: finalTitle,
+        description: finalDescription,
+        inLanguage: LOCALE_HREFLANG[locale],
+      };
+  }
+})();
+
+const allSchemas: any[] = [orgSchema, localBusinessSchema, pageSchema];
+
+// Append any caller-supplied custom schemas (Product, BreadcrumbList, etc.)
+if (customSchemas.length) {
+  for (const s of customSchemas) {
+    if (s) allSchemas.push(s);
+  }
+}
+
+// 面包屑导航 Schema
+const bc = PAGE_BREADCRUMB[_pageKey];
+if (bc) {
+  allSchemas.push(breadcrumbSchema(locale, bc(locale)));
+}
+
+// 服务 Schema（首页 + 内容页）
+if (_schema === 'home' || ['raw-material', 'yarn-fabric', 'garment-oem', 'factory'].includes(_schema)) {
+  allSchemas.push(servicesSchema(SERVICES[locale]));
+}
+
+// FAQ Schema（FAQ 页 + 任何调用方显式传入 faqs 的页面）。
+// 之前只在 schema==='faq' 时触发；详情页 / 博客通常在 hero 之后渲染 <SEOFaq/>，
+// 通过 props.faqs 直接传入即可让它们自动获得 FAQPage rich result。
+if (faqs && faqs.length > 0) {
+  allSchemas.push(faqPageSchema(faqs));
+}
+---
+
+<!DOCTYPE html>
+<html lang={LOCALE_HREFLANG[locale]}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- TDK -->
+    <title>{finalTitle}</title>
+    <meta name="description" content={finalDescription} />
+    <meta name="keywords" content={finalKeywords.join(', ')} />
+    {noIndex && <meta name="robots" content="noindex,nofollow" />}
+
+    <!-- Canonical -->
+    <link rel="canonical" href={canonical} />
+
+    <!-- Prefetch hints: highest-traffic pages for next-click instant -->
+    <link rel="prefetch" href={`/${locale}/products`} />
+    <link rel="prefetch" href={`/${locale}/contact`} />
+    <link rel="prefetch" href={`/${locale}/factory`} />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://api.resend.com" />
+
+    <!-- hreflang 多语言 -->
+    {hreflangs.map((hl: any) => (
+      <link rel="alternate" hreflang={hl.lang} href={hl.href} />
+    ))}
+
+    <!-- GEO Meta -->
+    <meta name="geo.region" content="CN-15" />
+    <meta name="geo.placename" content="Ordos, Inner Mongolia" />
+    <meta name="geo.position" content={`${SITE_INFO.latitude};${SITE_INFO.longitude}`} />
+    <meta name="ICBM" content={`${SITE_INFO.latitude}, ${SITE_INFO.longitude}`} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={finalTitle} />
+    <meta property="og:description" content={finalDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content={SITE_INFO.name} />
+    <meta property="og:locale" content={LOCALE_HREFLANG[locale]} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={finalTitle} />
+    <meta name="twitter:description" content={finalDescription} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Google Search Console 验证 -->
+    <meta name="google-site-verification" content="google029578c30ed5c01f" />
+
+    <!-- IndexNow (Bing + Yandex + DuckDuckGo + Seznam + Naver): when a new product or
+         blog post is published, ping https://api.indexnow.org/indexnow with the URL.
+         See src/lib/indexnow.ts for the submit() helper. -->
+    <meta name="indexnow" content="www.erdosdx.com" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- JSON-LD Schema -->
+    {allSchemas.map((s: any) => (
+      <script type="application/ld+json" set:html={JSON.stringify(s, null, 0)} is:inline />
+    ))}
+
+    <!-- Page-level head slot (article:*, extra JSON-LD, etc.) -->
+    <slot name="head" />
+
+    <!-- GA4 (only loads if PUBLIC_GA4_ID env var is set; respects cookie consent later) -->
+    {import.meta.env.PUBLIC_GA4_ID && (
+      <>
+        <script is:inline define:vars={{ locale, gaId: import.meta.env.PUBLIC_GA4_ID }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', gaId, {
+            send_page_view: true,
+            locale: locale,
+            custom_map: { dimension1: 'locale' },
+            cookie_domain: 'erdosdx.com',
+            cookie_flags: 'SameSite=None;Secure',
+          });
+          window.__HERMES_LOCALE__ = locale;
+          window.__HERMES_GA_ID__ = gaId;
         </script>
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA4_ID}`}></script>
-      </>
-    )}
-  </head>
-
-  <body>
-    <slot name="header" />
-    <main><slot /></main>
-    <slot name="footer" />
-    <slot name="floating" />
-    <slot name="cookie-consent" />
-
-    <!-- AI 24h 智能客服（由 FloatingChatButtons 的 AI 按钮触发打开）。
-         client:visible keeps the React island dormant until the button area
-         scrolls into view, so visitors who never reach the chat button never
-         pay the hydration cost. The CustomEvent `hermes:open-ai-chat` still
-         opens the panel on first click. -->
-    <AIChatWidget client:visible locale={locale} />
-
-    <!-- Inquiry cart (B2B RFQ list) — client:idle so the React island defers
-         until the main thread is free; visitors who never add an item never
-         pay the hydration cost. window.dxCart is still exposed synchronously
-         on mount, and products/buttons listen for the "dx-cart-ready" event. -->
-    <InquiryCart client:idle locale={locale} />
-
-    <!-- Scroll Reveal（轻量 IntersectionObserver，无依赖） -->
+      </>
+    )}
+  </head>
+
+  <body>
+    <slot name="header" />
+    <main><slot /></main>
+    <slot name="footer" />
+    <slot name="floating" />
+    <slot name="cookie-consent" />
+
+    <!-- AI 24h 智能客服（由 FloatingChatButtons 的 AI 按钮触发打开）。
+         client:visible keeps the React island dormant until the button area
+         scrolls into view, so visitors who never reach the chat button never
+         pay the hydration cost. The CustomEvent `hermes:open-ai-chat` still
+         opens the panel on first click. -->
+    <AIChatWidget client:visible locale={locale} />
+
+    <!-- Inquiry cart (B2B RFQ list) — client:idle so the React island defers
+         until the main thread is free; visitors who never add an item never
+         pay the hydration cost. window.dxCart is still exposed synchronously
+         on mount, and products/buttons listen for the "dx-cart-ready" event. -->
+    <InquiryCart client:idle locale={locale} />
+
+    <!-- Scroll Reveal（轻量 IntersectionObserver，无依赖） -->
+    <script is:inline>
+      // Counter 动画：滚动到时从 0 滚动到目标数。元素 <span class="counter" data-counter="23">23</span>
+      (function() {
+        if (!('IntersectionObserver' in window)) return;
+        var counters = document.querySelectorAll('[data-counter]');
+        if (!counters.length) return;
+        var counterObserver = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (!entry.isIntersecting) return;
+            var el = entry.target;
+            if (el.dataset.counted) return;
+            el.dataset.counted = '1';
+            var target = parseFloat(el.dataset.counter);
+            var suffix = el.dataset.suffix || '';
+            var duration = 1400;
+            var start = performance.now();
+            function step(now) {
+              var p = Math.min(1, (now - start) / duration);
+              var eased = 1 - Math.pow(1 - p, 3); // cubic ease-out
+              var val = Math.floor(eased * target);
+              // Preserve the original suffix characters (e.g. "1,200t", "23+", "ISO 9001")
+              el.textContent = formatNumber(val, target, suffix);
+              if (p < 1) requestAnimationFrame(step);
+              else el.textContent = el.dataset.display || formatNumber(target, target, suffix);
+            }
+            function formatNumber(v, original, s) {
+              // Original is the target value (which may have commas / signs)
+              if (original >= 1000) return v.toLocaleString('en-US') + s;
+              return v + s;
+            }
+            requestAnimationFrame(step);
+            counterObserver.unobserve(el);
+          });
+        }, { threshold: 0.4 });
+        counters.forEach(function(c) { counterObserver.observe(c); });
+      })();
+    </script>
+
+    <script is:inline>
+      (function() {
+        if (!('IntersectionObserver' in window)) {
+          // 老浏览器兜底：直接全部显示
+          document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale')
+            .forEach(function(el) { el.classList.add('reveal-visible'); });
+          return;
+        }
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('reveal-visible');
+              observer.unobserve(entry.target); // 一次性，进入后不再观察
+            }
+          });
+        }, {
+          threshold: 0.12,
+          rootMargin: '0px 0px -60px 0px' // 提前 60px 触发，避免太晚
+        });
+        function watch() {
+          document.querySelectorAll('.reveal:not(.reveal-visible), .reveal-left:not(.reveal-visible), .reveal-right:not(.reveal-visible), .reveal-scale:not(.reveal-visible)')
+            .forEach(function(el) { observer.observe(el); });
+        }
+        // 初始 + 监听 DOM 变化（React islands 加载后会有新元素）
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', watch);
+        } else {
+          watch();
+        }
+        // 兜底：3 秒后强制全部显示（防止 JS 异常卡住内容）
+        setTimeout(function() {
+          document.querySelectorAll('.reveal:not(.reveal-visible), .reveal-left:not(.reveal-visible), .reveal-right:not(.reveal-visible), .reveal-scale:not(.reveal-visible)')
+            .forEach(function(el) { el.classList.add('reveal-visible'); });
+        }, 3000);
+      })();
+    </script>
+
+    <!-- IP 识别 + 访客画像（页面浏览/停留时长聚合） -->
+    <script is:inline>
+      (function() {
+        const lang = (navigator.language || 'en').toLowerCase();
+        const isChinaIP = /^(zh|zh-cn|zh-hans)/i.test(lang);
+        window.__HERMES_REGION__ = isChinaIP ? 'CN' : 'GLOBAL';
+        window.__HERMES_HIGHLIGHT__ = isChinaIP ? 'wechat' : 'whatsapp';
+
+        // 真实 IP + 国别由 Vercel /api/track-event 解析（基于 x-vercel-ip-country）
+        // 这里只发页面浏览/停留事件
+        function ping(eventName, extra) {
+          try {
+            fetch('/api/track-event', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(Object.assign({
+                event_name: eventName,
+                locale: window.__HERMES_LOCALE__,
+                region: window.__HERMES_REGION__,
+                path: location.pathname,
+                referrer: document.referrer || '',
+                title: document.title,
+              }, extra || {})),
+              keepalive: true,
+            }).catch(() => {});
+          } catch (e) {}
+        }
+
+        // 页面浏览 — 立即发送一次（带 keepalive，关页时浏览器仍会发出）。
+        ping('page_view', { ts: Date.now() });
+
+        // 停留时长 + 滚动深度 — 仅在离开页时一次性发送，避免每 15s 打一次服务端。
+        const dwellStart = Date.now();
+        let dwellTotal = 0;
+        const scrollMarks = { 25: false, 50: false, 75: false, 100: false };
+        window.addEventListener('scroll', function() {
+          const docH = document.documentElement.scrollHeight - window.innerHeight;
+          if (docH <= 0) return;
+          const pct = Math.round((window.scrollY / docH) * 100);
+          scrollMarks.forEach(function(_, m) {
+            if (pct >= m && !scrollMarks[m]) scrollMarks[m] = true;
+          });
+        }, { passive: true });
+
+        // 离开页：合并 dwell + scroll + page_view 标志，一次性 batch 发出。
+        window.addEventListener('pagehide', function() {
+          dwellTotal = Math.round((Date.now() - dwellStart) / 1000);
+          const depth = Number(Object.entries(scrollMarks).filter(([, v]) => v).map(([k]) => Number(k)).sort((a, b) => b - a)[0] || 0);
+          ping('page_unload', { dwell_seconds: dwellTotal, scroll_depth: depth });
+        });
+      })();
+    </script>
+<!-- Scroll-aware nav shadow强化 -->
     <script is:inline>
-      // Counter 动画：滚动到时从 0 滚动到目标数。元素 <span class="counter" data-counter="23">23</span>
       (function() {
-        if (!('IntersectionObserver' in window)) return;
-        var counters = document.querySelectorAll('[data-counter]');
-        if (!counters.length) return;
-        var counterObserver = new IntersectionObserver(function(entries) {
-          entries.forEach(function(entry) {
-            if (!entry.isIntersecting) return;
-            var el = entry.target;
-            if (el.dataset.counted) return;
-            el.dataset.counted = '1';
-            var target = parseFloat(el.dataset.counter);
-            var suffix = el.dataset.suffix || '';
-            var duration = 1400;
-            var start = performance.now();
-            function step(now) {
-              var p = Math.min(1, (now - start) / duration);
-              var eased = 1 - Math.pow(1 - p, 3); // cubic ease-out
-              var val = Math.floor(eased * target);
-              // Preserve the original suffix characters (e.g. "1,200t", "23+", "ISO 9001")
-              el.textContent = formatNumber(val, target, suffix);
-              if (p < 1) requestAnimationFrame(step);
-              else el.textContent = el.dataset.display || formatNumber(target, target, suffix);
-            }
-            function formatNumber(v, original, s) {
-              // Original is the target value (which may have commas / signs)
-              if (original >= 1000) return v.toLocaleString('en-US') + s;
-              return v + s;
-            }
-            requestAnimationFrame(step);
-            counterObserver.unobserve(el);
-          });
-        }, { threshold: 0.4 });
-        counters.forEach(function(c) { counterObserver.observe(c); });
+        var header = document.querySelector('header.sticky');
+        if (!header) return;
+        var scrolled = false;
+        function update() {
+          var should = window.scrollY > 8;
+          if (should !== scrolled) {
+            scrolled = should;
+            header.classList.toggle('is-scrolled', should);
+          }
+        }
+        window.addEventListener('scroll', update, { passive: true });
+        update();
       })();
     </script>
 
-    <script is:inline>
-      (function() {
-        if (!('IntersectionObserver' in window)) {
-          // 老浏览器兜底：直接全部显示
-          document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale')
-            .forEach(function(el) { el.classList.add('reveal-visible'); });
-          return;
-        }
-        var observer = new IntersectionObserver(function(entries) {
-          entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('reveal-visible');
-              observer.unobserve(entry.target); // 一次性，进入后不再观察
-            }
-          });
-        }, {
-          threshold: 0.12,
-          rootMargin: '0px 0px -60px 0px' // 提前 60px 触发，避免太晚
-        });
-        function watch() {
-          document.querySelectorAll('.reveal:not(.reveal-visible), .reveal-left:not(.reveal-visible), .reveal-right:not(.reveal-visible), .reveal-scale:not(.reveal-visible)')
-            .forEach(function(el) { observer.observe(el); });
-        }
-        // 初始 + 监听 DOM 变化（React islands 加载后会有新元素）
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', watch);
-        } else {
-          watch();
-        }
-        // 兜底：3 秒后强制全部显示（防止 JS 异常卡住内容）
-        setTimeout(function() {
-          document.querySelectorAll('.reveal:not(.reveal-visible), .reveal-left:not(.reveal-visible), .reveal-right:not(.reveal-visible), .reveal-scale:not(.reveal-visible)')
-            .forEach(function(el) { el.classList.add('reveal-visible'); });
-        }, 3000);
-      })();
-    </script>
-
-    <!-- IP 识别 + 访客画像（页面浏览/停留时长聚合） -->
-    <script is:inline>
-      (function() {
-        const lang = (navigator.language || 'en').toLowerCase();
-        const isChinaIP = /^(zh|zh-cn|zh-hans)/i.test(lang);
-        window.__HERMES_REGION__ = isChinaIP ? 'CN' : 'GLOBAL';
-        window.__HERMES_HIGHLIGHT__ = isChinaIP ? 'wechat' : 'whatsapp';
-
-        // 真实 IP + 国别由 Vercel /api/track-event 解析（基于 x-vercel-ip-country）
-        // 这里只发页面浏览/停留事件
-        function ping(eventName, extra) {
-          try {
-            fetch('/api/track-event', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(Object.assign({
-                event_name: eventName,
-                locale: window.__HERMES_LOCALE__,
-                region: window.__HERMES_REGION__,
-                path: location.pathname,
-                referrer: document.referrer || '',
-                title: document.title,
-              }, extra || {})),
-              keepalive: true,
-            }).catch(() => {});
-          } catch (e) {}
-        }
-
-        // 页面浏览 — 立即发送一次（带 keepalive，关页时浏览器仍会发出）。
-        ping('page_view', { ts: Date.now() });
-
-        // 停留时长 + 滚动深度 — 仅在离开页时一次性发送，避免每 15s 打一次服务端。
-        const dwellStart = Date.now();
-        let dwellTotal = 0;
-        const scrollMarks = { 25: false, 50: false, 75: false, 100: false };
-        window.addEventListener('scroll', function() {
-          const docH = document.documentElement.scrollHeight - window.innerHeight;
-          if (docH <= 0) return;
-          const pct = Math.round((window.scrollY / docH) * 100);
-          scrollMarks.forEach(function(_, m) {
-            if (pct >= m && !scrollMarks[m]) scrollMarks[m] = true;
-          });
-        }, { passive: true });
-
-        // 离开页：合并 dwell + scroll + page_view 标志，一次性 batch 发出。
-        window.addEventListener('pagehide', function() {
-          dwellTotal = Math.round((Date.now() - dwellStart) / 1000);
-          const depth = Number(Object.entries(scrollMarks).filter(([, v]) => v).map(([k]) => Number(k)).sort((a, b) => b - a)[0] || 0);
-          ping('page_unload', { dwell_seconds: dwellTotal, scroll_depth: depth });
-        });
-      })();
-    </script>
   </body>
 </html>
