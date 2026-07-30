@@ -1,276 +1,284 @@
----
-/**
- * Factory 工厂介绍页
- */
-export const prerender = true;
-import BaseLayout from '@/layouts/BaseLayout.astro';
-import Navigation from '@/components/Navigation.astro';
-import Footer from '@/components/Footer.astro';
-import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
-import CookieConsent from '@/components/CookieConsent.astro';
-import SEOFaq from '@/components/SEOFaq.astro';
-import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
-
-export function getStaticPaths() {
-  return LOCALES.map((locale) => ({ params: { locale } }));
+---
+/**
+ * Factory 工厂介绍页
+ */
+export const prerender = true;
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
+import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
+import SEOFaq from '@/components/SEOFaq.astro';
+import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
+
+export function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const { locale: rawLocale } = Astro.params;
+const locale = pickLocale(rawLocale);
+
+const t: Record<string, Record<string, string>> = {
+  en: {
+    tagline: 'OUR FACTORY',
+    title: 'Factory\nStrength',
+    subtitle: '38,000 sqm · 500+ workers · 1,200t annual capacity · ISO certified source facility in Ordos.',
+    scaleTitle: 'Scale & capacity',
+    scaleSub: 'A vertically integrated facility, from dehairing to finished knitwear.',
+    equipTitle: 'Equipment',
+    equipSub: 'Italian, German, Japanese, Swiss machinery. Best-in-class for cashmere.',
+    certTitle: 'Certifications',
+    ctaTitle: 'Visit our factory',
+    ctaSub: 'B2B clients welcome for on-site visits. 7-day advance notice.',
+    cta: 'Schedule a visit',
+  },
+  cn: {
+    tagline: '工厂实力',
+    title: '工厂\n实力',
+    subtitle: '38,000平米厂房 · 500+员工 · 年产能1,200吨 · ISO认证源头工厂',
+    scaleTitle: '规模与产能',
+    scaleSub: '全产业链垂直整合，从原料分梳到成衣出厂。',
+    equipTitle: '生产设备',
+    equipSub: '意大利、德国、日本、瑞士设备，全球顶级羊绒生产配置。',
+    certTitle: '资质认证',
+    ctaTitle: '预约考察',
+    ctaSub: '欢迎 B2B 客户实地考察，提前 7 天预约。',
+    cta: '预约参观',
+  },
+  de: { tagline: 'FABRIK', title: 'Fabrik-\nstärke', subtitle: '38.000 qm · 500+ Mitarbeiter · 1.200t Jahreskapazität', scaleTitle: 'Maßstab', scaleSub: 'Vertikal integriert.', equipTitle: 'Ausrüstung', equipSub: 'Italienische, deutsche, japanische, schweizer Maschinen.', certTitle: 'Zertifizierungen', ctaTitle: 'Werk besuchen', ctaSub: '7 Tage Vorlauf.', cta: 'Besuch planen' },
+  fr: { tagline: 'USINE', title: 'Force de\nl\'usine', subtitle: '38 000 m² · 500+ · 1 200t capacité', scaleTitle: 'Échelle', scaleSub: 'Intégration verticale.', equipTitle: 'Équipement', equipSub: 'Machines italiennes, allemandes, japonaises, suisses.', certTitle: 'Certifications', ctaTitle: 'Visiter l\'usine', ctaSub: 'Préavis 7 jours.', cta: 'Planifier' },
+  ja: { tagline: '工場', title: '工場の\n強み', subtitle: '38,000平米 · 500名+ · 年間1,200トン', scaleTitle: '規模・能力', scaleSub: '垂直統合。', equipTitle: '設備', equipSub: '伊・独・日・スイス製。', certTitle: '認証', ctaTitle: '工場見学', ctaSub: '7日前予約。', cta: '予約' },
+  kr: { tagline: '공장', title: '공장\n강점', subtitle: '38,000 sqm · 500+ · 연 1,200톤', scaleTitle: '규모', scaleSub: '수직 통합.', equipTitle: '설비', equipSub: '이탈리아·독일·일본·스위스.', certTitle: '인증', ctaTitle: '공장 방문', ctaSub: '7일 사전 예약.', cta: '예약' },
+};
+const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
+
+// 把 "{value}" 拆成数字 + 后缀（用于数字滚动计数动画）
+function parseCounter(v: string): { n: number; s: string } {
+  const m = v.match(/^(?:[^\d]*?)(\d[\d,]*)(.*)$/);
+  if (!m) return { n: 0, s: v };
+  const n = parseInt(m[1].replace(/,/g, ''), 10);
+  return { n: isFinite(n) ? n : 0, s: m[2] || '' };
 }
 
-const { locale: rawLocale } = Astro.params;
-const locale = pickLocale(rawLocale);
-
-const t: Record<string, Record<string, string>> = {
-  en: {
-    tagline: 'OUR FACTORY',
-    title: 'Factory\nStrength',
-    subtitle: '38,000 sqm · 500+ workers · 1,200t annual capacity · ISO certified source facility in Ordos.',
-    scaleTitle: 'Scale & capacity',
-    scaleSub: 'A vertically integrated facility, from dehairing to finished knitwear.',
-    equipTitle: 'Equipment',
-    equipSub: 'Italian, German, Japanese, Swiss machinery. Best-in-class for cashmere.',
-    certTitle: 'Certifications',
-    ctaTitle: 'Visit our factory',
-    ctaSub: 'B2B clients welcome for on-site visits. 7-day advance notice.',
-    cta: 'Schedule a visit',
-  },
-  cn: {
-    tagline: '工厂实力',
-    title: '工厂\n实力',
-    subtitle: '38,000平米厂房 · 500+员工 · 年产能1,200吨 · ISO认证源头工厂',
-    scaleTitle: '规模与产能',
-    scaleSub: '全产业链垂直整合，从原料分梳到成衣出厂。',
-    equipTitle: '生产设备',
-    equipSub: '意大利、德国、日本、瑞士设备，全球顶级羊绒生产配置。',
-    certTitle: '资质认证',
-    ctaTitle: '预约考察',
-    ctaSub: '欢迎 B2B 客户实地考察，提前 7 天预约。',
-    cta: '预约参观',
-  },
-  de: { tagline: 'FABRIK', title: 'Fabrik-\nstärke', subtitle: '38.000 qm · 500+ Mitarbeiter · 1.200t Jahreskapazität', scaleTitle: 'Maßstab', scaleSub: 'Vertikal integriert.', equipTitle: 'Ausrüstung', equipSub: 'Italienische, deutsche, japanische, schweizer Maschinen.', certTitle: 'Zertifizierungen', ctaTitle: 'Werk besuchen', ctaSub: '7 Tage Vorlauf.', cta: 'Besuch planen' },
-  fr: { tagline: 'USINE', title: 'Force de\nl\'usine', subtitle: '38 000 m² · 500+ · 1 200t capacité', scaleTitle: 'Échelle', scaleSub: 'Intégration verticale.', equipTitle: 'Équipement', equipSub: 'Machines italiennes, allemandes, japonaises, suisses.', certTitle: 'Certifications', ctaTitle: 'Visiter l\'usine', ctaSub: 'Préavis 7 jours.', cta: 'Planifier' },
-  ja: { tagline: '工場', title: '工場の\n強み', subtitle: '38,000平米 · 500名+ · 年間1,200トン', scaleTitle: '規模・能力', scaleSub: '垂直統合。', equipTitle: '設備', equipSub: '伊・独・日・スイス製。', certTitle: '認証', ctaTitle: '工場見学', ctaSub: '7日前予約。', cta: '予約' },
-  kr: { tagline: '공장', title: '공장\n강점', subtitle: '38,000 sqm · 500+ · 연 1,200톤', scaleTitle: '규모', scaleSub: '수직 통합.', equipTitle: '설비', equipSub: '이탈리아·독일·일본·스위스.', certTitle: '인증', ctaTitle: '공장 방문', ctaSub: '7일 사전 예약.', cta: '예약' },
-};
-const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
-
-const scale = [
-  { value: '38,000', unit: 'm²', label: locale === 'cn' ? '厂房面积' : 'Factory Area' },
-  { value: '500+', unit: '', label: locale === 'cn' ? '员工' : 'Employees' },
-  { value: '1,200', unit: 't', label: locale === 'cn' ? '年产能' : 'Annual Capacity' },
-  { value: '50+', unit: '', label: locale === 'cn' ? '出口国家' : 'Export Countries' },
-  { value: '23+', unit: 'yrs', label: locale === 'cn' ? '行业经验' : 'Years of Excellence' },
-  { value: '7', unit: '', label: locale === 'cn' ? '国际认证' : 'Certifications' },
-];
-
-const equipment = [
-  { name: locale === 'cn' ? '意大利梳绒机' : 'Italian Dehairing Lines', spec: '12 lines' },
-  { name: locale === 'cn' ? '日本岛精横机' : 'Shima Seiki Flatbed', spec: '48 machines' },
-  { name: locale === 'cn' ? '德国斯托尔电脑横机' : 'Stoll CMS Knitting', spec: '24 machines' },
-  { name: locale === 'cn' ? '意大利络筒机' : 'Italian Winding Lines', spec: '8 lines' },
-  { name: locale === 'cn' ? '瑞士乌斯特检测仪' : 'Uster Tester', spec: '6 units' },
-  { name: locale === 'cn' ? '全自动包装线' : 'Auto Packing Lines', spec: '4 lines' },
-];
-
-const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 'Sedex SMETA', 'WRAP', 'SFA'];
----
-
-<BaseLayout locale={locale} pageKey="factory" path="/factory">
-  <Navigation slot="header" locale={locale} currentPath={`/${locale}/factory`} />
-
-  <!-- HERO -->
-  <section class="relative bg-brand-ink text-white overflow-hidden">
-    <div class="grid grid-cols-1 lg:grid-cols-2 min-h-[60vh]">
-      <div class="flex items-center py-20 lg:py-0 px-6 lg:pl-12 order-2 lg:order-1">
-        <div class="max-w-xl">
-          <div class="flex items-center gap-3 mb-8">
-            <span class="h-px w-12 bg-brand-gold"></span>
-            <span class="text-xs tracking-[0.4em] text-brand-gold uppercase font-medium">{T('tagline')}</span>
-          </div>
-          <h1 class="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-8" set:html={T('title').replace(/\n/g, '<br/>')} />
-          <p class="text-lg text-white/75 leading-relaxed max-w-md font-light">{T('subtitle')}</p>
-        </div>
-      </div>
-      <div class="relative aspect-[4/3] lg:aspect-auto overflow-hidden order-1 lg:order-2">
-        <img src="/images/cashmere-fiber.jpg" alt="Cashmere fiber detail — 14.5μm micron dehaired underdown from Inner Mongolia Albus goat" class="ken-burns absolute inset-0 w-full h-full object-cover opacity-80" decoding="async" loading="eager" fetchpriority="high" />
-        <div class="absolute inset-0 bg-gradient-to-l from-transparent to-brand-ink/60"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Scale：6 数据块 -->
-  <section class="py-24 md:py-32 bg-background">
-    <div class="container-narrow">
-      <div class="max-w-2xl mb-16">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="h-px w-8 bg-brand-gold"></span>
-          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">01 / {T('scaleTitle')}</span>
-        </div>
-        <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{T('scaleTitle')}</h2>
-        <p class="text-muted-foreground leading-relaxed">{T('scaleSub')}</p>
-      </div>
-
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-px bg-border">
-        {scale.map((s, i) => (
-          <div class="bg-background p-8 md:p-10 hover:bg-brand-cream/30 transition-colors group">
-            <div class="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4 flex items-baseline justify-between">
-              <span>{s.label}</span>
-              <span class="font-serif text-sm text-brand-gold/50">{String(i+1).padStart(2,'0')}</span>
-            </div>
-            <div class="flex items-baseline gap-1">
-              <span class="font-serif text-4xl md:text-5xl text-brand-chocolate font-light group-hover:text-brand-gold transition-colors">{s.value}</span>
-              {s.unit && <span class="text-sm text-muted-foreground">{s.unit}</span>}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Equipment -->
-  <section class="py-24 md:py-32 bg-brand-cream/50 border-y border-border">
-    <div class="container-narrow">
-      <div class="max-w-2xl mb-16">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="h-px w-8 bg-brand-gold"></span>
-          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">02 / {T('equipTitle')}</span>
-        </div>
-        <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{T('equipTitle')}</h2>
-        <p class="text-muted-foreground leading-relaxed">{T('equipSub')}</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
-        {equipment.map((e, i) => (
-          <div class="bg-brand-cream/30 p-6 md:p-8 flex justify-between items-center group hover:bg-background transition-colors">
-            <div class="flex items-baseline gap-3">
-              <span class="font-serif text-sm text-brand-gold/50">{String(i+1).padStart(2,'0')}</span>
-              <span class="font-serif text-xl group-hover:text-brand-chocolate transition-colors">{e.name}</span>
-            </div>
-            <span class="text-sm text-muted-foreground">{e.spec}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Certifications -->
-  <section class="py-24 md:py-32 bg-background">
-    <div class="container-narrow">
-      <div class="max-w-2xl mb-16">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="h-px w-8 bg-brand-gold"></span>
-          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">03 / {T('certTitle')}</span>
-        </div>
-        <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight">{T('certTitle')}</h2>
-      </div>
-
-      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6">
-        {certs.map((cert) => (
-          <div class="aspect-square rounded-full border border-brand-gold/40 flex items-center justify-center hover:border-brand-gold hover:bg-brand-gold/5 transition-all group">
-            <span class="font-serif text-sm text-brand-gold tracking-wider text-center px-2 leading-tight">{cert}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="py-24 md:py-32 bg-brand-chocolate text-white">
-    <div class="container-narrow text-center">
-      <div class="flex items-center justify-center gap-3 mb-4">
-        <span class="h-px w-8 bg-brand-gold"></span>
-        <span class="text-xs tracking-[0.3em] uppercase text-brand-gold">{locale === 'cn' ? '下一步' : 'Next Step'}</span>
-        <span class="h-px w-8 bg-brand-gold"></span>
-      </div>
-      <h2 class="reveal font-serif text-4xl md:text-5xl font-light mb-4 text-balance">{T('ctaTitle')}</h2>
-      <p class="text-white/75 mb-8 max-w-2xl mx-auto">{T('ctaSub')}</p>
-      <a href={`/${locale}/contact?type=visit`} class="inline-flex items-center gap-2 px-10 py-5 bg-brand-gold text-brand-ink font-medium tracking-wider hover:bg-white transition-colors">
-        {T('cta')}
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-        </svg>
-      </a>
-    </div>
-  </section>
-
-  {locale === 'en' && (
-    <section class="py-12 md:py-16 bg-secondary/20">
-      <div class="container-narrow">
-        <h2 class="reveal font-display text-3xl md:text-4xl font-light mb-4">Factory Audit Checklist: 8 Things to Verify Before You Pay</h2>
-        <p class="text-base text-muted-foreground mb-8 max-w-3xl">
-          Most "cashmere factories" you find on Alibaba are trading companies with no production capacity. Even legitimate factories vary widely in quality systems. Here are 8 verifiable checks you can run from your desk before paying a deposit. We've included what we measure up to on each — so you have a benchmark.
-        </p>
-
-        <div class="space-y-6">
-          <div class="border border-border rounded-lg p-5 bg-card">
-            <h3 class="reveal font-serif text-xl mb-2 flex items-center gap-3">✓ 1. Business License & 14+ Years of Operation</h3>
-            <p class="text-muted-foreground leading-relaxed mb-2">Request a copy of the Chinese business license (营业执照). Check the "established date" — anything less than 10 years is a red flag. Cross-reference the company name against <a href="https://www.qcc.com/" class="text-primary hover:underline" target="_blank" rel="noopener">Qichacha (企查查)</a>, China's free corporate registry.</p>
-            <p class="text-sm text-muted-foreground"><strong>Our score:</strong> Established 2002 (23+ years). Legal name: Ordos Dongxiao Cashmere Co., Ltd. Qichacha ID verifiable.</p>
-          </div>
-
-          <div class="border border-border rounded-lg p-5 bg-card">
-            <h3 class="reveal font-serif text-xl mb-2 flex items-center gap-3">✓ 2. Export License & Customs Records</h3>
-            <p class="text-muted-foreground leading-relaxed mb-2">A real exporter has a Chinese customs declaration registration (海关进出口收发货人备案). Ask for the registration number. Better: ask for the company's HS code export volumes from the past 3 years — Chinese customs data is partially public via <a href="http://www.customs.gov.cn/" class="text-primary hover:underline" target="_blank" rel="noopener">General Administration of Customs</a>.</p>
-            <p class="text-sm text-muted-foreground"><strong>Our score:</strong> Registered exporter since 2008. HS code 6110/6117 (cashmere knitwear) export volume verified.</p>
-          </div>
-
-          <div class="border border-border rounded-lg p-5 bg-card">
-            <h3 class="reveal font-serif text-xl mb-2 flex items-center gap-3">✓ 3. Certifications (OEKO-TEX, ISO 9001, BSCI, GOTS)</h3>
-            <p class="text-muted-foreground leading-relaxed mb-2">Request PDF copies of certificates — not photos. Verify the certificate number on the issuing body's website (e.g. <a href="https://www.oeko-tex.com/" class="text-primary hover:underline" target="_blank" rel="noopener">OEKO-TEX</a>, <a href="https://www.bsci-intl.org/" class="text-primary hover:underline" target="_blank" rel="noopener">BSCI</a>). Expired certificates are worthless — check the validity dates.</p>
-            <p class="text-sm text-muted-foreground"><strong>Our score:</strong> OEKO-TEX Standard 100 (in progress Q4 2026), ISO 9001:2015, BSCI audited, China GOTS-certified organic cashmere line.</p>
-          </div>
-
-          <div class="border border-border rounded-lg p-5 bg-card">
-            <h3 class="reveal font-serif text-xl mb-2 flex items-center gap-3">✓ 4. Physical Factory Video Tour (30+ minutes, unedited)</h3>
-            <p class="text-muted-foreground leading-relaxed mb-2">Request a live video tour via WeChat or WhatsApp. Verify: (a) knitting machines (German STOLL / Japanese Shima Seiki are industry standard); (b) raw material warehouse with bales of cashmere fiber; (c) finished goods warehouse; (d) workshop floor with actual workers. 5-minute edited videos are useless. 30+ minute unedited live tours are the gold standard.</p>
-            <p class="text-sm text-muted-foreground"><strong>Our score:</strong> 38,000 sqm facility. 6 German STOLL CMS 530 knitting machines. 3 Japanese Shima Seiki SSR112. Live video tour available 24/7 with 4 hours notice.</p>
-          </div>
-
-          <div class="border border-border rounded-lg p-5 bg-card">
-            <h3 class="reveal font-serif text-xl mb-2 flex items-center gap-3">✓ 5. Client References (B2B brands, not consumers)</h3>
-            <p class="text-muted-foreground leading-relaxed mb-2">Ask for 3-5 B2B client references. The supplier should give you direct contact emails, not just company names. Real references respond within 24-48 hours. Ask each reference: (a) what was the order size; (b) what was the defect rate; (c) was lead time met; (d) would you reorder?</p>
-            <p class="text-sm text-muted-foreground"><strong>Our score:</strong> Active B2B clients in 50+ countries. Reference contacts available under NDA on request.</p>
-          </div>
-
-          <div class="border border-border rounded-lg p-5 bg-card">
-            <h3 class="reveal font-serif text-xl mb-2 flex items-center gap-3">✓ 6. Bank Reference Letter (for orders over USD 50,000)</h3>
-            <p class="text-muted-foreground leading-relaxed mb-2">For larger orders, request a bank reference letter from the factory's primary bank. Chinese banks (ICBC, Bank of China, CCB) issue these for established clients within 2-3 days. This confirms: (a) the company exists and operates; (b) has credit history; (c) is not on any blacklist.</p>
-            <p class="text-sm text-muted-foreground"><strong>Our score:</strong> Bank reference from ICBC Ordos Branch available within 3 business days upon request.</p>
-          </div>
-
-          <div class="border border-border rounded-lg p-5 bg-card">
-            <h3 class="reveal font-serif text-xl mb-2 flex items-center gap-3">✓ 7. Sample Round — Not Just a Catalog</h3>
-            <p class="text-muted-foreground leading-relaxed mb-2">A real factory has yarn inventory, knitting capacity, and washing/finishing lines. A catalog-only supplier sources from another factory. Test: order 2-3 hand-loom samples at USD 50-150 each. Real factories respond in 7-15 days. Catalog-only suppliers take 30+ days (because they're sub-contracting).</p>
-            <p class="text-sm text-muted-foreground"><strong>Our score:</strong> Hand-loom sample turnaround 7-15 days. Sample cost refundable against bulk order over 1,000 pcs.</p>
-          </div>
-
-          <div class="border border-border rounded-lg p-5 bg-card">
-            <h3 class="reveal font-serif text-xl mb-2 flex items-center gap-3">✓ 8. Third-Party Inspection Access (SGS, Bureau Veritas, Intertek)</h3>
-            <p class="text-muted-foreground leading-relaxed mb-2">A trustworthy factory WELCOMES third-party inspection at the pre-shipment stage. They cover inspector's local travel, accommodation, and reasonable on-site time. If a factory tries to charge you for "inspection fees" or refuses third-party inspection entirely, walk away.</p>
-            <p class="text-sm text-muted-foreground"><strong>Our score:</strong> Third-party inspection welcome. We've hosted SGS, Bureau Veritas, Intertek, Asia Inspection, and V-Trust over the past 5 years.</p>
-          </div>
-        </div>
-
-        <div class="mt-10 p-6 border-l-4 border-brand-gold bg-brand-gold/5 rounded-r">
-          <h3 class="reveal font-serif text-xl mb-3">Bonus: How to Spot a Trading Company Masquerading as a Factory</h3>
-          <p class="text-muted-foreground leading-relaxed mb-2">Trading companies in Inner Mongolia often claim "factory direct" but operate from a Shanghai office. Red flags: (a) no live video tour, only edited clips; (b) "we work with several partner factories" — this is a trading company, not a factory; (c) all communication via WeChat, no landline or fixed office address; (d) refuses to sign a quality guarantee clause in the PI.</p>
-        </div>
-
-        <div class="mt-10 text-center">
-          <a href="/en/contact" class="inline-block px-8 py-3 bg-primary text-primary-foreground rounded-md font-medium hover:bg-primary/90 transition-colors">Request Our Audit Documents →</a>
-        </div>
-      </div>
-    </section>
-  )}
-
-  <SEOFaq faqs={[
-    locale === 'cn'
-      ? { q: '能否预约到工厂参观？', a: '可以。我们接受B2B客户的工厂参观预约，提前7天联系即可。参观内容包括原料分梳车间、纺纱车间、针织车间、成品检验线、仓库等。' }
-      : { q: 'Can I visit the factory?', a: 'Yes, we accept B2B client factory visit appointments with 7-day advance notice. The visit covers raw material dehairing workshop, spinning workshop, knitting workshop, finished product QC line, and warehouse.' },
-    locale === 'cn'
-      ? { q: '工厂有哪些国际认证？', a: 'ISO 9001:2015 质量管理体系、OEKO-TEX Standard 100、Good Cashmere Standard (GCS)、BSCI 社会责任审核、Sedex SMETA、WRAP、SFA。可在下载中心下载证书PDF。' }
-      : { q: 'What international certifications does the factory have?', a: 'ISO 9001:2015 Quality Management, OEKO-TEX Standard 100, Good Cashmere Standard (GCS), BSCI social compliance, Sedex SMETA, WRAP, SFA. Certificate PDFs available in Download Center.' },
-  ]} />
-
-  <Footer slot="footer" locale={locale} />
-  <FloatingChatButtons slot="floating" locale={locale} />
-  <CookieConsent slot="cookie-consent" locale={locale} />
-</BaseLayout>
+const scale = [
+  { value: '38,000', unit: 'm²', label: locale === 'cn' ? '厂房面积' : 'Factory Area' },
+  { value: '500+', unit: '', label: locale === 'cn' ? '员工' : 'Employees' },
+  { value: '1,200', unit: 't', label: locale === 'cn' ? '年产能' : 'Annual Capacity' },
+  { value: '50+', unit: '', label: locale === 'cn' ? '出口国家' : 'Export Countries' },
+  { value: '23+', unit: 'yrs', label: locale === 'cn' ? '行业经验' : 'Years of Excellence' },
+  { value: '7', unit: '', label: locale === 'cn' ? '国际认证' : 'Certifications' },
+];
+
+const equipment = [
+  { name: locale === 'cn' ? '意大利梳绒机' : 'Italian Dehairing Lines', spec: '12 lines' },
+  { name: locale === 'cn' ? '日本岛精横机' : 'Shima Seiki Flatbed', spec: '48 machines' },
+  { name: locale === 'cn' ? '德国斯托尔电脑横机' : 'Stoll CMS Knitting', spec: '24 machines' },
+  { name: locale === 'cn' ? '意大利络筒机' : 'Italian Winding Lines', spec: '8 lines' },
+  { name: locale === 'cn' ? '瑞士乌斯特检测仪' : 'Uster Tester', spec: '6 units' },
+  { name: locale === 'cn' ? '全自动包装线' : 'Auto Packing Lines', spec: '4 lines' },
+];
+
+const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 'Sedex SMETA', 'WRAP', 'SFA'];
+---
+
+<BaseLayout locale={locale} pageKey="factory" path="/factory">
+  <Navigation slot="header" locale={locale} currentPath={`/${locale}/factory`} />
+
+  <!-- HERO -->
+  <section class="relative bg-brand-ink text-white overflow-hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-2 min-h-[60vh]">
+      <div class="flex items-center py-20 lg:py-0 px-6 lg:pl-12 order-2 lg:order-1">
+        <div class="max-w-xl">
+          <div class="flex items-center gap-3 mb-8">
+            <span class="h-px w-12 bg-brand-gold"></span>
+            <span class="text-xs tracking-[0.4em] text-brand-gold uppercase font-medium">{T('tagline')}</span>
+          </div>
+          <h1 class="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-8" set:html={T('title').replace(/\n/g, '<br/>')} />
+          <p class="text-lg text-white/75 leading-relaxed max-w-md font-light">{T('subtitle')}</p>
+        </div>
+      </div>
+      <div class="relative aspect-[4/3] lg:aspect-auto overflow-hidden order-1 lg:order-2">
+        <img src="/images/cashmere-fiber.jpg" alt="Cashmere fiber detail — 14.5μm micron dehaired underdown from Inner Mongolia Albus goat" class="ken-burns absolute inset-0 w-full h-full object-cover opacity-80" decoding="async" loading="eager" fetchpriority="high" />
+        <div class="absolute inset-0 bg-gradient-to-l from-transparent to-brand-ink/60"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scale：6 数据块 -->
+  <section class="py-24 md:py-32 bg-background">
+    <div class="container-narrow">
+      <div class="max-w-2xl mb-16">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="h-px w-8 bg-brand-gold"></span>
+          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">01 / {T('scaleTitle')}</span>
+        </div>
+        <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{T('scaleTitle')}</h2>
+        <p class="text-muted-foreground leading-relaxed">{T('scaleSub')}</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-px bg-border">
+        {scale.map((s, i) => (
+          <div class="bg-background p-8 md:p-10 hover:bg-brand-cream/30 transition-colors group">
+            <div class="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4 flex items-baseline justify-between">
+              <span>{s.label}</span>
+              <span class="font-serif text-sm text-brand-gold/50">{String(i+1).padStart(2,'0')}</span>
+            </div>
+            <div class="flex items-baseline gap-1">
+              <span class="counter font-serif text-4xl md:text-5xl text-brand-chocolate font-light group-hover:text-brand-gold transition-colors" data-counter="{parseCounter(s.value).n}" data-suffix="{parseCounter(s.value).s}" data-display="{s.value}">{s.value}</span>
+              {s.unit && <span class="text-sm text-muted-foreground">{s.unit}</span>}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Equipment -->
+  <section class="py-24 md:py-32 bg-brand-cream/50 border-y border-border">
+    <div class="container-narrow">
+      <div class="max-w-2xl mb-16">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="h-px w-8 bg-brand-gold"></span>
+          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">02 / {T('equipTitle')}</span>
+        </div>
+        <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{T('equipTitle')}</h2>
+        <p class="text-muted-foreground leading-relaxed">{T('equipSub')}</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
+        {equipment.map((e, i) => (
+          <div class="bg-brand-cream/30 p-6 md:p-8 flex justify-between items-center group hover:bg-background transition-colors">
+            <div class="flex items-baseline gap-3">
+              <span class="font-serif text-sm text-brand-gold/50">{String(i+1).padStart(2,'0')}</span>
+              <span class="font-serif text-xl group-hover:text-brand-chocolate transition-colors">{e.name}</span>
+            </div>
+            <span class="text-sm text-muted-foreground">{e.spec}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section class="py-24 md:py-32 bg-background">
+    <div class="container-narrow">
+      <div class="max-w-2xl mb-16">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="h-px w-8 bg-brand-gold"></span>
+          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">03 / {T('certTitle')}</span>
+        </div>
+        <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight">{T('certTitle')}</h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6">
+        {certs.map((cert) => (
+          <div class="aspect-square rounded-full border border-brand-gold/40 flex items-center justify-center hover:border-brand-gold hover:bg-brand-gold/5 transition-all group">
+            <span class="font-serif text-sm text-brand-gold tracking-wider text-center px-2 leading-tight">{cert}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 md:py-32 bg-brand-chocolate text-white">
+    <div class="container-narrow text-center">
+      <div class="flex items-center justify-center gap-3 mb-4">
+        <span class="h-px w-8 bg-brand-gold"></span>
+        <span class="text-xs tracking-[0.3em] uppercase text-brand-gold">{locale === 'cn' ? '下一步' : 'Next Step'}</span>
+        <span class="h-px w-8 bg-brand-gold"></span>
+      </div>
+      <h2 class="reveal font-serif text-4xl md:text-5xl font-light mb-4 text-balance">{T('ctaTitle')}</h2>
+      <p class="text-white/75 mb-8 max-w-2xl mx-auto">{T('ctaSub')}</p>
+      <a href={`/${locale}/contact?type=visit`} class="inline-flex items-center gap-2 px-10 py-5 bg-brand-gold text-brand-ink font-medium tracking-wider hover:bg-white transition-colors">
+        {T('cta')}
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  {locale === 'en' && (
+    <section class="py-12 md:py-16 bg-secondary/20">
+      <div class="container-narrow">
+        <h2 class="reveal font-display text-3xl md:text-4xl font-light mb-4">Factory Audit Checklist: 8 Things to Verify Before You Pay</h2>
+        <p class="text-base text-muted-foreground mb-8 max-w-3xl">
+          Most "cashmere factories" you find on Alibaba are trading companies with no production capacity. Even legitimate factories vary widely in quality systems. Here are 8 verifiable checks you can run from your desk before paying a deposit. We've included what we measure up to on each — so you have a benchmark.
+        </p>
+
+        <div class="space-y-6">
+          <div class="border border-border rounded-lg p-5 bg-card">
+            <h3 class="reveal font-serif text-xl mb-2 flex items-center gap-3">✓ 1. Business License & 14+ Years of Operation</h3>
+            <p class="text-muted-foreground leading-relaxed mb-2">Request a copy of the Chinese business license (营业执照). Check the "established date" — anything less than 10 years is a red flag. Cross-reference the company name against <a href="https://www.qcc.com/" class="text-primary hover:underline" target="_blank" rel="noopener">Qichacha (企查查)</a>, China's free corporate registry.</p>
+            <p class="text-sm text-muted-foreground"><strong>Our score:</strong> Established 2002 (23+ years). Legal name: Ordos Dongxiao Cashmere Co., Ltd. Qichacha ID verifiable.</p>
+          </div>
+
+          <div class="border border-border rounded-lg p-5 bg-card">
+            <h3 class="reveal font-serif text-xl mb-2 flex items-center gap-3">✓ 2. Export License & Customs Records</h3>
+            <p class="text-muted-foreground leading-relaxed mb-2">A real exporter has a Chinese customs declaration registration (海关进出口收发货人备案). Ask for the registration number. Better: ask for the company's HS code export volumes from the past 3 years — Chinese customs data is partially public via <a href="http://www.customs.gov.cn/" class="text-primary hover:underline" target="_blank" rel="noopener">General Administration of Customs</a>.</p>
+            <p class="text-sm text-muted-foreground"><strong>Our score:</strong> Registered exporter since 2008. HS code 6110/6117 (cashmere knitwear) export volume verified.</p>
+          </div>
+
+          <div class="border border-border rounded-lg p-5 bg-card">
+            <h3 class="reveal font-serif text-xl mb-2 flex items-center gap-3">✓ 3. Certifications (OEKO-TEX, ISO 9001, BSCI, GOTS)</h3>
+            <p class="text-muted-foreground leading-relaxed mb-2">Request PDF copies of certificates — not photos. Verify the certificate number on the issuing body's website (e.g. <a href="https://www.oeko-tex.com/" class="text-primary hover:underline" target="_blank" rel="noopener">OEKO-TEX</a>, <a href="https://www.bsci-intl.org/" class="text-primary hover:underline" target="_blank" rel="noopener">BSCI</a>). Expired certificates are worthless — check the validity dates.</p>
+            <p class="text-sm text-muted-foreground"><strong>Our score:</strong> OEKO-TEX Standard 100 (in progress Q4 2026), ISO 9001:2015, BSCI audited, China GOTS-certified organic cashmere line.</p>
+          </div>
+
+          <div class="border border-border rounded-lg p-5 bg-card">
+            <h3 class="reveal font-serif text-xl mb-2 flex items-center gap-3">✓ 4. Physical Factory Video Tour (30+ minutes, unedited)</h3>
+            <p class="text-muted-foreground leading-relaxed mb-2">Request a live video tour via WeChat or WhatsApp. Verify: (a) knitting machines (German STOLL / Japanese Shima Seiki are industry standard); (b) raw material warehouse with bales of cashmere fiber; (c) finished goods warehouse; (d) workshop floor with actual workers. 5-minute edited videos are useless. 30+ minute unedited live tours are the gold standard.</p>
+            <p class="text-sm text-muted-foreground"><strong>Our score:</strong> 38,000 sqm facility. 6 German STOLL CMS 530 knitting machines. 3 Japanese Shima Seiki SSR112. Live video tour available 24/7 with 4 hours notice.</p>
+          </div>
+
+          <div class="border border-border rounded-lg p-5 bg-card">
+            <h3 class="reveal font-serif text-xl mb-2 flex items-center gap-3">✓ 5. Client References (B2B brands, not consumers)</h3>
+            <p class="text-muted-foreground leading-relaxed mb-2">Ask for 3-5 B2B client references. The supplier should give you direct contact emails, not just company names. Real references respond within 24-48 hours. Ask each reference: (a) what was the order size; (b) what was the defect rate; (c) was lead time met; (d) would you reorder?</p>
+            <p class="text-sm text-muted-foreground"><strong>Our score:</strong> Active B2B clients in 50+ countries. Reference contacts available under NDA on request.</p>
+          </div>
+
+          <div class="border border-border rounded-lg p-5 bg-card">
+            <h3 class="reveal font-serif text-xl mb-2 flex items-center gap-3">✓ 6. Bank Reference Letter (for orders over USD 50,000)</h3>
+            <p class="text-muted-foreground leading-relaxed mb-2">For larger orders, request a bank reference letter from the factory's primary bank. Chinese banks (ICBC, Bank of China, CCB) issue these for established clients within 2-3 days. This confirms: (a) the company exists and operates; (b) has credit history; (c) is not on any blacklist.</p>
+            <p class="text-sm text-muted-foreground"><strong>Our score:</strong> Bank reference from ICBC Ordos Branch available within 3 business days upon request.</p>
+          </div>
+
+          <div class="border border-border rounded-lg p-5 bg-card">
+            <h3 class="reveal font-serif text-xl mb-2 flex items-center gap-3">✓ 7. Sample Round — Not Just a Catalog</h3>
+            <p class="text-muted-foreground leading-relaxed mb-2">A real factory has yarn inventory, knitting capacity, and washing/finishing lines. A catalog-only supplier sources from another factory. Test: order 2-3 hand-loom samples at USD 50-150 each. Real factories respond in 7-15 days. Catalog-only suppliers take 30+ days (because they're sub-contracting).</p>
+            <p class="text-sm text-muted-foreground"><strong>Our score:</strong> Hand-loom sample turnaround 7-15 days. Sample cost refundable against bulk order over 1,000 pcs.</p>
+          </div>
+
+          <div class="border border-border rounded-lg p-5 bg-card">
+            <h3 class="reveal font-serif text-xl mb-2 flex items-center gap-3">✓ 8. Third-Party Inspection Access (SGS, Bureau Veritas, Intertek)</h3>
+            <p class="text-muted-foreground leading-relaxed mb-2">A trustworthy factory WELCOMES third-party inspection at the pre-shipment stage. They cover inspector's local travel, accommodation, and reasonable on-site time. If a factory tries to charge you for "inspection fees" or refuses third-party inspection entirely, walk away.</p>
+            <p class="text-sm text-muted-foreground"><strong>Our score:</strong> Third-party inspection welcome. We've hosted SGS, Bureau Veritas, Intertek, Asia Inspection, and V-Trust over the past 5 years.</p>
+          </div>
+        </div>
+
+        <div class="mt-10 p-6 border-l-4 border-brand-gold bg-brand-gold/5 rounded-r">
+          <h3 class="reveal font-serif text-xl mb-3">Bonus: How to Spot a Trading Company Masquerading as a Factory</h3>
+          <p class="text-muted-foreground leading-relaxed mb-2">Trading companies in Inner Mongolia often claim "factory direct" but operate from a Shanghai office. Red flags: (a) no live video tour, only edited clips; (b) "we work with several partner factories" — this is a trading company, not a factory; (c) all communication via WeChat, no landline or fixed office address; (d) refuses to sign a quality guarantee clause in the PI.</p>
+        </div>
+
+        <div class="mt-10 text-center">
+          <a href="/en/contact" class="inline-block px-8 py-3 bg-primary text-primary-foreground rounded-md font-medium hover:bg-primary/90 transition-colors">Request Our Audit Documents →</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <SEOFaq faqs={[
+    locale === 'cn'
+      ? { q: '能否预约到工厂参观？', a: '可以。我们接受B2B客户的工厂参观预约，提前7天联系即可。参观内容包括原料分梳车间、纺纱车间、针织车间、成品检验线、仓库等。' }
+      : { q: 'Can I visit the factory?', a: 'Yes, we accept B2B client factory visit appointments with 7-day advance notice. The visit covers raw material dehairing workshop, spinning workshop, knitting workshop, finished product QC line, and warehouse.' },
+    locale === 'cn'
+      ? { q: '工厂有哪些国际认证？', a: 'ISO 9001:2015 质量管理体系、OEKO-TEX Standard 100、Good Cashmere Standard (GCS)、BSCI 社会责任审核、Sedex SMETA、WRAP、SFA。可在下载中心下载证书PDF。' }
+      : { q: 'What international certifications does the factory have?', a: 'ISO 9001:2015 Quality Management, OEKO-TEX Standard 100, Good Cashmere Standard (GCS), BSCI social compliance, Sedex SMETA, WRAP, SFA. Certificate PDFs available in Download Center.' },
+  ]} />
+
+  <Footer slot="footer" locale={locale} />
+  <FloatingChatButtons slot="floating" locale={locale} />
+  <CookieConsent slot="cookie-consent" locale={locale} />
+</BaseLayout>
