@@ -72,8 +72,14 @@ const imageDir = CATEGORY_IMAGE_DIR[product.categoryId] || product.categoryId;
 // Some catalog records repeat the same filename twice. Keep source order while
 // removing duplicates so the gallery and Product schema expose each image once.
 const uniqueProductImages = Array.from(new Set(product.images));
-const primaryImage = `/products/${imageDir}/${uniqueProductImages[0]}`;
-const galleryImages = uniqueProductImages.map((img) => `/products/${imageDir}/${img}`);
+// Resolve image paths: an image is either an absolute path (starts with /images/)
+// or a product photo filename in /products/<imageDir>/.
+function resolveProductImage(img: string): string {
+  if (img.startsWith('/images/') || img.startsWith('http')) return img;
+  return `/products/${imageDir}/${img}`;
+}
+const primaryImage = resolveProductImage(uniqueProductImages[0]);
+const galleryImages = uniqueProductImages.map(resolveProductImage);
 
 // Per-locale TDK
 const tdk = {
@@ -145,12 +151,12 @@ const tdk = {
 const t = (tdk[locale] || tdk.en)(product, category.name);
 
 // === Inquiry cart handoff data (Task 2) ===
-const imageDirForProduct = CATEGORY_IMAGE_DIR[product.categoryId] || product.categoryId;
+
 const productJson = JSON.stringify({
   id: product.id,
   name: product.name,
   categoryId: product.categoryId,
-  image: `/products/${imageDirForProduct}/${product.images[0]}`,
+  image: resolveProductImage(product.images[0]),
   price: product.price,
   currency: product.currency,
   moq: product.moq,
@@ -491,7 +497,28 @@ const breadcrumbSchema = {
     </div>
   </section>
 
-  <!-- 7-9 expanded: imfieldcashmere-style 13-section product page -->
+    <!-- Lifestyle / Model photo: human scale + styling context (PDF catalogue model photo) -->
+  {product.images.some((img) => img.startsWith('/images/models/')) && (
+  <section class="py-12 md:py-16 bg-brand-cream/30">
+    <div class="container-narrow">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="h-px w-8 bg-brand-gold"></span>
+        <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">{locale === 'cn' ? '生活方式·模特示范' : 'Lifestyle'}</span>
+      </div>
+      <h2 class="reveal font-serif text-3xl md:text-4xl font-light leading-tight mb-8">{locale === 'cn' ? '真人试穿·商品马上眼' : 'Real wear, real style'}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {product.images.filter((img) => img.startsWith('/images/models/')).slice(0, 2).map((img) => (
+          <div class="aspect-[3/4] overflow-hidden rounded-lg bg-secondary/20 hover-zoom">
+            <img src={img} alt={product.name + ' lifestyle model photo'} class="w-full h-full object-cover" loading="lazy" decoding="async" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  )}
+
+
+<!-- 7-9 expanded: imfieldcashmere-style 13-section product page -->
 
   {detail && (
     <>
