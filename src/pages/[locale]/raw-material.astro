@@ -108,7 +108,7 @@ const IMG = {
           <span class="h-px w-8 bg-brand-gold"></span>
           <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">{locale === 'cn' ? '羊绒分级' : 'Grades'}</span>
         </div>
-        <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight mb-4" set:html={T('gradesTitle').replace(/\n/g, '<br/>')} />
+        <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-4" set:html={T('gradesTitle').replace(/\n/g, '<br/>')} />
         <p class="text-muted-foreground leading-relaxed">{T('gradesSub')}</p>
       </div>
 
@@ -120,7 +120,7 @@ const IMG = {
           <div class="absolute top-6 right-6 font-serif text-7xl text-brand-gold/30 font-light">01</div>
           <div class="absolute bottom-0 left-0 p-8 text-white">
             <div class="text-xs tracking-[0.3em] uppercase text-brand-gold mb-2">White</div>
-            <h3 class="font-serif text-3xl md:text-4xl font-light mb-2">{gradeData.white.name}</h3>
+            <h3 class="reveal font-serif text-3xl md:text-4xl font-light mb-2">{gradeData.white.name}</h3>
             <p class="text-sm text-white/80 mb-3">{gradeData.white.desc}</p>
             <div class="font-serif text-2xl text-brand-gold">{gradeData.white.fineness}</div>
           </div>
@@ -132,7 +132,7 @@ const IMG = {
             <div class="absolute top-4 right-4 font-serif text-5xl text-white/30 font-light">02</div>
             <div class="absolute bottom-0 left-0 p-6 text-brand-ink">
               <div class="text-xs tracking-[0.3em] uppercase opacity-60 mb-2">Brown</div>
-              <h3 class="font-serif text-2xl md:text-3xl font-light mb-1">{gradeData.brown.name}</h3>
+              <h3 class="reveal font-serif text-2xl md:text-3xl font-light mb-1">{gradeData.brown.name}</h3>
               <p class="text-xs opacity-80 mb-2">{gradeData.brown.desc}</p>
               <div class="font-serif text-lg">{gradeData.brown.fineness}</div>
             </div>
@@ -141,7 +141,7 @@ const IMG = {
             <div class="absolute top-4 right-4 font-serif text-5xl text-white/30 font-light">03</div>
             <div class="absolute bottom-0 left-0 p-6 text-white">
               <div class="text-xs tracking-[0.3em] uppercase text-brand-gold mb-2">Purple</div>
-              <h3 class="font-serif text-2xl md:text-3xl font-light mb-1">{gradeData.purple.name}</h3>
+              <h3 class="reveal font-serif text-2xl md:text-3xl font-light mb-1">{gradeData.purple.name}</h3>
               <p class="text-xs opacity-80 mb-2">{gradeData.purple.desc}</p>
               <div class="font-serif text-lg text-brand-gold">{gradeData.purple.fineness}</div>
             </div>
@@ -159,7 +159,7 @@ const IMG = {
           <span class="h-px w-8 bg-brand-gold"></span>
           <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">{locale === 'cn' ? '规格' : 'Specs'}</span>
         </div>
-        <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{T('specsTitle')}</h2>
+        <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{T('specsTitle')}</h2>
         <p class="text-muted-foreground leading-relaxed">{T('specsSub')}</p>
       </div>
 
@@ -186,7 +186,7 @@ const IMG = {
             <span class="h-px w-8 bg-brand-gold"></span>
             <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">{locale === 'cn' ? '询盘' : 'Inquiry'}</span>
           </div>
-          <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight mb-6">{T('inquiryTitle')}</h2>
+          <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-6">{T('inquiryTitle')}</h2>
           <p class="text-muted-foreground leading-relaxed mb-8">{T('inquirySub')}</p>
           <ul class="space-y-3 text-sm text-muted-foreground">
             <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-gold"></span>{locale === 'cn' ? '免费样品（运费到付）' : 'Free sample (freight collect)'}</li>

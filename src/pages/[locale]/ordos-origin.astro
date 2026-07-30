@@ -207,7 +207,7 @@ const certs = ['ISO 9001', 'OEKO-TEX®', 'GCS', 'BSCI', 'Sedex', 'SFA', 'The Goo
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
         <div>
           <div class="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-3">01</div>
-          <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight mb-6">
+          <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-6">
             {t('sectionGeo')}
           </h2>
           <p class="text-muted-foreground leading-relaxed mb-4">{t('sectionGeoP1')}</p>
@@ -241,7 +241,7 @@ const certs = ['ISO 9001', 'OEKO-TEX®', 'GCS', 'BSCI', 'Sedex', 'SFA', 'The Goo
   <section class="section-padding bg-primary text-primary-foreground">
     <div class="container-narrow">
       <div class="text-xs tracking-[0.3em] uppercase text-primary-foreground/70 mb-3">{t('sectionStats')}</div>
-      <h2 class="font-serif text-4xl md:text-5xl font-light mb-12">Ordos by the Numbers</h2>
+      <h2 class="reveal font-serif text-4xl md:text-5xl font-light mb-12">Ordos by the Numbers</h2>
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
         {stats.map((s) => (
           <div>
@@ -258,7 +258,7 @@ const certs = ['ISO 9001', 'OEKO-TEX®', 'GCS', 'BSCI', 'Sedex', 'SFA', 'The Goo
     <div class="container-narrow">
       <div class="max-w-3xl mx-auto text-center">
         <div class="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-3">02</div>
-        <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight mb-6">
+        <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-6">
           {t('sectionHeritage')}
         </h2>
         <p class="text-muted-foreground leading-relaxed text-lg">
@@ -272,7 +272,7 @@ const certs = ['ISO 9001', 'OEKO-TEX®', 'GCS', 'BSCI', 'Sedex', 'SFA', 'The Goo
   <section class="py-16 bg-secondary/30 border-y border-border">
     <div class="container-narrow text-center">
       <div class="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-3">03</div>
-      <h2 class="font-serif text-3xl md:text-4xl font-light mb-8">{t('sectionCert')}</h2>
+      <h2 class="reveal font-serif text-3xl md:text-4xl font-light mb-8">{t('sectionCert')}</h2>
       <div class="flex flex-wrap justify-center gap-4">
         {certs.map((cert) => (
           <div class="px-4 py-2 bg-card border border-border rounded-md text-sm font-medium">{cert}</div>
@@ -289,7 +289,7 @@ const certs = ['ISO 9001', 'OEKO-TEX®', 'GCS', 'BSCI', 'Sedex', 'SFA', 'The Goo
         <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">{locale === 'cn' ? '下一步' : 'Next Step'}</span>
         <span class="h-px w-8 bg-brand-gold"></span>
       </div>
-      <h2 class="font-serif text-4xl md:text-5xl font-light mb-4 text-balance">{t('ctaTitle')}</h2>
+      <h2 class="reveal font-serif text-4xl md:text-5xl font-light mb-4 text-balance">{t('ctaTitle')}</h2>
       <p class="text-muted-foreground mb-8 max-w-2xl mx-auto">{t('ctaSubtitle')}</p>
       <div class="flex flex-wrap justify-center gap-4">
         <a href={`/${locale}/contact`} class="inline-flex items-center gap-2 px-8 py-4 bg-brand-gold text-brand-ink font-medium tracking-wider hover:bg-white transition-colors">

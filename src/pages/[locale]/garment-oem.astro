@@ -101,7 +101,7 @@ const IMG = {
           <span class="h-px w-8 bg-brand-gold"></span>
           <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">{locale === 'cn' ? '品类' : 'Categories'}</span>
         </div>
-        <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{T('catTitle')}</h2>
+        <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{T('catTitle')}</h2>
         <p class="text-muted-foreground leading-relaxed">{T('catSub')}</p>
       </div>
 
@@ -109,7 +109,7 @@ const IMG = {
         {categories.map((c) => (
           <div class="bg-background p-10 hover:bg-brand-cream/30 transition-colors group cursor-pointer">
             <div class="font-serif text-5xl text-brand-gold/40 font-light mb-4 group-hover:text-brand-gold/80 transition-colors">{c.num}</div>
-            <h3 class="font-serif text-2xl mb-2 group-hover:text-brand-chocolate transition-colors">{c.name}</h3>
+            <h3 class="reveal font-serif text-2xl mb-2 group-hover:text-brand-chocolate transition-colors">{c.name}</h3>
             <p class="text-sm text-muted-foreground">{c.desc}</p>
           </div>
         ))}
@@ -126,7 +126,7 @@ const IMG = {
             <span class="h-px w-8 bg-brand-gold"></span>
             <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">{locale === 'cn' ? '流程' : 'Process'}</span>
           </div>
-          <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{T('processTitle')}</h2>
+          <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{T('processTitle')}</h2>
         </div>
         <div class="lg:col-span-7 lg:pt-6">
           <p class="text-muted-foreground leading-relaxed text-lg">{T('processSub')}</p>
@@ -137,7 +137,7 @@ const IMG = {
         {process.map((p) => (
           <div class="relative pt-8 border-t border-brand-chocolate/30">
             <div class="font-serif text-6xl text-brand-chocolate font-light mb-4">{p.step}</div>
-            <h3 class="font-serif text-xl mb-2">{p.title}</h3>
+            <h3 class="reveal font-serif text-xl mb-2">{p.title}</h3>
             <p class="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
           </div>
         ))}
@@ -154,7 +154,7 @@ const IMG = {
             <span class="h-px w-8 bg-brand-gold"></span>
             <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">{locale === 'cn' ? '询盘' : 'Inquiry'}</span>
           </div>
-          <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight mb-6">{T('inquiryTitle')}</h2>
+          <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-6">{T('inquiryTitle')}</h2>
           <p class="text-muted-foreground leading-relaxed mb-8">{T('inquirySub')}</p>
           <ul class="space-y-3 text-sm text-muted-foreground">
             <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-gold"></span>{locale === 'cn' ? 'OEM 贴牌 + ODM 设计开发' : 'OEM private label + ODM design'}</li>
@@ -173,57 +173,57 @@ const IMG = {
   {locale === 'en' && (
   <section class="py-12 md:py-16 bg-secondary/20">
     <div class="container-narrow">
-      <h2 class="font-display text-3xl md:text-4xl font-light mb-4">OEM Process: From Inquiry to Delivery in 6-10 Weeks</h2>
+      <h2 class="reveal font-display text-3xl md:text-4xl font-light mb-4">OEM Process: From Inquiry to Delivery in 6-10 Weeks</h2>
       <p class="text-base text-muted-foreground mb-8 max-w-3xl">
         Working with an overseas cashmere OEM factory involves 7 defined stages. Knowing each step — and the typical timeline — helps you plan inventory, marketing campaigns, and cash flow. Below is the exact process we follow with our B2B clients, refined across 23 years and 50+ countries.
       </p>
 
       <div class="space-y-8">
         <div>
-          <h3 class="font-serif text-2xl mb-3 flex items-baseline gap-3"><span class="text-brand-gold text-3xl font-light">01</span> Inquiry & Spec Confirmation</h3>
+          <h3 class="reveal font-serif text-2xl mb-3 flex items-baseline gap-3"><span class="text-brand-gold text-3xl font-light">01</span> Inquiry & Spec Confirmation</h3>
           <p class="text-muted-foreground leading-relaxed mb-2">Send your target product type, quantity, gauge, fiber blend, color (Pantone code if available), and customization requirements (logo embroidery, labels, packaging). We confirm specifications, MOQ, and indicative pricing within 24 hours. No commitment at this stage — we sign an NDA on request for proprietary designs.</p>
           <p class="text-sm text-muted-foreground"><strong>Typical duration:</strong> 1-3 days · <strong>Output:</strong> Quotation sheet with FOB price, MOQ, lead time, payment terms</p>
         </div>
 
         <div>
-          <h3 class="font-serif text-2xl mb-3 flex items-baseline gap-3"><span class="text-brand-gold text-3xl font-light">02</span> Sample Development (7-15 days)</h3>
+          <h3 class="reveal font-serif text-2xl mb-3 flex items-baseline gap-3"><span class="text-brand-gold text-3xl font-light">02</span> Sample Development (7-15 days)</h3>
           <p class="text-muted-foreground leading-relaxed mb-2">For orders above 500 pieces we develop a hand-loom sample (yarn + gauge + stitch) for your approval. Sample cost USD 50-150 per piece (refundable against bulk order over 1,000 pcs). Sample lead time is 7-15 days plus 3-5 days DHL/FedEx to your office. For orders below 500 pcs, we recommend using our in-stock color-and-style matrix to skip sampling.</p>
           <p class="text-sm text-muted-foreground"><strong>Typical duration:</strong> 10-20 days round-trip · <strong>Output:</strong> Physical sample shipped to your office</p>
         </div>
 
         <div>
-          <h3 class="font-serif text-2xl mb-3 flex items-baseline gap-3"><span class="text-brand-gold text-3xl font-light">03</span> Contract & Deposit (30% T/T)</h3>
+          <h3 class="reveal font-serif text-2xl mb-3 flex items-baseline gap-3"><span class="text-brand-gold text-3xl font-light">03</span> Contract & Deposit (30% T/T)</h3>
           <p class="text-muted-foreground leading-relaxed mb-2">Once the sample is approved (signed swatch + digital confirmation), we issue a Proforma Invoice (PI) with: FOB Tianjin/Shanghai unit price, total value, 30% T/T deposit, 70% balance against B/L copy, production lead time, and Incoterms 2020 reference. Standard payment terms: 30% deposit + 70% against B/L copy. For established clients (3+ orders) we offer 20/80 or L/C at sight.</p>
           <p class="text-sm text-muted-foreground"><strong>Typical duration:</strong> 3-7 days for PI exchange + wire transfer · <strong>Output:</strong> Signed PI, deposit received, production slot booked</p>
         </div>
 
         <div>
-          <h3 class="font-serif text-2xl mb-3 flex items-baseline gap-3"><span class="text-brand-gold text-3xl font-light">04</span> Bulk Production (15-25 days)</h3>
+          <h3 class="reveal font-serif text-2xl mb-3 flex items-baseline gap-3"><span class="text-brand-gold text-3xl font-light">04</span> Bulk Production (15-25 days)</h3>
           <p class="text-muted-foreground leading-relaxed mb-2">Yarn knitting, linking, washing, ironing, labeling, final QA. We send production photos and a pre-shipment sample (PSP) at the 70% completion point so you can request minor adjustments. For orders above 5,000 pieces we offer a mid-production factory visit (your team or third-party inspector).</p>
           <p class="text-sm text-muted-foreground"><strong>Typical duration:</strong> 15-25 days for knitwear · 25-35 days for woven/structured pieces · <strong>Output:</strong> Finished goods, QC report, PSP</p>
         </div>
 
         <div>
-          <h3 class="font-serif text-2xl mb-3 flex items-baseline gap-3"><span class="text-brand-gold text-3xl font-light">05</span> Pre-Shipment Inspection</h3>
+          <h3 class="reveal font-serif text-2xl mb-3 flex items-baseline gap-3"><span class="text-brand-gold text-3xl font-light">05</span> Pre-Shipment Inspection</h3>
           <p class="text-muted-foreground leading-relaxed mb-2">Inspection options: (a) our internal QA team — AQL 2.5 sampling on 100% of finished goods; (b) your nominated third-party inspector (SGS, Bureau Veritas, Intertek) — fee USD 300-500 per man-day; (c) live video inspection via WhatsApp/WeChat at the 100% completion point. We recommend option (b) for first-time orders over 1,000 pcs.</p>
           <p class="text-sm text-muted-foreground"><strong>Typical duration:</strong> 1-3 days · <strong>Output:</strong> Inspection report, photo set, sign-off for shipment</p>
         </div>
 
         <div>
-          <h3 class="font-serif text-2xl mb-3 flex items-baseline gap-3"><span class="text-brand-gold text-3xl font-light">06</span> Shipping & Documentation</h3>
+          <h3 class="reveal font-serif text-2xl mb-3 flex items-baseline gap-3"><span class="text-brand-gold text-3xl font-light">06</span> Shipping & Documentation</h3>
           <p class="text-muted-foreground leading-relaxed mb-2">We book ocean freight (FCL or LCL), air freight, or express courier based on your Incoterms preference. Standard documents: Commercial Invoice, Packing List, Bill of Lading, Certificate of Origin (China), OEKO-TEX / ISO certificates on request. We can arrange DDP (door-to-door) to EU/US warehouses via our long-term freight forwarder partners.</p>
           <p class="text-sm text-muted-foreground"><strong>Typical duration:</strong> Sea 25-35 days (Asia-EU/US) · Air 5-7 days · <strong>Output:</strong> Goods delivered, full document set emailed</p>
         </div>
 
         <div>
-          <h3 class="font-serif text-2xl mb-3 flex items-baseline gap-3"><span class="text-brand-gold text-3xl font-light">07</span> After-Sales & Reorder Support</h3>
+          <h3 class="reveal font-serif text-2xl mb-3 flex items-baseline gap-3"><span class="text-brand-gold text-3xl font-light">07</span> After-Sales & Reorder Support</h3>
           <p class="text-muted-foreground leading-relaxed mb-2">Defect rate is documented in the inspection report. We replace defective units free of charge (typically 0.5-1.5% of total) within 90 days of receipt. For reorder clients we offer a 5% loyalty discount and priority production slot booking (we reserve capacity 60 days in advance for repeat customers).</p>
           <p class="text-sm text-muted-foreground"><strong>Ongoing:</strong> 90-day defect window · 5% reorder discount · Reserved capacity for established clients</p>
         </div>
       </div>
 
       <div class="mt-10 p-6 border-l-4 border-brand-gold bg-brand-gold/5 rounded-r">
-        <h3 class="font-serif text-xl mb-3">3 Common Pitfalls When Sourcing Cashmere OEM</h3>
+        <h3 class="reveal font-serif text-xl mb-3">3 Common Pitfalls When Sourcing Cashmere OEM</h3>
         <ol class="list-decimal pl-5 space-y-2 text-muted-foreground">
           <li><strong>Sample cost vs. production cost gap.</strong> Some factories quote low sample cost then triple the production price. We lock the production price in the PI at sample-approval stage — no surprise escalations.</li>
           <li><strong>Hidden MOQ per color.</strong> Industry norm is 100-150 pcs per color per size, not 100 pcs total. Confirm before signing the PI.</li>

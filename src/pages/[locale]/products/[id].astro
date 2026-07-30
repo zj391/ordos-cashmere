@@ -500,7 +500,7 @@ const breadcrumbSchema = {
   {detail.materialStory && (
     <section class="py-12 bg-secondary/20">
       <div class="container-narrow max-w-3xl">
-        <h2 class="font-display text-2xl font-light mb-4">Material & Craftsmanship</h2>
+        <h2 class="reveal font-display text-2xl font-light mb-4">Material & Craftsmanship</h2>
         <p class="text-base leading-relaxed text-foreground/80">{detail.materialStory[locale]}</p>
       </div>
     </section>
@@ -510,7 +510,7 @@ const breadcrumbSchema = {
   {detail.process && (
     <section class="py-12 bg-background">
       <div class="container-narrow max-w-3xl">
-        <h2 class="font-display text-2xl font-light mb-4">Manufacturing Process</h2>
+        <h2 class="reveal font-display text-2xl font-light mb-4">Manufacturing Process</h2>
         <p class="text-base leading-relaxed text-foreground/80 mb-6">{detail.process[locale]}</p>
         {detail.processSteps && (
           <ol class="space-y-3">
@@ -530,7 +530,7 @@ const breadcrumbSchema = {
   {detail.customServiceBullets && (
     <section class="py-12 bg-secondary/20">
       <div class="container-narrow">
-        <h2 class="font-display text-2xl font-light mb-6 text-center">{detail.customServiceTitle?.[locale] || 'Custom Manufacturing Service'}</h2>
+        <h2 class="reveal font-display text-2xl font-light mb-6 text-center">{detail.customServiceTitle?.[locale] || 'Custom Manufacturing Service'}</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {detail.customServiceBullets.map((b) => (
             <div class="bg-card border border-border rounded-lg p-5">
@@ -549,7 +549,7 @@ const breadcrumbSchema = {
   {detail.whyChooseBullets && (
     <section class="py-12 bg-background">
       <div class="container-narrow">
-        <h2 class="font-display text-2xl font-light mb-8 text-center">{detail.whyChooseTitle?.[locale] || 'Why Choose Our Factory'}</h2>
+        <h2 class="reveal font-display text-2xl font-light mb-8 text-center">{detail.whyChooseTitle?.[locale] || 'Why Choose Our Factory'}</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {detail.whyChooseBullets.map((b, i) => (
             <div class="text-center">
@@ -568,7 +568,7 @@ const breadcrumbSchema = {
   {detail.comparisonPoints && detail.comparisonTitle && (
     <section class="py-12 bg-secondary/20">
       <div class="container-narrow">
-        <h2 class="font-display text-2xl font-light mb-6 text-center">{detail.comparisonTitle[locale]}</h2>
+        <h2 class="reveal font-display text-2xl font-light mb-6 text-center">{detail.comparisonTitle[locale]}</h2>
         <div class="overflow-x-auto">
           <table class="w-full bg-card border border-border rounded-lg overflow-hidden">
             <thead class="bg-primary text-primary-foreground">
@@ -597,7 +597,7 @@ const breadcrumbSchema = {
   {detail.applicationScenarios && (
     <section class="py-12 bg-background">
       <div class="container-narrow">
-        <h2 class="font-display text-2xl font-light mb-6 text-center">{detail.applicationsTitle?.[locale] || 'Applications'}</h2>
+        <h2 class="reveal font-display text-2xl font-light mb-6 text-center">{detail.applicationsTitle?.[locale] || 'Applications'}</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
           {detail.applicationScenarios.map((s) => (
             <div class="border border-border rounded-lg p-4 bg-card">
@@ -613,7 +613,7 @@ const breadcrumbSchema = {
   {detail.oemWorkflow && detail.oemWorkflow.length > 0 && (
     <section class="py-12 bg-secondary/20">
       <div class="container-narrow">
-        <h2 class="font-display text-2xl font-light mb-6 text-center">OEM/ODM Workflow</h2>
+        <h2 class="reveal font-display text-2xl font-light mb-6 text-center">OEM/ODM Workflow</h2>
         <div class="grid grid-cols-1 md:grid-cols-5 gap-4 max-w-5xl mx-auto">
           {detail.oemWorkflow.map((step, i) => (
             <div class="bg-card border border-border rounded-lg p-4 text-center">
@@ -630,7 +630,7 @@ const breadcrumbSchema = {
   {detail.careInstructions && (
     <section class="py-12 bg-background">
       <div class="container-narrow max-w-3xl">
-        <h2 class="font-display text-2xl font-light mb-4">Care Instructions</h2>
+        <h2 class="reveal font-display text-2xl font-light mb-4">Care Instructions</h2>
         <p class="text-base leading-relaxed text-foreground/80">{detail.careInstructions[locale]}</p>
       </div>
     </section>
@@ -640,7 +640,7 @@ const breadcrumbSchema = {
   {detail.samplePolicy && (
     <section class="py-12 bg-secondary/20">
       <div class="container-narrow max-w-3xl">
-        <h2 class="font-display text-2xl font-light mb-4">Sample Policy</h2>
+        <h2 class="reveal font-display text-2xl font-light mb-4">Sample Policy</h2>
         <p class="text-base leading-relaxed text-foreground/80">{detail.samplePolicy[locale]}</p>
       </div>
     </section>
@@ -650,7 +650,7 @@ const breadcrumbSchema = {
   {detail.certifications && (
     <section class="py-12 bg-background">
       <div class="container-narrow max-w-3xl">
-        <h2 class="font-display text-2xl font-light mb-4">Certifications</h2>
+        <h2 class="reveal font-display text-2xl font-light mb-4">Certifications</h2>
         <div class="flex flex-wrap gap-2">
           {detail.certifications.map((c) => (
             <span class="text-sm px-3 py-1.5 border border-border rounded-full bg-card">{c}</span>
@@ -664,7 +664,7 @@ const breadcrumbSchema = {
   {detail.faq && detail.faq.length > 0 && (
     <section class="py-12 bg-secondary/20">
       <div class="container-narrow max-w-3xl">
-        <h2 class="font-display text-2xl font-light mb-6">Frequently Asked Questions</h2>
+        <h2 class="reveal font-display text-2xl font-light mb-6">Frequently Asked Questions</h2>
         <div class="space-y-4">
           {detail.faq.map((f) => (
             <details class="bg-card border border-border rounded-lg p-4 group">
@@ -686,7 +686,7 @@ const breadcrumbSchema = {
   <!-- Section 12: Inquiry CTA -->
   <section class="py-16 bg-brand-ink text-white">
     <div class="container-narrow text-center">
-      <h2 class="font-display text-3xl font-light mb-4">Request a Quotation</h2>
+      <h2 class="reveal font-display text-3xl font-light mb-4">Request a Quotation</h2>
       <p class="opacity-90 mb-8 max-w-2xl mx-auto">Send your target specs (quantity, gauge, color, customization). Our specialists respond within 24 hours with sample, pricing, and lead time.</p>
       <div class="flex flex-wrap gap-4 justify-center">
         <a href={`/${locale}/contact?product=${product.id}`} class="inline-block px-8 py-3 bg-brand-gold text-brand-ink rounded-sm font-medium hover:bg-brand-gold/90">{t.buyCta}</a>
@@ -706,7 +706,7 @@ const breadcrumbSchema = {
   <!-- Section 12b: Model Show & Styling (imf style - 7-9) -->
   <section class="py-12 bg-secondary/20">
     <div class="container-narrow">
-      <h2 class="font-display text-2xl font-light mb-6 text-center">Model Show & Styling</h2>
+      <h2 class="reveal font-display text-2xl font-light mb-6 text-center">Model Show & Styling</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         {galleryImages.slice(0, 3).map((img, i) => (
           <figure class="bg-card border border-border rounded-lg overflow-hidden">
@@ -728,7 +728,7 @@ const breadcrumbSchema = {
   <!-- Section 12c: Transportation & Delivery (imf style - 7-9) -->
   <section class="py-12 bg-background">
     <div class="container-narrow">
-      <h2 class="font-display text-2xl font-light mb-6 text-center">Transportation & Delivery</h2>
+      <h2 class="reveal font-display text-2xl font-light mb-6 text-center">Transportation & Delivery</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         {[
           { title: 'FOB Tianjin/Shanghai', desc: 'We deliver to your nominated forwarder at the nearest Chinese port. Most common for orders 500+ pcs.' },
@@ -736,7 +736,7 @@ const breadcrumbSchema = {
           { title: 'DDP Door-to-Door', desc: 'We handle everything: customs, duties, last-mile delivery to your warehouse. EU/US customers only.' },
         ].map((opt) => (
           <div class="border border-border rounded-lg p-5 bg-card">
-            <h3 class="font-medium text-base mb-2 text-primary">{opt.title}</h3>
+            <h3 class="reveal font-medium text-base mb-2 text-primary">{opt.title}</h3>
             <p class="text-sm text-foreground/80 leading-relaxed">{opt.desc}</p>
           </div>
         ))}
@@ -765,7 +765,7 @@ const breadcrumbSchema = {
   <!-- Section 12d: Customer Reviews placeholder (imf style - 7-9) -->
   <section class="py-12 bg-secondary/20">
     <div class="container-narrow">
-      <h2 class="font-display text-2xl font-light mb-6 text-center">Customer Reviews</h2>
+      <h2 class="reveal font-display text-2xl font-light mb-6 text-center">Customer Reviews</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         {[
           { name: 'Sarah M.', country: 'United States', role: 'Boutique Owner', text: 'The cashmere quality exceeded our expectations. Our customers love the soft hand feel and the fit is consistent across sizes.' },
@@ -790,7 +790,7 @@ const breadcrumbSchema = {
   {related.length > 0 && (
     <section class="py-16 bg-background">
       <div class="container-narrow">
-        <h2 class="font-display text-2xl font-light mb-6">Related {category.name}</h2>
+        <h2 class="reveal font-display text-2xl font-light mb-6">Related {category.name}</h2>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {related.map((rp) => (
             <a
