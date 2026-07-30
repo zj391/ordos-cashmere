@@ -349,12 +349,15 @@ const IMG = {
   <section class="border-y border-border bg-background py-12">
     <div class="container-narrow">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 md:divide-x md:divide-border">
-        {c.metrics.map((m, i) => (
+        {c.metrics.map((m, i) => {
+          const cv = parseCounter(m.value);
+          return (
           <div class={`md:px-10 first:md:pl-0 last:md:pr-0 text-center md:text-left reveal`} data-reveal-delay={i + 1}>
-            <div class="counter font-serif text-4xl md:text-5xl text-brand-chocolate font-light leading-none mb-2" data-counter="{parseCounter(m.value).n}" data-suffix="{parseCounter(m.value).s}" data-display="{m.value}">{m.value}</div>
+            <div class="counter font-serif text-4xl md:text-5xl text-brand-chocolate font-light leading-none mb-2" data-counter={cv.n} data-suffix={cv.s} data-display={m.value}>{m.value}</div>
             <div class="text-xs tracking-[0.2em] uppercase text-muted-foreground">{m.label}</div>
           </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   </section>
