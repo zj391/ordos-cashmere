@@ -307,6 +307,44 @@ if (faqs && faqs.length > 0) {
 
     <!-- Scroll Reveal（轻量 IntersectionObserver，无依赖） -->
     <script is:inline>
+      // Counter 动画：滚动到时从 0 滚动到目标数。元素 <span class="counter" data-counter="23">23</span>
+      (function() {
+        if (!('IntersectionObserver' in window)) return;
+        var counters = document.querySelectorAll('[data-counter]');
+        if (!counters.length) return;
+        var counterObserver = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (!entry.isIntersecting) return;
+            var el = entry.target;
+            if (el.dataset.counted) return;
+            el.dataset.counted = '1';
+            var target = parseFloat(el.dataset.counter);
+            var suffix = el.dataset.suffix || '';
+            var duration = 1400;
+            var start = performance.now();
+            function step(now) {
+              var p = Math.min(1, (now - start) / duration);
+              var eased = 1 - Math.pow(1 - p, 3); // cubic ease-out
+              var val = Math.floor(eased * target);
+              // Preserve the original suffix characters (e.g. "1,200t", "23+", "ISO 9001")
+              el.textContent = formatNumber(val, target, suffix);
+              if (p < 1) requestAnimationFrame(step);
+              else el.textContent = el.dataset.display || formatNumber(target, target, suffix);
+            }
+            function formatNumber(v, original, s) {
+              // Original is the target value (which may have commas / signs)
+              if (original >= 1000) return v.toLocaleString('en-US') + s;
+              return v + s;
+            }
+            requestAnimationFrame(step);
+            counterObserver.unobserve(el);
+          });
+        }, { threshold: 0.4 });
+        counters.forEach(function(c) { counterObserver.observe(c); });
+      })();
+    </script>
+
+    <script is:inline>
       (function() {
         if (!('IntersectionObserver' in window)) {
           // 老浏览器兜底：直接全部显示

@@ -185,6 +185,14 @@ const productData: Record<string, Array<{ tag: string; value: string }>> = {
   ],
 };
 
+// 把 "{value}" 拆成数字 + 后缀（用于数字滚动计数动画）
+function parseCounter(v: string): { n: number; s: string } {
+  const m = v.match(/^(?:[^\d]*?)(\d[\d,]*)(.*)$/);
+  if (!m) return { n: 0, s: v };
+  const n = parseInt(m[1].replace(/,/g, ''), 10);
+  return { n: isFinite(n) ? n : 0, s: m[2] || '' };
+}
+
 const c = heroContent[locale];
 const seo = SEO[locale];
 const prodMeta = productData[locale];
@@ -343,7 +351,7 @@ const IMG = {
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 md:divide-x md:divide-border">
         {c.metrics.map((m, i) => (
           <div class={`md:px-10 first:md:pl-0 last:md:pr-0 text-center md:text-left reveal`} data-reveal-delay={i + 1}>
-            <div class="font-serif text-4xl md:text-5xl text-brand-chocolate font-light leading-none mb-2">{m.value}</div>
+            <div class="counter font-serif text-4xl md:text-5xl text-brand-chocolate font-light leading-none mb-2" data-counter="{parseCounter(m.value).n}" data-suffix="{parseCounter(m.value).s}" data-display="{m.value}">{m.value}</div>
             <div class="text-xs tracking-[0.2em] uppercase text-muted-foreground">{m.label}</div>
           </div>
         ))}
