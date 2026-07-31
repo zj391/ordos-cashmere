@@ -79,7 +79,18 @@ function resolveProductImage(img: string): string {
   return `/products/${imageDir}/${img}`;
 }
 const primaryImage = resolveProductImage(uniqueProductImages[0]);
+// galleryImages = studio product shots followed by the lifestyle / model photo
+// (if any). The model photo is appended LAST so the cover thumbnail and the
+// JSON-LD Product schema stay product-first; users can swap to the model
+// shot via the thumbnail strip and the lightbox magnifier handles both.
 const galleryImages = uniqueProductImages.map(resolveProductImage);
+if (product.modelPhoto && !galleryImages.includes(product.modelPhoto)) {
+  galleryImages.push(product.modelPhoto);
+}
+// Map image src -> { label: 'product' | 'model' } so the gallery strip can
+// render a small tag and aria-label on each thumbnail.
+const imageKind = new Map<string, 'product' | 'model'>();
+galleryImages.forEach((src) => imageKind.set(src, src === product.modelPhoto ? 'model' : 'product'));
 
 // Per-locale TDK
 const tdk = {
@@ -258,19 +269,28 @@ const breadcrumbSchema = {
             ></div>
           </div>
           {galleryImages.length > 1 && (
-            <div class="grid grid-cols-4 gap-2">
-              {galleryImages.map((img, i) => (
-                <button
-                  type="button"
-                  data-gallery-thumb={img}
-                  class="aspect-square bg-secondary/30 rounded overflow-hidden ring-1 ring-border hover:ring-2 hover:ring-primary transition-all"
-                  aria-label={`View image ${i + 1}`}
-                >
-                  <img src={img} alt={`${product.name} view ${i + 1}`} class="w-full h-full object-cover" decoding="async" loading="lazy" />
-                </button>
-              ))}
-            </div>
-          )}
+                      <div class="grid grid-cols-4 gap-2">
+                        {galleryImages.map((img, i) => {
+                          const kind = imageKind.get(img);
+                          return (
+                            <button
+                              type="button"
+                              data-gallery-thumb={img}
+                              class={`relative aspect-square bg-secondary/30 rounded overflow-hidden ring-1 ring-border hover:ring-2 hover:ring-primary transition-all${kind === 'model' ? ' ring-2 ring-brand-gold/40' : ''}`}
+                              aria-label={`${product.name}${kind === 'model' ? ' model photo' : ` view ${i + 1}`}`}
+                              title={kind === 'model' ? (locale === 'cn' ? '模特示范 · 真人在穿' : 'Model · Real wear') : undefined}
+                            >
+                              <img src={img} alt={`${product.name}${kind === 'model' ? ' model photo' : ` view ${i + 1}`}`} class="w-full h-full object-cover" decoding="async" loading="lazy" />
+                              {kind === 'model' && (
+                                <span class="absolute top-1 left-1 text-[9px] tracking-wider uppercase bg-brand-ink/85 text-white px-1.5 py-0.5 rounded">
+                                  {locale === 'cn' ? '模特' : 'Model'}
+                                </span>
+                              )}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    )}
         </div>
 
         <!-- Product info -->
@@ -497,28 +517,17 @@ const breadcrumbSchema = {
     </div>
   </section>
 
-    <!-- Lifestyle / Model photo: human scale + styling context (PDF catalogue model photo).
-           The image is portrait-oriented; object-position: center top so the head/hat stays
-           visible even when cover-cropping crops the legs (per product team direction). -->
-      {product.modelPhoto && (
-      <section class="py-12 md:py-16 bg-brand-cream/30">
-        <div class="container-narrow">
-          <div class="flex items-center gap-3 mb-4">
-            <span class="h-px w-8 bg-brand-gold"></span>
-            <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">{locale === 'cn' ? '生活方式·模特示范' : 'Lifestyle'}</span>
-          </div>
-          <h2 class="reveal font-serif text-3xl md:text-4xl font-light leading-tight mb-8">{locale === 'cn' ? '真人试穿·商品马上眼' : 'Real wear, real style'}</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="aspect-[3/4] overflow-hidden rounded-lg bg-secondary/20 hover-zoom">
-              <img src={product.modelPhoto} alt={product.name + ' lifestyle model photo'} class="w-full h-full object-cover object-[center_top]" loading="lazy" decoding="async" />
-            </div>
-          </div>
-        </div>
-      </section>
-      )}
+    <!-- NOTE: the lifestyle / model photo is no longer rendered as a separate
+           section below. Instead it is appended to the hero gallery's thumbnail
+           strip (see galleryImages block above) so users can swap between the
+           studio cut-out and the on-body model shot from the same control,
+           with the desktop magnifier and the click-to-zoom lightbox both
+           working for the model photo too. A small "Model" tag identifies the
+           thumbnail. This keeps the model photo visible while the product
+           page stays product-first. -->
 
 
-<!-- 7-9 expanded: imfieldcashmere-style 13-section product page -->
+    <!-- 7-9 expanded: imfieldcashmere-style 13-section product page -->
 
   {detail && (
     <>
