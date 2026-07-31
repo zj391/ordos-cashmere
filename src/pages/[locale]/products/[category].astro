@@ -18,6 +18,25 @@ import { LOCALES, isLocale, pickLocale } from '@/lib/i18n';
 import { SEO, SITE_URL } from '@/lib/seo';
 import { products as productsData, getCategoryById } from '@/data/products';
 
+// Maps catId -> image directory (must match `CATEGORY_IMAGE_DIR` in [id].astro).
+const CATEGORY_IMAGE_DIR = {
+  hats: 'mic',
+  scarves: 'mic',
+  sweaters: 'mic',
+  accessories: 'mic',
+  yarn: 'mic',
+};
+
+// Image path resolver — same logic as [id].astro, kept in sync.
+// `images[0]` may be an absolute path (`/images/models/...`) or a relative
+// filename living under `/products/<imageDir>/`.
+function resolveCategoryCardImage(img: string): string {
+  if (!img) return '';
+  if (img.startsWith('/images/') || img.startsWith('http')) return img;
+  const dir = CATEGORY_IMAGE_DIR[catId] || catId;
+  return `/products/${dir}/${img}`;
+}
+
 // 把产品 JSON 的 category id 映射到 URL slug
 // (Astro hoists getStaticPaths before top-level const, so we declare inline below.)
 const CATEGORY_SLUGS_DEFS = {
@@ -369,7 +388,7 @@ const itemListSchema = {
           >
             <div class="aspect-square bg-secondary/30 overflow-hidden">
               <img
-                src={`/products/${catId === 'hats' || catId === 'accessories' ? 'hats' : catId === 'sweaters' ? 'sweaters' : catId}/${p.images[0]}`}
+                src={resolveCategoryCardImage(p.images[0])}
                 alt={p.name}
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform"
                 loading="lazy"

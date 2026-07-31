@@ -336,7 +336,9 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
           <div class="aspect-square bg-stone-100 cursor-pointer overflow-hidden">
             {p.images && p.images[0] && (
               <img
-                src={`/products/mic/${p.images[0]}`}
+                src={(p.images[0].startsWith('/images/') || p.images[0].startsWith('http'))
+                  ? p.images[0]
+                  : `/products/mic/${p.images[0]}`}
                 alt={p.name}
                 loading="lazy"
                 decoding="async"
@@ -782,7 +784,12 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
       }
 
       function cardHtml(p) {
-        const img = (p.images && p.images[0]) ? '/products/mic/' + p.images[0] : '';
+        const rawImg = (p.images && p.images[0]) || '';
+        // Absolute paths (e.g. `/images/models/...`) pass through; relative
+        // filenames get the `/products/mic/` prefix.
+        const img = rawImg.startsWith('/images/') || rawImg.startsWith('http')
+          ? rawImg
+          : '/products/mic/' + rawImg;
         return (
           '<a href="/' + (window.__LOCALE__ || 'en') + '/products/' + escapeHtml(p.id) + '/" class="product-card block bg-white border border-stone-200 overflow-hidden hover:shadow-lg transition-shadow group" data-id="' + escapeHtml(p.id) + '">' +
             '<div class="aspect-square bg-stone-100 cursor-pointer overflow-hidden">' +

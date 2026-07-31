@@ -497,25 +497,25 @@ const breadcrumbSchema = {
     </div>
   </section>
 
-    <!-- Lifestyle / Model photo: human scale + styling context (PDF catalogue model photo) -->
-  {product.images.some((img) => img.startsWith('/images/models/')) && (
-  <section class="py-12 md:py-16 bg-brand-cream/30">
-    <div class="container-narrow">
-      <div class="flex items-center gap-3 mb-4">
-        <span class="h-px w-8 bg-brand-gold"></span>
-        <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">{locale === 'cn' ? '生活方式·模特示范' : 'Lifestyle'}</span>
-      </div>
-      <h2 class="reveal font-serif text-3xl md:text-4xl font-light leading-tight mb-8">{locale === 'cn' ? '真人试穿·商品马上眼' : 'Real wear, real style'}</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {product.images.filter((img) => img.startsWith('/images/models/')).slice(0, 2).map((img) => (
-          <div class="aspect-[3/4] overflow-hidden rounded-lg bg-secondary/20 hover-zoom">
-            <img src={img} alt={product.name + ' lifestyle model photo'} class="w-full h-full object-cover" loading="lazy" decoding="async" />
+    <!-- Lifestyle / Model photo: human scale + styling context (PDF catalogue model photo).
+           The image is portrait-oriented; object-position: center top so the head/hat stays
+           visible even when cover-cropping crops the legs (per product team direction). -->
+      {product.modelPhoto && (
+      <section class="py-12 md:py-16 bg-brand-cream/30">
+        <div class="container-narrow">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="h-px w-8 bg-brand-gold"></span>
+            <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">{locale === 'cn' ? '生活方式·模特示范' : 'Lifestyle'}</span>
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
-  )}
+          <h2 class="reveal font-serif text-3xl md:text-4xl font-light leading-tight mb-8">{locale === 'cn' ? '真人试穿·商品马上眼' : 'Real wear, real style'}</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="aspect-[3/4] overflow-hidden rounded-lg bg-secondary/20 hover-zoom">
+              <img src={product.modelPhoto} alt={product.name + ' lifestyle model photo'} class="w-full h-full object-cover object-[center_top]" loading="lazy" decoding="async" />
+            </div>
+          </div>
+        </div>
+      </section>
+      )}
 
 
 <!-- 7-9 expanded: imfieldcashmere-style 13-section product page -->
@@ -826,7 +826,9 @@ const breadcrumbSchema = {
             >
               <div class="aspect-square bg-secondary/30 overflow-hidden">
                 <img
-                  src={`/products/${CATEGORY_IMAGE_DIR[rp.categoryId] || rp.categoryId}/${rp.images[0]}`}
+                  src={(rp.images[0] || '').startsWith('/images/') || (rp.images[0] || '').startsWith('http')
+                      ? rp.images[0]
+                      : `/products/${CATEGORY_IMAGE_DIR[rp.categoryId] || rp.categoryId}/${rp.images[0]}`}
                   alt={rp.name}
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform"
                   decoding="async" loading="lazy"
