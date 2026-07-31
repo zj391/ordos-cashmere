@@ -739,29 +739,14 @@ const breadcrumbSchema = {
     </div>
   </section>
 
-  <!-- Section 12b: Model Show & Styling (imf style - 7-9) -->
-  <section class="py-12 bg-secondary/20">
-    <div class="container-narrow">
-      <h2 class="reveal font-display text-2xl font-light mb-6 text-center">Model Show & Styling</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {galleryImages.slice(0, 3).map((img, i) => (
-          <figure class="bg-card border border-border rounded-lg overflow-hidden">
-            <div class="aspect-[3/4] overflow-hidden bg-secondary/30">
-              <img src={img} alt={`${product.name} model view ${i + 1}`} class="w-full h-full object-cover" decoding="async" loading="lazy" />
-            </div>
-            <figcaption class="p-3 text-xs text-center text-muted-foreground">
-              {i === 0 ? 'Front view' : i === 1 ? 'Side view' : 'Back / Detail'}
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-      <p class="text-center text-sm text-foreground/70 mt-6 max-w-2xl mx-auto">
-        Model wearing size M (170cm / 56kg). Styling tip: pair with our cashmere scarf or beanie for a complete winter look. Contact us for lookbook samples.
-      </p>
-    </div>
-  </section>
+  <!-- Section 12b: Model Show & Styling was REMOVED on 2026-07-31 per product feedback.
+         The lifestyle / model photo is exposed via the hero gallery's thumbnail strip
+         (last thumbnail, with a "Model" chip + gold ring), so users can swap to it
+         inline and use the desktop magnifier + click-to-zoom lightbox there. Showing
+         the same image(s) again in a dedicated section below duplicated content and
+         cropped the model's head under the 3:4 cover fit. -->
 
-  <!-- Section 12c: Transportation & Delivery (imf style - 7-9) -->
+    <!-- Section 12c: Transportation & Delivery (imf style - 7-9) -->
   <section class="py-12 bg-background">
     <div class="container-narrow">
       <h2 class="reveal font-display text-2xl font-light mb-6 text-center">Transportation & Delivery</h2>
