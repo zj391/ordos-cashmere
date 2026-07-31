@@ -68,7 +68,7 @@ const t: Record<string, Record<string, string>> = {
 
         tagline: '集团工厂 \xc2\xb7 实力',
     title: '集团\n实力',
-    subtitle: '38,000平米厂房 \xc2\xb7 500+员工 \xc2\xb7 年产能1,200吨 \xc2\xb7 ISO/OEKO-TEX 认证源头集团。针织、梭织回巾、配饰、童装全品类。',
+    subtitle: '38,000平米厂房 \xc2\xb7 500+员工 \xc2\xb7 年产能1,200吨 \xc2\xb7 ISO/OEKO-TEX 认证源头集团。针织、梭织围巾、配饰、童装全品类。',
 
     scaleTitle: '规模与产能',
 
@@ -179,7 +179,7 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
 
       <div class="relative aspect-[4/3] lg:aspect-auto overflow-hidden order-1 lg:order-2">
 
-        <img src="/images/cashmere-fiber.jpg" alt="Cashmere fiber detail — 14.5μm micron dehaired underdown from Inner Mongolia Albus goat" class="ken-burns absolute inset-0 w-full h-full object-cover opacity-80" decoding="async" loading="eager" fetchpriority="high" />
+        <img src="/images/factory/page1-factory-intro.webp" alt="DONGXIAO Cashmere Group - 23 years manufacturing cashmere in Ordos" class="ken-burns absolute inset-0 w-full h-full object-cover opacity-80" decoding="async" loading="eager" fetchpriority="high" />
 
         <div class="absolute inset-0 bg-gradient-to-l from-transparent to-brand-ink/60"></div>
 
@@ -232,6 +232,19 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
           </div>
           );
         })}
+      </div>
+    </div>
+
+    <!-- Factory floor scene (from PDF page 2) -->
+    <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-4 reveal">
+      <div class="aspect-[4/3] overflow-hidden">
+        <img src="/images/factory/page2-factory-floor.webp" alt="DONGXIAO factory floor - raw material dehairing and spinning workshops" class="w-full h-full object-cover hover-zoom" loading="lazy" decoding="async" />
+      </div>
+      <div class="aspect-[4/3] overflow-hidden">
+        <img src="/images/factory/page3-exhibition.webp" alt="DONGXIAO at international cashmere trade exhibitions" class="w-full h-full object-cover hover-zoom" loading="lazy" decoding="async" />
+      </div>
+      <div class="aspect-[4/3] overflow-hidden">
+        <img src="/images/factory/page9-colorcard-weaving.webp" alt="Color card and weaving detail - Nm2/26 cashmere yarn range" class="w-full h-full object-cover hover-zoom" loading="lazy" decoding="async" />
       </div>
     </div>
   </section>
@@ -350,35 +363,47 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
 
         <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{locale === 'cn' ? '产品类别' : 'Full Product Range'}</h2>
 
-        <p class="text-muted-foreground leading-relaxed">{locale === 'cn' ? '针织、梭织回巾、配饰、童装 — 集团全系列覆盖。' : 'Knitwear, woven scarves, accessories, childrenswear — all groups under one factory.'}</p>
+        <p class="text-muted-foreground leading-relaxed">{locale === 'cn' ? '针织、梭织围巾、配饰、童装 — 集团全系列覆盖。' : 'Knitwear, woven scarves, accessories, childrenswear — all groups under one factory.'}</p>
 
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="aspect-square bg-background rounded-lg p-6 flex flex-col justify-between hover-lift">
-          <div class="font-serif text-5xl text-brand-gold/40">01</div>
-          <div>
+        <div class="bg-background rounded-lg overflow-hidden hover-lift group">
+          <div class="aspect-square overflow-hidden bg-secondary/30">
+            <img src="/images/factory/page6-menswear.webp" alt="Knit garments from DONGXIAO - men's cashmere pullovers and sweaters" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
+          </div>
+          <div class="p-6">
+            <div class="font-serif text-sm text-brand-gold/50 mb-1">01</div>
             <h3 class="font-serif text-xl mb-2">{locale === 'cn' ? '针织成衣' : 'Knit Garments'}</h3>
             <p class="text-sm text-muted-foreground">{locale === 'cn' ? '男装、女装、童装。Nm2/26 至 Nm2/36/2 全支数纱线。' : 'Men\'s, women\'s, children\'s. Nm2/26 to Nm2/36/2 full count range.'}</p>
           </div>
         </div>
-        <div class="aspect-square bg-background rounded-lg p-6 flex flex-col justify-between hover-lift">
-          <div class="font-serif text-5xl text-brand-gold/40">02</div>
-          <div>
+        <div class="bg-background rounded-lg overflow-hidden hover-lift group">
+          <div class="aspect-square overflow-hidden bg-secondary/30">
+            <img src="/images/factory/page5-sets.webp" alt="Woven cashmere scarves and shawls" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
+          </div>
+          <div class="p-6">
+            <div class="font-serif text-sm text-brand-gold/50 mb-1">02</div>
             <h3 class="font-serif text-xl mb-2">{locale === 'cn' ? '梭织围巾' : 'Woven Scarves'}</h3>
             <p class="text-sm text-muted-foreground">{locale === 'cn' ? '羊绒披肩、长巾。Nm2/26×2+Nm2/26&1/6.5&1/4.3 多组份。' : 'Cashmere wraps, shawls. Nm2/26×2 + Nm2/26&1/6.5&1/4.3 multi-ply.'}</p>
           </div>
         </div>
-        <div class="aspect-square bg-background rounded-lg p-6 flex flex-col justify-between hover-lift">
-          <div class="font-serif text-5xl text-brand-gold/40">03</div>
-          <div>
+        <div class="bg-background rounded-lg overflow-hidden hover-lift group">
+          <div class="aspect-square overflow-hidden bg-secondary/30">
+            <img src="/images/factory/page8-accessories.webp" alt="Cashmere accessories - hats, gloves, throws" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
+          </div>
+          <div class="p-6">
+            <div class="font-serif text-sm text-brand-gold/50 mb-1">03</div>
             <h3 class="font-serif text-xl mb-2">{locale === 'cn' ? '配饰系列' : 'Accessories'}</h3>
             <p class="text-sm text-muted-foreground">{locale === 'cn' ? '帽子、手套、披肩、家居纺织品。' : 'Hats, gloves, throws, home textiles. 1×1 to 12GG knit gauge options.'}</p>
           </div>
         </div>
-        <div class="aspect-square bg-background rounded-lg p-6 flex flex-col justify-between hover-lift">
-          <div class="font-serif text-5xl text-brand-gold/40">04</div>
-          <div>
+        <div class="bg-background rounded-lg overflow-hidden hover-lift group">
+          <div class="aspect-square overflow-hidden bg-secondary/30">
+            <img src="/images/factory/page7-childrenswear.webp" alt="DONGXIAO childrenswear - baby and kids cashmere knitwear" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
+          </div>
+          <div class="p-6">
+            <div class="font-serif text-sm text-brand-gold/50 mb-1">04</div>
             <h3 class="font-serif text-xl mb-2">{locale === 'cn' ? '童童装' : 'Childrenswear'}</h3>
             <p class="text-sm text-muted-foreground">{locale === 'cn' ? '婴幼儿童装。可爱款、休闲款，OEKO-TEX 安全标准。' : 'Baby & kids\' knitwear. Cute & casual styles. OEKO-TEX safe fabric certified.'}</p>
           </div>
