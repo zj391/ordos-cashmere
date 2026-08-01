@@ -30,7 +30,9 @@ const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL || 'arbasgoat@gmail.co
 const FROM_EMAIL = process.env.FROM_EMAIL || 'DONGXIAO Cashmere <noreply@erdosdx.com>';
 const LLM_API_URL = process.env.LLM_API_URL || 'https://api.deepseek.com/v1/chat/completions';
 const LLM_API_KEY = process.env.LLM_API_KEY || process.env.DEEPSEEK_KEY || '';
-const LLM_MODEL = process.env.LLM_MODEL || 'deepseek-chat';
+const LLM_EXTRACT_URL = process.env.LLM_EXTRACT_URL || LLM_API_URL;
+const LLM_EXTRACT_KEY=proces...EXTRACT_KEY || LLM_API_KEY;
+const LLM_EXTRACT_MODEL = process.env.LLM_EXTRACT_MODEL || LLM_MODEL;
 const SITE_NAME = 'DONGXIAO Cashmere';
 const SITE_DOMAIN = 'erdosdx.com';
 
@@ -133,21 +135,25 @@ Rules:
     .join('\n');
 
   try {
-    const r = await fetch(LLM_API_URL, {
+    const isGemini = LLM_EXTRACT_URL.includes('googleapis') || LLM_EXTRACT_URL.includes('gemini');
+    const r = await fetch(LLM_EXTRACT_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${LLM_API_KEY}`,
+        Authorization: `Bearer ${LLM_EXTRACT_KEY}`,
       },
       body: JSON.stringify({
-        model: LLM_MODEL,
+        model: LLM_EXTRACT_MODEL,
         messages: [
           { role: 'system', content: sysPrompt },
           { role: 'user', content: userHint },
         ],
         temperature: 0.1,
         max_tokens: 700,
-        response_format: { type: 'json_object' },
+        // response_format: { type: 'json_object' } is OpenAI-only.
+        // Gemini's OpenAI-compat endpoint rejects it; we rely on prompt-only
+        // JSON instruction + defensive parse below instead.
+        ...(isGemini ? {} : { response_format: { type: 'json_object' } }),
       }),
     });
     if (!r.ok) {
