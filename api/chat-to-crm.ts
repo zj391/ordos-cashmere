@@ -140,7 +140,7 @@ Rules:
     // Gemini's OpenAI-compat endpoint doesn't support response_format={type:'json_object'} — it 404s.
     // Only send it for true OpenAI endpoints (OpenRouter, OpenAI, DeepSeek).
     const sendJsonMode = isOpenAiCompat && !/googleapis|gemini/.test(LLM_EXTRACT_URL);
-    const r = await fetch(LLM_EXTRACT_URL, {
+    const r = await fetch(`${LLM_EXTRACT_URL}/chat/completions`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
