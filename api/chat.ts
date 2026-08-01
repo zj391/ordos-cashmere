@@ -19,10 +19,16 @@ function getEnv(name: string, fallback?: string): string {
   return process.env[name] || process.env[name.toLowerCase()] || (fallback ?? '');
 }
 
+// Gemini has two endpoints:
+//   1. Legacy: https://generativelanguage.googleapis.com/v1beta  → /models/{m}:generateContent?key=...
+//   2. OpenAI-compatible: https://generativelanguage.googleapis.com/v1beta/openai  → /chat/completions
+// The OpenAI-compat URL ends in `/openai`; the legacy URL contains `v1beta` but NOT `openai`.
+// Auto-detect: if URL ends with `/openai`, use OpenAI-compat. Otherwise if URL contains
+// 'googleapis' or 'gemini', use the legacy Gemini format. Otherwise default to OpenAI.
 const LLM_API_URL_RAW = getEnv('LLM_API_URL', '');
 const LLM_API_URL = LLM_API_URL_RAW || 'https://openrouter.ai/api/v1';
-const LLM_PROVIDER =
-  LLM_API_URL.includes('googleapis') || LLM_API_URL.includes('gemini') ? 'gemini' : 'openai';
+const LLM_USES_OPENAI_COMPAT = LLM_API_URL.endsWith('/openai') || !/(googleapis|gemini)/.test(LLM_API_URL);
+const LLM_PROVIDER = LLM_USES_OPENAI_COMPAT ? 'openai' : 'gemini';
 const LLM_API_KEY = getEnv('LLM_API_KEY', getEnv('DEEPSEEK_KEY', ''));
 const LLM_MODEL = getEnv('LLM_MODEL', 'meta-llama/llama-3.1-8b-instruct:free');
 const SITE_NAME = getEnv('SITE_NAME', 'DONGXIAO Cashmere');

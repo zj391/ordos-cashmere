@@ -135,7 +135,7 @@ Rules:
     .join('\n');
 
   try {
-    const isGemini = LLM_EXTRACT_URL.includes('googleapis') || LLM_EXTRACT_URL.includes('gemini');
+    const isOpenAiCompat = LLM_EXTRACT_URL.endsWith('/openai') || !/(googleapis|gemini)/.test(LLM_EXTRACT_URL);
     const r = await fetch(LLM_EXTRACT_URL, {
       method: 'POST',
       headers: {
@@ -153,7 +153,7 @@ Rules:
         // response_format: { type: 'json_object' } is OpenAI-only.
         // Gemini's OpenAI-compat endpoint rejects it; we rely on prompt-only
         // JSON instruction + defensive parse below instead.
-        ...(isGemini ? {} : { response_format: { type: 'json_object' } }),
+        ...(isOpenAiCompat ? { response_format: { type: 'json_object' } } : {}),
       }),
     });
     if (!r.ok) {
