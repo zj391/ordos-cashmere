@@ -92,6 +92,14 @@ if (product.modelPhoto && !galleryImages.includes(product.modelPhoto)) {
 const imageKind = new Map<string, 'product' | 'model'>();
 galleryImages.forEach((src) => imageKind.set(src, src === product.modelPhoto ? 'model' : 'product'));
 
+const cnCategoryNames: Record<string, string> = {
+  hats: '羊绒帽',
+  sweaters: '羊绒衫',
+  scarves: '羊绒围巾',
+  accessories: '羊绒配饰',
+  yarn: '羊绒纱线',
+};
+
 // Per-locale TDK
 const tdk = {
   en: (p, c) => {
@@ -142,13 +150,21 @@ const tdk = {
         hideFormCta: 'Hide Form',
         };
       },
-      cn: (p, c) => ({
-    title: `${p.name} | 羊绒${c}批发 | DONGXIAO® 鄂尔多斯源头工厂`,
-    description: `${p.name}。${p.material}，${p.micron}。源头工厂批发。MOQ ${p.moq} 件。交期 ${p.lead}。打样 ${p.sample_time}。全球 B2B 采购商工厂价。`,
-    keywords: [p.name, `羊绒${c}批发`, `${p.material}${c}`, `羊绒代工 ${p.id}`, `OEM ${c}`, '羊绒厂家', '鄂尔多斯羊绒'],
-    buyCta: '立即询盘',
-    hideFormCta: '收起表单',
-  }),
+  cn: (p, _c) => {
+    // Keep the buyer-intent terms visible in Chinese SERPs. Catalog product
+    // names are English and can exceed 80 characters, so trim only the PDP
+    // metadata; the on-page H1 and product data remain unchanged.
+    const shortName = p.name.length > 18 ? `${p.name.substring(0, 18).trim()}…` : p.name;
+    const categoryName = cnCategoryNames[p.categoryId] || '羊绒制品';
+    const leadDays = p.lead.replace(/\s*days?\b/i, '天').replace(/\s+/g, '');
+    return {
+      title: `${shortName} | ${categoryName}批发 | MOQ ${p.moq}`,
+      description: `${shortName}。${p.material}，${p.micron}。鄂尔多斯源头工厂，MOQ ${p.moq}件，交期${leadDays}，支持OEM/ODM定制。DONGXIAO。`,
+      keywords: [p.name, `${categoryName}批发`, `${p.material}${categoryName}`, `羊绒代工 ${p.id}`, `OEM ${categoryName}`, '羊绒厂家', '鄂尔多斯羊绒'],
+      buyCta: '立即询盘',
+      hideFormCta: '收起表单',
+    };
+  },
   de: (p, c) => ({
     title: `${p.name} | Kaschmir ${c} Großhandel | DONGXIAO®`,
     description: `${p.name}. ${p.material}, ${p.micron}. Großhandel ab Ordos-Fabrik. MOQ ${p.moq} Stk. Lieferzeit ${p.lead}.`,
