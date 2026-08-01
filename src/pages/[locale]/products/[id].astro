@@ -94,12 +94,31 @@ galleryImages.forEach((src) => imageKind.set(src, src === product.modelPhoto ? '
 
 // Per-locale TDK
 const tdk = {
-  en: (p, c) => ({
-    // SEO A-3 (2026-07-24): front-load buyer-intent keywords + MOQ in title for SERP CTR.
-    // Pattern: "{Product name} Wholesale | Cashmere Manufacturer China | MOQ {qty}"
-    // DONGXIAO® moved to description/schema; brand word in title drops CTR.
-    title: `${p.name} Wholesale | Cashmere Manufacturer China | MOQ ${p.moq}`,
-    description: `${p.name} wholesale direct from China cashmere factory. MOQ ${p.moq} pcs. Lead time ${p.lead}. Sample ${p.sample_time}. ${p.material}, ${p.micron}. Factory pricing. OEM/ODM. DONGXIAO® Ordos.`,
+  en: (p, c) => {
+      // SEO A-4 (2026-08-01): cap title ≤ 60 chars for SERP. Previous pattern
+      // "{p.name} Wholesale | Cashmere Manufacturer China | MOQ {moq}" produced
+      // 95–126 chars because the catalog has 30–80-char product names, and
+      // Google truncates everything past ~60 chars in the title slot — which
+      // hid the buyer-intent suffix ("Wholesale", "Manufacturer", "MOQ") from
+      // SERP. GSC 2026-08-01 showed 100% of PDP titles were > 60 chars and
+      // matched queries were mostly informational ("cashmere gauge", "cashmere
+      // micron count") rather than B2B transactional, so SERP visibility was
+      // dominated by the visible prefix and never carried the conversion
+      // signal.
+      //
+      // New pattern: shrink product name to first 25 chars (with ellipsis
+          // if cut), then " | {category} Wholesale | MOQ {qty}". Short names
+          // pass through unchanged. Title slot target ≤ 70 chars so Google
+          // SERP keeps "Wholesale" visible — the buyer-intent suffix that
+          // the old pattern was hiding beyond the truncation point.
+          const shortName = p.name.length > 25 ? p.name.substring(0, 25).trim() + '…' : p.name;
+              return {
+              title: `${shortName} | ${c} Wholesale | MOQ ${p.moq}`,
+          // Description kept ≤ 160 chars (Google truncation point). Front-load
+          // buyer signals (MOQ, lead, sample), bury brand word at the end.
+          // Use the same shortened product name in the description to stay
+          // consistent with the SERP title (and keep the slot short).
+          description: `${shortName}. MOQ ${p.moq} pcs. Lead ${p.lead}. ${p.material}, ${p.micron}. OEM/ODM from Inner Mongolia. DONGXIAO.`,
     keywords: [
       `${p.name}`,
       `${p.name} wholesale`,
@@ -120,9 +139,10 @@ const tdk = {
       `private label cashmere ${c.toLowerCase()}`,
     ],
     buyCta: 'Request Quote',
-    hideFormCta: 'Hide Form',
-  }),
-  cn: (p, c) => ({
+        hideFormCta: 'Hide Form',
+        };
+      },
+      cn: (p, c) => ({
     title: `${p.name} | 羊绒${c}批发 | DONGXIAO® 鄂尔多斯源头工厂`,
     description: `${p.name}。${p.material}，${p.micron}。源头工厂批发。MOQ ${p.moq} 件。交期 ${p.lead}。打样 ${p.sample_time}。全球 B2B 采购商工厂价。`,
     keywords: [p.name, `羊绒${c}批发`, `${p.material}${c}`, `羊绒代工 ${p.id}`, `OEM ${c}`, '羊绒厂家', '鄂尔多斯羊绒'],
