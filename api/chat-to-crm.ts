@@ -30,6 +30,7 @@ const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL || 'arbasgoat@gmail.co
 const FROM_EMAIL = process.env.FROM_EMAIL || 'DONGXIAO Cashmere <noreply@erdosdx.com>';
 const LLM_API_URL = process.env.LLM_API_URL || 'https://api.deepseek.com/v1/chat/completions';
 const LLM_API_KEY = process.env.LLM_API_KEY || process.env.DEEPSEEK_KEY || '';
+const LLM_MODEL = process.env.LLM_MODEL || 'gemini-2.5-flash';
 const LLM_EXTRACT_URL = process.env.LLM_EXTRACT_URL || LLM_API_URL;
 const LLM_EXTRACT_KEY = process.env.LLM_EXTRACT_KEY || LLM_API_KEY;
 const LLM_EXTRACT_MODEL = process.env.LLM_EXTRACT_MODEL || LLM_MODEL;
