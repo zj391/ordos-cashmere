@@ -106,10 +106,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   if (!LLM_API_KEY) {
+    // Diagnostics: log which env keys are present so we can debug Vercel casing.
+    const envKeys = Object.keys(process.env).filter((k) =>
+      /llm|deepseek|gemini|openai/i.test(k),
+    );
+    console.error('[chat] LLM_API_KEY not found. Relevant env keys present:', envKeys);
     return res.status(503).json({
       success: false,
       error: 'llm_not_configured',
       message: 'Chat service not configured. Set LLM_API_KEY in Vercel env.',
+      debug: { env_keys_seen: envKeys },
     });
   }
 
