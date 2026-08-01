@@ -162,7 +162,7 @@ Rules:
     });
     if (!r.ok) {
       const t = await r.text().catch(() => '');
-      console.error('[chat-to-crm] LLM extract failed', r.status, t.slice(0, 300));
+      console.error('[chat-to-crm] LLM extract failed', r.status, 'url=', LLM_EXTRACT_URL, 'model=', LLM_EXTRACT_MODEL, 'body=', t.slice(0, 300));
       return fallback;
     }
     const j = await r.json();
