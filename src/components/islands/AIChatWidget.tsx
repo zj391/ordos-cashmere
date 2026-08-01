@@ -181,6 +181,51 @@ export default function AIChatWidget({ locale }: Props) {
   const [busy, setBusy] = useState(false);
   const [offline, setOffline] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  // CRM integration: stable sessionId per browser, used to dedupe leads.
+  // Persisted in localStorage so reloading the page keeps the same conversation thread.
+  const sessionIdRef = useRef<string>('');
+  if (!sessionIdRef.current) {
+    if (typeof window !== 'undefined') {
+      const KEY = 'hermes:ai-chat:sessionId';
+      let sid = window.localStorage.getItem(KEY);
+      if (!sid) {
+        sid = 's_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
+        try { window.localStorage.setItem(KEY, sid); } catch { /* private mode */ }
+      }
+      sessionIdRef.current = sid;
+    } else {
+      sessionIdRef.current = 's_ssr_' + Math.random().toString(36).slice(2, 10);
+    }
+  }
+
+  // Fire-and-forget CRM ping after every assistant reply. Extracts email/company
+  // from the conversation (best-effort) so the leads table gets richer over time.
+  // The endpoint is /api/chat-to-crm (see api/chat-to-crm.ts) which calls the LLM
+  // to score + grade + email the lead based on intent.
+  function crmPing(transcript: Msg[]) {
+    if (typeof window === 'undefined' || !sessionIdRef.current) return;
+    // Best-effort regex: pull first email + company-like token from user msgs
+    // so the server has something to work with even if LLM extraction is slow.
+    const joined = transcript.map((m) => m.content).join('\n');
+    const emailMatch = joined.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i);
+    const companyMatch = joined.match(/(?:from|at|with|公司[:：]?)\s+([A-Z][A-Za-z0-9 &.'-]{1,60})/);
+    const body = {
+      sessionId: sessionIdRef.current,
+      email: emailMatch ? emailMatch[0] : undefined,
+      company: companyMatch ? companyMatch[1].trim() : undefined,
+      locale,
+      messages: transcript.map((m) => ({ role: m.role, content: m.content })),
+    };
+    // fetch with keepalive so it survives page navigation
+    try {
+      fetch('/api/chat-to-crm', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+        keepalive: true,
+      }).catch(() => {});
+    } catch { /* ignore */ }
+  }
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -250,7 +295,18 @@ export default function AIChatWidget({ locale }: Props) {
           copy[placeholderIdx] = { role: 'assistant', content: full.slice(0, i), ts: Date.now() };
           return copy;
         });
-        if (i < full.length) setTimeout(tick, TICK_MS);
+        if (i < full.length) {
+          setTimeout(tick, TICK_MS);
+        } else {
+          // Final assistant message is in place; ping CRM with the full transcript.
+          // Use setTimeout 0 to fire after React has flushed the final state.
+          setTimeout(() => {
+            setMessages((cur) => {
+              crmPing(cur);
+              return cur;
+            });
+          }, 0);
+        }
       };
       tick();
     } catch (e) {

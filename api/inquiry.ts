@@ -244,6 +244,13 @@ async function lookupKnownCustomer(email: string, company: string) {
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  // Merged action: ?action=event forwards to the former /api/track-event logic.
+  // This keeps Vercel Hobby's 12-fn budget under control by collapsing two
+  // unrelated POST endpoints into one physical function.
+  if (req.url && req.url.startsWith('/api/inquiry?action=event')) {
+    return handleTrackEvent(req, res);
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).json({ success: false, error: 'Method not allowed' });
   }
@@ -670,4 +677,79 @@ function escapeHtml(s: string): string {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
+}
+// ------------------------------------------------------------------
+// Merged: /api/inquiry?action=event  (was /api/track-event.ts)
+//
+// GA4 事件代理 + IP 识别 + 访客画像
+// 客户端 fetch /api/inquiry?action=event → 写入 Supabase visitor_events
+// + 转发 n8n（仅 inquiry_submit / contact_submit 触发）
+//
+// 保留原 track-event 的全部行为；合并是为了避开 Vercel Hobby 12 fn 上限。
+// ------------------------------------------------------------------
+const N8N_WEBHOOK_EVENT_URL = process.env.N8N_WEBHOOK_URL;
+
+async function handleTrackEvent(req: VercelRequest, res: VercelResponse) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ success: false });
+  }
+
+  try {
+    const data = (req.body || {}) as Record<string, unknown>;
+    const ip = (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() || req.socket?.remoteAddress;
+    const userAgent = req.headers['user-agent'] || '';
+    const country =
+      (req.headers['x-vercel-ip-country'] as string) ||
+      (req.headers['cf-ipcountry'] as string) ||
+      'unknown';
+    const city = (req.headers['x-vercel-ip-city'] as string) || (req.headers['cf-ipcity'] as string) || '';
+    const region = (req.headers['x-vercel-ip-country-region'] as string) || '';
+
+    const event = {
+      ...data,
+      ip,
+      country,
+      city,
+      region,
+      user_agent: userAgent,
+      created_at: new Date().toISOString(),
+    };
+
+    const tasks: Promise<unknown>[] = [];
+
+    // visitor_events 表用 anon key 写入
+    if (SUPABASE_URL && (process.env.PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY)) {
+      const anonKey = (process.env.PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY) as string;
+      tasks.push(
+        fetch(`${SUPABASE_URL}/rest/v1/visitor_events`, {
+          method: 'POST',
+          headers: {
+            apikey: anonKey,
+            Authorization: `Bearer ${anonKey}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(event),
+        }).catch(() => null),
+      );
+    }
+
+    // 询盘提交事件转发到 n8n
+    if (
+      N8N_WEBHOOK_EVENT_URL &&
+      (data.event_name === 'inquiry_submit' || data.event_name === 'contact_submit')
+    ) {
+      tasks.push(
+        fetch(N8N_WEBHOOK_EVENT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(event),
+        }).catch(() => null),
+      );
+    }
+
+    await Promise.allSettled(tasks);
+    return res.status(200).json({ success: true });
+  } catch {
+    return res.status(500).json({ success: false });
+  }
 }

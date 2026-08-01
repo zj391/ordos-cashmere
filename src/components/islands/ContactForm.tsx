@@ -200,7 +200,7 @@ export default function ContactForm({ locale }: Props) {
         });
       }
       // 后台 track
-      fetch('/api/track-event', {
+      fetch('/api/inquiry?action=event', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

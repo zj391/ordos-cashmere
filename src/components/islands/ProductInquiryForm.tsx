@@ -94,8 +94,8 @@ export default function ProductInquiryForm({
           inquiry_type: productType,
         });
       }
-      // 后台 track（独立于 GA4，走 /api/track-event）
-      fetch('/api/track-event', {
+      // 后台 track（独立于 GA4，走 /api/inquiry?action=event）
+      fetch('/api/inquiry?action=event', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
