@@ -137,6 +137,9 @@ Rules:
 
   try {
     const isOpenAiCompat = LLM_EXTRACT_URL.endsWith('/openai') || !/(googleapis|gemini)/.test(LLM_EXTRACT_URL);
+    // Gemini's OpenAI-compat endpoint doesn't support response_format={type:'json_object'} — it 404s.
+    // Only send it for true OpenAI endpoints (OpenRouter, OpenAI, DeepSeek).
+    const sendJsonMode = isOpenAiCompat && !/googleapis|gemini/.test(LLM_EXTRACT_URL);
     const r = await fetch(LLM_EXTRACT_URL, {
       method: 'POST',
       headers: {
@@ -152,9 +155,9 @@ Rules:
         temperature: 0.1,
         max_tokens: 700,
         // response_format: { type: 'json_object' } is OpenAI-only.
-        // Gemini's OpenAI-compat endpoint rejects it; we rely on prompt-only
+        // Gemini's OpenAI-compat endpoint rejects it with 404; we rely on prompt-only
         // JSON instruction + defensive parse below instead.
-        ...(isOpenAiCompat ? { response_format: { type: 'json_object' } } : {}),
+        ...(sendJsonMode ? { response_format: { type: 'json_object' } } : {}),
       }),
     });
     if (!r.ok) {
