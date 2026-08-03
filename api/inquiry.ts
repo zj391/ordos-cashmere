@@ -275,7 +275,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const country = req.headers['x-vercel-ip-country'] || 'unknown';
 
     // Durable de-duplication: same email or same IP submitting again within 24h is dropped.
-    const duplicate = await dedupeRecentInquiry(data.email, ip);
+    // Wrap in try-catch so Supabase being unreachable (DNS / network) doesn't 500 the form.
+    let duplicate = false;
+    try {
+      duplicate = await dedupeRecentInquiry(data.email, ip);
+    } catch (e) {
+      console.error('[inquiry] dedupe check failed (continuing):', (e as any)?.message || String(e));
+    }
     if (duplicate) {
       return res.status(200).json({ success: true, deduped: true });
     }
@@ -287,12 +293,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const inquiryType = INQUIRY_TYPE_MAP[data.type];
 
-    // 1. 老客户识别
-    const known = await lookupKnownCustomer(data.email, data.company);
+    // 1. 老客户识别 (Supabase 不可达时降级 — 不阻塞询盘)
+    let known: any = null;
+    try {
+      known = await lookupKnownCustomer(data.email, data.company);
+    } catch (e) {
+      console.error('[inquiry] known customer lookup failed (continuing):', (e as any)?.message || String(e));
+    }
 
-    // 2. 写入 inquiries
+    // 2. 写入 inquiries (Supabase 不可达时降级 — 不阻塞邮件)
     let inquiryId: number | null = null;
-    if (SUPABASE_URL && SUPABASE_KEY) {
+    try {
+      if (SUPABASE_URL && SUPABASE_KEY) {
       const inquiryPayload = {
         inquiry_type: inquiryType,
         locale: data.locale,
@@ -333,7 +345,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         inquiryId = inserted?.[0]?.id || null;
       }
     }
+    } catch (e) {
+      console.error('[inquiry] Supabase write failed (continuing without DB):', (e as any)?.message || String(e));
+    }
 
+    
     // 2.5 同步 leads 表 + AI 评分
     {
       const protocol = (req.headers && (req.headers["x-forwarded-proto"] || "https")) || "https";
