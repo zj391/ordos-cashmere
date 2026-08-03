@@ -180,6 +180,8 @@ export default function ContactForm({ locale }: Props) {
     if (attachments.length > 0) payload.attachments = attachments;
     try {
       const endpoint = 'https://www.erdosdx.com/api/inquiry/';
+      console.log('[contact] submitting payload:', payload);
+      (window as any).__lastContactPayload = payload;
       const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
