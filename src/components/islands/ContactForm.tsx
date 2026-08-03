@@ -179,7 +179,7 @@ export default function ContactForm({ locale }: Props) {
     if (cartItems.length > 0) payload.cart_items = cartItems;
     if (attachments.length > 0) payload.attachments = attachments;
     try {
-      const endpoint = '/api/inquiry';
+      const endpoint = 'https://www.erdosdx.com/api/inquiry/';
       const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -200,7 +200,7 @@ export default function ContactForm({ locale }: Props) {
         });
       }
       // 后台 track
-      fetch('/api/inquiry?action=event', {
+      fetch('https://www.erdosdx.com/api/inquiry?action=event', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

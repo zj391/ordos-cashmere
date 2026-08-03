@@ -95,7 +95,7 @@ export default function ProductInquiryForm({
         });
       }
       // 后台 track（独立于 GA4，走 /api/inquiry?action=event）
-      fetch('/api/inquiry?action=event', {
+      fetch('https://www.erdosdx.com/api/inquiry?action=event', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

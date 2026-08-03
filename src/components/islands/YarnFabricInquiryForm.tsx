@@ -9,7 +9,7 @@ export default function YarnFabricInquiryForm({ locale }: { locale: string }) {
     <ProductInquiryForm
       locale={locale}
       productType="yarn"
-      endpoint="/api/inquiry"
+      endpoint="https://www.erdosdx.com/api/inquiry/"
       title={{
         en: 'Yarn & Fabric Inquiry',
         cn: '纱线/面料询盘',

@@ -9,7 +9,7 @@ export default function GarmentOemInquiryForm({ locale }: { locale: string }) {
     <ProductInquiryForm
       locale={locale}
       productType="garment"
-      endpoint="/api/inquiry"
+      endpoint="https://www.erdosdx.com/api/inquiry/"
       title={{
         en: 'Garment OEM Custom Inquiry',
         cn: '成衣代工定制询盘',

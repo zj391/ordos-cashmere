@@ -9,7 +9,7 @@ export default function RawMaterialInquiryForm({ locale }: { locale: string }) {
     <ProductInquiryForm
       locale={locale}
       productType="raw"
-      endpoint="/api/inquiry"
+      endpoint="https://www.erdosdx.com/api/inquiry/"
       title={{
         en: 'Raw Cashmere Bulk Inquiry',
         cn: '羊绒原料批量询盘',
