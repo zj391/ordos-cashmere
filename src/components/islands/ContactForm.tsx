@@ -185,7 +185,11 @@ export default function ContactForm({ locale }: Props) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
-      if (!res.ok) throw new Error();
+      if (!res.ok) {
+        let errMsg = '';
+        try { const j = await res.json(); errMsg = j.error || JSON.stringify(j); } catch { errMsg = 'HTTP ' + res.status; }
+        throw new Error(errMsg);
+      }
       setStatus('success');
       (e.target as HTMLFormElement).reset();
       setAttachments([]);
@@ -209,8 +213,10 @@ export default function ContactForm({ locale }: Props) {
           locale,
         }),
       }).catch(() => {});
-    } catch {
+    } catch (e: any) {
+      console.error('[contact] submit failed:', e?.message);
       setStatus('error');
+      (window as any).__lastContactError = e?.message || 'unknown';
     } finally {
       setSubmitting(false);
     }
