@@ -381,6 +381,17 @@ if (faqs && faqs.length > 0) {
 <html lang={LOCALE_HREFLANG[locale]}>
 
   <head>
+    <script>
+      // Unregister any stale service workers so the latest JS bundle is loaded.
+      // (Engineers installed an SW during earlier dev work; it cached the
+      // pre-CORS bundle and re-serves it from disk. This kills it on first
+      // load so HTML cache-control: no-store takes effect from now on.)
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then((regs) => {
+          regs.forEach((r) => r.unregister());
+        });
+      }
+    </script>
 
     <meta charset="UTF-8" />
 
