@@ -173,7 +173,19 @@ const SUGGESTED: Record<string, string[]> = {
 
 export default function AIChatWidget({ locale }: Props) {
   const t = I18N[locale] || I18N.en;
-  const [open, setOpen] = useState(false);
+  // If the user clicked the AI button before this React island hydrated, the
+  // button writes a pending-open flag to localStorage and dispatches an event.
+  // On mount we read that flag so we don't lose the click.
+  const [open, setOpen] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    try {
+      if (window.localStorage.getItem('hermes:ai-chat:pending-open') === '1') {
+        window.localStorage.removeItem('hermes:ai-chat:pending-open');
+        return true;
+      }
+    } catch { /* private mode */ }
+    return false;
+  });
   const [messages, setMessages] = useState<Msg[]>([
     { role: 'assistant', content: GREETINGS[locale] || GREETINGS.en, ts: Date.now() },
   ]);
@@ -338,7 +350,7 @@ export default function AIChatWidget({ locale }: Props) {
             </div>
             <button
               type="button"
-              onClick={() => setOpen(false)}
+              onClick={() => { setOpen(false); try { localStorage.removeItem('hermes:ai-chat:pending-open'); } catch(e){} }}
               aria-label="Close"
               className="ml-2 w-7 h-7 rounded-full hover:bg-white/10 flex items-center justify-center flex-shrink-0"
             >

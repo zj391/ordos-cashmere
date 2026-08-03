@@ -585,16 +585,14 @@ if (faqs && faqs.length > 0) {
 
 
     <!-- AI 24h 智能客服（由 FloatingChatButtons 的 AI 按钮触发打开）。
+         client:idle hydrates as soon as the browser is idle (typically < 200ms
+         after load), which is fast enough that the first click on the floating
+         AI button always finds the island ready. client:visible was too lazy —
+         if the user clicked the AI button before the button area scrolled into
+         the IntersectionObserver, the dispatched CustomEvent was lost and the
+         chat panel never opened. -->
 
-         client:visible keeps the React island dormant until the button area
-
-         scrolls into view, so visitors who never reach the chat button never
-
-         pay the hydration cost. The CustomEvent `hermes:open-ai-chat` still
-
-         opens the panel on first click. -->
-
-    <AIChatWidget client:visible locale={locale} />
+    <AIChatWidget client:idle locale={locale} />
 
 
 
