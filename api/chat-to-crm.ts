@@ -265,11 +265,28 @@ async function upsertLead(
     status: 'new',
   };
 
-  // Upsert by (session_id, email). If email is null, just insert (let dedup be best-effort).
-  if (extraction.email) {
-    const url = `${SUPABASE_URL}/rest/v1/leads?session_id=eq.${encodeURIComponent(sessionId)}&email=eq.${encodeURIComponent(extraction.email)}`;
-    const r = await fetch(url, {
-      method: 'PATCH',
+  try {
+    // Upsert by (session_id, email). If email is null, just insert (let dedup be best-effort).
+    if (extraction.email) {
+      const url = `${SUPABASE_URL}/rest/v1/leads?session_id=eq.${encodeURIComponent(sessionId)}&email=eq.${encodeURIComponent(extraction.email)}`;
+      const r = await fetch(url, {
+        method: 'PATCH',
+        headers: {
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+          'Content-Type': 'application/json',
+          Prefer: 'return=representation',
+        },
+        body: JSON.stringify(payload),
+      });
+      if (r.ok) {
+        const rows = await r.json().catch(() => []);
+        return Array.isArray(rows) && rows.length ? rows[0] : null;
+      }
+      // fallthrough to insert if PATCH affected 0 rows (e.g. RLS)
+    }
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+      method: 'POST',
       headers: {
         apikey: SUPABASE_KEY,
         Authorization: `Bearer ${SUPABASE_KEY}`,
@@ -278,28 +295,17 @@ async function upsertLead(
       },
       body: JSON.stringify(payload),
     });
-    if (r.ok) {
-      const rows = await r.json().catch(() => []);
-      return Array.isArray(rows) && rows.length ? rows[0] : null;
+    if (!r.ok) {
+      console.error('[chat-to-crm] upsert lead failed', r.status, (await r.text()).slice(0, 300));
+      return null;
     }
-    // fallthrough to insert if PATCH affected 0 rows (e.g. RLS)
-  }
-  const r = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
-    method: 'POST',
-    headers: {
-      apikey: SUPABASE_KEY,
-      Authorization: `Bearer ${SUPABASE_KEY}`,
-      'Content-Type': 'application/json',
-      Prefer: 'return=representation',
-    },
-    body: JSON.stringify(payload),
-  });
-  if (!r.ok) {
-    console.error('[chat-to-crm] upsert lead failed', r.status, (await r.text()).slice(0, 300));
+    const rows = await r.json().catch(() => []);
+    return Array.isArray(rows) && rows.length ? rows[0] : null;
+  } catch (e: any) {
+    // Supabase unreachable (DNS / network) — degrade gracefully so email pipeline still runs.
+    console.error('[chat-to-crm] upsert lead network error (continuing):', e?.message || String(e));
     return null;
   }
-  const rows = await r.json().catch(() => []);
-  return Array.isArray(rows) && rows.length ? rows[0] : null;
 }
 
 async function sendResend(
