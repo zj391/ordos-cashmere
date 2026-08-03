@@ -15,6 +15,14 @@
  */
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
+function setCors(res: any) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Max-Age', '86400');
+}
+
+
 function getEnv(name: string, fallback?: string): string {
   return process.env[name] || process.env[name.toLowerCase()] || (fallback ?? '');
 }
@@ -102,6 +110,11 @@ function extractGeminiReply(data: any): string {
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  setCors(res);
+  if (req.method === 'OPTIONS') {
+    return res.status(204).end();
+  }
+
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');

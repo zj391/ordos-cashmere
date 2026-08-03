@@ -9,6 +9,14 @@
  */
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
+function setCors(res: any) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Hermes-Token');
+  res.setHeader('Access-Control-Max-Age', '86400');
+}
+
+
 const N8N_WEBHOOK = process.env.N8N_WEBHOOK_URL;
 const HERMES_INBOUND_TOKEN=process.env.HERMES_INBOUND_TOKEN || '';
 // WeChat / enterprise WeChat notification. Generic POST to a webhook URL with
@@ -244,6 +252,15 @@ async function lookupKnownCustomer(email: string, company: string) {
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  // CORS preflight: respond 204 before any other logic so the browser
+  // accepts the cross-origin POST. (Vercel vercel.json headers attach to
+  // responses we *generate*, but the OPTIONS request itself must hit this
+  // handler and return 204 — not 405.)
+  setCors(res);
+  if (req.method === 'OPTIONS') {
+    return res.status(204).end();
+  }
+
   // Merged action: ?action=event forwards to the former /api/track-event logic.
   // This keeps Vercel Hobby's 12-fn budget under control by collapsing two
   // unrelated POST endpoints into one physical function.
