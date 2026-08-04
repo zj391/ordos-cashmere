@@ -182,6 +182,17 @@ export default function ContactForm({ locale }: Props) {
       const endpoint = 'https://www.erdosdx.com/api/inquiry/';
       console.log('[contact] submitting payload:', payload);
       (window as any).__lastContactPayload = payload;
+      (window as any).__lastContactEndpoint = endpoint;
+      (window as any).__lastContactMethod = 'POST';
+      console.log('[contact] endpoint:', endpoint, 'method: POST');
+      // Show debug banner
+      const existing = document.getElementById('contact-debug-banner');
+      if (existing) existing.remove();
+      const banner = document.createElement('div');
+      banner.id = 'contact-debug-banner';
+      banner.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:yellow;color:black;padding:8px;z-index:99999;font-family:monospace;font-size:14px;';
+      banner.textContent = 'POST ' + endpoint + ' payload: ' + JSON.stringify(payload).slice(0, 200);
+      document.body.appendChild(banner);
       const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
