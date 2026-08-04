@@ -279,23 +279,24 @@ const tdk = {
   },
   'hats-accessories': {
     en: {
-      title: 'Cashmere Hats, Beanies & Accessories Wholesale | DONGXIAO®',
-      description: 'Wholesale cashmere hats, beanies, gloves, socks, headbands. 144 styles direct from Ordos. Logo embroidery available. MOQ 50pcs.',
-      keywords: ['cashmere hats wholesale', 'cashmere beanies', 'cashmere gloves wholesale', 'cashmere socks manufacturer', 'cashmere accessories wholesale'],
-      h1: 'Cashmere Hats & Accessories Wholesale',
-      intro: 'Cashmere hats, beanies, gloves, socks, and headbands. 144 styles for retailers and private-label buyers.',
-      bullets: ['66 hat styles + 78 accessory styles', 'Logo embroidery available', 'Custom packaging', 'MOQ 50pcs per style'],
+      title: 'Cashmere Hats, Leggings, Gloves & Socks Wholesale | MOQ 50 | DONGXIAO®',
+      description: 'Wholesale cashmere hats, leggings, gloves, socks, headbands direct from Ordos factory. 144 styles including cashmere leggings, thermal long johns, knit pants. Logo embroidery available. MOQ 50pcs.',
+      keywords: ['cashmere hats wholesale', 'cashmere beanies', 'cashmere leggings wholesale', 'cashmere pants wholesale', 'cashmere tights', 'cashmere long johns', 'cashmere gloves wholesale', 'cashmere socks manufacturer', 'cashmere accessories wholesale'],
+      h1: 'Cashmere Hats, Leggings & Accessories Wholesale',
+      intro: 'Cashmere hats, beanies, leggings, gloves, socks, and headbands. 144 styles for retailers and private-label buyers — including cashmere leggings and thermal knit pants from Inner Mongolia.',
+      bullets: ['66 hat styles + 78 accessory styles', 'Cashmere leggings, pants & long johns', 'Logo embroidery available', 'Custom packaging', 'MOQ 50pcs per style'],
       faqs: [
         { q: 'Can you embroider my logo on cashmere hats?', a: 'Yes — flat embroidery, 3D puff embroidery, or woven labels. No minimum on embroidery orders.' },
+        { q: 'Do you make cashmere leggings wholesale?', a: 'Yes — cashmere leggings, thermal pants, and knit tights in 14.5-15.5μm Inner Mongolian cashmere. MOQ 50 pcs per style. Custom colors, sizes, and logo embroidery available. Sample in 7 days, bulk in 25-30 days FOB Tianjin.' },
       ],
     },
     cn: {
-      title: '羊绒帽子与配饰批发 | DONGXIAO®',
-      description: '羊绒帽子、毛线帽、手套、袜子、发带批发。144 款式。支持 logo 刺绣。MOQ 50件。',
-      keywords: ['羊绒帽子批发', '羊绒毛线帽', '羊绒手套批发', '羊绒袜子代工'],
-      h1: '羊绒帽子与配饰批发',
-      intro: '羊绒帽子、毛线帽、手套、袜子、发带。144 款式，适合零售商与品牌方。',
-      bullets: ['66 帽款 + 78 配饰款', '支持 logo 刺绣', '定制包装', 'MOQ 每款 50 件'],
+      title: '羊绒帽子、打底裤、手套、袜子批发 | MOQ 50件 | DONGXIAO®',
+      description: '羊绒帽子、打底裤、紧身裤、手套、袜子批发源头工厂。144 款式，包含羊绒打底裤、紧身打底、保暖长裤。支持 logo 刺绣。MOQ 50件。',
+      keywords: ['羊绒帽子批发', '羊绒毛线帽', '羊绒打底裤', '羊绒紧身裤', '羊绒保暖裤', '羊绒长裤', '羊绒手套批发', '羊绒袜子代工', '羊绒配饰批发'],
+      h1: '羊绒帽子、打底裤与配饰批发',
+      intro: '羊绒帽子、毛线帽、打底裤、紧身裤、手套、袜子。144 款式，内蒙古源头工厂直供。',
+      bullets: ['66 帽款 + 78 配饰款', '羊绒打底裤、紧身裤、保暖长裤', '支持 logo 刺绣', '定制包装', 'MOQ 每款 50 件'],
       faqs: [
         { q: '帽子上能刺绣我自己的 logo 吗？', a: '可以。平绣、3D 立体绣、织造标签均可。刺绣无最小起订量限制。' },
       ],
@@ -376,6 +377,58 @@ const itemListSchema = {
       </ul>
     </div>
   </section>
+
+  <!-- Leggings dedicated sub-section (target: "cashmere leggings" search) -->
+  {slug === 'accessories' && (() => {
+    const leggings = products.filter((p) => /legging|leggin|pant|tight|trouser|leggings|tights|long john/i.test(p.name));
+    if (leggings.length === 0) return null;
+    return (
+      <section class="py-16 md:py-20 bg-stone-50">
+        <div class="container-narrow">
+          <div class="mb-8">
+            <span class="inline-block px-3 py-1 border border-brand-chocolate text-brand-chocolate text-[10px] tracking-[0.2em] uppercase font-medium mb-4">{locale === 'cn' ? '专题' : 'FEATURED CATEGORY'}</span>
+            <h2 class="font-display text-3xl md:text-4xl font-light mb-3">{locale === 'cn' ? '羊绒打底裤与紧身裤' : 'Cashmere Leggings & Long Johns'}</h2>
+            <p class="text-muted-foreground leading-relaxed max-w-3xl">
+              {locale === 'cn'
+                ? '羊绒打底裤、紧身裤、保暖长裤源头工厂直供。100% 内蒙古羊绒 14.5-15.5μm。适合贴身穿、保暖打底、家居休闲。可定制颜色、尺寸、logo。MOQ 50 件/款。'
+                : 'Cashmere leggings, thermal pants, knit tights, and long johns direct from the Ordos spinning mill. 100% Inner Mongolian cashmere, 14.5-15.5μm fineness. Designed as base layers for warmth without bulk. Custom colors, sizes, and logo. MOQ 50 pcs per style.'}
+            </p>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {leggings.slice(0, 8).map((p) => (
+              <a
+                href={`/${locale}/products/${p.id}`}
+                class="group block border border-border rounded-lg overflow-hidden hover:border-primary transition-colors bg-white"
+              >
+                <div class="aspect-square bg-secondary/30 overflow-hidden">
+                  <img
+                    src={resolveCategoryCardImage(p.images[0])}
+                    alt={p.name}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="p-3">
+                  <h3 class="text-xs font-medium leading-snug line-clamp-2 mb-1">{p.name}</h3>
+                  <p class="text-[10px] text-muted-foreground">USD {p.price} · MOQ {p.moq} pcs</p>
+                </div>
+              </a>
+            ))}
+          </div>
+          {leggings.length > 8 && (
+            <p class="text-center text-xs text-muted-foreground mt-6">
+              {locale === 'cn' ? `+ 还有 ${leggings.length - 8} 款，详见完整目录` : `+ ${leggings.length - 8} more styles, see full catalog below`}
+            </p>
+          )}
+          <p class="text-xs text-muted-foreground mt-8 leading-relaxed">
+            {locale === 'cn'
+              ? '相关搜索：羊绒打底裤、羊绒紧身裤、羊绒保暖裤、羊绒长裤、cashmere leggings、cashmere tights、cashmere pants、cashmere long johns、thermal cashmere base layer、winter cashmere trousers women。'
+              : 'Related searches: cashmere leggings, cashmere tights, cashmere pants, cashmere long johns, cashmere thermal underwear, cashmere base layer, cashmere trousers, cashmere knit pants, ladies cashmere leggings wholesale, thermal cashmere pants for women.'}
+          </p>
+        </div>
+      </section>
+    );
+  })()}
 
   <section class="py-16 md:py-20 bg-background">
     <div class="container-narrow">
