@@ -43,7 +43,7 @@ const CATEGORY_SLUGS_DEFS = {
   hats: { id: 'hats', slug: 'hats-accessories', name: 'Cashmere Hats & Beanies' },
   scarves: { id: 'scarves', slug: 'scarves', name: 'Cashmere Scarves & Wraps' },
   sweaters: { id: 'sweaters', slug: 'garment-oem', name: 'Cashmere Sweaters & Knitwear' },
-  accessories: { id: 'accessories', slug: 'accessories', name: 'Cashmere Accessories' },
+  accessories: { id: 'accessories', slug: 'accessories-cat', name: 'Cashmere Accessories' },
   yarn: { id: 'yarn', slug: 'yarn', name: 'Cashmere Yarn & Fiber' },
 };
 
@@ -62,7 +62,7 @@ export function getStaticPaths() {
     hats: { id: 'hats', slug: 'hats-accessories', name: 'Cashmere Hats & Beanies' },
     scarves: { id: 'scarves', slug: 'scarves', name: 'Cashmere Scarves & Wraps' },
     sweaters: { id: 'sweaters', slug: 'garment-oem', name: 'Cashmere Sweaters & Knitwear' },
-    accessories: { id: 'accessories', slug: 'accessories', name: 'Cashmere Accessories' },
+    accessories: { id: 'accessories', slug: 'accessories-cat', name: 'Cashmere Accessories' },
     yarn: { id: 'yarn', slug: 'yarn', name: 'Cashmere Yarn & Fiber' },
   };
   const slugs = Array.from(new Set(Object.values(CATEGORY_SLUGS).map((c) => c.slug)));
