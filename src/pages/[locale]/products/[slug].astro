@@ -61,7 +61,7 @@ for (const catId of Object.keys(CATEGORY_SLUGS_DEFS)) {
 
 
 const { locale: rawLocale } = Astro.params;
-const slug = 'cashmere-accessories';
+const slug = 'accessories-cat';
 if (!isLocale(rawLocale)) { return new Response('Not Found', { status: 404 }); }
 const locale = pickLocale(rawLocale);
 if (!slug || !SLUG_TO_CATEGORY_DEFS[slug]) { return new Response('Not Found', { status: 404 }); }
