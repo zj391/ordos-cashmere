@@ -97,10 +97,20 @@ function validatePayload(data: Partial<InquiryPayload>): ValidationResult {
   for (const field of ['utm_source', 'utm_medium', 'utm_campaign'] as const) {
     if (data[field] && (typeof data[field] !== 'string' || (data[field] as string).length > MAX_UTM_LEN)) errors.push(field);
   }
-  if (data.attachments && !Array.isArray(data.attachments)) errors.push('attachments_shape');
+  // Some old front-end bundle serializes the file input as an empty object {}.
+  // Accept that and treat it as no attachments.
+  let attachments: any = [];
   if (Array.isArray(data.attachments)) {
-    if (data.attachments.length > MAX_ATTACHMENTS) errors.push('attachments_count');
-    for (const [i, a] of data.attachments.entries()) {
+    attachments = data.attachments;
+  } else if (data.attachments && typeof data.attachments === 'object') {
+    // legacy: { name, type, dataUrl } single attachment — wrap in array
+    if (typeof data.attachments.name === 'string') attachments = [data.attachments];
+  } else if (data.attachments) {
+    errors.push('attachments_shape');
+  }
+  if (Array.isArray(attachments) && attachments.length > 0) {
+  if (attachments.length > MAX_ATTACHMENTS) errors.push('attachments_count');
+    for (const [i, a] of attachments.entries()) {
       if (!a || typeof a !== 'object') { errors.push(`attachments[${i}]_shape`); continue; }
       if (typeof a.name !== 'string' || a.name.length > 200) errors.push(`attachments[${i}]_name`);
       if (typeof a.type !== 'string' || !ALLOWED_ATTACHMENT_MIME.includes(a.type)) errors.push(`attachments[${i}]_mime`);
@@ -209,7 +219,7 @@ async function sendEmail(payload: { to: string; subject: string; html: string; r
  */
 function formatInquiryForWeChat(data: InquiryPayload, inquiryId: string, known: any | null): string {
   const knownLine = known ? `👤 老客户 (${known.grade || 'ungraded'})` : '🆕 新客户';
-  const attCount = (data.attachments && data.attachments.length) || 0;
+  const attCount = attachmentsArr.length;
   const attLine = attCount > 0 ? `\n📎 附件: ${attCount} 个` : '';
   return `🔔 新询盘 [${(data.type || '?').toUpperCase()}]
 
@@ -441,7 +451,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // 5. 自动回执邮件（如果配置了 Resend）
     const reply = renderCustomerEmail(data.locale, data);
-    const customerEmailResult = sendEmail({ to: data.email, ...reply, tag: 'inquiry-reply', attachments: data.attachments })
+    const attachmentsArr = Array.isArray(data.attachments) ? data.attachments : (data.attachments && typeof data.attachments === 'object' && (data.attachments as any).name ? [data.attachments] : []);
+    const customerEmailResult = sendEmail({ to: data.email, ...reply, tag: 'inquiry-reply', attachments: attachmentsArr })
       .catch(err => { console.error('Email error:', err); return { ok: false as const, id: undefined, error: String(err) }; });
     const internalEmailResult = sendEmail({
       to: NOTIFICATION_EMAIL,
@@ -460,9 +471,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         <p><strong>Message:</strong> ${data.message || 'N/A'}</p>
         <p><strong>Locale:</strong> ${data.locale}</p>
         <p><strong>Inquiry ID:</strong> ${inquiryId}</p>
-        <p><strong>Attachments:</strong> ${(data.attachments && data.attachments.length) ? data.attachments.length : 0}</p>
+        <p><strong>Attachments:</strong> ${attachmentsArr.length}</p>
       `,
-      attachments: data.attachments,
+      attachments: attachmentsArr,
     }).catch(err => { console.error('Internal email error:', err); return { ok: false as const, id: undefined, error: String(err) }; });
 
 

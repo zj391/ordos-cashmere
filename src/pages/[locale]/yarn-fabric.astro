@@ -28,6 +28,28 @@ const t: Record<string, Record<string, string>> = {
     yarnSub: 'Spun at our facility in Ordos. Counts from 26/2 to 48/2. 100% cashmere or custom blends with wool, silk, or recycled fibers.',
     fabricTitle: 'Cashmere Woven Fabric',
     fabricSub: 'Woven on Italian looms. Plain, twill, and satin weaves. From 180 g/m² (lightweight) to 450 g/m² (heavy outerwear).',
+    greigeTitle: 'Greige / Undyed\nCashmere Yarn',
+    greigeKick: 'For brands that dye in-house',
+    greigeSub: 'Natural white, brown (qing), and purple (zi) raw yarn — no bleach, no dye, ready for your spinner or dye house. Cone or hank. Same Inner-Mongolian fiber, same gauges, with full traceability.',
+    greigeCt1: 'Fiber state',
+    greigeCv1: '100% raw, dehaired',
+    greigeCt2: 'Color',
+    greigeCv2: 'White / Brown / Purple',
+    greigeCt3: 'Bleach',
+    greigeCv3: 'None',
+    greigeCt4: 'Yarn forms',
+    greigeCv4: 'Cone · Hank · Cake',
+    greigeCt5: 'MOQ',
+    greigeCv5: '20',
+    greigeCt6: 'Lead',
+    greigeCv6: '15',
+    greigeUnit: 'kg',
+    greigeUnit2: 'days',
+    greigeTag: 'GREIGE',
+    greigeFormTitle: 'Request greige yarn sample',
+    greigeFormSub: 'Natural white, brown, or purple. We ship in 7 days. Free for orders above 5 kg.',
+    greigeFaqQ: 'What is greige cashmere yarn?',
+    greigeFaqA: 'Greige (undyed) cashmere yarn is cashmere yarn in its natural fiber color — white, brown, or purple — without any bleaching or dyeing. Knitting brands that dye in-house order greige yarn to control the final color and chemistry of their finished garments.',
     inquiryTitle: 'Request a quotation',
     inquirySub: 'Tell us your spec. We respond with sample swatches, pricing, and lead time within 24 hours.',
   },
@@ -128,6 +150,63 @@ const IMG = {
     </div>
   </section>
 
+  <!-- Greige / Undyed Yarn 段: 目标 keyword "undyed cashmere yarn wholesale" -->
+  <section class="py-24 md:py-32 bg-stone-50">
+    <div class="container-narrow">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
+        <div class="lg:col-span-5">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="px-2 py-0.5 border border-brand-chocolate text-brand-chocolate text-[10px] tracking-[0.2em] uppercase font-medium">{T('greigeTag')}</span>
+            <span class="h-px w-8 bg-brand-gold"></span>
+          </div>
+          <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-4" set:html={T('greigeTitle').replace(/\n/g, '<br/>')} />
+          <p class="text-sm text-brand-gold uppercase tracking-[0.2em] mb-4">{T('greigeKick')}</p>
+        </div>
+        <div class="lg:col-span-7 lg:pt-6">
+          <p class="text-muted-foreground leading-relaxed text-lg">{T('greigeSub')}</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-px bg-border">
+        {[
+          { label: T('greigeCt1'), value: T('greigeCv1'), unit: '' },
+          { label: T('greigeCt2'), value: T('greigeCv2'), unit: '' },
+          { label: T('greigeCt3'), value: T('greigeCv3'), unit: '' },
+          { label: T('greigeCt4'), value: T('greigeCv4'), unit: '' },
+          { label: T('greigeCt5'), value: T('greigeCv5'), unit: T('greigeUnit') },
+          { label: T('greigeCt6'), value: T('greigeCv6'), unit: T('greigeUnit2') },
+        ].map((s, i) => (
+          <div class="bg-stone-50 p-8 md:p-10">
+            <div class="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4 flex items-baseline justify-between">
+              <span>{s.label}</span>
+              <span class="font-serif text-sm text-brand-gold/50">{String(i+1).padStart(2,'0')}</span>
+            </div>
+            <div class="flex items-baseline gap-1">
+              <span class="font-serif text-3xl md:text-4xl text-brand-chocolate font-light">{s.value}</span>
+              {s.unit && <span class="text-sm text-muted-foreground">{s.unit}</span>}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- 老客户搜索词: undyed cashmere yarn wholesale / greige / raw white cashmere -->
+      <p class="text-xs text-muted-foreground mt-8 leading-relaxed">
+        {locale === 'cn'
+          ? '相关搜索：未染色羊绒纱线批发、本白羊绒纱线、青绒、紫纱、纯天然羊绒纱线、Ordos 毛条原料、染色前纱线、可定制颜色。'
+          : 'Related searches: undyed cashmere yarn wholesale, greige cashmere yarn, raw white cashmere yarn, brown (qing) cashmere, purple (zi) cashmere, natural cashmere yarn for dyers, undyed 26/2 36/2 48/2. Bulk orders from 20 kg. FOB Tianjin in 15 days.'}
+      </p>
+
+      <div class="mt-12 text-center">
+        <h3 class="font-serif text-2xl md:text-3xl mb-3">{T('greigeFormTitle')}</h3>
+        <p class="text-muted-foreground mb-6 max-w-2xl mx-auto">{T('greigeFormSub')}</p>
+        <a href={`/${locale}/contact?type=yarn&source=greige`} class="inline-flex items-center gap-2 px-8 py-3 bg-brand-chocolate text-white rounded-md font-medium hover:bg-brand-chocolate/90 transition-all">
+          {locale === 'cn' ? '索取未染色纱线样品' : 'Request greige yarn sample'}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- Fabric 段：大图 + 数据 -->
   <section class="py-24 md:py-32 bg-brand-cream/50">
     <div class="container-narrow">
@@ -186,6 +265,9 @@ const IMG = {
     locale === 'cn'
       ? { q: '羊绒纱线支数是什么意思？', a: '支数表示纱线的细度，例如26/2表示双股26支纱线。数字越大纱线越细：26/2用于厚款毛衣，36/2-48/2用于薄款内衣和春夏针织。' }
       : { q: 'What do cashmere yarn count numbers mean?', a: 'Count indicates yarn fineness. 26/2 means 2-ply 26-count yarn. Higher numbers mean finer yarn: 26/2 for thick sweaters, 36/2-48/2 for lightweight knitwear and spring/summer garments.' },
+    locale === 'cn'
+      ? { q: '未染色（greige）羊绣纱线?', a: '未染色羊绣纱线（greige yarn）是保留山羚绣天然纤维颜色的原色纱线——白绣、青绣、紫绣—未经任何漂白或染色工序。自行染色的钩织品牌订购未染色纱线，可控制成衣的最终颜色和化学处理。' }
+      : { q: T('greigeFaqQ'), a: T('greigeFaqA') },
     locale === 'cn'
       ? { q: '精纺和粗纺羊绒有什么区别？', a: '精纺纱线（26/2及以上）表面光滑，适合贴身穿的高级针织；粗纺纱线（14/2-20/2）表面有绒感，保暖性更强，适合外套和冬季毛衣。' }
       : { q: 'What is the difference between worsted and woolen cashmere?', a: 'Worsted yarn (26/2+) has smooth surface, ideal for next-to-skin luxury knitwear. Woolen yarn (14/2-20/2) has fuzzy texture with stronger warmth retention, ideal for outerwear and winter sweaters.' },
