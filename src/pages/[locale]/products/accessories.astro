@@ -18,6 +18,10 @@ import { LOCALES, isLocale, pickLocale } from '@/lib/i18n';
 import { SEO, SITE_URL } from '@/lib/seo';
 import { products as productsData, getCategoryById } from '@/data/products';
 
+export function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { locale } }));
+}
+
 // Maps catId -> image directory (must match `CATEGORY_IMAGE_DIR` in [id].astro).
 const CATEGORY_IMAGE_DIR = {
   hats: 'mic',
