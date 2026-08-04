@@ -41,6 +41,7 @@ function resolveCategoryCardImage(img: string): string {
 // (Astro hoists getStaticPaths before top-level const, so we declare inline below.)
 const CATEGORY_SLUGS_DEFS = {
   hats: { id: 'hats', slug: 'hats-accessories', name: 'Cashmere Hats & Beanies' },
+  accessories: { id: 'accessories', slug: 'accessories', name: 'Cashmere Accessories' },
   scarves: { id: 'scarves', slug: 'scarves', name: 'Cashmere Scarves & Wraps' },
   sweaters: { id: 'sweaters', slug: 'garment-oem', name: 'Cashmere Sweaters & Knitwear' },
   accessories: { id: 'accessories', slug: 'hats-accessories', name: 'Cashmere Accessories' },
@@ -54,27 +55,9 @@ for (const catId of Object.keys(CATEGORY_SLUGS_DEFS)) {
   if (!SLUG_TO_CATEGORY_DEFS[m.slug]) SLUG_TO_CATEGORY_DEFS[m.slug] = catId;
 }
 
-export function getStaticPaths() {
-  const paths = [];
-    // Astro/Rollup hoists getStaticPaths before top-level consts.
-  // Recreate the maps locally so the order is guaranteed.
-  const CATEGORY_SLUGS = {
-    hats: { id: 'hats', slug: 'hats-accessories', name: 'Cashmere Hats & Beanies' },
-    scarves: { id: 'scarves', slug: 'scarves', name: 'Cashmere Scarves & Wraps' },
-    sweaters: { id: 'sweaters', slug: 'garment-oem', name: 'Cashmere Sweaters & Knitwear' },
-    accessories: { id: 'accessories', slug: 'hats-accessories', name: 'Cashmere Accessories' },
-    yarn: { id: 'yarn', slug: 'yarn', name: 'Cashmere Yarn & Fiber' },
-  };
-  const slugs = Array.from(new Set(Object.values(CATEGORY_SLUGS).map((c) => c.slug)));
-  for (const locale of LOCALES) {
-    for (const slug of slugs) {
-      paths.push({ params: { locale, category: slug } });
-    }
-  }
-  return paths;
-}
 
-const { locale: rawLocale, category: slug } = Astro.params;
+const { locale: rawLocale } = Astro.params;
+const slug = 'accessories';
 if (!isLocale(rawLocale)) { return new Response('Not Found', { status: 404 }); }
 const locale = pickLocale(rawLocale);
 if (!slug || !SLUG_TO_CATEGORY_DEFS[slug]) { return new Response('Not Found', { status: 404 }); }
