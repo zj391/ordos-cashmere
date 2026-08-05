@@ -34,7 +34,7 @@ const t: Record<string, Record<string, string>> = {
 };
 const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
 ---
-<BaseLayout locale={locale} pageKey="cart" path="/cart" title={`Inquiry List | DONGXIAO®`} description="Review products you want a quote for and send a single inquiry to our Ordos factory.">
+<BaseLayout locale={locale} pageKey="cart" path="/cart" title={`Inquiry List | DONGXIAO®`} description="Review products you want a quote for and send a single inquiry to our Ordos factory." noIndex={true}>
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/cart`} />
 
   <section class="bg-brand-ink text-white">

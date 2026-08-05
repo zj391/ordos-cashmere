@@ -22,13 +22,7 @@ import CookieConsent from '@/components/CookieConsent.astro';
 import ColorPicker from '@/components/product/ColorPicker.astro';
 import { LOCALES, isLocale, pickLocale } from '@/lib/i18n';
 import { SEO, SITE_URL, SITE_INFO } from '@/lib/seo';
-import {
-  getProductById,
-  getAllProducts,
-  getCategoryById,
-  getProductsByCategory,
-  ensureDbOverlay,
-} from '@/data/products';
+import { getProductById, getAllProducts, getCategoryById, getProductsByCategory } from '@/data/products';
 
 // 类别 id 映射到产品图目录
 // 2026-07-13 修复: 实际图片在 /products/mic/ 目录下 (curl /products/mic/prod_025_00.webp = 200),
@@ -42,8 +36,7 @@ const CATEGORY_IMAGE_DIR = {
   yarn: 'mic',
 };
 
-export async function getStaticPaths() {
-  await ensureDbOverlay();
+export function getStaticPaths() {
   const allProducts = getAllProducts();
   const paths = [];
   for (const locale of LOCALES) {
@@ -129,99 +122,230 @@ const cnCategoryNames: Record<string, string> = {
   yarn: '羊绒纱线',
 };
 
+// --- SEO copy helpers: build unique, attribute-rich TDK from catalog fields ---
+const SKIP_VALUES = /^(details?|description|n\/a|na|various|custom(ized|izable)?|??????|customize)$/i;
+function cleanAttr(v: unknown): string {
+  return String(v ?? '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&times;/g, 'x')
+    .replace(/&amp;/g, '&')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+function pickAttr(v: unknown): string {
+  const s = cleanAttr(v);
+  if (!s || SKIP_VALUES.test(s)) return '';
+  return s;
+}
+function listColors(p: typeof product): string {
+  const raw = Array.isArray(p.colors)
+    ? p.colors.join(', ')
+    : String(p.colorsOffered || p.colors || '');
+  const s = cleanAttr(raw).replace(/,\s*Custom(ized|ize)?(,|$)/gi, '').replace(/^Custom(ized|ize)?[, ]*/i, '');
+  if (!s || SKIP_VALUES.test(s)) return '';
+  const items = s.split(/[,/]/).map((x) => x.trim()).filter(Boolean);
+  return items.length > 4 ? `${items.slice(0, 4).join(', ')} +${items.length - 4}` : s;
+}
+function listSizes(p: typeof product): string {
+  const raw = Array.isArray(p.sizes) ? p.sizes.join(', ') : String(p.sizes || '');
+  const s = cleanAttr(raw);
+  if (!s || SKIP_VALUES.test(s)) return '';
+  const items = s.split(/[,;]/).map((x) => x.trim()).filter(Boolean);
+  return items.length > 4 ? `${items.slice(0, 4).join(', ')} +${items.length - 4}` : s;
+}
+function clip(s: string, max: number): string {
+  if (s.length <= max) return s;
+  return s.slice(0, max - 1).replace(/\s+\S*$/, '') + '?';
+}
+
+function cleanScraped(text: unknown): string {
+  let s = String(text ?? '').replace(/find complete details about.*?IMField.*$/is, '');
+  s = s.replace(/find complete details about.*$/is, '');
+  s = s.replace(/-\s*IMField\s*$/i, '');
+  s = s.replace(/\s+/g, ' ').trim();
+  return s;
+}
+function buildProductBody(p: typeof product): string {
+  const parts: string[] = [];
+  if (p.material) parts.push(cleanAttr(p.material));
+  if (p.micron) parts.push(`${cleanAttr(p.micron)} micron`);
+  const colors = listColors(p);
+  if (colors) parts.push(`${colors} colors`);
+  const tech = pickAttr(p.knittingTechnology);
+  if (tech && !/details?/i.test(tech)) parts.push(tech);
+  const patt = pickAttr(p.pattern);
+  if (patt && !/single strand/i.test(patt)) parts.push(`${patt} pattern`);
+  const season = pickAttr(p.season);
+  if (season) parts.push(`suited for ${season}`);
+  const gender = pickAttr(p.gender);
+  if (gender && !/EU\s*\//i.test(gender)) parts.push(`${gender.toLowerCase()} styles`);
+  const sizes = listSizes(p);
+  if (sizes) parts.push(`sizes ${sizes}`);
+  const core = parts.join('; ');
+  return core
+    ? `${core}. MOQ ${p.moq} pcs, lead ${cleanAttr(p.lead)}.`
+    : `${cleanAttr(p.material)} ${p.name}. MOQ ${p.moq} pcs, lead ${cleanAttr(p.lead)}.`;
+}
+const productBodyText = buildProductBody(product);
+const scrapedExtra = cleanScraped(product.detailedDescription);
+const productExtraText =
+  scrapedExtra.length > 60 && !productBodyText.includes(scrapedExtra.slice(0, 40))
+    ? scrapedExtra
+    : '';
+
 // Per-locale TDK
 const tdk = {
   en: (p, c) => {
-      // SEO A-4 (2026-08-01): cap title ≤ 60 chars for SERP. Previous pattern
-      // "{p.name} Wholesale | Cashmere Manufacturer China | MOQ {moq}" produced
-      // 95–126 chars because the catalog has 30–80-char product names, and
-      // Google truncates everything past ~60 chars in the title slot — which
-      // hid the buyer-intent suffix ("Wholesale", "Manufacturer", "MOQ") from
-      // SERP. GSC 2026-08-01 showed 100% of PDP titles were > 60 chars and
-      // matched queries were mostly informational ("cashmere gauge", "cashmere
-      // micron count") rather than B2B transactional, so SERP visibility was
-      // dominated by the visible prefix and never carried the conversion
-      // signal.
-      //
-      // New pattern: shrink product name to first 25 chars (with ellipsis
-          // if cut), then " | {category} Wholesale | MOQ {qty}". Short names
-          // pass through unchanged. Title slot target ≤ 70 chars so Google
-          // SERP keeps "Wholesale" visible — the buyer-intent suffix that
-          // the old pattern was hiding beyond the truncation point.
-          const shortName = p.name.length > 25 ? p.name.substring(0, 25).trim() + '…' : p.name;
-              return {
-              title: `${shortName} | ${c} Wholesale | MOQ ${p.moq}`,
-          // Description kept ≤ 160 chars (Google truncation point). Front-load
-          // buyer signals (MOQ, lead, sample), bury brand word at the end.
-          // Use the same shortened product name in the description to stay
-          // consistent with the SERP title (and keep the slot short).
-          description: `${shortName}. MOQ ${p.moq} pcs. Lead ${p.lead}. ${p.material}, ${p.micron}. OEM/ODM from Inner Mongolia. DONGXIAO.`,
-    keywords: [
-      `${p.name}`,
-      `${p.name} wholesale`,
-      `wholesale ${c.toLowerCase()}`,
-      `cashmere ${c.toLowerCase()} wholesale`,
-      `cashmere manufacturer China`,
-      `cashmere supplier China`,
-      `cashmere factory China`,
-      `buy ${c.toLowerCase()} wholesale`,
-      `bulk ${c.toLowerCase()}`,
-      `OEM ${c.toLowerCase()}`,
-      `ODM ${c.toLowerCase()}`,
-      `MOQ ${p.moq} ${c.toLowerCase()}`,
-      `${p.material} ${c.toLowerCase()}`,
-      `Ordos cashmere factory`,
-      `Inner Mongolia cashmere`,
-      `B2B cashmere supplier`,
-      `private label cashmere ${c.toLowerCase()}`,
-    ],
-    buyCta: 'Request Quote',
-        hideFormCta: 'Hide Form',
-        };
-      },
-  cn: (p, _c) => {
-    // Keep the buyer-intent terms visible in Chinese SERPs. Catalog product
-    // names are English and can exceed 80 characters, so trim only the PDP
-    // metadata; the on-page H1 and product data remain unchanged.
-    const shortName = p.name.length > 18 ? `${p.name.substring(0, 18).trim()}…` : p.name;
-    const categoryName = cnCategoryNames[p.categoryId] || '羊绒制品';
-    const leadDays = p.lead.replace(/\s*days?\b/i, '天').replace(/\s+/g, '');
+    const shortName = p.name.length > 22 ? `${p.name.substring(0, 22).trim()}?` : p.name;
+    const attrs = [
+      p.material ? cleanAttr(p.material) : '',
+      p.micron ? `${cleanAttr(p.micron)} micron` : '',
+      listColors(p),
+      pickAttr(p.pattern),
+      pickAttr(p.knittingTechnology),
+      pickAttr(p.season),
+      pickAttr(p.gender),
+      listSizes(p),
+    ].filter(Boolean);
+    const descCore = attrs.length ? ` ${attrs.join(', ')}.` : '';
+    const description = clip(
+      `${shortName}.${descCore} MOQ ${p.moq} pcs, lead ${cleanAttr(p.lead)}. OEM/ODM from Ordos, Inner Mongolia, China. DONGXIAO.`,
+      158
+    );
     return {
-      title: `${shortName} | ${categoryName}批发 | MOQ ${p.moq}`,
-      description: `${shortName}。${p.material}，${p.micron}。鄂尔多斯源头工厂，MOQ ${p.moq}件，交期${leadDays}，支持OEM/ODM定制。DONGXIAO。`,
-      keywords: [p.name, `${categoryName}批发`, `${p.material}${categoryName}`, `羊绒代工 ${p.id}`, `OEM ${categoryName}`, '羊绒厂家', '鄂尔多斯羊绒'],
-      buyCta: '立即询盘',
-      hideFormCta: '收起表单',
+      title: `${shortName} | ${c} Wholesale | MOQ ${p.moq}`,
+      description,
+      keywords: [
+        `${p.name}`,
+        `${p.name} wholesale`,
+        `wholesale ${c.toLowerCase()}`,
+        `cashmere ${c.toLowerCase()} wholesale`,
+        `cashmere manufacturer China`,
+        `cashmere supplier China`,
+        `cashmere factory China`,
+        `buy ${c.toLowerCase()} wholesale`,
+        `bulk ${c.toLowerCase()}`,
+        `OEM ${c.toLowerCase()}`,
+        `ODM ${c.toLowerCase()}`,
+        `MOQ ${p.moq} ${c.toLowerCase()}`,
+        `${p.material} ${c.toLowerCase()}`,
+        `Ordos cashmere factory`,
+        `Inner Mongolia cashmere`,
+        `B2B cashmere supplier`,
+        `private label cashmere ${c.toLowerCase()}`,
+      ],
+      buyCta: 'Request Quote',
+      hideFormCta: 'Hide Form',
     };
   },
-  de: (p, c) => ({
-    title: `${p.name} | Kaschmir ${c} Großhandel | MOQ ${p.moq}`,
-    description: `${p.name}. ${p.material}, ${p.micron}. Direkt ab Ordos-Fabrik (China). MOQ ${p.moq} Stk. Lieferzeit ${p.lead}. OEM/ODM. Muster in 7 Tagen. DONGXIAO®.`,
-    keywords: [p.name, `Kaschmir ${c} Großhandel`, `OEM ${c}`, `Kaschmir Hersteller China`, `B2B Cashmere Lieferant`],
-    buyCta: 'Anfrage',
-    hideFormCta: 'Formular schließen',
-  }),
-  fr: (p, c) => ({
-    title: `${p.name} | Cachemire ${c} en gros | MOQ ${p.moq}`,
-    description: `${p.name}. ${p.material}, ${p.micron}. Vente en gros depuis l'usine d'Ordos (Chine). MOQ ${p.moq} pièces. Délai ${p.lead}. OEM/ODM. Échantillon sous 7 jours. DONGXIAO®.`,
-    keywords: [p.name, `cachemire ${c} gros`, `OEM ${c}`, `fabricant cachemire Chine`, `fournisseur cachemire B2B`],
-    buyCta: 'Demande',
-    hideFormCta: 'Masquer',
-  }),
-  ja: (p, c) => ({
-    title: `${p.name} | カシミア${c}卸売 | MOQ ${p.moq}枚`,
-    description: `${p.name}。${p.material}、${p.micron}。オルドス工場（中国）直送。MOQ ${p.moq}枚。納期${p.lead}。OEM/ODM対応。サンプル7日。DONGXIAO®。`,
-    keywords: [p.name, `カシミア${c}卸売`, `OEM ${c}`, `カシミア 製造 中国`, `B2B カシミア サプライヤー`],
-    buyCta: '問い合わせ',
-    hideFormCta: '閉じる',
-  }),
-  kr: (p, c) => ({
-    title: `${p.name} | 캐시미어 ${c} 도매 | MOQ ${p.moq}pcs`,
-    description: `${p.name}. ${p.material}, ${p.micron}. 오르도스 공장(중국) 직송. MOQ ${p.moq}pcs. 납기 ${p.lead}. OEM/ODM. 샘플 7일. DONGXIAO®.`,
-    keywords: [p.name, `캐시미어 ${c} 도매`, `OEM ${c}`, `캐시미어 제조 중국`, `B2B 캐시미어 공급업체`],
-    buyCta: '문의',
-    hideFormCta: '닫기',
-  }),
+  cn: (p, _c) => {
+    const shortName = p.name.length > 16 ? `${p.name.substring(0, 16).trim()}?` : p.name;
+    const categoryName = cnCategoryNames[p.categoryId] || '????';
+    const leadDays = cleanAttr(p.lead).replace(/\s*days?\b/i, '?').replace(/\s+/g, '');
+    const colors = listColors(p);
+    const attrs = [
+      p.material ? cleanAttr(p.material) : '',
+      p.micron ? `${cleanAttr(p.micron)}??` : '',
+      colors ? `??${colors}` : '',
+      pickAttr(p.season),
+      pickAttr(p.gender),
+    ].filter(Boolean);
+    const description = clip(
+      `${shortName}?${attrs.join('?')}?MOQ ${p.moq}????${leadDays}???????????OEM/ODM?DONGXIAO?`,
+      150
+    );
+    return {
+      title: `${shortName} | ${categoryName}?? | MOQ ${p.moq}`,
+      description,
+      keywords: [p.name, `${categoryName}??`, `${p.material}${categoryName}`, `???? ${p.id}`, `OEM ${categoryName}`, '????', '??????'],
+      buyCta: '????',
+      hideFormCta: '????',
+    };
+  },
+  de: (p, c) => {
+    const shortName = p.name.length > 20 ? `${p.name.substring(0, 20).trim()}?` : p.name;
+    const attrs = [
+      p.material ? cleanAttr(p.material) : '',
+      p.micron ? `${cleanAttr(p.micron)} micron` : '',
+      listColors(p),
+      pickAttr(p.season),
+      pickAttr(p.gender),
+    ].filter(Boolean);
+    const description = clip(
+      `${shortName}. ${attrs.join(', ')}. Direkt ab Ordos-Fabrik (China). MOQ ${p.moq} Stk., Lieferzeit ${cleanAttr(p.lead)}. OEM/ODM. DONGXIAO.`,
+      158
+    );
+    return {
+      title: `${shortName} | Kaschmir ${c} Gro?handel | MOQ ${p.moq}`,
+      description,
+      keywords: [p.name, `Kaschmir ${c} Gro?handel`, `OEM ${c}`, `Kaschmir Hersteller China`, `B2B Cashmere Lieferant`],
+      buyCta: 'Anfrage',
+      hideFormCta: 'Formular schlie?en',
+    };
+  },
+  fr: (p, c) => {
+    const shortName = p.name.length > 20 ? `${p.name.substring(0, 20).trim()}?` : p.name;
+    const attrs = [
+      p.material ? cleanAttr(p.material) : '',
+      p.micron ? `${cleanAttr(p.micron)} micron` : '',
+      listColors(p),
+      pickAttr(p.season),
+      pickAttr(p.gender),
+    ].filter(Boolean);
+    const description = clip(
+      `${shortName}. ${attrs.join(', ')}. En gros depuis l'usine d'Ordos (Chine). MOQ ${p.moq} pi?ces, d?lai ${cleanAttr(p.lead)}. OEM/ODM. DONGXIAO.`,
+      158
+    );
+    return {
+      title: `${shortName} | Cachemire ${c} en gros | MOQ ${p.moq}`,
+      description,
+      keywords: [p.name, `cachemire ${c} gros`, `OEM ${c}`, `fabricant cachemire Chine`, `fournisseur cachemire B2B`],
+      buyCta: 'Demande',
+      hideFormCta: 'Masquer',
+    };
+  },
+  ja: (p, c) => {
+    const shortName = p.name.length > 16 ? `${p.name.substring(0, 16).trim()}?` : p.name;
+    const attrs = [
+      p.material ? cleanAttr(p.material) : '',
+      p.micron ? `${cleanAttr(p.micron)}????` : '',
+      listColors(p),
+      pickAttr(p.season),
+      pickAttr(p.gender),
+    ].filter(Boolean);
+    const description = clip(
+      `${shortName}?${attrs.join('?')}??????????????MOQ ${p.moq}????${cleanAttr(p.lead)}?OEM/ODM???DONGXIAO??`,
+      150
+    );
+    return {
+      title: `${shortName} | ????${c}?? | MOQ ${p.moq}?`,
+      description,
+      keywords: [p.name, `????${c}??`, `OEM ${c}`, `???? ?? ??`, `B2B ???? ??????`],
+      buyCta: '?????',
+      hideFormCta: '???',
+    };
+  },
+  kr: (p, c) => {
+    const shortName = p.name.length > 16 ? `${p.name.substring(0, 16).trim()}?` : p.name;
+    const attrs = [
+      p.material ? cleanAttr(p.material) : '',
+      p.micron ? `${cleanAttr(p.micron)} micron` : '',
+      listColors(p),
+      pickAttr(p.season),
+      pickAttr(p.gender),
+    ].filter(Boolean);
+    const description = clip(
+      `${shortName}. ${attrs.join(', ')}. ???? ??(??) ??. MOQ ${p.moq}pcs, ?? ${cleanAttr(p.lead)}. OEM/ODM. DONGXIAO?.`,
+      158
+    );
+    return {
+      title: `${shortName} | ???? ${c} ?? | MOQ ${p.moq}pcs`,
+      description,
+      keywords: [p.name, `???? ${c} ??`, `OEM ${c}`, `???? ?? ??`, `B2B ???? ????`],
+      buyCta: '??',
+      hideFormCta: '??',
+    };
+  },
 };
 
 const t = (tdk[locale] || tdk.en)(product, category.name);
@@ -289,7 +413,7 @@ const breadcrumbSchema = {
 <BaseLayout
   locale={locale}
   pageKey="products"
-  path={`/products/${product.id}`}
+  path={`/products/${product.id}/`}
   title={t.title}
   description={t.description}
   keywords={t.keywords}
@@ -373,12 +497,12 @@ const breadcrumbSchema = {
             <span class="text-xs px-2.5 py-1 border border-border rounded-full bg-secondary/20">Lead {product.lead}</span>
           </div>
 
-          <p class="text-base text-foreground/80 mb-6">{product.description}</p>
+          <p class="text-base text-foreground/80 mb-6">{productBodyText}</p>
 
           <!-- Detailed Description (imf-derived, 7-10) -->
-{product.detailedDescription && (
+{productExtraText && (
           <div class="mb-6 pb-5 border-b border-border">
-            <p class="text-base text-foreground/80 leading-relaxed">{product.detailedDescription}</p>
+            <p class="text-base text-foreground/80 leading-relaxed">{productExtraText}</p>
           </div>
 )}
 
