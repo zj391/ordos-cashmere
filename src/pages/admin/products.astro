@@ -37,10 +37,10 @@ type AdminProduct = {
   cover: string;
   tags: string[];
 };
-const allProducts: AdminProduct[] = [];
+const staticProducts: AdminProduct[] = [];
 for (const cat of productsData.categories) {
   for (const p of cat.products) {
-    allProducts.push({
+    staticProducts.push({
       id: p.id,
       category: cat.name,
       categoryId: cat.id,
@@ -55,6 +55,58 @@ for (const cat of productsData.categories) {
     });
   }
 }
+
+// Phase 1: the Supabase catalog is the source of truth for the admin list;
+// static JSON only fills in products that aren't in the DB yet (fallback).
+const SUPABASE_URL = process.env.PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || '';
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || '';
+const dbProducts: AdminProduct[] = [];
+const dbCategoryNames = new Map<string, string>();
+if (SUPABASE_URL && SUPABASE_KEY) {
+  try {
+    const [catsRes, prodsRes] = await Promise.all([
+      fetch(`${SUPABASE_URL}/rest/v1/categories?select=id,name`, {
+        headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` },
+      }),
+      fetch(
+        `${SUPABASE_URL}/rest/v1/products?select=id,category_id,code,name,moq,price,currency,material,micron,lead,description,colors,images,tags,weight,sample_time,updated_at&order=updated_at.desc`,
+        { headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` } }
+      ),
+    ]);
+    if (catsRes.ok && prodsRes.ok) {
+      const cats = (await catsRes.json()) as Array<{ id: string; name: string }>;
+      for (const c of cats) dbCategoryNames.set(c.id, c.name);
+      const rows = (await prodsRes.json()) as Array<Record<string, unknown>>;
+      for (const r of rows) {
+        const catId = String(r.category_id ?? '');
+        const images = Array.isArray(r.images) ? (r.images as string[]) : [];
+        const tags = Array.isArray(r.tags) ? (r.tags as string[]).map(String) : [];
+        dbProducts.push({
+          id: String(r.id),
+          category: dbCategoryNames.get(catId) || catId,
+          categoryId: catId,
+          name: String(r.name ?? ''),
+          code: r.code ? String(r.code) : '',
+          price: r.price ? String(r.price) : '',
+          moq: typeof r.moq === 'number' ? r.moq : 0,
+          material: r.material ? String(r.material) : '',
+          imageCount: images.length,
+          cover: images.length ? images[0] : '',
+          tags,
+        });
+      }
+    }
+  } catch {
+    /* DB unreachable — fall back to the static catalog */
+  }
+}
+// DB rows take precedence; static rows only fill in products missing from DB.
+const allProducts: AdminProduct[] = (() => {
+  const byId = new Map<string, AdminProduct>();
+  for (const p of dbProducts) byId.set(p.id, p);
+  for (const p of staticProducts) if (!byId.has(p.id)) byId.set(p.id, p);
+  return [...byId.values()];
+})();
 
 // URL filters
 const url = new URL(Astro.request.url);
