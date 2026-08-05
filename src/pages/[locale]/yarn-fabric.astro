@@ -9,6 +9,7 @@ import Footer from '@/components/Footer.astro';
 import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
 import SEOFaq from '@/components/SEOFaq.astro';
+import B2BServices from '@/components/B2BServices.astro';
 import YarnFabricInquiryForm from '@/components/islands/YarnFabricInquiryForm.tsx';
 import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
 
@@ -248,11 +249,7 @@ const IMG = {
           </div>
           <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-6">{T('inquiryTitle')}</h2>
           <p class="text-muted-foreground leading-relaxed mb-8">{T('inquirySub')}</p>
-          <ul class="space-y-3 text-sm text-muted-foreground">
-            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-gold"></span>{locale === 'cn' ? '免费色卡 + 纱线小样' : 'Free color card + yarn sample'}</li>
-            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-gold"></span>{locale === 'cn' ? 'Pantone 定制颜色' : 'Pantone custom color matching'}</li>
-            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-gold"></span>{locale === 'cn' ? '小单快反 7 天打样' : 'Quick sampling in 7 days'}</li>
-          </ul>
+          <B2BServices locale={locale} variant="yarn-fabric" />
         </div>
         <div>
           <YarnFabricInquiryForm client:visible locale={locale} enableAttachments={true} />

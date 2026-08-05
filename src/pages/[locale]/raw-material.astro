@@ -10,6 +10,7 @@ import Footer from '@/components/Footer.astro';
 import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
 import SEOFaq from '@/components/SEOFaq.astro';
+import B2BServices from '@/components/B2BServices.astro';
 import RawMaterialInquiryForm from '@/components/islands/RawMaterialInquiryForm.tsx';
 import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
 
@@ -62,12 +63,16 @@ const gradeData: Record<string, { name: string; desc: string; fineness: string; 
 };
 
 const specs = [
-  { label: locale === 'cn' ? '细度' : 'Fineness', value: '14.5-16.5', unit: 'μm' },
-  { label: locale === 'cn' ? '长度' : 'Length', value: '34-42', unit: 'mm' },
-  { label: locale === 'cn' ? '净绒率' : 'Yield', value: '≥45', unit: '%' },
-  { label: locale === 'cn' ? '含杂率' : 'Impurity', value: '≤0.3', unit: '%' },
+  { label: locale === 'cn' ? '纤维细度' : 'Fiber Fineness', value: '14.5-16.5', unit: 'μm', desc: locale === 'cn' ? 'A 级 14.0-15.5 / B 级 15.5-16.5 / C 级 16.5-19.0' : 'Grade A 14.0-15.5 / Grade B 15.5-16.5 / Grade C 16.5-19.0' },
+  { label: locale === 'cn' ? '纤维长度' : 'Staple Length', value: '34-42', unit: 'mm', desc: locale === 'cn' ? '平均 38mm，A 级 ≥38mm' : 'Average 38mm, Grade A ≥38mm' },
+  { label: locale === 'cn' ? '净绒率' : 'Down Yield', value: '≥45', unit: '%', desc: locale === 'cn' ? '分梳后纯绒/原毛比' : 'Dehaired down to raw fiber ratio' },
+  { label: locale === 'cn' ? '含杂率' : 'Vegetable Impurity', value: '≤0.3', unit: '%', desc: locale === 'cn' ? '植物性杂质+尘垂' : 'Vegetable matter + dust' },
+  { label: locale === 'cn' ? '回潮率' : 'Moisture Regain', value: '≤15', unit: '%', desc: locale === 'cn' ? 'GB/T 14593 标准' : 'GB/T 14593 standard' },
+  { label: locale === 'cn' ? '含油脂' : 'Grease Content', value: '≤1.5', unit: '%', desc: locale === 'cn' ? '脱脂后残留' : 'Post-degrease residue' },
+  { label: locale === 'cn' ? 'AQL 抽样' : 'AQL Sampling', value: '2.5', unit: 'ISO 2859-1', desc: locale === 'cn' ? '出口级合格判定' : 'Export-grade acceptance' },
+  { label: locale === 'cn' ? '检验标准' : 'Standard', value: 'GB/T 21209', unit: locale === 'cn' ? '国标' : 'China Std', desc: locale === 'cn' ? '山羊绒分级国家标准' : 'National cashmere grading standard' },
   { label: locale === 'cn' ? '最短起订量' : 'MOQ', value: '100', unit: 'kg' },
-  { label: locale === 'cn' ? '交货期' : 'Lead Time', value: locale === 'cn' ? '15-25' : '15-25', unit: locale === 'cn' ? '天' : 'days' },
+  { label: locale === 'cn' ? '交货期' : 'Lead Time', value: '15-25', unit: locale === 'cn' ? '天' : 'days' },
 ];
 
 // 真实图
@@ -171,6 +176,7 @@ const IMG = {
               <span class="font-serif text-4xl md:text-5xl text-brand-chocolate font-light">{s.value}</span>
               <span class="text-sm text-muted-foreground">{s.unit}</span>
             </div>
+            {s.desc && <div class="text-xs text-muted-foreground mt-3 leading-relaxed">{s.desc}</div>}
           </div>
         ))}
       </div>
@@ -188,11 +194,7 @@ const IMG = {
           </div>
           <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-6">{T('inquiryTitle')}</h2>
           <p class="text-muted-foreground leading-relaxed mb-8">{T('inquirySub')}</p>
-          <ul class="space-y-3 text-sm text-muted-foreground">
-            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-gold"></span>{locale === 'cn' ? '免费样品（运费到付）' : 'Free sample (freight collect)'}</li>
-            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-gold"></span>{locale === 'cn' ? '附检验报告 + 产地证明' : 'COA + origin certificate included'}</li>
-            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-gold"></span>{locale === 'cn' ? 'FOB 天津/上海' : 'FOB Tianjin / Shanghai'}</li>
-          </ul>
+          <B2BServices locale={locale} variant="raw-material" />
         </div>
         <div>
           <RawMaterialInquiryForm client:visible locale={locale} enableAttachments={true} />

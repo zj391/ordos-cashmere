@@ -1,0 +1,78 @@
+---
+/**
+ * B2BServices.astro — 统一的 B2B 标准服务清单组件
+ * Used across raw-material / yarn-fabric / garment-oem pages
+ * 用途：向 B2B 买家明确传达工厂的标准化服务能力
+ * 
+ * 包含 6 个核心服务:
+ * 1. COA + 产地证 (随货文件)
+ * 2. 装运港 (FOB Tianjin / Shanghai)
+ * 3. 免费样品 (运费到付)
+ * 4. 付款条件 (T/T 30/70)
+ * 5. 装运文件 (提单/发票/箱单/原产地证)
+ * 6. 检验标准 (AQL 2.5 ISO 2859-1)
+ */
+export interface Props {
+  locale?: string;
+  variant?: 'raw-material' | 'yarn-fabric' | 'garment-oem';
+}
+
+const { locale = 'en', variant = 'raw-material' } = Astro.props;
+
+// 服务清单 — 按 variant 微调细节但 6 大类一致
+const servicesByVariant: Record<string, Array<{ icon: string; titleEn: string; titleCn: string; descEn: string; descCn: string }>> = {
+  'raw-material': [
+    { icon: '📋', titleEn: 'COA + Origin Certificate', titleCn: 'COA + 产地证明', descEn: 'Certificate of Analysis + Certificate of Origin included with every shipment. GB/T 21209 standard.', descCn: '每批随货附检验报告+原产地证，国标 GB/T 21209。' },
+    { icon: '🚢', titleEn: 'FOB Tianjin / Shanghai', titleCn: 'FOB 天津/上海装运', descEn: 'Standard FOB terms. LCL and FCL available. 7-10 days to Tianjin port from our facility.', descCn: '标准 FOB 贸易条件。LCL 和 FCL 均可。工厂到天津港 7-10 天。' },
+    { icon: '📦', titleEn: 'Free Sample (Freight Collect)', titleCn: '免费样品（运费到付）', descEn: 'Up to 100g sample shipped free of charge. Buyer covers DHL/FedEx freight. 7-day sample lead time.', descCn: '100克以内样品免费寄送，买方承担 DHL/FedEx 运费。样品周期 7 天。' },
+    { icon: '💳', titleEn: 'T/T 30/70 Payment Terms', titleCn: 'T/T 30/70 付款条件', descEn: '30% deposit upon order confirmation, 70% balance before shipment. L/C acceptable for orders above USD 50,000.', descCn: '30% 订单确认定金，70% 发货前付清。USD 50,000 以上可走信用证。' },
+    { icon: '📑', titleEn: 'Export Documentation', titleCn: '出口全套文件', descEn: 'Bill of Lading, Commercial Invoice, Packing List, Form A, Certificate of Origin, Phytosanitary Certificate.', descCn: '提单、商业发票、装箱单、普惠制原产地证、植物检疫证。' },
+    { icon: '✓', titleEn: 'AQL 2.5 Inspection', titleCn: 'AQL 2.5 抽样检验', descEn: 'ISO 2859-1 AQL 2.5 sampling inspection. SGS/BV third-party inspection available on request.', descCn: 'ISO 2859-1 AQL 2.5 抽样检验。可应客户要求委托 SGS/BV 第三方。' },
+  ],
+  'yarn-fabric': [
+    { icon: '📋', titleEn: 'COA + Yarn Count Test', titleCn: 'COA + 纱线支数测试', descEn: 'Certificate of Analysis with yarn count (Nm), twist (T/m), CV%, evenness. Tested on Uster Tester 5.', descCn: '每批附 COA 含纱线支数 (Nm)、捻度 (T/m)、变异系数 CV%、条干均匀度。Uster Tester 5 检测。' },
+    { icon: '🚢', titleEn: 'FOB Tianjin / Shanghai', titleCn: 'FOB 天津/上海', descEn: 'Standard FOB terms. LCL for sample orders, FCL for bulk. Cone or hank packaging per request.', descCn: '标准 FOB 贸易条件。样品小柜 LCL、大货整柜 FCL。筒纱或绞纱包装按需。' },
+    { icon: '📦', titleEn: 'Free Color Card + Sample', titleCn: '免费色卡 + 纱线样品', descEn: 'Free color card (20+ stock colors) + 50g yarn sample. Pantone custom color matching in 7 days.', descCn: '免费色卡（20+ 现货色）+ 50克纱线样品。Pantone 定制色 7 天内打样。' },
+    { icon: '💳', titleEn: 'T/T 30/70 Payment Terms', titleCn: 'T/T 30/70 付款条件', descEn: '30% deposit, 70% balance before shipment. L/C for orders above USD 30,000.', descCn: '30% 定金，70% 发货前付清。USD 30,000 以上可走信用证。' },
+    { icon: '📑', titleEn: 'Export Documentation', titleCn: '出口全套文件', descEn: 'Bill of Lading, Commercial Invoice, Packing List, Certificate of Origin (Form A/E/F), HS Code 5108.', descCn: '提单、商业发票、装箱单、原产地证（普惠制/欧亚/智利）、HS 编码 5108。' },
+    { icon: '✓', titleEn: 'AQL 1.5 Yarn Defects', titleCn: 'AQL 1.5 纱线疵点检验', descEn: 'Slubs, neps, thick places, thin places inspected per 50km yarn. Uster statistics included.', descCn: '每 50 公里纱线检测粗节、细节、棉结、毛粒，附 Uster 统计报告。' },
+  ],
+  'garment-oem': [
+    { icon: '📋', titleEn: 'COA + Fabric Mill Test', titleCn: 'COA + 面料厂检', descEn: 'Certificate of Analysis with pilling grade (ISO 12945), shrinkage (ISO 6330), colorfastness (ISO 105).', descCn: '每批附 COA 含起球等级 (ISO 12945)、缩水率 (ISO 6330)、色牢度 (ISO 105)。' },
+    { icon: '🚢', titleEn: 'FOB Tianjin / Shanghai', titleCn: 'FOB 天津/上海', descEn: 'Standard FOB. Hangtags and polybags per buyer specification. Custom packaging available.', descCn: '标准 FOB 贸易条件。吊牌和包装按客户规格，定制包装可选。' },
+    { icon: '📦', titleEn: 'Sample in 7 Days', titleCn: '7 天样品交付', descEn: 'Counter-sample in 7 days. Sample fee USD 50-80 per style, credited toward first bulk order.', descCn: '7 天出对等样品。样品费 50-80 美元/款，抵扣首单大货。' },
+    { icon: '💳', titleEn: 'T/T 30/70 Payment Terms', titleCn: 'T/T 30/70 付款条件', descEn: '30% deposit, 70% before shipment. L/C for orders above USD 30,000. Net 30 negotiable for repeat buyers.', descCn: '30% 定金，70% 发货前付清。USD 30,000 以上可走信用证。复购老客户可谈 Net 30。' },
+    { icon: '📑', titleEn: 'Private Label Documentation', titleCn: '自有品牌全套文件', descEn: 'Care label (multi-language), woven main label, fiber content, country of origin, size chart, hangtag design.', descCn: '洗护标（多语言）、织造主标、纤维成分、原产国、尺码表、吊牌设计。' },
+    { icon: '✓', titleEn: 'AQL 2.5 Final Inspection', titleCn: 'AQL 2.5 终检', descEn: 'Final inspection per ISO 2859-1 AQL 2.5. Stitching, measurements, fabric defects. Photo report for every batch.', descCn: 'ISO 2859-1 AQL 2.5 终检。车缝、尺寸、面料瑕疵。每批附照片报告。' },
+  ],
+};
+const services = servicesByVariant[variant] || servicesByVariant['raw-material'];
+---
+<section class="py-16 md:py-20 bg-secondary/30 border-y border-border">
+  <div class="container-narrow">
+    <div class="max-w-3xl mb-12">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="h-px w-8 bg-brand-gold"></span>
+        <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">{locale === 'cn' ? 'B2B 标配服务' : 'B2B Standard Services'}</span>
+      </div>
+      <h2 class="font-serif text-3xl md:text-4xl font-light leading-tight mb-3">
+        {locale === 'cn' ? '每笔订单都包含的标准服务' : 'Standard services included with every order'}
+      </h2>
+      <p class="text-muted-foreground leading-relaxed">
+        {locale === 'cn'
+          ? '专业 B2B 出口工厂的标配服务 — 让您的采购流程标准化、风险可控。'
+          : 'What every professional B2B export factory provides — standardized procurement, risk-controlled.'}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {services.map((s) => (
+        <div class="bg-background border border-border p-6 hover:border-primary transition-colors">
+          <div class="text-2xl mb-3">{s.icon}</div>
+          <h3 class="font-medium text-base mb-2 text-foreground">{locale === 'cn' ? s.titleCn : s.titleEn}</h3>
+          <p class="text-xs text-muted-foreground leading-relaxed">{locale === 'cn' ? s.descCn : s.descEn}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

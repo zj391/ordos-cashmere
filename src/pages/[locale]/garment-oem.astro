@@ -9,6 +9,7 @@ import Footer from '@/components/Footer.astro';
 import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
 import SEOFaq from '@/components/SEOFaq.astro';
+import B2BServices from '@/components/B2BServices.astro';
 import GarmentOemInquiryForm from '@/components/islands/GarmentOemInquiryForm.tsx';
 import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
 
@@ -156,11 +157,7 @@ const IMG = {
           </div>
           <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-6">{T('inquiryTitle')}</h2>
           <p class="text-muted-foreground leading-relaxed mb-8">{T('inquirySub')}</p>
-          <ul class="space-y-3 text-sm text-muted-foreground">
-            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-gold"></span>{locale === 'cn' ? 'OEM 贴牌 + ODM 设计开发' : 'OEM private label + ODM design'}</li>
-            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-gold"></span>{locale === 'cn' ? '支持小单快反 (100 件起)' : 'Low MOQ from 100pcs'}</li>
-            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-gold"></span>{locale === 'cn' ? '加急 7 天打样' : '7-day rush sampling'}</li>
-          </ul>
+          <B2BServices locale={locale} variant="garment-oem" />
         </div>
         <div>
           <GarmentOemInquiryForm client:visible locale={locale} enableAttachments={true} />
