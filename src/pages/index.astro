@@ -6,6 +6,11 @@
  */
 import { LOCALES } from '@/lib/i18n';
 
+// SSR so Astro.rewrite() can run at request time (rewrite is unavailable on
+// prerendered pages). The root URL then renders the visitor's language
+// directly with no 308 redirect hop.
+export const prerender = false;
+
 const acceptLanguage = Astro.request.headers.get('accept-language') || '';
 const langCode = acceptLanguage.split(',')[0]?.split('-')[0]?.toLowerCase() || 'en';
 
