@@ -205,25 +205,26 @@ const prodMeta = productData[locale];
 //   真实沙漠风景 + Goat in Mongolia 01 真实蒙古山羊.
 const IMG = {
   // 首页 hero (针织特写, 暖色) - 用户提供的真实摄影图
-  heroFiber: '/images/home/hero-fiber.jpg',
+  heroFiber: '/images/home/hero-fiber.webp',
   // Origin Story: 鄂尔多斯起源图 (用户提供的真实摄影图，替换之前的 Wikimedia 沙漠风景图)
   ordosLandscape: '/images/home/ordos-origins.webp',
   // Why us #1 自有牧场: 蒙古山羊在草原 (用户提供的真实摄影图，替换之前的 Wikimedia 图)
-  mongoliaGoat: '/images/home/mongolia-goat.jpg',
+  mongoliaGoat: '/images/home/mongolia-goat.webp',
   // Why us #4 成衣厂: 工厂内部纺织机 (用户提供的真实摄影图，替换之前的黑白外景)
-  knittingMill: '/images/home/spinning-mill.jpg',
+  knittingMill: '/images/home/spinning-mill.webp',
   // 工艺证据 - 针织手部特写 (用户提供的真实摄影图，替换之前的 Wikimedia 披肩图)
-  craftHand: '/images/home/craft-knit-detail.jpg',
+  craftHand: '/images/home/craft-knit-detail.webp',
   // 工艺证据 - 纺纱织造 (03 卡片) - 用户提供的毛线团图
-  shawlEmbroidered: '/images/home/yarn-basket.jpg',
+  shawlEmbroidered: '/images/home/yarn-basket.webp',
   // 工艺证据 - 编织细节 (用户提供的真实摄影图)
-  scarfDetail: '/images/home/scarf-detail.jpg',
+  scarfDetail: '/images/home/scarf-detail.webp',
   // 工艺证据 - 折叠围巾 (用户提供的真实摄影图)
-  scarvesFolded: '/images/home/scarves-folded.jpg',
+  scarvesFolded: '/images/home/scarves-folded.webp',
 };
 ---
 
 <BaseLayout locale={locale} pageKey="home" path="/" schema="home">
+  <link slot="head" rel="preload" as="image" href="/images/home/scarves-folded.webp" fetchpriority="high" />
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/`} />
 
   <!-- ============ HERO (3 张明亮图轮播 + 文字层) ============ -->
@@ -233,7 +234,7 @@ const IMG = {
       {[
         { src: IMG.scarvesFolded, alt: 'Cashmere wrap — premium B2B apparel piece styled in urban setting' },
         { src: IMG.craftHand,    alt: 'Handwoven cashmere detail — craftsmanship' },
-        { src: '/images/home/ordos-pasture.jpg', alt: 'Inner Mongolian pasture with goats and livestock — Ordos origin' },
+        { src: '/images/home/ordos-pasture.webp', alt: 'Inner Mongolian pasture with goats and livestock — Ordos origin' },
       ].map((slide, i) => (
         <img
           src={slide.src}
@@ -241,7 +242,7 @@ const IMG = {
           class={`ken-burns absolute inset-0 w-full h-full object-cover transition-opacity duration-[1500ms] ease-in-out ${
             i === 0 ? 'opacity-100' : 'opacity-0'
           }`}
-          decoding="async" loading={i === 0 ? 'eager' : 'lazy'}
+          decoding="async" loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : 'auto'}
           data-hero-slide={i}
         />
       ))}
