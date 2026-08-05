@@ -98,7 +98,12 @@ export default defineConfig({
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'de', 'fr', 'ja', 'kr', 'cn'],
-    routing: { prefixDefaultLocale: true },
+    // routing: 'manual' disables Astro's built-in i18n middleware, which
+    // otherwise forces a 404 status on every non-locale-prefixed path
+    // (e.g. /admin/* and /api/*). Frontend URLs, localePath(), and the
+    // root redirect in index.astro are all implemented manually, so the
+    // built-in middleware only caused admin routes to render with 404.
+    routing: 'manual',
     fallback: { 'cn': 'en', 'ja': 'en', 'kr': 'en', 'de': 'en', 'fr': 'en' },
   },
   // Force all routes to be emitted WITH a trailing slash. With

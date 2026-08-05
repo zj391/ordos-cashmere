@@ -20,7 +20,7 @@
  */
 import '@/styles/global.css';
 import { ADMIN_NAV_ITEMS } from '@/data/admin-nav';
-import { LOCALES } from '@/lib/i18n';
+import { LOCALES, LOCALE_NAMES } from '@/lib/i18n';
 
 interface Props {
   locale: string;
@@ -91,9 +91,9 @@ const navItems = ADMIN_NAV_ITEMS.map((n) => ({
             class="rounded-md border border-stone-300 bg-white px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
             onchange="localStorage.setItem('admin-locale', this.value); window.location.reload();"
           >
-            {LOCALES.map((l) => (
-              <option value={l.code} selected={l.code === locale}>
-                {l.label[l.code as keyof typeof l.label] || l.code.toUpperCase()}
+            {LOCALES.map((code) => (
+              <option value={code} selected={code === locale}>
+                {LOCALE_NAMES[code] || code.toUpperCase()}
               </option>
             ))}
           </select>
