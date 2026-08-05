@@ -1,82 +1,165 @@
 ---
+
 /**
+
  * 产品详情页 - 591 个 SEO URL
+
  * 路由: /[locale]/products/[id]
+
  *
+
  * 每个产品有独立 URL、TDK（title/description/keywords）、JSON-LD Product schema。
+
  * 591 SKU × 6 国 = 3,546 个 URL。
+
  *
+
  * 设计原则：
+
  * - 极轻量 page（不用 React island，纯 Astro）
+
  * - hreflang 到 5 个其他语言版本
+
  * - JSON-LD Product + Offer + AggregateRating 占位
+
  * - 内部链接到 hub 页 + 其他产品
+
  */
+
 export const prerender = true;
 
+
+
 import BaseLayout from '@/layouts/BaseLayout.astro';
+
 import Navigation from '@/components/Navigation.astro';
+
 import Footer from '@/components/Footer.astro';
+
 import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
+
 import CookieConsent from '@/components/CookieConsent.astro';
+
 import ColorPicker from '@/components/product/ColorPicker.astro';
+
 import { LOCALES, isLocale, pickLocale } from '@/lib/i18n';
+
 import { SEO, SITE_URL, SITE_INFO } from '@/lib/seo';
-import { getProductById, getAllProducts, getCategoryById, getProductsByCategory } from '@/data/products';
+
+import {
+  getProductById,
+  getAllProducts,
+  getCategoryById,
+  getProductsByCategory,
+  ensureDbOverlay,
+} from '@/data/products';
+
 
 // 类别 id 映射到产品图目录
+
 // 2026-07-13 修复: 实际图片在 /products/mic/ 目录下 (curl /products/mic/prod_025_00.webp = 200),
+
 // 而不是 /products/scarves/ 或 /products/hats/ 等 (curl /products/scarves/prod_025_00.webp = 404).
+
 // 之前映射到 scarves/hats 等导致所有产品图 404 不可见.
+
 const CATEGORY_IMAGE_DIR = {
+
   hats: 'mic',
+
   scarves: 'mic',
+
   sweaters: 'mic',
+
   accessories: 'mic',
+
   yarn: 'mic',
+
 };
 
-export function getStaticPaths() {
+
+
+export async function getStaticPaths() {
+  await ensureDbOverlay();
   const allProducts = getAllProducts();
   const paths = [];
+
   for (const locale of LOCALES) {
+
     for (const p of allProducts) {
+
       paths.push({
+
         params: { locale, id: p.id },
+
         props: { product: p },
+
       });
+
     }
+
   }
+
   return paths;
+
 }
 
+
+
 const { locale: rawLocale, id } = Astro.params;
+
 if (!isLocale(rawLocale)) { return new Response('Not Found', { status: 404 }); }
+
 const locale = pickLocale(rawLocale);
 
+
+
 const { product } = Astro.props;
+
 if (!product || !id) { return new Response('Not Found', { status: 404 }); }
 
+
+
 // Resolved detail data (per-product overrides or per-category fallback)
+
 const detail = (product as any).detail || null;
 
+
+
 const category = getCategoryById(product.categoryId);
+
 if (!category) { return new Response('Not Found', { status: 404 }); }
 
+
+
 // 推荐相关产品（同类别，排除自己，最多 6 个）— 直接从分类缓存取，O(n) filter -> O(1) lookup
+
 const related = getProductsByCategory(product.categoryId)
+
   .filter((p) => p.id !== product.id)
+
   .slice(0, 6);
 
+
+
 const imageDir = CATEGORY_IMAGE_DIR[product.categoryId] || product.categoryId;
+
 // Some catalog records repeat the same filename twice. Keep source order while
+
 // removing duplicates so the gallery and Product schema expose each image once.
+
 const uniqueProductImages = Array.from(new Set(product.images));
+
 // Resolve image paths: an image is either an absolute path (starts with /images/)
+
 // or a product photo filename in /products/<imageDir>/.
+
 function resolveProductImage(img: string): string {
+
   if (img.startsWith('/images/') || img.startsWith('http')) return img;
+
   return `/products/${imageDir}/${img}`;
+
 }
 /**
  * SEO-optimized alt text for product images.
@@ -100,30 +183,60 @@ function buildSeoAlt(p: typeof product): string {
   return parts.join(', ');
 }
 
+
 const primaryImage = resolveProductImage(uniqueProductImages[0]);
+
 // galleryImages = studio product shots followed by the lifestyle / model photo
+
 // (if any). The model photo is appended LAST so the cover thumbnail and the
+
 // JSON-LD Product schema stay product-first; users can swap to the model
+
 // shot via the thumbnail strip and the lightbox magnifier handles both.
+
 const galleryImages = uniqueProductImages.map(resolveProductImage);
+
 if (product.modelPhoto && !galleryImages.includes(product.modelPhoto)) {
+
   galleryImages.push(product.modelPhoto);
+
 }
+
 // Map image src -> { label: 'product' | 'model' } so the gallery strip can
+
 // render a small tag and aria-label on each thumbnail.
+
 const imageKind = new Map<string, 'product' | 'model'>();
+
 galleryImages.forEach((src) => imageKind.set(src, src === product.modelPhoto ? 'model' : 'product'));
 
+
+
 const cnCategoryNames: Record<string, string> = {
+
   hats: '羊绒帽',
+
   sweaters: '羊绒衫',
+
   scarves: '羊绒围巾',
+
   accessories: '羊绒配饰',
+
   yarn: '羊绒纱线',
+
 };
 
+
+
 // --- SEO copy helpers: build unique, attribute-rich TDK from catalog fields ---
-const SKIP_VALUES = /^(details?|description|n\/a|na|various|custom(ized|izable)?|??????|customize)$/i;
+const SHORT_CAT: Record<string, string> = {
+  hats: 'Hats',
+  sweaters: 'Sweaters',
+  scarves: 'Scarves',
+  accessories: 'Accessories',
+  yarn: 'Yarn',
+};
+const SKIP_VALUES = /^(details?|description|n\/a|na|various|custom(ized|izable)?|多种颜色可选|customize)$/i;
 function cleanAttr(v: unknown): string {
   return String(v ?? '')
     .replace(/&nbsp;/g, ' ')
@@ -155,7 +268,7 @@ function listSizes(p: typeof product): string {
 }
 function clip(s: string, max: number): string {
   if (s.length <= max) return s;
-  return s.slice(0, max - 1).replace(/\s+\S*$/, '') + '?';
+  return s.slice(0, max - 1).replace(/\s+\S*$/, '') + '…';
 }
 
 function cleanScraped(text: unknown): string {
@@ -194,9 +307,10 @@ const productExtraText =
     : '';
 
 // Per-locale TDK
+
 const tdk = {
   en: (p, c) => {
-    const shortName = p.name.length > 22 ? `${p.name.substring(0, 22).trim()}?` : p.name;
+    const shortName = p.name.length > 22 ? `${p.name.substring(0, 22).trim()}…` : p.name;
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
       p.micron ? `${cleanAttr(p.micron)} micron` : '',
@@ -213,7 +327,7 @@ const tdk = {
       158
     );
     return {
-      title: `${shortName} | ${c} Wholesale | MOQ ${p.moq}`,
+      title: `${shortName} | ${SHORT_CAT[p.categoryId] || c} Wholesale | MOQ ${p.moq}`,
       description,
       keywords: [
         `${p.name}`,
@@ -239,31 +353,31 @@ const tdk = {
     };
   },
   cn: (p, _c) => {
-    const shortName = p.name.length > 16 ? `${p.name.substring(0, 16).trim()}?` : p.name;
-    const categoryName = cnCategoryNames[p.categoryId] || '????';
-    const leadDays = cleanAttr(p.lead).replace(/\s*days?\b/i, '?').replace(/\s+/g, '');
+    const shortName = p.name.length > 16 ? `${p.name.substring(0, 16).trim()}…` : p.name;
+    const categoryName = cnCategoryNames[p.categoryId] || '羊绒制品';
+    const leadDays = cleanAttr(p.lead).replace(/\s*days?\b/i, '天').replace(/\s+/g, '');
     const colors = listColors(p);
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
-      p.micron ? `${cleanAttr(p.micron)}??` : '',
-      colors ? `??${colors}` : '',
+      p.micron ? `${cleanAttr(p.micron)}微米` : '',
+      colors ? `颜色${colors}` : '',
       pickAttr(p.season),
       pickAttr(p.gender),
     ].filter(Boolean);
     const description = clip(
-      `${shortName}?${attrs.join('?')}?MOQ ${p.moq}????${leadDays}???????????OEM/ODM?DONGXIAO?`,
+      `${shortName}。${attrs.join('，')}。MOQ ${p.moq}件，交期${leadDays}，鄂尔多斯源头工厂支持OEM/ODM。DONGXIAO。`,
       150
     );
     return {
-      title: `${shortName} | ${categoryName}?? | MOQ ${p.moq}`,
+      title: `${shortName} | ${categoryName}批发 | MOQ ${p.moq}`,
       description,
-      keywords: [p.name, `${categoryName}??`, `${p.material}${categoryName}`, `???? ${p.id}`, `OEM ${categoryName}`, '????', '??????'],
-      buyCta: '????',
-      hideFormCta: '????',
+      keywords: [p.name, `${categoryName}批发`, `${p.material}${categoryName}`, `羊绒代工 ${p.id}`, `OEM ${categoryName}`, '羊绒厂家', '鄂尔多斯羊绒'],
+      buyCta: '立即询盘',
+      hideFormCta: '收起表单',
     };
   },
   de: (p, c) => {
-    const shortName = p.name.length > 20 ? `${p.name.substring(0, 20).trim()}?` : p.name;
+    const shortName = p.name.length > 20 ? `${p.name.substring(0, 20).trim()}…` : p.name;
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
       p.micron ? `${cleanAttr(p.micron)} micron` : '',
@@ -276,15 +390,15 @@ const tdk = {
       158
     );
     return {
-      title: `${shortName} | Kaschmir ${c} Gro?handel | MOQ ${p.moq}`,
+      title: `${shortName} | ${SHORT_CAT[p.categoryId] || c} Großhandel | MOQ ${p.moq}`,
       description,
-      keywords: [p.name, `Kaschmir ${c} Gro?handel`, `OEM ${c}`, `Kaschmir Hersteller China`, `B2B Cashmere Lieferant`],
+      keywords: [p.name, `Kaschmir ${c} Großhandel`, `OEM ${c}`, `Kaschmir Hersteller China`, `B2B Cashmere Lieferant`],
       buyCta: 'Anfrage',
-      hideFormCta: 'Formular schlie?en',
+      hideFormCta: 'Formular schließen',
     };
   },
   fr: (p, c) => {
-    const shortName = p.name.length > 20 ? `${p.name.substring(0, 20).trim()}?` : p.name;
+    const shortName = p.name.length > 20 ? `${p.name.substring(0, 20).trim()}…` : p.name;
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
       p.micron ? `${cleanAttr(p.micron)} micron` : '',
@@ -293,11 +407,11 @@ const tdk = {
       pickAttr(p.gender),
     ].filter(Boolean);
     const description = clip(
-      `${shortName}. ${attrs.join(', ')}. En gros depuis l'usine d'Ordos (Chine). MOQ ${p.moq} pi?ces, d?lai ${cleanAttr(p.lead)}. OEM/ODM. DONGXIAO.`,
+      `${shortName}. ${attrs.join(', ')}. En gros depuis l'usine d'Ordos (Chine). MOQ ${p.moq} pièces, délai ${cleanAttr(p.lead)}. OEM/ODM. DONGXIAO.`,
       158
     );
     return {
-      title: `${shortName} | Cachemire ${c} en gros | MOQ ${p.moq}`,
+      title: `${shortName} | ${SHORT_CAT[p.categoryId] || c} en gros | MOQ ${p.moq}`,
       description,
       keywords: [p.name, `cachemire ${c} gros`, `OEM ${c}`, `fabricant cachemire Chine`, `fournisseur cachemire B2B`],
       buyCta: 'Demande',
@@ -305,28 +419,28 @@ const tdk = {
     };
   },
   ja: (p, c) => {
-    const shortName = p.name.length > 16 ? `${p.name.substring(0, 16).trim()}?` : p.name;
+    const shortName = p.name.length > 16 ? `${p.name.substring(0, 16).trim()}…` : p.name;
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
-      p.micron ? `${cleanAttr(p.micron)}????` : '',
+      p.micron ? `${cleanAttr(p.micron)}ミクロン` : '',
       listColors(p),
       pickAttr(p.season),
       pickAttr(p.gender),
     ].filter(Boolean);
     const description = clip(
-      `${shortName}?${attrs.join('?')}??????????????MOQ ${p.moq}????${cleanAttr(p.lead)}?OEM/ODM???DONGXIAO??`,
+      `${shortName}。${attrs.join('、')}。オルドス工場（中国）直送。MOQ ${p.moq}枚、納期${cleanAttr(p.lead)}。OEM/ODM対応。DONGXIAO®。`,
       150
     );
     return {
-      title: `${shortName} | ????${c}?? | MOQ ${p.moq}?`,
+      title: `${shortName} | カシミア${c}卸売 | MOQ ${p.moq}枚`,
       description,
-      keywords: [p.name, `????${c}??`, `OEM ${c}`, `???? ?? ??`, `B2B ???? ??????`],
-      buyCta: '?????',
-      hideFormCta: '???',
+      keywords: [p.name, `カシミア${c}卸売`, `OEM ${c}`, `カシミア 製造 中国`, `B2B カシミア サプライヤー`],
+      buyCta: '問い合わせ',
+      hideFormCta: '閉じる',
     };
   },
   kr: (p, c) => {
-    const shortName = p.name.length > 16 ? `${p.name.substring(0, 16).trim()}?` : p.name;
+    const shortName = p.name.length > 16 ? `${p.name.substring(0, 16).trim()}…` : p.name;
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
       p.micron ? `${cleanAttr(p.micron)} micron` : '',
@@ -335,863 +449,1709 @@ const tdk = {
       pickAttr(p.gender),
     ].filter(Boolean);
     const description = clip(
-      `${shortName}. ${attrs.join(', ')}. ???? ??(??) ??. MOQ ${p.moq}pcs, ?? ${cleanAttr(p.lead)}. OEM/ODM. DONGXIAO?.`,
+      `${shortName}. ${attrs.join(', ')}. 오르도스 공장(중국) 직송. MOQ ${p.moq}pcs, 납기 ${cleanAttr(p.lead)}. OEM/ODM. DONGXIAO®.`,
       158
     );
     return {
-      title: `${shortName} | ???? ${c} ?? | MOQ ${p.moq}pcs`,
+      title: `${shortName} | 캐시미어 ${c} 도매 | MOQ ${p.moq}pcs`,
       description,
-      keywords: [p.name, `???? ${c} ??`, `OEM ${c}`, `???? ?? ??`, `B2B ???? ????`],
-      buyCta: '??',
-      hideFormCta: '??',
+      keywords: [p.name, `캐시미어 ${c} 도매`, `OEM ${c}`, `캐시미어 제조 중국`, `B2B 캐시미어 공급업체`],
+      buyCta: '문의',
+      hideFormCta: '닫기',
     };
   },
 };
 
 const t = (tdk[locale] || tdk.en)(product, category.name);
 
+
+
 // === Inquiry cart handoff data (Task 2) ===
 
+
+
 const productJson = JSON.stringify({
+
   id: product.id,
+
   name: product.name,
+
   categoryId: product.categoryId,
+
   image: resolveProductImage(product.images[0]),
+
   price: product.price,
+
   currency: product.currency,
+
   moq: product.moq,
+
   href: `/${locale}/products/${product.id}`,
+
 });
+
 const inquiryLabels = {
+
   en: { add: 'Add to Inquiry', added: '✓ Added' },
+
   cn: { add: '加入询价单', added: '✓ 已加入' },
+
   de: { add: 'Zur Anfrage hinzufügen', added: '✓ Hinzugefügt' },
+
   fr: { add: 'Ajouter à la demande', added: '✓ Ajouté' },
+
   ja: { add: '問い合わせに追加', added: '✓ 追加済' },
+
   kr: { add: '문의에 추가', added: '✓ 추가됨' },
+
 };
+
 const inquiryLabelSet = inquiryLabels[locale] || inquiryLabels.en;
 
+
+
 // JSON-LD Product schema
+
 const productSchema = {
+
   '@context': 'https://schema.org',
+
   '@type': 'Product',
+
   name: product.name,
+
   description: t.description,
+
   image: galleryImages.map((img) => `${SITE_URL}${img}`),
+
   sku: product.id,
+
   mpn: product.id,
+
   brand: { '@type': 'Brand', name: 'DONGXIAO' },
+
   manufacturer: { '@type': 'Organization', name: 'DONGXIAO Cashmere', url: SITE_URL },
+
   category: category.name,
+
   material: product.material,
+
   offers: {
+
     '@type': 'Offer',
+
     priceCurrency: product.currency,
+
     price: product.price.split('-')[0],
+
     priceValidUntil: '2027-12-31',
+
     availability: 'https://schema.org/InStock',
+
     itemCondition: 'https://schema.org/NewCondition',
+
     businessFunction: 'https://schema.org/Sell',
+
     seller: { '@type': 'Organization', name: 'DONGXIAO Cashmere' },
+
   },
+
 };
+
+
 
 // Breadcrumb
+
 const breadcrumbSchema = {
+
   '@context': 'https://schema.org',
+
   '@type': 'BreadcrumbList',
+
   itemListElement: [
+
     { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/${locale}/` },
+
     { '@type': 'ListItem', position: 2, name: 'Products', item: `${SITE_URL}/${locale}/products` },
+
     { '@type': 'ListItem', position: 3, name: category.name, item: `${SITE_URL}/${locale}/products/${product.categoryId === 'hats' || product.categoryId === 'accessories' ? 'hats-accessories' : product.categoryId === 'sweaters' ? 'garment-oem' : product.categoryId}` },
+
     { '@type': 'ListItem', position: 4, name: product.name, item: `${SITE_URL}/${locale}/products/${product.id}` },
+
   ],
+
 };
+
 ---
 
+
+
 <BaseLayout
+
   locale={locale}
+
   pageKey="products"
+
   path={`/products/${product.id}/`}
+
   title={t.title}
+
   description={t.description}
+
   keywords={t.keywords}
+
   schema="general"
+
   customSchemas={[productSchema, breadcrumbSchema]}
+
   faqs={detail?.faq?.map((f) => ({ question: f.q[locale], answer: f.a[locale] }))}
+
   ogImage={`${SITE_URL}${primaryImage}`}
+
 >
+
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/products/${product.id}`} />
 
+
+
   <section class="py-12 md:py-16 bg-background">
+
     <div class="container-narrow">
+
       <!-- Breadcrumb -->
+
       <nav class="text-xs text-muted-foreground mb-6">
+
         <a href={`/${locale}/`} class="hover:text-foreground">Home</a>
+
         <span class="mx-2">/</span>
+
         <a href={`/${locale}/products`} class="hover:text-foreground">Products</a>
+
         <span class="mx-2">/</span>
+
         <a href={`/${locale}/products/${product.categoryId === 'hats' || product.categoryId === 'accessories' ? 'hats-accessories' : product.categoryId === 'sweaters' ? 'garment-oem' : product.categoryId}`} class="hover:text-foreground">{category.name}</a>
+
         <span class="mx-2">/</span>
+
         <span class="text-foreground">{product.name}</span>
+
       </nav>
 
+
+
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-12">
+
         <!-- Image gallery: unique thumbnails + desktop hover magnifier -->
+
         <div>
+
           <div class="relative">
+
                       <div
+
                         class="aspect-square bg-secondary/30 rounded-lg overflow-hidden mb-4 ring-1 ring-border w-full block hover:ring-2 hover:ring-primary transition-all"
+
                         data-main-frame={primaryImage}
+
                       >
+
                         <img id="main-product-img" src={primaryImage} alt={buildSeoAlt(product)} class="w-full h-full object-cover object-[center_top] transition-opacity" decoding="async" loading="eager" />
+
                       </div>
+
                       <div
+
                         id="product-zoom-panel"
+
                         aria-hidden="true"
+
                         class="hidden md:block absolute left-[calc(100%+1rem)] top-0 z-30 w-full aspect-square rounded-lg border border-border bg-white bg-no-repeat shadow-2xl opacity-0 invisible pointer-events-none transition-opacity duration-150"
+
                         style={`background-image:url('${primaryImage}');background-size:130%;background-position:50% 50%;`}
+
                       ></div>
+
                     </div>
+
           {galleryImages.length > 1 && (
+
                       <div class="grid grid-cols-4 gap-2">
+
                         {galleryImages.map((img, i) => {
+
                           const kind = imageKind.get(img);
+
                           return (
+
                             <button
+
                               type="button"
+
                               data-gallery-thumb={img}
+
                               class={`relative aspect-square bg-secondary/30 rounded overflow-hidden ring-1 ring-border hover:ring-2 hover:ring-primary transition-all cursor-pointer${kind === 'model' ? ' ring-2 ring-brand-gold/40' : ''}`}
+
                               aria-label={`${product.name}${kind === 'model' ? ' model photo' : ` view ${i + 1}`}`}
+
                               title={kind === 'model' ? (locale === 'cn' ? '模特示范 · 真人在穿' : 'Model · Real wear') : undefined}
+
                             >
+
                               <img src={img} alt={`${buildSeoAlt(product)}${kind === 'model' ? ' — real-model wear photo' : ' — detail view ' + (i + 1)}`} class="w-full h-full object-cover" decoding="async" loading="lazy" />
+
                               {kind === 'model' && (
+
                                 <span class="absolute top-1 left-1 text-[9px] tracking-wider uppercase bg-brand-ink/85 text-white px-1.5 py-0.5 rounded">
+
                                   {locale === 'cn' ? '模特' : 'Model'}
+
                                 </span>
+
                               )}
+
                             </button>
+
                           );
+
                         })}
+
                       </div>
+
                     )}
+
         </div>
 
+
+
         <!-- Product info -->
+
         <div>
+
           <span class="text-xs tracking-widest text-muted-foreground uppercase">{category.name}</span>
+
           <h1 class="font-display text-3xl md:text-4xl font-light mt-2 mb-3">{product.name}</h1>
 
+
+
           <div class="flex items-baseline gap-3 mb-4">
+
             <span class="text-2xl font-medium">USD {product.price}</span>
+
             <span class="text-sm text-muted-foreground">/ piece</span>
+
           </div>
 
+
+
           <!-- Quick info badges (imf style) -->
+
           <div class="flex flex-wrap gap-2 mb-5">
+
             <span class="text-xs px-2.5 py-1 border border-border rounded-full bg-secondary/20">{product.material}</span>
+
             <span class="text-xs px-2.5 py-1 border border-border rounded-full bg-secondary/20">{product.micron}</span>
+
             <span class="text-xs px-2.5 py-1 border border-border rounded-full bg-secondary/20">MOQ {product.moq} pcs</span>
+
             <span class="text-xs px-2.5 py-1 border border-border rounded-full bg-secondary/20">Lead {product.lead}</span>
+
           </div>
+
+
 
           <p class="text-base text-foreground/80 mb-6">{productBodyText}</p>
 
+
+
           <!-- Detailed Description (imf-derived, 7-10) -->
+
 {productExtraText && (
+
           <div class="mb-6 pb-5 border-b border-border">
+
             <p class="text-base text-foreground/80 leading-relaxed">{productExtraText}</p>
+
           </div>
+
 )}
 
+
+
                     <!-- Spec table (imf 2-column style) -->
+
           <div class="border border-border rounded-lg overflow-hidden mb-6">
+
             <table class="w-full text-sm">
+
               <tbody>
+
                 <tr class="border-b border-border">
+
                   <td class="px-4 py-3 bg-secondary/40 font-medium w-2/5">Material</td>
+
                   <td class="px-4 py-3">{product.material}</td>
+
                 </tr>
+
                 <tr class="border-b border-border">
+
                   <td class="px-4 py-3 bg-secondary/40 font-medium">Fiber fineness</td>
+
                   <td class="px-4 py-3">{product.micron}</td>
+
                 </tr>
+
                 <tr class="border-b border-border">
+
                   <td class="px-4 py-3 bg-secondary/40 font-medium">MOQ</td>
+
                   <td class="px-4 py-3">{product.moq} pieces per style</td>
+
                 </tr>
+
                 <tr class="border-b border-border">
+
                   <td class="px-4 py-3 bg-secondary/40 font-medium">Lead time</td>
+
                   <td class="px-4 py-3">{product.lead}</td>
+
                 </tr>
+
                 <tr class="border-b border-border">
+
                   <td class="px-4 py-3 bg-secondary/40 font-medium">Sample time</td>
+
                   <td class="px-4 py-3">{product.sample_time}</td>
+
                 </tr>
+
                 {product.weight && (
+
                   <tr class="border-b border-border">
+
                     <td class="px-4 py-3 bg-secondary/40 font-medium">Weight</td>
+
                     <td class="px-4 py-3">{product.weight}</td>
+
                   </tr>
+
                 )}
+
                 {product.colors && product.colors.length > 0 && (
+
                   <tr>
+
                     <td class="px-4 py-3 bg-secondary/40 font-medium align-top">Available Colors</td>
+
                     <td class="px-4 py-3">
+
                       <p class="text-xs text-muted-foreground mb-2">
+
                         Shown in: {product.colors.filter((c) => !['customize', '多种颜色可选', 'multiple colors available', 'color cards'].includes(c.toLowerCase())).join(', ') || 'Custom color'}
+
                       </p>
+
                       <ColorPicker productId={product.id} productName={product.name} productColors={product.colors} />
+
                     </td>
+
                   </tr>
+
                 )}
+
               </tbody>
+
             </table>
+
           </div>
+
+
 
           <!-- Technical Specifications (imf-derived 15-field spec, 7-9) -->
+
           {detail?.technicalSpecs && (
+
             <details class="border border-border rounded-lg mb-6 group">
+
               <summary class="px-4 py-3 bg-secondary/30 font-medium cursor-pointer flex items-center justify-between text-sm">
+
                 <span>Technical Specifications <span class="text-xs text-muted-foreground ml-2">(15 fields per imfieldcashmere model)</span></span>
+
                 <span class="text-brand-gold text-xl group-open:rotate-45 transition-transform">+</span>
+
               </summary>
+
               <div class="overflow-x-auto">
+
                 <table class="w-full text-sm">
+
                   <tbody>
+
                     {product.collar && (
+
                       <tr class="border-t border-border">
+
                         <td class="px-4 py-2 bg-secondary/20 font-medium">Collar</td>
+
                         <td class="px-4 py-2">{product.collar}</td>
+
                       </tr>
+
                     )}
+
                     {product.sampleCost && (
+
                       <tr class="border-t border-border">
+
                         <td class="px-4 py-2 bg-secondary/20 font-medium">Sample Cost</td>
+
                         <td class="px-4 py-2">{product.sampleCost}</td>
+
                       </tr>
+
                     )}
+
                     {product.packaging && (
+
                       <tr class="border-t border-border">
+
                         <td class="px-4 py-2 bg-secondary/20 font-medium">Packaging</td>
+
                         <td class="px-4 py-2">{product.packaging}</td>
+
                       </tr>
+
                     )}
+
                     {detail.technicalSpecs.material && (
+
                       <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium w-2/5">Material</td><td class="px-4 py-2">{detail.technicalSpecs.material[locale]}</td></tr>
+
                     )}
+
                     {detail.technicalSpecs.knitting && (
+
                       <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">Knitting Technology</td><td class="px-4 py-2">{detail.technicalSpecs.knitting[locale]}</td></tr>
+
                     )}
+
                     {detail.technicalSpecs.pattern && (
+
                       <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">Pattern</td><td class="px-4 py-2">{detail.technicalSpecs.pattern[locale]}</td></tr>
+
                     )}
+
                     {detail.technicalSpecs.weight && (
+
                       <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">Weight</td><td class="px-4 py-2">{detail.technicalSpecs.weight[locale]}</td></tr>
+
                     )}
+
                     {detail.technicalSpecs.sizes && (
+
                       <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">Sizes</td><td class="px-4 py-2">{detail.technicalSpecs.sizes[locale]}</td></tr>
+
                     )}
+
                     {detail.technicalSpecs.colors && (
+
                       <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">Color Options</td><td class="px-4 py-2">{detail.technicalSpecs.colors[locale]}</td></tr>
+
                     )}
+
                     {detail.technicalSpecs.season && (
+
                       <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">Season</td><td class="px-4 py-2">{detail.technicalSpecs.season[locale]}</td></tr>
+
                     )}
+
                     {detail.technicalSpecs.function && (
+
                       <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">Function</td><td class="px-4 py-2">{detail.technicalSpecs.function[locale]}</td></tr>
+
                     )}
+
                     {detail.technicalSpecs.gender && (
+
                       <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">Gender</td><td class="px-4 py-2">{detail.technicalSpecs.gender[locale]}</td></tr>
+
                     )}
+
                     {detail.technicalSpecs.technology && (
+
                       <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">Technology</td><td class="px-4 py-2">{detail.technicalSpecs.technology[locale]}</td></tr>
+
                     )}
+
                     {detail.technicalSpecs.elasticity && (
+
                       <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">Elasticity</td><td class="px-4 py-2">{detail.technicalSpecs.elasticity[locale]}</td></tr>
+
                     )}
+
                     {detail.technicalSpecs.origin && (
+
                       <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">Origin</td><td class="px-4 py-2">{detail.technicalSpecs.origin[locale]}</td></tr>
+
                     )}
+
                     {detail.technicalSpecs.careMethod && (
+
                       <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">Care</td><td class="px-4 py-2">{detail.technicalSpecs.careMethod[locale]}</td></tr>
+
                     )}
+
                     {detail.technicalSpecs.customization && (
+
                       <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">Customization</td><td class="px-4 py-2">{detail.technicalSpecs.customization[locale]}</td></tr>
+
                     )}
+
                     {detail.technicalSpecs.moq && (
+
                       <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">MOQ</td><td class="px-4 py-2">{detail.technicalSpecs.moq[locale]}</td></tr>
+
                     )}
+
                   </tbody>
+
                 </table>
+
               </div>
+
             </details>
+
           )}
+
+
 
           <!-- Tags -->
+
           {product.tags && product.tags.length > 0 && (
+
             <div class="flex flex-wrap gap-2 mb-6">
+
               {product.tags.map((tag) => (
+
                 <span class="text-xs px-2 py-1 border border-border rounded-full">{tag}</span>
+
               ))}
+
             </div>
+
           )}
 
+
+
           <!-- CTA + same-page inquiry form toggle (imf style) -->
+
           <div class="flex flex-wrap gap-3 mb-3">
+
             <button
+
               type="button"
+
               data-inquiry-toggle
+
               class="inline-block px-6 py-3 bg-primary text-primary-foreground rounded-sm font-medium hover:bg-primary/90"
+
             >
+
               {t.buyCta} ▼
+
             </button>
+
             <a href={`/${locale}/factory`} class="inline-block px-6 py-3 border border-border rounded-sm hover:bg-secondary">Factory Tour</a>
+
             <a href={`/${locale}/contact?product=${product.id}`} class="inline-block px-6 py-3 border border-border rounded-sm hover:bg-secondary">Contact Page</a>
+
             <button
+
               type="button"
+
               data-add-to-inquiry
+
               class="inline-flex items-center gap-2 px-6 py-3 border border-primary text-primary rounded-sm hover:bg-primary hover:text-primary-foreground transition-colors"
+
             >
+
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+
               <span data-add-label>{inquiryLabelSet.add}</span>
+
             </button>
+
           </div>
+
+
 
           <!-- Same-page inquiry form (hidden by default) -->
+
           <div id="inquiry-form" class="hidden mt-6 p-6 border-2 border-primary rounded-lg bg-card">
+
             <h3 class="font-display text-xl mb-4">Quick Inquiry for {product.name}</h3>
+
             <form
+
               id="quick-inquiry-form"
+
               method="POST"
+
               action="/api/inquiry"
+
               class="space-y-3"
+
             >
+
               <input type="hidden" name="type" value="raw" />
+
               <input type="hidden" name="inquiry_type" value="raw" />
+
               <input type="hidden" name="product" value={product.id} />
+
               <input type="hidden" name="locale" value={locale} />
+
               <input type="hidden" name="color" value="" />
+
               <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+
                 <input type="text" name="name" required placeholder="Your name *" class="px-3 py-2 border border-border rounded text-sm" />
+
                 <input type="email" name="email" required placeholder="Email *" class="px-3 py-2 border border-border rounded text-sm" />
+
                 <input type="text" name="company" placeholder="Company" class="px-3 py-2 border border-border rounded text-sm" />
+
                 <input type="text" name="country" placeholder="Country (US/DE/JP/...)" class="px-3 py-2 border border-border rounded text-sm" />
+
                 <input type="tel" name="phone" placeholder="Phone / WhatsApp" class="px-3 py-2 border border-border rounded text-sm" />
+
                 <input type="text" name="quantity" placeholder={product.moq ? `Quantity (MOQ ${product.moq})` : 'Quantity'} class="px-3 py-2 border border-border rounded text-sm" />
+
               </div>
+
               <textarea
+
                 name="message"
+
                 rows={3}
+
                 placeholder={`Inquiry details for ${product.name}...`}
+
                 class="w-full px-3 py-2 border border-border rounded text-sm"
+
               ></textarea>
+
               <div class="flex items-center gap-3">
+
                 <button type="submit" class="px-5 py-2.5 bg-primary text-primary-foreground rounded-sm font-medium hover:bg-primary/90 text-sm">
+
                   Send Inquiry
+
                 </button>
+
                 <span class="text-xs text-muted-foreground">Reply within 24 hours · ISO 9001 + OEKO-TEX</span>
+
               </div>
+
             </form>
+
           </div>
 
+
+
           <p class="text-xs text-muted-foreground mt-4">Direct factory pricing. FOB Tianjin/Shanghai, CIF, DDP. OEM/ODM supported. ISO 9001 + OEKO-TEX certified.</p>
+
         </div>
+
       </div>
+
     </div>
+
   </section>
 
+
+
     <!-- NOTE: the lifestyle / model photo is no longer rendered as a separate
+
            section below. Instead it is appended to the hero gallery's thumbnail
+
            strip (see galleryImages block above) so users can swap between the
+
            studio cut-out and the on-body model shot from the same control,
+
            with the desktop magnifier and the click-to-zoom lightbox both
+
            working for the model photo too. A small "Model" tag identifies the
+
            thumbnail. This keeps the model photo visible while the product
+
            page stays product-first. -->
+
+
+
 
 
     <!-- 7-9 expanded: imfieldcashmere-style 13-section product page -->
 
+
+
   {detail && (
+
     <>
 
+
+
   <!-- Section 1: Material Story -->
+
   {detail.materialStory && (
+
     <section class="py-12 bg-secondary/20">
+
       <div class="container-narrow max-w-3xl">
+
         <h2 class="reveal font-display text-2xl font-light mb-4">Material & Craftsmanship</h2>
+
         <p class="text-base leading-relaxed text-foreground/80">{detail.materialStory[locale]}</p>
+
       </div>
+
     </section>
+
   )}
+
+
 
   <!-- Section 2: Manufacturing Process -->
+
   {detail.process && (
+
     <section class="py-12 bg-background">
+
       <div class="container-narrow max-w-3xl">
+
         <h2 class="reveal font-display text-2xl font-light mb-4">Manufacturing Process</h2>
+
         <p class="text-base leading-relaxed text-foreground/80 mb-6">{detail.process[locale]}</p>
+
         {detail.processSteps && (
+
           <ol class="space-y-3">
+
             {detail.processSteps.map((step, i) => (
+
               <li class="flex gap-4">
+
                 <span class="flex-shrink-0 w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-display text-sm">{i + 1}</span>
+
                 <span class="text-sm leading-relaxed pt-1">{step[locale]}</span>
+
               </li>
+
             ))}
+
           </ol>
+
         )}
+
       </div>
+
     </section>
+
   )}
+
+
 
   <!-- Section 3: Custom Service (6 bullets) -->
+
   {detail.customServiceBullets && (
+
     <section class="py-12 bg-secondary/20">
+
       <div class="container-narrow">
+
         <h2 class="reveal font-display text-2xl font-light mb-6 text-center">{detail.customServiceTitle?.[locale] || 'Custom Manufacturing Service'}</h2>
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+
           {detail.customServiceBullets.map((b) => (
+
             <div class="bg-card border border-border rounded-lg p-5">
+
               <div class="flex items-start gap-3">
+
                 <span class="text-brand-gold text-lg">✓</span>
+
                 <span class="text-sm leading-relaxed">{b[locale]}</span>
+
               </div>
+
             </div>
+
           ))}
+
         </div>
+
       </div>
+
     </section>
+
   )}
+
+
 
   <!-- Section 4: Why Choose Us (6 USPs) -->
+
   {detail.whyChooseBullets && (
+
     <section class="py-12 bg-background">
+
       <div class="container-narrow">
+
         <h2 class="reveal font-display text-2xl font-light mb-8 text-center">{detail.whyChooseTitle?.[locale] || 'Why Choose Our Factory'}</h2>
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+
           {detail.whyChooseBullets.map((b, i) => (
+
             <div class="text-center">
+
               <div class="w-12 h-12 bg-brand-gold/20 rounded-full flex items-center justify-center mx-auto mb-3">
+
                 <span class="text-brand-gold font-display text-lg">{i + 1}</span>
+
               </div>
+
               <p class="text-sm leading-relaxed">{b[locale]}</p>
+
             </div>
+
           ))}
+
         </div>
+
       </div>
+
     </section>
+
   )}
+
+
 
   <!-- Section 5: Comparison Table (e.g. Cashmere vs Pashmina) -->
+
   {detail.comparisonPoints && detail.comparisonTitle && (
+
     <section class="py-12 bg-secondary/20">
+
       <div class="container-narrow">
+
         <h2 class="reveal font-display text-2xl font-light mb-6 text-center">{detail.comparisonTitle[locale]}</h2>
+
         <div class="overflow-x-auto">
+
           <table class="w-full bg-card border border-border rounded-lg overflow-hidden">
+
             <thead class="bg-primary text-primary-foreground">
+
               <tr>
+
                 <th class="text-left p-3 font-medium text-sm">Feature</th>
+
                 <th class="text-left p-3 font-medium text-sm">Cashmere</th>
+
                 <th class="text-left p-3 font-medium text-sm">{detail.comparisonOther}</th>
+
               </tr>
+
             </thead>
+
             <tbody>
+
               {detail.comparisonPoints.map((p, i) => (
+
                 <tr class={i % 2 === 0 ? 'bg-background' : 'bg-secondary/10'}>
+
                   <td class="p-3 text-sm font-medium">{p.label?.[locale] || ''}</td>
+
                   <td class="p-3 text-sm">{p.cashmere?.[locale] || ''}</td>
+
                   <td class="p-3 text-sm">{p.other?.[locale] || ''}</td>
+
                 </tr>
+
               ))}
+
             </tbody>
+
           </table>
+
         </div>
+
       </div>
+
     </section>
+
   )}
+
+
 
   <!-- Section 6: Applications / Use Cases -->
+
   {detail.applicationScenarios && (
+
     <section class="py-12 bg-background">
+
       <div class="container-narrow">
+
         <h2 class="reveal font-display text-2xl font-light mb-6 text-center">{detail.applicationsTitle?.[locale] || 'Applications'}</h2>
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+
           {detail.applicationScenarios.map((s) => (
+
             <div class="border border-border rounded-lg p-4 bg-card">
+
               <p class="text-sm leading-relaxed">{s[locale]}</p>
+
             </div>
+
           ))}
+
         </div>
+
       </div>
+
     </section>
+
   )}
+
+
 
   <!-- Section 7: OEM Workflow (3-5 steps) -->
+
   {detail.oemWorkflow && detail.oemWorkflow.length > 0 && (
+
     <section class="py-12 bg-secondary/20">
+
       <div class="container-narrow">
+
         <h2 class="reveal font-display text-2xl font-light mb-6 text-center">OEM/ODM Workflow</h2>
+
         <div class="grid grid-cols-1 md:grid-cols-5 gap-4 max-w-5xl mx-auto">
+
           {detail.oemWorkflow.map((step, i) => (
+
             <div class="bg-card border border-border rounded-lg p-4 text-center">
+
               <div class="w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center mx-auto mb-3 font-display">{i + 1}</div>
+
               <p class="text-xs text-foreground/80 leading-relaxed">{typeof step === 'string' ? step : step[locale]}</p>
+
             </div>
+
           ))}
+
         </div>
+
       </div>
+
     </section>
+
   )}
+
+
 
   <!-- Section 8: Care Instructions -->
+
   {detail.careInstructions && (
+
     <section class="py-12 bg-background">
+
       <div class="container-narrow max-w-3xl">
+
         <h2 class="reveal font-display text-2xl font-light mb-4">Care Instructions</h2>
+
         <p class="text-base leading-relaxed text-foreground/80">{detail.careInstructions[locale]}</p>
+
       </div>
+
     </section>
+
   )}
+
+
 
   <!-- Section 9: Sample Policy -->
+
   {detail.samplePolicy && (
+
     <section class="py-12 bg-secondary/20">
+
       <div class="container-narrow max-w-3xl">
+
         <h2 class="reveal font-display text-2xl font-light mb-4">Sample Policy</h2>
+
         <p class="text-base leading-relaxed text-foreground/80">{detail.samplePolicy[locale]}</p>
+
       </div>
+
     </section>
+
   )}
+
+
 
   <!-- Section 10: Certifications -->
+
   {detail.certifications && (
+
     <section class="py-12 bg-background">
+
       <div class="container-narrow max-w-3xl">
+
         <h2 class="reveal font-display text-2xl font-light mb-4">Certifications</h2>
+
         <div class="flex flex-wrap gap-2">
+
           {detail.certifications.map((c) => (
+
             <span class="text-sm px-3 py-1.5 border border-border rounded-full bg-card">{c}</span>
+
           ))}
+
         </div>
+
       </div>
+
     </section>
+
   )}
+
+
 
   <!-- Section 11: Product-specific FAQ (4-6 Q&A) -->
+
   {detail.faq && detail.faq.length > 0 && (
+
     <section class="py-12 bg-secondary/20">
+
       <div class="container-narrow max-w-3xl">
+
         <h2 class="reveal font-display text-2xl font-light mb-6">Frequently Asked Questions</h2>
+
         <div class="space-y-4">
+
           {detail.faq.map((f) => (
+
             <details class="bg-card border border-border rounded-lg p-4 group">
+
               <summary class="font-medium text-base cursor-pointer flex items-center justify-between">
+
                 <span>{f.q[locale]}</span>
+
                 <span class="text-brand-gold text-xl group-open:rotate-45 transition-transform">+</span>
+
               </summary>
+
               <p class="text-sm leading-relaxed text-foreground/80 mt-3">{f.a[locale]}</p>
+
             </details>
+
           ))}
+
         </div>
+
       </div>
+
     </section>
+
   )}
+
+
 
     </>
+
   )}
+
+
 
   <!-- Section 12: Inquiry CTA -->
+
   <section class="py-16 bg-brand-ink text-white">
+
     <div class="container-narrow text-center">
+
       <h2 class="reveal font-display text-3xl font-light mb-4">Request a Quotation</h2>
+
       <p class="opacity-90 mb-8 max-w-2xl mx-auto">Send your target specs (quantity, gauge, color, customization). Our specialists respond within 24 hours with sample, pricing, and lead time.</p>
+
       <div class="flex flex-wrap gap-4 justify-center">
+
         <a href={`/${locale}/contact?product=${product.id}`} class="inline-block px-8 py-3 bg-brand-gold text-brand-ink rounded-sm font-medium hover:bg-brand-gold/90">{t.buyCta}</a>
+
         <button
+
           type="button"
+
           data-add-to-inquiry
+
           class="inline-flex items-center gap-2 px-8 py-3 border border-white/30 rounded-sm hover:bg-white/10 transition-colors"
+
         >
+
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+
           <span data-add-label>{inquiryLabelSet.add}</span>
+
         </button>
+
         <a href={`/${locale}/factory`} class="inline-block px-8 py-3 border border-white/30 rounded-sm hover:bg-white/10">Factory Tour</a>
+
       </div>
+
     </div>
+
   </section>
+
+
 
   <!-- Section 12b: Model Show & Styling was REMOVED on 2026-07-31 per product feedback.
+
          The lifestyle / model photo is exposed via the hero gallery's thumbnail strip
+
          (last thumbnail, with a "Model" chip + gold ring), so users can swap to it
+
          inline and use the desktop magnifier + click-to-zoom lightbox there. Showing
+
          the same image(s) again in a dedicated section below duplicated content and
+
          cropped the model's head under the 3:4 cover fit. -->
 
+
+
     <!-- Section 12c: Transportation & Delivery (imf style - 7-9) -->
+
   <section class="py-12 bg-background">
+
     <div class="container-narrow">
+
       <h2 class="reveal font-display text-2xl font-light mb-6 text-center">Transportation & Delivery</h2>
+
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
         {[
+
           { title: 'FOB Tianjin/Shanghai', desc: 'We deliver to your nominated forwarder at the nearest Chinese port. Most common for orders 500+ pcs.' },
+
           { title: 'CIF Your Port', desc: 'We arrange ocean freight + insurance to your nearest seaport. Door-to-port service.' },
+
           { title: 'DDP Door-to-Door', desc: 'We handle everything: customs, duties, last-mile delivery to your warehouse. EU/US customers only.' },
+
         ].map((opt) => (
+
           <div class="border border-border rounded-lg p-5 bg-card">
+
             <h3 class="reveal font-medium text-base mb-2 text-primary">{opt.title}</h3>
+
             <p class="text-sm text-foreground/80 leading-relaxed">{opt.desc}</p>
+
           </div>
+
         ))}
+
       </div>
+
       <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
+
         <div class="p-3 bg-secondary/30 rounded">
+
           <div class="font-display text-2xl text-primary">15-20d</div>
+
           <div class="text-muted-foreground">Sea (Asia)</div>
+
         </div>
+
         <div class="p-3 bg-secondary/30 rounded">
+
           <div class="font-display text-2xl text-primary">25-35d</div>
+
           <div class="text-muted-foreground">Sea (EU/US)</div>
+
         </div>
+
         <div class="p-3 bg-secondary/30 rounded">
+
           <div class="font-display text-2xl text-primary">5-7d</div>
+
           <div class="text-muted-foreground">Air (Express)</div>
+
         </div>
+
         <div class="p-3 bg-secondary/30 rounded">
+
           <div class="font-display text-2xl text-primary">7-10d</div>
+
           <div class="text-muted-foreground">Sample</div>
+
         </div>
+
       </div>
+
     </div>
+
   </section>
+
+
 
   <!-- Section 12d: Customer Reviews placeholder (imf style - 7-9) -->
+
   <section class="py-12 bg-secondary/20">
+
     <div class="container-narrow">
+
       <h2 class="reveal font-display text-2xl font-light mb-6 text-center">Customer Reviews</h2>
+
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
         {[
+
           { name: 'Sarah M.', country: 'United States', role: 'Boutique Owner', text: 'The cashmere quality exceeded our expectations. Our customers love the soft hand feel and the fit is consistent across sizes.' },
+
           { name: 'Marcus K.', country: 'Germany', role: 'Wholesale Distributor', text: 'Reliable lead times and great communication from the team. We have been sourcing for 3 years and quality stays consistent.' },
+
           { name: 'Yuki T.', country: 'Japan', role: 'Brand Designer', text: 'Beautiful cashmere, perfect for our luxury collection. The custom Pantone color matching was spot on.' },
+
         ].map((r) => (
+
           <figure class="bg-card border border-border rounded-lg p-5">
+
             <div class="flex items-center gap-1 mb-3 text-brand-gold text-sm">★★★★★</div>
+
             <blockquote class="text-sm italic text-foreground/80 leading-relaxed mb-4">"{r.text}"</blockquote>
+
             <figcaption class="text-xs">
+
               <div class="font-medium">{r.name}</div>
+
               <div class="text-muted-foreground">{r.role} · {r.country}</div>
+
             </figcaption>
+
           </figure>
+
         ))}
+
       </div>
+
       <p class="text-center text-xs text-muted-foreground mt-4">Sample reviews. Verified reviews coming soon.</p>
+
     </div>
+
   </section>
 
+
+
   <!-- Section 13: Related products -->
+
   {related.length > 0 && (
+
     <section class="py-16 bg-background">
+
       <div class="container-narrow">
+
         <h2 class="reveal font-display text-2xl font-light mb-6">Related {category.name}</h2>
+
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+
           {related.map((rp) => (
+
             <a
+
               href={`/${locale}/products/${rp.id}`}
+
               class="group block border border-border rounded-lg overflow-hidden hover:border-primary transition-colors"
+
             >
+
               <div class="aspect-square bg-secondary/30 overflow-hidden">
+
                 <img
+
                   src={(rp.images[0] || '').startsWith('/images/') || (rp.images[0] || '').startsWith('http')
+
                       ? rp.images[0]
+
                       : `/products/${CATEGORY_IMAGE_DIR[rp.categoryId] || rp.categoryId}/${rp.images[0]}`}
+
                   alt={buildSeoAlt(rp)}
+
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform"
+
                   decoding="async" loading="lazy"
+
                 />
+
               </div>
+
               <div class="p-3">
+
                 <h3 class="text-xs font-medium leading-snug line-clamp-2 mb-1">{rp.name}</h3>
+
                 <p class="text-[10px] text-muted-foreground">USD {rp.price}</p>
+
               </div>
+
             </a>
+
           ))}
+
         </div>
+
       </div>
+
     </section>
+
   )}
 
+
+
   <script type="application/json" id="dx-product-data" set:html={productJson}></script>
+
   <script type="application/json" id="dx-product-labels" set:html={JSON.stringify(inquiryLabelSet)}></script>
+
   <script is:inline>
+
     (function () {
+
       var btns = document.querySelectorAll('[data-add-to-inquiry]');
+
       var dataEl = document.getElementById('dx-product-data');
+
       if (!btns.length || !dataEl) return;
+
       var product;
+
       try { product = JSON.parse(dataEl.textContent || '{}'); } catch (e) { return; }
+
       var labels = {};
+
       try {
+
         var lEl = document.getElementById('dx-product-labels');
+
         if (lEl) labels = JSON.parse(lEl.textContent || '{}');
+
       } catch (e) {}
+
       function getColor() {
+
         var checked = document.querySelector('input[name="color"]:checked');
+
         if (checked) {
+
           if (checked.dataset && checked.dataset.colorName) return checked.dataset.colorName;
+
           if (checked.value) return checked.value;
+
         }
+
         var picker = document.querySelector('[data-color-picker] [aria-checked="true"]');
+
         if (picker && picker.dataset && picker.dataset.colorName) return picker.dataset.colorName;
+
         return undefined;
+
       }
+
       var bound = false;
+
       function bind() {
+
         if (bound || !window.dxCart) return;
+
         bound = true;
+
         for (var i = 0; i < btns.length; i++) attach(btns[i]);
+
       }
+
       function attach(btn) {
+
         var labelEl = btn.querySelector('[data-add-label]');
+
         var original = labelEl ? labelEl.textContent : '';
+
         btn.addEventListener('click', function () {
+
           var item = {};
+
           for (var k in product) item[k] = product[k];
+
           item.qty = product.moq || 1;
+
           var color = getColor();
+
           if (color) item.color = color;
+
           window.dxCart.add(item);
+
           if (labelEl) {
+
             labelEl.textContent = (labels && labels.added) || '✓ Added';
+
             setTimeout(function () { labelEl.textContent = original; }, 1800);
+
           }
+
         });
+
       }
+
       bind();
+
       window.addEventListener('dx-cart-ready', bind, { once: true });
+
     })();
+
   </script>
 
+
+
   <!-- Client-side interactivity (7-9): image gallery + inquiry form toggle -->
+
   <script is:inline>
+
     (function() {
+
       function init() {
+
               // Image gallery: click thumbnail ONLY swaps the main image
+
               // (no lightbox modal — the user wants direct inline swap, per product feedback).
+
               var mainImg = document.getElementById('main-product-img');
+
               var zoomPanel = document.getElementById('product-zoom-panel');
+
               var thumbs = document.querySelectorAll('[data-gallery-thumb]');
 
+
+
               function updateZoomImage(src) {
+
                 if (!zoomPanel || !src) return;
+
                 zoomPanel.style.backgroundImage = 'url("' + src.replace(/"/g, '%22') + '")';
+
                 // Do not over-magnify low-resolution catalog images.
+
                 var probe = new Image();
+
                 probe.onload = function() {
+
                   var shortestSide = Math.min(probe.naturalWidth, probe.naturalHeight);
+
                   var zoomScale = shortestSide >= 1000 ? 2.5 : shortestSide >= 700 ? 1.8 : 1.3;
+
                   zoomPanel.style.backgroundSize = (zoomScale * 100) + '%';
+
                 };
+
                 probe.src = src;
+
               }
 
+
+
               function setActiveImage(src) {
+
                 if (!src) return;
+
                 if (mainImg) mainImg.src = src;
+
                 updateZoomImage(src);
+
               }
+
+
 
               updateZoomImage(mainImg ? mainImg.src : '');
 
+
+
               for (var i = 0; i < thumbs.length; i++) {
+
                 thumbs[i].addEventListener('click', (function(thumb) {
+
                   return function() {
+
                     setActiveImage(thumb.dataset.galleryThumb);
+
                   };
+
                 })(thumbs[i]));
+
               }
+
+
 
               // Desktop magnifier: the panel beside the image shows the hovered area.
+
               var mainFrame = document.querySelector('[data-main-frame]');
+
               if (mainFrame && zoomPanel && window.matchMedia('(min-width: 768px)').matches) {
+
                 mainFrame.addEventListener('pointerenter', function() {
+
                   zoomPanel.classList.remove('opacity-0', 'invisible');
+
                   zoomPanel.classList.add('opacity-100', 'visible');
+
                 });
+
                 mainFrame.addEventListener('pointermove', function(e) {
+
                   var rect = mainFrame.getBoundingClientRect();
+
                   var x = Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100));
+
                   var y = Math.max(0, Math.min(100, ((e.clientY - rect.top) / rect.height) * 100));
+
                   zoomPanel.style.backgroundPosition = x.toFixed(2) + '% ' + y.toFixed(2) + '%';
+
                 });
+
                 mainFrame.addEventListener('pointerleave', function() {
+
                   zoomPanel.classList.remove('opacity-100', 'visible');
+
                   zoomPanel.classList.add('opacity-0', 'invisible');
+
                 });
+
               }
 
+
+
         // Inquiry form toggle
+
         var btn = document.querySelector('[data-inquiry-toggle]');
+
         var form = document.getElementById('inquiry-form');
+
         if (btn && form) {
+
           var showText = btn.textContent.trim();
+
           // Extract hide text by removing trailing ▼ (show) → ▲ (hide)
+
           var hideText = showText.replace(/[\u25BC\u2193]\s*$/, '\u25B2').replace(/$/, ' \u25B2');
+
           btn.addEventListener('click', function(e) {
+
             e.preventDefault();
+
             e.stopPropagation();
+
             form.classList.toggle('hidden');
+
             var isHidden = form.classList.contains('hidden');
+
             btn.textContent = isHidden ? showText : hideText;
+
           });
+
         }
+
+
 
         var quickForm = document.getElementById('quick-inquiry-form');
+
         if (quickForm) {
+
           quickForm.addEventListener('submit', async function(e) {
+
             e.preventDefault();
+
             var submit = quickForm.querySelector('button[type="submit"]');
+
             if (submit) submit.disabled = true;
+
             try {
+
               var payload = Object.fromEntries(new FormData(quickForm).entries());
+
               var response = await fetch('/api/inquiry', {
+
                 method: 'POST',
+
                 headers: { 'Content-Type': 'application/json' },
+
                 body: JSON.stringify(payload),
+
               });
+
               var result = await response.json().catch(function() { return {}; });
+
               if (!response.ok || !result.success) throw new Error(result.error || 'Submission failed');
+
               quickForm.reset();
+
               alert('Inquiry sent. We will reply within 24 hours.');
+
             } catch (error) {
+
               alert('Could not send. Please try again or use the contact page.');
+
             } finally {
+
               if (submit) submit.disabled = false;
+
             }
+
           });
+
         }
+
       }
+
+
 
       if (document.readyState === 'loading') {
+
         document.addEventListener('DOMContentLoaded', init);
+
       } else {
+
         init();
+
       }
+
     })();
+
   </script>
 
+
+
   <!-- Image Lightbox was REMOVED on 2026-07-31 per product feedback.
+
          The hero gallery now uses an inline swap only: click a thumbnail
+
          and the main image (and the desktop hover magnifier) update in
+
          place. No modal/overlay. The desktop magnifier still provides a
+
          detailed zoom-in view on hover; mobile users can pinch-zoom the
+
          main image directly. See the inline thumbnail click handler above. -->
 
+
+
     <Footer slot="footer" locale={locale} />
+
   <FloatingChatButtons slot="footer" locale={locale} />
+
   <CookieConsent slot="footer" locale={locale} />
+
 </BaseLayout>
