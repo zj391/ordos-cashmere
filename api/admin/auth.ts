@@ -13,7 +13,7 @@
  *     verified by api/admin/_session.js in every admin API endpoint.
  */
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { signSession, SESSION_MAX_AGE_MS } from './_session';
+import { signSession, SESSION_MAX_AGE_MS } from './_session.js';
 
 const FAIL_LIMIT = 5;
 const FAIL_WINDOW_MS = 10 * 60 * 1000;
