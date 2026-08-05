@@ -6,11 +6,6 @@
  */
 import { LOCALES } from '@/lib/i18n';
 
-// SSR so Astro.rewrite() can run at request time (rewrite is unavailable on
-// prerendered pages). The root URL then renders the visitor's language
-// directly with no 308 redirect hop.
-export const prerender = false;
-
 const acceptLanguage = Astro.request.headers.get('accept-language') || '';
 const langCode = acceptLanguage.split(',')[0]?.split('-')[0]?.toLowerCase() || 'en';
 
@@ -19,11 +14,7 @@ const localeMap: Record<string, string> = {
 };
 
 const targetLocale = localeMap[langCode] || 'en';
-// Rewrite instead of redirect: renders the chosen locale's homepage at the
-// root URL with no 308 hop (PageSpeed flags the redirect as ~580ms of wasted
-// latency on mobile). The root URL keeps serving real content in the user's
-// language; /en/ etc. remain the canonical URLs via the page's own links.
-return Astro.rewrite(`/${targetLocale}/`);
+return Astro.redirect(`/${targetLocale}/`, 308);
 ---
 
 <!DOCTYPE html>
