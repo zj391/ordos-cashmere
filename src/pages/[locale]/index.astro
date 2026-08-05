@@ -289,8 +289,8 @@ const IMG = {
       {[0, 1, 2].map((i) => (
         <button
           type="button"
-          class={`w-2 h-2 rounded-full transition-all duration-300 ${
-            i === 0 ? 'bg-brand-gold w-8' : 'bg-white/40 hover:bg-white/70'
+          class={`w-2 h-2 rounded-full hero-dot ${
+            i === 0 ? 'bg-brand-gold hero-dot-active' : 'bg-white/40 hover:bg-white/70'
           }`}
           aria-label={`Slide ${i + 1}`}
           aria-current={i === 0 ? 'true' : 'false'}
@@ -322,7 +322,7 @@ const IMG = {
         });
         dots.forEach((d, idx) => {
           d.classList.toggle('bg-brand-gold', idx === i);
-          d.classList.toggle('w-8', idx === i);
+          d.classList.toggle('hero-dot-active', idx === i);
           d.classList.toggle('bg-white/40', idx !== i);
           d.setAttribute('aria-current', idx === i ? 'true' : 'false');
         });
@@ -368,7 +368,7 @@ const IMG = {
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <!-- 左侧大图（占 7/12） -->
         <div class="lg:col-span-7 relative reveal-left">
-          <div class="aspect-[5/6] overflow-hidden hover-zoom">
+          <div class="aspect-[4/3] overflow-hidden hover-zoom">
             <img src={IMG.ordosLandscape} alt="Albus goat grazing on Ordos pasture at sunrise — Inner Mongolia" class="w-full h-full object-cover" decoding="async" loading="lazy" />
           </div>
           <!-- 浮动小图（地理坐标装饰） -->

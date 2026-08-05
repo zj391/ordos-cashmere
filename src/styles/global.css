@@ -104,6 +104,13 @@ html {
   opacity: 1;
   transform: translateY(0);
 }
+/* 进入动画完成后释放合成层，避免大量元素长期占用 GPU 内存 */
+.reveal.reveal-visible,
+.reveal-left.reveal-visible,
+.reveal-right.reveal-visible,
+.reveal-scale.reveal-visible {
+  will-change: auto;
+}
 
 /* 错落延迟（给连续 section 用） */
 .reveal[data-reveal-delay="1"] { transition-delay: 0.08s; }
@@ -197,6 +204,24 @@ html {
 }
 .hover-zoom:hover img {
   transform: scale(1.05);
+}
+
+/* ===== Hero 轮播指示点：用 transform 缩放代替宽度动画（避免触发布局重排） ===== */
+.hero-dot {
+  transform: scaleX(1);
+  transform-origin: left center;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.3s ease;
+  will-change: transform;
+}
+.hero-dot.hero-dot-active {
+  transform: scaleX(4);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-dot, .hero-dot.hero-dot-active {
+    transform: none;
+    transition: none;
+  }
 }
 
 /* ===== 响应式修正 ===== */

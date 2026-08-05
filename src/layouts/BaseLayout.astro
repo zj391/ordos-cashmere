@@ -650,6 +650,8 @@ if (faqs && faqs.length > 0) {
 
         if (!counters.length) return;
 
+        var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
         var counterObserver = new IntersectionObserver(function(entries) {
 
           entries.forEach(function(entry) {
@@ -667,6 +669,12 @@ if (faqs && faqs.length > 0) {
             var suffix = el.dataset.suffix || '';
 
             var duration = 1400;
+
+            if (reduceMotion) {
+              el.textContent = el.dataset.display || formatNumber(target, target, suffix);
+              counterObserver.unobserve(el);
+              return;
+            }
 
             var start = performance.now();
 
