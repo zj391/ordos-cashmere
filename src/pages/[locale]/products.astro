@@ -339,7 +339,23 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
                 src={(p.images[0].startsWith('/images/') || p.images[0].startsWith('http'))
                   ? p.images[0]
                   : `/products/mic/${p.images[0]}`}
-                alt={p.name}
+                alt={(() => {
+                  // SEO alt text: "Material + Product Name + Micron + Audience/Tag"
+                  // Helps Google Image Search rank for "cashmere X wholesale" queries.
+                  const parts = [];
+                  if (p.material && !p.name.toLowerCase().includes(p.material.toLowerCase())) parts.push(p.material);
+                  // Strip generic prefixes ("Fold up", "European Style"...) to avoid repeating
+                  const nameClean = p.name
+                    .replace(/^(Premium|Wholesale|China|Inner Mongolia|Ordos|High Quality|European Style|Europe Style|Classic|New|Hot|Best|2024|2025|2026)\s+/i, '')
+                    .replace(/\s+(Wholesale|Manufacturer|China|Inner Mongolia)$/i, '');
+                  parts.push(nameClean);
+                  if (p.micron) parts.push(p.micron);
+                  const tags = (p.tags || []).filter((t) => /women|men|kids|unisex|ladies|girls|boys|outerwear|winter|spring|summer|fall|autumn/i.test(t));
+                  if (tags.length > 0) parts.push(tags.slice(0, 2).join(' / '));
+                  parts.push('Ordos factory');
+                  parts.push('MOQ ' + p.moq + ' pcs');
+                  return parts.join(', ');
+                })()}
                 loading="lazy"
                 decoding="async"
                 width={400}

@@ -157,6 +157,37 @@ const blogFAQ = extractBlogFAQ(post.body, 4);
           {locale === 'cn' ? '提交询盘 →' : 'Submit Inquiry →'}
         </a>
       </div>
+
+      {/* Related Products: 内部链接到 category hub 页面, 让 Google 看到 blog → product 信号 */}
+      {post.data.relatedProducts && post.data.relatedProducts.length > 0 && (() => {
+        const links: { id: string; label: string; href: string }[] = [
+          { id: 'raw_material', label: locale === 'cn' ? '羊绒原料 — 白绒/青绒/紫绒' : 'Cashmere Raw Material — white, brown, purple', href: `/${locale}/raw-material` },
+          { id: 'yarn_fabric', label: locale === 'cn' ? '羊绒纱线/面料 — 精纺粗纺' : 'Cashmere Yarn & Fabric — worsted, woolen', href: `/${locale}/yarn-fabric` },
+          { id: 'garment_oem', label: locale === 'cn' ? '羊绒成衣 OEM — 针织代工' : 'Cashmere Garment OEM/ODM', href: `/${locale}/garment-oem` },
+          { id: 'factory', label: locale === 'cn' ? '鄂尔多斯工厂介绍' : 'Ordos Factory Tour', href: `/${locale}/factory` },
+          { id: 'cashmere_yarn', label: locale === 'cn' ? '纱线支数指南' : 'Cashmere Yarn Types & Counts', href: `/${locale}/cashmere-yarn-types` },
+          { id: 'cashmere_grades', label: locale === 'cn' ? '羊绒等级鉴别' : 'Cashmere Grades Guide', href: `/${locale}/cashmere-grades` },
+        ];
+        const matched = links.filter((l) => post.data.relatedProducts.includes(l.id));
+        if (matched.length === 0) return null;
+        return (
+          <div class="mt-12 pt-8 border-t border-border">
+            <h3 class="font-display text-xl font-medium mb-4">
+              {locale === 'cn' ? '相关产品' : 'Related Products'}
+            </h3>
+            <ul class="space-y-2">
+              {matched.map((l) => (
+                <li>
+                  <a href={l.href} class="inline-flex items-center gap-2 text-primary hover:text-brand-chocolate hover:underline transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      })()}
     </footer>
   </article>
 

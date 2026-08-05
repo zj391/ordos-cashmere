@@ -165,6 +165,23 @@ const orgSchema = {
   }],
 
   sameAs: Object.values(SITE_INFO.social),
+  // Additional knowledge panel signals (Google uses these to verify brand identity)
+  founder: { '@type': 'Person', name: 'DONGXIAO Cashmere Founder' },
+  foundingLocation: {
+    '@type': 'Place',
+    name: 'Ordos, Inner Mongolia, China',
+    address: { '@type': 'PostalAddress', addressLocality: 'Ordos', addressRegion: 'Inner Mongolia', addressCountry: 'CN' },
+  },
+  naics: '313210',  // NAICS for broadwoven fabric mills / textile manufacturing
+  isicV4: '13.20',  // ISIC for textile weaving / finishing
+  knowsAbout: [
+    'Cashmere fiber grading (14.5-15.5µm)',
+    'Dehairing and combing process',
+    'Worsted and woolen spinning',
+    'Cashmere garment OEM/ODM manufacturing',
+    'OEKO-TEX Standard 100 certification',
+    'B2B international trade (FOB Tianjin export)',
+  ],
 
 };
 

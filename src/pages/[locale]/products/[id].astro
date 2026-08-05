@@ -78,6 +78,28 @@ function resolveProductImage(img: string): string {
   if (img.startsWith('/images/') || img.startsWith('http')) return img;
   return `/products/${imageDir}/${img}`;
 }
+/**
+ * SEO-optimized alt text for product images.
+ * Includes: material + name + micron + audience tags + brand origin + MOQ.
+ * Helps Google Image Search rank for "cashmere X wholesale" long-tail queries.
+ */
+function buildSeoAlt(p: typeof product): string {
+  const parts: string[] = [];
+  if (p.material && !p.name.toLowerCase().includes(p.material.toLowerCase())) {
+    parts.push(p.material);
+  }
+  const nameClean = p.name
+    .replace(/^(Premium|Wholesale|China|Inner Mongolia|Ordos|High Quality|European Style|Europe Style|Classic|New|Hot|Best|2024|2025|2026)\s+/i, '')
+    .replace(/\s+(Wholesale|Manufacturer|China|Inner Mongolia)$/i, '');
+  parts.push(nameClean);
+  if (p.micron) parts.push(p.micron);
+  const tags = (p.tags || []).filter((t: string) => /women|men|kids|unisex|ladies|girls|boys|outerwear|winter|spring|summer|fall|autumn/i.test(t));
+  if (tags.length > 0) parts.push(tags.slice(0, 2).join(' / '));
+  parts.push('Ordos factory');
+  parts.push('MOQ ' + p.moq + ' pcs');
+  return parts.join(', ');
+}
+
 const primaryImage = resolveProductImage(uniqueProductImages[0]);
 // galleryImages = studio product shots followed by the lifestyle / model photo
 // (if any). The model photo is appended LAST so the cover thumbnail and the
@@ -292,7 +314,7 @@ const breadcrumbSchema = {
                         class="aspect-square bg-secondary/30 rounded-lg overflow-hidden mb-4 ring-1 ring-border w-full block hover:ring-2 hover:ring-primary transition-all"
                         data-main-frame={primaryImage}
                       >
-                        <img id="main-product-img" src={primaryImage} alt={product.name} class="w-full h-full object-cover object-[center_top] transition-opacity" decoding="async" loading="eager" />
+                        <img id="main-product-img" src={primaryImage} alt={buildSeoAlt(product)} class="w-full h-full object-cover object-[center_top] transition-opacity" decoding="async" loading="eager" />
                       </div>
                       <div
                         id="product-zoom-panel"
@@ -313,7 +335,7 @@ const breadcrumbSchema = {
                               aria-label={`${product.name}${kind === 'model' ? ' model photo' : ` view ${i + 1}`}`}
                               title={kind === 'model' ? (locale === 'cn' ? '模特示范 · 真人在穿' : 'Model · Real wear') : undefined}
                             >
-                              <img src={img} alt={`${product.name}${kind === 'model' ? ' model photo' : ` view ${i + 1}`}`} class="w-full h-full object-cover" decoding="async" loading="lazy" />
+                              <img src={img} alt={`${buildSeoAlt(product)}${kind === 'model' ? ' — real-model wear photo' : ' — detail view ' + (i + 1)}`} class="w-full h-full object-cover" decoding="async" loading="lazy" />
                               {kind === 'model' && (
                                 <span class="absolute top-1 left-1 text-[9px] tracking-wider uppercase bg-brand-ink/85 text-white px-1.5 py-0.5 rounded">
                                   {locale === 'cn' ? '模特' : 'Model'}
@@ -856,7 +878,7 @@ const breadcrumbSchema = {
                   src={(rp.images[0] || '').startsWith('/images/') || (rp.images[0] || '').startsWith('http')
                       ? rp.images[0]
                       : `/products/${CATEGORY_IMAGE_DIR[rp.categoryId] || rp.categoryId}/${rp.images[0]}`}
-                  alt={rp.name}
+                  alt={buildSeoAlt(rp)}
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform"
                   decoding="async" loading="lazy"
                 />
