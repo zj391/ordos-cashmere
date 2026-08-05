@@ -224,11 +224,14 @@ const IMG = {
       ? { q: 'ç½ç»ãæ£ç»ï¼éç»ï¼ãç´«ç»åªä¸ªæå¥½ï¼', a: 'ç½ç»ï¼A çº§ï¼ï¼é³ååè¶³ï¼çº¤ç»æç½ï¼å¯æä»»æï¼æéåé«ç«¯æ¶å°ãæ£ç»ï¼éç»ï¼ï¼æ¥èªå¸¦æµç°è²ç¾ç¾¤çå±±ç¾ï¼é¢åååçéæ©åå°ï¼çº¤ç»å¤§ä¸´çæ®µåå°ï¼ä»·æ ¼ä½ 30-50%25ï¼éåæ·±è²ææ··è²äº§åãç´«ç»ï¼A çº§ï¼ï¼äº§éæå°ï¼ä¾åºä¸ç¨³ï¼é«ç«¯å°ä»ï¼ä»å¼åäºå®£ã' }
       : { q: 'Which is best: white, brown, or purple cashmere?', a: 'White (Grade A): most abundant sunlight-exposed, dyeable, best for premium fashion. Brown (a.k.a. qing/blue-grey): from grey-coated goats with light grey/brown base, fewer pre-selection stages, lower price. Purple (Grade A): rare, unstable supply, premium niche. All are A-grade based on fineness (14.0-15.5µm); choice depends on use case and color requirements.' },
     locale === 'cn'
-      ? { q: 'GB/T 21209 æ¯ä»ä¹æ åï¼', a: 'GB/T 21209ãå±±ç¾ç»ãæ¯ä¸­å½å½å®¶æ åï¼è§å®äºå±±ç¾ç»åçº§æ åãè®¡éæ¹æ³ãæ£éªæ¡ä»¶ãåè£æ ç­¾è¦æ±ï¼æ¯åºå£ç¾ç»çå¿å¤æä»¶ãæä»¬çåºå£è´§ååæ¶ç¬¦å GB/T 21209 å½æ åå½é IWTOï¼å½éæ¯çººç»ç»ç»ç»ç»ç»ç»ç»ç»ç»ç»ç»ç»ç»ç»ç»ç»ç» }
-      : { q: 'What is the GB/T 21209 standard?', a: 'GB/T 21209 âCashmereâ is the Chinese national standard for raw cashmere fiber, covering grading criteria, weighing methods, inspection conditions, and packaging labeling. Our export shipments follow both GB/T 21209 and the international IWTO (International Wool Textile Organisation) standard for dual certification.' },
+      ? { q: ',
     locale === 'cn'
-      ? { q: 'å¦ä½éªåºç¾ç»ç­çº§çä¼ªï¼', a: 'åé¡¹å¿æ¥ï¼ãï¼1ç»åº¦ï¼ç©çæ¹æ³æµå®¤>15.5µm ä¸è½ç§° A çº§ï¼ãï¼2é¿åº¦ï¼çº¤ç»é¿åº¦<36mm ä¸è½ç§°ä¼è´¨ï¼ãï¼3å«æçï¼æ¤ç©æ§æè´¨>0.3%25 ä¸è½ç§° A çº§ï¼ãï¼4æ£æµï¼éåç­ååº GB/T 21209 å½æ æ¥åãåé¡¹åå¨é½åæ ¼æè½ç§°ç¾ç» A çº§ã' }
-      : { q: 'How do I verify cashmere grade quality?', a: 'Four mandatory checks: (1) Fineness: physical method >15.5µm cannot be Grade A. (2) Length: staple length <36mm cannot be premium. (3) Impurity: vegetable matter >0.3% cannot be A-grade. (4) GB/T 21209: requires a third-party test report. All four must pass for A-grade cashmere.' },
+      ? { q: 'GB/T 21209 是什么标准？', a: 'GB/T 21209《山羊绒》是中国国家标准，规定了羊绒分级标准、计重方法、检验条件、包装标签要求，是出口羊绒的必备文件。我们出口货同时符合 GB/T 21209 国标和国际 IWTO（国际毛纺织组织）标准，双重认证。' }
+      : { q: 'What is the GB/T 21209 standard?', a: 'GB/T 21209 "Cashmere" is the Chinese national standard for raw cashmere fiber, covering grading criteria, weighing methods, inspection conditions, and packaging labeling. Our export shipments follow both GB/T 21209 and the international IWTO (International Wool Textile Organisation) standard for dual certification.' },
+    locale === 'cn'
+      ? { q: '如何验证羊绒等级真伪？', a: '四项必查项：（1）细度：物理方法 >15.5μm 不能称 A 级；（2）长度：纤维长度 <36mm 不能称优质；（3）含杂率：植物性杂质 >0.3% 不能称 A 级；（4）检测报告：需有第三方 GB/T 21209 国标检测报告。四项全部合格才能称羊绒 A 级。' }
+      : { q: 'How do I verify cashmere grade quality?', a: 'Four mandatory checks: (1) Fineness: physical method >15.5μm cannot be Grade A. (2) Length: staple length <36mm cannot be premium. (3) Impurity: vegetable matter >0.3% cannot be A-grade. (4) GB/T 21209: requires a third-party test report. All four must pass for A-grade cashmere.' },
+
   ]} />
 
   <Footer slot="footer" locale={locale} />
