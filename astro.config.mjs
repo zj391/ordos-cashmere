@@ -34,7 +34,7 @@ export default defineConfig({
       },
       // Split into per-1000-URL files so each sitemap stays small and Google
       // can fetch product pages without downloading one 3 MB document.
-      maxUrlsPerSitemap: 1000,
+      entryLimit: 1000,
       // Exclude admin/API routes from sitemap (already disallowed in robots.txt).
       filter: (page) => !page.includes('/admin') && !page.includes('/api/'),
       // Add lastmod + per-page priority for better SEO signals.
