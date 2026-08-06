@@ -2,12 +2,10 @@ name: Weekly GSC SEO Monitor
 
 # 每周一上午 9 点（UTC+8）跑 GSC API 拉取上一周的数据
 # 生成 markdown 报告 + 上传为 artifact 供下载
+# 自动检测 Low CTR queries 创建 actionable issue
 #
 # Secrets 需要配置：
 #   GSC_KEY_JSON  - GSC service account JSON key 的内容（粘到 GH repo Settings → Secrets）
-#
-# 如果用 OAuth access token 而非 service account：
-#   TOKEN  - OAuth token（每次跑前手动更新）
 
 on:
   schedule:
@@ -41,7 +39,6 @@ jobs:
         run: |
           mkdir -p secrets
           echo '${{ secrets.GSC_KEY_JSON }}' > secrets/gsc-key.json
-          echo "✓ GSC key saved to secrets/gsc-key.json"
 
       - name: Run GSC weekly report
         env:
@@ -51,7 +48,6 @@ jobs:
           TOKEN: ${{ secrets.TOKEN || '' }}
         run: |
           node scripts/seo/gsc-report.mjs > seo-report.md 2> seo-report-error.log
-          echo "Exit code: $?"
           if [ -s seo-report-error.log ]; then
             echo "--- STDERR ---"
             cat seo-report-error.log
@@ -79,3 +75,89 @@ jobs:
               body: 'GSC weekly monitor workflow failed. Check the run logs: ' + context.runUrl,
               labels: ['seo', 'monitoring']
             });
+
+      - name: Post weekly report to issue
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('seo-report.md', 'utf8');
+            const today = new Date().toISOString().slice(0,10);
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'seo-weekly-report',
+              per_page: 1,
+              direction: 'desc',
+              sort: 'created',
+            });
+            const body = report.length > 60000
+              ? report.slice(0, 60000) + '\n\n*[truncated]*'
+              : report;
+            if (issues.data.length > 0) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issues.data[0].number,
+                body: '## GSC Report — ' + today + '\n\n' + body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: 'GSC Weekly Reports',
+                body: '## GSC Report — ' + today + '\n\n' + body,
+                labels: ['seo-weekly-report'],
+              });
+            }
+
+      - name: Detect low CTR queries
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('seo-report.md', 'utf8');
+            const m = report.match(/## ⚠️ Low CTR Queries[\s\S]*?(?=\n##|\n---\n|$)/);
+            if (!m) return;
+            const rows = m[0].split('\n').filter(l => l.startsWith('|') && !l.includes('---')).slice(2);
+            const items = rows.map(r => {
+              const c = r.split('|').map(s => s.trim()).filter(Boolean);
+              if (c.length < 5) return null;
+              return {
+                query: c[0],
+                impressions: parseInt(c[2].replace(/,/g, '')) || 0,
+                ctr: c[3],
+                position: c[4],
+              };
+            }).filter(Boolean);
+            if (items.length === 0) return;
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: 'open', labels: 'seo-action-needed', per_page: 1, sort: 'created', direction: 'desc',
+            });
+            const today = new Date().toISOString().slice(0,10);
+            let body = '## Top queries with impressions >20 but CTR <2% — ' + today + '\n\n';
+            body += 'Title/description mismatch with search intent.\n\n';
+            body += '| Query | Impressions | CTR | Avg Position | Suggested fix |\n';
+            body += '|---|---|---|---|---|\n';
+            for (const it of items.slice(0, 15)) {
+              const fix = it.position < 10 ? 'Update meta description + H1' : 'Create dedicated landing page';
+              body += `| \`${it.query}\` | ${it.impressions.toLocaleString()} | ${it.ctr} | ${it.position} | ${fix} |\n`;
+            }
+            if (existing.data.length > 0) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existing.data[0].number,
+                body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title: 'SEO Action: Low CTR queries to fix',
+                body: body + '\n\n---\n*Auto-detected weekly. Close when fixed.*',
+                labels: ['seo-action-needed'],
+              });
+            }
