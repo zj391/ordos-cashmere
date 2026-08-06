@@ -44,12 +44,12 @@ export default {
           foreground: 'hsl(var(--card-foreground))',
         },
         brand: {
-          cream: '#F5F1EA',
-          sand: '#D4C5B0',
-          camel: '#A8875E',
-          chocolate: '#5C3E2A',
-          ink: '#1A1612',
-          gold: '#B8956A',
+          cream: '#F7F3EC',
+          sand: '#E0D5C4',
+          camel: '#A98B5F',
+          chocolate: '#4B3A2B',
+          ink: '#1C1813',
+          gold: '#AD8A5C',
         },
       },
       fontFamily: {

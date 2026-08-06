@@ -131,11 +131,11 @@ const groupLabel = (groupKey: string, group: any) => {
 };
 ---
 
-<header class="sticky top-0 z-40 w-full border-b border-border bg-background shadow-sm relative">
-  <div class="container-narrow flex h-16 items-center justify-between">
+<header class="sticky top-0 z-40 w-full border-b border-border bg-background/95 backdrop-blur-sm relative">
+  <div class="container-narrow flex h-20 items-center justify-between">
     <!-- Logo -->
     <a href={localePath(locale, '/')} class="flex items-center gap-2 group">
-      <span class="font-display text-2xl font-medium tracking-tight text-primary">
+      <span class="font-display text-[1.7rem] font-normal tracking-wide text-primary">
         DONGXIAO<sup class="text-xs">®</sup>
       </span>
       <span class="hidden md:inline text-xs text-muted-foreground tracking-wider uppercase">
@@ -144,14 +144,14 @@ const groupLabel = (groupKey: string, group: any) => {
     </a>
 
     <!-- Desktop Nav -->
-    <nav class="hidden lg:flex items-center gap-1 text-sm" id="desktop-nav">
+    <nav class="hidden lg:flex items-center gap-7 text-[13px] uppercase tracking-[0.14em]" id="desktop-nav">
       {navItems.map((item) => (
         <div class="relative group/item" data-mega-trigger={item.hasSubmenu || ''}>
           <a
             href={item.href}
             class:list={[
-              'inline-flex items-center gap-1 px-3 py-2 transition-colors hover:text-primary',
-              currentPath === item.href ? 'text-primary font-medium' : 'text-muted-foreground',
+              'nav-link inline-flex items-center gap-1.5 py-2 transition-colors hover:text-primary',
+              currentPath === item.href ? 'text-primary is-active' : 'text-muted-foreground',
             ]}
           >
             {t(item.labelKey)}
@@ -169,16 +169,16 @@ const groupLabel = (groupKey: string, group: any) => {
     {navItems.filter((i) => i.hasSubmenu).map((item) => (
       <div
         data-mega-panel={item.hasSubmenu}
-        class="absolute left-0 right-0 top-full w-full bg-white border-t border-border shadow-[0_24px_48px_-12px_rgba(0,0,0,0.15)] opacity-0 invisible pointer-events-none transition-all duration-300 ease-out z-50"
+        class="absolute left-0 right-0 top-full w-full bg-white border-t border-border shadow-[0_18px_40px_-18px_rgba(28,24,19,0.12)] opacity-0 invisible pointer-events-none transition-all duration-300 ease-out z-50"
       >
-        <div class="container-narrow py-10 grid grid-cols-[1fr_320px] gap-12">
+        <div class="container-narrow py-12 grid grid-cols-[1fr_320px] gap-14">
           <!-- Left: 4 category groups -->
           <div class="grid grid-cols-4 gap-8">
             {Object.entries((submenusData as any)[item.hasSubmenu] || {})
               .filter(([k]) => k !== 'feature')
               .map(([groupKey, group]: [string, any]) => (
               <div class="space-y-4">
-                <h3 class="text-xs font-bold uppercase tracking-[0.12em] text-primary border-b border-border pb-2 mb-3">
+                <h3 class="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary/80 border-b border-border/80 pb-2.5 mb-4">
                   {groupLabel(groupKey, group)}
                 </h3>
                 <ul class="space-y-2">
@@ -186,7 +186,7 @@ const groupLabel = (groupKey: string, group: any) => {
                     <li>
                       <a
                         href={`${item.href}&${groupKey}=${sub.key}`}
-                        class="block text-sm text-muted-foreground hover:text-primary hover:translate-x-1 transition-all duration-150 py-0.5"
+                        class="block text-[13px] text-muted-foreground hover:text-primary transition-colors py-1"
                       >
                         {subLabel(sub)}
                       </a>
@@ -202,7 +202,7 @@ const groupLabel = (groupKey: string, group: any) => {
             const feature = (submenusData as any)[item.hasSubmenu]?.feature;
             if (!feature) return null;
             return (
-              <a href={feature.href?.[locale] || feature.href?.en || '#'} class="group/feature block relative overflow-hidden rounded-md bg-stone-50">
+              <a href={feature.href?.[locale] || feature.href?.en || '#'} class="group/feature block relative overflow-hidden rounded-sm bg-brand-cream">
                 <div class="aspect-[4/3] overflow-hidden">
                   <img
                     src={feature.image}
@@ -235,7 +235,7 @@ const groupLabel = (groupKey: string, group: any) => {
       <div class="relative group">
         <button
           type="button"
-          class="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors"
+          class="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-primary transition-colors"
           aria-label="Change language"
         >
           <span>{LOCALE_FLAGS[locale]}</span>
@@ -283,7 +283,7 @@ const groupLabel = (groupKey: string, group: any) => {
       <!-- CTA: Contact -->
       <a
         href={localePath(locale, '/contact')}
-        class="hidden sm:inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+        class="hidden sm:inline-flex items-center justify-center border border-primary px-6 py-2.5 text-xs uppercase tracking-[0.18em] text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
       >
         {locale === 'cn' ? '立即询盘' : 'Get Quote'}
       </a>
@@ -309,7 +309,7 @@ const groupLabel = (groupKey: string, group: any) => {
         <div>
           <a
             href={item.href}
-            class="block py-2 text-sm font-medium text-foreground hover:text-primary transition-colors"
+            class="block py-3 text-sm uppercase tracking-[0.12em] text-foreground hover:text-primary transition-colors"
           >
             {t(item.labelKey)}
           </a>

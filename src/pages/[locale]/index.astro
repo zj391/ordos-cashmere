@@ -247,7 +247,7 @@ const IMG = {
         />
       ))}
       <!-- 左侧暗化叠层: 保证文字可读, 右侧保持明亮 (gradient from-left) -->
-      <div class="absolute inset-0 bg-gradient-to-r from-brand-ink/85 via-brand-ink/55 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-brand-ink/75 via-brand-ink/40 to-transparent"></div>
     </div>
     <!-- 羊绒纤维纹理 (装饰) -->
     <svg class="absolute inset-0 w-full h-full opacity-[0.05] pointer-events-none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
@@ -272,13 +272,13 @@ const IMG = {
           {c.subtitle}
         </p>
         <div class="flex flex-wrap items-center gap-6">
-          <a href={`/${locale}/contact`} class="group inline-flex items-center gap-3 px-10 py-5 bg-brand-gold text-brand-ink font-medium tracking-wider hover:bg-white transition-colors">
+          <a href={`/${locale}/contact`} class="group inline-flex items-center gap-3 px-10 py-5 border border-white/60 text-white text-sm font-medium uppercase tracking-[0.2em] hover:bg-white hover:text-brand-ink transition-colors">
             {c.cta}
             <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
             </svg>
           </a>
-          <a href={`/${locale}/download`} class="group inline-flex items-center gap-2 text-white border-b border-white/40 pb-1 hover:border-brand-gold hover:text-brand-gold transition-colors">
+          <a href={`/${locale}/download`} class="group inline-flex items-center gap-2 text-white text-sm uppercase tracking-[0.2em] border-b border-white/40 pb-1 hover:border-brand-gold hover:text-brand-gold transition-colors">
             {c.ctaSecondary}
           </a>
         </div>
