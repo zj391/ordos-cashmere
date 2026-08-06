@@ -40,7 +40,7 @@ const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
   <section class="bg-brand-ink text-white">
     <div class="container-narrow py-16 md:py-20">
       <div class="flex items-center gap-3 mb-6">
-        <span class="h-px w-12 bg-brand-gold"></span>
+        <span class="h-px w-12 bg-brand-red"></span>
         <span class="text-xs tracking-[0.4em] text-brand-gold uppercase font-medium">{T('tagline')}</span>
       </div>
       <h1 class="font-serif text-5xl md:text-6xl font-light leading-[1.05] mb-4" set:html={T('title').replace(/\n/g, '<br/>')} />

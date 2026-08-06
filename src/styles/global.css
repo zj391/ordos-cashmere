@@ -103,7 +103,7 @@ html {
   bottom: 0;
   width: 100%;
   height: 1px;
-  background: currentColor;
+  background: #9E3128;
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);

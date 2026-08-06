@@ -50,6 +50,7 @@ export default {
           chocolate: '#4B3A2B',
           ink: '#1C1813',
           gold: '#AD8A5C',
+          red: '#9E3128',
         },
       },
       fontFamily: {
