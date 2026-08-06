@@ -272,11 +272,11 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
       </div>
 
       {/* Result count */}
-      <p className="text-sm text-stone-600 mb-4">{labels.showingProducts(filtered.length)}</p>
+      <p className="text-sm text-muted-foreground mb-4">{labels.showingProducts(filtered.length)}</p>
 
       {/* Grid */}
       {displayed.length === 0 ? (
-        <p className="text-center text-stone-500 py-16">{labels.noResults}</p>
+        <p className="text-center text-muted-foreground py-16">{labels.noResults}</p>
       ) : (
         <>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -297,14 +297,14 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
                 />
               </div>
               <div className="p-4">
-                <p className="text-xs text-stone-500 uppercase tracking-wider mb-1">{p.categoryName}</p>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{p.categoryName}</p>
                 <h3
-                  className="text-sm font-medium text-stone-900 mb-2 line-clamp-2 cursor-pointer hover:text-amber-700"
+                  className="text-sm font-medium text-foreground mb-2 line-clamp-2 cursor-pointer hover:text-brand-camel"
                   onClick={() => openProduct(p)}
                 >
                   {p.name}
                 </h3>
-                <div className="space-y-1 text-xs text-stone-600 mb-3">
+                <div className="space-y-1 text-xs text-muted-foreground mb-3">
                   <div className="flex justify-between">
                     <span>{labels.material}:</span>
                     <span className="font-medium">{p.material}</span>
@@ -324,7 +324,7 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
                     <span className="font-medium">{p.moq} pcs</span>
                   </div>
                 </div>
-                <p className="text-xs text-stone-500 mb-2">{labels.colorCardPreview}</p>
+                <p className="text-xs text-muted-foreground mb-2">{labels.colorCardPreview}</p>
                 <button
                   onClick={() => openProduct(p)}
                   className="w-full px-3 py-2 bg-brand-ink text-[#F7F3EC] text-xs hover:bg-brand-camel transition-colors"
@@ -363,15 +363,15 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
             <div className="p-4 sm:p-6">
               <div className="flex justify-between items-start mb-4">
                 <div>
-                  <p className="text-xs text-stone-500 uppercase tracking-wider mb-1">
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">
                     {selectedProduct.categoryName}
                   </p>
-                  <h2 className="text-xl sm:text-2xl font-serif text-stone-900">{selectedProduct.name}</h2>
-                  <p className="text-xs text-stone-500 mt-1">{labels.productIdLabel}: {selectedProduct.id}</p>
+                  <h2 className="text-xl sm:text-2xl font-serif text-foreground">{selectedProduct.name}</h2>
+                  <p className="text-xs text-muted-foreground mt-1">{labels.productIdLabel}: {selectedProduct.id}</p>
                 </div>
                 <button
                   onClick={() => setSelectedProduct(null)}
-                  className="text-stone-500 hover:text-stone-900 text-2xl leading-none"
+                  className="text-muted-foreground hover:text-foreground text-2xl leading-none"
                   aria-label={labels.closeButton}
                 >
                   ×
@@ -408,37 +408,37 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
 
               {/* Specs */}
               <div className="border-t border-border pt-4">
-                <h3 className="text-sm font-medium text-stone-900 mb-3">{labels.productSpecs}</h3>
+                <h3 className="text-sm font-medium text-foreground mb-3">{labels.productSpecs}</h3>
                 <div className="grid grid-cols-2 gap-3 text-sm">
                   <div>
-                    <p className="text-xs text-stone-500">{labels.material}</p>
+                    <p className="text-xs text-muted-foreground">{labels.material}</p>
                     <p className="font-medium">{selectedProduct.material}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-stone-500">{labels.micron}</p>
+                    <p className="text-xs text-muted-foreground">{labels.micron}</p>
                     <p className="font-medium">{selectedProduct.micron}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-stone-500">{labels.price}</p>
+                    <p className="text-xs text-muted-foreground">{labels.price}</p>
                     <p className="font-medium text-amber-700">
                       ${selectedProduct.price} {selectedProduct.currency}
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs text-stone-500">{labels.moq}</p>
+                    <p className="text-xs text-muted-foreground">{labels.moq}</p>
                     <p className="font-medium">{selectedProduct.moq} pcs</p>
                   </div>
                   <div>
-                    <p className="text-xs text-stone-500">{labels.leadTime}</p>
+                    <p className="text-xs text-muted-foreground">{labels.leadTime}</p>
                     <p className="font-medium">{selectedProduct.lead}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-stone-500">{labels.sampleTime}</p>
+                    <p className="text-xs text-muted-foreground">{labels.sampleTime}</p>
                     <p className="font-medium">{selectedProduct.sample_time}</p>
                   </div>
                   {selectedProduct.weight && (
                     <div className="col-span-2">
-                      <p className="text-xs text-stone-500">Weight</p>
+                      <p className="text-xs text-muted-foreground">Weight</p>
                       <p className="font-medium">{selectedProduct.weight}</p>
                     </div>
                   )}
@@ -466,7 +466,7 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
                 >
                   {labels.requestInquiry}
                 </button>
-                <p className="text-xs text-stone-500 text-center mt-2">{labels.inquiryNote}</p>
+                <p className="text-xs text-muted-foreground text-center mt-2">{labels.inquiryNote}</p>
               </div>
             </div>
           </div>

@@ -444,7 +444,7 @@ const itemListSchema = {
     const leggings = products.filter((p) => /legging|leggin|pant|tight|trouser|leggings|tights|long john/i.test(p.name));
     if (leggings.length === 0) return null;
     return (
-      <section class="py-16 md:py-20 bg-stone-50">
+      <section class="py-16 md:py-20 bg-brand-cream">
         <div class="container-narrow">
           <div class="mb-8">
             <span class="inline-block px-3 py-1 border border-brand-chocolate text-brand-chocolate text-[10px] tracking-[0.2em] uppercase font-medium mb-4">{locale === 'cn' ? '专题' : 'FEATURED CATEGORY'}</span>
@@ -496,7 +496,7 @@ const itemListSchema = {
     const leggings = products.filter((p) => /legging|leggin|pant|tight|trouser|long john/i.test(p.name));
     if (leggings.length === 0) return null;
     return (
-      <section class="py-16 md:py-20 bg-stone-50">
+      <section class="py-16 md:py-20 bg-brand-cream">
         <div class="container-narrow">
           <div class="mb-8">
             <span class="inline-block px-3 py-1 border border-brand-chocolate text-brand-chocolate text-[10px] tracking-[0.2em] uppercase font-medium mb-4">{locale === 'cn' ? '专题' : 'FEATURED CATEGORY'}</span>

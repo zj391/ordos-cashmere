@@ -307,11 +307,11 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
         </select>
       </div>
     </div>
-    <p id="result-count" class="text-sm text-stone-600 mb-4"></p>
+    <p id="result-count" class="text-sm text-muted-foreground mb-4"></p>
 
     <!-- Active subcategory chips (populated by JS from URL params). Hidden when no active tags. -->
     <div id="active-chips" class="hidden flex flex-wrap items-center gap-2 mb-4">
-      <span class="text-xs text-stone-500 uppercase tracking-wider mr-1" data-chip-prefix></span>
+      <span class="text-xs text-muted-foreground uppercase tracking-wider mr-1" data-chip-prefix></span>
       <!-- chips injected by JS -->
     </div>
 
@@ -360,17 +360,17 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
             )}
           </div>
           <div class="p-4">
-            <p class="text-xs text-stone-500 uppercase tracking-wider mb-1">{p.categoryName}</p>
-            <h3 class="text-sm font-medium text-stone-900 mb-2 line-clamp-2 hover:text-amber-700">
+            <p class="text-xs text-muted-foreground uppercase tracking-wider mb-1">{p.categoryName}</p>
+            <h3 class="text-sm font-medium text-foreground mb-2 line-clamp-2 hover:text-brand-camel">
               {p.name}
             </h3>
-            <div class="space-y-1 text-xs text-stone-600 mb-3">
+            <div class="space-y-1 text-xs text-muted-foreground mb-3">
               <div class="flex justify-between"><span>{labels.material}:</span><span class="font-medium">{p.material}</span></div>
               <div class="flex justify-between"><span>{labels.micron}:</span><span class="font-medium">{p.micron}</span></div>
               <div class="flex justify-between"><span>{labels.price}:</span><span class="font-medium text-amber-700">${p.price} {p.currency}</span></div>
               <div class="flex justify-between"><span>{labels.moq}:</span><span class="font-medium">{p.moq} pcs</span></div>
             </div>
-            <p class="text-xs text-stone-500 mb-2">{labels.colorCardPreview}</p>
+            <p class="text-xs text-muted-foreground mb-2">{labels.colorCardPreview}</p>
             <span class="block w-full px-3 py-2 bg-brand-ink text-[#F7F3EC] text-xs hover:bg-brand-camel transition-colors text-center">
               {labels.requestQuote}
             </span>
@@ -380,7 +380,7 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
     </div>
     <!-- 分页控件（vanilla JS 控制） -->
     <div id="pagination-wrap" class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-border pt-6">
-      <p id="page-info" class="text-sm text-stone-600"></p>
+      <p id="page-info" class="text-sm text-muted-foreground"></p>
       <nav id="pagination" class="flex items-center gap-1" aria-label="Pagination"></nav>
     </div>
   </section>
@@ -543,10 +543,10 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
           activeCat = btn.getAttribute('data-cat');
           filterButtons.forEach((b) => {
             if (b === btn) {
-              b.classList.add('bg-stone-900', 'text-white', 'border-brand-ink');
+              b.classList.add('bg-brand-ink', 'text-[#F7F3EC]', 'border-brand-ink');
               b.classList.remove('bg-white', 'text-muted-foreground', 'border-border');
             } else {
-              b.classList.remove('bg-stone-900', 'text-white', 'border-brand-ink');
+              b.classList.remove('bg-brand-ink', 'text-[#F7F3EC]', 'border-brand-ink');
               b.classList.add('bg-white', 'text-muted-foreground', 'border-border');
             }
           });
@@ -610,10 +610,10 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
         // Also reset category button UI
         filterButtons.forEach((b) => {
           if (b.getAttribute('data-cat') === 'all') {
-            b.classList.add('bg-stone-900', 'text-white', 'border-brand-ink');
+            b.classList.add('bg-brand-ink', 'text-[#F7F3EC]', 'border-brand-ink');
             b.classList.remove('bg-white', 'text-muted-foreground', 'border-border');
           } else {
-            b.classList.remove('bg-stone-900', 'text-white', 'border-brand-ink');
+            b.classList.remove('bg-brand-ink', 'text-[#F7F3EC]', 'border-brand-ink');
             b.classList.add('bg-white', 'text-muted-foreground', 'border-border');
           }
         });
@@ -630,10 +630,10 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
           activeCat = 'all';
           filterButtons.forEach((b) => {
             if (b.getAttribute('data-cat') === 'all') {
-              b.classList.add('bg-stone-900', 'text-white', 'border-brand-ink');
+              b.classList.add('bg-brand-ink', 'text-[#F7F3EC]', 'border-brand-ink');
               b.classList.remove('bg-white', 'text-muted-foreground', 'border-border');
             } else {
-              b.classList.remove('bg-stone-900', 'text-white', 'border-brand-ink');
+              b.classList.remove('bg-brand-ink', 'text-[#F7F3EC]', 'border-brand-ink');
               b.classList.add('bg-white', 'text-muted-foreground', 'border-border');
             }
           });
@@ -654,7 +654,7 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
         // Rebuild contents
         container.innerHTML = '';
         const prefixEl = document.createElement('span');
-        prefixEl.className = 'text-xs text-stone-500 uppercase tracking-wider mr-1';
+        prefixEl.className = 'text-xs text-muted-foreground uppercase tracking-wider mr-1';
         prefixEl.textContent = prefix + ' ';
         container.appendChild(prefixEl);
         for (const tag of activeTags) {
@@ -669,7 +669,7 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
         }
         const clearBtn = document.createElement('button');
         clearBtn.type = 'button';
-        clearBtn.className = 'ml-2 text-xs text-stone-500 hover:text-stone-900 underline';
+        clearBtn.className = 'ml-2 text-xs text-muted-foreground hover:text-foreground underline';
         clearBtn.textContent = clearAll;
         clearBtn.addEventListener('click', clearAllTags);
         container.appendChild(clearBtn);
@@ -762,7 +762,7 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
 
         let last = 0;
         for (const p of visiblePages) {
-          if (p - last > 1) html += '<span class="px-2 text-stone-400">…</span>';
+          if (p - last > 1) html += '<span class="px-2 text-muted-foreground/70">…</span>';
           html += pageBtnHtml(String(p), p, false, p === currentPage);
           last = p;
         }
@@ -786,12 +786,12 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
       function pageBtnHtml(label, page, disabled, active) {
         const baseCls = 'min-w-[40px] h-10 px-3 inline-flex items-center justify-center text-sm border transition-colors';
         if (disabled) {
-          return '<button disabled class="' + baseCls + ' bg-stone-50 text-stone-300 border-border cursor-not-allowed">' + label + '</button>';
+          return '<button disabled class="' + baseCls + ' bg-brand-cream text-muted-foreground/50 border-border cursor-not-allowed">' + label + '</button>';
         }
         if (active) {
           return '<button data-page="' + page + '" class="' + baseCls + ' bg-brand-ink text-[#F7F3EC] border-brand-ink">' + label + '</button>';
         }
-        return '<button data-page="' + page + '" class="' + baseCls + ' bg-white text-muted-foreground border-border hover:border-brand-ink hover:text-stone-900">' + label + '</button>';
+        return '<button data-page="' + page + '" class="' + baseCls + ' bg-white text-muted-foreground border-border hover:border-brand-ink hover:text-foreground">' + label + '</button>';
       }
 
       function cardHtml(p) {
@@ -807,15 +807,15 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
               (img ? '<img src="' + img + '" alt="' + escapeHtml(p.name) + '" decoding="async" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />' : '') +
             '</div>' +
             '<div class="p-4">' +
-              '<p class="text-xs text-stone-500 uppercase tracking-wider mb-1">' + escapeHtml(p.categoryName || '') + '</p>' +
-              '<h3 class="text-sm font-medium text-stone-900 mb-2 line-clamp-2 hover:text-amber-700">' + escapeHtml(p.name) + '</h3>' +
-              '<div class="space-y-1 text-xs text-stone-600 mb-3">' +
+              '<p class="text-xs text-muted-foreground uppercase tracking-wider mb-1">' + escapeHtml(p.categoryName || '') + '</p>' +
+              '<h3 class="text-sm font-medium text-foreground mb-2 line-clamp-2 hover:text-brand-camel">' + escapeHtml(p.name) + '</h3>' +
+              '<div class="space-y-1 text-xs text-muted-foreground mb-3">' +
                 '<div class="flex justify-between"><span>' + escapeHtml(labels.material) + ':</span><span class="font-medium">' + escapeHtml(p.material || '') + '</span></div>' +
                 '<div class="flex justify-between"><span>' + escapeHtml(labels.micron) + ':</span><span class="font-medium">' + escapeHtml(p.micron || '') + '</span></div>' +
                 '<div class="flex justify-between"><span>' + escapeHtml(labels.price) + ':</span><span class="font-medium text-amber-700">$' + escapeHtml(p.price || '') + ' ' + escapeHtml(p.currency || '') + '</span></div>' +
                 '<div class="flex justify-between"><span>' + escapeHtml(labels.moq) + ':</span><span class="font-medium">' + (p.moq || 0) + ' pcs</span></div>' +
               '</div>' +
-              '<p class="text-xs text-stone-500 mb-2">' + escapeHtml(labels.colorCardPreview || 'Available in 25/26 color card →') + '</p>' +
+              '<p class="text-xs text-muted-foreground mb-2">' + escapeHtml(labels.colorCardPreview || 'Available in 25/26 color card →') + '</p>' +
               '<span class="block w-full px-3 py-2 bg-brand-ink text-[#F7F3EC] text-xs hover:bg-brand-camel transition-colors text-center">' + escapeHtml(labels.requestQuote) + '</span>' +
             '</div>' +
           '</a>'
@@ -875,18 +875,18 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
       function swatchHtml(name) {
         const hex = colorNameToHex(name);
         const isLight = hex === '#f5f5f4' || hex === '#ca8a04';
-        const ring = isLight ? 'ring-1 ring-stone-300' : '';
+        const ring = isLight ? 'ring-1 ring-border' : '';
         const chip = hex
           ? '<span class="inline-block w-4 h-4 rounded-full ' + ring + '" style="background:' + hex + '"></span>'
-          : '<span class="inline-block w-4 h-4 rounded-full bg-stone-200 border border-dashed border-stone-400"></span>';
-        return '<span class="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 bg-stone-50 text-muted-foreground border border-border">' +
+          : '<span class="inline-block w-4 h-4 rounded-full bg-brand-cream border border-dashed border-border"></span>';
+        return '<span class="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 bg-brand-cream text-muted-foreground border border-border">' +
                  chip + '<span>' + escapeHtml(name) + '</span>' +
                '</span>';
       }
 
       // 内联 SVG 图标（specs 行首），零依赖
       function specIcon(kind) {
-        const common = 'class="w-3.5 h-3.5 text-stone-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"';
+        const common = 'class="w-3.5 h-3.5 text-muted-foreground/70 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"';
         if (kind === 'material') return '<svg ' + common + '><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h10"/></svg>';
         if (kind === 'micron')   return '<svg ' + common + '><circle cx="12" cy="12" r="8" stroke-width="1.8"/><circle cx="12" cy="12" r="3" stroke-width="1.8" fill="currentColor"/></svg>';
         if (kind === 'lead')     return '<svg ' + common + '><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 8v4l3 2M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>';
@@ -900,8 +900,8 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
         return '<div class="flex items-start gap-2 py-1.5">' +
                  specIcon(icon) +
                  '<div class="min-w-0 flex-1">' +
-                   '<dt class="text-[11px] uppercase tracking-wider text-stone-500 leading-none mb-0.5">' + escapeHtml(label) + '</dt>' +
-                   '<dd class="text-sm text-stone-900 font-medium leading-snug">' + escapeHtml(value) + '</dd>' +
+                   '<dt class="text-[11px] uppercase tracking-wider text-muted-foreground leading-none mb-0.5">' + escapeHtml(label) + '</dt>' +
+                   '<dd class="text-sm text-foreground font-medium leading-snug">' + escapeHtml(value) + '</dd>' +
                  '</div>' +
                '</div>';
       }
@@ -981,10 +981,10 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
       if (activeCat !== 'all') {
         filterButtons.forEach((b) => {
           if (b.getAttribute('data-cat') === activeCat) {
-            b.classList.add('bg-stone-900', 'text-white', 'border-brand-ink');
+            b.classList.add('bg-brand-ink', 'text-[#F7F3EC]', 'border-brand-ink');
             b.classList.remove('bg-white', 'text-muted-foreground', 'border-border');
           } else {
-            b.classList.remove('bg-stone-900', 'text-white', 'border-brand-ink');
+            b.classList.remove('bg-brand-ink', 'text-[#F7F3EC]', 'border-brand-ink');
             b.classList.add('bg-white', 'text-muted-foreground', 'border-border');
           }
         });
