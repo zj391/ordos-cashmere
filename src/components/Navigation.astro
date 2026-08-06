@@ -132,9 +132,11 @@ const groupLabel = (groupKey: string, group: any) => {
 ---
 
 <header class="sticky top-0 z-40 w-full border-t-2 border-brand-red bg-background/95 backdrop-blur-sm relative">
-  <div class="container-narrow flex h-16 lg:h-20 items-center justify-between">
+  <div class="container-narrow flex h-16 lg:h-20 items-center justify-between lg:grid lg:grid-cols-3">
+    <!-- 左侧留白 -->
+    <div class="hidden lg:block"></div>
     <!-- Logo（桌面端居中） -->
-    <a href={localePath(locale, '/')} class="flex items-center gap-2 group lg:absolute lg:left-1/2 lg:-translate-x-1/2">
+    <a href={localePath(locale, '/')} class="flex items-center gap-2 group justify-self-center">
       <span class="font-display text-[1.7rem] font-normal tracking-wide text-primary">
         DONGXIAO<sup class="text-xs">®</sup>
       </span>
@@ -208,7 +210,7 @@ const groupLabel = (groupKey: string, group: any) => {
     ))}
 
     <!-- Right side -->
-    <div class="flex items-center gap-3">
+    <div class="flex items-center justify-end gap-3">
       <!-- Language Switcher -->
       <div class="relative group">
         <button
