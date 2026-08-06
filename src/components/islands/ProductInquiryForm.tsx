@@ -169,13 +169,13 @@ export default function ProductInquiryForm({
                 name={f.name}
                 required={f.required}
                 rows={5}
-                className="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary"
               />
             ) : f.type === 'select' && f.options ? (
               <select
                 name={f.name}
                 required={f.required}
-                className="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary bg-background"
+                className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary bg-background"
               >
                 {Object.entries(f.options).map(([k, labels]) => (
                   <option key={k} value={k}>
@@ -188,7 +188,7 @@ export default function ProductInquiryForm({
                 type="date"
                 name={f.name}
                 required={f.required}
-                className="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary"
               />
             ) : f.type === 'file' ? (
               <input
@@ -205,7 +205,7 @@ export default function ProductInquiryForm({
                 name={f.name}
                 required={f.required}
                 placeholder={f.placeholder ? L(f.placeholder) : undefined}
-                className="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary"
               />
             )}
           </div>
@@ -242,18 +242,18 @@ export default function ProductInquiryForm({
       <button
         type="submit"
         disabled={submitting}
-        className="w-full px-8 py-4 bg-primary text-primary-foreground rounded-md font-medium hover:bg-primary/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full px-8 py-4 bg-primary text-primary-foreground rounded-none font-medium hover:bg-primary/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {submitting ? L(submittingLabel) : L(submitLabel)}
       </button>
 
       {status === 'success' && (
-        <div className="p-4 bg-green-50 border border-green-200 text-green-800 rounded-md text-sm">
+        <div className="p-4 bg-green-50 border border-green-200 text-green-800 rounded-none text-sm">
           {L(successMsg)}
         </div>
       )}
       {status === 'error' && (
-        <div className="p-4 bg-red-50 border border-red-200 text-red-800 rounded-md text-sm">
+        <div className="p-4 bg-red-50 border border-red-200 text-red-800 rounded-none text-sm">
           {L(errorMsg)}
         </div>
       )}

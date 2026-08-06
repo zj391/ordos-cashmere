@@ -1054,7 +1054,7 @@ const breadcrumbSchema = {
 
               data-inquiry-toggle
 
-              class="inline-block px-6 py-3 bg-primary text-primary-foreground rounded-sm font-medium hover:bg-primary/90"
+              class="inline-block px-6 py-3 bg-primary text-primary-foreground rounded-none font-medium hover:bg-primary/90"
 
             >
 
@@ -1062,9 +1062,9 @@ const breadcrumbSchema = {
 
             </button>
 
-            <a href={`/${locale}/factory`} class="inline-block px-6 py-3 border border-border rounded-sm hover:bg-secondary">Factory Tour</a>
+            <a href={`/${locale}/factory`} class="inline-block px-6 py-3 border border-border rounded-none hover:bg-secondary">Factory Tour</a>
 
-            <a href={`/${locale}/contact?product=${product.id}`} class="inline-block px-6 py-3 border border-border rounded-sm hover:bg-secondary">Contact Page</a>
+            <a href={`/${locale}/contact?product=${product.id}`} class="inline-block px-6 py-3 border border-border rounded-none hover:bg-secondary">Contact Page</a>
 
             <button
 
@@ -1072,7 +1072,7 @@ const breadcrumbSchema = {
 
               data-add-to-inquiry
 
-              class="inline-flex items-center gap-2 px-6 py-3 border border-primary text-primary rounded-sm hover:bg-primary hover:text-primary-foreground transition-colors"
+              class="inline-flex items-center gap-2 px-6 py-3 border border-primary text-primary rounded-none hover:bg-primary hover:text-primary-foreground transition-colors"
 
             >
 
@@ -1144,7 +1144,7 @@ const breadcrumbSchema = {
 
               <div class="flex items-center gap-3">
 
-                <button type="submit" class="px-5 py-2.5 bg-primary text-primary-foreground rounded-sm font-medium hover:bg-primary/90 text-sm">
+                <button type="submit" class="px-5 py-2.5 bg-primary text-primary-foreground rounded-none font-medium hover:bg-primary/90 text-sm">
 
                   Send Inquiry
 
@@ -1578,7 +1578,7 @@ const breadcrumbSchema = {
 
   <!-- Section 12: Inquiry CTA -->
 
-  <section class="py-16 bg-brand-ink text-white">
+  <section class="py-16 bg-[#F5F0E7] border-y border-border/60">
 
     <div class="container-narrow text-center">
 
@@ -1588,7 +1588,7 @@ const breadcrumbSchema = {
 
       <div class="flex flex-wrap gap-4 justify-center">
 
-        <a href={`/${locale}/contact?product=${product.id}`} class="inline-block px-8 py-3 bg-brand-gold text-brand-ink rounded-sm font-medium hover:bg-brand-gold/90">{t.buyCta}</a>
+        <a href={`/${locale}/contact?product=${product.id}`} class="inline-block px-8 py-3 bg-brand-ink text-[#F7F3EC] rounded-none font-medium uppercase tracking-[0.15em] hover:bg-brand-chocolate">{t.buyCta}</a>
 
         <button
 
@@ -1596,7 +1596,7 @@ const breadcrumbSchema = {
 
           data-add-to-inquiry
 
-          class="inline-flex items-center gap-2 px-8 py-3 border border-white/30 rounded-sm hover:bg-white/10 transition-colors"
+          class="inline-flex items-center gap-2 px-8 py-3 border border-brand-ink/30 rounded-none uppercase tracking-[0.15em] hover:bg-brand-ink hover:text-[#F7F3EC] transition-colors"
 
         >
 
@@ -1606,7 +1606,7 @@ const breadcrumbSchema = {
 
         </button>
 
-        <a href={`/${locale}/factory`} class="inline-block px-8 py-3 border border-white/30 rounded-sm hover:bg-white/10">Factory Tour</a>
+        <a href={`/${locale}/factory`} class="inline-block px-8 py-3 border border-brand-ink/30 rounded-none uppercase tracking-[0.15em] hover:bg-brand-ink hover:text-[#F7F3EC]">Factory Tour</a>
 
       </div>
 

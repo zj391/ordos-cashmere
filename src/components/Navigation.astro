@@ -180,7 +180,7 @@ const groupLabel = (groupKey: string, group: any) => {
             const feature = (submenusData as any)[item.hasSubmenu]?.feature;
             if (!feature) return null;
             return (
-              <a href={feature.href?.[locale] || feature.href?.en || '#'} class="group/feature block relative overflow-hidden rounded-sm bg-brand-cream">
+              <a href={feature.href?.[locale] || feature.href?.en || '#'} class="group/feature block relative overflow-hidden rounded-none bg-brand-cream">
                 <div class="aspect-[4/3] overflow-hidden">
                   <img
                     src={feature.image}
@@ -222,7 +222,7 @@ const groupLabel = (groupKey: string, group: any) => {
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg>
         </button>
-        <div class="absolute right-0 top-full mt-2 w-48 rounded-md border border-border bg-popover shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+        <div class="absolute right-0 top-full mt-2 w-48 rounded-none border border-border bg-popover shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
           {LOCALES.map((loc) => {
             // Strip the *current* locale prefix (if any) so localePath can
             // safely re-prefix with the target locale. Without this, paths

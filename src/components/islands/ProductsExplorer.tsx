@@ -225,8 +225,8 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
             onClick={() => setActiveCategory("all")}
             className={`px-4 py-2 text-sm border transition-colors ${
               activeCategory === "all"
-                ? "bg-stone-900 text-white border-stone-900"
-                : "bg-white text-stone-700 border-stone-300 hover:border-stone-900"
+                ? "bg-brand-ink text-[#F7F3EC] border-brand-ink"
+                : "bg-white text-muted-foreground border-border hover:border-brand-ink"
             }`}
           >
             {labels.filterAll} ({summaries.length})
@@ -239,8 +239,8 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
                 onClick={() => setActiveCategory(cat.id)}
                 className={`px-4 py-2 text-sm border transition-colors ${
                   activeCategory === cat.id
-                    ? "bg-stone-900 text-white border-stone-900"
-                    : "bg-white text-stone-700 border-stone-300 hover:border-stone-900"
+                    ? "bg-brand-ink text-[#F7F3EC] border-brand-ink"
+                    : "bg-white text-muted-foreground border-border hover:border-brand-ink"
                 }`}
               >
                 {cat.name} ({count})
@@ -255,12 +255,12 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
             placeholder={labels.searchPlaceholder}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="px-4 py-2 text-sm border border-stone-300 bg-white focus:outline-none focus:border-stone-900 min-w-[200px]"
+            className="px-4 py-2 text-sm border border-border bg-white focus:outline-none focus:border-brand-ink min-w-[200px]"
           />
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="px-4 py-2 text-sm border border-stone-300 bg-white focus:outline-none focus:border-stone-900"
+            className="px-4 py-2 text-sm border border-border bg-white focus:outline-none focus:border-brand-ink"
           >
             {labels.sortOptions.map((opt) => (
               <option key={opt.value} value={opt.value}>
@@ -283,10 +283,10 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
             {displayed.map((p) => (
             <div
               key={p.id}
-              className="bg-white border border-stone-200 overflow-hidden hover:shadow-lg transition-shadow group"
+              className="bg-white border border-border overflow-hidden hover:border-brand-camel hover:shadow-[0_16px_32px_-20px_rgba(28,24,19,0.18)] transition-all duration-300 group"
             >
               <div
-                className="aspect-square bg-stone-100 cursor-pointer overflow-hidden"
+                className="aspect-square bg-brand-cream cursor-pointer overflow-hidden"
                 onClick={() => openProduct(p)}
               >
                 <img
@@ -327,7 +327,7 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
                 <p className="text-xs text-stone-500 mb-2">{labels.colorCardPreview}</p>
                 <button
                   onClick={() => openProduct(p)}
-                  className="w-full px-3 py-2 bg-stone-900 text-white text-xs hover:bg-amber-700 transition-colors"
+                  className="w-full px-3 py-2 bg-brand-ink text-[#F7F3EC] text-xs hover:bg-brand-camel transition-colors"
                 >
                   {labels.requestQuote}
                 </button>
@@ -339,7 +339,7 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
             <div className="text-center mt-8">
               <button
                 onClick={loadMore}
-                className="px-8 py-3 bg-stone-900 text-white hover:bg-amber-700 transition-colors text-sm"
+                className="px-8 py-3 bg-brand-ink text-[#F7F3EC] hover:bg-brand-camel transition-colors text-sm"
               >
                 {(labels as any).loadMore
                   ? `${(labels as any).loadMore} (${filtered.length - displayCount})`
@@ -379,7 +379,7 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
               </div>
 
               {/* Image gallery */}
-              <div className="aspect-square bg-stone-100 mb-4 overflow-hidden">
+              <div className="aspect-square bg-brand-cream mb-4 overflow-hidden">
                 <img
                   src={`/products/mic/${selectedProduct.images[currentImageIndex]}`}
                   alt={selectedProduct.name}
@@ -393,7 +393,7 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
                       key={i}
                       onClick={() => setCurrentImageIndex(i)}
                       className={`flex-shrink-0 w-16 h-16 border-2 ${
-                        i === currentImageIndex ? "border-amber-700" : "border-stone-200"
+                        i === currentImageIndex ? "border-amber-700" : "border-border"
                       }`}
                     >
                       <img
@@ -407,7 +407,7 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
               )}
 
               {/* Specs */}
-              <div className="border-t border-stone-200 pt-4">
+              <div className="border-t border-border pt-4">
                 <h3 className="text-sm font-medium text-stone-900 mb-3">{labels.productSpecs}</h3>
                 <div className="grid grid-cols-2 gap-3 text-sm">
                   <div>
@@ -447,15 +447,15 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
                 <a
                   href={`/${(window as any).__LOCALE__ || 'en'}/products/${selectedProduct.id}/`}
                   onClick={(e) => { e.stopPropagation(); setSelectedProduct(null); }}
-                  className="mt-4 inline-block text-xs px-3 py-1.5 border border-amber-700 text-amber-700 hover:bg-amber-700 hover:text-white transition-colors"
+                  className="mt-4 inline-block text-xs px-3 py-1.5 border border-amber-700 text-amber-700 hover:bg-brand-camel hover:text-white transition-colors"
                 >
                   {labels.colorCardPreview}
                 </a>
 
-                <p className="mt-4 text-sm text-stone-700 leading-relaxed">{selectedProduct.description}</p>
+                <p className="mt-4 text-sm text-muted-foreground leading-relaxed">{selectedProduct.description}</p>
 
                 <button
-                  className="w-full mt-6 px-6 py-3 bg-amber-700 text-white hover:bg-amber-800 transition-colors"
+                  className="w-full mt-6 px-6 py-3 bg-brand-camel text-white hover:bg-amber-800 transition-colors"
                   onClick={() => {
                     const subject = encodeURIComponent(`Inquiry: ${selectedProduct.name} (${selectedProduct.id})`);
                     const body = encodeURIComponent(

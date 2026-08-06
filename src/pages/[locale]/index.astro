@@ -262,13 +262,13 @@ const IMG = {
     </svg>
 
     <div class="relative container-narrow min-h-[88vh] flex items-center py-24">
-      <div class="max-w-2xl">
-        <div class="flex items-center gap-3 mb-8">
-          <span class="h-[2px] w-12 bg-brand-red"></span>
+      <div class="max-w-3xl">
+        <div class="h-[2px] w-20 bg-brand-red mb-8"></div>
+        <div class="flex items-center gap-3 mb-6">
           <span class="text-xs tracking-[0.4em] text-brand-gold uppercase font-medium">{c.tagline}</span>
         </div>
-        <h1 class="font-serif text-6xl md:text-8xl font-light leading-[1.02] mb-8" set:html={c.title.replace(/\n/g, '<br/>')} />
-        <p class="text-lg md:text-xl text-white/85 mb-12 leading-relaxed max-w-xl font-light">
+        <h1 class="font-serif text-6xl md:text-8xl font-light leading-[1.06] mb-10" set:html={c.title.replace(/\n/g, '<br/>')} />
+        <p class="text-lg md:text-xl text-white/80 mb-14 leading-relaxed max-w-2xl font-light">
           {c.subtitle}
         </p>
         <div class="flex flex-wrap items-center gap-6">

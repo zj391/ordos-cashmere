@@ -82,14 +82,14 @@ const breadcrumbSchema = {
 
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/blog`} />
 
-  <section class="relative bg-brand-ink text-white overflow-hidden">
+  <section class="relative bg-[#F5F0E7] border-b border-border/60 overflow-hidden">
     <div class="container-narrow py-24 md:py-32">
       <div class="flex items-center gap-3 mb-8">
         <span class="h-[2px] w-12 bg-brand-red"></span>
-        <span class="text-xs tracking-[0.4em] text-brand-gold uppercase font-medium">{locale === 'cn' ? '博客' : 'Blog'}</span>
+        <span class="text-xs tracking-[0.4em] text-brand-camel uppercase font-medium">{locale === 'cn' ? '博客' : 'Blog'}</span>
       </div>
       <h1 class="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-8 text-balance">{T('title')}</h1>
-      <p class="text-lg text-white/75 leading-relaxed max-w-xl font-light">{T('subtitle')}</p>
+      <p class="text-lg text-muted-foreground leading-relaxed max-w-xl font-light">{T('subtitle')}</p>
     </div>
   </section>
 

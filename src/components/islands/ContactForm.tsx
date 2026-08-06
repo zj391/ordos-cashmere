@@ -251,7 +251,7 @@ export default function ContactForm({ locale }: Props) {
               key={t}
               type="button"
               onClick={() => setType(t)}
-              className={`px-4 py-3 border rounded-md text-sm font-medium transition-colors ${
+              className={`px-4 py-3 border rounded-none text-sm font-medium transition-colors ${
                 type === t ? 'border-primary bg-primary text-primary-foreground' : 'border-border hover:border-primary'
               }`}
             >
@@ -262,7 +262,7 @@ export default function ContactForm({ locale }: Props) {
       </div>
 
       {cartItems.length > 0 && (
-        <div className="border border-primary/30 bg-primary/5 rounded-md p-4 mb-2">
+        <div className="border border-primary/30 bg-primary/5 rounded-none p-4 mb-2">
           <h3 className="text-sm font-bold mb-2 flex items-center gap-2">
             <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
             Your Inquiry List ({cartItems.length} items)
@@ -282,15 +282,15 @@ export default function ContactForm({ locale }: Props) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-medium mb-2">{L(locale, 'name')}</label>
-          <input type="text" name="name" required className="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+          <input type="text" name="name" required className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary" />
         </div>
         <div>
           <label className="block text-sm font-medium mb-2">{L(locale, 'company')}</label>
-          <input type="text" name="company" required className="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+          <input type="text" name="company" required className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary" />
         </div>
         <div>
           <label className="block text-sm font-medium mb-2">{L(locale, 'country')}</label>
-          <select name="country" required defaultValue="" className="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary bg-white">
+          <select name="country" required defaultValue="" className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary bg-white">
             <option value="" disabled>—</option>
             {COUNTRIES.map((c) => {
               const field = LOCALE_TO_FIELD[locale] || 'name_en';
@@ -301,23 +301,23 @@ export default function ContactForm({ locale }: Props) {
         </div>
         <div>
           <label className="block text-sm font-medium mb-2">{L(locale, 'email')}</label>
-          <input type="email" name="email" required className="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+          <input type="email" name="email" required className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary" />
         </div>
         <div className="md:col-span-2">
           <label className="block text-sm font-medium mb-2">{L(locale, 'phone')}</label>
-          <input type="tel" name="phone" className="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+          <input type="tel" name="phone" className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary" />
         </div>
         <div>
           <label className="block text-sm font-medium mb-2">{L(locale, 'delivery_date')}</label>
-          <input type="date" name="delivery_date" className="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+          <input type="date" name="delivery_date" className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary" />
         </div>
         <div>
           <label className="block text-sm font-medium mb-2">{L(locale, 'quantity')}</label>
-          <input type="text" name="quantity" placeholder={L(locale, 'quantityHelp')} className="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+          <input type="text" name="quantity" placeholder={L(locale, 'quantityHelp')} className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary" />
         </div>
         <div className="md:col-span-2">
           <label className="block text-sm font-medium mb-2">{L(locale, 'message')}</label>
-          <textarea name="message" rows={5} defaultValue={cartItems.length > 0 ? 'INQUIRY LIST (from my saved list):\n' + cartItems.map((it, i) => `${i + 1}. ${it.name}${it.color ? ' [' + it.color + ']' : ''} — SKU ${it.id} — qty ${it.qty}${it.note ? ' — note: ' + it.note : ''}`).join('\n') + '\n\n' : ''} className="w-full px-4 py-3 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+          <textarea name="message" rows={5} defaultValue={cartItems.length > 0 ? 'INQUIRY LIST (from my saved list):\n' + cartItems.map((it, i) => `${i + 1}. ${it.name}${it.color ? ' [' + it.color + ']' : ''} — SKU ${it.id} — qty ${it.qty}${it.note ? ' — note: ' + it.note : ''}`).join('\n') + '\n\n' : ''} className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
         </div>
         <div className="md:col-span-2">
           <label className="block text-sm font-medium mb-2">{L(locale, 'attachments')}</label>
@@ -347,16 +347,16 @@ export default function ContactForm({ locale }: Props) {
       <button
         type="submit"
         disabled={submitting}
-        className="w-full px-8 py-4 bg-primary text-primary-foreground rounded-md font-medium hover:bg-primary/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full px-8 py-4 bg-primary text-primary-foreground rounded-none font-medium hover:bg-primary/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {submitting ? L(locale, 'submitting') : L(locale, 'submit')}
       </button>
 
       {status === 'success' && (
-        <div className="p-4 bg-green-50 border border-green-200 text-green-800 rounded-md text-sm">{L(locale, 'success')}</div>
+        <div className="p-4 bg-green-50 border border-green-200 text-green-800 rounded-none text-sm">{L(locale, 'success')}</div>
       )}
       {status === 'error' && (
-        <div className="p-4 bg-red-50 border border-red-200 text-red-800 rounded-md text-sm">{L(locale, 'error')}</div>
+        <div className="p-4 bg-red-50 border border-red-200 text-red-800 rounded-none text-sm">{L(locale, 'error')}</div>
       )}
     </form>
   );

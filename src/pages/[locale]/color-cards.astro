@@ -107,31 +107,31 @@ const totalColors = swatches.length;
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/color-cards`} />
 
   <!-- ============ HERO ============ -->
-  <section class="relative bg-brand-ink text-white overflow-hidden">
+  <section class="relative bg-[#F5F0E7] border-b border-border/60 overflow-hidden">
     <div class="container-narrow py-24 md:py-32">
       <div class="flex items-center gap-3 mb-8">
         <span class="h-[2px] w-12 bg-brand-red"></span>
-        <span class="text-xs tracking-[0.4em] text-brand-gold uppercase font-medium">{T('eyebrow')}</span>
+        <span class="text-xs tracking-[0.4em] text-brand-camel uppercase font-medium">{T('eyebrow')}</span>
       </div>
       <h1 class="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-8 text-balance">{T('title')}</h1>
-      <p class="text-lg text-white/75 leading-relaxed max-w-2xl font-light">{T('subtitle')}</p>
+      <p class="text-lg text-muted-foreground leading-relaxed max-w-2xl font-light">{T('subtitle')}</p>
       <!-- 系列元数据条 -->
-      <div class="mt-12 flex flex-wrap gap-x-12 gap-y-4 text-sm text-white/60">
+      <div class="mt-12 flex flex-wrap gap-x-12 gap-y-4 text-sm text-muted-foreground">
         <div>
-          <div class="text-xs tracking-[0.2em] uppercase text-white/40 mb-1">Series</div>
-          <div class="text-white font-medium">{series?.series} · {series?.series_cn}</div>
+          <div class="text-xs tracking-[0.2em] uppercase text-muted-foreground/70 mb-1">Series</div>
+          <div class="text-foreground font-medium">{series?.series} · {series?.series_cn}</div>
         </div>
         <div>
-          <div class="text-xs tracking-[0.2em] uppercase text-white/40 mb-1">Yarn</div>
-          <div class="text-white font-medium">{series?.yarn_count} · {series?.process}</div>
+          <div class="text-xs tracking-[0.2em] uppercase text-muted-foreground/70 mb-1">Yarn</div>
+          <div class="text-foreground font-medium">{series?.yarn_count} · {series?.process}</div>
         </div>
         <div>
-          <div class="text-xs tracking-[0.2em] uppercase text-white/40 mb-1">Composition</div>
-          <div class="text-white font-medium">{series?.composition}</div>
+          <div class="text-xs tracking-[0.2em] uppercase text-muted-foreground/70 mb-1">Composition</div>
+          <div class="text-foreground font-medium">{series?.composition}</div>
         </div>
         <div>
-          <div class="text-xs tracking-[0.2em] uppercase text-white/40 mb-1">Swatches</div>
-          <div class="text-white font-medium">{totalColors} colours</div>
+          <div class="text-xs tracking-[0.2em] uppercase text-muted-foreground/70 mb-1">Swatches</div>
+          <div class="text-foreground font-medium">{totalColors} colours</div>
         </div>
       </div>
     </div>

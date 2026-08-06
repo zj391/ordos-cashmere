@@ -261,15 +261,15 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
           {locale === 'cn' ? '591款产品' : '591 Products'}
         </span>
         <span class="flex items-center gap-2">
-          <span class="w-2 h-2 bg-amber-700 rounded-full"></span>
+          <span class="w-2 h-2 bg-brand-camel rounded-full"></span>
           {locale === 'cn' ? '5大品类' : '5 Categories'}
         </span>
         <span class="flex items-center gap-2">
-          <span class="w-2 h-2 bg-amber-700 rounded-full"></span>
+          <span class="w-2 h-2 bg-brand-camel rounded-full"></span>
           {locale === 'cn' ? 'MOQ 100件' : 'MOQ 100pcs'}
         </span>
         <span class="flex items-center gap-2">
-          <span class="w-2 h-2 bg-amber-700 rounded-full"></span>
+          <span class="w-2 h-2 bg-brand-camel rounded-full"></span>
           {locale === 'cn' ? 'OEM/ODM 支持' : 'OEM/ODM Supported'}
         </span>
       </div>
@@ -281,11 +281,11 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
   <section class="container-narrow py-8">
     <div class="flex flex-col lg:flex-row gap-4 mb-6 lg:items-center lg:justify-between">
       <div id="filter-buttons" class="flex flex-wrap gap-2">
-        <button data-cat="all" class="filter-btn px-4 py-2 text-sm border bg-stone-900 text-white border-stone-900 transition-colors">
+        <button data-cat="all" class="filter-btn px-4 py-2 text-sm border bg-brand-ink text-[#F7F3EC] border-brand-ink transition-colors">
           {labels.filterAll} ({allProducts.length})
         </button>
         {categories.map((cat) => (
-          <button data-cat={cat.id} class="filter-btn px-4 py-2 text-sm border bg-white text-stone-700 border-stone-300 hover:border-stone-900 transition-colors">
+          <button data-cat={cat.id} class="filter-btn px-4 py-2 text-sm border bg-white text-muted-foreground border-border hover:border-brand-ink transition-colors">
             {cat.name} ({cat.products.length})
           </button>
         ))}
@@ -295,11 +295,11 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
           id="search-input"
           type="text"
           placeholder={labels.searchPlaceholder}
-          class="w-full sm:w-auto sm:min-w-[180px] px-4 py-2 text-sm border border-stone-300 bg-white focus:outline-none focus:border-stone-900"
+          class="w-full sm:w-auto sm:min-w-[180px] px-4 py-2 text-sm border border-border bg-white focus:outline-none focus:border-brand-ink"
         />
         <select
           id="sort-select"
-          class="px-4 py-2 text-sm border border-stone-300 bg-white focus:outline-none focus:border-stone-900"
+          class="px-4 py-2 text-sm border border-border bg-white focus:outline-none focus:border-brand-ink"
         >
           {labels.sortOptions.map((opt) => (
             <option value={opt.value}>{opt.label}</option>
@@ -320,7 +320,7 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
       {allProducts.slice(0, 24).map((p) => (
         <a
           href={`/${locale}/products/${p.id}/`}
-          class="product-card bg-white border border-stone-200 overflow-hidden hover:shadow-lg transition-shadow group block"
+          class="product-card bg-white border border-border overflow-hidden hover:border-brand-camel hover:shadow-[0_16px_32px_-20px_rgba(28,24,19,0.18)] transition-all duration-300 group block"
           data-id={p.id}
           data-cat={p.categoryId}
           data-name={p.name.toLowerCase()}
@@ -328,7 +328,7 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
           data-price={p.price}
           data-moq={p.moq}
         >
-          <div class="aspect-square bg-stone-100 cursor-pointer overflow-hidden">
+          <div class="aspect-square bg-brand-cream cursor-pointer overflow-hidden">
             {p.images && p.images[0] && (
               <img
                 src={(p.images[0].startsWith('/images/') || p.images[0].startsWith('http'))
@@ -371,7 +371,7 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
               <div class="flex justify-between"><span>{labels.moq}:</span><span class="font-medium">{p.moq} pcs</span></div>
             </div>
             <p class="text-xs text-stone-500 mb-2">{labels.colorCardPreview}</p>
-            <span class="block w-full px-3 py-2 bg-stone-900 text-white text-xs hover:bg-amber-700 transition-colors text-center">
+            <span class="block w-full px-3 py-2 bg-brand-ink text-[#F7F3EC] text-xs hover:bg-brand-camel transition-colors text-center">
               {labels.requestQuote}
             </span>
           </div>
@@ -379,7 +379,7 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
       ))}
     </div>
     <!-- 分页控件（vanilla JS 控制） -->
-    <div id="pagination-wrap" class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-stone-200 pt-6">
+    <div id="pagination-wrap" class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-border pt-6">
       <p id="page-info" class="text-sm text-stone-600"></p>
       <nav id="pagination" class="flex items-center gap-1" aria-label="Pagination"></nav>
     </div>
@@ -499,7 +499,7 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
         </div>
 
         <div class="mt-10 text-center">
-          <a href="/en/contact" class="inline-block px-8 py-3 bg-primary text-primary-foreground rounded-md font-medium hover:bg-primary/90 transition-colors">Discuss Your Project →</a>
+          <a href="/en/contact" class="inline-block px-8 py-3 bg-primary text-primary-foreground rounded-none font-medium hover:bg-primary/90 transition-colors">Discuss Your Project →</a>
         </div>
       </div>
     </section>
@@ -543,11 +543,11 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
           activeCat = btn.getAttribute('data-cat');
           filterButtons.forEach((b) => {
             if (b === btn) {
-              b.classList.add('bg-stone-900', 'text-white', 'border-stone-900');
-              b.classList.remove('bg-white', 'text-stone-700', 'border-stone-300');
+              b.classList.add('bg-stone-900', 'text-white', 'border-brand-ink');
+              b.classList.remove('bg-white', 'text-muted-foreground', 'border-border');
             } else {
-              b.classList.remove('bg-stone-900', 'text-white', 'border-stone-900');
-              b.classList.add('bg-white', 'text-stone-700', 'border-stone-300');
+              b.classList.remove('bg-stone-900', 'text-white', 'border-brand-ink');
+              b.classList.add('bg-white', 'text-muted-foreground', 'border-border');
             }
           });
           currentPage = 1;
@@ -610,11 +610,11 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
         // Also reset category button UI
         filterButtons.forEach((b) => {
           if (b.getAttribute('data-cat') === 'all') {
-            b.classList.add('bg-stone-900', 'text-white', 'border-stone-900');
-            b.classList.remove('bg-white', 'text-stone-700', 'border-stone-300');
+            b.classList.add('bg-stone-900', 'text-white', 'border-brand-ink');
+            b.classList.remove('bg-white', 'text-muted-foreground', 'border-border');
           } else {
-            b.classList.remove('bg-stone-900', 'text-white', 'border-stone-900');
-            b.classList.add('bg-white', 'text-stone-700', 'border-stone-300');
+            b.classList.remove('bg-stone-900', 'text-white', 'border-brand-ink');
+            b.classList.add('bg-white', 'text-muted-foreground', 'border-border');
           }
         });
         render();
@@ -630,11 +630,11 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
           activeCat = 'all';
           filterButtons.forEach((b) => {
             if (b.getAttribute('data-cat') === 'all') {
-              b.classList.add('bg-stone-900', 'text-white', 'border-stone-900');
-              b.classList.remove('bg-white', 'text-stone-700', 'border-stone-300');
+              b.classList.add('bg-stone-900', 'text-white', 'border-brand-ink');
+              b.classList.remove('bg-white', 'text-muted-foreground', 'border-border');
             } else {
-              b.classList.remove('bg-stone-900', 'text-white', 'border-stone-900');
-              b.classList.add('bg-white', 'text-stone-700', 'border-stone-300');
+              b.classList.remove('bg-stone-900', 'text-white', 'border-brand-ink');
+              b.classList.add('bg-white', 'text-muted-foreground', 'border-border');
             }
           });
         }
@@ -662,7 +662,7 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
           const subText = subLabels[activeCat]?.[group]?.[sub]?.[localeKey] || subLabels[activeCat]?.[group]?.[sub]?.en || sub;
           const chip = document.createElement('button');
           chip.type = 'button';
-          chip.className = 'inline-flex items-center gap-1 px-3 py-1 text-xs border border-stone-300 bg-white hover:border-stone-900 transition-colors';
+          chip.className = 'inline-flex items-center gap-1 px-3 py-1 text-xs border border-border bg-white hover:border-brand-ink transition-colors';
           chip.innerHTML = `<span>${subText}</span><span aria-hidden="true">&times;</span>`;
           chip.addEventListener('click', () => removeTag(group, sub));
           container.appendChild(chip);
@@ -786,12 +786,12 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
       function pageBtnHtml(label, page, disabled, active) {
         const baseCls = 'min-w-[40px] h-10 px-3 inline-flex items-center justify-center text-sm border transition-colors';
         if (disabled) {
-          return '<button disabled class="' + baseCls + ' bg-stone-50 text-stone-300 border-stone-200 cursor-not-allowed">' + label + '</button>';
+          return '<button disabled class="' + baseCls + ' bg-stone-50 text-stone-300 border-border cursor-not-allowed">' + label + '</button>';
         }
         if (active) {
-          return '<button data-page="' + page + '" class="' + baseCls + ' bg-stone-900 text-white border-stone-900">' + label + '</button>';
+          return '<button data-page="' + page + '" class="' + baseCls + ' bg-brand-ink text-[#F7F3EC] border-brand-ink">' + label + '</button>';
         }
-        return '<button data-page="' + page + '" class="' + baseCls + ' bg-white text-stone-700 border-stone-300 hover:border-stone-900 hover:text-stone-900">' + label + '</button>';
+        return '<button data-page="' + page + '" class="' + baseCls + ' bg-white text-muted-foreground border-border hover:border-brand-ink hover:text-stone-900">' + label + '</button>';
       }
 
       function cardHtml(p) {
@@ -802,8 +802,8 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
           ? rawImg
           : '/products/mic/' + rawImg;
         return (
-          '<a href="/' + (window.__LOCALE__ || 'en') + '/products/' + escapeHtml(p.id) + '/" class="product-card block bg-white border border-stone-200 overflow-hidden hover:shadow-lg transition-shadow group" data-id="' + escapeHtml(p.id) + '">' +
-            '<div class="aspect-square bg-stone-100 cursor-pointer overflow-hidden">' +
+          '<a href="/' + (window.__LOCALE__ || 'en') + '/products/' + escapeHtml(p.id) + '/" class="product-card block bg-white border border-border overflow-hidden hover:border-brand-camel hover:shadow-[0_16px_32px_-20px_rgba(28,24,19,0.18)] transition-all duration-300 group" data-id="' + escapeHtml(p.id) + '">' +
+            '<div class="aspect-square bg-brand-cream cursor-pointer overflow-hidden">' +
               (img ? '<img src="' + img + '" alt="' + escapeHtml(p.name) + '" decoding="async" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />' : '') +
             '</div>' +
             '<div class="p-4">' +
@@ -816,7 +816,7 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
                 '<div class="flex justify-between"><span>' + escapeHtml(labels.moq) + ':</span><span class="font-medium">' + (p.moq || 0) + ' pcs</span></div>' +
               '</div>' +
               '<p class="text-xs text-stone-500 mb-2">' + escapeHtml(labels.colorCardPreview || 'Available in 25/26 color card →') + '</p>' +
-              '<span class="block w-full px-3 py-2 bg-stone-900 text-white text-xs hover:bg-amber-700 transition-colors text-center">' + escapeHtml(labels.requestQuote) + '</span>' +
+              '<span class="block w-full px-3 py-2 bg-brand-ink text-[#F7F3EC] text-xs hover:bg-brand-camel transition-colors text-center">' + escapeHtml(labels.requestQuote) + '</span>' +
             '</div>' +
           '</a>'
         );
@@ -879,7 +879,7 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
         const chip = hex
           ? '<span class="inline-block w-4 h-4 rounded-full ' + ring + '" style="background:' + hex + '"></span>'
           : '<span class="inline-block w-4 h-4 rounded-full bg-stone-200 border border-dashed border-stone-400"></span>';
-        return '<span class="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 bg-stone-50 text-stone-700 border border-stone-200">' +
+        return '<span class="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 bg-stone-50 text-muted-foreground border border-border">' +
                  chip + '<span>' + escapeHtml(name) + '</span>' +
                '</span>';
       }
@@ -942,7 +942,7 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
         if (!toastEl) {
           toastEl = document.createElement('div');
           toastEl.id = 'app-toast';
-          toastEl.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 z-[400] px-4 py-2 bg-stone-900 text-white text-sm rounded-md shadow-lg transition-opacity duration-200 opacity-0 pointer-events-none';
+          toastEl.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 z-[400] px-4 py-2 bg-brand-ink text-[#F7F3EC] text-sm rounded-none shadow-lg transition-opacity duration-200 opacity-0 pointer-events-none';
           document.body.appendChild(toastEl);
         }
         toastEl.textContent = msg;
@@ -981,11 +981,11 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
       if (activeCat !== 'all') {
         filterButtons.forEach((b) => {
           if (b.getAttribute('data-cat') === activeCat) {
-            b.classList.add('bg-stone-900', 'text-white', 'border-stone-900');
-            b.classList.remove('bg-white', 'text-stone-700', 'border-stone-300');
+            b.classList.add('bg-stone-900', 'text-white', 'border-brand-ink');
+            b.classList.remove('bg-white', 'text-muted-foreground', 'border-border');
           } else {
-            b.classList.remove('bg-stone-900', 'text-white', 'border-stone-900');
-            b.classList.add('bg-white', 'text-stone-700', 'border-stone-300');
+            b.classList.remove('bg-stone-900', 'text-white', 'border-brand-ink');
+            b.classList.add('bg-white', 'text-muted-foreground', 'border-border');
           }
         });
       }

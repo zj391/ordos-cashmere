@@ -86,21 +86,21 @@ const IMG = {
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/raw-material`} />
 
   <!-- HERO：左文字 / 右大图 -->
-  <section class="relative bg-brand-ink text-white overflow-hidden">
+  <section class="relative bg-[#F5F0E7] border-b border-border/60 overflow-hidden">
     <div class="grid grid-cols-1 lg:grid-cols-2 min-h-[70vh]">
       <div class="flex items-center py-20 lg:py-0 px-6 lg:pl-12">
         <div class="max-w-xl">
           <div class="flex items-center gap-3 mb-8">
             <span class="h-[2px] w-12 bg-brand-red"></span>
-            <span class="text-xs tracking-[0.4em] text-brand-gold uppercase font-medium">{T('tagline')}</span>
+            <span class="text-xs tracking-[0.4em] text-brand-camel uppercase font-medium">{T('tagline')}</span>
           </div>
           <h1 class="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-8" set:html={T('title').replace(/\n/g, '<br/>')} />
-          <p class="text-lg text-white/75 leading-relaxed max-w-md font-light">{T('subtitle')}</p>
+          <p class="text-lg text-muted-foreground leading-relaxed max-w-md font-light">{T('subtitle')}</p>
         </div>
       </div>
       <div class="relative aspect-[4/3] lg:aspect-auto overflow-hidden">
-        <img src={IMG.hero} alt="Ordos plateau landscape, Inner Mongolia — high-altitude Albus cashmere goat pasture, 14.5μm fiber source" class="ken-burns absolute inset-0 w-full h-full object-cover opacity-80" decoding="async" loading="eager" fetchpriority="high" />
-        <div class="absolute inset-0 bg-gradient-to-l from-transparent to-brand-ink/60"></div>
+        <img src={IMG.hero} alt="Ordos plateau landscape, Inner Mongolia — high-altitude Albus cashmere goat pasture, 14.5μm fiber source" class="ken-burns absolute inset-0 w-full h-full object-cover opacity-95" decoding="async" loading="eager" fetchpriority="high" />
+        <div class="absolute inset-0 bg-gradient-to-l from-transparent to-[#F5F0E7]/40"></div>
       </div>
     </div>
   </section>

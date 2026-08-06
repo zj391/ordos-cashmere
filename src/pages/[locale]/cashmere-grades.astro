@@ -46,11 +46,11 @@ const s = seo[locale] || seo.en;
 <BaseLayout locale={locale} pageKey="cashmere-grades" path="/cashmere-grades" title={s.title} description={s.description} keywords={s.keywords}>
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/cashmere-grades`} />
 
-  <section class="bg-brand-ink text-white">
+  <section class="bg-[#F5F0E7] border-b border-border/60">
     <div class="container-narrow py-16 md:py-20">
       <div class="flex items-center gap-3 mb-6">
         <span class="h-[2px] w-12 bg-brand-red"></span>
-        <span class="text-xs tracking-[0.4em] text-brand-gold uppercase font-medium">{T('tagline')}</span>
+        <span class="text-xs tracking-[0.4em] text-brand-camel uppercase font-medium">{T('tagline')}</span>
       </div>
       <h1 class="font-serif text-5xl md:text-6xl font-light leading-[1.05] mb-4" set:html={T('title').replace(/\n/g, '<br/>')} />
       <p class="opacity-90 max-w-2xl text-lg">{T('subtitle')}</p>
@@ -195,7 +195,7 @@ const s = seo[locale] || seo.en;
       <p class="text-muted-foreground leading-relaxed mb-6">
         Send us your product concept (target retail price, gauge, fiber preference) and we'll recommend the optimal grade + format for your brand.
       </p>
-      <a href="/en/contact" class="inline-block px-8 py-3 bg-primary text-primary-foreground rounded-md font-medium hover:bg-primary/90 transition-colors">Get Grade Recommendations →</a>
+      <a href="/en/contact" class="inline-block px-8 py-3 bg-primary text-primary-foreground rounded-none font-medium hover:bg-primary/90 transition-colors">Get Grade Recommendations →</a>
     </div>
   </section>
   )}

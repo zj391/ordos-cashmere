@@ -35,14 +35,14 @@ const m = messages[locale] || messages.en;
     <div class="flex flex-wrap gap-2">
       <button
         type="button"
-        class="px-4 py-2 text-sm font-medium border border-border rounded-md hover:bg-accent transition-colors"
+        class="px-4 py-2 text-sm font-medium border border-border rounded-none hover:bg-accent transition-colors"
         onclick="window.__HERMES_COOKIE_DECLINE__?.()"
       >
         {m.decline}
       </button>
       <button
         type="button"
-        class="px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+        class="px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-none hover:bg-primary/90 transition-colors"
         onclick="window.__HERMES_COOKIE_ACCEPT__?.()"
       >
         {m.accept}

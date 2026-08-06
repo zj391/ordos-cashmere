@@ -153,7 +153,7 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
 
   <!-- HERO -->
 
-  <section class="relative bg-brand-ink text-white overflow-hidden">
+  <section class="relative bg-[#F5F0E7] border-b border-border/60 overflow-hidden">
 
     <div class="grid grid-cols-1 lg:grid-cols-2 min-h-[60vh]">
 
@@ -165,13 +165,13 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
 
             <span class="h-[2px] w-12 bg-brand-red"></span>
 
-            <span class="text-xs tracking-[0.4em] text-brand-gold uppercase font-medium">{T('tagline')}</span>
+            <span class="text-xs tracking-[0.4em] text-brand-camel uppercase font-medium">{T('tagline')}</span>
 
           </div>
 
           <h1 class="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-8" set:html={T('title').replace(/\n/g, '<br/>')} />
 
-          <p class="text-lg text-white/75 leading-relaxed max-w-md font-light">{T('subtitle')}</p>
+          <p class="text-lg text-muted-foreground leading-relaxed max-w-md font-light">{T('subtitle')}</p>
 
         </div>
 
@@ -179,9 +179,9 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
 
       <div class="relative aspect-[4/3] lg:aspect-auto overflow-hidden order-1 lg:order-2">
 
-        <img src="/images/factory/page1-factory-intro.webp" alt="DONGXIAO Cashmere Group - 23 years manufacturing cashmere in Ordos" class="ken-burns absolute inset-0 w-full h-full object-cover opacity-80" decoding="async" loading="eager" fetchpriority="high" />
+        <img src="/images/factory/page1-factory-intro.webp" alt="DONGXIAO Cashmere Group - 23 years manufacturing cashmere in Ordos" class="ken-burns absolute inset-0 w-full h-full object-cover opacity-95" decoding="async" loading="eager" fetchpriority="high" />
 
-        <div class="absolute inset-0 bg-gradient-to-l from-transparent to-brand-ink/60"></div>
+        <div class="absolute inset-0 bg-gradient-to-l from-transparent to-[#F5F0E7]/40"></div>
 
       </div>
 
@@ -643,7 +643,7 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
 
         <div class="mt-10 text-center">
 
-          <a href="/en/contact" class="inline-block px-8 py-3 bg-primary text-primary-foreground rounded-md font-medium hover:bg-primary/90 transition-colors">Request Our Audit Documents →</a>
+          <a href="/en/contact" class="inline-block px-8 py-3 bg-primary text-primary-foreground rounded-none font-medium hover:bg-primary/90 transition-colors">Request Our Audit Documents →</a>
 
         </div>
 
