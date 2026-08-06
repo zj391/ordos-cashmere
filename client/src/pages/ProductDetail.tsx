@@ -66,7 +66,7 @@ export default function ProductDetail({ params }: { params?: { id?: string } }) 
     return (
       <div className="min-h-screen bg-background flex flex-col items-center justify-center gap-4">
         <p className="text-2xl font-bold text-foreground">Product not found</p>
-        <a href="/products" className="text-accent hover:underline">{t('products.backToProducts')}</a>
+        <a href="/products/" className="text-accent hover:underline">{t('products.backToProducts')}</a>
       </div>
     );
   }
@@ -110,7 +110,7 @@ export default function ProductDetail({ params }: { params?: { id?: string } }) 
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <a href="/" className="hover:text-foreground transition-colors">{t('nav.home')}</a>
             <span>/</span>
-            <a href="/products" className="hover:text-foreground transition-colors">{t('products.title')}</a>
+            <a href="/products/" className="hover:text-foreground transition-colors">{t('products.title')}</a>
             <span>/</span>
             <span className="text-foreground truncate">{product.name}</span>
           </div>
@@ -299,7 +299,7 @@ export default function ProductDetail({ params }: { params?: { id?: string } }) 
                     {t('products.requestQuote')}
                   </button>
                   <a
-                    href="/contact"
+                    href="/contact/"
                     className="flex-1 px-6 py-4 border-2 border-accent text-accent rounded-lg font-bold text-lg hover:bg-accent/10 transition-colors text-center"
                   >
                     {t('products.contactUs')}

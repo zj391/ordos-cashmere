@@ -55,7 +55,7 @@ export default function CTASection({
     return (
       <div className={`${alignClass}`}>
         <a
-          href="/products"
+          href="/products/"
           className="inline-flex items-center gap-2 text-accent font-semibold hover:text-[#C9A227] transition-colors group"
         >
           {t('cta.exploreProducts')}
@@ -80,7 +80,7 @@ export default function CTASection({
           {t('cta.getQuoteWhatsApp')}
         </a>
         <a
-          href="/faq"
+          href="/faq/"
           className="px-8 py-3 bg-muted text-foreground rounded-lg font-semibold hover:bg-border transition-colors inline-flex items-center gap-2"
         >
           {t('cta.viewFaq')}

@@ -48,7 +48,7 @@ export default function About() {
                 {t('about.heroDesc2')}
               </p>
               <a
-                href="/brand-story"
+                href="/brand-story/"
                 className="inline-flex items-center gap-2 text-accent font-semibold hover:text-[#C9A227] transition-colors mt-4"
               >
                 {t('about.readFullStory')}
@@ -255,7 +255,7 @@ export default function About() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="/brand-story"
+              href="/brand-story/"
               className="px-8 py-3 bg-accent text-accent-foreground rounded-lg font-semibold hover:bg-[#C9A227] transition-colors inline-flex items-center justify-center"
             >
               {t('about.discoverStory')}

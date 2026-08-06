@@ -44,25 +44,25 @@ export default function Navigation() {
               <Link href="/" className="text-foreground hover:text-accent transition-colors text-sm font-medium">
                 {t('nav.home')}
               </Link>
-              <Link href="/products" className="text-foreground hover:text-accent transition-colors text-sm font-medium">
+              <Link href="/products/" className="text-foreground hover:text-accent transition-colors text-sm font-medium">
                 {t('nav.products')}
               </Link>
-              <Link href="/brand-story" className="text-foreground hover:text-accent transition-colors text-sm font-medium">
+              <Link href="/brand-story/" className="text-foreground hover:text-accent transition-colors text-sm font-medium">
                 {t('nav.brandStory')}
               </Link>
-              <Link href="/production" className="text-foreground hover:text-accent transition-colors text-sm font-medium">
+              <Link href="/production/" className="text-foreground hover:text-accent transition-colors text-sm font-medium">
                 {t('nav.production')}
               </Link>
-              <Link href="/about" className="text-foreground hover:text-accent transition-colors text-sm font-medium">
+              <Link href="/about/" className="text-foreground hover:text-accent transition-colors text-sm font-medium">
                 {t('nav.about')}
               </Link>
-              <Link href="/faq" className="text-foreground hover:text-accent transition-colors text-sm font-medium">
+              <Link href="/faq/" className="text-foreground hover:text-accent transition-colors text-sm font-medium">
                 {t('nav.faq')}
               </Link>
-              <Link href="/blog" className="text-foreground hover:text-accent transition-colors text-sm font-medium">
+              <Link href="/blog/" className="text-foreground hover:text-accent transition-colors text-sm font-medium">
                 {t('nav.blog')}
               </Link>
-              <Link href="/contact" className="text-foreground hover:text-accent transition-colors text-sm font-medium">
+              <Link href="/contact/" className="text-foreground hover:text-accent transition-colors text-sm font-medium">
                 {t('nav.contact')}
               </Link>
             </div>
@@ -95,25 +95,25 @@ export default function Navigation() {
               <Link href="/" className="block py-3 text-foreground hover:text-accent transition-colors text-sm">
                 {t('nav.home')}
               </Link>
-              <Link href="/products" className="block py-3 text-foreground hover:text-accent transition-colors text-sm">
+              <Link href="/products/" className="block py-3 text-foreground hover:text-accent transition-colors text-sm">
                 {t('nav.products')}
               </Link>
-              <Link href="/brand-story" className="block py-3 text-foreground hover:text-accent transition-colors text-sm">
+              <Link href="/brand-story/" className="block py-3 text-foreground hover:text-accent transition-colors text-sm">
                 {t('nav.brandStory')}
               </Link>
-              <Link href="/production" className="block py-3 text-foreground hover:text-accent transition-colors text-sm">
+              <Link href="/production/" className="block py-3 text-foreground hover:text-accent transition-colors text-sm">
                 {t('nav.production')}
               </Link>
-              <Link href="/about" className="block py-3 text-foreground hover:text-accent transition-colors text-sm">
+              <Link href="/about/" className="block py-3 text-foreground hover:text-accent transition-colors text-sm">
                 {t('nav.about')}
               </Link>
-              <Link href="/faq" className="block py-3 text-foreground hover:text-accent transition-colors text-sm">
+              <Link href="/faq/" className="block py-3 text-foreground hover:text-accent transition-colors text-sm">
                 {t('nav.faq')}
               </Link>
-              <Link href="/blog" className="block py-3 text-foreground hover:text-accent transition-colors text-sm">
+              <Link href="/blog/" className="block py-3 text-foreground hover:text-accent transition-colors text-sm">
                 {t('nav.blog')}
               </Link>
-              <Link href="/contact" className="block py-3 text-foreground hover:text-accent transition-colors text-sm">
+              <Link href="/contact/" className="block py-3 text-foreground hover:text-accent transition-colors text-sm">
                 {t('nav.contact')}
               </Link>
               <a

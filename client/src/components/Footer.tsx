@@ -35,9 +35,9 @@ export default function Footer() {
             <h4 className="font-semibold text-foreground mb-4">{t('footer.quickLinks')}</h4>
             <ul className="space-y-2">
               <li><a href="/" className="text-sm text-muted-foreground hover:text-accent transition-colors">{t('nav.home')}</a></li>
-              <li><a href="/products" className="text-sm text-muted-foreground hover:text-accent transition-colors">{t('nav.products')}</a></li>
-              <li><a href="/about" className="text-sm text-muted-foreground hover:text-accent transition-colors">{t('nav.about')}</a></li>
-              <li><a href="/contact" className="text-sm text-muted-foreground hover:text-accent transition-colors">{t('nav.contact')}</a></li>
+              <li><a href="/products/" className="text-sm text-muted-foreground hover:text-accent transition-colors">{t('nav.products')}</a></li>
+              <li><a href="/about/" className="text-sm text-muted-foreground hover:text-accent transition-colors">{t('nav.about')}</a></li>
+              <li><a href="/contact/" className="text-sm text-muted-foreground hover:text-accent transition-colors">{t('nav.contact')}</a></li>
             </ul>
           </div>
 
@@ -70,7 +70,7 @@ export default function Footer() {
             © 2002 DONGXIAO® CASHMERE. {t('footer.allRights')}
           </p>
           <div className="flex gap-6 mt-4 md:mt-0">
-            <a href="/privacy-policy" className="text-sm text-muted-foreground hover:text-accent transition-colors">{t('footer.privacy')}</a>
+            <a href="/privacy-policy/" className="text-sm text-muted-foreground hover:text-accent transition-colors">{t('footer.privacy')}</a>
             <a href="#" className="text-sm text-muted-foreground hover:text-accent transition-colors">{t('footer.terms')}</a>
           </div>
         </div>

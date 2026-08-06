@@ -221,7 +221,7 @@ export default function BrandStory() {
               {t('brandStory.contactUs')}
             </a>
             <a
-              href="/products"
+              href="/products/"
               className="px-8 py-3 bg-white/20 text-white rounded-lg font-semibold hover:bg-white/30 transition-colors inline-flex items-center justify-center"
             >
               {t('brandStory.exploreProducts')}

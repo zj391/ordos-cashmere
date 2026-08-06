@@ -240,7 +240,7 @@ export default function ProductModal({ product, open, onOpenChange }: ProductMod
                 {t('products.requestQuote')}
               </button>
               <a
-                href="/contact"
+                href="/contact/"
                 className="w-full px-6 py-3 border-2 border-accent text-accent rounded-lg font-semibold hover:bg-accent/10 transition-colors text-center"
               >
                 {t('products.contactUs')}

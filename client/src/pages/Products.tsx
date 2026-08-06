@@ -545,7 +545,7 @@ export default function Products() {
                   {/* CTA */}
                   <div className="mt-auto flex flex-col gap-2.5">
                     <button onClick={() => setModalInquiry(true)} className="w-full px-6 py-3.5 bg-accent text-accent-foreground rounded-lg font-semibold hover:bg-[#C9A227] transition-colors text-sm">{t('products.requestQuote')}</button>
-                    <a href="/contact" className="w-full px-6 py-3.5 border-2 border-accent text-accent rounded-lg font-semibold hover:bg-accent/10 transition-colors text-sm text-center">{t('products.contactUs')}</a>
+                    <a href="/contact/" className="w-full px-6 py-3.5 border-2 border-accent text-accent rounded-lg font-semibold hover:bg-accent/10 transition-colors text-sm text-center">{t('products.contactUs')}</a>
                   </div>
                 </div>
               </div>
