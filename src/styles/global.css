@@ -369,7 +369,13 @@ html {
 
 /* ===== Scroll-aware nav (header.is-scrolled) ===== */
 header.sticky {
-  transition: box-shadow 0.3s ease, padding 0.3s ease;
+  transition: box-shadow 0.3s ease, padding 0.3s ease, transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+header.sticky.header-hidden {
+  transform: translateY(-100%);
+}
+@media (prefers-reduced-motion: reduce) {
+  header.sticky { transform: none; transition: none; }
 }
 header.sticky.is-scrolled {
   box-shadow: 0 2px 16px -6px rgba(28, 24, 19, 0.08);
