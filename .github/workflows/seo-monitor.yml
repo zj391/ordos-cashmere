@@ -1,0 +1,81 @@
+name: Weekly GSC SEO Monitor
+
+# 每周一上午 9 点（UTC+8）跑 GSC API 拉取上一周的数据
+# 生成 markdown 报告 + 上传为 artifact 供下载
+#
+# Secrets 需要配置：
+#   GSC_KEY_JSON  - GSC service account JSON key 的内容（粘到 GH repo Settings → Secrets）
+#
+# 如果用 OAuth access token 而非 service account：
+#   TOKEN  - OAuth token（每次跑前手动更新）
+
+on:
+  schedule:
+    - cron: '0 1 * * 1'  # 周一 UTC 01:00 = 北京时间 09:00
+  workflow_dispatch:
+    inputs:
+      days:
+        description: 'Lookback window in days'
+        required: false
+        default: '28'
+
+jobs:
+  gsc-report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install google-auth-library --no-save
+
+      - name: Setup GSC key from secret
+        if: ${{ secrets.GSC_KEY_JSON != '' }}
+        run: |
+          mkdir -p secrets
+          echo '${{ secrets.GSC_KEY_JSON }}' > secrets/gsc-key.json
+          echo "✓ GSC key saved to secrets/gsc-key.json"
+
+      - name: Run GSC weekly report
+        env:
+          SITE_URL: 'sc-domain:erdosdx.com'
+          DAYS: ${{ github.event.inputs.days || '28' }}
+          KEY_PATH: ${{ secrets.GSC_KEY_JSON != '' && 'secrets/gsc-key.json' || '' }}
+          TOKEN: ${{ secrets.TOKEN || '' }}
+        run: |
+          node scripts/seo/gsc-report.mjs > seo-report.md 2> seo-report-error.log
+          echo "Exit code: $?"
+          if [ -s seo-report-error.log ]; then
+            echo "--- STDERR ---"
+            cat seo-report-error.log
+          fi
+
+      - name: Upload report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gsc-seo-report-${{ github.run_id }}
+          path: |
+            seo-report.md
+            seo-report-error.log
+          retention-days: 90
+
+      - name: Notify on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: 'Weekly GSC SEO Monitor failed - ' + new Date().toISOString().slice(0,10),
+              body: 'GSC weekly monitor workflow failed. Check the run logs: ' + context.runUrl,
+              labels: ['seo', 'monitoring']
+            });
