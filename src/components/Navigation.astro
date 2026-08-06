@@ -124,6 +124,10 @@ const labels: Record<string, Record<string, string>> = {
 
 const t = (key: string) => labels[locale]?.[key] || labels.en[key] || key;
 
+// 链接高亮：忽略尾斜杠与查询串的差异
+const normPath = (s: string) => s.split('?')[0].replace(/\/+$/, '');
+const isActive = (href: string) => normPath(currentPath) === normPath(href);
+
 // submenu helpers
 const subLabel = (sub: any) => sub[locale] || sub.en || sub.cn;
 const groupLabel = (groupKey: string, group: any) => {
@@ -291,7 +295,7 @@ const groupLabel = (groupKey: string, group: any) => {
             href={item.href}
             class:list={[
               'nav-link inline-flex items-center gap-1.5 py-1 transition-colors hover:text-primary',
-              currentPath === item.href ? 'text-primary is-active' : 'text-muted-foreground',
+              isActive(item.href) ? 'text-primary is-active' : 'text-muted-foreground',
             ]}
           >
             {t(item.labelKey)}

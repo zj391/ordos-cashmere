@@ -488,7 +488,7 @@ const itemListSchema = {
           <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {leggings.slice(0, 8).map((p) => (
               <a
-                href={`/${locale}/products/${p.id}`}
+                href={`/${locale}/products/${p.id}/`}
                 class="group block border border-border rounded-lg overflow-hidden hover:border-primary transition-colors bg-white"
               >
                 <div class="aspect-square bg-secondary/30 overflow-hidden">
@@ -540,7 +540,7 @@ const itemListSchema = {
           <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {leggings.slice(0, 8).map((p) => (
               <a
-                href={`/${locale}/products/${p.id}`}
+                href={`/${locale}/products/${p.id}/`}
                 class="group block border border-border rounded-lg overflow-hidden hover:border-primary transition-colors bg-white"
               >
                 <div class="aspect-square bg-secondary/30 overflow-hidden">
@@ -579,7 +579,7 @@ const itemListSchema = {
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {products.map((p) => (
           <a
-            href={`/${locale}/products/${p.id}`}
+            href={`/${locale}/products/${p.id}/`}
             class="group block border border-border rounded-lg overflow-hidden hover:border-primary transition-colors"
           >
             <div class="aspect-square bg-secondary/30 overflow-hidden">
@@ -628,8 +628,8 @@ const itemListSchema = {
       <h2 class="font-display text-3xl font-light mb-4">Ready to order {category.name}?</h2>
       <p class="opacity-90 mb-8 max-w-2xl mx-auto">Send your inquiry with target quantity, preferred specifications, and destination country. We reply within 24 hours with FOB/CIF pricing.</p>
       <div class="flex flex-wrap gap-4 justify-center">
-        <a href={`/${locale}/contact`} class="inline-block px-8 py-3 bg-brand-ink text-[#F7F3EC] rounded-none font-medium uppercase tracking-[0.15em] hover:bg-brand-chocolate">Request a Quote</a>
-        <a href={`/${locale}/products`} class="inline-block px-8 py-3 border border-brand-ink/30 rounded-none uppercase tracking-[0.15em] hover:bg-brand-ink hover:text-[#F7F3EC]">View All Products</a>
+        <a href={`/${locale}/contact/`} class="inline-block px-8 py-3 bg-brand-ink text-[#F7F3EC] rounded-none font-medium uppercase tracking-[0.15em] hover:bg-brand-chocolate">Request a Quote</a>
+        <a href={`/${locale}/products/`} class="inline-block px-8 py-3 border border-brand-ink/30 rounded-none uppercase tracking-[0.15em] hover:bg-brand-ink hover:text-[#F7F3EC]">View All Products</a>
       </div>
     </div>
   </section>

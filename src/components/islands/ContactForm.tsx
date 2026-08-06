@@ -275,7 +275,7 @@ export default function ContactForm({ locale }: Props) {
               </li>
             ))}
           </ul>
-          <a href={`/${locale}/cart`} className="text-xs text-primary hover:underline">← Edit inquiry list</a>
+          <a href={`/${locale}/cart/`} className="text-xs text-primary hover:underline">← Edit inquiry list</a>
         </div>
       )}
 

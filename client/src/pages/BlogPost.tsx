@@ -138,7 +138,7 @@ export default function BlogPost() {
               .filter((p) => p.id !== post.id)
               .slice(0, 2)
               .map((relatedPost) => (
-                <Link key={relatedPost.id} href={`/blog/${relatedPost.slug}`}>
+                <Link key={relatedPost.id} href={`/blog/${relatedPost.slug}/`}>
                   <a className="group block">
                     <div className="relative overflow-hidden rounded-lg mb-4 h-48">
                       <img

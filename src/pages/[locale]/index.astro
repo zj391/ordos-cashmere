@@ -272,13 +272,13 @@ const IMG = {
           {c.subtitle}
         </p>
         <div class="flex flex-wrap items-center gap-6">
-          <a href={`/${locale}/contact`} class="group inline-flex items-center gap-3 px-10 py-5 bg-white text-brand-ink text-sm font-medium uppercase tracking-[0.2em] hover:bg-brand-gold hover:text-white transition-colors">
+          <a href={`/${locale}/contact/`} class="group inline-flex items-center gap-3 px-10 py-5 bg-white text-brand-ink text-sm font-medium uppercase tracking-[0.2em] hover:bg-brand-gold hover:text-white transition-colors">
             {c.cta}
             <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
             </svg>
           </a>
-          <a href={`/${locale}/download`} class="group inline-flex items-center gap-2 text-white text-sm uppercase tracking-[0.2em] border-b border-white/40 pb-1 hover:border-brand-gold hover:text-brand-gold transition-colors">
+          <a href={`/${locale}/download/`} class="group inline-flex items-center gap-2 text-white text-sm uppercase tracking-[0.2em] border-b border-white/40 pb-1 hover:border-brand-gold hover:text-brand-gold transition-colors">
             {c.ctaSecondary}
           </a>
         </div>
@@ -420,7 +420,7 @@ const IMG = {
               <span class="text-muted-foreground">{t('纤维细度', 'Fiber Fineness')}</span>
             </div>
           </div>
-          <a href={`/${locale}/ordos-origin`} class="group inline-flex items-center gap-2 text-brand-chocolate font-medium border-b border-brand-chocolate pb-1 hover:border-brand-gold hover:text-brand-gold transition-colors">
+          <a href={`/${locale}/ordos-origin/`} class="group inline-flex items-center gap-2 text-brand-chocolate font-medium border-b border-brand-chocolate pb-1 hover:border-brand-gold hover:text-brand-gold transition-colors">
             {t6('探索鄂尔多斯产地', 'Explore Ordos Origin', 'Ordos erkunden', 'Explorer Ordos', 'オルドスを探る', '오르도스 탐험')}
             <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -454,7 +454,7 @@ const IMG = {
             )}
           </h2>
         </div>
-        <a href={`/${locale}/products`} class="group inline-flex items-center gap-2 text-sm text-brand-chocolate border-b border-brand-chocolate pb-1 hover:text-brand-gold hover:border-brand-gold transition-colors">
+        <a href={`/${locale}/products/`} class="group inline-flex items-center gap-2 text-sm text-brand-chocolate border-b border-brand-chocolate pb-1 hover:text-brand-gold hover:border-brand-gold transition-colors">
           {t6('查看全部产品', 'View all products', 'Alle ansehen', 'Voir tout', '全て見る', '전체 보기')}
           <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -465,7 +465,7 @@ const IMG = {
       <!-- Bento Grid：左大右小，错落 -->
       <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
         <!-- 原料（大图，左 7 列） -->
-        <a href={`/${locale}/raw-material`} class="group md:col-span-7 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden bg-gradient-to-br from-brand-ink via-brand-chocolate to-brand-camel hover-lift reveal" data-reveal-delay="1">
+        <a href={`/${locale}/raw-material/`} class="group md:col-span-7 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden bg-gradient-to-br from-brand-ink via-brand-chocolate to-brand-camel hover-lift reveal" data-reveal-delay="1">
           <!-- 抽象纤维纹理 -->
           <svg class="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
             <defs>
@@ -502,7 +502,7 @@ const IMG = {
         </a>
 
         <!-- 纱线面料（右小） -->
-        <a href={`/${locale}/yarn-fabric`} class="group md:col-span-5 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden hover-lift reveal" data-reveal-delay="2">
+        <a href={`/${locale}/yarn-fabric/`} class="group md:col-span-5 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden hover-lift reveal" data-reveal-delay="2">
           <img src={IMG.scarfDetail} alt="Cashmere knitwear — premium winter hat and sweater for B2B wholesale" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" decoding="async" loading="lazy" />
           <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/75 via-brand-ink/25 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
@@ -527,7 +527,7 @@ const IMG = {
         </a>
 
         <!-- 成衣代工（下大） -->
-        <a href={`/${locale}/garment-oem`} class="group md:col-span-12 relative aspect-[4/3] md:aspect-[21/9] overflow-hidden hover-lift reveal" data-reveal-delay="3">
+        <a href={`/${locale}/garment-oem/`} class="group md:col-span-12 relative aspect-[4/3] md:aspect-[21/9] overflow-hidden hover-lift reveal" data-reveal-delay="3">
           <img src={IMG.scarvesFolded} alt="Cashmere shawl styling — premium B2B apparel from Ordos factory" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" decoding="async" loading="lazy" />
           <div class="absolute inset-0 bg-gradient-to-r from-brand-ink/80 via-brand-ink/35 to-transparent"></div>
           <div class="absolute bottom-0 left-0 p-8 md:p-12 text-white max-w-2xl">
@@ -700,7 +700,7 @@ const IMG = {
         {t6('获取免费样品、报价单和认证文件。我们的销售专家24小时内回复。', 'Get free samples, quotation, and certifications. Our specialists respond within 24 hours.', 'Kostenlose Muster, Angebote und Zertifizierungen.', 'Échantillons gratuits, devis et certifications.', '無料サンプル・お見積もり・認証。', '무료 샘플·견적서·인증서.')}
       </p>
       <div class="flex flex-wrap justify-center gap-4">
-        <a href={`/${locale}/contact`} class="inline-flex items-center gap-3 px-10 py-5 bg-brand-ink text-[#F7F3EC] font-medium tracking-wider hover:bg-brand-chocolate transition-colors">
+        <a href={`/${locale}/contact/`} class="inline-flex items-center gap-3 px-10 py-5 bg-brand-ink text-[#F7F3EC] font-medium tracking-wider hover:bg-brand-chocolate transition-colors">
           {c.cta}
         </a>
         <a href={`https://wa.me/${SITE_INFO.whatsapp.replace(/[^\d]/g, '')}`} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-10 py-5 border border-brand-ink/30 text-brand-ink hover:bg-brand-ink hover:text-[#F7F3EC] transition-colors">
@@ -739,7 +739,7 @@ const IMG = {
               {locale === 'cn' ? '最新行业洞察' : 'Latest from our blog'}
             </h2>
           </div>
-          <a href={`/${locale}/blog`} class="text-sm text-brand-chocolate border-b border-brand-chocolate hover:border-brand-gold hover:text-brand-gold transition-colors">
+          <a href={`/${locale}/blog/`} class="text-sm text-brand-chocolate border-b border-brand-chocolate hover:border-brand-gold hover:text-brand-gold transition-colors">
             {locale === 'cn' ? '查看全部 →' : 'View all →'}
           </a>
         </div>
@@ -753,7 +753,7 @@ const IMG = {
               'Cashmere goat on Mongolian pasture',
             ][i] || '';
             return (
-              <a href={`/${locale}/blog/${p.slug}`} class="group block border border-border overflow-hidden hover:border-brand-gold hover:shadow-lg transition-all duration-300">
+              <a href={`/${locale}/blog/${p.slug}/`} class="group block border border-border overflow-hidden hover:border-brand-gold hover:shadow-lg transition-all duration-300">
                 <div class="aspect-[16/10] overflow-hidden bg-brand-cream">
                   <img src={blogImg} alt={blogAlt} style="object-position: center 60%;" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" decoding="async" loading="lazy" />
                 </div>

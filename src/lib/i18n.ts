@@ -125,5 +125,7 @@ function lookup(translation: Record<string, unknown>, segments: string[]): strin
  */
 export function localePath(locale: Locale, path = ''): string {
   const clean = path.startsWith('/') ? path : `/${path}`;
-  return `/${locale}${clean}`;
+  const base = `/${locale}${clean}`;
+  if (base.includes('?') || base.includes('#')) return base;
+  return base.endsWith('/') ? base : `${base}/`;
 }

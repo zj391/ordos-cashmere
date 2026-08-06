@@ -352,7 +352,7 @@ const breadcrumbSchema = {
     <div class="container-narrow">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {posts.map((p) => (
-          <a href={`/${locale}/blog/${p.slug}`} class="group block border border-border p-8 hover:border-brand-gold hover:shadow-lg transition-all duration-300">
+          <a href={`/${locale}/blog/${p.slug}/`} class="group block border border-border p-8 hover:border-brand-gold hover:shadow-lg transition-all duration-300">
             <div class="text-xs text-muted-foreground tracking-wider mb-3 font-mono">{p.date}</div>
             <h3 class="font-serif text-2xl mb-3 group-hover:text-brand-chocolate transition-colors leading-tight">{p.title}</h3>
             <p class="text-muted-foreground leading-relaxed mb-6 text-sm">{p.excerpt}</p>
