@@ -106,11 +106,10 @@ const finalKeywords: string[] = Array.isArray(keywords)
 
 
 
-const canonical = canonicalPath
-
+const canonicalRaw = canonicalPath
   ? `${SITE_URL}/${locale}${canonicalPath}`
-
   : `${SITE_URL}/${locale}${path}`;
+const canonical = canonicalRaw.endsWith('/') ? canonicalRaw : `${canonicalRaw}/`;
 
 
 

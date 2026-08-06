@@ -463,6 +463,7 @@ const tdk = {
 };
 
 const t = (tdk[locale] || tdk.en)(product, category.name);
+const pageTitle = t.title.length > 62 ? `${t.title.slice(0, 60).replace(/\s+\S*$/, '')}…` : t.title;
 
 
 
@@ -594,7 +595,7 @@ const breadcrumbSchema = {
 
   path={`/products/${product.id}/`}
 
-  title={t.title}
+  title={pageTitle}
 
   description={t.description}
 

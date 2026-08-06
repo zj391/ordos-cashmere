@@ -80,8 +80,8 @@ export const SEO: Record<Locale, LocaleSEO> = {
     region: 'Global',
     market: 'Global / Europe / North America',
     home: {
-      title: 'Cashmere Wholesale Supplier China | Factory Direct from Ordos | DONGXIAO®',
-      description: 'Source premium cashmere direct from Ordos, Inner Mongolia. 23-year-old factory ships dehairing cashmere, yarn, knitwear to 50+ countries. ISO 9001 + OEKO-TEX certified. Sample in 7 days, MOQ 100 pcs, FOB Tianjin in 15-25 days. Request a quote now.',
+      title: 'Cashmere Wholesale Supplier | China Factory Direct | DONGXIAO®',
+      description: 'Source premium cashmere direct from Ordos, Inner Mongolia. 23-year factory ships dehairing cashmere, yarn, knitwear to 50+ countries. ISO 9001 + OEKO-TEX certified. Sample in 7 days.',
       keywords: ['cashmere manufacturer', 'B2B cashmere supplier', 'Ordos cashmere factory', 'Inner Mongolia cashmere', 'wholesale cashmere yarn', 'cashmere OEM', 'luxury knitwear manufacturer', 'Europe cashmere supplier', 'USA cashmere wholesale'],
     },
     rawMaterial: {
@@ -178,8 +178,8 @@ export const SEO: Record<Locale, LocaleSEO> = {
     region: 'Germany / EU',
     market: 'Deutschland / EU',
     home: {
-      title: 'DONGXIAO® Cashmere | B2B Kaschmir Hersteller | Ordos, Innere Mongolei',
-      description: 'Führender B2B-Kaschmirhersteller aus Ordos, Innere Mongolei. 23+ Jahre Erfahrung in Premium-Rohkaschmir, Garn, Stoff & OEM-Strickwaren für globale Marken. ISO-zertifiziert.',
+      title: 'DONGXIAO® Cashmere | B2B Kaschmir Hersteller | Ordos',
+      description: 'Führender B2B-Kaschmirhersteller aus Ordos, Innere Mongolei. 23+ Jahre: Rohkaschmir, Garn, Stoff & OEM-Strickwaren. ISO-zertifiziert.',
       keywords: ['Kaschmir Hersteller', 'B2B Kaschmir Lieferant', 'Kaschmir Großhandel', 'Ordos Kaschmir', 'Innere Mongolei Kaschmir', 'Kaschmir Garn', 'Kaschmir stricken'],
     },
     rawMaterial: {
