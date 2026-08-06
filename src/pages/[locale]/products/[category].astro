@@ -84,6 +84,36 @@ const category = getCategoryById(catId);
 if (!category) { return new Response('Not Found', { status: 404 }); }
 
 const products = category.products;
+// 分类页 → 指南页内链（SEO 内部链接）
+const categoryGuides: Record<string, Array<{ href: string; en: string; cn: string }>> = {
+  hats: [
+    { href: `/${locale}/cashmere-grades`, en: 'Cashmere Grade Guide', cn: '羊绒等级指南' },
+    { href: `/${locale}/color-cards`, en: 'Cashmere Color Card', cn: '羊绒色卡指南' },
+    { href: `/${locale}/blog`, en: 'Cashmere Sourcing Blog', cn: '羊绒采购博客' },
+  ],
+  scarves: [
+    { href: `/${locale}/cashmere-grades`, en: 'Cashmere Grade Guide', cn: '羊绒等级指南' },
+    { href: `/${locale}/dehaired-cashmere`, en: 'Dehaired Cashmere Tops', cn: '无毛绒指南' },
+    { href: `/${locale}/blog`, en: 'Cashmere Sourcing Blog', cn: '羊绒采购博客' },
+  ],
+  sweaters: [
+    { href: `/${locale}/garment-oem`, en: 'Garment OEM/ODM Process', cn: '成衣代工流程' },
+    { href: `/${locale}/cashmere-yarn-types`, en: 'Cashmere Yarn Types & Counts', cn: '纱线支数指南' },
+    { href: `/${locale}/factory`, en: 'Ordos Factory Tour', cn: '鄂尔多斯工厂介绍' },
+  ],
+  accessories: [
+    { href: `/${locale}/cashmere-yarn-types`, en: 'Cashmere Yarn Types & Counts', cn: '纱线支数指南' },
+    { href: `/${locale}/color-cards`, en: 'Cashmere Color Card', cn: '羊绒色卡指南' },
+    { href: `/${locale}/blog`, en: 'Cashmere Sourcing Blog', cn: '羊绒采购博客' },
+  ],
+  yarn: [
+    { href: `/${locale}/cashmere-yarn-types`, en: 'Cashmere Yarn Types & Counts', cn: '纱线支数指南' },
+    { href: `/${locale}/raw-material`, en: 'Raw Cashmere Material', cn: '羊绒原料指南' },
+    { href: `/${locale}/yarn-fabric`, en: 'Yarn & Fabric Capabilities', cn: '纱线面料能力' },
+  ],
+};
+const guides = categoryGuides[catId] || categoryGuides.hats;
+
 
 // 按 locale 翻译名称 + 描述 + FAQ
 const tdk = {
@@ -545,7 +575,7 @@ const itemListSchema = {
 
   <section class="py-16 md:py-20 bg-background">
     <div class="container-narrow">
-      <h2 class="font-display text-3xl font-light mb-8">{t.h1} — {products.length} styles</h2> styles</h2>
+      <h2 class="font-display text-3xl font-light mb-8">{t.h1} — {products.length} styles</h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {products.map((p) => (
           <a
@@ -564,6 +594,27 @@ const itemListSchema = {
               <h3 class="text-xs font-medium leading-snug line-clamp-2 mb-1">{p.name}</h3>
               <p class="text-[10px] text-muted-foreground">USD {p.price} · MOQ {p.moq} pcs</p>
             </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <section class="py-16 md:py-20 bg-[#F8F5EF] border-y border-border/60">
+    <div class="container-narrow">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="h-[2px] w-8 bg-brand-red"></span>
+        <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">{locale === 'cn' ? '选购指南' : 'Buying Guides'}</span>
+      </div>
+      <h2 class="font-serif text-3xl md:text-4xl font-light mb-8">{locale === 'cn' ? '相关指南' : 'Related Guides'}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {guides.map((g) => (
+          <a href={g.href} class="group block border border-border bg-white p-6 hover:border-brand-camel transition-colors">
+            <h3 class="font-serif text-xl mb-2 group-hover:text-brand-camel transition-colors">{locale === 'cn' ? g.cn : g.en}</h3>
+            <span class="text-sm text-muted-foreground group-hover:text-primary transition-colors inline-flex items-center gap-1">
+              {locale === 'cn' ? '阅读指南 →' : 'Read guide →'}
+            </span>
           </a>
         ))}
       </div>

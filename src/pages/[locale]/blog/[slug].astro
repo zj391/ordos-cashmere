@@ -10,6 +10,7 @@ import Footer from '@/components/Footer.astro';
 import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
 import { LOCALES, pickLocale } from '@/lib/i18n';
+import { SITE_URL } from '@/lib/seo';
 import { getCollection, render } from 'astro:content';
 import { extractBlogFAQ } from '@/lib/blog-faq';
 
@@ -44,6 +45,18 @@ const articleSchema = {
   keywords: (post.data.targetKeywords || []).join(', '),
   inLanguage: locale,
   articleSection: 'B2B Cashmere Sourcing',
+};
+
+
+// Breadcrumb JSON-LD（首页 → 博客 → 文章）
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/${locale}/` },
+    { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/${locale}/blog/` },
+    { '@type': 'ListItem', position: 3, name: post.data.title, item: `${SITE_URL}/${locale}/blog/${Astro.params.slug}/` },
+  ],
 };
 
 const t: Record<string, Record<string, string>> = {
@@ -96,6 +109,9 @@ const blogFAQ = extractBlogFAQ(post.body, 4);
 
       <!-- BlogPosting JSON-LD (rich result in Google) -->
       <script type="application/ld+json">${JSON.stringify(articleSchema)}</script>
+
+      <!-- Breadcrumb JSON-LD -->
+      <script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>
     `;
     })()} />
   </Fragment>
