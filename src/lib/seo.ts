@@ -80,9 +80,9 @@ export const SEO: Record<Locale, LocaleSEO> = {
     region: 'Global',
     market: 'Global / Europe / North America',
     home: {
-      title: 'Cashmere Wholesale Supplier | China Factory Direct | DONGXIAO®',
-      description: 'Source premium cashmere direct from Ordos. 23-year factory ships dehairing cashmere, yarn, knitwear to 50+ countries. ISO 9001 + OEKO-TEX certified.',
-      keywords: ['cashmere manufacturer', 'B2B cashmere supplier', 'Ordos cashmere factory', 'Inner Mongolia cashmere', 'wholesale cashmere yarn', 'cashmere OEM', 'luxury knitwear manufacturer', 'Europe cashmere supplier', 'USA cashmere wholesale'],
+      title: 'Erdos Cashmere Manufacturer | China Factory Direct | 23-Year | DONGXIAO®',
+      description: 'Erdos cashmere clothing manufacturer direct from Ordos, Inner Mongolia. 23-year factory: cashmere hats, sweaters, scarves, yarn for 50+ countries. ISO 9001 + OEKO-TEX certified.',
+      keywords: ['cashmere manufacturer', 'B2B cashmere supplier', 'Ordos cashmere factory', 'Inner Mongolia cashmere', 'wholesale cashmere yarn', 'cashmere OEM', 'luxury knitwear manufacturer', 'Europe cashmere supplier', 'USA cashmere wholesale', 'erdos cashmere manufacturer', 'erdos clothing website', 'erdos cashmere clothing', 'ordos cashmere clothing'],
     },
     rawMaterial: {
       title: 'Premium Raw Cashmere Material | White, Brown, Grey | Direct from Ordos Factory',
