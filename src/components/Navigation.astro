@@ -131,10 +131,10 @@ const groupLabel = (groupKey: string, group: any) => {
 };
 ---
 
-<header class="sticky top-0 z-40 w-full border-t-2 border-brand-red border-b border-border bg-background/95 backdrop-blur-sm relative">
-  <div class="container-narrow flex h-20 items-center justify-between">
-    <!-- Logo -->
-    <a href={localePath(locale, '/')} class="flex items-center gap-2 group">
+<header class="sticky top-0 z-40 w-full border-t-2 border-brand-red bg-background/95 backdrop-blur-sm relative">
+  <div class="container-narrow flex h-16 lg:h-20 items-center justify-between">
+    <!-- Logo（桌面端居中） -->
+    <a href={localePath(locale, '/')} class="flex items-center gap-2 group lg:absolute lg:left-1/2 lg:-translate-x-1/2">
       <span class="font-display text-[1.7rem] font-normal tracking-wide text-primary">
         DONGXIAO<sup class="text-xs">®</sup>
       </span>
@@ -142,28 +142,6 @@ const groupLabel = (groupKey: string, group: any) => {
         Cashmere · Ordos
       </span>
     </a>
-
-    <!-- Desktop Nav -->
-    <nav class="hidden lg:flex items-center gap-7 text-[13px] uppercase tracking-[0.14em]" id="desktop-nav">
-      {navItems.map((item) => (
-        <div class="relative group/item" data-mega-trigger={item.hasSubmenu || ''}>
-          <a
-            href={item.href}
-            class:list={[
-              'nav-link inline-flex items-center gap-1.5 py-2 transition-colors hover:text-primary',
-              currentPath === item.href ? 'text-primary is-active' : 'text-muted-foreground',
-            ]}
-          >
-            {t(item.labelKey)}
-            {item.hasSubmenu && (
-              <svg class="w-3 h-3 transition-transform group-hover/item:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            )}
-          </a>
-        </div>
-      ))}
-    </nav>
 
     <!-- Mega Menu container (rendered once, content swapped by JS based on hovered nav item) -->
     {navItems.filter((i) => i.hasSubmenu).map((item) => (
@@ -300,6 +278,30 @@ const groupLabel = (groupKey: string, group: any) => {
         </svg>
       </button>
     </div>
+  </div>
+
+  <!-- Desktop Nav（居中菜单栏） -->
+  <div class="hidden lg:block border-t border-border/60">
+    <nav class="container-narrow flex items-center justify-center gap-9 py-4 text-[13px] uppercase tracking-[0.14em]" id="desktop-nav">
+      {navItems.map((item) => (
+        <div class="relative group/item" data-mega-trigger={item.hasSubmenu || ''}>
+          <a
+            href={item.href}
+            class:list={[
+              'nav-link inline-flex items-center gap-1.5 py-1 transition-colors hover:text-primary',
+              currentPath === item.href ? 'text-primary is-active' : 'text-muted-foreground',
+            ]}
+          >
+            {t(item.labelKey)}
+            {item.hasSubmenu && (
+              <svg class="w-3 h-3 transition-transform group-hover/item:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            )}
+          </a>
+        </div>
+      ))}
+    </nav>
   </div>
 
   <!-- Mobile Menu -->
