@@ -281,6 +281,12 @@ const SIZE_HINTS = [
 // Color variant hints when no concrete color name is found in product text.
 // These signal "this product uses colors but the catalog didn't record specifics",
 // so the fallback can return a useful SEO phrase instead of empty string.
+//
+// The label field is the FINAL string used in the meta description — these
+// labels are self-contained (e.g. "Solid color", "Multi-color") so they
+// should NOT be followed by the locale-specific " colors" suffix in the
+// TDK template. The TDK template uses isSelfContainedColorLabel() to detect
+// this and skip the suffix for self-contained labels.
 const COLOR_VARIANT_HINTS = [
   { re: /\b(silver|gold|copper|metallic)\s+(threads?|yarn|wire|stripe)\b/i, label: 'Silver thread accent' },
   { re: /\b(multi-?color(ed)?|multi-?colou?r|rainbow|variegated|multicolored)\b/i, label: 'Multi-color' },
@@ -297,6 +303,13 @@ const CATEGORY_DEFAULT_COLORS: Record<string, string> = {
   sweaters: 'Custom colors available',
   yarn: 'Color card available',
 };
+
+// Self-contained color labels end with "color" or equivalent — the TDK
+// template should NOT append " colors" / " Farben" / " coloris" etc.
+// after these. Concrete color names (Brown, Maroon) get the suffix.
+function isSelfContainedColorLabel(s: string): boolean {
+  return /(^|\s)(color|colors|colour|colours|farben?|coloris|色|색상)\s*$/i.test(s.trim());
+}
 
 function inferFromText(p: typeof product): { colors: string; gender: string; season: string; pattern: string; sizes: string } {
   // Build a haystack from name + tags + description + detailedDescription
@@ -532,7 +545,7 @@ const tdk = {
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
       p.micron ? `${cleanAttr(p.micron)} micron` : '',
-      colors ? `${colors} colors` : '',
+      colors ? (isSelfContainedColorLabel(colors) ? colors : `${colors} colors`) : '',
       pattern ? `${pattern} pattern` : '',
       knit && !/details?/i.test(knit) ? knit : '',
       season ? `for ${season}` : '',
@@ -582,7 +595,7 @@ const tdk = {
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
       p.micron ? `${cleanAttr(p.micron)}微米` : '',
-      colors ? `颜色${colors}` : '',
+      colors ? (isSelfContainedColorLabel(colors) ? colors : `颜色${colors}`) : '',
       season ? `${season}季节` : '',
       gender ? `${gender === 'Women' ? '女款' : gender === 'Men' ? '男款' : gender}` : '',
       sizes ? `尺码${sizes}` : '',
@@ -608,7 +621,7 @@ const tdk = {
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
       p.micron ? `${cleanAttr(p.micron)} micron` : '',
-      colors ? `${colors} Farben` : '',
+      colors ? (isSelfContainedColorLabel(colors) ? colors : `${colors} Farben`) : '',
       season ? `für ${season}` : '',
       gender ? `${gender === 'Women' ? 'Damen' : gender === 'Men' ? 'Herren' : gender.toLowerCase()} Passform` : '',
       sizes ? `Größen ${sizes}` : '',
@@ -634,7 +647,7 @@ const tdk = {
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
       p.micron ? `${cleanAttr(p.micron)} micron` : '',
-      colors ? `${colors} coloris` : '',
+      colors ? (isSelfContainedColorLabel(colors) ? colors : `${colors} coloris`) : '',
       season ? `pour ${season}` : '',
       gender ? `coupe ${gender === 'Women' ? 'femme' : gender === 'Men' ? 'homme' : gender.toLowerCase()}` : '',
       sizes ? `tailles ${sizes}` : '',
@@ -660,7 +673,7 @@ const tdk = {
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
       p.micron ? `${cleanAttr(p.micron)}ミクロン` : '',
-      colors ? `カラー${colors}` : '',
+      colors ? (isSelfContainedColorLabel(colors) ? colors : `カラー${colors}`) : '',
       season ? `${season}向け` : '',
       gender ? `${gender === 'Women' ? 'レディース' : gender === 'Men' ? 'メンズ' : gender}サイズ` : '',
       sizes ? `サイズ${sizes}` : '',
@@ -686,7 +699,7 @@ const tdk = {
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
       p.micron ? `${cleanAttr(p.micron)} micron` : '',
-      colors ? `${colors} 색상` : '',
+      colors ? (isSelfContainedColorLabel(colors) ? colors : `${colors} 색상`) : '',
       season ? `${season}용` : '',
       gender ? `${gender === 'Women' ? '여성' : gender === 'Men' ? '남성' : gender} 사이즈` : '',
       sizes ? `사이즈 ${sizes}` : '',
