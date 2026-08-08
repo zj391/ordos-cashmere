@@ -178,9 +178,9 @@ export const SEO: Record<Locale, LocaleSEO> = {
     region: 'Germany / EU',
     market: 'Deutschland / EU',
     home: {
-      title: 'DONGXIAO® Cashmere | B2B Kaschmir Hersteller | Ordos',
-      description: 'Führender B2B-Kaschmirhersteller aus Ordos, Innere Mongolei. 23+ Jahre: Rohkaschmir, Garn, Stoff & OEM-Strickwaren. ISO-zertifiziert.',
-      keywords: ['Kaschmir Hersteller', 'B2B Kaschmir Lieferant', 'Kaschmir Großhandel', 'Ordos Kaschmir', 'Innere Mongolei Kaschmir', 'Kaschmir Garn', 'Kaschmir stricken'],
+      title: 'Kaschmir Hersteller Ordos | Innere Mongolei B2B | 23+ Jahre',
+      description: 'Erdos Kaschmir Hersteller aus der Inneren Mongolei, China. 23+ Jahre Erfahrung: Rohkaschmir, Kaschmirgarn, Kaschmirstoff & OEM-Strickwaren für deutsche und EU-Marken. ISO 9001 + OEKO-TEX zertifiziert. Kleine MOQ möglich.',
+      keywords: ['Kaschmir Hersteller', 'B2B Kaschmir Lieferant', 'Kaschmir Großhandel', 'Ordos Kaschmir', 'Innere Mongolei Kaschmir', 'Kaschmir Garn', 'Kaschmir stricken', 'Kaschmir Erdos', 'Kaschmir Hersteller Ordos', 'Erdos Kaschmir Hersteller', 'Kaschmir Großhandel Deutschland'],
     },
     rawMaterial: {
       title: 'Premium Rohkaschmir | Weiß, Braun, Grau | Direkt ab Werk Ordos',
@@ -240,9 +240,9 @@ export const SEO: Record<Locale, LocaleSEO> = {
     region: 'France / EU',
     market: 'France / UE',
     home: {
-      title: 'DONGXIAO® Cachemire | Fabricant B2B | Ordos, Mongolie Intérieure',
-      description: 'Fabricant leader de cachemire B2B à Ordos, Mongolie Intérieure, Chine. 23+ ans d\'expérience. Cachemire brut, fil, tissu et OEM. Certifié ISO.',
-      keywords: ['fabricant cachemire', 'fournisseur cachemire B2B', 'cachemire Ordos', 'Mongolie Intérieure cachemire', 'gros cachemire', 'cachemire OEM'],
+      title: 'Cachemire Erdos Fabricant | Mongolie Intérieure B2B | 23+ ans',
+      description: 'Fabricant cachemire Erdos basé en Mongolie Intérieure, Chine. 23+ ans d\'expérience: cachemire brut, fil à tricoter, tissu cachemire et OEM maille pour marques françaises et EU. Certifié ISO 9001 + OEKO-TEX. Petites MOQ acceptées. Échantillon gratuit.',
+      keywords: ['fabricant cachemire', 'fournisseur cachemire B2B', 'cachemire Ordos', 'Mongolie Intérieure cachemire', 'gros cachemire', 'cachemire OEM', 'cachemire Erdos', 'cachemire Ordos fabricant', 'Mongolie Intérieure cachemire fournisseur', 'cachemire France grossiste'],
     },
     rawMaterial: {
       title: 'Cachemire Brut Premium | Blanc, Brun, Gris | Usine Ordos',
@@ -302,9 +302,9 @@ export const SEO: Record<Locale, LocaleSEO> = {
     region: 'Japan',
     market: '日本市場',
     home: {
-      title: 'DONGXIAO® カシミア | B2B 製造元 | 内モンゴル・オルドス',
-      description: 'オルドス（内モンゴル）に本拠を構える大手B2Bカシミア製造元。23年以上の実績。原料・糸・生地・OEMニットをグローバルブランドへ供給。ISO認証取得。',
-      keywords: ['カシミア製造元', 'B2B カシミア サプライヤー', 'オルドス カシミア', '内モンゴル カシミア', 'カシミア 卸売', 'カシミア OEM', '日本 カシミア'],
+      title: 'オルドス カシミア製造元 | 内モンゴル B2B 卸売 | 23年以上の実績',
+      description: 'オルドス（内モンゴル）発のカシミア製造元・卸売サプライヤー。23年以上の歴史。原料カシミア・紡績糸・生地・OEMニットを日本・アジア・欧米ブランドへ直送。ISO 9001・OEKO-TEX 認証。MOQ 小ロット対応。',
+      keywords: ['カシミア製造元', 'B2B カシミア サプライヤー', 'オルドス カシミア', '内モンゴル カシミア', 'カシミア 卸売', 'カシミア OEM', '日本 カシミア', 'オルドス カシミア製造', 'オルドス 内モンゴル カシミア', 'カシミア 卸売業者 日本向け'],
     },
     rawMaterial: {
       title: 'プレミアム原料カシミア | 白・青・紫 | オルドス工場直送',
@@ -364,9 +364,9 @@ export const SEO: Record<Locale, LocaleSEO> = {
     region: 'Korea',
     market: '한국 시장',
     home: {
-      title: 'DONGXIAO® 캐시미어 | B2B 제조사 | 내몽골 오르도스',
-      description: '내몽골 오르도스 기반의 주요 B2B 캐시미어 제조사. 23년 이상의 경험. 프리미엄 원료, 원단, OEM 니트웨어를 글로벌 브랜드에 공급. ISO 인증.',
-      keywords: ['캐시미어 제조사', 'B2B 캐시미어 공급', '오르도스 캐시미어', '내몽골 캐시미어', '캐시미어 도매', '캐시미어 OEM'],
+      title: '오르도스 캐시미어 제조사 | 내몽골 B2B 도매 | 23년 이상의 경험',
+      description: '내몽골 오르도스 기반의 B2B 캐시미어 제조·도매 업체. 23년 이상의 업력으로 프리미엄 원료 캐시미아, 방모사·소모사, 원단, OEM 니트웨어를 한국·아시아·유럽·미국 브랜드에 직송합니다. ISO 9001·OEKO-TEX 인증. 소량 MOQ 가능.',
+      keywords: ['캐시미어 제조사', 'B2B 캐시미어 공급', '오르도스 캐시미어', '내몽골 캐시미어', '캐시미어 도매', '캐시미어 OEM', '오르도스 캐시미어 공장', '내몽골 캐시미어 도매', '한국 캐시미어 수입'],
     },
     rawMaterial: {
       title: '프리미엄 원료 캐시미어 | 백색, 청색, 자색 | 오르도스 공장 직송',
