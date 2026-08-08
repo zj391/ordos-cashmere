@@ -258,6 +258,8 @@ function localizedCategory(categoryId: string, locale: string, fallback: string)
 
 
 // --- SEO copy helpers: build unique, attribute-rich TDK from catalog fields ---
+// SHORT_CAT kept for English-only fallback; new LOCALE_SHORT_CAT below has
+// proper 6-locale coverage to avoid "Scarves Großhandel" (EN+DE mix).
 const SHORT_CAT: Record<string, string> = {
   hats: 'Hats',
   sweaters: 'Sweaters',
@@ -265,6 +267,30 @@ const SHORT_CAT: Record<string, string> = {
   accessories: 'Accessories',
   yarn: 'Yarn',
 };
+
+// Per-locale short category names for title construction. Compact
+// versions (vs full localizedCategory() in title body) so the title
+// stays within 65c Google snippet limit. Used by EN/DE/FR/JA/KR/CN.
+const LOCALE_SHORT_CAT: Record<string, Record<string, string>> = {
+  en: { hats: 'Hats', sweaters: 'Sweaters', scarves: 'Scarves',
+        accessories: 'Accessories', yarn: 'Yarn' },
+  de: { hats: 'Hüte', sweaters: 'Pullover', scarves: 'Schals',
+        accessories: 'Accessoires', yarn: 'Garn' },
+  fr: { hats: 'Bonnets', sweaters: 'Pulls', scarves: 'Écharpes',
+        accessories: 'Accessoires', yarn: 'Fil' },
+  ja: { hats: 'ハット', sweaters: 'ニット', scarves: 'スカーフ',
+        accessories: 'アクセサリー', yarn: 'ヤーン' },
+  kr: { hats: '모자', sweaters: '스웨터', scarves: '스카프',
+        accessories: '액세서리', yarn: '원사' },
+  cn: { hats: '帽', sweaters: '衫', scarves: '围巾',
+        accessories: '配饰', yarn: '纱线' },
+};
+
+function shortCategory(categoryId: string, locale: string, fallback: string): string {
+  const map = LOCALE_SHORT_CAT[locale];
+  if (map && map[categoryId]) return map[categoryId];
+  return fallback;
+}
 const SKIP_VALUES = /^(details?|description|n\/a|na|various|custom(ized|izable)?|多种颜色可选|customize)$/i;
 function cleanAttr(v: unknown): string {
   return String(v ?? '')
@@ -618,7 +644,7 @@ const tdk = {
       158
     );
     return {
-      title: `${shortName} | ${SHORT_CAT[p.categoryId] || c} Wholesale | MOQ ${p.moq}`,
+      title: `${shortName} | ${shortCategory(p.categoryId, locale, SHORT_CAT[p.categoryId] || c)} Wholesale | MOQ ${p.moq}`,
       description,
       keywords: [
         `${p.name}`,
@@ -690,7 +716,7 @@ const tdk = {
       158
     );
     return {
-      title: `${shortName} | ${SHORT_CAT[p.categoryId] || c} Großhandel | MOQ ${p.moq}`,
+      title: `${shortName} | ${shortCategory(p.categoryId, locale, SHORT_CAT[p.categoryId] || c)} Großhandel | MOQ ${p.moq}`,
       description,
       keywords: [p.name, `Kaschmir ${c} Großhandel`, `OEM ${c}`, `Kaschmir Hersteller China`, `B2B Cashmere Lieferant`],
       buyCta: 'Anfrage',
@@ -716,7 +742,7 @@ const tdk = {
       158
     );
     return {
-      title: `${shortName} | ${SHORT_CAT[p.categoryId] || c} en gros | MOQ ${p.moq}`,
+      title: `${shortName} | ${shortCategory(p.categoryId, locale, SHORT_CAT[p.categoryId] || c)} en gros | MOQ ${p.moq}`,
       description,
       keywords: [p.name, `cachemire ${c} gros`, `OEM ${c}`, `fabricant cachemire Chine`, `fournisseur cachemire B2B`],
       buyCta: 'Demande',
