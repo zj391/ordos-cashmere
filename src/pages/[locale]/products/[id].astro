@@ -304,11 +304,33 @@ const CATEGORY_DEFAULT_COLORS: Record<string, string> = {
   yarn: 'Color card available',
 };
 
-// Self-contained color labels end with "color" or equivalent — the TDK
-// template should NOT append " colors" / " Farben" / " coloris" etc.
-// after these. Concrete color names (Brown, Maroon) get the suffix.
+// Self-contained color labels are phrases that ALREADY describe the color
+// situation in full — they shouldn't be followed by " colors" / " Farben"
+// / " coloris" / " 色" / " 색상". Concrete single-word color names (Brown,
+// Maroon) DO need the locale suffix because "Brown colors" is grammatical.
+//
+// Detection:
+// - Fallback phrases returned by inferFromText() are always self-contained
+//   (they're constructed from a fixed vocabulary below).
+// - Concrete color names from the colors: [...] data field need the suffix.
+const SELF_CONTAINED_LABELS = new Set([
+  // Category defaults
+  'Custom dye available',
+  'Custom colors available',
+  'Various colors available',
+  'Color card available',
+  // Color variant hints
+  'Silver thread accent',
+  'Multi-color',
+  'Space-dyed',
+  'Heathered melange',
+  'Plaid pattern',
+  'Striped',
+  'Solid color',
+]);
 function isSelfContainedColorLabel(s: string): boolean {
-  return /(^|\s)(color|colors|colour|colours|farben?|coloris|色|색상)\s*$/i.test(s.trim());
+  const t = s.trim();
+  return SELF_CONTAINED_LABELS.has(t);
 }
 
 function inferFromText(p: typeof product): { colors: string; gender: string; season: string; pattern: string; sizes: string } {
