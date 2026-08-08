@@ -433,6 +433,60 @@ const productExtraText =
 
 // Per-locale TDK
 
+// SEO fix 2026-08-08: rotate 5 desc-suffix variants by product id hash
+// to break duplicate-content pattern across 591 products × 6 locales.
+// Each variant keeps the same trust signals (Ordos/ISO/MOQ/etc.) but
+// differs in word choice so Google doesn't see 591 identical endings.
+const EN_SUFFIXES = [
+  '. OEM/ODM from Ordos, Inner Mongolia, China. DONGXIAO.',
+  '. Trusted by B2B buyers in 50+ countries. ISO 9001 + OEKO-TEX. DONGXIAO®.',
+  '. Direct from 38,000 m² Ordos factory since 1994. Free sample. DONGXIAO.',
+  '. 23-year cashmere manufacturer. Small MOQ accepted. DONGXIAO® B2B.',
+  '. Premium Inner Mongolia cashmere. Sample shipped in 7 days. DONGXIAO.',
+];
+const DE_SUFFIXES = [
+  '. OEM/ODM aus Ordos, Innere Mongolei, China. DONGXIAO.',
+  '. Vertrauen von B2B-Käufern in 50+ Ländern. ISO 9001 + OEKO-TEX. DONGXIAO®.',
+  '. Direkt aus 38.000 m² Ordos-Fabrik seit 1994. Kostenlose Probe. DONGXIAO.',
+  '. 23 Jahre Kaschmir-Hersteller. Kleine MOQ akzeptiert. DONGXIAO® B2B.',
+  '. Premium Innere Mongolei Kaschmir. Probe in 7 Tagen. DONGXIAO.',
+];
+const FR_SUFFIXES = [
+  ". OEM/ODM depuis Ordos, Mongolie Intérieure, Chine. DONGXIAO.",
+  ". Choisi par acheteurs B2B dans 50+ pays. ISO 9001 + OEKO-TEX. DONGXIAO®.",
+  ". Direct de l'usine d'Ordos 38 000 m² depuis 1994. Échantillon gratuit. DONGXIAO.",
+  ". 23 ans fabricant cachemire. Petites MOQ acceptées. DONGXIAO® B2B.",
+  ". Cachemire premium Mongolie Intérieure. Échantillon en 7 jours. DONGXIAO.",
+];
+const JA_SUFFIXES = [
+  '。オルドス（内モンゴル）工場直送。OEM/ODM対応。DONGXIAO®。',
+  '。50カ国以上のB2Bバイヤーに採用。ISO 9001・OEKO-TEX認証。DONGXIAO®。',
+  '。1994年創業、38,000㎡オルドス工場直送。無料サンプル対応。DONGXIAO。',
+  '。23年以上のカシミア製造実績。小ロットMOQ対応。DONGXIAO® B2B。',
+  '。内モンゴル産プレミアムカシミア。サンプル7日発送。DONGXIAO。',
+];
+const KR_SUFFIXES = [
+  '. 오르도스(내몽골) 공장 직송. OEM/ODM. DONGXIAO®.',
+  '. 50개국 이상 B2B 바이어 선택. ISO 9001·OEKO-TEX 인증. DONGXIAO®.',
+  '. 1994년 설립, 38,000 sqm 오르도스 공장 직송. 무료 샘플. DONGXIAO.',
+  '. 23년 이상의 캐시미어 제조. 소량 MOQ 가능. DONGXIAO® B2B.',
+  '. 내몽골 프리미엄 캐시미어. 샘플 7일 발송. DONGXIAO.',
+];
+const CN_SUFFIXES = [
+  '。鄂尔多斯源头工厂直供，OEM/ODM代工。DONGXIAO®。',
+  '。服务全球50+国家B2B买家，ISO 9001+OEKO-TEX认证。东霄羊绒。',
+  '。1994年建厂，38,000平米鄂尔多斯产业园，免费打样。东霄。',
+  '。23年羊绒源头工厂，小起订量支持。东霄羊绒B2B。',
+  '。内蒙古产高端羊绒，样品7天寄出。东霄。',
+];
+
+function suffixFor(id: string, list: readonly string[]): string {
+  // Simple hash: sum char codes mod list length
+  let h = 0;
+  for (let i = 0; i < id.length; i++) h = (h * 31 + id.charCodeAt(i)) | 0;
+  return list[Math.abs(h) % list.length];
+}
+
 const tdk = {
   en: (p, c) => {
     const shortName = p.name.length > 22 ? `${p.name.substring(0, 22).trim()}…` : p.name;
@@ -453,8 +507,9 @@ const tdk = {
       sizes ? `sizes ${sizes}` : '',
     ].filter(Boolean);
     const descCore = attrs.length ? ` ${attrs.join(', ')}.` : '';
+    const suffix = suffixFor(p.id, EN_SUFFIXES);
     const description = clip(
-      `${shortName}.${descCore} MOQ ${p.moq} pcs, lead ${cleanAttr(p.lead)}. OEM/ODM from Ordos, Inner Mongolia, China. DONGXIAO.`,
+      `${shortName}.${descCore} MOQ ${p.moq} pcs, lead ${cleanAttr(p.lead)}${suffix}`,
       158
     );
     return {
@@ -500,7 +555,7 @@ const tdk = {
       sizes ? `尺码${sizes}` : '',
     ].filter(Boolean);
     const description = clip(
-      `${shortName}。${attrs.join('，')}。MOQ ${p.moq}件，交期${leadDays}，鄂尔多斯源头工厂支持OEM/ODM。DONGXIAO。`,
+      `${shortName}。${attrs.join('，')}。MOQ ${p.moq}件，交期${leadDays}${suffixFor(p.id, CN_SUFFIXES)}`,
       150
     );
     return {
@@ -526,7 +581,7 @@ const tdk = {
       sizes ? `Größen ${sizes}` : '',
     ].filter(Boolean);
     const description = clip(
-      `${shortName}. ${attrs.join(', ')}. Direkt ab Ordos-Fabrik (China). MOQ ${p.moq} Stk., Lieferzeit ${cleanAttr(p.lead)}. OEM/ODM. DONGXIAO.`,
+      `${shortName}. ${attrs.join(', ')}. Direkt ab Ordos-Fabrik (China). MOQ ${p.moq} Stk., Lieferzeit ${cleanAttr(p.lead)}${suffixFor(p.id, DE_SUFFIXES)}`,
       158
     );
     return {
@@ -552,7 +607,7 @@ const tdk = {
       sizes ? `tailles ${sizes}` : '',
     ].filter(Boolean);
     const description = clip(
-      `${shortName}. ${attrs.join(', ')}. En gros depuis l'usine d'Ordos (Chine). MOQ ${p.moq} pièces, délai ${cleanAttr(p.lead)}. OEM/ODM. DONGXIAO.`,
+      `${shortName}. ${attrs.join(', ')}. En gros depuis l'usine d'Ordos (Chine). MOQ ${p.moq} pièces, délai ${cleanAttr(p.lead)}${suffixFor(p.id, FR_SUFFIXES)}`,
       158
     );
     return {
@@ -578,7 +633,7 @@ const tdk = {
       sizes ? `サイズ${sizes}` : '',
     ].filter(Boolean);
     const description = clip(
-      `${shortName}。${attrs.join('、')}。オルドス工場（中国）直送。MOQ ${p.moq}枚、納期${cleanAttr(p.lead)}。OEM/ODM対応。DONGXIAO®。`,
+      `${shortName}。${attrs.join('、')}。オルドス工場（中国）直送。MOQ ${p.moq}枚、納期${cleanAttr(p.lead)}${suffixFor(p.id, JA_SUFFIXES)}`,
       150
     );
     return {
@@ -604,7 +659,7 @@ const tdk = {
       sizes ? `사이즈 ${sizes}` : '',
     ].filter(Boolean);
     const description = clip(
-      `${shortName}. ${attrs.join(', ')}. 오르도스 공장(중국) 직송. MOQ ${p.moq}pcs, 납기 ${cleanAttr(p.lead)}. OEM/ODM. DONGXIAO®.`,
+      `${shortName}. ${attrs.join(', ')}. 오르도스 공장(중국) 직송. MOQ ${p.moq}pcs, 납기 ${cleanAttr(p.lead)}${suffixFor(p.id, KR_SUFFIXES)}`,
       158
     );
     return {
