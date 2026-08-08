@@ -564,7 +564,7 @@ function suffixFor(id: string, list: readonly string[]): string {
 
 const tdk = {
   en: (p, c) => {
-    const shortName = p.name.length > 22 ? `${p.name.substring(0, 22).trim()}…` : p.name;
+    const shortName = p.name.length > 30 ? `${p.name.substring(0, 30).trim()}…` : p.name;
     const colors = listColors(p, locale);
     const sizes = listSizes(p, locale);
     const season = pickSeason(p, locale);
@@ -614,7 +614,7 @@ const tdk = {
     };
   },
   cn: (p, _c) => {
-    const shortName = p.name.length > 16 ? `${p.name.substring(0, 16).trim()}…` : p.name;
+    const shortName = p.name.length > 22 ? `${p.name.substring(0, 22).trim()}…` : p.name;
     const categoryName = cnCategoryNames[p.categoryId] || '羊绒制品';
     const leadDays = cleanAttr(p.lead).replace(/\s*days?\b/i, '天').replace(/\s+/g, '');
     const colors = listColors(p, locale);
@@ -642,7 +642,7 @@ const tdk = {
     };
   },
   de: (p, c) => {
-    const shortName = p.name.length > 20 ? `${p.name.substring(0, 20).trim()}…` : p.name;
+    const shortName = p.name.length > 26 ? `${p.name.substring(0, 26).trim()}…` : p.name;
     const colors = listColors(p, locale);
     const sizes = listSizes(p, locale);
     const season = pickSeason(p, locale);
@@ -668,7 +668,7 @@ const tdk = {
     };
   },
   fr: (p, c) => {
-    const shortName = p.name.length > 20 ? `${p.name.substring(0, 20).trim()}…` : p.name;
+    const shortName = p.name.length > 26 ? `${p.name.substring(0, 26).trim()}…` : p.name;
     const colors = listColors(p, locale);
     const sizes = listSizes(p, locale);
     const season = pickSeason(p, locale);
@@ -694,7 +694,7 @@ const tdk = {
     };
   },
   ja: (p, c) => {
-    const shortName = p.name.length > 16 ? `${p.name.substring(0, 16).trim()}…` : p.name;
+    const shortName = p.name.length > 22 ? `${p.name.substring(0, 22).trim()}…` : p.name;
     const colors = listColors(p, locale);
     const sizes = listSizes(p, locale);
     const season = pickSeason(p, locale);
@@ -720,7 +720,7 @@ const tdk = {
     };
   },
   kr: (p, c) => {
-    const shortName = p.name.length > 16 ? `${p.name.substring(0, 16).trim()}…` : p.name;
+    const shortName = p.name.length > 22 ? `${p.name.substring(0, 22).trim()}…` : p.name;
     const colors = listColors(p, locale);
     const sizes = listSizes(p, locale);
     const season = pickSeason(p, locale);
@@ -748,7 +748,9 @@ const tdk = {
 };
 
 const t = (tdk[locale] || tdk.en)(product, category.name);
-const pageTitle = t.title.length > 62 ? `${t.title.slice(0, 60).replace(/\s+\S*$/, '')}…` : t.title;
+// Title clip: Google snippet ideal is 50-60c, max ~70c. Clip to 65c
+// but preserve last partial word boundary so we don't cut mid-word.
+const pageTitle = t.title.length > 65 ? `${t.title.slice(0, 64).replace(/\s+\S*$/, '').trimEnd()}…` : t.title;
 
 
 
