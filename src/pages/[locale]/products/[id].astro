@@ -564,7 +564,8 @@ function suffixFor(id: string, list: readonly string[]): string {
 
 const tdk = {
   en: (p, c) => {
-    const shortName = p.name.length > 30 ? `${p.name.substring(0, 30).trim()}…` : p.name;
+    // Use full product name — pageTitle handles clip to 65c with word boundary
+    const shortName = p.name;
     const colors = listColors(p, locale);
     const sizes = listSizes(p, locale);
     const season = pickSeason(p, locale);
@@ -614,7 +615,7 @@ const tdk = {
     };
   },
   cn: (p, _c) => {
-    const shortName = p.name.length > 22 ? `${p.name.substring(0, 22).trim()}…` : p.name;
+    const shortName = p.name;
     const categoryName = cnCategoryNames[p.categoryId] || '羊绒制品';
     const leadDays = cleanAttr(p.lead).replace(/\s*days?\b/i, '天').replace(/\s+/g, '');
     const colors = listColors(p, locale);
@@ -642,7 +643,7 @@ const tdk = {
     };
   },
   de: (p, c) => {
-    const shortName = p.name.length > 26 ? `${p.name.substring(0, 26).trim()}…` : p.name;
+    const shortName = p.name;
     const colors = listColors(p, locale);
     const sizes = listSizes(p, locale);
     const season = pickSeason(p, locale);
@@ -668,7 +669,7 @@ const tdk = {
     };
   },
   fr: (p, c) => {
-    const shortName = p.name.length > 26 ? `${p.name.substring(0, 26).trim()}…` : p.name;
+    const shortName = p.name;
     const colors = listColors(p, locale);
     const sizes = listSizes(p, locale);
     const season = pickSeason(p, locale);
@@ -694,7 +695,7 @@ const tdk = {
     };
   },
   ja: (p, c) => {
-    const shortName = p.name.length > 22 ? `${p.name.substring(0, 22).trim()}…` : p.name;
+    const shortName = p.name;
     const colors = listColors(p, locale);
     const sizes = listSizes(p, locale);
     const season = pickSeason(p, locale);
@@ -720,7 +721,7 @@ const tdk = {
     };
   },
   kr: (p, c) => {
-    const shortName = p.name.length > 22 ? `${p.name.substring(0, 22).trim()}…` : p.name;
+    const shortName = p.name;
     const colors = listColors(p, locale);
     const sizes = listSizes(p, locale);
     const season = pickSeason(p, locale);
