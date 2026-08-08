@@ -279,29 +279,41 @@ const SIZE_HINTS = [
 ];
 
 // Color variant hints when no concrete color name is found in product text.
-// These signal "this product uses colors but the catalog didn't record specifics",
-// so the fallback can return a useful SEO phrase instead of empty string.
-//
-// The label field is the FINAL string used in the meta description — these
-// labels are self-contained (e.g. "Solid color", "Multi-color") so they
-// should NOT be followed by the locale-specific " colors" suffix in the
-// TDK template. The TDK template uses isSelfContainedColorLabel() to detect
-// this and skip the suffix for self-contained labels.
-const COLOR_VARIANT_HINTS = [
-  { re: /\b(silver|gold|copper|metallic)\s+(threads?|yarn|wire|stripe)\b/i, label: 'Silver thread accent' },
-  { re: /\b(multi-?color(ed)?|multi-?colou?r|rainbow|variegated|multicolored)\b/i, label: 'Multi-color' },
-  { re: /\b(space[\s-]?dyed|spaced\s*dyed)\b/i, label: 'Space-dyed' },
-  { re: /\b(melange|heather|marl)\b/i, label: 'Heathered melange' },
-  { re: /\b(plaid|tartan|check(ed)?)\b/i, label: 'Plaid pattern' },
-  { re: /\b(stripe(d)?|ribbed?)\b/i, label: 'Striped' },
-  { re: /\b(solid)\b/i, label: 'Solid color' },
+// Each hint produces a localized label for the matching locale.
+const COLOR_VARIANT_HINTS: Array<{ re: RegExp; label: Record<string, string> }> = [
+  { re: /\b(silver|gold|copper|metallic)\s+(threads?|yarn|wire|stripe)\b/i,
+    label: { en: 'Silver thread accent', de: 'Mit Silberfaden', fr: 'Fil argenté',
+             ja: 'シルバースレッド', kr: '실버 스레드', cn: '银线点缀' } },
+  { re: /\b(multi-?color(ed)?|multi-?colou?r|rainbow|variegated|multicolored)\b/i,
+    label: { en: 'Multi-color', de: 'Mehrfarbig', fr: 'Multicolore',
+             ja: 'マルチカラー', kr: '멀티컬러', cn: '多色可选' } },
+  { re: /\b(space[\s-]?dyed|spaced\s*dyed)\b/i,
+    label: { en: 'Space-dyed', de: 'Space-Dyed', fr: 'Teint en dégradé',
+             ja: 'スペースダイ', kr: '스페이스트 다이', cn: '段染工艺' } },
+  { re: /\b(melange|heather|marl)\b/i,
+    label: { en: 'Heathered melange', de: 'Melange', fr: 'Chiné mélangé',
+             ja: 'メランジ', kr: '멜란지', cn: '混色纱线' } },
+  { re: /\b(plaid|tartan|check(ed)?)\b/i,
+    label: { en: 'Plaid pattern', de: 'Kariert', fr: 'À carreaux',
+             ja: 'チェック柄', kr: '체크 패턴', cn: '格纹图案' } },
+  { re: /\b(stripe(d)?|ribbed?)\b/i,
+    label: { en: 'Striped', de: 'Gestreift', fr: 'Rayé',
+             ja: 'ストライプ', kr: '스트라이프', cn: '条纹' } },
+  { re: /\b(solid)\b/i,
+    label: { en: 'Solid color', de: 'Unifarben', fr: 'Couleur unie',
+             ja: '無地', kr: '단색', cn: '纯色' } },
 ];
-const CATEGORY_DEFAULT_COLORS: Record<string, string> = {
-  hats: 'Custom dye available',
-  scarves: 'Custom colors available',
-  accessories: 'Various colors available',
-  sweaters: 'Custom colors available',
-  yarn: 'Color card available',
+const CATEGORY_DEFAULT_COLORS: Record<string, Record<string, string>> = {
+  hats:       { en: 'Custom dye available', de: 'Individuell färbbar', fr: 'Teinture personnalisée',
+                ja: 'カスタム染色可', kr: '커스텀 염색 가능', cn: '可定制染色' },
+  scarves:    { en: 'Custom colors available', de: 'Individuelle Farben', fr: 'Coloris personnalisés',
+                ja: 'カスタムカラー可', kr: '커스텀 컬러 가능', cn: '可定制颜色' },
+  accessories:{ en: 'Various colors available', de: 'Verschiedene Farben', fr: 'Divers coloris',
+                ja: '多彩なカラー', kr: '다양한 색상', cn: '多种颜色可选' },
+  sweaters:   { en: 'Custom colors available', de: 'Individuelle Farben', fr: 'Coloris personnalisés',
+                ja: 'カスタムカラー可', kr: '커스텀 컬러 가능', cn: '可定制颜色' },
+  yarn:       { en: 'Color card available', de: 'Farbkarte verfügbar', fr: 'Carte de couleurs',
+                ja: 'カラーカード対応', kr: '컬러 카드 제공', cn: '提供色卡' },
 };
 
 // Self-contained color labels are phrases that ALREADY describe the color
@@ -313,27 +325,19 @@ const CATEGORY_DEFAULT_COLORS: Record<string, string> = {
 // - Fallback phrases returned by inferFromText() are always self-contained
 //   (they're constructed from a fixed vocabulary below).
 // - Concrete color names from the colors: [...] data field need the suffix.
-const SELF_CONTAINED_LABELS = new Set([
-  // Category defaults
-  'Custom dye available',
-  'Custom colors available',
-  'Various colors available',
-  'Color card available',
-  // Color variant hints
-  'Silver thread accent',
-  'Multi-color',
-  'Space-dyed',
-  'Heathered melange',
-  'Plaid pattern',
-  'Striped',
-  'Solid color',
-]);
+const SELF_CONTAINED_LABELS = new Set<string>();
+for (const hint of COLOR_VARIANT_HINTS) {
+  for (const label of Object.values(hint.label)) SELF_CONTAINED_LABELS.add(label);
+}
+for (const catMap of Object.values(CATEGORY_DEFAULT_COLORS)) {
+  for (const label of Object.values(catMap)) SELF_CONTAINED_LABELS.add(label);
+}
 function isSelfContainedColorLabel(s: string): boolean {
   const t = s.trim();
   return SELF_CONTAINED_LABELS.has(t);
 }
 
-function inferFromText(p: typeof product): { colors: string; gender: string; season: string; pattern: string; sizes: string } {
+function inferFromText(p: typeof product, locale: string): { colors: string; gender: string; season: string; pattern: string; sizes: string } {
   // Build a haystack from name + tags + description + detailedDescription
   const tagStr = Array.isArray(p.tags) ? p.tags.join(' ') : String(p.tags || '');
   const hay = [
@@ -347,7 +351,9 @@ function inferFromText(p: typeof product): { colors: string; gender: string; sea
 
   const result = { colors: '', gender: '', season: '', pattern: '', sizes: '' };
 
-  // colors: first try concrete color names
+  // colors: first try concrete color names (English vocabulary works as
+  // a heuristic — concrete color names in product text are usually English
+  // even on CN/JP/KR pages since data was scraped from English catalogs).
   const colorHits: string[] = [];
   for (const w of COLOR_WORDS) {
     const re = new RegExp(`\\b${w.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')}\\b`, 'i');
@@ -361,14 +367,15 @@ function inferFromText(p: typeof product): { colors: string; gender: string; sea
     // No concrete color: look for color-variant hints (silver threads, multi-color, etc.)
     for (const hint of COLOR_VARIANT_HINTS) {
       if (hint.re.test(hay)) {
-        result.colors = hint.label;
+        result.colors = hint.label[locale] || hint.label.en;
         break;
       }
     }
     // Still empty: use category default
     if (!result.colors) {
       const catId = String(p.categoryId || '').toLowerCase();
-      result.colors = CATEGORY_DEFAULT_COLORS[catId] || 'Custom colors available';
+      const catMap = CATEGORY_DEFAULT_COLORS[catId];
+      result.colors = catMap ? (catMap[locale] || catMap.en) : 'Custom colors available';
     }
   }
 
@@ -423,7 +430,7 @@ function inferFromText(p: typeof product): { colors: string; gender: string; sea
   return result;
 }
 
-function listColors(p: typeof product): string {
+function listColors(p: typeof product, locale: string = 'en'): string {
   const raw = Array.isArray(p.colors)
     ? p.colors.join(', ')
     : String(p.colorsOffered || p.colors || '');
@@ -432,32 +439,32 @@ function listColors(p: typeof product): string {
     const items = s.split(/[,/]/).map((x) => x.trim()).filter(Boolean);
     return items.length > 4 ? `${items.slice(0, 4).join(', ')} +${items.length - 4}` : s;
   }
-  // Fallback: infer from text + pattern signals
-  return inferFromText(p).colors;
+  // Fallback: infer from text + pattern signals (locale-aware)
+  return inferFromText(p, locale).colors;
 }
-function listSizes(p: typeof product): string {
+function listSizes(p: typeof product, locale: string = 'en'): string {
   const raw = Array.isArray(p.sizes) ? p.sizes.join(', ') : String(p.sizes || '');
   const s = cleanAttr(raw);
   if (s && !SKIP_VALUES.test(s)) {
     const items = s.split(/[,;]/).map((x) => x.trim()).filter(Boolean);
     return items.length > 4 ? `${items.slice(0, 4).join(', ')} +${items.length - 4}` : s;
   }
-  return inferFromText(p).sizes;
+  return inferFromText(p, locale).sizes;
 }
-function pickGender(p: typeof product): string {
+function pickGender(p: typeof product, locale: string = 'en'): string {
   const direct = pickAttr(p.gender);
   if (direct && !/EU\s*\//i.test(direct)) return direct;
-  return inferFromText(p).gender;
+  return inferFromText(p, locale).gender;
 }
-function pickSeason(p: typeof product): string {
+function pickSeason(p: typeof product, locale: string = 'en'): string {
   const direct = pickAttr(p.season);
   if (direct) return direct;
-  return inferFromText(p).season;
+  return inferFromText(p, locale).season;
 }
-function pickPattern(p: typeof product): string {
+function pickPattern(p: typeof product, locale: string = 'en'): string {
   const direct = pickAttr(p.pattern);
   if (direct && !/single strand/i.test(direct)) return direct;
-  return inferFromText(p).pattern;
+  return inferFromText(p, locale).pattern;
 }
 function clip(s: string, max: number): string {
   if (s.length <= max) return s;
@@ -558,11 +565,11 @@ function suffixFor(id: string, list: readonly string[]): string {
 const tdk = {
   en: (p, c) => {
     const shortName = p.name.length > 22 ? `${p.name.substring(0, 22).trim()}…` : p.name;
-    const colors = listColors(p);
-    const sizes = listSizes(p);
-    const season = pickSeason(p);
-    const gender = pickGender(p);
-    const pattern = pickPattern(p);
+    const colors = listColors(p, locale);
+    const sizes = listSizes(p, locale);
+    const season = pickSeason(p, locale);
+    const gender = pickGender(p, locale);
+    const pattern = pickPattern(p, locale);
     const knit = pickAttr(p.knittingTechnology);
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
@@ -610,10 +617,10 @@ const tdk = {
     const shortName = p.name.length > 16 ? `${p.name.substring(0, 16).trim()}…` : p.name;
     const categoryName = cnCategoryNames[p.categoryId] || '羊绒制品';
     const leadDays = cleanAttr(p.lead).replace(/\s*days?\b/i, '天').replace(/\s+/g, '');
-    const colors = listColors(p);
-    const sizes = listSizes(p);
-    const season = pickSeason(p);
-    const gender = pickGender(p);
+    const colors = listColors(p, locale);
+    const sizes = listSizes(p, locale);
+    const season = pickSeason(p, locale);
+    const gender = pickGender(p, locale);
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
       p.micron ? `${cleanAttr(p.micron)}微米` : '',
@@ -636,10 +643,10 @@ const tdk = {
   },
   de: (p, c) => {
     const shortName = p.name.length > 20 ? `${p.name.substring(0, 20).trim()}…` : p.name;
-    const colors = listColors(p);
-    const sizes = listSizes(p);
-    const season = pickSeason(p);
-    const gender = pickGender(p);
+    const colors = listColors(p, locale);
+    const sizes = listSizes(p, locale);
+    const season = pickSeason(p, locale);
+    const gender = pickGender(p, locale);
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
       p.micron ? `${cleanAttr(p.micron)} micron` : '',
@@ -662,10 +669,10 @@ const tdk = {
   },
   fr: (p, c) => {
     const shortName = p.name.length > 20 ? `${p.name.substring(0, 20).trim()}…` : p.name;
-    const colors = listColors(p);
-    const sizes = listSizes(p);
-    const season = pickSeason(p);
-    const gender = pickGender(p);
+    const colors = listColors(p, locale);
+    const sizes = listSizes(p, locale);
+    const season = pickSeason(p, locale);
+    const gender = pickGender(p, locale);
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
       p.micron ? `${cleanAttr(p.micron)} micron` : '',
@@ -688,10 +695,10 @@ const tdk = {
   },
   ja: (p, c) => {
     const shortName = p.name.length > 16 ? `${p.name.substring(0, 16).trim()}…` : p.name;
-    const colors = listColors(p);
-    const sizes = listSizes(p);
-    const season = pickSeason(p);
-    const gender = pickGender(p);
+    const colors = listColors(p, locale);
+    const sizes = listSizes(p, locale);
+    const season = pickSeason(p, locale);
+    const gender = pickGender(p, locale);
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
       p.micron ? `${cleanAttr(p.micron)}ミクロン` : '',
@@ -714,10 +721,10 @@ const tdk = {
   },
   kr: (p, c) => {
     const shortName = p.name.length > 16 ? `${p.name.substring(0, 16).trim()}…` : p.name;
-    const colors = listColors(p);
-    const sizes = listSizes(p);
-    const season = pickSeason(p);
-    const gender = pickGender(p);
+    const colors = listColors(p, locale);
+    const sizes = listSizes(p, locale);
+    const season = pickSeason(p, locale);
+    const gender = pickGender(p, locale);
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
       p.micron ? `${cleanAttr(p.micron)} micron` : '',
