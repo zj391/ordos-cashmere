@@ -278,6 +278,26 @@ const SIZE_HINTS = [
   /Custom Size/i,
 ];
 
+// Color variant hints when no concrete color name is found in product text.
+// These signal "this product uses colors but the catalog didn't record specifics",
+// so the fallback can return a useful SEO phrase instead of empty string.
+const COLOR_VARIANT_HINTS = [
+  { re: /\b(silver|gold|copper|metallic)\s+(threads?|yarn|wire|stripe)\b/i, label: 'Silver thread accent' },
+  { re: /\b(multi-?color(ed)?|multi-?colou?r|rainbow|variegated|multicolored)\b/i, label: 'Multi-color' },
+  { re: /\b(space[\s-]?dyed|spaced\s*dyed)\b/i, label: 'Space-dyed' },
+  { re: /\b(melange|heather|marl)\b/i, label: 'Heathered melange' },
+  { re: /\b(plaid|tartan|check(ed)?)\b/i, label: 'Plaid pattern' },
+  { re: /\b(stripe(d)?|ribbed?)\b/i, label: 'Striped' },
+  { re: /\b(solid)\b/i, label: 'Solid color' },
+];
+const CATEGORY_DEFAULT_COLORS: Record<string, string> = {
+  hats: 'Custom dye available',
+  scarves: 'Custom colors available',
+  accessories: 'Various colors available',
+  sweaters: 'Custom colors available',
+  yarn: 'Color card available',
+};
+
 function inferFromText(p: typeof product): { colors: string; gender: string; season: string; pattern: string; sizes: string } {
   // Build a haystack from name + tags + description + detailedDescription
   const tagStr = Array.isArray(p.tags) ? p.tags.join(' ') : String(p.tags || '');
@@ -292,7 +312,7 @@ function inferFromText(p: typeof product): { colors: string; gender: string; sea
 
   const result = { colors: '', gender: '', season: '', pattern: '', sizes: '' };
 
-  // colors
+  // colors: first try concrete color names
   const colorHits: string[] = [];
   for (const w of COLOR_WORDS) {
     const re = new RegExp(`\\b${w.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')}\\b`, 'i');
@@ -302,6 +322,19 @@ function inferFromText(p: typeof product): { colors: string; gender: string; sea
   }
   if (colorHits.length) {
     result.colors = colorHits.length > 3 ? `${colorHits.slice(0, 3).join(', ')} +${colorHits.length - 3}` : colorHits.join(', ');
+  } else {
+    // No concrete color: look for color-variant hints (silver threads, multi-color, etc.)
+    for (const hint of COLOR_VARIANT_HINTS) {
+      if (hint.re.test(hay)) {
+        result.colors = hint.label;
+        break;
+      }
+    }
+    // Still empty: use category default
+    if (!result.colors) {
+      const catId = String(p.categoryId || '').toLowerCase();
+      result.colors = CATEGORY_DEFAULT_COLORS[catId] || 'Custom colors available';
+    }
   }
 
   // gender
@@ -364,7 +397,7 @@ function listColors(p: typeof product): string {
     const items = s.split(/[,/]/).map((x) => x.trim()).filter(Boolean);
     return items.length > 4 ? `${items.slice(0, 4).join(', ')} +${items.length - 4}` : s;
   }
-  // Fallback: infer from text
+  // Fallback: infer from text + pattern signals
   return inferFromText(p).colors;
 }
 function listSizes(p: typeof product): string {
