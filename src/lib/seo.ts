@@ -138,7 +138,7 @@ export const SEO: Record<Locale, LocaleSEO> = {
     },
     ordosOrigin: {
       title: 'Ordos Cashmere Origin | Inner Mongolia Heritage & Quality',
-      description: 'Discover why Ordos, Inner Mongolia is the world\'s premium cashmere origin. Albus goat breeding, climate, traceability, and sustainable grazing practices.',
+      description: "Discover why Ordos, Inner Mongolia is the world's premium cashmere origin. Albus goat breeding, climate, traceability, and sustainable grazing practices.",
       keywords: ['Ordos cashmere origin', 'Inner Mongolia cashmere', 'Albus goat', 'cashmere terroir', 'sustainable cashmere',
         'Ordos & Mongolian cashmere supplier', '100% Ordos cashmere',
         'pure Mongolian raw cashmere', 'Inner Mongolia Ordos cashmere factory',
@@ -241,32 +241,32 @@ export const SEO: Record<Locale, LocaleSEO> = {
     market: 'France / UE',
     home: {
       title: 'Cachemire Erdos Fabricant | Mongolie Intérieure B2B | 23+ ans',
-      description: 'Fabricant cachemire Erdos basé en Mongolie Intérieure, Chine. 23+ ans d\'expérience: cachemire brut, fil à tricoter, tissu cachemire et OEM maille pour marques françaises et EU. Certifié ISO 9001 + OEKO-TEX. Petites MOQ acceptées. Échantillon gratuit.',
+      description: "Fabricant cachemire Erdos basé en Mongolie Intérieure, Chine. 23+ ans d'expérience: cachemire brut, fil à tricoter, tissu cachemire et OEM maille pour marques françaises et EU. Certifié ISO 9001 + OEKO-TEX. Petites MOQ acceptées. Échantillon gratuit.",
       keywords: ['fabricant cachemire', 'fournisseur cachemire B2B', 'cachemire Ordos', 'Mongolie Intérieure cachemire', 'gros cachemire', 'cachemire OEM', 'cachemire Erdos', 'cachemire Ordos fabricant', 'Mongolie Intérieure cachemire fournisseur', 'cachemire France grossiste'],
     },
     rawMaterial: {
-      title: 'Cachemire Brut Premium | Blanc, Brun, Gris | Usine Ordos',
-      description: 'Achetez du cachemire brut directement de l\'usine d\'Ordos. Blanc, brun, violet. Finesse 14.5-16.5μm. Prix de gros pour acheteurs B2B.',
+      title: "Cachemire Brut Premium | Blanc, Brun, Gris | Usine Ordos",
+      description: "Achetez du cachemire brut directement de l'usine d'Ordos. Blanc, brun, violet. Finesse 14.5-16.5μm. Prix de gros pour acheteurs B2B.",
       keywords: getSeoKeywords('fr', 'raw'),
     },
     yarnFabric: {
-      title: 'Fil & Tissu Cachemire | Peigné & Cardé | B2B Grossiste | Ordos',
-      description: 'Fil et tissu de cachemire premium pour acheteurs B2B. Titres, couleurs, mélanges personnalisés. Directement de la filature d'Ordos, Mongolie Intérieure. Échantillon gratuit.',
+      title: "Fil & Tissu Cachemire | Peigné & Cardé | B2B Grossiste | Ordos",
+      description: "Fil et tissu de cachemire premium pour acheteurs B2B. Titres, couleurs, mélanges personnalisés. Directement de la filature d'Ordos, Mongolie Intérieure. Échantillon gratuit.",
       keywords: getSeoKeywords('fr', 'yarn'),
     },
     garmentOem: {
-      title: 'Vêtements Cachemire OEM/ODM | Pull, Manteau, Robe Fabricant | MOQ 100',
-      description: 'Service complet OEM/ODM vêtements cachemire: pulls, cardigans, manteaux, robes, écharpes. Design, prototypage, production. MOQ 100 pièces. 23+ ans d'expérience.',
+      title: "Vêtements Cachemire OEM/ODM | Pull, Manteau, Robe Fabricant | MOQ 100",
+      description: "Service complet OEM/ODM vêtements cachemire: pulls, cardigans, manteaux, robes, écharpes. Design, prototypage, production. MOQ 100 pièces. 23+ ans d'expérience.",
       keywords: getSeoKeywords('fr', 'garment'),
     },
     factory: {
-      title: 'Force de l\'Usine | 23+ Ans Production Cachemire | Ordos',
+      title: "Force de l'Usine | 23+ Ans Production Cachemire | Ordos",
       description: 'Usine de 38 000 m² à Ordos. 500+ employés. 1 200+ tonnes de capacité annuelle. Certifié ISO, OEKO-TEX.',
       keywords: getSeoKeywords('fr', 'factory'),
     },
     ordosOrigin: {
       title: 'Origine Cachemire Ordos | Patrimoine Mongolie Intérieure | Traçabilité',
-      description: 'Découvrez pourquoi Ordos, Mongolie Intérieure est l'origine premium du cachemire mondial. Chèvres Albas, climat, traçabilité de la fibre au produit fini.',
+      description: "Découvrez pourquoi Ordos, Mongolie Intérieure est l'origine premium du cachemire mondial. Chèvres Albas, climat, traçabilité de la fibre au produit fini.",
       keywords: getSeoKeywords('fr', 'origin'),
     },
     contact: {
@@ -281,7 +281,7 @@ export const SEO: Record<Locale, LocaleSEO> = {
     },
     download: {
       title: 'Centre de Téléchargement | Catalogue, Specs, Certifications ISO/OEKO-TEX',
-      description: 'Téléchargez catalogues produits cachemire, spécifications techniques, certifications ISO 9001 et OEKO-TEX, rapports d'audit usine. Réservé aux acheteurs B2B.',
+      description: "Téléchargez catalogues produits cachemire, spécifications techniques, certifications ISO 9001 et OEKO-TEX, rapports d'audit usine. Réservé aux acheteurs B2B.",
       keywords: ['catalogue cachemire'],
     },
     faq: {
