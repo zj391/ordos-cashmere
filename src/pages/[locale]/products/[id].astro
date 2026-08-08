@@ -250,21 +250,146 @@ function pickAttr(v: unknown): string {
   if (!s || SKIP_VALUES.test(s)) return '';
   return s;
 }
+const COLOR_WORDS = [
+  'Beige', 'Black', 'Blue', 'Brown', 'Burgundy', 'Camel', 'Cream', 'Gray', 'Grey',
+  'Green', 'Ivory', 'Khaki', 'Maroon', 'Navy', 'Olive', 'Orange', 'Pink', 'Purple',
+  'Red', 'Rose', 'Royal Blue', 'Silver', 'Tan', 'Teal', 'White', 'Yellow',
+  'Aqua', 'Coral', 'Charcoal', 'Coffee', 'Dark Blue', 'Dark Gray', 'Dark Grey',
+  'Fuchsia', 'Gold', 'Lavender', 'Light Blue', 'Light Gray', 'Light Grey',
+  'Lime', 'Magenta', 'Mint', 'Mustard', 'Peach', 'Rust', 'Sand', 'Sky Blue',
+  'Turquoise', 'Wine', 'Apricot', 'Beetroot', 'Brick Red', 'Bubblegum',
+];
+const GENDER_WORDS = [
+  'Women', 'Ladies', 'Female', 'Women\'s', 'Lady',
+  'Men', 'Male', 'Gentlemen', 'Men\'s',
+  'Unisex', 'Adult', 'Baby', 'Kids', 'Children',
+];
+const SEASON_WORDS = ['Spring', 'Summer', 'Fall', 'Autumn', 'Winter', 'All-season', 'Four-season'];
+const PATTERN_WORDS = [
+  'Solid Color', 'Stripe', 'Striped', 'Plaid', 'Cable', 'Cable Knit', 'Ribbed',
+  'Knit', 'Crochet', 'Floral', 'Geometric', 'Argyle', 'Herringbone', 'Jacquard',
+  'Quilted', 'Plain', 'Printed', 'Digital Print', 'Tassel',
+];
+const SIZE_HINTS = [
+  /(\d{2,3})\s*[xX×]\s*(\d{2,3})\s*(cm|mm|inch|in|")/, // 100x205 cm
+  /\bXXS\b|\bXS\b|\bS\b|\bM\b|\bL\b|\bXL\b|\bXXL\b|\bXXXL\b/,
+  /One Size/i,
+  /Free Size/i,
+  /Custom Size/i,
+];
+
+function inferFromText(p: typeof product): { colors: string; gender: string; season: string; pattern: string; sizes: string } {
+  // Build a haystack from name + tags + description + detailedDescription
+  const tagStr = Array.isArray(p.tags) ? p.tags.join(' ') : String(p.tags || '');
+  const hay = [
+    p.name || '',
+    p.description || '',
+    p.detailedDescription || '',
+    tagStr,
+    pickAttr(p.collar),
+    pickAttr(p.function),
+  ].join(' ');
+
+  const result = { colors: '', gender: '', season: '', pattern: '', sizes: '' };
+
+  // colors
+  const colorHits: string[] = [];
+  for (const w of COLOR_WORDS) {
+    const re = new RegExp(`\\b${w.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')}\\b`, 'i');
+    if (re.test(hay) && !colorHits.some((h) => h.toLowerCase() === w.toLowerCase())) {
+      colorHits.push(w);
+    }
+  }
+  if (colorHits.length) {
+    result.colors = colorHits.length > 3 ? `${colorHits.slice(0, 3).join(', ')} +${colorHits.length - 3}` : colorHits.join(', ');
+  }
+
+  // gender
+  for (const w of GENDER_WORDS) {
+    const re = new RegExp(`\\b${w.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')}\\b`, 'i');
+    if (re.test(hay)) {
+      // normalize to canonical
+      const lw = w.toLowerCase();
+      if (lw.includes('women') || lw === 'ladies' || lw === 'female' || lw === 'lady') {
+        result.gender = 'Women';
+      } else if (lw.includes('men') || lw === 'male' || lw === 'gentlemen') {
+        result.gender = 'Men';
+      } else if (lw === 'unisex' || lw === 'adult') {
+        result.gender = 'Unisex';
+      } else if (lw === 'kids' || lw === 'children') {
+        result.gender = 'Kids';
+      } else if (lw === 'baby') {
+        result.gender = 'Baby';
+      }
+      break;
+    }
+  }
+
+  // season
+  for (const w of SEASON_WORDS) {
+    const re = new RegExp(`\\b${w}\\b`, 'i');
+    if (re.test(hay)) {
+      result.season = w === 'Fall' ? 'Autumn' : w;
+      break;
+    }
+  }
+
+  // pattern
+  for (const w of PATTERN_WORDS) {
+    const re = new RegExp(`\\b${w.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')}\\b`, 'i');
+    if (re.test(hay)) {
+      result.pattern = w;
+      break;
+    }
+  }
+
+  // sizes
+  for (const re of SIZE_HINTS) {
+    const m = hay.match(re);
+    if (m) {
+      result.sizes = m[0];
+      break;
+    }
+  }
+
+  return result;
+}
+
 function listColors(p: typeof product): string {
   const raw = Array.isArray(p.colors)
     ? p.colors.join(', ')
     : String(p.colorsOffered || p.colors || '');
   const s = cleanAttr(raw).replace(/,\s*Custom(ized|ize)?(,|$)/gi, '').replace(/^Custom(ized|ize)?[, ]*/i, '');
-  if (!s || SKIP_VALUES.test(s)) return '';
-  const items = s.split(/[,/]/).map((x) => x.trim()).filter(Boolean);
-  return items.length > 4 ? `${items.slice(0, 4).join(', ')} +${items.length - 4}` : s;
+  if (s && !SKIP_VALUES.test(s)) {
+    const items = s.split(/[,/]/).map((x) => x.trim()).filter(Boolean);
+    return items.length > 4 ? `${items.slice(0, 4).join(', ')} +${items.length - 4}` : s;
+  }
+  // Fallback: infer from text
+  return inferFromText(p).colors;
 }
 function listSizes(p: typeof product): string {
   const raw = Array.isArray(p.sizes) ? p.sizes.join(', ') : String(p.sizes || '');
   const s = cleanAttr(raw);
-  if (!s || SKIP_VALUES.test(s)) return '';
-  const items = s.split(/[,;]/).map((x) => x.trim()).filter(Boolean);
-  return items.length > 4 ? `${items.slice(0, 4).join(', ')} +${items.length - 4}` : s;
+  if (s && !SKIP_VALUES.test(s)) {
+    const items = s.split(/[,;]/).map((x) => x.trim()).filter(Boolean);
+    return items.length > 4 ? `${items.slice(0, 4).join(', ')} +${items.length - 4}` : s;
+  }
+  return inferFromText(p).sizes;
+}
+function pickGender(p: typeof product): string {
+  const direct = pickAttr(p.gender);
+  if (direct && !/EU\s*\//i.test(direct)) return direct;
+  return inferFromText(p).gender;
+}
+function pickSeason(p: typeof product): string {
+  const direct = pickAttr(p.season);
+  if (direct) return direct;
+  return inferFromText(p).season;
+}
+function pickPattern(p: typeof product): string {
+  const direct = pickAttr(p.pattern);
+  if (direct && !/single strand/i.test(direct)) return direct;
+  return inferFromText(p).pattern;
 }
 function clip(s: string, max: number): string {
   if (s.length <= max) return s;
@@ -313,9 +438,9 @@ const tdk = {
     const shortName = p.name.length > 22 ? `${p.name.substring(0, 22).trim()}…` : p.name;
     const colors = listColors(p);
     const sizes = listSizes(p);
-    const season = pickAttr(p.season);
-    const gender = pickAttr(p.gender);
-    const pattern = pickAttr(p.pattern);
+    const season = pickSeason(p);
+    const gender = pickGender(p);
+    const pattern = pickPattern(p);
     const knit = pickAttr(p.knittingTechnology);
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
@@ -324,7 +449,7 @@ const tdk = {
       pattern ? `${pattern} pattern` : '',
       knit && !/details?/i.test(knit) ? knit : '',
       season ? `for ${season}` : '',
-      gender && !/EU\s*\//i.test(gender) ? `${gender.toLowerCase()} fit` : '',
+      gender ? `${gender.toLowerCase()} fit` : '',
       sizes ? `sizes ${sizes}` : '',
     ].filter(Boolean);
     const descCore = attrs.length ? ` ${attrs.join(', ')}.` : '';
@@ -364,14 +489,14 @@ const tdk = {
     const leadDays = cleanAttr(p.lead).replace(/\s*days?\b/i, '天').replace(/\s+/g, '');
     const colors = listColors(p);
     const sizes = listSizes(p);
-    const season = pickAttr(p.season);
-    const gender = pickAttr(p.gender);
+    const season = pickSeason(p);
+    const gender = pickGender(p);
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
       p.micron ? `${cleanAttr(p.micron)}微米` : '',
       colors ? `颜色${colors}` : '',
-      season ? `${season}` : '',
-      gender && !/EU\s*\//i.test(gender) ? `${gender}` : '',
+      season ? `${season}季节` : '',
+      gender ? `${gender === 'Women' ? '女款' : gender === 'Men' ? '男款' : gender}` : '',
       sizes ? `尺码${sizes}` : '',
     ].filter(Boolean);
     const description = clip(
@@ -390,14 +515,14 @@ const tdk = {
     const shortName = p.name.length > 20 ? `${p.name.substring(0, 20).trim()}…` : p.name;
     const colors = listColors(p);
     const sizes = listSizes(p);
-    const season = pickAttr(p.season);
-    const gender = pickAttr(p.gender);
+    const season = pickSeason(p);
+    const gender = pickGender(p);
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
       p.micron ? `${cleanAttr(p.micron)} micron` : '',
       colors ? `${colors} Farben` : '',
       season ? `für ${season}` : '',
-      gender && !/EU\s*\//i.test(gender) ? `${gender.toLowerCase()} Passform` : '',
+      gender ? `${gender === 'Women' ? 'Damen' : gender === 'Men' ? 'Herren' : gender.toLowerCase()} Passform` : '',
       sizes ? `Größen ${sizes}` : '',
     ].filter(Boolean);
     const description = clip(
@@ -416,14 +541,14 @@ const tdk = {
     const shortName = p.name.length > 20 ? `${p.name.substring(0, 20).trim()}…` : p.name;
     const colors = listColors(p);
     const sizes = listSizes(p);
-    const season = pickAttr(p.season);
-    const gender = pickAttr(p.gender);
+    const season = pickSeason(p);
+    const gender = pickGender(p);
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
       p.micron ? `${cleanAttr(p.micron)} micron` : '',
       colors ? `${colors} coloris` : '',
       season ? `pour ${season}` : '',
-      gender && !/EU\s*\//i.test(gender) ? `coupe ${gender.toLowerCase()}` : '',
+      gender ? `coupe ${gender === 'Women' ? 'femme' : gender === 'Men' ? 'homme' : gender.toLowerCase()}` : '',
       sizes ? `tailles ${sizes}` : '',
     ].filter(Boolean);
     const description = clip(
@@ -442,14 +567,14 @@ const tdk = {
     const shortName = p.name.length > 16 ? `${p.name.substring(0, 16).trim()}…` : p.name;
     const colors = listColors(p);
     const sizes = listSizes(p);
-    const season = pickAttr(p.season);
-    const gender = pickAttr(p.gender);
+    const season = pickSeason(p);
+    const gender = pickGender(p);
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
       p.micron ? `${cleanAttr(p.micron)}ミクロン` : '',
       colors ? `カラー${colors}` : '',
       season ? `${season}向け` : '',
-      gender && !/EU\s*\//i.test(gender) ? `${gender}サイズ` : '',
+      gender ? `${gender === 'Women' ? 'レディース' : gender === 'Men' ? 'メンズ' : gender}サイズ` : '',
       sizes ? `サイズ${sizes}` : '',
     ].filter(Boolean);
     const description = clip(
@@ -468,14 +593,14 @@ const tdk = {
     const shortName = p.name.length > 16 ? `${p.name.substring(0, 16).trim()}…` : p.name;
     const colors = listColors(p);
     const sizes = listSizes(p);
-    const season = pickAttr(p.season);
-    const gender = pickAttr(p.gender);
+    const season = pickSeason(p);
+    const gender = pickGender(p);
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
       p.micron ? `${cleanAttr(p.micron)} micron` : '',
       colors ? `${colors} 색상` : '',
       season ? `${season}용` : '',
-      gender && !/EU\s*\//i.test(gender) ? `${gender} 사이즈` : '',
+      gender ? `${gender === 'Women' ? '여성' : gender === 'Men' ? '남성' : gender} 사이즈` : '',
       sizes ? `사이즈 ${sizes}` : '',
     ].filter(Boolean);
     const description = clip(
