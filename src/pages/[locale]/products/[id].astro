@@ -226,6 +226,35 @@ const cnCategoryNames: Record<string, string> = {
 
 };
 
+// Per-locale category name map. Falls back to data's English category.name
+// when locale doesn't have a translation. Used in title, JSON-LD
+// category, BreadcrumbList name, and HTML link text.
+const LOCALE_CATEGORY_NAMES: Record<string, Record<string, string>> = {
+  en: { hats: 'Cashmere Hats & Beanies', sweaters: 'Cashmere Sweaters & Knitwear',
+        scarves: 'Cashmere Scarves & Wraps', accessories: 'Cashmere Accessories',
+        yarn: 'Cashmere Yarn' },
+  de: { hats: 'Kaschmir-Hüte & Beanies', sweaters: 'Kaschmir-Pullover & Strick',
+        scarves: 'Kaschmir-Schals & Wraps', accessories: 'Kaschmir-Accessoires',
+        yarn: 'Kaschmir-Garn' },
+  fr: { hats: 'Bonnets & Beanies Cachemire', sweaters: 'Pulls & Tricots Cachemire',
+        scarves: 'Écharpes & Wraps Cachemire', accessories: 'Accessoires Cachemire',
+        yarn: 'Fil de Cachemire' },
+  ja: { hats: 'カシミアハット・ビーニー', sweaters: 'カシミアニット・セーター',
+        scarves: 'カシミアスカーフ・ラップ', accessories: 'カシミアアクセサリー',
+        yarn: 'カシミアヤーン' },
+  kr: { hats: '캐시미어 모자 & 비니', sweaters: '캐시미어 스웨터 & 니트',
+        scarves: '캐시미어 스카프 & 랩', accessories: '캐시미어 액세서리',
+        yarn: '캐시미어 원사' },
+  cn: { hats: '羊绒帽', sweaters: '羊绒衫', scarves: '羊绒围巾',
+        accessories: '羊绒配饰', yarn: '羊绒纱线' },
+};
+
+function localizedCategory(categoryId: string, locale: string, fallback: string): string {
+  const map = LOCALE_CATEGORY_NAMES[locale];
+  if (map && map[categoryId]) return map[categoryId];
+  return fallback;
+}
+
 
 
 // --- SEO copy helpers: build unique, attribute-rich TDK from catalog fields ---
@@ -713,9 +742,9 @@ const tdk = {
       150
     );
     return {
-      title: `${shortName} | カシミア${c}卸売 | MOQ ${p.moq}枚`,
+      title: `${shortName} | ${c}卸売 | MOQ ${p.moq}枚`,
       description,
-      keywords: [p.name, `カシミア${c}卸売`, `OEM ${c}`, `カシミア 製造 中国`, `B2B カシミア サプライヤー`],
+      keywords: [p.name, `${c}卸売`, `OEM ${c}`, `カシミア 製造 中国`, `B2B カシミア サプライヤー`],
       buyCta: '問い合わせ',
       hideFormCta: '閉じる',
     };
@@ -739,16 +768,18 @@ const tdk = {
       158
     );
     return {
-      title: `${shortName} | 캐시미어 ${c} 도매 | MOQ ${p.moq}pcs`,
+      title: `${shortName} | ${c} 도매 | MOQ ${p.moq}pcs`,
       description,
-      keywords: [p.name, `캐시미어 ${c} 도매`, `OEM ${c}`, `캐시미어 제조 중국`, `B2B 캐시미어 공급업체`],
+      keywords: [p.name, `${c} 도매`, `OEM ${c}`, `캐시미어 제조 중국`, `B2B 캐시미어 공급업체`],
       buyCta: '문의',
       hideFormCta: '닫기',
     };
   },
 };
 
-const t = (tdk[locale] || tdk.en)(product, category.name);
+const t = (tdk[locale] || tdk.en)(product, localizedCategory(product.categoryId, locale, category.name));
+// Display name for HTML/JSON-LD display (locale-aware)
+const displayCategory = localizedCategory(product.categoryId, locale, category.name);
 // Title clip: Google snippet ideal is 50-60c, max ~70c. Clip to 65c
 // but preserve last partial word boundary so we don't cut mid-word.
 const pageTitle = t.title.length > 65 ? `${t.title.slice(0, 64).replace(/\s+\S*$/, '').trimEnd()}…` : t.title;
@@ -832,7 +863,7 @@ const productSchema = {
     url: SITE_URL,
   },
 
-  category: category.name,
+  category: localizedCategory(product.categoryId, locale, category.name),
 
   material: product.material,
 
@@ -892,7 +923,7 @@ const breadcrumbSchema = {
 
     { '@type': 'ListItem', position: 2, name: 'Products', item: `${SITE_URL}/${locale}/products/` },
 
-    { '@type': 'ListItem', position: 3, name: category.name, item: `${SITE_URL}/${locale}/products/${product.categoryId === 'hats' || product.categoryId === 'accessories' ? 'hats-accessories' : product.categoryId === 'sweaters' ? 'garment-oem' : product.categoryId}/` },
+    { '@type': 'ListItem', position: 3, name: displayCategory, item: `${SITE_URL}/${locale}/products/${product.categoryId === 'hats' || product.categoryId === 'accessories' ? 'hats-accessories' : product.categoryId === 'sweaters' ? 'garment-oem' : product.categoryId}/` },
 
     { '@type': 'ListItem', position: 4, name: product.name, item: `${SITE_URL}/${locale}/products/${product.id}/` },
 
@@ -948,7 +979,7 @@ const breadcrumbSchema = {
 
         <span class="mx-2">/</span>
 
-        <a href={`/${locale}/products/${product.categoryId === 'hats' || product.categoryId === 'accessories' ? 'hats-accessories' : product.categoryId === 'sweaters' ? 'garment-oem' : product.categoryId}`} class="hover:text-foreground">{category.name}</a>
+        <a href={`/${locale}/products/${product.categoryId === 'hats' || product.categoryId === 'accessories' ? 'hats-accessories' : product.categoryId === 'sweaters' ? 'garment-oem' : product.categoryId}`} class="hover:text-foreground">{displayCategory}</a>
 
         <span class="mx-2">/</span>
 
@@ -1046,7 +1077,7 @@ const breadcrumbSchema = {
 
         <div>
 
-          <span class="text-xs tracking-widest text-muted-foreground uppercase">{category.name}</span>
+          <span class="text-xs tracking-widest text-muted-foreground uppercase">{displayCategory}</span>
 
           <h1 class="font-display text-3xl md:text-4xl font-light mt-2 mb-3">{product.name}</h1>
 
@@ -2078,7 +2109,7 @@ const breadcrumbSchema = {
 
       <div class="container-narrow">
 
-        <h2 class="reveal font-display text-2xl font-light mb-6">Related {category.name}</h2>
+        <h2 class="reveal font-display text-2xl font-light mb-6">Related {displayCategory}</h2>
 
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
 
