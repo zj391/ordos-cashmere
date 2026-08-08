@@ -819,11 +819,33 @@ const productSchema = {
 
   brand: { '@type': 'Brand', name: 'DONGXIAO' },
 
-  manufacturer: { '@type': 'Organization', name: 'DONGXIAO Cashmere', url: SITE_URL },
+  manufacturer: {
+    '@type': 'Organization',
+    name: SITE_INFO.legalName,
+    alternateName: SITE_INFO.name,
+    foundingDate: `${SITE_INFO.foundingYear}`,
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: SITE_INFO.country,
+      addressLocality: SITE_INFO.city,
+    },
+    url: SITE_URL,
+  },
 
   category: category.name,
 
   material: product.material,
+
+  // Product-level attributes as additionalProperty — Google Merchant
+  // Center accepts these; no policy risk like AggregateRating has.
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Fiber micron', value: product.micron || '' },
+    { '@type': 'PropertyValue', name: 'Minimum order quantity', value: product.moq, unitText: 'pieces' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: cleanAttr(product.lead) },
+    ...(pickAttr(product.sample_time)
+      ? [{ '@type': 'PropertyValue', name: 'Sample lead time', value: pickAttr(product.sample_time) }]
+      : []),
+  ].filter((p) => p.value),
 
   offers: {
 
@@ -841,7 +863,14 @@ const productSchema = {
 
     businessFunction: 'https://schema.org/Sell',
 
-    seller: { '@type': 'Organization', name: 'DONGXIAO Cashmere' },
+    seller: { '@type': 'Organization', name: SITE_INFO.legalName },
+
+    // MOQ = minQuantity / MOQ-step context for B2B
+    eligibleQuantity: {
+      '@type': 'QuantitativeValue',
+      minValue: product.moq,
+      unitText: 'pieces',
+    },
 
   },
 
