@@ -311,15 +311,21 @@ const productExtraText =
 const tdk = {
   en: (p, c) => {
     const shortName = p.name.length > 22 ? `${p.name.substring(0, 22).trim()}…` : p.name;
+    const colors = listColors(p);
+    const sizes = listSizes(p);
+    const season = pickAttr(p.season);
+    const gender = pickAttr(p.gender);
+    const pattern = pickAttr(p.pattern);
+    const knit = pickAttr(p.knittingTechnology);
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
       p.micron ? `${cleanAttr(p.micron)} micron` : '',
-      listColors(p),
-      pickAttr(p.pattern),
-      pickAttr(p.knittingTechnology),
-      pickAttr(p.season),
-      pickAttr(p.gender),
-      listSizes(p),
+      colors ? `${colors} colors` : '',
+      pattern ? `${pattern} pattern` : '',
+      knit && !/details?/i.test(knit) ? knit : '',
+      season ? `for ${season}` : '',
+      gender && !/EU\s*\//i.test(gender) ? `${gender.toLowerCase()} fit` : '',
+      sizes ? `sizes ${sizes}` : '',
     ].filter(Boolean);
     const descCore = attrs.length ? ` ${attrs.join(', ')}.` : '';
     const description = clip(
@@ -357,12 +363,16 @@ const tdk = {
     const categoryName = cnCategoryNames[p.categoryId] || '羊绒制品';
     const leadDays = cleanAttr(p.lead).replace(/\s*days?\b/i, '天').replace(/\s+/g, '');
     const colors = listColors(p);
+    const sizes = listSizes(p);
+    const season = pickAttr(p.season);
+    const gender = pickAttr(p.gender);
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
       p.micron ? `${cleanAttr(p.micron)}微米` : '',
       colors ? `颜色${colors}` : '',
-      pickAttr(p.season),
-      pickAttr(p.gender),
+      season ? `${season}` : '',
+      gender && !/EU\s*\//i.test(gender) ? `${gender}` : '',
+      sizes ? `尺码${sizes}` : '',
     ].filter(Boolean);
     const description = clip(
       `${shortName}。${attrs.join('，')}。MOQ ${p.moq}件，交期${leadDays}，鄂尔多斯源头工厂支持OEM/ODM。DONGXIAO。`,
@@ -378,12 +388,17 @@ const tdk = {
   },
   de: (p, c) => {
     const shortName = p.name.length > 20 ? `${p.name.substring(0, 20).trim()}…` : p.name;
+    const colors = listColors(p);
+    const sizes = listSizes(p);
+    const season = pickAttr(p.season);
+    const gender = pickAttr(p.gender);
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
       p.micron ? `${cleanAttr(p.micron)} micron` : '',
-      listColors(p),
-      pickAttr(p.season),
-      pickAttr(p.gender),
+      colors ? `${colors} Farben` : '',
+      season ? `für ${season}` : '',
+      gender && !/EU\s*\//i.test(gender) ? `${gender.toLowerCase()} Passform` : '',
+      sizes ? `Größen ${sizes}` : '',
     ].filter(Boolean);
     const description = clip(
       `${shortName}. ${attrs.join(', ')}. Direkt ab Ordos-Fabrik (China). MOQ ${p.moq} Stk., Lieferzeit ${cleanAttr(p.lead)}. OEM/ODM. DONGXIAO.`,
@@ -399,12 +414,17 @@ const tdk = {
   },
   fr: (p, c) => {
     const shortName = p.name.length > 20 ? `${p.name.substring(0, 20).trim()}…` : p.name;
+    const colors = listColors(p);
+    const sizes = listSizes(p);
+    const season = pickAttr(p.season);
+    const gender = pickAttr(p.gender);
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
       p.micron ? `${cleanAttr(p.micron)} micron` : '',
-      listColors(p),
-      pickAttr(p.season),
-      pickAttr(p.gender),
+      colors ? `${colors} coloris` : '',
+      season ? `pour ${season}` : '',
+      gender && !/EU\s*\//i.test(gender) ? `coupe ${gender.toLowerCase()}` : '',
+      sizes ? `tailles ${sizes}` : '',
     ].filter(Boolean);
     const description = clip(
       `${shortName}. ${attrs.join(', ')}. En gros depuis l'usine d'Ordos (Chine). MOQ ${p.moq} pièces, délai ${cleanAttr(p.lead)}. OEM/ODM. DONGXIAO.`,
@@ -420,12 +440,17 @@ const tdk = {
   },
   ja: (p, c) => {
     const shortName = p.name.length > 16 ? `${p.name.substring(0, 16).trim()}…` : p.name;
+    const colors = listColors(p);
+    const sizes = listSizes(p);
+    const season = pickAttr(p.season);
+    const gender = pickAttr(p.gender);
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
       p.micron ? `${cleanAttr(p.micron)}ミクロン` : '',
-      listColors(p),
-      pickAttr(p.season),
-      pickAttr(p.gender),
+      colors ? `カラー${colors}` : '',
+      season ? `${season}向け` : '',
+      gender && !/EU\s*\//i.test(gender) ? `${gender}サイズ` : '',
+      sizes ? `サイズ${sizes}` : '',
     ].filter(Boolean);
     const description = clip(
       `${shortName}。${attrs.join('、')}。オルドス工場（中国）直送。MOQ ${p.moq}枚、納期${cleanAttr(p.lead)}。OEM/ODM対応。DONGXIAO®。`,
@@ -441,12 +466,17 @@ const tdk = {
   },
   kr: (p, c) => {
     const shortName = p.name.length > 16 ? `${p.name.substring(0, 16).trim()}…` : p.name;
+    const colors = listColors(p);
+    const sizes = listSizes(p);
+    const season = pickAttr(p.season);
+    const gender = pickAttr(p.gender);
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
       p.micron ? `${cleanAttr(p.micron)} micron` : '',
-      listColors(p),
-      pickAttr(p.season),
-      pickAttr(p.gender),
+      colors ? `${colors} 색상` : '',
+      season ? `${season}용` : '',
+      gender && !/EU\s*\//i.test(gender) ? `${gender} 사이즈` : '',
+      sizes ? `사이즈 ${sizes}` : '',
     ].filter(Boolean);
     const description = clip(
       `${shortName}. ${attrs.join(', ')}. 오르도스 공장(중국) 직송. MOQ ${p.moq}pcs, 납기 ${cleanAttr(p.lead)}. OEM/ODM. DONGXIAO®.`,
