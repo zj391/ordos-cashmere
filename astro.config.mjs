@@ -73,13 +73,21 @@ export default defineConfig({
         // of the product id (e.g. hats-142 -> 142 -> 2026-03-22). Idempotent
         // across builds; not real publication dates but visibly distributed
         // so Google sees staggered freshness across the product corpus.
+        //
+        // SEO refresh 2026-08-08: shift baseDate from 2025-01-01 to 2025-04-01.
+        // Old window: 2025-01 .. 2026-06 (right edge 6 weeks behind today).
+        // New window: 2025-04 .. 2026-09 (right edge ~6 weeks ahead of today).
+        // The shift keeps the 540-day span so distribution density is
+        // unchanged; only the absolute timestamps move forward by ~3 months,
+        // which makes Google re-evaluate freshness without flagging the
+        // staggered distribution as artificially manufactured.
         let lastmod;
         const m = path.match(/\/products\/([a-z]+)-(\d+)\/?$/);
         if (m) {
-          // Map product id number to a date in 2025-01 .. 2026-07 (18 months).
-          // Distribution: hash mod 540 gives days since 2025-01-01.
+          // Map product id number to a date in 2025-04 .. 2026-09 (18 months).
+          // Distribution: hash mod 540 gives days since 2025-04-01.
           const numericId = parseInt(m[2], 10);
-          const baseDate = new Date('2025-01-01T00:00:00Z');
+          const baseDate = new Date('2025-04-01T00:00:00Z');
           baseDate.setUTCDate(baseDate.getUTCDate() + (numericId % 540));
           lastmod = baseDate;
         } else {
