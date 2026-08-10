@@ -20,6 +20,11 @@
       "permanent": true
     },
     {
+      "source": "/zh-CN/:path*/",
+      "destination": "/cn/:path*/",
+      "permanent": true
+    },
+    {
       "source": "/zh-cn",
       "destination": "/cn",
       "permanent": true
@@ -35,6 +40,11 @@
       "permanent": true
     },
     {
+      "source": "/zh-cn/:path*/",
+      "destination": "/cn/:path*/",
+      "permanent": true
+    },
+    {
       "source": "/zh",
       "destination": "/cn",
       "permanent": true
@@ -47,6 +57,11 @@
     {
       "source": "/zh/:path*",
       "destination": "/cn/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/zh/:path*/",
+      "destination": "/cn/:path*/",
       "permanent": true
     },
     {
