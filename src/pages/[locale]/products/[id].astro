@@ -561,6 +561,34 @@ const productExtraText =
     ? scrapedExtra
     : '';
 
+// Per-product unique highlights (SEO differentiation: breaks category-template duplication)
+const HIGHLIGHT_LABELS: Record<string, Record<string, string>> = {
+  en: { title: 'Product Highlights', fiber: 'Fiber', colors: 'Color options', price: 'Unit price', moq: 'MOQ', lead: 'Lead time', style: 'Style' },
+  cn: { title: '产品亮点', fiber: '纤维', colors: '颜色', price: '单价', moq: '起订量', lead: '交期', style: '款式' },
+  de: { title: 'Produkthighlights', fiber: 'Faser', colors: 'Farben', price: 'Stückpreis', moq: 'Mindestbestellmenge', lead: 'Lieferzeit', style: 'Stil' },
+  fr: { title: 'Points forts du produit', fiber: 'Fibre', colors: 'Couleurs', price: 'Prix unitaire', moq: 'Quantité minimale', lead: 'Délai', style: 'Style' },
+  ja: { title: '製品ハイライト', fiber: '繊維', colors: 'カラー', price: '単価', moq: '最小ロット', lead: '納期', style: 'スタイル' },
+  kr: { title: '제품 하이라이트', fiber: '원사', colors: '색상', price: '단가', moq: '최소 주문량', lead: '리드타임', style: '스타일' },
+};
+const hl = HIGHLIGHT_LABELS[locale] || HIGHLIGHT_LABELS.en;
+const colorCount = Array.isArray(product.colors) ? product.colors.length : 0;
+const colorText = colorCount > 1 ? String(colorCount) + ' colors' : 'Custom colors';
+const styleWords =
+  String(product.name || '')
+    .replace(/^(Premium|Wholesale|China|Inner Mongolia|Ordos|High Quality|European Style|Europe Style|Classic|New|Hot|Best|2024|2025|2026)\s+/i, '')
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 4)
+    .join(' ');
+const highlights = [
+  { label: hl.fiber, value: [product.material, product.micron].filter(Boolean).join(' · ') },
+  { label: hl.colors, value: colorText },
+  { label: hl.price, value: 'USD ' + product.price },
+  { label: hl.moq, value: product.moq + ' pcs' },
+  { label: hl.lead, value: product.lead || '15-25 days' },
+  { label: hl.style, value: styleWords || product.name },
+];
+
 // Per-locale TDK
 
 // SEO fix 2026-08-08: rotate 5 desc-suffix variants by product id hash
@@ -1141,6 +1169,19 @@ const breadcrumbSchema = {
           </div>
 
 
+
+          <!-- Product Highlights: unique per-product content (SEO differentiation) -->
+          <div class="mb-6 border-t border-border pt-5">
+            <h2 class="text-xs font-semibold uppercase tracking-[0.18em] text-primary mb-3">{hl.title}</h2>
+            <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
+              {highlights.map((h) => (
+                <div class="flex justify-between gap-3 border-b border-border/60 py-1.5">
+                  <dt class="text-muted-foreground">{h.label}</dt>
+                  <dd class="text-right font-medium">{h.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
 
           <p class="text-base text-foreground/80 mb-6">{productBodyText}</p>
 
