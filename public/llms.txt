@@ -1,0 +1,37 @@
+# DONGXIAO® Cashmere
+
+> Premium B2B cashmere manufacturer and wholesale supplier from Ordos, Inner Mongolia, China. 23+ years expertise, OEKO-TEX certified, MOQ 100pcs, 7-day sampling, FOB Tianjin. Trusted by 500+ brands worldwide.
+
+## Core Pages
+
+- [Cashmere Wholesale Catalog (591 products)](https://www.erdosdx.com/en/products/): 5 categories: hats, scarves, sweaters, accessories, yarn. Filter by style, material, gauge, audience, pattern.
+- [Ordos Cashmere Factory Tour](https://www.erdosdx.com/en/factory/): 23-year-old B2B source factory, 38,000 sqm, ISO certified, 1,200+ tons annual capacity.
+- [Raw Cashmere Fiber (dehaired)](https://www.erdosdx.com/en/raw-material/): Combed top, roving, noil. White, brown (qing), purple (zi). MOQ 10kg per color.
+- [Cashmere Yarn & Fabric](https://www.erdosdx.com/en/yarn-fabric/): 2/26 to 2/60 Nm, worsted & woolen, custom blends (cashmere/wool, cashmere/silk, cashmere/cotton).
+- [Garment OEM & Private Label](https://www.erdosdx.com/en/garment-oem/): Full-package OEM/ODM, German STOLL knitting, 7-10 day sampling, 30-35 day lead time.
+- [Contact & Quote Request](https://www.erdosdx.com/en/contact/): WhatsApp +86-156-6185-3999, email, B2B inquiry form. Response within 24h.
+
+## Buying Guides & SEO Content (Blog)
+
+- [How to Identify Premium Cashmere](https://www.erdosdx.com/en/blog/how-to-identify-premium-cashmere/): Fiber micron 14-15.5µm, pilling test, origin verification.
+- [Cashmere Bulk Pricing Guide](https://www.erdosdx.com/en/blog/cashmere-bulk-pricing/): Price breakdowns for yarn, fabric, garments, MOQ tiers.
+- [Cashmere Quality Control: AQL Final Inspection](https://www.erdosdx.com/en/blog/cashmere-quality-control-final-inspection-aql/): AQL sampling standards for B2B orders.
+- [Cashmere Yarn Count Explained: 26s to 48s](https://www.erdosdx.com/en/blog/cashmere-yarn-count-explained-26s-48s/): 2/26, 2/36, 2/48, 2/60 Nm specifications and use cases.
+- [Cashmere B2B Contract Template & Payment Terms](https://www.erdosdx.com/en/blog/cashmere-b2b-contract-template-payment-terms/): T/T, L/C, D/P, D/A terms for international buyers.
+- [B2B Cashmere: Verify Ordos Origin & Avoid Mislabeling](https://www.erdosdx.com/en/blog/how-b2b-cashmere-buyers-verify-ordos-origin-avoid-mislabeling/): Fiber DNA testing, supplier audits, documentation.
+- [Cashmere vs Merino Wool: Wholesale Comparison](https://www.erdosdx.com/en/blog/cashmere-vs-merino-wool-wholesale/): Price, micron, durability, end-use guidance.
+- [Importing Cashmere: China Customs 2026 Guide](https://www.erdosdx.com/en/blog/importing-cashmere-cn-customs-2026-guide/): HS codes, duties, VAT for EU/US importers.
+- [Cashmere Italian Yarn: EU Import Tariff Guide](https://www.erdosdx.com/en/blog/cashmere-italian-yarn-import-tariff-eu/): Italy cashmere market and tariff structure.
+
+## Localized Sites
+
+- [中文 (Chinese)](https://www.erdosdx.com/cn/): 鄂尔多斯羊绒源头工厂, 591款产品, OEM/ODM, 起订量100件.
+- [Deutsch (German)](https://www.erdosdx.com/de/): Kaschmir-Großhandel direkt ab Werk, 591 Produkte, MOQ 100 Stück.
+- [Français (French)](https://www.erdosdx.com/fr/): Cachemire en gros direct usine, 591 produits, MOQ 100pcs.
+- [日本語 (Japanese)](https://www.erdosdx.com/ja/): カシミヤ工場直販, 591スタイル, MOQ 100個.
+- [한국어 (Korean)](https://www.erdosdx.com/kr/): 캐시미어 공장 직송, 591가지 스타일, MOQ 100개.
+
+## Technical
+
+- [Sitemap (3,895 URLs across 6 languages)](https://www.erdosdx.com/sitemap-index.xml)
+- [robots.txt (AI crawlers: GPTBot, ClaudeBot, PerplexityBot, Google-Extended allowed)](https://www.erdosdx.com/robots.txt)
