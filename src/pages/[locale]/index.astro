@@ -14,6 +14,7 @@ import Footer from '@/components/Footer.astro';
 import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
 import SEOFaq from '@/components/SEOFaq.astro';
+import { products as productsData, getAllProducts, ensureDbOverlay } from '@/data/products';
 import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
 import { SEO, SITE_INFO } from '@/lib/seo';
 import { getCollection } from 'astro:content';
@@ -39,6 +40,20 @@ const latestPosts = allPosts
     excerpt: p.data.excerpt,
     date: p.data.publishDate.toISOString().slice(0, 10),
   }));
+
+// 首页产品中心：拉取产品数据（DB 叠加层失败时回退静态目录）
+await ensureDbOverlay();
+const allProducts = getAllProducts();
+const featured: any[] = [];
+for (const cid of ['hats', 'scarves', 'sweaters', 'accessories', 'yarn']) {
+  const p = allProducts.find((x: any) => x.categoryId === cid);
+  if (p) featured.push(p);
+}
+const homeImg = (p: any): string =>
+  p.images && p.images[0] && (p.images[0].startsWith('/images/') || p.images[0].startsWith('http'))
+    ? p.images[0]
+    : `/products/mic/${p.images && p.images[0] ? p.images[0] : ''}`;
+
 
 const heroContent: Record<string, {
   tagline: string;
@@ -150,6 +165,14 @@ const t6 = (cn: string, en: string, de: string, fr: string, ja: string, kr: stri
   const m: Record<string, string> = { cn, en, de, fr, ja, kr };
   return m[locale] || en;
 };
+
+const categoryCards = [
+  { slug: 'hats-accessories', name: t6('羊绒帽', 'Hats & Beanies', 'Mützen & Beanies', 'Bonnets & casquettes', '帽子', '모자') },
+  { slug: 'scarves', name: t6('围巾披肩', 'Scarves & Wraps', 'Schals & Tücher', 'Écharpes & étoles', 'スカーフ', '스카프') },
+  { slug: 'garment-oem', name: t6('羊绒衫', 'Sweaters & Knitwear', 'Pullover & Strick', 'Pulls & maille', 'セーター', '스웨터') },
+  { slug: 'accessories-cat', name: t6('羊绒配饰', 'Accessories', 'Accessoires', 'Accessoires', 'アクセサリー', '액세서리') },
+  { slug: 'yarn', name: t6('纱线面料', 'Yarn & Fiber', 'Garn & Stoff', 'Fil & tissu', '糸・生地', '원사') },
+];
 
 // 产品矩阵数据 (B2B 关键指标 — 让访客一眼看出这是真工厂)
 const productData: Record<string, Array<{ tag: string; value: string }>> = {
@@ -664,6 +687,61 @@ const IMG = {
               </div>
             </div>
           </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 产品中心：5 大分类 + 精选产品 ============ -->
+  <section class="py-24 md:py-32 bg-background">
+    <div class="container-narrow">
+      <div class="flex items-end justify-between mb-12 gap-6 flex-wrap">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="h-[2px] w-10 bg-brand-red"></span>
+            <span class="text-xs tracking-[0.3em] text-brand-gold uppercase font-medium">{t6('产品中心', 'Product Center', 'Produktzentrum', 'Centre Produits', '製品センター', '제품 센터')}</span>
+          </div>
+          <h2 class="font-serif text-3xl md:text-5xl font-light leading-tight text-balance">
+            {t6('5 大品类 · 从原料到成衣', '5 categories, from raw fiber to finished knitwear', '5 Kategorien, vom Rohmaterial bis zur Strickware', '5 catégories, de la fibre au tricot fini', '5カテゴリー、原料からニットまで', '5개 카테고리, 원료부터 니트까지')}
+          </h2>
+        </div>
+        <a href={`/${locale}/products/`} class="text-sm text-brand-chocolate border-b border-brand-chocolate hover:border-brand-gold hover:text-brand-gold transition-colors">
+          {t6('浏览全部产品 →', 'View all products →', 'Alle Produkte ansehen →', 'Voir tous les produits →', 'すべての製品を見る →', '전체 제품 보기 →')}
+        </a>
+      </div>
+
+      <!-- 5 大分类入口 -->
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-16">
+        {categoryCards.map((c, i) => {
+          const cat = productsData.categories.find((x: any) => c.slug === (x.id === 'hats' ? 'hats-accessories' : x.id === 'sweaters' ? 'garment-oem' : x.id === 'accessories' ? 'accessories-cat' : x.id));
+          return (
+            <a href={`/${locale}/products/${c.slug}/`} class="group border border-border bg-[#F8F5EF]/50 p-6 hover:border-brand-gold hover:bg-white transition-all duration-300 flex flex-col justify-between min-h-[150px]">
+              <div>
+                <div class="font-serif text-[11px] text-brand-camel tracking-[0.2em] uppercase mb-2">0{i + 1}</div>
+                <h3 class="font-serif text-xl leading-tight group-hover:text-brand-chocolate transition-colors">{c.name}</h3>
+              </div>
+              <div class="flex items-center justify-between mt-6">
+                <span class="text-xs text-muted-foreground">{cat && cat.products ? cat.products.length : ''} {t6('款', 'styles', 'Modelle', 'modèles', 'スタイル', '스타일')}</span>
+                <svg class="w-4 h-4 text-brand-chocolate group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+
+      <!-- 精选产品（每类 1 款） -->
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-5">
+        {featured.map((p) => (
+          <a href={`/${locale}/products/${p.id}/`} class="group block border border-border overflow-hidden hover:border-brand-gold hover:shadow-lg transition-all duration-300">
+            <div class="aspect-square bg-brand-cream overflow-hidden">
+              <img src={homeImg(p)} alt={p.name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" decoding="async" loading="lazy" />
+            </div>
+            <div class="p-4">
+              <p class="text-[10px] uppercase tracking-wider text-muted-foreground mb-1">{p.categoryName}</p>
+              <h3 class="text-sm font-medium leading-snug line-clamp-2 mb-2 group-hover:text-brand-chocolate transition-colors">{p.name}</h3>
+              <p class="text-xs text-brand-red font-medium">USD {p.price}</p>
+            </div>
+          </a>
         ))}
       </div>
     </div>
