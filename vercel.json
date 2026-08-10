@@ -3,6 +3,118 @@
   "buildCommand": "pnpm install --no-frozen-lockfile && pnpm build",
   "outputDirectory": "dist",
   "framework": "astro",
+  "redirects": [
+    {
+      "source": "/products/:id/",
+      "destination": "/en/products/:id/",
+      "permanent": true
+    },
+    {
+      "source": "/products/:id",
+      "destination": "/en/products/:id/",
+      "permanent": true
+    },
+    {
+      "source": "/products/",
+      "destination": "/en/products/",
+      "permanent": true
+    },
+    {
+      "source": "/products",
+      "destination": "/en/products/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:slug/",
+      "destination": "/en/blog/:slug/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:slug",
+      "destination": "/en/blog/:slug/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/",
+      "destination": "/en/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/en/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/contact/",
+      "destination": "/en/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/en/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/faq/",
+      "destination": "/en/faq/",
+      "permanent": true
+    },
+    {
+      "source": "/faq",
+      "destination": "/en/faq/",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy/",
+      "destination": "/en/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy",
+      "destination": "/en/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/brand-story/",
+      "destination": "/en/ordos-origin/",
+      "permanent": true
+    },
+    {
+      "source": "/brand-story",
+      "destination": "/en/ordos-origin/",
+      "permanent": true
+    },
+    {
+      "source": "/about/",
+      "destination": "/en/ordos-origin/",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "destination": "/en/ordos-origin/",
+      "permanent": true
+    },
+    {
+      "source": "/production/",
+      "destination": "/en/factory/",
+      "permanent": true
+    },
+    {
+      "source": "/production",
+      "destination": "/en/factory/",
+      "permanent": true
+    },
+    {
+      "source": "/test/",
+      "destination": "/en/",
+      "permanent": true
+    },
+    {
+      "source": "/test",
+      "destination": "/en/",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/",

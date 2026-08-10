@@ -33,7 +33,7 @@ export default defineConfig({
         locales: { en: 'en', de: 'de', fr: 'fr', ja: 'ja', kr: 'ko', cn: 'zh' },
       },
       // Exclude admin/API routes from sitemap (already disallowed in robots.txt).
-      filter: (page) => !page.includes('/admin') && !page.includes('/api/'),
+      filter: (page) => !page.includes('/admin') && !page.includes('/api/') && !page.includes('/cart'),
       // Add lastmod + per-page priority for better SEO signals.
       // Static pages get higher priority; blog posts get 0.7; category hub pages
       // and product detail pages get 0.8 (high value for B2B keywords).
