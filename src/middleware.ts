@@ -23,6 +23,16 @@ export const onRequest = defineMiddleware(async (context, next) => {
     return context.rewrite(`/${target}/`);
   }
 
+  // Chinese locale alias normalization: external links + hreflang-standard
+  // `zh-CN` / `zh-cn` / `zh` paths → 308 to short-code `/cn/...` URLs.
+  // Without this, every such URL returns 404 because Astro i18n only
+  // accepts the short codes (en/de/fr/ja/kr/cn). 308 preserves SEO equity.
+  const zhAlias = pathname.match(/^\/(zh-CN|zh-cn|zh)(\/.*)?$/);
+  if (zhAlias) {
+    const rest = zhAlias[2] ?? '';
+    return context.redirect(`/cn${rest}`, 308);
+  }
+
   // Only guard /admin/* and /api/admin/*
   if (!pathname.startsWith('/admin') && !pathname.startsWith('/api/admin')) {
     return next();
