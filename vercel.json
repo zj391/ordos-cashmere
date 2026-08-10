@@ -5,6 +5,51 @@
   "framework": "astro",
   "redirects": [
     {
+      "source": "/zh-CN",
+      "destination": "/cn",
+      "permanent": true
+    },
+    {
+      "source": "/zh-CN/",
+      "destination": "/cn/",
+      "permanent": true
+    },
+    {
+      "source": "/zh-CN/:path*",
+      "destination": "/cn/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/zh-cn",
+      "destination": "/cn",
+      "permanent": true
+    },
+    {
+      "source": "/zh-cn/",
+      "destination": "/cn/",
+      "permanent": true
+    },
+    {
+      "source": "/zh-cn/:path*",
+      "destination": "/cn/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/zh",
+      "destination": "/cn",
+      "permanent": true
+    },
+    {
+      "source": "/zh/",
+      "destination": "/cn/",
+      "permanent": true
+    },
+    {
+      "source": "/zh/:path*",
+      "destination": "/cn/:path*",
+      "permanent": true
+    },
+    {
       "source": "/products/:id/",
       "destination": "/en/products/:id/",
       "permanent": true
