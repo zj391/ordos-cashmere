@@ -56,6 +56,9 @@ export default defineConfig({
         } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/(scarves|hats-accessories|yarn|garment-oem|fabric|raw-material|products|private-label-cashmere)\/?$/)) {
           // Category hub pages: high priority (real B2B landing pages).
           priority = 0.9; changefreq = 'weekly';
+        } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/products\/(scarves|hats-accessories|yarn|garment-oem|accessories-cat)\/?$/)) {
+          // Product category hubs under /products/: keep them above flat product pages.
+          priority = 0.9; changefreq = 'weekly';
         } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/(factory|yarn-fabric|garment-oem|raw-material|ordos-origin|color-cards)\/?$/)) {
           // Major topical hubs.
           priority = 0.9; changefreq = 'weekly';

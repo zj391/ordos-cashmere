@@ -949,7 +949,7 @@ const breadcrumbSchema = {
 
     { '@type': 'ListItem', position: 2, name: 'Products', item: `${SITE_URL}/${locale}/products/` },
 
-    { '@type': 'ListItem', position: 3, name: displayCategory, item: `${SITE_URL}/${locale}/products/${product.categoryId === 'hats' || product.categoryId === 'accessories' ? 'hats-accessories' : product.categoryId === 'sweaters' ? 'garment-oem' : product.categoryId}/` },
+    { '@type': 'ListItem', position: 3, name: displayCategory, item: `${SITE_URL}/${locale}/products/${product.categoryId === 'hats' ? 'hats-accessories' : product.categoryId === 'accessories' ? 'accessories-cat' : product.categoryId === 'sweaters' ? 'garment-oem' : product.categoryId}/` },
 
     { '@type': 'ListItem', position: 4, name: product.name, item: `${SITE_URL}/${locale}/products/${product.id}/` },
 
@@ -1005,7 +1005,7 @@ const breadcrumbSchema = {
 
         <span class="mx-2">/</span>
 
-        <a href={`/${locale}/products/${product.categoryId === 'hats' || product.categoryId === 'accessories' ? 'hats-accessories' : product.categoryId === 'sweaters' ? 'garment-oem' : product.categoryId}`} class="hover:text-foreground">{displayCategory}</a>
+        <a href={`/${locale}/products/${product.categoryId === 'hats' ? 'hats-accessories' : product.categoryId === 'accessories' ? 'accessories-cat' : product.categoryId === 'sweaters' ? 'garment-oem' : product.categoryId}`} class="hover:text-foreground">{displayCategory}</a>
 
         <span class="mx-2">/</span>
 
