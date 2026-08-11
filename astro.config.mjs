@@ -98,6 +98,31 @@ export default defineConfig({
         }
         return {
           ...item,
+          // SEO fix 2026-08-10: add x-default hreflang entry pointing at the
+          // English version of each page. @astrojs/sitemap v3.2.1's i18n
+          // config only emits 6 locale alternates (en/de/fr/ja/ko/zh) and
+          // has no x-default option — GSC reports "alternate page without
+          // x-default" warnings without it. Per Google docs, x-default
+          // should point at the canonical negotiation page; we use the
+          // English URL (defaultLocale: 'en') since the root / rewrites
+          // visitors to /<accept-language>/ and English is the fallback.
+          //
+          // v3.2.1 stores alternates on `item.links` (a LinkItem[] not
+          // Record<string,string>). We append a synthetic x-default
+          // entry that mirrors the English URL.
+          links: (() => {
+            const enUrl = item.url.replace(/^https?:\/\/[^/]+/, (host) => {
+              // Find the English equivalent of this URL by swapping
+              // the locale prefix. /de/x/ -> /en/x/, /x/ -> /x/.
+              const path = item.url.replace(/^https?:\/\/[^/]+/, '');
+              const m = path.match(/^\/(de|fr|ja|kr|cn)(\/|$)/);
+              return host + (m ? '/en' + m[2] : path);
+            });
+            return [
+              ...(item.links || []),
+              { lang: 'x-default', url: enUrl },
+            ];
+          })(),
           lastmod,
           changefreq,
           priority,
