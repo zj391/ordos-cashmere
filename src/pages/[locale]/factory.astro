@@ -150,10 +150,7 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
 
   <!-- ============ HERO：全屏沉浸式 ============ -->
   <section class="relative min-h-[80vh] flex items-end overflow-hidden bg-brand-ink">
-    <div class="absolute inset-0">
-      <img src="/images/factory/page1-factory-intro.webp" alt="DONGXIAO Cashmere Group - 23 years manufacturing cashmere in Ordos" class="w-full h-full object-cover opacity-80 ken-burns" decoding="async" loading="eager" fetchpriority="high" />
-      <div class="absolute inset-0 bg-gradient-to-t from-brand-ink via-brand-ink/60 to-brand-ink/15"></div>
-    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-brand-ink/70 to-brand-ink"></div>
     <div class="container-narrow relative z-10 py-20 md:py-28">
       <div class="max-w-3xl">
         <div class="flex items-center gap-3 mb-6">
@@ -182,6 +179,32 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
           </div>
         ))}
       </div>
+    </div>
+  </section>
+
+  <!-- ============ 公司简介 ============ -->
+  <section class="py-24 md:py-32 bg-background">
+    <div class="container-narrow">
+      <div class="max-w-2xl mb-16">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="h-[2px] w-8 bg-brand-red"></span>
+          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">{locale === 'cn' ? '公司简介' : 'Company Profile'}</span>
+        </div>
+        <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{locale === 'cn' ? '鄂尔多斯市东霄羊绒制品厂' : 'Erdos Dongxiao Cashmere Products Factory'}</h2>
+      </div>
+      {locale === 'cn' ? (
+        <div class="max-w-3xl space-y-4 text-muted-foreground leading-relaxed">
+          <p>鄂尔多斯市东霄羊绒制品厂成立于 2002 年，位于资源富饶、羊煤土气的内蒙古“鄂尔多斯”市，是一家集自主设计开发、生产、营销、加工于一体的专业化羊绒制品厂。主营产品有纯羊绒、纯羊毛、羊绒/羊毛混纺制品（毛衣、纱线、外衣、围巾、手套、袜子、毯子等）。</p>
+          <p>经过 22 年的发展，现已形成 ODM/OEM 生产加工、来样定做、实体批发、品牌加盟、一件代发、线上线下一体化的综合性经营模式。</p>
+          <p>我们以质量求生存、以信誉促发展，凭借品类多、品种全、价格稳定、质量卓越的产品和薄利多销、服务周到的经营理念，赢得广大羊绒客商的一致认可。我们的信念是“诚信合作、互惠互利、共同发展”，愿与每一位客户实现共赢。</p>
+        </div>
+      ) : (
+        <div class="max-w-3xl space-y-4 text-muted-foreground leading-relaxed">
+          <p>Erdos Dongxiao Cashmere Products Factory, founded in 2002 in Ordos, Inner Mongolia — a region rich in natural resources — is a professional cashmere factory integrating independent design and development, production, marketing, and processing.</p>
+          <p>Main products include pure cashmere, pure wool, and cashmere/wool blends: sweaters, yarn, coats, scarves, gloves, socks, blankets, and more. After 22 years of growth, we run a full business model — ODM/OEM manufacturing, sample customization, physical wholesale, brand franchise, drop shipping, and online/offline integration.</p>
+          <p>We survive on quality, develop on reputation, and serve with small margins and thoughtful service. Our belief: “Integrity cooperation, mutual benefit, common development.”</p>
+        </div>
+      )}
     </div>
   </section>
 
