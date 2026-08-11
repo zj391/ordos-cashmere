@@ -145,78 +145,60 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
 
 
 
-<BaseLayout locale={locale} pageKey="factory" path="/factory">
-
+  <BaseLayout locale={locale} pageKey="factory" path="/factory">
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/factory`} />
 
-
-
-  <!-- HERO -->
-
-  <section class="relative bg-[#F5F0E7] border-b border-border/60 overflow-hidden">
-
-    <div class="grid grid-cols-1 lg:grid-cols-2 min-h-[60vh]">
-
-      <div class="flex items-center py-20 lg:py-0 px-6 lg:pl-12 order-2 lg:order-1">
-
-        <div class="max-w-xl">
-
-          <div class="flex items-center gap-3 mb-8">
-
-            <span class="h-[2px] w-12 bg-brand-red"></span>
-
-            <span class="text-xs tracking-[0.4em] text-brand-camel uppercase font-medium">{T('tagline')}</span>
-
-          </div>
-
-          <h1 class="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-8" set:html={T('title').replace(/\n/g, '<br/>')} />
-
-          <p class="text-lg text-muted-foreground leading-relaxed max-w-md font-light">{T('subtitle')}</p>
-
-        </div>
-
-      </div>
-
-      <div class="relative aspect-[4/3] lg:aspect-auto overflow-hidden order-1 lg:order-2">
-
-        <img src="/images/factory/page1-factory-intro.webp" alt="DONGXIAO Cashmere Group - 23 years manufacturing cashmere in Ordos" class="ken-burns absolute inset-0 w-full h-full object-cover opacity-95" decoding="async" loading="eager" fetchpriority="high" />
-
-        <div class="absolute inset-0 bg-gradient-to-l from-transparent to-[#F5F0E7]/40"></div>
-
-      </div>
-
+  <!-- ============ HERO：全屏沉浸式 ============ -->
+  <section class="relative min-h-[80vh] flex items-end overflow-hidden bg-brand-ink">
+    <div class="absolute inset-0">
+      <img src="/images/factory/page1-factory-intro.webp" alt="DONGXIAO Cashmere Group - 23 years manufacturing cashmere in Ordos" class="w-full h-full object-cover opacity-80 ken-burns" decoding="async" loading="eager" fetchpriority="high" />
+      <div class="absolute inset-0 bg-gradient-to-t from-brand-ink via-brand-ink/60 to-brand-ink/15"></div>
     </div>
+    <div class="container-narrow relative z-10 py-20 md:py-28">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="h-[2px] w-12 bg-brand-red"></span>
+          <span class="text-xs tracking-[0.4em] uppercase text-brand-gold font-medium">{T('tagline')}</span>
+        </div>
+        <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-light text-white leading-[1.05] mb-6" set:html={T('title').replace(/
+/g, '<br/>')} />
+        <p class="text-lg md:text-xl text-white/80 leading-relaxed max-w-2xl font-light mb-10">{T('subtitle')}</p>
+        <div class="flex flex-wrap gap-4">
+          <a href={`/${locale}/contact?type=visit`} class="inline-flex items-center gap-2 px-9 py-4 bg-brand-gold text-brand-ink font-medium tracking-wider hover:bg-white transition-colors">
+            {T('cta')}
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+          <a href={`/${locale}/download/`} class="inline-flex items-center gap-2 px-9 py-4 border border-white/30 text-white hover:border-brand-gold hover:text-brand-gold transition-colors">
+            {locale === 'cn' ? '下载认证文件' : 'Download Certificates'}
+          </a>
+        </div>
+      </div>
 
+      <!-- 底部关键数据条 -->
+      <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-px bg-white/15 border border-white/10">
+        {scale.slice(0, 4).map((s, i) => (
+          <div class="bg-brand-ink/70 backdrop-blur-sm px-6 py-6 text-center">
+            <div class="font-serif text-3xl md:text-4xl font-light text-brand-gold leading-none mb-2">{s.value}{s.unit && <span class="text-sm text-white/60 ml-1">{s.unit}</span>}</div>
+            <div class="text-[11px] uppercase tracking-[0.2em] text-white/60">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
   </section>
 
-
-
-  <!-- Scale：6 数据块 -->
-
+  <!-- ============ 01 规模与产能 ============ -->
   <section class="py-24 md:py-32 bg-background">
-
     <div class="container-narrow">
-
       <div class="max-w-2xl mb-16">
-
         <div class="flex items-center gap-3 mb-4">
-
           <span class="h-[2px] w-8 bg-brand-red"></span>
-
           <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">01 / {T('scaleTitle')}</span>
-
         </div>
-
         <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{T('scaleTitle')}</h2>
-
         <p class="text-muted-foreground leading-relaxed">{T('scaleSub')}</p>
-
       </div>
 
-
-
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-px bg-border">
-
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-border">
         {scaleItems.map((s, i) => {
           const cv = s.counter;
           return (
@@ -234,286 +216,250 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
         })}
       </div>
     </div>
+  </section>
 
-    <!-- Factory floor scene (from PDF page 2) -->
-    <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-4 reveal">
-      <div class="aspect-[4/3] overflow-hidden">
-        <img src="/images/factory/page2-factory-floor.webp" alt="DONGXIAO factory floor - raw material dehairing and spinning workshops" class="w-full h-full object-cover hover-zoom" loading="lazy" decoding="async" />
+  <!-- ============ 02 厂区实拍：杂志式拼贴 ============ -->
+  <section class="py-24 md:py-32 bg-brand-cream/50 border-y border-border">
+    <div class="container-narrow">
+      <div class="flex items-end justify-between mb-16 gap-6 flex-wrap">
+        <div class="max-w-2xl">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="h-[2px] w-8 bg-brand-red"></span>
+            <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">02 / {locale === 'cn' ? '厂区实拍' : 'Inside the Factory'}</span>
+          </div>
+          <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{locale === 'cn' ? '车间与展会，眼见为实' : 'Workshops & exhibitions, in real light'}</h2>
+          <p class="text-muted-foreground leading-relaxed">{locale === 'cn' ? '从原料分梳到成品检验，全部自有产能。欢迎实地考察，眼见为实。' : 'From dehairing to final QC — every step under our own roof. On-site visits welcome.'}</p>
+        </div>
       </div>
-      <div class="aspect-[4/3] overflow-hidden">
-        <img src="/images/factory/page3-exhibition.webp" alt="DONGXIAO at international cashmere trade exhibitions" class="w-full h-full object-cover hover-zoom" loading="lazy" decoding="async" />
-      </div>
-      <div class="aspect-[4/3] overflow-hidden">
-        <img src="/images/factory/page9-colorcard-weaving.webp" alt="Color card and weaving detail - Nm2/26 cashmere yarn range" class="w-full h-full object-cover hover-zoom" loading="lazy" decoding="async" />
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-5">
+        <!-- 大图：车间 -->
+        <div class="md:col-span-7 relative aspect-[4/3] overflow-hidden group">
+          <img src="/images/factory/page2-factory-floor.webp" alt="DONGXIAO factory floor - raw material dehairing and spinning workshops" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
+          <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/80 via-transparent to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+            <div class="font-serif text-xl md:text-2xl font-light">{locale === 'cn' ? '原料分梳与纺纱车间' : 'Dehairing & spinning workshops'}</div>
+            <div class="text-xs text-white/70 mt-1 tracking-wider">{locale === 'cn' ? '意大利分梳线 · 精纺车间' : 'Italian dehairing lines · worsted spinning'}</div>
+          </div>
+        </div>
+        <!-- 小图：展会 -->
+        <div class="md:col-span-5 relative aspect-[4/3] md:aspect-auto md:min-h-[280px] overflow-hidden group">
+          <img src="/images/factory/page3-exhibition.webp" alt="DONGXIAO at international cashmere trade exhibitions" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
+          <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/80 via-transparent to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+            <div class="font-serif text-xl md:text-2xl font-light">{locale === 'cn' ? '国际展会' : 'Trade exhibitions'}</div>
+            <div class="text-xs text-white/70 mt-1 tracking-wider">{locale === 'cn' ? '全球 B2B 买家面对面' : 'Face-to-face with global B2B buyers'}</div>
+          </div>
+        </div>
+        <!-- 小图：色卡织造 -->
+        <div class="md:col-span-5 relative aspect-[4/3] md:aspect-auto md:min-h-[280px] overflow-hidden group">
+          <img src="/images/factory/page9-colorcard-weaving.webp" alt="Color card and weaving detail - Nm2/26 cashmere yarn range" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
+          <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/80 via-transparent to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+            <div class="font-serif text-xl md:text-2xl font-light">{locale === 'cn' ? '色卡与织造细节' : 'Color cards & weaving detail'}</div>
+            <div class="text-xs text-white/70 mt-1 tracking-wider">{locale === 'cn' ? 'Nm2/26 起全支数纱线' : 'Full yarn count range from Nm2/26'}</div>
+          </div>
+        </div>
+        <!-- 文字面板 -->
+        <div class="md:col-span-7 bg-brand-chocolate text-white p-8 md:p-12 flex flex-col justify-center min-h-[280px]">
+          <div class="font-serif text-2xl md:text-3xl font-light leading-snug mb-6">
+            {locale === 'cn' ? '自有牧场 → 分梳 → 纺纱 → 织造 → 水洗 → 检验 → 出运' : 'Pasture → dehairing → spinning → knitting/weaving → washing → QC → shipment'}
+          </div>
+          <p class="text-white/70 leading-relaxed mb-8">{locale === 'cn' ? '全链路垂直整合，每一道工序都在集团内部完成——这就是我们敢让客户实地验厂的原因。' : 'Every step under one group. That is why we welcome unannounced factory audits.'}</p>
+          <div class="grid grid-cols-3 gap-6">
+            <div>
+              <div class="font-serif text-3xl text-brand-gold">100%</div>
+              <div class="text-[11px] uppercase tracking-[0.18em] text-white/60 mt-1">{locale === 'cn' ? '自有产能' : 'In-house'}</div>
+            </div>
+            <div>
+              <div class="font-serif text-3xl text-brand-gold">5</div>
+              <div class="text-[11px] uppercase tracking-[0.18em] text-white/60 mt-1">{locale === 'cn' ? '道质检' : 'QC stages'}</div>
+            </div>
+            <div>
+              <div class="font-serif text-3xl text-brand-gold">7</div>
+              <div class="text-[11px] uppercase tracking-[0.18em] text-white/60 mt-1">{locale === 'cn' ? '天出样' : 'Day sample'}</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-
-
-  <!-- Equipment -->
-
-  <section class="py-24 md:py-32 bg-brand-cream/50 border-y border-border">
-
+  <!-- ============ 03 生产设备 ============ -->
+  <section class="py-24 md:py-32 bg-background">
     <div class="container-narrow">
-
       <div class="max-w-2xl mb-16">
-
         <div class="flex items-center gap-3 mb-4">
-
           <span class="h-[2px] w-8 bg-brand-red"></span>
-
-          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">02 / {T('equipTitle')}</span>
-
+          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">03 / {T('equipTitle')}</span>
         </div>
-
         <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{T('equipTitle')}</h2>
-
         <p class="text-muted-foreground leading-relaxed">{T('equipSub')}</p>
-
       </div>
-
-
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
-
         {equipment.map((e, i) => (
-
-          <div class="bg-brand-cream/30 p-6 md:p-8 flex justify-between items-center group hover:bg-background transition-colors">
-
+          <div class="bg-background p-6 md:p-8 flex justify-between items-center group hover:bg-brand-cream/30 transition-colors">
             <div class="flex items-baseline gap-3">
-
               <span class="font-serif text-sm text-brand-gold/50">{String(i+1).padStart(2,'0')}</span>
-
               <span class="font-serif text-xl group-hover:text-brand-chocolate transition-colors">{e.name}</span>
-
             </div>
-
             <span class="text-sm text-muted-foreground">{e.spec}</span>
-
           </div>
-
         ))}
-
       </div>
-
     </div>
-
   </section>
 
-
-
-  <!-- Certifications -->
-
-  <section class="py-24 md:py-32 bg-background">
-
-    <div class="container-narrow">
-
-      <div class="max-w-2xl mb-16">
-
-        <div class="flex items-center gap-3 mb-4">
-
-          <span class="h-[2px] w-8 bg-brand-red"></span>
-
-          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">03 / {T('certTitle')}</span>
-
-        </div>
-
-        <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight">{T('certTitle')}</h2>
-
-      </div>
-
-
-
-      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6">
-
-        {certs.map((cert) => (
-
-          <div class="aspect-square rounded-full border border-brand-gold/40 flex items-center justify-center hover:border-brand-gold hover:bg-brand-gold/5 transition-all group">
-
-            <span class="font-serif text-sm text-brand-gold tracking-wider text-center px-2 leading-tight">{cert}</span>
-
-          </div>
-
-        ))}
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- Product Categories (from PDF catalogue) -->
-
+  <!-- ============ 04 资质认证 ============ -->
   <section class="py-24 md:py-32 bg-brand-cream/50 border-y border-border">
-
     <div class="container-narrow">
-
       <div class="max-w-2xl mb-16">
-
         <div class="flex items-center gap-3 mb-4">
-
           <span class="h-[2px] w-8 bg-brand-red"></span>
-
-          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">04 / {locale === 'cn' ? '产品类别' : 'Product Range'}</span>
-
+          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">04 / {T('certTitle')}</span>
         </div>
-
-        <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{locale === 'cn' ? '产品类别' : 'Full Product Range'}</h2>
-
-        <p class="text-muted-foreground leading-relaxed">{locale === 'cn' ? '针织、梭织围巾、配饰、童装 — 集团全系列覆盖。' : 'Knitwear, woven scarves, accessories, childrenswear — all groups under one factory.'}</p>
-
+        <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight">{T('certTitle')}</h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-background rounded-lg overflow-hidden hover-lift group">
-          <div class="aspect-square overflow-hidden bg-secondary/30">
-            <img src="/images/factory/page6-menswear.webp" alt="Knit garments from DONGXIAO - men's cashmere pullovers and sweaters" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
+      <div class="flex flex-wrap gap-4">
+        {certs.map((cert, i) => (
+          <div class="px-7 py-4 border border-brand-gold/40 rounded-full hover:border-brand-gold hover:bg-brand-gold/5 transition-all group flex items-center gap-3">
+            <span class="font-serif text-xs text-brand-gold/60">{String(i+1).padStart(2,'0')}</span>
+            <span class="font-serif text-base text-brand-chocolate tracking-wide">{cert}</span>
           </div>
-          <div class="p-6">
-            <div class="font-serif text-sm text-brand-gold/50 mb-1">01</div>
-            <h3 class="font-serif text-xl mb-2">{locale === 'cn' ? '针织成衣' : 'Knit Garments'}</h3>
-            <p class="text-sm text-muted-foreground">{locale === 'cn' ? '男装、女装、童装。Nm2/26 至 Nm2/36/2 全支数纱线。' : 'Men\'s, women\'s, children\'s. Nm2/26 to Nm2/36/2 full count range.'}</p>
-          </div>
-        </div>
-        <div class="bg-background rounded-lg overflow-hidden hover-lift group">
-          <div class="aspect-square overflow-hidden bg-secondary/30">
-            <img src="/images/factory/page5-sets.webp" alt="Woven cashmere scarves and shawls" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
-          </div>
-          <div class="p-6">
-            <div class="font-serif text-sm text-brand-gold/50 mb-1">02</div>
-            <h3 class="font-serif text-xl mb-2">{locale === 'cn' ? '梭织围巾' : 'Woven Scarves'}</h3>
-            <p class="text-sm text-muted-foreground">{locale === 'cn' ? '羊绒披肩、长巾。Nm2/26×2+Nm2/26&1/6.5&1/4.3 多组份。' : 'Cashmere wraps, shawls. Nm2/26×2 + Nm2/26&1/6.5&1/4.3 multi-ply.'}</p>
-          </div>
-        </div>
-        <div class="bg-background rounded-lg overflow-hidden hover-lift group">
-          <div class="aspect-square overflow-hidden bg-secondary/30">
-            <img src="/images/factory/page8-accessories.webp" alt="Cashmere accessories - hats, gloves, throws" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
-          </div>
-          <div class="p-6">
-            <div class="font-serif text-sm text-brand-gold/50 mb-1">03</div>
-            <h3 class="font-serif text-xl mb-2">{locale === 'cn' ? '配饰系列' : 'Accessories'}</h3>
-            <p class="text-sm text-muted-foreground">{locale === 'cn' ? '帽子、手套、披肩、家居纺织品。' : 'Hats, gloves, throws, home textiles. 1×1 to 12GG knit gauge options.'}</p>
-          </div>
-        </div>
-        <div class="bg-background rounded-lg overflow-hidden hover-lift group">
-          <div class="aspect-square overflow-hidden bg-secondary/30">
-            <img src="/images/factory/page7-childrenswear.webp" alt="DONGXIAO childrenswear - baby and kids cashmere knitwear" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
-          </div>
-          <div class="p-6">
-            <div class="font-serif text-sm text-brand-gold/50 mb-1">04</div>
-            <h3 class="font-serif text-xl mb-2">{locale === 'cn' ? '童童装' : 'Childrenswear'}</h3>
-            <p class="text-sm text-muted-foreground">{locale === 'cn' ? '婴幼儿童装。可爱款、休闲款，OEKO-TEX 安全标准。' : 'Baby & kids\' knitwear. Cute & casual styles. OEKO-TEX safe fabric certified.'}</p>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- Business Models (from PDF catalogue) -->
-
+  <!-- ============ 05 全品类（图卡） ============ -->
   <section class="py-24 md:py-32 bg-background">
-
     <div class="container-narrow">
-
       <div class="max-w-2xl mb-16">
-
         <div class="flex items-center gap-3 mb-4">
-
           <span class="h-[2px] w-8 bg-brand-red"></span>
-
-          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">05 / {locale === 'cn' ? '\u7ec8\u7aef\u6a21\u5f0f' : 'Business Models'}</span>
-
+          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">05 / {locale === 'cn' ? '产品类别' : 'Product Range'}</span>
         </div>
+        <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{locale === 'cn' ? '产品类别' : 'Full Product Range'}</h2>
+        <p class="text-muted-foreground leading-relaxed">{locale === 'cn' ? '针织、梭织围巾、配饰、童装 — 集团全系列覆盖。' : 'Knitwear, woven scarves, accessories, childrenswear — all groups under one factory.'}</p>
+      </div>
 
-        <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{locale === 'cn' ? '\u591a\u5143\u5316\u7ec8\u7aef\u6a21\u5f0f' : 'Six Business Models'}</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <a href={`/${locale}/products/garment-oem/`} class="group relative aspect-[3/4] overflow-hidden bg-brand-ink">
+          <img src="/images/factory/page6-menswear.webp" alt="Knit garments from DONGXIAO - men's cashmere pullovers and sweaters" class="w-full h-full object-cover opacity-90 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700" loading="lazy" decoding="async" />
+          <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/85 via-brand-ink/10 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <div class="font-serif text-xs text-brand-gold/70 mb-1">01</div>
+            <h3 class="font-serif text-2xl text-white mb-1">{locale === 'cn' ? '针织成衣' : 'Knit Garments'}</h3>
+            <p class="text-sm text-white/75">{locale === 'cn' ? '男装、女装、童装。Nm2/26 至 Nm2/36/2 全支数。' : 'Men's, women's, children's. Nm2/26 to Nm2/36/2.'}</p>
+          </div>
+        </a>
+        <a href={`/${locale}/products/scarves/`} class="group relative aspect-[3/4] overflow-hidden bg-brand-ink">
+          <img src="/images/factory/page5-sets.webp" alt="Woven cashmere scarves and shawls" class="w-full h-full object-cover opacity-90 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700" loading="lazy" decoding="async" />
+          <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/85 via-brand-ink/10 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <div class="font-serif text-xs text-brand-gold/70 mb-1">02</div>
+            <h3 class="font-serif text-2xl text-white mb-1">{locale === 'cn' ? '梭织围巾' : 'Woven Scarves'}</h3>
+            <p class="text-sm text-white/75">{locale === 'cn' ? '羊绒披肩、长巾。多组份混纺。' : 'Cashmere wraps & shawls, multi-ply.'}</p>
+          </div>
+        </a>
+        <a href={`/${locale}/products/accessories-cat/`} class="group relative aspect-[3/4] overflow-hidden bg-brand-ink">
+          <img src="/images/factory/page8-accessories.webp" alt="Cashmere accessories - hats, gloves, throws" class="w-full h-full object-cover opacity-90 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700" loading="lazy" decoding="async" />
+          <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/85 via-brand-ink/10 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <div class="font-serif text-xs text-brand-gold/70 mb-1">03</div>
+            <h3 class="font-serif text-2xl text-white mb-1">{locale === 'cn' ? '配饰系列' : 'Accessories'}</h3>
+            <p class="text-sm text-white/75">{locale === 'cn' ? '帽子、手套、披肩、家居纺织品。' : 'Hats, gloves, throws, home textiles.'}</p>
+          </div>
+        </a>
+        <a href={`/${locale}/products/accessories-cat/`} class="group relative aspect-[3/4] overflow-hidden bg-brand-ink">
+          <img src="/images/factory/page7-childrenswear.webp" alt="DONGXIAO childrenswear - baby and kids cashmere knitwear" class="w-full h-full object-cover opacity-90 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700" loading="lazy" decoding="async" />
+          <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/85 via-brand-ink/10 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <div class="font-serif text-xs text-brand-gold/70 mb-1">04</div>
+            <h3 class="font-serif text-2xl text-white mb-1">{locale === 'cn' ? '童装系列' : 'Childrenswear'}</h3>
+            <p class="text-sm text-white/75">{locale === 'cn' ? '婴幼儿童装，OEKO-TEX 安全标准。' : 'Baby & kids' knitwear, OEKO-TEX safe.'}</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
 
-        <p class="text-muted-foreground leading-relaxed">{locale === 'cn' ? '\u4ece ODM/OEM \u5236\u9020\u5230\u54c1\u724c\u52a0\u76df\u3001\u5728\u7ebf\u7ebf\u4e0b\u4e00\u4f53\u5316 \u2014 \u9002\u914d\u4e0d\u540c B2B \u5ba2\u6237\u9700\u6c42\u3002' : 'From ODM/OEM manufacturing to brand franchise and online-offline integration.'}</p>
-
+  <!-- ============ 06 六大合作模式 ============ -->
+  <section class="py-24 md:py-32 bg-brand-cream/50 border-y border-border">
+    <div class="container-narrow">
+      <div class="max-w-2xl mb-16">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="h-[2px] w-8 bg-brand-red"></span>
+          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">06 / {locale === 'cn' ? '终端模式' : 'Business Models'}</span>
+        </div>
+        <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{locale === 'cn' ? '多元化终端模式' : 'Six Business Models'}</h2>
+        <p class="text-muted-foreground leading-relaxed">{locale === 'cn' ? '从 ODM/OEM 制造到品牌加盟、线上线下一体化 — 适配不同 B2B 客户需求。' : 'From ODM/OEM manufacturing to brand franchise and online-offline integration.'}</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="bg-brand-cream/30 p-6 rounded-lg hover-lift">
+        <div class="bg-background p-6 rounded-lg hover-lift border border-border">
           <div class="font-serif text-3xl text-brand-gold mb-2">01</div>
-          <h3 class="font-serif text-lg mb-2">{locale === 'cn' ? 'ODM/OEM \u751f\u4ea7\u52a0\u5de5' : 'ODM / OEM Manufacturing'}</h3>
-          <p class="text-sm text-muted-foreground">{locale === 'cn' ? '\u4e3a\u54c1\u724c\u65b9\u8bbe\u8ba1\u3001\u5236\u4f5c\u3001\u52a0\u5de5\u548c\u4ed3\u50a8\u4e00\u7ad9\u5f0f\u670d\u52a1\u3002' : 'Design, manufacturing and warehousing under one roof.'}</p>
+          <h3 class="font-serif text-lg mb-2">{locale === 'cn' ? 'ODM/OEM 生产加工' : 'ODM / OEM Manufacturing'}</h3>
+          <p class="text-sm text-muted-foreground">{locale === 'cn' ? '为品牌方设计、制作、加工和仓储一站式服务。' : 'Design, manufacturing and warehousing under one roof.'}</p>
         </div>
-        <div class="bg-brand-cream/30 p-6 rounded-lg hover-lift">
+        <div class="bg-background p-6 rounded-lg hover-lift border border-border">
           <div class="font-serif text-3xl text-brand-gold mb-2">02</div>
-          <h3 class="font-serif text-lg mb-2">{locale === 'cn' ? '\u6765\u6837\u5b9a\u505a' : 'Sample Customization'}</h3>
-          <p class="text-sm text-muted-foreground">{locale === 'cn' ? '\u6839\u636e\u5ba2\u6237\u63d0\u4f9b\u7684\u6b3e\u5f0f\u3001\u56fe\u7eb8\u6216\u7247\u8282\u8fdb\u884c\u6837\u68c9\u3001\u7c73\u62bd\u3002' : 'Sample dyeing and weaving based on client swatches or designs.'}</p>
+          <h3 class="font-serif text-lg mb-2">{locale === 'cn' ? '来样定做' : 'Sample Customization'}</h3>
+          <p class="text-sm text-muted-foreground">{locale === 'cn' ? '根据客户提供的款式、图纸或片节进行样棉、米抽。' : 'Sample dyeing and weaving based on client swatches or designs.'}</p>
         </div>
-        <div class="bg-brand-cream/30 p-6 rounded-lg hover-lift">
+        <div class="bg-background p-6 rounded-lg hover-lift border border-border">
           <div class="font-serif text-3xl text-brand-gold mb-2">03</div>
-          <h3 class="font-serif text-lg mb-2">{locale === 'cn' ? '\u5b9e\u4f53\u6279\u53d1' : 'Physical Wholesale'}</h3>
-          <p class="text-sm text-muted-foreground">{locale === 'cn' ? '\u9488\u7eb1\u3001\u5dfe\u3001\u88c5\u3001\u9762\u9762\u6599\u7c7b\u591a\u70c8\u7247\u4ef7\u3002' : 'Direct factory pricing on sweaters, scarves, accessories.'}</p>
+          <h3 class="font-serif text-lg mb-2">{locale === 'cn' ? '实体批发' : 'Physical Wholesale'}</h3>
+          <p class="text-sm text-muted-foreground">{locale === 'cn' ? '针纱、巾、装、面料类多列片价。' : 'Direct factory pricing on sweaters, scarves, accessories.'}</p>
         </div>
-        <div class="bg-brand-cream/30 p-6 rounded-lg hover-lift">
+        <div class="bg-background p-6 rounded-lg hover-lift border border-border">
           <div class="font-serif text-3xl text-brand-gold mb-2">04</div>
-          <h3 class="font-serif text-lg mb-2">{locale === 'cn' ? '\u54c1\u724c\u52a0\u76df' : 'Brand Franchise'}</h3>
-          <p class="text-sm text-muted-foreground">{locale === 'cn' ? '\u63a5\u53d7\u56fd\u5185\u5916\u54c1\u724c\u52a0\u76df\u53ca\u4ee3\u5236\u7684\u5ba2\u6237\u3002' : 'Domestic and international brand franchise and licensing clients.'}</p>
+          <h3 class="font-serif text-lg mb-2">{locale === 'cn' ? '品牌加盟' : 'Brand Franchise'}</h3>
+          <p class="text-sm text-muted-foreground">{locale === 'cn' ? '接受国内外品牌加盟及代制的客户。' : 'Domestic and international brand franchise and licensing clients.'}</p>
         </div>
-        <div class="bg-brand-cream/30 p-6 rounded-lg hover-lift">
+        <div class="bg-background p-6 rounded-lg hover-lift border border-border">
           <div class="font-serif text-3xl text-brand-gold mb-2">05</div>
-          <h3 class="font-serif text-lg mb-2">{locale === 'cn' ? '\u4e00\u4ef6\u4ee3\u53d1' : 'Drop Shipping'}</h3>
-          <p class="text-sm text-muted-foreground">{locale === 'cn' ? '\u5c0f\u6279\u6b21\u5ba2\u6237\u9002\u7528\u3002\u76f4\u53d1\u5ba2\u6237\u3002' : 'Small-batch dropship direct to end customers.'}</p>
+          <h3 class="font-serif text-lg mb-2">{locale === 'cn' ? '一件代发' : 'Drop Shipping'}</h3>
+          <p class="text-sm text-muted-foreground">{locale === 'cn' ? '小批次客户适用。直发客户。' : 'Small-batch dropship direct to end customers.'}</p>
         </div>
-        <div class="bg-brand-cream/30 p-6 rounded-lg hover-lift">
+        <div class="bg-background p-6 rounded-lg hover-lift border border-border">
           <div class="font-serif text-3xl text-brand-gold mb-2">06</div>
-          <h3 class="font-serif text-lg mb-2">{locale === 'cn' ? '\u7ebf\u4e0a\u7ebf\u4e0b\u4e00\u4f53' : 'Online + Offline'}</h3>
-          <p class="text-sm text-muted-foreground">{locale === 'cn' ? '\u7ebf\u4e0a\u7535\u5546\u5e73\u53f0 + \u7ebf\u4e0b\u7ecf\u9500\u5546 \u4e00\u4f53\u5316\u8fd0\u4f5c\u3002' : 'E-commerce platforms plus offline retailer integration.'}</p>
+          <h3 class="font-serif text-lg mb-2">{locale === 'cn' ? '线上线下一体' : 'Online + Offline'}</h3>
+          <p class="text-sm text-muted-foreground">{locale === 'cn' ? '线上电商平台 + 线下经销商 一体化运作。' : 'E-commerce platforms plus offline retailer integration.'}</p>
         </div>
       </div>
 
       <div class="mt-16 max-w-3xl mx-auto text-center">
         <blockquote class="font-serif text-2xl md:text-3xl text-brand-chocolate font-light italic leading-snug">
-          {locale === 'cn' ? '\u201c\u8ba4\u771f\u5408\u4f5c\u3001\u4e92\u60e0\u4e92\u5229\u3001\u5171\u540c\u53d1\u5c55\u201d \u2014 \u6bcf\u4e00\u4efd\u5408\u4f5c\u90fd\u662f\u6109\u5feb\u7684\u3002' : '"Integrity cooperation, mutual benefit, common development" \u2014 every cooperation a pleasant one.'}
+          {locale === 'cn' ? '“认真合作、互惠互利、共同发展” — 每一份合作都是愉快的。' : '"Integrity cooperation, mutual benefit, common development" — every cooperation a pleasant one.'}
         </blockquote>
-        <p class="text-xs text-muted-foreground mt-4 uppercase tracking-widest">{locale === 'cn' ? '\u2014 \u96c6\u56e2\u7406\u5ff5' : '\u2014 Our Belief'}</p>
+        <p class="text-xs text-muted-foreground mt-4 uppercase tracking-widest">{locale === 'cn' ? '— 集团理念' : '— Our Belief'}</p>
       </div>
     </div>
   </section>
 
-
-  <!-- CTA -->
-
-  <section class="py-24 md:py-32 bg-brand-chocolate text-white">
-
-    <div class="container-narrow text-center">
-
+  <!-- ============ 07 预约考察 CTA（背景图） ============ -->
+  <section class="relative py-28 md:py-36 overflow-hidden bg-brand-chocolate">
+    <div class="absolute inset-0">
+      <img src="/images/factory/page3-exhibition.webp" alt="" aria-hidden="true" class="w-full h-full object-cover opacity-20" loading="lazy" decoding="async" />
+      <div class="absolute inset-0 bg-gradient-to-b from-brand-chocolate/70 to-brand-chocolate/90"></div>
+    </div>
+    <div class="container-narrow relative z-10 text-center">
       <div class="flex items-center justify-center gap-3 mb-4">
-
         <span class="h-[2px] w-8 bg-brand-red"></span>
-
         <span class="text-xs tracking-[0.3em] uppercase text-brand-gold">{locale === 'cn' ? '下一步' : 'Next Step'}</span>
-
         <span class="h-[2px] w-8 bg-brand-red"></span>
-
       </div>
-
-      <h2 class="reveal font-serif text-4xl md:text-5xl font-light mb-4 text-balance">{T('ctaTitle')}</h2>
-
+      <h2 class="reveal font-serif text-4xl md:text-5xl font-light mb-4 text-balance text-white">{T('ctaTitle')}</h2>
       <p class="text-white/75 mb-8 max-w-2xl mx-auto">{T('ctaSub')}</p>
-
       <a href={`/${locale}/contact?type=visit`} class="inline-flex items-center gap-2 px-10 py-5 bg-brand-gold text-brand-ink font-medium tracking-wider hover:bg-white transition-colors">
-
         {T('cta')}
-
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-
-        </svg>
-
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
       </a>
-
     </div>
-
   </section>
-
-
 
   {locale === 'en' && (
 
