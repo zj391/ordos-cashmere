@@ -20,8 +20,8 @@ interface Props {
 }
 
 const labels: Record<string, Record<string, string>> = {
-  en: { name: 'Name *', email: 'Email *', company: 'Company *', country: 'Country *', download: 'Download Now', cancel: 'Cancel', submitting: 'Sending...', done: 'Download Started', desc: 'B2B buyers only. We will send a copy to your email.' },
-  cn: { name: '姓名 *', email: '邮箱 *', company: '公司 *', country: '国家 *', download: '立即下载', cancel: '取消', submitting: '发送中...', done: '下载已开始', desc: 'B2B采购专用。同时发送至您的邮箱。' },
+  en: { name: 'Name *', email: 'Email *', company: 'Company *', country: 'Country *', download: 'Request Documents', cancel: 'Cancel', submitting: 'Sending...', done: 'Request Received', desc: 'B2B buyers only. We will email the documents to you within 24 hours.' },
+  cn: { name: '姓名 *', email: '邮箱 *', company: '公司 *', country: '国家 *', download: '申请资料', cancel: '取消', submitting: '发送中...', done: '申请已收到', desc: 'B2B采购专用。资料将在24小时内发送至您的邮箱。' },
   de: { name: 'Name *', email: 'E-Mail *', company: 'Firma *', country: 'Land *', download: 'Herunterladen', cancel: 'Abbrechen', submitting: 'Wird gesendet...', done: 'Download gestartet', desc: 'Nur B2B-Käufer.' },
   fr: { name: 'Nom *', email: 'Email *', company: 'Société *', country: 'Pays *', download: 'Télécharger', cancel: 'Annuler', submitting: 'Envoi...', done: 'Téléchargement lancé', desc: 'Acheteurs B2B uniquement.' },
   ja: { name: 'お名前 *', email: 'メール *', company: '会社 *', country: '国 *', download: 'ダウンロード', cancel: 'キャンセル', submitting: '送信中...', done: 'ダウンロード開始', desc: 'B2Bバイヤー専用。' },
@@ -118,7 +118,7 @@ export default function DownloadsGrid({ locale, downloads }: Props) {
           <div className="w-full max-w-md border border-primary rounded-lg p-6 bg-card text-center" onClick={(e) => e.stopPropagation()}>
             <div className="text-2xl mb-2">✓</div>
             <div className="font-medium mb-2">{L('done')}</div>
-            <div className="text-xs text-muted-foreground mb-4">{active.title}</div>
+            <div className="text-xs text-muted-foreground mb-4">{active.title} — {L('desc')}</div>
             <button type="button" onClick={() => setActiveIdx(null)} className="px-5 py-2.5 bg-primary text-primary-foreground rounded-none font-medium hover:bg-primary/90 text-sm">
               {L('cancel')}
             </button>
