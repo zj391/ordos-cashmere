@@ -111,13 +111,21 @@ export default defineConfig({
           // Record<string,string>). We append a synthetic x-default
           // entry that mirrors the English URL.
           links: (() => {
-            const enUrl = item.url.replace(/^https?:\/\/[^/]+/, (host) => {
-              // Find the English equivalent of this URL by swapping
-              // the locale prefix. /de/x/ -> /en/x/, /x/ -> /x/.
-              const path = item.url.replace(/^https?:\/\/[^/]+/, '');
-              const m = path.match(/^\/(de|fr|ja|kr|cn)(\/|$)/);
-              return host + (m ? '/en' + m[2] : path);
-            });
+            const path = item.url.replace(/^https?:\/\/[^/]+/, '');
+            // Swap a non-English locale prefix to 'en', keep the rest.
+            // /de/      -> /en/         (only the locale segment changes)
+            // /de/x/y/  -> /en/x/y/     (locale swapped, tail preserved)
+            // /         -> /            (no locale to swap, keep root)
+            // /x/       -> /x/          (no locale to swap)
+            let enPath = path;
+            const m = path.match(/^\/(de|fr|ja|kr|cn)(\/.*)?$/);
+            if (m) {
+              // m[2] is the part after the locale segment (starts with /).
+              // For /de/   m[2] is undefined -> use '' so result is /en.
+              // For /de/x/ m[2] is '/x/'     -> /en/x/.
+              enPath = '/en' + (m[2] || '');
+            }
+            const enUrl = (item.url.match(/^https?:\/\/[^/]+/) || [''])[0] + enPath;
             return [
               ...(item.links || []),
               { lang: 'x-default', url: enUrl },
