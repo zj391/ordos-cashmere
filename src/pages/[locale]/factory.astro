@@ -160,8 +160,7 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
           <span class="h-[2px] w-12 bg-brand-red"></span>
           <span class="text-xs tracking-[0.4em] uppercase text-brand-gold font-medium">{T('tagline')}</span>
         </div>
-        <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-light text-white leading-[1.05] mb-6" set:html={T('title').replace(/
-/g, '<br/>')} />
+        <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-light text-white leading-[1.05] mb-6" set:html={T('title').replace(/\n/g, '<br/>')} />
         <p class="text-lg md:text-xl text-white/80 leading-relaxed max-w-2xl font-light mb-10">{T('subtitle')}</p>
         <div class="flex flex-wrap gap-4">
           <a href={`/${locale}/contact?type=visit`} class="inline-flex items-center gap-2 px-9 py-4 bg-brand-gold text-brand-ink font-medium tracking-wider hover:bg-white transition-colors">
