@@ -932,32 +932,56 @@ const productSchema = {
       : []),
   ].filter((p) => p.value),
 
-  offers: {
-
-    '@type': 'Offer',
-
-    priceCurrency: product.currency,
-
-    price: product.price.split('-')[0],
-
-    priceValidUntil: '2027-12-31',
-
-    availability: 'https://schema.org/InStock',
-
-    itemCondition: 'https://schema.org/NewCondition',
-
-    businessFunction: 'https://schema.org/Sell',
-
-    seller: { '@type': 'Organization', name: SITE_INFO.legalName },
-
-    // MOQ = minQuantity / MOQ-step context for B2B
-    eligibleQuantity: {
-      '@type': 'QuantitativeValue',
-      minValue: product.moq,
-      unitText: 'pieces',
-    },
-
-  },
+  // B2B price: most products carry a range like "9.2-16.5" meaning unit
+  // price varies by order size / customization. Use AggregateOffer when
+  // the price field contains a range so Google can render the price
+  // range in rich results; fall back to plain Offer for single-price
+  // items. AggregateOffer signals "wholesale pricing tiers" which
+  // matches B2B intent.
+  ...(function () {
+    const raw = (product.price || '').toString();
+    const rangeMatch = raw.match(/(\d+(?:\.\d+)?)\s*[-–—]\s*(\d+(?:\.\d+)?)/);
+    if (rangeMatch) {
+      const low = parseFloat(rangeMatch[1]);
+      const high = parseFloat(rangeMatch[2]);
+      return {
+        offers: {
+          '@type': 'AggregateOffer',
+          priceCurrency: product.currency,
+          lowPrice: low,
+          highPrice: high,
+          offerCount: 1,
+          priceValidUntil: '2027-12-31',
+          availability: 'https://schema.org/InStock',
+          itemCondition: 'https://schema.org/NewCondition',
+          businessFunction: 'https://schema.org/Sell',
+          seller: { '@type': 'Organization', name: SITE_INFO.legalName },
+          eligibleQuantity: {
+            '@type': 'QuantitativeValue',
+            minValue: product.moq,
+            unitText: 'pieces',
+          },
+        },
+      };
+    }
+    return {
+      offers: {
+        '@type': 'Offer',
+        priceCurrency: product.currency,
+        price: parseFloat(raw) || raw,
+        priceValidUntil: '2027-12-31',
+        availability: 'https://schema.org/InStock',
+        itemCondition: 'https://schema.org/NewCondition',
+        businessFunction: 'https://schema.org/Sell',
+        seller: { '@type': 'Organization', name: SITE_INFO.legalName },
+        eligibleQuantity: {
+          '@type': 'QuantitativeValue',
+          minValue: product.moq,
+          unitText: 'pieces',
+        },
+      },
+    };
+  })(),
 
 };
 
