@@ -145,7 +145,7 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
 
 
 
-  <BaseLayout locale={locale} pageKey="factory" path="/factory">
+    <BaseLayout locale={locale} pageKey="factory" path="/factory">
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/factory`} />
 
   <!-- ============ HERO：全屏沉浸式 ============ -->
@@ -351,7 +351,7 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
           <div class="absolute bottom-0 left-0 right-0 p-6">
             <div class="font-serif text-xs text-brand-gold/70 mb-1">01</div>
             <h3 class="font-serif text-2xl text-white mb-1">{locale === 'cn' ? '针织成衣' : 'Knit Garments'}</h3>
-            <p class="text-sm text-white/75">{locale === 'cn' ? '男装、女装、童装。Nm2/26 至 Nm2/36/2 全支数。' : 'Men's, women's, children's. Nm2/26 to Nm2/36/2.'}</p>
+            <p class="text-sm text-white/75">{locale === 'cn' ? '男装、女装、童装。Nm2/26 至 Nm2/36/2 全支数。' : 'Men\'s, women\'s, children\'s. Nm2/26 to Nm2/36/2.'}</p>
           </div>
         </a>
         <a href={`/${locale}/products/scarves/`} class="group relative aspect-[3/4] overflow-hidden bg-brand-ink">
@@ -378,7 +378,7 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
           <div class="absolute bottom-0 left-0 right-0 p-6">
             <div class="font-serif text-xs text-brand-gold/70 mb-1">04</div>
             <h3 class="font-serif text-2xl text-white mb-1">{locale === 'cn' ? '童装系列' : 'Childrenswear'}</h3>
-            <p class="text-sm text-white/75">{locale === 'cn' ? '婴幼儿童装，OEKO-TEX 安全标准。' : 'Baby & kids' knitwear, OEKO-TEX safe.'}</p>
+            <p class="text-sm text-white/75">{locale === 'cn' ? '婴幼儿童装，OEKO-TEX 安全标准。' : 'Baby & kids\' knitwear, OEKO-TEX safe.'}</p>
           </div>
         </a>
       </div>
@@ -432,7 +432,7 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
 
       <div class="mt-16 max-w-3xl mx-auto text-center">
         <blockquote class="font-serif text-2xl md:text-3xl text-brand-chocolate font-light italic leading-snug">
-          {locale === 'cn' ? '“认真合作、互惠互利、共同发展” — 每一份合作都是愉快的。' : '"Integrity cooperation, mutual benefit, common development" — every cooperation a pleasant one.'}
+          {locale === 'cn' ? '\u201c认真合作、互惠互利、共同发展\u201d — 每一份合作都是愉快的。' : '"Integrity cooperation, mutual benefit, common development" — every cooperation a pleasant one.'}
         </blockquote>
         <p class="text-xs text-muted-foreground mt-4 uppercase tracking-widest">{locale === 'cn' ? '— 集团理念' : '— Our Belief'}</p>
       </div>
