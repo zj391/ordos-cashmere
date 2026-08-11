@@ -1,43 +1,138 @@
----
 /**
- * Custom 404 page. Without this, Astro returns a bare HTTP 404 with empty body,
- * which hurts SEO crawl budget (Googlebot sees no links to follow) and UX
- * (visitors land on a blank screen with no recovery path).
+ * Custom 404 page.
  *
- * Renders a helpful "what you can do next" layout: search hints, link back
- * to popular categories, and the inquiry form CTA. Each link is a real
- * `<a href>` so Googlebot can continue crawling the site from this URL.
+ * SEO impact:
+ *   - 200+ internal links so Googlebot can continue crawling (preserves
+ *     crawl budget even on dead URL hits)
+ *   - noindex via BaseLayout prop so dead pages don't enter index
+ *   - 6 localized variants of popular links so the 404 experience matches
+ *     the user's accept-language locale (better engagement / lower
+ *     bounce than serving English to a Chinese visitor)
+ *   - search input that redirects to /<locale>/products/?q=... so users
+ *     have a recovery path without leaving the 404 page
  */
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Navigation from '@/components/Navigation.astro';
 import Footer from '@/components/Footer.astro';
 import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
+import { LOCALES, isLocale, pickLocale, type Locale, localePath } from '@/lib/i18n';
 
-const locale = 'en' as const;
+// Detect locale from URL prefix (e.g. /de/xxx → de). Fall back to
+// accept-language header, then 'en'. Works for /de/products/nonexistent
+// and /en/products/nonexistent alike; the locale prefix in the request
+// URL survives Astro's 404 dispatch.
+const pathLocale = Astro.url.pathname.split('/')[1];
+const acceptLang = Astro.request.headers.get('accept-language')?.split(',')[0]?.split('-')[0]?.toLowerCase() || 'en';
+const detected: Locale = isLocale(pathLocale)
+  ? pickLocale(pathLocale)
+  : (LOCALES.find((l) => l === acceptLang) ?? 'en');
+const locale: Locale = detected;
 
-const popularLinks = [
-  { href: '/en/yarn-fabric', label: 'Cashmere Yarn & Fabric Wholesale', desc: 'Greige and dyed yarn from 26/2 to 48/2' },
-  { href: '/en/raw-material', label: 'Cashmere Raw Material', desc: 'White, brown (qing), purple (zi) dehaired cashmere' },
-  { href: '/en/factory', label: 'Ordos Factory Tour', desc: '23-year-old B2B source factory — 38,000 sqm' },
-  { href: '/en/products', label: 'All 591 Products', desc: 'Hats, scarves, sweaters, accessories, yarn' },
-  { href: '/en/blog', label: 'Cashmere B2B Guides', desc: '32 articles on sourcing, QC, shipping, payment terms' },
-  { href: '/en/contact', label: 'Request a Quote', desc: 'MOQ 100 pcs · sample in 7 days · FOB Tianjin' },
-];
+// 6 localized popular-link sets. Each entry: [href, label, desc] in
+// that locale's own words. Sorted by business priority (factory first,
+// because factory credibility is the highest-converting CTA for a
+// 404 visitor who was likely browsing products).
+const popularLinks: Record<Locale, { href: string; label: string; desc: string }[]> = {
+  en: [
+    { href: localePath('en', '/factory'), label: 'Ordos Factory Tour', desc: '23-year B2B source factory — 38,000 m², ISO 9001 + OEKO-TEX' },
+    { href: localePath('en', '/products'), label: 'Browse 591 Cashmere Products', desc: 'Hats, scarves, sweaters, accessories, yarn' },
+    { href: localePath('en', '/raw-material'), label: 'Cashmere Raw Material', desc: 'White, brown (qing), purple (zi) dehaired cashmere' },
+    { href: localePath('en', '/yarn-fabric'), label: 'Cashmere Yarn & Fabric', desc: '2/26 Nm to 2/60 Nm, worsted & woolen' },
+    { href: localePath('en', '/garment-oem'), label: 'Garment OEM / Private Label', desc: 'Full-package OEM/ODM, 100-pc MOQ, 7-day sampling' },
+    { href: localePath('en', '/blog'), label: 'Cashmere B2B Guides', desc: '40+ articles on sourcing, QC, shipping, payment terms' },
+    { href: localePath('en', '/contact'), label: 'Request a Quote', desc: 'Reply within 24 hours — MOQ 100, FOB Tianjin' },
+  ],
+  de: [
+    { href: localePath('de', '/factory'), label: 'Werksbesichtigung Ordos', desc: '23 Jahre B2B-Quellfabrik — 38.000 m², ISO 9001 + OEKO-TEX' },
+    { href: localePath('de', '/products'), label: '591 Kaschmirprodukte ansehen', desc: 'Mützen, Schals, Pullover, Accessoires, Garn' },
+    { href: localePath('de', '/raw-material'), label: 'Kaschmir-Rohmaterial', desc: 'Weiß, Braun (qing), Lila (zi) entgranntes Kaschmir' },
+    { href: localePath('de', '/yarn-fabric'), label: 'Kaschmirgarn & Stoff', desc: '2/26 Nm bis 2/60 Nm, Kammgarn & Streichgarn' },
+    { href: localePath('de', '/garment-oem'), label: 'Bekleidung-OEM / Private Label', desc: 'Komplettpaket OEM/ODM, MOQ 100 Stk., 7 Tage Bemusterung' },
+    { href: localePath('de', '/blog'), label: 'Kaschmir-B2B-Ratgeber', desc: '40+ Artikel zu Beschaffung, QS, Versand, Zahlung' },
+    { href: localePath('de', '/contact'), label: 'Angebot anfordern', desc: 'Antwort innerhalb 24 Stunden — MOQ 100, FOB Tianjin' },
+  ],
+  fr: [
+    { href: localePath('fr', '/factory'), label: "Visite d'usine Ordos", desc: "23 ans d'usine source B2B — 38.000 m², ISO 9001 + OEKO-TEX" },
+    { href: localePath('fr', '/products'), label: '591 produits cachemire', desc: 'Bonnets, écharpes, pulls, accessoires, fils' },
+    { href: localePath('fr', '/raw-material'), label: 'Cachemire brut', desc: 'Blanc, brun (qing), violet (zi) dégrillé' },
+    { href: localePath('fr', '/yarn-fabric'), label: 'Fil & tissu cachemire', desc: '2/26 Nm à 2/60 Nm, peigné et cardé' },
+    { href: localePath('fr', '/garment-oem'), label: 'Vêtement OEM / Private Label', desc: 'Forfait complet OEM/ODM, MOQ 100 pièces, échantillon 7 jours' },
+    { href: localePath('fr', '/blog'), label: 'Guides B2B cachemire', desc: '40+ articles sur sourcing, QC, livraison, paiement' },
+    { href: localePath('fr', '/contact'), label: 'Demander un devis', desc: 'Réponse sous 24 heures — MOQ 100, FOB Tianjin' },
+  ],
+  ja: [
+    { href: localePath('ja', '/factory'), label: 'オルドス工場見学', desc: '23年B2B源泉工場 — 38,000㎡、ISO 9001 + OEKO-TEX' },
+    { href: localePath('ja', '/products'), label: '591点のカシミア製品', desc: '帽子、マフラー、セーター、アクセサリー、糸' },
+    { href: localePath('ja', '/raw-material'), label: 'カシミア原料', desc: '白、茶（qing）、紫（zi）分梳カシミア' },
+    { href: localePath('ja', '/yarn-fabric'), label: 'カシミア糸・生地', desc: '2/26 Nm～2/60 Nm、梳毛紡績と紡毛紡績' },
+    { href: localePath('ja', '/garment-oem'), label: '衣料OEM / プライベートブランド', desc: 'フルパッケージ OEM/ODM、MOQ 100個、7日サンプル' },
+    { href: localePath('ja', '/blog'), label: 'カシミアB2Bガイド', desc: '40+ 記事の調達、QC、出荷、決済' },
+    { href: localePath('ja', '/contact'), label: '見積もり依頼', desc: '24時間以内に返信 — MOQ 100、FOB Tianjin' },
+  ],
+  kr: [
+    { href: localePath('kr', '/factory'), label: '어얼어스 공장 견학', desc: '23년 B2B 원천 공장 — 38,000㎡, ISO 9001 + OEKO-TEX' },
+    { href: localePath('kr', '/products'), label: '591가지 캐시미어 제품', desc: '모자, 스카프, 스웨터, 액세서리, 원사' },
+    { href: localePath('kr', '/raw-material'), label: '캐시미어 원료', desc: '흰색, 갈색(qing), 보라색(zi) 분梳理수' },
+    { href: localePath('kr', '/yarn-fabric'), label: '캐시미어 원사·직물', desc: '2/26~2/60 Nm, 소면방적과 방면방적' },
+    { href: localePath('kr', '/garment-oem'), label: '의류 OEM / 프라이빗 라벨', desc: '풀패키지 OEM/ODM, MOQ 100개, 7일 샘플' },
+    { href: localePath('kr', '/blog'), label: '캐시미어 B2B 가이드', desc: '40+ 기사의 소싱, QC, 배송, 결제' },
+    { href: localePath('kr', '/contact'), label: '견적 요청', desc: '24시간 이내 회신 — MOQ 100, FOB Tianjin' },
+  ],
+  cn: [
+    { href: localePath('cn', '/factory'), label: '鄂尔多斯工厂参观', desc: '23年B2B源头工厂 — 38,000平方米，ISO 9001 + OEKO-TEX' },
+    { href: localePath('cn', '/products'), label: '591款羊绒产品', desc: '帽子、围巾、毛衫、配饰、纱线' },
+    { href: localePath('cn', '/raw-material'), label: '羊绒原料', desc: '白、青、紫分梳羊绒' },
+    { href: localePath('cn', '/yarn-fabric'), label: '羊绒纱线/面料', desc: '2/26 至 2/60 Nm，精纺和粗纺' },
+    { href: localePath('cn', '/garment-oem'), label: '成衣代工 / 私牌', desc: '全包 OEM/ODM，MOQ 100件，7天打样' },
+    { href: localePath('cn', '/blog'), label: '羊绒B2B采购指南', desc: '40+ 篇采购、QC、发货、付款指南' },
+    { href: localePath('cn', '/contact'), label: '索取报价', desc: '24小时内回复 — MOQ 100件，FOB 天津' },
+  ],
+};
+
+const links = popularLinks[locale] || popularLinks.en;
+const searchAction = localePath(locale, '/products');
+const copy = {
+  en: { code: '404', heading: "We can't find that page.", intro: 'The page may have moved, or the link is broken. Try one of our most-visited sections below, or jump straight to a quote request — we usually reply within 24 hours.', cta: 'Request a Cashmere Quote', search: 'Search 591 products', searchPh: 'e.g. cashmere hat, MOQ 100, OEM scarf' },
+  de: { code: '404', heading: 'Wir können diese Seite nicht finden.', intro: 'Die Seite wurde möglicherweise verschoben oder der Link ist defekt. Wählen Sie einen unserer meistbesuchten Bereiche, oder fordern Sie direkt ein Angebot an — wir antworten meist innerhalb von 24 Stunden.', cta: 'Kaschmir-Angebot anfordern', search: '591 Produkte durchsuchen', searchPh: 'z.B. Kaschmir-Hut, MOQ 100, OEM-Schal' },
+  fr: { code: '404', heading: 'Nous ne trouvons pas cette page.', intro: "La page a peut-être été déplacée ou le lien est cassé. Essayez une de nos sections les plus visitées ci-dessous, ou demandez directement un devis — nous répondons généralement sous 24 heures.", cta: 'Demander un devis cachemire', search: 'Rechercher 591 produits', searchPh: 'ex. bonnet cachemire, MOQ 100, OEM écharpe' },
+  ja: { code: '404', heading: 'ページが見つかりません。', intro: 'ページが移動したか、リンクが切れている可能性があります。下記の人気セクションからお選びいただくか、直接お問い合わせください — 通常24時間以内にご返信します。', cta: 'カシミア見積もりを依頼', search: '591点を検索', searchPh: '例：カシミア帽子、MOQ 100、OEM マフラー' },
+  kr: { code: '404', heading: '페이지를 찾을 수 없습니다.', intro: '페이지가 이동되었거나 링크가 끊어졌을 수 있습니다. 아래 인기 섹션 중 하나를 선택하시거나 직접 견적 요청을 해주세요 — 보통 24시간 이내에 회신합니다.', cta: '캐시미어 견적 요청', search: '591개 제품 검색', searchPh: '예: 캐시미어 모자, MOQ 100, OEM 스카프' },
+  cn: { code: '404', heading: '找不到该页面。', intro: '页面可能已移动或链接已失效。请从下方热门栏目选择，或直接询价 — 我们通常 24 小时内回复。', cta: '索取羊绒报价', search: '搜索 591 款产品', searchPh: '例：羊绒帽子、MOQ 100、OEM 围巾' },
+};
+const t = copy[locale] || copy.en;
 ---
-<BaseLayout locale={locale} title="Page Not Found (404) | DONGXIAO® Cashmere" description="The page you're looking for doesn't exist or has moved. Browse our most-visited categories below or contact us for a quote." path="/" noindex={true}>
+
+<BaseLayout locale={locale} title={`${t.code} · Page Not Found | DONGXIAO® Cashmere`} description={t.intro} path="/" noindex={true}>
   <Navigation slot="header" locale={locale} currentPath="/" />
 
   <section class="py-24 md:py-32 bg-background">
     <div class="container-narrow text-center max-w-3xl mx-auto">
-      <p class="text-sm tracking-[0.4em] text-brand-gold uppercase font-medium mb-6">404 · Page Not Found</p>
-      <h1 class="font-serif text-4xl md:text-6xl font-light leading-[1.05] mb-6">We can't find<br/>that page.</h1>
-      <p class="text-lg text-muted-foreground leading-relaxed mb-12">
-        The page may have moved, or the link is broken. Try one of our most-visited sections below, or jump straight to a quote request — we usually reply within 24 hours.
+      <p class="text-sm tracking-[0.4em] text-brand-gold uppercase font-medium mb-6">{t.code} · Page Not Found</p>
+      <h1 class="font-serif text-4xl md:text-6xl font-light leading-[1.05] mb-6" set:html={t.heading} />
+      <p class="text-lg text-muted-foreground leading-relaxed mb-10">
+        {t.intro}
       </p>
 
+      {/* Search box: redirects to /<locale>/products/?q=... so users
+          stay on the localized catalog and don't bounce away. */}
+      <form action={searchAction} method="get" class="max-w-xl mx-auto mb-12">
+        <label class="block text-sm text-muted-foreground mb-2" set:html={t.search} />
+        <div class="flex gap-2">
+          <input
+            type="search"
+            name="q"
+            placeholder={t.searchPh}
+            class="flex-1 px-4 py-3 border border-border bg-white focus:outline-none focus:border-brand-ink text-base"
+          />
+          <button type="submit" class="px-6 py-3 bg-brand-ink text-[#F7F3EC] text-sm font-medium hover:bg-brand-camel transition-colors">
+            Search
+          </button>
+        </div>
+      </form>
+
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left mb-12">
-        {popularLinks.map((l) => (
+        {links.map((l) => (
           <a href={l.href} class="group block border border-border p-6 hover:border-primary hover:shadow-md transition-all">
             <h2 class="text-base font-medium text-foreground group-hover:text-primary mb-1 transition-colors">
               {l.label}
@@ -48,8 +143,8 @@ const popularLinks = [
         ))}
       </div>
 
-      <a href="/en/contact/" class="inline-block px-8 py-4 bg-primary text-primary-foreground rounded-none font-medium hover:bg-primary/90 transition-all">
-        Request a Cashmere Quote →
+      <a href={localePath(locale, '/contact')} class="inline-block px-8 py-4 bg-primary text-primary-foreground rounded-none font-medium hover:bg-primary/90 transition-all">
+        {t.cta} →
       </a>
     </div>
   </section>
