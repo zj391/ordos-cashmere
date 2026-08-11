@@ -24,16 +24,16 @@ import { LOCALES, isLocale, pickLocale, type Locale, localePath } from '@/lib/i1
 // URL survives Astro's 404 dispatch.
 const pathLocale = Astro.url.pathname.split('/')[1];
 const acceptLang = Astro.request.headers.get('accept-language')?.split(',')[0]?.split('-')[0]?.toLowerCase() || 'en';
-const detected: Locale = isLocale(pathLocale)
+const detected = isLocale(pathLocale)
   ? pickLocale(pathLocale)
   : (LOCALES.find((l) => l === acceptLang) ?? 'en');
-const locale: Locale = detected;
+const locale = detected;
 
 // 6 localized popular-link sets. Each entry: [href, label, desc] in
 // that locale's own words. Sorted by business priority (factory first,
 // because factory credibility is the highest-converting CTA for a
 // 404 visitor who was likely browsing products).
-const popularLinks: Record<Locale, { href: string; label: string; desc: string }[]> = {
+const popularLinks = {
   en: [
     { href: localePath('en', '/factory'), label: 'Ordos Factory Tour', desc: '23-year B2B source factory — 38,000 m², ISO 9001 + OEKO-TEX' },
     { href: localePath('en', '/products'), label: 'Browse 591 Cashmere Products', desc: 'Hats, scarves, sweaters, accessories, yarn' },
