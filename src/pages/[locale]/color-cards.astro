@@ -95,24 +95,6 @@ const swatches = series?.swatches || [];
 
 // 统计
 const totalColors = swatches.length;
-const faqList = [
-    locale === 'cn'
-      ? { q: '羊绒色卡有几种标准？', a: '国际通用：Pantone TCX/TPG（棉布色卡，最常用）、Pantone TPX（塑料色卡）、Munsell（色相系统）。我们提供 25/26 秋冬 Pantone TCX 色卡（318 色，4 大系列：经典色 / 莫兰迪色 / 亮色 / 大地色），最低 30 色起定。' }
-      : { q: 'What color standards does your cashmere color card follow?', a: 'Industry standards: Pantone TCX/TPG (cotton chip card, most common), Pantone TPX (plastic chip card), Munsell (hue system). We supply 25/26 AW Pantone TCX color card (318 swatches, 4 series: classic / Morandi / bright / earth tones), custom dyeing MOQ 30 swatches per color.' },
-    locale === 'cn'
-      ? { q: '定制 Pantone 颜色最小起订量是多少？', a: '30 色起（每色 30 公斤原料或 30 件成衣）。100 色以上提供更优价格。色卡确认后 25-30 天交货，染色 5-7 道工艺确保色牢度 4 级以上。' }
-      : { q: 'What is the MOQ for custom Pantone color cashmere?', a: '30 swatches MOQ (30kg raw fiber or 30 finished garments per color). 100+ swatches get volume discount. 25-30 day lead time after color card confirmation, 5-7 step dyeing process ensures 4+ grade color fastness.' },
-    locale === 'cn'
-      ? { q: '你们色卡上的颜色和实际成品会有色差吗？', a: '不可避免的色差来源：1) 原料批次差异（同一 Pantone 编号，不同羊绒批次可能色差 0.5-1.5%）；2) 染色工艺差异（散纤维染色 vs 纱线染色 vs 成衣染色）。我们提供色差接受标准 ΔE ≤ 1.5（业内标准是 ΔE ≤ 2.0），首批 100 公斤以上提供打色样确认。' }
-      : { q: 'Is there color difference between your color card and finished products?', a: 'Color variance sources: 1) raw fiber batch differences (same Pantone code, different batches may have 0.5-1.5% delta); 2) dyeing process differences (loose fiber vs yarn vs garment). We hold tolerance ΔE ≤ 1.5 (industry standard ΔE ≤ 2.0). First orders 100kg+ include lab-dip color approval.' },
-    locale === 'cn'
-      ? { q: '色牢度能达到多少级？', a: '我们的标准色牢度：耐光 4-5 级（ISO 105-B02）、耐水洗 4 级（ISO 105-C06）、耐摩擦 4 级（ISO 105-X12）、耐汗渍 4 级（ISO 105-E04）。婴幼儿产品可达 5 级（额外水洗后无荧光剂）。' }
-      : { q: 'What color fastness grades do you achieve?', a: 'Standard fastness: light 4-5 grade (ISO 105-B02), wash 4 grade (ISO 105-C06), rubbing 4 grade (ISO 105-X12), perspiration 4 grade (ISO 105-E04). Baby/infant products reach 5 grade (extra post-wash, no fluorescent agent).' },
-    locale === 'cn'
-      ? { q: '可以发色卡样品给我们选色吗？', a: '可以。免费寄送 Pantone TCX 标准色卡（25/26 秋冬款含 318 色）到全球 B2B 客户，2-3 个工作日寄达。如需特殊 Pantone 色打样，单色 50 美元/色，2-3 周交货（100 公斤订单可退费）。' }
-      : { q: 'Can you send a color card sample for selection?', a: 'Yes. Free Pantone TCX standard color card (25/26 AW edition, 318 swatches) shipped to global B2B clients, 2-3 business day delivery. Custom Pantone lab dip: USD 50 per color, 2-3 week lead time (refundable against 100kg+ bulk order).' },
-  ];
-
 ---
 
 <BaseLayout
@@ -258,7 +240,23 @@ const faqList = [
     </div>
   </section>
 
-  <SEOFaq faqs={faqList} title="Color Card FAQ" />
+  <SEOFaq faqs={[
+    locale === 'cn'
+      ? { q: '羊绒色卡有几种标准？', a: '国际通用：Pantone TCX/TPG（棉布色卡，最常用）、Pantone TPX（塑料色卡）、Munsell（色相系统）。我们提供 25/26 秋冬 Pantone TCX 色卡（318 色，4 大系列：经典色 / 莫兰迪色 / 亮色 / 大地色），最低 30 色起定。' }
+      : { q: 'What color standards does your cashmere color card follow?', a: 'Industry standards: Pantone TCX/TPG (cotton chip card, most common), Pantone TPX (plastic chip card), Munsell (hue system). We supply 25/26 AW Pantone TCX color card (318 swatches, 4 series: classic / Morandi / bright / earth tones), custom dyeing MOQ 30 swatches per color.' },
+    locale === 'cn'
+      ? { q: '定制 Pantone 颜色最小起订量是多少？', a: '30 色起（每色 30 公斤原料或 30 件成衣）。100 色以上提供更优价格。色卡确认后 25-30 天交货，染色 5-7 道工艺确保色牢度 4 级以上。' }
+      : { q: 'What is the MOQ for custom Pantone color cashmere?', a: '30 swatches MOQ (30kg raw fiber or 30 finished garments per color). 100+ swatches get volume discount. 25-30 day lead time after color card confirmation, 5-7 step dyeing process ensures 4+ grade color fastness.' },
+    locale === 'cn'
+      ? { q: '你们色卡上的颜色和实际成品会有色差吗？', a: '不可避免的色差来源：1) 原料批次差异（同一 Pantone 编号，不同羊绒批次可能色差 0.5-1.5%）；2) 染色工艺差异（散纤维染色 vs 纱线染色 vs 成衣染色）。我们提供色差接受标准 ΔE ≤ 1.5（业内标准是 ΔE ≤ 2.0），首批 100 公斤以上提供打色样确认。' }
+      : { q: 'Is there color difference between your color card and finished products?', a: 'Color variance sources: 1) raw fiber batch differences (same Pantone code, different batches may have 0.5-1.5% delta); 2) dyeing process differences (loose fiber vs yarn vs garment). We hold tolerance ΔE ≤ 1.5 (industry standard ΔE ≤ 2.0). First orders 100kg+ include lab-dip color approval.' },
+    locale === 'cn'
+      ? { q: '色牢度能达到多少级？', a: '我们的标准色牢度：耐光 4-5 级（ISO 105-B02）、耐水洗 4 级（ISO 105-C06）、耐摩擦 4 级（ISO 105-X12）、耐汗渍 4 级（ISO 105-E04）。婴幼儿产品可达 5 级（额外水洗后无荧光剂）。' }
+      : { q: 'What color fastness grades do you achieve?', a: 'Standard fastness: light 4-5 grade (ISO 105-B02), wash 4 grade (ISO 105-C06), rubbing 4 grade (ISO 105-X12), perspiration 4 grade (ISO 105-E04). Baby/infant products reach 5 grade (extra post-wash, no fluorescent agent).' },
+    locale === 'cn'
+      ? { q: '可以发色卡样品给我们选色吗？', a: '可以。免费寄送 Pantone TCX 标准色卡（25/26 秋冬款含 318 色）到全球 B2B 客户，2-3 个工作日寄达。如需特殊 Pantone 色打样，单色 50 美元/色，2-3 周交货（100 公斤订单可退费）。' }
+      : { q: 'Can you send a color card sample for selection?', a: 'Yes. Free Pantone TCX standard color card (25/26 AW edition, 318 swatches) shipped to global B2B clients, 2-3 business day delivery. Custom Pantone lab dip: USD 50 per color, 2-3 week lead time (refundable against 100kg+ bulk order).' },
+  ]} title="Color Card FAQ" />
 
   <Footer slot="footer" locale={locale} />
   <FloatingChatButtons slot="floating" locale={locale} />
