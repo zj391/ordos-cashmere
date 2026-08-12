@@ -6,7 +6,6 @@ import Footer from '@/components/Footer.astro';
 import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
 import DownloadsGrid from '@/components/islands/DownloadsGrid.tsx';
-import SEOFaq from '@/components/SEOFaq.astro';
 import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
 
 export function getStaticPaths() {
@@ -34,23 +33,6 @@ const downloads = [
   { type: 'cert', title: 'Good Cashmere Standard', size: '0.9 MB', format: 'PDF' },
   { type: 'report', title: locale === 'cn' ? '工厂验厂报告' : 'Factory Audit Report', size: '5.6 MB', format: 'PDF' },
 ];
-const faqList = [
-    locale === 'cn'
-      ? { q: '下载资料需要注册账号吗？', a: '不需要。所有资料 PDF 直接点击下载，无强制注册。需发邮件订阅季度新品/新色卡，可选填邮箱。' }
-      : { q: 'Do I need an account to download resources?', a: 'No. All PDF resources are direct-download, no registration required. Email signup is optional for quarterly new product and color card updates.' },
-    locale === 'cn'
-      ? { q: '下载的资料是否含水印？', a: '在线版资料含 DONGXIAO® 水印（仅 PDF 内部，截图可识别来源）。如需无水印高清版（如用于品牌产品册或商业展示），下单后我们提供原文件。' }
-      : { q: 'Are the downloads watermarked?', a: 'Web PDFs include a DONGXIAO® watermark (PDF metadata + visible stamp) for source attribution. High-res watermark-free versions are available after B2B order placement for use in brand catalogs and trade show materials.' },
-    locale === 'cn'
-      ? { q: '可以发实体色卡和样本到我们办公室吗？', a: '可以。B2B 客户免费寄送 25/26 秋冬 Pantone TCX 实体色卡（含 318 色，2-3 个工作日寄达）和 5-10 个面料小样（每个 5cm x 5cm）。私牌定制可申请 30 个颜色色卡。' }
-      : { q: 'Can you ship physical color cards and fabric swatches to our office?', a: 'Yes. B2B clients receive free 25/26 AW Pantone TCX physical color card (318 swatches, 2-3 business day delivery) plus 5-10 fabric swatches (5cm x 5cm each). Private label clients can request 30-color custom color cards.' },
-    locale === 'cn'
-      ? { q: '资料上的证书和检测报告能验证吗？', a: '可以。所有 PDF 上的证书都有证书编号（OEKO-TEX、ISO 9001、GCS、BSCI、SEDEX）。可在对应认证机构官网输入证书编号验证真伪。我们的证书每年更新一次，最新版本均可下载。' }
-      : { q: 'Can the certificates and test reports be verified?', a: 'Yes. Every certificate on our PDFs has a registration number (OEKO-TEX, ISO 9001, GCS, BSCI, SEDEX). Verify authenticity on the issuing body website with the certificate number. Our certificates are renewed annually — latest versions always downloadable.' },
-    locale === 'cn'
-      ? { q: '如何订阅新色卡和新品资料？', a: '在联系我们页面填邮箱 + 选品类（hats/scarves/sweaters/accessories/yarn/raw material），即可每季度收到新品 PDF。已合作的 B2B 客户自动获得新色卡和 5-10 个新款样品邮寄。' }
-      : { q: 'How to subscribe to new color card and product catalogs?', a: 'Visit the Contact Us page, submit email + select categories of interest (hats/scarves/sweaters/accessories/yarn/raw material). Quarterly newsletter with new product PDFs. Active B2B customers automatically receive new color cards and 5-10 new samples by mail.' },
-  ];
 
 ---
 
@@ -91,8 +73,6 @@ const faqList = [
       </div>
     </div>
   </section>
-
-  <SEOFaq faqs={faqList} title="Download FAQ" />
 
   <Footer slot="footer" locale={locale} />
   <FloatingChatButtons slot="floating" locale={locale} />
