@@ -42,7 +42,6 @@ const seo = {
   kr: { title: '캐시미어 등급 A B C 설명 | 마이크론 차트 | DONGXIAO®', description: '캐시미어 A B C 등급 차이, 베이비 캐시미어와 퍼시미나 차이.', keywords: ['캐시미어 등급'] },
 };
 const s = seo[locale] || seo.en;
-const titleHtml = T('title').replace(/\n/g, '<br/>');
 
 ---
 <BaseLayout locale={locale} pageKey="cashmere-grades" path="/cashmere-grades" title={s.title} description={s.description} keywords={s.keywords}>
@@ -54,7 +53,7 @@ const titleHtml = T('title').replace(/\n/g, '<br/>');
         <span class="h-[2px] w-12 bg-brand-red"></span>
         <span class="text-xs tracking-[0.4em] text-brand-camel uppercase font-medium">{T('tagline')}</span>
       </div>
-      <h1 class="font-serif text-5xl md:text-6xl font-light leading-[1.05] mb-4" set:html={titleHtml} />
+      <h1 class="font-serif text-5xl md:text-6xl font-light leading-[1.05] mb-4" set:html={T('title').replace(/\n/g, '<br/>')} />
       <p class="opacity-90 max-w-2xl text-lg">{T('subtitle')}</p>
     </div>
   </section>
