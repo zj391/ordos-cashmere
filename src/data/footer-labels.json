@@ -21,7 +21,10 @@
     "nav.download": "Download",
     "nav.blog": "Blog",
     "nav.contact": "Contact",
-    "nav.faq": "FAQ"
+    "nav.faq": "FAQ",
+    "nav.paymentTerms": "Payment Terms",
+    "nav.shippingLogistics": "Shipping & Logistics",
+    "nav.qualityControl": "Quality Control"
   },
   "de": {
     "footer.tagline": "Premium-Kaschmirhersteller aus Ordos, Innere Mongolei.",
@@ -45,7 +48,10 @@
     "nav.download": "Download",
     "nav.blog": "Blog",
     "nav.contact": "Kontakt",
-    "nav.faq": "FAQ"
+    "nav.faq": "FAQ",
+    "nav.paymentTerms": "Zahlungsbedingungen",
+    "nav.shippingLogistics": "Versand & Logistik",
+    "nav.qualityControl": "Qualitätskontrolle"
   },
   "fr": {
     "footer.tagline": "Fabricant de cachemire premium d'Ordos, Mongolie Intérieure.",
@@ -69,7 +75,10 @@
     "nav.download": "Télécharger",
     "nav.blog": "Blog",
     "nav.contact": "Contact",
-    "nav.faq": "FAQ"
+    "nav.faq": "FAQ",
+    "nav.paymentTerms": "Conditions de paiement",
+    "nav.shippingLogistics": "Livraison & Logistique",
+    "nav.qualityControl": "Contrôle qualité"
   },
   "ja": {
     "footer.tagline": "オルドス（内モンゴル）出身の高級カシミア製造元。",
@@ -93,7 +102,10 @@
     "nav.download": "ダウンロード",
     "nav.blog": "ブログ",
     "nav.contact": "お問い合わせ",
-    "nav.faq": "よくある質問"
+    "nav.faq": "よくある質問",
+    "nav.paymentTerms": "支払条件",
+    "nav.shippingLogistics": "配送・物流",
+    "nav.qualityControl": "品質管理"
   },
   "kr": {
     "footer.tagline": "오르도스(내몽골) 출신 프리미엄 캐시미어 제조사.",
@@ -117,7 +129,10 @@
     "nav.download": "다운로드",
     "nav.blog": "블로그",
     "nav.contact": "문의",
-    "nav.faq": "자주 묻는 질문"
+    "nav.faq": "자주 묻는 질문",
+    "nav.paymentTerms": "결제 조건",
+    "nav.shippingLogistics": "배송 및 물류",
+    "nav.qualityControl": "품질 관리"
   },
   "cn": {
     "footer.tagline": "内蒙古鄂尔多斯源头工厂，高端羊绒直供。",
@@ -141,6 +156,9 @@
     "nav.download": "下载中心",
     "nav.blog": "博客",
     "nav.contact": "联系我们",
-    "nav.faq": "常见问题"
+    "nav.faq": "常见问题",
+    "nav.paymentTerms": "付款条款",
+    "nav.shippingLogistics": "物流运输",
+    "nav.qualityControl": "质量控制"
   }
 }
