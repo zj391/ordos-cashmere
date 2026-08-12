@@ -43,6 +43,22 @@ const seo = {
   kr: { title: '캐시미어 등급 A B C 설명 | 마이크론 차트 | DONGXIAO®', description: '캐시미어 A B C 등급 차이, 베이비 캐시미어와 퍼시미나 차이.', keywords: ['캐시미어 등급'] },
 };
 const s = seo[locale] || seo.en;
+const faqList = locale === 'cn'
+  ? [
+      { q: '羊绒等级 A/B/C 是什么意思？', a: 'A 级：14-15.5μm 细度、36mm+ 长度、净绒率 ≥50%，适合奢侈品级（200美元+零售）。B 级：15.5-16.5μm、30-36mm、净绒率 40-50%，中端市场主力。C 级：16.5-19μm、28-34mm、净绒率 <40%，入门或配件用。' },
+      { q: 'Grade A 和 Grade B 实际差距有多大？', a: '主要在 3 个维度：纤维细度差 1.5-2μm（手感和起球率显著差异）、纤维长度差 6mm+（影响耐用性）、净绒率差 10%（影响出成率）。同一款 Grade A 帽子可耐用 10+ 年，Grade B 一般 5-7 年，Grade C 3-5 年。' },
+      { q: '怎么避免买到虚标等级的羊绒？', a: '要求供应商提供：1) 纤维细度检测报告（第三方机构如 SGS 或 ITS）；2) 显微镜下纤维直径直方图；3) 净绒率实测数据；4) 山羊血统证明（Albas 白绒 vs 普通山羊价格差 3-5 倍）。我们所有 Grade A 均可提供全套证明文件。' },
+      { q: '羊绒等级和价格如何对应？', a: '2026 工厂出厂价：Grade A 80-120 美元/kg 原料、Grade B 50-70 美元/kg、Grade C 30-50 美元/kg。250g 女式毛衫原料成本：Grade A 20-30 美元、Grade B 12-17 美元、Grade C 7-12 美元。零售建议价（2-3 倍加价率）：Grade A 60-90 美元、Grade B 35-60 美元、Grade C 25-40 美元。' },
+      { q: '羊绒等级由哪个机构认证？', a: '没有统一的国际分级标准——业内按纤维细度（μm）和长度（mm）自行划分。可信赖的第三方纤维检测机构：SGS、Intertek、ITS、中国纤维检验局（CTTC）。我们所有 Grade A 羊绒都提供第三方检测报告。' },
+    ]
+  : [
+      { q: 'What do cashmere grades A, B, and C mean?', a: 'Grade A: 14-15.5μm fineness, 36mm+ length, ≥50% dehaired yield. For luxury (USD 200+ retail). Grade B: 15.5-16.5μm, 30-36mm, 40-50% yield. Mid-market workhorse. Grade C: 16.5-19μm, 28-34mm, <40% yield. Entry-level or accessories.' },
+      { q: 'How big is the actual difference between Grade A and Grade B cashmere?', a: 'Three dimensions: fineness differs 1.5-2μm (significant hand-feel and pilling impact), fiber length differs 6mm+ (durability), dehaired yield differs 10% (production efficiency). The same beanie in Grade A lasts 10+ years; Grade B 5-7 years; Grade C 3-5 years.' },
+      { q: 'How to avoid getting falsely graded cashmere?', a: 'Request: 1) fiber fineness test report (third-party: SGS or ITS); 2) microscopic fiber diameter histogram; 3) actual dehaired yield data; 4) goat pedigree certificate (Albas white vs ordinary goat price differs 3-5x). Our Grade A always ships with full documentation.' },
+      { q: 'How do cashmere grades map to pricing?', a: '2026 factory FOB prices: Grade A 80-120 USD/kg raw, Grade B 50-70 USD/kg, Grade C 30-50 USD/kg. For a 250g women pullover, raw material cost: Grade A 20-30 USD, Grade B 12-17 USD, Grade C 7-12 USD. Suggested retail (2-3x markup): Grade A 60-90 USD, Grade B 35-60 USD, Grade C 25-40 USD.' },
+      { q: 'What agency certifies cashmere grade?', a: 'There is no unified international grading standard — the industry self-classifies by fiber fineness (μm) and length (mm). Trusted third-party fiber testing labs: SGS, Intertek, ITS, China Textile Testing Center (CTTC). All our Grade A cashmere ships with third-party test reports.' },
+    ];
+
 ---
 <BaseLayout locale={locale} pageKey="cashmere-grades" path="/cashmere-grades" title={s.title} description={s.description} keywords={s.keywords}>
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/cashmere-grades`} />
@@ -201,23 +217,7 @@ const s = seo[locale] || seo.en;
   </section>
 
 
-  <SEOFaq faqs={[
-    locale === 'cn'
-      ? { q: '羊绒等级 A/B/C 是什么意思？', a: 'A 级：14-15.5μm 细度、36mm+ 长度、净绒率 ≥50%，适合奢侈品级（200美元+零售）。B 级：15.5-16.5μm、30-36mm、净绒率 40-50%，中端市场主力。C 级：16.5-19μm、28-34mm、净绒率 <40%，入门或配件用。' }
-      : { q: 'What do cashmere grades A, B, and C mean?', a: 'Grade A: 14-15.5μm fineness, 36mm+ length, ≥50% dehaired yield. For luxury (USD 200+ retail). Grade B: 15.5-16.5μm, 30-36mm, 40-50% yield. Mid-market workhorse. Grade C: 16.5-19μm, 28-34mm, <40% yield. Entry-level or accessories.' },
-    locale === 'cn'
-      ? { q: 'Grade A 和 Grade B 实际差距有多大？', a: '主要在 3 个维度：纤维细度差 1.5-2μm（手感和起球率显著差异）、纤维长度差 6mm+（影响耐用性）、净绒率差 10%（影响出成率）。同一款 Grade A 帽子可耐用 10+ 年，Grade B 一般 5-7 年，Grade C 3-5 年。' }
-      : { q: 'How big is the actual difference between Grade A and Grade B cashmere?', a: 'Three dimensions: fineness differs 1.5-2μm (significant hand-feel and pilling impact), fiber length differs 6mm+ (durability), dehaired yield differs 10% (production efficiency). The same beanie in Grade A lasts 10+ years; Grade B 5-7 years; Grade C 3-5 years.' },
-    locale === 'cn'
-      ? { q: '怎么避免买到虚标等级的羊绒？', a: '要求供应商提供：1) 纤维细度检测报告（第三方机构如 SGS 或 ITS）；2) 显微镜下纤维直径直方图；3) 净绒率实测数据；4) 山羊血统证明（Albas 白绒 vs 普通山羊价格差 3-5 倍）。我们所有 Grade A 均可提供全套证明文件。' }
-      : { q: 'How to avoid getting falsely graded cashmere?', a: 'Request: 1) fiber fineness test report (third-party: SGS or ITS); 2) microscopic fiber diameter histogram; 3) actual dehaired yield data; 4) goat pedigree certificate (Albas white vs ordinary goat price differs 3-5x). Our Grade A always ships with full documentation.' },
-    locale === 'cn'
-      ? { q: '羊绒等级和价格如何对应？', a: '2026 工厂出厂价：Grade A 80-120 美元/kg 原料、Grade B 50-70 美元/kg、Grade C 30-50 美元/kg。250g 女式毛衫原料成本：Grade A 20-30 美元、Grade B 12-17 美元、Grade C 7-12 美元。零售建议价（2-3 倍加价率）：Grade A 60-90 美元、Grade B 35-60 美元、Grade C 25-40 美元。' }
-      : { q: 'How do cashmere grades map to pricing?', a: '2026 factory FOB prices: Grade A 80-120 USD/kg raw, Grade B 50-70 USD/kg, Grade C 30-50 USD/kg. For a 250g women pullover, raw material cost: Grade A 20-30 USD, Grade B 12-17 USD, Grade C 7-12 USD. Suggested retail (2-3x markup): Grade A 60-90 USD, Grade B 35-60 USD, Grade C 25-40 USD.' },
-    locale === 'cn'
-      ? { q: '羊绒等级由哪个机构认证？', a: '没有统一的国际分级标准——业内按纤维细度（μm）和长度（mm）自行划分。可信赖的第三方纤维检测机构：SGS、Intertek、ITS、中国纤维检验局（CTTC）。我们所有 Grade A 羊绒都提供第三方检测报告。' }
-      : { q: 'What agency certifies cashmere grade?', a: 'There is no unified international grading standard — the industry self-classifies by fiber fineness (μm) and length (mm). Trusted third-party fiber testing labs: SGS, Intertek, ITS, China Textile Testing Center (CTTC). All our Grade A cashmere ships with third-party test reports.' },
-  ]} />
+  <SEOFaq faqs={faqList} title="Cashmere Grade FAQ" />
 
   <Footer slot="footer" locale={locale} />
   <FloatingChatButtons slot="floating" locale={locale} />
