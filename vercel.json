@@ -190,32 +190,32 @@
       "permanent": true
     },
     {
-      "source": "/en/products/fabric/:path*",
+      "source": "/en/products/fabric/(.*)",
       "destination": "/en/products/",
       "permanent": true
     },
     {
-      "source": "/de/products/fabric/:path*",
+      "source": "/de/products/fabric/(.*)",
       "destination": "/de/products/",
       "permanent": true
     },
     {
-      "source": "/fr/products/fabric/:path*",
+      "source": "/fr/products/fabric/(.*)",
       "destination": "/fr/products/",
       "permanent": true
     },
     {
-      "source": "/ja/products/fabric/:path*",
+      "source": "/ja/products/fabric/(.*)",
       "destination": "/ja/products/",
       "permanent": true
     },
     {
-      "source": "/kr/products/fabric/:path*",
+      "source": "/kr/products/fabric/(.*)",
       "destination": "/kr/products/",
       "permanent": true
     },
     {
-      "source": "/cn/products/fabric/:path*",
+      "source": "/cn/products/fabric/(.*)",
       "destination": "/cn/products/",
       "permanent": true
     }
