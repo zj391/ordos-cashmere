@@ -188,6 +188,36 @@
       "source": "/test",
       "destination": "/en/",
       "permanent": true
+    },
+    {
+      "source": "/en/products/fabric/:path*",
+      "destination": "/en/products/",
+      "permanent": true
+    },
+    {
+      "source": "/de/products/fabric/:path*",
+      "destination": "/de/products/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/products/fabric/:path*",
+      "destination": "/fr/products/",
+      "permanent": true
+    },
+    {
+      "source": "/ja/products/fabric/:path*",
+      "destination": "/ja/products/",
+      "permanent": true
+    },
+    {
+      "source": "/kr/products/fabric/:path*",
+      "destination": "/kr/products/",
+      "permanent": true
+    },
+    {
+      "source": "/cn/products/fabric/:path*",
+      "destination": "/cn/products/",
+      "permanent": true
     }
   ],
   "rewrites": [
