@@ -111,6 +111,72 @@ const { locale: rawLocale, id } = Astro.params;
 if (!isLocale(rawLocale)) { return new Response('Not Found', { status: 404 }); }
 
 const locale = pickLocale(rawLocale);
+const wholesaleFaqTitle: Record<Locale, string> = {
+  en: 'Wholesale Buying FAQ',
+  de: 'Großhandel FAQ',
+  fr: 'FAQ Achat en Gros',
+  ja: '卸売り購入 FAQ',
+  kr: '도매 구매 FAQ',
+  cn: '批发采购常见问题',
+};
+
+const wholesaleFaq = [
+  {
+    q: {
+      en: 'What is the wholesale MOQ for this product?',
+      de: 'Was ist die Großhandels-MOQ für dieses Produkt?',
+      fr: 'Quel est le MOQ de gros pour ce produit?',
+      ja: 'この製品の卸売りMOQは？',
+      kr: '이 제품의 도매 MOQ는?',
+      cn: '这款产品的批发起订量是多少？',
+    },
+    a: {
+      en: 'Most styles require 100 pieces per design per color. Mixed sizes and colors within the same style are accepted. For sample orders under MOQ, unit price is 1.5-2x the bulk rate. We also offer 50-piece MOQ for stock designs in standard colors.',
+      de: 'Die meisten Modelle erfordern 100 Stück pro Design pro Farbe. Gemischte Größen und Farben innerhalb desselben Designs sind akzeptabel. Bei Musterbestellungen unter MOQ ist der Stückpreis 1,5-2x der Großhandelsrate. Wir bieten auch 50-Stück-MOQ für Lagermodelle in Standardfarben.',
+      fr: 'La plupart des styles nécessitent 100 pièces par design par couleur. Tailles et couleurs mélangées dans le même style acceptées. Pour les commandes sous MOQ, le prix unitaire est 1,5-2x le tarif de gros. MOQ 50 pièces pour les designs en stock en couleurs standard.',
+      ja: 'ほとんどのスタイルでデザイン・カラー毎に100枚が必要です。同一スタイル内サイズ・カラー混在可。MOQ未満サンプル注文は単価1.5-2倍。在庫デザインの標準カラーは50枚から。',
+      kr: '대부분 스타일은 디자인·컬러당 100개 필요. 동일 스타일 내 사이즈·컬러 혼합 가능. MOQ 미만 샘플 주문은 단가 1.5-2배. 재고 디자인 표준 컬러는 50개부터.',
+      cn: '大部分款式每款每色 100 件起订。同一款式可混码混色。MOQ 以下的样品订单单价 1.5-2 倍。常规颜色现货款 50 件起。',
+    },
+  },
+  {
+    q: {
+      en: 'How long is the bulk production lead time?',
+      de: 'Wie lang ist die Großserien-Produktionsvorlaufzeit?',
+      fr: 'Quel est le délai de production en série?',
+      ja: '量産リードタイムは？',
+      kr: '양산 리드타임은?',
+      cn: '大货生产周期多长？',
+    },
+    a: {
+      en: 'Bulk production: 25-30 days for stock designs, 30-45 days for custom designs. Plus 3-5 days QC and packing, plus 25-35 days sea freight to EU/US (or 5-7 days air freight). Free samples shipped in 5-7 days; paid samples in 3-5 days.',
+      de: 'Großserienproduktion: 25-30 Tage für Lagermodelle, 30-45 Tage für Sonderanfertigungen. Plus 3-5 Tage QC und Verpackung, plus 25-35 Tage Seefracht nach EU/USA (oder 5-7 Tage Luftfracht). Kostenlose Muster in 5-7 Tagen; kostenpflichtige Muster in 3-5 Tagen.',
+      fr: 'Production en série : 25-30 jours pour designs en stock, 30-45 jours pour designs personnalisés. Plus 3-5 jours QC et emballage, plus 25-35 jours fret maritime vers EU/USA (ou 5-7 jours fret aérien). Échantillons gratuits expédiés en 5-7 jours; payants en 3-5 jours.',
+      ja: '量産：通常デザイン 25-30 日、特注デザイン 30-45 日。+QC + 梱包 3-5 日、+ 海上輸送 EU/US 25-35 日（航空 5-7 日）。無料サンプル 5-7 日、有料サンプル 3-5 日。',
+      kr: '양산: 재고 디자인 25-30 일, 커스텀 디자인 30-45 일. + QC + 포장 3-5 일, + 해상 EU/US 25-35 일 (항공 5-7 일). 무료 샘플 5-7 일, 유료 샘플 3-5 일.',
+      cn: '大货：现货款 25-30 天，定制款 30-45 天。+QC 包装 3-5 天，+海运欧美 25-35 天（或空运 5-7 天）。免费样品 5-7 天寄达，付费样品 3-5 天。',
+    },
+  },
+  {
+    q: {
+      en: 'Can you add my brand logo to this product?',
+      de: 'Können Sie mein Markenlogo zu diesem Produkt hinzufügen?',
+      fr: 'Pouvez-vous ajouter mon logo de marque à ce produit?',
+      ja: 'ブランドロゴを追加できますか?',
+      kr: '브랜드 로고를 추가할 수 있나요?',
+      cn: '可以加我自己的品牌 logo 吗？',
+    },
+    a: {
+      en: 'Yes — we offer woven labels, printed labels, leather patches, embroidered logos, custom hangtags, custom packaging, and Pantone color matching. Minimum order for custom logo: 100-200 pieces. Custom logo development adds 5-10 days to lead time. Free logo design mockup provided within 24 hours.',
+      de: 'Ja — wir bieten Webetiketten, bedruckte Etiketten, Leder-Patches, bestickte Logos, benutzerdefinierte Hangtags, benutzerdefinierte Verpackung und Pantone-Farbabstimmung. Mindestbestellmenge für kundenspezifisches Logo: 100-200 Stück. Logo-Entwicklung verlängert die Lieferzeit um 5-10 Tage. Kostenloser Logo-Design-Mockup innerhalb von 24 Stunden.',
+      fr: 'Oui - étiquettes tissées, étiquettes imprimées, patches en cuir, logos brodés, hangtags personnalisés, emballage personnalisé et correspondance Pantone. MOQ pour logo personnalisé : 100-200 pièces. Le développement du logo ajoute 5-10 jours au délai. Mockup de design gratuit sous 24 heures.',
+      ja: 'はい - 織ラベル、印刷ラベル、レザーパッチ、刺繍ロゴ、カスタム Hangtag、カスタムパッケージ、Pantone カラーマッチング。カスタムロゴ MOQ：100-200 枚。ロゴ開発は 5-10 日追加。無料ロゴデザインモックアップ 24 時間以内。',
+      kr: '예 - 직조 라벨, 인쇄 라벨, 가죽 패치, 자수 로고, 커스텀 행태, 커스텀 패키징, Pantone 컬러 매칭. 커스텀 로고 MOQ: 100-200개. 로고 개발은 리드타임 5-10일 추가. 무료 로고 디자인 목업 24시간 이내.',
+      cn: '可以 — 提供织造标签、印刷标签、皮革标、刺绣 logo、定制吊牌、定制包装、Pantone 色匹配。定制 logo 起订量 100-200 件。logo 开发加 5-10 天交期。24 小时内提供免费 logo 设计方案。',
+    },
+  },
+];
+
 
 
 
@@ -1927,6 +1993,43 @@ const breadcrumbSchema = {
 
   )}
 
+
+
+
+
+  <!-- Section 8b: Wholesale Buying FAQ - universal 3 Q&A per locale (B2B lead gen) -->
+
+  <section class="py-12 bg-background">
+
+    <div class="container-narrow max-w-3xl">
+
+      <h2 class="reveal font-display text-2xl font-light mb-6 text-center">{wholesaleFaqTitle[locale]}</h2>
+
+      <div class="space-y-4">
+
+        {wholesaleFaq.map((f) => (
+
+          <details class="bg-card border border-border rounded-lg p-4 group">
+
+            <summary class="font-medium text-base cursor-pointer flex items-center justify-between">
+
+              <span>{f.q[locale]}</span>
+
+              <span class="text-brand-gold text-xl group-open:rotate-45 transition-transform">+</span>
+
+            </summary>
+
+            <p class="text-sm leading-relaxed text-foreground/80 mt-3">{f.a[locale]}</p>
+
+          </details>
+
+        ))}
+
+      </div>
+
+    </div>
+
+  </section>
 
 
   <!-- Section 9: Sample Policy -->
