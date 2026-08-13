@@ -6,7 +6,7 @@ author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere MOQ","cashmere startup","low MOQ cashmere","wholesale cashmere","cashmere small order","B2B cashmere","Ordos factory"]
 geoRegion: "GLOBAL"
 targetKeywords: ["cashmere MOQ for startups","low MOQ cashmere wholesale","100 piece MOQ cashmere","small order cashmere factory","cashmere minimum order quantity"]
-relatedProducts: ["hats","scarves","sweaters","yarn"]
+relatedProducts: ["raw_material","yarn_fabric","garment_oem"]
 aiGenerated: true
 sourceTopic: "Cashmere MOQ for Startups"
 language: "en"
