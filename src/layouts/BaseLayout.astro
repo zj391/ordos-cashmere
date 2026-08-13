@@ -106,14 +106,24 @@ const finalKeywords: string[] = Array.isArray(keywords)
 
 
 
-const canonicalRaw = canonicalPath
-  ? `${SITE_URL}/${locale}${canonicalPath}`
-  : `${SITE_URL}/${locale}${path}`;
+// Guard against pages passing a path that already contains the locale
+// prefix (e.g. '/cn/quality-control'), which previously produced broken
+// double-locale canonicals/hreflangs like /cn/cn/quality-control/.
+const normalizePath = (p: string): string => {
+  const prefix = `/${locale}`;
+  const clean = p.startsWith(prefix) ? p.slice(prefix.length) : p;
+  return clean.startsWith('/') ? clean : `/${clean}`;
+};
+const cleanPath = normalizePath(path);
+const cleanCanonicalPath = canonicalPath ? normalizePath(canonicalPath) : undefined;
+const canonicalRaw = cleanCanonicalPath
+  ? `${SITE_URL}/${locale}${cleanCanonicalPath}`
+  : `${SITE_URL}/${locale}${cleanPath}`;
 const canonical = canonicalRaw.endsWith('/') ? canonicalRaw : `${canonicalRaw}/`;
 
 
 
-const hreflangs = generateHreflangs(path);
+const hreflangs = generateHreflangs(cleanPath);
 
 
 

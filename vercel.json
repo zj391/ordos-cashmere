@@ -140,6 +140,16 @@
       "permanent": true
     },
     {
+      "source": "/download/",
+      "destination": "/en/download/",
+      "permanent": true
+    },
+    {
+      "source": "/download",
+      "destination": "/en/download/",
+      "permanent": true
+    },
+    {
       "source": "/brand-story/",
       "destination": "/en/ordos-origin/",
       "permanent": true
