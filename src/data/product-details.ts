@@ -195,6 +195,53 @@ const scarves: ProductDetail = {
     { q: t('What is the price range for wholesale?', '批发价范围？', 'Was ist der Großhandelspreisbereich?', 'Quelle est la fourchette de prix en gros?', '卸売価格の範囲は?', '도매 가격 범위는?'), a: t('USD 9-18/pc for 100% cashmere scarves, depending on size, micron, and order quantity. FOB Tianjin.', '100% 羊绒围巾 USD 9-18/件，取决于尺寸、细度、订单量。FOB 天津。', 'USD 9-18/Stk. für 100% Kaschmir, je nach Größe, Feinheit und Bestellmenge. FOB Tianjin.', 'USD 9-18/pièce pour 100% cachemire. FOB Tianjin.', '100% カシミア USD 9-18/点。FOB 天津。', '100% 캐시미어 USD 9-18/개. FOB 천진.') },
     { q: t('Are you OEKO-TEX certified?', '有 OEKO-TEX 认证吗？', 'Sind Sie OEKO-TEX-zertifiziert?', 'Êtes-vous certifié OEKO-TEX?', 'OEKO-TEX 認証はありますか?', 'OEKO-TEX 인증을 받았나요?'), a: t('Yes, OEKO-TEX Standard 100 Class II. ISO 9001, BSCI, Sedex SMETA 4-pillar.', 'OEKO-TEX 100 二类认证，ISO 9001、BSCI、Sedex SMETA 4 支柱。', 'Ja, OEKO-TEX Standard 100 Klasse II. ISO 9001, BSCI, Sedex SMETA 4-Säulen.', 'Oui, OEKO-TEX Standard 100 Classe II. ISO 9001, BSCI, Sedex SMETA 4 piliers.', 'はい、OEKO-TEX Standard 100 クラス II。', '예, OEKO-TEX Standard 100 Class II. ISO 9001, BSCI, Sedex SMETA 4-pillar.') },
   ],
+  customOptions: [
+    t('Custom dimensions (180x35cm to 200x70cm standard, plus custom sizes)', '定制尺寸 (180x35cm 到 200x70cm 标准，亦可定制)', 'Kundenspezifische Maße (180x35 cm bis 200x70 cm Standard, plus Sondergrößen)', 'Dimensions personnalisées (180x35 cm à 200x70 cm standard, plus sur mesure)', 'カスタムサイズ（180x35 〜 200x70cm 標準、さらに特注）', '맞춤 치수 (180x35cm ~ 200x70cm 표준, 맞춤 추가 가능)'),
+    t('Hand-fringed edges (raw, twisted, or knotted)', '手工流苏边（原色、扭花或打结）', 'Handgefranste Kanten (roh, gedreht oder geknotet)', 'Bords frangés à la main (bruts, torsadés ou noués)', '手作業フリンジ（生糸、ねじり結び）', '수작업 프린지 (날실, 꼬임, 매듭)'),
+    t('Self-fringed / fringed-free / rolled-hem finish', '流苏边 / 无流苏 / 卷边收口', 'Eigenfransig / fransenlos / Rollsaum', 'Auto-frangé / sans franges / ourlet roulé', 'セルフ / ノーフリンジ / ロールヘム仕上げ', '셀프 프린지 / 무프린지 / 롤 헤 마감'),
+    t('Woven labels (cotton / satin / polyester / leather)', '织造标签 (棉 / 缎 / 涤纶 / 皮革)', 'Webetiketten (Baumwolle / Satin / Polyester / Leder)', 'Étiquettes tissées (coton / satin / polyester / cuir)', '織りラベル（綿 / サテン / ポリエステル / 革）', '직조 라벨 (면 / 새틴 / 폴리에스테르 / 가죽)'),
+    t('Gift box packaging with branded sleeve', '礼盒包装 + 品牌外套', 'Geschenkbox mit Markenhülle', 'Coffret cadeau avec manchette de marque', 'ギフトボックス + ブランドスリーブ', '선물 상자 + 브랜드 슬리브'),
+    t('Pantone color matching + 5kg+ MOQ', 'Pantone 配色 + 5kg+ 起', 'Pantone-Farbanpassung + 5kg+ MOQ', 'Correspondance Pantone + 5kg+ MOQ', 'Pantone カラー + 5kg〜', 'Pantone 매칭 + 5kg 이상'),
+  ],
+  sizeChart: {
+    headers: [
+      t('Dimension', '尺寸', 'Maße', 'Dimension', 'サイズ', '치수'),
+      t('Standard size', '标准尺寸', 'Standardgröße', 'Taille standard', '標準サイズ', '표준 사이즈'),
+      t('Length range', '长度范围', 'Längenbereich', 'Plage de longueur', '長さ範囲', '길이 범위'),
+      t('Width range', '宽度范围', 'Breitenbereich', 'Plage de largeur', '幅範囲', '폭 범위'),
+      t('Best for', '适合场景', 'Geeignet für', 'Idéal pour', '適している', '적합'),
+    ],
+    rows: [
+      { label: 'Long Stole', values: [
+        t('Long Stole', '长披肩', 'Long Stole', 'Long Stole', 'ロング・ストール', '롱 스토올'),
+        t('200 x 70 cm', '200 x 70 cm', '200 x 70 cm', '200 x 70 cm', '200 x 70 cm', '200 x 70 cm'),
+        t('180-220 cm', '180-220 cm', '180-220 cm', '180-220 cm', '180-220 cm', '180-220 cm'),
+        t('60-90 cm', '60-90 cm', '60-90 cm', '60-90 cm', '60-90 cm', '60-90 cm'),
+        t('Coat alternative / gift topper', '替代外套 / 高端礼品包装', 'Mantelersatz / Top-Geschenk', 'Alternative manteau / cadeau premium', 'コート代わり / ギフト包装', '코트 대용 / 선물 포장'),
+      ]},
+      { label: 'Classic Scarf', values: [
+        t('Classic Scarf', '经典围巾', 'Klassischer Schal', 'Écharpe classique', 'クラシック・スカーフ', '클래식 스카프'),
+        t('190 x 45 cm', '190 x 45 cm', '190 x 45 cm', '190 x 45 cm', '190 x 45 cm', '190 x 45 cm'),
+        t('170-200 cm', '170-200 cm', '170-200 cm', '170-200 cm', '170-200 cm', '170-200 cm'),
+        t('40-55 cm', '40-55 cm', '40-55 cm', '40-55 cm', '40-55 cm', '40-55 cm'),
+        t('Daily winter wear / neck warmer', '日常冬季佩戴 / 围脖', 'Alltags-Wintertragen / Halswärmer', 'Port hivernal quotidien / cache-cou', '日常の冬使用 / ネックウォーマー', '일상 겨울 착용 / 넥워머'),
+      ]},
+      { label: 'Narrow Scarf', values: [
+        t('Narrow Scarf', '窄围巾', 'Schmaler Schal', 'Écharpe étroite', 'ナロー・スカーフ', '내로우 스카프'),
+        t('180 x 35 cm', '180 x 35 cm', '180 x 35 cm', '180 x 35 cm', '180 x 35 cm', '180 x 35 cm'),
+        t('170-190 cm', '170-190 cm', '170-190 cm', '170-190 cm', '170-190 cm', '170-190 cm'),
+        t('30-40 cm', '30-40 cm', '30-40 cm', '30-40 cm', '30-40 cm', '30-40 cm'),
+        t('Travel / lightweight neck accent', '旅行 / 轻盈颈饰', 'Reisen / leichter Hals-Akzent', 'Voyage / touche légère au cou', '旅行 / 軽いネックアクセント', '여행 / 가벼운 넥 액센트'),
+      ]},
+      { label: 'Wide Wrap / Shawl', values: [
+        t('Wide Wrap / Shawl', '宽披肩', 'Breiter Wrap / Schal', 'Large wrap / châle', 'ワイド・ラップ / ショール', '와이드 랩 / 숄'),
+        t('200 x 100 cm', '200 x 100 cm', '200 x 100 cm', '200 x 100 cm', '200 x 100 cm', '200 x 100 cm'),
+        t('180-210 cm', '180-210 cm', '180-210 cm', '180-210 cm', '180-210 cm', '180-210 cm'),
+        t('80-120 cm', '80-120 cm', '80-120 cm', '80-120 cm', '80-120 cm', '80-120 cm'),
+        t('Shoulder wrap / evening event', '肩披 / 晚宴活动', 'Schulter-Wrap / Abendveranstaltung', 'Épaule / événement soirée', 'ショルダー・ラップ / 夜のイベント', '어깨 랩 / 저녁 이벤트'),
+      ]},
+    ],
+  },
 };
 
 // Defaults for other categories (shorter for time)
@@ -471,6 +518,27 @@ const accessories: ProductDetail = {
       a: t('Yes, we assemble hat + glove + scarf sets, or hat + scarf + eye mask sets. Custom gift boxes available.', '可以，帽子+手套+围巾套装，或帽子+围巾+眼罩套装。可定制礼盒。', 'Ja, Mütze + Handschuh + Schal oder Mütze + Schal + Schlafmaske. Kundenspezifische Geschenkboxen.', 'Oui, ensembles bonnet + gants + écharpe ou bonnet + écharpe + masque. Coffrets personnalisés.', 'はい、ハット + 手袋 + スカーフ、またはハット + スカーフ + アイマスク。ギフトボックス対応可。', '예, 모자+장갑+스카프 세트 또는 모자+스카프+안대 세트. 맞춤 선물 상자 가능.') },
     { q: t('What is the defect tolerance for accessories?', '配饰次品容许度？', 'Fehlertoleranz für Accessoires?', 'Tolérance aux défauts pour accessoires?', 'アクセサリの不良許容は?', '액세서리 불량 허용 기준?'),
       a: t('Less than 1.5% overall. Critical defects: zero. Major: 0.5%, Minor: 1%. Each piece goes through 4-stage QC.', '整体 < 1.5%。严重缺陷零容忍；主要 0.5%，次要 1%。每件经过 4 道 QC。', 'Insgesamt unter 1,5%. Kritisch: 0. Haupt: 0,5%. 4-stufige QC.', 'Moins de 1,5%. Critique 0, majeur 0,5%, mineur 1%. QC en 4 étapes.', '全体 1.5% 未満。重大 0、主要 0.5%、軽微 1%。4 段階 QC。', '전체 1.5% 미만. 중대 0, 주요 0.5%, 경미 1%. 4단계 QC.') },
+  ],
+  comparisonTitle: t('Cashmere vs Acrylic Accessories: Hand Feel, Cost, and Wholesale', '羊绒配饰 vs 腈纶配饰：手感、成本和批发对比', 'Kaschmir-Accessoires vs Acryl-Accessoires: Griff, Kosten und Großhandel', 'Accessoires cachemire vs acrylique: toucher, coût et gros', 'カシミア vs アクリル アクセサリ: 手感、コスト、卸価格', '캐시미어 vs 아크릴 액세서리: 촉감, 비용, 도매 가격'),
+  comparisonOther: t('Acrylic / Wool Blend', '腈纶 / 羊毛混纺', 'Acryl / Wollmischung', 'Acrylique / mélange de laine', 'アクリル / ウール混紡', '아크릴 / 양모 혼방'),
+  comparisonPoints: [
+    { label: t('Fiber origin', '纤维来源', 'Faserherkunft', 'Origine fibre', '繊維の起源', '섬유 원산지'),
+      cashmere: t('Natural cashmere goat underdown', '天然山羊绒', 'Natürliches Kaschmir-Ziegen-Unterhaar', 'Sous-poil naturel de chèvre cachemire', '天然カシミア山羊の産毛', '천연 캐시미어 산양 언더다운'),
+      other: t('Synthetic acrylic (petroleum-based)', '合成腈纶（石油基）', 'Synthetisches Acryl (auf Erdölbasis)', 'Acrylique synthétique (base pétrole)', '合成アクリル（石油系）', '합성 아크릴 (석유 기반)') },
+    { label: t('Softness', '柔软度', 'Weichheit', 'Douceur', '柔らかさ', '부드러움'),
+      cashmere: t('Luxuriously soft, no itch', '奢华柔软，不扎皮肤', 'Luxuriös weich, kein Jucken', 'Luxueusement doux, pas de grattement', '豪華に柔らかい、チクチクなし', '고급스럽게 부드럽고 가려움 없음') },
+    { label: t('Warmth', '保暖度', 'Wärme', 'Chaleur', '保温性', '보온성'),
+      cashmere: t('3x warmer per gram than wool', '每克比羊毛暖 3 倍', '3x wärmer pro Gramm als Wolle', '3x plus chaud par gramme', '1g あたり羊毛の 3 倍', '양모보다 g당 3배 따뜻') },
+    { label: t('Moisture wicking', '吸湿排汗', 'Feuchtigkeitstransport', 'Évacuation humidité', '吸湿発散性', '흡한 속건성'),
+      cashmere: t('High — absorbs 30%+ of weight', '高，可吸收重量 30%+ 的水分', 'Hoch — absorbiert 30%+ des Eigengewichts', 'Élevée — absorbe 30%+ du poids', '高い — 重量の 30%+ を吸水', '높음 — 무게의 30%+ 흡수') },
+    { label: t('Sustainability', '可持续性', 'Nachhaltigkeit', 'Durabilité', 'サステナビリティ', '지속가능성'),
+      cashmere: t('Renewable, biodegradable', '可再生，可降解', 'Erneuerbar, biologisch abbaubar', 'Renouvelable, biodégradable', '再生可能、生分解性', '재생 가능, 생분해성') },
+    { label: t('Wholesale price (gloves, FOB Tianjin)', '批发价 (手套, FOB 天津)', 'Großhandelspreis (Handschuhe, FOB Tianjin)', 'Prix de gros (gants, FOB Tianjin)', '卸価格 (手袋, FOB 天津)', '도매 가격 (장갑, FOB 천진)'),
+      cashmere: t('USD 14-24 per pair', 'USD 14-24 / 对', 'USD 14-24 pro Paar', 'USD 14-24 la paire', 'USD 14-24 / 組', 'USD 14-24 / 켤레'),
+      other: t('USD 2-5 per pair', 'USD 2-5 / 对', 'USD 2-5 pro Paar', 'USD 2-5 la paire', 'USD 2-5 / 組', 'USD 2-5 / 켤레') },
+    { label: t('Customer satisfaction (Amazon)', '客户满意度 (亚马逊)', 'Kundenzufriedenheit (Amazon)', 'Satisfaction client (Amazon)', '顧客満足 (Amazon)', '고객 만족도 (Amazon)'),
+      cashmere: t('4.6-4.8 stars (premium tier)', '4.6-4.8 星（高端）', '4,6-4,8 Sterne (Premium)', '4,6-4,8 étoiles (haut de gamme)', '4.6-4.8 星 (プレミアム層)', '4.6-4.8 점 (프리미엄 등급)'),
+      other: t('3.8-4.2 stars (commodity)', '3.8-4.2 星（普通）', '3,8-4,2 Sterne (Massenware)', '3,8-4,2 étoiles (bas de gamme)', '3.8-4.2 星 (コモディティ)', '3.8-4.2 점 (대량 생산)') },
   ],
 };const yarn: ProductDetail = {
   technicalSpecs: {
