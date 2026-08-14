@@ -120,6 +120,32 @@ const wholesaleFaqTitle: Record<Locale, string> = {
   cn: '批发采购常见问题',
 };
 
+// Custom branding / options / size chart section titles & subtitles (used by Section 10b and 10c).
+const customOptionsTitle: Record<Locale, string> = {
+  en: 'Custom Branding Options',
+  de: 'Kundenspezifische Branding-Optionen',
+  fr: 'Options de marque personnalisées',
+  ja: 'カスタムブランディングオプション',
+  kr: '맞춤 브랜딩 옵션',
+  cn: '定制贴牌选项',
+};
+const customOptionsSubtitle: Record<Locale, string> = {
+  en: 'We support the following private-label and branding customizations for this product:',
+  de: 'Wir unterstützen folgende Private-Label- und Branding-Optionen für dieses Produkt:',
+  fr: 'Nous prenons en charge les personnalisations suivantes pour ce produit :',
+  ja: 'この製品では以下のプライベートラベルおよびブランディングをサポートしています:',
+  kr: '이 제품에 대해 다음 개인 라벨 및 브랜딩 옵션을 지원합니다:',
+  cn: '我们为本产品支持以下定制贴牌和品牌选项:',
+};
+const sizeChartTitle: Record<Locale, string> = {
+  en: 'Size Chart',
+  de: 'Größentabelle',
+  fr: 'Tableau des tailles',
+  ja: 'サイズ表',
+  kr: '사이즈 표',
+  cn: '尺寸表',
+};
+
 const wholesaleFaq = [
   {
     q: {
@@ -2076,6 +2102,60 @@ const breadcrumbSchema = {
 
     </section>
 
+  )}
+
+
+
+  <!-- Section 10b: Custom Options (private label / branding) -->
+
+  {detail.customOptions && detail.customOptions.length > 0 && (
+    <section class="py-12 bg-secondary/20">
+      <div class="container-narrow max-w-3xl">
+        <h2 class="reveal font-display text-2xl font-light mb-4">{customOptionsTitle[locale]}</h2>
+        <p class="text-sm text-muted-foreground mb-4">{customOptionsSubtitle[locale]}</p>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
+          {detail.customOptions.map((opt) => (
+            <li class="flex items-start gap-2 border-b border-border/60 py-1.5">
+              <span class="text-primary mt-0.5">✓</span>
+              <span class="text-foreground/85">{opt[locale]}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+
+
+  <!-- Section 10c: Size Chart (only for products with sizeChart data, e.g. scarves) -->
+
+  {detail.sizeChart && detail.sizeChart.rows && detail.sizeChart.rows.length > 0 && (
+    <section class="py-12 bg-background">
+      <div class="container-narrow max-w-4xl">
+        <h2 class="reveal font-display text-2xl font-light mb-4">{sizeChartTitle[locale]}</h2>
+        <div class="border border-border rounded-lg overflow-hidden overflow-x-auto">
+          <table class="w-full text-sm min-w-[600px]">
+            <thead class="bg-secondary/40">
+              <tr>
+                {detail.sizeChart.headers.map((h) => (
+                  <th class="px-4 py-3 text-left font-medium">{h[locale]}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {detail.sizeChart.rows.map((row) => (
+                <tr class="border-t border-border">
+                  <td class="px-4 py-3 font-medium">{row.label}</td>
+                  {row.values.map((v) => (
+                    <td class="px-4 py-3 text-foreground/85">{v[locale]}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
   )}
 
 
