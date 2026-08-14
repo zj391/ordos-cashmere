@@ -343,6 +343,55 @@ const sweaters: ProductDetail = {
     t('Custom packaging (gift box, polybag with logo, sleeves)', '定制包装 (礼盒、带 logo 塑料袋、外套)', 'Kundenspezifische Verpackung', 'Emballage personnalisé', 'カスタム包装', '맞춤 패키징 (선물 상자, 로고 PE 백, 슬리브)'),
     t('Size tab + custom care label (multi-language)', '尺码标 + 多语言洗标', 'Größen-Tab + mehrsprachiges Pflegeetikett', 'Tab taille + étiquette entretien multilingue', 'サイズタブ + 多言語ケアラベル', '사이즈 탭 + 다국어 취급 라벨'),
   ],
+  sizeChart: {
+    headers: [
+      t('Measurement', '尺寸', 'Maße', 'Mesure', 'サイズ', '사이즈'),
+      t('XS', 'XS', 'XS', 'XS', 'XS', 'XS'),
+      t('S', 'S', 'S', 'S', 'S', 'S'),
+      t('M', 'M', 'M', 'M', 'M', 'M'),
+      t('L', 'L', 'L', 'L', 'L', 'L'),
+      t('XL', 'XL', 'XL', 'XL', 'XL', 'XL'),
+      t('XXL', 'XXL', 'XXL', 'XXL', 'XXL', 'XXL'),
+    ],
+    rows: [
+      { label: 'Chest (cm)', values: [
+        t('Chest (cm)', '胸围 (cm)', 'Brustumfang (cm)', 'Tour de poitrine (cm)', '胸囲 (cm)', '가슴 (cm)'),
+        t('86', '86', '86', '86', '86', '86'),
+        t('90', '90', '90', '90', '90', '90'),
+        t('94', '94', '94', '94', '94', '94'),
+        t('98', '98', '98', '98', '98', '98'),
+        t('104', '104', '104', '104', '104', '104'),
+        t('110', '110', '110', '110', '110', '110'),
+      ]},
+      { label: 'Body length (cm)', values: [
+        t('Body length (cm)', '衣长 (cm)', 'Körperlänge (cm)', 'Longueur du corps (cm)', '着丈 (cm)', '총장 (cm)'),
+        t('60', '60', '60', '60', '60', '60'),
+        t('62', '62', '62', '62', '62', '62'),
+        t('64', '64', '64', '64', '64', '64'),
+        t('66', '66', '66', '66', '66', '66'),
+        t('68', '68', '68', '68', '68', '68'),
+        t('70', '70', '70', '70', '70', '70'),
+      ]},
+      { label: 'Shoulder width (cm)', values: [
+        t('Shoulder width (cm)', '肩宽 (cm)', 'Schulterbreite (cm)', 'Largeur d\'épaule (cm)', '肩幅 (cm)', '어깨 너비 (cm)'),
+        t('34', '34', '34', '34', '34', '34'),
+        t('36', '36', '36', '36', '36', '36'),
+        t('38', '38', '38', '38', '38', '38'),
+        t('40', '40', '40', '40', '40', '40'),
+        t('42', '42', '42', '42', '42', '42'),
+        t('44', '44', '44', '44', '44', '44'),
+      ]},
+      { label: 'Sleeve length (cm)', values: [
+        t('Sleeve length (cm)', '袖长 (cm)', 'Ärmellänge (cm)', 'Longueur de manche (cm)', '袖丈 (cm)', '소매 길이 (cm)'),
+        t('58', '58', '58', '58', '58', '58'),
+        t('59', '59', '59', '59', '59', '59'),
+        t('60', '60', '60', '60', '60', '60'),
+        t('61', '61', '61', '61', '61', '61'),
+        t('62', '62', '62', '62', '62', '62'),
+        t('63', '63', '63', '63', '63', '63'),
+      ]},
+    ],
+  },
 };
 
 const hats: ProductDetail = {
@@ -431,6 +480,45 @@ const hats: ProductDetail = {
     t('Sublimated print / embroidery on body', '衣身升华印花 / 刺绣', 'Sublimationsdruck / Stickerei auf Körper', 'Impression sublimation / broderie sur corps', '昇華プリント / ボディ刺繍', '승화 인쇄 / 본체 자수'),
     t('Woven label on cuff edge', '帽口织造标签', 'Webetikett am Bündchenrand', 'Étiquette tissée sur revers', '縁の織りラベル', '챙 가장자리 직조 라벨'),
   ],
+  sizeChart: {
+    headers: [
+      t('Type', '类型', 'Typ', 'Type', '種類', '유형'),
+      t('XS (Child)', 'XS (儿童)', 'XS (Kind)', 'XS (Enfant)', 'XS (子供)', 'XS (아동)'),
+      t('S/M (Youth)', 'S/M (青少年)', 'S/M (Jugend)', 'S/M (Jeune)', 'S/M (ユース)', 'S/M (청소년)'),
+      t('M/L (Adult)', 'M/L (成人)', 'M/L (Erwachsene)', 'M/L (Adulte)', 'M/L (大人)', 'M/L (성인)'),
+      t('XL (Adult+)', 'XL (加大)', 'XL (Erwachsene+)', 'XL (Adulte+)', 'XL (大きめ)', 'XL (대형)'),
+    ],
+    rows: [
+      { label: 'Head circumference', values: [
+        t('Head circumference', '头围', 'Kopfumfang', 'Tour de tête', '頭囲', '머리 둘레'),
+        t('48-52 cm', '48-52 cm', '48-52 cm', '48-52 cm', '48-52 cm', '48-52 cm'),
+        t('52-56 cm', '52-56 cm', '52-56 cm', '52-56 cm', '52-56 cm', '52-56 cm'),
+        t('56-60 cm', '56-60 cm', '56-60 cm', '56-60 cm', '56-60 cm', '56-60 cm'),
+        t('60-62 cm', '60-62 cm', '60-62 cm', '60-62 cm', '60-62 cm', '60-62 cm'),
+      ]},
+      { label: 'Hat height', values: [
+        t('Hat height', '帽高', 'Huthöhe', 'Hauteur du bonnet', 'ハット高さ', '모자 높이'),
+        t('16-18 cm', '16-18 cm', '16-18 cm', '16-18 cm', '16-18 cm', '16-18 cm'),
+        t('18-20 cm', '18-20 cm', '18-20 cm', '18-20 cm', '18-20 cm', '18-20 cm'),
+        t('20-22 cm', '20-22 cm', '20-22 cm', '20-22 cm', '20-22 cm', '20-22 cm'),
+        t('22-24 cm', '22-24 cm', '22-24 cm', '22-24 cm', '22-24 cm', '22-24 cm'),
+      ]},
+      { label: 'Crown depth', values: [
+        t('Crown depth', '帽顶深度', 'Kronentiefe', 'Profondeur de calotte', 'クラウン深さ', '크라운 깊이'),
+        t('15-17 cm', '15-17 cm', '15-17 cm', '15-17 cm', '15-17 cm', '15-17 cm'),
+        t('17-19 cm', '17-19 cm', '17-19 cm', '17-19 cm', '17-19 cm', '17-19 cm'),
+        t('19-21 cm', '19-21 cm', '19-21 cm', '19-21 cm', '19-21 cm', '19-21 cm'),
+        t('21-23 cm', '21-23 cm', '21-23 cm', '21-23 cm', '21-23 cm', '21-23 cm'),
+      ]},
+      { label: 'Cuff width (folded)', values: [
+        t('Cuff width (folded)', '帽边宽度 (折叠)', 'Bündchenbreite (gefalten)', 'Largeur revers (plié)', '縁幅 (折り)', '챙 너비 (접힘)'),
+        t('5-6 cm', '5-6 cm', '5-6 cm', '5-6 cm', '5-6 cm', '5-6 cm'),
+        t('6-7 cm', '6-7 cm', '6-7 cm', '6-7 cm', '6-7 cm', '6-7 cm'),
+        t('7-8 cm', '7-8 cm', '7-8 cm', '7-8 cm', '7-8 cm', '7-8 cm'),
+        t('8-9 cm', '8-9 cm', '8-9 cm', '8-9 cm', '8-9 cm', '8-9 cm'),
+      ]},
+    ],
+  },
 };
 
 const accessories: ProductDetail = {
@@ -540,6 +628,40 @@ const accessories: ProductDetail = {
       cashmere: t('4.6-4.8 stars (premium tier)', '4.6-4.8 星（高端）', '4,6-4,8 Sterne (Premium)', '4,6-4,8 étoiles (haut de gamme)', '4.6-4.8 星 (プレミアム層)', '4.6-4.8 점 (프리미엄 등급)'),
       other: t('3.8-4.2 stars (commodity)', '3.8-4.2 星（普通）', '3,8-4,2 Sterne (Massenware)', '3,8-4,2 étoiles (bas de gamme)', '3.8-4.2 星 (コモディティ)', '3.8-4.2 점 (대량 생산)') },
   ],
+  sizeChart: {
+    headers: [
+      t('Item', '品类', 'Artikel', 'Article', 'アイテム', '품목'),
+      t('XS / One-size', 'XS / 均码', 'XS / Einheitsgröße', 'XS / Taille unique', 'XS / フリーサイズ', 'XS / 프리사이즈'),
+      t('S / M', 'S / M', 'S / M', 'S / M', 'S / M', 'S / M'),
+      t('L / XL', 'L / XL', 'L / XL', 'L / XL', 'L / XL', 'L / XL'),
+    ],
+    rows: [
+      { label: 'Hat / Beanie', values: [
+        t('Hat / Beanie', '帽子 / 毛线帽', 'Hut / Beanie', 'Bonnet / Beanie', 'ハット / ビニー', '모자 / 비니'),
+        t('48-54 cm (child)', '48-54 cm (儿童)', '48-54 cm (Kind)', '48-54 cm (enfant)', '48-54 cm (子供)', '48-54 cm (아동)'),
+        t('54-57 cm (youth)', '54-57 cm (青少年)', '54-57 cm (Jugend)', '54-57 cm (jeune)', '54-57 cm (ユース)', '54-57 cm (청소년)'),
+        t('57-62 cm (adult)', '57-62 cm (成人)', '57-62 cm (Erwachsene)', '57-62 cm (adulte)', '57-62 cm (大人)', '57-62 cm (성인)'),
+      ]},
+      { label: 'Gloves', values: [
+        t('Gloves', '手套', 'Handschuhe', 'Gants', '手袋', '장갑'),
+        t('14-16 cm (palm)', '14-16 cm (掌围)', '14-16 cm (Handfläche)', '14-16 cm (paume)', '14-16 cm (手のひら)', '14-16 cm (손바닥)'),
+        t('17-19 cm (palm)', '17-19 cm (掌围)', '17-19 cm (Handfläche)', '17-19 cm (paume)', '17-19 cm (手のひら)', '17-19 cm (손바닥)'),
+        t('20-23 cm (palm)', '20-23 cm (掌围)', '20-23 cm (Handfläche)', '20-23 cm (paume)', '20-23 cm (手のひら)', '20-23 cm (손바닥)'),
+      ]},
+      { label: 'Socks', values: [
+        t('Socks', '袜子', 'Socken', 'Chaussettes', 'ソックス', '양말'),
+        t('21-23 cm (EU 32-36)', '21-23 cm (欧码 32-36)', '21-23 cm (EU 32-36)', '21-23 cm (EU 32-36)', '21-23 cm (EU 32-36)', '21-23 cm (EU 32-36)'),
+        t('24-27 cm (EU 37-41)', '24-27 cm (欧码 37-41)', '24-27 cm (EU 37-41)', '24-27 cm (EU 37-41)', '24-27 cm (EU 37-41)', '24-27 cm (EU 37-41)'),
+        t('28-30 cm (EU 42-46)', '28-30 cm (欧码 42-46)', '28-30 cm (EU 42-46)', '28-30 cm (EU 42-46)', '28-30 cm (EU 42-46)', '28-30 cm (EU 42-46)'),
+      ]},
+      { label: 'Eye mask', values: [
+        t('Eye mask', '眼罩', 'Schlafmaske', 'Masque de sommeil', 'アイマスク', '안대'),
+        t('One size: 22x10 cm', '均码: 22x10 cm', 'Einheitsgröße: 22x10 cm', 'Taille unique : 22x10 cm', 'フリーサイズ: 22x10 cm', '프리사이즈: 22x10 cm'),
+        t('One size: 22x10 cm', '均码: 22x10 cm', 'Einheitsgröße: 22x10 cm', 'Taille unique : 22x10 cm', 'フリーサイズ: 22x10 cm', '프리사이즈: 22x10 cm'),
+        t('One size: 22x10 cm', '均码: 22x10 cm', 'Einheitsgröße: 22x10 cm', 'Taille unique : 22x10 cm', 'フリーサイズ: 22x10 cm', '프리사이즈: 22x10 cm'),
+      ]},
+    ],
+  },
 };const yarn: ProductDetail = {
   technicalSpecs: {
     material: t('100% Inner Mongolia Grade A cashmere', '100% 内蒙古 A 级羊绒', '100% kaschmir Inneren Mongolei Güteklasse A', '100% cachemire Mongolie grade A', '100% 内モンゴル A 級カシミア', '100% 내몽골 A 등급 캐시미어'),
