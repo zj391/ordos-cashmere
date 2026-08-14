@@ -714,7 +714,7 @@ const itemListSchema = {
       <div class="flex items-center gap-3 mb-4">
         <span class="h-[2px] w-8 bg-brand-red"></span>
         <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">
-          {locale === 'cn' ? '买家反馈' : 'Buyer Feedback'}
+          {locale === 'cn' ? '买家反馈' : locale === 'de' ? 'KÄUFER-FEEDBACK' : locale === 'fr' ? 'AVIS CLIENTS' : locale === 'ja' ? '購入者の声' : locale === 'kr' ? '구매자 피드백' : 'Buyer Feedback'}
         </span>
       </div>
       <h2 class="font-serif text-3xl md:text-4xl font-light mb-3">
