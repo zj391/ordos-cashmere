@@ -17,6 +17,7 @@ import SEOFaq from '@/components/SEOFaq.astro';
 import { LOCALES, isLocale, pickLocale } from '@/lib/i18n';
 import { SEO, SITE_URL } from '@/lib/seo';
 import { products as productsData, getCategoryById } from '@/data/products';
+import { getCollection } from 'astro:content';
 
 // Maps catId -> image directory (must match `CATEGORY_IMAGE_DIR` in [id].astro).
 const CATEGORY_IMAGE_DIR = {
@@ -532,6 +533,18 @@ const itemListSchema = {
     url: `${SITE_URL}/${locale}/products/${p.id}`,
   })),
 };
+
+// 最新 3 篇博客（SEO 内链 + 新内容曝光）— 前置所有 i18n 字符串到 markup 用 ternary, frontmatter 不留中文
+const allBlogPosts = await getCollection('blog', ({ id }) => id.startsWith(`${locale}/`));
+const latestBlogPosts = allBlogPosts
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
+  .slice(0, 3)
+  .map((p) => ({
+    slug: p.id.replace(`${locale}/`, '').replace(/\.md$/, ''),
+    title: p.data.title,
+    excerpt: p.data.excerpt,
+    date: p.data.publishDate.toISOString().slice(0, 10),
+  }));
 ---
 
 <BaseLayout locale={locale} pageKey="products" path={`/products/${slug}`} title={t.title} description={t.description} keywords={t.keywords} schema="general">
@@ -756,6 +769,49 @@ const itemListSchema = {
       </p>
     </div>
   </section>
+
+
+  <!-- From the Journal — 类目页 SEO 内链 + 选购洞察 (5 类目 × 6 语言 = 30 个 URL 多内链) -->
+  {latestBlogPosts.length > 0 && (
+    <section class="py-16 md:py-20 bg-background border-t border-border">
+      <div class="container-narrow">
+        <div class="flex items-end justify-between mb-10 gap-6 flex-wrap">
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="h-[2px] w-10 bg-brand-red"></span>
+              <span class="text-xs tracking-[0.3em] text-brand-gold uppercase font-medium">
+                {locale === 'cn' ? '选购洞察' : 'From the Journal'}
+              </span>
+            </div>
+            <h2 class="font-serif text-3xl md:text-4xl font-light leading-tight">
+              {locale === 'cn'
+                ? `${t.h1.replace(/批发$/, '')} — 选购博客`
+                : `${category.name} — Buying Insights`}
+            </h2>
+          </div>
+          <a href={`/${locale}/blog/`} class="text-sm text-brand-chocolate border-b border-brand-chocolate hover:border-brand-gold hover:text-brand-gold transition-colors">
+            {locale === 'cn' ? '查看全部博客 →' : 'View all articles →'}
+          </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {latestBlogPosts.map((p) => (
+            <a href={`/${locale}/blog/${p.slug}/`} class="group block border border-border bg-white overflow-hidden hover:border-brand-gold hover:shadow-lg transition-all duration-300">
+              <div class="aspect-[16/10] bg-gradient-to-br from-brand-cream via-[#F8F5EF] to-[#E8DFD0]"></div>
+              <div class="p-6">
+                <div class="text-xs text-muted-foreground tracking-wider mb-3 font-mono">{p.date}</div>
+                <h3 class="font-serif text-lg mb-3 group-hover:text-brand-chocolate transition-colors leading-tight line-clamp-2">{p.title}</h3>
+                <p class="text-muted-foreground leading-relaxed mb-4 text-sm line-clamp-3">{p.excerpt}</p>
+                <span class="inline-flex items-center gap-1 text-sm text-brand-chocolate font-medium">
+                  {locale === 'cn' ? '阅读文章' : 'Read article'}
+                  <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 
 
   <SEOFaq faqs={t.faqs} title="Frequently Asked Questions" />
