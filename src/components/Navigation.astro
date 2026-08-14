@@ -140,11 +140,11 @@ const groupLabel = (groupKey: string, group: any) => {
     <!-- 左侧留白 -->
     <div class="hidden lg:block"></div>
     <!-- Logo（桌面端居中） -->
-    <a href={localePath(locale, '/')} class="flex items-center gap-2 group justify-self-center">
-      <span class="font-display text-[1.7rem] font-normal tracking-wide text-primary">
+    <a href={localePath(locale, '/')} class="flex items-baseline gap-2.5 group justify-self-center">
+      <span class="font-display text-[1.85rem] font-normal tracking-[0.08em] text-primary transition-colors group-hover:text-brand-red">
         DONGXIAO<sup class="text-xs">®</sup>
       </span>
-      <span class="hidden md:inline text-xs text-muted-foreground tracking-wider uppercase">
+      <span class="hidden md:inline text-[0.65rem] text-muted-foreground tracking-[0.22em] uppercase">
         Cashmere · Ordos
       </span>
     </a>
@@ -267,7 +267,7 @@ const groupLabel = (groupKey: string, group: any) => {
       <!-- CTA: Contact -->
       <a
         href={localePath(locale, '/contact')}
-        class="hidden sm:inline-flex items-center justify-center border border-primary px-6 py-2.5 text-xs uppercase tracking-[0.18em] text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
+        class="hidden sm:inline-flex items-center justify-center border border-primary px-6 py-2.5 text-xs uppercase tracking-[0.18em] text-primary hover:border-brand-red hover:text-brand-red hover:bg-brand-red/[0.04] transition-all duration-300"
       >
         {locale === 'cn' ? '立即询盘' : 'Get Quote'}
       </a>
@@ -288,7 +288,7 @@ const groupLabel = (groupKey: string, group: any) => {
 
   <!-- Desktop Nav（居中菜单栏） -->
   <div class="hidden lg:block border-t border-border/60">
-    <nav class="container-narrow flex items-center justify-center gap-9 py-4 text-[13px] uppercase tracking-[0.14em]" id="desktop-nav">
+    <nav class="container-narrow flex items-center justify-center gap-10 py-5 text-xs uppercase tracking-[0.18em]" id="desktop-nav">
       {navItems.map((item) => (
         <div class="relative group/item" data-mega-trigger={item.hasSubmenu || ''}>
           <a

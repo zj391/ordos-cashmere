@@ -4,25 +4,27 @@
 
 @layer base {
   :root {
-    --background: 40 33% 99%;
-    --foreground: 30 18% 12%;
+    /* Warmer ivory paper + deeper espresso ink for a quieter, more
+       luxurious editorial feel (Loro Piana / Brunello Cucinelli tone). */
+    --background: 43 34% 98%;
+    --foreground: 28 20% 11%;
     --card: 0 0% 100%;
-    --card-foreground: 30 18% 12%;
+    --card-foreground: 28 20% 11%;
     --popover: 0 0% 100%;
-    --popover-foreground: 30 18% 12%;
-    --primary: 28 22% 16%;
-    --primary-foreground: 40 33% 97%;
-    --secondary: 38 26% 95%;
-    --secondary-foreground: 28 22% 16%;
-    --muted: 40 20% 95%;
-    --muted-foreground: 30 12% 38%;
-    --accent: 36 28% 90%;
-    --accent-foreground: 28 22% 16%;
+    --popover-foreground: 28 20% 11%;
+    --primary: 28 22% 15%;
+    --primary-foreground: 43 34% 97%;
+    --secondary: 42 26% 95%;
+    --secondary-foreground: 28 22% 15%;
+    --muted: 42 24% 95%;
+    --muted-foreground: 30 13% 36%;
+    --accent: 38 26% 90%;
+    --accent-foreground: 28 22% 15%;
     --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 100%;
-    --border: 38 18% 87%;
-    --input: 38 18% 87%;
-    --ring: 28 22% 16%;
+    --border: 38 20% 84%;
+    --input: 38 20% 84%;
+    --ring: 28 22% 15%;
     --radius: 0.125rem;
   }
 
@@ -34,11 +36,23 @@
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-feature-settings: 'cv11', 'ss01';
+    line-height: 1.65;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Cormorant Garamond', Georgia, serif;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
+    font-weight: 400;
+  }
+
+  ::selection {
+    background: #9E3128;
+    color: #F7F3EC;
+  }
+
+  :focus-visible {
+    outline: 1px solid #9E3128;
+    outline-offset: 3px;
   }
 }
 
@@ -48,7 +62,7 @@
   }
 
   .section-padding {
-    @apply py-16 md:py-24 lg:py-32;
+    @apply py-20 md:py-28 lg:py-36;
   }
 
   .text-balance {
@@ -379,4 +393,199 @@ header.sticky.header-hidden {
 }
 header.sticky.is-scrolled {
   box-shadow: 0 2px 16px -6px rgba(28, 24, 19, 0.08);
+}
+
+/* ============================================================
+   Luxury editorial system (2026 refresh)
+   ============================================================ */
+
+/* Section eyebrow: small red hairline + letterspaced uppercase label */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+.eyebrow::before {
+  content: '';
+  width: 2.5rem;
+  height: 1px;
+  background: #9E3128;
+  flex: none;
+}
+.eyebrow > span,
+.eyebrow-label {
+  font-size: 0.6875rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #A98B5F;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.eyebrow-center {
+  justify-content: center;
+}
+.eyebrow-center::after {
+  content: '';
+  width: 2.5rem;
+  height: 1px;
+  background: #9E3128;
+  flex: none;
+}
+
+/* Hero eyebrow on dark imagery */
+.eyebrow-on-dark::before {
+  background: #9E3128;
+}
+.eyebrow-on-dark > span,
+.eyebrow-on-dark .eyebrow-label {
+  color: #C9A97C;
+}
+
+/* Luxury solid button (ink -> oxblood on hover) */
+.btn-lux {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.05rem 2.4rem;
+  background: #1C1813;
+  color: #F7F3EC;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transition:
+    background-color 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-lux:hover {
+  background: #9E3128;
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px -14px rgba(28, 24, 19, 0.45);
+}
+.btn-lux:active {
+  transform: translateY(0);
+}
+.btn-lux svg {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-lux:hover svg {
+  transform: translateX(4px);
+}
+
+/* Luxury outline button */
+.btn-lux-outline {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.05rem 2.4rem;
+  border: 1px solid rgba(28, 24, 19, 0.35);
+  color: #1C1813;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transition:
+    border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-lux-outline:hover {
+  border-color: #9E3128;
+  color: #9E3128;
+  transform: translateY(-1px);
+}
+
+/* Animated underline text link (gold on hover) */
+.text-link-lux {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 3px;
+  color: #4B3A2B;
+  font-weight: 500;
+  transition: color 0.35s ease;
+}
+.text-link-lux::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(1);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.text-link-lux:hover {
+  color: #A98B5F;
+}
+.text-link-lux:hover::after {
+  transform: scaleX(0.35);
+  transform-origin: left;
+}
+.text-link-lux svg {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.text-link-lux:hover svg {
+  transform: translateX(4px);
+}
+
+/* Hairline dividers */
+.hairline-t {
+  border-top: 1px solid hsl(38 20% 84% / 0.9);
+}
+.hairline-b {
+  border-bottom: 1px solid hsl(38 20% 84% / 0.9);
+}
+
+/* Editorial image frame: hairline border + ivory mat */
+.img-frame {
+  border: 1px solid hsl(38 20% 84% / 0.9);
+  padding: 0.5rem;
+  background: #FFFFFF;
+}
+.img-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Serif numerals for counters/stats */
+.stat-num {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
+  font-variant-numeric: lining-nums tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* Refined uppercase micro-label */
+.micro-label {
+  font-size: 0.6875rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Subtle fade for luxury: longer, slower easing */
+.reveal {
+  transition-duration: 1s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-lux,
+  .btn-lux-outline,
+  .text-link-lux,
+  .text-link-lux::after,
+  .text-link-lux svg {
+    transition: none;
+  }
 }

@@ -286,16 +286,15 @@ const IMG = {
 
     <div class="relative container-narrow min-h-[88vh] flex items-center py-24">
       <div class="max-w-3xl">
-        <div class="h-[2px] w-20 bg-brand-red mb-8"></div>
-        <div class="flex items-center gap-3 mb-6">
-          <span class="text-xs tracking-[0.4em] text-brand-gold uppercase font-medium">{c.tagline}</span>
+        <div class="eyebrow eyebrow-on-dark mb-10">
+          <span>{c.tagline}</span>
         </div>
-        <h1 class="font-serif text-6xl md:text-8xl font-light leading-[1.06] mb-10" set:html={c.title.replace(/\n/g, '<br/>')} />
+        <h1 class="font-serif text-6xl md:text-8xl font-light leading-[1.05] tracking-[-0.02em] mb-10" set:html={c.title.replace(/\n/g, '<br/>')} />
         <p class="text-lg md:text-xl text-white/80 mb-14 leading-relaxed max-w-2xl font-light">
           {c.subtitle}
         </p>
         <div class="flex flex-wrap items-center gap-6">
-          <a href={`/${locale}/contact/`} class="group inline-flex items-center gap-3 px-10 py-5 bg-white text-brand-ink text-sm font-medium uppercase tracking-[0.2em] hover:bg-brand-gold hover:text-white transition-colors">
+          <a href={`/${locale}/contact/`} class="group inline-flex items-center gap-3 px-10 py-5 bg-white text-brand-ink text-sm font-medium uppercase tracking-[0.22em] hover:bg-brand-gold hover:text-white transition-all duration-300">
             {c.cta}
             <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -370,15 +369,15 @@ const IMG = {
   </script>
 
   <!-- ============ METRICS BAR（细线分隔） ============ -->
-  <section class="border-y border-border bg-[#F8F5EF] py-12">
+  <section class="border-y border-border bg-[#FBF8F2] py-14">
     <div class="container-narrow">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 md:divide-x md:divide-border">
         {c.metrics.map((m, i) => {
           const cv = parseCounter(m.value);
           return (
           <div class={`md:px-10 first:md:pl-0 last:md:pr-0 text-center md:text-left reveal`} data-reveal-delay={i + 1}>
-            <div class="counter font-serif text-4xl md:text-5xl text-brand-ink font-light leading-none mb-2" data-counter={cv.n} data-suffix={cv.s} data-display={m.value}>{m.value}</div>
-            <div class="text-xs tracking-[0.2em] uppercase text-muted-foreground">{m.label}</div>
+            <div class="counter stat-num text-5xl md:text-6xl text-brand-ink font-light leading-none mb-3" data-counter={cv.n} data-suffix={cv.s} data-display={m.value}>{m.value}</div>
+            <div class="micro-label text-muted-foreground">{m.label}</div>
           </div>
           );
         })}
@@ -387,7 +386,7 @@ const IMG = {
   </section>
 
   <!-- ============ 产地故事（不对称：大图 + 文字） ============ -->
-  <section class="py-24 md:py-32 bg-background overflow-hidden">
+  <section class="py-28 md:py-36 bg-background overflow-hidden">
     <div class="container-narrow">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <!-- 左侧大图（占 7/12） -->
@@ -405,13 +404,12 @@ const IMG = {
         </div>
         <!-- 右侧文字（占 5/12，错位下沉） -->
         <div class="lg:col-span-5 lg:pl-8 lg:pt-16 reveal-right" data-reveal-delay="1">
-          <div class="flex items-center gap-3 mb-6">
-            <span class="h-[2px] w-8 bg-brand-red"></span>
-            <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">
+          <div class="eyebrow mb-8">
+            <span class="eyebrow-label">
               {t('产地溯源', 'Origin Story')}
             </span>
           </div>
-          <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight mb-6 text-brand-ink" set:html={t6(
+          <h2 class="font-serif text-5xl md:text-6xl font-light leading-[1.08] mb-8 text-brand-ink" set:html={t6(
             '鄂尔多斯：<br/>世界顶级羊绒产区',
             'Ordos:<br/>The World\'s Premium Cashmere Region',
             'Ordos:<br/>Premium-Kaschmirregion',
@@ -455,18 +453,17 @@ const IMG = {
   </section>
 
   <!-- ============ Product Range（不对称 Bento 布局） ============ -->
-  <section class="py-24 md:py-32 bg-brand-cream/50">
+  <section class="py-28 md:py-36 bg-brand-cream/50">
     <div class="container-narrow">
       <!-- 段头 -->
       <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-16 gap-6">
         <div>
-          <div class="flex items-center gap-3 mb-4">
-            <span class="h-[2px] w-8 bg-brand-red"></span>
-            <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">
+          <div class="eyebrow mb-4">
+            <span class="eyebrow-label">
               {t6('产品矩阵', 'Product Range', 'Produktpalette', 'Gamme', '製品範囲', '제품 범위')}
             </span>
           </div>
-          <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight max-w-2xl">
+          <h2 class="font-serif text-5xl md:text-6xl font-light leading-[1.08] max-w-2xl">
             {t6(
               '全产业链羊绒供应',
               'Complete Cashmere Supply Chain',
@@ -584,16 +581,15 @@ const IMG = {
   </section>
 
   <!-- ============ 为什么选我们（工艺感：图+引文+数据 交错） ============ -->
-  <section class="py-24 md:py-32 bg-background">
+  <section class="py-28 md:py-36 bg-background">
     <div class="container-narrow">
       <div class="max-w-3xl mb-20">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="h-[2px] w-8 bg-brand-red"></span>
-          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">
+        <div class="eyebrow mb-8">
+          <span class="eyebrow-label">
             {t6('为什么选东霄', 'Why DONGXIAO', 'Warum DONGXIAO', 'Pourquoi', 'なぜ東霄', '왜 동소')}
           </span>
         </div>
-        <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight">
+        <h2 class="font-serif text-5xl md:text-6xl font-light leading-[1.08]">
           {t6('23年只做一件事：从牧场到成衣的羊绒全链路把控', 'One craft for 23 years: full-chain cashmere from pasture to garment', '23 Jahre ein Handwerk: vom Weideland bis zum fertigen Kleidungsstück', '23 ans d\'un seul métier : du pâturage au vêtement fini', '23年一貫、カシミアの全工程', '23년 한 가지: 목장에서 의류까지')}
         </h2>
       </div>
@@ -693,19 +689,18 @@ const IMG = {
   </section>
 
   <!-- ============ 产品中心：5 大分类 + 精选产品 ============ -->
-  <section class="py-24 md:py-32 bg-background">
+  <section class="py-28 md:py-36 bg-background">
     <div class="container-narrow">
       <div class="flex items-end justify-between mb-12 gap-6 flex-wrap">
         <div>
-          <div class="flex items-center gap-3 mb-4">
-            <span class="h-[2px] w-10 bg-brand-red"></span>
+          <div class="eyebrow mb-6">
             <span class="text-xs tracking-[0.3em] text-brand-gold uppercase font-medium">{t6('产品中心', 'Product Center', 'Produktzentrum', 'Centre Produits', '製品センター', '제품 센터')}</span>
           </div>
           <h2 class="font-serif text-3xl md:text-5xl font-light leading-tight text-balance">
             {t6('5 大品类 · 从原料到成衣', '5 categories, from raw fiber to finished knitwear', '5 Kategorien, vom Rohmaterial bis zur Strickware', '5 catégories, de la fibre au tricot fini', '5カテゴリー、原料からニットまで', '5개 카테고리, 원료부터 니트까지')}
           </h2>
         </div>
-        <a href={`/${locale}/products/`} class="text-sm text-brand-chocolate border-b border-brand-chocolate hover:border-brand-gold hover:text-brand-gold transition-colors">
+        <a href={`/${locale}/products/`} class="text-link-lux text-sm">
           {t6('浏览全部产品 →', 'View all products →', 'Alle Produkte ansehen →', 'Voir tous les produits →', 'すべての製品を見る →', '전체 제품 보기 →')}
         </a>
       </div>
@@ -748,7 +743,7 @@ const IMG = {
   </section>
 
   <!-- ============ Final CTA（深色版 + 历史工厂背景） ============ -->
-  <section class="py-24 md:py-32 bg-[#F5F0E7] relative overflow-hidden">
+  <section class="py-28 md:py-36 bg-[#F5F0E7] relative overflow-hidden">
     <!-- 背景图: 历史针织厂外景, 黑白, 传承感 (knittingMill 是 DPLA 公共域图) -->
     <div class="absolute inset-0">
       <img src={IMG.knittingMill} alt="" aria-hidden="true" class="w-full h-full object-cover opacity-10 grayscale" decoding="async" loading="lazy" />
@@ -778,10 +773,10 @@ const IMG = {
         {t6('获取免费样品、报价单和认证文件。我们的销售专家24小时内回复。', 'Get free samples, quotation, and certifications. Our specialists respond within 24 hours.', 'Kostenlose Muster, Angebote und Zertifizierungen.', 'Échantillons gratuits, devis et certifications.', '無料サンプル・お見積もり・認証。', '무료 샘플·견적서·인증서.')}
       </p>
       <div class="flex flex-wrap justify-center gap-4">
-        <a href={`/${locale}/contact/`} class="inline-flex items-center gap-3 px-10 py-5 bg-brand-ink text-[#F7F3EC] font-medium tracking-wider hover:bg-brand-chocolate transition-colors">
+        <a href={`/${locale}/contact/`} class="btn-lux">
           {c.cta}
         </a>
-        <a href={`https://wa.me/${SITE_INFO.whatsapp.replace(/[^\d]/g, '')}`} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-10 py-5 border border-brand-ink/30 text-brand-ink hover:bg-brand-ink hover:text-[#F7F3EC] transition-colors">
+        <a href={`https://wa.me/${SITE_INFO.whatsapp.replace(/[^\d]/g, '')}`} target="_blank" rel="noopener noreferrer" class="btn-lux-outline">
           WhatsApp
         </a>
       </div>
