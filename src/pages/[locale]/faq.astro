@@ -5,7 +5,7 @@ import Navigation from '@/components/Navigation.astro';
 import Footer from '@/components/Footer.astro';
 import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
-import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
+import { LOCALES, type Locale, pickLocale } from '@/lib/i18n';
 
 export function getStaticPaths() {
   return LOCALES.map((locale) => ({ params: { locale } }));
@@ -14,30 +14,120 @@ export function getStaticPaths() {
 const { locale: rawLocale } = Astro.params;
 const locale = pickLocale(rawLocale);
 
-const title = locale === 'cn' ? '常见问题' : locale === 'de' ? 'FAQ' : locale === 'fr' ? 'FAQ' : locale === 'ja' ? 'よくある質問' : locale === 'kr' ? '자주 묻는 질문' : 'FAQ';
-const subtitle = locale === 'cn' ? '羊绒采购常见问题与解答' : 'Common questions about cashmere sourcing';
+const titleMap: Record<string, string> = {
+  en: 'Frequently Asked Questions',
+  de: 'Häufig gestellte Fragen',
+  fr: 'Questions fréquentes',
+  ja: 'よくある質問',
+  kr: '자주 묻는 질문',
+  cn: '常见问题',
+};
+const subMap: Record<string, string> = {
+  en: 'Common questions about cashmere sourcing from our Ordos factory',
+  de: 'Häufige Fragen zum Kaschmir-Bezug aus unserer Ordos-Fabrik',
+  fr: 'Questions courantes sur l\'achat de cachemire depuis notre usine d\'Ordos',
+  ja: 'オルドス工場からのカシミア調達に関するよくある質問',
+  kr: '오르도스 공장에서의 캐시미어 조달에 대한 자주 묻는 질문',
+  cn: '关于从我们鄂尔多斯工厂采购羊绒的常见问题',
+};
+const title = titleMap[locale] || 'FAQ';
+const subtitle = subMap[locale] || '';
 
-const faq: Array<{ q: string; a: string }> = locale === 'cn' ? [
-  { q: '起订量（MOQ）是多少？', a: '原料：100kg起订。纱线/面料：50kg/200m起订。成衣代工：100件/款起订。' },
-  { q: '交货期多久？', a: '原料15-25天，纱线20-30天，面料30-45天，成衣代工45-60天（含打样）。' },
-  { q: '可以提供样品吗？', a: '可以。免费提供A4大小色卡样，付费提供完整样品（可冲抵正式订单金额）。' },
-  { q: '付款方式？', a: 'T/T 30%定金 + 70%尾款（发货前）。新客户首次合作建议L/C at sight。' },
-  { q: '支持哪些贸易条款？', a: 'FOB、CIF、DDP均可。我们可代办出口报关与海运/空运。' },
-  { q: '是否提供OEM/ODM？', a: '是的。我们有专业设计团队支持OEM贴牌、ODM定制开发，最小起订100件/款。' },
-] : locale === 'de' ? [
-  { q: 'Was ist die MOQ?', a: 'Rohmaterial: 100kg. Garn: 50kg. Stoff: 200m. Bekleidung: 100 Stk./Modell.' },
-  { q: 'Wie lang ist die Lieferzeit?', a: 'Rohmaterial 15-25 Tage, Garn 20-30 Tage, Stoff 30-45 Tage, Bekleidung 45-60 Tage.' },
-  { q: 'Können Muster zur Verfügung gestellt werden?', a: 'Ja. Kostenlose Farbkarte, kostenpflichtige Muster (rückerstattbar bei Bestellung).' },
-  { q: 'Welche Zahlungsbedingungen?', a: 'T/T 30% Anzahlung + 70% vor Versand.' },
-  { q: 'Unterstützen Sie OEM/ODM?', a: 'Ja. Eigenes Designteam für OEM/ODM mit MOQ 100 Stk.' },
-] : [
-  { q: 'What is the MOQ?', a: 'Raw material: 100kg. Yarn: 50kg. Fabric: 200m. Garment OEM: 100pcs/style.' },
-  { q: 'What is the lead time?', a: 'Raw material 15-25 days, yarn 20-30 days, fabric 30-45 days, garment 45-60 days (incl. sampling).' },
-  { q: 'Do you provide samples?', a: 'Yes. Free color cards, paid full samples (refundable against bulk order).' },
-  { q: 'What are the payment terms?', a: 'T/T 30% deposit + 70% before shipment. L/C at sight accepted for new customers.' },
-  { q: 'What trade terms do you support?', a: 'FOB, CIF, DDP. We handle export customs and arrange sea/air freight.' },
-  { q: 'Do you offer OEM/ODM?', a: 'Yes. In-house design team supports OEM and ODM. MOQ 100pcs/style.' },
-];
+const faq: Array<{ q: string; a: string }> = (() => {
+  const map: Record<string, Array<{ q: string; a: string }>> = {
+    en: [
+      { q: 'What is the MOQ for cashmere products?', a: 'Raw cashmere fiber: 100 kg per grade per color. Cashmere yarn: 50-200 kg per count per color. Cashmere fabric: 200 m+ per design. Garment OEM: 100 pieces per style per color. Hat / accessory OEM: 30-200 pieces depending on item.' },
+      { q: 'What is the production lead time?', a: 'Raw fiber 15-25 days, yarn 20-30 days, fabric 30-45 days, garment OEM 45-60 days including sampling. Air freight adds 5-7 days door-to-door; sea freight 25-35 days.' },
+      { q: 'Do you provide samples?', a: 'Yes. Free 100 g color card samples ship in 5 days. Paid custom samples USD 30-180 per piece, refundable against bulk orders of 200+ pcs (garments) or 50 kg+ (yarn).' },
+      { q: 'What are your payment terms?', a: 'T/T 30% deposit + 70% balance before shipment for orders under USD 50,000. L/C at sight for orders above USD 50,000. Western Union and PayPal accepted for samples under USD 1,000.' },
+      { q: 'Which Incoterms do you support?', a: 'FOB Tianjin / Shanghai, CIF destination port, and DDP door-to-door. We handle export customs declaration and arrange sea / air freight with our long-term forwarder partners.' },
+      { q: 'Do you offer OEM / ODM?', a: 'Yes. Our in-house design team (5+ designers, 12+ years average experience) supports both OEM (your design, our production) and ODM (our design, your brand). Tech-pack development free for orders above 500 pcs.' },
+      { q: 'What is your defect tolerance / QC standard?', a: 'AQL 2.5 sampling per ISO 2859-1. Critical defects: 0%. Major defects: under 0.5%. Minor: under 1%. Each order goes through pre-shipment inspection plus optional mid-production yarn check for orders above 2,000 pcs.' },
+      { q: 'What certifications do you hold?', a: 'ISO 9001:2015, OEKO-TEX Standard 100 (Class I for infant and adult skin contact), BSCI, Sedex SMETA. GOTS, RWS, and GCS (Good Cashmere Standard) available on request for orders above 1,000 pcs.' },
+      { q: 'How do you ensure cashmere origin traceability?', a: 'Each batch ships with a Certificate of Origin and OFDA 2000 micron test report. For Alashan Grade A and Ordos Arbas protected-designation batches, we provide herder cooperative agreement + GPS coordinates of source pasture.' },
+      { q: 'Can you ship worldwide? What are lead times by region?', a: 'Yes — we ship to 50+ countries. EU / US: sea 25-35 days, air 5-7 days. Middle East / South America: sea 30-40 days. Asia Pacific: 5-15 days by sea, 3-5 by air. We provide FOB, CIF, and DDP quotes on request.' },
+    ],
+    de: [
+      { q: 'Was ist die MOQ für Kaschmirprodukte?', a: 'Rohkaschmir: 100 kg pro Sorte pro Farbe. Kaschmirgarn: 50-200 kg pro Stärke pro Farbe. Kaschmirstoff: 200 m+ pro Design. Bekleidungs-OEM: 100 Stück pro Modell pro Farbe. Hut/Accessoire-OEM: 30-200 Stück je nach Artikel.' },
+      { q: 'Wie lang ist die Produktionsvorlaufzeit?', a: 'Rohfaser 15-25 Tage, Garn 20-30 Tage, Stoff 30-45 Tage, Bekleidungs-OEM 45-60 Tage einschließlich Bemusterung. Luftfracht 5-7 Tage Tür-zu-Tür; Seefracht 25-35 Tage.' },
+      { q: 'Stellen Sie Muster zur Verfügung?', a: 'Ja. Kostenlose 100-g-Farbkartenmuster werden in 5 Tagen versandt. Kostenpflichtige Sondermuster USD 30-180 pro Stück, rückzahlbar bei Aufträgen ab 200 Stk. (Bekleidung) oder 50 kg (Garn).' },
+      { q: 'Welche Zahlungsbedingungen haben Sie?', a: 'T/T 30% Anzahlung + 70% Restzahlung vor Versand für Aufträge unter 50.000 USD. L/C at sight für Aufträge über 50.000 USD. Western Union und PayPal für Muster unter 1.000 USD.' },
+      { q: 'Welche Incoterms unterstützen Sie?', a: 'FOB Tianjin / Shanghai, CIF Zielhafen und DDP Tür-zu-Tür. Wir übernehmen die Ausfuhranmeldung und arrangieren See- / Luftfracht mit unseren langjährigen Spediteurpartnern.' },
+      { q: 'Bieten Sie OEM / ODM an?', a: 'Ja. Unser internes Designteam (5+ Designer, 12+ Jahre Durchschnittserfahrung) unterstützt sowohl OEM (Ihr Design, unsere Produktion) als auch ODM (unser Design, Ihre Marke). Tech-Pack-Entwicklung kostenlos für Aufträge über 500 Stk.' },
+      { q: 'Was ist Ihre Fehlertoleranz / Ihr QC-Standard?', a: 'AQL 2,5 Stichprobenprüfung nach ISO 2859-1. Kritische Fehler: 0%. Hauptfehler: unter 0,5%. Leichte Fehler: unter 1%. Jede Bestellung durchläuft eine Vor-Versand-Inspektion plus optionale Mittelproduktions-Garnprüfung für Aufträge über 2.000 Stk.' },
+      { q: 'Welche Zertifizierungen haben Sie?', a: 'ISO 9001:2015, OEKO-TEX Standard 100 (Klasse I für Säuglings- und Erwachsenenhautkontakt), BSCI, Sedex SMETA. GOTS, RWS und GCS (Good Cashmere Standard) auf Anfrage für Aufträge über 1.000 Stk.' },
+      { q: 'Wie gewährleisten Sie die Rückverfolgbarkeit der Kaschmirherkunft?', a: 'Jede Charge wird mit Ursprungszeugnis und OFDA-2000-Mikronprüfbericht versandt. Für Alashan-Klasse-A und Ordos-Arbas-Herkunftsschutz-Chargen stellen wir Hirtenverbandsvereinbarung + GPS-Koordinaten der Quellweide bereit.' },
+      { q: 'Versenden Sie weltweit? Lieferzeiten nach Region?', a: 'Ja — wir versenden in 50+ Länder. EU / USA: See 25-35 Tage, Luft 5-7 Tage. Naher Osten / Südamerika: See 30-40 Tage. Asien-Pazifik: 5-15 Tage See, 3-5 Luft. FOB-, CIF- und DDP-Angebote auf Anfrage.' },
+    ],
+    fr: [
+      { q: 'Quel est le MOQ pour les produits en cachemire ?', a: 'Cachemire brut : 100 kg par grade par couleur. Fil de cachemire : 50-200 kg par titre par couleur. Tissu cachemire : 200 m+ par design. Vêtements OEM : 100 pièces par style par couleur. Chapeaux / accessoires OEM : 30-200 pièces selon l\'article.' },
+      { q: 'Quel est le délai de production ?', a: 'Fibre brute 15-25 jours, fil 20-30 jours, tissu 30-45 jours, vêtements OEM 45-60 jours y compris l\'échantillonnage. Fret aérien 5-7 jours porte-à-porte ; fret maritime 25-35 jours.' },
+      { q: 'Fournissez-vous des échantillons ?', a: 'Oui. Échantillons de carte de couleurs de 100 g gratuits expédiés sous 5 jours. Échantillons personnalisés payants USD 30-180 pièce, remboursables sur commandes de 200+ pièces (vêtements) ou 50 kg+ (fil).' },
+      { q: 'Quelles sont vos conditions de paiement ?', a: 'T/T 30% d\'acompte + 70% solde avant expédition pour commandes inférieures à USD 50,000. L/C à vue pour commandes supérieures à USD 50,000. Western Union et PayPal acceptés pour échantillons inférieurs à USD 1,000.' },
+      { q: 'Quels Incoterms supportez-vous ?', a: 'FOB Tianjin / Shanghai, CIF port de destination, et DDP porte-à-porte. Nous gérons la déclaration d\'exportation et organisons le fret maritime / aérien avec nos partenaires transitaires de longue date.' },
+      { q: 'Proposez-vous OEM / ODM ?', a: 'Oui. Notre équipe de design interne (5+ designers, 12+ ans d\'expérience moyenne) prend en charge l\'OEM (votre design, notre production) et l\'ODM (notre design, votre marque). Tech-pack gratuit pour commandes supérieures à 500 pièces.' },
+      { q: 'Quelle est votre tolérance aux défauts / norme QC ?', a: 'Échantillonnage AQL 2.5 selon ISO 2859-1. Défauts critiques : 0%. Défauts majeurs : sous 0,5%. Mineurs : sous 1%. Chaque commande passe une inspection pré-expédition plus contrôle de fil mi-production optionnel pour commandes supérieures à 2 000 pièces.' },
+      { q: 'Quelles certifications détenez-vous ?', a: 'ISO 9001:2015, OEKO-TEX Standard 100 (Classe I pour contact peau bébé et adulte), BSCI, Sedex SMETA. GOTS, RWS, et GCS (Good Cashmere Standard) disponibles sur demande pour commandes supérieures à 1 000 pièces.' },
+      { q: 'Comment garantissez-vous la traçabilité d\'origine du cachemire ?', a: 'Chaque lot est expédié avec un Certificat d\'Origine et un rapport de test micron OFDA 2000. Pour les lots Alashan Grade A et Ordos Arbas sous appellation protégée, nous fournissons l\'accord de coopérative d\'éleveurs + coordonnées GPS du pâturage source.' },
+      { q: 'Expédiez-vous dans le monde entier ? Quels sont les délais par région ?', a: 'Oui — nous expédions vers plus de 50 pays. UE / USA : mer 25-35 jours, air 5-7 jours. Moyen-Orient / Amérique du Sud : mer 30-40 jours. Asie-Pacifique : 5-15 jours mer, 3-5 air. Devis FOB, CIF et DDP sur demande.' },
+    ],
+    ja: [
+      { q: 'カシミア製品の最小発注数量（MOQ）は？', a: '原毛：等級・色ごとに100kg。カシミア糸：番手・色ごとに50-200kg。カシミア生地：デザインごとに200m以上。衣料OEM：スタイル・色ごとに100枚。帽子・アクセサリーOEM：アイテムにより30-200枚。' },
+      { q: '生産リードタイムは？', a: '原毛15-25日、糸20-30日、生地30-45日、衣料OEMはサンプル作成を含め45-60日。航空便はドアツードアで5-7日；海上便は25-35日。' },
+      { q: 'サンプル提供はありますか？', a: 'はい。100gカラーカードサンプルは無料で5日以内に発送。カスタムサンプルは1枚USD 30-180、200枚以上の衣料注文または50kg以上の糸注文で返金可能。' },
+      { q: '支払い条件は？', a: 'USD 50,000未満の注文はT/T 30%前金+70%出荷前。USD 50,000以上はL/C at sight。USD 1,000未満のサンプルはWestern UnionとPayPalで対応。' },
+      { q: '対応するインコタームズは？', a: 'FOB天津/上海、CIF仕向港、DDPドアツードア。輸出通関申告と海運/空運の手配を長年のフォワーダーパートナーと共に行います。' },
+      { q: 'OEM/ODMは対応可能ですか？', a: 'はい。社内デザインチーム（5名以上のデザイナー、平均12年以上の経験）がOEM（お客様のデザインで当社が生産）とODM（当社デザインでお客様のブランド）の両方に対応。500枚以上の注文はテックパック開発無料。' },
+      { q: '欠陥許容範囲／品質基準は？', a: 'ISO 2859-1に基づくAQL 2.5抜取検査。重大な欠陥：0%。主要欠陥：0.5%未満。軽微な欠陥：1%未満。各注文は出荷前検査に加え、2,000枚超の注文ではオプションで中期糸検査を実施。' },
+      { q: 'どのような認証を取得していますか？', a: 'ISO 9001:2015、OEKO-TEX Standard 100（乳児および成人肌接触用クラスI）、BSCI、Sedex SMETA。GOTS、RWS、GCS（Good Cashmere Standard）は1,000枚超の注文にリクエスト対応。' },
+      { q: 'カシミアの産地トレーサビリティはどのように保証していますか？', a: '各バッチには原産地証明書とOFDA 2000ミクロン試験レポートを添付。阿拉善Grade Aおよび鄂尔多斯阿尔巴斯保護表示バッチには、牧畜者協同組合契約+牧草地GPS座標を提供します。' },
+      { q: '世界中に出荷できますか？地域別の納期は？', a: 'はい — 50カ国以上に出荷。EU/米国：海運25-35日、航空5-7日。中東/南米：海運30-40日。アジア太平洋：海運5-15日、航空3-5日。FOB、CIF、DDP見積もりご要望に応じて。' },
+    ],
+    kr: [
+      { q: '캐시미어 제품의 최소 주문 수량(MOQ)은 얼마인가요?', a: '원모: 등급·컬러당 100kg. 캐시미어 원사: 번수·컬러당 50-200kg. 캐시미어 원단: 디자인당 200m 이상. 의류 OEM: 스타일·컬러당 100매. 모자·액세서리 OEM: 아이템에 따라 30-200매.' },
+      { q: '생산 리드타임은?', a: '원모 15-25일, 원사 20-30일, 원단 30-45일, 의류 OEM 샘플링 포함 45-60일. 항공 운송은 문 앞에서 문 앞까지 5-7일, 해상 운송은 25-35일.' },
+      { q: '샘플을 제공하나요?', a: '예. 100g 컬러 카드 샘플은 무료로 5일 이내 배송. 유료 맞춤 샘플은 1매 USD 30-180, 의류 200매 이상 또는 원사 50kg 이상 주문 시 환불 가능.' },
+      { q: '결제 조건은?', a: 'USD 50,000 미만 주문: T/T 30% 계약금 + 70% 출하 전 잔금. USD 50,000 이상: L/C at sight. USD 1,000 미만 샘플: Western Union 및 PayPal 수락.' },
+      { q: '지원하는 인코텀즈는?', a: 'FOB 천진/상하이, CIF 목적지항, DDP 문 앞에서 문 앞까지. 수출 통관 신고와 해상/항공 운송을 장기 포워더 파트너와 함께 처리합니다.' },
+      { q: 'OEM/ODM을 제공하나요?', a: '예. 사내 디자인 팀(5명 이상의 디자이너, 평균 12년 이상의 경력)이 OEM(고객의 디자인, 당사 생산)과 ODM(당사 디자인, 고객 브랜드) 모두 지원. 500매 이상 주문 시 기술 자료 개발 무료.' },
+      { q: '불량 허용 범위 / 품질 기준은?', a: 'ISO 2859-1 기준 AQL 2.5 샘플링. 중대한 결함: 0%. 주요 결함: 0.5% 미만. 경미한 결함: 1% 미만. 모든 주문은 출하 전 검사를 거치며 2,000매 이상 주문에는 중기 원사 검사 옵션 제공.' },
+      { q: '보유 인증은?', a: 'ISO 9001:2015, OEKO-TEX Standard 100(영아 및 성인 피부 접촉용 Class I), BSCI, Sedex SMETA. GOTS, RWS, GCS(Good Cashmere Standard)는 1,000매 이상 주문 시 요청 가능.' },
+      { q: '캐시미어 원산지 추적성을 어떻게 보장하나요?', a: '모든 배치에 원산지 증명서와 OFDA 2000 마이크론 시험 보고서 첨부. 알라산 Grade A 및 오르도스 알버스 보호 지명 배치에는 목축자 조합 계약 + 목장 GPS 좌표를 제공합니다.' },
+      { q: '전 세계로 배송 가능한가요? 지역별 리드타임은?', a: '예 — 50개국 이상에 배송. EU/미국: 해상 25-35일, 항공 5-7일. 중동/남미: 해상 30-40일. 아시아 태평양: 해상 5-15일, 항공 3-5일. FOB, CIF, DDP 견적 요청 시 제공.' },
+    ],
+    cn: [
+      { q: '羊绒产品的最小起订量（MOQ）是多少？', a: '原绒：100kg/等级/颜色。羊绒纱线：50-200kg/支数/颜色。羊绒面料：200m+/款。羊绒成衣代工：100件/款/颜色。帽子/配饰代工：30-200件/品类。' },
+      { q: '生产周期多久？', a: '原绒15-25天，纱线20-30天，面料30-45天，成衣代工45-60天（含打样）。空运5-7天门到门；海运25-35天。' },
+      { q: '可以提供样品吗？', a: '可以。100g 色卡样免费 5 天内寄出。定制样品 30-180 美元/件，200 件以上成衣订单或 50kg 以上纱线订单可冲抵。' },
+      { q: '付款方式？', a: '5 万美元以下订单：T/T 30%定金 + 70%发货前；5 万美元以上：L/C at sight；1,000 美元以下样品：Western Union 或 PayPal。' },
+      { q: '支持哪些贸易条款？', a: 'FOB 天津/上海、CIF 目的港、DDP 门到门均可。我司办理出口报关并与长期货代合作安排海运/空运。' },
+      { q: '是否提供 OEM / ODM？', a: '是的。内部设计团队（5 名以上设计师，平均 12 年以上经验）支持 OEM（您的设计、我司生产）和 ODM（我司设计、您的品牌）。500 件以上订单可免费出技术单。' },
+      { q: '次品容许度 / 质控标准是什么？', a: 'ISO 2859-1 AQL 2.5 抽样。严重缺陷：0%。主要缺陷：< 0.5%。次要缺陷：< 1%。每笔订单做装运前检验；2000 件以上订单可选中期纱线检验。' },
+      { q: '有哪些认证？', a: 'ISO 9001:2015、OEKO-TEX Standard 100（婴儿与成人皮肤接触 I 类）、BSCI、Sedex SMETA；GOTS、RWS、GCS（Good Cashmere Standard）针对 1000 件以上订单可申请。' },
+      { q: '羊绒原产地溯源如何保证？', a: '每批货物附原产地证书 + OFDA 2000 细度测试报告；阿拉善 A 级和鄂尔多斯阿尔巴斯地理标志保护批次额外附牧户合作协议 + 草场 GPS 坐标。' },
+      { q: '能全球发货吗？各地区时效？', a: '可以，发往 50 多个国家。欧/美：海运 25-35 天、空运 5-7 天。中东/南美：海运 30-40 天。亚太：海运 5-15 天、空运 3-5 天。FOB / CIF / DDP 报价按需提供。' },
+    ],
+  };
+  return map[locale] || map.en;
+})();
+
+const ctaMap: Record<string, string> = {
+  en: 'Browse all answers or get in touch with our sales team',
+  de: 'Alle Antworten durchsehen oder unser Verkaufsteam kontaktieren',
+  fr: 'Parcourez toutes les réponses ou contactez notre équipe commerciale',
+  ja: 'すべての回答を見るか、営業チームにお問い合わせください',
+  kr: '모든 답변을 보거나 영업팀에 문의하세요',
+  cn: '查看全部问答或联系我们的销售团队',
+};
+const ctaLabelMap: Record<string, string> = {
+  en: 'View all FAQ categories',
+  de: 'Alle FAQ-Kategorien ansehen',
+  fr: 'Voir toutes les catégories FAQ',
+  ja: 'FAQカテゴリを見る',
+  kr: '전체 FAQ 카테고리 보기',
+  cn: '查看全部分类',
+};
+const ctaHref = `/${locale}/contact/`;
 ---
 
 <BaseLayout locale={locale} pageKey="faq" path="/faq" schema="faq" faqs={faq}>
@@ -71,6 +161,13 @@ const faq: Array<{ q: string; a: string }> = locale === 'cn' ? [
             <p class="mt-4 text-muted-foreground leading-relaxed pl-8">{item.a}</p>
           </details>
         ))}
+      </div>
+
+      <div class="mt-16 pt-12 border-t border-border text-center">
+        <p class="text-muted-foreground mb-4">{ctaMap[locale] || ctaMap.en}</p>
+        <a href={ctaHref} class="inline-flex items-center gap-2 text-brand-chocolate border-b border-brand-chocolate hover:border-brand-gold hover:text-brand-gold transition-colors font-medium">
+          {ctaLabelMap[locale] || ctaLabelMap.en} →
+        </a>
       </div>
     </div>
   </section>
