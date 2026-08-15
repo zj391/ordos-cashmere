@@ -250,6 +250,35 @@ const scarves: ProductDetail = {
       ]},
     ],
   },
+  // === Section 15-17: B2B trust + ops fields ===
+  shippingOrigin: t(
+    'Dongxiao Cashmere Factory, Ordos, Inner Mongolia, China. Bulk orders ship from Tianjin Xingang Port (FOB/CIF) or via DDP door-to-door.',
+    '东霄羊绒工厂位于中国内蒙古鄂尔多斯。批量订单从天津新港起运（FOB/CIF），或使用 DDP 门到门服务。',
+    'Dongxiao-Kaschmir-Fabrik, Ordos, Innere Mongolei, China. Großaufträge ab Hafen Tianjin Xingang (FOB/CIF) oder DDP Tür-zu-Tür.',
+    "Usine Dongxiao Cashmere, Ordos, Mongolie Intérieure, Chine. Expéditions en vrac depuis le port de Tianjin Xingang (FOB/CIF) ou DDP porte-à-porte.",
+    '東霄カシミア工場、中国内モンゴルオルドス。大量注文は天津新港から出荷（FOB/CIF）、または DDP ドア・ツー・ドア対応。',
+    '동효 캐시미어 공장, 중국 내몽골 오르도스. 대량 주문은 톈진 신항항에서 선적 (FOB/CIF) 또는 DDP 문전문후 서비스.',
+  ),
+  shippingPorts: [
+    t('FOB Tianjin Xingang Port', '天津新港 FOB', 'FOB Tianjin Xingang', 'FOB Tianjin Xingang', 'FOB 天津新港', 'FOB 톈진 신항'),
+    t('CIF destination port (EU/US/Asia)', 'CIF 目的港（欧/美/亚洲）', 'CIF Zielhafen (EU/US/Asien)', 'CIF port destination (UE/US/Asie)', 'CIF 仕向港 (EU/US/アジア)', 'CIF 목적지항 (EU/US/아시아)'),
+    t('DDP door-to-door (incl. customs + duties)', 'DDP 门到门（含清关 + 关税）', 'DDP Tür-zu-Tür (inkl. Zoll)', 'DDP porte-à-porte (douanes + droits)', 'DDP ドアツードア (通関 + 関税)', 'DDP 문전문후 (통관 + 관세)'),
+  ],
+  returnPolicy: t(
+    'Defect claims accepted within 14 days of delivery with photo evidence and retained batch sample. Replacement or refund within 7 business days post-investigation. Buyer pays return shipping for change-of-mind returns; factory covers verified defects.',
+    '收货 14 天内受理瑕疵申报，需照片证据 + 保留批次样品。调查完成后 7 个工作日内补发或退款。买家原因退货运费自理；工厂瑕疵运费由工厂承担。',
+    'Mängelreklamationen werden innerhalb von 14 Tagen nach Lieferung akzeptiert mit Foto-Nachweis. Ersatz/Rückerstattung innerhalb von 7 Werktagen.',
+    "Réclamations défauts acceptées sous 14 jours avec preuves photo. Remplacement/remboursement sous 7 jours ouvrables.",
+    '欠陥クレームは配達後 14 日以内、写真証拠で受領。交換/返金 7 営業日以内。',
+    '하자 클레임은 배송 후 14일 이내, 사진 증거. 교환/환불 7영업일 이내.',
+  ),
+  returnWindowDays: 14,
+  trustBadges: [
+    { label: t('Established', '成立年份', 'Gegründet', 'Fondée', '設立', '설립'), value: t('2002', '2002', '2002', '2002', '2002', '2002') },
+    { label: t('B2B Brands Served', 'B2B 品牌客户', 'B2B-Marken', 'Marques B2B', 'B2B 取引ブランド', 'B2B 브랜드'), value: t('500+', '500+', '500+', '500+', '500+', '500+') },
+    { label: t('Countries', '目的国', 'Länder', 'Pays', '出荷国', '출하국'), value: t('50+', '50+', '50+', '50+', '50+', '50+') },
+    { label: t('Repeat-Buyer Rate', '复购率', 'Wiederholungskäufer', 'Réachat', 'リピート率', '재구매율'), value: t('68%', '68%', '68%', '68%', '68%', '68%') },
+  ],
 };
 
 // Defaults for other categories (shorter for time)
@@ -400,6 +429,35 @@ const sweaters: ProductDetail = {
       ]},
     ],
   },
+  // === Section 15-17: B2B trust + ops fields ===
+  shippingOrigin: t(
+    'Dongxiao Cashmere Factory, Ordos, Inner Mongolia, China. Bulk orders ship from Tianjin Xingang Port (FOB/CIF) or via DDP door-to-door.',
+    '东霄羊绒工厂位于中国内蒙古鄂尔多斯。批量订单从天津新港起运（FOB/CIF），或使用 DDP 门到门服务。',
+    'Dongxiao-Kaschmir-Fabrik, Ordos, Innere Mongolei, China. Großaufträge ab Hafen Tianjin Xingang (FOB/CIF) oder DDP Tür-zu-Tür.',
+    "Usine Dongxiao Cashmere, Ordos, Mongolie Intérieure, Chine. Expéditions en vrac depuis le port de Tianjin Xingang (FOB/CIF) ou DDP porte-à-porte.",
+    '東霄カシミア工場、中国内モンゴルオルドス。大量注文は天津新港から出荷（FOB/CIF）、または DDP ドア・ツー・ドア対応。',
+    '동효 캐시미어 공장, 중국 내몽골 오르도스. 대량 주문은 톈진 신항항에서 선적 (FOB/CIF) 또는 DDP 문전문후 서비스.',
+  ),
+  shippingPorts: [
+    t('FOB Tianjin Xingang Port', '天津新港 FOB', 'FOB Tianjin Xingang', 'FOB Tianjin Xingang', 'FOB 天津新港', 'FOB 톈진 신항'),
+    t('CIF destination port (EU/US/Asia)', 'CIF 目的港（欧/美/亚洲）', 'CIF Zielhafen (EU/US/Asien)', 'CIF port destination (UE/US/Asie)', 'CIF 仕向港 (EU/US/アジア)', 'CIF 목적지항 (EU/US/아시아)'),
+    t('DDP door-to-door (incl. customs + duties)', 'DDP 门到门（含清关 + 关税）', 'DDP Tür-zu-Tür (inkl. Zoll)', 'DDP porte-à-porte (douanes + droits)', 'DDP ドアツードア (通関 + 関税)', 'DDP 문전문후 (통관 + 관세)'),
+  ],
+  returnPolicy: t(
+    'Defect claims accepted within 14 days of delivery with photo evidence and retained batch sample. Replacement or refund within 7 business days post-investigation. Buyer pays return shipping for change-of-mind returns; factory covers verified defects.',
+    '收货 14 天内受理瑕疵申报，需照片证据 + 保留批次样品。调查完成后 7 个工作日内补发或退款。买家原因退货运费自理；工厂瑕疵运费由工厂承担。',
+    'Mängelreklamationen werden innerhalb von 14 Tagen nach Lieferung akzeptiert mit Foto-Nachweis. Ersatz/Rückerstattung innerhalb von 7 Werktagen.',
+    "Réclamations défauts acceptées sous 14 jours avec preuves photo. Remplacement/remboursement sous 7 jours ouvrables.",
+    '欠陥クレームは配達後 14 日以内、写真証拠で受領。交換/返金 7 営業日以内。',
+    '하자 클레임은 배송 후 14일 이내, 사진 증거. 교환/환불 7영업일 이내.',
+  ),
+  returnWindowDays: 14,
+  trustBadges: [
+    { label: t('Established', '成立年份', 'Gegründet', 'Fondée', '設立', '설립'), value: t('2002', '2002', '2002', '2002', '2002', '2002') },
+    { label: t('B2B Brands Served', 'B2B 品牌客户', 'B2B-Marken', 'Marques B2B', 'B2B 取引ブランド', 'B2B 브랜드'), value: t('500+', '500+', '500+', '500+', '500+', '500+') },
+    { label: t('Countries', '目的国', 'Länder', 'Pays', '出荷国', '출하국'), value: t('50+', '50+', '50+', '50+', '50+', '50+') },
+    { label: t('Repeat-Buyer Rate', '复购率', 'Wiederholungskäufer', 'Réachat', 'リピート率', '재구매율'), value: t('68%', '68%', '68%', '68%', '68%', '68%') },
+  ],
 };
 
 const hats: ProductDetail = {
@@ -527,6 +585,35 @@ const hats: ProductDetail = {
       ]},
     ],
   },
+  // === Section 15-17: B2B trust + ops fields ===
+  shippingOrigin: t(
+    'Dongxiao Cashmere Factory, Ordos, Inner Mongolia, China. Bulk orders ship from Tianjin Xingang Port (FOB/CIF) or via DDP door-to-door.',
+    '东霄羊绒工厂位于中国内蒙古鄂尔多斯。批量订单从天津新港起运（FOB/CIF），或使用 DDP 门到门服务。',
+    'Dongxiao-Kaschmir-Fabrik, Ordos, Innere Mongolei, China. Großaufträge ab Hafen Tianjin Xingang (FOB/CIF) oder DDP Tür-zu-Tür.',
+    "Usine Dongxiao Cashmere, Ordos, Mongolie Intérieure, Chine. Expéditions en vrac depuis le port de Tianjin Xingang (FOB/CIF) ou DDP porte-à-porte.",
+    '東霄カシミア工場、中国内モンゴルオルドス。大量注文は天津新港から出荷（FOB/CIF）、または DDP ドア・ツー・ドア対応。',
+    '동효 캐시미어 공장, 중국 내몽골 오르도스. 대량 주문은 톈진 신항항에서 선적 (FOB/CIF) 또는 DDP 문전문후 서비스.',
+  ),
+  shippingPorts: [
+    t('FOB Tianjin Xingang Port', '天津新港 FOB', 'FOB Tianjin Xingang', 'FOB Tianjin Xingang', 'FOB 天津新港', 'FOB 톈진 신항'),
+    t('CIF destination port (EU/US/Asia)', 'CIF 目的港（欧/美/亚洲）', 'CIF Zielhafen (EU/US/Asien)', 'CIF port destination (UE/US/Asie)', 'CIF 仕向港 (EU/US/アジア)', 'CIF 목적지항 (EU/US/아시아)'),
+    t('DDP door-to-door (incl. customs + duties)', 'DDP 门到门（含清关 + 关税）', 'DDP Tür-zu-Tür (inkl. Zoll)', 'DDP porte-à-porte (douanes + droits)', 'DDP ドアツードア (通関 + 関税)', 'DDP 문전문후 (통관 + 관세)'),
+  ],
+  returnPolicy: t(
+    'Defect claims accepted within 14 days of delivery with photo evidence and retained batch sample. Replacement or refund within 7 business days post-investigation. Buyer pays return shipping for change-of-mind returns; factory covers verified defects.',
+    '收货 14 天内受理瑕疵申报，需照片证据 + 保留批次样品。调查完成后 7 个工作日内补发或退款。买家原因退货运费自理；工厂瑕疵运费由工厂承担。',
+    'Mängelreklamationen werden innerhalb von 14 Tagen nach Lieferung akzeptiert mit Foto-Nachweis. Ersatz/Rückerstattung innerhalb von 7 Werktagen.',
+    "Réclamations défauts acceptées sous 14 jours avec preuves photo. Remplacement/remboursement sous 7 jours ouvrables.",
+    '欠陥クレームは配達後 14 日以内、写真証拠で受領。交換/返金 7 営業日以内。',
+    '하자 클레임은 배송 후 14일 이내, 사진 증거. 교환/환불 7영업일 이내.',
+  ),
+  returnWindowDays: 14,
+  trustBadges: [
+    { label: t('Established', '成立年份', 'Gegründet', 'Fondée', '設立', '설립'), value: t('2002', '2002', '2002', '2002', '2002', '2002') },
+    { label: t('B2B Brands Served', 'B2B 品牌客户', 'B2B-Marken', 'Marques B2B', 'B2B 取引ブランド', 'B2B 브랜드'), value: t('500+', '500+', '500+', '500+', '500+', '500+') },
+    { label: t('Countries', '目的国', 'Länder', 'Pays', '出荷国', '출하국'), value: t('50+', '50+', '50+', '50+', '50+', '50+') },
+    { label: t('Repeat-Buyer Rate', '复购率', 'Wiederholungskäufer', 'Réachat', 'リピート率', '재구매율'), value: t('68%', '68%', '68%', '68%', '68%', '68%') },
+  ],
 };
 
 const accessories: ProductDetail = {
@@ -670,6 +757,35 @@ const accessories: ProductDetail = {
       ]},
     ],
   },
+  // === Section 15-17: B2B trust + ops fields ===
+  shippingOrigin: t(
+    'Dongxiao Cashmere Factory, Ordos, Inner Mongolia, China. Bulk orders ship from Tianjin Xingang Port (FOB/CIF) or via DDP door-to-door.',
+    '东霄羊绒工厂位于中国内蒙古鄂尔多斯。批量订单从天津新港起运（FOB/CIF），或使用 DDP 门到门服务。',
+    'Dongxiao-Kaschmir-Fabrik, Ordos, Innere Mongolei, China. Großaufträge ab Hafen Tianjin Xingang (FOB/CIF) oder DDP Tür-zu-Tür.',
+    "Usine Dongxiao Cashmere, Ordos, Mongolie Intérieure, Chine. Expéditions en vrac depuis le port de Tianjin Xingang (FOB/CIF) ou DDP porte-à-porte.",
+    '東霄カシミア工場、中国内モンゴルオルドス。大量注文は天津新港から出荷（FOB/CIF）、または DDP ドア・ツー・ドア対応。',
+    '동효 캐시미어 공장, 중국 내몽골 오르도스. 대량 주문은 톈진 신항항에서 선적 (FOB/CIF) 또는 DDP 문전문후 서비스.',
+  ),
+  shippingPorts: [
+    t('FOB Tianjin Xingang Port', '天津新港 FOB', 'FOB Tianjin Xingang', 'FOB Tianjin Xingang', 'FOB 天津新港', 'FOB 톈진 신항'),
+    t('CIF destination port (EU/US/Asia)', 'CIF 目的港（欧/美/亚洲）', 'CIF Zielhafen (EU/US/Asien)', 'CIF port destination (UE/US/Asie)', 'CIF 仕向港 (EU/US/アジア)', 'CIF 목적지항 (EU/US/아시아)'),
+    t('DDP door-to-door (incl. customs + duties)', 'DDP 门到门（含清关 + 关税）', 'DDP Tür-zu-Tür (inkl. Zoll)', 'DDP porte-à-porte (douanes + droits)', 'DDP ドアツードア (通関 + 関税)', 'DDP 문전문후 (통관 + 관세)'),
+  ],
+  returnPolicy: t(
+    'Defect claims accepted within 14 days of delivery with photo evidence and retained batch sample. Replacement or refund within 7 business days post-investigation. Buyer pays return shipping for change-of-mind returns; factory covers verified defects.',
+    '收货 14 天内受理瑕疵申报，需照片证据 + 保留批次样品。调查完成后 7 个工作日内补发或退款。买家原因退货运费自理；工厂瑕疵运费由工厂承担。',
+    'Mängelreklamationen werden innerhalb von 14 Tagen nach Lieferung akzeptiert mit Foto-Nachweis. Ersatz/Rückerstattung innerhalb von 7 Werktagen.',
+    "Réclamations défauts acceptées sous 14 jours avec preuves photo. Remplacement/remboursement sous 7 jours ouvrables.",
+    '欠陥クレームは配達後 14 日以内、写真証拠で受領。交換/返金 7 営業日以内。',
+    '하자 클레임은 배송 후 14일 이내, 사진 증거. 교환/환불 7영업일 이내.',
+  ),
+  returnWindowDays: 14,
+  trustBadges: [
+    { label: t('Established', '成立年份', 'Gegründet', 'Fondée', '設立', '설립'), value: t('2002', '2002', '2002', '2002', '2002', '2002') },
+    { label: t('B2B Brands Served', 'B2B 品牌客户', 'B2B-Marken', 'Marques B2B', 'B2B 取引ブランド', 'B2B 브랜드'), value: t('500+', '500+', '500+', '500+', '500+', '500+') },
+    { label: t('Countries', '目的国', 'Länder', 'Pays', '出荷国', '출하국'), value: t('50+', '50+', '50+', '50+', '50+', '50+') },
+    { label: t('Repeat-Buyer Rate', '复购率', 'Wiederholungskäufer', 'Réachat', 'リピート率', '재구매율'), value: t('68%', '68%', '68%', '68%', '68%', '68%') },
+  ],
 };const yarn: ProductDetail = {
   technicalSpecs: {
     material: t('100% Inner Mongolia Grade A cashmere', '100% 内蒙古 A 级羊绒', '100% kaschmir Inneren Mongolei Güteklasse A', '100% cachemire Mongolie grade A', '100% 内モンゴル A 級カシミア', '100% 내몽골 A 등급 캐시미어'),
@@ -764,6 +880,35 @@ const accessories: ProductDetail = {
     t('Anti-pilling enzyme treatment', '抗起球酶处理', 'Anti-Pilling-Enzymbehandlung', 'Traitement enzymatique anti-bouloches', 'アンチピリング酵素処理', '안티필링 효소 처리'),
     t('Cone or hank delivery', '锥形筒或绞纱发货', 'Konus- oder Stranglieferung', 'Livraison cône ou écheveau', 'コーンまたはハンク納品', '콘 또는 행크 납품'),
     t('Custom oil content and twist direction', '定制含油率和捻向', 'Kundenspezifischer Ölgehalt und Drehrichtung', 'Taux d\'huile et sens de torsion personnalisés', 'カスタム油分・撚り方向', '맞춤 오일 함량 및 회전방향'),
+  ],
+  // === Section 15-17: B2B trust + ops fields ===
+  shippingOrigin: t(
+    'Dongxiao Cashmere Factory, Ordos, Inner Mongolia, China. Bulk orders ship from Tianjin Xingang Port (FOB/CIF) or via DDP door-to-door.',
+    '东霄羊绒工厂位于中国内蒙古鄂尔多斯。批量订单从天津新港起运（FOB/CIF），或使用 DDP 门到门服务。',
+    'Dongxiao-Kaschmir-Fabrik, Ordos, Innere Mongolei, China. Großaufträge ab Hafen Tianjin Xingang (FOB/CIF) oder DDP Tür-zu-Tür.',
+    "Usine Dongxiao Cashmere, Ordos, Mongolie Intérieure, Chine. Expéditions en vrac depuis le port de Tianjin Xingang (FOB/CIF) ou DDP porte-à-porte.",
+    '東霄カシミア工場、中国内モンゴルオルドス。大量注文は天津新港から出荷（FOB/CIF）、または DDP ドア・ツー・ドア対応。',
+    '동효 캐시미어 공장, 중국 내몽골 오르도스. 대량 주문은 톈진 신항항에서 선적 (FOB/CIF) 또는 DDP 문전문후 서비스.',
+  ),
+  shippingPorts: [
+    t('FOB Tianjin Xingang Port', '天津新港 FOB', 'FOB Tianjin Xingang', 'FOB Tianjin Xingang', 'FOB 天津新港', 'FOB 톈진 신항'),
+    t('CIF destination port (EU/US/Asia)', 'CIF 目的港（欧/美/亚洲）', 'CIF Zielhafen (EU/US/Asien)', 'CIF port destination (UE/US/Asie)', 'CIF 仕向港 (EU/US/アジア)', 'CIF 목적지항 (EU/US/아시아)'),
+    t('DDP door-to-door (incl. customs + duties)', 'DDP 门到门（含清关 + 关税）', 'DDP Tür-zu-Tür (inkl. Zoll)', 'DDP porte-à-porte (douanes + droits)', 'DDP ドアツードア (通関 + 関税)', 'DDP 문전문후 (통관 + 관세)'),
+  ],
+  returnPolicy: t(
+    'Defect claims accepted within 14 days of delivery with photo evidence and retained batch sample. Replacement or refund within 7 business days post-investigation. Buyer pays return shipping for change-of-mind returns; factory covers verified defects.',
+    '收货 14 天内受理瑕疵申报，需照片证据 + 保留批次样品。调查完成后 7 个工作日内补发或退款。买家原因退货运费自理；工厂瑕疵运费由工厂承担。',
+    'Mängelreklamationen werden innerhalb von 14 Tagen nach Lieferung akzeptiert mit Foto-Nachweis. Ersatz/Rückerstattung innerhalb von 7 Werktagen.',
+    "Réclamations défauts acceptées sous 14 jours avec preuves photo. Remplacement/remboursement sous 7 jours ouvrables.",
+    '欠陥クレームは配達後 14 日以内、写真証拠で受領。交換/返金 7 営業日以内。',
+    '하자 클레임은 배송 후 14일 이내, 사진 증거. 교환/환불 7영업일 이내.',
+  ),
+  returnWindowDays: 14,
+  trustBadges: [
+    { label: t('Established', '成立年份', 'Gegründet', 'Fondée', '設立', '설립'), value: t('2002', '2002', '2002', '2002', '2002', '2002') },
+    { label: t('B2B Brands Served', 'B2B 品牌客户', 'B2B-Marken', 'Marques B2B', 'B2B 取引ブランド', 'B2B 브랜드'), value: t('500+', '500+', '500+', '500+', '500+', '500+') },
+    { label: t('Countries', '目的国', 'Länder', 'Pays', '出荷国', '출하국'), value: t('50+', '50+', '50+', '50+', '50+', '50+') },
+    { label: t('Repeat-Buyer Rate', '复购率', 'Wiederholungskäufer', 'Réachat', 'リピート率', '재구매율'), value: t('68%', '68%', '68%', '68%', '68%', '68%') },
   ],
 };
 
