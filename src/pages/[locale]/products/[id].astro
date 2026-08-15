@@ -2173,6 +2173,85 @@ const relatedBlogPosts = allProductBlogPosts
 
 
 
+  <!-- Section 10.5: Shipping & Origin (B2B trust signal: port + Incoterm transparency) -->
+  {detail.shippingOrigin && (
+    <section class="py-12 md:py-16 bg-[#F8F5EF] border-y border-border/60">
+      <div class="container-narrow">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="h-[2px] w-8 bg-brand-red"></span>
+          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">
+            {locale === 'cn' ? '起运港口 & 物流' : 'Shipping & Origin'}
+          </span>
+        </div>
+        <h2 class="font-display text-2xl md:text-3xl font-light mb-6">
+          {locale === 'cn' ? '起运 & 物流条款' : 'Shipping Origin & Incoterms'}
+        </h2>
+        <p class="text-base leading-relaxed text-foreground/85 mb-8 max-w-3xl">{detail.shippingOrigin[locale]}</p>
+        {detail.shippingPorts && detail.shippingPorts.length > 0 && (
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {detail.shippingPorts.map((port) => (
+              <div class="bg-background border border-border p-5 flex items-start gap-3">
+                <svg class="w-5 h-5 text-brand-gold mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                <span class="text-sm leading-relaxed text-foreground/90">{port[locale]}</span>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  )}
+
+
+  <!-- Section 10.6: Return Policy (B2B trust: defect window + dispute process) -->
+  {detail.returnPolicy && (
+    <section class="py-12 bg-secondary/20">
+      <div class="container-narrow max-w-3xl">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="h-[2px] w-8 bg-brand-red"></span>
+          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">
+            {locale === 'cn' ? '退货与质量保证' : 'Returns & Quality Guarantee'}
+          </span>
+        </div>
+        <h2 class="font-display text-2xl md:text-3xl font-light mb-4">
+          {locale === 'cn' ? '退货政策与售后承诺' : 'Return Policy & After-Sale Guarantee'}
+        </h2>
+        <p class="text-base leading-relaxed text-foreground/85 mb-4">{detail.returnPolicy[locale]}</p>
+        {detail.returnWindowDays && (
+          <p class="text-sm text-muted-foreground">
+            <span class="font-medium text-foreground">{locale === 'cn' ? '瑕疵申报窗口：' : 'Defect claim window:'}</span> {detail.returnWindowDays} {locale === 'cn' ? '天（自收货起）' : 'days (from delivery)'}
+          </p>
+        )}
+      </div>
+    </section>
+  )}
+
+
+  <!-- Section 10.7: Trust Badges (factory stats: years operating, brands served, countries, repeat rate) -->
+  {detail.trustBadges && detail.trustBadges.length > 0 && (
+    <section class="py-12 bg-background">
+      <div class="container-narrow">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="h-[2px] w-8 bg-brand-red"></span>
+          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">
+            {locale === 'cn' ? '工厂资质' : 'Factory Credentials'}
+          </span>
+        </div>
+        <h2 class="font-display text-2xl md:text-3xl font-light mb-8">
+          {locale === 'cn' ? '工厂实力一览' : 'Why Buyers Choose Us at a Glance'}
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {detail.trustBadges.map((b) => (
+            <div class="text-center md:text-left border-t md:border-t-0 md:border-l border-border/60 pt-4 md:pt-0 md:pl-6 first:border-l-0 first:pl-0">
+              <div class="font-serif text-3xl md:text-4xl text-brand-camel mb-1">{b.value[locale]}</div>
+              <div class="text-sm text-muted-foreground tracking-wide">{b.label[locale]}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+
   <!-- Section 11: Product-specific FAQ (4-6 Q&A) -->
 
   {detail.faq && detail.faq.length > 0 && (
