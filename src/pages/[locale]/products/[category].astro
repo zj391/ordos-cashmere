@@ -122,7 +122,7 @@ const crossLinks = [
   { id: 'sweaters', slug: 'garment-oem', name: { en: 'Cashmere Sweaters & Knitwear', cn: '羊绒衫与针织 OEM', de: 'Kaschmir-Strickwaren', fr: 'Pulls et tricots en cachemire', ja: 'カシミアセーター・ニット', kr: '캐시미어 스웨터' }, blurb: { en: '166 styles: pullover, cardigan, vest. Full-package OEM/ODM.', cn: '166 款：套头、开衫、背心。全包代工 OEM/ODM。', de: '166 Stile: Pullover, Cardigan, Weste.', fr: '166 styles: pulls, cardigans, gilets.', ja: '166スタイル: プルオーバー、カーディガン、ベスト。', kr: '166종: 풀오버, 카디건, 베스트.' }, moq: 100 },
   { id: 'accessories', slug: 'accessories-cat', name: { en: 'Cashmere Accessories', cn: '羊绒配饰', de: 'Kaschmir-Accessoires', fr: 'Accessoires en cachemire', ja: 'カシミアアクセサリー', kr: '캐시미어 액세서리' }, blurb: { en: '78 styles: leggings, gloves, socks, eye masks. Embroidery + packaging.', cn: '78 款：打底裤、手套、袜、眼罩。支持刺绣 + 包装定制。', de: '78 Stile: Leggings, Handschuhe, Socken.', fr: '78 styles: leggings, gants, chaussettes.', ja: '78スタイル: レギンス、手袋、靴下。', kr: '78종: 레깅스, 장갑, 양말.' }, moq: 50 },
   { id: 'yarn', slug: 'yarn', name: { en: 'Cashmere Yarn & Fiber', cn: '羊绒纱线与纤维', de: 'Kaschmir-Garn & Faser', fr: 'Fil et fibre de cachemire', ja: 'カシミア糸・繊維', kr: '캐시미어 원사' }, blurb: { en: '73 stock Nm counts (2/26-2/60). Cone or hank, Pantone-matched.', cn: '73 个常备 Nm 支数 (2/26-2/60)。筒纱/绞纱，Pantone 配色。', de: '73 Standard-Nm-Titer.', fr: '73 titres Nm en stock.', ja: '73在庫 Nm 番手。', kr: '73개 재고 Nm 번수.' }, moq: 50 },
-].filter((c) => c.id !== slug);
+].filter((c) => c.slug !== slug);
 const guides = categoryGuides[catId] || categoryGuides.hats;
 
 
