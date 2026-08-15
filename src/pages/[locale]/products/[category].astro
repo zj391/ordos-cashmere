@@ -113,6 +113,16 @@ const categoryGuides: Record<string, Array<{ href: string; en: string; cn: strin
     { href: `/${locale}/yarn-fabric`, en: 'Yarn & Fabric Capabilities', cn: '纱线面料能力' },
   ],
 };
+
+
+// Cross-link to other 4 categories (SEO internal links + category-to-category navigation for buyers browsing)
+const crossLinks = [
+  { id: 'hats', slug: 'hats-accessories', name: { en: 'Cashmere Hats & Beanies', cn: '羊绒帽子与毛线帽', de: 'Kaschmir-Hüte & Beanies', fr: 'Bonnets et bonnets en cachemire', ja: 'カシミア帽子・ニット帽', kr: '캐시미어 모자' }, blurb: { en: '66 styles: beanies, berets, baseball caps. Embroidery + custom colors.', cn: '66 款帽子：毛线帽、贝雷帽、棒球帽。支持 logo 刺绣 + 定制颜色。', de: '66 Stile: Beanies, Baskenmützen, Baseballkappen.', fr: '66 styles: bonnets, bérets, casquettes.', ja: '66スタイル: ビーニー、ベレー帽、野球帽。', kr: '66종: 비니, 베레모, 야구모자.' }, moq: 50 },
+  { id: 'scarves', slug: 'scarves', name: { en: 'Cashmere Scarves & Wraps', cn: '羊绒围巾与披肩', de: 'Kaschmir-Schals & Wraps', fr: 'Écharpes et châles en cachemire', ja: 'カシミアスカーフ・ショール', kr: '캐시미어 스카프' }, blurb: { en: '208 styles: solid/striped/jacquard/print. Woven logo + custom hems.', cn: '208 款：素色/条纹/提花/印花。织造 logo + 定制边。', de: '208 Stile: Uni/Gestreift/Jacquard/Druck.', fr: '208 styles: unis/rayés/jacquard/imprimés.', ja: '208スタイル: 無地/ストライプ/ジャカード/プリント。', kr: '208종: 무지/줄무늬/자카드/프린트.' }, moq: 50 },
+  { id: 'sweaters', slug: 'garment-oem', name: { en: 'Cashmere Sweaters & Knitwear', cn: '羊绒衫与针织 OEM', de: 'Kaschmir-Strickwaren', fr: 'Pulls et tricots en cachemire', ja: 'カシミアセーター・ニット', kr: '캐시미어 스웨터' }, blurb: { en: '166 styles: pullover, cardigan, vest. Full-package OEM/ODM.', cn: '166 款：套头、开衫、背心。全包代工 OEM/ODM。', de: '166 Stile: Pullover, Cardigan, Weste.', fr: '166 styles: pulls, cardigans, gilets.', ja: '166スタイル: プルオーバー、カーディガン、ベスト。', kr: '166종: 풀오버, 카디건, 베스트.' }, moq: 100 },
+  { id: 'accessories', slug: 'accessories-cat', name: { en: 'Cashmere Accessories', cn: '羊绒配饰', de: 'Kaschmir-Accessoires', fr: 'Accessoires en cachemire', ja: 'カシミアアクセサリー', kr: '캐시미어 액세서리' }, blurb: { en: '78 styles: leggings, gloves, socks, eye masks. Embroidery + packaging.', cn: '78 款：打底裤、手套、袜、眼罩。支持刺绣 + 包装定制。', de: '78 Stile: Leggings, Handschuhe, Socken.', fr: '78 styles: leggings, gants, chaussettes.', ja: '78スタイル: レギンス、手袋、靴下。', kr: '78종: 레깅스, 장갑, 양말.' }, moq: 50 },
+  { id: 'yarn', slug: 'yarn', name: { en: 'Cashmere Yarn & Fiber', cn: '羊绒纱线与纤维', de: 'Kaschmir-Garn & Faser', fr: 'Fil et fibre de cachemire', ja: 'カシミア糸・繊維', kr: '캐시미어 원사' }, blurb: { en: '73 stock Nm counts (2/26-2/60). Cone or hank, Pantone-matched.', cn: '73 个常备 Nm 支数 (2/26-2/60)。筒纱/绞纱，Pantone 配色。', de: '73 Standard-Nm-Titer.', fr: '73 titres Nm en stock.', ja: '73在庫 Nm 番手。', kr: '73개 재고 Nm 번수.' }, moq: 50 },
+].filter((c) => c.id !== slug);
 const guides = categoryGuides[catId] || categoryGuides.hats;
 
 
@@ -698,11 +708,51 @@ const latestBlogPosts = allBlogPosts
   </section>
 
 
+  <!-- Compare Categories — 类目页交叉链接 (5 cats × 6 langs = 30 URLs, internal link equity + browse-path to sibling categories) -->
+  {crossLinks.length > 0 && (
+    <section class="py-14 md:py-20 bg-background border-t border-border">
+      <div class="container-narrow">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="h-[2px] w-8 bg-brand-red"></span>
+          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">
+            {locale === 'cn' ? '类目对比' : 'Compare Categories'}
+          </span>
+        </div>
+        <h2 class="font-serif text-3xl md:text-4xl font-light mb-3 leading-tight">
+          {locale === 'cn' ? '探索其他羊绒品类' : 'Explore Other Cashmere Categories'}
+        </h2>
+        <p class="text-sm md:text-base text-muted-foreground mb-10 max-w-2xl">
+          {locale === 'cn'
+            ? `同一工厂，同一质量，跨品类扩展产品线。每品类独立报价、独立起订量、独立货期。`
+            : `Same factory. Same quality. Extend your product line across categories. Each category has independent pricing, MOQ, and lead time.`}
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          {crossLinks.map((cl) => (
+            <a href={`/${locale}/products/${cl.slug}/`} class="group block border border-border bg-white p-6 hover:border-brand-gold hover:shadow-lg transition-all duration-300">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-[10px] tracking-[0.2em] uppercase text-brand-camel font-mono">
+                  MOQ {cl.moq} pcs
+                </span>
+                <svg class="w-4 h-4 text-muted-foreground group-hover:text-brand-chocolate group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+              </div>
+              <h3 class="font-serif text-xl mb-2 group-hover:text-brand-chocolate transition-colors leading-tight">
+                {cl.name[locale] || cl.name.en}
+              </h3>
+              <p class="text-xs text-muted-foreground leading-relaxed line-clamp-3">{cl.blurb[locale] || cl.blurb.en}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+
   <section class="py-16 md:py-20 bg-[#F8F5EF] border-y border-border/60">
     <div class="container-narrow">
       <div class="flex items-center gap-3 mb-4">
         <span class="h-[2px] w-8 bg-brand-red"></span>
         <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">{locale === 'cn' ? '选购指南' : 'Buying Guides'}</span>
+      </div>
       </div>
       <h2 class="font-serif text-3xl md:text-4xl font-light mb-8">{locale === 'cn' ? '相关指南' : 'Related Guides'}</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
