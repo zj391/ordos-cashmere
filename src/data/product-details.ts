@@ -75,6 +75,14 @@ export interface ProductDetail {
     technology?: I18n;
     elasticity?: I18n;
   };
+  // Section 15: Shipping origin & FOB port (B2B buyers care: FOB/CIF/DDP port, lead time to destination)
+  shippingOrigin?: I18n;
+  shippingPorts?: I18n[];
+  // Section 16: Return / quality claim policy (B2B trust signal: who pays defect return, dispute window)
+  returnPolicy?: I18n;
+  returnWindowDays?: number;
+  // Section 17: Trust badges — buyer-referenceable credibility (years operating, customer count, repeat-buyer %)
+  trustBadges?: Array<{ label: I18n; value: I18n }>;
 }
 
 export type ProductDetailMap = Record<string, ProductDetail>;
