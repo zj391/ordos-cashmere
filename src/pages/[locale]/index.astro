@@ -160,6 +160,35 @@ const heroContent: Record<string, {
   },
 };
 
+
+// Trust badges — credibility signals under hero (cert logos + stats + ratings)
+const trustBadges = [
+  {
+    label: { en: '23+ years operating', cn: '23+ 年运营', de: '23+ Jahre', fr: '23+ ans', ja: '23+ 年', kr: '23+ 년' },
+    sub:   { en: 'Since 2002', cn: '2002 年至今', de: 'Seit 2002', fr: 'Depuis 2002', ja: '2002 年〜', kr: '2002년~' },
+  },
+  {
+    label: { en: 'ISO 9001 Certified', cn: 'ISO 9001 认证', de: 'ISO 9001 zertifiziert', fr: 'Certifié ISO 9001', ja: 'ISO 9001 認証', kr: 'ISO 9001 인증' },
+    sub:   { en: 'Quality management system', cn: '质量管理体系', de: 'Qualitätsmanagementsystem', fr: 'Système qualité', ja: '品質マネジメント', kr: '품질경영' },
+  },
+  {
+    label: { en: 'OEKO-TEX 100', cn: 'OEKO-TEX 100', de: 'OEKO-TEX 100', fr: 'OEKO-TEX 100', ja: 'OEKO-TEX 100', kr: 'OEKO-TEX 100' },
+    sub:   { en: 'Tested for harmful substances', cn: '有害物质检测合格', de: 'Schadstoffprüfung', fr: 'Sans substances nocives', ja: '有害物質検査済み', kr: '유해물질 검사' },
+  },
+  {
+    label: { en: 'Good Cashmere Standard', cn: 'Good Cashmere Standard', de: 'Good Cashmere Standard', fr: 'Good Cashmere Standard', ja: 'Good Cashmere Standard', kr: 'Good Cashmere Standard' },
+    sub:   { en: 'Sustainable fiber sourcing', cn: '可持续纤维采购', de: 'Nachhaltige Faserbeschaffung', fr: 'Approvisionnement durable', ja: '持続可能な繊維調達', kr: '지속 가능한 원료' },
+  },
+  {
+    label: { en: '500+ B2B brands served', cn: '500+ B2B 品牌客户', de: '500+ B2B-Marken', fr: '500+ marques B2B', ja: '500+ B2B ブランド', kr: '500+ B2B 브랜드' },
+    sub:   { en: 'EU / US / Asia / Oceania', cn: '欧/美/亚/澳客户', de: 'EU / US / Asien / Ozeanien', fr: 'UE / US / Asie / Océanie', ja: '欧/米/亜/豪', kr: '유럽/미/아시아/오세아니아' },
+  },
+  {
+    label: { en: 'MOQ from 100 pieces', cn: 'MOQ 100 件起', de: 'MOQ ab 100 Stück', fr: 'MOQ dès 100 pièces', ja: 'MOQ 100 枚〜', kr: 'MOQ 100개~' },
+    sub:   { en: 'Sample in 7 days', cn: '7 天出样品', de: 'Muster in 7 Tagen', fr: 'Échantillon en 7 jours', ja: 'サンプル 7 日', kr: '샘플 7일' },
+  },
+];
+
 const t = (cn: string, en: string) => locale === 'cn' ? cn : en;
 const t6 = (cn: string, en: string, de: string, fr: string, ja: string, kr: string) => {
   const m: Record<string, string> = { cn, en, de, fr, ja, kr };
@@ -385,7 +414,30 @@ const IMG = {
     </div>
   </section>
 
-  <!-- ============ 产地故事（不对称：大图 + 文字） ============ -->
+  <!-- ============ TRUST STRIP (cert badges + stats under hero) ============ -->
+  <section class="py-12 md:py-14 bg-[#FBF8F2] border-b border-border">
+    <div class="container-narrow">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-8 items-center">
+        {trustBadges.map((b, i) => (
+          <div class="flex items-start gap-3 reveal" data-reveal-delay={i + 1}>
+            <svg class="w-8 h-8 flex-shrink-0 text-brand-gold mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {i % 4 === 0 && <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />}
+              {i % 4 === 1 && <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />}
+              {i % 4 === 2 && <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />}
+              {i % 4 === 3 && <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />}
+            </svg>
+            <div>
+              <div class="text-sm md:text-base font-medium text-brand-ink leading-tight">{b.label[locale] || b.label.en}</div>
+              <div class="text-xs text-muted-foreground mt-0.5 leading-tight">{b.sub[locale] || b.sub.en}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ 产地故事 ============ -->
   <section class="py-28 md:py-36 bg-background overflow-hidden">
     <div class="container-narrow">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
