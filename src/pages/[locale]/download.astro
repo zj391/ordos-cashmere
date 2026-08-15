@@ -32,7 +32,70 @@ const downloads = [
   { type: 'cert', title: locale === 'cn' ? 'OEKO-TEX 证书' : 'OEKO-TEX Certificate', size: '1.2 MB', format: 'PDF' },
   { type: 'cert', title: 'Good Cashmere Standard', size: '0.9 MB', format: 'PDF' },
   { type: 'report', title: locale === 'cn' ? '工厂验厂报告' : 'Factory Audit Report', size: '5.6 MB', format: 'PDF' },
+  { type: 'report', title: locale === 'cn' ? '工厂验厂报告' : 'Factory Audit Report', size: '5.6 MB', format: 'PDF' },
 ];
+
+// Trust Packs — 4 themed bundles (multiple PDFs compressed into 1 zip-equivalent)
+// B2B buyers save time vs downloading 6+ files individually
+const trustPacks = [
+  {
+    slug: 'factory-pack',
+    eyebrow: { en: 'Factory Pack', cn: '工厂实力包', de: 'Fabrik-Paket', fr: 'Pack Usine', ja: '工場パック', kr: '공장 팩' },
+    title:   { en: 'Factory Credentials & Audit Pack', cn: '工厂资质 + 验厂报告包', de: 'Fabrikqualifikationen + Auditbericht', fr: 'Qualifications + Audit', ja: '工場資格 + 監査', kr: '공장 자격 + 감사' },
+    items: [
+      'Product Catalog 2024 (EN/CN)',
+      'SGS On-site Factory Audit Report',
+      'ISO 9001:2015 Certificate',
+      '23 Years Operating History Brief',
+    ],
+    size: '18.7 MB',
+  },
+  {
+    slug: 'quality-pack',
+    eyebrow: { en: 'Quality Pack', cn: '质量保证包', de: 'Qualitätspaket', fr: 'Pack Qualité', ja: '品質パック', kr: '품질 팩' },
+    title:   { en: 'Certifications & QC Process Pack', cn: '认证 + 质检流程包', de: 'Zertifizierungen + QC-Prozess', fr: 'Certifications + Processus QC', ja: '認証 + QC プロセス', kr: '인증 + QC 프로세스' },
+    items: [
+      'ISO 9001 Certificate',
+      'OEKO-TEX 100 Standard Certificate',
+      'Good Cashmere Standard (GCS) Blendscover',
+      'AQL 2.5 IQC/IPQC/OQC Workflow PDF',
+      'Inner Mongolia Origin Test Report',
+    ],
+    size: '4.3 MB',
+  },
+  {
+    slug: 'materials-pack',
+    eyebrow: { en: 'Materials Pack', cn: '原料规格包', de: 'Materialpaket', fr: 'Pack Matières', ja: '素材パック', kr: '소재 팩' },
+    title:   { en: 'Yarn Count & Dye Specification Pack', cn: '纱线支数 + 染色规格包', de: 'Garnnummer + Färbung Spezifikation', fr: 'Numéro + Teinture', ja: '番手 + 染色 仕様', kr: '번수 + 염색 사양' },
+    items: [
+      'Yarn Count Reference (2/26 to 2/120 Nm)',
+      'Micron Grade Specifications (14.5-19.5μm)',
+      'Pantone Color Matching Process (5kg+ MOQ)',
+      'Color Fastness Standards (ISO 105-C06 / B02)',
+      'Cone vs Hank Yarn Delivery Specifications',
+      'Wholesale Pricing Tier Document',
+    ],
+    size: '6.1 MB',
+  },
+  {
+    slug: 'buyer-pack',
+    eyebrow: { en: 'Buyer Pack', cn: '采购流程包', de: 'Käuferpaket', fr: 'Pack Acheteur', ja: 'バイヤーパック', kr: '바이어 팩' },
+    title:   { en: 'Sample Policy & Trade Terms Pack', cn: '样品政策 + 贸易条款包', de: 'Musterpolitik + Handelsbedingungen', fr: 'Échantillons + Conditions commerciales', ja: 'サンプル + 取引条件', kr: '샘플 + 무역 조건' },
+    items: [
+      'Sample Policy (4 sample types + refund terms)',
+      'MOQ Reference by Product Category',
+      'HS Code Guide (5108.20 / 6110 / 6202)',
+      'FOB / CIF / DDP Shipping Terms 2026',
+      'OEM/ODM Workflow 8-12 Weeks Timeline',
+    ],
+    size: '5.2 MB',
+  },
+];
+const packsEyebrow = { en: 'Trust Packs', cn: '一站式下载', de: 'Vertrauenspakete', fr: 'Packs de Confiance', ja: 'トラストパック', kr: '신뢰 팩' };
+const packsTitle = { en: 'Download Everything in One Bundle', cn: '一站式获取工厂全部资料', de: 'Alles in einem Paket herunterladen', fr: 'Tout télécharger en un seul pack', ja: '工場資料を 1 つにまとめて', kr: '공장 자료를 한 번에' };
+const packsSubtitle = { en: 'Each Trust Pack bundles 4-6 PDFs (catalog + certs + datasheets + trade terms) into one download — saving B2B buyers multiple round-trips.', cn: '每个信任包整合 4-6 份 PDF（目录 + 证书 + 规格表 + 贸易条款）——省去多次下载沟通。', de: 'Jedes Paket bündelt 4-6 PDFs.', fr: 'Chaque pack regroupe 4-6 PDF.', ja: '各パック 4-6 PDF 統合。', kr: '각 팩 4-6 PDF 통합.' };
+const packsCta = { en: 'Request a Custom Pack', cn: '索取定制资料包', de: 'Custom-Paket anfordern', fr: 'Pack personnalisé', ja: 'カスタムパック', kr: '맞춤 팩 요청' };
+
 ---
 
 <BaseLayout locale={locale} pageKey="download" path="/download">
@@ -46,6 +109,64 @@ const downloads = [
       </div>
       <h1 class="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-8 text-balance">{T('title')}</h1>
       <p class="text-lg text-muted-foreground leading-relaxed max-w-xl font-light">{T('subtitle')}</p>
+    </div>
+  </section>
+
+  <!-- Trust Packs — 一站式获取工厂全部资料,4 个主题 zip 包 -->
+  <section class="py-20 md:py-24 bg-[#F8F5EF] border-y border-border/60">
+    <div class="container-narrow">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="h-[2px] w-10 bg-brand-red"></span>
+        <span class="text-xs tracking-[0.3em] uppercase text-brand-camel font-medium">{packsEyebrow[locale] || packsEyebrow.en}</span>
+      </div>
+      <h2 class="font-serif text-3xl md:text-5xl font-light leading-tight mb-3 text-balance">{packsTitle[locale] || packsTitle.en}</h2>
+      <p class="text-base md:text-lg text-muted-foreground max-w-2xl mb-12 leading-relaxed">{packsSubtitle[locale] || packsSubtitle.en}</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {trustPacks.map((p, idx) => (
+          <article class="bg-background border border-border p-6 md:p-8 hover:border-brand-gold hover:shadow-xl transition-all duration-300 flex flex-col">
+            <div class="flex items-center justify-between mb-3 gap-4">
+              <span class="text-[10px] tracking-[0.3em] uppercase text-brand-gold font-mono font-medium">
+                0{idx + 1} · {p.eyebrow[locale] || p.eyebrow.en}
+              </span>
+              <span class="text-[10px] tracking-[0.2em] uppercase text-muted-foreground font-mono">{p.size} ZIP</span>
+            </div>
+            <h3 class="font-serif text-xl md:text-2xl font-light mb-4 leading-tight">{p.title[locale] || p.title.en}</h3>
+            <ul class="space-y-2.5 mb-6 flex-grow">
+              {p.items.map((item) => (
+                <li class="text-sm leading-relaxed text-foreground/85 flex items-start gap-2.5">
+                  <svg class="w-4 h-4 text-brand-gold mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <div class="flex flex-wrap items-center gap-3 pt-4 border-t border-border/60">
+              <a href={`/${locale}/contact?inquiry=${p.slug}`} class="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-ink text-[#F7F3EC] hover:bg-brand-chocolate transition-colors text-xs uppercase tracking-[0.15em] font-medium">
+                {locale === 'cn' ? '索取此包' : 'Get this pack'}
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+              </a>
+              <span class="text-xs text-muted-foreground">
+                {locale === 'cn' ? '我们 24 小时内邮件发送' : 'Email delivery within 24 hours'}
+              </span>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="mt-12 text-center max-w-2xl mx-auto p-6 md:p-8 bg-background border border-brand-gold/40">
+        <h3 class="font-serif text-xl mb-2">
+          {locale === 'cn' ? '需要定制资料包？' : "Don't see the bundle you need?"}
+        </h3>
+        <p class="text-sm text-muted-foreground mb-5">
+          {locale === 'cn'
+            ? '指定产品类 + MOQ + 目的国，我们整理专门的资料包给您。'
+            : "Tell us your category + target MOQ + destination. We'll build a tailored dossier."}
+        </p>
+        <a href={`/${locale}/contact?inquiry=custom-pack`} class="inline-flex items-center gap-2 px-6 py-2.5 border border-brand-ink/30 text-brand-ink hover:bg-brand-ink hover:text-[#F7F3EC] transition-colors text-xs uppercase tracking-[0.15em] font-medium">
+          {packsCta[locale] || packsCta.en}
+          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
     </div>
   </section>
 
