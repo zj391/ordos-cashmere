@@ -2623,6 +2623,27 @@ Sample fee: $80 credited toward bulk order. Lead time: 7-day sample, 25-day bulk
 - [Why Cashmere Costs USD 8-50 per Piece](/en/blog/cashmere-cost-breakdown-wholesale) — Cost breakdown for B2B negotiations
 - [Cashmere 2-Ply vs 3-Ply Garment Durability](/en/blog/cashmere-2-ply-3-ply-garment-durability) — Ply selection for your product
 
+## Frequently asked questions about custom cashmere knitwear
+Brand founders, designers, and sourcing managers evaluating custom cashmere knitwear suppliers ask the same questions before committing to a sample run. These quick answers cover the most common decisions. To start a private-label project with our Ordos factory, request a [tech pack review](/en/contact).
+
+### What is the difference between OEM, ODM, and private label cashmere?
+OEM (Original Equipment Manufacturer) cashmere means the factory produces garments to your exact tech pack and design specifications, with no factory-side design input. ODM (Original Design Manufacturer) means the factory contributes the design — including pattern, color, and yarn choices — and you apply your label. Private label is the broader category covering both: you sell the finished product under your own brand, regardless of who designed it. For startup founders without an in-house design team, ODM shortens the timeline by 2–3 weeks because the factory skips the design-review iteration. For established brands with a clear aesthetic, OEM preserves brand identity and IP control.
+
+### How do I find a reliable custom cashmere knitwear supplier?
+Five checks to separate reliable custom cashmere knitwear suppliers from commodity factories: (1) audit fiber sourcing — direct-from-derivation cashmere has a documented supply chain with named herding cooperatives; (2) audit production capacity — knitting machines, linking lines, finishing capacity, and percentage of capacity already booked for the next 8 weeks; (3) inspect samples — order counter-samples from at least 3 factories and compare hand-feel, stitch density, and finishing; (4) verify third-party inspection acceptance — the factory should accept SGS, Intertek, or Bureau Veritas inspection, not just internal QC; (5) request buyer references in your target market (EU, US, JP) and call them. A factory that refuses any of these is a red flag regardless of price.
+
+### What is the MOQ for custom cashmere knitwear orders?
+MOQ for custom cashmere knitwear OEM/ODM orders is 100 pieces per style at our Ordos factory. Below 100 pieces, expect a 15–25% per-piece premium because setup costs (yarn lot minimum, machine programming, label production) cannot amortize across a small run. For private-label startups testing the market with one SKU, the 100-piece first order is the standard approach — used as a quality-check sample run, then scaling to 300–500 pieces on the second order to unlock 10–15% volume discount. Some factories accept 50 pieces per style, but lead time stretches by 1 week and the per-piece premium jumps further.
+
+### How long does custom cashmere knitwear production take?
+Custom cashmere knitwear production takes 8–12 weeks end-to-end from tech pack approval to bulk shipment. The 8-week lower bound is when everything aligns — stock yarn available, counter-sample approved in one round, no custom hardware, off-peak production slot. The 12-week upper bound is when custom Pantone dyeing, custom yarn count, or complex intarsia graphics push sampling to 2–3 rounds. Most first-time private-label buyers land in the 10-week range. Pure cashmere 16-gauge fully-fashioned fine-gauge pullovers add another 1–2 weeks over 12-gauge equivalents because knitting time roughly doubles at finer gauges.
+
+### Can a custom cashmere factory accommodate small batches of 50 pieces?
+Yes — most custom cashmere knitwear factories accept 50 pieces per style, though at a per-piece premium. Setup costs (yarn lot minimum, machine programming, label production) amortize across the production run, so smaller orders carry a higher per-piece cost to cover the fixed setup. For 50-piece orders, expect a 15–25% per-piece premium over the 100-piece baseline, plus a 1-week longer lead time because the factory cannot batch the run as efficiently. For private-label startups testing the market with a single SKU, the 50-piece run is a common starting point despite the premium — the alternative is sourcing from a stock catalog with no customization.
+
+### What customization options are available for private-label cashmere knitwear?
+Private-label cashmere knitwear customization covers 5 areas: (1) yarn — fiber grade (14.0–15.5μm premium, 15.5–16.5μm mid, 16.5–19.0μm entry), yarn count (2/26 to 2/60 Nm, or custom 2/16 to 2/80), ply (1-ply to 4-ply), and blend options (100% cashmere, cashmere/wool, cashmere/silk); (2) gauge — 7gg chunky, 12gg medium, 14gg fine, 16gg very fine, 18gg ultra-fine; (3) design — neckline, silhouette, stitch pattern, intarsia graphics, jacquard; (4) color — stock Pantone palette (~30 colors) is included, custom Pantone dyeing adds 2 weeks and 5–8% surcharge; (5) branding — woven labels, hang tags, care labels, poly bags, gift packaging. The most expensive customization is custom Pantone dyeing; the cheapest is replacing the stock care label with your own.
+
 ---
 
 ### Luxury Cashmere Manufacturer: What Separates a Premium Maker from a Commodity Factory
@@ -4519,115 +4540,6 @@ Most "cashmere ruined" stories involve one of three things: hot water wash, tumb
 
 ---
 
-### Cashmere Yarn Count Explained: 2/26 to 2/60 Nm — Which Count to Use for Your Product
-
-*Published 2026-07-08*
-
-Choosing the wrong cashmere yarn count can ruin a design. A practical guide to Nm counts, gauge matching, and end-use selection for B2B buyers and product designers.
-
-# Cashmere Yarn Count Explained: 2/26 to 2/60 Nm
-
-"100% cashmere yarn" tells you the fiber. The **count** tells you how fine or thick the yarn is, which determines the gauge, hand feel, and end-use of your finished product.
-
-A wrong count choice means a sweater that's too heavy for the design, or a scarf that's too flimsy. This guide covers the practical implications of cashmere yarn counts from 2/26 Nm to 2/60 Nm.
-
-## What does "2/48 Nm" actually mean?
-
-Cashmere yarn counts use the **Nm** (Number metric) system. The format is **plies/fineness**:
-- **2/** means 2-ply (two single yarns twisted together)
-- **48** means 48,000 meters of yarn weighs 1 kg
-
-So a **2/48 Nm cashmere yarn** is a 2-ply yarn where 48 km of the yarn weighs 1 kg. **Higher Nm = finer yarn**.
-
-The count you choose depends on the **gauge** (knits per inch) of your final product:
-
-| Count (Nm) | Weight per meter | Gauge | Best for |
-|---|---|---|---|
-| 2/26 | ~0.077 g/m | 5-7 | Chunky sweaters, blankets, heavy scarves |
-| 2/32 | ~0.063 g/m | 7-9 | Mid-gauge sweaters, medium scarves |
-| 2/36 | ~0.056 g/m | 9-12 | Standard sweaters |
-| 2/48 | ~0.042 g/m | 12-14 | Fine-gauge sweaters, light scarves |
-| 2/60 | ~0.033 g/m | 14-18 | Ultra-fine knits, premium scarves |
-| 2/80 (custom) | ~0.025 g/m | 18+ | Sheer fabrics, exceptional luxury |
-
-## Match yarn count to gauge
-
-The relationship between yarn count and knitting gauge is roughly inverse. Higher Nm = finer yarn = more stitches per inch for a given fabric weight.
-
-**Practical rule of thumb**:
-- For 5-gauge chunky: use 2/26 to 2/30 Nm
-- For 7-gauge mid: use 2/30 to 2/36 Nm
-- For 9-gauge standard: use 2/36 to 2/40 Nm
-- For 12-gauge fine: use 2/40 to 2/48 Nm
-- For 14-gauge extra fine: use 2/48 to 2/60 Nm
-- For 18-gauge sheer: use 2/60 to 2/80 Nm
-
-Deviating too far in either direction gives you either a stiff, boardy fabric (count too low) or a flimsy, see-through fabric (count too high).
-
-## What 2/26 vs 2/60 means in hand feel
-
-A 2/26 Nm cashmere yarn produces a **chunky, robust fabric** with substantial hand feel. The yarn is thick, the fabric has body, and the finished sweater has a "cozy" look. Think heavy winter cardigans or boatneck sweaters.
-
-A 2/60 Nm cashmere yarn produces a **fine, drapey fabric** with a silky hand feel. The yarn is barely visible to the eye, the fabric flows, and the finished garment has a "luxury" look. Think thin V-necks, fine-gauge scarves, or layering pieces.
-
-**Most luxury B2B orders** are 2/48 to 2/60 Nm. These counts give the smooth, drapey, "soft cashmere" feel that justifies the premium price.
-
-**Mid-market and casual** tends toward 2/26 to 2/36 Nm. These are still soft, but with more body and a relaxed look.
-
-## Worsted vs woolen: count implications
-
-The count you choose interacts with the spinning method:
-
-- **Worsted spinning** requires longer fiber (Hauteur > 36mm) and is more common in finer counts (2/40 to 2/60+). Worsted yarn is smoother and stronger.
-- **Woolen spinning** tolerates shorter fiber and is more common in heavier counts (2/26 to 2/40). Woolen yarn is softer and loftier.
-
-A 2/60 Nm **woolen-spun** yarn is rare and requires exceptional fiber quality. Most 2/60 Nm is worsted-spun. Conversely, a 2/26 Nm **worsted-spun** yarn is possible but unusual — most 2/26 is woolen.
-
-## Custom counts (2/16 to 2/80)
-
-Standard counts (2/26 to 2/60 Nm) cover ~90% of B2B demand. For specialty products, custom counts are possible:
-
-- **2/16 to 2/24**: Very heavy, used for blankets, heavy outerwear, and upholstery. Custom orders usually 200kg+.
-- **2/80 to 2/120**: Ultra-fine, used for sheer woven fabrics and exceptional luxury pieces. Lead time +30 days; custom orders 100kg+.
-
-For custom counts, add +20-30% lead time and expect 200kg+ MOQ.
-
-## How to test yarn count before committing
-
-A simple test for any sample cone:
-1. **Measure 10 meters** of yarn
-2. **Weigh it** (use a milligram scale for accuracy)
-3. **Calculate**: count = 10,000 / weight_in_grams × 2 (since 2-ply)
-4. **Compare to claimed count**: should be within ±2%
-
-A supplier claiming 2/48 Nm but testing at 2/32 Nm is a quality red flag. Always test samples before placing bulk orders.
-
-## Mixing Ordos and Mongolian cashmere for unique yarn
-
-Some premium B2B buyers request **mixed Ordos Mongolian cashmere yarn** — combining fibers from both Inner Mongolia and Mongolia proper. The goal is a unique hand feel that combines:
-
-- **Ordos fiber**: Slightly higher crimp, more "spring" in the yarn
-- **Mongolian fiber**: Slightly longer staple, more "drape" in the fabric
-
-The result is a yarn with both properties — soft and lofty *and* drapey. It's a subtle difference (most customers won't notice) but distinctive enough to justify a "signature yarn" marketing claim.
-
-Mixed Ordos Mongolian yarn requires **dual sourcing** from both regions and careful blending at the dehairing stage. Most Ordos factories can do this, but you need to specify it explicitly.
-
-## Stock vs custom: lead times and MOQ
-
-- **Stock counts (2/26 to 2/60 Nm in white)**: 7-10 day dispatch, MOQ 10kg
-- **Custom counts**: 15-25 days, MOQ 50kg
-- **Custom color (Pantone match)**: 20-30 days including lab dip, MOQ 30kg
-- **Custom blend (cashmere/wool, cashmere/silk)**: 25-35 days, MOQ 100kg
-
-For B2B buyers new to cashmere yarn, we recommend starting with **2/48 Nm white** in stock (the workhorse luxury count) before exploring custom options.
-
----
-
-*Need help choosing the right yarn count? [Contact our yarn team](https://www.erdosdx.com/en/contact) with your design specs (target gauge, fabric weight, end-use) and we'll recommend 3 yarn options with sample cones.*
-
----
-
 ### Dehaired Cashmere Tops: The Complete B2B Buyer's Guide to Combed Cashmere from Ordos
 
 *Published 2026-07-08*
@@ -4926,158 +4838,6 @@ For new direct buyers, we recommend a **2-step approach**: first order 200-500kg
 ---
 
 *Ready to source cashmere direct from the mill? [Contact our sales team](https://www.erdosdx.com/en/contact) with your target specs and order volume. We'll provide a detailed quote and suggest a trial order size for your first direct purchase.*
-
----
-
-### OEKO-TEX Certified Cashmere: What B2B Buyers Need to Know About Textile Safety Standards
-
-*Published 2026-07-08*
-
-OEKO-TEX Standard 100, GOTS, RWS, BSCI — there are 7+ textile safety certifications. Which ones actually matter for cashmere, and how to verify claims.
-
-# OEKO-TEX Certified Cashmere: What B2B Buyers Need to Know
-
-Cashmere is a natural fiber. But the journey from goat to garment involves **chemicals** — scouring agents, dyes, finishing treatments, anti-pilling enzymes. Some of these chemicals can leave residues that are harmful to human health.
-
-For B2B buyers exporting to the EU, US, or Japan, textile safety certifications are increasingly **legally required or buyer-mandated**. This guide covers what certifications actually mean, which ones matter, and how to verify claims.
-
-## The 7 main textile safety certifications
-
-### 1. **OEKO-TEX Standard 100** (most important)
-
-**What it tests**: Over 300 substances including formaldehyde, heavy metals (lead, cadmium, mercury), pesticides, chlorinated phenols, phthalates, and azo dyes.
-
-**Levels**:
-- **Class I** (baby): strictest, < 0.5% threshold for most substances
-- **Class II** (skin contact): standard for most adult apparel
-- **Class III** (no direct skin contact): home textiles
-- **Class IV** (decoration only): rarely used
-
-**What it doesn't test**: Animal welfare, environmental impact, fiber origin.
-
-**Cost to factory**: $2,000-5,000 per year + testing fees per shipment.
-
-### 2. **GOTS (Global Organic Textile Standard)**
-
-**What it certifies**: Organic fiber content (≥70% for 'organic', ≥95% for 'organic' label) + environmental processing + social criteria.
-
-**What it doesn't certify**: Animal welfare (cashmere goats are not covered by GOTS even when fiber is "organic" — this is a known gap).
-
-**Cost to factory**: $3,000-8,000 per year + chain-of-custody documentation.
-
-### 3. **RWS (Responsible Wool Standard)**
-
-**What it certifies**: Animal welfare + land management + chain of custody for wool (and recently, cashmere).
-
-**What it doesn't certify**: Chemical safety (no substance testing like OEKO-TEX).
-
-**Cost to factory**: $2,500-6,000 per year.
-
-### 4. **ISO 9001** (Quality Management)
-
-**What it certifies**: Quality management systems, not product safety.
-
-**What it doesn't certify**: Anything about the actual cashmere or chemicals used.
-
-**Cost to factory**: $3,000-15,000 initial + annual audits.
-
-### 5. **ISO 14001** (Environmental Management)
-
-**What it certifies**: Environmental management systems.
-
-**What it doesn't certify**: Product safety or fiber origin.
-
-### 6. **BSCI / Sedex SMETA** (Social Compliance)
-
-**What they certify**: Worker welfare, fair wages, no child labor.
-
-**What they don't certify**: Product safety or fiber origin.
-
-### 7. **GCS (Good Cashmere Standard)** (industry-specific)
-
-**What it certifies**: Cashmere fiber content + animal welfare + traceability from farm to finished product.
-
-**What it doesn't certify**: Chemical safety (no substance testing).
-
-## What certifications actually matter for cashmere
-
-For B2B buyers in different markets:
-
-| Market | Required/Mandated | Recommended |
-|---|---|---|
-| **EU (all markets)** | REACH compliance, OEKO-TEX (most retailers mandate) | GOTS, RWS |
-| **US** | CPSIA compliance, OEKO-TEX (department stores mandate) | RWS, GOTS |
-| **Japan** | OEKO-TEX (standard), JIS L 0217 (Japanese standard) | RWS |
-| **China (domestic)** | GB 18401 (China textile safety standard) | OEKO-TEX |
-| **Korea** | KC Mark (similar to OEKO-TEX) | RWS |
-
-**For 90% of B2B buyers, OEKO-TEX Standard 100 (Class II) is the minimum bar.** Anything below that and you can't sell to most EU/US department stores and luxury retailers.
-
-## How to verify certification claims
-
-Any factory can claim certifications. Here's how to verify:
-
-### Step 1: Ask for the certificate number
-
-Every OEKO-TEX certificate has a unique number. Ask the supplier for the certificate number and the certifying body (e.g., "Hohenstein Institute" or "Testex").
-
-### Step 2: Look up on the certifying body's website
-
-- **OEKO-TEX**: https://www.oeko-tex.com/en/buyers/search (search by company name or certificate number)
-- **GOTS**: https://www.global-standard.org/find-suppliers.html
-- **RWS**: https://textileexchange.org/certificate-search/
-- **BSCI**: https://www.bsciplatform.com/
-
-If the certificate doesn't show up, the claim is bogus.
-
-### Step 3: Verify the certificate scope
-
-Certificates cover specific product categories. A factory's OEKO-TEX certificate might cover "yarn and fabric" but not "garments" — meaning their finished knitwear isn't actually certified.
-
-### Step 4: Check expiration dates
-
-OEKO-TEX certificates are typically valid for 1 year. A certificate that "expired 6 months ago" is technically invalid.
-
-## What to do if your supplier fakes certifications
-
-It's more common than you'd think. In 2023, an industry survey estimated 15-20% of "OEKO-TEX certified" claims from Chinese suppliers were not verifiable.
-
-If you suspect fraud:
-1. **Request the certificate PDF** (not just a number) and check the URL it points to
-2. **Verify the certificate number** on the certifying body's website
-3. **Commission your own test** on a sample shipment ($200-500 per test)
-4. **Report to the certifying body** if fraud is confirmed — they can revoke the supplier's status
-
-## How to read a typical OEKO-TEX certificate
-
-A standard certificate includes:
-- **Certificate number** (e.g., "SH015 123456")
-- **Issue date** and **validity** (usually 1 year)
-- **Holder** (the certified company)
-- **Product class** (I, II, III, or IV)
-- **Tested articles** (yarn, fabric, garment, etc.)
-- **Testing institute** (Hohenstein, Testex, etc.)
-- **Authorized signature** and stamp
-
-If any of these are missing or look altered, request a fresh copy directly from the certifying body.
-
-## Working with DONGXIAO
-
-We hold all relevant cashmere certifications:
-- **OEKO-TEX Standard 100** (Class II, since 2020)
-- **GOTS** (since 2022, for organic cashmere orders 500kg+)
-- **RWS** (since 2022, for blended products)
-- **BSCI** (since 2019)
-- **Sedex SMETA 4-Pillar** (since 2020)
-- **ISO 9001:2015** (since 2018)
-
-For B2B buyers, we share current certificates with every sample shipment. We also commission independent third-party testing (SGS, Bureau Veritas) on 10% of our annual output to verify ongoing compliance.
-
-For buyers requiring certifications we don't currently hold (e.g., Bluesign, Cradle-to-Cradle), we can pursue them as part of your order with a 6-month lead time and shared cost.
-
----
-
-*Need certified cashmere? [Request a quote](https://www.erdosdx.com/en/contact) with your target certifications. We'll send current certificates with sample shipment and explain any limitations.*
 
 ---
 
@@ -5878,6 +5638,309 @@ For new B2B buyers, we recommend a **trial run of 50-100kg** in your preferred s
 ---
 
 *Need help choosing the right yarn? [Contact our yarn team](https://www.erdosdx.com/en/contact) with your product specs (gauge, hand feel preference, pilling targets) and we'll send 5 sample cones for testing.*
+
+---
+
+### Cashmere Yarn Count Explained: 2/26 to 2/60 Nm — Which Count to Use for Your Product
+
+*Published 2026-07-08*
+
+Choosing the wrong cashmere yarn count can ruin a design. A practical guide to Nm counts, gauge matching, and end-use selection for B2B buyers and product designers.
+
+# Cashmere Yarn Count Explained: 2/26 to 2/60 Nm
+
+"100% cashmere yarn" tells you the fiber. The **count** tells you how fine or thick the yarn is, which determines the gauge, hand feel, and end-use of your finished product.
+
+A wrong count choice means a sweater that's too heavy for the design, or a scarf that's too flimsy. This guide covers the practical implications of cashmere yarn counts from 2/26 Nm to 2/60 Nm.
+
+## Decoding cashmere yarn counts: 2/26 to 2/60 Nm
+
+Cashmere yarn counts use the **Nm** (Number metric) system. The format is **plies/fineness**:
+- **2/** means 2-ply (two single yarns twisted together)
+- **48** means 48,000 meters of yarn weighs 1 kg
+
+So a **2/48 Nm cashmere yarn** is a 2-ply yarn where 48 km of the yarn weighs 1 kg. **Higher Nm = finer yarn**.
+
+The count you choose depends on the **gauge** (knits per inch) of your final product:
+
+| Count (Nm) | Weight per meter | Gauge | Best for |
+|---|---|---|---|
+| 2/26 | ~0.077 g/m | 5-7 | Chunky sweaters, blankets, heavy scarves |
+| 2/32 | ~0.063 g/m | 7-9 | Mid-gauge sweaters, medium scarves |
+| 2/36 | ~0.056 g/m | 9-12 | Standard sweaters |
+| 2/48 | ~0.042 g/m | 12-14 | Fine-gauge sweaters, light scarves |
+| 2/60 | ~0.033 g/m | 14-18 | Ultra-fine knits, premium scarves |
+| 2/80 (custom) | ~0.025 g/m | 18+ | Sheer fabrics, exceptional luxury |
+
+## Match yarn count to gauge
+
+The relationship between yarn count and knitting gauge is roughly inverse. Higher Nm = finer yarn = more stitches per inch for a given fabric weight.
+
+**Practical rule of thumb**:
+- For 5-gauge chunky: use 2/26 to 2/30 Nm
+- For 7-gauge mid: use 2/30 to 2/36 Nm
+- For 9-gauge standard: use 2/36 to 2/40 Nm
+- For 12-gauge fine: use 2/40 to 2/48 Nm
+- For 14-gauge extra fine: use 2/48 to 2/60 Nm
+- For 18-gauge sheer: use 2/60 to 2/80 Nm
+
+Deviating too far in either direction gives you either a stiff, boardy fabric (count too low) or a flimsy, see-through fabric (count too high).
+
+## What 2/26 vs 2/60 means in hand feel
+
+A 2/26 Nm cashmere yarn produces a **chunky, robust fabric** with substantial hand feel. The yarn is thick, the fabric has body, and the finished sweater has a "cozy" look. Think heavy winter cardigans or boatneck sweaters.
+
+A 2/60 Nm cashmere yarn produces a **fine, drapey fabric** with a silky hand feel. The yarn is barely visible to the eye, the fabric flows, and the finished garment has a "luxury" look. Think thin V-necks, fine-gauge scarves, or layering pieces.
+
+**Most luxury B2B orders** are 2/48 to 2/60 Nm. These counts give the smooth, drapey, "soft cashmere" feel that justifies the premium price.
+
+**Mid-market and casual** tends toward 2/26 to 2/36 Nm. These are still soft, but with more body and a relaxed look.
+
+## Worsted vs woolen: count implications
+
+The count you choose interacts with the spinning method:
+
+- **Worsted spinning** requires longer fiber (Hauteur > 36mm) and is more common in finer counts (2/40 to 2/60+). Worsted yarn is smoother and stronger.
+- **Woolen spinning** tolerates shorter fiber and is more common in heavier counts (2/26 to 2/40). Woolen yarn is softer and loftier.
+
+A 2/60 Nm **woolen-spun** yarn is rare and requires exceptional fiber quality. Most 2/60 Nm is worsted-spun. Conversely, a 2/26 Nm **worsted-spun** yarn is possible but unusual — most 2/26 is woolen.
+
+## Custom counts (2/16 to 2/80)
+
+Standard counts (2/26 to 2/60 Nm) cover ~90% of B2B demand. For specialty products, custom counts are possible:
+
+- **2/16 to 2/24**: Very heavy, used for blankets, heavy outerwear, and upholstery. Custom orders usually 200kg+.
+- **2/80 to 2/120**: Ultra-fine, used for sheer woven fabrics and exceptional luxury pieces. Lead time +30 days; custom orders 100kg+.
+
+For custom counts, add +20-30% lead time and expect 200kg+ MOQ.
+
+## How to test yarn count before committing
+
+A simple test for any sample cone:
+1. **Measure 10 meters** of yarn
+2. **Weigh it** (use a milligram scale for accuracy)
+3. **Calculate**: count = 10,000 / weight_in_grams × 2 (since 2-ply)
+4. **Compare to claimed count**: should be within ±2%
+
+A supplier claiming 2/48 Nm but testing at 2/32 Nm is a quality red flag. Always test samples before placing bulk orders.
+
+## Mixing Ordos and Mongolian cashmere for unique yarn
+
+Some premium B2B buyers request **mixed Ordos Mongolian cashmere yarn** — combining fibers from both Inner Mongolia and Mongolia proper. The goal is a unique hand feel that combines:
+
+- **Ordos fiber**: Slightly higher crimp, more "spring" in the yarn
+- **Mongolian fiber**: Slightly longer staple, more "drape" in the fabric
+
+The result is a yarn with both properties — soft and lofty *and* drapey. It's a subtle difference (most customers won't notice) but distinctive enough to justify a "signature yarn" marketing claim.
+
+Mixed Ordos Mongolian yarn requires **dual sourcing** from both regions and careful blending at the dehairing stage. Most Ordos factories can do this, but you need to specify it explicitly.
+
+## Stock vs custom: lead times and MOQ
+
+- **Stock counts (2/26 to 2/60 Nm in white)**: 7-10 day dispatch, MOQ 10kg
+- **Custom counts**: 15-25 days, MOQ 50kg
+- **Custom color (Pantone match)**: 20-30 days including lab dip, MOQ 30kg
+- **Custom blend (cashmere/wool, cashmere/silk)**: 25-35 days, MOQ 100kg
+
+For B2B buyers new to cashmere yarn, we recommend starting with **2/48 Nm white** in stock (the workhorse luxury count) before exploring custom options.
+
+---
+
+*Need help choosing the right yarn count? [Contact our yarn team](https://www.erdosdx.com/en/contact) with your design specs (target gauge, fabric weight, end-use) and we'll recommend 3 yarn options with sample cones.*
+
+## Frequently asked questions about cashmere yarn counts
+Knitwear designers, brand founders, and yarn buyers selecting cashmere yarn counts for specific end-uses ask the same questions before placing a yarn order. These quick answers cover Nm counts, gauge matching, ply implications, and how yarn count translates to hand-feel. To request yarn sample cones with your specified count, see our [yarn spec sheet](/en/contact).
+
+### What does "2/48 Nm" actually mean in cashmere yarn?
+2/48 Nm cashmere yarn means the yarn is a 2-ply construction (two single strands twisted together) with a metric count of 48 — meaning 48 kilometers of single-ply yarn weighs 1 kilogram. The "2/" prefix indicates ply count; the Nm number indicates fineness (higher Nm = finer yarn). A 2/48 Nm yarn is finer and lighter than a 2/26 Nm yarn (26 km of single-ply per kg), even though both are 2-ply. For comparison: 2/26 Nm is medium-weight for chunky 7-gauge pullovers, 2/36 Nm is medium for 9-gauge, 2/48 Nm is fine for 14-gauge, 2/60 Nm is ultra-fine for 16-gauge. The metric count system is universal; the older English count (Ne) system is sometimes seen on US labels but conversion is straightforward.
+
+### Which cashmere yarn count should I use for sweaters?
+Cashmere yarn count selection for sweaters depends on target gauge and desired hand-feel: 2/26 Nm for 7-gauge chunky pullovers (winter weight, hand-knit aesthetic), 2/36 Nm for 9-gauge mid-weight pullovers (autumn/spring), 2/48 Nm for 12-gauge fine pullovers (versatile, most common for retail), 2/60 Nm for 14-gauge fine pullovers (smoother, lighter drape), 2/80 Nm for 16-gauge ultra-fine pullovers (luxury feel, summer-weight). For 12-gauge pullovers — the most common cashmere knitwear — 2/48 Nm is the standard. For 16-gauge fully-fashioned knits, 2/60 Nm or 2/80 Nm is required. The same yarn count can be used across multiple gauges, but the resulting fabric weight and drape changes.
+
+### What is the difference between worsted and woolen cashmere yarn?
+Worsted and woolen refer to the spinning method, not the fiber. Worsted cashmere yarn is spun from combed, parallel-aligned fibers using a ring-spinning process, resulting in a smooth, lustrous, tightly twisted yarn with a clean surface — used for fine-gauge knitwear (12gg+), tailored pullovers, and luxury accessories. Woolen cashmere yarn is spun from carded, randomly arranged fibers using a mule or air-jet spinning process, resulting in a fuzzy, soft, lofty yarn with visible fiber ends — used for chunky 7-gauge pullovers, blankets, and casual knitwear. Worsted yarn pills less and looks more refined; woolen yarn feels softer and warmer but pills faster. For luxury pullover programs, worsted is the standard; for casual capsule collections, woolen adds character.
+
+### How does ply count affect cashmere yarn quality?
+Cashmere yarn ply count affects hand-feel, durability, and warmth. 1-ply yarn is the lightest and most delicate, with visible fiber ends that pill quickly; used for ultra-fine summer knits and accessories where sheer drape matters. 2-ply is the industry standard, balancing softness, durability, and cost — used for most retail cashmere pullovers and cardigans. 3-ply adds 15–20% cost and produces a more structured garment with better shape retention — used for autumn/winter collections and tailored knitwear. 4-ply is the heaviest, used for premium winter-weight knits and capsule collections. For wholesale B2B buyers, 2-ply is the safe default; 3-ply makes sense for autumn/winter; 4-ply is reserved for premium capsules where the weight is the selling point.
+
+### What does 2/26 vs 2/60 mean in hand-feel?
+The hand-feel difference between 2/26 and 2/60 cashmere yarn is significant: 2/26 produces a chunky, lofty fabric with visible yarn structure and a cozy, sweater-like feel — used for 7-gauge pullovers weighing 380–450g per piece. 2/60 produces a fine, smooth, drapey fabric with minimal yarn visibility and a refined, luxury feel — used for 16-gauge pullovers weighing 250–320g per piece. 2/26 fabric feels warmer because more air is trapped in the looser knit structure; 2/60 fabric feels smoother and more breathable. Both can be Grade A 14.5μm fiber; the yarn count is a separate dimension. For B2B buyers, choose 2/26 for casual/winter capsules and 2/60 for luxury/summer collections.
+
+### Can a factory produce custom cashmere yarn counts?
+Yes — most cashmere yarn manufacturers produce custom counts from 2/16 Nm (very chunky) to 2/80 Nm (ultra-fine), with some specialty mills reaching 2/100 or 2/120 Nm. Custom counts below 2/16 or above 2/80 require a minimum yarn lot of 50–10 kg, depending on the count — a 2/100 Nm lot typically requires 30–50 kg minimum because the spinning setup time is significant. Lead time for custom counts is 4–6 weeks versus 1–2 weeks for stock counts. Pricing for custom counts is typically 10–20% above the nearest stock count due to the small-lot spinning surcharge. For B2B buyers, custom counts make sense only when the count falls significantly outside stock offerings (2/26, 2/36, 2/48, 2/60).
+
+---
+
+### OEKO-TEX Certified Cashmere: What B2B Buyers Need to Know About Textile Safety Standards
+
+*Published 2026-07-08*
+
+OEKO-TEX Standard 100, GOTS, RWS, BSCI — there are 7+ textile safety certifications. Which ones actually matter for cashmere, and how to verify claims.
+
+# OEKO-TEX Certified Cashmere: What B2B Buyers Need to Know
+
+Cashmere is a natural fiber. But the journey from goat to garment involves **chemicals** — scouring agents, dyes, finishing treatments, anti-pilling enzymes. Some of these chemicals can leave residues that are harmful to human health.
+
+For B2B buyers exporting to the EU, US, or Japan, textile safety certifications are increasingly **legally required or buyer-mandated**. This guide covers what certifications actually mean, which ones matter, and how to verify claims.
+
+## The 7 main textile safety certifications
+
+### 1. **OEKO-TEX Standard 100** (most important)
+
+**What it tests**: Over 300 substances including formaldehyde, heavy metals (lead, cadmium, mercury), pesticides, chlorinated phenols, phthalates, and azo dyes.
+
+**Levels**:
+- **Class I** (baby): strictest, < 0.5% threshold for most substances
+- **Class II** (skin contact): standard for most adult apparel
+- **Class III** (no direct skin contact): home textiles
+- **Class IV** (decoration only): rarely used
+
+**What it doesn't test**: Animal welfare, environmental impact, fiber origin.
+
+**Cost to factory**: $2,000-5,000 per year + testing fees per shipment.
+
+### 2. **GOTS (Global Organic Textile Standard)**
+
+**What it certifies**: Organic fiber content (≥70% for 'organic', ≥95% for 'organic' label) + environmental processing + social criteria.
+
+**What it doesn't certify**: Animal welfare (cashmere goats are not covered by GOTS even when fiber is "organic" — this is a known gap).
+
+**Cost to factory**: $3,000-8,000 per year + chain-of-custody documentation.
+
+### 3. **RWS (Responsible Wool Standard)**
+
+**What it certifies**: Animal welfare + land management + chain of custody for wool (and recently, cashmere).
+
+**What it doesn't certify**: Chemical safety (no substance testing like OEKO-TEX).
+
+**Cost to factory**: $2,500-6,000 per year.
+
+### 4. **ISO 9001** (Quality Management)
+
+**What it certifies**: Quality management systems, not product safety.
+
+**What it doesn't certify**: Anything about the actual cashmere or chemicals used.
+
+**Cost to factory**: $3,000-15,000 initial + annual audits.
+
+### 5. **ISO 14001** (Environmental Management)
+
+**What it certifies**: Environmental management systems.
+
+**What it doesn't certify**: Product safety or fiber origin.
+
+### 6. **BSCI / Sedex SMETA** (Social Compliance)
+
+**What they certify**: Worker welfare, fair wages, no child labor.
+
+**What they don't certify**: Product safety or fiber origin.
+
+### 7. **GCS (Good Cashmere Standard)** (industry-specific)
+
+**What it certifies**: Cashmere fiber content + animal welfare + traceability from farm to finished product.
+
+**What it doesn't certify**: Chemical safety (no substance testing).
+
+## What certifications actually matter for cashmere
+
+For B2B buyers in different markets:
+
+| Market | Required/Mandated | Recommended |
+|---|---|---|
+| **EU (all markets)** | REACH compliance, OEKO-TEX (most retailers mandate) | GOTS, RWS |
+| **US** | CPSIA compliance, OEKO-TEX (department stores mandate) | RWS, GOTS |
+| **Japan** | OEKO-TEX (standard), JIS L 0217 (Japanese standard) | RWS |
+| **China (domestic)** | GB 18401 (China textile safety standard) | OEKO-TEX |
+| **Korea** | KC Mark (similar to OEKO-TEX) | RWS |
+
+**For 90% of B2B buyers, OEKO-TEX Standard 100 (Class II) is the minimum bar.** Anything below that and you can't sell to most EU/US department stores and luxury retailers.
+
+## How to verify certification claims
+
+Any factory can claim certifications. Here's how to verify:
+
+### Step 1: Ask for the certificate number
+
+Every OEKO-TEX certificate has a unique number. Ask the supplier for the certificate number and the certifying body (e.g., "Hohenstein Institute" or "Testex").
+
+### Step 2: Look up on the certifying body's website
+
+- **OEKO-TEX**: https://www.oeko-tex.com/en/buyers/search (search by company name or certificate number)
+- **GOTS**: https://www.global-standard.org/find-suppliers.html
+- **RWS**: https://textileexchange.org/certificate-search/
+- **BSCI**: https://www.bsciplatform.com/
+
+If the certificate doesn't show up, the claim is bogus.
+
+### Step 3: Verify the certificate scope
+
+Certificates cover specific product categories. A factory's OEKO-TEX certificate might cover "yarn and fabric" but not "garments" — meaning their finished knitwear isn't actually certified.
+
+### Step 4: Check expiration dates
+
+OEKO-TEX certificates are typically valid for 1 year. A certificate that "expired 6 months ago" is technically invalid.
+
+## What to do if your supplier fakes certifications
+
+It's more common than you'd think. In 2023, an industry survey estimated 15-20% of "OEKO-TEX certified" claims from Chinese suppliers were not verifiable.
+
+If you suspect fraud:
+1. **Request the certificate PDF** (not just a number) and check the URL it points to
+2. **Verify the certificate number** on the certifying body's website
+3. **Commission your own test** on a sample shipment ($200-500 per test)
+4. **Report to the certifying body** if fraud is confirmed — they can revoke the supplier's status
+
+## How to read a typical OEKO-TEX certificate
+
+A standard certificate includes:
+- **Certificate number** (e.g., "SH015 123456")
+- **Issue date** and **validity** (usually 1 year)
+- **Holder** (the certified company)
+- **Product class** (I, II, III, or IV)
+- **Tested articles** (yarn, fabric, garment, etc.)
+- **Testing institute** (Hohenstein, Testex, etc.)
+- **Authorized signature** and stamp
+
+If any of these are missing or look altered, request a fresh copy directly from the certifying body.
+
+## Working with DONGXIAO
+
+We hold all relevant cashmere certifications:
+- **OEKO-TEX Standard 100** (Class II, since 2020)
+- **GOTS** (since 2022, for organic cashmere orders 500kg+)
+- **RWS** (since 2022, for blended products)
+- **BSCI** (since 2019)
+- **Sedex SMETA 4-Pillar** (since 2020)
+- **ISO 9001:2015** (since 2018)
+
+For B2B buyers, we share current certificates with every sample shipment. We also commission independent third-party testing (SGS, Bureau Veritas) on 10% of our annual output to verify ongoing compliance.
+
+For buyers requiring certifications we don't currently hold (e.g., Bluesign, Cradle-to-Cradle), we can pursue them as part of your order with a 6-month lead time and shared cost.
+
+---
+
+*Need certified cashmere? [Request a quote](https://www.erdosdx.com/en/contact) with your target certifications. We'll send current certificates with sample shipment and explain any limitations.*
+
+## Frequently asked questions about OEKO-TEX and textile safety standards
+B2B buyers, sourcing managers, and brand founders evaluating OEKO-TEX certified cashmere ask the same questions before accepting a supplier's certification claim. These quick answers cover what the standard guarantees, how to verify a certificate, and how OEKO-TEX compares to GOTS, RWS, and BSCI. To request our current certificates with sample shipment, see our [certification page](/en/contact).
+
+### What is OEKO-TEX Standard 100 and why does it matter?
+OEKO-TEX Standard 100 is a global testing and certification system for textile raw materials, intermediate and end products at all stages of production. The standard tests for over 300 harmful substances — including pesticides, heavy metals, formaldehyde, phthalates, and azo dyes — and is updated with new substances annually. A textile product bearing the OEKO-TEX label is certified to contain no substance concentrations above the standard's limits. For B2B cashmere buyers, OEKO-TEX Standard 100 is the baseline safety certification that retail buyers (especially in EU and US markets) expect, and most major retailers require it as a condition of sale. Without it, cashmere garments can be blocked at customs under REACH regulations.
+
+### How do I verify an OEKO-TEX certificate is real?
+Every OEKO-TEX certificate has a unique certificate number that can be verified in the public Label Check database at oeko-tex.com/en/label-check. Enter the certificate number into the search form; the database returns the certificate holder, product class, validity period, and the certified articles. If the certificate number doesn't appear in Label Check, the certificate is fake, expired, or was issued to a different company. Beyond Label Check, request a copy of the actual certificate PDF from the supplier and check that the company name, address, and certified product scope match what the supplier is selling. Suppliers that refuse Label Check verification are usually misrepresenting their certification status.
+
+### What is the difference between OEKO-TEX Standard 100 and OEKO-TEX 1000?
+OEKO-TEX Standard 100 certifies the end product — a tested cashmere sweater contains no harmful substances above the standard's limits. OEKO-TEX STeP (formerly OEKO-TEX 1000) certifies the production facility — the factory operates under environmentally friendly and socially responsible conditions, including wastewater treatment, chemical management, energy efficiency, and worker safety. STeP is a facility-level certification, not a product test. For B2B cashmere buyers, Standard 100 is the must-have product certification; STeP is the nice-to-have facility certification that some EU/US retailers request as a sustainability differentiator. MADE IN GREEN is OEKO-TEX's combined label for products that are both Standard 100 certified AND manufactured in a STeP-certified facility.
+
+### Is OEKO-TEX the same as GOTS?
+No — OEKO-TEX Standard 100 and GOTS (Global Organic Textile Standard) test for different things. OEKO-TEX Standard 100 tests for harmful substances in the finished product, regardless of whether the fiber is organic. GOTS certifies the fiber is organically grown (95%+ organic for "organic" label, 70%+ for "made with organic") AND covers processing criteria including chemical inputs, wastewater, and social compliance throughout the supply chain. A cashmere garment can be OEKO-TEX certified but not GOTS (because the fiber source is not organic), and vice versa. For B2B buyers targeting the EU market, OEKO-TEX is the baseline requirement; GOTS adds value only if the end customer cares about organic fiber origin.
+
+### How long does an OEKO-TEX certificate remain valid?
+OEKO-TEX Standard 100 certificates are valid for 12 months from the date of issue. The certificate must be renewed annually through re-testing of representative samples. After 12 months, even an unchanged product requires a new test report and a new certificate number. Buyers should check the validity period on every certificate — an expired certificate is no different from no certificate at all. Our Ordos factory renews certificates each spring with updated test reports; the current certificate number is on our website and available on request. For long-term B2B partnerships, confirm the supplier's renewal schedule so the certificate doesn't lapse mid-production cycle.
+
+### What happens if a supplier fakes an OEKO-TEX certificate?
+A supplier faking an OEKO-TEX certificate is a serious red flag with three concrete consequences: (1) customs blocks — REACH enforcement in EU ports can seize shipments with undocumented chemical safety; (2) retailer rejection — major retailers (Zara, H&M, Uniqlo, Marks & Spencer) verify every certificate in OEKO-TEX Label Check before accepting goods; fake certificates get the shipment rejected and the supplier banned from the buyer's vendor list; (3) legal liability — knowingly misrepresenting certification status violates the OEKO-TEX trademark terms and can result in trademark infringement claims. Beyond the immediate consequences, faking a certification is usually a symptom of other quality fraud — if the OEKO-TEX claim is fake, the cashmere grade is probably fake too. Always verify in OEKO-TEX Label Check before placing an order.
 
 ---
 
@@ -6899,6 +6962,27 @@ Premium cashmere has tight, regular crimp and a soft "handle" (touch feel). Run 
 3. Visit the factory or hire a third-party inspector (Asia Inspection, Bureau Veritas)
 
 DONGXIAO® Cashmere provides full lab reports on every batch and welcomes factory audits at our Ordos facility. [Contact our B2B team](/en/contact) for sample requests.
+
+## Frequently asked questions about identifying premium cashmere
+Buyers, sourcing teams, and brand founders trying to identify premium cashmere — not just marketing-claimed premium — typically ask the same set of questions. These quick answers cover the lab metrics and field tests that distinguish Grade A from Grade B and C fiber. For lab reports and audit access, request a [cashmere sample kit](/en/contact).
+
+### What micron count defines premium cashmere?
+Premium cashmere is defined by micron count of 14.0–15.5μm, with top-tier lots reaching 13.5–14.0μm. Cashmere goat fiber under 15.5μm is classified as Grade A; 15.5–16.5μm is Grade B; 16.5–19.0μm is Grade C. Each micron step matters: 14.5μm fiber feels noticeably softer against skin than 15.5μm fiber, and the price premium for sub-15μm lots is 20–40%. The micron count is measured by OFDA (Optical Fiber Diameter Analysis) on a representative sample of the dehaired top. Without an OFDA test report, a supplier's "premium cashmere" claim is unverifiable — request the lab report from the current batch, not a generic spec sheet.
+
+### How can you tell real cashmere from fake without lab equipment?
+Three field tests distinguish real cashmere from fake: (1) hand-feel test — real cashmere feels warm and slightly oily to the touch because of the natural lanolin coating; acrylic feels plasticky and cold; (2) burn test (off-cut only) — real cashmere burns slowly with a smell like burnt hair, leaves a brittle dark crushable ash; acrylic burns fast with a chemical smell and leaves a hard plastic bead; (3) water test — real cashmere absorbs water slowly (5–10 seconds to wet through), acrylic repels water. None of these alone is conclusive — combine all three with the burn test as the deciding factor. For B2B sourcing decisions, a proper lab OFDA test is always worth the USD 30–80 fee.
+
+### What is the dehaired yield and why does it matter?
+Dehaired yield is the percentage of usable cashmere fiber remaining after coarse guard hairs are mechanically removed from the raw fleece. Premium cashmere has a dehaired yield of 70–80%, mid-tier 60–70%, entry 50–60%. The lower the yield, the more raw fiber the factory must buy to produce a kilogram of usable cashmere — directly affecting cost. A 60% yield fiber costs roughly 25% more per usable kilogram than a 75% yield fiber because you need 1.67 kg of raw fiber to produce 1 kg of dehaired top. Dehaired yield also correlates with hand-feel: high-yield fiber has finer average diameter because more of the coarse outer fibers are removed.
+
+### Does cashmere length matter for quality?
+Yes — cashmere staple length directly affects pilling resistance and garment durability. Premium cashmere has a staple length of 36–42mm, mid-tier 30–36mm, entry-grade 24–30mm. Short fiber (<30mm) pills quickly because loose fiber ends escape the yarn twist during wear; long fiber (36mm+) pills less because more fiber is locked into the yarn structure. A 12-gauge pullover made from 38mm fiber will look near-new after 30 wear cycles, while the same garment made from 28mm fiber shows visible pilling under the arms after 10 wear cycles. Ask for the average staple length on the lab report alongside micron count.
+
+### What is baby cashmere and is it worth the premium?
+Baby cashmere is the under-fiber harvested from cashmere goat kids (typically 3–12 months old) during their first combing. It is finer than adult cashmere — 13.0–14.0μm versus 14.5–15.5μm for premium adult Grade A — and noticeably softer. The premium is 2–4× over adult premium cashmere because baby goats yield only 30–80 grams of usable fiber per head versus 200–400 grams for adults, and the fiber cannot be harvested annually without harming the animal. Baby cashmere makes sense for luxury accessories (scarves, shawls, lightweight knits) where hand-feel is the deciding factor and price sensitivity is low. For everyday pullovers and cardigans, adult premium cashmere delivers 90% of the hand-feel at 30% of the cost.
+
+### Is Mongolian cashmere really better than Chinese cashmere?
+Cashmere quality is determined by fiber grade, not national origin. The finest Mongolian cashmere (Alashan goats, 13.5–14.5μm) is exceptional, but so is Inner Mongolian cashmere from the Ordos plateau (14.0–15.0μm) — these are often the same goats on the same rangelands. The "Mongolia vs China" distinction is marketing more than fiber science. What matters is: (1) verified micron count from an OFDA test report, (2) dehaired yield above 70%, (3) staple length above 34mm, (4) documented fiber sourcing — direct from a named herding cooperative with traceability. A premium-grade fiber from any well-managed rangeland outperforms a lower-grade fiber from a famous region.
 
 ---
 

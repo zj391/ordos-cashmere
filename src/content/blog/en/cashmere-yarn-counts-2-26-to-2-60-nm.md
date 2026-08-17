@@ -22,7 +22,7 @@ sourceTopic: "yarn-count-guide"
 
 A wrong count choice means a sweater that's too heavy for the design, or a scarf that's too flimsy. This guide covers the practical implications of cashmere yarn counts from 2/26 Nm to 2/60 Nm.
 
-## What does "2/48 Nm" actually mean?
+## Decoding cashmere yarn counts: 2/26 to 2/60 Nm
 
 Cashmere yarn counts use the **Nm** (Number metric) system. The format is **plies/fineness**:
 - **2/** means 2-ply (two single yarns twisted together)
@@ -116,3 +116,24 @@ For B2B buyers new to cashmere yarn, we recommend starting with **2/48 Nm white*
 ---
 
 *Need help choosing the right yarn count? [Contact our yarn team](https://www.erdosdx.com/en/contact) with your design specs (target gauge, fabric weight, end-use) and we'll recommend 3 yarn options with sample cones.*
+
+## Frequently asked questions about cashmere yarn counts
+Knitwear designers, brand founders, and yarn buyers selecting cashmere yarn counts for specific end-uses ask the same questions before placing a yarn order. These quick answers cover Nm counts, gauge matching, ply implications, and how yarn count translates to hand-feel. To request yarn sample cones with your specified count, see our [yarn spec sheet](/en/contact).
+
+### What does "2/48 Nm" actually mean in cashmere yarn?
+2/48 Nm cashmere yarn means the yarn is a 2-ply construction (two single strands twisted together) with a metric count of 48 — meaning 48 kilometers of single-ply yarn weighs 1 kilogram. The "2/" prefix indicates ply count; the Nm number indicates fineness (higher Nm = finer yarn). A 2/48 Nm yarn is finer and lighter than a 2/26 Nm yarn (26 km of single-ply per kg), even though both are 2-ply. For comparison: 2/26 Nm is medium-weight for chunky 7-gauge pullovers, 2/36 Nm is medium for 9-gauge, 2/48 Nm is fine for 14-gauge, 2/60 Nm is ultra-fine for 16-gauge. The metric count system is universal; the older English count (Ne) system is sometimes seen on US labels but conversion is straightforward.
+
+### Which cashmere yarn count should I use for sweaters?
+Cashmere yarn count selection for sweaters depends on target gauge and desired hand-feel: 2/26 Nm for 7-gauge chunky pullovers (winter weight, hand-knit aesthetic), 2/36 Nm for 9-gauge mid-weight pullovers (autumn/spring), 2/48 Nm for 12-gauge fine pullovers (versatile, most common for retail), 2/60 Nm for 14-gauge fine pullovers (smoother, lighter drape), 2/80 Nm for 16-gauge ultra-fine pullovers (luxury feel, summer-weight). For 12-gauge pullovers — the most common cashmere knitwear — 2/48 Nm is the standard. For 16-gauge fully-fashioned knits, 2/60 Nm or 2/80 Nm is required. The same yarn count can be used across multiple gauges, but the resulting fabric weight and drape changes.
+
+### What is the difference between worsted and woolen cashmere yarn?
+Worsted and woolen refer to the spinning method, not the fiber. Worsted cashmere yarn is spun from combed, parallel-aligned fibers using a ring-spinning process, resulting in a smooth, lustrous, tightly twisted yarn with a clean surface — used for fine-gauge knitwear (12gg+), tailored pullovers, and luxury accessories. Woolen cashmere yarn is spun from carded, randomly arranged fibers using a mule or air-jet spinning process, resulting in a fuzzy, soft, lofty yarn with visible fiber ends — used for chunky 7-gauge pullovers, blankets, and casual knitwear. Worsted yarn pills less and looks more refined; woolen yarn feels softer and warmer but pills faster. For luxury pullover programs, worsted is the standard; for casual capsule collections, woolen adds character.
+
+### How does ply count affect cashmere yarn quality?
+Cashmere yarn ply count affects hand-feel, durability, and warmth. 1-ply yarn is the lightest and most delicate, with visible fiber ends that pill quickly; used for ultra-fine summer knits and accessories where sheer drape matters. 2-ply is the industry standard, balancing softness, durability, and cost — used for most retail cashmere pullovers and cardigans. 3-ply adds 15–20% cost and produces a more structured garment with better shape retention — used for autumn/winter collections and tailored knitwear. 4-ply is the heaviest, used for premium winter-weight knits and capsule collections. For wholesale B2B buyers, 2-ply is the safe default; 3-ply makes sense for autumn/winter; 4-ply is reserved for premium capsules where the weight is the selling point.
+
+### What does 2/26 vs 2/60 mean in hand-feel?
+The hand-feel difference between 2/26 and 2/60 cashmere yarn is significant: 2/26 produces a chunky, lofty fabric with visible yarn structure and a cozy, sweater-like feel — used for 7-gauge pullovers weighing 380–450g per piece. 2/60 produces a fine, smooth, drapey fabric with minimal yarn visibility and a refined, luxury feel — used for 16-gauge pullovers weighing 250–320g per piece. 2/26 fabric feels warmer because more air is trapped in the looser knit structure; 2/60 fabric feels smoother and more breathable. Both can be Grade A 14.5μm fiber; the yarn count is a separate dimension. For B2B buyers, choose 2/26 for casual/winter capsules and 2/60 for luxury/summer collections.
+
+### Can a factory produce custom cashmere yarn counts?
+Yes — most cashmere yarn manufacturers produce custom counts from 2/16 Nm (very chunky) to 2/80 Nm (ultra-fine), with some specialty mills reaching 2/100 or 2/120 Nm. Custom counts below 2/16 or above 2/80 require a minimum yarn lot of 50–10 kg, depending on the count — a 2/100 Nm lot typically requires 30–50 kg minimum because the spinning setup time is significant. Lead time for custom counts is 4–6 weeks versus 1–2 weeks for stock counts. Pricing for custom counts is typically 10–20% above the nearest stock count due to the small-lot spinning surcharge. For B2B buyers, custom counts make sense only when the count falls significantly outside stock offerings (2/26, 2/36, 2/48, 2/60).
