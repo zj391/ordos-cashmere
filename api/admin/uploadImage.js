@@ -1,8 +1,8 @@
 /**
  * Admin product image upload (Vercel Node API endpoint).
- * Minimal stub for bisect: full implementation restored after build is green.
+ * Stub for bisect - moved to api/admin/ to test directory-level limit.
  */
-import { verifySession, getSecret } from '../_session.js';
+import { verifySession, getSecret } from './_session.js';
 
 function authed(req) {
   const cookie = String(req.headers.cookie || '');
