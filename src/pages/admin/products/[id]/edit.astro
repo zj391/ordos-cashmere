@@ -347,10 +347,10 @@ const noSupabase = url.searchParams.get('notice') === 'no_supabase';
           r.readAsDataURL(file);
         });
         const data = dataUrl.split(',')[1];
-        const r = await fetch('/api/admin/upload-image/', {
+        const r = await fetch('/api/admin/products/new/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ filename: file.name, data }),
+          body: JSON.stringify({ action: 'upload', filename: file.name, data }),
         });
         const j = await r.json();
         if (!r.ok) throw new Error(j.error || 'upload failed');
