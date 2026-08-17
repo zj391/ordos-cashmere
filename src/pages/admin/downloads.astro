@@ -8,13 +8,7 @@ export const prerender = false;
 import AdminLayout from '@/layouts/AdminLayout.astro';
 import { LOCALES } from '@/lib/i18n';
 
-function getAdminLocale(req: Request): string {
-  const cookieHeader = req.headers.get('cookie') || '';
-  const m = cookieHeader.match(/(?:^|;\s*)admin-locale=([^;]+)/);
-  if (m && LOCALES.some((l) => l === m[1])) return m[1]!;
-  return LOCALES[0];
-}
-const locale = getAdminLocale(Astro.request);
+const locale = 'cn';
 const L = (en: string, cn: string) => (locale === 'cn' ? cn : en);
 
 // Mirror of the public download page resource cards (src/pages/[locale]/download.astro)

@@ -75,7 +75,7 @@ function badgeStatus(s: string | null) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inquiries — DONGXIAO Cashmere Admin</title>
+  <title>询盘管理 — DONGXIAO 后台</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: system-ui, sans-serif; background: #fafaf9; color: #1c1917; padding: 1.5rem; }
@@ -138,26 +138,26 @@ function badgeStatus(s: string | null) {
 </head>
 <body>
   <div class="header">
-    <h1>Inquiries</h1>
+    <h1>询盘管理</h1>
     <div class="actions">
-      <a href="/api/admin/inquiries/?action=export&{url.searchParams.toString()}" class="primary">Export CSV</a>
-      <a href="/api/admin/auth?action=logout">Logout</a>
+      <a href="/api/admin/inquiries/?action=export&{url.searchParams.toString()}" class="primary">导出 CSV</a>
+      <a href="/api/admin/auth?action=logout">退出登录</a>
     </div>
   </div>
 
   {error && <div class="err">Error: {error}</div>}
 
   <div class="stats">
-    <div class="stat"><div class="stat-label">Total</div><div class="stat-value">{inquiries.length}</div></div>
-    <div class="stat"><div class="stat-label">A-grade</div><div class="stat-value">{byGrade['A'] || 0}</div></div>
-    <div class="stat"><div class="stat-label">B-grade</div><div class="stat-value">{byGrade['B'] || 0}</div></div>
-    <div class="stat"><div class="stat-label">C-grade</div><div class="stat-value">{byGrade['C'] || 0}</div></div>
-    <div class="stat"><div class="stat-label">Uncontacted</div><div class="stat-value">{byStatus['new'] || 0}</div></div>
-    <div class="stat"><div class="stat-label">Qualified</div><div class="stat-value">{byStatus['qualified'] || 0}</div></div>
+    <div class="stat"><div class="stat-label">总计</div><div class="stat-value">{inquiries.length}</div></div>
+    <div class="stat"><div class="stat-label">A 级</div><div class="stat-value">{byGrade['A'] || 0}</div></div>
+    <div class="stat"><div class="stat-label">B 级</div><div class="stat-value">{byGrade['B'] || 0}</div></div>
+    <div class="stat"><div class="stat-label">C 级</div><div class="stat-value">{byGrade['C'] || 0}</div></div>
+    <div class="stat"><div class="stat-label">未联系</div><div class="stat-value">{byStatus['new'] || 0}</div></div>
+    <div class="stat"><div class="stat-label">合格线索</div><div class="stat-value">{byStatus['qualified'] || 0}</div></div>
   </div>
 
   <div class="dist">
-    <h3>Lead Grade Distribution</h3>
+    <h3>线索等级分布</h3>
     <div class="dist-rows">
       {(() => {
         const total = Math.max(1, inquiries.length);
@@ -196,13 +196,13 @@ function badgeStatus(s: string | null) {
 
   <form class="filters" method="GET">
     <div class="filter">
-      <label>Search</label>
-      <input type="text" name="q" value={search} placeholder="name / company / email">
+      <label>搜索</label>
+      <input type="text" name="q" value={search} placeholder="姓名 / 公司 / 邮箱">
     </div>
     <div class="filter">
-      <label>Grade</label>
+      <label>等级</label>
       <select name="grade">
-        <option value="">All</option>
+        <option value="">全部</option>
         <option value="A" selected={grade === 'A'}>A</option>
         <option value="B" selected={grade === 'B'}>B</option>
         <option value="C" selected={grade === 'C'}>C</option>
@@ -210,40 +210,40 @@ function badgeStatus(s: string | null) {
       </select>
     </div>
     <div class="filter">
-      <label>Status</label>
+      <label>状态</label>
       <select name="status">
-        <option value="">All</option>
-        <option value="new" selected={status === 'new'}>new</option>
-        <option value="contacted" selected={status === 'contacted'}>contacted</option>
-        <option value="qualified" selected={status === 'qualified'}>qualified</option>
-        <option value="won" selected={status === 'won'}>won</option>
-        <option value="lost" selected={status === 'lost'}>lost</option>
+        <option value="">全部</option>
+        <option value="new" selected={status === 'new'}>新询盘</option>
+        <option value="contacted" selected={status === 'contacted'}>已联系</option>
+        <option value="qualified" selected={status === 'qualified'}>合格</option>
+        <option value="won" selected={status === 'won'}>成交</option>
+        <option value="lost" selected={status === 'lost'}>流失</option>
       </select>
     </div>
     <div class="filter">
-      <label>Country</label>
+      <label>国家</label>
       <input type="text" name="country" value={country} placeholder="US / IT / DE...">
     </div>
-    <button type="submit">Filter</button>
-    <a href="/admin/inquiries/">Clear</a>
+    <button type="submit">筛选</button>
+    <a href="/admin/inquiries/">清除</a>
   </form>
 
   {inquiries.length === 0 ? (
-    <table><tr><td class="empty">No inquiries match these filters.</td></tr></table>
+    <table><tr><td class="empty">没有匹配的询盘。</td></tr></table>
   ) : (
     <table>
       <thead>
         <tr>
-          <th>Date</th>
-          <th>Contact</th>
-          <th>Company</th>
-          <th>Country</th>
-          <th>Type</th>
-          <th>Product</th>
-          <th>Qty</th>
-          <th>Grade</th>
-          <th>Score</th>
-          <th>Status</th>
+          <th>日期</th>
+          <th>联系人</th>
+          <th>公司</th>
+          <th>国家</th>
+          <th>类型</th>
+          <th>产品</th>
+          <th>数量</th>
+          <th>等级</th>
+          <th>评分</th>
+          <th>状态</th>
         </tr>
       </thead>
       <tbody>

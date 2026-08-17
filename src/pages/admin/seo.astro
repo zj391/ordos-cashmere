@@ -9,13 +9,7 @@ import AdminLayout from '@/layouts/AdminLayout.astro';
 import { LOCALES } from '@/lib/i18n';
 import { SEO } from '@/lib/seo';
 
-function getAdminLocale(req: Request): string {
-  const cookieHeader = req.headers.get('cookie') || '';
-  const m = cookieHeader.match(/(?:^|;\s*)admin-locale=([^;]+)/);
-  if (m && LOCALES.some((l) => l === m[1])) return m[1]!;
-  return LOCALES[0];
-}
-const locale = getAdminLocale(Astro.request);
+const locale = 'cn';
 const L = (en: string, cn: string) => (locale === 'cn' ? cn : en);
 
 // Page keys that exist in LocaleSEO
@@ -128,7 +122,7 @@ const descBadge = (ok: boolean) =>
     >
       <option value="">{L('All locales', '全部语言')}</option>
       {LOCALES.map((lc) => (
-        <option value={lc.code} selected={locFilter === lc.code}>{lc.code.toUpperCase()}</option>
+        <option value={lc} selected={locFilter === lc}>{lc.toUpperCase()}</option>
       ))}
     </select>
     <label class="flex items-center gap-2 text-sm text-stone-700">

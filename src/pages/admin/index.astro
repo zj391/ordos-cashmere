@@ -43,15 +43,7 @@ const labels = {
 
 const L = (obj: Record<string, string>) => obj[locale] || obj.en;
 
-// Get locale from cookie (set by AdminLayout's locale switch) or fall back to default.
-function getAdminLocale(req: Request): string {
-  const cookieHeader = req.headers.get('cookie') || '';
-  const m = cookieHeader.match(/(?:^|;\s*)admin-locale=([^;]+)/);
-  if (m && LOCALES.some((l) => l === m[1])) return m[1]!;
-  return LOCALES[0];
-}
-
-const locale = getAdminLocale(Astro.request);
+const locale = 'cn';
 
 // ====== Fetch counts from Supabase (best-effort) ======
 type Stats = { products: number; news: number; inquiries: number; visitors: number; monthDelta: { products: number; news: number; inquiries: number; visitors: number } };

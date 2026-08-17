@@ -20,13 +20,7 @@ import AdminLayout from '@/layouts/AdminLayout.astro';
 import { LOCALES } from '@/lib/i18n';
 import { products as productsData } from '@/data/products';
 
-function getAdminLocale(req: Request): string {
-  const cookieHeader = req.headers.get('cookie') || '';
-  const m = cookieHeader.match(/(?:^|;\s*)admin-locale=([^;]+)/);
-  if (m && LOCALES.some((l) => l === m[1])) return m[1]!;
-  return LOCALES[0];
-}
-const locale = getAdminLocale(Astro.request);
+const locale = 'cn';
 
 const L = (en: string, cn: string) => (locale === 'cn' ? cn : en);
 
@@ -196,6 +190,18 @@ const duplicateId = url.searchParams.get('error_code') === 'duplicate_id';
         </div>
       </div>
 
+      <!-- Images -->
+      <div class="rounded-lg border border-stone-200 bg-white p-5">
+        <div class="mb-3 flex items-center justify-between">
+          <h3 class="text-sm font-medium text-stone-500 uppercase tracking-wider">{L('Product Images', '产品图片')}</h3>
+          <button type="button" id="img-upload-btn" class="rounded-md bg-stone-800 px-3 py-1.5 text-xs text-white hover:bg-stone-700">{L('Upload', '上传图片')}</button>
+          <input type="file" id="img-input" accept="image/*" class="hidden" />
+        </div>
+        <p class="mb-3 text-xs text-stone-500">{L('Upload images (JPG/PNG/WebP, max 5MB each). First image becomes the cover.', '上传图片（JPG/PNG/WebP，单张≤5MB）。第一张为封面。')}</p>
+        <div id="img-preview" class="flex flex-wrap gap-2"></div>
+        <input type="hidden" name="images" id="images-input" value="[]" />
+      </div>
+
       <!-- Submit row -->
       <div class="flex items-center justify-between">
         <a href="/admin/products/" class="text-sm text-stone-600 hover:text-primary">
@@ -230,4 +236,59 @@ const duplicateId = url.searchParams.get('error_code') === 'duplicate_id';
       </div>
     </div>
   </form>
+
+  <script>
+    (() => {
+      const uploadBtn = document.getElementById('img-upload-btn');
+      const imgInput = document.getElementById('img-input');
+      const preview = document.getElementById('img-preview');
+      const hidden = document.getElementById('images-input');
+      if (!uploadBtn || !imgInput || !preview || !hidden) return;
+      let images = [];
+      try { images = JSON.parse(hidden.value || '[]'); } catch {}
+      function render() {
+        hidden.value = JSON.stringify(images);
+        preview.innerHTML = '';
+        images.forEach((url, idx) => {
+          const wrap = document.createElement('div');
+          wrap.className = 'relative h-20 w-20 overflow-hidden rounded-md border border-stone-200';
+          wrap.innerHTML = '<img src="' + url + '" alt="" class="h-full w-full object-cover" /><button type="button" class="absolute right-0 top-0 bg-black/60 px-1 text-xs text-white" data-idx="' + idx + '">×</button>';
+          wrap.querySelector('button').addEventListener('click', () => { images.splice(idx, 1); render(); });
+          preview.appendChild(wrap);
+        });
+      }
+      uploadBtn.addEventListener('click', () => imgInput.click());
+      imgInput.addEventListener('change', async () => {
+        const file = imgInput.files && imgInput.files[0];
+        if (!file) return;
+        if (file.size > 5 * 1024 * 1024) { alert('图片不能超过 5MB'); imgInput.value = ''; return; }
+        uploadBtn.disabled = true; uploadBtn.textContent = '...';
+        try {
+          const dataUrl = await new Promise((resolve, reject) => {
+            const r = new FileReader();
+            r.onload = () => resolve(String(r.result));
+            r.onerror = reject;
+            r.readAsDataURL(file);
+          });
+          const data = dataUrl.split(',')[1];
+          const r = await fetch('/api/admin/products/new/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'upload', filename: file.name, data }),
+          });
+          const j = await r.json();
+          if (!r.ok) throw new Error(j.error || 'upload failed');
+          images.push(j.url);
+          render();
+          alert('上传成功');
+        } catch (e) {
+          alert('上传失败: ' + e.message);
+        } finally {
+          uploadBtn.disabled = false; uploadBtn.textContent = '上传图片';
+          imgInput.value = '';
+        }
+      });
+      render();
+    })();
+  </script>
 </AdminLayout>

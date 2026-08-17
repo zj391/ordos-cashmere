@@ -83,44 +83,44 @@ function fmtDate(iso: string) {
 <body>
   <div class="container">
     <div class="header">
-      <h1>Inquiry #{id}</h1>
+      <h1>询盘 #{id}</h1>
       <div class="actions">
-        <a href="/admin/inquiries/">← Back to list</a>
-        <a href="/api/admin/auth?action=logout">Logout</a>
+        <a href="/admin/inquiries/">← 返回列表</a>
+        <a href="/api/admin/auth?action=logout">退出登录</a>
       </div>
     </div>
 
     {error && <div class="err">Error: {error}</div>}
 
     {!inquiry ? (
-      <div class="card">Not found.</div>
+      <div class="card">未找到该询盘。</div>
     ) : (
       <>
         <div class="card">
-          <h2>Contact</h2>
+          <h2>联系信息</h2>
           <dl>
-            <dt>Name</dt><dd>{inquiry.contact_name}</dd>
-            <dt>Company</dt><dd>{inquiry.company_name}</dd>
-            <dt>Email</dt><dd><a href={`mailto:${inquiry.email}`}>{inquiry.email}</a></dd>
-            <dt>Phone</dt><dd>{inquiry.phone || '—'}</dd>
-            <dt>Country</dt><dd>{inquiry.country}</dd>
-            <dt>Locale</dt><dd>{inquiry.locale}</dd>
+            <dt>姓名</dt><dd>{inquiry.contact_name}</dd>
+            <dt>公司</dt><dd>{inquiry.company_name}</dd>
+            <dt>邮箱</dt><dd><a href={`mailto:${inquiry.email}`}>{inquiry.email}</a></dd>
+            <dt>电话</dt><dd>{inquiry.phone || '—'}</dd>
+            <dt>国家</dt><dd>{inquiry.country}</dd>
+            <dt>语言</dt><dd>{inquiry.locale}</dd>
           </dl>
         </div>
 
         <div class="card">
-          <h2>Inquiry</h2>
+          <h2>询盘内容</h2>
           <dl>
-            <dt>Type</dt><dd>{inquiry.inquiry_type}</dd>
-            <dt>Product</dt><dd>{inquiry.product_interest || '—'}</dd>
-            <dt>Quantity kg</dt><dd>{inquiry.quantity_kg || '—'}</dd>
-            <dt>Quantity m</dt><dd>{inquiry.quantity_m || '—'}</dd>
-            <dt>Quantity pcs</dt><dd>{inquiry.quantity_pcs || '—'}</dd>
-            <dt>Created</dt><dd>{fmtDate(inquiry.created_at)}</dd>
+            <dt>类型</dt><dd>{inquiry.inquiry_type}</dd>
+            <dt>产品</dt><dd>{inquiry.product_interest || '—'}</dd>
+            <dt>数量(kg)</dt><dd>{inquiry.quantity_kg || '—'}</dd>
+            <dt>数量(m)</dt><dd>{inquiry.quantity_m || '—'}</dd>
+            <dt>数量(件)</dt><dd>{inquiry.quantity_pcs || '—'}</dd>
+            <dt>创建时间</dt><dd>{fmtDate(inquiry.created_at)}</dd>
           </dl>
           {inquiry.message && (
             <>
-              <label style="margin-top: 1rem;">Message</label>
+              <label style="margin-top: 1rem;">留言内容</label>
               <div class="message">{inquiry.message}</div>
             </>
           )}

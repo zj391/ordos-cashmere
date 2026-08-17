@@ -39,7 +39,7 @@ const errorText = error ? 'Invalid password. Try again.' : null;
   <meta http-equiv="pragma" content="no-cache">
   <meta http-equiv="expires" content="0">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Login — DONGXIAO Cashmere</title>
+  <title>管理员登录 — DONGXIAO Cashmere</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -95,13 +95,13 @@ const errorText = error ? 'Invalid password. Try again.' : null;
 </head>
 <body>
   <div class="card">
-    <h1>Admin Login</h1>
+    <h1>管理员登录</h1>
     <p>DONGXIAO Cashmere internal dashboard</p>
     {errorText && <div class="err">{errorText}</div>}
     <form method="POST" action="/api/admin/auth?action=login">
-      <label for="password">Password</label>
+      <label for="password">密码</label>
       <input type="password" id="password" name="password" required autofocus>
-      <button type="submit">Sign in</button>
+      <button type="submit">登 录</button>
     </form>
   </div>
 </body>

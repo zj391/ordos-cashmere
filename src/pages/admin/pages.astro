@@ -8,13 +8,7 @@ export const prerender = false;
 import AdminLayout from '@/layouts/AdminLayout.astro';
 import { LOCALES } from '@/lib/i18n';
 
-function getAdminLocale(req: Request): string {
-  const cookieHeader = req.headers.get('cookie') || '';
-  const m = cookieHeader.match(/(?:^|;\s*)admin-locale=([^;]+)/);
-  if (m && LOCALES.some((l) => l === m[1])) return m[1]!;
-  return LOCALES[0];
-}
-const locale = getAdminLocale(Astro.request);
+const locale = 'cn';
 const L = (en: string, cn: string) => (locale === 'cn' ? cn : en);
 
 // Registry of main public pages (route segment under /[locale]/)
@@ -43,7 +37,7 @@ const PAGES = [
 // All pages exist in all locales (routes are generated per locale)
 const rows = PAGES.map((pg) => ({
   ...pg,
-  locales: LOCALES.map((lc) => lc.code),
+  locales: LOCALES.map((lc) => lc),
 }));
 
 const totalPages = rows.length;

@@ -54,7 +54,7 @@ const navItems = ADMIN_NAV_ITEMS.map((n) => ({
 }));
 ---
 <!DOCTYPE html>
-<html lang={locale} class="h-full bg-stone-50">
+<html lang="zh-CN" class="h-full bg-stone-50">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -84,19 +84,7 @@ const navItems = ADMIN_NAV_ITEMS.map((n) => ({
         )}
 
         <div class="ml-auto flex items-center gap-3">
-          <!-- locale switch (changes UI labels only; URLs stay /admin/...) -->
-          <label for="admin-locale" class="sr-only">{L(tNav.langLabel)}</label>
-          <select
-            id="admin-locale"
-            class="rounded-md border border-stone-300 bg-white px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-            onchange="localStorage.setItem('admin-locale', this.value); window.location.reload();"
-          >
-            {LOCALES.map((code) => (
-              <option value={code} selected={code === locale}>
-                {LOCALE_NAMES[code] || code.toUpperCase()}
-              </option>
-            ))}
-          </select>
+          <span class="hidden rounded-md border border-stone-300 bg-white px-2 py-1 text-sm text-stone-500 md:inline">简体中文</span>
 
           <a href={`/${locale === 'cn' ? '' : locale + '/'}`} target="_blank" rel="noopener" class="hidden text-sm text-stone-600 hover:text-primary md:inline">{L(tNav.viewSite)}</a>
 

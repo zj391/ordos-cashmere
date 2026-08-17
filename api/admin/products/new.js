@@ -221,7 +221,14 @@ export default async function handler(req, res) {
       lead: strOrNull(form.get('lead')),
       description: strOrNull(form.get('description')),
       colors: [],
-      images: [],
+      images: (() => {
+        try {
+          const v = JSON.parse(form.get('images') || '[]');
+          return Array.isArray(v) ? v.map(String) : [];
+        } catch {
+          return [];
+        }
+      })(),
       tags: [],
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
