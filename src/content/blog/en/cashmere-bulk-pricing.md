@@ -216,6 +216,27 @@ Sample: $80/piece (credited toward first bulk order). Bulk lead time: 25-30 days
 
 [Request a detailed quote →](/en/contact)
 
+## Frequently asked questions about cashmere wholesale pricing
+Buyers shopping for wholesale cashmere often ask the same questions about per-piece cost, MOQ, and pricing tiers. These quick answers help you size up a quote in minutes. For line-item pricing or a factory-direct quotation, see our [bulk order form](/en/contact).
+
+### What does a cashmere sweater actually cost wholesale in 2026?
+Cashmere sweater wholesale cost per unit ranges from USD 36 to 92 at FOB Tianjin for Grade A 14.0–15.5μm fiber, depending on gauge, ply, and order volume. At 1,000 pieces of a 12-gauge crew-neck pullover (380 g, 2-ply worsted), expect USD 48–58 per piece. At 5,000+ pieces the same garment drops to USD 36–44. Lower gauges (16–18 gg) and finer micron counts (14.0 μm) add 40–100% on top of the 7 gg baseline. Always check whether the quote specifies micron range, gauge, ply, and garment weight — missing line items are the most common source of price surprises.
+
+### What is the minimum order quantity for cashmere from a factory?
+Cashmere manufacturer minimum order quantity is typically 100 pieces per style for OEM/ODM orders, though some factories accept 50 pieces per style at a 15–25% per-piece premium. Setup fees (yarn lot minimum, machine programming, label production) amortize across larger runs, so factories price small orders higher per piece. At 300 pieces setup fees are often waived; at 500+ pieces volume discounts of 10–15% kick in. For first-time buyers, ordering 100 pieces as a quality-check sample run is the standard approach.
+
+### Is factory-direct pricing cheaper than going through a middleman?
+Factory-direct pricing is typically 20–35% cheaper per piece than buying through a trading company, importer, or distributor. A middleman adds margin for sourcing, QC, warehousing, and financing — usually 15–25% on top of FOB. The trade-off is that factory-direct buyers handle their own QC, shipping logistics, and customs clearance. For first-time buyers without a sourcing partner, a trading company can be worth the premium if it provides on-the-ground inspection. For repeat orders with established factories, factory-direct is the lower-cost path.
+
+### How is cashmere bulk pricing calculated per kilogram of yarn?
+Cashmere yarn is priced USD 50–120 per kg of dehaired top depending on grade (Grade A 14.0–15.5 μm commands the premium, Grade B 15.5–16.5 μm is mid-tier, Grade C 16.5–19.0 μm is entry). A 380 g 12 gg sweater consumes roughly 0.42 kg of finished yarn after dehairing and spinning loss, so fiber cost alone is USD 21–50 per garment. Add spinning, knitting, linking, finishing, and factory margin to reach the wholesale FOB price. Spinning loss (5–8%) and knitting loss (3–5%) should be factored into yarn order quantities.
+
+### What hidden costs should I budget beyond the FOB price?
+Beyond per-piece FOB pricing, cashmere import tax and add-on costs typically add 10–20% on top. Common line items: sample fees USD 50–150 per piece (often credited toward bulk), setup USD 200–600 per style, custom labels USD 0.40–0.80 per piece, custom packaging USD 1–3 per piece, third-party AQL inspection USD 0.10–0.30 per piece, sample shipping DHL/FedEx USD 50–200, bulk shipping 5–12% of FOB depending on destination and volume, plus import duty and VAT in the destination market. For US imports, expect Section 301 tariffs on cashmere knitwear (HTS 6110).
+
+### How do I negotiate a lower per-piece price without sacrificing quality?
+Three proven levers: volume (move from 500 to 1,000 pieces for a 20–25% per-piece discount), flexibility (off-peak production Feb–Apr or Aug–Sep adds 5–10% discount), and bundling (multi-style orders totaling 1,500+ pieces often qualify for volume pricing on the full bundle). Avoid negotiating on grade — pushing a Grade A supplier down to Grade B pricing usually means Grade B fiber, not the same yarn at lower margin. Real grade verification: ask for a micron test certificate from the fiber batch, and compare against your reference swatch.
+
 ## Related guides
 
 - [Why Cashmere Costs USD 8-50 per Piece](/en/blog/cashmere-cost-breakdown-wholesale) — Cost line items
