@@ -1,0 +1,13 @@
+---
+import CategoryPage from '@/components/products/CategoryPage.astro';
+import { LOCALES } from '@/lib/i18n';
+
+export function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { locale } }));
+}
+export const prerender = true;
+
+const { locale } = Astro.params;
+const slug = 'accessories-cat';
+---
+<CategoryPage locale={locale} slug={slug} />

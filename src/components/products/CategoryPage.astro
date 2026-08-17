@@ -6,8 +6,6 @@
  * 每个类别有独立的 SEO TDK（针对长尾关键词），列出该类别下所有产品。
  * 591 个产品被组织成 5 个 hub 页 × 6 国 = 30 个 URL。
  */
-export const prerender = true;
-
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Navigation from '@/components/Navigation.astro';
 import Footer from '@/components/Footer.astro';
@@ -55,34 +53,15 @@ for (const catId of Object.keys(CATEGORY_SLUGS_DEFS)) {
   if (!SLUG_TO_CATEGORY_DEFS[m.slug]) SLUG_TO_CATEGORY_DEFS[m.slug] = catId;
 }
 
-export function getStaticPaths() {
-  const paths = [];
-    // Astro/Rollup hoists getStaticPaths before top-level consts.
-  // Recreate the maps locally so the order is guaranteed.
-  const CATEGORY_SLUGS = {
-    hats: { id: 'hats', slug: 'hats-accessories', name: 'Cashmere Hats & Beanies' },
-    scarves: { id: 'scarves', slug: 'scarves', name: 'Cashmere Scarves & Wraps' },
-    sweaters: { id: 'sweaters', slug: 'garment-oem', name: 'Cashmere Sweaters & Knitwear' },
-    accessories: { id: 'accessories', slug: 'accessories-cat', name: 'Cashmere Accessories' },
-    yarn: { id: 'yarn', slug: 'yarn', name: 'Cashmere Yarn & Fiber' },
-  };
-  const slugs = Array.from(new Set(Object.values(CATEGORY_SLUGS).map((c) => c.slug)));
-  for (const locale of LOCALES) {
-    for (const slug of slugs) {
-      paths.push({ params: { locale, category: slug } });
-    }
-  }
-  return paths;
+interface Props {
+  locale: string;
+  slug: string;
 }
-
-const { locale: rawLocale, category: slug } = Astro.params;
-if (!isLocale(rawLocale)) { return new Response('Not Found', { status: 404 }); }
-const locale = pickLocale(rawLocale);
-if (!slug || !SLUG_TO_CATEGORY_DEFS[slug]) { return new Response('Not Found', { status: 404 }); }
+const { locale, slug } = Astro.props;
 
 const catId = SLUG_TO_CATEGORY_DEFS[slug];
 const category = getCategoryById(catId);
-if (!category) { return new Response('Not Found', { status: 404 }); }
+if (!category) return;
 
 const products = category.products;
 // 分类页 → 指南页内链（SEO 内部链接）
