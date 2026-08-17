@@ -10,6 +10,9 @@ import vercel from '@astrojs/vercel';
 // This is the canonical Astro 5 + Vercel setup as of 2026.
 
 export default defineConfig({
+  // Keep Vercel build logs under the 4MB truncation limit: ~19k prerender
+  // route-conflict warnings otherwise flood the log and hide real errors.
+  logLevel: 'error',
   // SEO fix 2026-07-22: use www.erdosdx.com as canonical hostname.
   // Vercel DNS routes the apex (erdosdx.com) to www.erdosdx.com with a 308
   // permanent redirect. Sitemap + canonical URLs were emitting the apex

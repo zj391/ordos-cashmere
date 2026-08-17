@@ -1,17 +1,115 @@
 ---
+/**
+ * Admin /admin/pages/ 鈥?site page registry.
+ * Lists the main public pages (per-locale routes) with their locale
+ * availability and a link to view each page on the live site.
+ */
 export const prerender = false;
 import AdminLayout from '@/layouts/AdminLayout.astro';
-import ModulePlaceholder from '@/components/admin/ModulePlaceholder.astro';
 import { LOCALES } from '@/lib/i18n';
 
 function getAdminLocale(req: Request): string {
   const cookieHeader = req.headers.get('cookie') || '';
   const m = cookieHeader.match(/(?:^|;\s*)admin-locale=([^;]+)/);
-  if (m && LOCALES.some((l) => l.code === m[1])) return m[1]!;
-  return LOCALES[0].code;
+  if (m && LOCALES.some((l) => l === m[1])) return m[1]!;
+  return LOCALES[0];
 }
 const locale = getAdminLocale(Astro.request);
+const L = (en: string, cn: string) => (locale === 'cn' ? cn : en);
+
+// Registry of main public pages (route segment under /[locale]/)
+const PAGES = [
+  { key: 'index', path: '', label: { en: 'Home', cn: '首页' } },
+  { key: 'products', path: 'products', label: { en: 'Products', cn: '产品' } },
+  { key: 'raw-material', path: 'raw-material', label: { en: 'Raw Material', cn: '原料' } },
+  { key: 'yarn-fabric', path: 'yarn-fabric', label: { en: 'Yarn & Fabric', cn: '纱线/面料' } },
+  { key: 'garment-oem', path: 'garment-oem', label: { en: 'Garment OEM', cn: '成衣代工' } },
+  { key: 'factory', path: 'factory', label: { en: 'Factory', cn: '工厂' } },
+  { key: 'ordos-origin', path: 'ordos-origin', label: { en: 'Ordos Origin', cn: '产地故事' } },
+  { key: 'cashmere-grades', path: 'cashmere-grades', label: { en: 'Cashmere Grades', cn: '羊绒分级' } },
+  { key: 'cashmere-yarn-types', path: 'cashmere-yarn-types', label: { en: 'Yarn Types', cn: '纱线类型' } },
+  { key: 'dehaired-cashmere', path: 'dehaired-cashmere', label: { en: 'Dehaired Cashmere', cn: '分梳羊绒' } },
+  { key: 'private-label-cashmere', path: 'private-label-cashmere', label: { en: 'Private Label', cn: '贴牌定制' } },
+  { key: 'color-cards', path: 'color-cards', label: { en: 'Color Cards', cn: '色卡' } },
+  { key: 'certifications', path: 'certifications', label: { en: 'Certifications', cn: '认证' } },
+  { key: 'blog', path: 'blog', label: { en: 'Blog', cn: '博客' } },
+  { key: 'faq', path: 'faq', label: { en: 'FAQ', cn: '常见问题' } },
+  { key: 'contact', path: 'contact', label: { en: 'Contact', cn: '联系' } },
+  { key: 'download', path: 'download', label: { en: 'Download', cn: '下载' } },
+  { key: 'cart', path: 'cart', label: { en: 'Cart', cn: '购物车' } },
+  { key: 'privacy-policy', path: 'privacy-policy', label: { en: 'Privacy Policy', cn: '隐私政策' } },
+];
+
+// All pages exist in all locales (routes are generated per locale)
+const rows = PAGES.map((pg) => ({
+  ...pg,
+  locales: LOCALES.map((lc) => lc.code),
+}));
+
+const totalPages = rows.length;
+const localeCount = LOCALES.length;
 ---
-<AdminLayout locale={locale} activeNav="pages">
-  <ModulePlaceholder locale={locale} module="pages" />
+<AdminLayout locale={locale} activeNav="pages" title={L('Pages', '页面管理')} breadcrumb={[L('Pages', '页面管理')]}>
+  <!-- Stats -->
+  <div class="mb-6 grid grid-cols-2 gap-3 md:grid-cols-4">
+    {[
+      { label: L('Pages', '页面数'), val: totalPages },
+      { label: L('Locales', '语言数'), val: localeCount },
+      { label: L('Locale × page routes', '语言×页面路由'), val: totalPages * localeCount },
+      { label: L('Status', '状态'), val: L('All published', '全部已发布') },
+    ].map((s) => (
+      <div class="rounded-lg border border-stone-200 bg-white px-4 py-3">
+        <div class="text-xs uppercase tracking-wider text-stone-500">{s.label}</div>
+        <div class="font-display text-2xl font-light">{s.val}</div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Page table -->
+  <div class="overflow-hidden rounded-lg border border-stone-200 bg-white">
+    <table class="w-full text-sm">
+      <thead class="bg-stone-50 text-left text-xs uppercase tracking-wider text-stone-500">
+        <tr>
+          <th class="px-3 py-2">{L('Page', '页面')}</th>
+          <th class="px-3 py-2 hidden md:table-cell">{L('Route', '路由')}</th>
+          <th class="px-3 py-2">{L('Locales', '语言')}</th>
+          <th class="px-3 py-2 w-24">{L('Actions', '操作')}</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-stone-100">
+        {rows.map((pg) => (
+          <tr class="hover:bg-stone-50">
+            <td class="px-3 py-2">
+              <span class="font-medium text-stone-900">{pg.label[locale === 'cn' ? 'cn' : 'en']}</span>
+              <span class="ml-2 font-mono text-xs text-stone-400">{pg.key}</span>
+            </td>
+            <td class="px-3 py-2 hidden md:table-cell font-mono text-xs text-stone-500">
+              /[locale]/{pg.path}
+            </td>
+            <td class="px-3 py-2">
+              <div class="flex flex-wrap gap-1">
+                {pg.locales.map((lc) => (
+                  <span class="rounded bg-emerald-50 px-1.5 py-0.5 text-[10px] font-medium text-emerald-700">{lc.toUpperCase()}</span>
+                ))}
+              </div>
+            </td>
+            <td class="px-3 py-2">
+              <a
+                href={`/${locale === 'cn' ? 'cn' : locale}/${pg.path}${pg.path ? '/' : ''}`}
+                target="_blank"
+                rel="noopener"
+                class="inline-block rounded-md border border-stone-300 bg-white px-2 py-1 text-xs text-stone-700 hover:bg-stone-50"
+              >
+                {L('View', '查看')}
+              </a>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-4 rounded-lg border border-stone-200 bg-white p-4 text-sm text-stone-600">
+    {L('Pages are rendered from the Astro route files in src/pages/[locale]/. Content is edited in source or via the product/inquiry modules; this registry is a read-only overview.', '页面由 src/pages/[locale]/ 下的 Astro 路由文件渲染。内容在源码或产品/询盘模块中编辑；本页为只读总览。')}
+  </div>
 </AdminLayout>

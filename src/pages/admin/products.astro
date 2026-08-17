@@ -17,8 +17,8 @@ import { products as productsData, getCategoryImageUrl } from '@/data/products';
 function getAdminLocale(req: Request): string {
   const cookieHeader = req.headers.get('cookie') || '';
   const m = cookieHeader.match(/(?:^|;\s*)admin-locale=([^;]+)/);
-  if (m && LOCALES.some((l) => l.code === m[1])) return m[1]!;
-  return LOCALES[0].code;
+  if (m && LOCALES.some((l) => l === m[1])) return m[1]!;
+  return LOCALES[0];
 }
 const locale = getAdminLocale(Astro.request);
 

@@ -1,17 +1,192 @@
 ---
+/**
+ * Admin /admin/seo/ 鈥?SEO overview.
+ * Shows every page key x locale with title/description length checks against
+ * the recommendations, sourced from src/lib/seo.ts (the single source of truth).
+ */
 export const prerender = false;
 import AdminLayout from '@/layouts/AdminLayout.astro';
-import ModulePlaceholder from '@/components/admin/ModulePlaceholder.astro';
 import { LOCALES } from '@/lib/i18n';
+import { SEO } from '@/lib/seo';
 
 function getAdminLocale(req: Request): string {
   const cookieHeader = req.headers.get('cookie') || '';
   const m = cookieHeader.match(/(?:^|;\s*)admin-locale=([^;]+)/);
-  if (m && LOCALES.some((l) => l.code === m[1])) return m[1]!;
-  return LOCALES[0].code;
+  if (m && LOCALES.some((l) => l === m[1])) return m[1]!;
+  return LOCALES[0];
 }
 const locale = getAdminLocale(Astro.request);
+const L = (en: string, cn: string) => (locale === 'cn' ? cn : en);
+
+// Page keys that exist in LocaleSEO
+const PAGE_KEYS = [
+  'home', 'rawMaterial', 'yarnFabric', 'garmentOem', 'factory',
+  'ordosOrigin', 'contact', 'blog', 'download', 'faq', 'privacy',
+] as const;
+
+const PAGE_LABEL: Record<string, { en: string; cn: string }> = {
+  home: { en: 'Home', cn: '首页' },
+  rawMaterial: { en: 'Raw Material', cn: '原料' },
+  yarnFabric: { en: 'Yarn & Fabric', cn: '纱线/面料' },
+  garmentOem: { en: 'Garment OEM', cn: '成衣代工' },
+  factory: { en: 'Factory', cn: '工厂' },
+  ordosOrigin: { en: 'Ordos Origin', cn: '产地' },
+  contact: { en: 'Contact', cn: '联系' },
+  blog: { en: 'Blog', cn: '博客' },
+  download: { en: 'Download', cn: '下载' },
+  faq: { en: 'FAQ', cn: 'FAQ' },
+  privacy: { en: 'Privacy', cn: '隐私政策' },
+};
+
+// Build rows: one per locale x page
+type SeoRow = {
+  locale: string;
+  page: string;
+  title: string;
+  titleLen: number;
+  titleOk: boolean;
+  desc: string;
+  descLen: number;
+  descOk: boolean;
+  kwCount: number;
+};
+
+const rows: SeoRow[] = [];
+for (const locCode of Object.keys(SEO)) {
+  const seo = SEO[locCode as keyof typeof SEO];
+  for (const key of PAGE_KEYS) {
+    const page = seo[key] as { title?: string; description?: string; keywords?: string[] } | undefined;
+    if (!page) continue;
+    const title = page.title || '';
+    const desc = page.description || '';
+    rows.push({
+      locale: locCode,
+      page: key,
+      title,
+      titleLen: title.length,
+      titleOk: title.length >= 30 && title.length <= 70,
+      desc,
+      descLen: desc.length,
+      descOk: desc.length >= 70 && desc.length <= 170,
+      kwCount: Array.isArray(page.keywords) ? page.keywords.length : 0,
+    });
+  }
+}
+
+const totalRows = rows.length;
+const titleIssues = rows.filter((r) => !r.titleOk).length;
+const descIssues = rows.filter((r) => !r.descOk).length;
+
+// Filter
+const url = new URL(Astro.request.url);
+const locFilter = url.searchParams.get('locale') || '';
+const issueFilter = url.searchParams.get('issues') === '1';
+let filteredRows = rows;
+if (locFilter) filteredRows = filteredRows.filter((r) => r.locale === locFilter);
+if (issueFilter) filteredRows = filteredRows.filter((r) => !r.titleOk || !r.descOk);
+
+const buildHref = (over: Record<string, string>) => {
+  const params = new URLSearchParams(url.searchParams);
+  for (const [k, v] of Object.entries(over)) {
+    if (v) params.set(k, v); else params.delete(k);
+  }
+  const s = params.toString();
+  return s ? `/admin/seo/?${s}` : '/admin/seo/';
+};
+
+const titleBadge = (ok: boolean) =>
+  ok
+    ? '<span class="inline-block rounded-full bg-emerald-100 px-2 py-0.5 text-xs text-emerald-700">OK</span>'
+    : '<span class="inline-block rounded-full bg-amber-100 px-2 py-0.5 text-xs text-amber-700">CHECK</span>';
+const descBadge = (ok: boolean) =>
+  ok
+    ? '<span class="inline-block rounded-full bg-emerald-100 px-2 py-0.5 text-xs text-emerald-700">OK</span>'
+    : '<span class="inline-block rounded-full bg-amber-100 px-2 py-0.5 text-xs text-amber-700">CHECK</span>';
 ---
-<AdminLayout locale={locale} activeNav="seo">
-  <ModulePlaceholder locale={locale} module="seo" />
+<AdminLayout locale={locale} activeNav="seo" title={L('SEO Overview', 'SEO 概览')} breadcrumb={[L('SEO', 'SEO 设置')]}>
+  <!-- Stats -->
+  <div class="mb-6 grid grid-cols-2 gap-3 md:grid-cols-4">
+    {[
+      { label: L('Locale × Page entries', '语言×页面条目'), val: totalRows },
+      { label: L('Title length issues', '标题长度问题'), val: titleIssues },
+      { label: L('Description length issues', '描述长度问题'), val: descIssues },
+      { label: L('Coverage', '覆盖率'), val: `${Math.round((totalRows / (6 * PAGE_KEYS.length)) * 100)}%` },
+    ].map((s) => (
+      <div class="rounded-lg border border-stone-200 bg-white px-4 py-3">
+        <div class="text-xs uppercase tracking-wider text-stone-500">{s.label}</div>
+        <div class="font-display text-2xl font-light">{s.val}</div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Filter bar -->
+  <form method="get" class="mb-4 flex items-center gap-2 rounded-lg border border-stone-200 bg-white p-3">
+    <select
+      name="locale"
+      class="rounded-md border border-stone-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
+      onchange="this.form.submit()"
+    >
+      <option value="">{L('All locales', '全部语言')}</option>
+      {LOCALES.map((lc) => (
+        <option value={lc.code} selected={locFilter === lc.code}>{lc.code.toUpperCase()}</option>
+      ))}
+    </select>
+    <label class="flex items-center gap-2 text-sm text-stone-700">
+      <input type="checkbox" name="issues" value="1" checked={issueFilter} onchange="this.form.submit()" class="rounded" />
+      {L('Only issues', '只看问题')}
+    </label>
+    {(locFilter || issueFilter) && (
+      <a href="/admin/seo/" class="rounded-md border border-stone-300 px-3 py-2 text-sm text-stone-600 hover:bg-stone-50">
+        {L('Reset', '重置')}
+      </a>
+    )}
+  </form>
+
+  <div class="mb-3 text-sm text-stone-600">
+    {L('Recommended title 30-70 chars, description 70-170 chars.', '推荐标题 30-70 字符，描述 70-170 字符。')}
+  </div>
+
+  <!-- Table -->
+  <div class="overflow-hidden rounded-lg border border-stone-200 bg-white">
+    <table class="w-full text-sm">
+      <thead class="bg-stone-50 text-left text-xs uppercase tracking-wider text-stone-500">
+        <tr>
+          <th class="px-3 py-2 w-16">{L('Locale', '语言')}</th>
+          <th class="px-3 py-2">{L('Page', '页面')}</th>
+          <th class="px-3 py-2">{L('Title', '标题')}</th>
+          <th class="px-3 py-2 w-20 text-right">{L('Len', '长度')}</th>
+          <th class="px-3 py-2 w-20">{L('Status', '状态')}</th>
+          <th class="px-3 py-2 hidden lg:table-cell">{L('Description', '描述')}</th>
+          <th class="px-3 py-2 hidden lg:table-cell w-20 text-right">{L('Len', '长度')}</th>
+          <th class="px-3 py-2 hidden lg:table-cell w-20">{L('Status', '状态')}</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-stone-100">
+        {filteredRows.length === 0 ? (
+          <tr><td colspan="8" class="px-3 py-12 text-center text-stone-400">{L('No entries match.', '没有匹配的条目。')}</td></tr>
+        ) : filteredRows.map((r) => (
+          <tr class="hover:bg-stone-50 align-top">
+            <td class="px-3 py-2">
+              <span class="rounded-full bg-stone-100 px-2 py-0.5 text-xs font-medium text-stone-600">{r.locale.toUpperCase()}</span>
+            </td>
+            <td class="px-3 py-2 text-stone-700">{PAGE_LABEL[r.page]?.[locale === 'cn' ? 'cn' : 'en'] || r.page}</td>
+            <td class="px-3 py-2 max-w-xs">
+              <div class="line-clamp-2 text-stone-800">{r.title}</div>
+            </td>
+            <td class="px-3 py-2 text-right tabular-nums text-stone-500">{r.titleLen}</td>
+            <td class="px-3 py-2" set:html={titleBadge(r.titleOk)} />
+            <td class="px-3 py-2 hidden lg:table-cell max-w-sm">
+              <div class="line-clamp-2 text-xs text-stone-600">{r.desc}</div>
+            </td>
+            <td class="px-3 py-2 hidden lg:table-cell text-right tabular-nums text-stone-500">{r.descLen}</td>
+            <td class="px-3 py-2 hidden lg:table-cell" set:html={descBadge(r.descOk)} />
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-4 rounded-lg border border-stone-200 bg-white p-4 text-sm text-stone-600">
+    {L('SEO data comes from src/lib/seo.ts and is shared by every locale. Edit that file to change titles, descriptions, or keywords, then redeploy.', 'SEO 数据来自 src/lib/seo.ts，全语言共用。修改标题、描述或关键词后重新部署即可生效。')}
+  </div>
 </AdminLayout>

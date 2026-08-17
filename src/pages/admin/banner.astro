@@ -1,17 +1,82 @@
 ---
+/**
+ * Admin /admin/banner/ 鈥?homepage hero banner overview.
+ * Shows the current hero copy + slide images defined in the homepage source.
+ * Read-only: hero content is edited in src/pages/[locale]/index.astro.
+ */
 export const prerender = false;
 import AdminLayout from '@/layouts/AdminLayout.astro';
-import ModulePlaceholder from '@/components/admin/ModulePlaceholder.astro';
 import { LOCALES } from '@/lib/i18n';
 
 function getAdminLocale(req: Request): string {
   const cookieHeader = req.headers.get('cookie') || '';
   const m = cookieHeader.match(/(?:^|;\s*)admin-locale=([^;]+)/);
-  if (m && LOCALES.some((l) => l.code === m[1])) return m[1]!;
-  return LOCALES[0].code;
+  if (m && LOCALES.some((l) => l === m[1])) return m[1]!;
+  return LOCALES[0];
 }
 const locale = getAdminLocale(Astro.request);
+const L = (en: string, cn: string) => (locale === 'cn' ? cn : en);
+
+// Mirror of the homepage hero slides (src/pages/[locale]/index.astro)
+const heroSlides = [
+  { key: 'heroFiber', path: '/images/home/hero-fiber.webp', label: 'Hero 1 鈥?Knit close-up' },
+  { key: 'ordosLandscape', path: '/images/home/ordos-origins.webp', label: 'Hero 2 鈥?Ordos landscape' },
+  { key: 'mongoliaGoat', path: '/images/home/mongolia-goat.webp', label: 'Hero 3 鈥?Mongolia goat' },
+];
+
+const heroCopy: Record<string, { tagline: string; title: string; subtitle: string; cta: string; ctaSecondary: string; badge: string }> = {
+  en: { tagline: 'SOURCE FACTORY · ORDOS · SINCE 2002', title: 'Cashmere Manufacturer China Factory Direct', subtitle: 'Wholesale cashmere manufacturer in China — raw fiber, yarn, fabric, knitwear. OEM/ODM. ISO 9001 + OEKO-TEX. 50+ countries. MOQ from 100 pcs. Sample in 7 days.', cta: 'Request a Quote', ctaSecondary: 'Download Catalog', badge: 'B2B Wholesale Only' },
+  cn: { tagline: '源头工厂 · 鄂尔多斯 · 始于2002', title: '羊绒工厂源头直供 面向全球 B2B 采购', subtitle: '中国羊绒工厂源头直供 — 羊绒原料、纱线、面料、针织成衣 OEM/ODM。ISO 9001 + OEKO-TEX 认证。MOQ 100 件起，7 天寄样。', cta: '立即询盘', ctaSecondary: '下载目录', badge: 'B2B源头工厂' },
+};
+const c = heroCopy[locale] || heroCopy.en;
 ---
-<AdminLayout locale={locale} activeNav="banner">
-  <ModulePlaceholder locale={locale} module="banner" />
+<AdminLayout locale={locale} activeNav="banner" title={L('Banners', 'Banner 管理')} breadcrumb={[L('Banners', 'Banner 管理')]}>
+  <div class="mb-4 rounded-lg border border-stone-200 bg-white p-4 text-sm text-stone-600">
+    {L('Homepage hero copy and slide images are defined in src/pages/[locale]/index.astro. This page shows the current configuration for the selected admin language.', '首页 hero 文案与轮播图定义在 src/pages/[locale]/index.astro 中。本页展示当前配置（随后台语言切换）。')}
+  </div>
+
+  <div class="grid gap-6 lg:grid-cols-2">
+    <!-- Current hero copy -->
+    <div class="rounded-lg border border-stone-200 bg-white p-5">
+      <h3 class="mb-4 text-sm font-medium uppercase tracking-wider text-stone-500">{L('Hero copy', 'Hero 文案')}</h3>
+      <dl class="space-y-3 text-sm">
+        <div>
+          <dt class="text-xs uppercase tracking-wider text-stone-400 mb-1">{L('Tagline', '标语')}</dt>
+          <dd class="font-medium text-stone-800">{c.tagline}</dd>
+        </div>
+        <div>
+          <dt class="text-xs uppercase tracking-wider text-stone-400 mb-1">{L('Title', '标题')}</dt>
+          <dd class="font-medium text-stone-800 whitespace-pre-line">{c.title}</dd>
+        </div>
+        <div>
+          <dt class="text-xs uppercase tracking-wider text-stone-400 mb-1">{L('Subtitle', '副标题')}</dt>
+          <dd class="text-stone-600">{c.subtitle}</dd>
+        </div>
+        <div class="flex flex-wrap gap-2 pt-1">
+          <span class="rounded-full bg-stone-100 px-3 py-1 text-xs text-stone-600">{L('CTA', '主按钮')}: {c.cta}</span>
+          <span class="rounded-full bg-stone-100 px-3 py-1 text-xs text-stone-600">{L('Secondary', '次按钮')}: {c.ctaSecondary}</span>
+          <span class="rounded-full bg-brand-red/10 px-3 py-1 text-xs text-red-700">{c.badge}</span>
+        </div>
+      </dl>
+    </div>
+
+    <!-- Slide images -->
+    <div class="rounded-lg border border-stone-200 bg-white p-5">
+      <h3 class="mb-4 text-sm font-medium uppercase tracking-wider text-stone-500">{L('Hero slides', '轮播图片')}</h3>
+      <div class="grid grid-cols-1 gap-3">
+        {heroSlides.map((s) => (
+          <div class="flex items-center gap-3 rounded-lg border border-stone-200 p-2">
+            <img src={s.path} alt={s.label} loading="lazy" class="h-16 w-24 shrink-0 rounded object-cover border border-stone-100" />
+            <div class="min-w-0">
+              <div class="text-sm font-medium text-stone-800">{s.label}</div>
+              <div class="truncate font-mono text-xs text-stone-400">{s.path}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="mt-4 text-xs text-stone-500">
+        {L('Images live in public/images/home/. Replace the file to swap a slide, then redeploy.', '图片存放在 public/images/home/ 下。替换文件即可更换轮播图，然后重新部署。')}
+      </p>
+    </div>
+  </div>
 </AdminLayout>

@@ -1,17 +1,91 @@
 ---
+/**
+ * Admin /admin/contact/ 鈥?site contact information.
+ * Displays the current contact info from src/lib/seo.ts (SITE_INFO), the
+ * canonical source used across all locales, plus quick links to edit.
+ */
 export const prerender = false;
 import AdminLayout from '@/layouts/AdminLayout.astro';
-import ModulePlaceholder from '@/components/admin/ModulePlaceholder.astro';
 import { LOCALES } from '@/lib/i18n';
+import { SITE_INFO } from '@/lib/seo';
 
 function getAdminLocale(req: Request): string {
   const cookieHeader = req.headers.get('cookie') || '';
   const m = cookieHeader.match(/(?:^|;\s*)admin-locale=([^;]+)/);
-  if (m && LOCALES.some((l) => l.code === m[1])) return m[1]!;
-  return LOCALES[0].code;
+  if (m && LOCALES.some((l) => l === m[1])) return m[1]!;
+  return LOCALES[0];
 }
 const locale = getAdminLocale(Astro.request);
+const L = (en: string, cn: string) => (locale === 'cn' ? cn : en);
+
+const rows = [
+  { label: L('Company name', '公司名称'), value: SITE_INFO.name },
+  { label: L('Legal name', '法定名称'), value: SITE_INFO.legalName },
+  { label: L('Address', '地址'), value: SITE_INFO.address },
+  { label: L('Phone', '电话'), value: SITE_INFO.phone },
+  { label: L('WhatsApp', 'WhatsApp'), value: SITE_INFO.whatsapp },
+  { label: L('Email', '邮箱'), value: SITE_INFO.email },
+  { label: L('WeChat', '微信'), value: SITE_INFO.wechatId },
+  { label: L('City / Region', '城市 / 地区'), value: `${SITE_INFO.city}, ${SITE_INFO.region}, ${SITE_INFO.country}` },
+  { label: L('Map coordinates', '地图坐标'), value: `${SITE_INFO.latitude}, ${SITE_INFO.longitude}` },
+];
+
+const socialRows = Object.entries(SITE_INFO.social).map(([k, v]) => ({ key: k, url: v }));
+const scaleRows = Object.entries(SITE_INFO.scale).map(([k, v]) => ({ key: k, value: v }));
 ---
-<AdminLayout locale={locale} activeNav="contact">
-  <ModulePlaceholder locale={locale} module="contact" />
+<AdminLayout locale={locale} activeNav="contact" title={L('Contact Info', '联系方式')} breadcrumb={[L('Contact Info', '联系方式')]}>
+  <div class="mb-4 rounded-lg border border-stone-200 bg-white p-4 text-sm text-stone-600">
+    {L('Contact information is defined in src/lib/seo.ts (SITE_INFO) and reused across the whole site. Changes require a code deploy.', '联系方式定义在 src/lib/seo.ts (SITE_INFO) 中，全站复用。修改需要重新部署。')}
+  </div>
+
+  <div class="grid gap-6 lg:grid-cols-2">
+    <!-- Contact details -->
+    <div class="rounded-lg border border-stone-200 bg-white p-5">
+      <h3 class="mb-4 text-sm font-medium uppercase tracking-wider text-stone-500">{L('Contact details', '联系详情')}</h3>
+      <dl class="divide-y divide-stone-100">
+        {rows.map((r) => (
+          <div class="flex justify-between gap-4 py-2.5 text-sm">
+            <dt class="text-stone-500">{r.label}</dt>
+            <dd class="text-right font-medium text-stone-900 break-all">{r.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+
+    <!-- Social + factory scale -->
+    <div class="space-y-6">
+      <div class="rounded-lg border border-stone-200 bg-white p-5">
+        <h3 class="mb-4 text-sm font-medium uppercase tracking-wider text-stone-500">{L('Social media', '社交媒体')}</h3>
+        <ul class="space-y-2 text-sm">
+          {socialRows.map((s) => (
+            <li class="flex items-center justify-between gap-3">
+              <span class="capitalize text-stone-600">{s.key}</span>
+              <a href={s.url} target="_blank" rel="noopener" class="text-primary hover:underline break-all">{s.url}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="rounded-lg border border-stone-200 bg-white p-5">
+        <h3 class="mb-4 text-sm font-medium uppercase tracking-wider text-stone-500">{L('Factory scale', '工厂规模')}</h3>
+        <dl class="divide-y divide-stone-100">
+          {scaleRows.map((r) => (
+            <div class="flex justify-between gap-4 py-2.5 text-sm">
+              <dt class="text-stone-500">{r.key}</dt>
+              <dd class="text-right font-medium text-stone-900">{r.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+
+      <div class="rounded-lg border border-stone-200 bg-white p-5">
+        <h3 class="mb-4 text-sm font-medium uppercase tracking-wider text-stone-500">{L('Quick links', '快捷链接')}</h3>
+        <div class="space-y-2 text-sm">
+          <a href="/admin/products/" class="block text-primary hover:underline">{L('Manage products', '产品管理')} →</a>
+          <a href="/admin/inquiries/" class="block text-primary hover:underline">{L('Manage inquiries', '询盘管理')} →</a>
+          <a href="/admin/seo/" class="block text-primary hover:underline">{L('SEO settings', 'SEO 设置')} →</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </AdminLayout>

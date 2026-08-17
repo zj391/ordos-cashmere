@@ -1,17 +1,111 @@
 ---
+/**
+ * Admin /admin/cases/ 鈥?case studies module.
+ * The public site currently renders the case-study section from translation
+ * strings (src/i18n/{locale}/translation.json > caseStudies) with no per-case records
+ * yet. This page shows the module status and the planned data structure.
+ */
 export const prerender = false;
 import AdminLayout from '@/layouts/AdminLayout.astro';
-import ModulePlaceholder from '@/components/admin/ModulePlaceholder.astro';
 import { LOCALES } from '@/lib/i18n';
 
 function getAdminLocale(req: Request): string {
   const cookieHeader = req.headers.get('cookie') || '';
   const m = cookieHeader.match(/(?:^|;\s*)admin-locale=([^;]+)/);
-  if (m && LOCALES.some((l) => l.code === m[1])) return m[1]!;
-  return LOCALES[0].code;
+  if (m && LOCALES.some((l) => l === m[1])) return m[1]!;
+  return LOCALES[0];
 }
 const locale = getAdminLocale(Astro.request);
+const L = (en: string, cn: string) => (locale === 'cn' ? cn : en);
+
+// Supabase row counts for related tables (best-effort)
+const SUPABASE_URL = process.env.PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || '';
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || '';
+let wonCount = 0;
+let inquiryTotal = 0;
+let err = '';
+if (SUPABASE_URL && SUPABASE_KEY) {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/inquiries?select=id&limit=1`, {
+      headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY },
+    });
+    if (res.ok) {
+      const range = res.headers.get('content-range') || '';
+      const total = parseInt(range.split('/')[1], 10);
+      inquiryTotal = isNaN(total) ? 0 : total;
+      const won = await fetch(`${SUPABASE_URL}/rest/v1/inquiries?status=eq.won&select=id&limit=1`, {
+        headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY },
+      });
+      if (won.ok) {
+        const wr = won.headers.get('content-range') || '';
+        const wt = parseInt(wr.split('/')[1], 10);
+        wonCount = isNaN(wt) ? 0 : wt;
+      }
+    } else {
+      err = `HTTP ${res.status}`;
+    }
+  } catch (e: any) {
+    err = String(e?.message || e);
+  }
+}
+
+const planRows = [
+  L('Add case study (brand logo + project description + outcome stats + photos)', '添加案例（品牌 Logo + 项目描述 + 成果数据 + 图片）'),
+  L('Tag by industry (fashion brand / distributor / online retailer)', '按行业打标（时尚品牌 / 分销商 / 电商零售商）'),
+  L('Featured toggle (homepage / category pages)', '精选开关（首页 / 分类页展示）'),
+];
 ---
-<AdminLayout locale={locale} activeNav="cases">
-  <ModulePlaceholder locale={locale} module="cases" />
+<AdminLayout locale={locale} activeNav="cases" title={L('Case Studies', '案例管理')} breadcrumb={[L('Case Studies', '案例管理')]}>
+  <div class="mb-6 grid grid-cols-2 gap-3 md:grid-cols-4">
+    {[
+      { label: L('Case records', '案例记录'), val: 0 },
+      { label: L('Won inquiries', '成交询盘'), val: wonCount },
+      { label: L('Total inquiries', '询盘总数'), val: inquiryTotal },
+      { label: L('Module status', '模块状态'), val: L('Planned', '规划中') },
+    ].map((s) => (
+      <div class="rounded-lg border border-stone-200 bg-white px-4 py-3">
+        <div class="text-xs uppercase tracking-wider text-stone-500">{s.label}</div>
+        <div class="font-display text-2xl font-light">{s.val}</div>
+      </div>
+    ))}
+  </div>
+
+  {err && (
+    <div class="mb-4 rounded-lg border border-amber-300 bg-amber-50 p-3 text-sm text-amber-800">
+      {L('Supabase stats unavailable:', 'Supabase 统计不可用：')} {err}
+    </div>
+  )}
+
+  <div class="grid gap-6 lg:grid-cols-2">
+    <div class="rounded-lg border border-stone-200 bg-white p-5">
+      <h3 class="mb-4 text-sm font-medium uppercase tracking-wider text-stone-500">{L('Current status', '当前状态')}</h3>
+      <p class="mb-4 text-sm leading-relaxed text-stone-600">
+        {L('The public site renders a case-study section from translation strings (caseStudies), but no structured per-case records exist yet. Once won inquiries accumulate, add a Supabase cases table and this module becomes fully editable.', '官网的案例区目前由翻译字段 (caseStudies) 渲染，尚无结构化案例记录。等成交询盘积累后，添加 Supabase cases 表即可让本模块变成可编辑。')}
+      </p>
+      <div class="rounded-lg border border-stone-200 bg-stone-50 p-4">
+        <div class="mb-2 text-xs font-medium uppercase tracking-wider text-stone-500">{L('Planned data model', '规划数据结构')}</div>
+        <pre class="overflow-x-auto font-mono text-xs text-stone-700">cases (
+  id, brand, industry, title,
+  challenge, solution, results,
+  photos text[], featured bool,
+  locale, created_at
+)</pre>
+      </div>
+    </div>
+
+    <div class="rounded-lg border border-stone-200 bg-white p-5">
+      <h3 class="mb-4 text-sm font-medium uppercase tracking-wider text-stone-500">{L('Roadmap', '路线图')}</h3>
+      <ol class="space-y-3">
+        {planRows.map((row, i) => (
+          <li class="flex gap-3 text-sm">
+            <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-stone-300 text-xs font-medium text-stone-500">{i + 1}</span>
+            <span class="text-stone-700">{row}</span>
+          </li>
+        ))}
+      </ol>
+      <div class="mt-6 rounded-lg border border-stone-200 bg-white p-4 text-xs text-stone-500">
+        {L('Tip: convert a won inquiry into a case study by copying the company context, challenge, solution, and outcome from the inquiry detail page.', '提示：成交询盘可在询盘详情页中提取公司背景、挑战、方案和成果，转成案例。')}
+      </div>
+    </div>
+  </div>
 </AdminLayout>
