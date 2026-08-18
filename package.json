@@ -10,7 +10,7 @@
     "astro": "astro",
     "check": "astro check",
     "prebuild": "node scripts/generate-llms-full.mjs",
-    "postbuild": "node scripts/fix-endpoint-build.js"
+    "postbuild": "node scripts/fix-endpoint-build.js && node scripts/generate-sitemaps.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^4.2.0",

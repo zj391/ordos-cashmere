@@ -27,116 +27,19 @@ export default defineConfig({
   }),
   integrations: [
     react(),
-    sitemap({
-      i18n: {
-        defaultLocale: 'en',
-        locales: { en: 'en', de: 'de', fr: 'fr', ja: 'ja', kr: 'ko', cn: 'zh' },
-      },
-      // Exclude admin/API routes from sitemap (already disallowed in robots.txt).
-      filter: (page) => !page.includes('/admin') && !page.includes('/api/') && !page.includes('/cart'),
-      // Add lastmod + per-page priority for better SEO signals.
-      // Static pages get higher priority; blog posts get 0.7; category hub pages
-      // and product detail pages get 0.8 (high value for B2B keywords).
-      serialize: (item) => {
-        const url = item.url;
-        const path = url.replace(/^https?:\/\/[^/]+/, '');
-        // SEO fix 2026-07-23: rebalance priorities so Google sees a real
-        // signal hierarchy instead of treating all 3,594 product pages
-        // as equally important. John Mueller's guidance: reserve 0.8+
-        // for pages you want crawled more often; flatten product pages
-        // to 0.5 so category hubs + blog can stand out.
-        let priority = 0.5;
-        let changefreq = 'monthly';
-        if (path === '/' || /^\/(en|cn|de|fr|ja|kr)?\/?$/.test(path)) {
-          priority = 1.0; changefreq = 'weekly';
-        } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/blog\/[a-z0-9-]+\/?$/)) {
-          priority = 0.8; changefreq = 'monthly';
-        } else if (path.includes('/blog/')) {
-          priority = 0.7; changefreq = 'monthly';
-        } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/(scarves|hats-accessories|yarn|garment-oem|fabric|raw-material|products|private-label-cashmere)\/?$/)) {
-          // Category hub pages: high priority (real B2B landing pages).
-          priority = 0.9; changefreq = 'weekly';
-        } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/products\/(scarves|hats-accessories|yarn|garment-oem|accessories-cat)\/?$/)) {
-          // Product category hubs under /products/: keep them above flat product pages.
-          priority = 0.9; changefreq = 'weekly';
-        } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/(factory|yarn-fabric|garment-oem|raw-material|ordos-origin|color-cards)\/?$/)) {
-          // Major topical hubs.
-          priority = 0.9; changefreq = 'weekly';
-        } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/products\/[a-z0-9-]+\/?$/)) {
-          // 3,594 product pages: scale back. Google's helpful content
-          // guidance treats near-duplicate thin pages as low value.
-          priority = 0.5; changefreq = 'monthly';
-        } else {
-          priority = 0.6; changefreq = 'monthly';
-        }
-        // SEO fix 2026-07-23: per-page lastmod for genuine freshness signal.
-        // All 3,594 products previously shared the build timestamp, which
-        // makes Google's sitemap freshness heuristic meaningless. We derive
-        // a stable, deterministic per-product lastmod from the numeric tail
-        // of the product id (e.g. hats-142 -> 142 -> 2026-03-22). Idempotent
-        // across builds; not real publication dates but visibly distributed
-        // so Google sees staggered freshness across the product corpus.
-        //
-        // SEO refresh 2026-08-08: shift baseDate from 2025-01-01 to 2025-04-01.
-        // Old window: 2025-01 .. 2026-06 (right edge 6 weeks behind today).
-        // New window: 2025-04 .. 2026-09 (right edge ~6 weeks ahead of today).
-        // The shift keeps the 540-day span so distribution density is
-        // unchanged; only the absolute timestamps move forward by ~3 months,
-        // which makes Google re-evaluate freshness without flagging the
-        // staggered distribution as artificially manufactured.
-        let lastmod;
-        const m = path.match(/\/products\/([a-z]+)-(\d+)\/?$/);
-        if (m) {
-          // Map product id number to a date in 2025-04 .. 2026-09 (18 months).
-          // Distribution: hash mod 540 gives days since 2025-04-01.
-          const numericId = parseInt(m[2], 10);
-          const baseDate = new Date('2025-04-01T00:00:00Z');
-          baseDate.setUTCDate(baseDate.getUTCDate() + (numericId % 540));
-          lastmod = baseDate;
-        } else {
-          lastmod = new Date();
-        }
-        return {
-          ...item,
-          // SEO fix 2026-08-10: add x-default hreflang entry pointing at the
-          // English version of each page. @astrojs/sitemap v3.2.1's i18n
-          // config only emits 6 locale alternates (en/de/fr/ja/ko/zh) and
-          // has no x-default option — GSC reports "alternate page without
-          // x-default" warnings without it. Per Google docs, x-default
-          // should point at the canonical negotiation page; we use the
-          // English URL (defaultLocale: 'en') since the root / rewrites
-          // visitors to /<accept-language>/ and English is the fallback.
-          //
-          // v3.2.1 stores alternates on `item.links` (a LinkItem[] not
-          // Record<string,string>). We append a synthetic x-default
-          // entry that mirrors the English URL.
-          links: (() => {
-            const path = item.url.replace(/^https?:\/\/[^/]+/, '');
-            // Swap a non-English locale prefix to 'en', keep the rest.
-            // /de/      -> /en/         (only the locale segment changes)
-            // /de/x/y/  -> /en/x/y/     (locale swapped, tail preserved)
-            // /         -> /            (no locale to swap, keep root)
-            // /x/       -> /x/          (no locale to swap)
-            let enPath = path;
-            const m = path.match(/^\/(de|fr|ja|kr|cn)(\/.*)?$/);
-            if (m) {
-              // m[2] is the part after the locale segment (starts with /).
-              // For /de/   m[2] is undefined -> use '' so result is /en.
-              // For /de/x/ m[2] is '/x/'     -> /en/x/.
-              enPath = '/en' + (m[2] || '');
-            }
-            const enUrl = (item.url.match(/^https?:\/\/[^/]+/) || [''])[0] + enPath;
-            return [
-              ...(item.links || []),
-              { lang: 'x-default', url: enUrl },
-            ];
-          })(),
-          lastmod,
-          changefreq,
-          priority,
-        };
-      },
-    }),
+    // sitemap integration removed 2026-08-18: replaced by
+    // scripts/generate-sitemaps.mjs (run in postbuild) which produces 3
+    // split sitemaps (static / blog / products) + index. Splitting the
+    // 3,906-URL corpus lets us target Search Console submission per
+    // bucket and treat each segment's crawl priority independently.
+    // The old plugin output (single sitemap-0.xml, 3,901 URLs) is
+    // overridden postbuild.
+    // (sitemap plugin config preserved below for reference / easy revert.)
+    // sitemap({
+    //   i18n: { defaultLocale: 'en', locales: { en: 'en', de: 'de', fr: 'fr', ja: 'ja', kr: 'ko', cn: 'zh' } },
+    //   filter: (page) => !page.includes('/admin') && !page.includes('/api/') && !page.includes('/cart'),
+    //   serialize: (item) => { /* full priority/lastmod/i18n logic moved to scripts/generate-sitemaps.mjs */ },
+    // }),
     tailwind({ applyBaseStyles: false }),
   ],
   i18n: {
