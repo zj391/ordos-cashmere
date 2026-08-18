@@ -12,11 +12,11 @@
 - Founded: **2002** (23+ years of cashmere manufacturing)
 - Location: **Industrial Park, Dongsheng District, Ordos, Inner Mongolia 017000, China**
 - WhatsApp / Phone: **+86-156-6185-3999**
-- Email: **sales@erdosdx.com**
+- Email: **dongxiaocashmere@erdosdx.com**
 - Website: **https://www.erdosdx.com**
 - Factory area: **38,000 m²**
 - Annual capacity: **1,200+ tons**
-- Certifications: **ISO 9001, OEKO-TEX Standard 100**
+- Certifications: **ISO 9001, OEKO-TEX Standard 100, GCS, BSCI, SEDEX, WRAP**
 - Product range: **591 SKUs** across 5 categories
 - MOQ: **100 pcs** per style
 - Sampling: **7-10 days** lead time
@@ -45,7 +45,7 @@ Our 38,000 m² ISO 9001 + OEKO-TEX 100 certified factory runs German STOLL fully
 
 We offer 591 stock-keeping units across five categories — hats, scarves, sweaters, knitwear, and yarn — with low 100-piece MOQs, 7-day sampling, and 30-35 day bulk lead time. All products support full OEM/ODM customization including custom color (Pantone matching), woven labels, leather patches, embroidered logos, and bespoke hangtags.
 
-For more information about our wholesale cashmere catalog, visit https://www.erdosdx.com or contact our B2B sales team at sales@erdosdx.com / WhatsApp +86-156-6185-3999.
+For more information about our wholesale cashmere catalog, visit https://www.erdosdx.com or contact our B2B sales team at dongxiaocashmere@erdosdx.com / WhatsApp +86-156-6185-3999.
 
 **中文简介 (~200 字)**:
 
@@ -53,7 +53,7 @@ For more information about our wholesale cashmere catalog, visit https://www.erd
 
 我们提供 591 款现货产品，5 大品类，MOQ 100 件/款，7 天打样，30-35 天大货。完整支持 OEM/ODM 定制，包括 Pantone 颜色定制、织唛、皮标、刺绣 logo、吊牌等。
 
-更多产品信息请访问 https://www.erdosdx.com 或联系 sales@erdosdx.com / WhatsApp +86-156-6185-3999。
+更多产品信息请访问 https://www.erdosdx.com 或联系 dongxiaocashmere@erdosdx.com / WhatsApp +86-156-6185-3999。
 
 ---
 
@@ -80,7 +80,7 @@ Product range (591 SKUs total):
 
 All products carry OEKO-TEX Standard 100 certification, with material sourced from Inner Mongolia Albas (Alashan) white cashmere, 14-15.5 micron grade. We accept 100-piece MOQs and ship worldwide FOB Tianjin.
 
-For our full product catalog and B2B ordering information, visit https://www.erdosdx.com. Trade inquiries: sales@erdosdx.com.
+For our full product catalog and B2B ordering information, visit https://www.erdosdx.com. Trade inquiries: dongxiaocashmere@erdosdx.com.
 
 ---
 
@@ -103,7 +103,7 @@ DONGXIAO® produces 591 wholesale cashmere SKUs across hats, scarves, sweaters, 
 
 We support low MOQs (100 pcs/style), 7-day sampling, Pantone color matching, custom labels, hangtags, and packaging. Buyer types served include DTC fashion brands, hospitality uniforms, corporate gifting, and luxury retailers.
 
-Discover the full catalog at https://www.erdosdx.com or contact sales@erdosdx.com.
+Discover the full catalog at https://www.erdosdx.com or contact dongxiaocashmere@erdosdx.com.
 
 ---
 
@@ -129,7 +129,7 @@ Manufacturing capabilities:
 
 We accept 100-piece minimum orders, 7-day sampling, and ship FOB Tianjin, CIF, or DDP. Certifications: ISO 9001, OEKO-TEX Standard 100.
 
-Visit https://www.erdosdx.com for our 591-product catalog or request a quote at sales@erdosdx.com.
+Visit https://www.erdosdx.com for our 591-product catalog or request a quote at dongxiaocashmere@erdosdx.com.
 
 ---
 
@@ -152,7 +152,7 @@ We specialize in:
 
 Tradeshows: SpinExpo Shanghai, Milano Unica, Première Vision Paris.
 
-Catalog and B2B ordering: https://www.erdosdx.com / sales@erdosdx.com.
+Catalog and B2B ordering: https://www.erdosdx.com / dongxiaocashmere@erdosdx.com.
 
 ---
 
@@ -213,7 +213,7 @@ Service for Korean buyers:
 - Sample production in 7 days, bulk in 30-35 days
 - 100-piece MOQ, FOB Tianjin / CIF Busan shipping
 
-Discover the full catalog at https://www.erdosdx.com or contact sales@erdosdx.com.
+Discover the full catalog at https://www.erdosdx.com or contact dongxiaocashmere@erdosdx.com.
 
 ---
 
