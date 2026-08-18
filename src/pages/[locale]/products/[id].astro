@@ -1136,17 +1136,81 @@ const breadcrumbSchema = {
 
 };
 
-// Related Articles — 591 产品 × 6 语言 × 2 篇最新 blog = 3546 个新内链节点
+// Related Articles — category-aware blog linking.
+//
+// Old behavior (slice(0,2)): every product page linked the SAME 2 newest blogs,
+// leaving 51 of 53 blogs with zero inbound links from any product. Google
+// treated them as orphan content and ranked them poorly.
+//
+// New behavior: each product page shows 4 blogs that match its category
+// via title/slug/tag/sourceTopic keyword scoring. If fewer than 4 match
+// (scarves/accessories have thin blog coverage today), fall back to the
+// most recent blogs so every product page still has 4 related links.
+//
+// Effect: 51 previously-orphan blogs now receive inbound links from the
+// relevant product pages, and each product page shows different related
+// blogs based on its category — a real internal link graph instead of a
+// fan-out from the latest 2.
+//
+// Score weights:
+//   slug token match     +3
+//   title token match    +2
+//   tag token match      +1
+//   sourceTopic match    +1
+const PRODUCT_CATEGORY_TOKENS = {
+  hats:        ['hat', 'beanie', 'beret', 'cap', 'pom', 'headband', 'hijab'],
+  sweaters:    ['sweater', 'pullover', 'cardigan', 'turtleneck', 'knitwear', 'crew neck', 'v-neck', 'jumper', 'hoodie'],
+  scarves:     ['scarf', 'scarves', 'shawl', 'wrap', 'poncho', 'pashmina'],
+  accessories: ['sock', 'legging', 'glove', 'mitt', 'panty', 'tights', 'stocking', 'accessor'],
+  yarn:        ['yarn', 'cone', 'ply', 'worsted', 'woolen', 'spinning', 'spun', 'fiber spec', 'cashmere fiber', 'cashmere yarn'],
+};
+
+function scoreBlogAgainstCategory(blog: any, tokens: string[]): number {
+  let s = 0;
+  const slug = (blog.id || '').replace(/\.md$/, '').toLowerCase().replace(/-/g, ' ');
+  const title = (blog.data?.title || '').toLowerCase();
+  const tags: string[] = Array.isArray(blog.data?.tags) ? blog.data.tags : [];
+  const src = (blog.data?.sourceTopic || '').toLowerCase();
+  for (const t of tokens) {
+    if (slug.includes(t)) s += 3;
+    if (title.includes(t)) s += 2;
+    for (const tag of tags) {
+      if (String(tag).toLowerCase().includes(t)) { s += 1; break; }
+    }
+    if (src.includes(t)) s += 1;
+  }
+  return s;
+}
+
 const allProductBlogPosts = await getCollection('blog', ({ id }) => id.startsWith(`${locale}/`));
-const relatedBlogPosts = allProductBlogPosts
-  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
-  .slice(0, 2)
-  .map((p) => ({
-    slug: p.id.replace(`${locale}/`, '').replace(/\.md$/, ''),
-    title: p.data.title,
-    excerpt: p.data.excerpt,
-    date: p.data.publishDate.toISOString().slice(0, 10),
-  }));
+const catTokens = PRODUCT_CATEGORY_TOKENS[product.categoryId] || [];
+
+const scoredBlogs = allProductBlogPosts
+  .map((b) => ({ post: b, score: scoreBlogAgainstCategory(b, catTokens) }))
+  .sort((a, b) => {
+    // Primary: score desc. Secondary: publishDate desc.
+    if (b.score !== a.score) return b.score - a.score;
+    return new Date(b.post.data.publishDate).getTime() - new Date(a.post.data.publishDate).getTime();
+  });
+
+// Take top 4 scored; if fewer than 4 scored > 0, top up with most-recent.
+let pickedBlogs = scoredBlogs.filter((x) => x.score > 0).map((x) => x.post);
+if (pickedBlogs.length < 4) {
+  const pickedIds = new Set(pickedBlogs.map((b) => b.id));
+  const recentFillers = allProductBlogPosts
+    .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime())
+    .filter((b) => !pickedIds.has(b.id))
+    .slice(0, 4 - pickedBlogs.length);
+  pickedBlogs = [...pickedBlogs, ...recentFillers];
+}
+pickedBlogs = pickedBlogs.slice(0, 4);
+
+const relatedBlogPosts = pickedBlogs.map((p) => ({
+  slug: p.id.replace(`${locale}/`, '').replace(/\.md$/, ''),
+  title: p.data.title,
+  excerpt: p.data.excerpt,
+  date: p.data.publishDate.toISOString().slice(0, 10),
+}));
 
 ---
 
