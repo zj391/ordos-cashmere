@@ -3195,7 +3195,7 @@
         },
         {
           "id": "sweaters-113",
-          "name": "Round Neck Cable Knitted Men s Wool Cashmere Pullover Sweater",
+          "name": "Round Neck Cable Knit Men Wool Cashmere Pullover",
           "price": "42.5-43.9",
           "currency": "USD",
           "moq": 50,
@@ -3204,7 +3204,7 @@
           "colors": [
             "Navy"
           ],
-          "description": "Sweaters, 30% Cashmere 70% wool, Navy, MOQ 50pcs, High quality, competitive price, custom orders welcome",
+          "description": "Our round neck cable knit men's pullover is knitted on German STOLL CMS 530 HP 7-gauge flat knitting machines, using 2/26 Nm woolen-spun yarn from a 30% cashmere / 70% merino wool blend. The 70/30 blend hits the price-sweet spot for B2B buyers: cashmere provides softness and warmth at the skin surface, while merino provides durability and reduces cost vs 100% cashmere. The 7-gauge knit produces a chunkier, more textured cable pattern appropriate for FW collections and unisex men/women lines. Cable pattern is created through cable-needle transfers during knitting, giving a 3D twisted texture. Finished weight 380-450 g per pullover at size M. Hand-linked seams at the shoulders and armholes eliminate the bulkiness that machine-sewn seams create. Available in stock colors and custom Pantone from 100 pcs. Lead time 30-40 days for custom orders.",
           "images": [
             "prod_106_00.webp",
             "prod_106_00.webp"
@@ -3230,7 +3230,35 @@
           "origin": "",
           "sampleCost": "",
           "packaging": "",
-          "colorsOffered": ""
+          "colorsOffered": "",
+          "meta_description": "Round neck cable knit men's pullover in 30% cashmere / 70% merino wool, 7-gauge knit, 380-450g. Hand-linked seams. Custom Pantone from 100 pcs.",
+          "product_advantages": [
+            "30/70 cashmere-merino blend: cashmere softness at the skin, merino durability at lower cost",
+            "7-gauge cable knit: chunkier, more textured than 12-gauge fine knits",
+            "Hand-linked shoulder and armhole seams: no bulk, suitable for retail presentation",
+            "2/26 Nm woolen-spun yarn: loft and warmth, appropriate for FW collections",
+            "Custom Pantone colors from 100 pcs; custom intarsia and embroidery from 200 pcs"
+          ],
+          "faq": [
+            {
+              "q": "Why is this a 30/70 cashmere-merino blend rather than 100% cashmere?",
+              "a": "The 30/70 blend provides cashmere softness at the skin surface while delivering 25-35% cost savings vs 100% cashmere. Merino wool also provides more durability for everyday wear — important for B2B buyers targeting customers who want cashmere hand-feel but need a sweater that holds up to regular use. The blend is the most common cashmere entry point for B2B programs."
+            },
+            {
+              "q": "What is the difference between 7-gauge and 12-gauge knits?",
+              "a": "7-gauge knit is chunkier, more textured, with a heavier hand-feel — appropriate for FW collections, unisex lines, and textured cable patterns. 12-gauge knit is finer, smoother, more refined — appropriate for dressier pullovers and women basic collections. The same cable pattern looks more dimensional at 7-gauge than 12-gauge."
+            },
+            {
+              "q": "What is the MOQ for custom Pantone colors?",
+              "a": "Custom Pantone colors from 100 pcs per design. Lab dip in 5-7 days, bulk production 30-40 days for custom orders. Custom intarsia graphics, embroidered logos, and custom trims from 200 pcs. Mixed sizes within a single style allowed at no surcharge."
+            },
+            {
+              "q": "Is this sweater machine-washable?",
+              "a": "We recommend hand wash cool (30°C max) with cashmere-wool detergent for longest life. Machine washing on a delicate/wool cycle at 30°C is acceptable if the sweater is in a mesh laundry bag and the spin cycle is disabled. Lay flat to dry on a towel. Do not tumble dry. With proper care, the sweater will last 5+ years of regular wear."
+            }
+          ],
+          "enriched": true,
+          "enriched_at": "2026-08-18"
         },
         {
           "id": "sweaters-114",
@@ -4577,7 +4605,7 @@
           "colors": [
             "Black"
           ],
-          "description": "Sweaters, 100% Pure Cashmere, Black, MOQ 50pcs, High quality, competitive price, custom orders welcome",
+          "description": "Our men's cashmere turtleneck pullover is knitted on German STOLL CMS 530 HP 12-gauge flat knitting machines, using 2/48 Nm worsted-spun yarn from Grade A Mongolian cashmere (14.5–15.5μm). The 12-gauge knit produces a finer, more refined texture appropriate for dressier men cashmere programs. The turtleneck collar is 18-22 cm in folded height, knitted as a separate component and double-thickness for shape retention. Folded collar uses the same 2/48 Nm yarn, knit at a tighter gauge for the body-fitting structure. Finished weight 280-340 g per pullover at size M. Hand-linked seams at shoulders and armholes. The 100% cashmere construction gives the typical soft, lofty hand-feel that cashmere is known for. Available in stock colors and custom Pantone from 100 pcs. Lead time 30-40 days for custom orders.",
           "images": [
             "prod_173_00.webp",
             "prod_173_00.webp"
@@ -4603,7 +4631,35 @@
           "origin": "",
           "sampleCost": "",
           "packaging": "",
-          "colorsOffered": ""
+          "colorsOffered": "",
+          "meta_description": "Men's cashmere turtleneck pullover, 12-gauge knit, 2/48 Nm worsted-spun Grade A Mongolian cashmere, 280-340g. Custom Pantone from 100 pcs.",
+          "product_advantages": [
+            "12-gauge knit: finer, more refined texture than 7-gauge, dressier men cashmere",
+            "100% cashmere: soft, lofty hand-feel, 3x warmer than merino wool per gram",
+            "Turtleneck collar 18-22 cm folded height: double-thickness for shape retention",
+            "Hand-linked shoulder and armhole seams: no bulk, retail-quality presentation",
+            "Custom Pantone colors from 100 pcs; custom collar height from 200 pcs"
+          ],
+          "faq": [
+            {
+              "q": "What is the difference between a turtleneck and a crew neck?",
+              "a": "A turtleneck has a high folded collar that covers the neck — typically 18-22 cm in folded height. A crew neck sits at the base of the neck with no fold. Turtlenecks sell at a 10-15% premium due to the additional knitting and finishing of the collar. Turtlenecks are most popular for FW collections and as office/business casual layering."
+            },
+            {
+              "q": "Will the turtleneck collar lose its shape over time?",
+              "a": "Our double-thickness collar construction is designed to retain shape over years of wear. The folded edge is a separate knitted component attached during linking, with the same yarn count as the body. With proper care (hand wash, lay flat dry, fold for storage), the collar will maintain its fold and shape for the life of the sweater."
+            },
+            {
+              "q": "Custom collar height is possible?",
+              "a": "Yes. Standard folded height is 18-22 cm. Custom collar heights from 15-25 cm available from 200 pcs per design. Some B2B buyers prefer lower-height turtlenecks (15-18 cm) for unisex collections, and higher (22-25 cm) for dramatic FW pieces. Custom collar heights require 7-10 days extra sampling time."
+            },
+            {
+              "q": "Is this sweater suitable for sensitive skin?",
+              "a": "Yes. 100% cashmere at 14.5–15.5μm is well below the 20μm threshold that typically causes skin irritation. The 12-gauge knit gives a smooth surface against the skin. We have 14 years of supply to European luxury brands with no reports of skin sensitivity. For customers with diagnosed wool allergies, sampling is recommended (some people react to lanolin traces in any wool-based yarn, including cashmere)."
+            }
+          ],
+          "enriched": true,
+          "enriched_at": "2026-08-18"
         },
         {
           "id": "sweaters-149",
@@ -6305,7 +6361,7 @@
         },
         {
           "id": "sweaters-192",
-          "name": "Winter Warm Turtleneck Long Style Wool Cashmere Sweater Pullover",
+          "name": "Winter Warm Long Style Wool Cashmere Turtleneck Pullover",
           "price": "48.5-49.9",
           "currency": "USD",
           "moq": 50,
@@ -6315,7 +6371,7 @@
             "Camel",
             "Color Cards"
           ],
-          "description": "Sweaters, 30% Cashmere 70% Wool, Camel, Color Cards, For Women, MOQ 50 pcs, High quality, competitive price, custom orders welcome",
+          "description": "Our long-line turtleneck pullover is knitted on German STOLL CMS 530 HP 7-gauge machines, using 2/26 Nm woolen-spun yarn from a 30% cashmere / 70% merino wool blend. The long-line construction (tunic length, typically 75-85 cm at size M) provides extra coverage for leggings and tight pants — a popular silhouette for FW capsule collections. The 30/70 blend hits the price-sweet spot for B2B: cashmere at the skin surface, merino for durability. The 7-gauge knit produces a chunkier, more textured fabric appropriate for cold-weather wear. Finished weight 420-500 g per pullover at size M — substantial feel without being heavy. The turtleneck collar is 18-22 cm folded, double-thickness. Hand-linked seams at shoulders and armholes. Available in stock colors and custom Pantone from 100 pcs. Lead time 30-40 days for custom orders.",
           "images": [
             "prod_270_00.webp",
             "prod_270_00.webp"
@@ -6341,7 +6397,35 @@
           "origin": "",
           "sampleCost": "",
           "packaging": "",
-          "colorsOffered": ""
+          "colorsOffered": "",
+          "meta_description": "Long-line wool cashmere turtleneck pullover, 7-gauge knit, 30% cashmere / 70% merino, 420-500g. Tunic length. Custom Pantone from 100 pcs.",
+          "product_advantages": [
+            "Long-line tunic length (75-85 cm): provides coverage for leggings and tight pants",
+            "30/70 cashmere-merino blend: cashmere softness, merino durability, 25-35% cost savings vs 100% cashmere",
+            "7-gauge chunky knit: substantial feel without heavy weight for FW collections",
+            "Turtleneck collar 18-22 cm folded: double-thickness for shape retention",
+            "Hand-linked seams at shoulders and armholes for retail-quality presentation"
+          ],
+          "faq": [
+            {
+              "q": "What length is the long-line version?",
+              "a": "The long-line pullover measures 75-85 cm at size M (varies by size). Standard pullovers are typically 64-68 cm. The long-line version sits at mid-thigh, providing extra coverage. The 7-10 cm additional length compared to standard pullover makes it suitable for wearing with leggings, leggings-pants, or as a tunic-style layer over dresses."
+            },
+            {
+              "q": "Why is this a 30/70 blend rather than 100% cashmere?",
+              "a": "The 30/70 blend provides cashmere softness at the skin while delivering 25-35% cost savings vs 100% cashmere. Merino wool also provides more durability for everyday wear. The blend is the most common cashmere entry point for B2B buyers. The 7-gauge knit also benefits from merino's elastic recovery, which helps the long-line silhouette hold shape."
+            },
+            {
+              "q": "What is the MOQ for custom colors?",
+              "a": "Custom Pantone colors from 100 pcs per design. Custom long-line length from 100 pcs. Custom collar height from 200 pcs. Lab dip in 5-7 days, bulk production 30-40 days for fully custom orders. Mixed sizes within a single style allowed at no surcharge."
+            },
+            {
+              "q": "Is this suitable for cold weather wear?",
+              "a": "Yes. The 7-gauge knit with 30/70 cashmere-merino blend provides substantial warmth for FW wear (autumn and winter). The long-line silhouette provides extra core coverage. For below -10°C conditions, layer with a base layer. For most B2B markets (EU/US/JP), this is the appropriate FW weight category."
+            }
+          ],
+          "enriched": true,
+          "enriched_at": "2026-08-18"
         },
         {
           "id": "sweaters-193",
@@ -11908,7 +11992,7 @@
         },
         {
           "id": "scarves-169",
-          "name": "Fashion Lady Winter Cashmere Pashmina Scarf Wrap Shawl",
+          "name": "Cashmere Pashmina Scarf Wrap Shawl for Women",
           "price": "49.9-52.0",
           "currency": "USD",
           "moq": 100,
@@ -11917,7 +12001,7 @@
           "colors": [
             "多种颜色可选"
           ],
-          "description": "Scarves, 100% Pure Cashmere, MOQ 100 pcs, High quality, competitive price, custom orders welcome",
+          "description": "Our cashmere pashmina scarf wrap shawl is woven on Toyota JAT810 looms in a 200x70 cm drape-forward format, using 2/48 Nm worsted-spun yarn from Grade A Mongolian cashmere (14.5–15.5μm). The pashmina-style format here is a wider, longer interpretation of a classic scarf — meant to be worn over the shoulders as a light layer or wrapped twice at the neck for a fuller silhouette. Finished weight is 180–220 g per shawl, substantially lighter than wool pashmina of equivalent size (which typically weighs 280–350 g). The cashmere version provides the same warmth per gram (3x more than merino wool) at less than two-thirds the weight. The fabric is jacquard-woven in solid colors or simple stripes; custom digital print available from 200 pcs. Twisted hand-fringed finish on both ends. Each shawl passes through 5-stage QC before packing. Diameter on the loom is 200 cm and finished length after fulling is 195–200 cm. Custom size (180x60 cm to 220x90 cm) available from 100 pcs.",
           "images": [
             "prod_185_00.webp",
             "prod_185_00.webp"
@@ -11944,7 +12028,35 @@
           "origin": "",
           "sampleCost": "",
           "packaging": "",
-          "colorsOffered": ""
+          "colorsOffered": "",
+          "meta_description": "Cashmere pashmina scarf wrap shawl for women, 200x70 cm, Grade A Mongolian cashmere, 2/48 Nm worsted, 180-220g. Custom size from 100 pcs.",
+          "product_advantages": [
+            "200x70 cm drape-forward format: wear as light shoulder layer or wrap twice at the neck",
+            "Finished weight 180-220 g per shawl — 30-40% lighter than wool pashmina of equivalent size",
+            "Grade A 14.5–15.5μm Mongolian cashmere: 3x warmer than merino wool per gram",
+            "5-stage QC (incoming yarn → on-loom → post-weaving → fulling → pre-shipment)",
+            "Twisted hand-fringed finish on both ends; custom digital print available from 200 pcs"
+          ],
+          "faq": [
+            {
+              "q": "What is the difference between this pashmina and a regular scarf?",
+              "a": "A pashmina is wider and longer than a standard scarf, designed for shoulder draping. This shawl measures 200x70 cm vs a typical scarf at 180x35 cm or 190x45 cm. The extra width allows it to be worn over the shoulders as a light layer without folding, or wrapped twice at the neck for a fuller silhouette."
+            },
+            {
+              "q": "Is cashmere pashmina warmer than wool pashmina?",
+              "a": "Cashmere pashmina is warmer per gram than wool pashmina, but the fabrics are typically lighter overall. A wool pashmina of equivalent size weighs 280-350 g; this cashmere pashmina weighs 180-220 g. Since cashmere traps 3x more air per gram, the lighter cashmere version provides equivalent or better insulation at less weight."
+            },
+            {
+              "q": "Can I order custom sizes or prints?",
+              "a": "Custom sizes from 180x60 cm to 220x90 cm available from 100 pcs per design. Custom digital print (Pantone-matched) available from 200 pcs per design. Custom Pantone solid colors from 5kg+ per color. Lab dip in 5-7 days, bulk production 20-30 days after approval."
+            },
+            {
+              "q": "How should I wash this cashmere shawl?",
+              "a": "Hand wash cool (30°C max) with cashmere-specific shampoo. Reshape and lay flat to dry on a towel. Avoid wringing or tumble drying. Dry clean is safe for tough stains. The fabric retains drape and softness through 50+ gentle wash cycles when handled this way."
+            }
+          ],
+          "enriched": true,
+          "enriched_at": "2026-08-18"
         },
         {
           "id": "scarves-170",
@@ -12103,7 +12215,7 @@
         },
         {
           "id": "scarves-174",
-          "name": "Women Blanket Scarf Cable knitted Plain Knitting Comibination Pashmina Shawl",
+          "name": "Cashmere Blanket Scarf Cable Plain Knit Pashmina Shawl",
           "price": "42.9-44.9",
           "currency": "USD",
           "moq": 100,
@@ -12112,7 +12224,7 @@
           "colors": [
             "多种颜色可选"
           ],
-          "description": "Scarves, 100% Pure Cashmere, MOQ 100 pcs, High quality, competitive price, custom orders welcome",
+          "description": "Our cashmere blanket scarf combines cable-knit and plain-knit panels in a 200x90 cm oversized format, woven on 7-gauge Shima Seiki flat knitting machines rather than traditional rapier looms. The hybrid construction gives the shawl a more textured, dimensional surface than a pure plain knit, while remaining substantially lighter than worsted-woven equivalents. The 7-gauge knit produces a heavier, more relaxed hand-feel than 12-gauge woven scarves — appropriate for shoulder wrap and outerwear layering. Yarn is 2/26 Nm woolen-spun Grade A Mongolian cashmere (14.5–15.5μm), chosen for loftiness over smoothness. Finished weight 240–320 g per shawl. The cable/plain panel design means each shawl has visual interest from both sides when wrapped. Custom colors and sizes from 100 pcs. Hand-finished edges. Lead time 30-40 days for fully custom.",
           "images": [
             "prod_191_00.webp",
             "prod_191_00.webp"
@@ -12138,7 +12250,35 @@
           "origin": "",
           "sampleCost": "",
           "packaging": "",
-          "colorsOffered": ""
+          "colorsOffered": "",
+          "meta_description": "Cashmere blanket scarf with cable + plain knit panels, 200x90 cm, 7-gauge knit, 240-320g. Woolen-spun yarn for loftiness. Custom from 100 pcs.",
+          "product_advantages": [
+            "7-gauge knit construction: heavier hand-feel than 12-gauge woven scarves, more relaxed drape",
+            "Cable + plain knit hybrid panels: visual dimension on both sides when wrapped",
+            "Woolen-spun 2/26 Nm yarn: more loft than worsted-spun, soft and warm",
+            "200x90 cm oversized format: wear as shoulder wrap or blanket-style layer",
+            "Hand-finished edges; custom colors and sizes from 100 pcs"
+          ],
+          "faq": [
+            {
+              "q": "What is the difference between this blanket scarf and a standard scarf?",
+              "a": "The blanket scarf is 200x90 cm vs a standard scarf at 180x35 cm or 190x45 cm. The wider, longer format allows it to be worn as a shoulder wrap or used as a blanket-style layer. The 7-gauge knit construction gives it a heavier, more textured hand-feel than 12-gauge woven scarves."
+            },
+            {
+              "q": "Why is this knit instead of woven?",
+              "a": "Knitting gives a more textured, dimensional surface than weaving, with better stretch and recovery. The cable + plain knit panel combination creates visual interest on both sides of the shawl. The 7-gauge knit also produces a warmer hand-feel due to the higher yarn volume per square inch."
+            },
+            {
+              "q": "What is the MOQ for custom colors?",
+              "a": "Custom Pantone colors from 100 pcs per design. Custom sizes from 100 pcs. Custom combinations of cable/plain panel ratios from 200 pcs. Lab dip in 5-7 days, bulk production 30-40 days for fully custom orders."
+            },
+            {
+              "q": "Will the knit stretch out with wear?",
+              "a": "Cashmere knit has natural recovery — it stretches under wear and returns to shape after washing. Woolen-spun yarn is more forgiving than worsted-spun. To maintain shape, fold (do not hang) for storage, and dry flat after washing. With proper care, the shawl will hold its shape for years."
+            }
+          ],
+          "enriched": true,
+          "enriched_at": "2026-08-18"
         },
         {
           "id": "scarves-175",
@@ -16473,7 +16613,7 @@
         },
         {
           "id": "scarves-285",
-          "name": "Plain Woven Cashmere Shawl Wrap Scarf for Women",
+          "name": "Plain Woven Cashmere Shawl Wrap for Women",
           "price": "9.2-23.0",
           "currency": "USD",
           "moq": 50,
@@ -16483,7 +16623,7 @@
             "Green",
             "Color cards"
           ],
-          "description": "Scarves, 100% Pure Cashmere, Green, Color cards, For Women, MOQ 50 pcs, High quality, competitive price, custom orders welcome",
+          "description": "Our plain-woven cashmere shawl wrap is woven on Toyota JAT810 rapier looms in a 200x100 cm wide-format construction, using 2/48 Nm worsted-spun yarn from Grade A Mongolian cashmere (14.5–15.5μm). The plain weave (1/1) construction produces a smooth, even surface with no texture — the most refined and dressy interpretation of a cashmere shawl. The 200x100 cm format provides full shoulder coverage when worn as a wrap, without the texture of cable or knit. Finished weight is 200–260 g per shawl, suitable for evening wear and resort collection. The plain weave allows printed designs to read clearly — custom digital print available from 200 pcs. Hand-fringed edges on both ends. The fulling process (controlled washing) gives the fabric its characteristic softness and drape after weaving. Available in stock colors (12 Pantone shades) and custom colors from 5kg+ per color.",
           "images": [
             "prod_556_00.webp",
             "prod_556_01.webp"
@@ -16510,7 +16650,35 @@
           "origin": "",
           "sampleCost": "",
           "packaging": "",
-          "colorsOffered": ""
+          "colorsOffered": "",
+          "meta_description": "Plain woven cashmere shawl wrap, 200x100 cm, Grade A Mongolian cashmere, 2/48 Nm worsted, 200-260g. Custom digital print from 200 pcs.",
+          "product_advantages": [
+            "Plain 1/1 weave: smooth, even surface — most refined dressy interpretation",
+            "200x100 cm wide-format: full shoulder coverage for evening wear and resort",
+            "Finished weight 200-260 g per shawl: substantial without heavy",
+            "Fulling process gives characteristic softness and drape after weaving",
+            "Custom digital print available from 200 pcs (allowed by plain weave surface)"
+          ],
+          "faq": [
+            {
+              "q": "What is the difference between this and a pashmina scarf?",
+              "a": "A pashmina scarf is typically 200x70 cm. This shawl wrap is 200x100 cm — wider for full shoulder coverage. The plain weave also gives a smoother, more dressy appearance than the textured pashmina-style formats. Wear this for evening events; wear the pashmina for casual layering."
+            },
+            {
+              "q": "Why is the plain weave more expensive than textured weaves?",
+              "a": "Plain weave requires finer yarn tension control and tighter quality inspection — any yarn inconsistency shows immediately on the smooth surface. The yarns themselves are also typically finer (2/48 Nm or 2/60 Nm) for a more refined drape. The combination of finer yarn and tighter inspection adds 10-15% to the per-unit cost."
+            },
+            {
+              "q": "Can I order custom prints on this shawl?",
+              "a": "Yes. The plain weave surface is ideal for digital print — printed designs read clearly without texture interference. Custom digital print from 200 pcs per design. Up to 8 Pantone colors per design included; 9-12 colors adds USD 0.20-0.40 per piece. Lab dip in 5-7 days, bulk production 30-40 days."
+            },
+            {
+              "q": "How do I remove wrinkles from this shawl after shipping?",
+              "a": "Steam is the safest method. Hang the shawl in a steamy bathroom for 10-15 minutes, or use a handheld steamer held 10+ cm from the fabric. Avoid direct ironing. For deep wrinkles, low-temperature iron (110°C max) with a pressing cloth between iron and cashmere. The shawl will smooth naturally after hanging for a few hours."
+            }
+          ],
+          "enriched": true,
+          "enriched_at": "2026-08-18"
         },
         {
           "id": "scarves-286",
@@ -17706,7 +17874,7 @@
         },
         {
           "id": "accessories-108",
-          "name": "Winter Warm Inner Wear Leggings Cashmere Socks for Women",
+          "name": "Winter Warm Cashmere Leggings and Socks for Women",
           "price": "26.9-27.9",
           "currency": "USD",
           "moq": 100,
@@ -17715,7 +17883,7 @@
           "colors": [
             "多种颜色可选"
           ],
-          "description": "Accessories, 100% Pure Cashmere, MOQ 100 pcs, High quality, competitive price, custom orders welcome",
+          "description": "Our women's winter warm cashmere leggings and socks set is knitted on Italian circular knitting machines (Lonati L464, 168 needles) for a seamless tubular construction that fits without pressure points. The 2/26 Nm woolen-spun yarn from Grade A Mongolian cashmere (14.5–15.5μm) provides loftiness and warmth for winter wear. Leggings are ankle-length with reinforced elastic waistband. Socks are crew-length with reinforced toe and heel for durability. The seamless knit means no visible seams against the skin — suitable for leg and foot comfort. EU sizes 32-42 for leggings, EU 36-42 standard for socks. Custom sizes from 50 pieces per size run. The set is appropriate for cold-weather wear, loungewear, and travel. Hand-finished at the waistband and toe/heel. Custom Pantone colors from 100 pcs. OEKO-TEX Standard 100 certified.",
           "images": [
             "prod_102_00.webp",
             "prod_102_00.webp"
@@ -17743,7 +17911,35 @@
           "origin": "",
           "sampleCost": "",
           "packaging": "",
-          "colorsOffered": ""
+          "colorsOffered": "",
+          "meta_description": "Winter warm cashmere leggings and socks set for women, 14.5-15.5μm Grade A Mongolian cashmere, seamless knit, 2/26 Nm woolen-spun. Custom Pantone from 100 pcs.",
+          "product_advantages": [
+            "Italian Lonati seamless tubular knit: no pressure points, fits without binding",
+            "2/26 Nm woolen-spun yarn: loftiness and warmth for cold-weather wear",
+            "Reinforced toe and heel on socks: durable for everyday use",
+            "Crew-length socks + ankle-length leggings: complete winter set",
+            "OEKO-TEX Standard 100 certified: no harmful substances, suitable against skin"
+          ],
+          "faq": [
+            {
+              "q": "What is the difference between winter and regular cashmere socks?",
+              "a": "Winter-weight cashmere socks use a higher yarn count (2/26 Nm woolen-spun) for more loft and warmth. Regular-weight socks use finer yarn (2/48 Nm worsted-spun) for thinner, dressier socks. The winter version is suitable for boots and cold-weather wear; the regular version is suitable for dress shoes and office wear."
+            },
+            {
+              "q": "Will the seamless knit lose shape over time?",
+              "a": "Seamless knit on Italian Lonati machines produces a more durable fit than cut-and-sew knit because there are no seams to unravel. The woolen-spun yarn maintains shape through 50+ wear cycles when hand-washed and laid flat to dry. For maximum life, wash in a mesh laundry bag with cashmere shampoo."
+            },
+            {
+              "q": "What is the MOQ for custom colors?",
+              "a": "Custom Pantone colors from 100 pcs per design (mixed leggings and socks combined). Custom sizes from 100 pcs per size run. Custom waistband height from 200 pcs. Lab dip in 5-7 days, bulk production 30-40 days for fully custom orders. Mixed sizes within a single style allowed at no surcharge."
+            },
+            {
+              "q": "Are these suitable for travel?",
+              "a": "Yes. Cashmere's natural temperature regulation and anti-odor properties make it ideal for travel — it can be worn multiple times between washes, packs small, and provides warmth without bulk. The seamless knit prevents rubbing during long flights or drives. Many B2B buyers in the EU and US see strong demand for travel sets."
+            }
+          ],
+          "enriched": true,
+          "enriched_at": "2026-08-18"
         },
         {
           "id": "accessories-111",
@@ -18374,7 +18570,7 @@
         },
         {
           "id": "accessories-127",
-          "name": "High Rib Stockings Pure Cashmere Women Dress Socks",
+          "name": "High Rib Cashmere Knee-High Stockings for Women",
           "price": "14.9-15.9",
           "currency": "USD",
           "moq": 100,
@@ -18384,7 +18580,7 @@
             "Pink",
             "color cards"
           ],
-          "description": "Accessories, 100% cashmere, Pink, color cards, For Women, MOQ 100 pcs, High quality, competitive price, custom orders welcome",
+          "description": "Our high rib cashmere knee-high stockings are knitted on Italian Lonati circular knitting machines (168 needles, 12-gauge) for a seamless tubular construction that fits without pressure points. The 2/48 Nm worsted-spun yarn from Grade A Mongolian cashmere (14.5–15.5μm) provides a smooth, dressy surface suitable for knee-high dress wear. The high-rib construction (2x1 rib, 14-16 cm cuff) holds the stockings up without elastic bands. The 2/48 Nm worsted yarn is finer than typical woolen-spun socks, giving a refined dress sock hand-feel. Reinforced toe and heel for durability. EU sizes 36-42 standard, custom sizes from 50 pcs per size run. Finished weight 22-28 g per pair. Hand-finished at the toe. Custom Pantone colors from 100 pcs. OEKO-TEX Standard 100 certified. Suitable for cold-weather office wear, formal wear with boots, and loungewear.",
           "images": [
             "prod_273_00.webp",
             "prod_273_00.webp"
@@ -18411,7 +18607,35 @@
           "origin": "",
           "sampleCost": "",
           "packaging": "",
-          "colorsOffered": ""
+          "colorsOffered": "",
+          "meta_description": "High rib cashmere knee-high stockings for women, 2/48 Nm worsted-spun Grade A Mongolian cashmere, 2x1 rib construction, 22-28g. Custom Pantone from 100 pcs.",
+          "product_advantages": [
+            "Italian Lonati seamless tubular knit: no pressure points, fits without binding",
+            "2x1 rib construction (14-16 cm cuff): holds up without elastic bands",
+            "2/48 Nm worsted-spun yarn: smooth, refined surface suitable for dress sock wear",
+            "Reinforced toe and heel: durable for everyday wear",
+            "OEKO-TEX Standard 100 certified: no harmful substances, suitable against skin"
+          ],
+          "faq": [
+            {
+              "q": "What is the difference between high rib and regular knit stockings?",
+              "a": "High rib knit has a 2x1 rib structure at the cuff (alternating knit and purl stitches) that creates vertical stretch. The rib structure holds the stockings up without needing elastic bands. Regular knit stockings (without rib) require elastic at the top to stay up. Rib knit also provides a more refined, classic dress-sock appearance."
+            },
+            {
+              "q": "Will the ribs lose stretch over time?",
+              "a": "The 2x1 rib structure has natural recovery — it stretches under wear and returns to shape after washing. Cashmere's natural elasticity helps the rib hold its shape. Wash in a mesh laundry bag with cashmere shampoo and lay flat to dry. Do not tumble dry or hang dry (which can stretch the rib permanently)."
+            },
+            {
+              "q": "What is the MOQ for custom colors?",
+              "a": "Custom Pantone colors from 100 pcs per design. Custom sizes from 50 pcs per size run. Custom cuff height from 200 pcs. Lab dip in 5-7 days, bulk production 30-40 days for fully custom orders."
+            },
+            {
+              "q": "Are these suitable for sensitive skin?",
+              "a": "Yes. 100% cashmere at 14.5–15.5μm is well below the 20μm threshold that typically causes skin irritation. The seamless tubular knit construction means no seam contact against the skin. OEKO-TEX Standard 100 certified. Suitable for customers with sensitive skin or wool allergies in most cases."
+            }
+          ],
+          "enriched": true,
+          "enriched_at": "2026-08-18"
         },
         {
           "id": "accessories-128",
@@ -19293,7 +19517,7 @@
         },
         {
           "id": "accessories-150",
-          "name": "12gg Cashmere Plain Knit Legging Pants Socks",
+          "name": "Cashmere Plain Knit Leggings and Pants Set",
           "price": "26.9-27.9",
           "currency": "USD",
           "moq": 100,
@@ -19303,7 +19527,7 @@
             "Dark Gray",
             "color cards"
           ],
-          "description": "Accessories, 100% cashmere, Dark Gray, color cards, For Women, MOQ 100 pcs, High quality, competitive price, custom orders welcome",
+          "description": "Our cashmere plain knit leggings and pants set is knitted on 12-gauge Italian circular knitting machines, using 2/32 Nm woolen-spun yarn from Grade A Mongolian cashmere (14.5–15.5μm). The set includes matching leggings and pull-on pants for layering or loungewear. Plain knit construction gives a smooth, refined surface suitable for both innerwear and outerwear. The waistband is reinforced elastic for shape retention, and the leg openings are shaped for ankle fit. EU sizes 32-46 standard, custom sizes available from 100 pcs. Single-piece orders also available (just leggings or just pants). Finished weight 200-280 g per piece. Hand-finished at the waistband seam. Custom Pantone colors from 100 pcs. OEKO-TEX Standard 100 certified.",
           "images": [
             "prod_358_00.webp",
             "prod_358_00.webp"
@@ -19328,7 +19552,35 @@
           "origin": "",
           "sampleCost": "",
           "packaging": "",
-          "colorsOffered": ""
+          "colorsOffered": "",
+          "meta_description": "Cashmere plain knit leggings and pants set, 12-gauge knit, 2/32 Nm woolen-spun Grade A Mongolian cashmere, 200-280g. Custom Pantone from 100 pcs.",
+          "product_advantages": [
+            "12-gauge circular knit: smooth, refined surface suitable for innerwear and outerwear",
+            "Reinforced elastic waistband: shape retention through repeated wear and washing",
+            "Ankle-shape leg openings: refined silhouette, suitable for layering under tunics",
+            "Single-piece orders available: just leggings or just pants as separate SKUs",
+            "OEKO-TEX Standard 100 certified: no harmful substances, suitable against skin"
+          ],
+          "faq": [
+            {
+              "q": "What sizes are available in this set?",
+              "a": "EU sizes 32-46 standard, equivalent to US 0-14 / UK 4-18. Custom sizes available from 100 pcs per design. Single-piece orders also available as separate SKUs (just leggings or just pants) for stores that want to mix and match within a collection."
+            },
+            {
+              "q": "Is this suitable for loungewear or outerwear?",
+              "a": "Both. The plain knit construction gives a refined surface suitable for innerwear layering (under tunics or long sweaters) and loungewear. The 200-280 g weight is appropriate for travel and home wear. For outerwear, layer with a long tunic or sweater — the cashmere surface is refined enough to wear without being hidden."
+            },
+            {
+              "q": "Will the elastic waistband lose stretch over time?",
+              "a": "Our reinforced elastic waistband is designed for 2+ years of regular wear. Maintain shape by washing in a mesh laundry bag and laying flat to dry (do not tumble dry). Hand wash cold for longest life. The waistband is replaceable — we can ship replacement elastic for orders of 50+ pieces."
+            },
+            {
+              "q": "What is the MOQ for custom colors?",
+              "a": "Custom Pantone colors from 100 pcs per design. Custom sizes from 100 pcs. Custom waistband height (lower, mid, high rise) from 200 pcs. Lab dip in 7-10 days, bulk production 30-40 days for fully custom orders."
+            }
+          ],
+          "enriched": true,
+          "enriched_at": "2026-08-18"
         },
         {
           "id": "accessories-151",
@@ -21334,7 +21586,7 @@
         },
         {
           "id": "yarn-124",
-          "name": "Fancy 100 Cashmere Hand Knitting Yarn for Socks",
+          "name": "Cashmere Hand Knitting Yarn for Socks",
           "price": "120.0-125.0",
           "currency": "USD",
           "moq": 1,
@@ -21344,7 +21596,7 @@
             "Dark Gray",
             "Color Cards"
           ],
-          "description": "Yarn, 100% Pure Cashmere, Dark Gray, Color Cards, MOQ 1 pcs, High quality, competitive price, custom orders welcome",
+          "description": "Our hand knitting cashmere yarn for socks is carded and woolen-spun for a lofty, soft hand-feel suitable for hand-knitted socks, scarves, and baby garments. The yarn count is 2/26 Nm woolen-spun (26 km of single-ply per kg), spun from Grade A Mongolian cashmere (14.5–15.5μm) sourced from contracted herders on the Ordos plateau. The woolen-spun construction gives the yarn a 30-40% loftier appearance than worsted-spun, with a soft halo effect that fills the knitted fabric. Standard put-up is 100g twisted skeins or 1kg cones for machine knitting. Skeins are ideal for hand crafting; cones for studio production. Custom count from 2/16 to 2/48 Nm available from 50 kg. Custom Pantone dyeing from 5 kg per color. Lab dip in 5-7 days. Standard lead time 15-25 days for stock colors, 25-35 days for custom. OEKO-TEX Standard 100 certified. Suitable for hand knitting, small studio production, and mill sample work.",
           "images": [
             "prod_283_00.webp",
             "prod_283_00.webp"
@@ -21369,7 +21621,35 @@
           "packaging": "100g cone / 500g hank / custom packaging",
           "collar": "N/A (yarn product)",
           "colorsOffered": "Ecru / 30+ Pantone colors / Custom dye",
-          "detailedDescription": "Premium Inner Mongolia cashmere yarn, worsted-spun on Italian frames. Suitable for hand knitting, machine knitting, and weaving. Custom count, twist, color, and packaging available."
+          "detailedDescription": "Premium Inner Mongolia cashmere yarn, worsted-spun on Italian frames. Suitable for hand knitting, machine knitting, and weaving. Custom count, twist, color, and packaging available.",
+          "meta_description": "Cashmere hand knitting yarn for socks, 2/26 Nm woolen-spun Grade A Mongolian cashmere, 100g skeins or 1kg cones. Custom Pantone from 5 kg.",
+          "product_advantages": [
+            "2/26 Nm woolen-spun: lofty, soft halo effect, 30-40% fuller than worsted-spun",
+            "100g skeins (hand knitting) or 1kg cones (mill sample work)",
+            "Custom count from 2/16 to 2/48 Nm available from 50 kg",
+            "Custom Pantone dyeing from 5 kg per color, lab dip in 5-7 days",
+            "OEKO-TEX Standard 100 certified for hand-made baby garments and skin-contact items"
+          ],
+          "faq": [
+            {
+              "q": "What is the difference between woolen-spun and worsted-spun yarn?",
+              "a": "Woolen-spun yarn is carded and air-jet or mule spun, giving a random fiber alignment, loftier appearance, and softer hand-feel. Worsted-spun yarn is combed and ring-spun, giving parallel fiber alignment, smoother surface, and more refined drape. Woolen-spun is more forgiving for hand-knitting (less splitting, more forgiving gauge); worsted-spun is better for structured garments."
+            },
+            {
+              "q": "How many socks can I knit from 100g of yarn?",
+              "a": "A 100g skein of 2/26 Nm yarn knits approximately one pair of adult socks (size 38-42) at 7-9 gauge. For a longer pair (knee-high), plan 150-200g per pair. For baby socks, 50g makes 2-3 pairs. The exact yardage depends on stitch gauge and pattern; we recommend ordering 10% extra to account for swatching and any rework."
+            },
+            {
+              "q": "Can I order undyed yarn for hand-dyeing?",
+              "a": "Yes. We ship undyed (greige) yarn in 1kg cones for hand dyers and small studios. Pricing is 15-20% below dyed stock colors. Minimum order 5 kg per count. Lead time 7-10 days for stock counts. Custom greige counts from 50 kg with 30-40 day lead time."
+            },
+            {
+              "q": "What is the best needle size for hand knitting this yarn?",
+              "a": "For 2/26 Nm woolen-spun cashmere at 7-9 gauge (typical for socks and scarves), use 3.5-4.5 mm needles (US 4-6). For tighter gauge (10-12 gg for finer fabrics), use 2.5-3.25 mm (US 1-3). The woolen-spun yarn is more forgiving than worsted-spun, so gauge variation is acceptable up to 1/2 stitch per inch."
+            }
+          ],
+          "enriched": true,
+          "enriched_at": "2026-08-18"
         },
         {
           "id": "yarn-125",
@@ -22086,7 +22366,7 @@
             "Gray Blue",
             "Color Cards"
           ],
-          "description": "Yarn, 30% Cashmere 70% Wool, Gray Blue, Color Cards, MOQ 1 pcs, High quality, competitive price, custom orders welcome",
+          "description": "Our superwash merino wool cashmere blend yarn is a 70/30 merino/cashmere blend with superwash treatment for machine-washable yarn suitable for hand knitting, machine knitting, and weaving. The superwash treatment removes the outer scales of the wool fiber, allowing the yarn to be machine-washed without felting. The 70/30 blend provides the easy-care of merino with the soft hand-feel of cashmere. Yarn count is 2/48 Nm worsted-spun, suitable for 12-14 gauge knitwear. Standard put-up is 100g twisted skeins (hand knitting) or 1kg cones (machine knitting). Available in stock colors and custom Pantone from 5 kg per color. Lab dip in 5-7 days, bulk production 30-40 days for custom orders. The superwash treatment is chlorine-free (using H2O2 or enzymatic process) for OEKO-TEX Standard 100 certification. Suitable for machine-washable garments, easy-care knitwear, and studio production.",
           "images": [
             "prod_389_00.webp",
             "prod_389_00.webp"
@@ -22111,7 +22391,35 @@
           "packaging": "100g cone / 500g hank / custom packaging",
           "collar": "N/A (yarn product)",
           "colorsOffered": "Ecru / 30+ Pantone colors / Custom dye",
-          "detailedDescription": "Premium Inner Mongolia cashmere yarn, worsted-spun on Italian frames. Suitable for hand knitting, machine knitting, and weaving. Custom count, twist, color, and packaging available."
+          "detailedDescription": "Premium Inner Mongolia cashmere yarn, worsted-spun on Italian frames. Suitable for hand knitting, machine knitting, and weaving. Custom count, twist, color, and packaging available.",
+          "meta_description": "Superwash merino wool cashmere blend yarn, 70/30 blend, 2/48 Nm worsted-spun, machine-washable. 100g skeins or 1kg cones. Custom Pantone from 5 kg.",
+          "product_advantages": [
+            "70/30 merino/cashmere blend: easy-care of merino + soft hand-feel of cashmere",
+            "Superwash treatment: machine-washable yarn without felting",
+            "2/48 Nm worsted-spun: suitable for 12-14 gauge knitwear",
+            "100g skeins (hand) or 1kg cones (machine studio production)",
+            "OEKO-TEX Standard 100 certified: chlorine-free superwash process"
+          ],
+          "faq": [
+            {
+              "q": "What does superwash mean?",
+              "a": "Superwash is a chemical treatment that removes the outer scales of wool fiber, preventing felting. Treated yarn can be machine-washed without felting or shrinking. Chlorine-free processes (H2O2 or enzymatic) are preferred for environmental reasons. The treatment does not affect the natural hand-feel of the wool; it only removes the felting tendency."
+            },
+            {
+              "q": "Is superwash safe for sensitive skin?",
+              "a": "Yes. Our chlorine-free superwash process is OEKO-TEX Standard 100 certified, meaning no harmful substances remain in the yarn. The cashmere component (30%) provides additional softness for sensitive skin. Some customers with very severe wool allergies may still react to any wool-based yarn, regardless of superwash treatment, due to residual lanolin traces."
+            },
+            {
+              "q": "What is the MOQ for custom colors?",
+              "a": "Custom Pantone colors from 5 kg per color. Custom count from 2/36 to 2/60 Nm available from 50 kg. Lab dip in 5-7 days, bulk production 30-40 days for custom orders. Mixed dye lots within a single color accepted at no surcharge."
+            },
+            {
+              "q": "Can I machine-wash garments made from this yarn?",
+              "a": "Yes. Garments made from this superwash yarn can be machine-washed on a delicate/wool cycle at 30°C with cashmere-wool detergent. Lay flat to dry. Do not tumble dry. The superwash treatment prevents felting, but air-drying is still recommended for longest life. The garment will soften with washes over time."
+            }
+          ],
+          "enriched": true,
+          "enriched_at": "2026-08-18"
         },
         {
           "id": "yarn-145",
@@ -22154,7 +22462,7 @@
         },
         {
           "id": "yarn-146",
-          "name": "Cashmere Blended Hand Knitting Merino Wool Yarn",
+          "name": "Cashmere Merino Wool Blend Yarn for Hand Knitting",
           "price": "65.0-69.9",
           "currency": "USD",
           "moq": 1,
@@ -22164,7 +22472,7 @@
             "Purple",
             "Color Cards"
           ],
-          "description": "Yarn, 30% Cashmere 70% Wool, Purple, Color Cards, MOQ 1 pcs, High quality, competitive price, custom orders welcome",
+          "description": "Our cashmere merino wool blend yarn for hand knitting is a 50/50 cashmere/merino blend, balanced for hand-knitting patterns that benefit from the warmth and softness of cashmere combined with the stitch definition and elasticity of merino. The 50/50 ratio is the sweet spot for many B2B buyers — it provides a higher cashmere content than the typical 30/70 blend while maintaining the durability and stitch definition of merino. Yarn count is 2/48 Nm worsted-spun, suitable for 10-14 gauge knitwear. Standard put-up is 100g twisted skeins or 250g cones. The 50/50 blend is appropriate for sweaters, scarves, hats, and baby garments where the higher cashmere content is justified. Custom Pantone dyeing from 5 kg per color. Lab dip in 5-7 days, bulk production 25-30 days for custom orders. OEKO-TEX Standard 100 certified. Suitable for hand knitting, machine knitting, and small studio production.",
           "images": [
             "prod_399_00.webp",
             "prod_399_00.webp"
@@ -22189,7 +22497,31 @@
           "packaging": "100g cone / 500g hank / custom packaging",
           "collar": "N/A (yarn product)",
           "colorsOffered": "Ecru / 30+ Pantone colors / Custom dye",
-          "detailedDescription": "Premium Inner Mongolia cashmere yarn, worsted-spun on Italian frames. Suitable for hand knitting, machine knitting, and weaving. Custom count, twist, color, and packaging available."
+          "detailedDescription": "Premium Inner Mongolia cashmere yarn, worsted-spun on Italian frames. Suitable for hand knitting, machine knitting, and weaving. Custom count, twist, color, and packaging available.",
+          "meta_description": "Cashmere merino wool blend yarn for hand knitting, 50/50 blend, 2/48 Nm worsted-spun, 100g skeins or 250g cones. Custom Pantone from 5 kg.",
+          "product_advantages": [
+            "50/50 cashmere/merino blend: higher cashmere than 30/70, better stitch definition than 100% cashmere",
+            "2/48 Nm worsted-spun: suitable for 10-14 gauge knitwear",
+            "100g skeins or 250g cones: hand knitting or studio production",
+            "Custom Pantone dyeing from 5 kg per color, lead time 25-30 days",
+            "OEKO-TEX Standard 100 certified: safe for baby garments and skin-contact items"
+          ],
+          "faq": [
+            {
+              "q": "What is the difference between 50/50 and 30/70 cashmere-merino blends?",
+              "a": "The 50/50 blend has higher cashmere content (50% vs 30%), giving softer hand-feel and more warmth per gram. The 30/70 blend is more durable and less expensive. The 50/50 ratio is the sweet spot for B2B buyers who want more cashmere hand-feel without the price of 100% cashmere. The 50/50 is approximately 20-30% more expensive than 30/70."
+            },
+            {
+              "q": "What is the best needle size for hand knitting this yarn?",
+              "a": "For 2/48 Nm worsted-spun yarn at 10-12 gauge (typical for sweaters and scarves), use 3.25-4 mm needles (US 3-6). For 14-gauge knits (finer fabrics, lace), use 2.5-3 mm (US 1-3). The 50/50 blend is more forgiving than 100% cashmere, so gauge variation is acceptable up to 1/2 stitch per inch."
+            },
+            {
+              "q": "Is this yarn suitable for baby garments?",
+              "a": "Yes. The 50/50 blend is appropriate for baby garments — cashmere provides softness for sensitive skin, merino provides durability for washing. The OEKO-TEX Standard 100 certification confirms no harmful substances. Hand-washing is recommended for baby garments (machine washing on delicate cycle is acceptable but air-drying is gentler)."
+            }
+          ],
+          "enriched": true,
+          "enriched_at": "2026-08-18"
         },
         {
           "id": "yarn-147",
