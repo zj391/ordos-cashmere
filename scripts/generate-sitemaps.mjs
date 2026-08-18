@@ -166,4 +166,23 @@ try {
   console.log('Removed old sitemap-0.xml');
 } catch {}
 
+// CRITICAL: also copy to .vercel/output/static/ because the Vercel adapter
+// snapshots dist/client/ BEFORE this postbuild script runs. Without this
+// copy, the sitemaps would be missing from the deployed site and search
+// engines would get 404 on /sitemap-index.xml — leading to "0 indexed
+// pages" in Bing Webmaster Tools / Google Search Console even though
+// every page is built and reachable.
+const VERCEL_STATIC = path.join(ROOT, '.vercel/output/static');
+try {
+  await fs.access(VERCEL_STATIC);
+  for (const f of ['sitemap-index.xml', 'sitemap-static.xml', 'sitemap-blog.xml', 'sitemap-products.xml']) {
+    await fs.copyFile(path.join(OUTPUT_DIR, f), path.join(VERCEL_STATIC, f));
+  }
+  console.log(`Copied 4 sitemaps to ${VERCEL_STATIC}`);
+} catch (e) {
+  // .vercel/output/ only exists after Vercel adapter runs in postbuild.
+  // If absent (e.g. local `astro build` without adapter), skip silently.
+  console.log('.vercel/output/static not present — skipping Vercel copy (local-only build)');
+}
+
 console.log('\nDone.');
