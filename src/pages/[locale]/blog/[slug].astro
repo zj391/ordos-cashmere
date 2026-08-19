@@ -13,6 +13,7 @@ import { LOCALES, pickLocale } from '@/lib/i18n';
 import { SITE_URL } from '@/lib/seo';
 import { getCollection, render } from 'astro:content';
 import { extractBlogFAQ } from '@/lib/blog-faq';
+import { blogHeroImage } from '@/lib/blog-hero';
 
 export async function getStaticPaths() {
   const all = await getCollection('blog');
@@ -29,6 +30,10 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const locale = pickLocale(Astro.params.locale);
 const { Content } = await render(post);
+
+// 2026-08-19: hero image picked from blog tags using curated brand images.
+// Visual differentiation across 1566 blog posts without storing 1566 hero images.
+const heroImage = blogHeroImage(post.data.tags || [], post.data.title || '');
 
 // Schema.org Article + BlogPosting for SEO
 const articleSchema = {
@@ -60,7 +65,13 @@ const articleSchema = {
     '@id': `${SITE_URL}/${locale}/blog/${Astro.params.slug}/`,
   },
   url: `${SITE_URL}/${locale}/blog/${Astro.params.slug}/`,
-  image: `${SITE_URL}/logo.svg`,
+  image: {
+    '@type': 'ImageObject',
+    url: heroImage.path,
+    width: heroImage.width,
+    height: heroImage.height,
+    caption: heroImage.alt,
+  },
   keywords: (post.data.targetKeywords || []).join(', '),
   inLanguage: locale,
   articleSection: 'B2B Cashmere Sourcing',
@@ -105,6 +116,7 @@ const blogFAQ = extractBlogFAQ(post.body, 4);
   title={post.data.title}
   description={post.data.excerpt}
   ogType="article"
+  ogImage={heroImage.path}
   schema="blog"
   faqs={blogFAQ}
 >
@@ -123,6 +135,10 @@ const blogFAQ = extractBlogFAQ(post.body, 4);
       <meta property="article:section" content="B2B Cashmere Sourcing" />
       ${tagMetas}
       <meta property="article:locale" content="${locale}" />
+      <meta property="og:image:width" content="${heroImage.width}" />
+      <meta property="og:image:height" content="${heroImage.height}" />
+      <meta property="og:image:alt" content="${heroImage.alt.replace(/"/g, '&quot;')}" />
+      <meta name="twitter:image:alt" content="${heroImage.alt.replace(/"/g, '&quot;')}" />
 
       <!-- Twitter: site + creator -->
       <meta name="twitter:site" content="@dongxiaocashmere" />
