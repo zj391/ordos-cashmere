@@ -225,10 +225,14 @@ if (!category) { return new Response('Not Found', { status: 404 }); }
 
 
 
-// 2026-08-19 移除: Section 13 "Related [Category]" 6 卡片产品推荐区被用户反馈为"产品页面下半部分的所有产品"。
-// 原因: 买家进入产品页是评估这一款，不是被推到同类产品做选择 — 6 张卡片与页面本身的 30+ 内容 section 重复权重。
-// 保留: getProductsByCategory 函数本身 (它仍被其他页面调用), 仅移除此处的展示数组。
-// 替代内链: nav mega-menu、breadcrumb、相关 category hub 页面、sidebar nav、内部 blog 链接。
+// 推荐相关产品（同类别，排除自己，最多 6 个）— 直接从分类缓存取，O(n) filter -> O(1) lookup
+
+const related = getProductsByCategory(product.categoryId)
+
+  .filter((p) => p.id !== product.id)
+
+  .slice(0, 6);
+
 
 
 const imageDir = CATEGORY_IMAGE_DIR[product.categoryId] || product.categoryId;
@@ -2615,10 +2619,67 @@ const relatedBlogPosts = pickedBlogs.map((p) => ({
 
 
 
-  <!-- Section 13: Related products — 2026-08-19 移除: 用户反馈"产品页面下半部分的所有产品"。
-       6 卡片同类产品网格被买家视为评估干扰, 非必要选择辅助。
-       替代内链: mega-menu / breadcrumb / category hub 页 / sidebar nav / blog 文章内链。
-  -->
+  <!-- Section 13: Related products -->
+
+  {related.length > 0 && (
+
+    <section class="py-16 bg-background">
+
+      <div class="container-narrow">
+
+        <h2 class="reveal font-display text-2xl font-light mb-6">Related {displayCategory}</h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+
+          {related.map((rp) => (
+
+            <a
+
+              href={`/${locale}/products/${rp.id}/`}
+
+              class="group block border border-border rounded-lg overflow-hidden hover:border-primary transition-colors"
+
+            >
+
+              <div class="aspect-square bg-secondary/30 overflow-hidden">
+
+                <img
+
+                  src={(rp.images[0] || '').startsWith('/images/') || (rp.images[0] || '').startsWith('http')
+
+                      ? rp.images[0]
+
+                      : `/products/${CATEGORY_IMAGE_DIR[rp.categoryId] || rp.categoryId}/${rp.images[0]}`}
+
+                  alt={buildSeoAlt(rp)}
+
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform"
+
+                  decoding="async" loading="lazy"
+
+                />
+
+              </div>
+
+              <div class="p-3">
+
+                <h3 class="text-xs font-medium leading-snug line-clamp-2 mb-1">{rp.name}</h3>
+
+                <p class="text-[10px] text-muted-foreground">USD {rp.price}</p>
+
+              </div>
+
+            </a>
+
+          ))}
+
+        </div>
+
+      </div>
+
+    </section>
+
+  )}
 
 
 
