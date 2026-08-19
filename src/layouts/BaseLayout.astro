@@ -555,13 +555,9 @@ if (faqs && faqs.length > 0) {
 
 
 
-    <!-- JSON-LD Schema -->
+    <!-- JSON-LD Schema (consolidated to one @graph block, 2026-08-19) -->
 
-    {allSchemas.map((s: any) => (
-
-      <script type="application/ld+json" set:html={JSON.stringify(s, null, 0)} is:inline />
-
-    ))}
+    <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@graph': allSchemas })} is:inline />
 
 
 

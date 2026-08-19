@@ -57,29 +57,9 @@ const itemListSchema = {
 };
 
 // BreadcrumbList JSON-LD: 首页 > Blog
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: `https://www.erdosdx.com/${locale}/` },
-    { '@type': 'ListItem', position: 2, name: locale === 'cn' ? '博客' : 'Blog', item: `https://www.erdosdx.com/${locale}/blog` },
-  ],
-};
-
 ---
 
-<BaseLayout locale={locale} pageKey="blog" path="/blog">
-  <Fragment slot="head" set:html={(() => {
-    // Astro 5 限制：{} 里不能 return JSX 数组，用 set:html + 字符串拼接
-    const itemListJson = JSON.stringify(itemListSchema);
-    const breadcrumbJson = JSON.stringify(breadcrumbSchema);
-    return `
-    <!-- Blog list ItemList + Breadcrumb JSON-LD -->
-    <script type="application/ld+json">${itemListJson}</script>
-    <script type="application/ld+json">${breadcrumbJson}</script>
-  `;
-  })()} />
-
+<BaseLayout locale={locale} pageKey="blog" path="/blog" customSchemas={[itemListSchema]}>
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/blog`} />
 
   <section class="relative bg-[#F5F0E7] border-b border-border/60 overflow-hidden">

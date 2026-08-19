@@ -119,6 +119,7 @@ const blogFAQ = extractBlogFAQ(post.body, 4);
   ogImage={heroImage.path}
   schema="blog"
   faqs={blogFAQ}
+  customSchemas={[articleSchema, breadcrumbSchema]}
 >
   <Fragment slot="head">
     <Fragment set:html={(() => {
@@ -144,11 +145,7 @@ const blogFAQ = extractBlogFAQ(post.body, 4);
       <meta name="twitter:site" content="@dongxiaocashmere" />
       <meta name="twitter:creator" content="@dongxiaocashmere" />
 
-      <!-- BlogPosting JSON-LD (rich result in Google) -->
-      <script type="application/ld+json">${JSON.stringify(articleSchema)}</script>
-
-      <!-- Breadcrumb JSON-LD -->
-      <script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>
+      <!-- BlogPosting + Breadcrumb JSON-LD moved to BaseLayout customSchemas (2026-08-19: JSON-LD @graph consolidation) -->
     `;
     })()} />
   </Fragment>

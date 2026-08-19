@@ -127,14 +127,13 @@ export const PAGE_BREADCRUMB: Record<string, (locale: Locale) => BreadcrumbItem[
     { name: locale === 'cn' ? '首页' : 'Home', href: '/' },
     { name: locale === 'cn' ? '隐私政策' : 'Privacy Policy', href: '/privacy-policy' },
   ],
-  // Product detail page uses a 4-item breadcrumb (Home → Products →
-  // Category → Product) supplied by [id].astro via customSchemas. We
-  // intentionally skip the 2-item pageKey='products' entry below to
-  // avoid emitting two BreadcrumbList schemas per page — Google Search
-  // Console flags that as "Multiple breadcrumb lists detected" and
-  // ignores both. The detail page's customSchemas version is richer
-  // (includes the actual product name + category URL), so it's the
-  // canonical one to keep.
+  // Products listing page (pageKey='products') uses this 2-item breadcrumb.
+  // Product detail pages intentionally skip this because they emit a richer
+  // 4-item breadcrumb (Home → Products → Category → Product) via customSchemas.
+  products: (locale) => [
+    { name: locale === 'cn' ? '首页' : 'Home', href: '/' },
+    { name: locale === 'cn' ? '产品' : 'Products', href: '/products' },
+  ],
 };
 
 /**

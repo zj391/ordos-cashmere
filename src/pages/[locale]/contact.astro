@@ -47,66 +47,56 @@ const t: Record<string, Record<string, string>> = {
   kr: { tagline: '문의', title: '문의\nspecialist', subtitle: '24시간 내 견적.', infoTitle: '직접 연락', infoSub: '원하는 채널을 선택하세요.', formTitle: '문의 보내기', formSub: '필요한 것을 알려주세요.', address: '주소', phone: '전화', whatsapp: 'WhatsApp', wechat: '위챗', email: '이메일', hours: '영업시간' },
 };
 const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
+
+// ContactPage JSON-LD (2026-08-19: moved to BaseLayout customSchemas so all schemas land in one @graph block)
+const contactSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  '@id': `https://www.erdosdx.com/${locale}/contact`,
+  name: locale === 'cn' ? '联系东霄羊绒' : 'Contact DONGXIAO Cashmere',
+  description: locale === 'cn'
+    ? '联系鄂尔多斯源头工厂，24小时内回复所有询盘'
+    : 'Contact our Ordos source factory directly. 24h inquiry response.',
+  mainEntity: {
+    '@type': 'Organization',
+    '@id': 'https://www.erdosdx.com/#organization',
+    name: SITE_INFO.name,
+    legalName: SITE_INFO.legalName,
+    url: 'https://www.erdosdx.com',
+    logo: 'https://www.erdosdx.com/logo.svg',
+    foundingDate: String(SITE_INFO.foundingYear),
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: SITE_INFO.address,
+      addressLocality: SITE_INFO.city,
+      addressRegion: SITE_INFO.region,
+      postalCode: '017000',
+      addressCountry: SITE_INFO.country,
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: SITE_INFO.latitude,
+      longitude: SITE_INFO.longitude,
+    },
+    contactPoint: [{
+      '@type': 'ContactPoint',
+      telephone: SITE_INFO.phone,
+      contactType: 'sales',
+      areaServed: 'Worldwide',
+      availableLanguage: ['English', 'Chinese', 'German', 'French', 'Japanese', 'Korean'],
+      hoursAvailable: {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '08:00',
+        closes: '18:00',
+      },
+    }],
+    sameAs: Object.values(SITE_INFO.social),
+  },
+};
 ---
 
-<BaseLayout locale={locale} pageKey="contact" path="/contact">
-  <Fragment slot="head" set:html={(() => {
-    // ContactPage JSON-LD：让 Google 直接显示地址/电话/营业时间
-    const t = SITE_INFO?.contact || {};
-    const contactJson = JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'ContactPage',
-      '@id': `https://www.erdosdx.com/${locale}/contact`,
-      name: locale === 'cn' ? '联系东霄羊绒' : 'Contact DONGXIAO Cashmere',
-      description: locale === 'cn'
-        ? '联系鄂尔多斯源头工厂，24小时内回复所有询盘'
-        : 'Contact our Ordos source factory directly. 24h inquiry response.',
-      mainEntity: {
-        '@type': 'Organization',
-        '@id': 'https://www.erdosdx.com/#organization',
-        name: 'DONGXIAO Cashmere',
-        legalName: 'Ordos Dongxiao Cashmere Co., Ltd.',
-        url: 'https://www.erdosdx.com',
-        logo: 'https://www.erdosdx.com/logo.svg',
-        foundingDate: '2002',
-        address: {
-          '@type': 'PostalAddress',
-          streetAddress: 'Ordos Industrial Park, Inner Mongolia',
-          addressLocality: 'Ordos',
-          addressRegion: 'Inner Mongolia',
-          postalCode: '017000',
-          addressCountry: 'CN',
-        },
-        geo: {
-          '@type': 'GeoCoordinates',
-          latitude: 39.6086,
-          longitude: 109.7813,
-        },
-        contactPoint: [{
-          '@type': 'ContactPoint',
-          telephone: '+86-156-6185-3999',
-          contactType: 'sales',
-          areaServed: 'Worldwide',
-          availableLanguage: ['English', 'Chinese', 'German', 'French', 'Japanese', 'Korean'],
-          hoursAvailable: {
-            '@type': 'OpeningHoursSpecification',
-            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-            opens: '08:00',
-            closes: '18:00',
-          },
-        }],
-        sameAs: [
-          'https://www.linkedin.com/company/dongxiao-cashmere',
-          'https://www.instagram.com/dongxiaocashmere',
-          'https://www.facebook.com/dongxiaocashmere',
-          'https://www.youtube.com/@dongxiaocashmere',
-        ],
-      },
-    });
-    return `
-    <script type="application/ld+json">${contactJson}</script>
-  `;
-  })()} />
+<BaseLayout locale={locale} pageKey="contact" path="/contact" customSchemas={[contactSchema]}>
 
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/contact`} />
 
