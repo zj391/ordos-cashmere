@@ -41,10 +41,31 @@ const articleSchema = {
   author: {
     '@type': 'Organization',
     name: post.data.author,
+    url: SITE_URL,
   },
+  publisher: {
+    '@type': 'Organization',
+    name: 'DONGXIAO® Cashmere',
+    legalName: 'Ordos Dongxiao Cashmere Co., Ltd.',
+    url: SITE_URL,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${SITE_URL}/logo.svg`,
+      width: 600,
+      height: 60,
+    },
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': `${SITE_URL}/${locale}/blog/${Astro.params.slug}/`,
+  },
+  url: `${SITE_URL}/${locale}/blog/${Astro.params.slug}/`,
+  image: `${SITE_URL}/logo.svg`,
   keywords: (post.data.targetKeywords || []).join(', '),
   inLanguage: locale,
   articleSection: 'B2B Cashmere Sourcing',
+  wordCount: post.body?.split(/\s+/).length || 0,
+  isAccessibleForFree: true,
 };
 
 

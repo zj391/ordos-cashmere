@@ -4,6 +4,7 @@
  * - FAQPage（FAQ 页）
  * - Product（产品页，预留）
  * - WebSite + Organization 已在 BaseLayout 注入
+ * - CollectionPage + ItemList（category hub 页，2026-08-19 增）
  */
 import { SITE_URL } from './seo';
 import type { Locale } from './i18n';
@@ -177,3 +178,66 @@ export const SERVICES: Record<Locale, ServiceItem[]> = {
     { name: '羊绒成衣代工', description: '全流程 OEM/ODM 代工服务', provider: '东霄羊绒', areaServed: ['全球'], serviceType: 'OEM代工' },
   ],
 };
+
+
+/**
+ * 2026-08-19 增: Category hub 页的 CollectionPage + ItemList schema。
+ * 用于 /en/products/hats-accessories/ 等 5 个 category hub 页 (6 lang × 5 = 30 个 URL)。
+ * 之前这些页面只发 WebPage schema，没有声明自己是"产品集合"型页 — Google 看不到
+ * page-type 信号，crawl/index 时归类到普通 hub，影响长尾 query 排名。
+ *
+ * ItemList 含前 30 个产品 URL（schema.org 官方建议每条 ListItem < 100KB，免得
+ * 搜索引擎反感堆叠型 markup）。少于 30 个时按实际数量。
+ */
+export interface CategoryHubProduct {
+  id: string;
+  name: string;
+  price?: string;
+  image?: string;
+}
+
+export function categoryHubSchema(
+  locale: Locale,
+  hubSlug: string,
+  hubName: string,
+  hubDescription: string,
+  products: CategoryHubProduct[]
+): Array<Record<string, any>> {
+  const pageUrl = `${SITE_URL}/${locale}/products/${hubSlug}/`;
+  const size = products.length;
+  const top = products.slice(0, 30);
+
+  const collectionPage: Record<string, any> = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': pageUrl,
+    name: hubName,
+    description: hubDescription,
+    url: pageUrl,
+    inLanguage: locale,
+    isPartOf: { '@type': 'WebSite', url: SITE_URL, name: 'DONGXIAO® CASHMERE' },
+    about: {
+      '@type': 'Thing',
+      name: hubName,
+      description: hubDescription,
+    },
+  };
+
+  if (top[0]?.image) {
+    collectionPage.primaryImageOfPage = { '@type': 'ImageObject', url: top[0].image };
+  }
+
+  collectionPage.mainEntity = {
+    '@type': 'ItemList',
+    numberOfItems: size,
+    itemListOrder: 'https://schema.org/ItemListUnordered',
+    itemListElement: top.map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: `${SITE_URL}/${locale}/products/${p.id}/`,
+      name: p.name,
+    })),
+  };
+
+  return [collectionPage];
+}
