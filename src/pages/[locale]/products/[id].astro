@@ -51,6 +51,7 @@ import {
   getProductById,
   getAllProducts,
   getCategoryById,
+  getProductsByCategory,
   ensureDbOverlay,
 } from '@/data/products';
 
@@ -224,9 +225,15 @@ if (!category) { return new Response('Not Found', { status: 404 }); }
 
 
 
-// 推荐相关产品模块 - 2026-08-18 移除: 每个产品页底部的"Related [category]"模块被用户删除。
-// 移除原因: 该模块对每个产品页都是同cat其他6个产品的固定grid, 对买家是低价值重复,
-// 对SEO没有帮助(已经在侧边栏/hub页有更好的相关产品入口)。Section 13 整块删除。
+// 推荐相关产品（同类别，排除自己，最多 6 个）— 直接从分类缓存取，O(n) filter -> O(1) lookup
+
+const related = getProductsByCategory(product.categoryId)
+
+  .filter((p) => p.id !== product.id)
+
+  .slice(0, 6);
+
+
 
 const imageDir = CATEGORY_IMAGE_DIR[product.categoryId] || product.categoryId;
 
@@ -2642,7 +2649,69 @@ const relatedBlogPosts = pickedBlogs.map((p) => ({
 
 
 
-  <!-- Section 13: Related products — 2026-08-18 移除: 用户反馈该模块对买家是低价值重复, 对SEO无帮助。 -->
+  <!-- Section 13: Related products -->
+
+  {related.length > 0 && (
+
+    <section class="py-16 bg-background">
+
+      <div class="container-narrow">
+
+        <h2 class="reveal font-display text-2xl font-light mb-6">Related {displayCategory}</h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+
+          {related.map((rp) => (
+
+            <a
+
+              href={`/${locale}/products/${rp.id}/`}
+
+              class="group block border border-border rounded-lg overflow-hidden hover:border-primary transition-colors"
+
+            >
+
+              <div class="aspect-square bg-secondary/30 overflow-hidden">
+
+                <img
+
+                  src={(rp.images[0] || '').startsWith('/images/') || (rp.images[0] || '').startsWith('http')
+
+                      ? rp.images[0]
+
+                      : `/products/${CATEGORY_IMAGE_DIR[rp.categoryId] || rp.categoryId}/${rp.images[0]}`}
+
+                  alt={buildSeoAlt(rp)}
+
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform"
+
+                  decoding="async" loading="lazy"
+
+                />
+
+              </div>
+
+              <div class="p-3">
+
+                <h3 class="text-xs font-medium leading-snug line-clamp-2 mb-1">{rp.name}</h3>
+
+                <p class="text-[10px] text-muted-foreground">USD {rp.price}</p>
+
+              </div>
+
+            </a>
+
+          ))}
+
+        </div>
+
+      </div>
+
+    </section>
+
+  )}
+
+
 
   <script type="application/json" id="dx-product-data" set:html={productJson}></script>
 
