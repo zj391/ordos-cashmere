@@ -185,4 +185,64 @@ try {
   console.log('.vercel/output/static not present — skipping Vercel copy (local-only build)');
 }
 
+// ============================================================================
+// IndexNow auto-ping (2026-08-19 增) — 每次 build 完成后自动 ping IndexNow。
+// IndexNow 派 Bing/Yandex/DuckDuckGo/Seznam/Naver 来抓所有 URL。
+// 仅 Vercel 环境触发 (process.env.VERCEL === '1'), 本地 build 跳过。
+// 失败也只 warn, 不 exit 1 - 避免阻塞 deploy。
+// ============================================================================
+const INDEXNOW_KEY = 'erdosdx-indexnow-key-2026';
+const INDEXNOW_HOST = 'www.erdosdx.com';
+const INDEXNOW_KEY_LOC = `https://${INDEXNOW_HOST}/indexnow-key.txt`;
+const INDEXNOW_ENDPOINT = 'https://api.indexnow.org/indexnow';
+
+if (process.env.VERCEL === '1') {
+  const seen = new Set();
+  for (const list of Object.values(buckets)) {
+    for (const p of list) seen.add(`${SITE_URL}${p}`);
+  }
+  const allUrls = Array.from(seen);
+  console.log(`\nIndexNow: ${allUrls.length} unique URLs to submit`);
+
+  const chunks = [];
+  for (let i = 0; i < allUrls.length; i += 10000) {
+    chunks.push(allUrls.slice(i, i + 10000));
+  }
+
+  let submitted = 0;
+  let failed = 0;
+  for (const chunk of chunks) {
+    const body = {
+      host: INDEXNOW_HOST,
+      key: INDEXNOW_KEY,
+      keyLocation: INDEXNOW_KEY_LOC,
+      urlList: chunk,
+    };
+    try {
+      const res = await fetch(INDEXNOW_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json; charset=utf-8' },
+        body: JSON.stringify(body),
+      });
+      const text = await res.text();
+      if (res.status === 200 || res.status === 202) {
+        submitted += chunk.length;
+        console.log(`  IndexNow POST: ${res.status} OK (${chunk.length} URLs${text ? ' - ' + text.slice(0, 80) : ''})`);
+      } else {
+        failed += chunk.length;
+        console.warn(`  IndexNow POST: ${res.status} (${chunk.length} URLs) - body: ${text.slice(0, 200)}`);
+      }
+    } catch (e) {
+      failed += chunk.length;
+      console.warn(`  IndexNow POST failed: ${e?.message || e}`);
+    }
+  }
+  console.log(`IndexNow summary: ${submitted} submitted, ${failed} failed out of ${allUrls.length} total`);
+  if (failed > 0) {
+    console.warn('(IndexNow ping is non-blocking — deploy will continue)');
+  }
+} else {
+  console.log('\nIndexNow: skipped (not on Vercel — process.env.VERCEL !== "1")');
+}
+
 console.log('\nDone.');
