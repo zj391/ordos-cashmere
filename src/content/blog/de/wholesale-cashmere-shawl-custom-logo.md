@@ -1,169 +1,169 @@
 ---
-title: "Wholesale Cashmere Shawl with Custom Logo: A B2B Guide to Woven Labels, Hangtags & MOQ"
-excerpt: "Custom logo on cashmere scarves and shawls requires the right label technology (woven vs printed vs embroidered) and proper hangtag integration. A B2B buyer's guide to private label accessories."
+title: "Kaschmir-Schal im Großhandel mit eigenem Logo: B2B-Leitfaden zu Webetiketten, Anhängern & MOQ"
+excerpt: "Eigene Logos auf Kaschmir-Schals und Tüchern erfordern die richtige Etikettentechnik (gewebt, bedruckt oder gestickt) und eine saubere Anhänger-Integration. Ein B2B-Leitfaden für Private-Label-Zubehör."
 publishDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["custom logo","wholesale cashmere shawl","private label","woven labels"]
 geoRegion: "GLOBAL"
-targetKeywords: ["wholesale cashmere shawl with custom logo","cashmere scarf shawl factory","cashmere scarf custom label","private label cashmere scarf"]
+targetKeywords: ["Kaschmir-Schal Großhandel eigenes Logo","Kaschmir-Schal Fabrik","Kaschmir-Schal eigenes Etikett","Private Label Kaschmir-Schal"]
 relatedProducts: ["garment_oem","raw_material"]
 aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "de"
 ---
-# Wholesale Cashmere Shawl with Custom Logo: A B2B Guide to Woven Labels, Hangtags & MOQ
 
-# Wholesale Cashmere Shawl with Custom Logo: B2B Guide
+# Kaschmir-Schal im Großhandel mit eigenem Logo: B2B-Leitfaden
 
-A cashmere shawl with your brand's logo is one of the highest-margin private label products you can sell. Retail prices of $150-500 per piece are common, and the production cost is reasonable.
+Ein Kaschmir-Schal mit dem Logo Ihrer Marke ist eines der margenstärksten Private-Label-Produkte, die Sie verkaufen können. Einzelhandelspreise von 150–500 USD pro Stück sind üblich, die Produktionskosten bleiben im Rahmen.
 
-The challenge: **getting the logo right**. Cashmere is a delicate fiber, and most logo techniques used on cotton or wool don't work on cashmere. This guide covers what works.
+Die Herausforderung: **das Logo richtig umsetzen**. Kaschmir ist eine empfindliche Faser, und die meisten auf Baumwolle oder Wolle üblichen Logotechniken funktionieren auf Kaschmir nicht. Dieser Leitfaden zeigt, was funktioniert.
 
-## 4 logo techniques for cashmere
+## 4 Logotechniken für Kaschmir
 
-### 1. **Woven labels** (most common)
+### 1. **Webetiketten** (am häufigsten)
 
-A **woven label** is a small fabric tag (typically 1.5-2 inches wide, 0.5-1 inch tall) with your brand name and logo, sewn into the seam of the shawl.
+Ein **Webelabel** ist ein kleines Stoffetikett (typischerweise 3,8–5 cm breit, 1,3–2,5 cm hoch) mit Ihrem Markennamen und Logo, das in die Naht des Schals eingenäht wird.
 
-**How it works**: Factory weaves the label separately (using your brand's logo and Pantone colors), then sews it into the shawl during finishing.
+**So funktioniert es**: Die Fabrik webt das Etikett separat (mit Ihrem Markenlogo und Pantone-Farben) und näht es während der Endverarbeitung in den Schal ein.
 
-**Pros**:
-- Looks premium (matches the cashmere quality)
-- Durable (lasts the lifetime of the shawl)
-- Doesn't damage the cashmere fiber
+**Vorteile**:
+- Wirkt hochwertig (passt zur Kaschmirqualität)
+- Langlebig (hält ein Schalleben lang)
+- Beschädigt die Kaschmirfaser nicht
 
-**Cons**:
-- Setup cost $50-200 per design (loom programming)
-- Per-unit cost $0.10-0.30
-- 3-4 week lead time for label production
+**Nachteile**:
+- Einmalkosten 50–200 USD pro Design (Webmaschinen-Programmierung)
+- Stückkosten 0,10–0,30 USD
+- 3–4 Wochen Vorlaufzeit für die Etikettenproduktion
 
-**Best for**: Brand labels, size labels, country-of-origin labels
+**Am besten für**: Markenetiketten, Größenetiketten, Herkunftsetiketten
 
-### 2. **Printed labels**
+### 2. **Bedruckte Etiketten**
 
-A **printed label** is similar to a woven label but printed on satin or cotton tape, then sewn in.
+Ein **bedrucktes Etikett** ähnelt dem Webelabel, wird aber auf Satin- oder Baumwollband gedruckt und dann eingenäht.
 
-**Pros**:
-- Lower setup cost ($30-100)
-- Faster production (1-2 weeks)
-- Works well for small text and detailed logos
+**Vorteile**:
+- Geringere Einmalkosten (30–100 USD)
+- Schnellere Produktion (1–2 Wochen)
+- Geeignet für kleinen Text und detaillierte Logos
 
-**Cons**:
-- Less premium feel (printed vs woven)
-- Can fade over years of washing
-- Less crisp than woven for complex designs
+**Nachteile**:
+- Weniger hochwertige Haptik (bedruckt statt gewebt)
+- Kann bei jahrelangem Waschen verblassen
+- Weniger scharf als gewebt bei komplexen Designs
 
-**Best for**: Care labels, size labels, secondary branding
+**Am besten für**: Pflegeetiketten, Größenetiketten, sekundäres Branding
 
-### 3. **Embroidered logos (direct)**
+### 3. **Direkte Stickerei**
 
-A **direct embroidery** puts your logo right on the cashmere fabric — typically in a corner of the shawl.
+Eine **direkte Stickerei** bringt Ihr Logo direkt auf den Kaschmirstoff — typischerweise in eine Ecke des Schals.
 
-**Pros**:
-- No label visible from the outside (cleaner aesthetic)
-- Premium feel
-- Long-lasting
+**Vorteile**:
+- Kein Etikett von außen sichtbar (cleanere Optik)
+- Hochwertige Haptik
+- Langlebig
 
-**Cons**:
-- **Can damage cashmere** if the backing is too stiff or stitching too dense
-- More expensive ($1-3 per unit)
-- Limited size (small logo only)
+**Nachteile**:
+- **Kann Kaschmir beschädigen**, wenn die Rückseite zu steif oder die Stickdichte zu hoch ist
+- Teurer (1–3 USD pro Stück)
+- Begrenzte Größe (nur kleines Logo)
 
-**Best for**: High-end brands with simple monogram logos
+**Am besten für**: High-End-Marken mit einfachen Monogramm-Logos
 
-### 4. **Woven logo on the shawl itself** (most premium)
+### 4. **Logo direkt in den Schal eingewoben** (am hochwertigsten)
 
-For ultra-luxury brands, the logo can be **woven directly into the shawl's pattern** during production.
+Für Ultrapremium-Marken kann das Logo **direkt in das Schalmuster eingewoben** werden.
 
-**Pros**:
-- No label at all
-- Most premium look
-- Logo won't peel or fade
+**Vorteile**:
+- Gar kein Etikett
+- Hochwertigste Optik
+- Logo löst sich nicht ab und verblasst nicht
 
-**Cons**:
-- **Very high setup cost** ($1,000-3,000 per design)
-- 8-12 week lead time
-- Only works for repeating patterns (not standalone logos)
+**Nachteile**:
+- **Sehr hohe Einmalkosten** (1.000–3.000 USD pro Design)
+- 8–12 Wochen Vorlaufzeit
+- Nur für sich wiederholende Muster geeignet (nicht für eigenständige Logos)
 
-**Best for**: Established luxury brands with 1,000+ unit annual volume
+**Am besten für**: Etablierte Luxusmarken mit 1.000+ Stück Jahresvolumen
 
-## Hangtag + packaging essentials
+## Anhänger + Verpackung — die Basics
 
-Beyond the label, a wholesale cashmere shawl needs:
+Neben dem Etikett benötigt ein Kaschmir-Schal im Großhandel:
 
-### Hangtag
-- **Standard size**: 2" x 3.5" (US) or 5cm x 9cm (EU)
-- **Material**: 300-400gsm cardstock with soft-touch or matte lamination
-- **Information**: brand name, country of origin, fiber content, care instructions
-- **String**: cotton or natural fiber cord (not plastic)
-- **Cost**: $0.15-0.40 per tag, setup $50-150
+### Anhänger
+- **Standardgröße**: 5 × 9 cm (EU) oder 2″ × 3,5″ (US)
+- **Material**: 300–400 g/m² Karton mit Soft-Touch- oder Matt-Laminierung
+- **Informationen**: Markenname, Herkunftsland, Faserzusammensetzung, Pflegehinweise
+- **Kordel**: Baumwoll- oder Naturfaserkordel (kein Plastik)
+- **Kosten**: 0,15–0,40 USD pro Anhänger, Einrichtung 50–150 USD
 
-### Care label (required by law in most markets)
-- Fiber content (e.g., "100% Cashmere")
-- Country of origin (e.g., "Made in China")
-- Care instructions (dry clean, hand wash, etc.)
-- Size (if applicable)
+### Pflegeetikett (in den meisten Märkten gesetzlich vorgeschrieben)
+- Faserzusammensetzung (z. B. „100 % Kaschmir")
+- Herkunftsland (z. B. „Made in China")
+- Pflegehinweise (Chemische Reinigung, Handwäsche usw.)
+- Größe (falls zutreffend)
 
-### Outer packaging
-- **Polybag**: clear LDPE, resealable zipper
-- **Gift box**: 300-400gsm rigid box with ribbon (for premium SKUs)
-- **Tissue paper**: acid-free, custom printed (optional)
+### Umverpackung
+- **Polybeutel**: klare LDPE-Folie, wiederverschließbarer Zipper
+- **Geschenkbox**: 300–400 g/m² stabile Box mit Band (für Premium-SKUs)
+- **Seidenpapier**: säurefrei, individuell bedruckt (optional)
 
-For B2B wholesale, most buyers skip the gift box (retailers add their own packaging). But a custom polybag with your brand logo is table stakes.
+Im B2B-Großhandel verzichten die meisten Käufer auf die Geschenkbox (der Einzelhändler verpackt selbst). Aber ein individueller Polybeutel mit Ihrem Markenlogo ist Pflicht.
 
-## MOQ and lead time for custom logo
+## MOQ und Vorlaufzeit für eigene Logos
 
-| Item | MOQ | Lead time |
+| Artikel | MOQ | Vorlaufzeit |
 |---|---|---|
-| Woven label (new design) | 1,000 units | 3-4 weeks |
-| Woven label (repeat) | 200 units | 1-2 weeks |
-| Printed label (new design) | 500 units | 1-2 weeks |
-| Hangtag (new design) | 500 units | 2-3 weeks |
-| Custom polybag | 1,000 units | 2-3 weeks |
-| Custom gift box | 500 units | 3-4 weeks |
+| Webelabel (neues Design) | 1.000 Stück | 3–4 Wochen |
+| Webelabel (Wiederholung) | 200 Stück | 1–2 Wochen |
+| Bedrucktes Etikett (neues Design) | 500 Stück | 1–2 Wochen |
+| Anhänger (neues Design) | 500 Stück | 2–3 Wochen |
+| Individueller Polybeutel | 1.000 Stück | 2–3 Wochen |
+| Individuelle Geschenkbox | 500 Stück | 3–4 Wochen |
 
-For small MOQ orders (30-50 shawls), you can either:
-1. **Use stock labels** from a third-party supplier (shorter lead time, but generic)
-2. **Split MOQ costs** with another small brand
-3. **Absorb setup cost** into your per-unit price
+Für kleine MOQ-Bestellungen (30–50 Schals) können Sie:
 
-## How to brief a factory for custom logo
+1. **Standardetiketten** von einem Drittanbieter verwenden (kürzere Vorlaufzeit, aber generisch)
+2. **MOQ-Kosten mit einer anderen kleinen Marke teilen**
+3. **Einmalkosten im Stückpreis absorbieren**
 
-Send the factory:
+## So briefen Sie eine Fabrik für ein eigenes Logo
 
-1. **Logo file** in vector format (AI, EPS, or SVG). Raster (PNG, JPG) at 300+ DPI also works but less crisp.
-2. **Pantone colors** for the logo (not just RGB or CMYK). If you don't have Pantone, give a physical sample.
-3. **Label placement** — sewn at corner, center back, or hidden. Most shawls have a small label at one corner.
-4. **Label size** — typically 1.5" x 0.75" (3.8cm x 1.9cm).
-5. **Fold or cut** — woven labels are usually center-fold; printed labels are usually cut and sewn flat.
+Senden Sie der Fabrik:
 
-The factory will create a **digital mockup** within 3-5 days. Approve the mockup, then the factory produces a **physical sample** of the label within 2-3 weeks.
+1. **Logodatei** im Vektorformat (AI, EPS oder SVG). Raster (PNG, JPG) ab 300 DPI funktioniert auch, aber weniger scharf.
+2. **Pantone-Farben** für das Logo (nicht nur RGB oder CMYK). Falls Sie keine Pantone haben, senden Sie ein physisches Muster.
+3. **Etikettenplatzierung** — in der Ecke, mittig hinten oder versteckt. Die meisten Schals haben ein kleines Etikett in einer Ecke.
+4. **Etikettengröße** — typischerweise 3,8 × 1,9 cm.
+5. **Fold oder Schnitt** — Webetiketten sind meist mittig gefaltet; bedruckte Etiketten werden zugeschnitten und flach eingenäht.
 
-**Always approve a physical sample before bulk production.** A digital mockup looks great on screen but the woven fabric can look very different in person.
+Die Fabrik erstellt innerhalb von 3–5 Tagen einen **digitalen Mockup**. Genehmigen Sie den Mockup, dann produziert die Fabrik innerhalb von 2–3 Wochen ein **physisches Muster** des Etiketts.
 
-## 5 common mistakes to avoid
+**Genehmigen Sie immer ein physisches Muster vor der Serienproduktion.** Ein digitaler Mockup sieht am Bildschirm großartig aus, aber das gewebte Material kann in der Realität ganz anders wirken.
 
-1. **Logo too small to read**: A logo under 1cm tall is invisible from a distance. Aim for 1.5-2cm.
-2. **Using the wrong thread count**: Too few threads and the logo looks pixelated; too many and the label is stiff.
-3. **Wrong label placement**: Labels in awkward positions (like the center of a shawl) hurt the product. Corners are standard.
-4. **Mixing label types**: Using a woven brand label but a printed care label looks inconsistent. Match the aesthetic.
-5. **Forgetting country-of-origin**: Most markets (US, EU) legally require country-of-origin on every imported textile. Missing this can result in customs seizure.
+## 5 häufige Fehler, die Sie vermeiden sollten
 
-## Working with DONGXIAO on custom logo
+1. **Logo zu klein zum Lesen**: Ein Logo unter 1 cm Höhe ist aus der Ferne unsichtbar. Ziel: 1,5–2 cm.
+2. **Falsche Fadenzahl**: Zu wenige Fäden und das Logo wirkt pixelig; zu viele und das Etikett ist steif.
+3. **Falsche Etikettenplatzierung**: Etiketten an ungeschickten Stellen (z. B. Schalmitte) schaden dem Produkt. Ecken sind Standard.
+4. **Vermischung von Etikettentypen**: Ein Webemarkenetikett, aber ein bedrucktes Pflegeetikett wirkt inkonsistent. Achten Sie auf einheitliche Optik.
+5. **Herkunftsland vergessen**: Die meisten Märkte (USA, EU) verlangen das Herkunftsland auf jedem importierten Textil. Fehlt es, kann die Ware vom Zoll beschlagnahmt werden.
 
-We handle the full custom logo process for cashmere shawls and scarves:
+## Zusammenarbeit mit DONGXIAO bei individuellen Logos
 
-- **Sample woven label**: 5-7 days, $80-150 (refundable against bulk order)
-- **Bulk production**: 35-45 days including label manufacturing
-- **MOQ**: 100 shawls per style with custom logo (lower MOQ for stock labels)
+Wir übernehmen den kompletten Etikettenprozess für Kaschmir-Schals und -Tücher:
 
-For new brands, we recommend a **3-step approval**:
-1. **Digital mockup** of the label (3-5 days)
-2. **Physical label sample** (2-3 weeks)
-3. **Sample shawl with label sewn in** (1 week)
+- **Webelabel-Muster**: 5–7 Tage, 80–150 USD (rückzahlbar bei Serienbestellung)
+- **Serienproduktion**: 35–45 Tage inklusive Etikettenfertigung
+- **MOQ**: 100 Schals pro Stil mit eigenem Logo (niedrigere MOQ bei Standardetiketten)
 
-Total time: 4-5 weeks from logo file to approved sample shawl.
+Für neue Marken empfehlen wir eine **3-stufige Freigabe**:
+1. **Digitaler Mockup** des Etiketts (3–5 Tage)
+2. **Physisches Etikettenmuster** (2–3 Wochen)
+3. **Musterschal mit eingenähtem Etikett** (1 Woche)
+
+Gesamtzeit: 4–5 Wochen von der Logodatei bis zum freigegebenen Musterschal.
 
 ---
 
-*Need a custom label for your cashmere line? [Contact our label team](https://www.erdosdx.com/en/contact) with your logo file. We'll provide a digital mockup and per-unit pricing within 48 hours.*
+*Benötigen Sie ein individuelles Etikett für Ihre Kaschmir-Linie? [Kontaktieren Sie unser Etikettenteam](https://www.erdosdx.com/de/contact) mit Ihrer Logodatei. Wir liefern innerhalb von 48 Stunden einen digitalen Mockup und Stückpreis.*

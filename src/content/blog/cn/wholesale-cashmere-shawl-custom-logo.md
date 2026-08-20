@@ -1,169 +1,169 @@
 ---
-title: "Wholesale Cashmere Shawl with Custom Logo: A B2B Guide to Woven Labels, Hangtags & MOQ"
-excerpt: "Custom logo on cashmere scarves and shawls requires the right label technology (woven vs printed vs embroidered) and proper hangtag integration. A B2B buyer's guide to private label accessories."
+title: "羊绒披肩批发定制 Logo：B2B 织标、吊牌与起订量指南"
+excerpt: "羊绒围巾/披肩定制 Logo 需要选用合适的标签工艺（织造/印刷/刺绣）与规范的吊牌集成。B2B 买家专属的贴牌配件指南。"
 publishDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["custom logo","wholesale cashmere shawl","private label","woven labels"]
 geoRegion: "GLOBAL"
-targetKeywords: ["wholesale cashmere shawl with custom logo","cashmere scarf shawl factory","cashmere scarf custom label","private label cashmere scarf"]
+targetKeywords: ["羊绒披肩批发定制 logo","羊绒围巾工厂","羊绒围巾定制标签","贴牌羊绒披肩"]
 relatedProducts: ["garment_oem","raw_material"]
 aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "cn"
 ---
-# Wholesale Cashmere Shawl with Custom Logo: A B2B Guide to Woven Labels, Hangtags & MOQ
 
-# Wholesale Cashmere Shawl with Custom Logo: B2B Guide
+# 羊绒披肩批发定制 Logo：B2B 指南
 
-A cashmere shawl with your brand's logo is one of the highest-margin private label products you can sell. Retail prices of $150-500 per piece are common, and the production cost is reasonable.
+带品牌 Logo 的羊绒披肩是您能销售的最高毛利的贴牌产品之一。零售价 150-500 美元/件很常见，而生产成本可控。
 
-The challenge: **getting the logo right**. Cashmere is a delicate fiber, and most logo techniques used on cotton or wool don't work on cashmere. This guide covers what works.
+难点在于：**把 Logo 做对**。羊绒是娇贵纤维，棉或羊毛上常用的 Logo 工艺大多不适用于羊绒。本指南覆盖羊绒上实际可行的工艺。
 
-## 4 logo techniques for cashmere
+## 羊绒适用的 4 种 Logo 工艺
 
-### 1. **Woven labels** (most common)
+### 1. **织造标签**（最常用）
 
-A **woven label** is a small fabric tag (typically 1.5-2 inches wide, 0.5-1 inch tall) with your brand name and logo, sewn into the seam of the shawl.
+**织标** 是一块小号布标签（通常宽 3.8-5 cm，高 1.3-2.5 cm），印有品牌名和 Logo，缝在披肩的接缝处。
 
-**How it works**: Factory weaves the label separately (using your brand's logo and Pantone colors), then sews it into the shawl during finishing.
+**工作原理**：工厂按您的品牌 Logo 与 Pantone 色号单独织造标签，成衣工序中缝到披肩上。
 
-**Pros**:
-- Looks premium (matches the cashmere quality)
-- Durable (lasts the lifetime of the shawl)
-- Doesn't damage the cashmere fiber
+**优点**：
+- 高端质感（与羊绒品质相衬）
+- 耐用（与披肩同寿命）
+- 不损伤羊绒纤维
 
-**Cons**:
-- Setup cost $50-200 per design (loom programming)
-- Per-unit cost $0.10-0.30
-- 3-4 week lead time for label production
+**缺点**：
+- 每款起做费 50-200 美元（织机编程）
+- 单件成本 0.10-0.30 美元
+- 标签生产周期 3-4 周
 
-**Best for**: Brand labels, size labels, country-of-origin labels
+**最适合**：品牌标、尺码标、原产地标
 
-### 2. **Printed labels**
+### 2. **印刷标签**
 
-A **printed label** is similar to a woven label but printed on satin or cotton tape, then sewn in.
+**印标** 与织标类似，但用缎带或棉带印刷后再缝制。
 
-**Pros**:
-- Lower setup cost ($30-100)
-- Faster production (1-2 weeks)
-- Works well for small text and detailed logos
+**优点**：
+- 起做费较低（30-100 美元）
+- 生产更快（1-2 周）
+- 适合小字、细节 Logo
 
-**Cons**:
-- Less premium feel (printed vs woven)
-- Can fade over years of washing
-- Less crisp than woven for complex designs
+**缺点**：
+- 质感略逊（印刷 vs 织造）
+- 长期水洗可能褪色
+- 复杂图案不如织造清晰
 
-**Best for**: Care labels, size labels, secondary branding
+**最适合**：洗护标、尺码标、辅助标识
 
-### 3. **Embroidered logos (direct)**
+### 3. **直接刺绣**
 
-A **direct embroidery** puts your logo right on the cashmere fabric — typically in a corner of the shawl.
+**直接刺绣** 是把 Logo 直接绣在羊绒面料上——通常在披肩一角。
 
-**Pros**:
-- No label visible from the outside (cleaner aesthetic)
-- Premium feel
-- Long-lasting
+**优点**：
+- 外部看不到标签（更简洁）
+- 高端质感
+- 持久
 
-**Cons**:
-- **Can damage cashmere** if the backing is too stiff or stitching too dense
-- More expensive ($1-3 per unit)
-- Limited size (small logo only)
+**缺点**：
+- **底衬过硬或针脚过密会损伤羊绒**
+- 成本较高（1-3 美元/件）
+- 尺寸受限（仅小 Logo）
 
-**Best for**: High-end brands with simple monogram logos
+**最适合**：使用简洁字母组合 Logo 的高端品牌
 
-### 4. **Woven logo on the shawl itself** (most premium)
+### 4. **披身上织入 Logo**（顶级方案）
 
-For ultra-luxury brands, the logo can be **woven directly into the shawl's pattern** during production.
+面向超奢品牌，可在生产时把 Logo **直接织入披身图案**。
 
-**Pros**:
-- No label at all
-- Most premium look
-- Logo won't peel or fade
+**优点**：
+- 完全无标签
+- 最高级外观
+- Logo 不会脱落或褪色
 
-**Cons**:
-- **Very high setup cost** ($1,000-3,000 per design)
-- 8-12 week lead time
-- Only works for repeating patterns (not standalone logos)
+**缺点**：
+- **起做费极高**（1,000-3,000 美元/款）
+- 周期 8-12 周
+- 仅适用重复图案（独立 Logo 不可行）
 
-**Best for**: Established luxury brands with 1,000+ unit annual volume
+**最适合**：年出货 1,000+ 件的成熟奢侈品牌
 
-## Hangtag + packaging essentials
+## 吊牌 + 包装要点
 
-Beyond the label, a wholesale cashmere shawl needs:
+除标签外，批发羊绒披肩还需要：
 
-### Hangtag
-- **Standard size**: 2" x 3.5" (US) or 5cm x 9cm (EU)
-- **Material**: 300-400gsm cardstock with soft-touch or matte lamination
-- **Information**: brand name, country of origin, fiber content, care instructions
-- **String**: cotton or natural fiber cord (not plastic)
-- **Cost**: $0.15-0.40 per tag, setup $50-150
+### 吊牌
+- **标准尺寸**：5×9 cm（欧）或 2″×3.5″（美）
+- **材质**：300-400 gsm 卡纸 + 触感膜或哑膜
+- **信息**：品牌名、原产地、纤维成分、洗护说明
+- **挂绳**：棉绳或天然纤维绳（不可用塑料）
+- **成本**：0.15-0.40 美元/张，起做费 50-150 美元
 
-### Care label (required by law in most markets)
-- Fiber content (e.g., "100% Cashmere")
-- Country of origin (e.g., "Made in China")
-- Care instructions (dry clean, hand wash, etc.)
-- Size (if applicable)
+### 洗护标（多数市场法定要求）
+- 纤维成分（如 "100% Cashmere"）
+- 原产地（如 "Made in China"）
+- 洗护说明（干洗、手洗等）
+- 尺码（如适用）
 
-### Outer packaging
-- **Polybag**: clear LDPE, resealable zipper
-- **Gift box**: 300-400gsm rigid box with ribbon (for premium SKUs)
-- **Tissue paper**: acid-free, custom printed (optional)
+### 外包装
+- **塑料袋**：透明 LDPE、可重复封口拉链
+- **礼盒**：300-400 gsm 硬盒 + 丝带（高端 SKU）
+- **薄纸**：无酸、可定制印刷（可选）
 
-For B2B wholesale, most buyers skip the gift box (retailers add their own packaging). But a custom polybag with your brand logo is table stakes.
+B2B 批发通常省略礼盒（零售商会自己加包装）。但带品牌 Logo 的定制塑料袋是基本项。
 
-## MOQ and lead time for custom logo
+## 定制 Logo 的起订量与交期
 
-| Item | MOQ | Lead time |
+| 项目 | 起订量 | 交期 |
 |---|---|---|
-| Woven label (new design) | 1,000 units | 3-4 weeks |
-| Woven label (repeat) | 200 units | 1-2 weeks |
-| Printed label (new design) | 500 units | 1-2 weeks |
-| Hangtag (new design) | 500 units | 2-3 weeks |
-| Custom polybag | 1,000 units | 2-3 weeks |
-| Custom gift box | 500 units | 3-4 weeks |
+| 织造标签（新款） | 1,000 件 | 3-4 周 |
+| 织造标签（复购） | 200 件 | 1-2 周 |
+| 印刷标签（新款） | 500 件 | 1-2 周 |
+| 吊牌（新款） | 500 件 | 2-3 周 |
+| 定制塑料袋 | 1,000 件 | 2-3 周 |
+| 定制礼盒 | 500 件 | 3-4 周 |
 
-For small MOQ orders (30-50 shawls), you can either:
-1. **Use stock labels** from a third-party supplier (shorter lead time, but generic)
-2. **Split MOQ costs** with another small brand
-3. **Absorb setup cost** into your per-unit price
+小起订量订单（30-50 条披肩），您可选择：
 
-## How to brief a factory for custom logo
+1. **使用第三方现成标签**（交期短，但样式通用）
+2. **与其他小品牌分摊起订成本**
+3. **将起做费摊入单件价格**
 
-Send the factory:
+## 如何向工厂下定制 Logo 简报
 
-1. **Logo file** in vector format (AI, EPS, or SVG). Raster (PNG, JPG) at 300+ DPI also works but less crisp.
-2. **Pantone colors** for the logo (not just RGB or CMYK). If you don't have Pantone, give a physical sample.
-3. **Label placement** — sewn at corner, center back, or hidden. Most shawls have a small label at one corner.
-4. **Label size** — typically 1.5" x 0.75" (3.8cm x 1.9cm).
-5. **Fold or cut** — woven labels are usually center-fold; printed labels are usually cut and sewn flat.
+向工厂提供：
 
-The factory will create a **digital mockup** within 3-5 days. Approve the mockup, then the factory produces a **physical sample** of the label within 2-3 weeks.
+1. **Logo 文件**（矢量格式：AI、EPS、SVG）。栅格（PNG、JPG）300 DPI 以上也行，但不如矢量清晰。
+2. **Pantone 色号**（不要只给 RGB 或 CMYK）。如无 Pantone，请提供实物色样。
+3. **标签位置** —— 角部、背后中央或隐藏。大多披肩在角部缝小标签。
+4. **标签尺寸** —— 通常 3.8 × 1.9 cm。
+5. **折叠或裁切** —— 织标通常中央对折；印标通常裁切后平缝。
 
-**Always approve a physical sample before bulk production.** A digital mockup looks great on screen but the woven fabric can look very different in person.
+工厂会在 3-5 天内提供 **数字打样**。打样确认后，工厂将在 2-3 周内生产 **标签实物样品**。
 
-## 5 common mistakes to avoid
+**量产前务必确认实物样品。** 数字打样在屏幕上看着很好，但实际织造面料与屏幕效果可能差异很大。
 
-1. **Logo too small to read**: A logo under 1cm tall is invisible from a distance. Aim for 1.5-2cm.
-2. **Using the wrong thread count**: Too few threads and the logo looks pixelated; too many and the label is stiff.
-3. **Wrong label placement**: Labels in awkward positions (like the center of a shawl) hurt the product. Corners are standard.
-4. **Mixing label types**: Using a woven brand label but a printed care label looks inconsistent. Match the aesthetic.
-5. **Forgetting country-of-origin**: Most markets (US, EU) legally require country-of-origin on every imported textile. Missing this can result in customs seizure.
+## 5 个常见错误
 
-## Working with DONGXIAO on custom logo
+1. **Logo 太小看不清**：高度不足 1 cm 的 Logo 远处不可见。建议 1.5-2 cm。
+2. **纱线密度不当**：纱线太少 Logo 显得像素化；太多则标签过硬。
+3. **标签位置不当**：放在披肩中央等尴尬位置有损产品。角部是标准。
+4. **标签类型混用**：品牌标签用织造、洗护标用印标，观感不统一。风格要统一。
+5. **遗漏原产地**：多数市场（美、欧）法律要求每个进口纺织品标注原产地。遗漏可能被海关扣押。
 
-We handle the full custom logo process for cashmere shawls and scarves:
+## 与 DONGXIAO 合作做定制 Logo
 
-- **Sample woven label**: 5-7 days, $80-150 (refundable against bulk order)
-- **Bulk production**: 35-45 days including label manufacturing
-- **MOQ**: 100 shawls per style with custom logo (lower MOQ for stock labels)
+我们为羊绒披肩和围巾处理全流程定制 Logo：
 
-For new brands, we recommend a **3-step approval**:
-1. **Digital mockup** of the label (3-5 days)
-2. **Physical label sample** (2-3 weeks)
-3. **Sample shawl with label sewn in** (1 week)
+- **织造标签样品**：5-7 天，80-150 美元（量产订单可冲抵）
+- **量产**：含标签生产共 35-45 天
+- **起订量**：定制 Logo 每款 100 条披肩起（使用现成标签可降低）
 
-Total time: 4-5 weeks from logo file to approved sample shawl.
+新品牌建议采用 **3 步确认**：
+1. 标签 **数字打样**（3-5 天）
+2. **标签实物样品**（2-3 周）
+3. **缝好标签的披肩样品**（1 周）
+
+总周期：从 Logo 文件到确认样品披肩共 4-5 周。
 
 ---
 
-*Need a custom label for your cashmere line? [Contact our label team](https://www.erdosdx.com/en/contact) with your logo file. We'll provide a digital mockup and per-unit pricing within 48 hours.*
+*需要为您的羊绒系列定制标签吗？[联系我们的标签团队](https://www.erdosdx.com/cn/contact) 并附上 Logo 文件。我们将在 48 小时内提供数字打样与单件报价。*

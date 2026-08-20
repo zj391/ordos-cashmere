@@ -1,169 +1,169 @@
 ---
-title: "Wholesale Cashmere Shawl with Custom Logo: A B2B Guide to Woven Labels, Hangtags & MOQ"
-excerpt: "Custom logo on cashmere scarves and shawls requires the right label technology (woven vs printed vs embroidered) and proper hangtag integration. A B2B buyer's guide to private label accessories."
+title: "カシミアショール 卸売 カスタムロゴ対応：織ラベル・下げタグ・MOQ の B2B ガイド"
+excerpt: "カシミアスカーフ・ショールへのカスタムロゴ導入には、最適なラベル技術（織り／印刷／刺繍）と下げタグ統合が必要です。プライベートブランド向けアクセサリーの B2B バイヤーガイド。"
 publishDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["custom logo","wholesale cashmere shawl","private label","woven labels"]
 geoRegion: "GLOBAL"
-targetKeywords: ["wholesale cashmere shawl with custom logo","cashmere scarf shawl factory","cashmere scarf custom label","private label cashmere scarf"]
+targetKeywords: ["カシミアショール 卸売 カスタムロゴ","カシミアスカーフ 工場","カシミアスカーフ カスタムラベル","プライベートブランド カシミアショール"]
 relatedProducts: ["garment_oem","raw_material"]
 aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "ja"
 ---
-# Wholesale Cashmere Shawl with Custom Logo: A B2B Guide to Woven Labels, Hangtags & MOQ
 
-# Wholesale Cashmere Shawl with Custom Logo: B2B Guide
+# カシミアショール 卸売 カスタムロゴ対応：B2B ガイド
 
-A cashmere shawl with your brand's logo is one of the highest-margin private label products you can sell. Retail prices of $150-500 per piece are common, and the production cost is reasonable.
+ブランドのロゴ入りカシミアショールは、プライベートブランド商品の中でも特に高マージンなジャンルです。小売価格 150〜500 USD / 個が一般的で、製造コストは手に届く水準です。
 
-The challenge: **getting the logo right**. Cashmere is a delicate fiber, and most logo techniques used on cotton or wool don't work on cashmere. This guide covers what works.
+課題は **ロゴを正しく仕上げる** こと。カシミアは繊細な繊維で、コットンやウールで使われる通常のロゴ技法は使えません。このガイドでは、カシミアで実際に使える方法を解説します。
 
-## 4 logo techniques for cashmere
+## カシミア向けロゴ技法 4 種類
 
-### 1. **Woven labels** (most common)
+### 1. **織ラベル**（最も一般的）
 
-A **woven label** is a small fabric tag (typically 1.5-2 inches wide, 0.5-1 inch tall) with your brand name and logo, sewn into the seam of the shawl.
+**織ラベル** は、ブランドの名前とロゴを織り込んだ小型の布タグ（標準：幅 3.8〜5 cm、高さ 1.3〜2.5 cm）で、ショールの縫い目に縫い付けます。
 
-**How it works**: Factory weaves the label separately (using your brand's logo and Pantone colors), then sews it into the shawl during finishing.
+**仕組み**：工場がラベルを別途織り上げ（ブランドロゴと Pantone 色で）、仕上げ工程でショールに縫い込みます。
 
-**Pros**:
-- Looks premium (matches the cashmere quality)
-- Durable (lasts the lifetime of the shawl)
-- Doesn't damage the cashmere fiber
+**メリット**：
+- 高級感のある仕上がり（カシミアの質感と調和）
+- 耐久性が高い（ショールの寿命と同等）
+- カシミア繊維を傷めない
 
-**Cons**:
-- Setup cost $50-200 per design (loom programming)
-- Per-unit cost $0.10-0.30
-- 3-4 week lead time for label production
+**デメリット**：
+- セットアップコスト 50〜200 USD / デザイン（織機プログラミング）
+- 単価 0.10〜0.30 USD
+- ラベル製造のリードタイム 3〜4 週間
 
-**Best for**: Brand labels, size labels, country-of-origin labels
+**最適用途**：ブランドラベル、サイズラベル、原産地ラベル
 
-### 2. **Printed labels**
+### 2. **印刷ラベル**
 
-A **printed label** is similar to a woven label but printed on satin or cotton tape, then sewn in.
+**印刷ラベル** は織ラベルと似ていますが、サテンまたは綿テープに印刷してから縫い込みます。
 
-**Pros**:
-- Lower setup cost ($30-100)
-- Faster production (1-2 weeks)
-- Works well for small text and detailed logos
+**メリット**：
+- セットアップコストが低い（30〜100 USD）
+- 製造が速い（1〜2 週間）
+- 小さな文字や細かいロゴにも対応
 
-**Cons**:
-- Less premium feel (printed vs woven)
-- Can fade over years of washing
-- Less crisp than woven for complex designs
+**デメリット**：
+- 質感がやや劣る（織り vs 印刷）
+- 長年洗濯すると色褪せの可能性
+- 複雑なデザインは織りより輪郭が甘くなる
 
-**Best for**: Care labels, size labels, secondary branding
+**最適用途**：ケアラベル、サイズラベル、副次的ブランディング
 
-### 3. **Embroidered logos (direct)**
+### 3. **直接刺繍**
 
-A **direct embroidery** puts your logo right on the cashmere fabric — typically in a corner of the shawl.
+**直接刺繍** は、カシミア生地に直接ロゴを入れます（通常はショールの角）。
 
-**Pros**:
-- No label visible from the outside (cleaner aesthetic)
-- Premium feel
-- Long-lasting
+**メリット**：
+- 外側にラベルが見えない（すっきりした見た目）
+- 高級感
+- 耐久性が高い
 
-**Cons**:
-- **Can damage cashmere** if the backing is too stiff or stitching too dense
-- More expensive ($1-3 per unit)
-- Limited size (small logo only)
+**デメリット**：
+- **裏地が硬すぎたり、縫い目が密すぎるとカシミアを傷める**
+- 単価が高い（1〜3 USD / 個）
+- サイズに制限（小ロゴのみ）
 
-**Best for**: High-end brands with simple monogram logos
+**最適用途**：シンプルなモノグラムロゴを持つハイエンドブランド
 
-### 4. **Woven logo on the shawl itself** (most premium)
+### 4. **ショール自体にロゴを織り込む**（最高峰）
 
-For ultra-luxury brands, the logo can be **woven directly into the shawl's pattern** during production.
+ウルトララグジュアリー向けには、製造時にロゴを **ショールの柄に直接織り込む** ことができます。
 
-**Pros**:
-- No label at all
-- Most premium look
-- Logo won't peel or fade
+**メリット**：
+- ラベル不要
+- 最高峰の見た目
+- ロゴが剥がれたり褪せたりしない
 
-**Cons**:
-- **Very high setup cost** ($1,000-3,000 per design)
-- 8-12 week lead time
-- Only works for repeating patterns (not standalone logos)
+**デメリット**：
+- **セットアップコストが非常に高い**（1,000〜3,000 USD / デザイン）
+- リードタイム 8〜12 週間
+- 繰り返し柄にしか使えない（独立ロゴは不可）
 
-**Best for**: Established luxury brands with 1,000+ unit annual volume
+**最適用途**：年間 1,000 個以上の販売実績のある確立ラグジュアリーブランド
 
-## Hangtag + packaging essentials
+## 下げタグ + パッケージの必須事項
 
-Beyond the label, a wholesale cashmere shawl needs:
+ラベルに加え、カシミアショール卸売に必要なもの：
 
-### Hangtag
-- **Standard size**: 2" x 3.5" (US) or 5cm x 9cm (EU)
-- **Material**: 300-400gsm cardstock with soft-touch or matte lamination
-- **Information**: brand name, country of origin, fiber content, care instructions
-- **String**: cotton or natural fiber cord (not plastic)
-- **Cost**: $0.15-0.40 per tag, setup $50-150
+### 下げタグ
+- **標準サイズ**：5 × 9 cm（EU）または 2″ × 3.5″（US）
+- **素材**：300〜400 g/m² の厚紙 + ソフトタッチまたはマットラミネート
+- **記載情報**：ブランド名、原産地、繊維組成、お手入れ方法
+- **紐**：綿または天然繊維コード（プラスチック不可）
+- **コスト**：0.15〜0.40 USD / タグ、セットアップ 50〜150 USD
 
-### Care label (required by law in most markets)
-- Fiber content (e.g., "100% Cashmere")
-- Country of origin (e.g., "Made in China")
-- Care instructions (dry clean, hand wash, etc.)
-- Size (if applicable)
+### ケアラベル（多くの市場で法的必須）
+- 繊維組成（例：「100% カシミア」）
+- 原産地（例：「Made in China」）
+- お手入れ方法（ドライクリーニング、手洗いなど）
+- サイズ（該当する場合）
 
-### Outer packaging
-- **Polybag**: clear LDPE, resealable zipper
-- **Gift box**: 300-400gsm rigid box with ribbon (for premium SKUs)
-- **Tissue paper**: acid-free, custom printed (optional)
+### 外装パッケージ
+- **ポリ袋**：透明 LDPE、再封ジッパー付き
+- **ギフトボックス**：300〜400 g/m² の堅牢な箱にリボン（プレミアム SKU 向け）
+- **薄葉紙**：酸性なし、カスタム印刷（任意）
 
-For B2B wholesale, most buyers skip the gift box (retailers add their own packaging). But a custom polybag with your brand logo is table stakes.
+B2B 卸ではギフトボックスは省略されることがほとんどです（小売業者が自社パッケージを追加）。ただし、ブランドロゴ入りカスタムポリ袋はマストです。
 
-## MOQ and lead time for custom logo
+## カスタムロゴの MOQ とリードタイム
 
-| Item | MOQ | Lead time |
+| アイテム | MOQ | リードタイム |
 |---|---|---|
-| Woven label (new design) | 1,000 units | 3-4 weeks |
-| Woven label (repeat) | 200 units | 1-2 weeks |
-| Printed label (new design) | 500 units | 1-2 weeks |
-| Hangtag (new design) | 500 units | 2-3 weeks |
-| Custom polybag | 1,000 units | 2-3 weeks |
-| Custom gift box | 500 units | 3-4 weeks |
+| 織ラベル（新規デザイン） | 1,000 個 | 3〜4 週間 |
+| 織ラベル（再注文） | 200 個 | 1〜2 週間 |
+| 印刷ラベル（新規デザイン） | 500 個 | 1〜2 週間 |
+| 下げタグ（新規デザイン） | 500 個 | 2〜3 週間 |
+| カスタムポリ袋 | 1,000 個 | 2〜3 週間 |
+| カスタムギフトボックス | 500 個 | 3〜4 週間 |
 
-For small MOQ orders (30-50 shawls), you can either:
-1. **Use stock labels** from a third-party supplier (shorter lead time, but generic)
-2. **Split MOQ costs** with another small brand
-3. **Absorb setup cost** into your per-unit price
+少量 MOQ（30〜50 ショール）の場合、次の選択肢があります：
 
-## How to brief a factory for custom logo
+1. **サードパーティ製 既製ラベル** を使用（リードタイム短縮、ただし汎用的な見た目）
+2. **MOQ コストを他の小規模ブランドと分担**
+3. **セットアップコストを単価に上乗せ**
 
-Send the factory:
+## 工場へのカスタムロゴ ブリーフ方法
 
-1. **Logo file** in vector format (AI, EPS, or SVG). Raster (PNG, JPG) at 300+ DPI also works but less crisp.
-2. **Pantone colors** for the logo (not just RGB or CMYK). If you don't have Pantone, give a physical sample.
-3. **Label placement** — sewn at corner, center back, or hidden. Most shawls have a small label at one corner.
-4. **Label size** — typically 1.5" x 0.75" (3.8cm x 1.9cm).
-5. **Fold or cut** — woven labels are usually center-fold; printed labels are usually cut and sewn flat.
+工場に提出するもの：
 
-The factory will create a **digital mockup** within 3-5 days. Approve the mockup, then the factory produces a **physical sample** of the label within 2-3 weeks.
+1. **ロゴファイル**（ベクターフォーマット：AI、EPS、SVG）。ラスタ（PNG、JPG）300 DPI 以上でも可ですが、輪郭はやや甘くなります。
+2. **Pantone カラー**（RGB や CMYK のみは不可）。Pantone がない場合は、物理的なサンプルを送付。
+3. **ラベル位置** — 角、中央裏側、または隠す位置。多くは角に小さなラベルを縫い付け。
+4. **ラベルサイズ** — 標準は 3.8 × 1.9 cm。
+5. **折りと裁断** — 織ラベルは中央折りが一般的、印刷ラベルは裁断して平らに縫い付け。
 
-**Always approve a physical sample before bulk production.** A digital mockup looks great on screen but the woven fabric can look very different in person.
+工場は **デジタルモックアップ** を 3〜5 日で作成。モックアップ承認後、工場は **ラベル現物サンプル** を 2〜3 週間で製造。
 
-## 5 common mistakes to avoid
+**量産前に必ず現物サンプルを承認してください。** デジタルモックアップは画面上では立派に見えても、実物の織り生地は印象が大きく異なります。
 
-1. **Logo too small to read**: A logo under 1cm tall is invisible from a distance. Aim for 1.5-2cm.
-2. **Using the wrong thread count**: Too few threads and the logo looks pixelated; too many and the label is stiff.
-3. **Wrong label placement**: Labels in awkward positions (like the center of a shawl) hurt the product. Corners are standard.
-4. **Mixing label types**: Using a woven brand label but a printed care label looks inconsistent. Match the aesthetic.
-5. **Forgetting country-of-origin**: Most markets (US, EU) legally require country-of-origin on every imported textile. Missing this can result in customs seizure.
+## よくある 5 つの失敗
 
-## Working with DONGXIAO on custom logo
+1. **ロゴが小さすぎて読めない**：1 cm 未満のロゴは遠くからは見えません。1.5〜2 cm を目安に。
+2. **目の粗さが不適切**：糸が少なすぎるとロゴが荒く見え、多すぎるとラベルが硬くなります。
+3. **ラベル位置が不適切**：ショールの中央など不自然な位置は製品を損ないます。角が標準。
+4. **ラベル種類の混在**：ブランドラベルは織り、ケアラベルは印刷だと見た目に統一感がない。質感を揃えましょう。
+5. **原産地表示忘れ**：多くの市場（US、EU）は輸入繊維製品の原産地表示を法的に要求。漏れがあれば税関で没収の可能性。
 
-We handle the full custom logo process for cashmere shawls and scarves:
+## DONGXIAO と進めるカスタムロゴ
 
-- **Sample woven label**: 5-7 days, $80-150 (refundable against bulk order)
-- **Bulk production**: 35-45 days including label manufacturing
-- **MOQ**: 100 shawls per style with custom logo (lower MOQ for stock labels)
+当社はカシミアショール・スカーフ向けのカスタムロゴ全工程を対応します：
 
-For new brands, we recommend a **3-step approval**:
-1. **Digital mockup** of the label (3-5 days)
-2. **Physical label sample** (2-3 weeks)
-3. **Sample shawl with label sewn in** (1 week)
+- **織ラベルサンプル**：5〜7 日、80〜150 USD（量産注文時に返金可）
+- **量産**：ラベル製造含め 35〜45 日
+- **MOQ**：カスタムロゴ使用時はスタイルあたり 100 ショール（既製ラベル使用で MOQ 緩和可）
 
-Total time: 4-5 weeks from logo file to approved sample shawl.
+新規ブランドには **3 段階承認** を推奨しています：
+1. ラベルの **デジタルモックアップ**（3〜5 日）
+2. **ラベル現物サンプル**（2〜3 週間）
+3. **ラベル縫い込み済み ショールサンプル**（1 週間）
+
+合計期間：ロゴファイル提出から承認済みサンプルショールまで 4〜5 週間。
 
 ---
 
-*Need a custom label for your cashmere line? [Contact our label team](https://www.erdosdx.com/en/contact) with your logo file. We'll provide a digital mockup and per-unit pricing within 48 hours.*
+*カシミアラインのカスタムラベルが必要ですか？[ラベルチームまでご連絡ください](https://www.erdosdx.com/ja/contact)。ロゴファイルをご送付いただければ、48 時間以内にデジタルモックアップと単価をご提示します。*
