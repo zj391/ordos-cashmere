@@ -304,7 +304,11 @@ html {
 }
 .ken-burns {
   animation: ken-burns 20s ease-out infinite alternate;
-  will-change: transform;
+  /* 2026-08-20: removed will-change: transform.
+     Invisible (.invisible) sibling slides used to keep 3 GPU layers alive;
+     now opacity + visibility transition lets browser skip paint on hidden
+     slides, and dropping the explicit hint lets the compositor actually
+     tear down the unused layers when the slide becomes inactive. */
 }
 @media (prefers-reduced-motion: reduce) {
   .ken-burns { animation: none; }
@@ -587,5 +591,22 @@ header.sticky.is-scrolled {
   .text-link-lux::after,
   .text-link-lux svg {
     transition: none;
+  }
+}
+
+/* ============================================================
+   Global prefers-reduced-motion safety net (2026-08-20)
+   Each component also has its own @media (prefers-reduced-motion: reduce)
+   block above, but new classes added later can easily miss them. This
+   fallback catches everything: any element under reduce-motion preference
+   has all animations and transitions effectively disabled (0.01ms, not
+   0 — keeps state-change animations for screen readers / a11y tooling).
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
