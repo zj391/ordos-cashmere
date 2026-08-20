@@ -708,12 +708,12 @@ const latestBlogPosts = allBlogPosts
         </p>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {crossLinks.map((cl) => (
-            <a href={`/${locale}/products/${cl.slug}/`} class="group block border border-border bg-white p-6 hover:border-brand-gold hover:shadow-lg transition-all duration-300">
+            <a href={`/${locale}/products/${cl.slug}/`} class="group block border border-border bg-white p-6 hover:border-brand-gold hover:shadow-lg transition-colors transition-shadow duration-300">
               <div class="flex items-center justify-between mb-3">
                 <span class="text-[10px] tracking-[0.2em] uppercase text-brand-camel font-mono">
                   MOQ {cl.moq} pcs
                 </span>
-                <svg class="w-4 h-4 text-muted-foreground group-hover:text-brand-chocolate group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                <svg class="w-4 h-4 text-muted-foreground group-hover:text-brand-chocolate group-hover:translate-x-1 transition-colors transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
               </div>
               <h3 class="font-serif text-xl mb-2 group-hover:text-brand-chocolate transition-colors leading-tight">
                 {cl.name[locale] || cl.name.en}
@@ -825,7 +825,7 @@ const latestBlogPosts = allBlogPosts
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           {latestBlogPosts.map((p) => (
-            <a href={`/${locale}/blog/${p.slug}/`} class="group block border border-border bg-white overflow-hidden hover:border-brand-gold hover:shadow-lg transition-all duration-300">
+            <a href={`/${locale}/blog/${p.slug}/`} class="group block border border-border bg-white overflow-hidden hover:border-brand-gold hover:shadow-lg transition-colors transition-shadow duration-300">
               <div class="aspect-[16/10] bg-gradient-to-br from-brand-cream via-[#F8F5EF] to-[#E8DFD0]"></div>
               <div class="p-6">
                 <div class="text-xs text-muted-foreground tracking-wider mb-3 font-mono">{p.date}</div>

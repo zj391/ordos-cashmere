@@ -124,7 +124,7 @@ const packsCta = { en: 'Request a Custom Pack', cn: '索取定制资料包', de:
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {trustPacks.map((p, idx) => (
-          <article class="bg-background border border-border p-6 md:p-8 hover:border-brand-gold hover:shadow-xl transition-all duration-300 flex flex-col">
+          <article class="bg-background border border-border p-6 md:p-8 hover:border-brand-gold hover:shadow-xl transition-colors transition-shadow duration-300 flex flex-col">
             <div class="flex items-center justify-between mb-3 gap-4">
               <span class="text-[10px] tracking-[0.3em] uppercase text-brand-gold font-mono font-medium">
                 0{idx + 1} · {p.eyebrow[locale] || p.eyebrow.en}

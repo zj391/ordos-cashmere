@@ -329,7 +329,7 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
       {allProducts.slice(0, 24).map((p) => (
         <a
           href={`/${locale}/products/${p.id}/`}
-          class="product-card bg-white border border-border overflow-hidden hover:border-brand-camel hover:shadow-[0_16px_32px_-20px_rgba(28,24,19,0.18)] transition-all duration-300 group block"
+          class="product-card bg-white border border-border overflow-hidden hover:border-brand-camel hover:shadow-[0_16px_32px_-20px_rgba(28,24,19,0.18)] transition-colors transition-shadow duration-300 group block"
           data-id={p.id}
           data-cat={p.categoryId}
           data-name={p.name.toLowerCase()}
@@ -816,7 +816,7 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
           ? rawImg
           : '/products/mic/' + rawImg;
         return (
-          '<a href="/' + (window.__LOCALE__ || 'en') + '/products/' + escapeHtml(p.id) + '/" class="product-card block bg-white border border-border overflow-hidden hover:border-brand-camel hover:shadow-[0_16px_32px_-20px_rgba(28,24,19,0.18)] transition-all duration-300 group" data-id="' + escapeHtml(p.id) + '">' +
+          '<a href="/' + (window.__LOCALE__ || 'en') + '/products/' + escapeHtml(p.id) + '/" class="product-card block bg-white border border-border overflow-hidden hover:border-brand-camel hover:shadow-[0_16px_32px_-20px_rgba(28,24,19,0.18)] transition-colors transition-shadow duration-300 group" data-id="' + escapeHtml(p.id) + '">' +
             '<div class="aspect-square bg-brand-cream cursor-pointer overflow-hidden">' +
               (img ? '<img src="' + img + '" alt="' + escapeHtml(p.name) + '" decoding="async" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />' : '') +
             '</div>' +

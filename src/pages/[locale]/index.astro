@@ -325,7 +325,7 @@ const IMG = {
           {c.subtitle}
         </p>
         <div class="flex flex-wrap items-center gap-6">
-          <a href={`/${locale}/contact/`} class="group inline-flex items-center gap-3 px-10 py-5 bg-white text-brand-ink text-sm font-medium uppercase tracking-[0.22em] hover:bg-brand-gold hover:text-white transition-all duration-300">
+          <a href={`/${locale}/contact/`} class="group inline-flex items-center gap-3 px-10 py-5 bg-white text-brand-ink text-sm font-medium uppercase tracking-[0.22em] hover:bg-brand-gold hover:text-white transition-colors duration-300">
             {c.cta}
             <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -770,7 +770,7 @@ const IMG = {
         {categoryCards.map((c, i) => {
           const cat = productsData.categories.find((x: any) => c.slug === (x.id === 'hats' ? 'hats-accessories' : x.id === 'sweaters' ? 'garment-oem' : x.id === 'accessories' ? 'accessories-cat' : x.id));
           return (
-            <a href={`/${locale}/products/${c.slug}/`} class="group border border-border bg-[#F8F5EF]/50 p-6 hover:border-brand-gold hover:bg-white transition-all duration-300 flex flex-col justify-between min-h-[150px]">
+            <a href={`/${locale}/products/${c.slug}/`} class="group border border-border bg-[#F8F5EF]/50 p-6 hover:border-brand-gold hover:bg-white transition-colors duration-300 flex flex-col justify-between min-h-[150px]">
               <div>
                 <div class="font-serif text-[11px] text-brand-camel tracking-[0.2em] uppercase mb-2">0{i + 1}</div>
                 <h3 class="font-serif text-xl leading-tight group-hover:text-brand-chocolate transition-colors">{c.name}</h3>
@@ -787,7 +787,7 @@ const IMG = {
       <!-- 精选产品（每类 3 款，共 15 张） -->
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
         {featured.map((p) => (
-          <a href={`/${locale}/products/${p.id}/`} class="group block border border-border overflow-hidden hover:border-brand-gold hover:shadow-lg transition-all duration-300">
+          <a href={`/${locale}/products/${p.id}/`} class="group block border border-border overflow-hidden hover:border-brand-gold hover:shadow-lg transition-colors transition-shadow duration-300">
             <div class="aspect-square bg-brand-cream overflow-hidden">
               <img src={homeImg(p)} alt={p.name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" decoding="async" loading="lazy" />
             </div>
@@ -886,7 +886,7 @@ const IMG = {
               'Cashmere goat on Mongolian pasture',
             ][i] || '';
             return (
-              <a href={`/${locale}/blog/${p.slug}/`} class="group block border border-border overflow-hidden hover:border-brand-gold hover:shadow-lg transition-all duration-300">
+              <a href={`/${locale}/blog/${p.slug}/`} class="group block border border-border overflow-hidden hover:border-brand-gold hover:shadow-lg transition-colors transition-shadow duration-300">
                 <div class="aspect-[16/10] overflow-hidden bg-brand-cream">
                   <img src={blogImg} alt={blogAlt} style="object-position: center 60%;" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" decoding="async" loading="lazy" />
                 </div>

@@ -134,7 +134,7 @@ const t = copy[locale] || copy.en;
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left mb-12">
         {links.map((l) => (
-          <a href={l.href} class="group block border border-border p-6 hover:border-primary hover:shadow-md transition-all">
+          <a href={l.href} class="group block border border-border p-6 hover:border-primary hover:shadow-md transition-colors transition-shadow">
             <h2 class="text-base font-medium text-foreground group-hover:text-primary mb-1 transition-colors">
               {l.label}
               <svg class="inline-block w-4 h-4 ml-2 -mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -144,7 +144,7 @@ const t = copy[locale] || copy.en;
         ))}
       </div>
 
-      <a href={localePath(locale, '/contact')} class="inline-block px-8 py-4 bg-primary text-primary-foreground rounded-none font-medium hover:bg-primary/90 transition-all">
+      <a href={localePath(locale, '/contact')} class="inline-block px-8 py-4 bg-primary text-primary-foreground rounded-none font-medium hover:bg-primary/90 transition-colors">
         {t.cta} →
       </a>
     </div>

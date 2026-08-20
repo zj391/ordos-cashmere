@@ -61,7 +61,7 @@ const resourceLinks = [
         <ul class="space-y-2 text-sm">
           {productLinks.map((l) => (
             <li>
-              <a href={localePath(locale, l.href)} class="inline-block text-muted-foreground hover:text-brand-red hover:translate-x-0.5 transition-all duration-300">
+              <a href={localePath(locale, l.href)} class="inline-block text-muted-foreground hover:text-brand-red hover:translate-x-0.5 transition-colors transition-transform duration-300">
                 {fl(l.labelKey)}
               </a>
             </li>
@@ -75,7 +75,7 @@ const resourceLinks = [
         <ul class="space-y-2 text-sm">
           {companyLinks.map((l) => (
             <li>
-              <a href={localePath(locale, l.href)} class="inline-block text-muted-foreground hover:text-brand-red hover:translate-x-0.5 transition-all duration-300">
+              <a href={localePath(locale, l.href)} class="inline-block text-muted-foreground hover:text-brand-red hover:translate-x-0.5 transition-colors transition-transform duration-300">
                 {fl(l.labelKey)}
               </a>
             </li>
@@ -89,7 +89,7 @@ const resourceLinks = [
         <ul class="space-y-2 text-sm">
           {resourceLinks.map((l) => (
             <li>
-              <a href={localePath(locale, l.href)} class="inline-block text-muted-foreground hover:text-brand-red hover:translate-x-0.5 transition-all duration-300">
+              <a href={localePath(locale, l.href)} class="inline-block text-muted-foreground hover:text-brand-red hover:translate-x-0.5 transition-colors transition-transform duration-300">
                 {fl(l.labelKey)}
               </a>
             </li>

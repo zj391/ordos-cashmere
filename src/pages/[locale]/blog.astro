@@ -332,7 +332,7 @@ const itemListSchema = {
     <div class="container-narrow">
       {/* Featured — 最新 1 篇用大图, 其余走 3-col compact 列表 (突出新内容, 提升 CTR) */}
       {posts.length > 0 && posts[0] && (
-        <a href={`/${locale}/blog/${posts[0].slug}/`} class="group block mb-12 border border-border bg-white hover:border-brand-gold hover:shadow-2xl transition-all duration-300 overflow-hidden">
+        <a href={`/${locale}/blog/${posts[0].slug}/`} class="group block mb-12 border border-border bg-white hover:border-brand-gold hover:shadow-2xl transition-colors transition-shadow duration-300 overflow-hidden">
           <div class="grid grid-cols-1 md:grid-cols-5">
             <div class="md:col-span-2 aspect-[16/10] md:aspect-auto bg-gradient-to-br from-brand-cream via-[#F8F5EF] to-[#E8DFD0] flex items-center justify-center">
               <div class="text-center px-6">
@@ -356,7 +356,7 @@ const itemListSchema = {
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {posts.slice(1).map((p) => (
-          <a href={`/${locale}/blog/${p.slug}/`} class="group block border border-border p-8 hover:border-brand-gold hover:shadow-lg transition-all duration-300">
+          <a href={`/${locale}/blog/${p.slug}/`} class="group block border border-border p-8 hover:border-brand-gold hover:shadow-lg transition-colors transition-shadow duration-300">
             <div class="text-xs text-muted-foreground tracking-wider mb-3 font-mono">{p.date}</div>
             <h3 class="font-serif text-2xl mb-3 group-hover:text-brand-chocolate transition-colors leading-tight">{p.title}</h3>
             <p class="text-muted-foreground leading-relaxed mb-6 text-sm">{p.excerpt}</p>

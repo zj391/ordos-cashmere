@@ -156,7 +156,7 @@ const totalColors = swatches.length;
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
         {swatches.map((s) => (
           <div
-            class="group relative border border-border hover:border-brand-gold transition-all duration-300 cursor-pointer overflow-hidden"
+            class="group relative border border-border hover:border-brand-gold transition-colors duration-300 cursor-pointer overflow-hidden"
             data-swatch-code={s.code}
             data-swatch-hex={s.hex}
             onclick={`navigator.clipboard.writeText('${s.hex}').then(()=>{const t=this.querySelector('.copy-toast');t.classList.remove('opacity-0');t.classList.add('opacity-100');setTimeout(()=>{t.classList.add('opacity-0');t.classList.remove('opacity-100')},1200)})`}
