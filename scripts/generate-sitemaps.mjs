@@ -19,6 +19,12 @@ const OUTPUT_DIR = DIST_DIR; // write back into dist/
 
 const I18N_LINK = (path) => LOCALES.map((loc) => ({ lang: loc, url: `${SITE_URL}/${loc}${path}` }));
 
+// 8-20: 收集所有真实 build 出来的 URL path（包括各 locale），用于
+// 在生成 hreflang alt link 时过滤掉不存在的 locale 变体。之前版本
+// 不做这层过滤 → 10.1% 的 blog hreflang 指向 404（sitemap 软 404 是
+// Google 公认的 SEO 毒药,会拉低整个 sitemap 信任度)。
+const BUILT_PATHS = new Set();
+
 // Recursively walk dist/client/{locale}/<path>/index.html and return the URL paths.
 async function walkBuiltPages() {
   const out = [];
@@ -44,6 +50,7 @@ async function walkBuiltPages() {
           let urlPath = '/' + rel + '/';
           if (rel === '') urlPath = '/';
           out.push(urlPath);
+          BUILT_PATHS.add(urlPath);
         }
       }
     }
@@ -102,10 +109,18 @@ function buildSitemapXml(urls) {
     lines.push(`    <changefreq>${changefreq}</changefreq>`);
     lines.push(`    <priority>${priority.toFixed(1)}</priority>`);
     const pathWithoutLocale = path.replace(/^\/(en|de|fr|ja|kr|cn)/, '');
+    // 8-20: 过滤掉不存在的 locale 变体 hreflang + x-default，避免 sitemap
+    // 软 404（指向不存在 HTML，Google 视 sitemap 为低质信号）。
     for (const alt of I18N_LINK(pathWithoutLocale)) {
-      lines.push(`    <xhtml:link rel="alternate" hreflang="${alt.lang}" href="${alt.url}"/>`);
+      const altPath = new URL(alt.url).pathname;
+      if (BUILT_PATHS.has(altPath)) {
+        lines.push(`    <xhtml:link rel="alternate" hreflang="${alt.lang}" href="${alt.url}"/>`);
+      }
     }
-    lines.push(`    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE_URL}/en${pathWithoutLocale}"/>`);
+    const xDefaultPath = `${SITE_URL}/en${pathWithoutLocale}`;
+    if (BUILT_PATHS.has(new URL(xDefaultPath).pathname)) {
+      lines.push(`    <xhtml:link rel="alternate" hreflang="x-default" href="${xDefaultPath}"/>`);
+    }
     lines.push('  </url>');
   }
   lines.push('</urlset>');
