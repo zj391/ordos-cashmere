@@ -80,11 +80,12 @@ const tdk: Record<string, { title: string; description: string; keywords: string
 
 const seo = tdk[locale] || tdk.en;
 
-// 一次性把 591 个产品序列化成 JSON，inline 到 <script id="products-data">
-// 给前端 vanilla JS 用（筛选/搜索/弹窗）。
-// 2026-08-20 SEO/perf fix: 列表页 JS 实际只用 ~10 个字段做 filter/search/card 渲染；
+// 一次性把 591 个产品 + 5 个分类序列化成 JSON，inline 给前端 vanilla JS 用（筛选/搜索/弹窗）。
+// 2026-08-20 SEO/perf fix: 列表页 JS 实际只用 products 的 11 个字段做 filter/search/card 渲染；
 // detail/description/detailedDescription 等长 markdown 在 listing 上是 100% 死数据。
-// 591 个产品精简前 gzip 后 ~15 MB，精简后降到 ~1.5 MB（gzip 后约 250 KB）。
+// categories.products[] 数组前端 JS 完全不用 —— 但 SSR 模板要用 cat.products.length 渲染徽章，
+// 故精简版 categories 仅含 {id, name, description, productCount}（count 直接从 products.length 转）。
+// 591 产品 + 5 分类精简前 gzip 后 ~6 MB，精简后 ~120 KB（98%↓）。
 // 详情页 (/en/products/<id>/) 继续用 getAllProducts() 全量，不受影响。
 const LISTING_FIELDS = [
   'id', 'name', 'categoryId', 'categoryName',
@@ -96,9 +97,18 @@ function pickListFields(p: any) {
   for (const k of LISTING_FIELDS) out[k] = p[k];
   return out;
 }
+function pickListCategory(c: any) {
+  return {
+    id: c.id,
+    name: c.name,
+    description: c.description,
+    productCount: c.products.length,
+  };
+}
 const listProducts = allProducts.map(pickListFields);
+const listCategories = categories.map(pickListCategory);
 const productsJson = JSON.stringify(listProducts);
-const categoriesJson = JSON.stringify(categories);
+const categoriesJson = JSON.stringify(listCategories);
 const labelsJson = JSON.stringify(labels);
 
 // Active subcategory labels for the "You are viewing: …" chip strip.
