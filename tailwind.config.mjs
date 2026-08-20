@@ -62,6 +62,17 @@ export default {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
+      // 2026-08-20 motion design tokens — 让 utility class 也走 CSS vars
+      // duration-150/350/700 用 .duration-fast/normal/slow 名
+      transitionDuration: {
+        fast: 'var(--duration-fast)',
+        normal: 'var(--duration-normal)',
+        slow: 'var(--duration-slow)',
+      },
+      transitionTimingFunction: {
+        luxury: 'var(--ease-luxury)',
+        soft: 'var(--ease-soft)',
+      },
       keyframes: {
         'accordion-down': {
           from: { height: '0' },

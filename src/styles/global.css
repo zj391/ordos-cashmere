@@ -74,7 +74,7 @@
   }
 
   .scroll-fade {
-    animation: scroll-fade 0.6s ease-out;
+    animation: scroll-fade var(--duration-slow) ease-out;
   }
 
   @keyframes scroll-fade {
@@ -120,7 +120,7 @@ html {
   background: #9E3128;
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+  transition: transform var(--duration-normal) var(--ease-soft);
 }
 .nav-link:hover::after,
 .nav-link.is-active::after {
@@ -133,12 +133,27 @@ html {
   }
 }
 
+/* ============================================================
+   Motion design tokens (2026-08-20)
+   统一全站过渡时长和曲线, 避免 cubic-bezier 和 0.3s/0.4s/0.7s/0.9s 散乱.
+   3 时长 + 2 曲线: fast=150ms micro-interactions, normal=350ms default,
+   slow=700ms reveals. 曲线: luxury (expo out, primary reveal) +
+   soft (in-out, hover/state).
+   ============================================================ */
+:root {
+  --duration-fast: 150ms;
+  --duration-normal: 350ms;
+  --duration-slow: 700ms;
+  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 /* ===== Scroll Reveal（轻量，不依赖框架） ===== */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity var(--duration-slow) var(--ease-luxury),
+              transform var(--duration-slow) var(--ease-luxury);
   will-change: opacity, transform;
 }
 .reveal.reveal-visible {
@@ -163,8 +178,8 @@ html {
 .reveal-left {
   opacity: 0;
   transform: translateX(-32px);
-  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity var(--duration-slow) var(--ease-luxury),
+              transform var(--duration-slow) var(--ease-luxury);
 }
 .reveal-left.reveal-visible {
   opacity: 1;
@@ -175,8 +190,8 @@ html {
 .reveal-right {
   opacity: 0;
   transform: translateX(32px);
-  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity var(--duration-slow) var(--ease-luxury),
+              transform var(--duration-slow) var(--ease-luxury);
 }
 .reveal-right.reveal-visible {
   opacity: 1;
@@ -187,8 +202,8 @@ html {
 .reveal-scale {
   opacity: 0;
   transform: scale(0.96);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity var(--duration-slow) var(--ease-luxury),
+              transform var(--duration-slow) var(--ease-luxury);
 }
 .reveal-scale.reveal-visible {
   opacity: 1;
@@ -219,7 +234,7 @@ html {
   background: currentColor;
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+  transition: transform var(--duration-normal) var(--ease-soft);
 }
 .link-underline:hover::after {
   transform: scaleX(1);
@@ -228,8 +243,8 @@ html {
 
 /* 卡片 hover 提升 */
 .hover-lift {
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform var(--duration-normal) var(--ease-luxury),
+              box-shadow var(--duration-normal) var(--ease-luxury);
 }
 .hover-lift:hover {
   transform: translateY(-4px);
@@ -241,7 +256,7 @@ html {
   overflow: hidden;
 }
 .hover-zoom img {
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform var(--duration-slow) var(--ease-luxury);
 }
 .hover-zoom:hover img {
   transform: scale(1.05);
@@ -251,8 +266,8 @@ html {
 .hero-dot {
   transform: scaleX(1);
   transform-origin: left center;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              background-color 0.3s ease;
+  transition: transform var(--duration-normal) var(--ease-soft),
+              background-color var(--duration-normal) ease;
   will-change: transform;
 }
 .hero-dot.hero-dot-active {
@@ -327,7 +342,7 @@ html {
 
 /* ===== 简单 fade-in（不需要 reveal 检测，CSS animation） ===== */
 .fade-in {
-  animation: fade-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: fade-in var(--duration-slow) var(--ease-luxury) both;
 }
 @keyframes fade-in {
   from { opacity: 0; }
@@ -336,7 +351,7 @@ html {
 
 /* ===== fade-up 单次动画（页面加载时） ===== */
 .fade-up {
-  animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: fade-up var(--duration-slow) var(--ease-luxury) both;
 }
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(20px); }
@@ -347,7 +362,7 @@ html {
 .counter {
   font-variant-numeric: tabular-nums;
   display: inline-block;
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform var(--duration-normal) var(--ease-soft);
 }
 
 /* ===== 按钮 hover 光带扫过 ===== */
@@ -368,7 +383,7 @@ html {
     rgba(255, 255, 255, 0.3) 50%,
     transparent 100%
   );
-  transition: left 0.6s ease;
+  transition: left var(--duration-slow) ease;
 }
 .btn-shine:hover::before {
   left: 100%;
@@ -387,7 +402,7 @@ html {
 
 /* ===== Scroll-aware nav (header.is-scrolled) ===== */
 header.sticky {
-  transition: box-shadow 0.3s ease, padding 0.3s ease, transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: box-shadow var(--duration-normal) ease, padding var(--duration-normal) ease, transform var(--duration-normal) var(--ease-soft);
 }
 header.sticky.header-hidden {
   transform: translateY(-100%);
@@ -460,10 +475,10 @@ header.sticky.is-scrolled {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   transition:
-    background-color 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-    color 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    background-color var(--duration-normal) var(--ease-luxury),
+    color var(--duration-normal) var(--ease-luxury),
+    transform var(--duration-normal) var(--ease-luxury),
+    box-shadow var(--duration-normal) var(--ease-luxury);
 }
 .btn-lux:hover {
   background: #9E3128;
@@ -474,7 +489,7 @@ header.sticky.is-scrolled {
   transform: translateY(0);
 }
 .btn-lux svg {
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform var(--duration-normal) var(--ease-luxury);
 }
 .btn-lux:hover svg {
   transform: translateX(4px);
@@ -495,9 +510,9 @@ header.sticky.is-scrolled {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   transition:
-    border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border-color var(--duration-normal) var(--ease-luxury),
+    color var(--duration-normal) var(--ease-luxury),
+    transform var(--duration-normal) var(--ease-luxury);
 }
 .btn-lux-outline:hover {
   border-color: #9E3128;
@@ -514,7 +529,7 @@ header.sticky.is-scrolled {
   padding-bottom: 3px;
   color: #4B3A2B;
   font-weight: 500;
-  transition: color 0.35s ease;
+  transition: color var(--duration-normal) ease;
 }
 .text-link-lux::after {
   content: '';
@@ -526,7 +541,7 @@ header.sticky.is-scrolled {
   background: currentColor;
   transform: scaleX(1);
   transform-origin: left;
-  transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+  transition: transform var(--duration-normal) var(--ease-soft);
 }
 .text-link-lux:hover {
   color: #A98B5F;
@@ -536,7 +551,7 @@ header.sticky.is-scrolled {
   transform-origin: left;
 }
 .text-link-lux svg {
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform var(--duration-normal) var(--ease-luxury);
 }
 .text-link-lux:hover svg {
   transform: translateX(4px);
@@ -581,7 +596,7 @@ header.sticky.is-scrolled {
 
 /* Subtle fade for luxury: longer, slower easing */
 .reveal {
-  transition-duration: 1s;
+  transition-duration: var(--duration-slow);
 }
 
 @media (prefers-reduced-motion: reduce) {
