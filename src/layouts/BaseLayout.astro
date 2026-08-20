@@ -435,7 +435,10 @@ if (faqs && faqs.length > 0) {
 
     <meta name="keywords" content={finalKeywords.join(', ')} />
 
-    {noIndex && <meta name="robots" content="noindex,nofollow" />}
+    {/* 2026-08-20 SEO: 显式 robots directive 取代隐式默认。
+        indexable 页: 允许 Google 用大图预览 + 长 snippet + 视频预览 (增加 SERP 视觉占地 + CTR)。
+        noindex 页: 维持 noindex,nofollow (admin / 404 / cart 等)。 */}
+    <meta name="robots" content={noIndex ? "noindex,nofollow" : "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"} />
 
 
 
