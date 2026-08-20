@@ -25,16 +25,17 @@ if (!isLocale(rawLocale)) { return new Response('Not Found', { status: 404 }); }
 const locale = pickLocale(rawLocale);
 
 const t: Record<string, Record<string, string>> = {
-  en: { tagline: 'INQUIRY LIST', title: 'Your Inquiry\nList', subtitle: 'Review the products you want a quote for, then send everything in one message.', emptyTitle: 'Your inquiry list is empty', emptyBody: 'Browse our products and click "Add to Inquiry" to start building a quote request.', emptyCta: 'Browse Products' },
-  cn: { tagline: '询价清单', title: '您的\n询价清单', subtitle: '复核您要询价的产品，然后一次性提交。', emptyTitle: '询价清单为空', emptyBody: '浏览产品并点击"加入询价单"开始组装询价请求。', emptyCta: '浏览产品' },
-  de: { tagline: 'ANFRAGELISTE', title: 'Ihre\nAnfrageliste', subtitle: 'Produkte prüfen, dann alles in einer Nachricht senden.', emptyTitle: 'Ihre Anfrageliste ist leer', emptyBody: 'Produkte ansehen und auf "Zur Anfrage hinzufügen" klicken.', emptyCta: 'Produkte ansehen' },
-  fr: { tagline: 'LISTE DE DEMANDE', title: 'Votre\nliste', subtitle: 'Vérifiez les produits, puis envoyez tout en un message.', emptyTitle: 'Votre liste est vide', emptyBody: 'Parcourez les produits et cliquez sur "Ajouter à la demande".', emptyCta: 'Voir les produits' },
-  ja: { tagline: '問い合わせリスト', title: 'あなたの\n問い合わせリスト', subtitle: '製品を確認してから、一度に送信します。', emptyTitle: 'リストは空です', emptyBody: '製品を閲覧し「問い合わせに追加」をクリックしてください。', emptyCta: '製品を見る' },
-  kr: { tagline: '문의 목록', title: '문의\n목록', subtitle: '제품을 검토한 후 한 번에 보내세요.', emptyTitle: '목록이 비어 있습니다', emptyBody: '제품을 찾아 "문의에 추가"를 클릭하세요.', emptyCta: '제품 보기' },
+  en: { tagline: 'INQUIRY LIST', title: 'Your Inquiry\nList', subtitle: 'Review the products you want a quote for, then send everything in one message.', emptyTitle: 'Your inquiry list is empty', emptyBody: 'Browse our products and click "Add to Inquiry" to start building a quote request.', emptyCta: 'Browse Products', seoTitle: 'Inquiry List | DONGXIAO®', seoDescription: 'Review products you want a quote for and send a single inquiry to our Ordos factory.' },
+  cn: { tagline: '询价清单', title: '您的\n询价清单', subtitle: '复核您要询价的产品，然后一次性提交。', emptyTitle: '询价清单为空', emptyBody: '浏览产品并点击"加入询价单"开始组装询价请求。', emptyCta: '浏览产品', seoTitle: '询价清单 | DONGXIAO®', seoDescription: '复核您要询价的产品，一次性向鄂尔多斯工厂提交询价请求。' },
+  de: { tagline: 'ANFRAGELISTE', title: 'Ihre\nAnfrageliste', subtitle: 'Produkte prüfen, dann alles in einer Nachricht senden.', emptyTitle: 'Ihre Anfrageliste ist leer', emptyBody: 'Produkte ansehen und auf "Zur Anfrage hinzufügen" klicken.', emptyCta: 'Produkte ansehen', seoTitle: 'Anfrageliste | DONGXIAO®', seoDescription: 'Produkte prüfen und eine Anfrage für alle in einer Nachricht an unsere Ordos-Fabrik senden.' },
+  fr: { tagline: 'LISTE DE DEMANDE', title: 'Votre\nliste', subtitle: 'Vérifiez les produits, puis envoyez tout en un message.', emptyTitle: 'Votre liste est vide', emptyBody: 'Parcourez les produits et cliquez sur "Ajouter à la demande".', emptyCta: 'Voir les produits', seoTitle: 'Liste de demandes | DONGXIAO®', seoDescription: 'Vérifiez les produits et envoyez une seule demande à notre usine d\'Ordos.' },
+  ja: { tagline: '問い合わせリスト', title: 'あなたの\n問い合わせリスト', subtitle: '製品を確認してから、一度に送信します。', emptyTitle: 'リストは空です', emptyBody: '製品を閲覧し「問い合わせに追加」をクリックしてください。', emptyCta: '製品を見る', seoTitle: '問い合わせリスト | DONGXIAO®', seoDescription: '見積もりたい製品を選び、ワンクリックでオルドス工場へまとめて問い合わせ。' },
+  kr: { tagline: '문의 목록', title: '문의\n목록', subtitle: '제품을 검토한 후 한 번에 보내세요.', emptyTitle: '목록이 비어 있습니다', emptyBody: '제품을 찾아 "문의에 추가"를 클릭하세요.', emptyCta: '제품 보기', seoTitle: '문의 목록 | DONGXIAO®', seoDescription: '견적 받을 제품을 모아 한 번에 오르도스 공장으로 문의하세요.' },
 };
 const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
 ---
-<BaseLayout locale={locale} pageKey="cart" path="/cart" title={`Inquiry List | DONGXIAO®`} description="Review products you want a quote for and send a single inquiry to our Ordos factory." noIndex={true}>
+
+<BaseLayout locale={locale} pageKey="cart" path="/cart" title={T('seoTitle')} description={T('seoDescription')} noIndex={true}>
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/cart`} />
 
   <section class="bg-[#F5F0E7] border-b border-border/60">
