@@ -45,9 +45,11 @@ const latestPosts = allPosts
 await ensureDbOverlay();
 const allProducts = getAllProducts();
 const featured: any[] = [];
+// 2026-08-20 SEO fix: 每类 1 -> 3. 首页产品可见数 5 -> 15.
+// 每产品页多 1 跳可达 — Googlebot 从首页发现 15 个产品详情页 (vs 5).
 for (const cid of ['hats', 'scarves', 'sweaters', 'accessories', 'yarn']) {
-  const p = allProducts.find((x: any) => x.categoryId === cid);
-  if (p) featured.push(p);
+  const catProducts = allProducts.filter((x: any) => x.categoryId === cid);
+  for (const p of catProducts.slice(0, 3)) featured.push(p);
 }
 const homeImg = (p: any): string =>
   p.images && p.images[0] && (p.images[0].startsWith('/images/') || p.images[0].startsWith('http'))
@@ -776,8 +778,8 @@ const IMG = {
         })}
       </div>
 
-      <!-- 精选产品（每类 1 款） -->
-      <div class="grid grid-cols-2 md:grid-cols-5 gap-5">
+      <!-- 精选产品（每类 3 款，共 15 张） -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
         {featured.map((p) => (
           <a href={`/${locale}/products/${p.id}/`} class="group block border border-border overflow-hidden hover:border-brand-gold hover:shadow-lg transition-all duration-300">
             <div class="aspect-square bg-brand-cream overflow-hidden">
