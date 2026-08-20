@@ -8,9 +8,18 @@ import footerLabels from '@/data/footer-labels.json';
 
 interface Props {
   locale: Locale;
+  /**
+   * 当前页路径（用于语言切换跳转到同位置的另一语言版本）。
+   * 在 404 页面必须显式传 '/'，否则 Footer 会用 Astro.url.pathname
+   * 推断成用户输错的 URL（如 /en/non-existent/），导致所有 6 个语言
+   * 链接全指向死链。
+   */
+  currentPath?: string;
 }
 
-const { locale } = Astro.props;
+const { locale, currentPath } = Astro.props;
+// 默认走当前真实路径；只有显式传入时才覆盖（404 页传 '/'）。
+const pathForLangSwitch = currentPath ?? Astro.url.pathname;
 
 const fl = (k: string): string => {
   const m = (footerLabels as Record<string, Record<string, string>>)[locale];
@@ -130,7 +139,12 @@ const resourceLinks = [
     <div class="flex flex-wrap gap-3 pb-6 border-b border-border">
       <span class="text-xs uppercase tracking-wider text-muted-foreground">Languages:</span>
       {LOCALES.map((loc) => {
-        const strippedPath = Astro.url.pathname.replace(/^\/[a-z]{2,3}/, '') || '/';
+        // 总是剥离当前页的 locale 前缀（不限定为哪个 locale — 旧版用
+        // /^\/[a-z]{2,3}/ 也是这个意思）。然后由 localePath() 给目标
+        // locale 重新加前缀。如果当前页不是 locale-prefixed（如 404 页
+        // 显式传 currentPath='/'），strippedPath = '/'，所有语言链接
+        // 落到各自 locale 的根。
+        const strippedPath = pathForLangSwitch.replace(/^\/[a-z]{2,3}(?=\/|$)/, '') || '/';
         return (
           <a
             href={localePath(loc, strippedPath)}

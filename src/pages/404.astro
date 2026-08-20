@@ -150,7 +150,9 @@ const t = copy[locale] || copy.en;
     </div>
   </section>
 
-  <Footer slot="footer" locale={locale} />
+  <!-- currentPath="/" 让 Footer 语言切换都落到各自 locale 的根，
+       而不是用户输错的 URL（否则所有 6 个语言链接都死链） -->
+  <Footer slot="footer" locale={locale} currentPath="/" />
   <FloatingChatButtons slot="floating" locale={locale} />
   <CookieConsent slot="cookie-consent" locale={locale} />
 </BaseLayout>
