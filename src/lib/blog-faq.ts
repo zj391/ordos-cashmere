@@ -27,8 +27,8 @@ const QUESTION_WORDS: Record<string, string[]> = {
   en: ['what', 'how', 'why', 'when', 'which', 'where', 'who', 'is', 'are', 'do', 'does', 'did', 'can', 'could', 'should', 'would', 'will', 'whose', 'whom'],
   de: ['was', 'wie', 'warum', 'wieso', 'wann', 'welche', 'welcher', 'welches', 'wo', 'wer', 'wem', 'ist', 'sind', 'kann', 'können', 'soll', 'sollte', 'wird'],
   fr: ['quoi', 'comment', 'pourquoi', 'quand', 'quel', 'quelle', 'quels', 'quelles', 'où', 'qui', 'que', 'est', 'sont', 'peut', 'doit', 'faudrait'],
-  ja: ['何', 'なぜ', 'どうして', 'いつ', 'どの', 'どこ', '誰', 'どう', 'どれ', 'できる'],
-  kr: ['무엇', '왜', '언제', '어디', '어떤', '어떻게', '누구', '있나'],
+  ja: ['何', 'なぜ', 'どうして', 'いつ', 'どの', 'どこ', '誰', 'どう', 'どれ', 'できる', 'とは'],
+  kr: ['무엇', '왜', '언제', '어디', '어떤', '어떻게', '누구', '있나', '이란', '란', '인지'],
   cn: ['什么', '为何', '为什么', '怎么', '怎样', '如何', '何时', '哪个', '哪里', '谁', '可以', '能不能'],
 };
 
@@ -36,15 +36,25 @@ const QUESTION_WORDS: Record<string, string[]> = {
 // Also handles embedded questions like "Quality Control: What to Look For".
 function looksLikeQuestion(text: string, locale?: string): boolean {
   const t = text.trim();
-  if (t.endsWith('?')) return true;
+  // Accept both ASCII '?' and full-width '？' (used by CN/JA/KR markdown).
+  if (t.endsWith('?') || t.endsWith('？')) return true;
   // Try leading word match against the locale's question-word set.
   const first = (t.split(/\s+/)[0] || '').toLowerCase().replace(/[,.!?]\( ([^,]*?)$/, '$1').replace(/[,.!?]+$/, '');
   const words = QUESTION_WORDS[locale || 'en'] || QUESTION_WORDS.en;
   if (words.includes(first)) return true;
   // Embedded: any question-word in the heading makes it a FAQ candidate.
   // E.g. "Quality Control: What to Look For in a Supplier".
+  //
+  // Word boundaries \b only work for languages with whitespace separators.
+  // CN/JA/KR markdown frequently packs heading text without spaces
+  // (e.g. "如何测量微米数" — split[0] = the entire heading), so we use
+  // plain substring .includes() for those locales.
   const lower = t.toLowerCase();
-  return words.some((w) => new RegExp(`\\b${w}\\b`).test(lower));
+  const cjk = ['cn', 'ja', 'kr'].includes(locale || '');
+  return words.some((w) => {
+    if (cjk) return lower.includes(w.toLowerCase());
+    return new RegExp(`\\b${w}\\b`).test(lower);
+  });
 }
 
 /**
