@@ -12,6 +12,7 @@ import Footer from '@/components/Footer.astro';
 import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
 import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
+import SEOFaq from '@/components/SEOFaq.astro';
 import { SEO, SITE_INFO } from '@/lib/seo';
 
 export function getStaticPaths() {
@@ -23,13 +24,77 @@ if (!isLocale(rawLocale)) { return new Response('Not Found', { status: 404 }); }
 const locale = pickLocale(rawLocale);
 
 // Translations — 6 locales but body content is EN-only (gated below)
-const t: Record<string, Record<string, string>> = {
-  en: { tagline: 'CASHMERE GRADES', title: 'Cashmere Grades\nExplained', subtitle: 'A, B, C, baby, pashmina — what the grades actually mean and how to choose the right quality for your brand.' },
-  cn: { tagline: '羊绒等级', title: '羊绒等级\n详解', subtitle: 'A/B/C 等级、baby 羊绒、pashmina 披肩 — 等级到底意味着什么？' },
-  de: { tagline: 'KASCHMIRQUALITÄTEN', title: 'Kaschmirqualitäten\nErklärt', subtitle: 'A, B, C, Baby, Pashmina — was die Qualitätsstufen wirklich bedeuten.' },
-  fr: { tagline: 'QUALITÉS DU CACHEMIRE', title: 'Qualités du Cachemire\nExpliquées', subtitle: 'A, B, C, baby, pashmina — ce que signifient réellement les grades.' },
-  ja: { tagline: 'カシミア等級', title: 'カシミア等級\n解説', subtitle: 'A、B、C、ベビー、パシュミナ — 等級の本当の意味。' },
-  kr: { tagline: '캐시미어 등급', title: '캐시미어 등급\n설명', subtitle: 'A, B, C, 베이비, 퍼시mina — 등급의 실제 의미.' },
+const t: Record<string, Record<string, any>> = {
+  en: {
+    tagline: 'CASHMERE GRADES', title: 'Cashmere Grades\nExplained',
+    subtitle: 'A, B, C, baby, pashmina — what the grades actually mean and how to choose the right quality for your brand.',
+    faqs: [
+      { q: 'What is the difference between Grade A, B, and C cashmere?',
+        a: 'Grade A is premium (14-15.5μm fiber fineness, 36-42mm length, 99%+ down content). Grade B is mid-market (15.5-16.5μm, 30-36mm). Grade C is entry-level (16.5-19μm, under 30mm). Lower micron = softer feel. Longer fiber = less pilling.' },
+      { q: 'Is baby cashmere really from baby goats?',
+        a: 'No — baby cashmere is fiber harvested from the undercoat of adult cashmere goats\u2019 first combing (typically the softest fiber they produce in their lifetime, usually 13-14.5\u00b5m). True baby goats are not used commercially; their fiber yield is too low. The term refers to grade, not age.' },
+      { q: 'What is the difference between cashmere and pashmina?',
+        a: 'Technically all pashmina is cashmere (the word is from Persian, meaning \"soft gold\"). Historically pashmina referred to fiber from Kashmir-region goats with very fine micron (under-14\u00b5m) woven into shawls. Today the terms are largely interchangeable in B2B trade, though \"pashmina\" carries a marketing premium.' },
+      { q: 'What micron count should I look for in a quality cashmere sweater?',
+        a: 'For premium retail (USD 200+), look for 14-15.5\u00b5m and 36mm+ fiber length. For mid-market DTC (USD 80-200), 15.5-16.5\u00b5m and 30-36mm is the standard. Anything over 19\u00b5m is likely blended with wool.' },
+      { q: 'How do I avoid pilling on a cashmere garment?',
+        a: 'Pilling is caused by short fibers (under 28mm) working loose. Choose Grade A or B (longer fibers), wash by hand in cool water with cashmere shampoo, reshape and dry flat, and avoid wearing the same piece two days in a row (fiber recovers). Premium cashmere pills much less than entry-level even with the same care.' },
+      { q: 'Is white cashmere better than brown or gray?',
+        a: 'White cashmere is the most valuable because it can be dyed to any color without bleaching, which damages fibers. Brown and gray cashmere is equally fine but limited to natural or muted colorways. Price difference at the same grade: 10-15% premium for white.' },
+    ],
+  },
+  cn: {
+    tagline: '羊绒等级', title: '羊绒等级\n详解',
+    subtitle: 'A/B/C 等级、baby 羊绒、pashmina 披肩 — 等级到底意味着什么？',
+    faqs: [
+      { q: '羊绒 A、B、C 等级有什么区别？',
+        a: 'A 级（14-15.5\u00b5m, 36-42mm, 99%+ 绒）适合奢侈品；B 级（15.5-16.5\u00b5m, 30-36mm）中端主力；C 级（16.5-19\u00b5m）入门级或混纺用。' },
+      { q: 'Baby cashmere 是来自小山羊吗？',
+        a: '不是。Baby cashmere 是成年羊首次梳理时采下的最细纤维（13-14.5\u00b5m）。商业上没有真正用小山羊，产绒量太低。\"Baby\"指的是等级，不是年龄。' },
+      { q: '羊绒 vs pashmina 区别？',
+        a: '技术上 pashmina 就是羊绒（波斯语\"软金\"）。历史上 pashmina 指克什米尔地区小山羊极细纤维（<14\u00b5m）。现代 B2B 贸易中两词基本通用，但\"pashmina\"带营销溢价。' },
+    ],
+  },
+  de: {
+    tagline: 'KASCHMIRQUALITÄTEN', title: 'Kaschmirqualitäten\nErklärt',
+    subtitle: 'A, B, C, Baby, Pashmina — was die Qualitätsstufen wirklich bedeuten.',
+    faqs: [
+      { q: 'Unterschied zwischen Kaschmirqualität A, B und C?',
+        a: 'Qualität A (14-15,5\u00b5m, 36-42mm, 99%+ Daune) ist Premium. B (15,5-16,5\u00b5m, 30-36mm) ist Mittelklasse. C (16,5-19\u00b5m, unter 30mm) ist Einstieg oder Mischung.' },
+      { q: 'Was ist Baby-Kaschmir?',
+        a: 'Baby-Kaschmir ist die erste, feinste Unterwolle (13-14,5\u00b5m) erwachsener Kaschmirziegen. Es kommt nicht von\u201aechten\u201c\nBabys — der Ertrag wäre zu gering. Der Begriff bezieht sich auf die Qualität, nicht das Alter.' },
+    ],
+  },
+  fr: {
+    tagline: 'QUALITÉS DU CACHEMIRE', title: 'Qualités du Cachemire\nExpliquées',
+    subtitle: 'A, B, C, baby, pashmina — ce que signifient réellement les grades.',
+    faqs: [
+      { q: 'Différence entre cachemire grade A, B et C ?',
+        a: 'Grade A (14-15,5\u00b5m, 36-42mm, 99%+ duvet) est premium. Grade B (15,5-16,5\u00b5m, 30-36mm) milieu de gamme. Grade C (16,5-19\u00b5m) entrée de gamme ou mélange.' },
+      { q: 'Le baby cachemire vient-il des chevreaux ?',
+        a: 'Non. Le baby cachemire est la première sous-couche très fine (13-14,5\u00b5m) des chèvres cachemire adultes. Les vrais chevreaux ne sont pas utilisés commercialement. Le terme désigne la qualité, pas l\u2019âge.' },
+    ],
+  },
+  ja: {
+    tagline: 'カシミア等級', title: 'カシミア等級\n解説',
+    subtitle: 'A、B、C、ベビー、パシュミナ — 等級の本当の意味。',
+    faqs: [
+      { q: 'カシミア等級 A、B、C の違いは？',
+        a: 'A 級（14-15.5\u00b5m、36-42mm、ダウ 99%+）プレミアム。B 級（15.5-16.5\u00b5m、30-36mm）中級。C 級（16.5-19\u00b5m、30mm 未満）は入門または混紡用。' },
+      { q: 'ベビー・カシミアは仔山羊から取れますか？',
+        a: 'いいえ、ベビー・カシミアは成山羊の初回梳毛で取れる最細繊維（13-14.5\u00b5m）です。商業的に本当の仔山羊は使われません。\"ベビー\"は等級を指し、年齢ではありません。' },
+    ],
+  },
+  kr: {
+    tagline: '캐시미어 등급', title: '캐시미어 등급\n설명',
+    subtitle: 'A, B, C, 베이비, 퍼시미나 — 등급의 실제 의미.',
+    faqs: [
+      { q: '캐시미어 등급 A, B, C 차이는?',
+        a: 'A 등급 (14-15.5\u00b5m, 36-42mm, 다운 99%+) 프리미엄. B 등급 (15.5-16.5\u00b5m, 30-36mm) 중급. C 등급 (16.5-19\u00b5m, 30mm 미만) 입문 또는 혼방용.' },
+      { q: '베이비 캐시미어는 새끼염소에서 채집하나요?',
+        a: '아닙니다. 베이비 캐시미어는 성숙 양산의 첫 솔질에서 얻는 최섬유 (13-14.5\u00b5m)입니다. 상업적으로 진짜 새끼염소는 쓰이지 않으며, 수율이 너무 낮습니다. \"베이비\"는 등급을 뜻합니다.' },
+    ],
+  },
 };
 const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
 
@@ -199,6 +264,8 @@ const s = seo[locale] || seo.en;
     </div>
   </section>
   )}
+
+  <SEOFaq faqs={t[locale]?.faqs || t.en.faqs} title="Cashmere Grades FAQ" />
 
   <Footer slot="footer" locale={locale} />
   <FloatingChatButtons slot="floating" locale={locale} />
