@@ -1208,6 +1208,48 @@ const relatedBlogPosts = pickedBlogs.map((p) => ({
   date: p.data.publishDate.toISOString().slice(0, 10),
 }));
 
+// 2026-08-20 SEO fix: 详情页链向同 categoryId 的 6 个其他产品。
+// Googlebot 从详情页之前 0 横向内链, 必须经过 listing 才看到其他产品 (listing JS 翻页大概率不执行)。
+// 取 6 个稳定 subset: 用 product.id 字符串 hash 当 seed, 保证同一 id 永远推同一组 related products。
+// 每张详情页 +6 个出站内链 × 3492 pages ≈ +20K 内部链接到产品图谱。
+const allProducts = getAllProducts();
+const RELATED_COUNT = 6;
+function stableHash(s: string): number {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) {
+    h = ((h << 5) - h) + s.charCodeAt(i);
+    h |= 0; // 32-bit
+  }
+  return Math.abs(h);
+}
+const sameCategory = allProducts.filter(
+  (p) => p.categoryId === product.categoryId && p.id !== product.id
+);
+const seed = stableHash(product.id);
+const start = seed % Math.max(1, sameCategory.length);
+const relatedProducts = Array.from(
+  { length: Math.min(RELATED_COUNT, sameCategory.length) },
+  (_, i) => sameCategory[(start + i) % sameCategory.length]
+);
+
+// Localized section title + "View all" CTA per locale (for related products block)
+const relatedSectionTitle: Record<Locale, string> = {
+  en: 'More from this category',
+  de: 'Weitere Produkte in dieser Kategorie',
+  fr: 'Plus de produits dans cette catégorie',
+  ja: 'このカテゴリのその他の製品',
+  kr: '이 카테고리의 다른 제품',
+  cn: '同类更多产品',
+} as any;
+const relatedViewAll: Record<Locale, string> = {
+  en: `View all ${product.categoryName}`,
+  de: `Alle ${product.categoryName} ansehen`,
+  fr: `Voir tous les ${product.categoryName}`,
+  ja: `${product.categoryName} をすべて見る`,
+  kr: `${product.categoryName} 전체 보기`,
+  cn: `查看全部${product.categoryName}`,
+} as any;
+
 ---
 
 
@@ -2438,6 +2480,73 @@ const relatedBlogPosts = pickedBlogs.map((p) => ({
        对SEO的内部链接效果有限(blog ↔ product 双向链接已有其他入口如sidebar nav, mega menu, hub pages)。
        保留: relatedBlogPosts变量和category-aware相关blog算法 (line 1154+) 以备将来重新启用或在其他位置使用。
   -->
+
+  <!-- Section 11.5: Related Products — 2026-08-20 added.
+       SSR-only (no JS, no fetch): 6 same-category products rendered as static <a>.
+       每张详情页 +6 个出站内链 → 改善爬虫图谱密度 + 用户探索路径。
+       relatedProducts 变量在 frontmatter 计算, 取 MD5-stable hash 保证同 id 永远推同一组。 -->
+  {relatedProducts.length > 0 && (
+    <section class="py-12 md:py-16 border-t border-border/60 bg-background">
+      <div class="container-narrow">
+        <div class="flex items-end justify-between mb-6 md:mb-8">
+          <h2 class="font-display text-2xl md:text-3xl font-light text-primary">
+            {relatedSectionTitle[locale]}
+          </h2>
+          <a
+            href={`/${locale}/products/?cat=${product.categoryId}`}
+            class="hidden sm:inline-flex items-center gap-1.5 text-sm text-primary hover:text-brand-red transition-colors"
+          >
+            {relatedViewAll[locale]}
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
+          {relatedProducts.map((rp) => {
+            const rpImg = rp.images && rp.images[0]
+              ? (rp.images[0].startsWith('/images/') || rp.images[0].startsWith('http')
+                  ? rp.images[0]
+                  : `/products/mic/${rp.images[0]}`)
+              : '';
+            return (
+              <a
+                href={`/${locale}/products/${rp.id}/`}
+                class="group block bg-white border border-border overflow-hidden hover:border-brand-camel hover:shadow-[0_8px_20px_-12px_rgba(28,24,19,0.18)] transition-all"
+                data-related-product-id={rp.id}
+              >
+                <div class="aspect-square bg-brand-cream overflow-hidden">
+                  {rpImg && (
+                    <img
+                      src={rpImg}
+                      alt={`${rp.name} — ${rp.categoryName}, ${rp.material}, MOQ ${rp.moq} pcs`}
+                      loading="lazy"
+                      decoding="async"
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  )}
+                </div>
+                <div class="p-2.5 md:p-3">
+                  <p class="text-[10px] uppercase tracking-wider text-muted-foreground mb-0.5 truncate">{rp.categoryName}</p>
+                  <h3 class="text-xs md:text-sm font-medium text-foreground line-clamp-2 group-hover:text-brand-camel leading-snug">{rp.name}</h3>
+                  <p class="text-[11px] md:text-xs text-brand-red font-medium mt-1">${rp.price} {rp.currency}</p>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+        <a
+          href={`/${locale}/products/?cat=${product.categoryId}`}
+          class="sm:hidden mt-6 inline-flex items-center gap-1.5 text-sm text-primary hover:text-brand-red transition-colors"
+        >
+          {relatedViewAll[locale]}
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </section>
+  )}
 
   <!-- Section 12: Inquiry CTA -->
 
