@@ -69,6 +69,124 @@ Categories: Cashmere Hats & Beanies, Cashmere Sweaters & Knitwear, Cashmere Scar
 
 ## Blog Articles (English, full text)
 
+### Cashmere Micron Count Guide: 14.5-19.5μm for B2B Buyers
+
+*Published 2026-08-20*
+
+Understand cashmere fiber fineness with our practical micron guide. Learn grading, quality control, and sourcing tips for 14.5-19.5μm cashmere.
+
+# Cashmere Micron Count Guide: 14.5-19.5μm for B2B Buyers
+
+# Cashmere Fiber Fineness: A Practical Micron Guide for B2B Buyers (14.5-19.5μm)
+
+When sourcing cashmere, the micron count is arguably the most critical specification—it determines softness, price, and end-use suitability. Yet many buyers struggle to interpret fineness data, especially when comparing suppliers across regions. This guide provides a comprehensive, practical breakdown of cashmere micron ranges, grading standards, and quality control considerations, empowering you to make informed sourcing decisions.
+
+## What Is Cashmere Micron Count?
+
+Micron (μm) measures fiber diameter. The lower the micron, the finer and softer the cashmere. Cashmere fibers range from about 14.5 to 19.5 microns, with anything below 15.5 considered ultra-fine and highly premium. For context, human hair is roughly 70-100 microns, so cashmere is exceptionally fine.
+
+Fineness directly impacts:
+- **Softness** – finer fibers feel silkier against the skin.
+- **Durability** – finer fibers can be more delicate, requiring careful spinning.
+- **Price** – finer cashmere commands higher prices due to lower yields and higher processing costs.
+- **End-use** – ultra-fine cashmere is ideal for luxury knitwear, while coarser grades suit heavier outerwear.
+
+## Cashmere Micron Grading: The Industry Standard
+
+While there is no universal grading system, most mills and suppliers categorize cashmere into three tiers:
+
+| Grade | Micron Range | Typical Use | Relative Price Index |
+|-------|--------------|-------------|----------------------|
+| Ultra-fine | ≤ 15.5 μm | Luxury scarves, lightweight knitwear, baby garments | High (100-120) |
+| Fine | 15.6-16.5 μm | Premium sweaters, cardigans, accessories | Medium-High (90-100) |
+| Standard | 16.6-18.5 μm | Everyday knitwear, blended yarns | Medium (75-90) |
+| Coarse | 18.6-19.5 μm | Outerwear, blankets, upholstery | Lower (60-75) |
+
+Note: Some suppliers may label 16-17 μm as "premium"—always verify the exact micron range in your specification sheet.
+
+### Why 14.5-19.5 μm Matters for B2B Buyers
+
+As a B2B buyer, you need to match micron to your product line and price point. For example:
+- If you sell luxury women's knitwear retailing above $300, you'll want 15-16 μm cashmere.
+- For men's sweaters in the mid-range, 16-17 μm is standard.
+- For cost-effective blends, 18-19 μm works well, especially when combined with silk or wool.
+
+Understanding the micron range helps you negotiate pricing, set quality expectations, and avoid overpaying for unnecessary fineness.
+
+## How Micron Count Is Measured
+
+The most reliable method is **laser-based optical fiber diameter analysis** (OFDA) or **scanning electron microscopy** (SEM). These methods provide accurate average micron and standard deviation. Some suppliers may use projection microscopy, which is less precise. Always request the testing method and a certificate of analysis (COA) from your supplier.
+
+**Key metrics to request:**
+- Average micron (μm)
+- Standard deviation (SD) – lower SD means more uniform fibers
+- Coefficient of variation (CV%) – typically below 22% is good
+- Fiber length (mm) – longer fibers (34-40 mm) are better for spinning
+
+## Regional Variations in Cashmere Fineness
+
+Cashmere goats are raised in several regions, each with distinct fiber characteristics:
+
+- **Inner Mongolia, China** – the world's largest cashmere producer. The Ordos region, where our factory is based, is renowned for consistently fine fibers averaging 15-16 μm. The harsh climate and high altitude (1,000-1,500m) contribute to a fine undercoat.
+- **Mongolia** – similar quality to Inner Mongolia, with some variation depending on herding practices.
+- **Afghanistan/Iran** – often coarser, averaging 17-19 μm, but with good availability.
+- **Australia/New Zealand** – limited production, but fine fibers due to selective breeding.
+
+As a source factory in Ordos, Inner Mongolia, we have direct access to the finest raw cashmere in the world, with an average micron of 15.5 μm for our premium line.
+
+## Quality Control: What to Look For in a Supplier
+
+Beyond micron count, quality control (QC) ensures consistency. A reliable supplier should:
+
+1. **Provide COAs** for every batch, including micron, length, and contamination levels.
+2. **Conduct third-party testing** – such as SGS or Intertek – upon request.
+3. **Adhere to international standards** – ISO9001 for quality management, OEKO-TEX for chemical safety, and GOTS if you require organic certification.
+4. **Maintain traceability** – from herder to finished product.
+
+### Common Quality Defects to Watch For
+
+- **Coarse hair contamination** – guard hairs that aren't fully removed.
+- **High vegetable matter** – plant debris that affects spinning.
+- **Inconsistent micron** – high SD indicates poor sorting.
+- **Short fibers** – below 30 mm reduces yarn strength.
+
+At DONGXIAO Cashmere, we implement rigorous QC at every stage: raw material sorting, dehairing, dyeing, and spinning. Our state-of-the-art testing lab ensures each batch meets your exact micron specification.
+
+## Sourcing Strategies: How to Use Micron Data in Negotiations
+
+When comparing supplier quotes, don't just look at price per kg. Evaluate the cost per garment based on micron and yield. Finer cashmere may cost more per kg but could require less material for the same warmth-to-weight ratio.
+
+**Negotiation tips:**
+- Request a sample card with swatches of different micron grades.
+- Ask for a trial batch with your required micron and test it in your own lab.
+- Inquire about blending options – adding 10-20% silk can enhance luster without increasing micron.
+- Discuss MOQ flexibility – our factory offers MOQs starting from 200 kg for raw material, 500 kg for yarn, and 500 pieces per design for garments.
+
+## Case Study: Selecting Micron for a Luxury Knitwear Line
+
+A European brand approached us to develop a premium knitwear line. They wanted a soft, lightweight feel but had a target retail price of $250. We recommended a 15.8 μm cashmere with a 34 mm fiber length. This allowed a 12-gauge knit that was both fine and durable. We provided a COA showing a CV of 18%, ensuring evenness. The line launched successfully, with customer satisfaction rates above 95%.
+
+## Frequently Asked Questions
+
+**Q: Is lower micron always better?**
+A: Not necessarily. Ultra-fine fibers (14.5-15 μm) can pill more easily and are more expensive. Match micron to your product's intended use and price point.
+
+**Q: How does micron affect pilling?**
+A: Finer fibers are more prone to pilling because they break and tangle. However, proper spinning and finishing (e.g., anti-pilling treatment) can mitigate this.
+
+**Q: Can you provide custom micron blends?**
+A: Yes, we can blend different micron lots to achieve a target average, but this may affect uniformity. We recommend using single-lot for premium products.
+
+## Conclusion
+
+Understanding cashmere micron count is essential for B2B buyers to source quality, control costs, and meet market expectations. By using this guide, you can confidently evaluate suppliers, interpret specifications, and negotiate better deals.
+
+At DONGXIAO Cashmere, we offer a full range of cashmere products—from raw material and yarn to finished garments—with transparent micron specifications and rigorous quality control. Our factory in Ordos, Inner Mongolia, has 23 years of expertise, serving clients worldwide.
+
+**Ready to source premium cashmere?** Contact our team today for a free consultation and sample kit. Visit our [contact page](/en/contact) to get started.
+
+---
+
 ### Cashmere Baby Blanket vs Cashmere Baby Set: B2B Buyer's Guide to Manufacturing and Pricing
 
 *Published 2026-08-18*
@@ -8426,6 +8544,7 @@ Cashmere quality is determined by fiber grade, not national origin. The finest M
 
 ## Blog Articles (CN — title + excerpt only; full text in /cn/blog/<slug>/)
 
+- [羊绒微米数指南：B2B采购商的14.5-19.5μm实用参考](https://www.erdosdx.com/cn/blog/cashmere-fiber-fineness-micron-chart-b2b/): 通过我们的实用微米指南，了解羊绒纤维细度。学习14.5-19.5μm羊绒的分级、质量控制和采购技巧。
 - [2026年羊绒毛衣设计趋势：Q3-Q4 B2B买家指南](https://www.erdosdx.com/cn/blog/cashmere-sweater-design-trends-2026-b2b/): 探索2026年Q3-Q4季度顶级羊绒毛衣设计趋势。从可持续纤维到超大廓形，了解全球B2B买家正在寻求什么，以及如何规划您的系列。
 - [羊绒过敏：迷思、真相与如何向客户解释](https://www.erdosdx.com/cn/blog/cashmere-allergies-myth-vs-reality/): 羊绒过敏真的存在吗？基于纤维科学，了解羊毛过敏与羊绒敏感之间的区别。学习如何解决客户疑虑，并自信地定位您的品牌。
 - [气候适配羊绒：热带、亚热带、中东、北欧市场如何差异选品（2026 B2B 指南）](https://www.erdosdx.com/cn/blog/cashmere-climate-adjusted-b2b-sourcing/): B2B 气候适配羊绒选品指南——覆盖热带湿度挑战、亚热带换季决策、中东奢华定位、北欧冬装规格，这些是大多数通用羊绒指南忽略的部分。
@@ -8482,6 +8601,7 @@ Cashmere quality is determined by fiber grade, not national origin. The finest M
 
 ## Blog Articles (DE — title + excerpt only; full text in /de/blog/<slug>/)
 
+- [Leitfaden zur Kaschmir-Mikronzahl: 14,5–19,5 μm für B2B-Käufer](https://www.erdosdx.com/de/blog/cashmere-fiber-fineness-micron-chart-b2b/): Verstehen Sie die Feinheit von Kaschmirfasern mit unserem praktischen Mikron-Leitfaden. Erfahren Sie mehr über Einstufung, Qualitätskontrolle und Beschaffungstipps für Kaschmir mit 14,5–19,5 μm.
 - [Kaschmir-Pullover-Designtrends 2026: B2B-Käuferleitfaden für Q3-Q4](https://www.erdosdx.com/de/blog/cashmere-sweater-design-trends-2026-b2b/): Entdecken Sie die wichtigsten Kaschmir-Pullover-Designtrends für Q3-Q4 2026. Von nachhaltigen Fasern bis hin zu übergroßen Silhouetten – erfahren Sie, was globale B2B-Käufer anfragen und wie Sie Ihre Kollektion planen.
 - [Kaschmir-Allergien: Mythos, Realität und was Sie Ihren Kunden sagen sollten](https://www.erdosdx.com/de/blog/cashmere-allergies-myth-vs-reality/): Sind Kaschmir-Allergien real? Entdecken Sie den Unterschied zwischen Wollallergie und Kaschmir-Empfindlichkeit, gestützt auf Faserwissenschaft. Erfahren Sie, wie Sie Kundenbedenken ansprechen und Ihre Marke souverän positionieren.
 - [2-fädig vs. einfädig Kaschmir: Was B2B-Bekleidungskäufer spezifizieren sollten (und warum)](https://www.erdosdx.com/de/blog/cashmere-2-ply-vs-single-ply-yarn-garment/): Verstehen Sie den strukturellen Unterschied zwischen 2-fädigem und einfädigem Kaschmir und wie sich die Fadenanzahl auf Haltbarkeit, Griff und Kosten auswirkt. Erfahren Sie, was Sie für Ihre nächste B2B-Bestellung spezifizieren sollten.
@@ -8522,6 +8642,7 @@ Cashmere quality is determined by fiber grade, not national origin. The finest M
 
 ## Blog Articles (FR — title + excerpt only; full text in /fr/blog/<slug>/)
 
+- [Guide des microns de cachemire : 14,5-19,5 μm pour les acheteurs B2B](https://www.erdosdx.com/fr/blog/cashmere-fiber-fineness-micron-chart-b2b/): Comprenez la finesse des fibres de cachemire grâce à notre guide pratique sur les microns. Apprenez le classement, le contrôle qualité et les conseils d'approvisionnement pour le cachemire de 14,5 à 19,5 μm.
 - [Tendances Design des Pulls en Cachemire 2026 : Guide B2B pour les Acheteurs T3-T4](https://www.erdosdx.com/fr/blog/cashmere-sweater-design-trends-2026-b2b/): Découvrez les principales tendances design des pulls en cachemire pour le T3-T4 2026. Des fibres durables aux silhouettes oversize, apprenez ce que les acheteurs B2B mondiaux demandent et comment planifier votre collection.
 - [Allergies au cachemire : mythe, réalité et ce qu'il faut dire à vos clients](https://www.erdosdx.com/fr/blog/cashmere-allergies-myth-vs-reality/): Les allergies au cachemire sont-elles réelles ? Découvrez la différence entre l'allergie à la laine et la sensibilité au cachemire, appuyée par la science des fibres. Apprenez à répondre aux préoccupations de vos clients et à positionner votre marque avec confiance.
 - [Cachemire 2 fils vs 1 fil : Ce que les acheteurs B2B de vêtements doivent spécifier (et pourquoi)](https://www.erdosdx.com/fr/blog/cashmere-2-ply-vs-single-ply-yarn-garment/): Comprenez la différence structurelle entre le cachemire 2 fils et 1 fil, et comment le retordage affecte la durabilité, le toucher et le coût. Apprenez quoi spécifier pour votre prochaine commande B2B.
@@ -8562,6 +8683,7 @@ Cashmere quality is determined by fiber grade, not national origin. The finest M
 
 ## Blog Articles (JA — title + excerpt only; full text in /ja/blog/<slug>/)
 
+- [カシミヤのマイクロン数ガイド：B2Bバイヤー向け14.5-19.5μm](https://www.erdosdx.com/ja/blog/cashmere-fiber-fineness-micron-chart-b2b/): 実用的なマイクロンガイドでカシミヤ繊維の細さを理解しましょう。14.5-19.5μmのカシミヤのグレーディング、品質管理、調達のポイントを学べます。
 - [2026年カシミヤセーターデザイントレンド：Q3-Q4 B2Bバイヤーガイド](https://www.erdosdx.com/ja/blog/cashmere-sweater-design-trends-2026-b2b/): 2026年Q3-Q4のカシミヤセーターデザイントレンドをご紹介します。サステナブルな繊維からオーバーサイズシルエットまで、世界中のB2Bバイヤーが求めているものと、コレクション計画の立て方を解説します。
 - [カシミヤアレルギー：誤解と真実、そして顧客に伝えるべきこと](https://www.erdosdx.com/ja/blog/cashmere-allergies-myth-vs-reality/): カシミヤアレルギーは本当に存在するのでしょうか？繊維科学に基づき、ウールアレルギーとカシミヤ感受性の違いを解説します。顧客の懸念への対応方法と、ブランドを自信を持って位置づけるための知識を学びましょう。
 - [2プライ vs シングルプライカシミヤ：B2Bアパレルバイヤーが指定すべき仕様とその理由](https://www.erdosdx.com/ja/blog/cashmere-2-ply-vs-single-ply-yarn-garment/): 2プライとシングルプライのカシミヤの構造的な違いと、プライが耐久性、風合い、コストに与える影響を理解しましょう。次のB2B発注で指定すべきポイントを学びます。
@@ -8601,6 +8723,7 @@ Cashmere quality is determined by fiber grade, not national origin. The finest M
 
 ## Blog Articles (KR — title + excerpt only; full text in /kr/blog/<slug>/)
 
+- [캐시미어 마이크론 수치 가이드: B2B 바이어를 위한 14.5-19.5μm](https://www.erdosdx.com/kr/blog/cashmere-fiber-fineness-micron-chart-b2b/): 실용적인 마이크론 가이드를 통해 캐시미어 섬유의 가는 정도를 이해하세요. 14.5-19.5μm 캐시미어의 등급, 품질 관리, 소싱 팁을 알아보세요.
 - [2026 캐시미어 스웨터 디자인 트렌드: Q3-Q4 B2B 바이어 가이드](https://www.erdosdx.com/kr/blog/cashmere-sweater-design-trends-2026-b2b/): 2026년 Q3-Q4 캐시미어 스웨터 디자인 트렌드를 확인하세요. 지속 가능한 소재부터 오버사이즈 실루엣까지, 글로벌 B2B 바이어들이 요청하는 사항과 컬렉션을 계획하는 방법을 알아보세요.
 - [캐시미어 알레르기: 신화, 현실, 그리고 고객에게 전할 내용](https://www.erdosdx.com/kr/blog/cashmere-allergies-myth-vs-reality/): 캐시미어 알레르기는 실제로 존재할까요? 섬유 과학에 기반하여 울 알레르기와 캐시미어 민감성의 차이를 알아보세요. 고객의 우려를 해결하고 브랜드를 자신 있게 포지셔닝하는 방법을 배워보세요.
 - [2-Ply vs Single-Ply 캐시미어: B2B 의류 바이어가 지정해야 할 사항 (그리고 그 이유)](https://www.erdosdx.com/kr/blog/cashmere-2-ply-vs-single-ply-yarn-garment/): 2-ply와 single-ply 캐시미어의 구조적 차이와 ply가 내구성, 촉감, 비용에 미치는 영향을 이해하세요. 다음 B2B 주문에서 무엇을 지정해야 하는지 알아보세요.

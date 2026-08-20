@@ -106,7 +106,9 @@ const wordCount = post.body?.split(/\s+/).length || 0;
 const readMin = Math.max(1, Math.round(wordCount / 200));
 
 // Auto-extract FAQ block from the markdown body so the page emits FAQPage JSON-LD.
-const blogFAQ = extractBlogFAQ(post.body, 4);
+// 2026-08-20 SEO: pass locale so extractBlogFAQ can use language-specific
+// question-word heuristics (e.g. "Was/Wie" in DE, "何/怎么" in CN/JA).
+const blogFAQ = extractBlogFAQ(post.body, 4, locale);
 ---
 
 <BaseLayout
