@@ -78,18 +78,14 @@ function pageMeta(path) {
   return { priority, changefreq };
 }
 
-function productLastmod(path) {
-  const m = path.match(/\/products\/([a-z]+)-(\d+)\/?$/);
-  if (m) {
-    const numericId = parseInt(m[2], 10);
-    const baseDate = new Date('2025-04-01T00:00:00Z');
-    baseDate.setUTCDate(baseDate.getUTCDate() + (numericId % 540));
-    return baseDate;
-  }
-  return new Date();
-}
 
 function buildSitemapXml(urls) {
+  // 2026-08-20 fix: 所有静态页 lastmod = build time (now).
+  // 之前 productLastmod 用 numericId % 540 + 2025-04-01 生成伪日期,
+  // 导致 3492 个产品 sitemap lastmod 停在 2025-07~2025-09-20 (一年前),
+  // Googlebot 据此判定这些页 1 年没更新 -> 降 crawl frequency -> 收录变慢.
+  // 静态产品页 prerender=true, 没有"内容修改"概念, 真实变更点就是 build/deploy.
+  // blog / hub / static 同理 (之前就已 fallback 到 now).
   const lines = ['<?xml version="1.0" encoding="UTF-8"?>'];
   lines.push('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"');
   lines.push('        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"');
@@ -99,7 +95,7 @@ function buildSitemapXml(urls) {
   for (const path of urls) {
     const url = SITE_URL + path;
     const { priority, changefreq } = pageMeta(path);
-    const lastmod = productLastmod(path).toISOString();
+    const lastmod = now;
     lines.push('  <url>');
     lines.push(`    <loc>${url}</loc>`);
     lines.push(`    <lastmod>${lastmod}</lastmod>`);
