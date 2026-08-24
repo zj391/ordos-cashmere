@@ -264,14 +264,20 @@ const IMG = {
   ordosLandscape: '/images/editorial-cashmere/editorial-origin.webp',
   mongoliaGoat: '/images/editorial-cashmere/editorial-pasture-goats.webp',
   knittingMill: '/images/editorial-cashmere/editorial-knitting-floor.webp',
-  craftHand: '/images/editorial-cashmere/editorial-dehairing.webp',
-  shawlEmbroidered: '/images/editorial-cashmere/editorial-yarn-cones.webp',
-  scarfDetail: '/images/editorial-cashmere/editorial-knit-closeup.webp',
+  craftHand: '/images/editorial-cashmere/editorial-why-craft.webp',
+  shawlEmbroidered: '/images/editorial-cashmere/editorial-why-yarn.webp',
+  scarfDetail: '/images/editorial-cashmere/editorial-product-yarn.webp',
   scarvesFolded: '/images/editorial-cashmere/editorial-scarves.webp',
   uiHero: '/images/editorial-cashmere/editorial-hero.webp',
-  uiKnit: '/images/editorial-cashmere/editorial-knit-closeup.webp',
-  uiMaterial: '/images/editorial-cashmere/editorial-material.webp',
-  uiCraft: '/images/editorial-cashmere/editorial-craft.webp',
+  uiKnit: '/images/editorial-cashmere/editorial-origin-card.webp',
+  uiMaterial: '/images/editorial-cashmere/editorial-product-raw.webp',
+  uiCraft: '/images/editorial-cashmere/editorial-cta-fiber.webp',
+  heroCraft: '/images/editorial-cashmere/editorial-craft.webp',
+  heroLandscape: '/images/editorial-cashmere/editorial-hero-landscape.webp',
+  productGarment: '/images/editorial-cashmere/editorial-garment-oem.webp',
+  blogOrigin: '/images/editorial-cashmere/editorial-journal-origin.webp',
+  blogYarn: '/images/editorial-cashmere/editorial-journal-yarn.webp',
+  blogCraft: '/images/editorial-cashmere/editorial-blog-knitting.webp',
   uiMark: '/images/editorial-cashmere/fiber-mark.png',
 };
 ---
@@ -286,8 +292,8 @@ const IMG = {
     <div class="absolute inset-0" data-hero-slider>
       {[
         { src: IMG.scarvesFolded, alt: 'Cashmere wrap — premium B2B apparel piece styled in urban setting' },
-        { src: IMG.craftHand,    alt: 'Handwoven cashmere detail — craftsmanship' },
-        { src: IMG.ordosLandscape, alt: 'Inner Mongolian highland landscape — Ordos origin' },
+        { src: IMG.heroCraft,    alt: 'Handwoven cashmere detail — craftsmanship' },
+        { src: IMG.heroLandscape, alt: 'Inner Mongolian highland landscape — Ordos origin' },
         { src: IMG.uiHero, alt: 'Premium cashmere coat on Ordos highland — material-led B2B collection inspiration' },
       ].map((slide, i) => (
         <img
@@ -613,7 +619,7 @@ const IMG = {
 
         <!-- 成衣代工（下大） -->
         <a href={`/${locale}/garment-oem/`} class="group md:col-span-12 relative aspect-[4/3] md:aspect-[21/9] overflow-hidden hover-lift reveal" data-reveal-delay="3">
-          <img src={IMG.scarvesFolded} alt="Cashmere shawl styling — premium B2B apparel from Ordos factory" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" decoding="async" loading="lazy" />
+          <img src={IMG.productGarment} alt="Cashmere shawl styling — premium B2B apparel from Ordos factory" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" decoding="async" loading="lazy" />
           <div class="absolute inset-0 bg-gradient-to-r from-brand-ink/80 via-brand-ink/35 to-transparent"></div>
           <div class="absolute bottom-0 left-0 p-8 md:p-12 text-white max-w-2xl">
             <div class="flex items-center gap-4 mb-3">
@@ -811,7 +817,7 @@ const IMG = {
   <section class="home-final-cta py-28 md:py-36 bg-[#F5F0E7] relative overflow-hidden">
     <!-- 背景图: 历史针织厂外景, 黑白, 传承感 (knittingMill 是 DPLA 公共域图) -->
     <div class="absolute inset-0">
-      <img src={IMG.knittingMill} alt="" aria-hidden="true" class="w-full h-full object-cover opacity-10 grayscale" decoding="async" loading="lazy" />
+      <img src={IMG.heroFiber} alt="" aria-hidden="true" class="w-full h-full object-cover opacity-10 grayscale" decoding="async" loading="lazy" />
       <img src={IMG.uiCraft} alt="" aria-hidden="true" class="home-craft-fill absolute inset-y-0 right-0 h-full w-[46%] object-cover" decoding="async" loading="lazy" />
       <div class="absolute inset-0 bg-[#F5F0E7]/85"></div>
     </div>
@@ -886,7 +892,7 @@ const IMG = {
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           {latestPosts.map((p, i) => {
             // 3 张博客卡各一张主题图 (复用现有 IMG, 不引入新 URL, 避免 +1 网络请求)
-            const blogImg = [IMG.ordosLandscape, IMG.scarfDetail, IMG.mongoliaGoat][i] || IMG.ordosLandscape;
+            const blogImg = [IMG.blogOrigin, IMG.blogYarn, IMG.blogCraft][i] || IMG.blogOrigin;
             const blogAlt = [
               'Ordos plateau landscape',
               'Cashmere yarn and scarf detail',
