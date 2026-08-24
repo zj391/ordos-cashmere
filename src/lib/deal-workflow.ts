@@ -38,7 +38,11 @@ export function hasWorkflowInput(value: DealWorkflowInput): boolean {
 }
 
 export function stripWorkflowSummary(notes: string | null | undefined): string {
-  return String(notes || '').replace(/\n?\[Deal workflow\][\s\S]*$/m, '').trim();
+  return String(notes || '').replace(/\n?\[Deal workflow\][\s\S]*?(?=\n\[[^\n]+\]|$)/m, '').trim();
+}
+
+export function extractWorkflowSummary(notes: string | null | undefined): string {
+  return String(notes || '').match(/\[Deal workflow\][\s\S]*?(?=\n\[[^\n]+\]|$)/m)?.[0]?.trim() || '';
 }
 
 export function workflowSummary(value: DealWorkflowInput): string {

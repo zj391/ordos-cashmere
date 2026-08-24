@@ -1,0 +1,73 @@
+---
+// Customer success workspace — protected by src/middleware.ts.
+export const prerender = false;
+import { readCustomerSuccess } from '../../../lib/customer-success';
+
+const SUPABASE_URL = process.env.PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || '';
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || '';
+const url = new URL(Astro.request.url);
+const tier = url.searchParams.get('tier') || '';
+const cadence = url.searchParams.get('cadence') || '';
+const search = url.searchParams.get('q') || '';
+let leads: any[] = [];
+let error = '';
+
+if (SUPABASE_URL && SUPABASE_KEY) {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/leads?order=updated_at.desc&limit=250&select=id,company_name,contact_name,email,country,industry,lead_grade,lead_score,status,source,converted_to_customer,notes,created_at,updated_at`, {
+      headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY },
+    });
+    if (res.ok) leads = await res.json();
+    else error = `Supabase ${res.status}`;
+  } catch (err: any) { error = err.message; }
+}
+
+const safeSearch = search.trim().toLowerCase();
+leads = leads.filter((lead) => {
+  const profile = readCustomerSuccess(lead.notes);
+  if (tier && (profile.tier || 'nurture') !== tier) return false;
+  if (cadence && (profile.cadence || 'quarterly') !== cadence) return false;
+  if (safeSearch && ![lead.company_name, lead.contact_name, lead.email, lead.country].join(' ').toLowerCase().includes(safeSearch)) return false;
+  return true;
+});
+
+const counts = { strategic: 0, active: 0, nurture: 0, paused: 0, due: 0 };
+for (const lead of leads) {
+  const profile = readCustomerSuccess(lead.notes);
+  const accountTier = profile.tier || 'nurture';
+  if (accountTier in counts) counts[accountTier as keyof typeof counts] += 1;
+  if (profile.next_review && profile.next_review !== 'not_set' && profile.next_review <= new Date().toISOString().slice(0, 10)) counts.due += 1;
+}
+
+const tierLabels: Record<string, string> = { strategic: '重点客户', active: '活跃客户', nurture: '培育客户', paused: '暂停跟进' };
+const cadenceLabels: Record<string, string> = { weekly: '每周', monthly: '每月', quarterly: '每季度' };
+function fmtDate(value: string) { return value ? new Date(value).toISOString().slice(0, 10) : '—'; }
+const customerRows = leads.map((lead) => {
+  const profile = readCustomerSuccess(lead.notes);
+  const accountTier = profile.tier || 'nurture';
+  const review = profile.next_review || 'not_set';
+  return {
+    lead,
+    profile,
+    accountTier,
+    review,
+    overdue: review !== 'not_set' && review <= new Date().toISOString().slice(0, 10),
+  };
+});
+---
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>客户协同 — DONGXIAO 后台</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0} body{font-family:system-ui,sans-serif;background:#fafaf9;color:#1c1917;padding:1.5rem}.wrap{max-width:1400px;margin:auto}.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem}.header h1{font-size:1.5rem}.header p{color:#78716c;font-size:.8rem;margin-top:.25rem}a,button{font:inherit;cursor:pointer;padding:.5rem 1rem;border-radius:.375rem;border:1px solid #d6d3d1;background:white;color:#1c1917;text-decoration:none;font-size:.875rem}a:hover,button:hover{background:#f5f5f4}.primary{background:#1c1917;color:white;border-color:#1c1917}.stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.75rem;margin-bottom:1rem}.stat{background:white;border:1px solid #e7e5e4;border-radius:.5rem;padding:.85rem}.stat small{display:block;color:#78716c;text-transform:uppercase;font-size:.7rem;margin-bottom:.3rem}.stat strong{font-size:1.3rem}.filters{display:flex;gap:.5rem;flex-wrap:wrap;align-items:end;background:white;border:1px solid #e7e5e4;border-radius:.5rem;padding:1rem;margin-bottom:1rem}.filter{display:flex;flex-direction:column;gap:.25rem}.filter label{font-size:.72rem;color:#57534e}.filter input,.filter select{border:1px solid #d6d3d1;border-radius:.25rem;padding:.45rem .6rem;font:inherit}.table{width:100%;border-collapse:collapse;background:white;border:1px solid #e7e5e4;border-radius:.5rem;overflow:hidden}.table th{text-align:left;background:#f5f5f4;padding:.65rem .75rem;font-size:.72rem;color:#57534e;text-transform:uppercase}.table td{padding:.7rem .75rem;border-top:1px solid #f5f5f4;font-size:.875rem}.table tr:hover{background:#fafaf9}.badge{display:inline-block;padding:.15rem .45rem;border-radius:.25rem;font-size:.72rem;font-weight:600}.tier-strategic{background:#d1fae5;color:#065f46}.tier-active{background:#dbeafe;color:#1e40af}.tier-nurture{background:#fef3c7;color:#92400e}.tier-paused{background:#e7e5e4;color:#57534e}.due{color:#991b1b;font-weight:600}.muted{color:#78716c}.err{background:#fee2e2;color:#991b1b;padding:.75rem;border-radius:.5rem;margin-bottom:1rem}@media(max-width:760px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.header{align-items:flex-start;gap:.75rem;flex-direction:column}.table{display:block;overflow-x:auto}}
+  </style>
+</head>
+<body><main class="wrap">
+  <header class="header"><div><h1>客户协同</h1><p>以客户公司为中心维护服务节奏、资料版本与复购复盘。</p></div><div><a href="/admin/inquiries/">询盘运营</a> <a class="primary" href="/api/admin/auth?action=logout">退出登录</a></div></header>
+  {error && <div class="err">{error}</div>}
+  <section class="stats" aria-label="客户协同概览"><div class="stat"><small>重点客户</small><strong>{counts.strategic}</strong></div><div class="stat"><small>活跃客户</small><strong>{counts.active}</strong></div><div class="stat"><small>培育客户</small><strong>{counts.nurture}</strong></div><div class="stat"><small>暂停跟进</small><strong>{counts.paused}</strong></div><div class="stat"><small>到期复盘</small><strong>{counts.due}</strong></div></section>
+  <form class="filters" method="GET"><div class="filter"><label>搜索</label><input name="q" value={search} placeholder="公司 / 联系人 / 邮箱 / 国家" /></div><div class="filter"><label>服务层级</label><select name="tier"><option value="">全部</option>{Object.entries(tierLabels).map(([key,label]) => <option value={key} selected={tier===key}>{label}</option>)}</select></div><div class="filter"><label>服务节奏</label><select name="cadence"><option value="">全部</option>{Object.entries(cadenceLabels).map(([key,label]) => <option value={key} selected={cadence===key}>{label}</option>)}</select></div><button type="submit">筛选</button><a href="/admin/customers/">清除</a></form>
+  {customerRows.length === 0 ? <div class="stat" style="text-align:center;padding:3rem">没有匹配的客户协同记录。</div> : <table class="table"><thead><tr><th>公司 / 联系人</th><th>市场</th><th>服务层级</th><th>节奏</th><th>下次复盘</th><th>资料版本</th><th>最近更新</th></tr></thead><tbody>{customerRows.map(({ lead, profile, accountTier, review, overdue }) => <tr><td><a href={`/admin/customers/${lead.id}/`}>{lead.company_name || '未命名公司'}</a><div class="muted">{lead.contact_name || '—'} · {lead.email}</div></td><td>{lead.country || '—'}</td><td><span class={`badge tier-${accountTier}`}>{tierLabels[accountTier] || accountTier}</span></td><td>{cadenceLabels[profile.cadence || 'quarterly'] || '每季度'}</td><td class={overdue ? 'due' : ''}>{review === 'not_set' ? '未设置' : review}</td><td><div>{profile.catalog_version || '目录未标记'}</div><div class="muted">{profile.color_card_version || '色卡未标记'}</div></td><td>{fmtDate(lead.updated_at || lead.created_at)}</td></tr>)}</tbody></table>}
+</main></body></html>

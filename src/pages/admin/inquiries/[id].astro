@@ -165,6 +165,7 @@ const sampleLabels: Record<string, string> = { not_requested: '未申请', reque
               <dt>Score</dt><dd>{lead.lead_score || 0}</dd>
               <dt>Status</dt><dd>{lead.status}</dd>
               <dt>Source</dt><dd>{lead.source}</dd>
+              <dt>Customer success</dt><dd><a href={`/admin/customers/${lead.id}/`}>打开客户协同档案</a></dd>
               <dt>Email step</dt><dd>{lead.email_sequence_step} / 8</dd>
               <dt>Last email</dt><dd>{fmtDate(lead.email_last_sent_at)}</dd>
               <dt>Notes</dt><dd>{stripWorkflowSummary(lead.notes) || '—'}</dd>
