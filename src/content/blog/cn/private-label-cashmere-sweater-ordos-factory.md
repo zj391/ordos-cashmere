@@ -1,164 +1,163 @@
 ---
-title: "Private Label Cashmere Sweater Manufacturing: How to Build Your Own Brand from Ordos"
-excerpt: "Launching a private label cashmere brand requires the right factory partner, clear tech packs, and a realistic understanding of MOQ, lead time, and per-unit cost. A practical guide."
+title: "羊绒贴牌毛衣制造：如何从鄂尔多斯打造自己的品牌"
+excerpt: "启动羊绒贴牌业务需要合适的工厂伙伴、清晰的工艺单，以及对起订量、交期、单件成本的现实理解。一份实用手册。"
 publishDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
-tags: ["private label","cashmere OEM","brand building","manufacturing"]
+tags: ["private label", "cashmere OEM", "brand building", "manufacturing"]
 geoRegion: "GLOBAL"
-targetKeywords: ["private label cashmere sweater factory Ordos China","private label cashmere knitwear","private label cashmere manufacturer","small MOQ cashmere coat manufacturer"]
+targetKeywords: ["羊绒贴牌毛衣工厂 鄂尔多斯 中国","羊绒贴牌针织衫","羊绒贴牌制造商","小起订量羊绒大衣制造商"]
 relatedProducts: ["garment_oem"]
 aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "cn"
 ---
-# Private Label Cashmere Sweater Manufacturing: How to Build Your Own Brand from Ordos
 
-# Private Label Cashmere Sweater Manufacturing: Build Your Brand from Ordos
+# 羊绒贴牌毛衣制造：从鄂尔多斯打造品牌
 
-Private label cashmere is one of the few B2B product categories where the manufacturing quality directly determines brand perception. A good factory partner makes or breaks a private label business. This guide covers the practical realities of launching your own cashmere brand with an Ordos factory.
+羊绒贴牌是为数不多的"制造品质直接决定品牌认知"的 B2B 产品品类之一。一个好的工厂伙伴能成就或毁掉一个贴牌生意。本指南讲述与鄂尔多斯工厂合作启动自有羊绒品牌的现实细节。
 
-## The 3 private label business models
+## 贴牌的 3 种商业模式
 
-Before choosing a factory, decide on your business model:
+### 模型 1：设计驱动型精品
+- **量级**：每款每年 300–1,000 件
+- **毛利**：零售加价 70–85%
+- **所需资金**：初期 50–150K 美元（库存 + 打样）
+- **目标客户**：中高端时尚买家（200–600 美元毛衣）
+- **关键成功要素**：独特设计、鲜明的品牌声调
 
-### Model 1: Design-led boutique
-- **Volume**: 300-1,000 units per style per year
-- **Margin**: 70-85% retail markup
-- **Capital needed**: $50-150K initial (inventory + sampling)
-- **Target customer**: Mid-luxury fashion buyers ($200-600 sweaters)
-- **Key success factor**: Unique design, distinctive brand voice
+### 模型 2：通货型贴牌
+- **量级**：每款每年 2,000–10,000 件
+- **毛利**：零售加价 40–60%
+- **所需资金**：初期 200–500K 美元
+- **目标客户**：百货商店买家（100–300 美元毛衣）
+- **关键成功要素**：价格点、品质稳定、供货可靠
 
-### Model 2: Commodity private label
-- **Volume**: 2,000-10,000 units per style per year
-- **Margin**: 40-60% retail markup
-- **Capital needed**: $200-500K initial
-- **Target customer**: Department store buyers ($100-300 sweaters)
-- **Key success factor**: Price point, consistent quality, reliable supply
+### 模型 3：定制/量体裁衣
+- **量级**：每年 50–300 件
+- **毛利**：零售加价 80–95%
+- **所需资金**：初期 20–80K 美元
+- **目标客户**：超高奢客户（800–3,000 美元毛衣）
+- **关键成功要素**：工艺、定制、稀缺性
 
-### Model 3: Bespoke / made-to-measure
-- **Volume**: 50-300 units per year
-- **Margin**: 80-95% retail markup
-- **Capital needed**: $20-80K initial
-- **Target customer**: Ultra-luxury clients ($800-3000 sweaters)
-- **Key success factor**: Craftsmanship, customization, exclusivity
+每种模型需要不同的工厂伙伴和不同的起订量/交期组合。
 
-Each model requires a different factory partner and a different MOQ/lead time profile.
+## 贴牌工厂要看 5 个要素
 
-## 5 things to look for in a private label factory
+不是每家羊绒工厂都接贴牌单。接单的一般是 **垂直整合**（原料纤维 → 成品服装在同一屋檐下）、并且有 **自有设计团队**。
 
-Not every cashmere factory accepts private label work. The ones that do are usually **vertically integrated** (raw fiber → finished garment under one roof) and have an **in-house design team**.
+1. **垂直整合**：拥有分梳线、纺纱和针织的车间，比外采纱线的"缝制商"能给出更好的价格和更紧的品质控制。
 
-1. **Vertical integration**: A factory that owns the dehairing line, spinning, and knitting can offer better pricing and tighter quality control than a "garment maker" that buys yarn externally.
+2. **自有设计团队**：确认有 CAD 打版师、打样师傅、平面设计师在岗。能基于你的草图发展出工艺单，而不只是执行详细指令。
 
-2. **In-house design team**: Look for CAD pattern makers, sample hands, and graphic designers on staff. They can develop tech packs from your sketches, not just follow detailed instructions.
+3. **打样周期**：7–10 天出对样，14–21 天出贴着你家标签的量产可投产样品。再慢就赶不上你的零售季。
 
-3. **Sample turnaround**: 7-10 days for counter-sample, 14-21 days for production-ready sample with your labels. Anything slower means they'll miss your retail season.
+4. **标签定制**：织标、印标、吊牌、包装能内部采购或自制。许多工厂外发加工，成本和交期都加。
 
-4. **Label customization**: Woven labels, printed labels, hangtags, and packaging sourced or made in-house. Many factories outsource this, adding cost and lead time.
+5. **QC 流程**：5 段 QC（来料、过程、前整理、后整理、出货前）。要实际的检查表，不要 PPT。
 
-5. **QC protocol**: 5-stage QC (incoming material, in-process, pre-finishing, post-finishing, pre-shipment). Ask for the actual checklist, not just a sales pitch.
+## 贴牌 5 步流程
 
-## The 5-step private label process
+### 第 1 步：设计简报 + 工艺单（第 1–2 周）
 
-Working with an Ordos factory, the typical private label process looks like:
+你提供：
+- **草图或参考图**（参考他人设计 OK，绝不可直接复制）
+- **纱线规格**（支数、混纺、细度）
+- **针数**（每英寸针数）
+- **尺码范围**（S/M/L/XL 或数字）
+- **色彩方案**（Pantone 色号或色样）
+- **标签和包装**（或工厂代采）
 
-### Step 1: Design brief and tech pack (week 1-2)
+工厂交付：
+- **CAD 版型**（数字版型文件）
+- **纱线报价**（按规格 kg 单价）
+- **产品报价**（按规格和数量件单价）
 
-You provide:
-- **Sketches or reference photos** (other brands' designs are fine as reference, never direct copies)
-- **Yarn specification** (count, blend, micron)
-- **Gauge** (knits per inch)
-- **Size range** (S/M/L/XL or numeric)
-- **Color palette** (Pantone codes or sample swatches)
-- **Labels and packaging** (or factory sources these)
+### 第 2 步：对样（第 3–4 周）
 
-Factory delivers:
-- **CAD pattern** (digital pattern file)
-- **Yarn quote** (per kg by spec)
-- **Production quote** (per garment by spec and quantity)
+工厂 7–10 天内针织出对样。采用你指定的纱线和针数，标准尺码（通常 M）。
 
-### Step 2: Counter-sample (week 3-4)
+你审阅反馈。一般反馈轮次：批准前 1–2 轮修改。
 
-Factory knits a counter-sample in 7-10 days. The counter-sample uses the exact yarn and gauge you specified, in a standard size (usually M).
+### 第 3 步：量产可投产样品（第 5–6 周）
 
-You review and provide feedback. Typical feedback rounds: 1-2 revisions before approval.
+对样获批后，工厂做出 **量产可投产样品**，包含：
+- 你的实际标签（织、印、吊牌）
+- 最终尺码
+- 最终颜色
+- 最终整理（洗、压、折、包装）
 
-### Step 3: Production-ready sample (week 5-6)
+这件样品就是最终量产订单的样板。通常你留 1–2 件归档。
 
-Once the counter-sample is approved, factory produces a **production-ready sample** with:
-- Your actual labels (woven, printed, or hangtag)
-- Final sizing
-- Final color
-- Final finishing (wash, press, fold, pack)
+### 第 4 步：批量生产（第 7–12 周）
 
-This sample is what goes into your final production order. You typically keep 1-2 samples for your records.
+按量交期：
+- **300–500 件**：30–35 天
+- **500–1,000 件**：35–40 天
+- **1,000–3,000 件**：40–50 天
+- **3,000 件以上**：50–60 天
 
-### Step 4: Bulk production (week 7-12)
+大多数工厂分阶段生产：30% 首单做 QC 验证，70% 主单。
 
-Lead time depends on quantity:
-- **300-500 units**: 30-35 days
-- **500-1,000 units**: 35-40 days
-- **1,000-3,000 units**: 40-50 days
-- **3,000+ units**: 50-60 days
+### 第 5 步：出货与售后（第 12–14 周）
 
-Most factories split production into phases: 30% first batch for QC verification, 70% main batch.
+对于前  1–2 单，强烈推荐 **DDP 出货**（工厂一路送到你仓库）。贵一些但免除通关意外。
 
-### Step 5: Shipping and after-sales (week 12-14)
+收货后留 **2–3% 缓冲库存**应对质量问题。多数工厂允许 30 天内对制造缺陷提出索赔。
 
-For your first 1-2 orders, **strongly recommend DDP shipping** (factory handles everything to your warehouse). This costs more but eliminates customs surprises.
+## 起订量与单件成本
 
-After delivery, hold a **2-3% buffer stock** for quality issues. Most factories allow 30-day claims for manufacturing defects.
+羊绒针织贴牌起订量：
 
-## MOQ and per-unit cost
-
-Private label MOQ for cashmere knitwear:
-
-| Style complexity | MOQ | Per-unit cost (USD) |
+| 款式复杂度 | 起订量 | 单件成本（美元） |
 |---|---|---|
-| Simple pullover, stock colors | 100 units | $35-55 |
-| Standard cardigan, 3-4 colors | 150-200 units | $45-70 |
-| Custom intarsia or jacquard | 300-500 units | $65-120 |
-| Bespoke with custom design | 50-100 units | $80-180 |
+| 简洁套头款，库存色 | 100 件 | 35–55 |
+| 标准开衫，3–4 色 | 150–200 件 | 45–70 |
+| 定制嵌花或提花 | 300–500 件 | 65–120 |
+| 定制设计的小单 | 50–100 件 | 80–180 |
 
-**The "per-unit cost" decreases sharply with volume.** A 500-unit order of a standard pullover is around $42 per unit; the same order at 2,000 units drops to $32-35 per unit.
+**单件成本随数量明显下降**。标准套头款 500 件单约 42 美元/件；同样产品 2,000 件单降到 32–35 美元/件。
 
-## The 4 hidden costs new brands miss
+## 新品牌常忽略的 4 个隐性成本
 
-First-time private label buyers often underestimate:
+初次做贴牌的买家常常低估：
 
-1. **Label and packaging setup**: Woven labels are $50-200 setup + $0.10-0.30 per unit. Custom hangtags $30-100 setup. Polybags, tissue paper, gift boxes all add up.
+1. **标签和包装启动费**：织标 50–200 美元启动 + 0.10–0.30 美元/件。定制吊牌 30–100 美元启动。塑料袋、薄纸、礼盒都会叠加。
 
-2. **Sampling costs**: Counter-sample ($50-200), production-ready sample ($200-500), fit samples for size set ($200-400). Budget $500-1,000 for sampling before bulk production.
+2. **打样费**：对样（50–200 美元）、量产可投产样（200–500 美元）、尺码套装的版型样（200–400 美元）。量产前的打样预算 500–1,000 美元。
 
-3. **Inventory carrying cost**: Cashmere knitwear is a fall/winter product. If you ship in August, you need 6 months of carrying cost (storage, insurance, capital tied up).
+3. **库存持有成本**：羊绒针织是秋冬品。8 月出货就要承担 6 个月的持有成本（仓储、保险、占用资金）。
 
-4. **Returns and defects**: Industry average is 5-8% return rate for private label cashmere. Budget for this in your margin calculation.
+4. **退货与不良**：贴牌羊绒行业平均退货率 5–8%。在毛利计算中预留。
 
-## 5 questions to ask before signing a private label contract
+## 签贴牌合同前要问的 5 个问题
 
-1. **"What's your minimum order quantity for private label?"** — Anything under 100 units is a red flag. Real private label factories start at 100-200 units per style.
-2. **"Who owns the design after production?"** — You should own all tech packs, patterns, and design assets you paid for.
-3. **"Can I use my own yarn?"** — Most factories allow this, but expect a 5-10% upcharge on production cost.
-4. **"What's your defect rate over the last year?"** — Should be under 3%. Higher means quality control is weak.
-5. **"Can you handle size runs and reorders?"** — Many factories offer "blanket PO" where you commit to total volume (e.g., 1,000 units) but call them in batches.
+1. **"你们的贴牌起订量是多少？"** — 100 件以下都是红旗。正经的贴牌工厂从每款 100–200 件起。
 
-## Why Ordos is the right choice for private label
+2. **"生产后设计归谁？"** — 你花钱买的工艺单、版型、设计资产都应归你。
 
-Ordos is the global hub for cashmere manufacturing:
-- **38,000+ sqm** of vertically integrated facilities
-- **500+ skilled workers** with 10+ years average experience
-- **23+ years** serving global brands
-- **1,200+ tons** annual dehaiiring capacity
-- **ISO 9001, OEKO-TEX, GOTS** certified
+3. **"我可以用自己的纱线吗？"** — 多数工厂允许，但生产端会有 5–10% 加价。
 
-For B2B buyers serious about private label cashmere, Ordos offers:
-- Better pricing than Italian or Scottish cashmere (40-60% lower)
-- Tighter lead times (35-45 days vs 60-90 days in Europe)
-- Direct access to fiber sourcing (no middleman markup)
-- Modern equipment (German STOLL, Italian dehaiiring lines)
+4. **"去年的不良率？"** — 应当低于 3%。再高说明质控差。
 
-The trade-off: longer shipping times to Western markets (25-35 days from China vs 5-10 from Europe), and a learning curve in Chinese factory communication.
+5. **"能做尺码铺货和补单吗？"** — 多数工厂提供"总量承诺 PO"（如承诺 1,000 件总量，但分批下单）。
+
+## 鄂尔多斯是贴牌的好选择
+
+鄂尔多斯是羊绒制造的世界级枢纽：
+- **38,000+ m²** 垂直整合设施
+- **500+ 熟练工**，平均工龄 10+ 年
+- **23+ 年** 服务全球品牌
+- **1,200+ 吨** 年分梳产能
+- **ISO 9001、OEKO-TEX、GOTS** 认证
+
+对认真做羊绒贴牌的 B2B 买家，鄂尔多斯提供：
+- 比意大利/苏格兰羊绒便宜 40–60%
+- 35–45 天 vs 欧洲 60–90 天的更短交期
+- 直接对接纤维（无中间商加价）
+- 现代设备（德国 STOLL、意大利分梳线）
+
+代价：到欧美市场的海运更长（中国 25–35 天 vs 欧洲 5–10 天），以及与中国工厂沟通的学习曲线。
 
 ---
 
-*Ready to start a private label cashmere project? [Contact our OEM team](https://www.erdosdx.com/en/contact) with your design brief. We'll provide a feasibility assessment and quote within 24 hours.*
+*准备好开启一个贴牌羊绒项目了吗？[联系我们的 OEM 团队](https://www.erdosdx.com/cn/contact)，请提供你的设计简报。我们将在 24 小时内提供可行性评估与报价。*

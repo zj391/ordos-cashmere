@@ -1,164 +1,159 @@
 ---
-title: "Private Label Cashmere Sweater Manufacturing: How to Build Your Own Brand from Ordos"
-excerpt: "Launching a private label cashmere brand requires the right factory partner, clear tech packs, and a realistic understanding of MOQ, lead time, and per-unit cost. A practical guide."
+title: "Fabrication de pulls cachemire marque blanche : Construire sa marque depuis Ordos"
+excerpt: "Lancer une marque cachemire en marque blanche exige le bon partenaire industriel, des tech packs clairs, et une compréhension réaliste du MOQ, du délai et du coût unitaire. Un guide pratique."
 publishDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
-tags: ["private label","cashmere OEM","brand building","manufacturing"]
+tags: ["private label", "cashmere OEM", "brand building", "manufacturing"]
 geoRegion: "GLOBAL"
-targetKeywords: ["private label cashmere sweater factory Ordos China","private label cashmere knitwear","private label cashmere manufacturer","small MOQ cashmere coat manufacturer"]
+targetKeywords: ["usine pulls cachemire marque blanche Ordos Chine","tricot cachemire marque blanche","fabricant cachemire marque blanche","fabricant manteaux cachemire petit MOQ"]
 relatedProducts: ["garment_oem"]
 aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "fr"
 ---
-# Private Label Cashmere Sweater Manufacturing: How to Build Your Own Brand from Ordos
 
-# Private Label Cashmere Sweater Manufacturing: Build Your Brand from Ordos
+# Fabrication de pulls cachemire marque blanche : Construire sa marque depuis Ordos
 
-Private label cashmere is one of the few B2B product categories where the manufacturing quality directly determines brand perception. A good factory partner makes or breaks a private label business. This guide covers the practical realities of launching your own cashmere brand with an Ordos factory.
+Le cachemire en marque blanche est l'une des rares catégories de produits B2B où la qualité de fabrication détermine directement la perception de la marque. Un bon partenaire industriel fait ou défait une activité de marque blanche. Ce guide couvre les réalités pratiques du lancement de votre propre marque cachemire avec une usine d'Ordos.
 
-## The 3 private label business models
+## Les 3 modèles économiques en marque blanche
 
-Before choosing a factory, decide on your business model:
+### Modèle 1 : Boutique centrée sur le design
+- **Volume** : 300–1 000 pièces par modèle par an
+- **Marge** : 70–85 % de marge détail
+- **Capital requis** : 50–150 K USD initiaux (stock + échantillonnage)
+- **Client cible** : acheteurs mode milieu de gamme haut (pulls 200–600 USD)
+- **Facteur clé de succès** : design unique, voix de marque distinctive
 
-### Model 1: Design-led boutique
-- **Volume**: 300-1,000 units per style per year
-- **Margin**: 70-85% retail markup
-- **Capital needed**: $50-150K initial (inventory + sampling)
-- **Target customer**: Mid-luxury fashion buyers ($200-600 sweaters)
-- **Key success factor**: Unique design, distinctive brand voice
+### Modèle 2 : Marque blanche grand public
+- **Volume** : 2 000–10 000 pièces par modèle par an
+- **Marge** : 40–60 % de marge détail
+- **Capital requis** : 200–500 K USD initiaux
+- **Client cible** : acheteurs grands magasins (pulls 100–300 USD)
+- **Facteur clé de succès** : positionnement prix, qualité constante, approvisionnement fiable
 
-### Model 2: Commodity private label
-- **Volume**: 2,000-10,000 units per style per year
-- **Margin**: 40-60% retail markup
-- **Capital needed**: $200-500K initial
-- **Target customer**: Department store buyers ($100-300 sweaters)
-- **Key success factor**: Price point, consistent quality, reliable supply
+### Modèle 3 : Sur-mesure / fait à la mesure
+- **Volume** : 50–300 pièces par an
+- **Marge** : 80–95 % de marge détail
+- **Capital requis** : 20–80 K USD initiaux
+- **Client cible** : clients ultra-luxe (pulls 800–3 000 USD)
+- **Facteur clé de succès** : artisanat, personnalisation, exclusivité
 
-### Model 3: Bespoke / made-to-measure
-- **Volume**: 50-300 units per year
-- **Margin**: 80-95% retail markup
-- **Capital needed**: $20-80K initial
-- **Target customer**: Ultra-luxury clients ($800-3000 sweaters)
-- **Key success factor**: Craftsmanship, customization, exclusivity
+Chaque modèle exige un partenaire industriel différent et un profil MOQ/délai différent.
 
-Each model requires a different factory partner and a different MOQ/lead time profile.
+## 5 points à rechercher chez une usine marque blanche
 
-## 5 things to look for in a private label factory
+Toutes les usines cachemire n'acceptent pas le travail en marque blanche. Celles qui le font sont généralement ** **verticalement intégrées (fibre brute → vêtement fini sous le même toit) et ont une **équipe design interne**.
 
-Not every cashmere factory accepts private label work. The ones that do are usually **vertically integrated** (raw fiber → finished garment under one roof) and have an **in-house design team**.
+1. **Intégration verticale** : Une usine qui possède la ligne de dégrillage, la filature et le tricotage peut proposer de meilleurs prix et un contrôle qualité plus serré qu'un « confectionneur » qui achète le fil à l'extérieur.
 
-1. **Vertical integration**: A factory that owns the dehairing line, spinning, and knitting can offer better pricing and tighter quality control than a "garment maker" that buys yarn externally.
+2. **Équipe design interne** : Cherchez des modélistes CAO, des mains d'échantillonnage et des graphistes en interne. Ils peuvent développer des tech packs à partir de vos croquis, pas seulement suivre des instructions détaillées.
 
-2. **In-house design team**: Look for CAD pattern makers, sample hands, and graphic designers on staff. They can develop tech packs from your sketches, not just follow detailed instructions.
+3. **Délai d'échantillonnage** : 7–10 jours pour contre-échantillon, 14–21 jours pour échantillon prêt à produire avec vos étiquettes. Tout plus plus plus lent signifie qu'ils manqueront votre saison de vente.
 
-3. **Sample turnaround**: 7-10 days for counter-sample, 14-21 days for production-ready sample with your labels. Anything slower means they'll miss your retail season.
+4. **Personnalisation des étiquettes** : Étiquettes tissées, imprimées, cintres, oués et packaging sourcés ou fabriqués en interne. Beaucoup d'usines sous-traitent cela, ajoutant coût et délai.
 
-4. **Label customization**: Woven labels, printed labels, hangtags, and packaging sourced or made in-house. Many factories outsource this, adding cost and lead time.
+5. **Protocole QC** : QC en 5 étapes (matière entrante, en cours, pré-finition, post-finition, pré-expédition). Demandez la checklist réelle, pas seulement un argumentaire de vente.
 
-5. **QC protocol**: 5-stage QC (incoming material, in-process, pre-finishing, post-finishing, pre-shipment). Ask for the actual checklist, not just a sales pitch.
+## Le processus marque blanche en 5 étapes
 
-## The 5-step private label process
+### Étape 1 : Brief design et tech pack (semaine 1–2)
 
-Working with an Ordos factory, the typical private label process looks like:
+Vous fournissez :
+- **Croquis ou photos de référence** (les designs d'autres marques conviennent en référence, jamais en copie directe)
+- **Spécification fil** (Nm, mélange, micron)
+- **Jauge** (mailles par pouce)
+- **Gamme de tailles** (S/M/L/XL ou numérique)
+- **Palette couleurs** (codes Pantone ou échantillons)
+- **Étiquettes et packaging** (ou l'usine les fournit)
 
-### Step 1: Design brief and tech pack (week 1-2)
+L'usine livre :
+- **Patron CAO** (fichier patron numérique)
+- **Devis fil** (au kg selon spécification)
+- **Devis production** (au vêtement selon spécification et quantité)
 
-You provide:
-- **Sketches or reference photos** (other brands' designs are fine as reference, never direct copies)
-- **Yarn specification** (count, blend, micron)
-- **Gauge** (knits per inch)
-- **Size range** (S/M/L/XL or numeric)
-- **Color palette** (Pantone codes or sample swatches)
-- **Labels and packaging** (or factory sources these)
+### Étape 2 : Contre-échantillon (semaine 3–4)
 
-Factory delivers:
-- **CAD pattern** (digital pattern file)
-- **Yarn quote** (per kg by spec)
-- **Production quote** (per garment by spec and quantity)
+L'usine tricote un contre-échantillon en 7–10 jours. Le contre-échantillon utilise le fil et la jauge exacts de votre spécification, en taille standard (généralement M).
 
-### Step 2: Counter-sample (week 3-4)
+Vous examinez et faites des retours. Tours de feedback typiques : 1–2 révisions avant approbation.
 
-Factory knits a counter-sample in 7-10 days. The counter-sample uses the exact yarn and gauge you specified, in a standard size (usually M).
+### Étape 3 : Échantillon prêt à produire (semaine 5–6)
 
-You review and provide feedback. Typical feedback rounds: 1-2 revisions before approval.
+Une fois le contre-échantillon approuvé, l'usine produit un **échantillon prêt à produire** avec :
+- Vos étiquettes réelles (tissées, imprimées, ou cintres)
+- Tailles définitives
+- Couleur définitive
+- Finition définitive (lavage, pressage, pliage, emballage)
 
-### Step 3: Production-ready sample (week 5-6)
+Cet échantillon est ce qui entre dans votre commande de production finale. Vous gardez typiquement 1–2 échantillons pour vos archives.
 
-Once the counter-sample is approved, factory produces a **production-ready sample** with:
-- Your actual labels (woven, printed, or hangtag)
-- Final sizing
-- Final color
-- Final finishing (wash, press, fold, pack)
+### Étape 4 : Production en série (semaine 7–12)
 
-This sample is what goes into your final production order. You typically keep 1-2 samples for your records.
+Délai selon quantité :
+- **300–500 pièces** : 30–35 jours
+- **500–1 000 pièces** : 35–40 jours
+- **1 000–3 000 pièces** : 40–50 jours
+- **3 000+ pièces** : 50–60 jours
 
-### Step 4: Bulk production (week 7-12)
+La plupart des usines découpent la production en phases : 30 % premier lot pour vérification QC, 70 % lot principal.
 
-Lead time depends on quantity:
-- **300-500 units**: 30-35 days
-- **500-1,000 units**: 35-40 days
-- **1,000-3,000 units**: 40-50 days
-- **3,000+ units**: 50-60 days
+### Étape 5 : Expédition et service après-vente (semaine 12–14)
 
-Most factories split production into phases: 30% first batch for QC verification, 70% main batch.
+Pour vos 1–2 premières commandes, **nous recommandons fortement l'expédition DDP** (l'usine gère tout jusqu'à votre entrepôt). Cela coûte plus mais élimine les surprises douanières.
 
-### Step 5: Shipping and after-sales (week 12-14)
+Après livraison, gardez un **stock tampon de 2–3 %** pour les problèmes qualité. La plupart des usines acceptent les réclamations sous 30 jours pour défauts de fabrication.
 
-For your first 1-2 orders, **strongly recommend DDP shipping** (factory handles everything to your warehouse). This costs more but eliminates customs surprises.
+## MOQ et coût unitaire
 
-After delivery, hold a **2-3% buffer stock** for quality issues. Most factories allow 30-day claims for manufacturing defects.
+MOQ marque blanche pour tricot cachemire :
 
-## MOQ and per-unit cost
-
-Private label MOQ for cashmere knitwear:
-
-| Style complexity | MOQ | Per-unit cost (USD) |
+| Complexité du modèle | MOQ | Coût unitaire (USD) |
 |---|---|---|
-| Simple pullover, stock colors | 100 units | $35-55 |
-| Standard cardigan, 3-4 colors | 150-200 units | $45-70 |
-| Custom intarsia or jacquard | 300-500 units | $65-120 |
-| Bespoke with custom design | 50-100 units | $80-180 |
+| Pull simple, couleurs stock | 100 pièces | 35–55 $ |
+| Cardigan standard, 3–4 couleurs | 150–200 pièces | 45–70 $ |
+| Intarsia ou jacquard sur mesure | 300–500 pièces | 65–120 $ |
+| Sur-mesure avec design personnalisé | 50–100 pièces | 80–180 $ |
 
-**The "per-unit cost" decreases sharply with volume.** A 500-unit order of a standard pullover is around $42 per unit; the same order at 2,000 units drops to $32-35 per unit.
+**Le coût unitaire baisse fortement avec le volume.** Une commande de 500 pièces d'un pull standard coûte environ 42 $/pièce ; la même commande à 2 000 pièces tombe à 32–35 $/pièce.
 
-## The 4 hidden costs new brands miss
+## Les 4 coûts cachés que les nouvelles marques oublient
 
-First-time private label buyers often underestimate:
+Les acheteurs marque blanche débutants sous-estiment souvent :
 
-1. **Label and packaging setup**: Woven labels are $50-200 setup + $0.10-0.30 per unit. Custom hangtags $30-100 setup. Polybags, tissue paper, gift boxes all add up.
+1. **Setup étiquettes et packaging** : Étiquettes tissées à 50–200 $ setup + 0,10–0,30 $ par pièce. Cintres personnalisés 30–100 $ setup. Sachets poly, papier de soie, boîtes cadeau s'accumulent.
 
-2. **Sampling costs**: Counter-sample ($50-200), production-ready sample ($200-500), fit samples for size set ($200-400). Budget $500-1,000 for sampling before bulk production.
+2. **Coûts d'échantillonnage** : Contre-échantillon (50–200 $), échantillon prêt à produire (200–500 $), échantillons de coupe pour la gamme de tailles (200–400 $). Budgétisez 500–1 000 $ pour l'échantillonnage avant la production série.
 
-3. **Inventory carrying cost**: Cashmere knitwear is a fall/winter product. If you ship in August, you need 6 months of carrying cost (storage, insurance, capital tied up).
+3. **Coût de port de stock** : Le tricot cachemire est un produit automne/hiver. Si vous expédiez en août, vous avez besoin de 6 mois de port de stock (stockage, assurance, capital immobilisé).
 
-4. **Returns and defects**: Industry average is 5-8% return rate for private label cashmere. Budget for this in your margin calculation.
+4. **Retours et défauts** : La moyenne du secteur est de 5–8 % de taux de retour pour le cachemire marque blanche. Prévoyez cela dans votre calcul de marge.
 
-## 5 questions to ask before signing a private label contract
+## 5 questions avant de signer un contrat marque blanche
 
-1. **"What's your minimum order quantity for private label?"** — Anything under 100 units is a red flag. Real private label factories start at 100-200 units per style.
-2. **"Who owns the design after production?"** — You should own all tech packs, patterns, and design assets you paid for.
-3. **"Can I use my own yarn?"** — Most factories allow this, but expect a 5-10% upcharge on production cost.
-4. **"What's your defect rate over the last year?"** — Should be under 3%. Higher means quality control is weak.
-5. **"Can you handle size runs and reorders?"** — Many factories offer "blanket PO" where you commit to total volume (e.g., 1,000 units) but call them in batches.
+1. **« Quel est votre MOQ pour la marque blanche ? »** — Tout en dessous de 100 pièces est un red flag. Les vraies usines marque blanche commencent à 100–200 pièces par modèle.
+2. **« À qui appartient le design après production ? »** — Vous devez posséder tous les tech packs, patrons et actifs design que vous avez payés.
+3. **« Puis-je utiliser mon propre fil ? »** — La plupart des usines le permettent, mais prévoyez 5–10 % de surcoût sur le coût de production.
+4. **« Quel est votre taux de défaut sur l'année passée ? »** — Doit être sous 3 %. Plus élevé signifie contrôle qualité faible.
+5. **« Pouvez-vous gérer les séries de tailles et les réassorts ? »** — Beaucoup d'usines proposent un « blanket PO » où vous vous engagez sur un volume total (ex. 1 000 pièces) mais les appelez par lots.
 
-## Why Ordos is the right choice for private label
+## Pourquoi Ordos est le bon choix pour la marque blanche
 
-Ordos is the global hub for cashmere manufacturing:
-- **38,000+ sqm** of vertically integrated facilities
-- **500+ skilled workers** with 10+ years average experience
-- **23+ years** serving global brands
-- **1,200+ tons** annual dehaiiring capacity
-- **ISO 9001, OEKO-TEX, GOTS** certified
+Ordos est le hub mondial de la fabrication cachemire :
+- **38 000+ m²** d'installations verticalement intégrées
+- **500+ ouvriers qualifiés** avec 10+ ans d'expérience moyenne
+- **23+ ans** au service de marques mondiales
+- **1 200+ tonnes** de capacité de dégrillage annuelle
+- **ISO 9001, OEKO-TEX, GOTS** certifiés
 
-For B2B buyers serious about private label cashmere, Ordos offers:
-- Better pricing than Italian or Scottish cashmere (40-60% lower)
-- Tighter lead times (35-45 days vs 60-90 days in Europe)
-- Direct access to fiber sourcing (no middleman markup)
-- Modern equipment (German STOLL, Italian dehaiiring lines)
+Pour les acheteurs B2B sérieux sur le cachemire marque blanche, Ordos offre :
+- Meilleurs prix que le cachemire italien ou écossais (40–60 % moins cher)
+- Délais plus serrés (35–45 jours vs 60–90 jours en Europe)
+- Accès direct à l'approvisionnement fibre (pas de marge intermédiaire)
+- Équipement moderne (STOLL allemand, lignes de dégrillage italiennes)
 
-The trade-off: longer shipping times to Western markets (25-35 days from China vs 5-10 from Europe), and a learning curve in Chinese factory communication.
+Le compromis : délais d'expédition plus longs vers les marchés occidentaux (25–35 jours depuis la Chine vs 5–10 depuis l'Europe), et une courbe d'apprentissage dans la communication avec les usines chinoises.
 
 ---
 
-*Ready to start a private label cashmere project? [Contact our OEM team](https://www.erdosdx.com/en/contact) with your design brief. We'll provide a feasibility assessment and quote within 24 hours.*
+*Prêt à démarrer un projet cachemire marque blanche ? [Contactez notre équipe OEM](https://www.erdosdx.com/fr/contact) avec votre brief design. Nous fournissons étude de faisabilité et devis sous 24 heures.*

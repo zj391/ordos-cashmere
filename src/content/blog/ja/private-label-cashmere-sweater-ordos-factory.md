@@ -1,164 +1,163 @@
 ---
-title: "Private Label Cashmere Sweater Manufacturing: How to Build Your Own Brand from Ordos"
-excerpt: "Launching a private label cashmere brand requires the right factory partner, clear tech packs, and a realistic understanding of MOQ, lead time, and per-unit cost. A practical guide."
+title: "プライベートブランド カシミアセーター製造：オルドスでブランドを構築する方法"
+excerpt: "プライベートブランド カシミアを立ち上げるには、適切な工場パートナー、明快なテックパック、そして MOQ・リードタイム・単価の現実理解が要ります。実践ガイド。"
 publishDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
-tags: ["private label","cashmere OEM","brand building","manufacturing"]
+tags: ["private label", "cashmere OEM", "brand building", "manufacturing"]
 geoRegion: "GLOBAL"
-targetKeywords: ["private label cashmere sweater factory Ordos China","private label cashmere knitwear","private label cashmere manufacturer","small MOQ cashmere coat manufacturer"]
+targetKeywords: ["プライベートブランド カシミアセーター 工場 オルドス 中国","プライベートブランド カシミア ニット","プライベートブランド カシミア メーカー","小ロット カシミア コート メーカー"]
 relatedProducts: ["garment_oem"]
 aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "ja"
 ---
-# Private Label Cashmere Sweater Manufacturing: How to Build Your Own Brand from Ordos
 
-# Private Label Cashmere Sweater Manufacturing: Build Your Brand from Ordos
+# プライベートブランド カシミアセーター製造：オルドスでブランドを構築する
 
-Private label cashmere is one of the few B2B product categories where the manufacturing quality directly determines brand perception. A good factory partner makes or breaks a private label business. This guide covers the practical realities of launching your own cashmere brand with an Ordos factory.
+プライベートブランド カシミアは、製造品質がそのままブランド評価を決める数少ない B2B 製品カテゴリのひとつです。良い工場パートナーがプライベートブランド事業の成否を分けます。本ガイドでは、オルドス工場と自社カシミア ブランドを立ち上げる際の実践的な現実を扱います。
 
-## The 3 private label business models
+## プライベートブランドの 3 つのビジネスモデル
 
-Before choosing a factory, decide on your business model:
+### モデル 1：デザイン主導のブティック
+- **数量量**：スタイルあたり年間 300〜1,000 個
+- **マージン**：小売マージン 70〜85%
+- **必要資本**：初期 50〜150 K USD（在庫 + サンプル）
+- **ターゲット顧客**：ミドル〜ラグジュアリー ファッション購入層（200〜600 USD セーター）
+- **成功要因**：独自デザイン、固有のブランド ボイス
 
-### Model 1: Design-led boutique
-- **Volume**: 300-1,000 units per style per year
-- **Margin**: 70-85% retail markup
-- **Capital needed**: $50-150K initial (inventory + sampling)
-- **Target customer**: Mid-luxury fashion buyers ($200-600 sweaters)
-- **Key success factor**: Unique design, distinctive brand voice
+### モデル 2：コモディティ系プライベートブランド
+- **数量量**：スタイルあたり年間 2,000〜10,000 個
+- **マージン**：小売マージン 40〜60%
+- **必要資本**：初期 200〜500 K USD
+- **ターゲット顧客**：百貨店バイヤー（100〜300 USD セーター）
+- **成功要因**：価格帯、一貫した品質、信頼できる供給
 
-### Model 2: Commodity private label
-- **Volume**: 2,000-10,000 units per style per year
-- **Margin**: 40-60% retail markup
-- **Capital needed**: $200-500K initial
-- **Target customer**: Department store buyers ($100-300 sweaters)
-- **Key success factor**: Price point, consistent quality, reliable supply
+### モデル 3：オーダーメイド／受注生産
+- **数量量**：年間 50〜300 個
+- **マージン**：小売マージン 80〜95%
+- **必要資本**：初期 20〜80 K USD
+- **ターゲット顧客**：ウルトララグUX 顧客（800〜3,000 USD セーター）
+- **成功要因**：クラフトマンシップ、カスタマイズ性、エクスクルーシビティ
 
-### Model 3: Bespoke / made-to-measure
-- **Volume**: 50-300 units per year
-- **Margin**: 80-95% retail markup
-- **Capital needed**: $20-80K initial
-- **Target customer**: Ultra-luxury clients ($800-3000 sweaters)
-- **Key success factor**: Craftsmanship, customization, exclusivity
+各モデルで必要な工場パートナーと MOQ／リードタイム プロファイルが異なります。
 
-Each model requires a different factory partner and a different MOQ/lead time profile.
+## プライベートブランド工場で重視すべき 5 項目
 
-## 5 things to look for in a private label factory
+すべてのカシミア工場がプライベートブランド受注を受け入れるわけではありません。受ける工場は通常**垂直統合**（原繊維 → 完成衣服をワンルーフで）型で、**社内デザイン チーム**を擁しています。
 
-Not every cashmere factory accepts private label work. The ones that do are usually **vertically integrated** (raw fiber → finished garment under one roof) and have an **in-house design team**.
+1. **垂直統合**：分梳ライン・紡績・編立を自社保有するなら、外部から糸を買う「縫製業者」より価格も品質管理も有利。
 
-1. **Vertical integration**: A factory that owns the dehairing line, spinning, and knitting can offer better pricing and tighter quality control than a "garment maker" that buys yarn externally.
+2. **社内デザイン チーム**：CAD パターンメーカー、サンプル縫製、グラフィック デザイナーの常駐を確認。詳細指示だけでなく、スケッチからテックパックを起こせる。
 
-2. **In-house design team**: Look for CAD pattern makers, sample hands, and graphic designers on staff. They can develop tech packs from your sketches, not just follow detailed instructions.
+3. **サンプル ターンアラウンド**：カウンター サンプル 7〜10 日、貴社ラベル付きの量産対応サンプル 14〜21 日。これより遅い場合は小売シーズンに間に合いません。
 
-3. **Sample turnaround**: 7-10 days for counter-sample, 14-21 days for production-ready sample with your labels. Anything slower means they'll miss your retail season.
+4. **ラベル カスタマイズ**：織ラベル、印刷ラベル、下げタグ、包装を社内調達・製造。多くの工場は外注するため、コストとリードタイムが増えます。
 
-4. **Label customization**: Woven labels, printed labels, hangtags, and packaging sourced or made in-house. Many factories outsource this, adding cost and lead time.
+5. **QC プロトコル**：5 段階 QC（入荷素材、工程内、仕上げ前、仕上げ後、出荷前）。販売トークではなく、実際のチェックリストを請求。
 
-5. **QC protocol**: 5-stage QC (incoming material, in-process, pre-finishing, post-finishing, pre-shipment). Ask for the actual checklist, not just a sales pitch.
+## プライベートブランドの 5 ステップ プロセス
 
-## The 5-step private label process
+### ステップ 1：デザイン ブリーフとテックパック（第 1〜2 週）
 
-Working with an Ordos factory, the typical private label process looks like:
+貴社から提供：
+- **スケッチまたは参考写真**（他社デザインは参考可、コピーは不可）
+- **糸仕様**（番手、混紡、ミクロン）
+- **ゲージ**（1 インチあたりの目数）
+- **サイズ レンジ**（S/M/L/XL または数値）
+- **カラー パレット**（Pantone コードまたはサンプル見本）
+- **ラベルと包装**（工場が調達する場合も）
 
-### Step 1: Design brief and tech pack (week 1-2)
+工場が納品：
+- **CAD パターン**（デジタル パターン ファイル）
+- **糸見積もり**（仕様あたり kg 単価）
+- **製品見積もり**（仕様・数量あたりピース単価）
 
-You provide:
-- **Sketches or reference photos** (other brands' designs are fine as reference, never direct copies)
-- **Yarn specification** (count, blend, micron)
-- **Gauge** (knits per inch)
-- **Size range** (S/M/L/XL or numeric)
-- **Color palette** (Pantone codes or sample swatches)
-- **Labels and packaging** (or factory sources these)
+### ステップ 2：カウンター サンプル（第 3〜4 週）
 
-Factory delivers:
-- **CAD pattern** (digital pattern file)
-- **Yarn quote** (per kg by spec)
-- **Production quote** (per garment by spec and quantity)
+工場が 7〜10 日でカウンター サンプルを編立。指定した糸とゲージを正確に使い、標準サイズ（多くは M）で。
 
-### Step 2: Counter-sample (week 3-4)
+貴社が確認しフィードバック。典型的なフィードバック ラウンド：承認前に 1〜2 回の修正。
 
-Factory knits a counter-sample in 7-10 days. The counter-sample uses the exact yarn and gauge you specified, in a standard size (usually M).
+### ステップ 3：量産対応サンプル（第 5〜6 週）
 
-You review and provide feedback. Typical feedback rounds: 1-2 revisions before approval.
+カウンター サンプル承認後、工場が **量産対応サンプル** を作ります：
+- 実際のラベル（織、印刷、下げタグ）
+- 最終サイズ
+- 最終カラー
+- 最終仕上げ（洗濯、プレス、畳み、包装）
 
-### Step 3: Production-ready sample (week 5-6)
+このサンプルが量産発注に入ります。通常、貴社は記録用に 1〜2 着保管。
 
-Once the counter-sample is approved, factory produces a **production-ready sample** with:
-- Your actual labels (woven, printed, or hangtag)
-- Final sizing
-- Final color
-- Final finishing (wash, press, fold, pack)
+### ステップ 4：量産（第 7〜12 週）
 
-This sample is what goes into your final production order. You typically keep 1-2 samples for your records.
+リードタイムは数量次第：
+- **300〜500 個**：30〜35 日
+- **500〜1,000 個**：35〜40 日
+- **1,000〜3,000 個**：40〜50 日
+- **3,000 個超**：50〜60 日
 
-### Step 4: Bulk production (week 7-12)
+多くの工場は QC 検証のため 30% 第一便、70% 本便の段階生産を行います。
 
-Lead time depends on quantity:
-- **300-500 units**: 30-35 days
-- **500-1,000 units**: 35-40 days
-- **1,000-3,000 units**: 40-50 days
-- **3,000+ units**: 50-60 days
+### ステップ 5：出荷とアフターサービス（第 12〜14 週）
 
-Most factories split production into phases: 30% first batch for QC verification, 70% main batch.
+最初の 1〜2 発注には、**DDP 出荷**を推奨（工場が貴社倉庫まで全て手配）。コストはかさみますが、通関の想定外を防げます。
 
-### Step 5: Shipping and after-sales (week 12-14)
+受領後、**2〜3% のバッファー在庫**を品質問題用に保持。多くの工場は製造不具合について 30 日以内の請求を受け付けます。
 
-For your first 1-2 orders, **strongly recommend DDP shipping** (factory handles everything to your warehouse). This costs more but eliminates customs surprises.
+## MOQ と単価
 
-After delivery, hold a **2-3% buffer stock** for quality issues. Most factories allow 30-day claims for manufacturing defects.
+カシミア ニットのプライベートブランド MOQ：
 
-## MOQ and per-unit cost
-
-Private label MOQ for cashmere knitwear:
-
-| Style complexity | MOQ | Per-unit cost (USD) |
+| スタイル複雑度 | MOQ | 単価 (USD) |
 |---|---|---|
-| Simple pullover, stock colors | 100 units | $35-55 |
-| Standard cardigan, 3-4 colors | 150-200 units | $45-70 |
-| Custom intarsia or jacquard | 300-500 units | $65-120 |
-| Bespoke with custom design | 50-100 units | $80-180 |
+| シンプル パロワー、在庫カラー | 100 個 | 35〜55 |
+| 標準カーディガン、3〜4 色 | 150〜200 個 | 45〜70 |
+| カスタム インターシャまたはジャカード | 300〜500 個 | 65〜120 |
+| カスタム デザインのオーダーメイド | 50〜100 個 | 80〜180 |
 
-**The "per-unit cost" decreases sharply with volume.** A 500-unit order of a standard pullover is around $42 per unit; the same order at 2,000 units drops to $32-35 per unit.
+**単価は数量で大きく下がる**。標準パロワー 500 個注文は 1 個 42 USD 程度；同じ注文が 2,000 個だと 32〜35 USD まで下がります。
 
-## The 4 hidden costs new brands miss
+## ブランド初心が見落とす 4 つの隠れたコスト
 
-First-time private label buyers often underestimate:
+プライベート品牌初購入者が過小評価しがちなもの：
 
-1. **Label and packaging setup**: Woven labels are $50-200 setup + $0.10-0.30 per unit. Custom hangtags $30-100 setup. Polybags, tissue paper, gift boxes all add up.
+1. **ラベルと包装のセットアップ**：織ラベルは 50〜200 USD セットアップ + 0.10〜0.30 USD/個。カスタム下げタグ 30〜100 USD セットアップ。ポリ袋、薄葉紙、ギフトボックスが積み重なる。
 
-2. **Sampling costs**: Counter-sample ($50-200), production-ready sample ($200-500), fit samples for size set ($200-400). Budget $500-1,000 for sampling before bulk production.
+2. **サンプル成本**：カウンター サンプル (50〜200 USD)、量産対応サンプル (200〜500 USD)、サイズ展開用フィット サンプル (200〜400 USD)。量産前に 500〜1,000 USD のサンプル予算を確保。
 
-3. **Inventory carrying cost**: Cashmere knitwear is a fall/winter product. If you ship in August, you need 6 months of carrying cost (storage, insurance, capital tied up).
+3. **在庫保有コスト**：カシミア ニットは秋冬商品。8 月出荷なら 6 ヶ月の在庫保有コスト（保管、保険、資本拘束）がかかる。
 
-4. **Returns and defects**: Industry average is 5-8% return rate for private label cashmere. Budget for this in your margin calculation.
+4. **返品と不具合**：プライベート ブランド カシミアの業界平均返品率は 5〜8%。マージン計算に予算化。
 
-## 5 questions to ask before signing a private label contract
+## プライベートブランド契約前の 5 つの質問
 
-1. **"What's your minimum order quantity for private label?"** — Anything under 100 units is a red flag. Real private label factories start at 100-200 units per style.
-2. **"Who owns the design after production?"** — You should own all tech packs, patterns, and design assets you paid for.
-3. **"Can I use my own yarn?"** — Most factories allow this, but expect a 5-10% upcharge on production cost.
-4. **"What's your defect rate over the last year?"** — Should be under 3%. Higher means quality control is weak.
-5. **"Can you handle size runs and reorders?"** — Many factories offer "blanket PO" where you commit to total volume (e.g., 1,000 units) but call them in batches.
+1. **「プライベート ブランドの MOQ は？」** — 100 個未満はすべて赤信号。本物のプライベートブランド工場は スタイルあたり 100〜200 個から。
 
-## Why Ordos is the right choice for private label
+2. **「生産後のデザイン所有権は？」** — 貴社が支払ったテックパック、パターン、デザイン アセットは全て貴社に帰属すべき。
 
-Ordos is the global hub for cashmere manufacturing:
-- **38,000+ sqm** of vertically integrated facilities
-- **500+ skilled workers** with 10+ years average experience
-- **23+ years** serving global brands
-- **1,200+ tons** annual dehaiiring capacity
-- **ISO 9001, OEKO-TEX, GOTS** certified
+3. **「自社糸を使えますか？」** — 多くの工場は認めますが、5〜10% の生産コスト アップチャージを見込む。
 
-For B2B buyers serious about private label cashmere, Ordos offers:
-- Better pricing than Italian or Scottish cashmere (40-60% lower)
-- Tighter lead times (35-45 days vs 60-90 days in Europe)
-- Direct access to fiber sourcing (no middleman markup)
-- Modern equipment (German STOLL, Italian dehaiiring lines)
+4. **「昨年の不良率は？」** — 3% 未満であること。高いと品質管理が弱い証拠。
 
-The trade-off: longer shipping times to Western markets (25-35 days from China vs 5-10 from Europe), and a learning curve in Chinese factory communication.
+5. **「サイズ展開と再発注に対応対応？」** — 多くの工場は「ブランケット PO」（総量 1,000 個を確約、ただしチャンクで発注）を提供。
+
+## プライベートブランドにオルドスが最適な理由
+
+オルドスはカシミア製造の世界的ハブ：
+- **38,000+ m²** の垂直統合施設
+- **500+ 熟練工**、平均経験 10+ 年
+- **23+ 年** のグローバル ブランド対応
+- **1,200+ トン** の年間分梳能力
+- **ISO 9001、OEKO-TEX、GOTS** 認証
+
+本気でプライベート ブランド カシミアを狙う B2B バイヤーへ、オルドスは：
+- イタリア/スコットランド カシミアより 40〜60% 安い価格
+- 35〜45 日 vs 欧州 60〜90 日の短いリードタイム
+- 中間マージンなしの繊維への直接アクセス
+- ドイツ STOLL、イタリア製分梳ラインなどの最新設備
+
+トレードオフ：西欧市場への長い輸送（欧州から 5〜10 日 vs 中国から 25〜35 日）、中国工場コミュニケーションの学習コスト。
 
 ---
 
-*Ready to start a private label cashmere project? [Contact our OEM team](https://www.erdosdx.com/en/contact) with your design brief. We'll provide a feasibility assessment and quote within 24 hours.*
+*プライベート ブランド カシミア プロジェクトを始める準備はできましたか？[OEM チームまでご連絡ください](https://www.erdosdx.com/ja/contact)、デザイン ブリーフをお送りください。24 時間以内に実現可能性評価と見積もりをご提示します。*
