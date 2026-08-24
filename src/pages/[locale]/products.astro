@@ -326,7 +326,19 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
 
     <!-- 591 个产品卡片（全部静态渲染，初始只显示前 24 个，其余懒加载） -->
     <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      {allProducts.slice(0, 24).map((p) => (
+      {/* 8-20 SEO: SSR emit at least 6 cards per category so Googlebot can discover
+          every category from /products/ without depending on JS pagination.
+          Before: allProducts.slice(0,24) emitted only hats (first category) → 0
+          sweaters/scarves/yarn/accessories links in raw HTML. After: 6 cards ×
+          5 categories = 30 mixed cards, each category gets indexed. */}
+      {(() => {
+        const PER_CAT = 6;
+        const featured: typeof allProducts = [];
+        for (const cat of categories) {
+          const bucket = allProducts.filter((p) => p.categoryId === cat.id).slice(0, PER_CAT);
+          featured.push(...bucket);
+        }
+        return featured.map((p) => (
         <a
           href={`/${locale}/products/${p.id}/`}
           class="product-card bg-white border border-border overflow-hidden hover:border-brand-camel hover:shadow-[0_16px_32px_-20px_rgba(28,24,19,0.18)] transition-colors transition-shadow duration-300 group block"
@@ -385,7 +397,8 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
             </span>
           </div>
         </a>
-      ))}
+        ));
+      })()}
     </div>
     <!-- 分页控件（vanilla JS 控制） -->
     <div id="pagination-wrap" class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-border pt-6">
