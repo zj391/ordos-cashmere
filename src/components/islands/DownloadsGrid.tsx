@@ -20,17 +20,17 @@ interface Props {
 }
 
 const labels: Record<string, Record<string, string>> = {
-  en: { name: 'Name *', email: 'Email *', company: 'Company *', country: 'Country *', download: 'Request Documents', cancel: 'Cancel', submitting: 'Sending...', done: 'Request Received', desc: 'B2B buyers only. We will email the documents to you within 24 hours.' },
-  cn: { name: '姓名 *', email: '邮箱 *', company: '公司 *', country: '国家 *', download: '申请资料', cancel: '取消', submitting: '发送中...', done: '申请已收到', desc: 'B2B采购专用。资料将在24小时内发送至您的邮箱。' },
-  de: { name: 'Name *', email: 'E-Mail *', company: 'Firma *', country: 'Land *', download: 'Herunterladen', cancel: 'Abbrechen', submitting: 'Wird gesendet...', done: 'Download gestartet', desc: 'Nur B2B-Käufer.' },
-  fr: { name: 'Nom *', email: 'Email *', company: 'Société *', country: 'Pays *', download: 'Télécharger', cancel: 'Annuler', submitting: 'Envoi...', done: 'Téléchargement lancé', desc: 'Acheteurs B2B uniquement.' },
-  ja: { name: 'お名前 *', email: 'メール *', company: '会社 *', country: '国 *', download: 'ダウンロード', cancel: 'キャンセル', submitting: '送信中...', done: 'ダウンロード開始', desc: 'B2Bバイヤー専用。' },
-  kr: { name: '이름 *', email: '이메일 *', company: '회사 *', country: '국가 *', download: '다운로드', cancel: '취소', submitting: '보내는 중...', done: '다운로드 시작됨', desc: 'B2B 구매자 전용.' },
+  en: { name: 'Name *', email: 'Email *', company: 'Company *', country: 'Country *', download: 'Request Documents', cancel: 'Close', submitting: 'Sending...', done: 'Request received', desc: 'For qualified B2B buyers. Your sales contact will email the relevant current documents within 24 hours.', error: 'We could not record this request. Please try again or contact our sales team directly.' },
+  cn: { name: '姓名 *', email: '邮箱 *', company: '公司 *', country: '国家 *', download: '申请资料', cancel: '关闭', submitting: '发送中...', done: '申请已收到', desc: '仅面向合格 B2B 采购商。销售团队将在 24 小时内通过邮件发送与您需求相关的最新资料。', error: '资料申请未能提交，请重试或直接联系销售团队。' },
+  de: { name: 'Name *', email: 'E-Mail *', company: 'Firma *', country: 'Land *', download: 'Unterlagen anfordern', cancel: 'Schließen', submitting: 'Wird gesendet...', done: 'Anfrage erhalten', desc: 'Für qualifizierte B2B-Käufer. Ihr Ansprechpartner sendet die aktuellen relevanten Unterlagen innerhalb von 24 Stunden per E-Mail.', error: 'Die Anfrage konnte nicht erfasst werden. Bitte erneut versuchen oder den Vertrieb direkt kontaktieren.' },
+  fr: { name: 'Nom *', email: 'Email *', company: 'Société *', country: 'Pays *', download: 'Demander les documents', cancel: 'Fermer', submitting: 'Envoi...', done: 'Demande reçue', desc: 'Pour les acheteurs B2B qualifiés. Votre interlocuteur commercial enverra par email les documents à jour sous 24h.', error: 'La demande n’a pas pu être enregistrée. Veuillez réessayer ou contacter directement notre équipe.' },
+  ja: { name: 'お名前 *', email: 'メール *', company: '会社 *', country: '国 *', download: '資料を請求', cancel: '閉じる', submitting: '送信中...', done: '資料請求を受け付けました', desc: 'B2B バイヤー向け。担当営業より関連する最新資料を24時間以内にメールでお送りします。', error: '資料請求を記録できませんでした。もう一度お試しいただくか、営業担当へ直接ご連絡ください。' },
+  kr: { name: '이름 *', email: '이메일 *', company: '회사 *', country: '국가 *', download: '자료 요청', cancel: '닫기', submitting: '보내는 중...', done: '자료 요청이 접수되었습니다', desc: '적격 B2B 바이어 대상입니다. 담당 영업팀이 관련 최신 자료를 24시간 이내에 이메일로 보내드립니다.', error: '요청을 기록하지 못했습니다. 다시 시도하거나 영업팀에 직접 문의해 주세요.' },
 };
 
 export default function DownloadsGrid({ locale, downloads }: Props) {
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
-  const [step, setStep] = useState<'preview' | 'submitting' | 'done'>('preview');
+  const [step, setStep] = useState<'preview' | 'submitting' | 'done' | 'error'>('preview');
   const [submitting, setSubmitting] = useState(false);
   const L = (k: string) => labels[locale]?.[k] || labels.en[k] || k;
   const active = activeIdx != null ? downloads[activeIdx] : null;
@@ -43,17 +43,17 @@ export default function DownloadsGrid({ locale, downloads }: Props) {
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData.entries());
     try {
-      await fetch('/api/download-gate', {
+      const response = await fetch('/api/download-gate/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...data, type: active.type, title: active.title, locale }),
       });
+      if (!response.ok) throw new Error('document_request_failed');
+      setStep('done');
     } catch {
-      // Network failure is non-fatal; the form should still show the success
-      // state so the user can download the file. (Lead tracking is best-effort.)
+      setStep('error');
     } finally {
       setSubmitting(false);
-      setStep('done');
     }
   }
 
@@ -92,9 +92,11 @@ export default function DownloadsGrid({ locale, downloads }: Props) {
                 <input name="company" required placeholder={L('company')} className="w-full px-3 py-2 border border-border rounded-none text-sm" />
                 <select name="country" required defaultValue="" className="w-full px-3 py-2 border border-border rounded-none text-sm bg-white">
                   <option value="" disabled>{L('country')}</option>
-                  {COUNTRIES.map((c) => (
-                    <option key={c.code} value={LOCALE_TO_FIELD[c.code] || c.code}>{c.name}</option>
-                  ))}
+                  {COUNTRIES.map((c) => {
+                    const field = LOCALE_TO_FIELD[locale] || 'name_en';
+                    const countryLabel = c[field] || c.name_en;
+                    return <option key={c.code} value={c.code}>{countryLabel}</option>;
+                  })}
                 </select>
                 <div className="flex items-center gap-3 pt-2">
                   <button type="submit" disabled={submitting} className="px-5 py-2.5 bg-primary text-primary-foreground rounded-none font-medium hover:bg-primary/90 text-sm disabled:opacity-50">
@@ -109,6 +111,15 @@ export default function DownloadsGrid({ locale, downloads }: Props) {
             {step === 'submitting' && (
               <p className="text-sm text-muted-foreground">{L('submitting')}</p>
             )}
+            {step === 'error' && (
+              <div className="space-y-4" role="alert">
+                <p className="text-sm text-red-700 leading-relaxed">{L('error')}</p>
+                <div className="flex gap-3">
+                  <button type="button" onClick={() => setStep('preview')} className="px-4 py-2 border border-border rounded-none text-sm hover:bg-secondary">{L('download')}</button>
+                  <button type="button" onClick={() => setActiveIdx(null)} className="px-4 py-2 border border-border rounded-none text-sm hover:bg-secondary">{L('cancel')}</button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -118,7 +129,7 @@ export default function DownloadsGrid({ locale, downloads }: Props) {
           <div className="w-full max-w-md border border-primary rounded-lg p-6 bg-card text-center" onClick={(e) => e.stopPropagation()}>
             <div className="text-2xl mb-2">✓</div>
             <div className="font-medium mb-2">{L('done')}</div>
-            <div className="text-xs text-muted-foreground mb-4">{active.title} — {L('desc')}</div>
+            <div className="text-xs text-muted-foreground mb-4 leading-relaxed">{active.title} — {L('desc')}</div>
             <button type="button" onClick={() => setActiveIdx(null)} className="px-5 py-2.5 bg-primary text-primary-foreground rounded-none font-medium hover:bg-primary/90 text-sm">
               {L('cancel')}
             </button>

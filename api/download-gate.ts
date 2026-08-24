@@ -7,6 +7,17 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 const N8N_WEBHOOK = process.env.N8N_WEBHOOK_URL;
 const SUPABASE_URL = process.env.PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+
+function isValidRequest(data: Record<string, unknown>): boolean {
+  const required = ['name', 'email', 'company', 'country', 'type', 'title', 'locale'];
+  if (required.some((field) => !data[field] || typeof data[field] !== 'string')) return false;
+  if (!EMAIL_REGEX.test(String(data.email))) return false;
+  return String(data.name).length <= 200
+    && String(data.company).length <= 200
+    && String(data.country).length <= 100
+    && String(data.title).length <= 300;
+}
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
@@ -15,6 +26,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   try {
     const data = (req.body || {}) as Record<string, unknown>;
+    if (!isValidRequest(data)) {
+      return res.status(400).json({ success: false, error: 'invalid_document_request' });
+    }
 
     if (SUPABASE_URL && SUPABASE_KEY) {
       await fetch(`${SUPABASE_URL}/rest/v1/visitor_events`, {
@@ -42,7 +56,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     return res.status(200).json({
       success: true,
-      downloadUrl: `/downloads/${data.type || 'catalog'}-${data.locale || 'en'}.pdf`,
+      delivery: 'sales_follow_up',
     });
   } catch (err) {
     return res.status(500).json({ success: false });

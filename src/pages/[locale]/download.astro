@@ -26,13 +26,19 @@ const t: Record<string, Record<string, string>> = {
 const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
 
 const downloads = [
-  { type: 'catalog', title: locale === 'cn' ? '产品目录 2024' : 'Product Catalog 2024', size: '12.4 MB', format: 'PDF' },
-  { type: 'specs', title: locale === 'cn' ? '羊绒原料规格表' : 'Raw Material Specifications', size: '2.1 MB', format: 'PDF' },
-  { type: 'cert', title: locale === 'cn' ? 'ISO 9001 证书' : 'ISO 9001 Certificate', size: '0.8 MB', format: 'PDF' },
-  { type: 'cert', title: locale === 'cn' ? 'OEKO-TEX 证书' : 'OEKO-TEX Certificate', size: '1.2 MB', format: 'PDF' },
-  { type: 'cert', title: 'Good Cashmere Standard', size: '0.9 MB', format: 'PDF' },
-  { type: 'report', title: locale === 'cn' ? '工厂验厂报告' : 'Factory Audit Report', size: '5.6 MB', format: 'PDF' },
-  { type: 'report', title: locale === 'cn' ? '工厂验厂报告' : 'Factory Audit Report', size: '5.6 MB', format: 'PDF' },
+  { type: 'catalog', title: locale === 'cn' ? '羊绒产品采购目录' : 'Cashmere Wholesale Catalog', size: locale === 'cn' ? '按需发送' : 'Delivered on request', format: 'PDF dossier' },
+  { type: 'specs', title: locale === 'cn' ? '羊绒原料与纱线规格表' : 'Cashmere Fiber & Yarn Specifications', size: locale === 'cn' ? '按需发送' : 'Delivered on request', format: 'PDF dossier' },
+  { type: 'cert', title: locale === 'cn' ? 'ISO 9001 认证文件' : 'ISO 9001 Documentation', size: locale === 'cn' ? '最新版本' : 'Current version', format: 'PDF dossier' },
+  { type: 'cert', title: locale === 'cn' ? 'OEKO-TEX 合规资料' : 'OEKO-TEX Compliance Documents', size: locale === 'cn' ? '最新版本' : 'Current version', format: 'PDF dossier' },
+  { type: 'quality', title: locale === 'cn' ? '质量控制与验货流程' : 'Quality Control & Inspection Process', size: locale === 'cn' ? '按需发送' : 'Delivered on request', format: 'PDF dossier' },
+  { type: 'report', title: locale === 'cn' ? '工厂能力与验厂资料' : 'Factory Capability & Audit Dossier', size: locale === 'cn' ? '适用采购商' : 'For qualified buyers', format: 'PDF dossier' },
+];
+
+const procurementPaths = [
+  { href: 'certifications', number: '01', title: { en: 'Compliance & certification', cn: '合规与认证', de: 'Compliance & Zertifizierung', fr: 'Conformité & certifications', ja: 'コンプライアンス・認証', kr: '규정 준수 및 인증' }, desc: { en: 'Review current certification scope and request the relevant documents for your approval process.', cn: '查看认证范围，并申请与采购审批相关的文件。', de: 'Prüfen Sie den Zertifizierungsumfang und fordern Sie Unterlagen für Ihre Freigabe an.', fr: 'Consultez le périmètre des certifications et demandez les documents utiles à votre validation.', ja: '認証範囲を確認し、承認に必要な資料をご請求ください。', kr: '인증 범위를 검토하고 승인 절차에 필요한 자료를 요청하세요.' } },
+  { href: 'quality-control', number: '02', title: { en: 'Quality & inspection', cn: '质量与验货', de: 'Qualität & Inspektion', fr: 'Qualité & inspection', ja: '品質・検品', kr: '품질 및 검사' }, desc: { en: 'See how incoming material, in-process work and final goods are controlled.', cn: '了解原料、生产过程和成品的质控方式。', de: 'Erfahren Sie, wie Material, Produktion und Fertigware kontrolliert werden.', fr: 'Découvrez les contrôles des matières, de la production et des produits finis.', ja: '原料・工程・完成品の管理方法をご確認いただけます。', kr: '원료, 공정 및 완제품 관리 방식을 확인하세요.' } },
+  { href: 'private-label-cashmere', number: '03', title: { en: 'Sampling & private label', cn: '打样与贴牌', de: 'Muster & Private Label', fr: 'Échantillons & marque privée', ja: 'サンプル・プライベートラベル', kr: '샘플 및 프라이빗 라벨' }, desc: { en: 'Map samples, color, branding and approval milestones before a bulk quotation.', cn: '在大货报价前梳理样品、颜色、品牌与确认节点。', de: 'Planen Sie Muster, Farbe, Branding und Freigaben vor dem Serienangebot.', fr: 'Planifiez échantillons, couleurs, branding et validations avant le devis production.', ja: '量産見積もり前にサンプル・カラー・ブランド・承認工程を確認します。', kr: '대량 견적 전 샘플, 색상, 브랜딩 및 승인 절차를 확인하세요.' } },
+  { href: 'shipping-logistics', number: '04', title: { en: 'Trade & logistics', cn: '贸易与物流', de: 'Handel & Logistik', fr: 'Commerce & logistique', ja: '貿易・物流', kr: '무역 및 물류' }, desc: { en: 'Align delivery terms, origin port and shipment planning with your destination market.', cn: '按目的国确认贸易条款、起运港和运输方案。', de: 'Stimmen Sie Lieferbedingungen, Abgangshafen und Versandplanung auf Ihren Markt ab.', fr: 'Alignez les conditions de livraison, le port de départ et la planification transport.', ja: '仕向地に合わせて貿易条件・出荷港・輸送計画を確認します。', kr: '목적지 시장에 맞춰 거래 조건, 출항 항구 및 운송 계획을 조정하세요.' } },
 ];
 
 // Trust Packs — 4 themed bundles (multiple PDFs compressed into 1 zip-equivalent)
@@ -112,6 +118,27 @@ const packsCta = { en: 'Request a Custom Pack', cn: '索取定制资料包', de:
     </div>
   </section>
 
+  <section class="py-16 md:py-20 bg-background border-b border-border/60">
+    <div class="container-narrow">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="h-[2px] w-10 bg-brand-red"></span>
+        <span class="text-xs tracking-[0.3em] uppercase text-brand-camel font-medium">{locale === 'cn' ? '采购核验路径' : 'Buyer verification path'}</span>
+      </div>
+      <h2 class="font-serif text-3xl md:text-5xl font-light leading-tight mb-4">{locale === 'cn' ? '用一套资料完成供应商核验' : 'Verify a supplier with one clear dossier'}</h2>
+      <p class="text-base text-muted-foreground max-w-3xl leading-relaxed mb-10">{locale === 'cn' ? '先核验合规与工厂能力，再确认质量、打样和贸易条款；需要正式文件时，可在下方提交资料申请。' : 'Review compliance and factory capability first, then align quality, sampling and trade terms. Request the current supporting documents below when your internal review requires them.'}</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {procurementPaths.map((item) => (
+          <a href={`/${locale}/${item.href}/`} class="group border border-border bg-card p-5 hover:border-brand-gold transition-colors">
+            <span class="text-[10px] tracking-[0.25em] uppercase text-brand-gold font-mono">{item.number}</span>
+            <h3 class="font-serif text-xl mt-3 mb-2 group-hover:text-brand-camel transition-colors">{item.title[locale] || item.title.en}</h3>
+            <p class="text-sm text-muted-foreground leading-relaxed">{item.desc[locale] || item.desc.en}</p>
+            <span class="inline-flex items-center gap-1.5 mt-5 text-xs font-medium text-brand-ink group-hover:text-brand-camel transition-colors">{locale === 'cn' ? '查看说明' : 'Review details'} <span aria-hidden="true">→</span></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- Trust Packs — 一站式获取工厂全部资料,4 个主题 zip 包 -->
   <section class="py-20 md:py-24 bg-[#F8F5EF] border-y border-border/60">
     <div class="container-narrow">
@@ -129,7 +156,7 @@ const packsCta = { en: 'Request a Custom Pack', cn: '索取定制资料包', de:
               <span class="text-[10px] tracking-[0.3em] uppercase text-brand-gold font-mono font-medium">
                 0{idx + 1} · {p.eyebrow[locale] || p.eyebrow.en}
               </span>
-              <span class="text-[10px] tracking-[0.2em] uppercase text-muted-foreground font-mono">{p.size} ZIP</span>
+              <span class="text-[10px] tracking-[0.2em] uppercase text-muted-foreground font-mono">{locale === 'cn' ? '资料申请' : 'Document request'}</span>
             </div>
             <h3 class="font-serif text-xl md:text-2xl font-light mb-4 leading-tight">{p.title[locale] || p.title.en}</h3>
             <ul class="space-y-2.5 mb-6 flex-grow">
