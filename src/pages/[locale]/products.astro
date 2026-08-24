@@ -93,7 +93,7 @@ const seo = tdk[locale] || tdk.en;
 const LISTING_FIELDS = [
   'id', 'name', 'categoryId', 'categoryName',
   'price', 'currency', 'moq', 'material', 'micron',
-  'images', 'tags',
+  'lead', 'images', 'tags',
 ] as const;
 function pickListFields(p: any) {
   const out: Record<string, unknown> = {};
@@ -239,8 +239,19 @@ const GROUP_LABELS: Record<string, Record<string, string>> = {
   byForm: { en: 'By Form', cn: '按形态', de: 'Nach Form', fr: 'Par forme', ja: '形状別', kr: '형태별' },
 };
 
+const PROCUREMENT_COPY: Record<string, Record<string, string>> = {
+  en: { title: 'Procurement filters', intro: 'Narrow the curated catalog by commercial fit.', material: 'Material', moq: 'MOQ', lead: 'Production lead time', all: 'Any', pure: '100% cashmere', blend: 'Cashmere blend', wool: 'Wool / merino', moqSmall: 'Up to 10 pcs', moqMid: '11–50 pcs', moqBulk: '51–100 pcs', leadFast: 'Up to 20 days', leadStandard: '21–30 days', leadExtended: '31–35 days', reset: 'Reset filters', compare: 'Compare', selected: 'selected', compareCta: 'Compare selected', clear: 'Clear', compareTitle: 'Compare selected styles', compareLimit: 'Select up to 3 styles', compareEmpty: 'Select up to 3 styles to compare their core commercial specifications.', addToInquiry: 'Add selected to inquiry list', close: 'Close' },
+  cn: { title: '采购筛选', intro: '按采购条件快速缩小精选目录。', material: '材质', moq: '起订量', lead: '生产交期', all: '不限', pure: '100% 羊绒', blend: '羊绒混纺', wool: '羊毛 / 美利奴', moqSmall: '10 件及以下', moqMid: '11–50 件', moqBulk: '51–100 件', leadFast: '20 天以内', leadStandard: '21–30 天', leadExtended: '31–35 天', reset: '重置筛选', compare: '对比', selected: '款已选', compareCta: '比较已选款式', clear: '清除', compareTitle: '比较已选款式', compareLimit: '最多选择 3 款', compareEmpty: '选择最多 3 款，比较其核心采购规格。', addToInquiry: '加入询盘清单', close: '关闭' },
+  de: { title: 'Einkaufsfilter', intro: 'Grenzen Sie den Katalog nach kommerzieller Eignung ein.', material: 'Material', moq: 'MOQ', lead: 'Produktionszeit', all: 'Alle', pure: '100% Kaschmir', blend: 'Kaschmir-Mischung', wool: 'Wolle / Merino', moqSmall: 'Bis 10 Stk.', moqMid: '11–50 Stk.', moqBulk: '51–100 Stk.', leadFast: 'Bis 20 Tage', leadStandard: '21–30 Tage', leadExtended: '31–35 Tage', reset: 'Filter zurücksetzen', compare: 'Vergleichen', selected: 'ausgewählt', compareCta: 'Auswahl vergleichen', clear: 'Löschen', compareTitle: 'Ausgewählte Styles vergleichen', compareLimit: 'Bis zu 3 Styles auswählen', compareEmpty: 'Wählen Sie bis zu 3 Styles, um ihre Kernangaben zu vergleichen.', addToInquiry: 'Zur Anfrageliste', close: 'Schließen' },
+  fr: { title: 'Filtres achat', intro: 'Affinez le catalogue selon vos critères commerciaux.', material: 'Matière', moq: 'MOQ', lead: 'Délai de production', all: 'Tous', pure: '100% cachemire', blend: 'Mélange cachemire', wool: 'Laine / mérinos', moqSmall: 'Jusqu’à 10 pcs', moqMid: '11–50 pcs', moqBulk: '51–100 pcs', leadFast: 'Jusqu’à 20 jours', leadStandard: '21–30 jours', leadExtended: '31–35 jours', reset: 'Réinitialiser', compare: 'Comparer', selected: 'sélectionné(s)', compareCta: 'Comparer la sélection', clear: 'Effacer', compareTitle: 'Comparer les styles sélectionnés', compareLimit: 'Sélectionnez jusqu’à 3 styles', compareEmpty: 'Sélectionnez jusqu’à 3 styles pour comparer leurs spécifications clés.', addToInquiry: 'Ajouter à la demande', close: 'Fermer' },
+  ja: { title: '調達フィルター', intro: '商取引条件に合わせてカタログを絞り込みます。', material: '素材', moq: 'MOQ', lead: '生産リードタイム', all: 'すべて', pure: '100% カシミヤ', blend: 'カシミヤ混紡', wool: 'ウール / メリノ', moqSmall: '10点以下', moqMid: '11–50点', moqBulk: '51–100点', leadFast: '20日以内', leadStandard: '21–30日', leadExtended: '31–35日', reset: 'フィルターをリセット', compare: '比較', selected: '選択済み', compareCta: '選択を比較', clear: 'クリア', compareTitle: '選択したスタイルを比較', compareLimit: '最大3スタイルを選択', compareEmpty: '最大3スタイルを選択して主要仕様を比較します。', addToInquiry: '問い合わせリストに追加', close: '閉じる' },
+  kr: { title: '구매 필터', intro: '상업적 조건에 맞춰 카탈로그를 좁혀 보세요.', material: '소재', moq: 'MOQ', lead: '생산 리드타임', all: '전체', pure: '100% 캐시미어', blend: '캐시미어 혼방', wool: '울 / 메리노', moqSmall: '10개 이하', moqMid: '11–50개', moqBulk: '51–100개', leadFast: '20일 이내', leadStandard: '21–30일', leadExtended: '31–35일', reset: '필터 초기화', compare: '비교', selected: '선택됨', compareCta: '선택 항목 비교', clear: '지우기', compareTitle: '선택한 스타일 비교', compareLimit: '최대 3개 스타일 선택', compareEmpty: '최대 3개 스타일을 선택해 핵심 사양을 비교하세요.', addToInquiry: '문의 목록에 추가', close: '닫기' },
+};
+const procurementCopy = PROCUREMENT_COPY[locale] || PROCUREMENT_COPY.en;
+
 const subLabelsJson = JSON.stringify(SUB_LABELS);
 const groupLabelsJson = JSON.stringify(GROUP_LABELS);
+const procurementCopyJson = JSON.stringify(procurementCopy);
 ---
 
 <BaseLayout
@@ -320,6 +331,45 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
       </div>
     </div>
     <p id="result-count" class="text-sm text-muted-foreground mb-4"></p>
+
+    <div id="procurement-filters" class="border border-border bg-brand-cream/25 p-5 mb-5">
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5">
+        <div>
+          <p class="text-xs tracking-[0.24em] uppercase text-brand-camel font-medium mb-2">{procurementCopy.title}</p>
+          <p class="text-sm text-muted-foreground">{procurementCopy.intro}</p>
+        </div>
+        <button type="button" data-proc-reset class="text-xs uppercase tracking-[0.14em] text-brand-ink hover:text-brand-camel underline underline-offset-4">{procurementCopy.reset}</button>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-5">
+        <fieldset>
+          <legend class="text-xs uppercase tracking-[0.16em] text-muted-foreground mb-2">{procurementCopy.material}</legend>
+          <div class="flex flex-wrap gap-2">
+            <button type="button" data-proc-filter="material" data-value="all" class="proc-filter active px-3 py-2 text-xs border bg-brand-ink text-[#F7F3EC] border-brand-ink transition-colors">{procurementCopy.all}</button>
+            <button type="button" data-proc-filter="material" data-value="pure" class="proc-filter px-3 py-2 text-xs border border-border bg-white text-muted-foreground hover:border-brand-ink transition-colors">{procurementCopy.pure}</button>
+            <button type="button" data-proc-filter="material" data-value="blend" class="proc-filter px-3 py-2 text-xs border border-border bg-white text-muted-foreground hover:border-brand-ink transition-colors">{procurementCopy.blend}</button>
+            <button type="button" data-proc-filter="material" data-value="wool" class="proc-filter px-3 py-2 text-xs border border-border bg-white text-muted-foreground hover:border-brand-ink transition-colors">{procurementCopy.wool}</button>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend class="text-xs uppercase tracking-[0.16em] text-muted-foreground mb-2">{procurementCopy.moq}</legend>
+          <div class="flex flex-wrap gap-2">
+            <button type="button" data-proc-filter="moq" data-value="all" class="proc-filter active px-3 py-2 text-xs border bg-brand-ink text-[#F7F3EC] border-brand-ink transition-colors">{procurementCopy.all}</button>
+            <button type="button" data-proc-filter="moq" data-value="small" class="proc-filter px-3 py-2 text-xs border border-border bg-white text-muted-foreground hover:border-brand-ink transition-colors">{procurementCopy.moqSmall}</button>
+            <button type="button" data-proc-filter="moq" data-value="mid" class="proc-filter px-3 py-2 text-xs border border-border bg-white text-muted-foreground hover:border-brand-ink transition-colors">{procurementCopy.moqMid}</button>
+            <button type="button" data-proc-filter="moq" data-value="bulk" class="proc-filter px-3 py-2 text-xs border border-border bg-white text-muted-foreground hover:border-brand-ink transition-colors">{procurementCopy.moqBulk}</button>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend class="text-xs uppercase tracking-[0.16em] text-muted-foreground mb-2">{procurementCopy.lead}</legend>
+          <div class="flex flex-wrap gap-2">
+            <button type="button" data-proc-filter="lead" data-value="all" class="proc-filter active px-3 py-2 text-xs border bg-brand-ink text-[#F7F3EC] border-brand-ink transition-colors">{procurementCopy.all}</button>
+            <button type="button" data-proc-filter="lead" data-value="fast" class="proc-filter px-3 py-2 text-xs border border-border bg-white text-muted-foreground hover:border-brand-ink transition-colors">{procurementCopy.leadFast}</button>
+            <button type="button" data-proc-filter="lead" data-value="standard" class="proc-filter px-3 py-2 text-xs border border-border bg-white text-muted-foreground hover:border-brand-ink transition-colors">{procurementCopy.leadStandard}</button>
+            <button type="button" data-proc-filter="lead" data-value="extended" class="proc-filter px-3 py-2 text-xs border border-border bg-white text-muted-foreground hover:border-brand-ink transition-colors">{procurementCopy.leadExtended}</button>
+          </div>
+        </fieldset>
+      </div>
+    </div>
 
     <!-- Active subcategory chips (populated by JS from URL params). Hidden when no active tags. -->
     <div id="active-chips" class="hidden flex flex-wrap items-center gap-2 mb-4">
@@ -407,6 +457,16 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
     <div id="pagination-wrap" class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-border pt-6">
       <p id="page-info" class="text-sm text-muted-foreground"></p>
       <nav id="pagination" class="flex items-center gap-1" aria-label="Pagination"></nav>
+    </div>
+
+    <div id="compare-bar" class="hidden sticky bottom-4 z-30 mt-6 border border-brand-ink bg-brand-ink text-[#F7F3EC] px-4 py-3 shadow-xl">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <p class="text-sm"><span data-compare-count>0</span> <span data-compare-selected>{procurementCopy.selected}</span> · <span class="text-[#F7F3EC]/70">{procurementCopy.compareLimit}</span></p>
+        <div class="flex items-center gap-3">
+          <button type="button" data-compare-clear class="text-xs uppercase tracking-[0.14em] underline underline-offset-4 hover:text-brand-gold">{procurementCopy.clear}</button>
+          <button type="button" data-compare-open class="px-4 py-2 bg-[#F7F3EC] text-brand-ink text-xs uppercase tracking-[0.12em] font-medium hover:bg-brand-gold transition-colors">{procurementCopy.compareCta}</button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -543,6 +603,7 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
   <script id="product-tags-data" type="application/json" set:html={productTagsJson}></script>
   <script id="sub-labels-data" type="application/json" set:html={subLabelsJson}></script>
   <script id="group-labels-data" type="application/json" set:html={groupLabelsJson}></script>
+  <script id="procurement-copy-data" type="application/json" set:html={procurementCopyJson}></script>
 
   <!-- 交互逻辑：vanilla JS，零依赖 -->
   <script is:inline>
@@ -554,15 +615,44 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
       const productTags = JSON.parse(document.getElementById('product-tags-data').textContent);
       const subLabels = JSON.parse(document.getElementById('sub-labels-data').textContent);
       const groupLabels = JSON.parse(document.getElementById('group-labels-data').textContent);
+      const procurementCopy = JSON.parse(document.getElementById('procurement-copy-data').textContent);
 
       const PAGE_SIZE = 24;
       let activeCat = 'all';
       let searchQ = '';
       let sortBy = 'default';
       let currentPage = 1;
+      const procurementFilters = { material: 'all', moq: 'all', lead: 'all' };
+      const comparedIds = new Set();
       // Active subcategory filters from URL (e.g. ?byStyle=beanies&byMaterial=100pct-cashmere).
       // Mega menu links use ?groupKey=subKey; multiple params AND together.
       const activeTags = new Set();
+
+      function materialBucket(material) {
+        const value = String(material || '').toLowerCase();
+        if (value.includes('cashmere') && value.includes('100%')) return 'pure';
+        if (value.includes('cashmere') && (value.includes('wool') || value.includes('blend'))) return 'blend';
+        if (value.includes('wool') || value.includes('merino')) return 'wool';
+        return 'other';
+      }
+
+      function leadDays(lead) {
+        const match = String(lead || '').match(/(\d+)/);
+        return match ? Number(match[1]) : null;
+      }
+
+      function matchesProcurementFilters(product) {
+        if (procurementFilters.material !== 'all' && materialBucket(product.material) !== procurementFilters.material) return false;
+        const moq = Number(product.moq || 0);
+        if (procurementFilters.moq === 'small' && !(moq > 0 && moq <= 10)) return false;
+        if (procurementFilters.moq === 'mid' && !(moq >= 11 && moq <= 50)) return false;
+        if (procurementFilters.moq === 'bulk' && !(moq >= 51 && moq <= 100)) return false;
+        const days = leadDays(product.lead);
+        if (procurementFilters.lead === 'fast' && !(days != null && days <= 20)) return false;
+        if (procurementFilters.lead === 'standard' && !(days != null && days >= 21 && days <= 30)) return false;
+        if (procurementFilters.lead === 'extended' && !(days != null && days >= 31 && days <= 35)) return false;
+        return true;
+      }
 
       // ---------- Parse URL params on load ----------
 
@@ -596,6 +686,45 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
         currentPage = 1;
         render();
       });
+
+      const procurementFilterButtons = document.querySelectorAll('[data-proc-filter]');
+      procurementFilterButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const key = button.getAttribute('data-proc-filter');
+          const value = button.getAttribute('data-value');
+          if (!key || !value) return;
+          procurementFilters[key] = value;
+          document.querySelectorAll('[data-proc-filter="' + key + '"]').forEach((peer) => {
+            const active = peer.getAttribute('data-value') === value;
+            peer.classList.toggle('active', active);
+            peer.classList.toggle('bg-brand-ink', active);
+            peer.classList.toggle('text-[#F7F3EC]', active);
+            peer.classList.toggle('border-brand-ink', active);
+          });
+          currentPage = 1;
+          render();
+        });
+      });
+
+      document.querySelector('[data-proc-reset]').addEventListener('click', () => {
+        Object.keys(procurementFilters).forEach((key) => { procurementFilters[key] = 'all'; });
+        procurementFilterButtons.forEach((button) => {
+          const active = button.getAttribute('data-value') === 'all';
+          button.classList.toggle('active', active);
+          button.classList.toggle('bg-brand-ink', active);
+          button.classList.toggle('text-[#F7F3EC]', active);
+          button.classList.toggle('border-brand-ink', active);
+        });
+        currentPage = 1;
+        render();
+      });
+
+      document.querySelector('[data-compare-clear]').addEventListener('click', () => {
+        comparedIds.clear();
+        updateCompareBar();
+        render();
+      });
+      document.querySelector('[data-compare-open]').addEventListener('click', openCompareModal);
 
       // ---------- Mega-menu URL params: ?byStyle=beanies&byMaterial=100pct-cashmere ----------
       // Read URL params at load. Each ?groupKey=subKey is one filter.
@@ -708,6 +837,7 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
       function getFiltered() {
         let result = products;
         if (activeCat !== 'all') result = result.filter((p) => p.categoryId === activeCat);
+        result = result.filter(matchesProcurementFilters);
         // Apply tag filters (AND across groups, OR within a group)
         if (activeTags.size > 0) {
           // Group tags by groupKey
@@ -763,6 +893,7 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
         renderPagination(filtered.length, totalPages);
 
         bindCardEvents();
+        updateCompareBar();
 
         // 切换筛选/页码后滚到网格顶部
         const gridEl = document.getElementById('product-grid');
@@ -831,8 +962,10 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
         const img = rawImg.startsWith('/images/') || rawImg.startsWith('http')
           ? rawImg
           : '/products/mic/' + rawImg;
+        const selected = comparedIds.has(p.id);
         return (
-          '<a href="/' + (window.__LOCALE__ || 'en') + '/products/' + escapeHtml(p.id) + '/" class="product-card block bg-white border border-border overflow-hidden hover:border-brand-camel hover:shadow-[0_16px_32px_-20px_rgba(28,24,19,0.18)] transition-colors transition-shadow duration-300 group" data-id="' + escapeHtml(p.id) + '">' +
+          '<article class="product-card bg-white border border-border overflow-hidden hover:border-brand-camel hover:shadow-[0_16px_32px_-20px_rgba(28,24,19,0.18)] transition-colors transition-shadow duration-300" data-id="' + escapeHtml(p.id) + '">' +
+            '<a href="/' + (window.__LOCALE__ || 'en') + '/products/' + escapeHtml(p.id) + '/" class="block group">' +
             '<div class="aspect-square bg-brand-cream cursor-pointer overflow-hidden">' +
               (img ? '<img src="' + img + '" alt="' + escapeHtml(p.name) + '" decoding="async" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />' : '') +
             '</div>' +
@@ -848,7 +981,11 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
               '<p class="text-xs text-muted-foreground mb-2">' + escapeHtml(labels.colorCardPreview || 'Available in 25/26 color card →') + '</p>' +
               '<span class="block w-full px-3 py-2 bg-brand-ink text-[#F7F3EC] text-xs hover:bg-brand-camel transition-colors text-center">' + escapeHtml(labels.requestQuote) + '</span>' +
             '</div>' +
-          '</a>'
+            '</a>' +
+            '<div class="px-4 pb-4">' +
+              '<button type="button" data-compare="' + escapeHtml(p.id) + '" class="w-full px-3 py-2 text-xs border transition-colors ' + (selected ? 'bg-brand-gold/15 border-brand-gold text-brand-ink' : 'bg-white border-border text-muted-foreground hover:border-brand-ink') + '">' + escapeHtml(procurementCopy.compare) + (selected ? ' ✓' : '') + '</button>' +
+            '</div>' +
+          '</article>'
         );
       }
 
@@ -868,7 +1005,79 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
       const modalBackdrop = document.getElementById('modal-backdrop');
 
       function bindCardEvents() {
-        // No-op: cards are now <a href="..."> links, no JS click handler needed.
+        document.querySelectorAll('[data-compare]').forEach((button) => {
+          button.addEventListener('click', () => {
+            const id = button.getAttribute('data-compare');
+            if (!id) return;
+            if (comparedIds.has(id)) {
+              comparedIds.delete(id);
+            } else if (comparedIds.size < 3) {
+              comparedIds.add(id);
+            } else {
+              showToast(procurementCopy.compareLimit);
+              return;
+            }
+            updateCompareBar();
+            render();
+          });
+        });
+      }
+
+      function selectedProducts() {
+        return products.filter((product) => comparedIds.has(product.id));
+      }
+
+      function updateCompareBar() {
+        const bar = document.getElementById('compare-bar');
+        const count = bar?.querySelector('[data-compare-count]');
+        if (count) count.textContent = String(comparedIds.size);
+        if (bar) bar.classList.toggle('hidden', comparedIds.size === 0);
+      }
+
+      function closeCompareModal() {
+        const existing = document.getElementById('catalog-compare-modal');
+        if (existing) existing.remove();
+        document.body.style.overflow = '';
+      }
+
+      function addComparedToInquiry() {
+        if (!window.dxCart) {
+          showToast('Inquiry list is loading. Please try again.');
+          return;
+        }
+        selectedProducts().forEach((product) => {
+          window.dxCart.add({ ...product, image: (product.images || [])[0] || '', href: '/' + (window.__LOCALE__ || 'en') + '/products/' + product.id + '/', qty: product.moq || 1 });
+        });
+        closeCompareModal();
+        showToast(procurementCopy.addToInquiry);
+      }
+
+      function openCompareModal() {
+        const selected = selectedProducts();
+        if (!selected.length) return;
+        closeCompareModal();
+        const modalEl = document.createElement('div');
+        modalEl.id = 'catalog-compare-modal';
+        modalEl.className = 'fixed inset-0 z-[260] bg-black/60 p-4 flex items-center justify-center';
+        const columns = selected.map((product) => '<th class="min-w-[180px] p-3 text-left font-medium align-top"><a class="hover:text-brand-camel" href="/' + (window.__LOCALE__ || 'en') + '/products/' + escapeHtml(product.id) + '/">' + escapeHtml(product.name) + '</a></th>').join('');
+        const row = (label, getValue) => '<tr class="border-t border-border"><th scope="row" class="p-3 text-left text-xs uppercase tracking-wider text-muted-foreground whitespace-nowrap">' + escapeHtml(label) + '</th>' + selected.map((product) => '<td class="p-3 text-sm text-foreground">' + escapeHtml(getValue(product) || '—') + '</td>').join('') + '</tr>';
+        modalEl.innerHTML = '<div class="w-full max-w-5xl max-h-[88vh] overflow-auto bg-[#F7F3EC] border border-brand-ink shadow-2xl">' +
+          '<div class="flex items-start justify-between gap-4 p-5 border-b border-border"><div><p class="text-xs uppercase tracking-[0.2em] text-brand-camel mb-2">' + escapeHtml(procurementCopy.compareLimit) + '</p><h2 class="font-serif text-2xl text-brand-ink">' + escapeHtml(procurementCopy.compareTitle) + '</h2></div><button type="button" data-compare-close class="text-sm text-muted-foreground hover:text-brand-ink">' + escapeHtml(procurementCopy.close) + ' ×</button></div>' +
+          '<div class="overflow-x-auto"><table class="w-full border-collapse"><thead><tr><th class="p-3"></th>' + columns + '</tr></thead><tbody>' +
+            row('Category', (product) => product.categoryName) +
+            row(labels.material || 'Material', (product) => product.material) +
+            row(labels.micron || 'Micron', (product) => product.micron) +
+            row(labels.moq || 'MOQ', (product) => String(product.moq || '') + ' pcs') +
+            row(procurementCopy.lead, (product) => product.lead) +
+            row(labels.price || 'Price', (product) => '$' + String(product.price || '') + ' ' + String(product.currency || '')) +
+          '</tbody></table></div>' +
+          '<div class="p-5 border-t border-border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"><p class="text-sm text-muted-foreground">' + escapeHtml(procurementCopy.compareLimit) + '</p><button type="button" data-compare-inquiry class="px-5 py-3 bg-brand-ink text-[#F7F3EC] text-xs uppercase tracking-[0.14em] hover:bg-brand-camel transition-colors">' + escapeHtml(procurementCopy.addToInquiry) + '</button></div>' +
+        '</div>';
+        modalEl.addEventListener('click', (event) => { if (event.target === modalEl) closeCompareModal(); });
+        modalEl.querySelector('[data-compare-close]').addEventListener('click', closeCompareModal);
+        modalEl.querySelector('[data-compare-inquiry]').addEventListener('click', addComparedToInquiry);
+        document.body.appendChild(modalEl);
+        document.body.style.overflow = 'hidden';
       }
 
       // 颜色名 → 大致色相（hash 后映射到一组固定颜色）；不命中走灰色
