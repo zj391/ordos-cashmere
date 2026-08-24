@@ -93,6 +93,41 @@ const labels: Record<string, Record<string, string>> = {
 
 const L = (locale: string, k: string) => labels[locale]?.[k] || labels.en[k] || k;
 const CART_HANDOFF_KEY = 'dx-cart-handoff-v1';
+const QUALIFICATION_LABELS: Record<string, Record<string, string>> = {
+  en: {
+    title: 'Purchase profile', hint: 'Optional details help us prepare a more relevant quotation.', industry: 'Business type', companySize: 'Company size', jobTitle: 'Job title', productReference: 'Product reference',
+    luxury_brand: 'Luxury / premium brand', mid_luxury_brand: 'Fashion brand', distributor: 'Importer / distributor', manufacturer: 'Manufacturer', wholesaler: 'Wholesaler', retailer: 'Retailer / e-commerce', designer_independent: 'Independent designer',
+    startup: '1–10 people', small: '11–50 people', mid: '51–500 people', large: '501–5,000 people', enterprise: '5,000+ people', successTitle: 'Inquiry received', successDetail: 'We have sent your request to our sales team. Expect pricing, samples and lead-time guidance within 24 hours.',
+  },
+  cn: {
+    title: '采购资料', hint: '选填信息可帮助我们准备更匹配的报价。', industry: '业务类型', companySize: '公司规模', jobTitle: '职位', productReference: '产品参考',
+    luxury_brand: '高端 / 奢侈品牌', mid_luxury_brand: '时尚品牌', distributor: '进口商 / 经销商', manufacturer: '制造商', wholesaler: '批发商', retailer: '零售 / 电商', designer_independent: '独立设计师',
+    startup: '1–10 人', small: '11–50 人', mid: '51–500 人', large: '501–5,000 人', enterprise: '5,000+ 人', successTitle: '询盘已收到', successDetail: '您的需求已发送给销售团队，我们将在 24 小时内提供报价、样品及交期建议。',
+  },
+  de: {
+    title: 'Einkaufsprofil', hint: 'Optionale Angaben helfen uns, ein passenderes Angebot vorzubereiten.', industry: 'Unternehmenstyp', companySize: 'Unternehmensgröße', jobTitle: 'Position', productReference: 'Produktreferenz',
+    luxury_brand: 'Luxus- / Premiummarke', mid_luxury_brand: 'Modemarke', distributor: 'Importeur / Distributor', manufacturer: 'Hersteller', wholesaler: 'Großhändler', retailer: 'Handel / E-Commerce', designer_independent: 'Unabhängiger Designer',
+    startup: '1–10 Personen', small: '11–50 Personen', mid: '51–500 Personen', large: '501–5.000 Personen', enterprise: '5.000+ Personen', successTitle: 'Anfrage erhalten', successDetail: 'Unser Vertriebsteam antwortet innerhalb von 24 Stunden mit Preis-, Muster- und Lieferzeitinformationen.',
+  },
+  fr: {
+    title: 'Profil d’achat', hint: 'Ces informations facultatives nous aident à préparer une offre pertinente.', industry: 'Type d’entreprise', companySize: 'Taille de l’entreprise', jobTitle: 'Fonction', productReference: 'Référence produit',
+    luxury_brand: 'Marque luxe / premium', mid_luxury_brand: 'Marque de mode', distributor: 'Importateur / distributeur', manufacturer: 'Fabricant', wholesaler: 'Grossiste', retailer: 'Détaillant / e-commerce', designer_independent: 'Designer indépendant',
+    startup: '1–10 personnes', small: '11–50 personnes', mid: '51–500 personnes', large: '501–5 000 personnes', enterprise: '5 000+ personnes', successTitle: 'Demande reçue', successDetail: 'Notre équipe commerciale vous répondra sous 24h avec prix, échantillons et délais.',
+  },
+  ja: {
+    title: '購買プロフィール', hint: '任意の情報ですが、より適切なお見積もりの準備に役立ちます。', industry: '事業タイプ', companySize: '会社規模', jobTitle: '役職', productReference: '製品参照',
+    luxury_brand: '高級・プレミアムブランド', mid_luxury_brand: 'ファッションブランド', distributor: '輸入業者・代理店', manufacturer: 'メーカー', wholesaler: '卸売業者', retailer: '小売・EC', designer_independent: '独立デザイナー',
+    startup: '1–10名', small: '11–50名', mid: '51–500名', large: '501–5,000名', enterprise: '5,000名以上', successTitle: 'お問い合わせを受け付けました', successDetail: '営業チームが内容を確認し、24時間以内に価格・サンプル・納期をご案内します。',
+  },
+  kr: {
+    title: '구매 프로필', hint: '선택 정보는 더 적합한 견적을 준비하는 데 도움이 됩니다.', industry: '사업 유형', companySize: '회사 규모', jobTitle: '직책', productReference: '제품 참조',
+    luxury_brand: '럭셔리 / 프리미엄 브랜드', mid_luxury_brand: '패션 브랜드', distributor: '수입업체 / 유통업체', manufacturer: '제조업체', wholesaler: '도매업체', retailer: '리테일 / 이커머스', designer_independent: '독립 디자이너',
+    startup: '1–10명', small: '11–50명', mid: '51–500명', large: '501–5,000명', enterprise: '5,000명 이상', successTitle: '문의가 접수되었습니다', successDetail: '영업팀이 요청을 확인하고 24시간 이내에 가격, 샘플 및 납기 정보를 안내합니다.',
+  },
+};
+const Q = (locale: string, key: string) => QUALIFICATION_LABELS[locale]?.[key] || QUALIFICATION_LABELS.en[key] || key;
+const INDUSTRY_OPTIONS = ['luxury_brand', 'mid_luxury_brand', 'distributor', 'manufacturer', 'wholesaler', 'retailer', 'designer_independent'] as const;
+const COMPANY_SIZE_OPTIONS = ['startup', 'small', 'mid', 'large', 'enterprise'] as const;
 
 export default function ContactForm({ locale }: Props) {
   const [type, setType] = useState<'raw' | 'yarn' | 'garment'>('raw');
@@ -100,12 +135,18 @@ export default function ContactForm({ locale }: Props) {
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [attachments, setAttachments] = useState<Array<{ name: string; type: string; dataUrl: string }>>([]);
   const [attachError, setAttachError] = useState<string>('');
+  const [productInterest, setProductInterest] = useState('');
 
   // Cart handoff: prefer sessionStorage; keep legacy ?items=<base64> support for one version.
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const params = new URLSearchParams(window.location.search);
+    const productReference = params.get('product');
+    if (productReference) {
+      setProductInterest(productReference);
+      setType('garment');
+    }
     if (params.get('from') !== 'cart') return;
 
     const storedItems = sessionStorage.getItem(CART_HANDOFF_KEY);
@@ -178,22 +219,18 @@ export default function ContactForm({ locale }: Props) {
     const payload: any = { ...data, locale, type };
     if (cartItems.length > 0) payload.cart_items = cartItems;
     if (attachments.length > 0) payload.attachments = attachments;
+    if (productInterest) payload.product_interest = productInterest;
+    if (!payload.product_interest && cartItems.length > 0) {
+      payload.product_interest = cartItems.map((item) => `${item.id}${item.color ? ` (${item.color})` : ''}`).join(', ');
+    }
+    const params = new URLSearchParams(window.location.search);
+    for (const key of ['utm_source', 'utm_medium', 'utm_campaign']) {
+      const value = params.get(key);
+      if (value) payload[key] = value;
+    }
+    if (document.referrer) payload.referrer = document.referrer;
     try {
-      const endpoint = 'https://www.erdosdx.com/api/inquiry/';
-      console.log('[contact] submitting payload:', payload);
-      (window as any).__lastContactPayload = payload;
-      (window as any).__lastContactEndpoint = endpoint;
-      (window as any).__lastContactMethod = 'POST';
-      console.log('[contact] endpoint:', endpoint, 'method: POST');
-      // Show debug banner
-      const existing = document.getElementById('contact-debug-banner');
-      if (existing) existing.remove();
-      const banner = document.createElement('div');
-      banner.id = 'contact-debug-banner';
-      banner.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:yellow;color:black;padding:8px;z-index:99999;font-family:monospace;font-size:14px;';
-      banner.textContent = 'POST ' + endpoint + ' payload: ' + JSON.stringify(payload).slice(0, 200);
-      document.body.appendChild(banner);
-      const res = await fetch(endpoint, {
+      const res = await fetch('/api/inquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -261,6 +298,12 @@ export default function ContactForm({ locale }: Props) {
         </div>
       </div>
 
+      {productInterest && (
+        <div className="border border-primary/25 bg-primary/5 rounded-none px-4 py-3 text-sm">
+          <span className="font-medium">{Q(locale, 'productReference')}:</span> <span className="text-muted-foreground">{productInterest}</span>
+        </div>
+      )}
+
       {cartItems.length > 0 && (
         <div className="border border-primary/30 bg-primary/5 rounded-none p-4 mb-2">
           <h3 className="text-sm font-bold mb-2 flex items-center gap-2">
@@ -307,6 +350,30 @@ export default function ContactForm({ locale }: Props) {
           <label className="block text-sm font-medium mb-2">{L(locale, 'phone')}</label>
           <input type="tel" name="phone" className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary" />
         </div>
+        <fieldset className="md:col-span-2 border-t border-border pt-5 mt-1">
+          <legend className="text-sm font-medium">{Q(locale, 'title')}</legend>
+          <p className="text-xs text-muted-foreground mt-1 mb-3">{Q(locale, 'hint')}</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <label className="block text-sm font-medium mb-2">{Q(locale, 'industry')}</label>
+              <select name="industry" defaultValue="" className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary bg-white">
+                <option value="">—</option>
+                {INDUSTRY_OPTIONS.map((option) => <option key={option} value={option}>{Q(locale, option)}</option>)}
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2">{Q(locale, 'companySize')}</label>
+              <select name="company_size" defaultValue="" className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary bg-white">
+                <option value="">—</option>
+                {COMPANY_SIZE_OPTIONS.map((option) => <option key={option} value={option}>{Q(locale, option)}</option>)}
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2">{Q(locale, 'jobTitle')}</label>
+              <input type="text" name="job_title" className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary" />
+            </div>
+          </div>
+        </fieldset>
         <div>
           <label className="block text-sm font-medium mb-2">{L(locale, 'delivery_date')}</label>
           <input type="date" name="delivery_date" className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary" />
@@ -353,7 +420,10 @@ export default function ContactForm({ locale }: Props) {
       </button>
 
       {status === 'success' && (
-        <div className="p-4 bg-green-50 border border-green-200 text-green-800 rounded-none text-sm">{L(locale, 'success')}</div>
+        <div className="p-5 bg-green-50 border border-green-200 text-green-900 rounded-none text-sm" role="status" aria-live="polite">
+          <p className="font-semibold mb-1">{Q(locale, 'successTitle')}</p>
+          <p className="text-green-800/85 leading-relaxed">{Q(locale, 'successDetail')}</p>
+        </div>
       )}
       {status === 'error' && (
         <div className="p-4 bg-red-50 border border-red-200 text-red-800 rounded-none text-sm">{L(locale, 'error')}</div>

@@ -120,6 +120,15 @@ const wholesaleFaqTitle: Record<Locale, string> = {
   kr: '도매 구매 FAQ',
   cn: '批发采购常见问题',
 };
+const quickInquiryFeedback: Record<Locale, { sending: string; success: string; error: string }> = {
+  en: { sending: 'Sending inquiry…', success: 'Inquiry received. Our sales team will reply within 24 hours.', error: 'We could not send this inquiry. Please try again or use the contact page.' },
+  de: { sending: 'Anfrage wird gesendet…', success: 'Anfrage erhalten. Unser Vertrieb antwortet innerhalb von 24 Stunden.', error: 'Die Anfrage konnte nicht gesendet werden. Bitte erneut versuchen oder die Kontaktseite nutzen.' },
+  fr: { sending: 'Envoi de la demande…', success: 'Demande reçue. Notre équipe commerciale répondra sous 24h.', error: 'La demande n’a pas pu être envoyée. Veuillez réessayer ou utiliser la page contact.' },
+  ja: { sending: 'お問い合わせを送信中…', success: 'お問い合わせを受け付けました。24時間以内に営業担当よりご連絡します。', error: '送信できませんでした。もう一度お試しいただくか、お問い合わせページをご利用ください。' },
+  kr: { sending: '문의 전송 중…', success: '문의가 접수되었습니다. 영업팀이 24시간 이내에 회신합니다.', error: '문의를 전송하지 못했습니다. 다시 시도하거나 문의 페이지를 이용해 주세요.' },
+  cn: { sending: '正在提交询盘…', success: '询盘已收到，销售团队将在 24 小时内回复。', error: '询盘未能发送，请重试或使用联系页面。' },
+};
+const quickInquiryText = quickInquiryFeedback[locale] || quickInquiryFeedback.en;
 
 // Custom branding / options / size chart section titles & subtitles (used by Section 10b and 10c).
 const customOptionsTitle: Record<Locale, string> = {
@@ -1834,11 +1843,13 @@ const relatedViewAll: Record<Locale, string> = {
 
             >
 
-              <input type="hidden" name="type" value="raw" />
+              <input type="hidden" name="type" value="garment" />
 
-              <input type="hidden" name="inquiry_type" value="raw" />
+              <input type="hidden" name="inquiry_type" value="garment" />
 
               <input type="hidden" name="product" value={product.id} />
+
+              <input type="hidden" name="product_interest" value={`${product.id} — ${product.name}`} />
 
               <input type="hidden" name="locale" value={locale} />
 
@@ -1883,6 +1894,8 @@ const relatedViewAll: Record<Locale, string> = {
                 <span class="text-xs text-muted-foreground">Reply within 24 hours · ISO 9001 + OEKO-TEX</span>
 
               </div>
+
+              <p data-quick-inquiry-status class="hidden text-sm" role="status" aria-live="polite" data-sending={quickInquiryText.sending} data-success={quickInquiryText.success} data-error={quickInquiryText.error}></p>
 
             </form>
 
@@ -2990,8 +3003,18 @@ const relatedViewAll: Record<Locale, string> = {
             e.preventDefault();
 
             var submit = quickForm.querySelector('button[type="submit"]');
+            var quickStatus = quickForm.querySelector('[data-quick-inquiry-status]');
+            var originalSubmitText = submit ? submit.textContent : '';
 
-            if (submit) submit.disabled = true;
+            function setQuickStatus(message, tone) {
+              if (!quickStatus) return;
+              quickStatus.textContent = message;
+              quickStatus.classList.remove('hidden', 'text-red-700', 'text-green-800', 'text-muted-foreground', 'bg-red-50', 'bg-green-50', 'bg-secondary/30', 'border-red-200', 'border-green-200', 'border-border', 'border', 'px-3', 'py-2');
+              quickStatus.classList.add('border', 'px-3', 'py-2', tone === 'success' ? 'text-green-800' : tone === 'error' ? 'text-red-700' : 'text-muted-foreground', tone === 'success' ? 'bg-green-50' : tone === 'error' ? 'bg-red-50' : 'bg-secondary/30', tone === 'success' ? 'border-green-200' : tone === 'error' ? 'border-red-200' : 'border-border');
+            }
+
+            if (submit) { submit.disabled = true; submit.textContent = quickStatus && quickStatus.dataset.sending ? quickStatus.dataset.sending : originalSubmitText; }
+            setQuickStatus(quickStatus && quickStatus.dataset.sending ? quickStatus.dataset.sending : 'Sending inquiry…', 'pending');
 
             try {
 
@@ -3013,15 +3036,15 @@ const relatedViewAll: Record<Locale, string> = {
 
               quickForm.reset();
 
-              alert('Inquiry sent. We will reply within 24 hours.');
+              setQuickStatus(quickStatus && quickStatus.dataset.success ? quickStatus.dataset.success : 'Inquiry received.', 'success');
 
             } catch (error) {
 
-              alert('Could not send. Please try again or use the contact page.');
+              setQuickStatus(quickStatus && quickStatus.dataset.error ? quickStatus.dataset.error : 'Could not send. Please try again.', 'error');
 
             } finally {
 
-              if (submit) submit.disabled = false;
+              if (submit) { submit.disabled = false; submit.textContent = originalSubmitText; }
 
             }
 

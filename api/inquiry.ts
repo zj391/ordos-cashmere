@@ -76,6 +76,7 @@ const MAX_PHONE = 60;
 const MAX_EMAIL_LEN = 254;
 const MAX_QUANTITY_LEN = 80;
 const MAX_MESSAGE_LEN = 4000;
+const MAX_PRODUCT_INTEREST_LEN = 500;
 const MAX_UTM_LEN = 200;
 const MAX_ATTACHMENT_BYTES = 2 * 1024 * 1024; // 2MB raw dataUrl
 const MAX_ATTACHMENTS = 3;
@@ -94,6 +95,7 @@ function validatePayload(data: Partial<InquiryPayload>): ValidationResult {
   if (data.phone && (typeof data.phone !== 'string' || data.phone.length > MAX_PHONE)) errors.push('phone');
   if (data.quantity && (typeof data.quantity !== 'string' || data.quantity.length > MAX_QUANTITY_LEN)) errors.push('quantity');
   if (data.message && (typeof data.message !== 'string' || data.message.length > MAX_MESSAGE_LEN)) errors.push('message');
+  if (data.product_interest && (typeof data.product_interest !== 'string' || data.product_interest.length > MAX_PRODUCT_INTEREST_LEN)) errors.push('product_interest');
   for (const field of ['utm_source', 'utm_medium', 'utm_campaign'] as const) {
     if (data[field] && (typeof data[field] !== 'string' || (data[field] as string).length > MAX_UTM_LEN)) errors.push(field);
   }
@@ -164,6 +166,7 @@ interface InquiryPayload {
   company_size?: string;
   job_title?: string;
   inquiry_type?: string;
+  product_interest?: string;
 }
 
 const INQUIRY_TYPE_MAP = {
@@ -345,7 +348,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         country: data.country,
         email: data.email,
         phone: data.phone,
-        product_interest: inquiryType,
+        product_interest: data.product_interest || inquiryType,
         quantity_kg: inquiryType === 'raw_material' ? qty : null,
         quantity_m: inquiryType === 'yarn_fabric' ? qty : null,
         quantity_pcs: inquiryType === 'garment_oem' ? qty : null,
@@ -467,6 +470,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         <p><strong>Country:</strong> ${data.country}</p>
         <p><strong>Phone:</strong> ${data.phone || 'N/A'}</p>
         <p><strong>Quantity:</strong> ${data.quantity || 'N/A'}</p>
+        <p><strong>Product reference:</strong> ${escapeHtml(data.product_interest || 'N/A')}</p>
+        <p><strong>Business type:</strong> ${escapeHtml(data.industry || 'N/A')}</p>
+        <p><strong>Company size:</strong> ${escapeHtml(data.company_size || 'N/A')}</p>
+        <p><strong>Job title:</strong> ${escapeHtml(data.job_title || 'N/A')}</p>
+        <p><strong>Required delivery date:</strong> ${escapeHtml(data.delivery_date || 'N/A')}</p>
         <p><strong>Known customer:</strong> ${known ? `Yes (${known.grade})` : 'No'}</p>
         <p><strong>Message:</strong> ${data.message || 'N/A'}</p>
         <p><strong>Locale:</strong> ${data.locale}</p>
