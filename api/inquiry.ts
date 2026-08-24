@@ -78,6 +78,7 @@ const MAX_QUANTITY_LEN = 80;
 const MAX_MESSAGE_LEN = 4000;
 const MAX_PRODUCT_INTEREST_LEN = 500;
 const MAX_UTM_LEN = 200;
+const MAX_SALES_CONTEXT_LEN = 80;
 const MAX_ATTACHMENT_BYTES = 2 * 1024 * 1024; // 2MB raw dataUrl
 const MAX_ATTACHMENTS = 3;
 const ALLOWED_ATTACHMENT_MIME = ['image/png', 'image/jpeg', 'image/webp', 'application/pdf'];
@@ -96,6 +97,9 @@ function validatePayload(data: Partial<InquiryPayload>): ValidationResult {
   if (data.quantity && (typeof data.quantity !== 'string' || data.quantity.length > MAX_QUANTITY_LEN)) errors.push('quantity');
   if (data.message && (typeof data.message !== 'string' || data.message.length > MAX_MESSAGE_LEN)) errors.push('message');
   if (data.product_interest && (typeof data.product_interest !== 'string' || data.product_interest.length > MAX_PRODUCT_INTEREST_LEN)) errors.push('product_interest');
+  if (data.preferred_channel && !['email', 'whatsapp', 'wechat'].includes(data.preferred_channel)) errors.push('preferred_channel');
+  if (data.purchase_intent && !['quote', 'samples', 'documents', 'factory'].includes(data.purchase_intent)) errors.push('purchase_intent');
+  if (data.market_preference && (typeof data.market_preference !== 'string' || data.market_preference.length > MAX_SALES_CONTEXT_LEN)) errors.push('market_preference');
   for (const field of ['utm_source', 'utm_medium', 'utm_campaign'] as const) {
     if (data[field] && (typeof data[field] !== 'string' || (data[field] as string).length > MAX_UTM_LEN)) errors.push(field);
   }
@@ -167,6 +171,9 @@ interface InquiryPayload {
   job_title?: string;
   inquiry_type?: string;
   product_interest?: string;
+  preferred_channel?: 'email' | 'whatsapp' | 'wechat';
+  purchase_intent?: 'quote' | 'samples' | 'documents' | 'factory';
+  market_preference?: string;
 }
 
 const INQUIRY_TYPE_MAP = {
@@ -398,10 +405,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           company_size: data.company_size || "unknown",
           job_title: data.job_title,
           source: "inbound_inquiry",
-          source_detail: "inquiry_form_" + (data.inquiry_type || "unknown"),
+          source_detail: "inquiry_form_" + (data.inquiry_type || "unknown") + "_" + (data.purchase_intent || "general"),
           inquiry_type: data.inquiry_type || data.type,
           quantity: data.quantity,
           message: data.message,
+          preferred_channel: data.preferred_channel,
+          purchase_intent: data.purchase_intent,
+          market_preference: data.market_preference,
         }),
       }).catch((err) => console.error("sync-inquiry-to-lead error:", err));
     }
@@ -474,6 +484,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         <p><strong>Business type:</strong> ${escapeHtml(data.industry || 'N/A')}</p>
         <p><strong>Company size:</strong> ${escapeHtml(data.company_size || 'N/A')}</p>
         <p><strong>Job title:</strong> ${escapeHtml(data.job_title || 'N/A')}</p>
+        <p><strong>Preferred follow-up:</strong> ${escapeHtml(data.preferred_channel || 'N/A')}</p>
+        <p><strong>Purchase intent:</strong> ${escapeHtml(data.purchase_intent || 'N/A')}</p>
+        <p><strong>Market preference:</strong> ${escapeHtml(data.market_preference || 'N/A')}</p>
         <p><strong>Required delivery date:</strong> ${escapeHtml(data.delivery_date || 'N/A')}</p>
         <p><strong>Known customer:</strong> ${known ? `Yes (${known.grade})` : 'No'}</p>
         <p><strong>Message:</strong> ${data.message || 'N/A'}</p>

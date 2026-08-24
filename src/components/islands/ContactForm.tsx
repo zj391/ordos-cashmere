@@ -128,6 +128,15 @@ const QUALIFICATION_LABELS: Record<string, Record<string, string>> = {
 const Q = (locale: string, key: string) => QUALIFICATION_LABELS[locale]?.[key] || QUALIFICATION_LABELS.en[key] || key;
 const INDUSTRY_OPTIONS = ['luxury_brand', 'mid_luxury_brand', 'distributor', 'manufacturer', 'wholesaler', 'retailer', 'designer_independent'] as const;
 const COMPANY_SIZE_OPTIONS = ['startup', 'small', 'mid', 'large', 'enterprise'] as const;
+const SALES_ROUTE_COPY: Record<string, Record<string, string>> = {
+  en: { title: 'Sales follow-up', hint: 'Choose the most useful starting point for your buying team.', channel: 'Preferred follow-up', intent: 'Current purchase intent', email: 'Email proposal', whatsapp: 'WhatsApp', wechat: 'WeChat', quote: 'Quotation & MOQ', samples: 'Sample development', documents: 'Compliance / documents', factory: 'Factory visit / production review', internationalHint: 'International buyers can continue by email or WhatsApp; our sales team will align time zone and delivery terms with your destination market.' },
+  cn: { title: '销售跟进', hint: '选择最适合贵司采购团队的沟通起点。', channel: '首选跟进方式', intent: '当前采购意图', email: '邮件报价', whatsapp: 'WhatsApp', wechat: '微信', quote: '报价与起订量', samples: '样品开发', documents: '合规 / 资料文件', factory: '工厂参观 / 产能审核', internationalHint: '中文采购团队可优先选择微信或邮件；销售团队将根据您的目的市场同步交期与贸易条款。' },
+  de: { title: 'Vertriebsnachverfolgung', hint: 'Wählen Sie den passenden Startpunkt für Ihr Einkaufsteam.', channel: 'Bevorzugter Kontaktweg', intent: 'Aktuelle Kaufabsicht', email: 'Angebot per E-Mail', whatsapp: 'WhatsApp', wechat: 'WeChat', quote: 'Angebot & MOQ', samples: 'Musterentwicklung', documents: 'Compliance / Unterlagen', factory: 'Werksbesuch / Produktionsprüfung', internationalHint: 'Internationale Käufer können per E-Mail oder WhatsApp fortfahren; unser Vertrieb stimmt Zeitzone und Lieferbedingungen auf Ihren Zielmarkt ab.' },
+  fr: { title: 'Suivi commercial', hint: 'Choisissez le point de départ le plus utile pour votre équipe achats.', channel: 'Canal de suivi préféré', intent: 'Intention d’achat actuelle', email: 'Proposition par e-mail', whatsapp: 'WhatsApp', wechat: 'WeChat', quote: 'Devis & MOQ', samples: 'Développement d’échantillons', documents: 'Conformité / documents', factory: 'Visite usine / revue production', internationalHint: 'Les acheteurs internationaux peuvent poursuivre par e-mail ou WhatsApp ; notre équipe aligne fuseau horaire et conditions de livraison sur votre marché.' },
+  ja: { title: '営業フォロー', hint: '購買チームに適した相談の起点を選択してください。', channel: '希望連絡手段', intent: '現在の購買目的', email: 'メールで見積もり', whatsapp: 'WhatsApp', wechat: 'WeChat', quote: '見積もり・MOQ', samples: 'サンプル開発', documents: 'コンプライアンス・資料', factory: '工場訪問・生産確認', internationalHint: '海外のお客様はメールまたは WhatsApp でご連絡いただけます。営業チームが仕向地に合わせて時差と納品条件を調整します。' },
+  kr: { title: '영업 후속 안내', hint: '구매팀에 가장 적합한 상담 시작점을 선택하세요.', channel: '선호 연락 방식', intent: '현재 구매 목적', email: '이메일 견적', whatsapp: 'WhatsApp', wechat: 'WeChat', quote: '견적 및 MOQ', samples: '샘플 개발', documents: '규정 준수 / 자료', factory: '공장 방문 / 생산 검토', internationalHint: '해외 구매자는 이메일 또는 WhatsApp으로 계속 상담할 수 있으며, 영업팀이 목적 시장에 맞춰 시차와 납품 조건을 조율합니다.' },
+};
+const S = (locale: string, key: string) => SALES_ROUTE_COPY[locale]?.[key] || SALES_ROUTE_COPY.en[key] || key;
 
 export default function ContactForm({ locale }: Props) {
   const [type, setType] = useState<'raw' | 'yarn' | 'garment'>('raw');
@@ -217,6 +226,7 @@ export default function ContactForm({ locale }: Props) {
     }
     data.type = type;
     const payload: any = { ...data, locale, type };
+    payload.market_preference = locale === 'cn' ? 'china' : 'international';
     if (cartItems.length > 0) payload.cart_items = cartItems;
     if (attachments.length > 0) payload.attachments = attachments;
     if (productInterest) payload.product_interest = productInterest;
@@ -373,6 +383,30 @@ export default function ContactForm({ locale }: Props) {
               <input type="text" name="job_title" className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary" />
             </div>
           </div>
+        </fieldset>
+        <fieldset className="md:col-span-2 border-t border-border pt-5 mt-1">
+          <legend className="text-sm font-medium">{S(locale, 'title')}</legend>
+          <p className="text-xs text-muted-foreground mt-1 mb-3">{S(locale, 'hint')}</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium mb-2">{S(locale, 'channel')}</label>
+              <select name="preferred_channel" defaultValue={locale === 'cn' ? 'wechat' : 'email'} className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary bg-white">
+                <option value="email">{S(locale, 'email')}</option>
+                <option value="whatsapp">{S(locale, 'whatsapp')}</option>
+                <option value="wechat">{S(locale, 'wechat')}</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2">{S(locale, 'intent')}</label>
+              <select name="purchase_intent" defaultValue="quote" className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary bg-white">
+                <option value="quote">{S(locale, 'quote')}</option>
+                <option value="samples">{S(locale, 'samples')}</option>
+                <option value="documents">{S(locale, 'documents')}</option>
+                <option value="factory">{S(locale, 'factory')}</option>
+              </select>
+            </div>
+          </div>
+          <p className="text-xs text-muted-foreground mt-3 leading-relaxed">{S(locale, 'internationalHint')}</p>
         </fieldset>
         <div>
           <label className="block text-sm font-medium mb-2">{L(locale, 'delivery_date')}</label>

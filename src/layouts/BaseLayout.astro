@@ -827,11 +827,31 @@ if (faqs && faqs.length > 0) {
 
         const lang = (navigator.language || 'en').toLowerCase();
 
-        const isChinaIP = /^(zh|zh-cn|zh-hans)/i.test(lang);
+        const siteLocale = (document.documentElement.lang || 'en').toLowerCase();
+        const isChinaIP = siteLocale === 'cn' || /^zh(?:-|$)/i.test(siteLocale) || /^(zh|zh-cn|zh-hans)/i.test(lang);
 
         window.__HERMES_REGION__ = isChinaIP ? 'CN' : 'GLOBAL';
 
         window.__HERMES_HIGHLIGHT__ = isChinaIP ? 'wechat' : 'whatsapp';
+        window.__HERMES_MARKET_PREFERENCE__ = isChinaIP ? 'china' : 'international';
+
+        window.__trackSalesChannel = function(channel) {
+          try {
+            fetch('https://www.erdosdx.com/api/inquiry?action=event', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                event_name: 'sales_channel_click',
+                channel: channel,
+                locale: window.__HERMES_LOCALE__,
+                market_preference: window.__HERMES_MARKET_PREFERENCE__,
+                path: location.pathname,
+                referrer: document.referrer || '',
+              }),
+              keepalive: true,
+            }).catch(() => {});
+          } catch (e) {}
+        };
 
 
 
