@@ -14,10 +14,10 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SITE_URL = 'https://www.erdosdx.com';
 const LOCALES = ['en', 'de', 'fr', 'ja', 'kr', 'cn'];
+const LOCALE_HREFLANG = { en: 'en', de: 'de', fr: 'fr', ja: 'ja', kr: 'ko', cn: 'zh-CN' };
 const DIST_DIR = path.join(ROOT, 'dist/client');
 const OUTPUT_DIR = DIST_DIR; // write back into dist/
-
-const I18N_LINK = (path) => LOCALES.map((loc) => ({ lang: loc, url: `${SITE_URL}/${loc}${path}` }));
+const I18N_LINK = (path) => LOCALES.map((loc) => ({ lang: LOCALE_HREFLANG[loc], url: `${SITE_URL}/${loc}${path}` }));
 
 // 8-20: 收集所有真实 build 出来的 URL path（包括各 locale），用于
 // 在生成 hreflang alt link 时过滤掉不存在的 locale 变体。之前版本

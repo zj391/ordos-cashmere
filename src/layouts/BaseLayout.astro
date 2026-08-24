@@ -120,6 +120,8 @@ const canonicalRaw = cleanCanonicalPath
   ? `${SITE_URL}/${locale}${cleanCanonicalPath}`
   : `${SITE_URL}/${locale}${cleanPath}`;
 const canonical = canonicalRaw.endsWith('/') ? canonicalRaw : `${canonicalRaw}/`;
+const socialImage = /^https?:\/\//i.test(ogImage) ? ogImage : new URL(ogImage, SITE_URL).toString();
+const socialImageAlt = finalTitle;
 
 
 
@@ -336,7 +338,13 @@ const pageSchema = (() => {
 
         description: finalDescription,
 
+        url: canonical,
         inLanguage: LOCALE_HREFLANG[locale],
+        primaryImageOfPage: {
+          '@type': 'ImageObject',
+          url: socialImage,
+          caption: socialImageAlt,
+        },
 
       };
 
@@ -494,7 +502,9 @@ if (faqs && faqs.length > 0) {
 
     <meta property="og:url" content={canonical} />
 
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:secure_url" content={socialImage} />
+    <meta property="og:image:alt" content={socialImageAlt} />
 
     <meta property="og:site_name" content={SITE_INFO.name} />
 
@@ -510,7 +520,8 @@ if (faqs && faqs.length > 0) {
 
     <meta name="twitter:description" content={finalDescription} />
 
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={socialImageAlt} />
 
 
 
