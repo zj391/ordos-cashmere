@@ -1,7 +1,7 @@
 {
   "hats": {
     "feature": {
-    "image": "/products/mic/prod_018_00.webp",
+    "image": "/images/menu-editorial/menu-hats-material-editorial.webp",
       "eyebrow": { "en": "B2B Catalog 2026", "cn": "B2B 选品目录", "de": "B2B Katalog", "fr": "Catalogue B2B", "ja": "B2Bカタログ", "kr": "B2B 카탈로그" },
       "title": { "en": "Cashmere Hats — OEM from 100pcs", "cn": "羊绒帽 — 起订 100 件", "de": "Kaschmir-Hüte — OEM ab 100 Stk", "fr": "Bonnets cachemire — OEM dès 100 pcs", "ja": "カシミア帽 — OEM 100枚〜", "kr": "캐시미어 모자 — OEM 100pcs부터" },
       "href": { "en": "/en/products?cat=hats", "de": "/de/products?cat=hats", "fr": "/fr/products?cat=hats", "ja": "/ja/products?cat=hats", "kr": "/kr/products?cat=hats", "cn": "/cn/products?cat=hats" },
