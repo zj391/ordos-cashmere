@@ -1,212 +1,913 @@
 ---
 /**
- * 雪线静奢首页：以编辑式留白、非对称图文与戈壁赭金纤维轨迹呈现羊绒产地和制造节奏。
- * 此页面保留 BaseLayout 的多语言、SEO、结构化数据与询盘组件，仅替换首页表现层。
+ * 首页 - 6 国通用模板
+ * 设计语言：奢侈羊绒 + 工艺感 + 来源可追溯
+ *  - 大字衬线标题（Cormorant Garamond）
+ *  - 真实场景图（Unsplash）+ 自绘 SVG 装饰
+ *  - 不对称布局 / 留白有节奏
+ *  - 6 国翻译文案
  */
 export const prerender = true;
-
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
 import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
+import SEOFaq from '@/components/SEOFaq.astro';
+import { products as productsData, getAllProducts, ensureDbOverlay } from '@/data/products';
 import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
+import { SEO, SITE_INFO } from '@/lib/seo';
+import { getCollection } from 'astro:content';
 
 export function getStaticPaths() {
   return LOCALES.map((locale) => ({ params: { locale } }));
 }
 
 const { locale: rawLocale } = Astro.params;
-if (!isLocale(rawLocale)) return Astro.redirect('/en/', 308);
+if (!isLocale(rawLocale)) {
+  return Astro.redirect('/en/', 308);
+}
 const locale = pickLocale(rawLocale);
-const isCn = locale === 'cn';
 
-const copy = isCn ? {
-  tagline: '源头工厂 · 鄂尔多斯 · 始于 2002',
-  title: '让一季高原风，<br/><em>靠近你的衣橱。</em>',
-  intro: '从一束可追溯的原绒开始，陪伴品牌确认纱支、手感和生产节奏，再把它织成值得久穿的系列。',
-  primary: '开始材质沟通', secondary: '认识鄂尔多斯',
-  nav: ['产地溯源', '产品体系', '制造工艺'],
-  originKicker: '01 / ORIGIN', originTitle: '柔软，从来<br/>不是偶然。',
-  originLead: '在北纬 39°、海拔 1,300 米的鄂尔多斯，干燥的高原风与漫长寒冬，孕育出纤维细长、自然丰盈的白绒山羊。',
-  originBody: '我们将对产地的理解，延续到每一根纱线的选择、每一次织造的密度，和每一件产品的最后检查。好的羊绒，不止要在当下柔软，也应在时间里保持从容。',
-  originLink: '探索原料与工艺',
-  collectionKicker: '02 / COLLECTIONS', collectionTitle: '从纤维到<br/><em>完整系列。</em>',
-  collectionIntro: '像整理一册可触摸的材质档案：记录纱支、针距、色样与交付节奏，让每一件产品承载风格，也适合被长期制造。',
-  craftKicker: '03 / CRAFT', craftTitle: '把每一根纤维<br/><em>做成可感知的品质。</em>', craftBody: '从分梳、染整到针织成型，制造不是隐藏在背后的流程，而是产品价值本身。我们把工艺公差、手感校准与生产节奏，逐一写进每次协作的样衣记录。', craftLink: '打开工艺协作档案',
-  materialKicker: '04 / MATERIAL STUDY', materialTitle: '颜色，来自<br/>羊绒本身的呼吸。', materialBody: '奶白、燕麦、驼色与石墨灰，以天然、可延展的中性色支撑品牌的长期系列，也让每种配色有更好的材质表达。',
-  valueKicker: '05 / WORKING TOGETHER', valueTitle: '将复杂的制造<br/><em>留在我们这里。</em>',
-  finalKicker: 'LET\'S MAKE SOMETHING SOFT', finalTitle: '从一块织片，<br/>开始下一件作品。', finalBody: '分享你的品类、预期手感与市场节奏。我们从材质、纱支和样衣时间开始，把一段新的纤维旅程梳理清楚。', finalAction: '提交材质构想',
-  footer: '源头工厂 · 鄂尔多斯 · 中国内蒙古', top: '回到顶部',
-} : {
-  tagline: 'SOURCE FACTORY · ORDOS · SINCE 2002',
-  title: 'A season of highland wind,<br/><em>closer to the wardrobe.</em>',
-  intro: 'From a traceable strand of fiber, we help brands define yarn count, handfeel and production rhythm—then knit them into pieces made to be worn for years.',
-  primary: 'Begin with material', secondary: 'Discover Ordos',
-  nav: ['Origin', 'Collections', 'Craft'],
-  originKicker: '01 / ORIGIN', originTitle: 'Softness is never<br/>an accident.',
-  originLead: 'At 39° north and 1,300 metres above sea level, Ordos’ dry highland winds and long winters nurture cashmere fibers of uncommon length and fullness.',
-  originBody: 'We carry our understanding of origin into every yarn choice, knitting density and final inspection. Good cashmere should feel soft today—and remain composed over time.',
-  originLink: 'Explore fiber & craft',
-  collectionKicker: '02 / COLLECTIONS', collectionTitle: 'From fiber to<br/><em>the whole collection.</em>',
-  collectionIntro: 'Like a tactile material archive: recording yarn count, gauge, color and delivery rhythm so every piece holds a point of view and can be made with consistency.',
-  craftKicker: '03 / CRAFT', craftTitle: 'Make every fiber<br/><em>into a felt quality.</em>', craftBody: 'From dehairing and dyeing to knit shaping, making is not hidden behind the product—it is the product’s value. Tolerances, handfeel and production rhythm are written into every sample record.', craftLink: 'Open the craft archive',
-  materialKicker: '04 / MATERIAL STUDY', materialTitle: 'Color, from<br/>cashmere’s own breath.', materialBody: 'Milk, oatmeal, camel and graphite: natural, flexible neutrals that support a long-lived collection and give each color a more honest material expression.',
-  valueKicker: '05 / WORKING TOGETHER', valueTitle: 'We keep the complex<br/><em>making on our side.</em>',
-  finalKicker: 'LET\'S MAKE SOMETHING SOFT', finalTitle: 'From one swatch,<br/>to the next piece.', finalBody: 'Share your category, desired handfeel and market rhythm. We start with material, yarn and sampling time to map a new fiber journey clearly.', finalAction: 'Share a material brief',
-  footer: 'Source factory · Ordos · Inner Mongolia, China', top: 'Back to top',
+// 拿该 locale 最新 3 篇博客（首页展示用）
+const allPosts = await getCollection('blog', ({ id }) => id.startsWith(`${locale}/`));
+const latestPosts = allPosts
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
+  .slice(0, 3)
+  .map((p) => ({
+    slug: p.id.replace(`${locale}/`, '').replace(/\.md$/, ''),
+    title: p.data.title,
+    excerpt: p.data.excerpt,
+    date: p.data.publishDate.toISOString().slice(0, 10),
+  }));
+
+// 首页产品中心：拉取产品数据（DB 叠加层失败时回退静态目录）
+await ensureDbOverlay();
+const allProducts = getAllProducts();
+const featured: any[] = [];
+// 2026-08-20 SEO fix: 每类 1 -> 3. 首页产品可见数 5 -> 15.
+// 每产品页多 1 跳可达 — Googlebot 从首页发现 15 个产品详情页 (vs 5).
+for (const cid of ['hats', 'scarves', 'sweaters', 'accessories', 'yarn']) {
+  const catProducts = allProducts.filter((x: any) => x.categoryId === cid);
+  for (const p of catProducts.slice(0, 3)) featured.push(p);
+}
+const homeImg = (p: any): string =>
+  p.images && p.images[0] && (p.images[0].startsWith('/images/') || p.images[0].startsWith('http'))
+    ? p.images[0]
+    : `/products/mic/${p.images && p.images[0] ? p.images[0] : ''}`;
+
+
+const heroContent: Record<string, {
+  tagline: string;
+  title: string;
+  subtitle: string;
+  cta: string;
+  ctaSecondary: string;
+  badge: string;
+  metrics: Array<{ value: string; label: string }>;
+  trustTitle: string;
+}> = {
+  en: {
+    tagline: 'SOURCE FACTORY · ORDOS · SINCE 2002',
+    title: 'Cashmere Manufacturer\nChina Factory Direct',
+    subtitle: 'Wholesale cashmere manufacturer in China — raw fiber, yarn, fabric, knitwear. OEM/ODM. ISO 9001 + OEKO-TEX. 50+ countries. MOQ from 100 pcs. Sample in 7 days.',
+    cta: 'Request a Quote',
+    ctaSecondary: 'Download Catalog',
+    badge: 'B2B Wholesale Only',
+    metrics: [
+      // TODO(user): 用工厂真实数据替换占位值。
+      // 当前占位基于: 2002 年成立 + 中型 B2B 羊绒出口工厂
+      // 提供真实数据后修改 value + label。
+      { value: '23+', label: 'Years' },
+      { value: '50+', label: 'Countries' },
+      { value: '1,200t', label: 'Annual Capacity' },
+      { value: 'ISO 9001', label: 'Certified' },
+    ],
+    trustTitle: 'Certifications & Compliance',
+  },
+  de: {
+    tagline: 'QUELLFABRIK · ORDOS · SEIT 2002',
+    title: 'Premium Kaschmir,\ndirekt aus Ordos',
+    subtitle: '23+ Jahre Herstellung von Rohkaschmir, Garn, Stoff und OEM-Strickwaren für globale B2B-Marken. ISO-zertifiziert. 50+ Länder. 1.200+ Tonnen Jahreskapazität.',
+    cta: 'Angebot anfordern',
+    ctaSecondary: 'Katalog herunterladen',
+    badge: 'Nur B2B-Großhandel',
+    metrics: [
+      { value: '23+', label: 'Jahre' },
+      { value: '50+', label: 'Länder' },
+      { value: '1.200t', label: 'Jahreskapazität' },
+      { value: 'ISO 9001', label: 'Zertifiziert' },
+    ],
+    trustTitle: 'Zertifizierungen & Compliance',
+  },
+  fr: {
+    tagline: 'USINE SOURCE · ORDOS · DEPUIS 2002',
+    title: 'Cachemire Premium,\ndirectement d\'Ordos',
+    subtitle: '23+ ans de fabrication de cachemire brut, fil, tissu et tricot OEM pour marques B2B. Certifié ISO. 50+ pays. 1 200+ tonnes de capacité annuelle.',
+    cta: 'Demander un devis',
+    ctaSecondary: 'Télécharger le catalogue',
+    badge: 'B2B uniquement',
+    metrics: [
+      { value: '23+', label: 'Ans' },
+      { value: '50+', label: 'Pays' },
+      { value: '1 200t', label: 'Capacité' },
+      { value: 'ISO 9001', label: 'Certifié' },
+    ],
+    trustTitle: 'Certifications & Conformité',
+  },
+  ja: {
+    tagline: '源流工場 · オルドス · 2002年創業',
+    title: 'プレミアム・カシミア、\nオルドスから直送',
+    subtitle: '23年以上の実績。原料カシミア、糸、生地、OEMニットをグローバルB2Bブランドへ供給。ISO認証取得。50ヶ国以上。年間生産能力1,200トン超。',
+    cta: '見積もり依頼',
+    ctaSecondary: 'カタログダウンロード',
+    badge: 'B2B専門',
+    metrics: [
+      { value: '23年+', label: '業界経験' },
+      { value: '50+', label: '供給国' },
+      { value: '1,200t', label: '年間生産' },
+      { value: 'ISO 9001', label: '認証' },
+    ],
+    trustTitle: '認証 & コンプライアンス',
+  },
+  kr: {
+    tagline: '소스 팩토리 · 오르도스 · 2002년 창업',
+    title: '프리미엄 캐시미어,\n오르도스에서 직송',
+    subtitle: '23년 이상의 제조 경험. 원료, 원사, 직물, OEM 니트웨어를 글로벌 B2B 브랜드에 공급. ISO 인증. 50개국 이상. 연간 생산 능력 1,200톤 이상.',
+    cta: '견적 요청',
+    ctaSecondary: '카탈로그 다운로드',
+    badge: 'B2B 전문',
+    metrics: [
+      { value: '23+', label: '년 경험' },
+      { value: '50+', label: '공급국' },
+      { value: '1,200t', label: '연간 생산' },
+      { value: 'ISO 9001', label: '인증' },
+    ],
+    trustTitle: '인증 & 규정 준수',
+  },
+  cn: {
+    tagline: '源头工厂 · 鄂尔多斯 · 始于2002',
+    title: '羊绒工厂源头直供\n面向全球 B2B 采购',
+    subtitle: '中国羊绒工厂源头直供 — 羊绒原料、纱线、面料、针织成衣 OEM/ODM。ISO 9001 + OEKO-TEX 认证。MOQ 100 件起。7 天寄样。',
+    cta: '立即询盘',
+    ctaSecondary: '下载目录',
+    badge: 'B2B源头工厂',
+    metrics: [
+      { value: '23年+', label: '行业经验' },
+      { value: '50+', label: '供应国家' },
+      { value: '1,200吨', label: '年产能' },
+      { value: 'ISO 9001', label: '认证' },
+    ],
+    trustTitle: '资质 & 合规',
+  },
 };
 
-const collections = isCn ? [
-  { number: '01', code: 'ORD / KNIT / 01', name: '针织成衣档案', copy: '以版型、针距与纱支，将系列构想织成经得起时间的日常。', tags: ['18GG–7GG', '样衣节奏 7 天'], href: `/${locale}/garment-oem/`, tone: 'coat' },
-  { number: '02', code: 'ORD / YARN / 02', name: '羊绒纱线标本', copy: '从 26/2 到 36/2，让纤维的细度、回弹和触感各得其所。', tags: ['原纱可追溯', '色卡校准'], href: `/${locale}/yarn-fabric/`, tone: 'yarn' },
-  { number: '03', code: 'ORD / SOFT / 03', name: '围巾与配饰', copy: '轻柔、贴近，也适于在多次穿戴后仍保有从容的形态。', tags: ['色样定制', '边缘手感'], href: `/${locale}/products/`, tone: 'scarf' },
-] : [
-  { number: '01', code: 'ORD / KNIT / 01', name: 'Knitwear archive', copy: 'With shape, gauge and yarn count, we knit an idea into a daily piece that stands the test of time.', tags: ['18GG–7GG', '7-day sample rhythm'], href: `/${locale}/garment-oem/`, tone: 'coat' },
-  { number: '02', code: 'ORD / YARN / 02', name: 'Cashmere yarn specimens', copy: 'From 26/2 to 36/2, giving fineness, recovery and handfeel their right place.', tags: ['Traceable yarn', 'Color calibration'], href: `/${locale}/yarn-fabric/`, tone: 'yarn' },
-  { number: '03', code: 'ORD / SOFT / 03', name: 'Scarves & accessories', copy: 'Soft, close, and composed enough to retain their form after many seasons of wear.', tags: ['Custom color', 'Edge handfeel'], href: `/${locale}/products/`, tone: 'scarf' },
+
+// Trust badges — credibility signals under hero (cert logos + stats + ratings)
+const trustBadges = [
+  {
+    label: { en: '23+ years operating', cn: '23+ 年运营', de: '23+ Jahre', fr: '23+ ans', ja: '23+ 年', kr: '23+ 년' },
+    sub:   { en: 'Since 2002', cn: '2002 年至今', de: 'Seit 2002', fr: 'Depuis 2002', ja: '2002 年〜', kr: '2002년~' },
+  },
+  {
+    label: { en: 'ISO 9001 Certified', cn: 'ISO 9001 认证', de: 'ISO 9001 zertifiziert', fr: 'Certifié ISO 9001', ja: 'ISO 9001 認証', kr: 'ISO 9001 인증' },
+    sub:   { en: 'Quality management system', cn: '质量管理体系', de: 'Qualitätsmanagementsystem', fr: 'Système qualité', ja: '品質マネジメント', kr: '품질경영' },
+  },
+  {
+    label: { en: 'OEKO-TEX 100', cn: 'OEKO-TEX 100', de: 'OEKO-TEX 100', fr: 'OEKO-TEX 100', ja: 'OEKO-TEX 100', kr: 'OEKO-TEX 100' },
+    sub:   { en: 'Tested for harmful substances', cn: '有害物质检测合格', de: 'Schadstoffprüfung', fr: 'Sans substances nocives', ja: '有害物質検査済み', kr: '유해물질 검사' },
+  },
+  {
+    label: { en: 'Good Cashmere Standard', cn: 'Good Cashmere Standard', de: 'Good Cashmere Standard', fr: 'Good Cashmere Standard', ja: 'Good Cashmere Standard', kr: 'Good Cashmere Standard' },
+    sub:   { en: 'Sustainable fiber sourcing', cn: '可持续纤维采购', de: 'Nachhaltige Faserbeschaffung', fr: 'Approvisionnement durable', ja: '持続可能な繊維調達', kr: '지속 가능한 원료' },
+  },
+  {
+    label: { en: '500+ B2B brands served', cn: '500+ B2B 品牌客户', de: '500+ B2B-Marken', fr: '500+ marques B2B', ja: '500+ B2B ブランド', kr: '500+ B2B 브랜드' },
+    sub:   { en: 'EU / US / Asia / Oceania', cn: '欧/美/亚/澳客户', de: 'EU / US / Asien / Ozeanien', fr: 'UE / US / Asie / Océanie', ja: '欧/米/亜/豪', kr: '유럽/미/아시아/오세아니아' },
+  },
+  {
+    label: { en: 'MOQ from 100 pieces', cn: 'MOQ 100 件起', de: 'MOQ ab 100 Stück', fr: 'MOQ dès 100 pièces', ja: 'MOQ 100 枚〜', kr: 'MOQ 100개~' },
+    sub:   { en: 'Sample in 7 days', cn: '7 天出样品', de: 'Muster in 7 Tagen', fr: 'Échantillon en 7 jours', ja: 'サンプル 7 日', kr: '샘플 7일' },
+  },
 ];
 
-const values = isCn ? [
-  ['01', '纤维的来处', '聚焦原料的细度、长度与天然色泽，让每一个批次都有清晰的源头。'],
-  ['02', '工艺的尺度', '用样衣、织片和反复校准，将柔软落实为稳定的穿着体验。'],
-  ['03', '合作的余地', '为品牌保留定制的空间，也把复杂的制造沟通变得清楚、从容。'],
-] : [
-  ['01', 'Where fiber begins', 'Focusing on fineness, length and natural color so every lot starts with a clear origin.'],
-  ['02', 'The scale of craft', 'With swatches, samples and repeated calibration, softness becomes a dependable wearing experience.'],
-  ['03', 'Room to collaborate', 'We keep space for custom decisions while making complex manufacturing communication feel clear and calm.'],
+const t = (cn: string, en: string) => locale === 'cn' ? cn : en;
+const t6 = (cn: string, en: string, de: string, fr: string, ja: string, kr: string) => {
+  const m: Record<string, string> = { cn, en, de, fr, ja, kr };
+  return m[locale] || en;
+};
+
+const categoryCards = [
+  { slug: 'hats-accessories', name: t6('羊绒帽', 'Hats & Beanies', 'Mützen & Beanies', 'Bonnets & casquettes', '帽子', '모자') },
+  { slug: 'scarves', name: t6('围巾披肩', 'Scarves & Wraps', 'Schals & Tücher', 'Écharpes & étoles', 'スカーフ', '스카프') },
+  { slug: 'garment-oem', name: t6('羊绒衫', 'Sweaters & Knitwear', 'Pullover & Strick', 'Pulls & maille', 'セーター', '스웨터') },
+  { slug: 'accessories-cat', name: t6('羊绒配饰', 'Accessories', 'Accessoires', 'Accessoires', 'アクセサリー', '액세서리') },
+  { slug: 'yarn', name: t6('纱线面料', 'Yarn & Fiber', 'Garn & Stoff', 'Fil & tissu', '糸・生地', '원사') },
 ];
 
-const asset = '/images/ui-2026';
+// 产品矩阵数据 (B2B 关键指标 — 让访客一眼看出这是真工厂)
+const productData: Record<string, Array<{ tag: string; value: string }>> = {
+  en: [
+    [{ tag: 'SKUs', value: '78+' }, { tag: 'MOQ', value: '100 pcs' }, { tag: 'Stock', value: 'Ready' }],
+    [{ tag: 'Counts', value: '26/2 – 36/2' }, { tag: 'MOQ', value: '50 kg' }, { tag: 'Lead', value: '15 d' }],
+    [{ tag: 'SKUs', value: '591+' }, { tag: 'MOQ', value: '100 pcs' }, { tag: 'OEM', value: 'Yes' }],
+  ],
+  de: [
+    [{ tag: 'SKUs', value: '78+' }, { tag: 'MOQ', value: '100 Stk' }, { tag: 'Lager', value: 'Verfügbar' }],
+    [{ tag: 'Feinheit', value: '26/2 – 36/2' }, { tag: 'MOQ', value: '50 kg' }, { tag: 'Lieferzeit', value: '15 T' }],
+    [{ tag: 'SKUs', value: '591+' }, { tag: 'MOQ', value: '100 Stk' }, { tag: 'OEM', value: 'Ja' }],
+  ],
+  fr: [
+    [{ tag: 'SKUs', value: '78+' }, { tag: 'MOQ', value: '100 pcs' }, { tag: 'Stock', value: 'Prêt' }],
+    [{ tag: 'Titres', value: '26/2 – 36/2' }, { tag: 'MOQ', value: '50 kg' }, { tag: 'Délai', value: '15 j' }],
+    [{ tag: 'SKUs', value: '591+' }, { tag: 'MOQ', value: '100 pcs' }, { tag: 'OEM', value: 'Oui' }],
+  ],
+  ja: [
+    [{ tag: 'SKU', value: '78+' }, { tag: 'MOQ', value: '100枚' }, { tag: '在庫', value: '即納' }],
+    [{ tag: '番手', value: '26/2 – 36/2' }, { tag: 'MOQ', value: '50kg' }, { tag: '納期', value: '15日' }],
+    [{ tag: 'SKU', value: '591+' }, { tag: 'MOQ', value: '100枚' }, { tag: 'OEM', value: '可' }],
+  ],
+  kr: [
+    [{ tag: 'SKU', value: '78+' }, { tag: 'MOQ', value: '100pcs' }, { tag: '재고', value: '즉시' }],
+    [{ tag: '실수', value: '26/2 – 36/2' }, { tag: 'MOQ', value: '50kg' }, { tag: '납기', value: '15일' }],
+    [{ tag: 'SKU', value: '591+' }, { tag: 'MOQ', value: '100pcs' }, { tag: 'OEM', value: '가능' }],
+  ],
+  cn: [
+    [{ tag: 'SKU 数', value: '78+' }, { tag: '起订', value: '100件' }, { tag: '现货', value: '有' }],
+    [{ tag: '支数', value: '26/2 – 36/2' }, { tag: '起订', value: '50kg' }, { tag: '交期', value: '15天' }],
+    [{ tag: 'SKU 数', value: '591+' }, { tag: '起订', value: '100件' }, { tag: 'OEM', value: '支持' }],
+  ],
+};
+
+// 把 "{value}" 拆成数字 + 后缀（用于数字滚动计数动画）
+function parseCounter(v: string): { n: number; s: string } {
+  const m = v.match(/^(?:[^\d]*?)(\d[\d,]*)(.*)$/);
+  if (!m) return { n: 0, s: v };
+  const n = parseInt(m[1].replace(/,/g, ''), 10);
+  return { n: isFinite(n) ? n : 0, s: m[2] || '' };
+}
+
+const c = heroContent[locale];
+const seo = SEO[locale];
+const prodMeta = productData[locale];
+
+// 占位图说明 (2026-07 redesign P0 + 7-22 升级):
+//   - 用 Wikimedia Commons CC BY-SA / 公共域图片作为占位
+//   - 真实工厂照就绪后, 按 docs/design-images-credits.md 替换
+//   - URL 直链作为 <img src>, 等真图就绪再迁到 public/images/
+// 7-22 修正: Cashmere_Factory_Gobi_33 实际是毛衣店图, 换成 Otog Qianqi Ordos
+//   真实沙漠风景 + Goat in Mongolia 01 真实蒙古山羊.
+const IMG = {
+  // 首页 hero (针织特写, 暖色) - 用户提供的真实摄影图
+  heroFiber: '/images/home/hero-fiber.webp',
+  // Origin Story: 鄂尔多斯起源图 (用户提供的真实摄影图，替换之前的 Wikimedia 沙漠风景图)
+  ordosLandscape: '/images/home/ordos-origins.webp',
+  // Why us #1 自有牧场: 蒙古山羊在草原 (用户提供的真实摄影图，替换之前的 Wikimedia 图)
+  mongoliaGoat: '/images/home/mongolia-goat.webp',
+  // Why us #4 成衣厂: 工厂内部纺织机 (用户提供的真实摄影图，替换之前的黑白外景)
+  knittingMill: '/images/home/spinning-mill.webp',
+  // 工艺证据 - 针织手部特写 (用户提供的真实摄影图，替换之前的 Wikimedia 披肩图)
+  craftHand: '/images/home/craft-knit-detail.webp',
+  // 工艺证据 - 纺纱织造 (03 卡片) - 用户提供的毛线团图
+  shawlEmbroidered: '/images/home/yarn-basket.webp',
+  // 工艺证据 - 编织细节 (用户提供的真实摄影图)
+  scarfDetail: '/images/home/scarf-detail.webp',
+  // 工艺证据 - 折叠围巾 (用户提供的真实摄影图)
+  scarvesFolded: '/images/home/scarves-folded.webp',
+};
 ---
 
-<BaseLayout locale={locale as Locale} pageKey="home" path="/" schema="home" ogImage={`${asset}/hero-highland.webp`}>
-  <link slot="head" rel="preload" as="image" href={`${asset}/hero-highland.webp`} fetchpriority="high" />
-  <link slot="head" rel="preconnect" href="https://fonts.googleapis.com" />
-  <link slot="head" rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link slot="head" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<BaseLayout locale={locale} pageKey="home" path="/" schema="home">
+  <link slot="head" rel="preload" as="image" href="/images/home/scarves-folded.webp" fetchpriority="high" />
+  <Navigation slot="header" locale={locale} currentPath={`/${locale}/`} />
 
-  <div class="snowline" id="top">
-    <header class="snowline-header">
-      <a class="brand" href={`/${locale}/`} aria-label="DONGXIAO Cashmere home">
-        <img src={`${asset}/fiber-mark.png`} alt="" width="36" height="36" />
-        <span>DONGXIAO <em>Cashmere</em></span>
-      </a>
-      <nav aria-label="Primary navigation">
-        <a href="#origin">{copy.nav[0]}</a>
-        <a href="#collections">{copy.nav[1]}</a>
-        <a href="#craft">{copy.nav[2]}</a>
-      </nav>
-      <a class="nav-action" href={`/${locale}/contact/`}>{copy.primary} <span>↗</span></a>
-    </header>
+  <!-- ============ HERO (3 张明亮图轮播 + 文字层) ============ -->
+  <section class="relative bg-brand-ink text-white overflow-hidden">
+    <!-- 轮播图: 3 张明亮图自动循环 (CSS transition + 底部圆点 + JS) -->
+    <div class="absolute inset-0" data-hero-slider>
+      {[
+        { src: IMG.scarvesFolded, alt: 'Cashmere wrap — premium B2B apparel piece styled in urban setting' },
+        { src: IMG.craftHand,    alt: 'Handwoven cashmere detail — craftsmanship' },
+        { src: '/images/home/ordos-pasture.webp', alt: 'Inner Mongolian pasture with goats and livestock — Ordos origin' },
+      ].map((slide, i) => (
+        <img
+          src={slide.src}
+          alt={slide.alt}
+          class={`ken-burns absolute inset-0 w-full h-full object-cover transition-opacity duration-[1500ms] ease-in-out ${
+            i === 0 ? 'opacity-100 visible' : 'opacity-0 invisible'
+          }`}
+          decoding="async" loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : 'auto'}
+          data-hero-slide={i}
+        />
+      ))}
+      <!-- 左侧暗化叠层: 保证文字可读, 右侧保持明亮 (gradient from-left) -->
+      <div class="absolute inset-0 bg-gradient-to-r from-brand-ink/60 via-brand-ink/25 to-transparent"></div>
+    </div>
+    <!-- 羊绒纤维纹理 (装饰) -->
+    <svg class="absolute inset-0 w-full h-full opacity-[0.05] pointer-events-none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <defs>
+        <pattern id="fibers" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+          <path d="M0 30 Q15 22, 30 30 T60 30" stroke="white" stroke-width="0.5" fill="none"/>
+          <path d="M0 38 Q15 30, 30 38 T60 38" stroke="white" stroke-width="0.5" fill="none"/>
+          <path d="M0 22 Q15 14, 30 22 T60 22" stroke="white" stroke-width="0.5" fill="none"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#fibers)"/>
+    </svg>
 
-    <section class="hero" aria-labelledby="hero-title">
-      <img class="hero-image" src={`${asset}/hero-highland.webp`} alt={isCn ? '身着燕麦色羊绒大衣的女性伫立于高原草地' : 'Woman in an oatmeal cashmere coat on the Ordos highland'} width="1920" height="1080" fetchpriority="high" />
-      <div class="hero-shade"></div>
-      <div class="fiber hero-fiber" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="hero-copy">
-        <p class="kicker inverse">{copy.tagline}</p>
-        <h1 id="hero-title" set:html={copy.title}></h1>
-        <p class="hero-intro">{copy.intro}</p>
-        <div class="hero-actions">
-          <a class="thread-button" href={`/${locale}/contact/`}>{copy.primary} <span>→</span></a>
-          <a class="text-link light" href="#origin">{copy.secondary} <span>↘</span></a>
+    <div class="relative container-narrow min-h-[88vh] flex items-center py-24">
+      <div class="max-w-3xl">
+        <div class="eyebrow eyebrow-on-dark mb-10">
+          <span>{c.tagline}</span>
+        </div>
+        <h1 class="font-serif text-6xl md:text-8xl font-light leading-[1.05] tracking-[-0.02em] mb-10" set:html={c.title.replace(/\n/g, '<br/>')} />
+        <p class="text-lg md:text-xl text-white/80 mb-14 leading-relaxed max-w-2xl font-light">
+          {c.subtitle}
+        </p>
+        <div class="flex flex-wrap items-center gap-6">
+          <a href={`/${locale}/contact/`} class="group inline-flex items-center gap-3 px-10 py-5 bg-white text-brand-ink text-sm font-medium uppercase tracking-[0.22em] hover:bg-brand-gold hover:text-white transition-colors duration-300">
+            {c.cta}
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+          <a href={`/${locale}/download/`} class="group inline-flex items-center gap-2 text-white text-sm uppercase tracking-[0.2em] border-b border-white/40 pb-1 hover:border-brand-gold hover:text-brand-gold transition-colors">
+            {c.ctaSecondary}
+          </a>
         </div>
       </div>
-      <div class="hero-note"><b>39°N</b><span>{isCn ? '高原气候 · 细软纤维' : 'Highland climate · fine fiber'}</span></div>
-      <div class="scroll-note"><span>SCROLL TO DISCOVER</span><i></i></div>
-    </section>
+    </div>
 
-    <section class="proof" aria-label={isCn ? '制造资质' : 'Manufacturing credentials'}>
-      <div><strong>23<sup>+</sup></strong><p>{isCn ? '年羊绒制造经验' : 'Years of cashmere making'}</p></div>
-      <div><strong>50<sup>+</sup></strong><p>{isCn ? '服务国家与地区' : 'Markets served'}</p></div>
-      <div><strong>14.5<small>μm</small></strong><p>{isCn ? '优质山羊绒细度' : 'Fine cashmere fiber'}</p></div>
-      <div><strong>ISO</strong><p>9001 / OEKO-TEX</p></div>
-    </section>
+    <!-- 轮播指示器: 3 个圆点 (居中底部, 自动循环 7s/张) -->
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-3 z-10" role="tablist" aria-label="Hero slides">
+      {[0, 1, 2].map((i) => (
+        <button
+          type="button"
+          class={`w-2 h-2 rounded-full hero-dot ${
+            i === 0 ? 'bg-brand-gold hero-dot-active' : 'bg-white/40 hover:bg-white/70'
+          }`}
+          aria-label={`Slide ${i + 1}`}
+          aria-current={i === 0 ? 'true' : 'false'}
+          data-hero-dot={i}
+        />
+      ))}
+    </div>
+  </section>
 
-    <section class="origin section-pad" id="origin" aria-labelledby="origin-title">
-      <div class="origin-image image-frame"><img src={`${asset}/knit-editorial.webp`} alt={isCn ? '身着深色羊绒针织衫的女性' : 'Woman wearing graphite cashmere knitwear'} width="1200" height="1500" loading="lazy" /></div>
-      <div class="origin-content">
-        <p class="kicker">{copy.originKicker}</p>
-        <h2 id="origin-title" set:html={copy.originTitle}></h2>
-        <p class="lead">{copy.originLead}</p>
-        <p class="body-copy">{copy.originBody}</p>
-        <a class="text-link" href={`/${locale}/ordos-origin/`}>{copy.originLink} <span>↗</span></a>
+  <!-- 轮播脚本: 自动 7s 切换 + 圆点同步 + prefers-reduced-motion 禁用 -->
+  <script>
+    (() => {
+      const root = document.querySelector('[data-hero-slider]');
+      if (!root) return;
+      const slides = root.querySelectorAll('[data-hero-slide]');
+      const dots = document.querySelectorAll('[data-hero-dot]');
+      if (slides.length < 2) return;
+      const total = slides.length;
+      let current = 0;
+      let timer = null;
+
+      // 尊重用户的 reduced-motion 设置
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const show = (i) => {
+        slides.forEach((el, idx) => {
+          const active = idx === i;
+          el.classList.toggle('opacity-100', active);
+          el.classList.toggle('opacity-0', !active);
+          // visibility:hidden makes browser skip paint for hidden slides,
+          // halving GPU work on the hero stack (3x .ken-burns animations).
+          el.classList.toggle('visible', active);
+          el.classList.toggle('invisible', !active);
+          el.setAttribute('aria-hidden', active ? 'false' : 'true');
+        });
+        dots.forEach((d, idx) => {
+          d.classList.toggle('bg-brand-gold', idx === i);
+          d.classList.toggle('hero-dot-active', idx === i);
+          d.classList.toggle('bg-white/40', idx !== i);
+          d.setAttribute('aria-current', idx === i ? 'true' : 'false');
+        });
+        current = i;
+      };
+
+      const next = () => show((current + 1) % total);
+      const start = () => { if (!reduceMotion) timer = setInterval(next, 7000); };
+      const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
+
+      dots.forEach((d, i) => {
+        d.addEventListener('click', () => {
+          stop();
+          show(i);
+          start();
+        });
+      });
+
+      start();
+    })();
+  </script>
+
+  <!-- ============ METRICS BAR（细线分隔） ============ -->
+  <section class="border-y border-border bg-[#FBF8F2] py-14">
+    <div class="container-narrow">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 md:divide-x md:divide-border">
+        {c.metrics.map((m, i) => {
+          const cv = parseCounter(m.value);
+          return (
+          <div class={`md:px-10 first:md:pl-0 last:md:pr-0 text-center md:text-left reveal`} data-reveal-delay={i + 1}>
+            <div class="counter stat-num text-5xl md:text-6xl text-brand-ink font-light leading-none mb-3" data-counter={cv.n} data-suffix={cv.s} data-display={m.value}>{m.value}</div>
+            <div class="micro-label text-muted-foreground">{m.label}</div>
+          </div>
+          );
+        })}
       </div>
-      <aside class="fineness"><b>14.5</b><span>MICRONS<br/>OF FINENESS</span></aside>
-      <div class="fiber origin-fiber" aria-hidden="true"><i></i><i></i></div>
-    </section>
+    </div>
+  </section>
 
-    <section class="collections section-pad" id="collections" aria-labelledby="collections-title">
-      <div class="section-heading">
-        <div><p class="kicker">{copy.collectionKicker}</p><h2 id="collections-title" set:html={copy.collectionTitle}></h2></div>
-        <p>{copy.collectionIntro}</p>
+  <!-- ============ TRUST STRIP (cert badges + stats under hero) ============ -->
+  <section class="py-12 md:py-14 bg-[#FBF8F2] border-b border-border">
+    <div class="container-narrow">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-8 items-center">
+        {trustBadges.map((b, i) => (
+          <div class="flex items-start gap-3 reveal" data-reveal-delay={i + 1}>
+            <svg class="w-8 h-8 flex-shrink-0 text-brand-gold mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {i % 4 === 0 && <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />}
+              {i % 4 === 1 && <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />}
+              {i % 4 === 2 && <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />}
+              {i % 4 === 3 && <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />}
+            </svg>
+            <div>
+              <div class="text-sm md:text-base font-medium text-brand-ink leading-tight">{b.label[locale] || b.label.en}</div>
+              <div class="text-xs text-muted-foreground mt-0.5 leading-tight">{b.sub[locale] || b.sub.en}</div>
+            </div>
+          </div>
+        ))}
       </div>
-      <div class="collection-list">
-        {collections.map((item) => (
-          <a class={`collection-row ${item.tone}`} href={item.href}>
-            <b class="collection-number">{item.number}</b>
-            <h3>{item.name}</h3>
-            <p>{item.copy}</p>
-            <span class="collection-meta"><small>{item.code}</small><span>{item.tags.map((tag) => <em>{tag}</em>)}</span></span>
-            <b class="collection-arrow">↗</b>
+    </div>
+  </section>
+
+
+  <!-- ============ 产地故事 ============ -->
+  <section class="py-28 md:py-36 bg-background overflow-hidden">
+    <div class="container-narrow">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- 左侧大图（占 7/12） -->
+        <div class="lg:col-span-7 relative reveal-left">
+          <div class="aspect-[3/2] overflow-hidden hover-zoom">
+            <img src={IMG.ordosLandscape} alt="Albus goat grazing on Ordos pasture at sunrise — Inner Mongolia" class="w-full h-full object-cover" decoding="async" loading="lazy" />
+          </div>
+          <!-- 浮动小图（地理坐标装饰） -->
+          <div class="hidden md:block absolute -bottom-12 -right-12 w-48 aspect-square overflow-hidden border-8 border-background shadow-2xl bg-brand-cream flex items-center justify-center">
+            <div class="text-center text-brand-ink">
+              <div class="font-serif text-4xl text-brand-gold font-light">2002</div>
+              <div class="text-[10px] tracking-[0.3em] uppercase mt-1 text-muted-foreground">Founded</div>
+            </div>
+          </div>
+        </div>
+        <!-- 右侧文字（占 5/12，错位下沉） -->
+        <div class="lg:col-span-5 lg:pl-8 lg:pt-16 reveal-right" data-reveal-delay="1">
+          <div class="eyebrow mb-8">
+            <span class="eyebrow-label">
+              {t('产地溯源', 'Origin Story')}
+            </span>
+          </div>
+          <h2 class="font-serif text-5xl md:text-6xl font-light leading-[1.08] mb-8 text-brand-ink" set:html={t6(
+            '鄂尔多斯：<br/>世界顶级羊绒产区',
+            'Ordos:<br/>The World\'s Premium Cashmere Region',
+            'Ordos:<br/>Premium-Kaschmirregion',
+            'Ordos :<br/>Région du cachemire premium',
+            'オルドス：<br/>世界の最高級カシミア産地',
+            '오르도스:<br/>세계 최고급 캐시미어 산지'
+          )} />
+          <p class="text-muted-foreground leading-relaxed mb-8">
+            {t6(
+              '鄂尔多斯位于内蒙古，北纬39度，海拔1300米，年均气温6℃。独特的高原大陆性气候孕育了阿尔巴斯白绒山羊——世界顶级羊绒品种，每根纤维细度仅14.5微米。',
+              'Located in Inner Mongolia at 1,300m altitude, Ordos\'s unique continental plateau climate nurtures the Albus goat — the world\'s premium cashmere breed, with each fiber measuring just 14.5 microns.',
+              'Ordos liegt in der Inneren Mongolei auf 1300m Höhe. Das einzigartige Hochlandklima bringt die Albus-Kaschmirziege hervor.',
+              'Ordos, située à 1300m d\'altitude en Mongolie-Intérieure, abrite la chèvre Albus.',
+              'オルドスは内モンゴル、標高1300mに位置。',
+              '오르도스는 내몽골 해발 1300m에 위치.'
+            )}
+          </p>
+          <div class="space-y-3 mb-8">
+            <div class="flex items-center gap-3 text-sm">
+              <span class="font-serif text-2xl text-brand-gold">39°N</span>
+              <span class="text-muted-foreground">{t('黄金纬度带', 'Latitude')}</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm">
+              <span class="font-serif text-2xl text-brand-gold">1,300m</span>
+              <span class="text-muted-foreground">{t('平均海拔', 'Altitude')}</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm">
+              <span class="font-serif text-2xl text-brand-gold">14.5μm</span>
+              <span class="text-muted-foreground">{t('纤维细度', 'Fiber Fineness')}</span>
+            </div>
+          </div>
+          <a href={`/${locale}/ordos-origin/`} class="group inline-flex items-center gap-2 text-brand-chocolate font-medium border-b border-brand-chocolate pb-1 hover:border-brand-gold hover:text-brand-gold transition-colors">
+            {t6('探索鄂尔多斯产地', 'Explore Ordos Origin', 'Ordos erkunden', 'Explorer Ordos', 'オルドスを探る', '오르도스 탐험')}
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Product Range（不对称 Bento 布局） ============ -->
+  <section class="py-28 md:py-36 bg-brand-cream/50">
+    <div class="container-narrow">
+      <!-- 段头 -->
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-16 gap-6">
+        <div>
+          <div class="eyebrow mb-4">
+            <span class="eyebrow-label">
+              {t6('产品矩阵', 'Product Range', 'Produktpalette', 'Gamme', '製品範囲', '제품 범위')}
+            </span>
+          </div>
+          <h2 class="font-serif text-5xl md:text-6xl font-light leading-[1.08] max-w-2xl">
+            {t6(
+              '全产业链羊绒供应',
+              'Complete Cashmere Supply Chain',
+              'Komplette Kaschmir-Lieferkette',
+              'Chaîne complète du cachemire',
+              'カシミア全産業チェーン',
+              '캐시미어 전산업체인'
+            )}
+          </h2>
+        </div>
+        <a href={`/${locale}/products/`} class="group inline-flex items-center gap-2 text-sm text-brand-chocolate border-b border-brand-chocolate pb-1 hover:text-brand-gold hover:border-brand-gold transition-colors">
+          {t6('查看全部产品', 'View all products', 'Alle ansehen', 'Voir tout', '全て見る', '전체 보기')}
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Bento Grid：左大右小，错落 -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
+        <!-- 原料（大图，左 7 列） -->
+        <a href={`/${locale}/raw-material/`} class="group md:col-span-7 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden bg-gradient-to-br from-brand-ink via-brand-chocolate to-brand-camel hover-lift reveal" data-reveal-delay="1">
+          <!-- 抽象纤维纹理 -->
+          <svg class="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <defs>
+              <pattern id="fibers-1" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                <path d="M0 40 Q20 30, 40 40 T80 40" stroke="#B8956A" stroke-width="1" fill="none"/>
+                <path d="M0 50 Q20 40, 40 50 T80 50" stroke="#B8956A" stroke-width="0.5" fill="none"/>
+                <path d="M0 30 Q20 20, 40 30 T80 30" stroke="#B8956A" stroke-width="0.5" fill="none"/>
+                <path d="M0 60 Q20 50, 40 60 T80 60" stroke="#B8956A" stroke-width="1" fill="none"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#fibers-1)"/>
+          </svg>
+          <div class="absolute top-8 right-8 font-serif text-[120px] text-brand-gold/20 font-light leading-none">01</div>
+          <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/75 via-brand-ink/25 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+            <div class="flex items-center gap-4 mb-3">
+              <span class="text-xs tracking-[0.3em] uppercase text-brand-gold">01 / {t6('原料', 'Material', 'Material', 'Matière', '原料', '원료')}</span>
+              <span class="hidden md:inline-flex items-center gap-3 ml-auto text-xs text-white/70">
+                {prodMeta[0].map((m) => (
+                  <span class="inline-flex items-center gap-1.5">
+                    <span class="text-white/50">{m.tag}</span>
+                    <span class="text-white font-medium">{m.value}</span>
+                  </span>
+                ))}
+              </span>
+            </div>
+            <h3 class="font-serif text-3xl md:text-4xl font-light mb-2">
+              {t6('羊绒原料', 'Cashmere Raw Material', 'Rohkaschmir', 'Cachemire brut', '原料カシミア', '원료 캐시미어')}
+            </h3>
+            <p class="text-sm text-white/80 max-w-md">
+              {t6('白绒/青绒/紫绒，细度14.5-16.5μm', 'White, brown, purple cashmere · 14.5-16.5μm', 'Weiß, braun, lila', 'Blanc, brun, violet', '白・茶・紫', '백색·청색·자색')}
+            </p>
+          </div>
+        </a>
+
+        <!-- 纱线面料（右小） -->
+        <a href={`/${locale}/yarn-fabric/`} class="group md:col-span-5 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden hover-lift reveal" data-reveal-delay="2">
+          <img src={IMG.scarfDetail} alt="Cashmere knitwear — premium winter hat and sweater for B2B wholesale" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" decoding="async" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/75 via-brand-ink/25 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+            <div class="flex items-center gap-4 mb-3">
+              <span class="text-xs tracking-[0.3em] uppercase text-brand-gold">02 / {t6('纱线', 'Yarn', 'Garn', 'Fil', '糸', '원사')}</span>
+              <span class="hidden md:inline-flex items-center gap-3 ml-auto text-xs text-white/70">
+                {prodMeta[1].map((m) => (
+                  <span class="inline-flex items-center gap-1.5">
+                    <span class="text-white/50">{m.tag}</span>
+                    <span class="text-white font-medium">{m.value}</span>
+                  </span>
+                ))}
+              </span>
+            </div>
+            <h3 class="font-serif text-3xl md:text-4xl font-light mb-2">
+              {t6('纱线 / 面料', 'Yarn & Fabric', 'Garn & Stoff', 'Fil & Tissu', '糸・生地', '원사·직물')}
+            </h3>
+            <p class="text-sm text-white/80 max-w-md">
+              {t6('26/2 · 28/2 · 36/2', '26/2 · 28/2 · 36/2', '26/2 · 28/2 · 36/2', '26/2 · 28/2 · 36/2', '26/2 · 28/2 · 36/2', '26/2 · 28/2 · 36/2')}
+            </p>
+          </div>
+        </a>
+
+        <!-- 成衣代工（下大） -->
+        <a href={`/${locale}/garment-oem/`} class="group md:col-span-12 relative aspect-[4/3] md:aspect-[21/9] overflow-hidden hover-lift reveal" data-reveal-delay="3">
+          <img src={IMG.scarvesFolded} alt="Cashmere shawl styling — premium B2B apparel from Ordos factory" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" decoding="async" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-r from-brand-ink/80 via-brand-ink/35 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-8 md:p-12 text-white max-w-2xl">
+            <div class="flex items-center gap-4 mb-3">
+              <span class="text-xs tracking-[0.3em] uppercase text-brand-gold">03 / {t6('成衣', 'Garment', 'Bekleidung', 'Vêtement', '衣料', '의류')}</span>
+              <span class="hidden md:inline-flex items-center gap-3 ml-6 text-xs text-white/70">
+                {prodMeta[2].map((m) => (
+                  <span class="inline-flex items-center gap-1.5">
+                    <span class="text-white/50">{m.tag}</span>
+                    <span class="text-white font-medium">{m.value}</span>
+                  </span>
+                ))}
+              </span>
+            </div>
+            <h3 class="font-serif text-4xl md:text-5xl font-light mb-3">
+              {t6('成衣代工 OEM', 'Garment OEM', 'Bekleidung OEM', 'Vêtement OEM', '衣料OEM', '의류 OEM')}
+            </h3>
+            <p class="text-base text-white/80 mb-6">
+              {t6('大衣 · 衫 · 裙 · 围巾 | MOQ 100件', 'Coats · Sweaters · Dresses · Scarves · MOQ 100pcs', 'Mäntel · Pullover · Kleider · Schals', 'Manteaux · Pulls · Robes · Écharpes', 'コート・セーター・ドレス・スカーフ', '코트·스웨터·드레스·스카프')}
+            </p>
+            <span class="inline-flex items-center gap-2 text-sm border-b border-white pb-1">
+              {t6('了解代工流程', 'Learn OEM process', 'OEM-Prozess', 'Processus OEM', 'OEMプロセス', 'OEM 프로세스')}
+              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 为什么选我们（工艺感：图+引文+数据 交错） ============ -->
+  <section class="py-28 md:py-36 bg-background">
+    <div class="container-narrow">
+      <div class="max-w-3xl mb-20">
+        <div class="eyebrow mb-8">
+          <span class="eyebrow-label">
+            {t6('为什么选东霄', 'Why DONGXIAO', 'Warum DONGXIAO', 'Pourquoi', 'なぜ東霄', '왜 동소')}
+          </span>
+        </div>
+        <h2 class="font-serif text-5xl md:text-6xl font-light leading-[1.08]">
+          {t6('23年只做一件事：从牧场到成衣的羊绒全链路把控', 'One craft for 23 years: full-chain cashmere from pasture to garment', '23 Jahre ein Handwerk: vom Weideland bis zum fertigen Kleidungsstück', '23 ans d\'un seul métier : du pâturage au vêtement fini', '23年一貫、カシミアの全工程', '23년 한 가지: 목장에서 의류까지')}
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
+        <!-- 条目 1：自有牧场 + 图 -->
+        <div class="space-y-6 reveal" data-reveal-delay="1">
+          <div class="aspect-[4/3] overflow-hidden hover-zoom relative">
+            <img src={IMG.mongoliaGoat} alt="Cashmere goat on Mongolian pasture, with combed fiber mark" class="w-full h-full object-cover" decoding="async" loading="lazy" />
+          </div>
+          <div class="flex items-baseline gap-4">
+            <span class="font-serif text-5xl text-brand-gold font-light">01</span>
+            <h3 class="font-serif text-2xl">{t6('自有牧场', 'Pasture-Owned', 'Eigene Weiden', 'Pâturages propres', '自社牧場', '자체 목장')}</h3>
+          </div>
+          <p class="text-muted-foreground leading-relaxed">
+            {t6('鄂尔多斯阿尔巴斯白绒山羊保种基地，血统可追溯。羊绒细度、长度、色泽从源头把控。', 'Albus goat breeding base in Ordos. Full pedigree traceability. Fiber fineness, length, and color controlled from source.', 'Albus-Ziegenzuchtbasis in Ordos. Volle Stammbaumrückverfolgbarkeit.', 'Base d\'élevage de chèvres Albus à Ordos. Traçabilité complète.', 'オルドス・アルバス山羊の繁殖基地。血統の完全な追跡。', '오르도스 알버스 산양 사육 기지. 혈통 완전 추적.')}
+          </p>
+        </div>
+
+        <!-- 条目 2：原料分梳 + 图 -->
+        <div class="space-y-6 md:pt-20 reveal" data-reveal-delay="2">
+          <div class="aspect-[4/3] overflow-hidden hover-zoom">
+            <img src={IMG.craftHand} alt="Cashmere dehairing process — separating fine underdown from coarse guard hair, 99.95% purity" class="w-full h-full object-cover" decoding="async" loading="lazy" />
+          </div>
+          <div class="flex items-baseline gap-4">
+            <span class="font-serif text-5xl text-brand-gold font-light">02</span>
+            <h3 class="font-serif text-2xl">{t6('原料分梳', 'Dehairing Facility', 'Kämmerei', 'Démêlage', '脱毛工程', '분공정')}</h3>
+          </div>
+          <p class="text-muted-foreground leading-relaxed">
+            {t6('意大利进口分梳设备，含绒率≥99.95%，无染色无化学处理，保留羊绒天然光泽与手感。', 'Imported Italian dehairing lines. Cashmere purity ≥99.95%. No dye, no chemical treatment — preserves natural luster and handfeel.', 'Italienische Kämm-Maschinen. Kaschmirreinheit ≥99,95%.', 'Équipement italien. Pureté du cachemire ≥99,95%.', 'イタリア製コーマ機。カシミア純度99.95%以上。', '이탈리아 도입 설비. 캐시미어 순도 99.95% 이상.')}
+          </p>
+        </div>
+
+        <!-- 条目 3：纺纱 -->
+        <div class="space-y-6 reveal" data-reveal-delay="3">
+          <div class="aspect-[4/3] overflow-hidden hover-zoom">
+            <img src={IMG.shawlEmbroidered} alt="Cashmere yarn — natural fiber cones ready for spinning, 26/2 to 36/2 Nm counts" class="w-full h-full object-cover" decoding="async" loading="lazy" />
+          </div>
+          <div class="flex items-baseline gap-4">
+            <span class="font-serif text-5xl text-brand-gold font-light">03</span>
+            <h3 class="font-serif text-2xl">{t6('纺纱织造', 'Spinning & Weaving', 'Spinnerei & Weberei', 'Filature & Tissage', '紡績・織造', '방사·제조')}</h3>
+          </div>
+          <p class="text-muted-foreground leading-relaxed">
+            {t6('精纺/粗纺双工艺，覆盖 26/2 至 36/2 主流支数。可定制混纺比例（羊绒/羊毛/丝）。', 'Worsted & woolen processes. Counts from 26/2 to 36/2. Custom blend ratios (cashmere/wool/silk).', 'Kammgarn- und Streichgarnverarbeitung. Sondermischungen möglich.', 'Procédés peigné et cardé. Mélanges personnalisés.', '梳毛・紡毛両工程。カスタム混紡比率。', '워스트드·울렌 공정. 맞춤 배합 비율.')}
+          </p>
+        </div>
+
+        <!-- 条目 4：成衣厂 -->
+        <div class="space-y-6 md:pt-20 reveal" data-reveal-delay="4">
+          <div class="aspect-[4/3] overflow-hidden hover-zoom relative">
+            <img src={IMG.knittingMill} alt="German STOLL knitting machines — 38,000 sqm Ordos knitting facility, OEM private label" class="w-full h-full object-cover" decoding="async" loading="lazy" />
+          </div>
+          <div class="flex items-baseline gap-4">
+            <span class="font-serif text-5xl text-brand-gold font-light">04</span>
+            <h3 class="font-serif text-2xl">{t6('成衣厂', 'Knitting Factory', 'Strickerei', 'Atelier tricot', 'ニット工場', '니트 공장')}</h3>
+          </div>
+          <p class="text-muted-foreground leading-relaxed">
+            {t6('38,000㎡自有成衣厂，德国 STOLL 全成型电脑横机，支持 OEM 贴牌和小单快反。', '38,000 sqm facility. German STOLL fully-fashioned knitting machines. OEM private label, low MOQ, fast turnaround.', '38.000 qm Anlage. Deutsche STOLL-Strickmaschinen.', '38 000 m². Machines à tricoter STOLL allemandes.', '38,000平米。ドイツSTOLL成型機。', '38,000sqm. 독일 STOLL 편직기.')}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 资质徽章（圆形 SVG） ============ -->
+  <section class="py-20 bg-[#F4EFE6]">
+    <div class="container-narrow">
+      <div class="text-center mb-12">
+        <div class="inline-block text-xs tracking-[0.3em] uppercase text-brand-camel mb-3">{c.trustTitle}</div>
+        <h2 class="font-serif text-3xl md:text-4xl font-light">
+          {t6('国际权威认证', 'Internationally Certified', 'International zertifiziert', 'Certifié internationalement', '国際認証取得', '국제 공인 인증')}
+        </h2>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        {[
+          { short: 'ISO 9001', full: 'Quality Mgmt' },
+          { short: 'OEKO-TEX', full: 'Standard 100' },
+          { short: 'GCS',      full: 'Good Cashmere' },
+          { short: 'BSCI',     full: 'Social Compliance' },
+          { short: 'Sedex',    full: 'Ethical Trade' },
+          { short: 'WRAP',     full: 'Worldwide Responsible' },
+        ].map((cert) => (
+          <div class="group flex flex-col items-center">
+            <div class="relative w-32 h-32 flex items-center justify-center mb-3 transition-transform group-hover:scale-105">
+              <div class="absolute inset-0 rounded-full border border-brand-camel/40 group-hover:border-brand-gold transition-colors"></div>
+              <div class="absolute inset-1.5 rounded-full border border-brand-camel/20 group-hover:border-brand-gold/60 transition-colors"></div>
+              <div class="absolute inset-0 rounded-full bg-brand-camel/0 group-hover:bg-brand-camel/5 transition-colors"></div>
+              <div class="relative text-center px-2">
+                <div class="font-serif text-base text-brand-chocolate tracking-wider leading-tight">{cert.short}</div>
+                <div class="text-[8px] tracking-[0.15em] uppercase text-muted-foreground mt-1 leading-tight">{cert.full}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 产品中心：5 大分类 + 精选产品 ============ -->
+  <section class="py-28 md:py-36 bg-background">
+    <div class="container-narrow">
+      <div class="flex items-end justify-between mb-12 gap-6 flex-wrap">
+        <div>
+          <div class="eyebrow mb-6">
+            <span class="text-xs tracking-[0.3em] text-brand-gold uppercase font-medium">{t6('产品中心', 'Product Center', 'Produktzentrum', 'Centre Produits', '製品センター', '제품 센터')}</span>
+          </div>
+          <h2 class="font-serif text-3xl md:text-5xl font-light leading-tight text-balance">
+            {t6('5 大品类 · 从原料到成衣', '5 categories, from raw fiber to finished knitwear', '5 Kategorien, vom Rohmaterial bis zur Strickware', '5 catégories, de la fibre au tricot fini', '5カテゴリー、原料からニットまで', '5개 카테고리, 원료부터 니트까지')}
+          </h2>
+        </div>
+        <a href={`/${locale}/products/`} class="text-link-lux text-sm">
+          {t6('浏览全部产品 →', 'View all products →', 'Alle Produkte ansehen →', 'Voir tous les produits →', 'すべての製品を見る →', '전체 제품 보기 →')}
+        </a>
+      </div>
+
+      <!-- 5 大分类入口 -->
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-16">
+        {categoryCards.map((c, i) => {
+          const cat = productsData.categories.find((x: any) => c.slug === (x.id === 'hats' ? 'hats-accessories' : x.id === 'sweaters' ? 'garment-oem' : x.id === 'accessories' ? 'accessories-cat' : x.id));
+          return (
+            <a href={`/${locale}/products/${c.slug}/`} class="group border border-border bg-[#F8F5EF]/50 p-6 hover:border-brand-gold hover:bg-white transition-colors duration-300 flex flex-col justify-between min-h-[150px]">
+              <div>
+                <div class="font-serif text-[11px] text-brand-camel tracking-[0.2em] uppercase mb-2">0{i + 1}</div>
+                <h3 class="font-serif text-xl leading-tight group-hover:text-brand-chocolate transition-colors">{c.name}</h3>
+              </div>
+              <div class="flex items-center justify-between mt-6">
+                <span class="text-xs text-muted-foreground">{cat && cat.products ? cat.products.length : ''} {t6('款', 'styles', 'Modelle', 'modèles', 'スタイル', '스타일')}</span>
+                <svg class="w-4 h-4 text-brand-chocolate group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+
+      <!-- 精选产品（每类 3 款，共 15 张） -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+        {featured.map((p) => (
+          <a href={`/${locale}/products/${p.id}/`} class="group block border border-border overflow-hidden hover:border-brand-gold hover:shadow-lg transition-colors transition-shadow duration-300">
+            <div class="aspect-square bg-brand-cream overflow-hidden">
+              <img src={homeImg(p)} alt={p.name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" decoding="async" loading="lazy" />
+            </div>
+            <div class="p-4">
+              <p class="text-[10px] uppercase tracking-wider text-muted-foreground mb-1">{p.categoryName}</p>
+              <h3 class="text-sm font-medium leading-snug line-clamp-2 mb-2 group-hover:text-brand-chocolate transition-colors">{p.name}</h3>
+              <p class="text-xs text-brand-red font-medium">USD {p.price}</p>
+            </div>
           </a>
         ))}
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="craft" id="craft" aria-labelledby="craft-title">
-      <div class="craft-image image-frame"><img src={`${asset}/craft-detail.webp`} alt={isCn ? '工匠双手正在处理细软的羊绒纱线' : 'Hands working with fine cashmere yarn'} width="1440" height="1080" loading="lazy" /></div>
-      <div class="craft-content section-pad">
-        <p class="kicker inverse">{copy.craftKicker}</p>
-        <h2 id="craft-title" set:html={copy.craftTitle}></h2>
-        <p>{copy.craftBody}</p>
-        <a class="text-link light" href={`/${locale}/quality-control/`}>{copy.craftLink} <span>↗</span></a>
-        <small class="archive-note">ORD / PROCESS / 03</small>
+  <!-- ============ Final CTA（深色版 + 历史工厂背景） ============ -->
+  <section class="py-28 md:py-36 bg-[#F5F0E7] relative overflow-hidden">
+    <!-- 背景图: 历史针织厂外景, 黑白, 传承感 (knittingMill 是 DPLA 公共域图) -->
+    <div class="absolute inset-0">
+      <img src={IMG.knittingMill} alt="" aria-hidden="true" class="w-full h-full object-cover opacity-10 grayscale" decoding="async" loading="lazy" />
+      <div class="absolute inset-0 bg-[#F5F0E7]/85"></div>
+    </div>
+    <!-- 装饰纤维纹理 -->
+    <div class="absolute inset-0 opacity-10 pointer-events-none">
+      <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <defs>
+          <pattern id="cta-fibers" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+            <path d="M0 30 Q15 22, 30 30 T60 30" stroke="#B8956A" stroke-width="0.5" fill="none"/>
+            <path d="M0 38 Q15 30, 30 38 T60 38" stroke="#B8956A" stroke-width="0.5" fill="none"/>
+            <path d="M0 22 Q15 14, 30 22 T60 22" stroke="#B8956A" stroke-width="0.5" fill="none"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#cta-fibers)"/>
+      </svg>
+    </div>
+    <div class="container-narrow relative z-10 text-center max-w-3xl mx-auto reveal">
+      <div class="inline-block text-xs tracking-[0.3em] uppercase text-brand-camel mb-6">
+        {t6('下一步', 'Next Step', 'Nächster Schritt', 'Étape suivante', '次のステップ', '다음 단계')}
+      </div>
+      <h2 class="font-serif text-4xl md:text-6xl font-light mb-6 leading-tight">
+        {t6('准备好开始您的羊绒采购了吗？', 'Ready to start your cashmere sourcing?', 'Bereit für Ihre Kaschmir-Beschaffung?', 'Prêt à démarrer votre sourcing cachemire ?', 'カシミア調達を始めますか？', '캐시미어 소싱을 시작하시겠습니까?')}
+      </h2>
+      <p class="text-muted-foreground mb-12 text-lg font-light">
+        {t6('获取免费样品、报价单和认证文件。我们的销售专家24小时内回复。', 'Get free samples, quotation, and certifications. Our specialists respond within 24 hours.', 'Kostenlose Muster, Angebote und Zertifizierungen.', 'Échantillons gratuits, devis et certifications.', '無料サンプル・お見積もり・認証。', '무료 샘플·견적서·인증서.')}
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href={`/${locale}/contact/`} class="btn-lux">
+          {c.cta}
+        </a>
+        <a href={`https://wa.me/${SITE_INFO.whatsapp.replace(/[^\d]/g, '')}`} target="_blank" rel="noopener noreferrer" class="btn-lux-outline">
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <SEOFaq faqs={[
+    locale === 'cn'
+      ? { q: '你们是工厂还是贸易商？', a: '东霄羊绒是鄂尔多斯源头工厂，2002年成立，自有牧场、原料分梳厂、纺纱厂、针织厂。23年专注B2B出口，无中间商。' }
+      : { q: 'Are you a factory or trading company?', a: 'DONGXIAO® Cashmere is a source factory in Ordos, established 2002. We own the pasture, dehairing facility, spinning mill, and knitting factory. 23+ years B2B export, no middleman.' },
+    locale === 'cn'
+      ? { q: '主要出口哪些国家？', a: '我们服务于全球50+国家的B2B客户，主要市场包括欧盟（德国、法国、意大利、英国）、美国、日本、韩国、俄罗斯等。' }
+      : { q: 'Which countries do you export to?', a: 'We serve B2B clients in 50+ countries. Main markets include EU (Germany, France, Italy, UK), USA, Japan, Korea, Russia, and more.' },
+    locale === 'cn'
+      ? { q: '如何确保羊绒品质？', a: '从原料到成品全链路把控：阿尔巴斯山羊血统认证 → 牧场溯源 → 原料分梳 → 纱线支数控制 → 成品 100% 检验。ISO 9001 + OEKO-TEX + GCS 认证。' }
+      : { q: 'How do you ensure cashmere quality?', a: 'Full-process control: Albus goat pedigree → pasture traceability → dehairing → yarn count control → 100% finished product QC. ISO 9001 + OEKO-TEX + GCS certified.' },
+    locale === 'cn'
+      ? { q: '能否贴牌做自有品牌？', a: '可以。我们提供OEM贴牌和ODM设计开发服务，最小起订100件/款。可加您的品牌标签、洗水标、包装。' }
+      : { q: 'Can you do private label / OEM?', a: 'Yes. We offer OEM private label and ODM design development. Minimum 100pcs/style. We can add your brand labels, care labels, and packaging.' },
+  ]} />
+
+  <!-- Latest from our blog (首页 SEO 内链 + 新内容曝光) -->
+  {latestPosts.length > 0 && (
+    <section class="py-20 md:py-28 bg-background border-t border-border">
+      <div class="container-narrow">
+        <div class="flex items-end justify-between mb-12 gap-6 flex-wrap">
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="h-[2px] w-10 bg-brand-red"></span>
+              <span class="text-xs tracking-[0.3em] text-brand-gold uppercase font-medium">{locale === 'cn' ? '博客' : 'Blog'}</span>
+            </div>
+            <h2 class="font-serif text-3xl md:text-5xl font-light leading-tight text-balance">
+              {locale === 'cn' ? '最新行业洞察' : 'Latest from our blog'}
+            </h2>
+          </div>
+          <a href={`/${locale}/blog/`} class="text-sm text-brand-chocolate border-b border-brand-chocolate hover:border-brand-gold hover:text-brand-gold transition-colors">
+            {locale === 'cn' ? '查看全部 →' : 'View all →'}
+          </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {latestPosts.map((p, i) => {
+            // 3 张博客卡各一张主题图 (复用现有 IMG, 不引入新 URL, 避免 +1 网络请求)
+            const blogImg = [IMG.ordosLandscape, IMG.scarfDetail, IMG.mongoliaGoat][i] || IMG.ordosLandscape;
+            const blogAlt = [
+              'Ordos plateau landscape',
+              'Cashmere yarn and scarf detail',
+              'Cashmere goat on Mongolian pasture',
+            ][i] || '';
+            return (
+              <a href={`/${locale}/blog/${p.slug}/`} class="group block border border-border overflow-hidden hover:border-brand-gold hover:shadow-lg transition-colors transition-shadow duration-300">
+                <div class="aspect-[16/10] overflow-hidden bg-brand-cream">
+                  <img src={blogImg} alt={blogAlt} style="object-position: center 60%;" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" decoding="async" loading="lazy" />
+                </div>
+                <div class="p-6">
+                  <div class="text-xs text-muted-foreground tracking-wider mb-3 font-mono">{p.date}</div>
+                  <h3 class="font-serif text-xl mb-3 group-hover:text-brand-chocolate transition-colors leading-tight line-clamp-2">{p.title}</h3>
+                  <p class="text-muted-foreground leading-relaxed mb-4 text-sm line-clamp-3">{p.excerpt}</p>
+                  <span class="inline-flex items-center gap-1 text-sm text-brand-chocolate font-medium">
+                    {locale === 'cn' ? '阅读' : 'Read'}
+                    <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                  </span>
+                </div>
+              </a>
+            );
+          })}
+        </div>
       </div>
     </section>
+  )}
 
-    <section class="material section-pad" aria-labelledby="material-title">
-      <div class="material-copy"><p class="kicker">{copy.materialKicker}</p><h2 id="material-title" set:html={copy.materialTitle}></h2><p>{copy.materialBody}</p></div>
-      <div class="material-image image-frame"><img src={`${asset}/material-stilllife.webp`} alt={isCn ? '叠放在石灰岩台座上的羊绒针织品与纤维' : 'Cashmere knitwear and fiber arranged on limestone'} width="1200" height="1500" loading="lazy" /></div>
-      <div class="swatches" aria-label={isCn ? '羊绒色彩样本' : 'Cashmere color samples'}><i></i><i></i><i></i><i></i></div>
-    </section>
-
-    <section class="values section-pad" aria-labelledby="values-title">
-      <div class="values-title"><p class="kicker">{copy.valueKicker}</p><h2 id="values-title" set:html={copy.valueTitle}></h2></div>
-      <div class="values-list">
-        {values.map(([number, title, detail]) => <article><b>{number}</b><h3>{title}</h3><p>{detail}</p></article>)}
-      </div>
-    </section>
-
-    <section class="contact-cta" aria-labelledby="cta-title">
-      <div class="cta-content"><p class="kicker inverse">{copy.finalKicker}</p><h2 id="cta-title" set:html={copy.finalTitle}></h2><p>{copy.finalBody}</p><a class="thread-button" href={`/${locale}/contact/`}>{copy.finalAction} <span>→</span></a></div>
-      <span class="cta-number" aria-hidden="true">06</span>
-    </section>
-
-    <footer class="snowline-footer"><a class="brand" href={`/${locale}/`}><img src={`${asset}/fiber-mark.png`} alt="" width="32" height="32" /><span>DONGXIAO <em>Cashmere</em></span></a><p>{copy.footer}</p><a href="#top">{copy.top} ↗</a></footer>
-  </div>
-
+  <Footer slot="footer" locale={locale} />
   <FloatingChatButtons slot="floating" locale={locale} />
   <CookieConsent slot="cookie-consent" locale={locale} />
 </BaseLayout>
-
-<style>
-  /* 雪线静奢：暖白纸张、石墨褐、克制赭金与不规则纤维轨迹构成首屏及章节节奏。 */
-  :global(html) { scroll-behavior: smooth; }
-  .snowline { --ink:#2d2824; --paper:#f8f6f0; --mist:#efeae0; --stone:#ded6ca; --thread:#a76432; --gold:#e2b78e; color:var(--ink); background:var(--paper); font-family:"Noto Sans SC", Inter, sans-serif; overflow:clip; }
-  .snowline *, .snowline *::before, .snowline *::after { box-sizing:border-box; }
-  .snowline a { color:inherit; text-decoration:none; }
-  .snowline-header { height:88px; position:absolute; inset:0 0 auto; z-index:20; display:flex; align-items:center; justify-content:space-between; gap:30px; padding:0 clamp(22px,5vw,78px); color:#fffdf8; border-bottom:1px solid rgba(255,255,255,.18); }
-  .brand { display:inline-flex; align-items:center; gap:12px; flex-shrink:0; }.brand img { width:36px; height:36px; object-fit:contain; }.brand span { font:600 21px/1 "Cormorant Garamond", serif; letter-spacing:.1em; white-space:nowrap; }.brand em { font-size:16px; font-weight:400; letter-spacing:.02em; }.snowline-header nav { display:flex; gap:clamp(20px,3vw,48px); margin-left:auto; }.snowline-header nav a, .nav-action { font-size:12px; font-weight:500; letter-spacing:.12em; }.snowline-header nav a:hover, .nav-action:hover { color:var(--gold); }.nav-action { display:inline-flex; align-items:center; gap:6px; padding-left:26px; border-left:1px solid rgba(255,255,255,.35); }.nav-action span { font-size:17px; }
-  .hero { min-height:min(820px,92vh); display:flex; align-items:center; position:relative; isolation:isolate; color:#fffdf8; }.hero-image,.hero-shade { width:100%;height:100%;position:absolute;inset:0; }.hero-image { z-index:-3; object-fit:cover; object-position:center; animation:slowZoom 16s ease-out both; }.hero-shade { z-index:-2; background:linear-gradient(90deg,rgba(27,24,20,.82),rgba(27,24,20,.55) 32%,rgba(27,24,20,.07) 70%,rgba(27,24,20,.14)); }.hero-copy { width:min(790px,100%); margin:108px 0 100px clamp(22px,9vw,150px); padding-right:22px; }.kicker { display:flex; align-items:center; gap:12px; color:var(--thread); font-size:10px; font-weight:600; letter-spacing:.23em; margin:0 0 25px; }.kicker::before { content:""; display:block; width:36px; height:1px; background:currentColor; }.kicker.inverse { color:var(--gold); }.hero h1,.snowline h2,.snowline h3,.snowline p { margin-top:0; }.hero h1,.snowline h2 { font-family:"Cormorant Garamond","Noto Serif SC",serif; font-weight:400; letter-spacing:-.055em; line-height:.91; }.hero h1 { max-width:800px; margin-bottom:34px; font-size:clamp(52px,7vw,108px); }.hero h1 em,.snowline h2 em { font-style:italic; font-weight:400; }.hero-intro { max-width:535px; color:rgba(255,253,248,.82); font-size:15px; line-height:1.95; letter-spacing:.015em; margin-bottom:38px; }.hero-actions { display:flex; align-items:center; gap:30px; flex-wrap:wrap; }.thread-button { min-width:182px; display:inline-flex; align-items:center; justify-content:center; gap:18px; padding:17px 23px 17px 27px; border:1px solid rgba(226,183,142,.72); border-left:4px solid var(--thread); background:rgba(255,253,248,.04); color:#fffdf8; font-size:12px; font-weight:600; letter-spacing:.15em; transition:background .18s ease-out,border-color .18s ease-out,transform .16s ease-out; }.thread-button:hover { background:rgba(167,100,50,.32); border-color:var(--gold); }.thread-button:active { transform:scale(.97); }.text-link { display:inline-flex; align-items:center; gap:10px; padding-bottom:7px; border-bottom:1px solid currentColor; color:var(--ink); font-size:12px; font-weight:600; letter-spacing:.12em; transition:color .18s ease-out,gap .18s ease-out; }.text-link:hover { gap:15px; color:var(--thread); }.text-link.light { color:#fffdf8; }.text-link.light:hover { color:var(--gold); }.hero-note { position:absolute; right:clamp(22px,5vw,78px); bottom:55px; writing-mode:vertical-rl; display:flex; align-items:flex-end; gap:13px; }.hero-note b { color:var(--gold); font:30px/1 "Cormorant Garamond",serif; }.hero-note span { color:rgba(255,253,248,.85); font-size:10px; line-height:1.8; letter-spacing:.14em; }.scroll-note { position:absolute; left:clamp(22px,5vw,78px); bottom:33px; display:flex; align-items:center; gap:13px; color:rgba(255,253,248,.7); font-size:9px; letter-spacing:.2em; }.scroll-note i { width:47px; height:1px; background:rgba(255,253,248,.7); }.fiber { position:absolute; pointer-events:none; opacity:.5; }.fiber i { position:absolute; display:block; border-top:1px solid currentColor; border-radius:50%; }.hero-fiber { width:350px; height:210px; right:13%; top:32%; color:rgba(255,253,248,.35); transform:rotate(-17deg); }.hero-fiber i:nth-child(1){width:335px;top:15px}.hero-fiber i:nth-child(2){width:270px;top:71px;left:45px;transform:rotate(8deg)}.hero-fiber i:nth-child(3){width:225px;top:137px;left:82px;transform:rotate(-8deg)}
-  .proof { display:grid; grid-template-columns:repeat(4,1fr); padding:31px clamp(22px,8vw,150px); background:#eae3d7; }.proof>div { padding:0 clamp(14px,2.4vw,37px); border-left:1px solid rgba(45,40,36,.16); }.proof>div:first-child { padding-left:0;border-left:0; }.proof strong { display:block; font:500 clamp(34px,3.2vw,51px)/.82 "Cormorant Garamond",serif; letter-spacing:-.04em; }.proof sup,.proof small { color:var(--thread); font-size:.55em; margin-left:3px; }.proof p { margin:12px 0 0; color:rgba(45,40,36,.7); font-size:10px; line-height:1.5; letter-spacing:.09em; }
-  .section-pad { padding-left:clamp(22px,9vw,150px); padding-right:clamp(22px,9vw,150px); }.origin { position:relative; display:grid; grid-template-columns:minmax(0,1.08fr) minmax(300px,.75fr); align-items:center; gap:clamp(52px,9vw,150px); padding-top:clamp(90px,12vw,180px); padding-bottom:clamp(90px,12vw,180px); }.origin::before { content:""; position:absolute; left:0; top:36px; width:min(33vw,480px); height:80px; border-top:1px solid rgba(167,100,50,.42); border-radius:50%; transform:rotate(7deg); }.image-frame { overflow:hidden; background:#ded6ca; }.image-frame img { width:100%;height:100%;display:block;object-fit:cover;transition:transform .8s cubic-bezier(.23,1,.32,1); }.image-frame:hover img{transform:scale(1.035)}.origin-image { height:clamp(420px,52vw,690px); }.origin-content { max-width:510px; position:relative;z-index:2; }.snowline h2 { font-size:clamp(46px,5.25vw,79px); margin:0 0 28px; }.lead { color:#62594f; font-size:16px; line-height:1.95; margin-bottom:20px; }.body-copy { color:#766d63; font-size:14px; line-height:1.95; margin-bottom:31px; }.fineness { position:absolute; z-index:3; bottom:clamp(64px,9vw,130px); left:43%; width:150px; min-height:150px; padding:24px; display:flex; flex-direction:column; justify-content:space-between; background:var(--ink); color:#fffdf8; transform:translateX(-50%); }.fineness b { color:var(--gold); font:51px/1 "Cormorant Garamond",serif; letter-spacing:-.06em; }.fineness span { font-size:8px; line-height:1.6; letter-spacing:.16em; }.origin-fiber { color:rgba(167,100,50,.48); width:280px; height:150px; right:3%; bottom:85px; transform:rotate(-28deg); }.origin-fiber i:first-child{width:270px;top:32px}.origin-fiber i:last-child{width:190px;top:88px;left:50px}
-  .collections { position:relative; padding-top:clamp(92px,11vw,165px); padding-bottom:clamp(92px,11vw,165px); background:var(--mist); }.collections::after { content:""; position:absolute; right:-18px; top:13%; width:220px; height:540px; opacity:.38; background:repeating-radial-gradient(ellipse at 100% 50%,transparent 0 31px,rgba(167,100,50,.45) 32px 33px,transparent 34px 51px); transform:rotate(-7deg); pointer-events:none; }.section-heading { display:flex; align-items:end; justify-content:space-between; gap:50px; margin-bottom:72px; }.section-heading h2{margin-bottom:0}.section-heading>p { max-width:330px; margin:0 0 7px; color:#766d63; font-size:14px; line-height:1.9; }.collection-list { border-top:1px solid rgba(45,40,36,.22); }.collection-row { min-height:141px; position:relative; overflow:hidden; display:grid; align-items:center; grid-template-columns:78px 1.1fr 1.25fr .9fr 36px; gap:24px; border-bottom:1px solid rgba(45,40,36,.22); transition:color .27s ease-out; }.collection-row::before { content:""; position:absolute; inset:0; z-index:0; transform:translateX(-102%); transition:transform .55s cubic-bezier(.23,1,.32,1); }.collection-row.coat::before{background:#b5a18c}.collection-row.yarn::before{background:#786d61}.collection-row.scarf::before{background:var(--thread)}.collection-row:hover::before{transform:translateX(0)}.collection-row:hover{color:#fffdf8}.collection-row>*{position:relative;z-index:1}.collection-number{color:var(--thread);font:22px "Cormorant Garamond",serif}.collection-row:hover .collection-number{color:#f0cfac}.collection-row h3{margin:0;font:500 clamp(28px,3vw,43px)/1 "Cormorant Garamond",serif;letter-spacing:-.04em}.collection-row>p{max-width:270px;margin:0;color:#766d63;font-size:13px;line-height:1.75;transition:color .27s}.collection-row:hover>p{color:rgba(255,253,248,.84)}.collection-meta{display:flex;flex-wrap:wrap;gap:7px;align-items:center}.collection-meta small{width:100%;color:var(--thread);font-size:8px;font-weight:600;letter-spacing:.16em}.collection-row:hover .collection-meta small{color:#f0cfac}.collection-meta>span{display:flex;flex-wrap:wrap;gap:7px}.collection-meta em{padding:6px 8px;border:1px solid rgba(45,40,36,.28);color:#62594f;font-size:9px;font-style:normal;letter-spacing:.07em}.collection-row:hover .collection-meta em{border-color:rgba(255,253,248,.5);color:#fffdf8}.collection-arrow{justify-self:end;font-size:23px;font-weight:400}
-  .craft { min-height:720px; display:grid; grid-template-columns:minmax(0,1.05fr) minmax(390px,.95fr); color:#fffdf8; background:var(--ink); }.craft-image { min-height:620px; position:relative; }.craft-image::after { content:""; position:absolute; right:-1px; top:11%; width:130px; height:77%; border-right:1px solid rgba(226,183,142,.5); border-radius:50%; transform:translateX(50%) rotate(-12deg); }.craft-image img{object-position:38% center}.craft-content { max-width:750px; position:relative; display:flex; flex-direction:column; justify-content:center; padding-top:90px; padding-bottom:90px; }.craft-content h2{font-size:clamp(45px,4.5vw,72px)}.craft-content>p:not(.kicker){max-width:440px;color:rgba(255,253,248,.68);font-size:14px;line-height:2;margin-bottom:30px}.archive-note{position:absolute;right:8%;top:10%;color:rgba(226,183,142,.55);font-size:8px;letter-spacing:.18em;writing-mode:vertical-rl}
-  .material { position:relative; display:grid; grid-template-columns:.75fr 1.05fr; align-items:center; gap:clamp(48px,9vw,145px); padding-top:clamp(90px,12vw,185px); padding-bottom:clamp(90px,12vw,185px); }.material::before{content:"";position:absolute;left:13%;top:17%;width:210px;height:125px;border-top:1px solid rgba(167,100,50,.38);border-radius:50%;transform:rotate(-14deg)}.material-copy{max-width:440px}.material-copy h2{margin-bottom:25px}.material-copy>p:not(.kicker){margin:0;color:#766d63;font-size:14px;line-height:1.95}.material-image{height:clamp(400px,47vw,640px)}.swatches{position:absolute;z-index:3;bottom:clamp(63px,7vw,105px);left:clamp(22px,9vw,150px);display:flex}.swatches i{width:42px;height:42px;margin-left:-8px;border:4px solid var(--paper);border-radius:50%;background:#f1e9dc}.swatches i:nth-child(2){background:#c7b095}.swatches i:nth-child(3){background:#837464}.swatches i:nth-child(4){background:#45403a}
-  .values { position:relative; display:grid; grid-template-columns:.9fr 1.1fr; gap:75px; padding-top:clamp(90px,11vw,165px); padding-bottom:clamp(90px,11vw,165px); background:var(--stone); }.values::after{content:"";position:absolute;bottom:12%;left:0;width:170px;height:80px;border-top:1px solid rgba(167,100,50,.4);border-radius:50%;transform:rotate(13deg)}.values-title h2{margin-bottom:0}.values-list{border-top:1px solid rgba(45,40,36,.2)}.values-list article{display:grid;grid-template-columns:58px 1fr 1.25fr;gap:22px;padding:28px 0;border-bottom:1px solid rgba(45,40,36,.2)}.values-list b{color:var(--thread);font:24px "Cormorant Garamond",serif}.values-list h3{margin:0;font:500 26px "Cormorant Garamond",serif;letter-spacing:-.03em}.values-list p{margin:2px 0 0;color:#62594f;font-size:13px;line-height:1.8}
-  .contact-cta{min-height:615px;position:relative;display:grid;place-items:center;overflow:hidden;background:#40362d;color:#fffdf8;text-align:center}.contact-cta::before{content:"";position:absolute;top:-220px;left:50%;width:1050px;height:500px;border:1px solid rgba(230,185,140,.34);border-radius:50%;box-shadow:0 80px 0 -20px rgba(230,185,140,.16),0 160px 0 -45px rgba(230,185,140,.12);transform:translateX(-50%) rotate(-8deg)}.cta-content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;max-width:770px;padding:90px 22px}.cta-content .kicker{margin-bottom:30px}.cta-content h2{margin-bottom:25px;font-size:clamp(47px,5vw,76px)}.cta-content>p:not(.kicker){max-width:470px;margin-bottom:33px;color:rgba(255,253,248,.75);font-size:14px;line-height:1.95}.cta-number{position:absolute;right:clamp(22px,7vw,112px);bottom:-46px;color:rgba(255,253,248,.055);font:230px/1 "Cormorant Garamond",serif;letter-spacing:-.08em}.snowline-footer{min-height:98px;display:flex;align-items:center;gap:28px;padding:30px clamp(22px,5vw,78px);background:var(--paper)}.snowline-footer .brand img{width:32px;height:32px}.snowline-footer .brand span{font-size:18px}.snowline-footer .brand em{font-size:14px}.snowline-footer p{margin:0;color:#766d63;font-size:11px;letter-spacing:.08em}.snowline-footer>a:last-child{margin-left:auto;font-size:11px;letter-spacing:.08em}
-  @keyframes slowZoom{from{transform:scale(1.035)}to{transform:scale(1)}}
-  @media(max-width:880px){.snowline-header nav{display:none}.nav-action{font-size:10px;padding-left:14px}.hero{min-height:720px}.hero-copy{margin-left:clamp(22px,8vw,60px);margin-bottom:90px}.hero-note{display:none}.scroll-note{left:clamp(22px,8vw,60px)}.proof{grid-template-columns:repeat(2,1fr);gap:24px 0}.proof>div:nth-child(3){padding-left:0;border-left:0}.origin{grid-template-columns:1fr;gap:54px}.origin-content{max-width:580px}.fineness{top:clamp(400px,52vw,590px);right:clamp(22px,9vw,70px);bottom:auto;left:auto;transform:none}.origin-fiber,.origin::before,.material::before,.values::after{display:none}.section-heading{display:block}.section-heading>p{margin-top:22px}.collection-row{min-height:0;grid-template-columns:54px 1fr 32px;gap:15px;padding:25px 0}.collection-row>p,.collection-meta{display:none}.craft{grid-template-columns:1fr}.craft-image{min-height:470px}.craft-content{max-width:none}.material{grid-template-columns:1fr;gap:52px}.material-copy{max-width:520px}.material-image{grid-row:1}.swatches{bottom:30px}.values{grid-template-columns:1fr;gap:48px}.values-list article{grid-template-columns:44px 1fr}.values-list p{grid-column:2}.snowline-footer{flex-wrap:wrap}.snowline-footer>a:last-child{margin-left:auto}}
-  @media(max-width:560px){.snowline-header{height:74px;padding:0 20px}.brand img{width:31px;height:31px}.brand span{font-size:18px}.brand em{font-size:13px}.nav-action{font-size:9px}.hero{min-height:665px}.hero-shade{background:linear-gradient(90deg,rgba(27,24,20,.78),rgba(27,24,20,.15))}.hero-copy{margin:86px 0 80px 22px}.hero h1{font-size:clamp(48px,15vw,66px);line-height:.92}.hero-intro{max-width:325px;font-size:13px;line-height:1.85}.hero-actions{gap:21px}.thread-button{min-width:158px;padding:16px 17px}.hero-fiber{right:-17%;top:20%;transform:scale(.72) rotate(-17deg)}.scroll-note{left:22px;bottom:23px}.proof{padding:28px 22px}.proof>div{padding:0 14px}.proof strong{font-size:39px}.proof p{font-size:9px}.section-pad{padding-left:22px;padding-right:22px}.origin{padding-top:90px;padding-bottom:102px}.origin-image{height:420px}.fineness{top:332px;right:22px;width:120px;min-height:120px;padding:18px}.fineness b{font-size:41px}.lead{font-size:15px}.section-heading{margin-bottom:45px}.collection-row h3{font-size:31px}.craft-image{min-height:365px}.craft-content{padding-top:81px;padding-bottom:82px}.material{padding-top:100px;padding-bottom:115px}.material-image{height:400px}.values{gap:42px}.values-list article{gap:12px}.values-list h3{font-size:25px}.contact-cta{min-height:600px}.cta-number{right:4px;bottom:-28px;font-size:170px}.snowline-footer{gap:19px;padding:25px 22px}.snowline-footer p{order:3;width:100%;font-size:10px}.snowline-footer>a:last-child{font-size:10px}}
-  @media(prefers-reduced-motion:reduce){.snowline *{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
-</style>
