@@ -1,145 +1,144 @@
 ---
-title: "Where to Buy Bulk Raw Mongolian Cashmere: A B2B Buyer's Guide to Sourcing Fiber, Pricing & Quality"
-excerpt: "Buying bulk raw Mongolian cashmere in 2026 means navigating origin fraud, micron variance, and pricing volatility. This guide covers where to source, what to ask suppliers, and how to verify quality before signing a PO."
+title: "몽골산 생캐시미어 대량 구매: 섬유 소싱·가격·품질을 위한 B2B 바이어 가이드"
+excerpt: "2026년 몽골산 생캐시미어 대량 구매는 원산지 사기, 마이크론 변동, 가격 변동성을 헤쳐 나가야 함을 의미합니다. 이 가이드는 소싱처, 공급사 질문, PO 체결 전 품질 검증을 다룹니다."
 publishDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
-tags: ["raw cashmere sourcing","Mongolian cashmere","B2B sourcing guide","cashmere fiber quality","dehaired cashmere"]
+tags: ["raw cashmere sourcing", "Mongolian cashmere", "B2B sourcing guide", "cashmere fiber quality", "dehaired cashmere"]
 geoRegion: "GLOBAL"
-targetKeywords: ["where to buy bulk raw Mongolian cashmere","best Ordos cashmere fiber supplier China","Mongolian greasy cashmere fiber","eco-friendly scoured cashmere fiber wholesale","raw cashmere bulk supply"]
+targetKeywords: ["몽골산 생캐시미어 대량 구매","최고의 오르도스 캐시미어 섬유 공급사 중국","몽골산 그레이지 캐시미어","친환경 세정 캐시미어 섬유 도매","생캐시미어 대량 공급"]
 relatedProducts: ["raw_material"]
 aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "kr"
 ---
-# Where to Buy Bulk Raw Mongolian Cashmere: A B2B Buyer's Guide to Sourcing Fiber, Pricing & Quality
 
-# Where to Buy Bulk Raw Mongolian Cashmere: A B2B Buyer's Guide
+# 몽골산 생캐시미어 대량 구매: B2B 바이어 가이드
 
-Every cashmere sweater, scarf, or blanket in a luxury retailer's catalog started as raw fiber combed from a goat on the Mongolian plateau. The journey from goat to garment is long, but the first 200 meters — from the herder's comb to the spinner's hopper — is where quality is won or lost. This guide is for B2B buyers who need to source **bulk raw Mongolian cashmere** at industrial scale, with predictable quality and verifiable origin.
+럭셔리 소매 카탈로그의 모든 캐시미어 스웨터, 스카프, 담요는 몽골 고원의 산양에서 빗어낸 생섬유로 시작됩니다. 동물에서 의류까지의 여정은 길지만, 첫 200미터 — 목자의 빗에서 방적공의 호퍼까지 — 에서 품질이 결정됩니다. 이 가이드는 **몽골산 생캐시미어를 대량으로** 산업 규모로, 예측 가능한 품질과 검증 가능한 원산지로 소싱해야 하는 B2B 바이어를 위한 것입니다.
 
-## Why "Mongolian" matters (and why it's not enough)
+## "몽골산"이 중요한 이유 (그리고 그것만으로는 부족한 이유)
 
-Cashmere goats are not a single breed. The premium fiber used in B2B wholesale comes from **Albus white goats** raised on the Mongolian plateau at 1,200-1,500m altitude. The combination of cold, dry winters, high UV, and specific vegetation produces the world's finest underdown — typically 14.5-15.5μm in diameter, with long fiber length (34-42mm) and high curl.
+캐시미어 산양은 단일 품종이 아닙니다. B2B 도매에 사용되는 프리미엄 섬유는 몽골 고원 해발 1,200~1,500m에서 사육되는 **알부스종 산양**에서 나옵니다. 춥고 건조한 겨울, 강한 자외선, 특정 식생의 조합이 세계 최고급 언더다운(직경 14.5~15.5µm, 섬유장 34~42mm, 높은 컬)을 만들어냅니다.
 
-But "Mongolian" on a sales sheet is not a quality guarantee. The two largest scams in cashmere sourcing today:
+그러나 영업 자료의 "몽골산"은 품질 보장이 아닙니다. 오늘날 캐시미어 소싱의 두 가지 최대 사기:
 
-1. **Origin laundering**: Fiber combed in Iran, Afghanistan, or Inner China (not Mongolia proper) is re-tagged and shipped as "Mongolian cashmere". The fiber is real cashmere — but the micron count, length, and color purity are noticeably lower.
+1. **원산지 세탁**: 이란, 아프가니스탄 또는 중국 내륙(몽골 본국이 아닌)에서 빗어낸 섬유를 "몽골산 캐시미어"로 재라벨링하여 선적. 섬유는 진짜 캐시미어지만 마이크론, 길이, 색 순도가 현저히 낮습니다.
 
-2. **Grade mixing**: Premium white cashmere is blended with brown or purple fiber at processing. The bale ships as "white cashmere" but contains 20-30% lower-grade fiber that shows up in your finished product as pilling and color drift.
+2. **등급 혼합**: 프리미엄 흰 캐시미어가 가공 시 갈색 또는 보라색 섬유와 혼합됩니다. 베일은 "흰 캐시미어"로 선적되지만 20~30%의 저급 섬유가 포함되어 최종 제품에서 필링과 색 드리프트가 나타납니다.
 
-The fix is to source from a vertically integrated factory that **buys direct from herders under contract**, with full traceability from combed fiber to dehaired tops.
+해결책은 **계약 목자에게서 직접 구매**하는 수직 통합 공장에서 소싱하는 것입니다. 빗어낸 섬유에서 분梳理수까지 완전한 이력 추적을 보장합니다.
 
-## The 4-tier cashmere quality ladder
+## 4단계 캐시미어 품질 사다리
 
-| Grade | Origin | Micron (μm) | Fiber length | Price (USD/kg, dehaired) |
+| 등급 | 원산지 | 마이크론 (µm) | 섬유장 | 가격 (USD/kg, 분梳) |
 |---|---|---|---|---|
-| **Premium white** | Albus goats, Ordos plateau | 14.5-15.5 | 36-42mm | $110-140 |
-| **Standard white** | Mixed Albus / brown cross | 15.0-16.0 | 32-38mm | $90-115 |
-| **Brown (qing)** | Albus goats, mature | 15.5-16.5 | 30-36mm | $80-105 |
-| **Purple (zi)** | Older Albus goats | 16.0-17.5 | 28-34mm | $70-90 |
+| **프리미엄 흰** | 알부스종, 오르도스 고원 | 14.5~15.5 | 36~42mm | 110~140 |
+| **표준 흰** | 알부스/갈색 교잡 혼합 | 15.0~16.0 | 32~38mm | 90~115 |
+| **갈색 (qing)** | 알부스종, 성숙 | 15.5~16.5 | 30~36mm | 80~105 |
+| **보라색 (zi)** | 고령 알부스종 | 16.0~17.5 | 28~34mm | 70~90 |
 
-For luxury knitwear, you want **Premium white** only. For blending or mid-market products, **Standard white** is the workhorse. Brown and purple are typically used for heathered yarns or felted products — they dye unevenly in solid colors.
+럭셔리 니트웨어에는 **프리미엄 흰** 만 필요합니다. 혼방 또는 중급 제품은 **표준 흰** 이 일합니다. 갈색과 보라색은 보통 무늬 원사나 펠트 제품에 사용되며 단색 염색에는 고르지 않습니다.
 
-## 5 questions to ask any "Mongolian cashmere" supplier
+## "몽골산 캐시미어" 공급사에 할 5가지 질문
 
-Before sending an inquiry, vet the supplier with these five questions. Honest answers separate the real factories from the trading companies.
+문의 전에 다음 5가지 질문으로 공급사를 검증하세요. 정직한 답변이 진짜 공장과 무역상을 가릅니다.
 
-### 1. "Where exactly is your fiber combed and dehaired?"
+### 1. "섬유를 정확히 어디서 빗고 분梳하나요?"
 
-Real answer: "Our dehairing facility is in Ordos Industrial Park, Inner Mongolia. We buy direct from ~200 contracted herders in the Albus, Hanggin, and Otog Banner regions within 300 km of our facility."
+진짜 답: "당사의 분梳 시설은 내몽골 오르도스 산업단지에 있습니다. 알부스, 항긴, 오토그 반구 지역의 약 200명 계약 목자로부터 당사 시설 반경 300km 이내에서 직접 구매합니다."
 
-Red flag: "We source globally and blend for optimal quality" — this means origin is mixed and untraceable.
+레드 플래그: "당사는 전 세계에서 조달하고 최적의 품질을 위해 블렌딩합니다" — 이는 원산지가 혼합되어 추적 불가능하다는 뜻입니다.
 
-### 2. "Can I visit the dehairing facility?"
+### 2. "분梳 시설을 방문할 수 있나요?"
 
-Real answer: "Yes, our facility is in Ordos Industrial Park. We host 50+ buyer audits per year."
+진짜 답: "예, 시설은 오르도스 산업단지에 있습니다. 연간 50건 이상의 바이어 감사 방문을 받습니다."
 
-Red flag: "Our processing partners handle that" — they don't own the production. Quality control is impossible.
+레드 플래그: "당사의 가공 파트너가 처리합니다" — 그들은 생산을 소유하지 않습니다. 품질 관리는 불가능합니다.
 
-### 3. "What is your typical dehaired yield from raw greasy cashmere?"
+### 3. "생 그레이지 캐시미어에서 전형적인 분梳 수율은 얼마인가요?"
 
-Real answer: "32-38% yield depending on grade. White cashmere yields highest, purple lowest. We track yield per bale to monitor herder consistency."
+진짜 답: "등급에 따라 32~38%. 흰색이 가장 수율이 높고 보라색이 가장 낮습니다. 목자 일관성을 모니터링하기 위해 베일별 수율을 추적합니다."
 
-Red flag: "Around 45-50%" — that's chemically treated or blended fiber. Natural yield is 25-40%.
+레드 플래그: "약 45~50%" — 화학 처리되거나 혼합된 섬유입니다. 자연 수율은 25~40%.
 
-### 4. "Do you provide per-bale micron testing?"
+### 4. "베일별 마이크론 시험을 제공하나요?"
 
-Real answer: "Yes. Every bale ships with a Certificate of Analysis including laser-scan micron (mean + standard deviation), length distribution (Hauteur), and visual purity. We use OFDA 2000."
+진짜 답: "예. 모든 베일은 레이저 스캔 마이크론(평균+표준편차),), 길이 분포(Hauteur), 시각적 순도를 포함한 분석 인증서와 함께 선적됩니다. OFDA 2000을 사용합니다."
 
-Red flag: "We test in aggregate" or "trust our quality" — no per-bale data means no quality control.
+레드 플래그: "우리는 집계로 테스트합니다" 또는 "당사 품질을 신뢰하세요" — — 베일별 데이터가 없다는 것은 품질 관리가 없다는 뜻입니다.
 
-### 5. "What's your annual capacity and lead time?"
+### 5. "연간 생산 능력과 리드타임은?"
 
-Real answer: "We dehair 1,200+ tons annually. Stock white cashmere: 7-10 day dispatch. Custom micron sorting: 20-25 days."
+진짜 답: "당사는 연간 1,200톤 이상을 분梳합니다. 재고 흰 캐시미어: 7~10일 발송. 맞춤 마이크론 선별: 20~25일."
 
-Red flag: "Unlimited" or "we source as needed" — no committed capacity means your reorder will be at the mercy of the spot market.
+레드 플래그: "무제한" 또는 "필요에 따라 조달" — 확정된 능력이 없다는 것은 재주문이 스팟 시장에 의존한다는 뜻입니다.
 
-## What "dehaired" actually means (and why price jumps 2x)
+## "분梳됨"이 실제로 의미하는 것 (그리고 가격이 2배가 되는 이유)
 
-Raw cashmere fiber combed from goats is called **greasy cashmere** — it contains guard hair (thick, straight, useless for spinning), lanolin, dirt, and vegetable matter. Before spinning, it must be **dehaired** — mechanically separating the fine underdown from guard hair.
+산양에서 빗어낸 생섬유를 **그레이지 캐시미어**라고 합니다 — 그드 헤어(굵고, 곧고, 방적에 무용), 라놀린, 먼지, 식물성 물질을 포함합니다. 방적 전에 **분梳**해야 합니다 — 그드 헤어에서 미세한 언더다운을 기계적으로 분리.
 
-The dehaired output is roughly **35% of the raw input** by weight. So 1 kg of dehaired white cashmere tops requires about 3 kg of raw greasy fiber. The price difference reflects:
+분梳 출력은 원료 입력 중 약 **35%**. 따라서 1kg의 분梳 흰 캐시미어 톱에는 약 3kg의 생 그레이지 섬유가 필요합니다. 가격 차이의 근거:
 
-- **Yield loss** (65% becomes waste or guard-hair by-product)
-- **Italian dehaiirng line cost** (Capstan or similar, $5M+ investment)
-- **Labor** for hand-sorting after mechanical dehaiiring
-- **Testing** (OFDA micron + length per bale)
+- **수율 손실** (65%가 폐기물 또는 그드 헤어 부산물)
+- **이탈리아 분梳 라인 비용** (Capstan 등, 500만 달러 이상 투자)
+- **기계 분梳 후 수작업 선별의 인건비**
+- **시험** (OFDA 마이크론 + 베일별 길이)
 
-A "raw cashmere" quote at $30/kg is almost certainly greasy fiber; "dehaired cashmere" at $90-120/kg is the post-processing price.
+"생 캐시미어"의 30 USD/kg 견적은 거의 확실히 그레이지 섬유; "분梳 캐시미어"의 90~120 USD/kg가 가공 후 가격입니다.
 
-## Direct vs. trading company: the 30-40% margin
+## 직접 vs 무역상: 30~40% 마진
 
-Most B2B buyers in Europe and North America don't buy direct from a Chinese cashmere factory. They buy from a **trading company** in Hong Kong, Istanbul, or Milan. The trading company adds 30-40% margin and provides:
+유럽과 북미의 대부분 B2B 바이어는 중국 캐시미어 공장에서 직접 구매하지 않습니다. 홍콩, 이스탄불, 밀라노의 **무역상**을 통해 구매합니다. 무역상은 30~40% 마진을 추가하고 다음을 제공합니다:
 
-- Local language support (English, Italian, German)
-- Smaller MOQ flexibility (factory MOQ is 100kg; trading company may start at 20kg)
-- Inventory financing
-- Logistics management
+- 현지 언어 지원 (영어, 이탈리아어, 독일어)
+- 더 작은 MOQ 유연성 (공장 MOQ는 100kg; 무역상은 20kg부터 가능)
+- 재고 금융
+- 물류 관리
 
-**For orders under 200kg per shipment**, a trading company is often the right choice. **For orders 500kg+** (the threshold where direct factory pricing makes sense), sourcing direct saves 30%+, but requires you to:
+**1회 선적 200kg 미만 주문**에는 무역상이 종종 맞는 선택입니다. **500kg 이상 주문**(공장 직접 가격이 의미를 갖는 임계값)에는 직접 소싱으로 30%+ 절감되지만, 다음이 필요합니다:
 
-- Travel to China for an initial factory audit
-- Pay 30% T/T deposit, 70% before shipment
-- Accept 30-45 day production lead time
-- Handle Chinese export documentation (or hire a freight forwarder)
+- 초기 공장 감사를 위한 중국 방문
+- 30% T/T 선입금, 선적 전 70%
+- 30~45일 생산 리드타임 수용
+- 중국 수출 서류 자체 처리 (또는 포워더 고용)
 
-## How to verify "Mongolian origin" claims
+## "몽골산" 주장 검증 방법
 
-Three tests you can run on samples before placing a full order:
+전체 주문 전에 샘플로 수행할 수 있는 3가지 시험:
 
-1. **Micron scan (OFDA 2000)**: Premium white Mongolian is 14.5-15.5μm. Anything above 16.0μm on a "premium white" sample is suspect.
+1. **마이크론 스캔 (OFDA 2000)**: 프리미엄 흰 몽골은 14.5~15.5µm. "프리미엄 흰" 샘플에서 16.0µm를 초과하는 것은 위조 의심.
 
-2. **Color test**: True Mongolian white cashmere has a slight bluish tint (not pure white). Pure-bright-white fiber has usually been bleached, which damages the cuticle.
+2. **색 시험**: 진짜 몽골 흰 캐시미어는 약간 푸르스름한 빛(순백이 아님). 순수하게 밝은 흰색 섬유은 보통 표백된, 큐티클이 손상됩니다.
 
-3. **Length distribution**: Premium Mongolian has 36-42mm fiber length. Below 32mm is shorter — likely from older goats or a different breed.
+3. **길이 분포**: 프리미엄 몽골은 36~42mm 섬유장. 32mm 미만은 짧음 — 고령 산양 또는 다른 품종일 가능성.
 
-A reputable supplier will provide OFDA test data on request. If they refuse or only provide "typical values" rather than your-batch-specific data, walk away.
+평판 있는 공급사는 요청 시 OFDA 시험 데이터를 제공합니다. 거부하거나 배치별 데이터가 아닌 "전형적인 값"만 제공하면 떠나라.
 
-## Pricing trends 2024-2026
+## 가격 트렌드 2024~2026
 
-Raw Mongolian cashmere prices have stabilized after the 2020-2022 boom (when luxury demand pushed prices 40% higher). Current 2026 spot prices:
+몽골산 생캐시미어 가격은 2020~2022년 급등(럭셔리 수요로 40% 상승) 이후 안정화. 2026년 현재 스팟 가격:
 
-- **Greasy white cashmere**: $35-45/kg FOB Tianjin
-- **Dehaired white cashmere**: $90-120/kg FOB Tianjin
-- **Dehaired brown cashmere**: $75-95/kg FOB Tianjin
+- **그레이지 흰 캐시미어**: 35~45 USD/kg FOB 천진
+- **분梳 흰 캐시미어**: 90~120 USD/kg FOB 천진
+- **분梳 갈색 캐시미어**: 75~95 USD/kg FOB 천진
 
-Pricing is largely driven by Australian merino wool prices (substitute for mid-tier knitwear) and Chinese domestic demand (which has been growing 8-12% per year since 2020).
+가격은 주로 호주 메리노 양모 가격(중급 니트의 대체재)과 중국 내수 수요(2020년 이후 연 8~12% 성장)에 좌우됩니다.
 
-For 2026-2027, expect prices to remain flat to +5% as Mongolian herding capacity is constrained by grassland degradation policies.
+2026~2027년은 몽골 방목 능력이 초원 degradation 정책으로 제약받기 때문에 가격이 보합~+5%를 예상하세요.
 
-## Working with DONGXIAO
+## DONGXIAO와의 협업
 
-We are a **vertically integrated** Ordos cashmere factory: herder contracts → dehairing line → spinning → knitting. For B2B buyers seeking **bulk raw Mongolian cashmere**, our process is:
+당사는 **수직 통합** 오르도스 캐시미어 공장입니다: 목자 계약 → 분梳 라인 → 방적 → 편직. **몽골산 생캐시미어를 대량**으로 원하는 B2B 바이어를 위한 당사 프로세스:
 
-1. **Sample request**: We ship 100g samples of each grade within 5 days. Free for serious inquiries.
-2. **Quality data**: Every sample ships with OFDA micron scan + length distribution + visual purity score.
-3. **MOQ**: 100kg per grade/color. Mixed grade orders accepted.
-4. **Lead time**: 7-10 days for stock grades; 20-25 days for custom micron sorting.
-5. **Pricing**: We publish a quarterly price list. No hidden fees, FOB Tianjin or CIF your port.
-6. **Payment**: 30% T/T deposit, 70% before shipment. L/C at sight for new customers over $20K.
+1. **샘플 요청**: 각 등급 100g 샘플을 5일 이내에 발송. 진지한 문의는 무료.
+2. **품질 데이터**: 모든 샘플에 OFDA 마이크론 스캔 + 길이 분포 + 시각적 순도 점수 첨부.
+3. **MOQ**: 등급/색상당 100kg. 등급 혼합 주문 수령.
+4. **리드타임**: 재고 등급 7~10일; 맞춤 마이크론 선별 20~25일.
+5. **가격**: 분기별 가격표 공개. 숨겨진 비용 없음, FOB 천진 또는 CIF 귀항.
+6. **결제**: 30% T/T 선입금, 선적 전 70%. 2만 달러 초과 신규 고객은 L/C at sight.
 
-For buyers new to sourcing from China, we recommend starting with a 200-500kg trial order before committing to a full-season volume.
+중국 소싱이 처음인 바이어에게는 풀 시즌 물량을 약정하기 전에 200~500kg 시험 주문으로 시작할 것을 권장합니다.
 
 ---
 
-*Looking to source bulk raw Mongolian cashmere for your 2026 production? [Request a quote](https://www.erdosdx.com/en/contact) with your target micron, color, and volume. Free 100g samples ship within 5 days.*
+*2026년 생산을 위한 몽골산 생캐시미어 대량 소싱을 찾고 계신가요? [목표 마이크론, 색상, 물량을 알려주세요](https://www.erdosdx.com/kr/contact). 무료 100g 샘플을 5일 이내에 발송해 드립니다.*

@@ -1,145 +1,144 @@
 ---
-title: "Where to Buy Bulk Raw Mongolian Cashmere: A B2B Buyer's Guide to Sourcing Fiber, Pricing & Quality"
-excerpt: "Buying bulk raw Mongolian cashmere in 2026 means navigating origin fraud, micron variance, and pricing volatility. This guide covers where to source, what to ask suppliers, and how to verify quality before signing a PO."
+title: "批量采购蒙古原绒：B2B 买家纤维采购、定价与品质指南"
+excerpt: "2026 年批量采购蒙古原绒意味着要应对产地造假、细度差异与价格波动。本指南覆盖采购渠道、向供应商提出的问题，以及在签 PO 前如何验证品质。"
 publishDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
-tags: ["raw cashmere sourcing","Mongolian cashmere","B2B sourcing guide","cashmere fiber quality","dehaired cashmere"]
+tags: ["raw cashmere sourcing", "Mongolian cashmere", "B2B sourcing guide", "cashmere fiber quality", "dehaired cashmere"]
 geoRegion: "GLOBAL"
-targetKeywords: ["where to buy bulk raw Mongolian cashmere","best Ordos cashmere fiber supplier China","Mongolian greasy cashmere fiber","eco-friendly scoured cashmere fiber wholesale","raw cashmere bulk supply"]
+targetKeywords: ["批量采购蒙古原绒","鄂尔多斯羊绒纤维供应商 中国","蒙古原绒 油脂","环保洗羊绒纤维 批发","原羊绒 大量供应"]
 relatedProducts: ["raw_material"]
 aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "cn"
 ---
-# Where to Buy Bulk Raw Mongolian Cashmere: A B2B Buyer's Guide to Sourcing Fiber, Pricing & Quality
 
-# Where to Buy Bulk Raw Mongolian Cashmere: A B2B Buyer's Guide
+# 批量采购蒙古原绒：B2B 买家指南
 
-Every cashmere sweater, scarf, or blanket in a luxury retailer's catalog started as raw fiber combed from a goat on the Mongolian plateau. The journey from goat to garment is long, but the first 200 meters — from the herder's comb to the spinner's hopper — is where quality is won or lost. This guide is for B2B buyers who need to source **bulk raw Mongolian cashmere** at industrial scale, with predictable quality and verifiable origin.
+奢侈品零售目录里的每件羊绒衫、围巾、毯子，都始于蒙古高原山羊身上梳下来的原纤维。从动物到成衣的旅程很长，但前 200 米——从牧民的梳子到纺纱机的料斗——决定品质的胜负。本指南面向需要在工业规模下采购**批量蒙古原绒**、并要求可预测品质与可验证产地的 B2B 买家。
 
-## Why "Mongolian" matters (and why it's not enough)
+## 为什么"蒙古"重要（以及为什么它不够）
 
-Cashmere goats are not a single breed. The premium fiber used in B2B wholesale comes from **Albus white goats** raised on the Mongolian plateau at 1,200-1,500m altitude. The combination of cold, dry winters, high UV, and specific vegetation produces the world's finest underdown — typically 14.5-15.5μm in diameter, with long fiber length (34-42mm) and high curl.
+羊绒山羊不是一个单一品种。B2B 批发所用的优质纤维来自蒙古高原海拔 1,200–1,500 米养殖的 **Albus 白绒山羊**。寒冷干燥的冬季、强紫外线和特定植被的组合，造就了世界最细腻的底绒——直径通常 14.5–15.5 µm，纤维长 34–42 mm，卷曲度高。
 
-But "Mongolian" on a sales sheet is not a quality guarantee. The two largest scams in cashmere sourcing today:
+但销售单上的"蒙古"不是品质保证。当下羊绒采购领域的两大骗局：
 
-1. **Origin laundering**: Fiber combed in Iran, Afghanistan, or Inner China (not Mongolia proper) is re-tagged and shipped as "Mongolian cashmere". The fiber is real cashmere — but the micron count, length, and color purity are noticeably lower.
+1. **产地漂白**：在伊朗、阿富汗或中国内地（非蒙古本国）梳下的纤维被重新贴标，以"蒙古羊绒"出口。纤维是真正的羊绒——但细度、长度和颜色纯度明显低。
 
-2. **Grade mixing**: Premium white cashmere is blended with brown or purple fiber at processing. The bale ships as "white cashmere" but contains 20-30% lower-grade fiber that shows up in your finished product as pilling and color drift.
+2. **等级混合**：优质白绒在加工时与棕色/紫色纤维掺混。包以"白羊绒"出口，但含有 20–30% 的低等级纤维，成衣上表现为起球和色偏。
 
-The fix is to source from a vertically integrated factory that **buys direct from herders under contract**, with full traceability from combed fiber to dehaired tops.
+解药是从一家垂直整合的工厂采购，它**直接从签约牧民处收购**，从梳下纤维到分梳毛条全程可追溯。
 
-## The 4-tier cashmere quality ladder
+## 4 级羊绒品质阶梯
 
-| Grade | Origin | Micron (μm) | Fiber length | Price (USD/kg, dehaired) |
+| 等级 | 产地 | 细度 (µm) | 纤维长 | 价格 (USD/kg, 分梳) |
 |---|---|---|---|---|
-| **Premium white** | Albus goats, Ordos plateau | 14.5-15.5 | 36-42mm | $110-140 |
-| **Standard white** | Mixed Albus / brown cross | 15.0-16.0 | 32-38mm | $90-115 |
-| **Brown (qing)** | Albus goats, mature | 15.5-16.5 | 30-36mm | $80-105 |
-| **Purple (zi)** | Older Albus goats | 16.0-17.5 | 28-34mm | $70-90 |
+| **优质白绒** | Albus 山羊，鄂尔多斯高原 | 14.5–15.5 | 36–42 mm | 110–140 |
+| **标准白绒** | Albus/棕色 杂交混合 | 15.0–16.0 | 32–38 mm | 90–115 |
+| **棕色 (qing)** | Albus 山羊，成年 | 15.5–16.5 | 30–36 mm | 80–105 |
+| **紫色 (zi)** | 较老 Albus 山羊 | 16.0–17.5 | 28–34 mm | 70–90 |
 
-For luxury knitwear, you want **Premium white** only. For blending or mid-market products, **Standard white** is the workhorse. Brown and purple are typically used for heathered yarns or felted products — they dye unevenly in solid colors.
+奢侈针织品只用 **优质白绒**。混纺或中端产品用 **标准白绒** 作主力。棕色和紫色通常用于混色纱线或缩绒产品——染纯色容易不均。
 
-## 5 questions to ask any "Mongolian cashmere" supplier
+## 向任何"蒙古羊绒"供应商问的 5 个问题
 
-Before sending an inquiry, vet the supplier with these five questions. Honest answers separate the real factories from the trading companies.
+发询价之前，用这 5 个问题盘供应商。老实的回答区分真正的工厂和贸易公司。
 
-### 1. "Where exactly is your fiber combed and dehaired?"
+### 1. "您的纤维具体在哪里梳下和分梳？"
 
-Real answer: "Our dehairing facility is in Ordos Industrial Park, Inner Mongolia. We buy direct from ~200 contracted herders in the Albus, Hanggin, and Otog Banner regions within 300 km of our facility."
+真话："我们的分梳厂在内蒙古鄂尔多斯工业园区。我们直接从我们厂方圆 300 公里内 Albus、Hanggin、Otog Banner 三地的约 200 户签约牧民处采购。"
 
-Red flag: "We source globally and blend for optimal quality" — this means origin is mixed and untraceable.
+红旗："我们全球采购并混合以达到最优品质"——这意味着产地混合、不可追溯。
 
-### 2. "Can I visit the dehairing facility?"
+### 2. "我能参观分梳厂吗？"
 
-Real answer: "Yes, our facility is in Ordos Industrial Park. We host 50+ buyer audits per year."
+真话："可以，我们的厂在鄂尔多斯工业园区，每年接待 50 多次买家审计参观。"
 
-Red flag: "Our processing partners handle that" — they don't own the production. Quality control is impossible.
+红旗："我们的加工合作方负责"——他们不拥有该生产环节。品控无从谈起。
 
-### 3. "What is your typical dehaired yield from raw greasy cashmere?"
+### 3. "您从生原绒到分梳毛条的典型得率是多少？"
 
-Real answer: "32-38% yield depending on grade. White cashmere yields highest, purple lowest. We track yield per bale to monitor herder consistency."
+真话："根据等级 32–38%。白绒得率最高，紫绒最低。我们跟踪每包的得率，以监控牧民的一致性。"
 
-Red flag: "Around 45-50%" — that's chemically treated or blended fiber. Natural yield is 25-40%.
+红旗："大约 45–50%"——那是化学处理或掺混纤维。天然得率是 25–40%。
 
-### 4. "Do you provide per-bale micron testing?"
+### 4. "您能提供每包细度检测吗？"
 
-Real answer: "Yes. Every bale ships with a Certificate of Analysis including laser-scan micron (mean + standard deviation), length distribution (Hauteur), and visual purity. We use OFDA 2000."
+真话："可以。每包随附分析证书，含激光扫描细度（均值+标准差）、长度分布（Hauteur）和目视净度。我们使用 OFDA 2000。"
 
-Red flag: "We test in aggregate" or "trust our quality" — no per-bale data means no quality control.
+红旗："我们做汇总检测"或"相信我们的品质"——没有逐包数据就没有品控。
 
-### 5. "What's your annual capacity and lead time?"
+### 5. "您的年产能和交期是多少？"
 
-Real answer: "We dehair 1,200+ tons annually. Stock white cashmere: 7-10 day dispatch. Custom micron sorting: 20-25 days."
+真话："我们每年分梳 1,200+ 吨。库存白绒：7–10 天发货。定制细度分选：20–25 天。"
 
-Red flag: "Unlimited" or "we source as needed" — no committed capacity means your reorder will be at the mercy of the spot market.
+红旗："无限"或"按需采购"——没有承诺产能，意味着您的复购要听命于现货市场。
 
-## What "dehaired" actually means (and why price jumps 2x)
+## "分梳"到底意味着什么（以及价格为何翻倍）
 
-Raw cashmere fiber combed from goats is called **greasy cashmere** — it contains guard hair (thick, straight, useless for spinning), lanolin, dirt, and vegetable matter. Before spinning, it must be **dehaired** — mechanically separating the fine underdown from guard hair.
+从山羊身上梳下的原纤维称为 **生原绒（greasy cashmere）**——含有粗毛（粗、直、不能纺）、羊毛脂、污物和植物杂质。纺纱前必须**分梳**——机械地把细底绒与粗毛分离。
 
-The dehaired output is roughly **35% of the raw input** by weight. So 1 kg of dehaired white cashmere tops requires about 3 kg of raw greasy fiber. The price difference reflects:
+分梳后产出大约是原料输入重量的 **35%**。所以 1 公斤分梳白绒毛条约需 3 公斤生原绒。价差反映了：
 
-- **Yield loss** (65% becomes waste or guard-hair by-product)
-- **Italian dehaiirng line cost** (Capstan or similar, $5M+ investment)
-- **Labor** for hand-sorting after mechanical dehaiiring
-- **Testing** (OFDA micron + length per bale)
+- **得率损失**（65% 变成废料或粗毛副产品）
+- **意大利分梳线成本**（Capstan 或同类，500 万美元以上投资）
+- **机械分梳后人工挑选的人工**
+- **检测**（OFDA 细度 + 每包长度）
 
-A "raw cashmere" quote at $30/kg is almost certainly greasy fiber; "dehaired cashmere" at $90-120/kg is the post-processing price.
+30 美元/公斤的"原绒"报价几乎肯定是带脂纤维；90–120 美元/公斤的"分梳羊绒"是加工后价格。
 
-## Direct vs. trading company: the 30-40% margin
+## 直采 vs 贸易公司：30–40% 的差价
 
-Most B2B buyers in Europe and North America don't buy direct from a Chinese cashmere factory. They buy from a **trading company** in Hong Kong, Istanbul, or Milan. The trading company adds 30-40% margin and provides:
+欧洲和北美的大多数 B2B 买家并不直接从中国羊绒工厂买。他们从香港、伊斯坦布尔或米兰的 **贸易公司** 那里买。贸易公司加 30–40% 差价并提供：
 
-- Local language support (English, Italian, German)
-- Smaller MOQ flexibility (factory MOQ is 100kg; trading company may start at 20kg)
-- Inventory financing
-- Logistics management
+- 本地语言支持（英语、意大利语、德语）
+- 更小起订量灵活度（工厂起订量 100 kg；贸易公司可从 20 kg 起）
+- 库存融资
+- 物流管理
 
-**For orders under 200kg per shipment**, a trading company is often the right choice. **For orders 500kg+** (the threshold where direct factory pricing makes sense), sourcing direct saves 30%+, but requires you to:
+**单次发货 200 公斤以下的订单**，贸易公司往往是合适选择。**500 公斤以上的订单**（直采价格开始有意义的门槛），直采可省 30%+，但您需要：
 
-- Travel to China for an initial factory audit
-- Pay 30% T/T deposit, 70% before shipment
-- Accept 30-45 day production lead time
-- Handle Chinese export documentation (or hire a freight forwarder)
+- 前往中国做首次工厂审计
+- 支付 30% T/T 定金、出货前 70%
+- 接受 30–45 天的生产交期
+- 自己处理中国出口单证（或聘请货代）
 
-## How to verify "Mongolian origin" claims
+## 如何验证"蒙古产地"声明
 
-Three tests you can run on samples before placing a full order:
+在下整批订单前可对样品做 3 项检测：
 
-1. **Micron scan (OFDA 2000)**: Premium white Mongolian is 14.5-15.5μm. Anything above 16.0μm on a "premium white" sample is suspect.
+1. **细度扫描 (OFDA 2000)**：优质白蒙古绒 14.5–15.5 µm。"优质白"样品 16.0 µm 以上就可疑。
 
-2. **Color test**: True Mongolian white cashmere has a slight bluish tint (not pure white). Pure-bright-white fiber has usually been bleached, which damages the cuticle.
+2. **颜色测试**：真正的蒙古白羊绒略带蓝色调（不是纯白）。纯亮白纤维通常被漂过，损伤了表皮层。
 
-3. **Length distribution**: Premium Mongolian has 36-42mm fiber length. Below 32mm is shorter — likely from older goats or a different breed.
+3. **长度分布**：优质蒙古绒纤维长 36–42 mm。短于 32 mm 是偏短——可能来自较老的羊或不同品种。
 
-A reputable supplier will provide OFDA test data on request. If they refuse or only provide "typical values" rather than your-batch-specific data, walk away.
+靠谱供应商会应要求提供 OFDA 检测数据。如果拒绝、或者只给"典型值"而非您这批次的专属数据，走开。
 
-## Pricing trends 2024-2026
+## 2024–2026 价格趋势
 
-Raw Mongolian cashmere prices have stabilized after the 2020-2022 boom (when luxury demand pushed prices 40% higher). Current 2026 spot prices:
+蒙古原绒价格在 2020–2022 年的暴涨（奢侈品需求把价格推高 40%）后已企稳。2026 年现货价格：
 
-- **Greasy white cashmere**: $35-45/kg FOB Tianjin
-- **Dehaired white cashmere**: $90-120/kg FOB Tianjin
-- **Dehaired brown cashmere**: $75-95/kg FOB Tianjin
+- **带脂白绒**：35–45 USD/kg FOB 天津
+- **分梳白绒**：90–120 USD/kg FOB 天津
+- **分梳棕绒**：75–95 USD/kg FOB 天津
 
-Pricing is largely driven by Australian merino wool prices (substitute for mid-tier knitwear) and Chinese domestic demand (which has been growing 8-12% per year since 2020).
+价格主要受澳洲美利奴羊毛价格（中端针织的替代品）和中国内需（2020 年以来年均增长 8–12%）驱动。
 
-For 2026-2027, expect prices to remain flat to +5% as Mongolian herding capacity is constrained by grassland degradation policies.
+2026–2027 年，因蒙古牧业产能受草原退化政策约束，价格预计持平到 +5%。
 
-## Working with DONGXIAO
+## 与 DONGXIAO 合作
 
-We are a **vertically integrated** Ordos cashmere factory: herder contracts → dehairing line → spinning → knitting. For B2B buyers seeking **bulk raw Mongolian cashmere**, our process is:
+我们是 **垂直整合** 的鄂尔多斯羊绒工厂：牧民合同 → 分梳线 → 纺纱 → 针织。对于寻求**批量蒙古原绒**的 B2B 买家，我们的流程：
 
-1. **Sample request**: We ship 100g samples of each grade within 5 days. Free for serious inquiries.
-2. **Quality data**: Every sample ships with OFDA micron scan + length distribution + visual purity score.
-3. **MOQ**: 100kg per grade/color. Mixed grade orders accepted.
-4. **Lead time**: 7-10 days for stock grades; 20-25 days for custom micron sorting.
-5. **Pricing**: We publish a quarterly price list. No hidden fees, FOB Tianjin or CIF your port.
-6. **Payment**: 30% T/T deposit, 70% before shipment. L/C at sight for new customers over $20K.
+1. **样品申请**：每个等级 100 克样品 5 天内发出。认真的询价免费。
+2. **质量数据**：每份样品随附 OFDA 细度扫描 + 长度分布 + 目视净度评分。
+3. **起订量**：每个等级/颜色 100 kg。接受等级混合订单。
+4. **交期**：库存等级 7–10 天；定制细度分选 20–25 天。
+5. **报价**：每季度公布价格表。无隐藏费用，FOB 天津或 CIF 您的港口。
+6. **付款**：30% T/T 定金、出货前 70%。新客户 20,000 美元以上可走即期信用证。
 
-For buyers new to sourcing from China, we recommend starting with a 200-500kg trial order before committing to a full-season volume.
+对于中国采购新手，我们建议先做 200–500 公斤的试单，再决定是否承诺整季的量。
 
 ---
 
-*Looking to source bulk raw Mongolian cashmere for your 2026 production? [Request a quote](https://www.erdosdx.com/en/contact) with your target micron, color, and volume. Free 100g samples ship within 5 days.*
+*正在为 2026 年生产找批量蒙古原绒？[联系我们获取报价](https://www.erdosdx.com/cn/contact)，请告知目标细度、颜色、量。100 克免费样品 5 天内发出。*

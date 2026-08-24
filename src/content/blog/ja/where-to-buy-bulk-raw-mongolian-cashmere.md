@@ -1,145 +1,144 @@
 ---
-title: "Where to Buy Bulk Raw Mongolian Cashmere: A B2B Buyer's Guide to Sourcing Fiber, Pricing & Quality"
-excerpt: "Buying bulk raw Mongolian cashmere in 2026 means navigating origin fraud, micron variance, and pricing volatility. This guide covers where to source, what to ask suppliers, and how to verify quality before signing a PO."
+title: "モンゴル産原毛カシミアの大量購入：B2B バイヤー向け繊維調達・価格・品質ガイド"
+excerpt: "2026 年にモンゴル産原毛カシミアを大量購入するには、原産地詐欺、ミクロン変動、価格変動への対処が必要です。本ガイドでは、調達先、サプライヤーへの質問、PO 締結前の品質検証を解説します。"
 publishDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
-tags: ["raw cashmere sourcing","Mongolian cashmere","B2B sourcing guide","cashmere fiber quality","dehaired cashmere"]
+tags: ["raw cashmere sourcing", "Mongolian cashmere", "B2B sourcing guide", "cashmere fiber quality", "dehaired cashmere"]
 geoRegion: "GLOBAL"
-targetKeywords: ["where to buy bulk raw Mongolian cashmere","best Ordos cashmere fiber supplier China","Mongolian greasy cashmere fiber","eco-friendly scoured cashmere fiber wholesale","raw cashmere bulk supply"]
+targetKeywords: ["モンゴル産原毛カシミア大量購入","オルドス カシミア繊維 サプライヤー 中国","モンゴル産 グレージーカシミア","エコ洗滌カシミア繊維 卸売","原毛カシミア 大量供給"]
 relatedProducts: ["raw_material"]
 aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "ja"
 ---
-# Where to Buy Bulk Raw Mongolian Cashmere: A B2B Buyer's Guide to Sourcing Fiber, Pricing & Quality
 
-# Where to Buy Bulk Raw Mongolian Cashmere: A B2B Buyer's Guide
+# モンゴル産原毛カシミアの大量購入：B2B バイヤー向けガイド
 
-Every cashmere sweater, scarf, or blanket in a luxury retailer's catalog started as raw fiber combed from a goat on the Mongolian plateau. The journey from goat to garment is long, but the first 200 meters — from the herder's comb to the spinner's hopper — is where quality is won or lost. This guide is for B2B buyers who need to source **bulk raw Mongolian cashmere** at industrial scale, with predictable quality and verifiable origin.
+高級小売のカタログにあるすべてのカシミア セーター、スカーフ、毛布は、モンゴル高原の山羊から梳き取られた原繊維から始まります。動物から衣服までの旅は長いですが、最初の 200 メートル — 牧者の櫛から紡績工の漏斗まで — で品質が決まります。本ガイドは、**モンゴル産原毛カシミアを大量** に工業規模で、予測可能な品質と検証可能な原産地で調達する必要がある B2B バイヤー向けです。
 
-## Why "Mongolian" matters (and why it's not enough)
+## 「モンゴル産」が重要な理由（そして、それだけでは不十分な理由）
 
-Cashmere goats are not a single breed. The premium fiber used in B2B wholesale comes from **Albus white goats** raised on the Mongolian plateau at 1,200-1,500m altitude. The combination of cold, dry winters, high UV, and specific vegetation produces the world's finest underdown — typically 14.5-15.5μm in diameter, with long fiber length (34-42mm) and high curl.
+カシミア ヤギは単一品種ではありません。B2B 卸で使われるプレミアム繊維は、モンゴル高原の標高 1,200〜1,500 m で飼育される **アルバス種ヤギ** から採取されます。寒冷で乾燥した冬、強い紫外線、特定の植生の組み合わせが、世界最高のアンダー ダウン（14,5〜15,5 µm 直径、長繊維長 34〜42 mm、強い捲縮）を生み出します。
 
-But "Mongolian" on a sales sheet is not a quality guarantee. The two largest scams in cashmere sourcing today:
+しかし、営業資料の「モンゴル産」は品質保証ではありません。今日のカシミア調達における 2 大詐欺：
 
-1. **Origin laundering**: Fiber combed in Iran, Afghanistan, or Inner China (not Mongolia proper) is re-tagged and shipped as "Mongolian cashmere". The fiber is real cashmere — but the micron count, length, and color purity are noticeably lower.
+1. **原産地偽装**：イラン、アフガニスタン、または中国内陸部（モンゴル本国ではない）で梳き取られた繊維が「モンゴル産カシミア」として再ラベルされて出荷されます。繊維は本物ですが、ミクロン、長さ、色の純度は明らかに劣ります。
 
-2. **Grade mixing**: Premium white cashmere is blended with brown or purple fiber at processing. The bale ships as "white cashmere" but contains 20-30% lower-grade fiber that shows up in your finished product as pilling and color drift.
+2. **等級混合**：プレミアム白カシミアが、加工時に茶色や紫の繊維と混合されます。俵は「白カシミア」として出荷されますが、20〜30% の低級繊維が含まれており、最終製品にピリングと色ムラとして現れます。
 
-The fix is to source from a vertically integrated factory that **buys direct from herders under contract**, with full traceability from combed fiber to dehaired tops.
+解決策は、**契約牧者から直接購入**する垂直統合工場から調達することです。梳き取られた繊維から分梳トップまで完全なトレーサビリティを確保します。
 
-## The 4-tier cashmere quality ladder
+## 4 段階のカシミア品質ラダー
 
-| Grade | Origin | Micron (μm) | Fiber length | Price (USD/kg, dehaired) |
+| 等級 | 原産地 | ミクロン (µm) | 繊維長 | 価格 (USD/kg, 分梳) |
 |---|---|---|---|---|
-| **Premium white** | Albus goats, Ordos plateau | 14.5-15.5 | 36-42mm | $110-140 |
-| **Standard white** | Mixed Albus / brown cross | 15.0-16.0 | 32-38mm | $90-115 |
-| **Brown (qing)** | Albus goats, mature | 15.5-16.5 | 30-36mm | $80-105 |
-| **Purple (zi)** | Older Albus goats | 16.0-17.5 | 28-34mm | $70-90 |
+| **プレミアム 白** | アルバス種、オルドス高原 | 14.5–15.5 | 36–42 mm | 110〜140 |
+| **標準 白** | アルバス/茶 交雑混合 | 15.0–16.0 | 32–38 mm | 90〜115 |
+| **茶 (qing)** | アルバス種、成獣 | 15.5–16.5 | 30–36 mm | 80〜105 |
+| **紫 (zi)** | 高齢アルバス種 | 16.0–17.5 | 28–34 mm | 70〜90 |
 
-For luxury knitwear, you want **Premium white** only. For blending or mid-market products, **Standard white** is the workhorse. Brown and purple are typically used for heathered yarns or felted products — they dye unevenly in solid colors.
+高級ニットには **プレミアム 白** のみが必要です。混紡や中級品には **標準 白** が主力。茶と紫は杢糸や縮絨製品に使われ、無地染めではムラになります。
 
-## 5 questions to ask any "Mongolian cashmere" supplier
+## 「モンゴル産カシミア」サプライヤーへの 5 つの質問
 
-Before sending an inquiry, vet the supplier with these five questions. Honest answers separate the real factories from the trading companies.
+問い合わせを送る前に、サプライヤーを以下の 5 つの質問で精査してください。正直な回答が本物の工場と商社を分けます。
 
-### 1. "Where exactly is your fiber combed and dehaired?"
+### 1. 「繊維の梳き取りと分梳は具体的にどこで行っていますか？」
 
-Real answer: "Our dehairing facility is in Ordos Industrial Park, Inner Mongolia. We buy direct from ~200 contracted herders in the Albus, Hanggin, and Otog Banner regions within 300 km of our facility."
+本当の答え：「当社の分梳施設は内モンゴル・オルドス工業団地にあります。アルバス、ハンギン、オトク バナーの各地域から、当社施設から 300 km 以内の約 200 名の契約牧者から直接購入しています。」
 
-Red flag: "We source globally and blend for optimal quality" — this means origin is mixed and untraceable.
+赤信号：「当社はグローバルに調達し、最適な品質のためにブレンドしています」 — これは原産地が混在し、追跡不能であることを意味します。
 
-### 2. "Can I visit the dehairing facility?"
+### 2. 「分梳施設を見学できますか？」
 
-Real answer: "Yes, our facility is in Ordos Industrial Park. We host 50+ buyer audits per year."
+本当の答え：「はい、施設はオルドス工業団地にあります。年間 50 件以上のバイヤー監査を受け入れています。」
 
-Red flag: "Our processing partners handle that" — they don't own the production. Quality control is impossible.
+赤信号：「当社の加工パートナーが対応します」 — 彼らは生産を所有していません。品質管理は不可能です。
 
-### 3. "What is your typical dehaired yield from raw greasy cashmere?"
+### 3. 「原毛グレイジーからの典型的な分梳歩留りはどのくらいですか？」
 
-Real answer: "32-38% yield depending on grade. White cashmere yields highest, purple lowest. We track yield per bale to monitor herder consistency."
+本当の答え：「等級により 32〜38%。白カシミアが最も歩留りが高く、紫が最も低い。牧者の一貫性を監視するため、俵ごとの歩留りを追跡しています。」
 
-Red flag: "Around 45-50%" — that's chemically treated or blended fiber. Natural yield is 25-40%.
+赤信号：「45〜50% 程度」 — これは化学処理または混合繊維です。自然な歩留りは 25〜40%。
 
-### 4. "Do you provide per-bale micron testing?"
+### 4. 「俵ごとのミクロン検査を提供していますか？」
 
-Real answer: "Yes. Every bale ships with a Certificate of Analysis including laser-scan micron (mean + standard deviation), length distribution (Hauteur), and visual purity. We use OFDA 2000."
+本当の答え：「はい。すべての俵は、レーザー スキャン ミクロン（平均 + 標準偏差）、長さ分布（Hauteur）、および視覚的純度を含む分析証明書と共に発送されます。OFDA 2000 を使用しています。」
 
-Red flag: "We test in aggregate" or "trust our quality" — no per-bale data means no quality control.
+赤信号：「当社はまとめてテストします」または「当社の品質を信頼してください」 — 俵ごとのデータなしは品質管理なしを意味します。
 
-### 5. "What's your annual capacity and lead time?"
+### 5. 「年間生産能力とリードタイムはどのくらいですか？」
 
-Real answer: "We dehair 1,200+ tons annually. Stock white cashmere: 7-10 day dispatch. Custom micron sorting: 20-25 days."
+本当の答え：「年間 1,200+ トンを分梳。在庫白カシミア：7〜10 日で発送。特注ミクロン選別：20〜25 日。」
 
-Red flag: "Unlimited" or "we source as needed" — no committed capacity means your reorder will be at the mercy of the spot market.
+赤信号：「無制限」または「必要に応じて調達」 — 確定能力がないため、再発注はスポット市場に振り回されます。
 
-## What "dehaired" actually means (and why price jumps 2x)
+## 「分梳済み」が実際に意味すること（そして価格が 2 倍になる理由）
 
-Raw cashmere fiber combed from goats is called **greasy cashmere** — it contains guard hair (thick, straight, useless for spinning), lanolin, dirt, and vegetable matter. Before spinning, it must be **dehaired** — mechanically separating the fine underdown from guard hair.
+山羊から梳き取られた原繊維は **グレイジー カシミア** と呼ばれます — ガード ヘアー（太く、まっすぐで、紡績に無用）、ラノリン、汚れ、植物質を含みます。紡績前に **分梳**（ガード ヘアから細かいアンダー ダウンを機械的に分離）が必要です。
 
-The dehaired output is roughly **35% of the raw input** by weight. So 1 kg of dehaired white cashmere tops requires about 3 kg of raw greasy fiber. The price difference reflects:
+分梳済み製品の重量は原料入力の約 **35%**。つまり、1 kg の分梳済み白カシミア トップには約 3 kg の原毛グレイジー繊維が必要です。価格差の理由は：
 
-- **Yield loss** (65% becomes waste or guard-hair by-product)
-- **Italian dehaiirng line cost** (Capstan or similar, $5M+ investment)
-- **Labor** for hand-sorting after mechanical dehaiiring
-- **Testing** (OFDA micron + length per bale)
+- **歩留り損失**（65% が廃棄物またはガード ヘアー副産物）
+- **イタリア製分梳ライン コスト**（Capstan または類似、500 万ドル以上の投資）
+- **機械分梳後の手選別の人件費**
+- **検査**（俵ごとの OFDA ミクロン + 長さ）
 
-A "raw cashmere" quote at $30/kg is almost certainly greasy fiber; "dehaired cashmere" at $90-120/kg is the post-processing price.
+「原カシミア」の 30 USD/kg という見積もりはほぼ確実にグレイジー繊維；「分梳済みカシミア」90〜120 USD/kg が加工後価格です。
 
-## Direct vs. trading company: the 30-40% margin
+## 直接 vs 商社：30〜40% のマージン
 
-Most B2B buyers in Europe and North America don't buy direct from a Chinese cashmere factory. They buy from a **trading company** in Hong Kong, Istanbul, or Milan. The trading company adds 30-40% margin and provides:
+欧州と北米のほとんどの B2B バイヤーは、中国のカシミア工場から直接購入していません。香港、イスタンブール、またはミラノの **商社** から購入しています。商社は 30〜40% のマージンを追加し、以下を提供します：
 
-- Local language support (English, Italian, German)
-- Smaller MOQ flexibility (factory MOQ is 100kg; trading company may start at 20kg)
-- Inventory financing
-- Logistics management
+- 現地言語サポート（英語、イタリア語、ドイツ語）
+- MOQ 柔軟性の向上（工場 MOQ は 100 kg；商社は 20 kg から対応可能）
+- 在庫ファイナンス
+- 物流管理
 
-**For orders under 200kg per shipment**, a trading company is often the right choice. **For orders 500kg+** (the threshold where direct factory pricing makes sense), sourcing direct saves 30%+, but requires you to:
+**1 回の発送量 200 kg 未満の注文** には、商社が適切な選択となることが多いです。**500 kg 以上の注文**（工場直価が意味を持つ閾値）では、直接調達で 30% 以上節約できますが、以下が必要です：
 
-- Travel to China for an initial factory audit
-- Pay 30% T/T deposit, 70% before shipment
-- Accept 30-45 day production lead time
-- Handle Chinese export documentation (or hire a freight forwarder)
+- 初回工場監査のため中国へ渡航
+- 30% T/T 前金、出荷前 70%
+- 30〜45 日の生産リードタイム受容
+- 中国の輸出書類を自身で処理（またはフォワーダーを雇う）
 
-## How to verify "Mongolian origin" claims
+## 「モンゴル産」主張を検証する方法
 
-Three tests you can run on samples before placing a full order:
+フル発注前にサンプルで実施できる 3 つのテスト：
 
-1. **Micron scan (OFDA 2000)**: Premium white Mongolian is 14.5-15.5μm. Anything above 16.0μm on a "premium white" sample is suspect.
+1. **ミクロン スキャン（OFDA 2000）**：プレミアム白モンゴルは 14.5〜15.5 µm。「プレミアム白」サンプルで 16.0 µm を超えるものは疑わしい。
 
-2. **Color test**: True Mongolian white cashmere has a slight bluish tint (not pure white). Pure-bright-white fiber has usually been bleached, which damages the cuticle.
+2. **色テスト**：本物のモンゴル白カシミアはわずかに青味がある（真っ白ではない）。純白に漂白された繊維はキューティクルを損傷している。
 
-3. **Length distribution**: Premium Mongolian has 36-42mm fiber length. Below 32mm is shorter — likely from older goats or a different breed.
+3. **長さ分布**：プレミアム モンゴルは 36〜42 mm の繊維長。32 mm 未満は短い — 高齢ヤギか別品種と思われる。
 
-A reputable supplier will provide OFDA test data on request. If they refuse or only provide "typical values" rather than your-batch-specific data, walk away.
+信頼できるサプライヤーは要請に応じて OFDA 検査データを提供します。拒否したり、バッチ固有データではなく「典型的な値」だけを提供する場合、やめましょう。
 
-## Pricing trends 2024-2026
+## 価格トレンド 2024〜2026
 
-Raw Mongolian cashmere prices have stabilized after the 2020-2022 boom (when luxury demand pushed prices 40% higher). Current 2026 spot prices:
+モンゴル産原カシミアの価格は 2020〜2022 年の急騰（高級需要で 40% 上昇）後に安定化。2026 年の現在のスポット価格：
 
-- **Greasy white cashmere**: $35-45/kg FOB Tianjin
-- **Dehaired white cashmere**: $90-120/kg FOB Tianjin
-- **Dehaired brown cashmere**: $75-95/kg FOB Tianjin
+- **グレイジー 白カシミア**：35〜45 USD/kg FOB 天津
+- **分梳済み 白カシミア**：90〜120 USD/kg FOB 天津
+- **分梳済み 茶カシミア**：75〜95 USD/kg FOB 天津
 
-Pricing is largely driven by Australian merino wool prices (substitute for mid-tier knitwear) and Chinese domestic demand (which has been growing 8-12% per year since 2020).
+価格はおおむねオーストラリア産メリノ羊毛価格（中級ニットの代替）と中国国内需要（2020 年以降年 8〜12% 増加）に左右されます。
 
-For 2026-2027, expect prices to remain flat to +5% as Mongolian herding capacity is constrained by grassland degradation policies.
+2026〜2027 年は、モンゴルの牧畜能力が草原劣化政策により制約されているため、価格は横ばいから +5% を見込んでください。
 
-## Working with DONGXIAO
+## DONGXIAO との連携
 
-We are a **vertically integrated** Ordos cashmere factory: herder contracts → dehairing line → spinning → knitting. For B2B buyers seeking **bulk raw Mongolian cashmere**, our process is:
+当社は **垂直統合** オルドス カシミア工場です：牧者契約 → 分梳ライン → 紡績 → ニット。**モンゴル産原カシミアを大量** に求める B2B バイヤー向けプロセスは：
 
-1. **Sample request**: We ship 100g samples of each grade within 5 days. Free for serious inquiries.
-2. **Quality data**: Every sample ships with OFDA micron scan + length distribution + visual purity score.
-3. **MOQ**: 100kg per grade/color. Mixed grade orders accepted.
-4. **Lead time**: 7-10 days for stock grades; 20-25 days for custom micron sorting.
-5. **Pricing**: We publish a quarterly price list. No hidden fees, FOB Tianjin or CIF your port.
-6. **Payment**: 30% T/T deposit, 70% before shipment. L/C at sight for new customers over $20K.
+1. **サンプル依頼**：各等級 100 g のサンプルを 5 日以内に発送。本気の問い合わせは無料。
+2. **品質データ**：各サンプルに OFDA ミクロン スキャン + 長さ分布 + 視覚純度スコアを添付。
+3. **MOQ**：等級/色あたり 100 kg。等級混合注文も受領。
+4. **リードタイム**：在庫等級は 7〜10 日；特注ミクロン選別は 20〜25 日。
+5. **価格**：四半期価格リストを公開。隠れた料金なし、FOB 天津 または CIF 貴港。
+6. **決済**：30% T/T 前金、出荷前 70%。新規顧客 20,000 USD 超は L/C 一覧払。
 
-For buyers new to sourcing from China, we recommend starting with a 200-500kg trial order before committing to a full-season volume.
+中国調達が初めての方には、フルシーズン数量をコミットする前に 200〜500 kg の試験注文から始めることを推奨します。
 
 ---
 
-*Looking to source bulk raw Mongolian cashmere for your 2026 production? [Request a quote](https://www.erdosdx.com/en/contact) with your target micron, color, and volume. Free 100g samples ship within 5 days.*
+*2026 年生産向けにモンゴル産原カシミアの大量調達をお探しですか？[目標ミクロン、色、数量をお知らせください](https://www.erdosdx.com/ja/contact)。無料 100 g サンプルを 5 日以内に発送します。*

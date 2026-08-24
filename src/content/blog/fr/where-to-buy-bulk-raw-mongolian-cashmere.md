@@ -1,145 +1,144 @@
 ---
-title: "Where to Buy Bulk Raw Mongolian Cashmere: A B2B Buyer's Guide to Sourcing Fiber, Pricing & Quality"
-excerpt: "Buying bulk raw Mongolian cashmere in 2026 means navigating origin fraud, micron variance, and pricing volatility. This guide covers where to source, what to ask suppliers, and how to verify quality before signing a PO."
+title: "Où acheter du cachemire brut mongolien en gros : Guide B2B sur l'approvisionnement, les prix et la qualité"
+excerpt: "Acheter du cachemire brut mongolien en gros en 2026 exige de naviguer entre fraude d'origine, variance micronique et volatilité des prix. Ce guide couvre où sourcer, quelles questions poser et comment vérifier la qualité avant de signer un bon de commande."
 publishDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
-tags: ["raw cashmere sourcing","Mongolian cashmere","B2B sourcing guide","cashmere fiber quality","dehaired cashmere"]
+tags: ["raw cashmere sourcing", "Mongolian cashmere", "B2B sourcing guide", "cashmere fiber quality", "dehaired cashmere"]
 geoRegion: "GLOBAL"
-targetKeywords: ["where to buy bulk raw Mongolian cashmere","best Ordos cashmere fiber supplier China","Mongolian greasy cashmere fiber","eco-friendly scoured cashmere fiber wholesale","raw cashmere bulk supply"]
+targetKeywords: ["cachemire brut mongolien en gros","meilleur fournisseur fibre cachemire Ordos Chine","cachemire brut mongolien gras","fibre cachemire décreusée écologique en gros","cachemire brut en vrac"]
 relatedProducts: ["raw_material"]
 aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "fr"
 ---
-# Where to Buy Bulk Raw Mongolian Cashmere: A B2B Buyer's Guide to Sourcing Fiber, Pricing & Quality
 
-# Where to Buy Bulk Raw Mongolian Cashmere: A B2B Buyer's Guide
+# Où acheter du cachemire brut mongolien en gros : Guide B2B
 
-Every cashmere sweater, scarf, or blanket in a luxury retailer's catalog started as raw fiber combed from a goat on the Mongolian plateau. The journey from goat to garment is long, but the first 200 meters — from the herder's comb to the spinner's hopper — is where quality is won or lost. This guide is for B2B buyers who need to source **bulk raw Mongolian cashmere** at industrial scale, with predictable quality and verifiable origin.
+Chaque pull, écharpe ou couverture en cachemire du catalogue d'un détaillant de luxe a commencé comme fibre brute peignée sur une chèvre du plateau mongol. Le chemin de l'animal au vêtement est long, mais les 200 premiers mètres — du peigne de l'éleveur à la trémie du fileur — sont où la qualité se gagne ou se perd. Ce guide s'adresse aux acheteurs B2B qui doivent sourcer **du cachemire brut mongolien en gros** à l'échelle industrielle, avec une qualité prévisible et une origine vérifiable.
 
-## Why "Mongolian" matters (and why it's not enough)
+## Pourquoi « mongolien » compte (et pourquoi ce n'est pas suffisant)
 
-Cashmere goats are not a single breed. The premium fiber used in B2B wholesale comes from **Albus white goats** raised on the Mongolian plateau at 1,200-1,500m altitude. The combination of cold, dry winters, high UV, and specific vegetation produces the world's finest underdown — typically 14.5-15.5μm in diameter, with long fiber length (34-42mm) and high curl.
+Les chèvres cachemire ne sont pas une race unique. La fibre premium utilisée en gros B2B provient des **chèvres Albus** élevées sur le plateau mongol à 1 200–1 500 m d'altitude. La combinaison de hivers froids et secs, d'UV élevé et d'une végétation spécifique produit le meilleur sous-poil du monde — typiquement 14,5–15,5 µm de diamètre, avec une longueur de fibre élevée (34–42 mm) et une forte frisure.
 
-But "Mongolian" on a sales sheet is not a quality guarantee. The two largest scams in cashmere sourcing today:
+Mais « mongolien » sur une fiche commerciale n'est pas une garantie de qualité. Les deux plus grandes escroqueries actuelles du sourcing cachemire :
 
-1. **Origin laundering**: Fiber combed in Iran, Afghanistan, or Inner China (not Mongolia proper) is re-tagged and shipped as "Mongolian cashmere". The fiber is real cashmere — but the micron count, length, and color purity are noticeably lower.
+1. **Blanchiment d'origine** : Fibre peignée en Iran, Afghanistan ou Chine intérieure (pas en Mongolie même) est ré-étiquetée et expédiée comme « cachemire mongolien ». La fibre est du vrai cachemire — mais le micron, la longueur et la pureté de couleur sont nettement inférieurs.
 
-2. **Grade mixing**: Premium white cashmere is blended with brown or purple fiber at processing. The bale ships as "white cashmere" but contains 20-30% lower-grade fiber that shows up in your finished product as pilling and color drift.
+2. **Mélange de grades** : Le cachemire blanc premium est mélangé avec de la fibre brune ou violette lors de la transformation. La balle est expédiée comme « cachemire blanc » mais contient 20–30 % de fibre de grade inférieur qui se manifestent dans votre produit fini comme bouloches et dérive de couleur.
 
-The fix is to source from a vertically integrated factory that **buys direct from herders under contract**, with full traceability from combed fiber to dehaired tops.
+La solution : sourcer auprès d'une usine verticalement intégrée qui **achète directement aux éleveurs sous contrat**, avec traçabilité complète de la fibre peignée aux tops dégrillés.
 
-## The 4-tier cashmere quality ladder
+## L'échelle de qualité cachemire à 4 niveaux
 
-| Grade | Origin | Micron (μm) | Fiber length | Price (USD/kg, dehaired) |
+| Grade | Origine | Micron (µm) | Longueur fibre | Prix (USD/kg, dégrillé) |
 |---|---|---|---|---|
-| **Premium white** | Albus goats, Ordos plateau | 14.5-15.5 | 36-42mm | $110-140 |
-| **Standard white** | Mixed Albus / brown cross | 15.0-16.0 | 32-38mm | $90-115 |
-| **Brown (qing)** | Albus goats, mature | 15.5-16.5 | 30-36mm | $80-105 |
-| **Purple (zi)** | Older Albus goats | 16.0-17.5 | 28-34mm | $70-90 |
+| **Blanc premium** | Chèvres Albus, plateau Ordos | 14,5–15,5 | 36–42 mm | 110–140 $ |
+| **Blanc standard** | Croisement Albus / brun mélangé | 15,0–16,0 | 32–38 mm | 90–115 $ |
+| **Brun (qing)** | Chèvres Albus, matures | 15,5–16,5 | 30–36 mm | 80–105 $ |
+| **Violet (zi)** | Chèvres Albus plus âgées | 16,0–17,5 | 28–34 mm | 70–90 $ |
 
-For luxury knitwear, you want **Premium white** only. For blending or mid-market products, **Standard white** is the workhorse. Brown and purple are typically used for heathered yarns or felted products — they dye unevenly in solid colors.
+Pour la maille de luxe, vous ne voulez que **Blanc premium**. Pour les mélanges ou produits moyen de gamme, **Blanc standard** est la valeur sûre. Brun et violet servent typiquement aux fils chinés ou aux produits feutrés — ils teignent de façon irrégulière en couleurs unies.
 
-## 5 questions to ask any "Mongolian cashmere" supplier
+## 5 questions à poser à tout fournisseur de « cachemire mongolien »
 
-Before sending an inquiry, vet the supplier with these five questions. Honest answers separate the real factories from the trading companies.
+Avant d'envoyer une demande, vérifiez le fournisseur avec ces cinq questions. Les réponses honnêtes séparent les vraies usines des sociétés de négoce.
 
-### 1. "Where exactly is your fiber combed and dehaired?"
+### 1. « Où exactement votre fibre est-elle peignée et dégrillée ? »
 
-Real answer: "Our dehairing facility is in Ordos Industrial Park, Inner Mongolia. We buy direct from ~200 contracted herders in the Albus, Hanggin, and Otog Banner regions within 300 km of our facility."
+Vraie réponse : « Notre installation de dégrillage est dans le parc industriel d'Ordos, Mongolie-Intérieure. Nous achetons directement à ~200 éleveurs sous contrat dans les régions Albus, Hanggin et Otog Banner dans un rayon de 300 km autour de notre installation. »
 
-Red flag: "We source globally and blend for optimal quality" — this means origin is mixed and untraceable.
+Red flag : « Nous sourçons globalement et mélangeons pour une qualité optimale » — cela signifie une origine mélangée et non traçable.
 
-### 2. "Can I visit the dehairing facility?"
+### 2. « Puis-je visiter l'installation de dégrillage ? »
 
-Real answer: "Yes, our facility is in Ordos Industrial Park. We host 50+ buyer audits per year."
+Vraie réponse : « Oui, notre installation est dans le parc industriel d'Ordos. Nous accueillons 50+ audits acheteurs par an. »
 
-Red flag: "Our processing partners handle that" — they don't own the production. Quality control is impossible.
+Red flag : « Nos partenaires de transformation s'en occupent » — ils ne possèdent pas la production. Le contrôle qualité est impossible.
 
-### 3. "What is your typical dehaired yield from raw greasy cashmere?"
+### 3. « Quel est votre rendement de dégrillage typique à partir du cachemire brut gras ? »
 
-Real answer: "32-38% yield depending on grade. White cashmere yields highest, purple lowest. We track yield per bale to monitor herder consistency."
+Vraie réponse : « 32–38 % de rendement selon le grade. Le cachemire blanc a le rendement le plus élevé, le violet le plus bas. Nous suivons le rendement par balle pour surveiller la cohérence des éleveurs. »
 
-Red flag: "Around 45-50%" — that's chemically treated or blended fiber. Natural yield is 25-40%.
+Red flag : « Environ 45–50 % » — c'est de la fibre traitée chimiquement ou mélangée. Le rendement naturel est de 25–40 %.
 
-### 4. "Do you provide per-bale micron testing?"
+### 4. « Fournissez-vous un test micronique par balle ? »
 
-Real answer: "Yes. Every bale ships with a Certificate of Analysis including laser-scan micron (mean + standard deviation), length distribution (Hauteur), and visual purity. We use OFDA 2000."
+Vraie réponse : « Oui. Chaque balle est expédiée avec un certificat d'analyse incluant le scan micron laser (moyenne + écart-type), la distribution de longueur (Hauteur) et la pureté visuelle. Nous utilisons OFDA 2000. »
 
-Red flag: "We test in aggregate" or "trust our quality" — no per-bale data means no quality control.
+Red flag : « Nous testons en agrégat » ou « faites confiance à notre qualité » — pas de données par balle signifie pas de contrôle qualité.
 
-### 5. "What's your annual capacity and lead time?"
+### 5. « Quelle est votre capacité annuelle et votre délai ? »
 
-Real answer: "We dehair 1,200+ tons annually. Stock white cashmere: 7-10 day dispatch. Custom micron sorting: 20-25 days."
+Vraie réponse : « Nous dégrillons 1 200+ tonnes par an. Cachemire blanc en stock : expédition sous 7–10 jours. Tri micronique personnalisé : 20–25 jours. »
 
-Red flag: "Unlimited" or "we source as needed" — no committed capacity means your reorder will be at the mercy of the spot market.
+Red flag : « Illimité » ou « nous sourçons selon les besoins » — pas de capacité engagée signifie que votre commande de réassort dépendra du marché spot.
 
-## What "dehaired" actually means (and why price jumps 2x)
+## Ce que « dégrillé » signifie vraiment (et pourquoi le prix double)
 
-Raw cashmere fiber combed from goats is called **greasy cashmere** — it contains guard hair (thick, straight, useless for spinning), lanolin, dirt, and vegetable matter. Before spinning, it must be **dehaired** — mechanically separating the fine underdown from guard hair.
+La fibre de cachemir brut peignée sur les chèvres est appelée **cachemire gras** — elle contient du jarre (poil de garde, épais, droit, inutile au filage), de la lanoline, de la saleté et des matières végétales. Avant le filage, elle doit être **dégrillée** — séparation mécanique du fin sous-poil du jarre.
 
-The dehaired output is roughly **35% of the raw input** by weight. So 1 kg of dehaired white cashmere tops requires about 3 kg of raw greasy fiber. The price difference reflects:
+La production dégrillée représente environ **35 % du poids brut en entrée**. Donc 1 kg de top de cachemire blanc dégrillé demande environ 3 kg de fibre brute grasse. La différence de prix reflète :
 
-- **Yield loss** (65% becomes waste or guard-hair by-product)
-- **Italian dehaiirng line cost** (Capstan or similar, $5M+ investment)
-- **Labor** for hand-sorting after mechanical dehaiiring
-- **Testing** (OFDA micron + length per bale)
+- **Perte de rendement** (65 % deviennent déchet ou sous-produit jarre)
+- **Coût de ligne de dégrillage italienne** (Capstan ou similaire, 5 M$+ d'investissement)
+- **Main-d'œuvre** pour le tri manuel après dégrillage mécanique
+- **Tests** (micron OFDA + longueur par balle)
 
-A "raw cashmere" quote at $30/kg is almost certainly greasy fiber; "dehaired cashmere" at $90-120/kg is the post-processing price.
+Un devis « cachemire brut » à 30 $/kg est presque certainement de la fibre grasse ; « cachemire dégrillé » à 90–120 $/kg est le prix post-transformation.
 
-## Direct vs. trading company: the 30-40% margin
+## Direct vs. société de négoce : la marge de 30–40 %
 
-Most B2B buyers in Europe and North America don't buy direct from a Chinese cashmere factory. They buy from a **trading company** in Hong Kong, Istanbul, or Milan. The trading company adds 30-40% margin and provides:
+La plupart des acheteurs B2B en Europe et en Amérique du Nord n'achètent pas directement à une usine cachemire chinoise. Ils achètent via une **société de négoce** à Hong Kong, Istanbul ou Milan. La société de négoce ajoute 30–40 % de marge et fournit :
 
-- Local language support (English, Italian, German)
-- Smaller MOQ flexibility (factory MOQ is 100kg; trading company may start at 20kg)
-- Inventory financing
-- Logistics management
+- Support linguistique local (anglais, italien, allemand)
+- Flexibilité MOQ plus petite (MOQ usine est 100 kg ; société de négoce peut démarrer à 20 kg)
+- Financement de stock
+- Gestion logistique
 
-**For orders under 200kg per shipment**, a trading company is often the right choice. **For orders 500kg+** (the threshold where direct factory pricing makes sense), sourcing direct saves 30%+, but requires you to:
+**Pour les commandes inférieures à 200 kg par envoi**, une société de négoce est souvent le bon choix. **Pour les commandes 500 kg+** (seuil où le prix direct usine devient intéressant), le sourcing direct économise 30 %+, mais exige que vous :
 
-- Travel to China for an initial factory audit
-- Pay 30% T/T deposit, 70% before shipment
-- Accept 30-45 day production lead time
-- Handle Chinese export documentation (or hire a freight forwarder)
+- Vous rendiez en Chine pour un audit initial de l'usine
+- Payiez 30 % d'acompte T/T, 70 % avant expédition
+- Acceptiez un délai de production de 30–45 jours
+- Gérerez la documentation d'exportation chinoise (ou engagiez un transitaire)
 
-## How to verify "Mongolian origin" claims
+## Comment vérifier les affirmations d'« origine mongole »
 
-Three tests you can run on samples before placing a full order:
+Trois tests que vous pouvez réaliser sur des échantillons avant de passer une commande complète :
 
-1. **Micron scan (OFDA 2000)**: Premium white Mongolian is 14.5-15.5μm. Anything above 16.0μm on a "premium white" sample is suspect.
+1. **Scan micronique (OFDA 2000)** : Le blanc mongol premium est à 14,5–15,5 µm. Tout au-dessus de 16,0 µm sur un échantillon « blanc premium » est suspect.
 
-2. **Color test**: True Mongolian white cashmere has a slight bluish tint (not pure white). Pure-bright-white fiber has usually been bleached, which damages the cuticle.
+2. **Test de couleur** : Le vrai cachemire blanc mongol a une légère teinte bleutée (pas blanc pur). Une fibre d'un blanc pur et brillant a généralement été blanchie, ce qui endommage la cuticule.
 
-3. **Length distribution**: Premium Mongolian has 36-42mm fiber length. Below 32mm is shorter — likely from older goats or a different breed.
+3. **Distribution de longueur** : Le mongol premium a 36–42 mm de longueur de fibre. Sous 32 mm est plus court — probablement de chèvres plus âgées ou d'une race différente.
 
-A reputable supplier will provide OFDA test data on request. If they refuse or only provide "typical values" rather than your-batch-specific data, walk away.
+Un fournisseur réputé fournira les données de test OFDA sur demande. S'il refuse ou ne fournit que des « valeurs typiques » plutôt que des données spécifiques à votre lot, passez votre chemin.
 
-## Pricing trends 2024-2026
+## Tendances de prix 2024–2026
 
-Raw Mongolian cashmere prices have stabilized after the 2020-2022 boom (when luxury demand pushed prices 40% higher). Current 2026 spot prices:
+Les prix du cachemire brut mongolien se sont stabilisés après le boom 2020–2022 (quand la demande de luxe a fait grimper les prix de 40 %). Prix spot actuels 2026 :
 
-- **Greasy white cashmere**: $35-45/kg FOB Tianjin
-- **Dehaired white cashmere**: $90-120/kg FOB Tianjin
-- **Dehaired brown cashmere**: $75-95/kg FOB Tianjin
+- **Cachemire blanc gras** : 35–45 $/kg FOB Tianjin
+- **Cachemire blanc dégrillé** : 90–120 $/kg FOB Tianjin
+- **Cachemire brun dégrillé** : 75–95 $/kg FOB Tianjin
 
-Pricing is largely driven by Australian merino wool prices (substitute for mid-tier knitwear) and Chinese domestic demand (which has been growing 8-12% per year since 2020).
+Les prix sont largement déterminés par les cours de la laine mérinos australienne (substitut pour la maille moyen de gamme) et la demande intérieure chinoise (qui croît de 8–12 % par an depuis 2020).
 
-For 2026-2027, expect prices to remain flat to +5% as Mongolian herding capacity is constrained by grassland degradation policies.
+Pour 2026–2027, attendez-vous à ce que les prix restent stables à +5 %, car la capacité d'élevage mongole est contrainte par les politiques de dégradation des pâturages.
 
-## Working with DONGXIAO
+## Travailler avec DONGXIAO
 
-We are a **vertically integrated** Ordos cashmere factory: herder contracts → dehairing line → spinning → knitting. For B2B buyers seeking **bulk raw Mongolian cashmere**, our process is:
+Nous sommes une usine cachemire d'Ordos **verticalement intégrée** : contrats éleveurs → ligne de dégrillage → filature → tricotage. Pour les acheteurs B2B cherchant **du cachemire brut mongolien en gros**, notre processus est :
 
-1. **Sample request**: We ship 100g samples of each grade within 5 days. Free for serious inquiries.
-2. **Quality data**: Every sample ships with OFDA micron scan + length distribution + visual purity score.
-3. **MOQ**: 100kg per grade/color. Mixed grade orders accepted.
-4. **Lead time**: 7-10 days for stock grades; 20-25 days for custom micron sorting.
-5. **Pricing**: We publish a quarterly price list. No hidden fees, FOB Tianjin or CIF your port.
-6. **Payment**: 30% T/T deposit, 70% before shipment. L/C at sight for new customers over $20K.
+1. **Demande d'échantillon** : Nous expédions 100 g d'échantillon de chaque grade sous 5 jours. Gratuit pour les demandes sérieuses.
+2. **Données qualité** : Chaque échantillon est expédié avec scan micron OFDA + distribution de longueur + score de pureté visuelle.
+3. **MOQ** : 100 kg par grade/couleur. Commandes grades mélangés acceptées.
+4. **Délai** : 7–10 jours pour grades en stock ; 20–25 jours pour tri micronique personnalisé.
+5. **Prix** : Nous publions une liste de prix trimestrielle. Pas de frais cachés, FOB Tianjin ou CIF votre port.
+6. **Paiement** : 30 % d'acompte T/T, 70 % avant expédition. L/C à vue pour nouveaux clients au-dessus de 20 000 $.
 
-For buyers new to sourcing from China, we recommend starting with a 200-500kg trial order before committing to a full-season volume.
+Pour les acheteurs novices en sourcing Chine, nous recommandons de commencer par une commande d'essai de 200–500 kg avant de s'engager sur un volume de saison complète.
 
 ---
 
-*Looking to source bulk raw Mongolian cashmere for your 2026 production? [Request a quote](https://www.erdosdx.com/en/contact) with your target micron, color, and volume. Free 100g samples ship within 5 days.*
+*Vous cherchez à sourcer du cachemire brut mongolien en gros pour votre production 2026 ? [Demandez un devis](https://www.erdosdx.com/fr/contact) avec votre micron cible, couleur et volume. Échantillons gratuits de 100 g expédiés sous 5 jours.*
