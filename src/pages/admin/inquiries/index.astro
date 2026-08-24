@@ -342,7 +342,7 @@ function badgeSla(inquiry: any) {
         {inquiries.map((i) => (
           <tr class={`row-${(i.lead_grade || 'ungraded').toLowerCase()} sla-${slaForInquiry(i).key}`}>
             <td>{fmtDate(i.created_at)}</td>
-            <td><a href={`/admin/inquiries/${i.id}`}>{i.contact_name}</a></td>
+            <td><a href={`/admin/inquiries/${i.id}/`}>{i.contact_name}</a></td>
             <td>{i.company_name}</td>
             <td>{i.country}</td>
             <td><span class="market">{marketForCountry(i.country)}</span></td>

@@ -4,6 +4,7 @@
  *   GET  /api/admin/inquiries/?action=export[&grade=&status=&country=&q=]
  */
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { hasWorkflowInput, isActionDate, isDealStage, isQuoteStatus, isSampleStatus, stripWorkflowSummary, workflowSummary } from '../../src/lib/deal-workflow';
 
 const SUPABASE_URL = process.env.PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || '';
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || '';
@@ -45,6 +46,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const status = body.status;
     const lead_grade = body.lead_grade || null;
     const notes = body.notes;
+    const workflow = {
+      deal_stage: body.deal_stage,
+      quote_status: body.quote_status,
+      sample_status: body.sample_status,
+      next_action_date: body.next_action_date,
+    };
+
+    if (workflow.deal_stage && !isDealStage(workflow.deal_stage)) return res.status(400).send('Invalid deal stage');
+    if (workflow.quote_status && !isQuoteStatus(workflow.quote_status)) return res.status(400).send('Invalid quote status');
+    if (workflow.sample_status && !isSampleStatus(workflow.sample_status)) return res.status(400).send('Invalid sample status');
+    if (workflow.next_action_date && !isActionDate(workflow.next_action_date)) return res.status(400).send('Invalid next action date');
 
     const update: Record<string, unknown> = {};
     if (status) update.status = status;
@@ -65,13 +77,21 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return;
     }
 
-    if (notes !== undefined && notes !== null) {
+    if (notes !== undefined || hasWorkflowInput(workflow)) {
       const r2 = await fetch(`${SUPABASE_URL}/rest/v1/inquiries?id=eq.${id}&select=email`, {
         headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY },
       });
       if (r2.ok) {
         const [inq] = await r2.json();
         if (inq?.email) {
+          const currentLead = await fetch(`${SUPABASE_URL}/rest/v1/leads?email=eq.${encodeURIComponent(inq.email)}&select=notes&limit=1`, {
+            headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY },
+          });
+          const existing = currentLead.ok ? (await currentLead.json())?.[0]?.notes || '' : '';
+          const baseNotes = notes !== undefined ? String(notes) : stripWorkflowSummary(existing);
+          const mergedNotes = hasWorkflowInput(workflow)
+            ? [stripWorkflowSummary(baseNotes), workflowSummary(workflow)].filter(Boolean).join('\n\n')
+            : baseNotes;
           await fetch(`${SUPABASE_URL}/rest/v1/leads?email=eq.${encodeURIComponent(inq.email)}`, {
             method: 'PATCH',
             headers: {
@@ -80,13 +100,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
               'Content-Type': 'application/json',
               'Prefer': 'return=minimal',
             },
-            body: JSON.stringify({ notes, lead_grade: lead_grade || undefined }),
+            body: JSON.stringify({ notes: mergedNotes, lead_grade: lead_grade || undefined }),
           });
         }
       }
     }
 
-    res.setHeader('Location', `/admin/inquiries/${id}`);
+    res.setHeader('Location', `/admin/inquiries/${id}/`);
     res.status(303).end();
     return;
   }

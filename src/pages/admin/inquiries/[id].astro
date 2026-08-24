@@ -6,6 +6,7 @@
 // - Submit POSTs to /api/admin/inquiries/?id=…
 
 export const prerender = false;
+import { DEAL_STAGES, QUOTE_STATUSES, SAMPLE_STATUSES, readWorkflow, stripWorkflowSummary } from '../../../lib/deal-workflow';
 const { id } = Astro.params;
 const SUPABASE_URL = process.env.PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || '';
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || '';
@@ -64,6 +65,10 @@ function firstResponseSla(inquiry: any) {
   if (hours >= 4) return '4–24 小时待跟进';
   return '4 小时内待跟进';
 }
+const workflow = readWorkflow(lead?.notes);
+const stageLabels: Record<string, string> = { inquiry_review: '询盘评估', quote_drafting: '报价草稿', quote_sent: '报价已发送', sample_requested: '已申请样品', sample_in_progress: '样品制作中', sample_sent: '样品已寄出', negotiation: '商务谈判', won: '已成交', lost: '已流失' };
+const quoteLabels: Record<string, string> = { not_started: '未开始', draft: '草稿', sent: '已发送', revised: '已修订', accepted: '已接受', declined: '已拒绝' };
+const sampleLabels: Record<string, string> = { not_requested: '未申请', requested: '已申请', in_production: '制作中', sent: '已寄出', approved: '已确认', revision_needed: '需修改' };
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -97,6 +102,11 @@ function firstResponseSla(inquiry: any) {
     .b-b { background: #fef3c7; color: #92400e; }
     .b-c { background: #dbeafe; color: #1e40af; }
     .b-grey { background: #e7e5e4; color: #57534e; }
+    .workflow-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
+    .workflow-summary { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:.75rem; margin-bottom:1rem; }
+    .workflow-summary div { background:#f5f5f4; padding:.75rem; border-radius:.375rem; }
+    .workflow-summary small { display:block; color:#78716c; font-size:.7rem; text-transform:uppercase; margin-bottom:.25rem; }
+    @media (max-width: 680px) { .workflow-grid,.workflow-summary { grid-template-columns:1fr; } }
   </style>
 </head>
 <body>
@@ -157,8 +167,51 @@ function firstResponseSla(inquiry: any) {
               <dt>Source</dt><dd>{lead.source}</dd>
               <dt>Email step</dt><dd>{lead.email_sequence_step} / 8</dd>
               <dt>Last email</dt><dd>{fmtDate(lead.email_last_sent_at)}</dd>
-              <dt>Notes</dt><dd>{lead.notes || '—'}</dd>
+              <dt>Notes</dt><dd>{stripWorkflowSummary(lead.notes) || '—'}</dd>
             </dl>
+          </div>
+        )}
+
+        {lead && (
+          <div class="card">
+            <h2>报价与样品协同</h2>
+            <div class="workflow-summary">
+              <div><small>当前阶段</small><strong>{stageLabels[workflow.stage] || '询盘评估'}</strong></div>
+              <div><small>报价</small><strong>{quoteLabels[workflow.quote] || '未开始'}</strong></div>
+              <div><small>样品</small><strong>{sampleLabels[workflow.sample] || '未申请'}</strong></div>
+              <div><small>下一动作</small><strong>{workflow.next_action && workflow.next_action !== 'not_set' ? workflow.next_action : '未设置'}</strong></div>
+            </div>
+            <form method="POST" action={`/api/admin/inquiries/?id=${id}`}>
+              <input type="hidden" name="status" value={inquiry.status || 'new'} />
+              <input type="hidden" name="lead_grade" value={inquiry.lead_grade || ''} />
+              <div class="workflow-grid">
+                <div>
+                  <label for="deal_stage">转化阶段</label>
+                  <select name="deal_stage" id="deal_stage">
+                    {DEAL_STAGES.map((value) => <option value={value} selected={(workflow.stage || 'inquiry_review') === value}>{stageLabels[value]}</option>)}
+                  </select>
+                </div>
+                <div>
+                  <label for="quote_status">报价状态</label>
+                  <select name="quote_status" id="quote_status">
+                    {QUOTE_STATUSES.map((value) => <option value={value} selected={(workflow.quote || 'not_started') === value}>{quoteLabels[value]}</option>)}
+                  </select>
+                </div>
+                <div>
+                  <label for="sample_status">样品状态</label>
+                  <select name="sample_status" id="sample_status">
+                    {SAMPLE_STATUSES.map((value) => <option value={value} selected={(workflow.sample || 'not_requested') === value}>{sampleLabels[value]}</option>)}
+                  </select>
+                </div>
+                <div>
+                  <label for="next_action_date">下一动作日期</label>
+                  <input type="date" name="next_action_date" id="next_action_date" value={workflow.next_action && workflow.next_action !== 'not_set' ? workflow.next_action : ''} />
+                </div>
+              </div>
+              <label for="workflow_notes">跟进记录（保存到关联线索）</label>
+              <textarea name="notes" id="workflow_notes">{stripWorkflowSummary(lead.notes)}</textarea>
+              <button type="submit" class="primary">保存报价与样品进度</button>
+            </form>
           </div>
         )}
 
