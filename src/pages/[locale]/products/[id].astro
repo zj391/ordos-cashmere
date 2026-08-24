@@ -1282,13 +1282,13 @@ const relatedViewAll: Record<Locale, string> = {
 
 
 
-  <section class="py-12 md:py-16 bg-background">
+  <section class="product-detail-hero py-10 md:py-14 bg-background" data-product-detail>
 
     <div class="container-narrow">
 
       <!-- Breadcrumb -->
 
-      <nav class="text-xs text-muted-foreground mb-6">
+      <nav class="product-breadcrumb text-xs text-muted-foreground mb-5">
 
         <a href={`/${locale}/`} class="hover:text-foreground">Home</a>
 
@@ -1306,7 +1306,7 @@ const relatedViewAll: Record<Locale, string> = {
 
       </nav>
 
-      <div class="flex items-center gap-3 mb-8">
+      <div class="product-share flex items-center gap-3 mb-8">
         <span class="text-xs uppercase tracking-wider text-muted-foreground">{locale === 'cn' ? '分享到 LinkedIn' : 'Share on LinkedIn'}</span>
         <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`${SITE_URL}/${locale}/products/${product.id}/`)}`} target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm text-primary hover:text-brand-camel transition-colors">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg> {locale === 'cn' ? '分享' : 'Share'}
@@ -1315,23 +1315,23 @@ const relatedViewAll: Record<Locale, string> = {
 
 
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-12">
+      <div class="product-detail-layout grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-4">
 
         <!-- Image gallery: unique thumbnails + desktop hover magnifier -->
 
-        <div>
+        <div class="product-gallery">
 
           <div class="relative">
 
                       <div
 
-                        class="aspect-square bg-secondary/30 rounded-lg overflow-hidden mb-4 ring-1 ring-border w-full block hover:ring-2 hover:ring-primary transition-shadow"
+                        class="product-main-frame aspect-square bg-secondary/30 rounded-lg overflow-hidden mb-4 ring-1 ring-border w-full block hover:ring-2 hover:ring-primary transition-shadow"
 
                         data-main-frame={primaryImage}
 
                       >
 
-                        <img id="main-product-img" src={primaryImage} alt={buildSeoAlt(product)} class="w-full h-full object-cover object-[center_top] transition-opacity" decoding="async" loading="eager" />
+                        <img id="main-product-img" src={primaryImage} alt={buildSeoAlt(product)} class="product-main-image w-full h-full object-cover object-[center_top] transition-opacity" decoding="async" loading="eager" />
 
                       </div>
 
@@ -1401,15 +1401,15 @@ const relatedViewAll: Record<Locale, string> = {
 
         <!-- Product info -->
 
-        <div>
+        <div class="product-summary">
 
           <span class="text-xs tracking-widest text-muted-foreground uppercase">{displayCategory}</span>
 
-          <h1 class="font-display text-3xl md:text-4xl font-light mt-2 mb-3">{product.name}</h1>
+          <h1 class="product-title font-display text-3xl md:text-4xl font-light mt-2 mb-3">{product.name}</h1>
 
 
 
-          <div class="flex items-baseline gap-3 mb-4">
+          <div class="product-price flex items-baseline gap-3 mb-5">
 
             <span class="text-2xl font-medium">USD {product.price}</span>
 
@@ -1421,7 +1421,7 @@ const relatedViewAll: Record<Locale, string> = {
 
           <!-- Quick info badges (imf style) -->
 
-          <div class="flex flex-wrap gap-2 mb-5">
+          <div class="product-quick-specs flex flex-wrap gap-2 mb-6">
 
             <span class="text-xs px-2.5 py-1 border border-border rounded-full bg-secondary/20">{product.material}</span>
 
@@ -1436,7 +1436,7 @@ const relatedViewAll: Record<Locale, string> = {
 
 
           <!-- Product Highlights: unique per-product content (SEO differentiation) -->
-          <div class="mb-6 border-t border-border pt-5">
+          <div class="product-highlights mb-6 border-t border-border pt-5">
             <h2 class="text-xs font-semibold uppercase tracking-[0.18em] text-primary mb-3">{hl.title}</h2>
             <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
               {highlights.map((h) => (
@@ -1448,7 +1448,7 @@ const relatedViewAll: Record<Locale, string> = {
             </dl>
           </div>
 
-          <p class="text-base text-foreground/80 mb-6">{productBodyText}</p>
+          <p class="product-summary-copy text-base text-foreground/80 mb-6">{productBodyText}</p>
 
 
 
@@ -1510,7 +1510,7 @@ const relatedViewAll: Record<Locale, string> = {
 
                     <!-- Spec table (imf 2-column style) -->
 
-          <div class="border border-border rounded-lg overflow-hidden mb-6">
+          <div class="product-spec-sheet border border-border rounded-lg overflow-hidden mb-6">
 
             <table class="w-full text-sm">
 
@@ -1776,7 +1776,7 @@ const relatedViewAll: Record<Locale, string> = {
 
           <!-- CTA + same-page inquiry form toggle (imf style) -->
 
-          <div class="flex flex-wrap gap-3 mb-3">
+          <div class="product-actions flex flex-wrap gap-3 mb-3">
 
             <button
 
@@ -1818,7 +1818,7 @@ const relatedViewAll: Record<Locale, string> = {
 
           <!-- Same-page inquiry form (hidden by default) -->
 
-          <div id="inquiry-form" class="hidden mt-6 p-6 border-2 border-primary rounded-lg bg-card">
+          <div id="inquiry-form" class="product-inquiry-panel hidden mt-6 p-6 border-2 border-primary rounded-lg bg-card">
 
             <h3 class="font-display text-xl mb-4">Quick Inquiry for {product.name}</h3>
 
@@ -1890,7 +1890,7 @@ const relatedViewAll: Record<Locale, string> = {
 
 
 
-          <p class="text-xs text-muted-foreground mt-4">Direct factory pricing. FOB Tianjin/Shanghai, CIF, DDP. OEM/ODM supported. ISO 9001 + OEKO-TEX certified.</p>
+          <p class="product-trustline text-xs text-muted-foreground mt-4">Direct factory pricing. FOB Tianjin/Shanghai, CIF, DDP. OEM/ODM supported. ISO 9001 + OEKO-TEX certified.</p>
 
         </div>
 
