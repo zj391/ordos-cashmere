@@ -47,7 +47,7 @@ const resourceLinks = [
 ];
 ---
 
-<footer class="border-t-2 border-brand-red bg-[#F8F5EF]/70 mt-24">
+<footer class="snowline-footer border-t-2 border-brand-red bg-[#F8F5EF]/70 mt-24">
   <div class="container-narrow py-20">
     <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-12">
       <!-- Brand -->
@@ -170,3 +170,9 @@ const resourceLinks = [
     </div>
   </div>
 </footer>
+
+<style>
+  /* 雪线静奢页脚：保留链接、语言切换和联系方式，仅替换材质与排版。 */
+  .snowline-footer { position:relative; border-top-color:#a76432; background:#eee7db; }.snowline-footer::before { content:""; position:absolute; right:7%; top:-1px; width:210px; height:68px; border-top:1px solid rgba(167,100,50,.42); border-radius:50%; transform:rotate(-9deg); }.snowline-footer :global(.font-display) { font-family:"Cormorant Garamond","Noto Serif SC",serif; letter-spacing:.12em; }.snowline-footer :global(.micro-label) { border-left-color:#a76432; color:#171513; }.snowline-footer a:hover { color:#a76432; }
+  @media (max-width:640px) { .snowline-footer::before { right:-58px; width:170px; } }
+</style>
