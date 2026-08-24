@@ -15,18 +15,22 @@ const grade = url.searchParams.get('grade') || '';
 const status = url.searchParams.get('status') || '';
 const country = url.searchParams.get('country') || '';
 const search = url.searchParams.get('q') || '';
+const market = url.searchParams.get('market') || '';
+const sla = url.searchParams.get('sla') || '';
+const source = url.searchParams.get('source') || '';
 
 let inquiries: any[] = [];
 let error = '';
 
 if (SUPABASE_URL && SUPABASE_KEY) {
   try {
-    let q = '/rest/v1/inquiries?order=created_at.desc&limit=200&select=id,created_at,contact_name,company_name,country,email,phone,inquiry_type,locale,product_interest,quantity_kg,quantity_m,quantity_pcs,lead_grade,status,message';
+    let q = '/rest/v1/inquiries?order=created_at.desc&limit=200&select=id,created_at,contact_name,company_name,country,email,phone,inquiry_type,locale,product_interest,quantity_kg,quantity_m,quantity_pcs,lead_grade,lead_score,status,message,utm_source';
     const filters: string[] = [];
     if (grade) filters.push(`lead_grade=eq.${grade}`);
     if (status) filters.push(`status=eq.${status}`);
     if (country) filters.push(`country=eq.${country}`);
-    if (search) filters.push(`or=(contact_name.ilike.*${search}*,company_name.ilike.*${search}*,email.ilike.*${search}*)`);
+    const safeSearch = search.trim().replace(/[(),.*]/g, '');
+    if (safeSearch) filters.push(`or=(contact_name.ilike.*${safeSearch}*,company_name.ilike.*${safeSearch}*,email.ilike.*${safeSearch}*)`);
     if (filters.length) q += '&' + filters.join('&');
 
     const res = await fetch(SUPABASE_URL + q, {
@@ -42,14 +46,49 @@ if (SUPABASE_URL && SUPABASE_KEY) {
   }
 }
 
+const MARKET_GROUPS: Record<string, string[]> = {
+  china: ['CN', 'HK', 'TW'],
+  north_america: ['US', 'CA', 'MX'],
+  europe: ['DE', 'FR', 'IT', 'ES', 'PT', 'NL', 'BE', 'CH', 'AT', 'PL', 'GB'],
+  apac: ['JP', 'KR', 'SG', 'AU', 'NZ', 'IN', 'VN', 'TH', 'ID', 'PH', 'MY'],
+  middle_east: ['AE', 'SA', 'TR'],
+  latin_america: ['BR', 'AR'],
+};
+
+function marketForCountry(value: string | null | undefined) {
+  const countryCode = String(value || '').toUpperCase();
+  for (const [key, codes] of Object.entries(MARKET_GROUPS)) {
+    if (codes.includes(countryCode)) return key;
+  }
+  return 'other';
+}
+
+function slaForInquiry(inquiry: any) {
+  const ageHours = Math.max(0, (Date.now() - new Date(inquiry.created_at || Date.now()).getTime()) / 3_600_000);
+  if (inquiry.status && inquiry.status !== 'new') return { key: 'progress', label: '已更新', hours: ageHours };
+  if (ageHours >= 24) return { key: 'overdue', label: '超过 24 小时', hours: ageHours };
+  if (ageHours >= 4) return { key: 'attention', label: '4–24 小时待跟进', hours: ageHours };
+  return { key: 'awaiting', label: '4 小时内', hours: ageHours };
+}
+
+inquiries = inquiries.filter((inquiry) => {
+  if (market && marketForCountry(inquiry.country) !== market) return false;
+  if (sla && slaForInquiry(inquiry).key !== sla) return false;
+  if (source && !(inquiry.utm_source || '').toLowerCase().includes(source.toLowerCase())) return false;
+  return true;
+});
+
 // Summary stats
 const byGrade: Record<string, number> = {};
 const byStatus: Record<string, number> = {};
+const slaCounts: Record<string, number> = { awaiting: 0, attention: 0, overdue: 0, progress: 0 };
 inquiries.forEach(i => {
   const g = i.lead_grade || 'ungraded';
   byGrade[g] = (byGrade[g] || 0) + 1;
   const s = i.status || 'unknown';
   byStatus[s] = (byStatus[s] || 0) + 1;
+  const queue = slaForInquiry(i).key;
+  slaCounts[queue] = (slaCounts[queue] || 0) + 1;
 });
 
 function fmtDate(iso: string) {
@@ -68,6 +107,11 @@ function badgeStatus(s: string | null) {
     new: 'blue', contacted: 'amber', qualified: 'green', won: 'emerald', lost: 'red',
   };
   return `<span class="b b-${colors[s] || 'grey'}">${s}</span>`;
+}
+
+function badgeSla(inquiry: any) {
+  const queue = slaForInquiry(inquiry);
+  return `<span class="b b-sla-${queue.key}">${queue.label}</span>`;
 }
 ---
 <!DOCTYPE html>
@@ -134,11 +178,24 @@ function badgeStatus(s: string | null) {
     .err { background: #fee2e2; color: #991b1b; padding: 0.75rem 1rem; border-radius: 0.5rem; max-width: 1400px; margin: 0 auto 1rem; }
     .empty { padding: 3rem; text-align: center; color: #78716c; }
     .score-cell { font-family: ui-monospace, monospace; font-size: 0.75rem; color: #57534e; }
+    .sla-panel { max-width: 1400px; margin: 0 auto 1rem; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.75rem; }
+    .sla-card { display: block; background: white; border: 1px solid #e7e5e4; padding: 1rem; border-radius: 0.5rem; }
+    .sla-card:hover { background: #fafaf9; }
+    .sla-card small { display:block; color:#78716c; text-transform:uppercase; font-size:0.7rem; letter-spacing:.04em; margin-bottom:.35rem; }
+    .sla-card strong { font-size:1.35rem; }
+    .sla-card-overdue { border-color:#fecaca; background:#fff7f7; }
+    .sla-card-attention { border-color:#fde68a; background:#fffbeb; }
+    .b-sla-awaiting { background:#dbeafe; color:#1e40af; }
+    .b-sla-attention { background:#fef3c7; color:#92400e; }
+    .b-sla-overdue { background:#fee2e2; color:#991b1b; }
+    .b-sla-progress { background:#d1fae5; color:#065f46; }
+    .market { font-size:0.75rem; color:#57534e; text-transform:uppercase; letter-spacing:.03em; }
+    @media (max-width: 720px) { .sla-panel { grid-template-columns: repeat(2, minmax(0, 1fr)); } table { display:block; overflow-x:auto; } }
   </style>
 </head>
 <body>
   <div class="header">
-    <h1>询盘管理</h1>
+    <div><h1>询盘运营</h1><p style="font-size:.8rem;color:#78716c;margin-top:.25rem">按优先级处理新询盘，并在首次联系后更新状态。</p></div>
     <div class="actions">
       <a href="/api/admin/inquiries/?action=export&{url.searchParams.toString()}" class="primary">导出 CSV</a>
       <a href="/api/admin/auth?action=logout">退出登录</a>
@@ -152,8 +209,15 @@ function badgeStatus(s: string | null) {
     <div class="stat"><div class="stat-label">A 级</div><div class="stat-value">{byGrade['A'] || 0}</div></div>
     <div class="stat"><div class="stat-label">B 级</div><div class="stat-value">{byGrade['B'] || 0}</div></div>
     <div class="stat"><div class="stat-label">C 级</div><div class="stat-value">{byGrade['C'] || 0}</div></div>
-    <div class="stat"><div class="stat-label">未联系</div><div class="stat-value">{byStatus['new'] || 0}</div></div>
+    <div class="stat"><div class="stat-label">待首次联系</div><div class="stat-value">{byStatus['new'] || 0}</div></div>
     <div class="stat"><div class="stat-label">合格线索</div><div class="stat-value">{byStatus['qualified'] || 0}</div></div>
+  </div>
+
+  <div class="sla-panel" aria-label="首次响应 SLA 队列">
+    <a class="sla-card" href="/admin/inquiries/?sla=awaiting"><small>4 小时内待跟进</small><strong>{slaCounts.awaiting || 0}</strong></a>
+    <a class="sla-card sla-card-attention" href="/admin/inquiries/?sla=attention"><small>4–24 小时待跟进</small><strong>{slaCounts.attention || 0}</strong></a>
+    <a class="sla-card sla-card-overdue" href="/admin/inquiries/?sla=overdue"><small>超过 24 小时</small><strong>{slaCounts.overdue || 0}</strong></a>
+    <a class="sla-card" href="/admin/inquiries/?status=contacted"><small>已开始跟进</small><strong>{byStatus.contacted || 0}</strong></a>
   </div>
 
   <div class="dist">
@@ -224,6 +288,32 @@ function badgeStatus(s: string | null) {
       <label>国家</label>
       <input type="text" name="country" value={country} placeholder="US / IT / DE...">
     </div>
+    <div class="filter">
+      <label>市场</label>
+      <select name="market">
+        <option value="">全部</option>
+        <option value="china" selected={market === 'china'}>中国 / 大中华</option>
+        <option value="north_america" selected={market === 'north_america'}>北美</option>
+        <option value="europe" selected={market === 'europe'}>欧洲</option>
+        <option value="apac" selected={market === 'apac'}>亚太</option>
+        <option value="middle_east" selected={market === 'middle_east'}>中东</option>
+        <option value="latin_america" selected={market === 'latin_america'}>拉丁美洲</option>
+        <option value="other" selected={market === 'other'}>其他市场</option>
+      </select>
+    </div>
+    <div class="filter">
+      <label>首次响应 SLA</label>
+      <select name="sla">
+        <option value="">全部</option>
+        <option value="awaiting" selected={sla === 'awaiting'}>4 小时内待跟进</option>
+        <option value="attention" selected={sla === 'attention'}>4–24 小时待跟进</option>
+        <option value="overdue" selected={sla === 'overdue'}>超过 24 小时</option>
+      </select>
+    </div>
+    <div class="filter">
+      <label>来源</label>
+      <input type="text" name="source" value={source} placeholder="google / linkedin...">
+    </div>
     <button type="submit">筛选</button>
     <a href="/admin/inquiries/">清除</a>
   </form>
@@ -238,26 +328,30 @@ function badgeStatus(s: string | null) {
           <th>联系人</th>
           <th>公司</th>
           <th>国家</th>
+          <th>市场</th>
           <th>类型</th>
           <th>产品</th>
           <th>数量</th>
           <th>等级</th>
           <th>评分</th>
+          <th>首次响应</th>
           <th>状态</th>
         </tr>
       </thead>
       <tbody>
         {inquiries.map((i) => (
-          <tr class={`row-${(i.lead_grade || 'ungraded').toLowerCase()}`}>
+          <tr class={`row-${(i.lead_grade || 'ungraded').toLowerCase()} sla-${slaForInquiry(i).key}`}>
             <td>{fmtDate(i.created_at)}</td>
             <td><a href={`/admin/inquiries/${i.id}`}>{i.contact_name}</a></td>
             <td>{i.company_name}</td>
             <td>{i.country}</td>
+            <td><span class="market">{marketForCountry(i.country)}</span></td>
             <td>{i.inquiry_type}</td>
             <td>{i.product_interest || '—'}</td>
             <td>{i.quantity_kg || i.quantity_m || i.quantity_pcs || '—'}</td>
             <td set:html={badgeGrade(i.lead_grade)} />
             <td class="score-cell">{i.lead_score ?? '—'}</td>
+            <td set:html={badgeSla(i)} />
             <td set:html={badgeStatus(i.status)} />
           </tr>
         ))}

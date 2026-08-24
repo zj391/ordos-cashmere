@@ -45,6 +45,25 @@ function fmtDate(iso: string) {
   if (!iso) return '—';
   return new Date(iso).toISOString().slice(0, 19).replace('T', ' ');
 }
+
+function marketForCountry(value: string | null | undefined) {
+  const code = String(value || '').toUpperCase();
+  if (['CN', 'HK', 'TW'].includes(code)) return '中国 / 大中华';
+  if (['US', 'CA', 'MX'].includes(code)) return '北美';
+  if (['DE', 'FR', 'IT', 'ES', 'PT', 'NL', 'BE', 'CH', 'AT', 'PL', 'GB'].includes(code)) return '欧洲';
+  if (['JP', 'KR', 'SG', 'AU', 'NZ', 'IN', 'VN', 'TH', 'ID', 'PH', 'MY'].includes(code)) return '亚太';
+  if (['AE', 'SA', 'TR'].includes(code)) return '中东';
+  if (['BR', 'AR'].includes(code)) return '拉丁美洲';
+  return '其他市场';
+}
+
+function firstResponseSla(inquiry: any) {
+  const hours = Math.max(0, (Date.now() - new Date(inquiry.created_at || Date.now()).getTime()) / 3_600_000);
+  if (inquiry.status && inquiry.status !== 'new') return '已更新状态';
+  if (hours >= 24) return '超过 24 小时待跟进';
+  if (hours >= 4) return '4–24 小时待跟进';
+  return '4 小时内待跟进';
+}
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -104,6 +123,7 @@ function fmtDate(iso: string) {
             <dt>邮箱</dt><dd><a href={`mailto:${inquiry.email}`}>{inquiry.email}</a></dd>
             <dt>电话</dt><dd>{inquiry.phone || '—'}</dd>
             <dt>国家</dt><dd>{inquiry.country}</dd>
+            <dt>市场</dt><dd>{marketForCountry(inquiry.country)}</dd>
             <dt>语言</dt><dd>{inquiry.locale}</dd>
           </dl>
         </div>
@@ -117,6 +137,7 @@ function fmtDate(iso: string) {
             <dt>数量(m)</dt><dd>{inquiry.quantity_m || '—'}</dd>
             <dt>数量(件)</dt><dd>{inquiry.quantity_pcs || '—'}</dd>
             <dt>创建时间</dt><dd>{fmtDate(inquiry.created_at)}</dd>
+            <dt>首次响应 SLA</dt><dd>{firstResponseSla(inquiry)}</dd>
           </dl>
           {inquiry.message && (
             <>
