@@ -634,7 +634,7 @@ main { position:relative; overflow:clip; }
 main::before { content:''; position:fixed; z-index:-1; inset:0; pointer-events:none; opacity:.2; background-image:radial-gradient(rgba(31,26,20,.06) .5px,transparent .5px); background-size:4px 4px; mix-blend-mode:multiply; }
 .container-narrow { max-width:82rem; }
 .section-padding { padding-top:clamp(5rem,9vw,10rem); padding-bottom:clamp(5rem,9vw,10rem); }
-h1,h2,main h1[class*="text-"],main h2[class*="text-"] { color:var(--snow-cream) !important; letter-spacing:-.052em; line-height:.95; text-shadow:0 2px 18px rgba(23,21,19,.46); }
+h1,h2,main h1[class*="text-"],main h2[class*="text-"] { color:var(--snow-ink) !important; letter-spacing:-.052em; line-height:.95; text-shadow:none; }
 h3 { color:var(--snow-ink); letter-spacing:-.028em; }
 p { text-wrap:pretty; }
 .text-muted-foreground { color:var(--snow-muted) !important; }
@@ -655,10 +655,11 @@ table { border-color:var(--snow-line); } th { background:var(--snow-mist); color
 @media (max-width:640px) { .section-padding { padding-top:4.5rem; padding-bottom:4.5rem; } h1,h2 { letter-spacing:-.035em; } }
 
 /* 无须改动每页内容结构：以主内容的原生 section/article 层级建立统一的页面节奏。 */
-main > section:first-child:not(.home-enhanced-hero) { position:relative; overflow:hidden; border-bottom:1px solid var(--snow-line); background:linear-gradient(112deg,#29241f 0%,#4a4138 52%,#6d6257 100%); }
-main > section:first-child:not(.home-enhanced-hero)::after { content:""; position:absolute; right:-8%; top:20%; width:30rem; height:11rem; border-top:1px solid rgba(255,248,236,.42); border-radius:50%; transform:rotate(-12deg); pointer-events:none; }
+main > section:first-child:not(.home-enhanced-hero) { position:relative; overflow:hidden; border-bottom:1px solid var(--snow-line); background:linear-gradient(112deg,#f7f3eb 0%,#fbfaf7 58%,#e8dfd2 100%); }
+main > section:first-child:not(.home-enhanced-hero)::after { content:""; position:absolute; right:-8%; top:20%; width:30rem; height:11rem; border-top:1px solid rgba(167,100,50,.36); border-radius:50%; transform:rotate(-12deg); pointer-events:none; }
 main > section:first-child:not(.home-enhanced-hero) h1 { max-width:14ch; font-size:clamp(3rem,6vw,6.25rem); }
-main > section:first-child:not(.home-enhanced-hero) h1 + p { max-width:52rem; color:rgba(255,248,236,.82); line-height:1.9; }
+main > section:first-child:not(.home-enhanced-hero) h1 + p { max-width:52rem; color:var(--snow-muted); line-height:1.9; }
+main .home-enhanced-hero h1,main .home-enhanced-hero h2 { color:var(--snow-cream) !important; text-shadow:0 2px 18px rgba(23,21,19,.46); }
 main > section { border-color:var(--snow-line); }
 main > section:nth-child(even):not(.home-enhanced-hero) { background-color:rgba(243,238,229,.48); }
 main article { border-color:var(--snow-line); }
