@@ -488,12 +488,12 @@ const groupLabel = (groupKey: string, group: any) => {
 </script>
 
 <style>
-  /* 雪线静奢导航：保留所有菜单、RFQ、语言切换与下拉逻辑，仅统一材质和排版。 */
-  .snowline-nav { border-top-color:#a76432; background:rgba(250,248,243,.94); box-shadow:0 8px 24px -22px rgba(45,40,36,.72); }
-  .snowline-nav :global(.font-display) { font-family:"Cormorant Garamond", Georgia, serif; font-weight:600; letter-spacing:.115em; }
-  .snowline-nav :global(#desktop-nav) { padding-top:1rem; padding-bottom:1rem; letter-spacing:.16em; }
-  .snowline-nav :global(.nav-link) { position:relative; }.snowline-nav :global(.nav-link)::after { content:""; position:absolute; left:0; right:0; bottom:-7px; height:1px; background:#a76432; transform:scaleX(0); transform-origin:left; transition:transform .2s ease-out; }.snowline-nav :global(.nav-link:hover)::after, .snowline-nav :global(.nav-link.is-active)::after { transform:scaleX(1); }
-  .snowline-nav-action { border-left-width:3px; border-left-color:#a76432; background:rgba(255,255,255,.42); }.snowline-nav-action:hover { box-shadow:0 8px 16px -14px rgba(45,40,36,.72); }
-  .snowline-nav :global([data-mega-panel]) { background:#fbfaf7; border-top-color:rgba(167,100,50,.35); }.snowline-nav :global([data-mega-panel] h3) { color:#7a6049; }.snowline-nav :global([data-mega-panel] .bg-brand-cream) { background:#ece3d6; }
-  @media (max-width:1023px) { .snowline-nav { box-shadow:0 7px 18px -17px rgba(45,40,36,.7); } }
+  /* EU/US B2B navigation: calm, legible, procurement-first. */
+  .snowline-nav { border-top:0 !important; border-bottom:1px solid #d9dfda; background:rgba(255,255,253,.96); box-shadow:0 1px 0 rgba(27,39,37,.03); }
+  .snowline-nav :global(.font-display) { font-family:"Cormorant Garamond", Georgia, serif; font-weight:600; letter-spacing:.09em; }
+  .snowline-nav :global(#desktop-nav) { padding-top:.8rem; padding-bottom:.8rem; letter-spacing:.13em; }
+  .snowline-nav :global(.nav-link) { position:relative; font-size:.69rem; }.snowline-nav :global(.nav-link)::after { content:""; position:absolute; left:0; right:0; bottom:-5px; height:1px; background:#254d45; transform:scaleX(0); transform-origin:left; transition:transform .18s ease-out; }.snowline-nav :global(.nav-link:hover)::after, .snowline-nav :global(.nav-link.is-active)::after { transform:scaleX(1); }
+  .snowline-nav-action { border:1px solid #254d45; border-radius:3px; background:#254d45; color:#fff; font-weight:700; letter-spacing:.13em; }.snowline-nav-action:hover { border-color:#173a33; color:#fff; background:#173a33; box-shadow:0 8px 16px -14px rgba(27,39,37,.58); }
+  .snowline-nav :global([data-mega-panel]) { background:#fff; border-top-color:#d9dfda; box-shadow:0 18px 36px -24px rgba(27,39,37,.26); }.snowline-nav :global([data-mega-panel] h3) { color:#254d45; }.snowline-nav :global([data-mega-panel] .bg-brand-cream) { background:#eef2ee; }
+  @media (max-width:1023px) { .snowline-nav { box-shadow:0 2px 12px -10px rgba(27,39,37,.22); } }
 </style>
