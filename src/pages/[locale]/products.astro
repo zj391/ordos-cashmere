@@ -13,7 +13,7 @@ import CookieConsent from '@/components/CookieConsent.astro';
 import SEOFaq from '@/components/SEOFaq.astro';
 import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
 import { SEO, SITE_INFO } from '@/lib/seo';
-import { products as productsData, getAllProducts, ensureDbOverlay } from '@/data/products';
+import { products as productsData, getRepresentativeProducts, ensureDbOverlay } from '@/data/products';
 import { getProductLabels } from '@/lib/product-labels';
 import { tagAllProducts, PRODUCT_TAG_RULES } from '@/data/product-tags';
 
@@ -28,10 +28,13 @@ if (!isLocale(rawLocale)) {
 }
 const locale = pickLocale(rawLocale);
 
-// 扁平化产品列表（来自数据库叠加层，含 categoryId / categoryName），用于渲染卡片
-const allProducts = getAllProducts();
+// 浏览页只加载按款式家族与核心规格挑选的代表款；详情页仍保留完整源目录。
+const allProducts = getRepresentativeProducts();
 const categories = productsData.categories;
 const labels = getProductLabels(locale);
+const curatedCountsByCategory = Object.fromEntries(
+  categories.map((category) => [category.id, allProducts.filter((product) => product.categoryId === category.id).length])
+);
 
 // Pre-tag every product once at build time so URL params (e.g. ?byStyle=beanies)
 // from the mega menu can filter the product grid client-side.
@@ -40,40 +43,40 @@ const productTagsMap = tagAllProducts();
 // Build a serializable tags index: { productId: ["byStyle=beanies", "byMaterial=100pct-cashmere", ...] }
 const productTagsJson = JSON.stringify(
   Object.fromEntries(
-    Array.from(productTagsMap.entries()).map(([id, tags]) => [id, Array.from(tags)])
+    allProducts.map((product) => [product.id, Array.from(productTagsMap.get(product.id) || [])])
   )
 );
 
 // 各语言 TDK
 const tdk: Record<string, { title: string; description: string; keywords: string[] }> = {
   en: {
-    title: 'Cashmere Wholesale Catalog | China Factory Direct | DONGXIAO®',
-    description: 'Browse wholesale cashmere direct from our China factory: hats, scarves, sweaters, accessories, yarn. OEM/ODM, MOQ 100 pcs, ISO certified. DONGXIAO® Ordos.',
+    title: 'Curated Cashmere Wholesale Catalog | China Factory Direct | DONGXIAO®',
+    description: 'Browse curated wholesale cashmere representatives from our China factory: hats, scarves, sweaters, accessories, yarn. OEM/ODM, MOQ 100 pcs, ISO certified. DONGXIAO® Ordos.',
     keywords: ['cashmere products', 'cashmere catalog', 'B2B cashmere wholesale', 'OEM cashmere', 'Ordos cashmere factory', 'cashmere hats', 'cashmere scarves', 'cashmere sweaters'],
   },
   de: {
-    title: 'Kaschmirprodukte - 591 Stile | Ordos Fabrik Direkt | DONGXIAO®',
-    description: '591 Kaschmirprodukte direkt aus unserer Ordos-Fabrik: Mützen, Schals, Pullover, Accessoires, Garn. OEM/ODM. ISO-zertifiziert. MOQ 100 Stk.',
+    title: 'Ausgewählte Kaschmirprodukte | Ordos Fabrik Direkt | DONGXIAO®',
+    description: 'Ausgewählte Kaschmirprodukte direkt aus unserer Ordos-Fabrik: Mützen, Schals, Pullover, Accessoires, Garn. OEM/ODM. ISO-zertifiziert. MOQ 100 Stk.',
     keywords: ['Kaschmirprodukte', 'Kaschmir Katalog', 'B2B Kaschmir Großhandel', 'OEM Kaschmir', 'Ordos Kaschmirfabrik'],
   },
   fr: {
-    title: 'Produits cachemire - 591 styles | Usine directe Ordos | DONGXIAO®',
-    description: '591 produits cachemire directement de notre usine Ordos: bonnets, echarpes, pulls, accessoires, fils. OEM/ODM. 100% cachemire pur, ISO certifie. MOQ 100pcs.',
+    title: 'Sélection cachemire | Usine directe Ordos | DONGXIAO®',
+    description: 'Une sélection de cachemire directement de notre usine Ordos: bonnets, écharpes, pulls, accessoires, fils. OEM/ODM. 100% cachemire pur, ISO certifié. MOQ 100pcs.',
     keywords: ['produits cachemire', 'catalogue cachemire', 'B2B cachemire gros', 'OEM cachemire', 'usine cachemire Ordos'],
   },
   ja: {
-    title: 'カシミヤ製品 - 591スタイル | オルドス工場直販 | DONGXIAO®',
-    description: 'オルdos工場直販カシミア製品591点:帽子、マフラー、セーター、アクセサリー、糸。OEM/ODM対応。工場価格、100%ピュアカシミア、ISO認証。MOQ 100個。',
+    title: 'カシミヤ製品セレクション | オルドス工場直販 | DONGXIAO®',
+    description: 'オルドス工場直販のカシミヤ製品セレクション: 帽子、マフラー、セーター、アクセサリー、糸。OEM/ODM対応。MOQ 100個。',
     keywords: ['カシミア製品', 'カシミアカタログ', 'B2B カシミア卸売', 'OEM カシミア'],
   },
   kr: {
-    title: '캐시미어 제품 - 591가지 스타일 | 어얼어스 공장 직송 | DONGXIAO®',
-    description: '어얼어스 공장에서 직접 생산하는 캐시미어 제품 591종: 모자, 스카프, 스웨터, 액세서리, 원사. OEM/ODM 지원. 공장 가격, 100% 순수 캐시미어, ISO 인증. MOQ 100개.',
+    title: '캐시미어 제품 셀렉션 | 어얼어스 공장 직송 | DONGXIAO®',
+    description: '어얼어스 공장에서 직접 생산하는 캐시미어 제품 셀렉션: 모자, 스카프, 스웨터, 액세서리, 원사. OEM/ODM 지원. MOQ 100개.',
     keywords: ['캐시미어 제품', '캐시미어 카탈로그', 'B2B 캐시미어 도매', 'OEM 캐시미어'],
   },
   cn: {
-    title: '羊绒产品 - 591款 | 鄂尔多斯工厂直供 | 东霄DONGXIAO®',
-    description: '591款羊绒产品工厂直供：帽子、围巾、毛衫、配饰、纱线。支持OEM/ODM。工厂价格，100%纯羊绒，ISO认证。起订量100件。',
+    title: '羊绒产品精选目录 | 鄂尔多斯工厂直供 | 东霄DONGXIAO®',
+    description: '鄂尔多斯工厂直供的羊绒产品精选目录：帽子、围巾、毛衫、配饰、纱线。支持OEM/ODM。100%纯羊绒，起订量100件。',
     keywords: ['羊绒产品', '羊绒目录', 'B2B羊绒批发', 'OEM羊绒代工', '鄂尔多斯羊绒工厂', '羊绒帽子', '羊绒围巾', '羊绒衫'],
   },
 };
@@ -102,7 +105,7 @@ function pickListCategory(c: any) {
     id: c.id,
     name: c.name,
     description: c.description,
-    productCount: c.products.length,
+    productCount: curatedCountsByCategory[c.id] || 0,
   };
 }
 const listProducts = allProducts.map(pickListFields);
@@ -267,7 +270,7 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
       <div class="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm text-muted-foreground">
         <span class="flex items-center gap-2">
           <span class="w-1.5 h-1.5 bg-brand-gold rounded-full"></span>
-          {locale === 'cn' ? '591款产品' : '591 Products'}
+          {locale === 'cn' ? `${allProducts.length} 款精选代表款` : `${allProducts.length} Curated Styles`}
         </span>
         <span class="flex items-center gap-2">
           <span class="w-2 h-2 bg-brand-camel rounded-full"></span>
@@ -295,7 +298,7 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
         </button>
         {categories.map((cat) => (
           <button data-cat={cat.id} class="filter-btn px-4 py-2 text-sm border bg-white text-muted-foreground border-border hover:border-brand-ink transition-colors">
-            {cat.name} ({cat.products.length})
+            {cat.name} ({curatedCountsByCategory[cat.id] || 0})
           </button>
         ))}
       </div>
@@ -421,7 +424,7 @@ const groupLabelsJson = JSON.stringify(GROUP_LABELS);
             <h3 class="font-serif text-lg text-brand-ink mb-2">{cat.name}</h3>
             <p class="text-muted-foreground text-xs leading-relaxed mb-3">{cat.description}</p>
             <p class="text-xs text-brand-gold font-medium tracking-wider">
-              {cat.products.length} {locale === 'cn' ? '款产品' : 'products'}
+              {curatedCountsByCategory[cat.id] || 0} {locale === 'cn' ? '款精选代表款' : 'curated styles'}
             </p>
           </div>
         ))}

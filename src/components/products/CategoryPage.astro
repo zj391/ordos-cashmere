@@ -14,7 +14,7 @@ import CookieConsent from '@/components/CookieConsent.astro';
 import SEOFaq from '@/components/SEOFaq.astro';
 import { LOCALES, isLocale, pickLocale } from '@/lib/i18n';
 import { SEO, SITE_URL } from '@/lib/seo';
-import { products as productsData, getCategoryById } from '@/data/products';
+import { products as productsData, getCategoryById, getRepresentativeProductsByCategory } from '@/data/products';
 import { getCollection } from 'astro:content';
 import { categoryHubSchema } from '@/lib/schema';
 
@@ -64,7 +64,9 @@ const catId = SLUG_TO_CATEGORY_DEFS[slug];
 const category = getCategoryById(catId);
 if (!category) return;
 
-const products = category.products;
+// Listing hubs render the same curated catalog as /products; full source data
+// remains available on existing product detail routes.
+const products = getRepresentativeProductsByCategory(catId);
 // 分类页 → 指南页内链（SEO 内部链接）
 const categoryGuides: Record<string, Array<{ href: string; en: string; cn: string }>> = {
   hats: [

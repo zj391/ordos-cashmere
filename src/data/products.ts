@@ -218,6 +218,89 @@ export function getAllProducts(): ProductWithCategory[] {
   return _allProductsCache!;
 }
 
+/**
+ * Curated catalog for listing pages. Detail routes continue to use the complete
+ * catalog, while browse pages expose one representative per product family and
+ * core material/specification combination.
+ */
+const STYLE_FAMILY_RULES: Record<string, Array<[string, RegExp]>> = {
+  hats: [
+    ['beanie', /beanie|fisherman|knit hat|winter hat|\bcap\b/i],
+    ['beret', /beret/i],
+    ['headband', /headband|earmuff/i],
+    ['set', /set|gloves.*hat|hat.*scarf/i],
+  ],
+  sweaters: [
+    ['cardigan', /cardigan/i],
+    ['turtleneck', /turtleneck|roll neck|high neck/i],
+    ['v-neck', /v[- ]?neck/i],
+    ['vest', /vest|waistcoat/i],
+    ['zip', /zip|hoodie/i],
+    ['crew', /crew|round neck|pullover|sweater|jumper/i],
+  ],
+  scarves: [
+    ['shawl-wrap', /shawl|wrap|pashmina|poncho/i],
+    ['blanket', /blanket|throw|travel/i],
+    ['hijab', /hijab/i],
+    ['scarf', /scarf|muffler/i],
+  ],
+  accessories: [
+    ['gloves', /glove|mitten/i],
+    ['socks', /sock|stocking/i],
+    ['leggings', /legging|pant|trouser/i],
+    ['set', /set|gift|home wear/i],
+  ],
+  yarn: [
+    ['worsted', /worsted/i],
+    ['woolen', /woolen/i],
+    ['yarn', /yarn|cone|spun|nm/i],
+  ],
+};
+
+function styleFamilyFor(product: ProductWithCategory): string {
+  for (const [family, matcher] of STYLE_FAMILY_RULES[product.categoryId] || []) {
+    if (matcher.test(product.name || '')) return family;
+  }
+  return 'other';
+}
+
+function representativeScore(product: ProductWithCategory): number {
+  return (product.images?.[0] ? 8 : 0) + (product.description ? 2 : 0) + Math.min(product.tags?.length || 0, 3);
+}
+
+export interface RepresentativeProductOptions {
+  /** Number of stable representatives retained per product family/specification group. */
+  perGroup?: number;
+}
+
+export function getRepresentativeProducts({ perGroup = 2 }: RepresentativeProductOptions = {}): ProductWithCategory[] {
+  const selected = new Map<string, ProductWithCategory[]>();
+  for (const product of getAllProducts()) {
+    const key = [
+      product.categoryId,
+      styleFamilyFor(product),
+      product.material || '',
+      product.micron || '',
+      product.gauge || '',
+    ].map((part) => part.toLowerCase().trim()).join('|');
+    const group = selected.get(key) || [];
+    group.push(product);
+    selected.set(key, group);
+  }
+  return Array.from(selected.values()).flatMap((group) =>
+    group
+      .sort((a, b) => representativeScore(b) - representativeScore(a) || a.id.localeCompare(b.id))
+      .slice(0, Math.max(1, perGroup))
+  );
+}
+
+export function getRepresentativeProductsByCategory(
+  categoryId: string,
+  options: RepresentativeProductOptions = {}
+): ProductWithCategory[] {
+  return getRepresentativeProducts(options).filter((product) => product.categoryId === categoryId);
+}
+
 export function getProductsByCategory(categoryId: string): ProductWithCategory[] {
   buildCaches();
   return _byCategoryCache!.get(categoryId) || [];
