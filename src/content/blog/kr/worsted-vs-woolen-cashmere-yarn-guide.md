@@ -1,120 +1,116 @@
 ---
-title: "Worsted vs Woolen Cashmere Yarn: Which to Choose for Your Product"
-excerpt: "Worsted and woolen cashmere yarns are spun differently and behave differently. Choose wrong and your finished product won't have the hand feel your customers expect."
+title: "캐시미어 원사 소면 vs 방면: 제품에 맞는 선택"
+excerpt: "소면방적과 방면방적 캐시미어 원사는 방적 방식이 다르고 성질도 크게 다릅니다. 잘못 선택하면 완성 제품의 촉감이 고객이 기대하는 것과 달라집니다."
 publishDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
-tags: ["cashmere yarn","worsted spinning","woolen spinning","yarn selection"]
+tags: ["cashmere yarn", "worsted spinning", "woolen spinning", "yarn selection"]
 geoRegion: "GLOBAL"
-targetKeywords: ["worsted cashmere yarn","woolen cashmere yarn","worsted vs woolen cashmere","hand knitting cashmere yarn","anti-pilling cashmere blend yarn for knitwear brand"]
+targetKeywords: ["소면 캐시미어 원사","방면 캐시미어 원사","소면 vs 방면 캐시미어","손뜨기 캐시미어 원사","안티필링 캐시미어 혼방사"]
 relatedProducts: ["yarn_fabric","garment_oem"]
 aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "kr"
 ---
-# Worsted vs Woolen Cashmere Yarn: Which to Choose for Your Product
 
-# Worsted vs Woolen Cashmere Yarn: Which to Choose
+# 캐시미어 원사 소면 vs 방면: 어떤 걸 고를까?
 
-"100% cashmere" tells you the fiber content. It doesn't tell you **how the yarn was spun** — and that determines whether your sweater feels smooth and drapey, or soft and lofty.
+"100% 캐시미어"는 섬유 조성을 알려줍니다. 하지만 **원사를 어떤 방식으로 방적했는지** 는 알려주지 않습니다 — 그리고 이 방식이 스웨터를 매끄럽고 드레이프 있게 만들지, 부드럽고 볼키하게 만들지를 결정합니다.
 
-The two main spinning methods — **worsted** and **woolen** — produce yarns with fundamentally different properties. Choosing wrong is one of the most common mistakes B2B buyers make when sourcing cashmere.
+두 가지 주요 방적 방식 — **소면방적** 과 **방면방적** — 은 근본적으로 다른 특성을 가진 원사를 만듭니다. 잘못된 선택은 캐시미어를 소싱하는 B2B 바이어가 가장 자주 범하는 실수 중 하나입니다.
 
-## What "worsted" actually means
+## "소면방적"의 진짜 의미
 
-Worsted cashmere yarn is spun from **long, parallel-aligned fibers** using a combing process. The fibers are first carded (separated and randomized), then **combed** to remove short fibers and align the long ones parallel, then drawn and twisted tightly.
+소면 캐시미어 원사는 **길고 평행하게 정렬된 섬유** 로부터 코밍(소면) 공정을 거쳐 방적됩니다. 섬유는 먼저 카딩(분리·랜덤화)되고, 그 다음 **코밍** 으로 짧은 섬유를 제거하고 긴 섬유를 평행으로 정렬한 후 연신과 강연을 거칩니다.
 
-The result is a yarn that is:
-- **Smooth** (long parallel fibers lay flat against each other)
-- **Strong** (more fibers per cross-section = higher tensile strength)
-- **Drapey** (less air between fibers = denser, more fluid fabric)
-- **Less prone to pilling** (tightly twisted fibers don't migrate)
+결과 원사는:
+- **매끄러움** (긴 평행 섬유가 서로 평평하게 자리)
+- **견고** (단면당 섬유 수 많음 = 높은 인장 강도)
+- **드레이프성 우수** (섬유 사이 공기 적음 = 밀도 높고 유체 같은 원단)
+- **필링 발생 적음** (강연된 섬유는 이동하지 않음)
 
-**Best for**: 12+ gauge machine knitting, suiting-weight woven fabrics, fine-gauge scarves, any application where smoothness and drape matter.
+**적합 용도**: 12 게이지 이상 기계뜨기, 슈팅/코팅 직물, 미세 게이지 머플러, 매끄러움과 드레이프이 중요한 모든 용도.
 
-## What "woolen" actually means
+## "방면방적"의 진짜 의미
 
-Woolen cashmere yarn is spun from **random-oriented fibers** of varying lengths. The carding process randomizes fibers; there's no combing step. The yarn is then twisted loosely.
+방면 캐시미어 원사는 **무작위로 배향된** 다양한 길이의 섬유로 방적됩니다. 카딩 공정이 섬유를 랜덤화하며, 코밍 공정은 없습니다. 그 다음 약하게 연사됩니다.
 
-The result is a yarn that is:
-- **Soft and lofty** (lots of air trapped between random fibers)
-- **Warm** (still air is an excellent insulator)
-- **Fuzzy halo** (fiber ends poke out, creating the "cashmere bloom" look)
-- **More prone to pilling** (loose fibers migrate to surface)
+결과 원사는:
+- **부드럽고 볼키** (랜덤 섬유 사이에 다량의 공기 갇힘)
+- **따뜻함** (정지 공기는 뛰어난 단열재)
+- **퍼지 헤일로** (섬유 말단이 돌출하여 "캐시미어 블룸" 룩)
+- **필링 발생 많음** (헐거운 섬유가 표면으로 이동)
 
-**Best for**: 5-9 gauge hand knitting, chunky sweaters, scarves and shawls where softness is paramount, brushed or felted products.
+**적합 용도**: 5~9 게이지 손뜨기, 두꺼운 스웨터, 부드러움이 가장 중요한 머플러와 숄, 브러시드 또는 펠티드 제품.
 
-## Side-by-side comparison
+## 병행 비교
 
-| Property | Worsted | Woolen |
+| 특성 | 소면 | 방면 |
 |---|---|---|
-| **Fiber length required** | 36-42mm | 30-36mm |
-| **Yarn surface** | Smooth, clean | Fuzzy, hairy |
-| **Drape** | High (fluid) | Low (structured) |
-| **Pilling resistance** | High | Medium-low |
-| **Warmth per gram** | Medium | High (trapped air) |
-| **Gauge (knits per inch)** | 12-18 | 5-9 |
-| **Cost** | +10-20% (combing step) | Baseline |
-| **Best for** | Fine-gauge knitwear, woven | Hand-knit, chunky, brushed |
+| **요구 섬유장** | 36~42 mm | 30~36 mm |
+| **원사 표면** | 매끄럽고 깔끔 | 퍼지하고 털 많음 |
+| **드레이프** | 높음 (유체) | 낮음 (구조적) |
+| **필링 저항** | 높음 | 중~저 |
+| **g당 보온성** | 중간 | 높음 (갇힌 공기) |
+| **게이지 (1인치 눈수)** | 12~18 | 5~9 |
+| **원가** | +10~20% (코밍 공정) | 기준 |
+| **적합 용도** | 미세 게이지 니트, 직물 | 손뜨기, 후키, 브러시드 |
 
-## How to tell worsted and woolen apart
+## 소면과 방면을 구별하는 방법
 
-Visual and tactile tests:
+시각·촉각 테스트:
 
-1. **Hold to the light**: Worsted yarn is semi-translucent (smooth, light passes through evenly). Woolen is opaque (fibers scatter light).
+1. **빛에 비춰 보기**: 소면사 반투명 (빛이 균일하게 통과). 방면사 불투명 (섬유가 빛 산란).
+2. **손가락 사이 문지르기**: 소면사 차갑고 매끄러움. 방면사 따뜻하고 부드러움.
+3. **1cm 구간 꼬임 풀기**: 소면 평행·매끄러운 섬유. 방면 랜덤·뒤섞인 섬유.
+4. **단면 검사**: 소면 밀도 높고 둥글음. 방면 헐겁고 불규칙.
 
-2. **Rub between fingers**: Worsted feels cool and slick. Woolen feels warm and soft.
+샘플이 이 테스트를 통과하지 못하면 **세미 소면** 또는 **세미 방면** 사일 수 있습니다 — 괜찮지만 올바르게 라벨링해야 합니다.
 
-3. **Untwist a 1cm section**: Worsted has parallel, smooth fibers. Woolen has random, jumbled fibers.
+## 각각을 고르는 때
 
-4. **Examine the cross-section**: Worsted is dense and round. Woolen is loose and irregular.
+### **소면** 을 고르세요:
+- **미세 게이지 스웨터** (12 게이지 이상) — 매끄러운 원단, 드레이프 우수
+- **슈팅과 코팅 직물** — 흐르는 듯한 드레이프, 보풀 없음
+- **미세 머플러와 숄** — 우아하고 피부에 매끄러움
+- **프리미엄 혼방사** (캐시미어/실크, 캐시미어/울) — 강도 추가
+- **필링 저항이 중요한 모든 곳** — 럭셔리 고객은 알아챕니다
 
-If a sample doesn't pass these tests, you may have a **semi-worsted** or **semi-woolen** yarn — which is fine, but should be labeled correctly.
+### **방면** 을 고르세요:
+- **두꺼운 손뜨기 스웨터** (5~9 게이지) — 부드럽고 볼키, 전통적 룩
+- **브러시드 머플러와 스토올** — 퍼지 헤일로가 오히려 매력
+- **펠티드 제품** — 방면 구조는 펠팅이 더 쉬움
+- **중급 시장 제품** — 방면이 더 저렴 (코밍 없음)
+- **캐주얼 니트** — "코지" 미감
 
-## When to choose each
+## 안티필링 가공
 
-### Choose **worsted** for:
-- **Fine-gauge sweaters** (12+ gauge) — smooth fabric, drapes well
-- **Suiting and coating** woven fabric — fluid drape, no fuzz
-- **Fine scarves and shawls** — elegant, smooth against skin
-- **Premium blend yarns** (cashmere/silk, cashmere/wool) — adds strength
-- **Anywhere pill resistance is critical** — luxury customers notice
+필링은 캐시미어 니트의 가장 큰 품질 클레임입니다. 짧은 섬유 말단이 표면으로 이동하여 엉키면서 발생합니다.
 
-### Choose **woolen** for:
-- **Chunky hand-knit sweaters** (5-9 gauge) — soft, lofty, traditional look
-- **Brushed scarves and stoles** — fuzzy halo is desirable
-- **Felted products** — woolen structure felts more easily
-- **Mid-market products** — woolen is cheaper (no combing)
-- **Casual knitwear** — the "cozy" aesthetic
+**두 가지 주요 전략**:
+1. **더 긴 섬유 사용** (Hauteur > 36 mm) — 소면방적이 본질적으로 필링에 강함
+2. **안티필링 가공 적용** — 짧은 표면 섬유를 제거하는 효소 워시
 
-## Anti-pilling treatments
+당사의 안티필링 가공은 부드러운 셀룰라아제를 사용하여 돌출 섬유 말단을 분해하며, 원사 코어는 손상시키지 않습니다. 결과: 50 회 착용 사이클 후 필링 60~70% 감소, 촉감 변화 없음.
 
-Pilling is the #1 quality complaint about cashmere knitwear. It happens when short fiber ends work their way to the surface and tangle.
+**비용**: 안티필링은 kg당 0.30~0.50 USD 추가. 내구성을 기대하는 럭셔리 제품에는 충분히 가치 있는 투자입니다.
 
-**Two main strategies**:
-1. **Use longer fibers** (Hauteur > 36mm) — worsted spinning naturally resists pilling
-2. **Apply anti-pilling treatment** — enzyme wash that removes short surface fibers
+## 울 또는 실크와의 혼방
 
-Our anti-pilling treatment uses a mild cellulase enzyme that digests protruding fiber ends without damaging the yarn core. The result is a 60-70% reduction in pilling after 50 wear cycles, with no hand-feel change.
+100% 캐시미어가 가장 비싼 옵션입니다. 중급 시장 제품에는 **혼방** 이 섬유를 늘리고 촉감 손실 없이 원가를 낮춥니다:
 
-**Cost**: Anti-pilling adds $0.30-0.50 per kg of yarn. For luxury products where customers expect longevity, it's well worth it.
+- **90/10 캐시미어/울**: 원가의 80%로 90%의 촉감. 중급 니트에 적합.
+- **70/30 캐시미어/울**: 더 저렴하지만 울이 눈에 띔.
+- **85/15 캐시미어/실크**: 드레이프와 옅은 광택 추가. 머플러와 경량 니트에 적합.
+- **50/50 캐시미어/울**: 저렴하지만 캐시미어 느낌의 대부분 손실. 입문 제품 전용.
 
-## Blending with wool or silk
+혼방에는 **소면방적** 이 필수입니다 — 방면방적은 캐시미어와 울 섬유의 차이를 너무 노골적으로 드러냅니다.
 
-100% cashmere is the most expensive option. For mid-market products, **blending** extends fiber and reduces cost without dramatic hand-feel change:
+## DONGXIAO와 함께하는 원사 선택
 
-- **90/10 cashmere/wool**: 90% of the hand feel at 80% of the cost. Best for mid-market knitwear.
-- **70/30 cashmere/wool**: Cheaper, but the wool becomes noticeable.
-- **85/15 cashmere/silk**: Adds drape and slight sheen. Best for scarves and lightweight knits.
-- **50/50 cashmere/wool**: Cheap, but loses most of the cashmere feel. Use for entry-level products only.
+당사 오르도스 공장에서는 소면·방면 모두를 방적하며, 번수는 2/26~2/60 Nm. 재고 번수는 7일 이내 출하, 맞춤 번수와 Pantone 염색은 15~25일.
 
-For blends, **worsted spinning** is essential — woolen spinning shows the difference between cashmere and wool fibers too clearly.
-
-## Working with DONGXIAO on yarn selection
-
-We spin both worsted and woolen cashmere yarn in our Ordos facility, in counts from 2/26 Nm to 2/60 Nm. Stock counts ship within 7 days; custom counts and Pantone dye colors take 15-25 days.
-
-For new B2B buyers, we recommend a **trial run of 50-100kg** in your preferred spinning method and count, knit into a sample garment, and assess hand feel, drape, and pilling resistance over 4-6 weeks of wear.
+신규 B2B 바이어에게는 선호하는 방적 방식과 번수로 **50~100kg 시험 가동** , 샘플 의류 편직, 4~6주 착용 테스트를 통한 촉감·드레이프·필링 저항 평가를 권장합니다.
 
 ---
 
-*Need help choosing the right yarn? [Contact our yarn team](https://www.erdosdx.com/en/contact) with your product specs (gauge, hand feel preference, pilling targets) and we'll send 5 sample cones for testing.*
+*원사 선택에 도움이 필요하신가요? [원사팀에 문의](https://www.erdosdx.com/kr/contact)해 주세요. 제품 사양(게이지, 촉감 선호, 필링 목표)을 알려주시면 테스트용 5개 콘을 보내드립니다.*

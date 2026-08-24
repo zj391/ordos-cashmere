@@ -1,120 +1,116 @@
 ---
-title: "Worsted vs Woolen Cashmere Yarn: Which to Choose for Your Product"
-excerpt: "Worsted and woolen cashmere yarns are spun differently and behave differently. Choose wrong and your finished product won't have the hand feel your customers expect."
+title: "羊绒纱线 精纺 vs 粗纺：如何为产品选择"
+excerpt: "精纺和粗纺羊绒纱线纺纱方式不同，性质差异显著。选错了，成品的触感就达不到客户的预期。"
 publishDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
-tags: ["cashmere yarn","worsted spinning","woolen spinning","yarn selection"]
+tags: ["cashmere yarn", "worsted spinning", "woolen spinning", "yarn selection"]
 geoRegion: "GLOBAL"
-targetKeywords: ["worsted cashmere yarn","woolen cashmere yarn","worsted vs woolen cashmere","hand knitting cashmere yarn","anti-pilling cashmere blend yarn for knitwear brand"]
+targetKeywords: ["精纺羊绒纱","粗纺羊绒纱","精纺 vs 粗纺 羊绒","手编 羊绒纱","抗起球 羊绒混纺纱"]
 relatedProducts: ["yarn_fabric","garment_oem"]
 aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "cn"
 ---
-# Worsted vs Woolen Cashmere Yarn: Which to Choose for Your Product
 
-# Worsted vs Woolen Cashmere Yarn: Which to Choose
+# 羊绒纱线 精纺 vs 粗纺：如何选择？
 
-"100% cashmere" tells you the fiber content. It doesn't tell you **how the yarn was spun** — and that determines whether your sweater feels smooth and drapey, or soft and lofty.
+"100% 羊绒"告诉你纤维成分，但没告诉你**纱线是怎么纺的**——而这决定了你的毛衣手感是顺滑垂坠，还是柔软蓬松。
 
-The two main spinning methods — **worsted** and **woolen** — produce yarns with fundamentally different properties. Choosing wrong is one of the most common mistakes B2B buyers make when sourcing cashmere.
+两种主要纺纱方式——**精纺** 和 **粗纺**——产出的纱线性能根本不同。选错是 B2B 买家采购羊绒时最常见的错误之一。
 
-## What "worsted" actually means
+## "精纺" 的真实含义
 
-Worsted cashmere yarn is spun from **long, parallel-aligned fibers** using a combing process. The fibers are first carded (separated and randomized), then **combed** to remove short fibers and align the long ones parallel, then drawn and twisted tightly.
+精纺羊绒纱采用**长纤维、平行排列**，通过一道梳理工艺纺制。先经梳棉（散纤、随机化），再**精梳**去除短纤维、把长纤维平行排列，然后牵伸、加捻紧密。
 
-The result is a yarn that is:
-- **Smooth** (long parallel fibers lay flat against each other)
-- **Strong** (more fibers per cross-section = higher tensile strength)
-- **Drapey** (less air between fibers = denser, more fluid fabric)
-- **Less prone to pilling** (tightly twisted fibers don't migrate)
+产出的纱线：
+- **光滑**（长平行纤维彼此平贴）
+- **强韧**（横截面纤维更多 = 更高抗拉强度）
+- **悬垂性好**（纤维间空气少 = 织物更密实、更流动）
+- **不易起球**（紧密加捻的纤维不迁移）
 
-**Best for**: 12+ gauge machine knitting, suiting-weight woven fabrics, fine-gauge scarves, any application where smoothness and drape matter.
+**最适合**：12 针以上机织、西装/大衣面料、细支围巾，任何需要滑度和悬垂性的应用。
 
-## What "woolen" actually means
+## "粗纺" 的真实含义
 
-Woolen cashmere yarn is spun from **random-oriented fibers** of varying lengths. The carding process randomizes fibers; there's no combing step. The yarn is then twisted loosely.
+粗纺羊绒纱采用**随机排列**的不同长度纤维纺制。梳棉步骤让纤维随机化；没有精梳步骤。然后松捻。
 
-The result is a yarn that is:
-- **Soft and lofty** (lots of air trapped between random fibers)
-- **Warm** (still air is an excellent insulator)
-- **Fuzzy halo** (fiber ends poke out, creating the "cashmere bloom" look)
-- **More prone to pilling** (loose fibers migrate to surface)
+产出的纱线：
+- **柔软蓬松**（随机纤维间夹带大量空气）
+- **保暖**（静止空气是优秀的绝缘体）
+- **毛茸茸的绒感**（纤维末端外露，形成"羊绒绒面"）
+- **更易起球**（松散的纤维迁移到表面）
 
-**Best for**: 5-9 gauge hand knitting, chunky sweaters, scarves and shawls where softness is paramount, brushed or felted products.
+**最适合**：5-9 针手编、厚毛衣、以柔软为优先的围巾和披肩、拉毛或毡化产品。
 
-## Side-by-side comparison
+## 并排对比
 
-| Property | Worsted | Woolen |
+| 特性 | 精纺 | 粗纺 |
 |---|---|---|
-| **Fiber length required** | 36-42mm | 30-36mm |
-| **Yarn surface** | Smooth, clean | Fuzzy, hairy |
-| **Drape** | High (fluid) | Low (structured) |
-| **Pilling resistance** | High | Medium-low |
-| **Warmth per gram** | Medium | High (trapped air) |
-| **Gauge (knits per inch)** | 12-18 | 5-9 |
-| **Cost** | +10-20% (combing step) | Baseline |
-| **Best for** | Fine-gauge knitwear, woven | Hand-knit, chunky, brushed |
+| **所需纤维长度** | 36-42 mm | 30-36 mm |
+| **纱线表面** | 光滑、干净 | 毛茸、多毛 |
+| **悬垂性** | 高（流动） | 低（结构感） |
+| **抗起球** | 高 | 中-低 |
+| **每克保暖** | 中 | 高（含空气） |
+| **针数（每英寸）** | 12-18 | 5-9 |
+| **成本** | +10-20%（精梳步骤） | 基线 |
+| **最适合** | 细支针织、梭织 | 手编、厚支、拉毛 |
 
-## How to tell worsted and woolen apart
+## 如何辨别精纺和粗纺
 
-Visual and tactile tests:
+视觉与触觉测试：
 
-1. **Hold to the light**: Worsted yarn is semi-translucent (smooth, light passes through evenly). Woolen is opaque (fibers scatter light).
+1. **对着光看**：精纺半透明（光均匀透过）。粗纺不透明（纤维散射光）。
+2. **手指间搓**：精纺凉而滑。粗纺温而软。
+3. **拆开 1 cm 段**：精纺纤维平行光滑。粗纺纤维随机交错。
+4. **检查横截面**：精纺密而圆。粗纺松散不规则。
 
-2. **Rub between fingers**: Worsted feels cool and slick. Woolen feels warm and soft.
+若样品未通过这些测试，可能是**半精纺** 或 **半粗纺**——没问题，但要正确标注。
 
-3. **Untwist a 1cm section**: Worsted has parallel, smooth fibers. Woolen has random, jumbled fibers.
+## 何时选哪种
 
-4. **Examine the cross-section**: Worsted is dense and round. Woolen is loose and irregular.
+### 选 **精纺** 用于：
+- **细支毛衣**（12 针以上）—— 织物光滑、悬垂好
+- **西装和外套面料** —— 流动悬垂、不起毛
+- **细支围巾和披肩** —— 优雅、贴肤顺滑
+- **高端混纺纱**（羊绒/真丝、羊绒/羊毛）—— 增加强度
+- **抗起球至关重要时** —— 高端客户在意
 
-If a sample doesn't pass these tests, you may have a **semi-worsted** or **semi-woolen** yarn — which is fine, but should be labeled correctly.
+### 选 **粗纺** 用于：
+- **厚手编毛衣**（5-9 针）—— 柔软、蓬松、传统观感
+- **拉毛围巾和披巾** —— 绒感正合需要
+- **毡化产品** —— 粗纺结构更易毡化
+- **中端产品** —— 粗纺更便宜（无精梳）
+- **休闲针织** —— " cozy" 美学
 
-## When to choose each
+## 抗起球处理
 
-### Choose **worsted** for:
-- **Fine-gauge sweaters** (12+ gauge) — smooth fabric, drapes well
-- **Suiting and coating** woven fabric — fluid drape, no fuzz
-- **Fine scarves and shawls** — elegant, smooth against skin
-- **Premium blend yarns** (cashmere/silk, cashmere/wool) — adds strength
-- **Anywhere pill resistance is critical** — luxury customers notice
+起球是羊绒针织品最大的质量投诉。短纤维末端迁移到表面并相互缠结就会起球。
 
-### Choose **woolen** for:
-- **Chunky hand-knit sweaters** (5-9 gauge) — soft, lofty, traditional look
-- **Brushed scarves and stoles** — fuzzy halo is desirable
-- **Felted products** — woolen structure felts more easily
-- **Mid-market products** — woolen is cheaper (no combing)
-- **Casual knitwear** — the "cozy" aesthetic
+**两种主要策略**：
+1. **使用更长的纤维**（Hauteur > 36 mm）—— 精纺天然抗起球
+2. **施加抗起球处理** —— 用酶洗去除表面短纤维
 
-## Anti-pilling treatments
+我们的抗起球处理采用温和的纤维素酶，分解突出的纤维末端而不损伤纱芯。结果：50 次穿着循环后起球减少 60-70%，手感不变。
 
-Pilling is the #1 quality complaint about cashmere knitwear. It happens when short fiber ends work their way to the surface and tangle.
+**成本**：抗起球每公斤纱加 0.30-0.50 美元。对于客户期待耐久性的高端产品，值。
 
-**Two main strategies**:
-1. **Use longer fibers** (Hauteur > 36mm) — worsted spinning naturally resists pilling
-2. **Apply anti-pilling treatment** — enzyme wash that removes short surface fibers
+## 与羊毛或真丝混纺
 
-Our anti-pilling treatment uses a mild cellulase enzyme that digests protruding fiber ends without damaging the yarn core. The result is a 60-70% reduction in pilling after 50 wear cycles, with no hand-feel change.
+100% 羊绒是最贵的方案。对于中端产品，**混纺** 可在不显著改变手感的前提下拉长纤维、降低成本：
 
-**Cost**: Anti-pilling adds $0.30-0.50 per kg of yarn. For luxury products where customers expect longevity, it's well worth it.
+- **90/10 羊绒/羊毛**：80% 成本保留 90% 手感。适合中端针织。
+- **70/30 羊绒/羊毛**：更便宜，但羊毛开始可辨。
+- **85/15 羊绒/真丝**：增加悬垂感和轻微光泽。适合围巾和轻薄针织。
+- **50/50 羊绒/羊毛**：便宜，但羊绒感丧失大半。只用于入门级产品。
 
-## Blending with wool or silk
+对于混纺，**精纺** 是必需的——粗纺会过于明显地暴露羊绒与羊毛纤维的差异。
 
-100% cashmere is the most expensive option. For mid-market products, **blending** extends fiber and reduces cost without dramatic hand-feel change:
+## 与 DONGXIAO 合作选纱
 
-- **90/10 cashmere/wool**: 90% of the hand feel at 80% of the cost. Best for mid-market knitwear.
-- **70/30 cashmere/wool**: Cheaper, but the wool becomes noticeable.
-- **85/15 cashmere/silk**: Adds drape and slight sheen. Best for scarves and lightweight knits.
-- **50/50 cashmere/wool**: Cheap, but loses most of the cashmere feel. Use for entry-level products only.
+我们在鄂尔多斯工厂同时纺精纺和粗纺，纱支覆盖 2/26 至 2/60 Nm。库存纱支 7 天内发货；定制纱支和 Pantone 染色需 15-25 天。
 
-For blends, **worsted spinning** is essential — woolen spinning shows the difference between cashmere and wool fibers too clearly.
-
-## Working with DONGXIAO on yarn selection
-
-We spin both worsted and woolen cashmere yarn in our Ordos facility, in counts from 2/26 Nm to 2/60 Nm. Stock counts ship within 7 days; custom counts and Pantone dye colors take 15-25 days.
-
-For new B2B buyers, we recommend a **trial run of 50-100kg** in your preferred spinning method and count, knit into a sample garment, and assess hand feel, drape, and pilling resistance over 4-6 weeks of wear.
+对于新 B2B 买家，我们建议做一次 **50-100 kg 试纺**：按您偏好的纺纱方式和纱支、织成样衣，通过 4-6 周的穿着来评估手感、悬垂性和抗起球表现。
 
 ---
 
-*Need help choosing the right yarn? [Contact our yarn team](https://www.erdosdx.com/en/contact) with your product specs (gauge, hand feel preference, pilling targets) and we'll send 5 sample cones for testing.*
+*需要帮忙选纱？请[联系我们的纱线团队](https://www.erdosdx.com/cn/contact)，提供您的产品参数（针数、手感偏好、抗起球目标），我们会寄出 5 个样品筒供您测试。*

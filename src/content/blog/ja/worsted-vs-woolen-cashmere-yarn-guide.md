@@ -1,120 +1,116 @@
 ---
-title: "Worsted vs Woolen Cashmere Yarn: Which to Choose for Your Product"
-excerpt: "Worsted and woolen cashmere yarns are spun differently and behave differently. Choose wrong and your finished product won't have the hand feel your customers expect."
+title: "カシミア糸 梳毛 vs 紡毛：製品に合った選び方"
+excerpt: "梳毛カシミア糸と紡毛カシミア糸は紡績方法が異なり、性質も大きく異なります。誤った選び方をすると、製品の風合いがお客様の期待に合いません。"
 publishDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
-tags: ["cashmere yarn","worsted spinning","woolen spinning","yarn selection"]
+tags: ["cashmere yarn", "worsted spinning", "woolen spinning", "yarn selection"]
 geoRegion: "GLOBAL"
-targetKeywords: ["worsted cashmere yarn","woolen cashmere yarn","worsted vs woolen cashmere","hand knitting cashmere yarn","anti-pilling cashmere blend yarn for knitwear brand"]
+targetKeywords: ["梳毛カシミア糸","紡毛カシミア糸","梳毛 vs 紡毛 カシミア","手編み カシミア糸","アンチピリング カシミア混紡糸"]
 relatedProducts: ["yarn_fabric","garment_oem"]
 aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "ja"
 ---
-# Worsted vs Woolen Cashmere Yarn: Which to Choose for Your Product
 
-# Worsted vs Woolen Cashmere Yarn: Which to Choose
+# カシミア糸 梳毛 vs 紡毛：どちらを選ぶ？
 
-"100% cashmere" tells you the fiber content. It doesn't tell you **how the yarn was spun** — and that determines whether your sweater feels smooth and drapey, or soft and lofty.
+「100% カシミア」は繊維組成を示します。しかし **糸の紡ぎ方** は示してくれません — そしてこの紡ぎ方が、セーターを滑らかでドレープのある仕上がりにするか、柔らかくバルキーな仕上がりにするかを決めます。
 
-The two main spinning methods — **worsted** and **woolen** — produce yarns with fundamentally different properties. Choosing wrong is one of the most common mistakes B2B buyers make when sourcing cashmere.
+2 つの主要な紡績方法 — **梳毛** と **紡毛** — は根本的に異なる特性を持つ糸を生成します。間違った選択は、カシミア原料を調達する B2B バイヤーが最も頻繁に犯すミスの一つです。
 
-## What "worsted" actually means
+## 「梳毛」の本当の意味
 
-Worsted cashmere yarn is spun from **long, parallel-aligned fibers** using a combing process. The fibers are first carded (separated and randomized), then **combed** to remove short fibers and align the long ones parallel, then drawn and twisted tightly.
+梳毛カシミア糸は、コーミング（梳毛）工程により **長く平行に整列した繊維** から紡がれます。繊維はまずカード（分離・ランダム化）され、次に **コーミング** によって短い繊維が除去され長い繊維が平行に揃えられ、延伸と強撚を経て糸になります。
 
-The result is a yarn that is:
-- **Smooth** (long parallel fibers lay flat against each other)
-- **Strong** (more fibers per cross-section = higher tensile strength)
-- **Drapey** (less air between fibers = denser, more fluid fabric)
-- **Less prone to pilling** (tightly twisted fibers don't migrate)
+結果として生まれる糸は：
+- **滑らか**（長い平行繊維が互いに平らに並ぶ）
+- **丈夫**（断面あたりの繊維数が多い = 引張強度が高い）
+- **ドレープ性に優れる**（繊維間の空気が少ない = 生地が高密度で滑らか）
+- **ピリングが発生しにくい**（強撚繊維は移動しない）
 
-**Best for**: 12+ gauge machine knitting, suiting-weight woven fabrics, fine-gauge scarves, any application where smoothness and drape matter.
+**最適用途**：12 ゲージ以上の機編み、スーツ・コート向け織物、薄手マフラー、滑らかさとドレープ性が求められるあらゆる用途。
 
-## What "woolen" actually means
+## 「紡毛」の本当の意味
 
-Woolen cashmere yarn is spun from **random-oriented fibers** of varying lengths. The carding process randomizes fibers; there's no combing step. The yarn is then twisted loosely.
+紡毛カシミア糸は、**ランダムに配向した** さまざまな長さの繊維から紡がれます。カード工程で繊維はランダム化され、コーミング工程はありません。その後ゆるく撚られます。
 
-The result is a yarn that is:
-- **Soft and lofty** (lots of air trapped between random fibers)
-- **Warm** (still air is an excellent insulator)
-- **Fuzzy halo** (fiber ends poke out, creating the "cashmere bloom" look)
-- **More prone to pilling** (loose fibers migrate to surface)
+結果として生まれる糸は：
+- **柔らかくバルキー**（ランダム繊維間に大量の空気が閉じ込められる）
+- **暖かい**（静止空気は優れた断熱材）
+- **フロスティな毛羽**（繊維端が飛び出し「カシミア・ブルーム」ルック）
+- **ピリングが発生しやすい**（緩い繊維が表面に移動）
 
-**Best for**: 5-9 gauge hand knitting, chunky sweaters, scarves and shawls where softness is paramount, brushed or felted products.
+**最適用途**：5〜9 ゲージの手編み、厚手セーター、柔らかさが最重視されるマフラー・ショール、ブラッシュ加工やフェルト製品。
 
-## Side-by-side comparison
+## 並行比較
 
-| Property | Worsted | Woolen |
+| 特性 | 梳毛 | 紡毛 |
 |---|---|---|
-| **Fiber length required** | 36-42mm | 30-36mm |
-| **Yarn surface** | Smooth, clean | Fuzzy, hairy |
-| **Drape** | High (fluid) | Low (structured) |
-| **Pilling resistance** | High | Medium-low |
-| **Warmth per gram** | Medium | High (trapped air) |
-| **Gauge (knits per inch)** | 12-18 | 5-9 |
-| **Cost** | +10-20% (combing step) | Baseline |
-| **Best for** | Fine-gauge knitwear, woven | Hand-knit, chunky, brushed |
+| **必要繊維長** | 36〜42 mm | 30〜36 mm |
+| **糸表面** | 滑らか・きれい | 毛羽立ち・毛が多い |
+| **ドレープ性** | 高い（流れる） | 低い（構造的） |
+| **ピリング耐性** | 高い | 中〜低 |
+| **1g あたりの保温性** | 中 | 高（含気） |
+| **ゲージ（1 インチの目数）** | 12〜18 | 5〜9 |
+| **コスト** | +10〜20%（コーミング工程） | ベースライン |
+| **最適用途** | 細目ニット、織物 | 手編み・厚手・ブラッシュ |
 
-## How to tell worsted and woolen apart
+## 梳毛と紡毛を見分ける方法
 
-Visual and tactile tests:
+視覚・触覚テスト：
 
-1. **Hold to the light**: Worsted yarn is semi-translucent (smooth, light passes through evenly). Woolen is opaque (fibers scatter light).
+1. **光にかざす**：梳毛糸は半透明（光が均等に透過）。紡毛は不透明（繊維が光を散乱）。
+2. **指で擦る**：梳毛は冷たく滑らか。紡毛は温かく柔らかい。
+3. **1cm 部分の撚りを戻す**：梳毛は平行で滑らかな繊維。紡毛はランダムで混在する繊維。
+4. **断面を見る**：梳毛は密で丸い。紡毛は緩く不規則。
 
-2. **Rub between fingers**: Worsted feels cool and slick. Woolen feels warm and soft.
+サンプルがこれらのテストを通過しない場合、**セミ梳毛** または **セミ紡毛** 糸の可能性があります — 問題ありませんが、正しくラベル表示すべきです。
 
-3. **Untwist a 1cm section**: Worsted has parallel, smooth fibers. Woolen has random, jumbled fibers.
+## それぞれの選び方
 
-4. **Examine the cross-section**: Worsted is dense and round. Woolen is loose and irregular.
+### **梳毛** を選ぶ場面：
+- **細目セーター**（12 ゲージ以上）— 滑らかな生地、良好なドレープ
+- **スーツ・コートの織物** — 流れるドレープ、毛羽なし
+- **薄手マフラー・ショール** — エレガントで肌に滑らか
+- **プレミアム混紡糸**（カシミア/シルク、カシミア/ウール）— 強度を付加
+- **ピリング耐性が重要なすべて** — ラグジュアリー顧客は気付きます
 
-If a sample doesn't pass these tests, you may have a **semi-worsted** or **semi-woolen** yarn — which is fine, but should be labeled correctly.
+### **紡毛** を選ぶ場面：
+- **厚手手編みセーター**（5〜9 ゲージ）— 柔らかくバルキー、伝統的ルック
+- **ブラッシュ加工のマフラー・ストール** — 毛羽立ちが望ましい
+- **フェルト製品** — 紡毛構造はフェルトになりやすい
+- **中価格帯製品** — 紡毛は安価（コーミング不要）
+- **カジュアルニット** — 「 cozy」な美意識
 
-## When to choose each
+## アンチピリング加工
 
-### Choose **worsted** for:
-- **Fine-gauge sweaters** (12+ gauge) — smooth fabric, drapes well
-- **Suiting and coating** woven fabric — fluid drape, no fuzz
-- **Fine scarves and shawls** — elegant, smooth against skin
-- **Premium blend yarns** (cashmere/silk, cashmere/wool) — adds strength
-- **Anywhere pill resistance is critical** — luxury customers notice
+ピリングはカシミアニットへの最も多い品質クレームです。短い繊維端が表面に移動して絡まることで発生します。
 
-### Choose **woolen** for:
-- **Chunky hand-knit sweaters** (5-9 gauge) — soft, lofty, traditional look
-- **Brushed scarves and stoles** — fuzzy halo is desirable
-- **Felted products** — woolen structure felts more easily
-- **Mid-market products** — woolen is cheaper (no combing)
-- **Casual knitwear** — the "cozy" aesthetic
+**2 つの主な戦略**：
+1. **より長い繊維を使う**（Hauteur > 36 mm）— 梳毛紡績は本質的にピリングに強い
+2. **アンチピリング加工を適用** — 短い表面繊維を除去する酵素ウォッシュ
 
-## Anti-pilling treatments
+当社のアンチピリング加工は穏やかなセルラーゼを使用し、糸芯を傷めずに突出した繊維端を分解します。結果：50 着用サイクル後にピリング 60〜70% 削減、風合いの変化なし。
 
-Pilling is the #1 quality complaint about cashmere knitwear. It happens when short fiber ends work their way to the surface and tangle.
+**コスト**：アンチピリングは 1kg あたり 0.30〜0.50 USD 追加。耐久性を期待されるラグジュアリー製品には十分に価値があります。
 
-**Two main strategies**:
-1. **Use longer fibers** (Hauteur > 36mm) — worsted spinning naturally resists pilling
-2. **Apply anti-pilling treatment** — enzyme wash that removes short surface fibers
+## ウールまたはシルクとの混紡
 
-Our anti-pilling treatment uses a mild cellulase enzyme that digests protruding fiber ends without damaging the yarn core. The result is a 60-70% reduction in pilling after 50 wear cycles, with no hand-feel change.
+100% カシミアは最も高価な選択肢。中価格帯製品には、**混紡** が繊維を延ばし風合いを大きく損なうことなくコストを下げます：
 
-**Cost**: Anti-pilling adds $0.30-0.50 per kg of yarn. For luxury products where customers expect longevity, it's well worth it.
+- **90/10 カシミア/ウール**：80% のコストで 90% の風合い。中価格帯ニットに最適。
+- **70/30 カシミア/ウール**：安価だが、ウールが目立つ。
+- **85/15 カシミア/シルク**：ドレープ性と軽い光沢を追加。マフラーと薄手ニットに最適。
+- **50/50 カシミア/ウール**：安価だが、カシミア感の大半を失う。入門製品専用。
 
-## Blending with wool or silk
+混紡には **梳毛紡績** が必須 — 紡毛紡績はカシミアとウール繊維の差をあまりにも明らかにしてしまいます。
 
-100% cashmere is the most expensive option. For mid-market products, **blending** extends fiber and reduces cost without dramatic hand-feel change:
+## DONGXIAO と進める糸選び
 
-- **90/10 cashmere/wool**: 90% of the hand feel at 80% of the cost. Best for mid-market knitwear.
-- **70/30 cashmere/wool**: Cheaper, but the wool becomes noticeable.
-- **85/15 cashmere/silk**: Adds drape and slight sheen. Best for scarves and lightweight knits.
-- **50/50 cashmere/wool**: Cheap, but loses most of the cashmere feel. Use for entry-level products only.
+オルドス工場では梳毛・紡毛両方を紡績しており、番手は 2/26〜2/60 Nm。在庫番手は 7 日以内に出荷、特注番手と Pantone 染め色は 15〜25 日。
 
-For blends, **worsted spinning** is essential — woolen spinning shows the difference between cashmere and wool fibers too clearly.
-
-## Working with DONGXIAO on yarn selection
-
-We spin both worsted and woolen cashmere yarn in our Ordos facility, in counts from 2/26 Nm to 2/60 Nm. Stock counts ship within 7 days; custom counts and Pantone dye colors take 15-25 days.
-
-For new B2B buyers, we recommend a **trial run of 50-100kg** in your preferred spinning method and count, knit into a sample garment, and assess hand feel, drape, and pilling resistance over 4-6 weeks of wear.
+新規 B2B バイヤーには、希望の紡績方法と番手で **50〜100kg のトライアル**、サンプル製品への編み上げ、4〜6 週間の着用テストによる風合い・ドレープ・ピリング耐性の評価を推奨しています。
 
 ---
 
-*Need help choosing the right yarn? [Contact our yarn team](https://www.erdosdx.com/en/contact) with your product specs (gauge, hand feel preference, pilling targets) and we'll send 5 sample cones for testing.*
+*糸選びでお困りですか？[糸チームまでご連絡ください](https://www.erdosdx.com/ja/contact)。製品仕様（ゲージ・風合いの好み・ピリング目標）をお知らせいただければ、テスト用 5 コーンをお送りします。*

@@ -1,120 +1,116 @@
 ---
-title: "Worsted vs Woolen Cashmere Yarn: Which to Choose for Your Product"
-excerpt: "Worsted and woolen cashmere yarns are spun differently and behave differently. Choose wrong and your finished product won't have the hand feel your customers expect."
+title: "Fil cachemire peigné vs cardé : Quel choisir pour votre produit ?"
+excerpt: "Les fils cachemire peigné et cardé sont filés différemment et se comportent différemment. Un mauvais choix et votre produit fini n'aura pas le toucher que vos clients attendent."
 publishDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
-tags: ["cashmere yarn","worsted spinning","woolen spinning","yarn selection"]
+tags: ["cashmere yarn", "worsted spinning", "woolen spinning", "yarn selection"]
 geoRegion: "GLOBAL"
-targetKeywords: ["worsted cashmere yarn","woolen cashmere yarn","worsted vs woolen cashmere","hand knitting cashmere yarn","anti-pilling cashmere blend yarn for knitwear brand"]
+targetKeywords: ["fil cachemire peigné","fil cachemire cardé","peigné vs cardé cachemire","tricot main fil cachemire","anti-bouloches fil mélangé cachemire"]
 relatedProducts: ["yarn_fabric","garment_oem"]
 aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "fr"
 ---
-# Worsted vs Woolen Cashmere Yarn: Which to Choose for Your Product
 
-# Worsted vs Woolen Cashmere Yarn: Which to Choose
+# Fil cachemire peigné vs cardé : Lequel choisir ?
 
-"100% cashmere" tells you the fiber content. It doesn't tell you **how the yarn was spun** — and that determines whether your sweater feels smooth and drapey, or soft and lofty.
+« 100 % cachemire » vous indique la composition en fibres. Mais cela ne vous dit pas **comment le fil a été filé** — et c'est ce qui détermine si votre pull sera lisse et fluide, ou doux et volumineux.
 
-The two main spinning methods — **worsted** and **woolen** — produce yarns with fundamentally different properties. Choosing wrong is one of the most common mistakes B2B buyers make when sourcing cashmere.
+Les deux principales méthodes de filature — **peigné** et **cardé** — produisent des fils aux propriétés fondamentalement différentes. Faire le mauvais choix est l'une des erreurs les plus fréquentes des acheteurs B2B lorsqu'ils s'approvisionnent en cachemire.
 
-## What "worsted" actually means
+## Ce que « peigné » signifie vraiment
 
-Worsted cashmere yarn is spun from **long, parallel-aligned fibers** using a combing process. The fibers are first carded (separated and randomized), then **combed** to remove short fibers and align the long ones parallel, then drawn and twisted tightly.
+Le fil cachemire peigné est filé à partir de **fibres longues, alignées parallèlement** via un processus de peignage. Les fibres sont d'abord cardées (séparées et randomisées), puis **peignées** pour retirer les fibres courtes et aligner les longues parallèlement, puis étirées et torsadées serré.
 
-The result is a yarn that is:
-- **Smooth** (long parallel fibers lay flat against each other)
-- **Strong** (more fibers per cross-section = higher tensile strength)
-- **Drapey** (less air between fibers = denser, more fluid fabric)
-- **Less prone to pilling** (tightly twisted fibers don't migrate)
+Le résultat est un fil qui est :
+- **lisse** (les fibres longues parallèles reposent à plat les unes contre les autres)
+- **résistant** (plus de fibres par section = résistance à la traction supérieure)
+- **fluide** (moins d'air entre les fibres = tissu plus dense, plus fluide)
+- **moins sujet au bouloches** (les fibres torsadées serré ne migrent pas)
 
-**Best for**: 12+ gauge machine knitting, suiting-weight woven fabrics, fine-gauge scarves, any application where smoothness and drape matter.
+**Idéal pour** : Tricot machine 12+ jauges, tissus chaîne et trame pour costume/manteau, étoles fines, partout où la douceur et le drapé comptent.
 
-## What "woolen" actually means
+## Ce que « cardé » signifie vraiment
 
-Woolen cashmere yarn is spun from **random-oriented fibers** of varying lengths. The carding process randomizes fibers; there's no combing step. The yarn is then twisted loosely.
+Le fil cachemire cardé est filé à partir de **fibres à orientation aléatoire** de longueurs variées. Le cardage randomise les fibres ; il n'y a pas d'étape de peignage. Le fil est ensuite torsadé lâche.
 
-The result is a yarn that is:
-- **Soft and lofty** (lots of air trapped between random fibers)
-- **Warm** (still air is an excellent insulator)
-- **Fuzzy halo** (fiber ends poke out, creating the "cashmere bloom" look)
-- **More prone to pilling** (loose fibers migrate to surface)
+Le résultat est un fil qui est :
+- **doux et volumineux** (beaucoup d'air piégé entre les fibres aléatoires)
+- **chaud** (l'air immobile est un excellent isolant)
+- **halo duveteux** (les extrémités de fibres dépassent, créant le « bloom cachemire »)
+- **plus sujet au bouloches** (les fibres lâches migrent vers la surface)
 
-**Best for**: 5-9 gauge hand knitting, chunky sweaters, scarves and shawls where softness is paramount, brushed or felted products.
+**Idéal pour** : Tricot main 5–9 jauges, pulls chunky, écharpes et châles où la douceur est primordiale, produits brossés ou feutrés.
 
-## Side-by-side comparison
+## Comparaison côte à côte
 
-| Property | Worsted | Woolen |
+| Propriété | Peigné | Cardé |
 |---|---|---|
-| **Fiber length required** | 36-42mm | 30-36mm |
-| **Yarn surface** | Smooth, clean | Fuzzy, hairy |
-| **Drape** | High (fluid) | Low (structured) |
-| **Pilling resistance** | High | Medium-low |
-| **Warmth per gram** | Medium | High (trapped air) |
-| **Gauge (knits per inch)** | 12-18 | 5-9 |
-| **Cost** | +10-20% (combing step) | Baseline |
-| **Best for** | Fine-gauge knitwear, woven | Hand-knit, chunky, brushed |
+| **Longueur de fibre requise** | 36–42 mm | 30–36 mm |
+| **Surface du fil** | lisse, nette | duveteuse, poilue |
+| **Drapé** | élevé (fluide) | faible (structuré) |
+| **Résistance aux bouloches** | élevée | moyenne–faible |
+| **Chaleur par gramme** | moyenne | élevée (air piégé) |
+| **Jauge (mailles par pouce)** | 12–18 | 5–9 |
+| **Coût** | +10–20 % (étape peignage) | base |
+| **Idéal pour** | Tricot fin, chaîne et trame | Tricot main, chunky, brossé |
 
-## How to tell worsted and woolen apart
+## Comment distinguer peigné et cardé
 
-Visual and tactile tests:
+Tests visuels et tactiles :
 
-1. **Hold to the light**: Worsted yarn is semi-translucent (smooth, light passes through evenly). Woolen is opaque (fibers scatter light).
+1. **Tenir à la lumière** : Le fil peigné est semi-transparent (lumière passe uniformément). Le cardé est opaque (fibres diffusent la lumière).
+2. **Frotter entre les doigts** : Le peigné est frais et glissant. Le cardé est chaud et doux.
+3. **Détorsader 1 cm** : Peigné a des fibres parallèles et lisses. Cardé a des fibres aléatoires et emmêlées.
+4. **Examiner la section** : Peigné est dense et rond. Cardé est lâche et irrégulier.
 
-2. **Rub between fingers**: Worsted feels cool and slick. Woolen feels warm and soft.
+Si un échantillon ne passe pas ces tests, vous avez peut-être un fil **semi-peigné** ou **semi-cardé** — ce qui est acceptable, mais doit être correctement étiqueté.
 
-3. **Untwist a 1cm section**: Worsted has parallel, smooth fibers. Woolen has random, jumbled fibers.
+## Quand choisir chacun
 
-4. **Examine the cross-section**: Worsted is dense and round. Woolen is loose and irregular.
+### Choisissez **peigné** pour :
+- **Pulls en tricot fin** (12+ jauges) — tissu lisse, bon drapé
+- **Tissus costume et manteau** — drapé fluide, pas de duvet
+- **Écharpes et châles fins** — élégant, doux sur la peau
+- **Fils mélangés premium** (cachemire/soie, cachemire/laine) — apporte de la résistance
+- **Partout où la résistance aux bouloches est critique** — les clients du luxe le remarquent
 
-If a sample doesn't pass these tests, you may have a **semi-worsted** or **semi-woolen** yarn — which is fine, but should be labeled correctly.
+### Choisissez **cardé** pour :
+- **Pulls chunky tricot main** (5–9 jauges) — doux, volumineux, look traditionnel
+- **Écharpes et étoles brossées** — le halo duveteux est recherché
+- **Produits feutrés** — la structure cardée se feutre plus facilement
+- **Produits moyen de gamme** — le cardé est moins cher (pas de peignage)
+- **Tricot casual** — l'esthétique « cosy »
 
-## When to choose each
+## Traitements anti-bouloches
 
-### Choose **worsted** for:
-- **Fine-gauge sweaters** (12+ gauge) — smooth fabric, drapes well
-- **Suiting and coating** woven fabric — fluid drape, no fuzz
-- **Fine scarves and shawls** — elegant, smooth against skin
-- **Premium blend yarns** (cashmere/silk, cashmere/wool) — adds strength
-- **Anywhere pill resistance is critical** — luxury customers notice
+Le bouloches est la première réclamation qualité sur le cachemire. Cela arrive quand les extrémités de fibres courtes migrent vers la surface et s'emmêlent.
 
-### Choose **woolen** for:
-- **Chunky hand-knit sweaters** (5-9 gauge) — soft, lofty, traditional look
-- **Brushed scarves and stoles** — fuzzy halo is desirable
-- **Felted products** — woolen structure felts more easily
-- **Mid-market products** — woolen is cheaper (no combing)
-- **Casual knitwear** — the "cozy" aesthetic
+**Deux stratégies principales** :
+1. **Utiliser des fibres plus longues** (Hauteur > 36 mm) — la filature peignée résiste naturellement aux bouloches
+2. **Appliquer un traitement anti-bouloches** — lavage enzymatique qui retire les fibres courtes de surface
 
-## Anti-pilling treatments
+Notre traitement anti-bouloches utilise une cellulase douce qui digère les extrémités de fibres saillantes sans endommager l'âme du fil. Résultat : 60–70 % de réduction des bouloches après 50 cycles de port, sans changement de toucher.
 
-Pilling is the #1 quality complaint about cashmere knitwear. It happens when short fiber ends work their way to the surface and tangle.
+**Coût** : L'anti-bouloches ajoute 0,30–0,50 USD par kg de fil. Pour les produits de luxe où les clients attendent longévité, cela vaut largement le coût.
 
-**Two main strategies**:
-1. **Use longer fibers** (Hauteur > 36mm) — worsted spinning naturally resists pilling
-2. **Apply anti-pilling treatment** — enzyme wash that removes short surface fibers
+## Mélanger avec laine ou soie
 
-Our anti-pilling treatment uses a mild cellulase enzyme that digests protruding fiber ends without damaging the yarn core. The result is a 60-70% reduction in pilling after 50 wear cycles, with no hand-feel change.
+100 % cachemire est l'option la plus chère. Pour les produits moyen de gamme, le **mélange** étend la fibre et réduit le coût sans changement drastique de toucher :
 
-**Cost**: Anti-pilling adds $0.30-0.50 per kg of yarn. For luxury products where customers expect longevity, it's well worth it.
+- **90/10 cachemire/laine** : 90 % du toucher à 80 % du coût. Idéal pour le tricot moyen de gamme.
+- **70/30 cachemire/laine** : moins cher, mais la laine devient perceptible.
+- **85/15 cachemire/soie** : apporte drapé et léger brillant. Idéal pour écharpes et tricots légers.
+- **50/50 cachemire/laine** : pas cher, mais perd la majeure partie du toucher cachemire. Réservé aux produits d'entrée de gamme.
 
-## Blending with wool or silk
+Pour les mélanges, la **filature peignée** est essentielle — la filature cardée rend la différence entre fibres cachemire et laine trop visible.
 
-100% cashmere is the most expensive option. For mid-market products, **blending** extends fiber and reduces cost without dramatic hand-feel change:
+## Travailler avec DONGXIAO sur le choix du fil
 
-- **90/10 cashmere/wool**: 90% of the hand feel at 80% of the cost. Best for mid-market knitwear.
-- **70/30 cashmere/wool**: Cheaper, but the wool becomes noticeable.
-- **85/15 cashmere/silk**: Adds drape and slight sheen. Best for scarves and lightweight knits.
-- **50/50 cashmere/wool**: Cheap, but loses most of the cashmere feel. Use for entry-level products only.
+Nous filons les deux types — peigné et cardé — dans notre usine d'Ordos, en Nm de 2/26 à 2/60. Les Nm en stock sont expédiés sous 7 jours ; les Nm personnalisés et les teintures Pantone nécessitent 15–25 jours.
 
-For blends, **worsted spinning** is essential — woolen spinning shows the difference between cashmere and wool fibers too clearly.
-
-## Working with DONGXIAO on yarn selection
-
-We spin both worsted and woolen cashmere yarn in our Ordos facility, in counts from 2/26 Nm to 2/60 Nm. Stock counts ship within 7 days; custom counts and Pantone dye colors take 15-25 days.
-
-For new B2B buyers, we recommend a **trial run of 50-100kg** in your preferred spinning method and count, knit into a sample garment, and assess hand feel, drape, and pilling resistance over 4-6 weeks of wear.
+Pour les nouveaux acheteurs B2B, nous recommandons un **essai de 50–100 kg** dans votre méthode de filature et Nm préférés, tricoté en un vêtement échantillon, et évalué sur 4–6 semaines de port pour le toucher, le drapé et la résistance aux bouloches.
 
 ---
 
-*Need help choosing the right yarn? [Contact our yarn team](https://www.erdosdx.com/en/contact) with your product specs (gauge, hand feel preference, pilling targets) and we'll send 5 sample cones for testing.*
+*Besoin d'aide pour choisir le bon fil ? [Contactez notre équipe fil](https://www.erdosdx.com/fr/contact) avec vos spécifications produit (jauge, préférence de toucher, objectifs bouloches) et nous enverrons 5 cônes échantillons pour test.*

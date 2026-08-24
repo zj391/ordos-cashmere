@@ -1,120 +1,116 @@
 ---
-title: "Worsted vs Woolen Cashmere Yarn: Which to Choose for Your Product"
-excerpt: "Worsted and woolen cashmere yarns are spun differently and behave differently. Choose wrong and your finished product won't have the hand feel your customers expect."
+title: "Kammgarn vs Streichgarn Kaschmirgarn: Welches für Ihr Produkt?"
+excerpt: "Kammgarn und Streichgarn aus Kaschmir werden unterschiedlich gesponnen und verhalten sich unterschiedlich. Die falsche Wahl führt dazu, dass Ihr fertiges Produkt nicht das Griffgefühl hat, das Ihre Kunden erwarten."
 publishDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
-tags: ["cashmere yarn","worsted spinning","woolen spinning","yarn selection"]
+tags: ["cashmere yarn", "worsted spinning", "woolen spinning", "yarn selection"]
 geoRegion: "GLOBAL"
-targetKeywords: ["worsted cashmere yarn","woolen cashmere yarn","worsted vs woolen cashmere","hand knitting cashmere yarn","anti-pilling cashmere blend yarn for knitwear brand"]
+targetKeywords: ["Kammgarn Kaschmirgarn","Streichgarn Kaschmirgarn","Kammgarn vs Streichgarn Kaschmir","Handstrick Kaschmirgarn","Anti-Pilling Kaschmir-Mischgarn"]
 relatedProducts: ["yarn_fabric","garment_oem"]
 aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "de"
 ---
-# Worsted vs Woolen Cashmere Yarn: Which to Choose for Your Product
 
-# Worsted vs Woolen Cashmere Yarn: Which to Choose
+# Kammgarn vs Streichgarn Kaschmirgarn: Welches wählen?
 
-"100% cashmere" tells you the fiber content. It doesn't tell you **how the yarn was spun** — and that determines whether your sweater feels smooth and drapey, or soft and lofty.
+„100 % Kaschmir" sagt Ihnen die Faserzusammensetzung. Es sagt Ihnen nicht, **wie das Garn gesponnen wurde** — und genau das entscheidet, ob Ihr Pullover glatt und fließend oder weich und locker wirkt.
 
-The two main spinning methods — **worsted** and **woolen** — produce yarns with fundamentally different properties. Choosing wrong is one of the most common mistakes B2B buyers make when sourcing cashmere.
+Die beiden wichtigsten Spinnverfahren — **Kammgarn** und **Streichgarn** — erzeugen Garne mit grundlegend unterschiedlichen Eigenschaften. Die falsche Wahl ist einer der häufigsten Fehler von B2B-Käufern beim Kaschmir-Sourcing.
 
-## What "worsted" actually means
+## Was „Kammgarn" wirklich bedeutet
 
-Worsted cashmere yarn is spun from **long, parallel-aligned fibers** using a combing process. The fibers are first carded (separated and randomized), then **combed** to remove short fibers and align the long ones parallel, then drawn and twisted tightly.
+Kammgarn-Kaschmir wird aus **langen, parallel ausgerichteten Fasern** in einem Kämmprozess gesponnen. Die Fasern werden zunächst kardiert (getrennt und randomisiert), dann **gekämmt**, um kurze Fasern zu entfernen und die langen parallel auszurichten, dann gestreckt und fest verzwirnt.
 
-The result is a yarn that is:
-- **Smooth** (long parallel fibers lay flat against each other)
-- **Strong** (more fibers per cross-section = higher tensile strength)
-- **Drapey** (less air between fibers = denser, more fluid fabric)
-- **Less prone to pilling** (tightly twisted fibers don't migrate)
+Das Ergebnis ist ein Garn, das:
+- **glatt** ist (lange parallele Fasern liegen flach aneinander)
+- **fest** ist (mehr Fasern pro Querschnitt = höhere Zugfestigkeit)
+- **fließend fällt** (weniger Luft zwischen den Fasern = dichteres, fließenderes Gewebe)
+- **weniger pillt** (fest verzwirnte Fasern wandern nicht)
 
-**Best for**: 12+ gauge machine knitting, suiting-weight woven fabrics, fine-gauge scarves, any application where smoothness and drape matter.
+**Am besten für**: 12+ Gauge Maschinenstrick, Anzug-/Mantelgewebe, feine Schals, überall wo Glätte und Fall entscheidend sind.
 
-## What "woolen" actually means
+## Was „Streichgarn" wirklich bedeutet
 
-Woolen cashmere yarn is spun from **random-oriented fibers** of varying lengths. The carding process randomizes fibers; there's no combing step. The yarn is then twisted loosely.
+Streichgarn-Kaschmir wird aus **zufällig orientierten Fasern** unterschiedlicher Länge gesponnen. Das Kardieren randomisiert die Fasern; ein Kämmen entfällt. Das Garn wird anschließend locker verzwirnt.
 
-The result is a yarn that is:
-- **Soft and lofty** (lots of air trapped between random fibers)
-- **Warm** (still air is an excellent insulator)
-- **Fuzzy halo** (fiber ends poke out, creating the "cashmere bloom" look)
-- **More prone to pilling** (loose fibers migrate to surface)
+Das Ergebnis ist ein Garn, das:
+- **weich und locker** ist (viel Luft zwischen den Random-Fasern)
+- **warm** ist (stehende Luft isoliert hervorragend)
+- **flauschigen Halo** hat (Faserenden ragen heraus — „Cashmere-Bloom")
+- **stärker pillt** (lose Fasern wandern an die Oberfläche)
 
-**Best for**: 5-9 gauge hand knitting, chunky sweaters, scarves and shawls where softness is paramount, brushed or felted products.
+**Am besten für**: 5–9 Gauge Handstrick, dicke Pullover, Schals und Tücher, bei denen Weichheit im Vordergrund steht, gebürstete oder filzierte Produkte.
 
-## Side-by-side comparison
+## Direkter Vergleich
 
-| Property | Worsted | Woolen |
+| Eigenschaft | Kammgarn | Streichgarn |
 |---|---|---|
-| **Fiber length required** | 36-42mm | 30-36mm |
-| **Yarn surface** | Smooth, clean | Fuzzy, hairy |
-| **Drape** | High (fluid) | Low (structured) |
-| **Pilling resistance** | High | Medium-low |
-| **Warmth per gram** | Medium | High (trapped air) |
-| **Gauge (knits per inch)** | 12-18 | 5-9 |
-| **Cost** | +10-20% (combing step) | Baseline |
-| **Best for** | Fine-gauge knitwear, woven | Hand-knit, chunky, brushed |
+| **Erforderliche Faserlänge** | 36–42 mm | 30–36 mm |
+| **Garnoberfläche** | glatt, sauber | fuzzy, haarig |
+| **Fall** | hoch (fließend) | niedrig (strukturiert) |
+| **Pilling-Resistenz** | hoch | mittel–niedrig |
+| **Wärme pro Gramm** | mittel | hoch (eingeschlossene Luft) |
+| **Gauge (Maschen pro Inch)** | 12–18 | 5–9 |
+| **Kosten** | +10–20 % (Kämmschritt) | Basislinie |
+| **Am besten für** | Feinstrick, Gewebe | Handstrick, dick, gebürstet |
 
-## How to tell worsted and woolen apart
+## Kammgarn und Streichgarn unterscheiden
 
-Visual and tactile tests:
+Visuelle und haptische Tests:
 
-1. **Hold to the light**: Worsted yarn is semi-translucent (smooth, light passes through evenly). Woolen is opaque (fibers scatter light).
+1. **Gegen das Licht halten**: Kammgarn ist halbtransparent (Licht scheint gleichmäßig durch). Streichgarn ist opak (Fasern streuen das Licht).
+2. **Zwischen den Fingern reiben**: Kammgarn fühlt sich kühl und glatt an. Streichgarn fühlt sich warm und weich an.
+3. **1 cm Abschnitt aufzwirnen**: Kammgarn zeigt parallele, glatte Fasern. Streichgarn zeigt zufällige, wirre Fasern.
+4. **Querschnitt prüfen**: Kammgarn ist dicht und rund. Streichgarn ist locker und unregelmäßig.
 
-2. **Rub between fingers**: Worsted feels cool and slick. Woolen feels warm and soft.
+Wenn eine Probe diese Tests nicht besteht, haben Sie möglicherweise ein **semi-worsted** oder **semi-woolen** Garn — das ist in Ordnung, sollte aber korrekt deklariert sein.
 
-3. **Untwist a 1cm section**: Worsted has parallel, smooth fibers. Woolen has random, jumbled fibers.
+## Wann Sie was wählen
 
-4. **Examine the cross-section**: Worsted is dense and round. Woolen is loose and irregular.
+### Wählen Sie **Kammgarn** für:
+- **Feinstrick-Pullover** (12+ Gauge) — glatte Oberfläche, guter Fall
+- **Anzug- und Mantelstoffe** — fließender Fall, keine Fusseln
+- **Feine Schals und Tücher** — elegant, glatt auf der Haut
+- **Premium-Mischgarne** (Kaschmir/Seide, Kaschmir/Wolle) — bringt Festigkeit
+- **Wenn Pilling-Resistenz kritisch ist** — Luxuskunden achten darauf
 
-If a sample doesn't pass these tests, you may have a **semi-worsted** or **semi-woolen** yarn — which is fine, but should be labeled correctly.
+### Wählen Sie **Streichgarn** für:
+- **Dicke Handstrick-Pullover** (5–9 Gauge) — weich, locker, traditioneller Look
+- **Gebürstete Schals und Stolen** — der Fuzzy-Halo ist erwünscht
+- **Filtzprodukte** — Streichgarn filzt leichter
+- **Mittelklasse-Produkte** — Streichgarn ist günstiger (kein Kämmen)
+- **Casual-Strick** — „kuschelige" Optik
 
-## When to choose each
+## Anti-Pilling-Behandlungen
 
-### Choose **worsted** for:
-- **Fine-gauge sweaters** (12+ gauge) — smooth fabric, drapes well
-- **Suiting and coating** woven fabric — fluid drape, no fuzz
-- **Fine scarves and shawls** — elegant, smooth against skin
-- **Premium blend yarns** (cashmere/silk, cashmere/wool) — adds strength
-- **Anywhere pill resistance is critical** — luxury customers notice
+Pilling ist die häufigste Qualitätsreklamation bei Kaschmir-Strick. Sie entsteht, wenn kurze Faserenden an die Oberfläche wandern und sich verfitzen.
 
-### Choose **woolen** for:
-- **Chunky hand-knit sweaters** (5-9 gauge) — soft, lofty, traditional look
-- **Brushed scarves and stoles** — fuzzy halo is desirable
-- **Felted products** — woolen structure felts more easily
-- **Mid-market products** — woolen is cheaper (no combing)
-- **Casual knitwear** — the "cozy" aesthetic
+**Zwei Hauptstrategien**:
+1. **Längere Fasern verwenden** (Hauteur > 36 mm) — Kammgarn-Spinning widersteht Pilling auf natürliche Weise
+2. **Anti-Pilling-Behandlung anwenden** — Enzymwäsche, die kurze Oberflächenfasern entfernt
 
-## Anti-pilling treatments
+Unsere Anti-Pilling-Behandlung nutzt eine milde Cellulase, die vorstehende Faserenden abbaut, ohne den Garnkern zu schädigen. Ergebnis: 60–70 % Pilling-Reduktion nach 50 Tragezyklen, ohne Veränderung des Griffs.
 
-Pilling is the #1 quality complaint about cashmere knitwear. It happens when short fiber ends work their way to the surface and tangle.
+**Kosten**: Anti-Pilling kostet 0,30–0,50 USD pro kg Garn extra. Für Luxusprodukte, bei denen Kunden Langlebigkeit erwarten, lohnt es sich.
 
-**Two main strategies**:
-1. **Use longer fibers** (Hauteur > 36mm) — worsted spinning naturally resists pilling
-2. **Apply anti-pilling treatment** — enzyme wash that removes short surface fibers
+## Mischen mit Wolle oder Seide
 
-Our anti-pilling treatment uses a mild cellulase enzyme that digests protruding fiber ends without damaging the yarn core. The result is a 60-70% reduction in pilling after 50 wear cycles, with no hand-feel change.
+100 % Kaschmir ist die teuerste Option. Für Mittelklasse-Produkte **streckt das Mischen** die Faser und senkt die Kosten ohne dramatischen Griffverlust:
 
-**Cost**: Anti-pilling adds $0.30-0.50 per kg of yarn. For luxury products where customers expect longevity, it's well worth it.
+- **90/10 Kaschmir/Wolle**: 90 % des Griffs zu 80 % der Kosten. Ideal für Mittelklasse-Strick.
+- **70/30 Kaschmir/Wolle**: günstiger, aber Wolle wird spürbar.
+- **85/15 Kaschmir/Seide**: bringt Fall und leichten Glanz. Ideal für Schals und leichte Strick.
+- **50/50 Kaschmir/Wolle**: günstig, verliert aber den größten Teil des Kaschmir-Griffs. Nur für Einstiegsprodukte.
 
-## Blending with wool or silk
+Für Mischungen ist **Kammgarn-Spinning** entscheidend — Streichgarn macht den Unterschied zwischen Kaschmir und Wollfasern zu sichtbar.
 
-100% cashmere is the most expensive option. For mid-market products, **blending** extends fiber and reduces cost without dramatic hand-feel change:
+## Zusammenarbeit mit DONGXIAO bei der Garnauswahl
 
-- **90/10 cashmere/wool**: 90% of the hand feel at 80% of the cost. Best for mid-market knitwear.
-- **70/30 cashmere/wool**: Cheaper, but the wool becomes noticeable.
-- **85/15 cashmere/silk**: Adds drape and slight sheen. Best for scarves and lightweight knits.
-- **50/50 cashmere/wool**: Cheap, but loses most of the cashmere feel. Use for entry-level products only.
+Wir spinnen sowohl Kammgarn als auch Streichgarn-Kaschmir in unserer Anlage in Ordos, in Nm-Stärken von 2/26 bis 2/60. Lagerstärken werden innerhalb von 7 Tagen versendet; kundenspezifische Stärken und Pantone-Färbungen benötigen 15–25 Tage.
 
-For blends, **worsted spinning** is essential — woolen spinning shows the difference between cashmere and wool fibers too clearly.
-
-## Working with DONGXIAO on yarn selection
-
-We spin both worsted and woolen cashmere yarn in our Ordos facility, in counts from 2/26 Nm to 2/60 Nm. Stock counts ship within 7 days; custom counts and Pantone dye colors take 15-25 days.
-
-For new B2B buyers, we recommend a **trial run of 50-100kg** in your preferred spinning method and count, knit into a sample garment, and assess hand feel, drape, and pilling resistance over 4-6 weeks of wear.
+Für neue B2B-Käufer empfehlen wir einen **Probelauf von 50–100 kg** im bevorzugten Spinnverfahren und Stärke, gestrickt zu einem Musterteil, mit Bewertung von Griff, Fall und Pilling-Resistenz über 4–6 Wochen Tragezeit.
 
 ---
 
-*Need help choosing the right yarn? [Contact our yarn team](https://www.erdosdx.com/en/contact) with your product specs (gauge, hand feel preference, pilling targets) and we'll send 5 sample cones for testing.*
+*Brauchen Sie Hilfe bei der Garnauswahl? [Kontaktieren Sie unser Garnteam](https://www.erdosdx.com/de/contact) mit Ihren Produktanforderungen (Gauge, Griff-Präferenz, Pilling-Ziele) und wir senden Ihnen 5 Musterkonen zum Testen.*
