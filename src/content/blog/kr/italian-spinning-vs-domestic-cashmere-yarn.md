@@ -1,171 +1,168 @@
 ---
-title: "Italian Spinning vs Domestic: What B2B Buyers Should Know About Cashmere Yarn Quality"
-excerpt: "Discover the key differences between Italian and domestic cashmere yarn spinning for B2B buyers. Learn about quality, cost, lead times, and how to source from Ordos, Inner Mongolia."
-publishDate: "2026-07-27"
+title: "이탈리아 방적 vs 국내 방적: B2B 바이어가 알아야 할 캐시미어 원사 품질"
+excerpt: "B2B 바이어를 위한 이탈리아와 중국 캐시미어 원사 방적의 핵심 차이를 정리합니다. 품질, 원가, 리드타임, 내몽골 오르도스 소싱까지."
+publishDate: "2026-07-28"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere yarn","Italian spinning","yarn quality","B2B sourcing","cashmere manufacturing"]
 geoRegion: "GLOBAL"
-targetKeywords: ["Italian cashmere yarn","cashmere spinning technology","yarn quality comparison","B2B yarn sourcing","cashmere yarn manufacturer"]
+targetKeywords: ["이탈리아 캐시미어 원사","캐시미어 방적 기술","원사 품질 비교","B2B 원사 소싱","캐시미어 원사 제조사"]
 relatedProducts: ["raw_material","yarn_fabric","garment_oem"]
 aiGenerated: true
-sourceTopic: "Italian Spinning vs Domestic: What B2B Buyers Should Know About Cashmere Yarn Quality"
+sourceTopic: "translated-from-en"
 language: "kr"
 ---
-# Italian Spinning vs Domestic: What B2B Buyers Should Know About Cashmere Yarn Quality
 
-# Italian Spinning vs Domestic: What B2B Buyers Should Know About Cashmere Yarn Quality
+# 이탈리아 방적 vs 국내 방적: B2B 바이어가 알아야 할 캐시미어 원사 품질
 
-When sourcing cashmere yarn for your next collection, one of the most critical decisions you'll face is choosing between Italian spinning technology and domestic (Chinese) spinning methods. For over two decades, DONGXIAO Cashmere has been at the intersection of these two worlds—operating from the heart of Ordos, Inner Mongolia, the global capital of cashmere fiber, while also supplying yarn to Italian mills and collaborating with European brands. This unique position gives us a clear, unbiased perspective on what truly matters for B2B buyers.
+다음 컬렉션을 위한 캐시미어 원사 소싱에서 가장 중요한 결정 중 하나는 이탈리아 방적 기술과 중국(국내) 방적 방식 사이의 선택입니다. 20년 이상 DONGXIAO Cashmere는 이 두 세계의 교차점에 자리해 왔습니다 — 세계 캐시미어 섬유의 중심지인 내몽골 오르도스에 거점을 두면서 동시에 이탈리아 방적 공정에 원사를 공급하고 유럽 브랜드와 협력해 왔습니다. 이 독보적 위치가 B2B 바이어에게 진짜 중요한 사항에 대한 명료하고 편견 없는 관점을 제공합니다.
 
-In this comprehensive guide, we’ll break down the differences in spinning technology, yarn quality metrics, cost implications, lead times, and sustainability factors. Whether you're a luxury brand buyer, a trading company, or a knitwear manufacturer, you'll leave with actionable insights to optimize your sourcing strategy.
+이 종합 가이드에서는 방적 기술, 원사 품질 지표, 원가 영향, 리드타임, 지속가능성 요인의 차이를 분해합니다. 럭셔리 브랜드 바이어, 무역사, 니트 제조사 어느 쪽이든, 소싱 전략을 최적화할 수 있는 실행 가능한 인사이트를 얻으실 수 있습니다.
 
-## Understanding the Cashmere Yarn Production Landscape
+## 캐시미어 원사 생산 환경 이해
 
-Cashmere yarn production is a multi-stage process that begins with raw fiber from the Inner Mongolian cashmere goat. The fiber is dehaired, sorted, dyed, and then spun into yarn. The spinning stage is where the true craftsmanship—and the divergence between Italian and domestic methods—emerges.
+캐시미어 원사 생산은 내몽골 캐시미어 산양의 원섬유에서 시작하는 다단계 공정입니다. 섬유를 분梳·선별·염색 후 원사로 방적합니다. 방적 단계가 진짜 장인정신 — 그리고 이탈리아와 중국 방식의 분기점이 여기서 드러납니다.
 
-### The Role of Ordos, Inner Mongolia
+### 오르도스(내몽골)의 역할
 
-Ordos is the undisputed global hub for cashmere fiber. The region produces over 70% of the world's cashmere, thanks to its unique climate and goat breeds. However, the raw fiber is only part of the equation. The spinning technology applied determines the final yarn quality.
+오르도스는 의심할 여지 없이 캐시미어 섬유의 세계적 허브입니다. 독보적인 기후와 산양 품종 덕분에 전 세계 캐시미어의 70% 이상을 이 지역에서 생산합니다. 하지만 원섬유는 방정식의 절반일 뿐입니다. 적용되는 방적 기술이 최종 원사 품질을 결정합니다.
 
-At DONGXIAO, we source premium cashmere directly from Ordos herders, ensuring traceability and consistency. Our factory has invested in both domestic and Italian-inspired spinning lines to offer our clients flexibility.
+DONGXIAO는 오르도스 목축민으로부터 직접 프리미엄 캐시미어를 조달하여 이력 추적과 일관성을 보장합니다. 당사 공장은 국내와 이탈리아에서 영감을 받은 방적 라인 모두에 투자해 고객에게 유연성을 제공합니다.
 
-## Italian Spinning Technology: The Gold Standard
+## 이탈리아 방적 기술: 골드 스탠다드
 
-Italian mills, particularly those in Biella and Prato, have a centuries-old reputation for textile excellence. Their cashmere yarn is often considered the benchmark for luxury.
+이탈리아 방적 공장, 특히 비엘라와 프라토의 공장들은 수세기에 걸친 섬유 우수성의 명성을 쌓아왔습니다. 그들의 캐시미어 원사는 종종 럭셔리의 벤치마크로 간주됩니다.
 
-### Key Characteristics of Italian-Spun Yarn
+### 이탈리아 방적 원사의 주요 특징
 
-- **Fiber Fineness**: Italian spinning typically processes cashmere fibers with an average diameter of 14.5–16 microns. This results in an exceptionally soft hand feel.
-- **Twist Control**: Advanced ring-spinning machines allow for precise twist per inch (TPI), reducing pilling and enhancing durability.
-- **Dyeing Techniques**: Italian dyeing uses high-pressure vats and pre-treated water, achieving vibrant, uniform colors with minimal fiber damage.
-- **Finishing**: Italian mills often apply mechanical or chemical finishes (e.g., anti-pilling, anti-static) that improve performance.
+- **섬유 직경**: 이탈리아 방적은 보통 평균 직경 14.5~16 µm의 캐시미어 섬유를 가공합니다. 결과적으로 매우 부드러운 촉감.
+- **연사 제어**: 첨단 링방적기가 정밀한 1인치당 연사수(TPI)를 가능하게 해 필링을 줄이고 내구성을 높입니다.
+- **염색 기술**: 이탈리아 염색은 고압조와 전처리수를 사용해 섬유 손상을 최소화하면서 선명하고 균일한 색상을 얻습니다.
+- **후가공**: 이탈리아 방적 공장은 종종 기계적 또는 화학적 마감(필링 방지, 정전기 방지 등)을 적용해 성능을 향상시킵니다.
 
-### Typical Metrics for Italian Cashmere Yarn
+### 이탈리아 캐시미어 원사 대표 지표
 
-| Metric | Italian Range | Industry Standard |
-|--------|---------------|-------------------|
-| Fiber Diameter | 14.5–16 µm | 15.5–17 µm |
-| Yarn Count (Nm) | 2/28, 2/48, 2/60 | 2/28, 2/36 |
-| Twist per Inch | 8–12 | 6–8 |
-| Pilling Resistance | Grade 3–4 (Martindale 2000 cycles) | Grade 2–3 |
-| Tensile Strength | 12–15 cN/tex | 10–12 cN/tex |
+| 지표 | 이탈리아 범위 | 업계 표준 |
+|---|---|---|
+| 섬유 직경 | 14.5~16 µm | 15.5~17 µm |
+| 원사 번수 (Nm) | 2/28, 2/48, 2/60 | 2/28, 2/36 |
+| 1인치당 연사 | 8~12 | 6~8 |
+| 필링 저항 | Grade 3~4 (마틴데일 2000 사이클) | Grade 2~3 |
+| 인장 강도 | 12~15 cN/tex | 10~12 cN/tex |
 
-### Advantages of Italian Spinning
+### 이탈리아 방적의 장점
 
-- **Superior Softness**: The finer fiber diameter and gentler processing create a luxurious feel.
-- **Color Consistency**: Dyeing precision reduces shade variation between lots.
-- **Lower Pilling**: Higher twist and better fiber alignment reduce pilling over time.
-- **Brand Prestige**: "Made in Italy" carries cachet in luxury markets.
+- **탁월한 부드러움**: 더 가는 섬유 직경과 더 부드러운 가공이 럭셔리한 촉감을 만듭니다.
+- **색상 일관성**: 염색 정밀도가 로트 간 색조 차이를 줄입니다.
+- **낮은 필링**: 더 높은 연사와 더 나은 섬유 정렬이 시간이 지나도 필링을 줄입니다.
+- **브랜드 위신**: "Made in Italy"는 럭셔리 시장에서 캐시미를 갖습니다.
 
-### Disadvantages
+### 단점
 
-- **Higher Cost**: Italian-spun yarn can cost 20–40% more than equivalent domestic yarn.
-- **Longer Lead Times**: Custom orders often take 8–12 weeks, plus shipping.
-- **MOQ Constraints**: Minimum order quantities (MOQs) are typically 500–1000 kg per color.
-- **Limited Fiber Sourcing**: Italian mills rely on imported cashmere, often adding logistical complexity.
+- **높은 원가**: 이탈리아 방적 원사는 동등한 국내 원사보다 20~40% 비쌀 수 있습니다.
+- **긴 리드타임**: 맞춤 주문은 보통 8~12주 + 배송.
+- **MOQ 제약**: 최소 주문량(MOQ)은 일반적으로 색상당 500~1000 kg.
+- **섬유 조달 한계**: 이탈리아 방적 공장은 수입 캐시미어에 의존해 물류 복잡성이 추가됩니다.
 
-## Domestic Spinning: The Competitive Alternative
+## 국내 방적: 경쟁력 있는 대안
 
-Domestic cashmere spinning in China—particularly in regions like Ordos, Hebei, and Zhejiang—has evolved rapidly over the past two decades. While historically viewed as a lower-cost option, many domestic mills now produce yarn that rivals Italian quality.
+중국의 국내 캐시미어 방적 — 특히 오르도스, 허베이, 저장성 지역 — 은 지난 20년간 급속히 발전했습니다. 역사적으로 저가 옵션으로 인식되었지만, 많은 국내 방적 공장이 이제 이탈리아 품질에 필적하는 원사를 생산합니다.
 
-### Key Characteristics of Domestic-Spun Yarn
+### 국내 방적 원사의 주요 특징
 
-- **Fiber Fineness**: Domestic mills commonly process fibers in the 15.5–17 micron range, though premium lines can achieve 14.5–15.5 microns.
-- **Spinning Technology**: Many factories have upgraded to modern ring-spinning and compact spinning machines from Swiss and German manufacturers (e.g., Rieter, Schlafhorst).
-- **Dyeing**: Domestic dyeing has improved with automated systems, but color consistency can vary between batches.
-- **Finishing**: Anti-pilling treatments are standard, but mechanical finishes are less common than in Italy.
+- **섬유 직경**: 국내 방적 공장은 보통 15.5~17 µm 범위의 섬유를 가공하지만, 프리미엄 라인은 14.5~15.5 µm까지 도달합니다.
+- **방적 기술**: 많은 공장은 스위스·독일 제조사(Rieter, Schlafhorst 등)의 최신 링방적기·콤팩트 방적기로 업그레이드했습니다.
+- **염색**: 자동화 시스템으로 국내 염색이 개선되었지만, 로트 간 색상 일관성이 달라질 수 있습니다.
+- **후가공**: 필링 방지 가공은 표준이지만, 기계적 마감은 이탈리아만큼 보편적이지 않습니다.
 
-### Typical Metrics for Domestic Cashmere Yarn
+### 국내 캐시미어 원사 대표 지표
 
-| Metric | Domestic Range | Industry Standard |
-|--------|----------------|-------------------|
-| Fiber Diameter | 15.5–17 µm | 15.5–17 µm |
-| Yarn Count (Nm) | 2/28, 2/36, 2/48 | 2/28, 2/36 |
-| Twist per Inch | 6–9 | 6–8 |
-| Pilling Resistance | Grade 2–3 (Martindale 2000 cycles) | Grade 2–3 |
-| Tensile Strength | 10–13 cN/tex | 10–12 cN/tex |
+| 지표 | 국내 범위 | 업계 표준 |
+|---|---|---|
+| 섬유 직경 | 15.5~17 µm | 15.5~17 µm |
+| 원사 번수 (Nm) | 2/28, 2/36, 2/48 | 2/28, 2/36 |
+| 1인치당 연사 | 6~9 | 6~8 |
+| 필링 저항 | Grade 2~3 (마틴데일 2000 사이클) | Grade 2~3 |
+| 인장 강도 | 10~13 cN/tex | 10~12 cN/tex |
 
-### Advantages of Domestic Spinning
+### 국내 방적의 장점
 
-- **Cost Efficiency**: Domestic yarn is typically 15–30% cheaper than Italian equivalents.
-- **Faster Lead Times**: Standard orders can ship in 4–6 weeks; custom orders in 6–8 weeks.
-- **Lower MOQs**: Many mills accept orders as low as 50–100 kg per color.
-- **Proximity to Fiber**: Being in Ordos means shorter supply chains and fresher fiber.
-- **Flexibility**: Domestic mills are often more willing to accommodate small runs and custom blends.
+- **원가 효율**: 국내 원사는 일반적으로 이탈리아 동급보다 15~30% 저렴.
+- **빠른 리드타임**: 표준 주문 4~6주, 맞춤 주문 6~8주.
+- **낮은 MOQ**: 많은 방적 공장이 색상당 50~100 kg 주문도 수락.
+- **섬유 근접성**: 오르도스 입지 = 짧은 공급망과 더 신선한 섬유.
+- **유연성**: 국내 방적 공장은 소량 런과 맞춤 혼방에 더 기꺼이 응함.
 
-### Disadvantages
+### 단점
 
-- **Inconsistent Quality**: Quality control can vary widely between mills. Due diligence is essential.
-- **Perception Issues**: Some luxury buyers still associate "Made in China" with lower quality, though this is changing.
-- **Color Matching**: Dye lot consistency may require extra samples.
-- **Certification Gaps**: Not all domestic mills hold international certifications like OEKO-TEX or GOTS.
+- **일관성 부족**: 품질 관리가 방적 공장 간에 천차만별. 실사가 필수.
+- **인지 문제**: 일부 럭셔리 바이어는 여전히 "Made in China"를 낮은 품질과 연결짓지만, 변화 중.
+- **색상 매칭**: 염색 로트 일관성에 추가 샘플이 필요할 수 있음.
+- **인증 격차**: 모든 국내 방적 공장이 OEKO-TEX·GOTS 등 국제 인증을 보유한 것은 아님.
 
-## Head-to-Head Comparison: Italian vs Domestic Spinning
+## 직접 비교: 이탈리아 vs 국내 방적
 
-| Factor | Italian | Domestic (Premium) |
-|--------|---------|---------------------|
-| Fiber Diameter | 14.5–16 µm | 15–17 µm |
-| Softness | Exceptional | Very good |
-| Pilling Resistance | High (Grade 3–4) | Moderate (Grade 2–3) |
-| Color Consistency | Excellent | Good |
-| Cost per kg (Nm 2/28) | $80–120 | $55–85 |
-| Lead Time (custom) | 8–12 weeks | 6–8 weeks |
-| MOQ per color | 500–1000 kg | 50–200 kg |
-| Certifications | OEKO-TEX, GOTS common | Varies; DONGXIAO holds ISO9001, OEKO-TEX, GOTS |
-| Brand Cachet | High | Medium (improving) |
+| 요소 | 이탈리아 | 국내(프리미엄) |
+|---|---|---|
+| 섬유 직경 | 14.5~16 µm | 15~17 µm |
+| 부드러움 | 탁월 | 매우 우수 |
+| 필링 저항 | 높음 (Grade 3~4) | 보통 (Grade 2~3) |
+| 색상 일관성 | 우수 | 양호 |
+| kg당 원가 (Nm 2/28) | 80~120 USD | 55~85 USD |
+| 리드타임 (맞춤) | 8~12주 | 6~8주 |
+| 색상당 MOQ | 500~1000 kg | 50~200 kg |
+| 인증 | OEKO-TEX, GOTS 일반 | 다양; DONGXIAO는 ISO 9001, OEKO-TEX, GOTS 보유 |
+| 브랜드 캐시 | 높음 | 중간 (상승 중) |
 
-## When to Choose Italian vs Domestic Spinning
+## 이탈리아 vs 국내 방적 선택 시점
 
-### Choose Italian Spinning If:
+### 이탈리아 방적을 선택:
+- 브랜드가 울트라 럭셔리 시장을 타겟하고 최고 수준의 부드러움이 필요
+- 대량 생산에서 색상 일관성이 중요
+- 마케팅용 프리미엄 서사 ("이탈리아 방적 캐시미어" 등) 필요
+- 예산이 20~40% 프리미엄을 허용
+- 긴 리드타임과 높은 MOQ 수용 가능
 
-- Your brand targets the ultra-luxury segment and requires the softest hand feel.
-- Color consistency across large production runs is critical.
-- You need a premium narrative for marketing (e.g., "Italian-spun cashmere").
-- Your budget allows for a 20–40% premium.
-- You have long lead times and high MOQs.
+### 국내 방적을 선택:
+- 중급 시장 또는 신흥 브랜드로 경쟁력 있는 가격 필요
+- 빠른 처리 속도와 유연한 MOQ 필요
+- 공급망 단축 및 탄소 발자국 감소를 원함
+- 오르도스에서 직접 소싱하고 이력 추적을 중시
+- DONGXIAO 같은 인증 보유 평판 좋은 방적 공장과 파트너
 
-### Choose Domestic Spinning If:
+## 하이브리드 접근: 양쪽의 장점
 
-- You are a mid-market or emerging brand needing competitive pricing.
-- You require quick turnaround and flexible MOQs.
-- You want to shorten your supply chain and reduce carbon footprint.
-- You source directly from Ordos and value traceability.
-- You partner with a reputable mill like DONGXIAO that offers certified quality.
+DONGXIAO는 하이브리드 솔루션을 제공합니다: 오르도스 원산 캐시미어를 조달하고, 수입 장비로 이탈리아에서 영감을 받은 방적 기술을 적용합니다. 당사 원사는 ISO 기준에 따라 필링 저항(Grade 3+), 인장 강도, 색상 견뢰도를 테스트합니다. 이를 통해 고객은 국내 가격에 거의 이탈리한 품질을 누릴 수 있습니다.
 
-## The Hybrid Approach: Best of Both Worlds
+### 사례: 유럽 니트 브랜드
 
-At DONGXIAO, we offer a hybrid solution: we source raw cashmere from Ordos, then apply Italian-inspired spinning techniques using imported machinery. Our yarn is tested for pilling resistance (Grade 3+), tensile strength, and color fastness according to ISO standards. This allows our clients to enjoy near-Italian quality at domestic prices.
+독일 럭셔리 니트 브랜드가 "이탈리아 부드러움을 20% 저렴하게" 구현해 줄 것을 요청해 왔습니다. 15.5 µm 캐시미어를 Rieter 콤팩트기로 TPI 10의 맞춤 혼방을 개발했습니다. 결과: 내부 필링 테스트(Grade 3.5)에 합격하고, 염색 포함 7주 만에 생산. 해당 브랜드는 현재 캐시미어 원사의 80%를 DONGXIAO에서 소싱하고 있습니다.
 
-### Case Example: A European Knitwear Brand
+## 인증 및 품질 보증
 
-A German luxury knitwear brand approached us needing a yarn that matched Italian softness but at a 20% lower cost. We developed a custom blend using 15.5 micron cashmere, spun on Rieter compact machines with a TPI of 10. The result: a yarn that passed their internal pilling tests (Grade 3.5) and was produced in 7 weeks, including dyeing. They now source 80% of their cashmere yarn from DONGXIAO.
+방적 장소를 막론하고, 인증은 B2B 바이어에게 필수입니다. 주요 인증:
 
-## Certifications and Quality Assurance
+- **ISO 9001**: 품질 경영 시스템. DONGXIAO는 ISO 9001 인증 보유.
+- **OEKO-TEX Standard 100**: 유해 화학물질 없음 보장. EU 시장에 필수.
+- **GOTS**: 유기농 캐시미어 원사용.
+- **RWS**: 동물 복지 및 토지 관리용.
 
-Regardless of where yarn is spun, certifications are a non-negotiable for B2B buyers. Here are the key ones:
+국내 원사 소싱 시에는 항상 인증 사본을 요청하세요. DONGXIAO는 모든 출하에 완비된 서류를 제공합니다.
 
-- **ISO 9001**: Quality management system. DONGXIAO is ISO 9001 certified.
-- **OEKO-TEX Standard 100**: Ensures no harmful chemicals. Essential for EU markets.
-- **GOTS (Global Organic Textile Standard)**: For organic cashmere yarn.
-- **RWS (Responsible Wool Standard)**: For animal welfare and land management.
+## B2B 바이어를 위한 실무 팁
 
-When sourcing domestic yarn, always request certification copies. At DONGXIAO, we provide full documentation for every shipment.
+1. **실험실 성적서 요청**: 섬유 직경, TPI, 필링 테스트 결과. 평판 좋은 방적 공장은 제공합니다.
+2. **스트라이크오프 주문**: 양산 결정 전 1~2 kg 원사를 주문해 편직 시험.
+3. **공장 방문**: 가능하면 방적 현장을 견학. 품질 판단에 최고.
+4. **리드타임 서면 확인**: 국내 방적 공장이 빠른 경우가 많지만, 생산 일정을 서면으로 확인.
+5. **MOQ 협상**: 많은 국내 방적 공장이 유연, 특히 장기 파트너십.
+6. **지속가능성 고려**: 국내 방적은 운송 감소로 탄소 발자국이 낮음. 에너지 사용과 폐기물 관리 확인.
 
-## Practical Tips for B2B Buyers
+## 결론: 비즈니스에 맞는 선택
 
-1. **Request Lab Reports**: Ask for fiber diameter, TPI, and pilling test results. A reputable mill will provide them.
-2. **Order Strike-Offs**: Before committing to bulk, order 1–2 kg of yarn for knitting trials.
-3. **Visit the Mill**: If possible, tour the spinning facility. This is the best way to assess quality.
-4. **Check Lead Times**: Domestic mills are often faster, but confirm production schedules in writing.
-5. **Negotiate MOQs**: Many domestic mills are flexible, especially for long-term partnerships.
-6. **Consider Sustainability**: Domestic spinning has a lower carbon footprint due to reduced transportation. Ask about energy use and waste management.
+이탈리아와 국내 캐시미어 방적 사이의 선택은 궁극적으로 브랜드 포지셔닝, 예산, 공급망 우선순위에 달려 있습니다. 이탈리안 방적은 비길 데 없는 부드러움과 위신을, 국내 방적은 원가 효율과 유연성을 제공합니다. 그러나 중국 방적 공장이 기술과 인증에 투자하면서 그 격차는 좁아지고 있습니다.
 
-## Conclusion: Making the Right Choice for Your Business
+B2B 바이어로서 최선의 전략은 양쪽 세계를 이해하는 공급업체와 파트너십을 맺는 것입니다. DONGXIAO Cashmere는 오르도스 섬유 전문성과 현대 방적 기술을 결합해 국제 표준을 충족하는 원사를 경쟁력 있는 가격에 제공합니다. MOQ는 색상당 50 kg부터, 리드타임 6~8주, ISO 9001, OEKO-TEX, GOTS 인증 보유.
 
-The choice between Italian and domestic cashmere yarn spinning ultimately depends on your brand positioning, budget, and supply chain priorities. Italian spinning offers unmatched softness and prestige, while domestic spinning provides cost efficiency and flexibility. However, the gap is narrowing as Chinese mills invest in technology and certifications.
+**프리미엄 캐시미어 원사 소싱 준비되셨나요?** 샘플, 실험실 성적서, 공장 견학을 요청하려면 지금 당사 팀에 연락하세요. 다음 컬렉션에 완벽한 원사를 찾는 것을 도와드리겠습니다.
 
-As a B2B buyer, your best strategy is to partner with a supplier that understands both worlds. DONGXIAO Cashmere combines Ordos fiber expertise with modern spinning technology, offering yarn that meets international standards at competitive prices. Our MOQs start at 50 kg per color, lead times are 6–8 weeks, and we hold ISO 9001, OEKO-TEX, and GOTS certifications.
-
-**Ready to source premium cashmere yarn?** Contact our team today to request samples, lab reports, or a factory tour. We'll help you find the perfect yarn for your next collection.
-
-[Contact DONGXIAO Cashmere Now →](/en/contact)
+[DONGXIAO Cashmere에 문의하기 →](/kr/contact)
