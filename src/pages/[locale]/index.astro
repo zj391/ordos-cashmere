@@ -259,33 +259,25 @@ const prodMeta = productData[locale];
 // 7-22 修正: Cashmere_Factory_Gobi_33 实际是毛衣店图, 换成 Otog Qianqi Ordos
 //   真实沙漠风景 + Goat in Mongolia 01 真实蒙古山羊.
 const IMG = {
-  // 首页 hero (针织特写, 暖色) - 用户提供的真实摄影图
-  heroFiber: '/images/home/hero-fiber.webp',
-  // Origin Story: 鄂尔多斯起源图 (用户提供的真实摄影图，替换之前的 Wikimedia 沙漠风景图)
-  ordosLandscape: '/images/home/ordos-origins.webp',
-  // Why us #1 自有牧场: 蒙古山羊在草原 (用户提供的真实摄影图，替换之前的 Wikimedia 图)
-  mongoliaGoat: '/images/home/mongolia-goat.webp',
-  // Why us #4 成衣厂: 工厂内部纺织机 (用户提供的真实摄影图，替换之前的黑白外景)
-  knittingMill: '/images/home/spinning-mill.webp',
-  // 工艺证据 - 针织手部特写 (用户提供的真实摄影图，替换之前的 Wikimedia 披肩图)
-  craftHand: '/images/home/craft-knit-detail.webp',
-  // 工艺证据 - 纺纱织造 (03 卡片) - 用户提供的毛线团图
-  shawlEmbroidered: '/images/home/yarn-basket.webp',
-  // 工艺证据 - 编织细节 (用户提供的真实摄影图)
-  scarfDetail: '/images/home/scarf-detail.webp',
-  // 工艺证据 - 折叠围巾 (用户提供的真实摄影图)
-  scarvesFolded: '/images/home/scarves-folded.webp',
-  // 2026-08 增量视觉补充：仅用于原有首页的轮播、产品矩阵和 CTA 局部填充
-  uiHero: '/images/ui-2026/hero-highland.webp',
-  uiKnit: '/images/ui-2026/knit-editorial.webp',
-  uiMaterial: '/images/ui-2026/material-stilllife.webp',
-  uiCraft: '/images/ui-2026/craft-detail.webp',
-  uiMark: '/images/ui-2026/fiber-mark.png',
+  // 原首页模块保留，所有摄影图更换为同一组“雪线静奢”定制图像。
+  heroFiber: '/images/editorial-cashmere/editorial-material.webp',
+  ordosLandscape: '/images/editorial-cashmere/editorial-origin.webp',
+  mongoliaGoat: '/images/editorial-cashmere/editorial-pasture-goats.webp',
+  knittingMill: '/images/editorial-cashmere/editorial-knitting-floor.webp',
+  craftHand: '/images/editorial-cashmere/editorial-dehairing.webp',
+  shawlEmbroidered: '/images/editorial-cashmere/editorial-yarn-cones.webp',
+  scarfDetail: '/images/editorial-cashmere/editorial-knit-closeup.webp',
+  scarvesFolded: '/images/editorial-cashmere/editorial-scarves.webp',
+  uiHero: '/images/editorial-cashmere/editorial-hero.webp',
+  uiKnit: '/images/editorial-cashmere/editorial-knit-closeup.webp',
+  uiMaterial: '/images/editorial-cashmere/editorial-material.webp',
+  uiCraft: '/images/editorial-cashmere/editorial-craft.webp',
+  uiMark: '/images/editorial-cashmere/fiber-mark.png',
 };
 ---
 
 <BaseLayout locale={locale} pageKey="home" path="/" schema="home">
-  <link slot="head" rel="preload" as="image" href="/images/home/scarves-folded.webp" fetchpriority="high" />
+  <link slot="head" rel="preload" as="image" href={IMG.scarvesFolded} fetchpriority="high" />
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/`} />
 
   <!-- ============ HERO (3 张明亮图轮播 + 文字层) ============ -->
@@ -295,7 +287,7 @@ const IMG = {
       {[
         { src: IMG.scarvesFolded, alt: 'Cashmere wrap — premium B2B apparel piece styled in urban setting' },
         { src: IMG.craftHand,    alt: 'Handwoven cashmere detail — craftsmanship' },
-        { src: '/images/home/ordos-pasture.webp', alt: 'Inner Mongolian pasture with goats and livestock — Ordos origin' },
+        { src: IMG.ordosLandscape, alt: 'Inner Mongolian highland landscape — Ordos origin' },
         { src: IMG.uiHero, alt: 'Premium cashmere coat on Ordos highland — material-led B2B collection inspiration' },
       ].map((slide, i) => (
         <img
@@ -432,7 +424,7 @@ const IMG = {
   </section>
 
   <!-- ============ TRUST STRIP (cert badges + stats under hero) ============ -->
-  <section class="py-12 md:py-14 bg-[#FBF8F2] border-b border-border">
+  <section class="home-trust-strip py-12 md:py-14 bg-[#FBF8F2] border-b border-border">
     <div class="container-narrow">
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-8 items-center">
         {trustBadges.map((b, i) => (
@@ -654,7 +646,7 @@ const IMG = {
   </section>
 
   <!-- ============ 为什么选我们（工艺感：图+引文+数据 交错） ============ -->
-  <section class="py-28 md:py-36 bg-background">
+  <section class="home-craft-section py-28 md:py-36 bg-background">
     <div class="container-narrow">
       <div class="max-w-3xl mb-20">
         <div class="eyebrow mb-8">
@@ -728,7 +720,7 @@ const IMG = {
   </section>
 
   <!-- ============ 资质徽章（圆形 SVG） ============ -->
-  <section class="py-20 bg-[#F4EFE6]">
+  <section class="home-cert-section py-20 bg-[#F4EFE6]">
     <div class="container-narrow">
       <div class="text-center mb-12">
         <div class="inline-block text-xs tracking-[0.3em] uppercase text-brand-camel mb-3">{c.trustTitle}</div>
@@ -762,7 +754,7 @@ const IMG = {
   </section>
 
   <!-- ============ 产品中心：5 大分类 + 精选产品 ============ -->
-  <section class="py-28 md:py-36 bg-background">
+  <section class="home-catalog-section py-28 md:py-36 bg-background">
     <div class="container-narrow">
       <div class="flex items-end justify-between mb-12 gap-6 flex-wrap">
         <div>
@@ -875,7 +867,7 @@ const IMG = {
 
   <!-- Latest from our blog (首页 SEO 内链 + 新内容曝光) -->
   {latestPosts.length > 0 && (
-    <section class="py-20 md:py-28 bg-background border-t border-border">
+    <section class="home-journal-section py-20 md:py-28 bg-background border-t border-border">
       <div class="container-narrow">
         <div class="flex items-end justify-between mb-12 gap-6 flex-wrap">
           <div>
@@ -940,7 +932,12 @@ const IMG = {
   .home-origin-section { position:relative; }.home-origin-section::after { content:""; position:absolute; right:-45px; bottom:10%; width:248px; height:105px; border-top:1px solid rgba(184,149,106,.38); border-radius:50%; transform:rotate(-20deg); pointer-events:none; }.home-origin-detail { position:absolute; z-index:3; right:-34px; top:32px; width:154px; height:194px; overflow:hidden; border:8px solid #fff; box-shadow:0 18px 42px rgba(56,42,30,.15); }.home-origin-detail img { width:100%; height:100%; object-fit:cover; object-position:center; filter:saturate(.78) contrast(.96); }
   .home-product-section { position:relative; }.home-product-section::before { content:""; position:absolute; left:0; top:13%; width:180px; height:210px; opacity:.25; background:repeating-radial-gradient(ellipse at 0 50%, transparent 0 28px, rgba(184,149,106,.58) 29px 30px, transparent 31px 48px); pointer-events:none; }.home-material-fill { opacity:.47; filter:saturate(.62) contrast(.93); transition:transform .9s cubic-bezier(.23,1,.32,1),opacity .45s ease; }.group:hover .home-material-fill { transform:scale(1.055); opacity:.62; }
   .home-final-cta::after { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(90deg, rgba(245,240,231,.98) 0%, rgba(245,240,231,.90) 54%, rgba(245,240,231,.62) 100%); }.home-final-cta > .container-narrow { position:relative; z-index:2; }.home-craft-fill { opacity:.16; filter:grayscale(1) sepia(.24) contrast(.9); }.home-fiber-mark { width:44px; height:44px; object-fit:contain; margin:0 auto 22px; opacity:.72; mix-blend-mode:multiply; }
-  @media (max-width: 1024px) { .home-hero-trajectory { right:-8%; transform:scale(.8) rotate(-14deg); }.home-origin-section::after { display:none; }.home-product-section::before { width:100px; }.home-craft-fill { width:58%; opacity:.1; } }
+  .home-trust-strip { position:relative; background:#f7f3eb; }.home-trust-strip::after { content:""; position:absolute; right:7%; bottom:-1px; width:230px; height:66px; border-bottom:1px solid rgba(167,100,50,.34); border-radius:50%; transform:rotate(8deg); pointer-events:none; }.home-trust-strip [class*="grid"] > div { position:relative; }.home-trust-strip [class*="grid"] > div::before { content:""; position:absolute; left:-15px; top:5px; width:2px; height:22px; background:#b8956a; opacity:.72; }
+  .home-craft-section { position:relative; background:linear-gradient(180deg,#fbfaf7 0%,#f5f0e7 100%); }.home-craft-section::before { content:""; position:absolute; top:6.5rem; left:0; width:17vw; height:1px; background:#b8956a; opacity:.55; }.home-craft-section .hover-zoom { border:1px solid rgba(167,100,50,.16); box-shadow:0 18px 34px -28px rgba(45,40,36,.75); }.home-craft-section [class*="text-5xl"] { color:#a76432; }.home-craft-section h3 { letter-spacing:-.025em; }
+  .home-cert-section { position:relative; overflow:hidden; background:#e8e0d3; }.home-cert-section::before { content:"ORD / QUALITY / 04"; position:absolute; left:clamp(22px,6vw,88px); top:32px; color:rgba(45,40,36,.35); font-size:9px; font-weight:600; letter-spacing:.21em; }.home-cert-section::after { content:""; position:absolute; right:-45px; top:20%; width:310px; height:160px; border-top:1px solid rgba(167,100,50,.4); border-radius:50%; transform:rotate(-22deg); }.home-cert-section [class*="rounded-full"] { background:rgba(255,255,255,.25); backdrop-filter:blur(2px); }
+  .home-catalog-section { position:relative; background:#fbfaf7; }.home-catalog-section::before { content:""; position:absolute; right:0; top:10%; width:140px; height:330px; opacity:.28; background:repeating-radial-gradient(ellipse at 100% 50%,transparent 0 26px,rgba(167,100,50,.58) 27px 28px,transparent 29px 45px); }.home-catalog-section > .container-narrow { position:relative; }.home-catalog-section a[class*="border"] { border-color:rgba(90,78,65,.18); background:rgba(255,255,255,.52); }.home-catalog-section a[class*="border"]:hover { border-color:#a76432; box-shadow:0 14px 28px -24px rgba(45,40,36,.58); }.home-catalog-section h2 { letter-spacing:-.04em; }
+  .home-final-cta { background:#e8e0d3; }.home-final-cta .btn-lux { border-left:4px solid #a76432; }.home-final-cta .btn-lux:hover { box-shadow:0 13px 28px -20px rgba(45,40,36,.55); }.home-journal-section { position:relative; background:#f7f3eb; }.home-journal-section::before { content:""; position:absolute; left:0; top:26%; width:145px; border-top:1px solid rgba(167,100,50,.4); transform:rotate(-8deg); }.home-journal-section [class*="grid"] > a { background:rgba(255,255,255,.46); }.home-journal-section h2 { letter-spacing:-.04em; }
+  @media (max-width: 1024px) { .home-hero-trajectory { right:-8%; transform:scale(.8) rotate(-14deg); }.home-origin-section::after { display:none; }.home-product-section::before { width:100px; }.home-craft-fill { width:58%; opacity:.1; }.home-catalog-section::before { width:80px; }.home-trust-strip::after { display:none; } }
   @media (max-width: 640px) { .home-hero-trajectory { right:-42%; top:21%; transform:scale(.64) rotate(-14deg); }.home-proof-band::before { left:-30px; width:130px; }.home-product-section::before { display:none; }.home-craft-fill { width:78%; opacity:.08; }.home-fiber-mark { width:36px; height:36px; margin-bottom:16px; } }
   @media (prefers-reduced-motion: reduce) { .home-material-fill { transition:none; } }
 </style>

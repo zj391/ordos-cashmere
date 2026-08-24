@@ -135,7 +135,7 @@ const groupLabel = (groupKey: string, group: any) => {
 };
 ---
 
-<header class="sticky top-0 z-40 w-full border-t-2 border-brand-red bg-background/95 backdrop-blur-sm relative">
+<header class="snowline-nav sticky top-0 z-40 w-full border-t-2 border-brand-red bg-background/95 backdrop-blur-sm relative">
   <div class="container-narrow flex h-16 lg:h-20 items-center justify-between lg:grid lg:grid-cols-3">
     <!-- 左侧留白 -->
     <div class="hidden lg:block"></div>
@@ -267,7 +267,7 @@ const groupLabel = (groupKey: string, group: any) => {
       <!-- CTA: Contact -->
       <a
         href={localePath(locale, '/contact')}
-        class="hidden sm:inline-flex items-center justify-center border border-primary px-6 py-2.5 text-xs uppercase tracking-[0.18em] text-primary hover:border-brand-red hover:text-brand-red hover:bg-brand-red/[0.04] transition-colors duration-300"
+        class="snowline-nav-action hidden sm:inline-flex items-center justify-center border border-primary px-6 py-2.5 text-xs uppercase tracking-[0.18em] text-primary hover:border-brand-red hover:text-brand-red hover:bg-brand-red/[0.04] transition-colors duration-300"
       >
         {locale === 'cn' ? '立即询盘' : 'Get Quote'}
       </a>
@@ -486,3 +486,14 @@ const groupLabel = (groupKey: string, group: any) => {
     }, { passive: true });
   })();
 </script>
+
+<style>
+  /* 雪线静奢导航：保留所有菜单、RFQ、语言切换与下拉逻辑，仅统一材质和排版。 */
+  .snowline-nav { border-top-color:#a76432; background:rgba(250,248,243,.94); box-shadow:0 8px 24px -22px rgba(45,40,36,.72); }
+  .snowline-nav :global(.font-display) { font-family:"Cormorant Garamond", Georgia, serif; font-weight:600; letter-spacing:.115em; }
+  .snowline-nav :global(#desktop-nav) { padding-top:1rem; padding-bottom:1rem; letter-spacing:.16em; }
+  .snowline-nav :global(.nav-link) { position:relative; }.snowline-nav :global(.nav-link)::after { content:""; position:absolute; left:0; right:0; bottom:-7px; height:1px; background:#a76432; transform:scaleX(0); transform-origin:left; transition:transform .2s ease-out; }.snowline-nav :global(.nav-link:hover)::after, .snowline-nav :global(.nav-link.is-active)::after { transform:scaleX(1); }
+  .snowline-nav-action { border-left-width:3px; border-left-color:#a76432; background:rgba(255,255,255,.42); }.snowline-nav-action:hover { box-shadow:0 8px 16px -14px rgba(45,40,36,.72); }
+  .snowline-nav :global([data-mega-panel]) { background:#fbfaf7; border-top-color:rgba(167,100,50,.35); }.snowline-nav :global([data-mega-panel] h3) { color:#7a6049; }.snowline-nav :global([data-mega-panel] .bg-brand-cream) { background:#ece3d6; }
+  @media (max-width:1023px) { .snowline-nav { box-shadow:0 7px 18px -17px rgba(45,40,36,.7); } }
+</style>
