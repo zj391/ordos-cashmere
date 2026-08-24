@@ -1,117 +1,116 @@
 ---
-title: "Small MOQ Cashmere Coat Manufacturing: How Boutique Brands Source from China"
-excerpt: "Most cashmere factories require 200-500 unit minimums. For boutique brands wanting 30-50 unit runs, here's how to make small-batch cashmere production work."
+title: "Fabrication de manteaux cachemire en petites quantités : Comment les boutiques s'approvisionnent en Chine"
+excerpt: "La plupart des usines cachemire exigent 200–500 pièces minimum. Pour les boutiques vendant 30–50 manteaux par saison, voici comment faire fonctionner la production en petits lots."
 publishDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
-tags: ["small MOQ","boutique cashmere","coat manufacturing","low-volume production"]
+tags: ["small MOQ", "boutique cashmere", "coat manufacturing", "low-volume production"]
 geoRegion: "GLOBAL"
-targetKeywords: ["small MOQ cashmere coat manufacturer","small batch cashmere production","boutique cashmere brand sourcing","cashmere coat manufacturer"]
+targetKeywords: ["petit MOQ fabricant manteau cachemire","petite série cachemire","sourcing marque boutique cachemire","fabricant manteau cachemire"]
 relatedProducts: ["garment_oem"]
 aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "fr"
 ---
-# Small MOQ Cashmere Coat Manufacturing: How Boutique Brands Source from China
 
-# Small MOQ Cashmere Coat Manufacturing: How Boutique Brands Source
+# Fabrication de manteaux cachemire en petits lots : Comment les boutiques s'approvisionnent
 
-Most Chinese cashmere factories quote **200-500 unit minimums**. Boutique brands selling 30-50 coats per season often assume small MOQ is impossible.
+La plupart des usines cachemire chinoises annoncent **200 à 500 pièces minimum**. Les boutiques qui vendent 30 à 50 manteaux par saison partent souvent du principe que les petits MOQ sont impossibles.
 
-It's not. But it requires a different approach.
+Ce n'est pas le cas. Mais cela demande une approche différente.
 
-## Why factories set high MOQs
+## Pourquoi les usines imposent des MOQ élevés
 
-A typical cashmere coat production batch has fixed costs:
-- **Pattern setup**: $300-500 per style
-- **Yarn dyeing**: $800-1,200 minimum per color (even for 1 unit)
-- **Sample knitting**: $200-400
-- **Finishing setup**: $200-400
+Un lot typique de manteaux cachemire comporte des coûts fixes :
+- **Mise au point du patron** : 300–500 USD par modèle
+- **Teinture du fil** : 800–1 200 USD minimum par couleur (même pour 1 pièce)
+- **Tricotage des échantillons** : 200–400 USD
+- **Setup finition** : 200–400 USD
 
-A factory's pricing assumes these fixed costs are spread over 200+ units. For 30 units, the per-unit cost jumps 30-50% to cover fixed costs.
+La tarification de l'usine suppose que ces coûts fixes sont répartis sur 200+ pièces. Pour 30 pièces, le coût unitaire grimpe de 30–50 % pour couvrir les coûts fixes.
 
-Most factories prefer to pass on small orders. Not because they can't do them — but because the margin isn't worth the management overhead.
+La plupart des usines préfèrent passer les petites commandes. Pas parce qu'elles ne peuvent pas — mais parce que la marge ne vaut pas la charge de gestion.
 
-## 4 strategies for small MOQ cashmere production
+## 4 stratégies pour les petits MOQ cachemire
 
-### Strategy 1: Stock yarn + stock colors (lowest MOQ)
+### Stratégie 1 : Fil en stock + couleurs en stock (MOQ le plus bas)
 
-If you can work with **stock yarn counts in stock colors**, MOQ drops to 30-50 units per style. The factory uses yarn it already has on hand, so the fixed yarn-dyeing cost disappears.
+Si vous pouvez travailler avec **des Nm de fil en stock et des couleurs en stock**, le MOQ descend à 30–50 pièces par modèle. L'usine utilise du fil déjà disponible, donc le coût fixe de teinture disparaît.
 
-**Trade-off**: Limited color choice (typically 3-5 stock colors per season). You have to design around the factory's stock.
+**Compromis** : Choix de couleurs limité (typiquement 3–5 couleurs en stock par saison). Vous devez concevoir autour du stock de l'usine.
 
-### Strategy 2: Group orders with other small brands
+### Stratégie 2 : Regrouper les commandes avec d'autres petites marques
 
-Some cashmere factories offer **shared production runs** where multiple small brands combine orders to hit a factory's MOQ. You get the pricing of a 200-unit run while only committing 50-100 units yourself.
+Certaines usines cachemire proposent des **runs de production partagés** où plusieurs petites marques combinent leurs commandes pour atteindre le MOQ de l'usine. Vous obtenez le tarif d'un run de 200 pièces tout en ne commandant que 50–100 pièces.
 
-**How to find these**: Ask your factory directly. Some have standing programs; others will broker it if you ask.
+**Comment les trouver** : Demandez directement à votre usine. Certaines ont des programmes permanents ; d'autres brokeront si vous demandez.
 
-### Strategy 3: Use the factory's own designs
+### Stratégie 3 : Utiliser les designs propres de l'usine
 
-If you're willing to white-label **the factory's stock designs** (with your brand label), MOQ drops to as low as 20-30 units. The factory has the patterns, samples, and yarn ready to go.
+Si vous acceptez de mettre en marque blanche **les designs en stock de l'usine** (avec votre étiquette), le MOQ descend jusqu'à 20–30 pièces. L'usine a les patrons, échantillons et fil prêts à partir.
 
-**Trade-off**: Limited differentiation. Anyone else white-labeling from the same factory has the same product.
+**Compromis** : Différenciation limitée. Toute autre marque blanche de la même usine aura le même produit.
 
-### Strategy 4: Premium pricing strategy
+### Stratégie 4 : Stratégie de prix premium
 
-If you can't meet MOQ, the alternative is **premium pricing** — pay 30-50% more per unit, and the factory will run smaller batches. This works if your retail price supports it.
+Si vous ne pouvez pas atteindre le MOQ, l'alternative est **le prix premium** — payez 30–50 % de plus par pièce, et l'usine fera des lots plus petits. Cela fonctionne si votre prix de détail le permet.
 
-**Math example**:
-- Standard MOQ (200 units): $45/unit, retail $200, 78% margin
-- Small MOQ (30 units): $62/unit, retail $300, 79% margin
+**Exemple de calcul** :
+- MOQ standard (200 pièces) : 45 USD/pièce, détail 200 USD, marge 78 %
+- Petit MOQ (30 pièces) : 62 USD/pièce, détail 300 USD, marge 79 %
 
-The smaller batch still has comparable margin if you can position the product at a higher price point.
+Le petit lot a une marge comparable si vous positionnez le produit à un prix plus élevé.
 
-## The real cost of small MOQ cashmere
+## Le vrai coût du petit MOQ cachemire
 
-Let's compare per-unit costs for a women's cashmere coat:
+Comparons les coûts unitaires pour un manteau cachemire femme :
 
-| Order size | Per-unit cost | Total order |
+| Taille de commande | Coût unitaire | Commande totale |
 |---|---|---|
-| 30 units | $85-120 | $2,550-3,600 |
-| 50 units | $70-95 | $3,500-4,750 |
-| 100 units | $55-80 | $5,500-8,000 |
-| 200 units | $45-65 | $9,000-13,000 |
-| 500 units | $38-55 | $19,000-27,500 |
+| 30 pièces | 85–120 USD | 2 550–3 600 USD |
+| 50 pièces | 70–95 USD | 3 500–4 750 USD |
+| 100 pièces | 55–80 USD | 5 500–8 000 USD |
+| 200 pièces | 45–65 USD | 9 000–13 000 USD |
+| 500 pièces | 38–55 USD | 19 000–27 500 USD |
 
-Small MOQ isn't cheap per unit, but the **total capital outlay** is much smaller. A boutique brand with $5K capital can do 50-80 units; with $20K they could do 300+.
+Le petit MOQ n'est pas bon marché par pièce, mais **l'investissement en capital total** est bien plus faible. Une boutique avec 5 000 USD de capital peut produire 50–80 pièces ; avec 20 000 USD, elle peut faire 300+.
 
-## 4 things that work with small MOQ (and 3 that don't)
+## 4 choses qui marchent en petit MOQ (et 3 qui ne marchent pas)
 
-### Works:
-1. **Stock yarn in stock colors** — factory's existing inventory
-2. **Standard silhouettes** (crewneck, V-neck, simple cardigan) — no custom patterns
-3. **Pre-made samples** with your labels — fastest, lowest cost
-4. **3-4 styles per season** — not 10-15 styles; focus on what sells
+### Marche :
+1. **Fil en stock en couleurs stock** — inventaire existant de l'usine
+2. **Silhouettes standard** (col rond, col V, cardigan simple) — pas de patrons sur mesure
+3. **Échantillons pré-faits avec vos étiquettes** — plus rapide, coût le plus bas
+4. **3–4 modèles par saison** — pas 10–15 ; se concentrer sur ce qui se vend
 
-### Doesn't work:
-1. **Custom patterns for 30 units** — pattern setup is $300-500, hard to amortize
-2. **Custom yarn counts** (anything outside 2/26 to 2/60 standard) — yarn mill MOQ is 500kg+
-3. **Bespoke dye colors** — dyeing minimum is 5-10kg per color, hard to use up in 30 units
+### Ne marche pas :
+1. **Patrons sur mesure pour 30 pièces** — setup patron 300–500 USD, difficile à amortir
+2. **Nm de fil sur mesure** (hors 2/26 à 2/60 standard) — MOQ du moulin est 500 kg+
+3. **Teintes sur mesure** — minimum teinture est 5–10 kg par couleur, difficile à écouler en 30 pièces
 
-## How to make small MOQ work in practice
+## Comment faire fonctionner le petit MOQ en pratique
 
-A practical path for a boutique brand starting with 30-50 units:
+Un parcours pratique pour une boutique démarrant avec 30–50 pièces :
 
-1. **Start with stock yarn + 2 stock colors** (cream, charcoal). Add a 3rd color (camel) in season 2.
-2. **Choose 2-3 stock silhouettes** from the factory's design library. Customize only labels and tags.
-3. **Negotiate** a per-unit cost of $60-80 with a 30-unit MOQ, and commit to a 12-month production schedule.
-4. **Sample 5-7 pieces** before bulk production. Confirm quality and fit on real bodies.
-5. **Plan inventory** carefully — small batch cashmere means sell-through matters.
+1. **Commencez avec fil en stock + 2 couleurs stock** (crème, anthracite). Ajoutez une 3e couleur (camel) en saison 2.
+2. **Choisissez 2–3 silhouettes standard** dans la bibliothèque de design de l'usine. Personnalisez uniquement étiquettes et cintres.
+3. **Négociez** un coût unitaire de 60–80 USD pour un MOQ de 30 pièces, et engagez-vous sur un planning de production de 12 mois.
+4. **Échantillonnez 5–7 pièces** avant la production série. Confirmez qualité et coupe sur de vrais corps.
+5. **Planifiez l'inventaire** soigneusement — le cachemire en petit lot demande un bon sell-through.
 
-The key mindset: **small MOQ is a financial decision, not a quality compromise**. With the right factory, a 30-unit run produces the same quality as a 200-unit run.
+L'état d'esprit clé : **le petit MOQ est une décision financière, pas un compromis qualité**. Avec la bonne usine, un lot de 30 pièces a la même qualité qu'un lot de 200 pièces.
 
-## Working with DONGXIAO on small MOQ
+## Travailler avec DONGXIAO en petit MOQ
 
-We accept small MOQ orders (30-50 units per style) for private label cashmere, with these terms:
+Nous acceptons les commandes en petit MOQ (30–50 pièces par modèle) pour le cachemire en marque blanche, avec ces conditions :
 
-- **MOQ**: 30 units per style, 50 units per color
-- **Lead time**: 35-45 days (vs 30-35 for 200+ unit orders)
-- **Per-unit cost**: $65-95 depending on style and complexity
-- **Sampling**: $200-400 (refundable against bulk order)
-- **Payment**: 50% deposit, 50% before shipment
+- **MOQ** : 30 pièces par modèle, 50 pièces par couleur
+- **Délai** : 35–45 jours (vs 30–35 pour 200+ pièces)
+- **Coût unitaire** : 65–95 USD selon modèle et complexité
+- **Échantillonnage** : 200–400 USD (remboursable sur commande série)
+- **Paiement** : 50 % d'acompte, 50 % avant expédition
 
-For boutique brands growing to 200+ units per season, we offer **graduated pricing** — your first 30-unit run is at small-batch rates, but we lock in your pricing for future larger orders.
+Pour les boutiques qui passent à 200+ pièces par saison, nous proposons des **prix progressifs** — votre premier lot de 30 pièces est au tarif petit lot, mais nous bloquons vos prix pour les futures commandes plus importantes.
 
 ---
 
-*Have a small-batch cashmere project? [Contact our boutique team](https://www.erdosdx.com/en/contact) with your design brief and order quantity. We'll provide a feasibility assessment and quote within 24 hours.*
+*Vous avez un projet cachemire en petit lot ? [Contactez notre équipe boutique](https://www.erdosdx.com/fr/contact) avec votre brief design et la quantité commandée. Nous fournissons étude de faisabilité et devis sous 24 heures.*

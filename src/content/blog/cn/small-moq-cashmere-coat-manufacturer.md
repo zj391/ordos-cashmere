@@ -1,117 +1,116 @@
 ---
-title: "Small MOQ Cashmere Coat Manufacturing: How Boutique Brands Source from China"
-excerpt: "Most cashmere factories require 200-500 unit minimums. For boutique brands wanting 30-50 unit runs, here's how to make small-batch cashmere production work."
+title: "小起订量羊绒大衣制造：精品品牌如何在中国采购"
+excerpt: "大多数羊绒工厂要求 200-500 件的最低起订量。针对每季只卖 30-50 件大衣的精品品牌，本文介绍如何让小批量羊绒生产跑通。"
 publishDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
-tags: ["small MOQ","boutique cashmere","coat manufacturing","low-volume production"]
+tags: ["small MOQ", "boutique cashmere", "coat manufacturing", "low-volume production"]
 geoRegion: "GLOBAL"
-targetKeywords: ["small MOQ cashmere coat manufacturer","small batch cashmere production","boutique cashmere brand sourcing","cashmere coat manufacturer"]
+targetKeywords: ["小起订量羊绒大衣制造商","小批量羊绒生产","精品羊绒品牌采购","羊绒大衣制造商"]
 relatedProducts: ["garment_oem"]
 aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "cn"
 ---
-# Small MOQ Cashmere Coat Manufacturing: How Boutique Brands Source from China
 
-# Small MOQ Cashmere Coat Manufacturing: How Boutique Brands Source
+# 小起订量羊绒大衣制造：精品品牌如何在中国采购
 
-Most Chinese cashmere factories quote **200-500 unit minimums**. Boutique brands selling 30-50 coats per season often assume small MOQ is impossible.
+中国大多数羊绒工厂报价时要求 **200-500 件的最低起订量**。每季只卖 30-50 件大衣的精品品牌往往以为小起订量不可能。
 
-It's not. But it requires a different approach.
+并非不可能。只是需要换一种做法。
 
-## Why factories set high MOQs
+## 为什么工厂会设置高起订量
 
-A typical cashmere coat production batch has fixed costs:
-- **Pattern setup**: $300-500 per style
-- **Yarn dyeing**: $800-1,200 minimum per color (even for 1 unit)
-- **Sample knitting**: $200-400
-- **Finishing setup**: $200-400
+典型的一批羊绒大衣生产有这些固定成本：
+- **打版**：每款 300-500 美元
+- **纱线染色**：每色 800-1200 美元最低（即使只做 1 件）
+- **样衣针织**：200-400 美元
+- **后整理设置**：200-400 美元
 
-A factory's pricing assumes these fixed costs are spread over 200+ units. For 30 units, the per-unit cost jumps 30-50% to cover fixed costs.
+工厂定价的前提，是把这些固定成本摊到 200 件以上。30 件时，单件成本上涨 30-50% 来覆盖固定成本。
 
-Most factories prefer to pass on small orders. Not because they can't do them — but because the margin isn't worth the management overhead.
+大多数工厂不愿接小单——不是做不了，而是利润撑不起管理成本。
 
-## 4 strategies for small MOQ cashmere production
+## 小起订量羊绒生产的 4 个策略
 
-### Strategy 1: Stock yarn + stock colors (lowest MOQ)
+### 策略 1：库存纱 + 库存颜色（最低起订量）
 
-If you can work with **stock yarn counts in stock colors**, MOQ drops to 30-50 units per style. The factory uses yarn it already has on hand, so the fixed yarn-dyeing cost disappears.
+如果你能用 **库存纱支 + 库存颜色** 工作，起订量降到每款 30-50 件。工厂直接用现成纱线，省去染色的固定成本。
 
-**Trade-off**: Limited color choice (typically 3-5 stock colors per season). You have to design around the factory's stock.
+**取舍**：颜色有限（每季通常 3-5 个库存色）。你的设计需要围绕工厂库存展开。
 
-### Strategy 2: Group orders with other small brands
+### 策略 2：与其它小品牌合并订单
 
-Some cashmere factories offer **shared production runs** where multiple small brands combine orders to hit a factory's MOQ. You get the pricing of a 200-unit run while only committing 50-100 units yourself.
+部分羊绒工厂提供 **共享生产批次** —— 多个小品牌合并订单以达到工厂起订量。你付 200 件批次的单价，自己只承担 50-100 件。
 
-**How to find these**: Ask your factory directly. Some have standing programs; others will broker it if you ask.
+**怎么找**：直接问你的工厂。有些有常设项目；有些你提出来就会撮合。
 
-### Strategy 3: Use the factory's own designs
+### 策略 3：用工厂自有的款式
 
-If you're willing to white-label **the factory's stock designs** (with your brand label), MOQ drops to as low as 20-30 units. The factory has the patterns, samples, and yarn ready to go.
+如果你愿意把 **工厂的库存款式** 贴上白牌（贴你自己的标签），起订量可以低到 20-30 件。工厂的版型、样衣、纱线都已备好。
 
-**Trade-off**: Limited differentiation. Anyone else white-labeling from the same factory has the same product.
+**取舍**：差异化有限。从同一家工厂贴白牌的其他品牌拿到的产品一样。
 
-### Strategy 4: Premium pricing strategy
+### 策略 4：溢价定价策略
 
-If you can't meet MOQ, the alternative is **premium pricing** — pay 30-50% more per unit, and the factory will run smaller batches. This works if your retail price supports it.
+如果你达不到起订量，另一个办法是 **溢价定价** —— 每件多付 30-50%，工厂愿意跑更小的批次。如果你的零售价能撑得住，这种方式可行。
 
-**Math example**:
-- Standard MOQ (200 units): $45/unit, retail $200, 78% margin
-- Small MOQ (30 units): $62/unit, retail $300, 79% margin
+**算账示例**：
+- 标准起订量（200 件）：45 美元/件，零售 200 美元，毛利 78%
+- 小起订量（30 件）：62 美元/件，零售 300 美元，毛利 79%
 
-The smaller batch still has comparable margin if you can position the product at a higher price point.
+只要把产品定位到更高的价位，小批次的毛利率同样可观。
 
-## The real cost of small MOQ cashmere
+## 小起订量羊绒的真实成本
 
-Let's compare per-unit costs for a women's cashmere coat:
+对比女款羊绒大衣的单件成本：
 
-| Order size | Per-unit cost | Total order |
+| 订单数量 | 单件成本 | 订单总额 |
 |---|---|---|
-| 30 units | $85-120 | $2,550-3,600 |
-| 50 units | $70-95 | $3,500-4,750 |
-| 100 units | $55-80 | $5,500-8,000 |
-| 200 units | $45-65 | $9,000-13,000 |
-| 500 units | $38-55 | $19,000-27,500 |
+| 30 件 | 85-120 美元 | 2,550-3,600 美元 |
+| 50 件 | 70-95 美元 | 3,500-4,750 美元 |
+| 100 件 | 55-80 美元 | 5,500-8,000 美元 |
+| 200 件 | 45-65 美元 | 9,000-13,000 美元 |
+| 500 件 | 38-55 美元 | 19,000-27,500 美元 |
 
-Small MOQ isn't cheap per unit, but the **total capital outlay** is much smaller. A boutique brand with $5K capital can do 50-80 units; with $20K they could do 300+.
+小起订量单件不便宜，但 **总资金占用** 小得多。资本 5000 美元的精品品牌可以做 50-80 件；20000 美元则可以做 300+ 件。
 
-## 4 things that work with small MOQ (and 3 that don't)
+## 小起订量适用的 4 件事（和不适用的 3 件）
 
-### Works:
-1. **Stock yarn in stock colors** — factory's existing inventory
-2. **Standard silhouettes** (crewneck, V-neck, simple cardigan) — no custom patterns
-3. **Pre-made samples** with your labels — fastest, lowest cost
-4. **3-4 styles per season** — not 10-15 styles; focus on what sells
+### 适用：
+1. **库存纱的库存色** —— 工厂现有库存
+2. **标准廓形**（圆领、V 领、简单开衫）—— 不做定制打版
+3. **成衣样衣贴你的标签** —— 最快、成本最低
+4. **每季 3-4 个款** —— 不要 10-15 个，专注卖得动的
 
-### Doesn't work:
-1. **Custom patterns for 30 units** — pattern setup is $300-500, hard to amortize
-2. **Custom yarn counts** (anything outside 2/26 to 2/60 standard) — yarn mill MOQ is 500kg+
-3. **Bespoke dye colors** — dyeing minimum is 5-10kg per color, hard to use up in 30 units
+### 不适用：
+1. **30 件的定制打版** —— 打版费 300-500 美元，难以摊销
+2. **定制纱支**（2/26 至 2/60 标准以外）—— 纺纱厂的起订量是 500 kg+
+3. **专色染色** —— 染色最低 5-10 kg/色，30 件用不完
 
-## How to make small MOQ work in practice
+## 小起订量实操怎么做
 
-A practical path for a boutique brand starting with 30-50 units:
+30-50 件起步的精品品牌的实操路径：
 
-1. **Start with stock yarn + 2 stock colors** (cream, charcoal). Add a 3rd color (camel) in season 2.
-2. **Choose 2-3 stock silhouettes** from the factory's design library. Customize only labels and tags.
-3. **Negotiate** a per-unit cost of $60-80 with a 30-unit MOQ, and commit to a 12-month production schedule.
-4. **Sample 5-7 pieces** before bulk production. Confirm quality and fit on real bodies.
-5. **Plan inventory** carefully — small batch cashmere means sell-through matters.
+1. **从库存纱 + 2 个库存色（米白、深灰）开始**。第二季加入第三色（驼色）。
+2. **从工厂设计库挑 2-3 个标准廓形**。只定制标签和吊牌。
+3. **谈判 30 件起订量、60-80 美元/件的单价**，并承诺 12 个月的生产计划。
+4. **量产前打 5-7 件样衣**。在真人身上确认品质和版型。
+5. **谨慎规划库存** —— 小批量羊绒卖得掉才是关键。
 
-The key mindset: **small MOQ is a financial decision, not a quality compromise**. With the right factory, a 30-unit run produces the same quality as a 200-unit run.
+核心理念：**小起订量是财务决策，不是品质妥协**。找对工厂，30 件批次和 200 件批次品质一样。
 
-## Working with DONGXIAO on small MOQ
+## 与 DONGXIAO 合作小起订量
 
-We accept small MOQ orders (30-50 units per style) for private label cashmere, with these terms:
+我们接受贴牌羊绒的小起订量订单（每款 30-50 件），条件如下：
 
-- **MOQ**: 30 units per style, 50 units per color
-- **Lead time**: 35-45 days (vs 30-35 for 200+ unit orders)
-- **Per-unit cost**: $65-95 depending on style and complexity
-- **Sampling**: $200-400 (refundable against bulk order)
-- **Payment**: 50% deposit, 50% before shipment
+- **起订量**：每款 30 件，每色 50 件
+- **交期**：35-45 天（200+ 件订单为 30-35 天）
+- **单价**：65-95 美元，依款式和复杂度而定
+- **打样**：200-400 美元（量产订单可冲抵）
+- **付款**：50% 定金，出货前 50%
 
-For boutique brands growing to 200+ units per season, we offer **graduated pricing** — your first 30-unit run is at small-batch rates, but we lock in your pricing for future larger orders.
+对于每季做到 200+ 件的精品品牌，我们提供 **阶梯报价** —— 第一个 30 件批次按小批量计费，但锁定您未来大单的报价。
 
 ---
 
-*Have a small-batch cashmere project? [Contact our boutique team](https://www.erdosdx.com/en/contact) with your design brief and order quantity. We'll provide a feasibility assessment and quote within 24 hours.*
+*有小批量羊绒项目？[联系我们的精品团队](https://www.erdosdx.com/cn/contact)，提供您的设计简报和订单数量。我们将在 24 小时内提供可行性评估和报价。*

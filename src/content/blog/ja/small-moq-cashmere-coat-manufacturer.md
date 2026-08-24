@@ -1,117 +1,116 @@
 ---
-title: "Small MOQ Cashmere Coat Manufacturing: How Boutique Brands Source from China"
-excerpt: "Most cashmere factories require 200-500 unit minimums. For boutique brands wanting 30-50 unit runs, here's how to make small-batch cashmere production work."
+title: "小ロット カシミア コート製造：ブティックブランドが中国から調達する方法"
+excerpt: "多くのカシミア工場は 200〜500 個の最低発注量を求めています。シーズン 30〜50 個のコートを扱うブティックブランド向けに、小ロット生産を実現する方法を解説します。"
 publishDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
-tags: ["small MOQ","boutique cashmere","coat manufacturing","low-volume production"]
+tags: ["small MOQ", "boutique cashmere", "coat manufacturing", "low-volume production"]
 geoRegion: "GLOBAL"
-targetKeywords: ["small MOQ cashmere coat manufacturer","small batch cashmere production","boutique cashmere brand sourcing","cashmere coat manufacturer"]
+targetKeywords: ["小ロット カシミア コート メーカー","小ロット カシミア 生産","ブティック カシミア ブランド 調達","カシミア コート メーカー"]
 relatedProducts: ["garment_oem"]
 aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "ja"
 ---
-# Small MOQ Cashmere Coat Manufacturing: How Boutique Brands Source from China
 
-# Small MOQ Cashmere Coat Manufacturing: How Boutique Brands Source
+# 小ロット カシミア コート製造：ブティックブランドはどう調達するか
 
-Most Chinese cashmere factories quote **200-500 unit minimums**. Boutique brands selling 30-50 coats per season often assume small MOQ is impossible.
+中国のカシミア工場の多くは **200〜500 個の最低発注量** を提示します。シーズン 30〜50 個のコートを扱うブティックブランドは、小ロット MOQ は不可能と思い込みがちです。
 
-It's not. But it requires a different approach.
+不可能です。しかし別の手法が必要です。
 
-## Why factories set high MOQs
+## なぜ工場は MOQ を高く設定するか
 
-A typical cashmere coat production batch has fixed costs:
-- **Pattern setup**: $300-500 per style
-- **Yarn dyeing**: $800-1,200 minimum per color (even for 1 unit)
-- **Sample knitting**: $200-400
-- **Finishing setup**: $200-400
+典型的なカシミア コート生産バッチには固定費がかかります：
+- **パターン作成**：スタイルあたり 300〜500 USD
+- **糸染色**：色あたり 800〜1,200 USD 最低（1 個でも）
+- **サンプル編み**：200〜400 USD
+- **仕上げセットアップ**：200〜400 USD
 
-A factory's pricing assumes these fixed costs are spread over 200+ units. For 30 units, the per-unit cost jumps 30-50% to cover fixed costs.
+工場の価格は、これらの固定費を 200 個以上に分散することを前提としています。30 個の場合、固定費を回収するために単価が 30〜50% 上昇します。
 
-Most factories prefer to pass on small orders. Not because they can't do them — but because the margin isn't worth the management overhead.
+工場の多くは小口注文を敬遠します。できないからではなく、利益が管理の手間に見合わないからです。
 
-## 4 strategies for small MOQ cashmere production
+## カシミア小ロット MOQ の 4 つの戦略
 
-### Strategy 1: Stock yarn + stock colors (lowest MOQ)
+### 戦略 1：在庫糸 + 在庫カラー（最低 MOQ）
 
-If you can work with **stock yarn counts in stock colors**, MOQ drops to 30-50 units per style. The factory uses yarn it already has on hand, so the fixed yarn-dyeing cost disappears.
+**在庫番手の糸と在庫カラー** で対応可能なら、MOQ はスタイルあたり 30〜50 個まで下がります。工場は既に手持の糸を使うため、染色固定費が消えます。
 
-**Trade-off**: Limited color choice (typically 3-5 stock colors per season). You have to design around the factory's stock.
+**トレードオフ**：色数が限られる（シーズンあたり通常 3〜5 色）。工場の在庫に合わせて設計する必要があります。
 
-### Strategy 2: Group orders with other small brands
+### 戦略 2：他の中小ブランドとオーダーをまとめる
 
-Some cashmere factories offer **shared production runs** where multiple small brands combine orders to hit a factory's MOQ. You get the pricing of a 200-unit run while only committing 50-100 units yourself.
+一部のカシミア工場は、複数の中小ブランドが発注をまとめて工場 MOQ に達する **共同生産ラン** を提供しています。200 個ランの単価を獲得しつつ、自社は 50〜100 個だけコミットできます。
 
-**How to find these**: Ask your factory directly. Some have standing programs; others will broker it if you ask.
+**見つけ方**：工場に直接お問い合わせください。常設プログラムを持つ工場もあれば、相談すればブローカーする工場もあります。
 
-### Strategy 3: Use the factory's own designs
+### 戦略 3：工場の自社デザインを使う
 
-If you're willing to white-label **the factory's stock designs** (with your brand label), MOQ drops to as low as 20-30 units. The factory has the patterns, samples, and yarn ready to go.
+工場の**在庫デザインを自社ブランド化**（自社ラベル貼付）する意思があれば、MOQ は 20〜30 個まで下がります。工場はパターン、サンプル、糸を既に準備済みです。
 
-**Trade-off**: Limited differentiation. Anyone else white-labeling from the same factory has the same product.
+**トレードオフ**：差別化が限定的。同じ工場からホワイトラベルする他社は同じ製品になります。
 
-### Strategy 4: Premium pricing strategy
+### 戦略 4：プレミアム価格戦略
 
-If you can't meet MOQ, the alternative is **premium pricing** — pay 30-50% more per unit, and the factory will run smaller batches. This works if your retail price supports it.
+MOQ に達できない場合の代替は **プレミアム価格設定** — 単価を 30〜50% 高く支払い、工場は小ロットを生産します。小売価格が支えられるなら有効です。
 
-**Math example**:
-- Standard MOQ (200 units): $45/unit, retail $200, 78% margin
-- Small MOQ (30 units): $62/unit, retail $300, 79% margin
+**試算例**：
+- 標準 MOQ（200 個）：45 USD/個、小売 200 USD、粗利 78%
+- 小ロット MOQ（30 個）：62 USD/個、小売 300 USD、粗利 79%
 
-The smaller batch still has comparable margin if you can position the product at a higher price point.
+製品をより高い価格レンジで位置づけられれば、小ロットでも粗利率は見合います。
 
-## The real cost of small MOQ cashmere
+## カシミア小ロット MOQ の本当のコスト
 
-Let's compare per-unit costs for a women's cashmere coat:
+レディース カシミア コートの単価比較：
 
-| Order size | Per-unit cost | Total order |
+| 発注数量 | 単価 | 発注総額 |
 |---|---|---|
-| 30 units | $85-120 | $2,550-3,600 |
-| 50 units | $70-95 | $3,500-4,750 |
-| 100 units | $55-80 | $5,500-8,000 |
-| 200 units | $45-65 | $9,000-13,000 |
-| 500 units | $38-55 | $19,000-27,500 |
+| 30 個 | 85〜120 USD | 2,550〜3,600 USD |
+| 50 個 | 70〜95 USD | 3,500〜4,750 USD |
+| 100 個 | 55〜80 USD | 5,500〜8,000 USD |
+| 200 個 | 45〜65 USD | 9,000〜13,000 USD |
+| 500 個 | 38〜55 USD | 19,000〜27,500 USD |
 
-Small MOQ isn't cheap per unit, but the **total capital outlay** is much smaller. A boutique brand with $5K capital can do 50-80 units; with $20K they could do 300+.
+小ロット MOQ は単価では安くありませんが、**総資本支出** ははるかに少なくなります。資本金 5,000 USD のブティックなら 50〜80 個、20,000 USD なら 300 個以上が可能です。
 
-## 4 things that work with small MOQ (and 3 that don't)
+## 小ロット MOQ で効く 4 つと効かない 3 つ
 
-### Works:
-1. **Stock yarn in stock colors** — factory's existing inventory
-2. **Standard silhouettes** (crewneck, V-neck, simple cardigan) — no custom patterns
-3. **Pre-made samples** with your labels — fastest, lowest cost
-4. **3-4 styles per season** — not 10-15 styles; focus on what sells
+### 効く：
+1. **在庫糸の在庫色** — 工場既存在庫
+2. **標準シルエット**（クルーネック、V ネック、シンプルなカーディガン）— カスタムパターン不要
+3. **既存サンプルに自社ラベル** — 最速・最安
+4. **シーズンあたり 3〜4 型** — 10〜15 型ではなく、売れるものに集中
 
-### Doesn't work:
-1. **Custom patterns for 30 units** — pattern setup is $300-500, hard to amortize
-2. **Custom yarn counts** (anything outside 2/26 to 2/60 standard) — yarn mill MOQ is 500kg+
-3. **Bespoke dye colors** — dyeing minimum is 5-10kg per color, hard to use up in 30 units
+### 効かない：
+1. **30 個向けのカスタムパターン** — パターン作成費 300〜500 USD、回収困難
+2. **カスタム番手の糸**（2/26〜2/60 標準外）— 紡績工場の MOQ は 500 kg+
+3. **カスタム染料色** — 染色最低数量 5〜10 kg/色、30 個では使い切れない
 
-## How to make small MOQ work in practice
+## 小ロット MOQ を実運用する方法
 
-A practical path for a boutique brand starting with 30-50 units:
+30〜50 個から始めるブティック向け実践パス：
 
-1. **Start with stock yarn + 2 stock colors** (cream, charcoal). Add a 3rd color (camel) in season 2.
-2. **Choose 2-3 stock silhouettes** from the factory's design library. Customize only labels and tags.
-3. **Negotiate** a per-unit cost of $60-80 with a 30-unit MOQ, and commit to a 12-month production schedule.
-4. **Sample 5-7 pieces** before bulk production. Confirm quality and fit on real bodies.
-5. **Plan inventory** carefully — small batch cashmere means sell-through matters.
+1. **在庫糸 + 在庫 2 色（クリーム、チャコール）から開始**。シーズン 2 で 3 色目（キャメル）追加。
+2. **工場デザインライブラリから 2〜3 の標準シルエット** を選択。カスタマイズはラベルとタグのみ。
+3. 30 個 MOQ で **単価 60〜80 USD を交渉し、12 ヶ月の生産スケジュール** をコミット。
+4. **量産前に 5〜7 着をサンプル**。実際の身体で品質とフィットを確認。
+5. **在庫計画は慎重に** — 小ロット カシミアは消化率が命。
 
-The key mindset: **small MOQ is a financial decision, not a quality compromise**. With the right factory, a 30-unit run produces the same quality as a 200-unit run.
+核となる心構え：**小ロット MOQ は財務判断であり、品質妥協ではない**。適切な工場を選べば、30 個ランは 200 個ランと同品質です。
 
-## Working with DONGXIAO on small MOQ
+## DONGXIAO との小ロット MOQ 連携
 
-We accept small MOQ orders (30-50 units per style) for private label cashmere, with these terms:
+当社はプライベートブランド カシミアの小ロット発注（スタイルあたり 30〜50 個）を受け付けており、以下の条件です：
 
-- **MOQ**: 30 units per style, 50 units per color
-- **Lead time**: 35-45 days (vs 30-35 for 200+ unit orders)
-- **Per-unit cost**: $65-95 depending on style and complexity
-- **Sampling**: $200-400 (refundable against bulk order)
-- **Payment**: 50% deposit, 50% before shipment
+- **MOQ**：スタイルあたり 30 個、色あたり 50 個
+- **リードタイム**：35〜45 日（200 個以上の発注は 30〜35 日）
+- **単価**：スタイルと複雑性により 65〜95 USD
+- **サンプル**：200〜400 USD（量産注文で相殺可）
+- **決済**：50% 前金、出荷前 50%
 
-For boutique brands growing to 200+ units per season, we offer **graduated pricing** — your first 30-unit run is at small-batch rates, but we lock in your pricing for future larger orders.
+シーズン 200 個超に成長するブティック向けに**段階別価格**を提供 — 最初の 30 個ランは小ロット料金ですが、将来の大口発注の価格をロックします。
 
 ---
 
-*Have a small-batch cashmere project? [Contact our boutique team](https://www.erdosdx.com/en/contact) with your design brief and order quantity. We'll provide a feasibility assessment and quote within 24 hours.*
+*小ロット カシミア案件をお持ちですか？[ブティックチームまでご連絡ください](https://www.erdosdx.com/ja/contact)。デザインブリーフと発注数量をお知らせいただければ、24 時間以内に実現可能性評価と見積もりをご提示します。*
