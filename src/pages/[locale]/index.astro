@@ -6,6 +6,7 @@
  *  - 真实场景图（Unsplash）+ 自绘 SVG 装饰
  *  - 不对称布局 / 留白有节奏
  *  - 6 国翻译文案
+ * 视觉增强：保留既有模块、数据、链接和脚本，仅以纤维轨迹、暖灰层次与局部材质图片补足“雪线静奢”体验。
  */
 export const prerender = true;
 import BaseLayout from '@/layouts/BaseLayout.astro';
@@ -274,6 +275,12 @@ const IMG = {
   scarfDetail: '/images/home/scarf-detail.webp',
   // 工艺证据 - 折叠围巾 (用户提供的真实摄影图)
   scarvesFolded: '/images/home/scarves-folded.webp',
+  // 2026-08 增量视觉补充：仅用于原有首页的轮播、产品矩阵和 CTA 局部填充
+  uiHero: '/images/ui-2026/hero-highland.webp',
+  uiKnit: '/images/ui-2026/knit-editorial.webp',
+  uiMaterial: '/images/ui-2026/material-stilllife.webp',
+  uiCraft: '/images/ui-2026/craft-detail.webp',
+  uiMark: '/images/ui-2026/fiber-mark.png',
 };
 ---
 
@@ -282,13 +289,14 @@ const IMG = {
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/`} />
 
   <!-- ============ HERO (3 张明亮图轮播 + 文字层) ============ -->
-  <section class="relative bg-brand-ink text-white overflow-hidden">
+  <section class="home-enhanced-hero relative bg-brand-ink text-white overflow-hidden">
     <!-- 轮播图: 3 张明亮图自动循环 (CSS transition + 底部圆点 + JS) -->
     <div class="absolute inset-0" data-hero-slider>
       {[
         { src: IMG.scarvesFolded, alt: 'Cashmere wrap — premium B2B apparel piece styled in urban setting' },
         { src: IMG.craftHand,    alt: 'Handwoven cashmere detail — craftsmanship' },
         { src: '/images/home/ordos-pasture.webp', alt: 'Inner Mongolian pasture with goats and livestock — Ordos origin' },
+        { src: IMG.uiHero, alt: 'Premium cashmere coat on Ordos highland — material-led B2B collection inspiration' },
       ].map((slide, i) => (
         <img
           src={slide.src}
@@ -314,6 +322,7 @@ const IMG = {
       </defs>
       <rect width="100%" height="100%" fill="url(#fibers)"/>
     </svg>
+    <div class="home-hero-trajectory" aria-hidden="true"><span></span><span></span><span></span></div>
 
     <div class="relative container-narrow min-h-[88vh] flex items-center py-24">
       <div class="max-w-3xl">
@@ -325,7 +334,7 @@ const IMG = {
           {c.subtitle}
         </p>
         <div class="flex flex-wrap items-center gap-6">
-          <a href={`/${locale}/contact/`} class="group inline-flex items-center gap-3 px-10 py-5 bg-white text-brand-ink text-sm font-medium uppercase tracking-[0.22em] hover:bg-brand-gold hover:text-white transition-colors duration-300">
+          <a href={`/${locale}/contact/`} class="home-thread-cta group inline-flex items-center gap-3 px-10 py-5 bg-white text-brand-ink text-sm font-medium uppercase tracking-[0.22em] hover:bg-brand-gold hover:text-white transition-colors duration-300">
             {c.cta}
             <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -340,7 +349,7 @@ const IMG = {
 
     <!-- 轮播指示器: 3 个圆点 (居中底部, 自动循环 7s/张) -->
     <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-3 z-10" role="tablist" aria-label="Hero slides">
-      {[0, 1, 2].map((i) => (
+      {[0, 1, 2, 3].map((i) => (
         <button
           type="button"
           class={`w-2 h-2 rounded-full hero-dot ${
@@ -406,7 +415,7 @@ const IMG = {
   </script>
 
   <!-- ============ METRICS BAR（细线分隔） ============ -->
-  <section class="border-y border-border bg-[#FBF8F2] py-14">
+  <section class="home-proof-band border-y border-border bg-[#FBF8F2] py-14">
     <div class="container-narrow">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 md:divide-x md:divide-border">
         {c.metrics.map((m, i) => {
@@ -446,13 +455,16 @@ const IMG = {
 
 
   <!-- ============ 产地故事 ============ -->
-  <section class="py-28 md:py-36 bg-background overflow-hidden">
+  <section class="home-origin-section py-28 md:py-36 bg-background overflow-hidden">
     <div class="container-narrow">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <!-- 左侧大图（占 7/12） -->
         <div class="lg:col-span-7 relative reveal-left">
           <div class="aspect-[3/2] overflow-hidden hover-zoom">
             <img src={IMG.ordosLandscape} alt="Albus goat grazing on Ordos pasture at sunrise — Inner Mongolia" class="w-full h-full object-cover" decoding="async" loading="lazy" />
+          </div>
+          <div class="home-origin-detail hidden lg:block">
+            <img src={IMG.uiKnit} alt="" aria-hidden="true" decoding="async" loading="lazy" />
           </div>
           <!-- 浮动小图（地理坐标装饰） -->
           <div class="hidden md:block absolute -bottom-12 -right-12 w-48 aspect-square overflow-hidden border-8 border-background shadow-2xl bg-brand-cream flex items-center justify-center">
@@ -513,7 +525,7 @@ const IMG = {
   </section>
 
   <!-- ============ Product Range（不对称 Bento 布局） ============ -->
-  <section class="py-28 md:py-36 bg-brand-cream/50">
+  <section class="home-product-section py-28 md:py-36 bg-brand-cream/50">
     <div class="container-narrow">
       <!-- 段头 -->
       <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-16 gap-6">
@@ -546,6 +558,7 @@ const IMG = {
       <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
         <!-- 原料（大图，左 7 列） -->
         <a href={`/${locale}/raw-material/`} class="group md:col-span-7 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden bg-gradient-to-br from-brand-ink via-brand-chocolate to-brand-camel hover-lift reveal" data-reveal-delay="1">
+          <img src={IMG.uiMaterial} alt="" aria-hidden="true" class="home-material-fill absolute inset-0 w-full h-full object-cover" decoding="async" loading="lazy" />
           <!-- 抽象纤维纹理 -->
           <svg class="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
             <defs>
@@ -803,10 +816,11 @@ const IMG = {
   </section>
 
   <!-- ============ Final CTA（深色版 + 历史工厂背景） ============ -->
-  <section class="py-28 md:py-36 bg-[#F5F0E7] relative overflow-hidden">
+  <section class="home-final-cta py-28 md:py-36 bg-[#F5F0E7] relative overflow-hidden">
     <!-- 背景图: 历史针织厂外景, 黑白, 传承感 (knittingMill 是 DPLA 公共域图) -->
     <div class="absolute inset-0">
       <img src={IMG.knittingMill} alt="" aria-hidden="true" class="w-full h-full object-cover opacity-10 grayscale" decoding="async" loading="lazy" />
+      <img src={IMG.uiCraft} alt="" aria-hidden="true" class="home-craft-fill absolute inset-y-0 right-0 h-full w-[46%] object-cover" decoding="async" loading="lazy" />
       <div class="absolute inset-0 bg-[#F5F0E7]/85"></div>
     </div>
     <!-- 装饰纤维纹理 -->
@@ -823,6 +837,7 @@ const IMG = {
       </svg>
     </div>
     <div class="container-narrow relative z-10 text-center max-w-3xl mx-auto reveal">
+      <img src={IMG.uiMark} alt="" aria-hidden="true" class="home-fiber-mark" decoding="async" loading="lazy" />
       <div class="inline-block text-xs tracking-[0.3em] uppercase text-brand-camel mb-6">
         {t6('下一步', 'Next Step', 'Nächster Schritt', 'Étape suivante', '次のステップ', '다음 단계')}
       </div>
@@ -911,3 +926,21 @@ const IMG = {
   <FloatingChatButtons slot="floating" locale={locale} />
   <CookieConsent slot="cookie-consent" locale={locale} />
 </BaseLayout>
+
+<style>
+  /* 雪线静奢增量样式：仅增强原有首页的图片层次、纤维轨迹和关键 CTA，不改变其信息结构。 */
+  .home-enhanced-hero { isolation:isolate; }
+  .home-enhanced-hero::after { content:""; position:absolute; inset:0; z-index:1; pointer-events:none; background:linear-gradient(110deg, rgba(28,25,21,.22), transparent 52%, rgba(28,25,21,.08)); }
+  .home-enhanced-hero > :not(.home-hero-trajectory) { z-index:2; }
+  .home-hero-trajectory { position:absolute; z-index:2; right:10%; top:26%; width:330px; height:210px; color:rgba(255,255,255,.34); pointer-events:none; transform:rotate(-14deg); }
+  .home-hero-trajectory span { position:absolute; display:block; border-top:1px solid currentColor; border-radius:50%; }
+  .home-hero-trajectory span:nth-child(1) { width:330px; top:18px; }.home-hero-trajectory span:nth-child(2) { width:258px; top:84px; left:48px; transform:rotate(9deg); }.home-hero-trajectory span:nth-child(3) { width:198px; top:151px; left:88px; transform:rotate(-7deg); }
+  .home-thread-cta { border-left:4px solid #B8956A; box-shadow:inset 0 0 0 1px rgba(184,149,106,.28); }.home-thread-cta:hover { box-shadow:inset 0 0 0 1px rgba(255,255,255,.48), 0 12px 28px rgba(0,0,0,.16); }
+  .home-proof-band { position:relative; background:linear-gradient(90deg,#FBF8F2,#F4EFE6 52%,#FBF8F2); }.home-proof-band::before { content:""; position:absolute; top:-1px; left:8%; width:172px; height:72px; border-top:1px solid rgba(184,149,106,.42); border-radius:50%; transform:rotate(-11deg); }
+  .home-origin-section { position:relative; }.home-origin-section::after { content:""; position:absolute; right:-45px; bottom:10%; width:248px; height:105px; border-top:1px solid rgba(184,149,106,.38); border-radius:50%; transform:rotate(-20deg); pointer-events:none; }.home-origin-detail { position:absolute; z-index:3; right:-34px; top:32px; width:154px; height:194px; overflow:hidden; border:8px solid #fff; box-shadow:0 18px 42px rgba(56,42,30,.15); }.home-origin-detail img { width:100%; height:100%; object-fit:cover; object-position:center; filter:saturate(.78) contrast(.96); }
+  .home-product-section { position:relative; }.home-product-section::before { content:""; position:absolute; left:0; top:13%; width:180px; height:210px; opacity:.25; background:repeating-radial-gradient(ellipse at 0 50%, transparent 0 28px, rgba(184,149,106,.58) 29px 30px, transparent 31px 48px); pointer-events:none; }.home-material-fill { opacity:.47; filter:saturate(.62) contrast(.93); transition:transform .9s cubic-bezier(.23,1,.32,1),opacity .45s ease; }.group:hover .home-material-fill { transform:scale(1.055); opacity:.62; }
+  .home-final-cta::after { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(90deg, rgba(245,240,231,.98) 0%, rgba(245,240,231,.90) 54%, rgba(245,240,231,.62) 100%); }.home-final-cta > .container-narrow { position:relative; z-index:2; }.home-craft-fill { opacity:.16; filter:grayscale(1) sepia(.24) contrast(.9); }.home-fiber-mark { width:44px; height:44px; object-fit:contain; margin:0 auto 22px; opacity:.72; mix-blend-mode:multiply; }
+  @media (max-width: 1024px) { .home-hero-trajectory { right:-8%; transform:scale(.8) rotate(-14deg); }.home-origin-section::after { display:none; }.home-product-section::before { width:100px; }.home-craft-fill { width:58%; opacity:.1; } }
+  @media (max-width: 640px) { .home-hero-trajectory { right:-42%; top:21%; transform:scale(.64) rotate(-14deg); }.home-proof-band::before { left:-30px; width:130px; }.home-product-section::before { display:none; }.home-craft-fill { width:78%; opacity:.08; }.home-fiber-mark { width:36px; height:36px; margin-bottom:16px; } }
+  @media (prefers-reduced-motion: reduce) { .home-material-fill { transition:none; } }
+</style>
