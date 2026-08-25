@@ -310,27 +310,15 @@ const pageSchema = (() => {
 
         '@context': 'https://schema.org',
 
-        '@type': 'ItemList',
+        '@type': 'CollectionPage',
 
-        name: 'Cashmere Products Catalog',
+        name: finalTitle,
 
         description: finalDescription,
 
-        numberOfItems: 591,
+        url: canonical,
 
-        itemListElement: [
-
-          { '@type': 'ListItem', position: 1, name: 'Cashmere Hats & Beanies' },
-
-          { '@type': 'ListItem', position: 2, name: 'Cashmere Scarves & Wraps' },
-
-          { '@type': 'ListItem', position: 3, name: 'Cashmere Sweaters' },
-
-          { '@type': 'ListItem', position: 4, name: 'Cashmere Accessories' },
-
-          { '@type': 'ListItem', position: 5, name: 'Cashmere Yarn' },
-
-        ],
+        inLanguage: LOCALE_HREFLANG[locale],
 
       };
 

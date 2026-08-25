@@ -1065,11 +1065,10 @@ const productSchema = {
   ].filter((p) => p.value),
 
   // B2B price: most products carry a range like "9.2-16.5" meaning unit
-  // price varies by order size / customization. Use AggregateOffer when
-  // the price field contains a range so Google can render the price
-  // range in rich results; fall back to plain Offer for single-price
-  // items. AggregateOffer signals "wholesale pricing tiers" which
-  // matches B2B intent.
+  // price varies by order size / customization. Use AggregateOffer for
+  // that visible price range and a plain Offer for a single visible price.
+  // Do not declare inventory status or a fixed price-expiry date: this
+  // catalog supports RFQs and does not render those facts on every page.
   ...(function () {
     const raw = (product.price || '').toString();
     const rangeMatch = raw.match(/(\d+(?:\.\d+)?)\s*[-–—]\s*(\d+(?:\.\d+)?)/);
@@ -1083,10 +1082,7 @@ const productSchema = {
           lowPrice: low,
           highPrice: high,
           offerCount: 1,
-          priceValidUntil: '2027-12-31',
-          availability: 'https://schema.org/InStock',
           itemCondition: 'https://schema.org/NewCondition',
-          businessFunction: 'https://schema.org/Sell',
           seller: { '@type': 'Organization', name: SITE_INFO.legalName },
           eligibleQuantity: {
             '@type': 'QuantitativeValue',
@@ -1101,10 +1097,7 @@ const productSchema = {
         '@type': 'Offer',
         priceCurrency: product.currency,
         price: parseFloat(raw) || raw,
-        priceValidUntil: '2027-12-31',
-        availability: 'https://schema.org/InStock',
         itemCondition: 'https://schema.org/NewCondition',
-        businessFunction: 'https://schema.org/Sell',
         seller: { '@type': 'Organization', name: SITE_INFO.legalName },
         eligibleQuantity: {
           '@type': 'QuantitativeValue',
