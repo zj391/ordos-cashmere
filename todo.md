@@ -221,3 +221,12 @@
 - [x] 实施博客正文、Article Schema、作者/日期说明和内容集群锚文本优化，保持文章 slug、多语言路由和 sitemap 不变。
 - [x] 验证博客 HTML、H1、canonical、hreflang、Article JSON-LD、内链、robots、sitemap、Astro/Vercel 构建与五个 API 入口。
 - [x] 提交并同步经过验证的博客可信度 SEO 优化版本至 `master`。
+
+# FAQ、资料入口与采购流程辅助页面可信度优化
+
+- [x] 盘点可索引 FAQ、下载/资料入口、比较工具、采购流程与服务说明页面的 H1、canonical、robots、Schema 和站内链接。
+- [x] 审计辅助页面中固定价格、MOQ、交期、样品、认证、测试、产能、地域、物流、付款或服务范围断言及其结构化数据。
+- [x] 制定保留采购实用性、改用项目级书面确认或 noindex 的最小范围修复方案，不删除真实 URL、工具、询盘和多语言能力。
+- [x] 实施辅助页面正文、FAQ/Schema、内链和索引控制优化，保持现有产品数据与路由行为不变。
+- [x] 验证辅助页面 HTML、H1、canonical、hreflang、robots、Schema、sitemap、Astro/Vercel 构建与五个 API 入口。
+- [x] 提交并同步经过验证的辅助页面可信度 SEO 优化版本至 `master`。
