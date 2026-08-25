@@ -121,12 +121,12 @@ const wholesaleFaqTitle: Record<Locale, string> = {
   cn: '批发采购常见问题',
 };
 const quickInquiryFeedback: Record<Locale, { sending: string; success: string; error: string }> = {
-  en: { sending: 'Sending inquiry…', success: 'Inquiry received. Our sales team will reply within 24 hours.', error: 'We could not send this inquiry. Please try again or use the contact page.' },
-  de: { sending: 'Anfrage wird gesendet…', success: 'Anfrage erhalten. Unser Vertrieb antwortet innerhalb von 24 Stunden.', error: 'Die Anfrage konnte nicht gesendet werden. Bitte erneut versuchen oder die Kontaktseite nutzen.' },
-  fr: { sending: 'Envoi de la demande…', success: 'Demande reçue. Notre équipe commerciale répondra sous 24h.', error: 'La demande n’a pas pu être envoyée. Veuillez réessayer ou utiliser la page contact.' },
-  ja: { sending: 'お問い合わせを送信中…', success: 'お問い合わせを受け付けました。24時間以内に営業担当よりご連絡します。', error: '送信できませんでした。もう一度お試しいただくか、お問い合わせページをご利用ください。' },
-  kr: { sending: '문의 전송 중…', success: '문의가 접수되었습니다. 영업팀이 24시간 이내에 회신합니다.', error: '문의를 전송하지 못했습니다. 다시 시도하거나 문의 페이지를 이용해 주세요.' },
-  cn: { sending: '正在提交询盘…', success: '询盘已收到，销售团队将在 24 小时内回复。', error: '询盘未能发送，请重试或使用联系页面。' },
+  en: { sending: 'Sending inquiry…', success: 'Inquiry received. Applicable project details will be confirmed in written correspondence.', error: 'We could not send this inquiry. Please try again or use the contact page.' },
+  de: { sending: 'Anfrage wird gesendet…', success: 'Anfrage erhalten. Die anwendbaren Projektdetails werden schriftlich bestätigt.', error: 'Die Anfrage konnte nicht gesendet werden. Bitte erneut versuchen oder die Kontaktseite nutzen.' },
+  fr: { sending: 'Envoi de la demande…', success: 'Demande reçue. Les détails applicables au projet seront confirmés par écrit.', error: 'La demande n’a pas pu être envoyée. Veuillez réessayer ou utiliser la page contact.' },
+  ja: { sending: 'お問い合わせを送信中…', success: 'お問い合わせを受け付けました。案件に適用する詳細は書面で確認します。', error: '送信できませんでした。もう一度お試しいただくか、お問い合わせページをご利用ください。' },
+  kr: { sending: '문의 전송 중…', success: '문의가 접수되었습니다. 적용되는 프로젝트 세부 사항은 서면으로 확인합니다.', error: '문의를 전송하지 못했습니다. 다시 시도하거나 문의 페이지를 이용해 주세요.' },
+  cn: { sending: '正在提交询盘…', success: '询盘已收到，适用的项目细节将以书面方式确认。', error: '询盘未能发送，请重试或使用联系页面。' },
 };
 const quickInquiryText = quickInquiryFeedback[locale] || quickInquiryFeedback.en;
 
@@ -156,7 +156,7 @@ const sizeChartTitle: Record<Locale, string> = {
   cn: '尺寸表',
 };
 
-const wholesaleFaq = [
+const legacyWholesaleFaq = [
   {
     q: {
       en: 'What is the wholesale MOQ for this product?',
@@ -210,6 +210,20 @@ const wholesaleFaq = [
       kr: '예 - 직조 라벨, 인쇄 라벨, 가죽 패치, 자수 로고, 커스텀 행태, 커스텀 패키징, Pantone 컬러 매칭. 커스텀 로고 MOQ: 100-200개. 로고 개발은 리드타임 5-10일 추가. 무료 로고 디자인 목업 24시간 이내.',
       cn: '可以 — 提供织造标签、印刷标签、皮革标、刺绣 logo、定制吊牌、定制包装、Pantone 色匹配。定制 logo 起订量 100-200 件。logo 开发加 5-10 天交期。24 小时内提供免费 logo 设计方案。',
     },
+  },
+];
+const wholesaleFaq = [
+  {
+    q: { en: 'What should be included in an inquiry for this product?', de: 'Was sollte eine Anfrage zu diesem Produkt enthalten?', fr: 'Que doit contenir une demande pour ce produit ?', ja: 'この製品への問い合わせには何を含めるべきですか？', kr: '이 제품 문의에는 어떤 정보가 필요한가요?', cn: '这款产品的询盘应包含哪些信息？' },
+    a: { en: 'Include the product reference, target specification, quantity, destination, sample purpose, inspection approach and documentation needs.', de: 'Nennen Sie Produktreferenz, Zielvorgaben, Menge, Zielort, Musterzweck, Prüfweg und Dokumentenbedarf.', fr: 'Indiquez référence produit, spécifications, quantité, destination, objectif d’échantillon, inspection et documents requis.', ja: '製品参考、目標仕様、数量、仕向地、サンプル用途、検品方法、必要書類を記載してください。', kr: '제품 참고, 목표 사양, 수량, 목적지, 샘플 목적, 검사 방식과 필요 서류를 기재해 주세요.', cn: '请提供产品参考、目标规格、数量、目的地、打样用途、验货方式和文件需求。' },
+  },
+  {
+    q: { en: 'When are project terms confirmed?', de: 'Wann werden die Projektbedingungen bestätigt?', fr: 'Quand les conditions du projet sont-elles confirmées ?', ja: '案件条件はいつ確認されますか？', kr: '프로젝트 조건은 언제 확인되나요?', cn: '项目条件何时确认？' },
+    a: { en: 'MOQ, price, sampling, delivery and documentation requirements are confirmed in written correspondence, a quotation or a sales agreement for the selected product, quantity and destination.', de: 'MOQ, Preis, Muster, Lieferung und Dokumente werden für Produkt, Menge und Zielort schriftlich im Angebot oder Vertrag bestätigt.', fr: 'MOQ, prix, échantillonnage, livraison et documents sont confirmés par écrit selon le produit, la quantité et la destination.', ja: 'MOQ、価格、サンプル、納品、書類要件は、選択した製品、数量、仕向地に対して書面、見積書または売買契約で確認します。', kr: 'MOQ, 가격, 샘플, 납품 및 서류 요건은 선택한 제품, 수량과 목적지에 대해 서면 연락, 견적서 또는 계약서에서 확인됩니다.', cn: '起订量、价格、打样、交付和文件要求应针对具体产品、数量和目的地，通过书面沟通、报价文件或销售协议确认。' },
+  },
+  {
+    q: { en: 'How are color, branding and verification requirements handled?', de: 'Wie werden Farb-, Branding- und Prüfanforderungen behandelt?', fr: 'Comment sont traitées les exigences de couleur, branding et vérification ?', ja: 'カラー、ブランディング、検証要件はどのように扱われますか？', kr: '색상, 브랜딩 및 검증 요건은 어떻게 처리되나요?', cn: '颜色、品牌和核验要求如何处理？' },
+    a: { en: 'State the requested design, color, acceptance and documentation criteria. The applicable scope is discussed and recorded in writing for the project.', de: 'Nennen Sie Design-, Farb-, Abnahme- und Dokumentenkriterien. Der Umfang wird schriftlich abgestimmt.', fr: 'Précisez les critères de design, couleur, acceptation et documents. Le périmètre est confirmé par écrit.', ja: '必要なデザイン、カラー、受入、書類基準を示してください。適用範囲を案件ごとに書面で確認します。', kr: '디자인, 색상, 인수 및 서류 기준을 알려 주세요. 적용 범위는 프로젝트별로 서면 확인합니다.', cn: '请说明设计、颜色、验收和文件标准；适用范围将结合项目以书面方式确认。' },
   },
 ];
 
@@ -276,8 +290,6 @@ function buildSeoAlt(p: typeof product): string {
   if (p.micron) parts.push(p.micron);
   const tags = (p.tags || []).filter((t: string) => /women|men|kids|unisex|ladies|girls|boys|outerwear|winter|spring|summer|fall|autumn/i.test(t));
   if (tags.length > 0) parts.push(tags.slice(0, 2).join(' / '));
-  parts.push('Ordos factory');
-  parts.push('MOQ ' + p.moq + ' pcs');
   return parts.join(', ');
 }
 
@@ -649,24 +661,21 @@ function buildProductBody(p: typeof product): string {
   if (sizes) parts.push(`sizes ${sizes}`);
   const core = parts.join('; ');
   return core
-    ? `${core}. MOQ ${p.moq} pcs, lead ${cleanAttr(p.lead)}.`
-    : `${cleanAttr(p.material)} ${p.name}. MOQ ${p.moq} pcs, lead ${cleanAttr(p.lead)}.`;
+    ? `${core}. Project terms are confirmed in writing.`
+    : `${cleanAttr(p.material)} ${p.name}. Project terms are confirmed in writing.`;
 }
 const productBodyText = buildProductBody(product);
 const scrapedExtra = cleanScraped(product.detailedDescription);
-const productExtraText =
-  scrapedExtra.length > 60 && !productBodyText.includes(scrapedExtra.slice(0, 40))
-    ? scrapedExtra
-    : '';
+const productExtraText = '';
 
 // Per-product unique highlights (SEO differentiation: breaks category-template duplication)
 const HIGHLIGHT_LABELS: Record<string, Record<string, string>> = {
-  en: { title: 'Product Highlights', fiber: 'Fiber', colors: 'Color options', price: 'Unit price', moq: 'MOQ', lead: 'Lead time', style: 'Style' },
-  cn: { title: '产品亮点', fiber: '纤维', colors: '颜色', price: '单价', moq: '起订量', lead: '交期', style: '款式' },
-  de: { title: 'Produkthighlights', fiber: 'Faser', colors: 'Farben', price: 'Stückpreis', moq: 'Mindestbestellmenge', lead: 'Lieferzeit', style: 'Stil' },
-  fr: { title: 'Points forts du produit', fiber: 'Fibre', colors: 'Couleurs', price: 'Prix unitaire', moq: 'Quantité minimale', lead: 'Délai', style: 'Style' },
-  ja: { title: '製品ハイライト', fiber: '繊維', colors: 'カラー', price: '単価', moq: '最小ロット', lead: '納期', style: 'スタイル' },
-  kr: { title: '제품 하이라이트', fiber: '원사', colors: '색상', price: '단가', moq: '최소 주문량', lead: '리드타임', style: '스타일' },
+  en: { title: 'Product Highlights', fiber: 'Fiber', colors: 'Color options', style: 'Style' },
+  cn: { title: '产品亮点', fiber: '纤维', colors: '颜色', style: '款式' },
+  de: { title: 'Produkthighlights', fiber: 'Faser', colors: 'Farben', style: 'Stil' },
+  fr: { title: 'Points forts du produit', fiber: 'Fibre', colors: 'Couleurs', style: 'Style' },
+  ja: { title: '製品ハイライト', fiber: '繊維', colors: 'カラー', style: 'スタイル' },
+  kr: { title: '제품 하이라이트', fiber: '원사', colors: '색상', style: '스타일' },
 };
 const hl = HIGHLIGHT_LABELS[locale] || HIGHLIGHT_LABELS.en;
 const colorCount = Array.isArray(product.colors) ? product.colors.length : 0;
@@ -681,9 +690,6 @@ const styleWords =
 const highlights = [
   { label: hl.fiber, value: [product.material, product.micron].filter(Boolean).join(' · ') },
   { label: hl.colors, value: colorText },
-  { label: hl.price, value: 'USD ' + product.price },
-  { label: hl.moq, value: product.moq + ' pcs' },
-  { label: hl.lead, value: product.lead || '15-25 days' },
   { label: hl.style, value: styleWords || product.name },
 ];
 
@@ -693,48 +699,12 @@ const highlights = [
 // to break duplicate-content pattern across 591 products × 6 locales.
 // Each variant keeps the same trust signals (Ordos/ISO/MOQ/etc.) but
 // differs in word choice so Google doesn't see 591 identical endings.
-const EN_SUFFIXES = [
-  '. OEM/ODM from Ordos, Inner Mongolia, China. DONGXIAO.',
-  '. Trusted by B2B buyers in 50+ countries. ISO 9001 + OEKO-TEX. DONGXIAO®.',
-  '. Direct from 38,000 m² Ordos factory since 1994. Free sample. DONGXIAO.',
-  '. 23-year cashmere manufacturer. Small MOQ accepted. DONGXIAO® B2B.',
-  '. Premium Inner Mongolia cashmere. Sample shipped in 7 days. DONGXIAO.',
-];
-const DE_SUFFIXES = [
-  '. OEM/ODM aus Ordos, Innere Mongolei, China. DONGXIAO.',
-  '. Vertrauen von B2B-Käufern in 50+ Ländern. ISO 9001 + OEKO-TEX. DONGXIAO®.',
-  '. Direkt aus 38.000 m² Ordos-Fabrik seit 1994. Kostenlose Probe. DONGXIAO.',
-  '. 23 Jahre Kaschmir-Hersteller. Kleine MOQ akzeptiert. DONGXIAO® B2B.',
-  '. Premium Innere Mongolei Kaschmir. Probe in 7 Tagen. DONGXIAO.',
-];
-const FR_SUFFIXES = [
-  ". OEM/ODM depuis Ordos, Mongolie Intérieure, Chine. DONGXIAO.",
-  ". Choisi par acheteurs B2B dans 50+ pays. ISO 9001 + OEKO-TEX. DONGXIAO®.",
-  ". Direct de l'usine d'Ordos 38 000 m² depuis 1994. Échantillon gratuit. DONGXIAO.",
-  ". 23 ans fabricant cachemire. Petites MOQ acceptées. DONGXIAO® B2B.",
-  ". Cachemire premium Mongolie Intérieure. Échantillon en 7 jours. DONGXIAO.",
-];
-const JA_SUFFIXES = [
-  '。オルドス（内モンゴル）工場直送。OEM/ODM対応。DONGXIAO®。',
-  '。50カ国以上のB2Bバイヤーに採用。ISO 9001・OEKO-TEX認証。DONGXIAO®。',
-  '。1994年創業、38,000㎡オルドス工場直送。無料サンプル対応。DONGXIAO。',
-  '。23年以上のカシミア製造実績。小ロットMOQ対応。DONGXIAO® B2B。',
-  '。内モンゴル産プレミアムカシミア。サンプル7日発送。DONGXIAO。',
-];
-const KR_SUFFIXES = [
-  '. 오르도스(내몽골) 공장 직송. OEM/ODM. DONGXIAO®.',
-  '. 50개국 이상 B2B 바이어 선택. ISO 9001·OEKO-TEX 인증. DONGXIAO®.',
-  '. 1994년 설립, 38,000 sqm 오르도스 공장 직송. 무료 샘플. DONGXIAO.',
-  '. 23년 이상의 캐시미어 제조. 소량 MOQ 가능. DONGXIAO® B2B.',
-  '. 내몽골 프리미엄 캐시미어. 샘플 7일 발송. DONGXIAO.',
-];
-const CN_SUFFIXES = [
-  '。鄂尔多斯源头工厂直供，OEM/ODM代工。DONGXIAO®。',
-  '。服务全球50+国家B2B买家，ISO 9001+OEKO-TEX认证。东霄羊绒。',
-  '。1994年建厂，38,000平米鄂尔多斯产业园，免费打样。东霄。',
-  '。23年羊绒源头工厂，小起订量支持。东霄羊绒B2B。',
-  '。内蒙古产高端羊绒，样品7天寄出。东霄。',
-];
+const EN_SUFFIXES = ['. Project terms confirmed in writing. DONGXIAO.'];
+const DE_SUFFIXES = ['. Projektbedingungen werden schriftlich bestätigt. DONGXIAO.'];
+const FR_SUFFIXES = ['. Les conditions du projet sont confirmées par écrit. DONGXIAO.'];
+const JA_SUFFIXES = ['。案件条件は書面で確認します。DONGXIAO。'];
+const KR_SUFFIXES = ['. 프로젝트 조건은 서면으로 확인합니다. DONGXIAO.'];
+const CN_SUFFIXES = ['。项目条件以书面方式确认。东霄羊绒。'];
 
 function suffixFor(id: string, list: readonly string[]): string {
   // Simple hash: sum char codes mod list length
@@ -766,11 +736,11 @@ const tdk = {
     const descCore = attrs.length ? ` ${attrs.join(', ')}.` : '';
     const suffix = suffixFor(p.id, EN_SUFFIXES);
     const description = clip(
-      `${shortName}.${descCore} MOQ ${p.moq} pcs, lead ${cleanAttr(p.lead)}${suffix}`,
+      `${shortName}.${descCore}${suffix}`,
       158
     );
     return {
-      title: `${shortName} | ${shortCategory(p.categoryId, locale, SHORT_CAT[p.categoryId] || c)} Wholesale | MOQ ${p.moq}`,
+      title: `${shortName} | ${shortCategory(p.categoryId, locale, SHORT_CAT[p.categoryId] || c)} | DONGXIAO`,
       description,
       keywords: [
         `${p.name}`,
@@ -784,7 +754,6 @@ const tdk = {
         `bulk ${c.toLowerCase()}`,
         `OEM ${c.toLowerCase()}`,
         `ODM ${c.toLowerCase()}`,
-        `MOQ ${p.moq} ${c.toLowerCase()}`,
         `${p.material} ${c.toLowerCase()}`,
         `Ordos cashmere factory`,
         `Inner Mongolia cashmere`,
@@ -798,7 +767,6 @@ const tdk = {
   cn: (p, _c) => {
     const shortName = p.name;
     const categoryName = cnCategoryNames[p.categoryId] || '羊绒制品';
-    const leadDays = cleanAttr(p.lead).replace(/\s*days?\b/i, '天').replace(/\s+/g, '');
     const colors = listColors(p, locale);
     const sizes = listSizes(p, locale);
     const season = pickSeason(p, locale);
@@ -812,11 +780,11 @@ const tdk = {
       sizes ? `尺码${sizes}` : '',
     ].filter(Boolean);
     const description = clip(
-      `${shortName}。${attrs.join('，')}。MOQ ${p.moq}件，交期${leadDays}${suffixFor(p.id, CN_SUFFIXES)}`,
+      `${shortName}。${attrs.join('，')}${suffixFor(p.id, CN_SUFFIXES)}`,
       150
     );
     return {
-      title: `${shortName} | ${categoryName}批发 | MOQ ${p.moq}`,
+      title: `${shortName} | ${categoryName} | 东霄羊绒`,
       description,
       keywords: [p.name, `${categoryName}批发`, `${p.material}${categoryName}`, `羊绒代工 ${p.id}`, `OEM ${categoryName}`, '羊绒厂家', '鄂尔多斯羊绒'],
       buyCta: '立即询盘',
@@ -838,11 +806,11 @@ const tdk = {
       sizes ? `Größen ${sizes}` : '',
     ].filter(Boolean);
     const description = clip(
-      `${shortName}. ${attrs.join(', ')}. Direkt ab Ordos-Fabrik (China). MOQ ${p.moq} Stk., Lieferzeit ${cleanAttr(p.lead)}${suffixFor(p.id, DE_SUFFIXES)}`,
+      `${shortName}. ${attrs.join(', ')}${suffixFor(p.id, DE_SUFFIXES)}`,
       158
     );
     return {
-      title: `${shortName} | ${shortCategory(p.categoryId, locale, SHORT_CAT[p.categoryId] || c)} Großhandel | MOQ ${p.moq}`,
+      title: `${shortName} | ${shortCategory(p.categoryId, locale, SHORT_CAT[p.categoryId] || c)} | DONGXIAO`,
       description,
       keywords: [p.name, `Kaschmir ${c} Großhandel`, `OEM ${c}`, `Kaschmir Hersteller China`, `B2B Cashmere Lieferant`],
       buyCta: 'Anfrage',
@@ -864,11 +832,11 @@ const tdk = {
       sizes ? `tailles ${sizes}` : '',
     ].filter(Boolean);
     const description = clip(
-      `${shortName}. ${attrs.join(', ')}. En gros depuis l'usine d'Ordos (Chine). MOQ ${p.moq} pièces, délai ${cleanAttr(p.lead)}${suffixFor(p.id, FR_SUFFIXES)}`,
+      `${shortName}. ${attrs.join(', ')}${suffixFor(p.id, FR_SUFFIXES)}`,
       158
     );
     return {
-      title: `${shortName} | ${shortCategory(p.categoryId, locale, SHORT_CAT[p.categoryId] || c)} en gros | MOQ ${p.moq}`,
+      title: `${shortName} | ${shortCategory(p.categoryId, locale, SHORT_CAT[p.categoryId] || c)} | DONGXIAO`,
       description,
       keywords: [p.name, `cachemire ${c} gros`, `OEM ${c}`, `fabricant cachemire Chine`, `fournisseur cachemire B2B`],
       buyCta: 'Demande',
@@ -890,11 +858,11 @@ const tdk = {
       sizes ? `サイズ${sizes}` : '',
     ].filter(Boolean);
     const description = clip(
-      `${shortName}。${attrs.join('、')}。オルドス工場（中国）直送。MOQ ${p.moq}枚、納期${cleanAttr(p.lead)}${suffixFor(p.id, JA_SUFFIXES)}`,
+      `${shortName}。${attrs.join('、')}${suffixFor(p.id, JA_SUFFIXES)}`,
       150
     );
     return {
-      title: `${shortName} | ${c}卸売 | MOQ ${p.moq}枚`,
+      title: `${shortName} | ${c} | DONGXIAO`,
       description,
       keywords: [p.name, `${c}卸売`, `OEM ${c}`, `カシミア 製造 中国`, `B2B カシミア サプライヤー`],
       buyCta: '問い合わせ',
@@ -916,11 +884,11 @@ const tdk = {
       sizes ? `사이즈 ${sizes}` : '',
     ].filter(Boolean);
     const description = clip(
-      `${shortName}. ${attrs.join(', ')}. 오르도스 공장(중국) 직송. MOQ ${p.moq}pcs, 납기 ${cleanAttr(p.lead)}${suffixFor(p.id, KR_SUFFIXES)}`,
+      `${shortName}. ${attrs.join(', ')}${suffixFor(p.id, KR_SUFFIXES)}`,
       158
     );
     return {
-      title: `${shortName} | ${c} 도매 | MOQ ${p.moq}pcs`,
+      title: `${shortName} | ${c} | DONGXIAO`,
       description,
       keywords: [p.name, `${c} 도매`, `OEM ${c}`, `캐시미어 제조 중국`, `B2B 캐시미어 공급업체`],
       buyCta: '문의',
@@ -996,20 +964,10 @@ const PRODUCT_CONTENT_LABELS: Record<string, Record<string, string>> = {
 };
 const pcl = PRODUCT_CONTENT_LABELS[locale] || PRODUCT_CONTENT_LABELS.en;
 
-const enrichedMetaDescription =
-  (product as any).meta_description && String((product as any).meta_description).trim()
-    ? String((product as any).meta_description)
-    : t.description;
-const enrichedDescription =
-  (product as any).description && String((product as any).description).trim()
-    ? String((product as any).description)
-    : '';
-const enrichedAdvantages: string[] = Array.isArray((product as any).product_advantages)
-  ? ((product as any).product_advantages as string[])
-  : [];
-const enrichedFaq: Array<{ q: string; a: string }> = Array.isArray((product as any).faq)
-  ? ((product as any).faq as Array<{ q: string; a: string }>)
-  : [];
+const enrichedMetaDescription = t.description;
+const enrichedDescription = '';
+const enrichedAdvantages: string[] = [];
+const enrichedFaq: Array<{ q: string; a: string }> = [];
 
 const enrichedFaqSchema = enrichedFaq.length > 0 ? {
   '@context': 'https://schema.org',
@@ -1053,60 +1011,10 @@ const productSchema = {
 
   material: product.material,
 
-  // Product-level attributes as additionalProperty — Google Merchant
-  // Center accepts these; no policy risk like AggregateRating has.
+  // 仅标记页面中可核验的材料规格；商业条件按具体项目书面确认。
   additionalProperty: [
     { '@type': 'PropertyValue', name: 'Fiber micron', value: product.micron || '' },
-    { '@type': 'PropertyValue', name: 'Minimum order quantity', value: product.moq, unitText: 'pieces' },
-    { '@type': 'PropertyValue', name: 'Lead time', value: cleanAttr(product.lead) },
-    ...(pickAttr(product.sample_time)
-      ? [{ '@type': 'PropertyValue', name: 'Sample lead time', value: pickAttr(product.sample_time) }]
-      : []),
   ].filter((p) => p.value),
-
-  // B2B price: most products carry a range like "9.2-16.5" meaning unit
-  // price varies by order size / customization. Use AggregateOffer for
-  // that visible price range and a plain Offer for a single visible price.
-  // Do not declare inventory status or a fixed price-expiry date: this
-  // catalog supports RFQs and does not render those facts on every page.
-  ...(function () {
-    const raw = (product.price || '').toString();
-    const rangeMatch = raw.match(/(\d+(?:\.\d+)?)\s*[-–—]\s*(\d+(?:\.\d+)?)/);
-    if (rangeMatch) {
-      const low = parseFloat(rangeMatch[1]);
-      const high = parseFloat(rangeMatch[2]);
-      return {
-        offers: {
-          '@type': 'AggregateOffer',
-          priceCurrency: product.currency,
-          lowPrice: low,
-          highPrice: high,
-          offerCount: 1,
-          itemCondition: 'https://schema.org/NewCondition',
-          seller: { '@type': 'Organization', name: SITE_INFO.legalName },
-          eligibleQuantity: {
-            '@type': 'QuantitativeValue',
-            minValue: product.moq,
-            unitText: 'pieces',
-          },
-        },
-      };
-    }
-    return {
-      offers: {
-        '@type': 'Offer',
-        priceCurrency: product.currency,
-        price: parseFloat(raw) || raw,
-        itemCondition: 'https://schema.org/NewCondition',
-        seller: { '@type': 'Organization', name: SITE_INFO.legalName },
-        eligibleQuantity: {
-          '@type': 'QuantitativeValue',
-          minValue: product.moq,
-          unitText: 'pieces',
-        },
-      },
-    };
-  })(),
 
 };
 
@@ -1274,7 +1182,7 @@ const relatedViewAll: Record<Locale, string> = {
 
   customSchemas={enrichedFaqSchema ? [productSchema, breadcrumbSchema, enrichedFaqSchema] : [productSchema, breadcrumbSchema]}
 
-  faqs={detail?.faq?.map((f) => ({ question: f.q[locale], answer: f.a[locale] }))}
+  faqs={wholesaleFaq.map((f) => ({ question: f.q[locale], answer: f.a[locale] }))}
 
   ogImage={`${SITE_URL}${primaryImage}`}
 
@@ -1411,12 +1319,9 @@ const relatedViewAll: Record<Locale, string> = {
 
 
 
-          <div class="product-price flex items-baseline gap-3 mb-5">
-
-            <span class="text-2xl font-medium">USD {product.price}</span>
-
-            <span class="text-sm text-muted-foreground">/ piece</span>
-
+          <div class="product-price mb-5 border-l-2 border-brand-gold pl-4">
+            <p class="text-sm font-medium">{locale === 'cn' ? '项目条件书面确认' : 'Project terms confirmed in writing'}</p>
+            <p class="text-sm text-muted-foreground mt-1">{locale === 'cn' ? '请在询盘中说明规格、数量、目的地、验货与文件需求。' : 'Include specification, quantity, destination, inspection and documentation needs in your inquiry.'}</p>
           </div>
 
 
@@ -1428,10 +1333,6 @@ const relatedViewAll: Record<Locale, string> = {
             <span class="text-xs px-2.5 py-1 border border-border rounded-full bg-secondary/20">{product.material}</span>
 
             <span class="text-xs px-2.5 py-1 border border-border rounded-full bg-secondary/20">{product.micron}</span>
-
-            <span class="text-xs px-2.5 py-1 border border-border rounded-full bg-secondary/20">MOQ {product.moq} pcs</span>
-
-            <span class="text-xs px-2.5 py-1 border border-border rounded-full bg-secondary/20">Lead {product.lead}</span>
 
           </div>
 
@@ -1536,25 +1437,9 @@ const relatedViewAll: Record<Locale, string> = {
 
                 <tr class="border-b border-border">
 
-                  <td class="px-4 py-3 bg-secondary/40 font-medium">MOQ</td>
+                  <td class="px-4 py-3 bg-secondary/40 font-medium">{locale === 'cn' ? '项目条件' : 'Project terms'}</td>
 
-                  <td class="px-4 py-3">{product.moq} pieces per style</td>
-
-                </tr>
-
-                <tr class="border-b border-border">
-
-                  <td class="px-4 py-3 bg-secondary/40 font-medium">Lead time</td>
-
-                  <td class="px-4 py-3">{product.lead}</td>
-
-                </tr>
-
-                <tr class="border-b border-border">
-
-                  <td class="px-4 py-3 bg-secondary/40 font-medium">Sample time</td>
-
-                  <td class="px-4 py-3">{product.sample_time}</td>
+                  <td class="px-4 py-3">{locale === 'cn' ? '起订量、价格、打样、交付和文件要求以书面方式确认。' : 'MOQ, price, sampling, delivery and documentation requirements are confirmed in writing.'}</td>
 
                 </tr>
 
@@ -1632,7 +1517,7 @@ const relatedViewAll: Record<Locale, string> = {
 
                     )}
 
-                    {product.sampleCost && (
+                    {false && product.sampleCost && (
 
                       <tr class="border-t border-border">
 
@@ -1740,7 +1625,7 @@ const relatedViewAll: Record<Locale, string> = {
 
                     )}
 
-                    {detail.technicalSpecs.moq && (
+                    {false && detail.technicalSpecs.moq && (
 
                       <tr class="border-t border-border"><td class="px-4 py-2 bg-secondary/20 font-medium">MOQ</td><td class="px-4 py-2">{detail.technicalSpecs.moq[locale]}</td></tr>
 
@@ -1860,7 +1745,7 @@ const relatedViewAll: Record<Locale, string> = {
 
                 <input type="tel" name="phone" placeholder="Phone / WhatsApp" class="px-3 py-2 border border-border rounded text-sm" />
 
-                <input type="text" name="quantity" placeholder={product.moq ? `Quantity (MOQ ${product.moq})` : 'Quantity'} class="px-3 py-2 border border-border rounded text-sm" />
+                <input type="text" name="quantity" placeholder="Target quantity" class="px-3 py-2 border border-border rounded text-sm" />
 
               </div>
 
@@ -1884,7 +1769,7 @@ const relatedViewAll: Record<Locale, string> = {
 
                 </button>
 
-                <span class="text-xs text-muted-foreground">Reply within 24 hours · ISO 9001 + OEKO-TEX</span>
+                <span class="text-xs text-muted-foreground">Project conditions are confirmed in written correspondence.</span>
 
               </div>
 
@@ -1896,7 +1781,7 @@ const relatedViewAll: Record<Locale, string> = {
 
 
 
-          <p class="product-trustline text-xs text-muted-foreground mt-4">Direct factory pricing. FOB Tianjin/Shanghai, CIF, DDP. OEM/ODM supported. ISO 9001 + OEKO-TEX certified.</p>
+          <p class="product-trustline text-xs text-muted-foreground mt-4">Use this product reference to discuss specification, quantity, destination, inspection and documentation requirements.</p>
 
         </div>
 
@@ -2076,7 +1961,7 @@ const relatedViewAll: Record<Locale, string> = {
 
   <!-- Section 5: Comparison Table (e.g. Cashmere vs Pashmina) -->
 
-  {detail.comparisonPoints && detail.comparisonTitle && (
+  {false && detail.comparisonPoints && detail.comparisonTitle && (
 
     <section class="py-12 bg-secondary/20">
 
@@ -2257,7 +2142,7 @@ const relatedViewAll: Record<Locale, string> = {
 
   <!-- Section 9: Sample Policy -->
 
-  {detail.samplePolicy && (
+  {false && detail.samplePolicy && (
 
     <section class="py-12 bg-secondary/20">
 
@@ -2277,7 +2162,7 @@ const relatedViewAll: Record<Locale, string> = {
 
   <!-- Section 10: Certifications -->
 
-  {detail.certifications && (
+  {false && detail.certifications && (
 
     <section class="py-12 bg-background">
 
@@ -2358,7 +2243,7 @@ const relatedViewAll: Record<Locale, string> = {
 
 
   <!-- Section 10.5: Shipping & Origin (B2B trust signal: port + Incoterm transparency) -->
-  {detail.shippingOrigin && (
+  {false && detail.shippingOrigin && (
     <section class="py-12 md:py-16 bg-[#F8F5EF] border-y border-border/60">
       <div class="container-narrow">
         <div class="flex items-center gap-3 mb-4">
@@ -2387,7 +2272,7 @@ const relatedViewAll: Record<Locale, string> = {
 
 
   <!-- Section 10.6: Return Policy (B2B trust: defect window + dispute process) -->
-  {detail.returnPolicy && (
+  {false && detail.returnPolicy && (
     <section class="py-12 bg-secondary/20">
       <div class="container-narrow max-w-3xl">
         <div class="flex items-center gap-3 mb-4">
@@ -2411,7 +2296,7 @@ const relatedViewAll: Record<Locale, string> = {
 
 
   <!-- Section 10.7: Trust Badges (factory stats: years operating, brands served, countries, repeat rate) -->
-  {detail.trustBadges && detail.trustBadges.length > 0 && (
+  {false && detail.trustBadges && detail.trustBadges.length > 0 && (
     <section class="py-12 bg-background">
       <div class="container-narrow">
         <div class="flex items-center gap-3 mb-4">
@@ -2438,7 +2323,7 @@ const relatedViewAll: Record<Locale, string> = {
 
   <!-- Section 11: Product-specific FAQ (4-6 Q&A) -->
 
-  {detail.faq && detail.faq.length > 0 && (
+  {false && detail.faq && detail.faq.length > 0 && (
 
     <section class="py-12 bg-secondary/20">
 
@@ -2525,7 +2410,7 @@ const relatedViewAll: Record<Locale, string> = {
                   {rpImg && (
                     <img
                       src={rpImg}
-                      alt={`${rp.name} — ${rp.categoryName}, ${rp.material}, MOQ ${rp.moq} pcs`}
+                      alt={`${rp.name} — ${rp.categoryName}, ${rp.material}`}
                       loading="lazy"
                       decoding="async"
                       class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
@@ -2535,7 +2420,7 @@ const relatedViewAll: Record<Locale, string> = {
                 <div class="p-2.5 md:p-3">
                   <p class="text-[10px] uppercase tracking-wider text-muted-foreground mb-0.5 truncate">{rp.categoryName}</p>
                   <h3 class="text-xs md:text-sm font-medium text-foreground line-clamp-2 group-hover:text-brand-camel leading-snug">{rp.name}</h3>
-                  <p class="text-[11px] md:text-xs text-brand-red font-medium mt-1">${rp.price} {rp.currency}</p>
+                  <p class="text-[11px] md:text-xs text-brand-red font-medium mt-1">{locale === 'cn' ? '项目条件书面确认' : 'Project terms confirmed in writing'}</p>
                 </div>
               </a>
             );
@@ -2562,7 +2447,7 @@ const relatedViewAll: Record<Locale, string> = {
 
       <h2 class="reveal font-display text-3xl font-light mb-4">Request a Quotation</h2>
 
-      <p class="opacity-90 mb-8 max-w-2xl mx-auto">Send your target specs (quantity, gauge, color, customization). Our specialists respond within 24 hours with sample, pricing, and lead time.</p>
+      <p class="opacity-90 mb-8 max-w-2xl mx-auto">Send your product reference, target specification, quantity, destination, inspection approach and documentation needs. Applicable project terms are confirmed in writing.</p>
 
       <div class="flex flex-wrap gap-4 justify-center">
 
@@ -2608,124 +2493,11 @@ const relatedViewAll: Record<Locale, string> = {
 
 
 
-    <!-- Section 12c: Transportation & Delivery (imf style - 7-9) -->
-
   <section class="py-12 bg-background">
-
-    <div class="container-narrow">
-
-      <h2 class="reveal font-display text-2xl font-light mb-6 text-center">Transportation & Delivery</h2>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-        {[
-
-          { title: 'FOB Tianjin/Shanghai', desc: 'We deliver to your nominated forwarder at the nearest Chinese port. Most common for orders 500+ pcs.' },
-
-          { title: 'CIF Your Port', desc: 'We arrange ocean freight + insurance to your nearest seaport. Door-to-port service.' },
-
-          { title: 'DDP Door-to-Door', desc: 'We handle everything: customs, duties, last-mile delivery to your warehouse. EU/US customers only.' },
-
-        ].map((opt) => (
-
-          <div class="border border-border rounded-lg p-5 bg-card">
-
-            <h3 class="reveal font-medium text-base mb-2 text-primary">{opt.title}</h3>
-
-            <p class="text-sm text-foreground/80 leading-relaxed">{opt.desc}</p>
-
-          </div>
-
-        ))}
-
-      </div>
-
-      <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
-
-        <div class="p-3 bg-secondary/30 rounded">
-
-          <div class="font-display text-2xl text-primary">15-20d</div>
-
-          <div class="text-muted-foreground">Sea (Asia)</div>
-
-        </div>
-
-        <div class="p-3 bg-secondary/30 rounded">
-
-          <div class="font-display text-2xl text-primary">25-35d</div>
-
-          <div class="text-muted-foreground">Sea (EU/US)</div>
-
-        </div>
-
-        <div class="p-3 bg-secondary/30 rounded">
-
-          <div class="font-display text-2xl text-primary">5-7d</div>
-
-          <div class="text-muted-foreground">Air (Express)</div>
-
-        </div>
-
-        <div class="p-3 bg-secondary/30 rounded">
-
-          <div class="font-display text-2xl text-primary">7-10d</div>
-
-          <div class="text-muted-foreground">Sample</div>
-
-        </div>
-
-      </div>
-
+    <div class="container-narrow max-w-3xl text-center">
+      <h2 class="reveal font-display text-2xl font-light mb-4">Project Delivery Planning</h2>
+      <p class="text-sm text-foreground/80 leading-relaxed">Freight, delivery, inspection, documentation and any trade terms depend on the selected product, quantity, destination and written agreement. Include these requirements with your inquiry for project-specific confirmation.</p>
     </div>
-
-  </section>
-
-
-
-  <!-- Section 12d: Customer Reviews placeholder (imf style - 7-9) -->
-
-  <section class="py-12 bg-secondary/20">
-
-    <div class="container-narrow">
-
-      <h2 class="reveal font-display text-2xl font-light mb-6 text-center">Customer Reviews</h2>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-        {[
-
-          { name: 'Sarah M.', country: 'United States', role: 'Boutique Owner', text: 'The cashmere quality exceeded our expectations. Our customers love the soft hand feel and the fit is consistent across sizes.' },
-
-          { name: 'Marcus K.', country: 'Germany', role: 'Wholesale Distributor', text: 'Reliable lead times and great communication from the team. We have been sourcing for 3 years and quality stays consistent.' },
-
-          { name: 'Yuki T.', country: 'Japan', role: 'Brand Designer', text: 'Beautiful cashmere, perfect for our luxury collection. The custom Pantone color matching was spot on.' },
-
-        ].map((r) => (
-
-          <figure class="bg-card border border-border rounded-lg p-5">
-
-            <div class="flex items-center gap-1 mb-3 text-brand-gold text-sm">★★★★★</div>
-
-            <blockquote class="text-sm italic text-foreground/80 leading-relaxed mb-4">"{r.text}"</blockquote>
-
-            <figcaption class="text-xs">
-
-              <div class="font-medium">{r.name}</div>
-
-              <div class="text-muted-foreground">{r.role} · {r.country}</div>
-
-            </figcaption>
-
-          </figure>
-
-        ))}
-
-      </div>
-
-      <p class="text-center text-xs text-muted-foreground mt-4">Sample reviews. Verified reviews coming soon.</p>
-
-    </div>
-
   </section>
 
 
