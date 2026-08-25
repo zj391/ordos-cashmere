@@ -9,8 +9,8 @@
  * builds from). Once the storefront reads products from Supabase, this
  * endpoint can switch to a DB query with the same column layout.
  */
-import { verifySession, getSecret } from '../_session.js';
-import productsJson from '../../src/data/products.json';
+import { verifySession, getSecret } from '../../admin/admin-session.js';
+import productsJson from '../../../data/products.json';
 
 function authed(req) {
   const cookie = String(req.headers.cookie || '');

@@ -7,7 +7,7 @@
  * Rewritten to the Vercel default-export handler style (the previous
  * Astro-style `export const POST` returned BAD_CONTENT in production).
  */
-import { verifySession, getSecret } from '../_session.js';
+import { verifySession, getSecret } from '../../admin/admin-session.js';
 
 const SUPABASE_URL = process.env.PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || '';
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || '';

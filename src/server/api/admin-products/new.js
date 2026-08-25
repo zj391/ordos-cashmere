@@ -12,7 +12,7 @@
  * Image uploads live in a separate module (Supabase Storage) — new rows start
  * with empty colors[]/images[]/tags[] and are meant to be edited afterward.
  */
-import { verifySession, getSecret } from '../_session.js';
+import { verifySession, getSecret } from '../../admin/admin-session.js';
 
 const SUPABASE_URL = process.env.PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || '';
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_KEY || '';

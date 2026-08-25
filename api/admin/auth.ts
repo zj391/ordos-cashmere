@@ -10,10 +10,10 @@
  *     (no hardcoded fallback password).
  *   - Login attempts are rate-limited per IP (5 failures / 10 min).
  *   - The session cookie carries a stateless signed token (timestamp + HMAC),
- *     verified by api/admin/_session.js in every admin API endpoint.
+ *     verified by src/server/admin/admin-session.js in every admin API endpoint.
  */
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { signSession, SESSION_MAX_AGE_MS } from './_session.js';
+import { signSession, SESSION_MAX_AGE_MS } from '../../src/server/admin/admin-session.js';
 
 const FAIL_LIMIT = 5;
 const FAIL_WINDOW_MS = 10 * 60 * 1000;
