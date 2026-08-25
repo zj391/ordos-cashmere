@@ -11,6 +11,7 @@ import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
 import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
 import { getCollection } from 'astro:content';
+import { getBlogSlugFromId, isIndexableBlogPost } from '@/lib/blog-indexability';
 
 export function getStaticPaths() {
   return LOCALES.map((locale) => ({ params: { locale } }));
@@ -30,11 +31,14 @@ const t: Record<string, Record<string, string>> = {
 const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
 
 // 从 Content Collections 读取该 locale 的所有博客（按发布日期倒序）
-const allPosts = await getCollection('blog', ({ id }) => id.startsWith(`${locale}/`));
+const allPosts = await getCollection('blog', ({ id }) => {
+  if (!id.startsWith(`${locale}/`)) return false;
+  return isIndexableBlogPost(locale, getBlogSlugFromId(id));
+});
 const posts = allPosts
   .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
   .map((p) => ({
-    slug: p.id.replace(`${locale}/`, '').replace(/\.md$/, ''),
+    slug: getBlogSlugFromId(p.id),
     title: p.data.title,
     excerpt: p.data.excerpt,
     date: p.data.publishDate.toISOString().slice(0, 10),
@@ -73,7 +77,7 @@ const itemListSchema = {
     </div>
   </section>
 
-  {locale === 'en' && (
+  {false && locale === 'en' && (
     <section class="py-20 md:py-28 bg-brand-cream/40 border-y border-border" aria-labelledby="knowledge-hub">
       <div class="container-narrow">
         <div class="flex items-center gap-3 mb-6">
@@ -317,6 +321,32 @@ const itemListSchema = {
             </ul>
           </div>
         </div>
+      </div>
+    </section>
+  )}
+
+  {posts.length > 0 && (
+    <section class="py-16 md:py-20 bg-brand-cream/40 border-y border-border" aria-labelledby="verified-knowledge">
+      <div class="container-narrow max-w-3xl">
+        <span class="text-xs tracking-[0.32em] text-brand-camel uppercase font-medium">{locale === 'cn' ? '已核验知识页' : 'Reviewed knowledge'}</span>
+        <h2 id="verified-knowledge" class="font-serif text-3xl md:text-4xl font-light leading-tight mt-3 mb-4">
+          {locale === 'cn' ? '从可核验资料开始采购准备' : 'Start sourcing preparation with verifiable documents'}
+        </h2>
+        <p class="text-base text-muted-foreground leading-relaxed">
+          {locale === 'cn'
+            ? '当前展示的文章已按其引用、可见内容和采购用途完成审阅。产品、合规、交付与商业条件仍应按具体项目书面确认。'
+            : 'The article shown here has been reviewed for its references, visible content and sourcing purpose. Product, compliance, delivery and commercial terms still require written project confirmation.'}
+        </p>
+      </div>
+    </section>
+  )}
+
+  {posts.length === 0 && (
+    <section class="py-16 md:py-20 bg-brand-cream/40 border-y border-border">
+      <div class="container-narrow max-w-3xl text-muted-foreground leading-relaxed">
+        {locale === 'cn'
+          ? '我们正在逐篇审阅历史文章的引用、适用范围与采购断言。审核完成前，请通过询盘确认具体产品、文件和项目条件。'
+          : 'We are reviewing historical articles for sources, applicability and sourcing claims. Please confirm product, documentation and project conditions through an inquiry while this review is in progress.'}
       </div>
     </section>
   )}

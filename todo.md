@@ -212,3 +212,12 @@
 - [x] 实施列表页可见发现路径和内部链接增强，保留所有产品 ID、URL、筛选功能、图片、询盘、多语言和 canonical 信号。
 - [x] 验证筛选路径、标题、H1、robots、canonical、hreflang、Schema、sitemap、Astro/Vercel 构建与五个 API 入口。
 - [x] 提交并同步经过验证的产品发现路径优化版本至 `master`。
+
+# 博客正文、Article Schema 与内容集群可信度优化
+
+- [x] 盘点可索引博客文章、文章模板、作者/日期/Schema 与跨语言文章链接，统计内容集群和抓取入口。
+- [x] 审计正文和元数据中固定价格、MOQ、交期、认证、测试、产能、地域、免费样品、时效或未经独立核验的采购断言。
+- [x] 制定保留实质科普价值的内容收敛、引用、项目级确认和主题内链规则，不删除真实知识页或产品入口。
+- [x] 实施博客正文、Article Schema、作者/日期说明和内容集群锚文本优化，保持文章 slug、多语言路由和 sitemap 不变。
+- [x] 验证博客 HTML、H1、canonical、hreflang、Article JSON-LD、内链、robots、sitemap、Astro/Vercel 构建与五个 API 入口。
+- [x] 提交并同步经过验证的博客可信度 SEO 优化版本至 `master`。
