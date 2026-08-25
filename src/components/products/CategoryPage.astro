@@ -436,7 +436,105 @@ const tdk = {
   },
 };
 
-const t = tdk[slug]?.[locale] || tdk[slug]?.en;
+// Category hubs carry broad discovery intent. Product detail pages keep the
+// SKU-level name and attributes; this layer names the actual type/style family
+// represented by the catalog rather than repeating commercial promises.
+const categorySeoTopics: Record<string, Record<string, { heading: string; keywords: string[] }>> = {
+  en: {
+    hats: { heading: 'Cashmere Hats, Beanies, Berets & Caps: Ribbed, Cable Knit & Jacquard Styles', keywords: ['cashmere hats', 'cashmere beanies', 'cashmere berets', 'cashmere caps', 'ribbed cashmere hats', 'cable knit beanies'] },
+    scarves: { heading: 'Cashmere Scarves, Wraps, Shawls & Ponchos: Woven, Printed & Jacquard Styles', keywords: ['cashmere scarves', 'cashmere wraps', 'cashmere shawls', 'cashmere ponchos', 'woven cashmere scarves', 'jacquard cashmere wraps'] },
+    sweaters: { heading: 'Cashmere Sweaters, Cardigans & Vests: Crew Neck, V-Neck & Cable Knit Styles', keywords: ['cashmere sweaters', 'cashmere cardigans', 'cashmere vests', 'crew neck cashmere sweaters', 'v neck cashmere cardigans', 'cable knit cashmere'] },
+    accessories: { heading: 'Cashmere Leggings, Gloves, Socks & Knit Accessories: Product Catalog', keywords: ['cashmere leggings', 'cashmere gloves', 'cashmere socks', 'cashmere knit accessories', 'cashmere tights', 'cashmere pants'] },
+    yarn: { heading: 'Cashmere Yarn & Fiber: Cone, Hank, Knitting & Weaving Product Records', keywords: ['cashmere yarn', 'cashmere fiber', 'cashmere yarn cone', 'cashmere yarn hank', 'cashmere knitting yarn', 'cashmere weaving yarn'] },
+  },
+  cn: {
+    hats: { heading: '羊绒帽子、毛线帽、贝雷帽与鸭舌帽：罗纹、麻花与提花款式', keywords: ['羊绒帽子', '羊绒毛线帽', '羊绒贝雷帽', '羊绒鸭舌帽', '罗纹羊绒帽', '麻花羊绒帽'] },
+    scarves: { heading: '羊绒围巾、披肩、方巾与斗篷：梭织、印花与提花款式', keywords: ['羊绒围巾', '羊绒披肩', '羊绒方巾', '羊绒斗篷', '梭织羊绒围巾', '提花羊绒披肩'] },
+    sweaters: { heading: '羊绒衫、开衫与背心：圆领、V 领与麻花针织款式', keywords: ['羊绒衫', '羊绒开衫', '羊绒背心', '圆领羊绒衫', 'V领羊绒开衫', '麻花羊绒针织'] },
+    accessories: { heading: '羊绒打底裤、手套、袜子与针织配饰：产品目录', keywords: ['羊绒打底裤', '羊绒手套', '羊绒袜子', '羊绒针织配饰', '羊绒紧身裤', '羊绒长裤'] },
+    yarn: { heading: '羊绒纱线与纤维：筒纱、绞纱、针织与机织产品记录', keywords: ['羊绒纱线', '羊绒纤维', '羊绒筒纱', '羊绒绞纱', '羊绒针织纱', '羊绒机织纱'] },
+  },
+  de: {
+    hats: { heading: 'Kaschmir-Mützen, Beanies, Baskenmützen & Caps: Ripp-, Zopf- und Jacquard-Stile', keywords: ['Kaschmir Mützen', 'Kaschmir Beanies', 'Kaschmir Baskenmützen', 'Kaschmir Caps'] },
+    scarves: { heading: 'Kaschmir-Schals, Wraps, Tücher & Ponchos: Gewebte, bedruckte und Jacquard-Stile', keywords: ['Kaschmir Schals', 'Kaschmir Tücher', 'Kaschmir Ponchos', 'Kaschmir Wraps'] },
+    sweaters: { heading: 'Kaschmir-Pullover, Cardigans & Westen: Rundhals-, V-Ausschnitt- und Zopfstile', keywords: ['Kaschmir Pullover', 'Kaschmir Cardigans', 'Kaschmir Westen', 'Zopfstrick Kaschmir'] },
+    accessories: { heading: 'Kaschmir-Leggings, Handschuhe, Socken & Strick-Accessoires: Produktkatalog', keywords: ['Kaschmir Leggings', 'Kaschmir Handschuhe', 'Kaschmir Socken', 'Kaschmir Accessoires'] },
+    yarn: { heading: 'Kaschmirgarn & Fasern: Konen, Stränge sowie Strick- und Webprodukte', keywords: ['Kaschmirgarn', 'Kaschmir Fasern', 'Kaschmir Konen', 'Kaschmir Stränge'] },
+  },
+  fr: {
+    hats: { heading: 'Bonnets, beanies, bérets et casquettes en cachemire : côtes, torsades et jacquard', keywords: ['bonnets cachemire', 'beanies cachemire', 'bérets cachemire', 'casquettes cachemire'] },
+    scarves: { heading: 'Écharpes, étoles, châles et ponchos en cachemire : tissé, imprimé et jacquard', keywords: ['écharpes cachemire', 'étoles cachemire', 'châles cachemire', 'ponchos cachemire'] },
+    sweaters: { heading: 'Pulls, cardigans et gilets en cachemire : col rond, col V et torsades', keywords: ['pulls cachemire', 'cardigans cachemire', 'gilets cachemire', 'cachemire torsadé'] },
+    accessories: { heading: 'Leggings, gants, chaussettes et accessoires tricotés en cachemire : catalogue', keywords: ['leggings cachemire', 'gants cachemire', 'chaussettes cachemire', 'accessoires cachemire'] },
+    yarn: { heading: 'Fil et fibre de cachemire : cônes, écheveaux, produits de tricot et de tissage', keywords: ['fil cachemire', 'fibre cachemire', 'cône cachemire', 'écheveau cachemire'] },
+  },
+  ja: {
+    hats: { heading: 'カシミア帽子・ビーニー・ベレー・キャップ：リブ・ケーブル・ジャカードスタイル', keywords: ['カシミア帽子', 'カシミアビーニー', 'カシミアベレー', 'カシミアキャップ'] },
+    scarves: { heading: 'カシミアスカーフ・ストール・ショール・ポンチョ：織り・プリント・ジャカード', keywords: ['カシミアスカーフ', 'カシミアストール', 'カシミアショール', 'カシミアポンチョ'] },
+    sweaters: { heading: 'カシミアセーター・カーディガン・ベスト：クルーネック・Vネック・ケーブルニット', keywords: ['カシミアセーター', 'カシミアカーディガン', 'カシミアベスト', 'カシミアケーブルニット'] },
+    accessories: { heading: 'カシミアレギンス・手袋・靴下・ニットアクセサリー：製品カタログ', keywords: ['カシミアレギンス', 'カシミア手袋', 'カシミア靴下', 'カシミアアクセサリー'] },
+    yarn: { heading: 'カシミア糸・繊維：コーン・かせ・編み物・織物の製品記録', keywords: ['カシミア糸', 'カシミア繊維', 'カシミアコーン', 'カシミアかせ'] },
+  },
+  kr: {
+    hats: { heading: '캐시미어 모자·비니·베레·캡: 리브·케이블·자카드 스타일', keywords: ['캐시미어 모자', '캐시미어 비니', '캐시미어 베레', '캐시미어 캡'] },
+    scarves: { heading: '캐시미어 스카프·랩·숄·판초: 직조·프린트·자카드 스타일', keywords: ['캐시미어 스카프', '캐시미어 랩', '캐시미어 숄', '캐시미어 판초'] },
+    sweaters: { heading: '캐시미어 스웨터·가디건·베스트: 크루넥·V넥·케이블 니트 스타일', keywords: ['캐시미어 스웨터', '캐시미어 가디건', '캐시미어 베스트', '캐시미어 케이블 니트'] },
+    accessories: { heading: '캐시미어 레깅스·장갑·양말·니트 액세서리: 제품 카탈로그', keywords: ['캐시미어 레깅스', '캐시미어 장갑', '캐시미어 양말', '캐시미어 액세서리'] },
+    yarn: { heading: '캐시미어 원사·섬유: 콘·타래·편물·직물 제품 기록', keywords: ['캐시미어 원사', '캐시미어 섬유', '캐시미어 콘', '캐시미어 타래'] },
+  },
+};
+
+const categorySeoSupport: Record<string, { description: string; intro: string; bullets: string[]; catalog: string; faqs: Array<{ q: string; a: string }> }> = {
+  en: {
+    description: 'Browse product records by type, construction, pattern, material, size and other listed attributes. Applicable commercial and documentation requirements are confirmed for each project in writing.',
+    intro: 'Compare the product types and style attributes listed in this catalog, then use individual product pages to prepare a clear sourcing brief.',
+    bullets: ['Product types and style families represented in the catalog', 'Listed material, construction, pattern and size attributes', 'Use product references to prepare a project-specific inquiry'],
+    catalog: 'Explore product records by style and specification',
+    faqs: [{ q: 'How should I use this category catalog?', a: 'Compare the listed product references and attributes, then include your target specification, quantity, destination, inspection approach and documentation needs in a written inquiry.' }, { q: 'Which details are confirmed for a project?', a: 'Applicable specifications, availability, commercial terms and documentation are confirmed in writing for the selected product and project context.' }],
+  },
+  cn: {
+    description: '可按产品类型、工艺、图案、材质、尺寸及其他已列属性浏览产品记录。适用的商务与文件要求将针对具体项目以书面方式确认。',
+    intro: '比较本目录列出的产品类型和款式属性，再结合单品页整理清晰的采购需求。',
+    bullets: ['目录所含的产品类型与款式系列', '已列出的材质、工艺、图案与尺寸属性', '使用产品参考编号准备项目级询盘'],
+    catalog: '按款式与规格浏览产品记录',
+    faqs: [{ q: '如何使用这个分类目录？', a: '比较已列出的产品参考与属性，并在书面询盘中说明目标规格、数量、目的地、验货方式与文件需求。' }, { q: '哪些项目细节需要确认？', a: '适用规格、可用性、商务条款与文件要求会针对所选产品和项目背景以书面方式确认。' }],
+  },
+  de: {
+    description: 'Durchsuchen Sie Produktdatensätze nach Typ, Konstruktion, Muster, Material, Größe und weiteren aufgeführten Merkmalen. Anwendbare Projektbedingungen werden schriftlich bestätigt.',
+    intro: 'Vergleichen Sie die aufgeführten Produkttypen und Stilmerkmale und nutzen Sie einzelne Produktseiten für eine klare Beschaffungsanfrage.',
+    bullets: ['Im Katalog dargestellte Produkttypen und Stilfamilien', 'Aufgeführte Material-, Konstruktions-, Muster- und Größenmerkmale', 'Produktreferenzen für eine projektspezifische Anfrage nutzen'],
+    catalog: 'Produktdatensätze nach Stil und Spezifikation erkunden',
+    faqs: [{ q: 'Wie nutze ich diesen Katalog?', a: 'Vergleichen Sie Produktreferenzen und Merkmale und nennen Sie Spezifikation, Menge, Zielort, Prüfung und Dokumentationsbedarf schriftlich.' }, { q: 'Welche Projektdetails werden bestätigt?', a: 'Spezifikationen, Verfügbarkeit, Geschäftsbedingungen und Dokumentation werden für den gewählten Artikel schriftlich bestätigt.' }],
+  },
+  fr: {
+    description: 'Parcourez les fiches produit par type, construction, motif, matière, taille et autres attributs listés. Les exigences applicables sont confirmées par écrit pour chaque projet.',
+    intro: 'Comparez les types de produit et les attributs de style listés ici, puis utilisez chaque fiche pour préparer un brief d’approvisionnement clair.',
+    bullets: ['Types de produit et familles de style représentés', 'Attributs de matière, construction, motif et taille listés', 'Références produit pour préparer une demande spécifique'],
+    catalog: 'Explorer les fiches par style et spécification',
+    faqs: [{ q: 'Comment utiliser ce catalogue ?', a: 'Comparez les références et attributs listés puis indiquez spécification, quantité, destination, inspection et besoins documentaires dans une demande écrite.' }, { q: 'Quels détails sont confirmés pour un projet ?', a: 'Les spécifications, disponibilités, conditions commerciales et documents applicables sont confirmés par écrit pour le produit retenu.' }],
+  },
+  ja: {
+    description: '製品タイプ、構造、柄、素材、サイズなど、記載された属性から製品記録を確認できます。適用される条件と書類要件は案件ごとに書面で確認します。',
+    intro: 'このカタログの製品タイプとスタイル属性を比較し、各製品ページを使って明確な調達要件を準備してください。',
+    bullets: ['カタログに含まれる製品タイプとスタイル群', '記載された素材・構造・柄・サイズ属性', '製品リファレンスを案件別のお問い合わせに活用'],
+    catalog: 'スタイルと仕様から製品記録を探す',
+    faqs: [{ q: 'このカタログはどのように使いますか？', a: '製品リファレンスと属性を比較し、仕様、数量、仕向地、検品、書類要件を文書でお知らせください。' }, { q: 'どの案件詳細が確認されますか？', a: '仕様、可用性、取引条件、書類要件は、選択した製品と案件に応じて書面で確認します。' }],
+  },
+  kr: {
+    description: '제품 유형, 구조, 패턴, 소재, 사이즈 등 기재된 속성으로 제품 기록을 살펴볼 수 있습니다. 적용 가능한 조건과 서류 요건은 프로젝트별로 서면 확인됩니다.',
+    intro: '이 카탈로그의 제품 유형과 스타일 속성을 비교하고 각 제품 페이지를 이용해 명확한 소싱 브리프를 준비하세요.',
+    bullets: ['카탈로그에 포함된 제품 유형과 스타일 계열', '기재된 소재·구조·패턴·사이즈 속성', '제품 참조를 프로젝트별 문의에 활용'],
+    catalog: '스타일과 사양으로 제품 기록 살펴보기',
+    faqs: [{ q: '이 카탈로그는 어떻게 사용하나요?', a: '제품 참조와 속성을 비교한 뒤 사양, 수량, 목적지, 검사 및 서류 요건을 서면 문의에 포함해 주세요.' }, { q: '어떤 프로젝트 세부 사항이 확인되나요?', a: '사양, 가용성, 거래 조건 및 서류 요건은 선택한 제품과 프로젝트에 맞춰 서면으로 확인됩니다.' }],
+  },
+};
+
+const fallbackT = tdk[slug]?.[locale] || tdk[slug]?.en;
+const topic = categorySeoTopics[locale]?.[catId] || categorySeoTopics.en[catId];
+const support = categorySeoSupport[locale] || categorySeoSupport.en;
+const t = topic
+  ? { title: `${topic.heading} | DONGXIAO`, description: support.description, keywords: topic.keywords, h1: topic.heading, intro: support.intro, bullets: support.bullets, faqs: support.faqs, catalog: support.catalog }
+  : fallbackT ? { ...fallbackT, catalog: fallbackT.h1 } : null;
 if (!t) return new Response('Not Found', { status: 404 });
 
 const procurementChecklist: Record<string, { eyebrow: string; title: string; intro: string; steps: Array<{ title: string; text: string; href: string; link: string }> }> = {
@@ -569,41 +667,41 @@ const latestBlogPosts = relevantBlogPosts
   </section>
 
   <!-- Leggings dedicated sub-section (target: "cashmere leggings" search) -->
-  {slug === 'accessories' && (() => {
-    const leggings = products.filter((p) => /legging|leggin|pant|tight|trouser|leggings|tights|long john/i.test(p.name));
-    if (leggings.length === 0) return null;
-    return (
-      <section class="py-16 md:py-20 bg-brand-cream">
-        <div class="container-narrow">
-          <div class="mb-8">
-            <span class="inline-block px-3 py-1 border border-brand-chocolate text-brand-chocolate text-[10px] tracking-[0.2em] uppercase font-medium mb-4">{locale === 'cn' ? '专题' : 'FEATURED CATEGORY'}</span>
-            <h2 class="font-display text-3xl md:text-4xl font-light mb-3">{locale === 'cn' ? '羊绒打底裤与紧身裤' : 'Cashmere Leggings & Long Johns'}</h2>
-            <p class="text-muted-foreground leading-relaxed max-w-3xl">
-              {locale === 'cn'
-                ? '羊绒打底裤、紧身裤、保暖长裤源头工厂直供。100% 内蒙古羊绒 14.5-15.5μm。适合贴身穿、保暖打底、家居休闲。可定制颜色、尺寸、logo。MOQ 50 件/款。'
-                : 'Cashmere leggings, thermal pants, knit tights, and long johns direct from the Ordos spinning mill. 100% Inner Mongolian cashmere, 14.5-15.5μm fineness. Designed as base layers for warmth without bulk. Custom colors, sizes, and logo. MOQ 50 pcs per style.'}
-            </p>
-          </div>
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {leggings.slice(0, 8).map((p) => (
-              <a
-                href={`/${locale}/products/${p.id}/`}
-                class="group block border border-border rounded-lg overflow-hidden hover:border-primary transition-colors bg-white"
-              >
-                <div class="aspect-square bg-secondary/30 overflow-hidden">
-                  <img
-                    src={resolveCategoryCardImage(p.images[0])}
-                    alt={p.name}
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="p-3">
-                  <h3 class="text-xs font-medium leading-snug line-clamp-2 mb-1">{p.name}</h3>
-                  <p class="text-[10px] text-muted-foreground">USD {p.price} · MOQ {p.moq} pcs</p>
-                </div>
-              </a>
-            ))}
+ {slug === 'accessories' && (() => {
+const leggings = products.filter((p) => /legging|leggin|pant|tight|trouser|leggings|tights|long john/i.test(p.name));
+if (leggings.length === 0) return null;
+return (
+<section class="py-16 md:py-20 bg-brand-cream">
+<div class="container-narrow">
+<div class="mb-8">
+<span class="inline-block px-3 py-1 border border-brand-chocolate text-brand-chocolate text-[10px] tracking-[0.2em] uppercase font-medium mb-4">{locale === 'cn' ? '专题' : 'FEATURED CATEGORY'}</span>
+<h2 class="font-display text-3xl md:text-4xl font-light mb-3">{locale === 'cn' ? '羊绒打底裤与紧身裤' : 'Cashmere Leggings & Long Johns'}</h2>
+<p class="text-muted-foreground leading-relaxed max-w-3xl">
+{locale === 'cn'
+? '浏览目录中列出的羊绒打底裤、紧身裤、针织长裤与相关配饰记录。请结合单品页的已列属性准备采购需求，具体项目条件以书面沟通确认。'
+: 'Browse the listed cashmere leggings, knit tights, trousers and related accessory records. Use the attributes on each product page to prepare a sourcing brief; applicable project details are confirmed in writing.'}
+</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+{leggings.slice(0, 8).map((p) => (
+<a
+href={`/${locale}/products/${p.id}/`}
+class="group block border border-border rounded-lg overflow-hidden hover:border-primary transition-colors bg-white"
+>
+<div class="aspect-square bg-secondary/30 overflow-hidden">
+<img
+src={resolveCategoryCardImage(p.images[0])}
+alt={p.name}
+class="w-full h-full object-cover group-hover:scale-105 transition-transform"
+loading="lazy"
+/>
+</div>
+<div class="p-3">
+<h3 class="text-xs font-medium leading-snug line-clamp-2 mb-1">{p.name}</h3>
+                  <p class="text-[10px] text-muted-foreground">{locale === 'cn' ? '项目条件书面确认' : 'Project details confirmed in writing'}</p>
+</div>
+</a>
+))}
           </div>
           {leggings.length > 8 && (
             <p class="text-center text-xs text-muted-foreground mt-6">
@@ -612,8 +710,8 @@ const latestBlogPosts = relevantBlogPosts
           )}
           <p class="text-xs text-muted-foreground mt-8 leading-relaxed">
             {locale === 'cn'
-              ? '相关搜索：羊绒打底裤、羊绒紧身裤、羊绒保暖裤、羊绒长裤、cashmere leggings、cashmere tights、cashmere pants、cashmere long johns、thermal cashmere base layer、winter cashmere trousers women。'
-              : 'Related searches: cashmere leggings, cashmere tights, cashmere pants, cashmere long johns, cashmere thermal underwear, cashmere base layer, cashmere trousers, cashmere knit pants, ladies cashmere leggings wholesale, thermal cashmere pants for women.'}
+              ? '本分类聚合羊绒打底裤、紧身裤、针织长裤、手套与袜子等相关产品记录；可按具体产品页的属性继续比较。'
+              : 'This category brings together cashmere leggings, knit tights, trousers, gloves and socks; continue comparing the listed attributes on each product page.'}
           </p>
         </div>
       </section>
@@ -621,41 +719,41 @@ const latestBlogPosts = relevantBlogPosts
   })()}
 
     <!-- Leggings dedicated sub-section (target: "cashmere leggings" search) -->
-  {slug === 'accessories-cat' && (() => {
-    const leggings = products.filter((p) => /legging|leggin|pant|tight|trouser|long john/i.test(p.name));
-    if (leggings.length === 0) return null;
-    return (
-      <section class="py-16 md:py-20 bg-brand-cream">
-        <div class="container-narrow">
-          <div class="mb-8">
-            <span class="inline-block px-3 py-1 border border-brand-chocolate text-brand-chocolate text-[10px] tracking-[0.2em] uppercase font-medium mb-4">{locale === 'cn' ? '专题' : 'FEATURED CATEGORY'}</span>
-            <h2 class="font-display text-3xl md:text-4xl font-light mb-3">{locale === 'cn' ? '羊绒打底裤与紧身裤' : 'Cashmere Leggings & Long Johns'}</h2>
-            <p class="text-muted-foreground leading-relaxed max-w-3xl">
-              {locale === 'cn'
-                ? '羊绒打底裤、紧身裤、保暖长裤源头工厂直供。100% 内蒙古羊绒 14.5-15.5μm。适合贴身穿、保暖打底、家居休闲。可定制颜色、尺寸、logo。MOQ 50 件/款。'
-                : 'Cashmere leggings, thermal pants, knit tights, and long johns direct from the Ordos spinning mill. 100% Inner Mongolian cashmere, 14.5-15.5μm fineness. Designed as base layers for warmth without bulk. Custom colors, sizes, and logo. MOQ 50 pcs per style.'}
-            </p>
-          </div>
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {leggings.slice(0, 8).map((p) => (
-              <a
-                href={`/${locale}/products/${p.id}/`}
-                class="group block border border-border rounded-lg overflow-hidden hover:border-primary transition-colors bg-white"
-              >
-                <div class="aspect-square bg-secondary/30 overflow-hidden">
-                  <img
-                    src={resolveCategoryCardImage(p.images[0])}
-                    alt={p.name}
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="p-3">
-                  <h3 class="text-xs font-medium leading-snug line-clamp-2 mb-1">{p.name}</h3>
-                  <p class="text-[10px] text-muted-foreground">USD {p.price} · MOQ {p.moq} pcs</p>
-                </div>
-              </a>
-            ))}
+ {slug === 'accessories-cat' && (() => {
+const leggings = products.filter((p) => /legging|leggin|pant|tight|trouser|long john/i.test(p.name));
+if (leggings.length === 0) return null;
+return (
+<section class="py-16 md:py-20 bg-brand-cream">
+<div class="container-narrow">
+<div class="mb-8">
+<span class="inline-block px-3 py-1 border border-brand-chocolate text-brand-chocolate text-[10px] tracking-[0.2em] uppercase font-medium mb-4">{locale === 'cn' ? '专题' : 'FEATURED CATEGORY'}</span>
+<h2 class="font-display text-3xl md:text-4xl font-light mb-3">{locale === 'cn' ? '羊绒打底裤与紧身裤' : 'Cashmere Leggings & Long Johns'}</h2>
+<p class="text-muted-foreground leading-relaxed max-w-3xl">
+{locale === 'cn'
+? '浏览目录中列出的羊绒打底裤、紧身裤、针织长裤与相关配饰记录。请结合单品页的已列属性准备采购需求，具体项目条件以书面沟通确认。'
+: 'Browse the listed cashmere leggings, knit tights, trousers and related accessory records. Use the attributes on each product page to prepare a sourcing brief; applicable project details are confirmed in writing.'}
+</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+{leggings.slice(0, 8).map((p) => (
+<a
+href={`/${locale}/products/${p.id}/`}
+class="group block border border-border rounded-lg overflow-hidden hover:border-primary transition-colors bg-white"
+>
+<div class="aspect-square bg-secondary/30 overflow-hidden">
+<img
+src={resolveCategoryCardImage(p.images[0])}
+alt={p.name}
+class="w-full h-full object-cover group-hover:scale-105 transition-transform"
+loading="lazy"
+/>
+</div>
+<div class="p-3">
+<h3 class="text-xs font-medium leading-snug line-clamp-2 mb-1">{p.name}</h3>
+                  <p class="text-[10px] text-muted-foreground">{locale === 'cn' ? '项目条件书面确认' : 'Project details confirmed in writing'}</p>
+</div>
+</a>
+))}
           </div>
           {leggings.length > 8 && (
             <p class="text-center text-xs text-muted-foreground mt-6">
@@ -664,8 +762,8 @@ const latestBlogPosts = relevantBlogPosts
           )}
           <p class="text-xs text-muted-foreground mt-8 leading-relaxed">
             {locale === 'cn'
-              ? '相关搜索：羊绒打底裤、羊绒紧身裤、羊绒保暖裤、羊绒长裤、cashmere leggings、cashmere tights、cashmere pants、cashmere long johns。'
-              : 'Related searches: cashmere leggings, cashmere tights, cashmere pants, cashmere long johns, cashmere thermal underwear, cashmere base layer, cashmere trousers, cashmere knit pants, ladies cashmere leggings wholesale, thermal cashmere pants for women.'}
+              ? '本分类聚合羊绒打底裤、紧身裤、针织长裤、手套与袜子等相关产品记录；可按具体产品页的属性继续比较。'
+              : 'This category brings together cashmere leggings, knit tights, trousers, gloves and socks; continue comparing the listed attributes on each product page.'}
           </p>
         </div>
       </section>
@@ -674,7 +772,7 @@ const latestBlogPosts = relevantBlogPosts
 
   <section class="py-16 md:py-20 bg-background">
     <div class="container-narrow">
-      <h2 class="font-display text-3xl font-light mb-8">{t.h1} — {products.length} styles</h2>
+      <h2 class="font-display text-3xl font-light mb-8">{t.catalog} — {products.length} {locale === 'cn' ? '条产品记录' : 'product records'}</h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {products.map((p) => (
           <a
@@ -691,7 +789,7 @@ const latestBlogPosts = relevantBlogPosts
             </div>
             <div class="p-3">
               <h3 class="text-xs font-medium leading-snug line-clamp-2 mb-1">{p.name}</h3>
-              <p class="text-[10px] text-muted-foreground">USD {p.price} · MOQ {p.moq} pcs</p>
+              <p class="text-[10px] text-muted-foreground">{locale === 'cn' ? '项目条件书面确认' : 'Project details confirmed in writing'}</p>
             </div>
           </a>
         ))}
@@ -715,22 +813,22 @@ const latestBlogPosts = relevantBlogPosts
         </h2>
         <p class="text-sm md:text-base text-muted-foreground mb-10 max-w-2xl">
           {locale === 'cn'
-            ? `同一工厂，同一质量，跨品类扩展产品线。每品类独立报价、独立起订量、独立货期。`
-            : `Same factory. Same quality. Extend your product line across categories. Each category has independent pricing, MOQ, and lead time.`}
+            ? '按产品类型、款式与已列属性比较相邻品类；所选项目的适用条件以书面沟通确认。'
+            : 'Compare adjacent categories by product type, style and listed attributes; applicable details are confirmed in writing for the selected project.'}
         </p>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {crossLinks.map((cl) => (
             <a href={`/${locale}/products/${cl.slug}/`} class="group block border border-border bg-white p-6 hover:border-brand-gold hover:shadow-lg transition-colors transition-shadow duration-300">
               <div class="flex items-center justify-between mb-3">
                 <span class="text-[10px] tracking-[0.2em] uppercase text-brand-camel font-mono">
-                  MOQ {cl.moq} pcs
+                  {locale === 'cn' ? '分类目录' : 'CATEGORY CATALOG'}
                 </span>
                 <svg class="w-4 h-4 text-muted-foreground group-hover:text-brand-chocolate group-hover:translate-x-1 transition-colors transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
               </div>
               <h3 class="font-serif text-xl mb-2 group-hover:text-brand-chocolate transition-colors leading-tight">
                 {cl.name[locale] || cl.name.en}
               </h3>
-              <p class="text-xs text-muted-foreground leading-relaxed line-clamp-3">{cl.blurb[locale] || cl.blurb.en}</p>
+              <p class="text-xs text-muted-foreground leading-relaxed line-clamp-3">{locale === 'cn' ? '查看该品类的产品记录、款式属性和已列规格信息。' : 'Explore the product records, style attributes and listed specifications in this category.'}</p>
             </a>
           ))}
         </div>
