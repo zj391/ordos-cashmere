@@ -864,10 +864,12 @@ const tdk = {
   },
 };
 
-const t = (tdk[locale] || tdk.en)(product, localizedCategory(product.categoryId, locale, category.name));
 // Display name for HTML/JSON-LD display (locale-aware)
 const displayCategory = localizedCategory(product.categoryId, locale, category.name);
-const productHeading = buildProductHeading(product);
+const baseTdk = (tdk[locale] || tdk.en)(product, displayCategory);
+const titleBrand = locale === 'cn' ? '东霄羊绒' : 'DONGXIAO';
+const t = { ...baseTdk, title: buildProductSeoTitle(product, displayCategory, titleBrand, 112, locale) };
+const productHeading = buildProductHeading(product, locale);
 // buildProductSeoTitle() reserves space for the brand and clips the title at
 // a word boundary. Keep H1, title and Product Schema aligned.
 const pageTitle = t.title;
