@@ -162,3 +162,11 @@
 - [x] 实施不改变既有专题 URL、真实知识内容或多语言结构的可信摘要、项目确认和内部链接优化。
 - [x] 验证专题页 HTML、JSON-LD、国际化信号、sitemap、Astro/Vercel 构建与函数数量。
 - [x] 提交并同步经过验证的专题页 SEO 优化版本至 `master`。
+
+# 可索引页面与 sitemap 一致性 SEO 审计
+
+- [x] 盘点 sitemap 生成逻辑、当前 noindex 路由与静态页面清单，确认不希望索引的 canonical URL 不会继续进入 sitemap。
+- [x] 审计仍可索引的服务、博客、分类和辅助页面中残留的报价、库存、MOQ、交期、认证、评价、服务范围与 Offer Schema 声明。
+- [x] 实施最小范围的 sitemap、robots、内容与结构化数据修复，保留真实 URL、可用采购入口与多语言结构。
+- [x] 验证修复后的静态 HTML、canonical、hreflang、robots、JSON-LD、sitemap、Astro/Vercel 构建与五个 API 入口。
+- [x] 提交并同步经过验证的可索引页面 SEO 修复版本至 `master`。

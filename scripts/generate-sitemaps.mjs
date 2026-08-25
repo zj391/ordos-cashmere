@@ -2,8 +2,9 @@
 /**
  * Custom sitemap generator (replaces @astrojs/sitemap).
  *
- * Reads dist/client/ to discover all built URLs, classifies them
- * into 3 buckets, and writes 3 sitemaps + an index.
+ * Reads dist/client/ to discover indexable built URLs, classifies them
+ * into 3 buckets, and writes 3 sitemaps + an index. Pages whose rendered
+ * HTML contains a robots noindex directive are deliberately excluded.
  *
  * Run via `postbuild` in package.json (after astro build).
  */
@@ -19,15 +20,20 @@ const DIST_DIR = path.join(ROOT, 'dist/client');
 const OUTPUT_DIR = DIST_DIR; // write back into dist/
 const I18N_LINK = (path) => LOCALES.map((loc) => ({ lang: LOCALE_HREFLANG[loc], url: `${SITE_URL}/${loc}${path}` }));
 
-// 8-20: 收集所有真实 build 出来的 URL path（包括各 locale），用于
-// 在生成 hreflang alt link 时过滤掉不存在的 locale 变体。之前版本
+// 收集真实且可索引的 build URL path（包括各 locale），用于在生成
+// hreflang alt link 时过滤掉不存在或 noindex 的 locale 变体。之前版本
 // 不做这层过滤 → 10.1% 的 blog hreflang 指向 404（sitemap 软 404 是
 // Google 公认的 SEO 毒药,会拉低整个 sitemap 信任度)。
 const BUILT_PATHS = new Set();
 
-// Recursively walk dist/client/{locale}/<path>/index.html and return the URL paths.
+function hasNoIndexRobots(html) {
+  return /<meta\b(?=[^>]*\bname=["']robots["'])(?=[^>]*\bcontent=["'][^"']*\bnoindex\b[^"']*["'])[^>]*>/i.test(html);
+}
+
+// Recursively walk dist/client/{locale}/<path>/index.html and return only indexable URL paths.
 async function walkBuiltPages() {
   const out = [];
+  const noIndexPaths = [];
   for (const loc of LOCALES) {
     const locDir = path.join(DIST_DIR, loc);
     try {
@@ -49,13 +55,18 @@ async function walkBuiltPages() {
           const rel = path.relative(DIST_DIR, cur).replace(/\\/g, '/');
           let urlPath = '/' + rel + '/';
           if (rel === '') urlPath = '/';
+          const html = await fs.readFile(full, 'utf8');
+          if (hasNoIndexRobots(html)) {
+            noIndexPaths.push(urlPath);
+            continue;
+          }
           out.push(urlPath);
           BUILT_PATHS.add(urlPath);
         }
       }
     }
   }
-  return out;
+  return { paths: out, noIndexPaths };
 }
 
 function classify(path) {
@@ -142,8 +153,11 @@ function buildSitemapIndex(entries) {
 
 // main
 console.log('Discovering built pages in dist/client/...');
-const allPaths = await walkBuiltPages();
-console.log(`Found ${allPaths.length} built pages`);
+const { paths: allPaths, noIndexPaths } = await walkBuiltPages();
+console.log(`Found ${allPaths.length} indexable built pages`);
+if (noIndexPaths.length) {
+  console.log(`Excluded ${noIndexPaths.length} noindex pages from sitemap and IndexNow`);
+}
 
 const buckets = { static: [], blog: [], products: [] };
 for (const p of allPaths) {

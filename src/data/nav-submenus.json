@@ -3,7 +3,7 @@
     "feature": {
     "image": "/images/menu-editorial/menu-hats-material-editorial.webp",
       "eyebrow": { "en": "B2B Catalog 2026", "cn": "B2B 选品目录", "de": "B2B Katalog", "fr": "Catalogue B2B", "ja": "B2Bカタログ", "kr": "B2B 카탈로그" },
-      "title": { "en": "Cashmere Hats — OEM from 100pcs", "cn": "羊绒帽 — 起订 100 件", "de": "Kaschmir-Hüte — OEM ab 100 Stk", "fr": "Bonnets cachemire — OEM dès 100 pcs", "ja": "カシミア帽 — OEM 100枚〜", "kr": "캐시미어 모자 — OEM 100pcs부터" },
+      "title": { "en": "Cashmere Hats — Project Inquiry", "cn": "羊绒帽 — 项目询盘", "de": "Kaschmir-Hüte — Projektanfrage", "fr": "Bonnets cachemire — demande de projet", "ja": "カシミア帽 — 案件のお問い合わせ", "kr": "캐시미어 모자 — 프로젝트 문의" },
       "href": { "en": "/en/products?cat=hats", "de": "/de/products?cat=hats", "fr": "/fr/products?cat=hats", "ja": "/ja/products?cat=hats", "kr": "/kr/products?cat=hats", "cn": "/cn/products?cat=hats" },
       "cta": { "en": "Browse catalog →", "cn": "查看目录 →", "de": "Katalog ansehen →", "fr": "Voir le catalogue →", "ja": "カタログを見る →", "kr": "카탈로그 보기 →" }
     },
@@ -44,7 +44,7 @@
     "feature": {
     "image": "/images/menu-editorial/menu-sweaters-editorial.webp",
       "eyebrow": { "en": "Garment OEM", "cn": "成衣代工", "de": "Bekleidung OEM", "fr": "Vêtement OEM", "ja": "衣料OEM", "kr": "의류 OEM" },
-      "title": { "en": "Sweaters — 3 to 16 gauge", "cn": "羊绒衫 — 3 针到 16 针", "de": "Pullover — 3 bis 16 Gauge", "fr": "Pulls — jauge 3 à 16", "ja": "セーター — 3〜16ゲージ", "kr": "스웨터 — 3~16 게이지" },
+      "title": { "en": "Cashmere Sweaters — Specification Inquiry", "cn": "羊绒衫 — 规格询盘", "de": "Kaschmirpullover — Spezifikationsanfrage", "fr": "Pulls cachemire — demande de spécifications", "ja": "カシミアセーター — 仕様のお問い合わせ", "kr": "캐시미어 스웨터 — 사양 문의" },
       "href": { "en": "/en/products?cat=sweaters", "de": "/de/products?cat=sweaters", "fr": "/fr/products?cat=sweaters", "ja": "/ja/products?cat=sweaters", "kr": "/kr/products?cat=sweaters", "cn": "/cn/products?cat=sweaters" },
       "cta": { "en": "Request quote →", "cn": "立即询盘 →", "de": "Angebot anfragen →", "fr": "Demander un devis →", "ja": "見積もり依頼 →", "kr": "견적 요청 →" }
     },
@@ -89,7 +89,7 @@
     "feature": {
     "image": "/images/menu-editorial/menu-scarves-editorial.webp",
       "eyebrow": { "en": "Custom Scarf", "cn": "围巾定制", "de": "Schal-Manufaktur", "fr": "Écharpes sur mesure", "ja": "スカーフOEM", "kr": "스카프 맞춤" },
-      "title": { "en": "Scarves & Wraps — your label", "cn": "围巾披肩 — 贴牌定制", "de": "Schals & Tücher — Eigenmarke", "fr": "Écharpes & châles — marque propre", "ja": "スカーフ&ショール — プライベートブランド", "kr": "스카프&숄 — 자체 브랜드" },
+      "title": { "en": "Cashmere Scarves & Wraps", "cn": "羊绒围巾与披肩", "de": "Kaschmirschals & Tücher", "fr": "Écharpes et châles en cachemire", "ja": "カシミアのスカーフ＆ショール", "kr": "캐시미어 스카프 & 숄" },
       "href": { "en": "/en/products?cat=scarves", "de": "/de/products?cat=scarves", "fr": "/fr/products?cat=scarves", "ja": "/ja/products?cat=scarves", "kr": "/kr/products?cat=scarves", "cn": "/cn/products?cat=scarves" },
       "cta": { "en": "Custom options →", "cn": "定制选项 →", "de": "Optionen ansehen →", "fr": "Options sur mesure →", "ja": "カスタムオプション →", "kr": "맞춤 옵션 →" }
     },
@@ -163,8 +163,8 @@
   "yarn": {
     "feature": {
     "image": "/images/menu-editorial/menu-yarn-editorial.webp",
-      "eyebrow": { "en": "From the goat", "cn": "原料直供", "de": "Vom Tier", "fr": "De la chèvre", "ja": "山羊から", "kr": "염소로부터" },
-      "title": { "en": "2/26 — 2/60 Nm cashmere yarn", "cn": "2/26 — 2/60 Nm 羊绒纱线", "de": "2/26 — 2/60 Nm Kaschmirgarn", "fr": "2/26 — 2/60 Nm fil cachemire", "ja": "2/26〜2/60 Nm カシミア糸", "kr": "2/26 — 2/60 Nm 캐시미어 원사" },
+      "eyebrow": { "en": "Yarn & Fabric", "cn": "纱线与面料", "de": "Garn & Stoff", "fr": "Fil et tissu", "ja": "糸と生地", "kr": "원사와 원단" },
+      "title": { "en": "Cashmere Yarn — Specification Inquiry", "cn": "羊绒纱线 — 规格询盘", "de": "Kaschmirgarn — Spezifikationsanfrage", "fr": "Fil cachemire — demande de spécifications", "ja": "カシミア糸 — 仕様のお問い合わせ", "kr": "캐시미어 원사 — 사양 문의" },
       "href": { "en": "/en/products?cat=yarn", "de": "/de/products?cat=yarn", "fr": "/fr/products?cat=yarn", "ja": "/ja/products?cat=yarn", "kr": "/kr/products?cat=yarn", "cn": "/cn/products?cat=yarn" },
       "cta": { "en": "Spec sheet →", "cn": "规格书 →", "de": "Datenblatt →", "fr": "Fiche technique →", "ja": "スペック →", "kr": "사양서 →" }
     },
