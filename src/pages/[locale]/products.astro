@@ -50,33 +50,33 @@ const productTagsJson = JSON.stringify(
 // 各语言 TDK
 const tdk: Record<string, { title: string; description: string; keywords: string[] }> = {
   en: {
-    title: 'Curated Cashmere Wholesale Catalog | China Factory Direct | DONGXIAO®',
-    description: 'Browse curated wholesale cashmere representatives from our China factory: hats, scarves, sweaters, accessories, yarn. OEM/ODM, MOQ 100 pcs, ISO certified. DONGXIAO® Ordos.',
+    title: 'Curated Cashmere Product Catalog | DONGXIAO®',
+    description: 'Browse selected cashmere hats, scarves, sweaters, accessories and yarn. Discuss project specifications, quantity, destination and documentation in writing.',
     keywords: ['cashmere products', 'cashmere catalog', 'B2B cashmere wholesale', 'OEM cashmere', 'Ordos cashmere factory', 'cashmere hats', 'cashmere scarves', 'cashmere sweaters'],
   },
   de: {
     title: 'Ausgewählte Kaschmirprodukte | Ordos Fabrik Direkt | DONGXIAO®',
-    description: 'Ausgewählte Kaschmirprodukte direkt aus unserer Ordos-Fabrik: Mützen, Schals, Pullover, Accessoires, Garn. OEM/ODM. ISO-zertifiziert. MOQ 100 Stk.',
+    description: 'Durchsuchen Sie ausgewählte Kaschmirprodukte: Mützen, Schals, Pullover, Accessoires und Garn. Projektbedingungen werden schriftlich abgestimmt.',
     keywords: ['Kaschmirprodukte', 'Kaschmir Katalog', 'B2B Kaschmir Großhandel', 'OEM Kaschmir', 'Ordos Kaschmirfabrik'],
   },
   fr: {
     title: 'Sélection cachemire | Usine directe Ordos | DONGXIAO®',
-    description: 'Une sélection de cachemire directement de notre usine Ordos: bonnets, écharpes, pulls, accessoires, fils. OEM/ODM. 100% cachemire pur, ISO certifié. MOQ 100pcs.',
+    description: 'Parcourez une sélection de bonnets, écharpes, pulls, accessoires et fils cachemire. Les conditions sont discutées par écrit selon le projet.',
     keywords: ['produits cachemire', 'catalogue cachemire', 'B2B cachemire gros', 'OEM cachemire', 'usine cachemire Ordos'],
   },
   ja: {
     title: 'カシミヤ製品セレクション | オルドス工場直販 | DONGXIAO®',
-    description: 'オルドス工場直販のカシミヤ製品セレクション: 帽子、マフラー、セーター、アクセサリー、糸。OEM/ODM対応。MOQ 100個。',
+    description: '帽子、マフラー、セーター、アクセサリー、糸のカシミア製品を閲覧できます。案件条件は書面で確認します。',
     keywords: ['カシミア製品', 'カシミアカタログ', 'B2B カシミア卸売', 'OEM カシミア'],
   },
   kr: {
     title: '캐시미어 제품 셀렉션 | 어얼어스 공장 직송 | DONGXIAO®',
-    description: '어얼어스 공장에서 직접 생산하는 캐시미어 제품 셀렉션: 모자, 스카프, 스웨터, 액세서리, 원사. OEM/ODM 지원. MOQ 100개.',
+    description: '모자, 스카프, 스웨터, 액세서리, 원사의 캐시미어 제품을 살펴보세요. 프로젝트 조건은 서면으로 확인합니다.',
     keywords: ['캐시미어 제품', '캐시미어 카탈로그', 'B2B 캐시미어 도매', 'OEM 캐시미어'],
   },
   cn: {
     title: '羊绒产品精选目录 | 鄂尔多斯工厂直供 | 东霄DONGXIAO®',
-    description: '鄂尔多斯工厂直供的羊绒产品精选目录：帽子、围巾、毛衫、配饰、纱线。支持OEM/ODM。100%纯羊绒，起订量100件。',
+    description: '浏览帽子、围巾、毛衫、配饰与纱线的羊绒产品精选。项目规格、数量、目的地和文件需求以书面方式确认。',
     keywords: ['羊绒产品', '羊绒目录', 'B2B羊绒批发', 'OEM羊绒代工', '鄂尔多斯羊绒工厂', '羊绒帽子', '羊绒围巾', '羊绒衫'],
   },
 };
@@ -270,7 +270,7 @@ const procurementCopyJson = JSON.stringify(procurementCopy);
   <section class="bg-background border-b border-border">
     <div class="container-narrow py-12 sm:py-16">
       <div class="flex items-center gap-3 mb-4"><span class="h-[2px] w-8 bg-brand-red"></span><span class="text-xs tracking-[0.3em] uppercase text-brand-camel">
-        {locale === 'cn' ? '工厂直供 · 全品类' : 'Factory Direct · Full Catalog'}
+        {locale === 'cn' ? 'B2B 采购目录' : 'B2B Sourcing Catalog'}
       </span></div>
       <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-light text-brand-ink mb-4">
         {labels.title}
@@ -289,11 +289,11 @@ const procurementCopyJson = JSON.stringify(procurementCopy);
         </span>
         <span class="flex items-center gap-2">
           <span class="w-2 h-2 bg-brand-camel rounded-full"></span>
-          {locale === 'cn' ? 'MOQ 100件' : 'MOQ 100pcs'}
+          {locale === 'cn' ? '项目条件书面确认' : 'Project terms confirmed in writing'}
         </span>
         <span class="flex items-center gap-2">
           <span class="w-2 h-2 bg-brand-camel rounded-full"></span>
-          {locale === 'cn' ? 'OEM/ODM 支持' : 'OEM/ODM Supported'}
+          {locale === 'cn' ? '采购资料准备' : 'Sourcing brief preparation'}
         </span>
       </div>
     </div>
@@ -350,24 +350,9 @@ const procurementCopyJson = JSON.stringify(procurementCopy);
             <button type="button" data-proc-filter="material" data-value="wool" class="proc-filter px-3 py-2 text-xs border border-border bg-white text-muted-foreground hover:border-brand-ink transition-colors">{procurementCopy.wool}</button>
           </div>
         </fieldset>
-        <fieldset>
-          <legend class="text-xs uppercase tracking-[0.16em] text-muted-foreground mb-2">{procurementCopy.moq}</legend>
-          <div class="flex flex-wrap gap-2">
-            <button type="button" data-proc-filter="moq" data-value="all" class="proc-filter active px-3 py-2 text-xs border bg-brand-ink text-[#F7F3EC] border-brand-ink transition-colors">{procurementCopy.all}</button>
-            <button type="button" data-proc-filter="moq" data-value="small" class="proc-filter px-3 py-2 text-xs border border-border bg-white text-muted-foreground hover:border-brand-ink transition-colors">{procurementCopy.moqSmall}</button>
-            <button type="button" data-proc-filter="moq" data-value="mid" class="proc-filter px-3 py-2 text-xs border border-border bg-white text-muted-foreground hover:border-brand-ink transition-colors">{procurementCopy.moqMid}</button>
-            <button type="button" data-proc-filter="moq" data-value="bulk" class="proc-filter px-3 py-2 text-xs border border-border bg-white text-muted-foreground hover:border-brand-ink transition-colors">{procurementCopy.moqBulk}</button>
-          </div>
-        </fieldset>
-        <fieldset>
-          <legend class="text-xs uppercase tracking-[0.16em] text-muted-foreground mb-2">{procurementCopy.lead}</legend>
-          <div class="flex flex-wrap gap-2">
-            <button type="button" data-proc-filter="lead" data-value="all" class="proc-filter active px-3 py-2 text-xs border bg-brand-ink text-[#F7F3EC] border-brand-ink transition-colors">{procurementCopy.all}</button>
-            <button type="button" data-proc-filter="lead" data-value="fast" class="proc-filter px-3 py-2 text-xs border border-border bg-white text-muted-foreground hover:border-brand-ink transition-colors">{procurementCopy.leadFast}</button>
-            <button type="button" data-proc-filter="lead" data-value="standard" class="proc-filter px-3 py-2 text-xs border border-border bg-white text-muted-foreground hover:border-brand-ink transition-colors">{procurementCopy.leadStandard}</button>
-            <button type="button" data-proc-filter="lead" data-value="extended" class="proc-filter px-3 py-2 text-xs border border-border bg-white text-muted-foreground hover:border-brand-ink transition-colors">{procurementCopy.leadExtended}</button>
-          </div>
-        </fieldset>
+        <div class="text-sm text-muted-foreground leading-relaxed">
+          {locale === 'cn' ? '起订量、样品、价格、交期、交付与文件范围将结合具体款式、数量和目的地书面确认。' : 'MOQ, sampling, price, lead time, delivery and document scope are confirmed in writing for the selected style, quantity and destination.'}
+        </div>
       </div>
     </div>
 
@@ -421,8 +406,6 @@ const procurementCopyJson = JSON.stringify(procurementCopy);
                   if (p.micron) parts.push(p.micron);
                   const tags = (p.tags || []).filter((t) => /women|men|kids|unisex|ladies|girls|boys|outerwear|winter|spring|summer|fall|autumn/i.test(t));
                   if (tags.length > 0) parts.push(tags.slice(0, 2).join(' / '));
-                  parts.push('Ordos factory');
-                  parts.push('MOQ ' + p.moq + ' pcs');
                   return parts.join(', ');
                 })()}
                 loading="lazy"
@@ -441,10 +424,8 @@ const procurementCopyJson = JSON.stringify(procurementCopy);
             <div class="space-y-1 text-xs text-muted-foreground mb-3">
               <div class="flex justify-between"><span>{labels.material}:</span><span class="font-medium">{p.material}</span></div>
               <div class="flex justify-between"><span>{labels.micron}:</span><span class="font-medium">{p.micron}</span></div>
-              <div class="flex justify-between"><span>{labels.price}:</span><span class="font-medium text-brand-red">${p.price} {p.currency}</span></div>
-              <div class="flex justify-between"><span>{labels.moq}:</span><span class="font-medium">{p.moq} pcs</span></div>
             </div>
-            <p class="text-xs text-muted-foreground mb-2">{labels.colorCardPreview}</p>
+            <p class="text-xs text-muted-foreground mb-2">{locale === 'cn' ? '项目条件书面确认' : 'Project terms confirmed in writing'}</p>
             <span class="block w-full px-3 py-2 bg-brand-ink text-[#F7F3EC] text-xs hover:bg-brand-camel transition-colors text-center">
               {labels.requestQuote}
             </span>
@@ -493,22 +474,13 @@ const procurementCopyJson = JSON.stringify(procurementCopy);
   </section>
 
   <SEOFaq faqs={[
-    locale === 'cn'
-      ? { q: '591款产品都支持OEM定制吗？', a: '是的。所有591款产品均支持OEM贴牌（您的品牌标签、洗水标、包装）和ODM设计开发。最小起订量100件/款，可加您的品牌元素。' }
-      : { q: 'Do all 591 products support OEM customization?', a: 'Yes. All 591 products support OEM private label (your brand labels, care labels, packaging) and ODM design development. MOQ 100pcs/style, your branding can be added.' },
-    locale === 'cn'
-      ? { q: '起订量100件能否再少？', a: '常规款起订量100件/款/颜色。试订单可谈，但低于100件单价比标准价高30-50%，建议按标准MOQ下单以获得最优价格。' }
-      : { q: 'Can MOQ be less than 100pcs?', a: 'Standard MOQ is 100pcs/style/color. Trial orders can be negotiated, but unit price will be 30-50% higher than standard. We recommend standard MOQ for best pricing.' },
-    locale === 'cn'
-      ? { q: '羊绒原料产地在哪里？', a: '所有原料来自内蒙古阿尔巴斯白绒山羊，14.5-16.5μm细度，从牧场到成品全链路可追溯。ISO 9001 + OEKO-TEX + GCS 认证。' }
-      : { q: 'Where is your cashmere sourced?', a: 'All raw material is sourced from Inner Mongolia Albus white cashmere goats, 14.5-16.5μm fineness. Full traceability from pasture to finished product. ISO 9001 + OEKO-TEX + GCS certified.' },
-    locale === 'cn'
-      ? { q: '交期多久？', a: '常规款现货7天内发货，OEM定制款30-35天。提供DDP/FOB/CIF等多种贸易方式。' }
-      : { q: 'What is the lead time?', a: 'Stock products ship within 7 days. OEM custom orders 30-35 days. We offer DDP/FOB/CIF trade terms.' },
+    locale === 'cn' ? { q: '如何使用产品目录准备询盘？', a: '选择产品参考后，请说明目标规格、数量、目的地、验货方式和文件需求。' } : { q: 'How should the catalog be used to prepare an inquiry?', a: 'After selecting product references, state the target specification, quantity, destination, inspection approach and document requirements.' },
+    locale === 'cn' ? { q: '价格、起订量、样品和交期何时确认？', a: '应结合具体款式、数量、目的地和项目要求，通过书面沟通、报价文件或销售协议确认。' } : { q: 'When are price, MOQ, sampling and lead time confirmed?', a: 'They are confirmed for the selected style, quantity, destination and project requirements in written correspondence, a quotation or a sales agreement.' },
+    locale === 'cn' ? { q: '如何比较不同产品？', a: '可比较目录中呈现的材质、细度和产品描述；其他项目条件应按具体需求书面确认。' } : { q: 'How should different products be compared?', a: 'Compare the material, micron information and product description presented in the catalog; other project terms should be confirmed in writing.' },
   ]} />
 
   <!-- EN buyer guide: placed after the product catalog so products remain primary. -->
-  {locale === 'en' && (
+  {false && locale === 'en' && (
     <section class="py-12 md:py-16 bg-secondary/20">
       <div class="container-narrow">
         <h2 class="font-display text-3xl md:text-4xl font-light mb-4">Cashmere Product Formats: Which Suits Your Brand?</h2>

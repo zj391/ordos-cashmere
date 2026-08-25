@@ -33,7 +33,7 @@ const subMap: Record<string, string> = {
 const title = titleMap[locale] || 'FAQ';
 const subtitle = subMap[locale] || '';
 
-const faq: Array<{ q: string; a: string }> = (() => {
+const legacyFaq: Array<{ q: string; a: string }> = (() => {
   const map: Record<string, Array<{ q: string; a: string }>> = {
     en: [
       { q: 'What is the MOQ for cashmere products?', a: 'Raw cashmere fiber: 100 kg per grade per color. Cashmere yarn: 50-200 kg per count per color. Cashmere fabric: 200 m+ per design. Garment OEM: 100 pieces per style per color. Hat / accessory OEM: 30-200 pieces depending on item.' },
@@ -110,6 +110,46 @@ const faq: Array<{ q: string; a: string }> = (() => {
   };
   return map[locale] || map.en;
 })();
+
+const faqByLocale: Record<string, Array<{ q: string; a: string }>> = {
+  en: [
+    { q: 'What should a cashmere sourcing inquiry include?', a: 'Include the product reference, intended use, target specification, quantity, destination, sample purpose, inspection approach and documentation needs.' },
+    { q: 'When are MOQ, price, sampling and lead-time terms confirmed?', a: 'These terms are confirmed for the specific project in written correspondence, a quotation or a sales agreement after the product, quantity, destination and requirements are reviewed.' },
+    { q: 'How should quality, compliance and origin requirements be handled?', a: 'State the verification method, acceptance requirements and documentation needed for the project. The applicable scope can then be discussed and recorded in writing.' },
+    { q: 'How are delivery and commercial terms handled?', a: 'State the destination and commercial context in the inquiry. Delivery, logistics, payment and documentation requirements are confirmed in writing for the project.' },
+  ],
+  cn: [
+    { q: '羊绒采购询盘应提供哪些信息？', a: '请提供产品参考、用途、目标规格、数量、目的地、打样用途、验货方式和文件需求。' },
+    { q: '起订量、价格、打样和交期何时确认？', a: '应在审核具体产品、数量、目的地与项目需求后，通过书面沟通、报价文件或销售协议确认。' },
+    { q: '如何处理质量、合规与原产地核验需求？', a: '请说明项目所需的核验方法、验收要求和文件需求；适用范围可据此沟通并以书面方式记录。' },
+    { q: '如何处理交付与商务条件？', a: '请在询盘中说明目的地和商务背景；交付、物流、付款与文件要求将按项目书面确认。' },
+  ],
+  de: [
+    { q: 'Welche Informationen sollte eine Kaschmir-Beschaffungsanfrage enthalten?', a: 'Nennen Sie Produktreferenz, Einsatz, Zielvorgaben, Menge, Zielort, Musterzweck, Prüfweg und Dokumentenbedarf.' },
+    { q: 'Wann werden MOQ, Preis, Muster und Lieferzeit bestätigt?', a: 'Diese Bedingungen werden nach Prüfung von Produkt, Menge, Zielort und Anforderungen schriftlich im Angebot oder Vertrag bestätigt.' },
+    { q: 'Wie werden Qualitäts-, Compliance- und Herkunftsanforderungen behandelt?', a: 'Benennen Sie Prüfverfahren, Abnahmeanforderungen und benötigte Unterlagen; der anwendbare Umfang wird schriftlich abgestimmt.' },
+    { q: 'Wie werden Lieferung und Handelsbedingungen behandelt?', a: 'Nennen Sie Zielort und Geschäftskontext. Lieferung, Logistik, Zahlung und Dokumente werden je Projekt schriftlich bestätigt.' },
+  ],
+  fr: [
+    { q: 'Que doit contenir une demande d’approvisionnement en cachemire ?', a: 'Indiquez référence produit, usage, spécifications, quantité, destination, objectif d’échantillon, méthode d’inspection et documents requis.' },
+    { q: 'Quand le MOQ, le prix, l’échantillonnage et le délai sont-ils confirmés ?', a: 'Ces conditions sont confirmées par écrit dans la correspondance, le devis ou l’accord de vente après examen du projet.' },
+    { q: 'Comment traiter les exigences de qualité, conformité et origine ?', a: 'Précisez méthode de vérification, exigences d’acceptation et documents requis; le périmètre applicable est discuté et documenté par écrit.' },
+    { q: 'Comment traiter livraison et conditions commerciales ?', a: 'Indiquez destination et contexte commercial. Livraison, logistique, paiement et documents sont confirmés par écrit selon le projet.' },
+  ],
+  ja: [
+    { q: 'カシミア調達の問い合わせには何を含めるべきですか？', a: '製品参考、用途、目標仕様、数量、仕向地、サンプル用途、検品方法、必要書類を記載してください。' },
+    { q: 'MOQ、価格、サンプル、納期はいつ確認されますか？', a: '製品、数量、仕向地、要件を確認後、書面の連絡、見積書または売買契約で確認します。' },
+    { q: '品質、コンプライアンス、原産地の要件はどのように扱いますか？', a: '検証方法、受入要件、必要書類を示してください。適用範囲を案件ごとに書面で確認します。' },
+    { q: '納品と商務条件はどのように扱いますか？', a: '仕向地と商務背景を問い合わせに記載してください。納品、物流、支払い、書類要件を案件ごとに書面で確認します。' },
+  ],
+  kr: [
+    { q: '캐시미어 소싱 문의에는 어떤 정보가 필요한가요?', a: '제품 참고, 용도, 목표 사양, 수량, 목적지, 샘플 목적, 검사 방식과 필요 서류를 기재해 주세요.' },
+    { q: 'MOQ, 가격, 샘플 및 납기는 언제 확인되나요?', a: '제품, 수량, 목적지와 요구사항을 검토한 뒤 서면 연락, 견적서 또는 계약서에서 확인됩니다.' },
+    { q: '품질, 규정 준수 및 원산지 요건은 어떻게 처리하나요?', a: '검증 방법, 인수 요건과 필요 서류를 알려 주세요. 적용 범위는 프로젝트별로 서면 확인합니다.' },
+    { q: '납품과 상업 조건은 어떻게 처리하나요?', a: '문의에 목적지와 상업 맥락을 기재해 주세요. 납품, 물류, 결제와 서류 요건은 프로젝트별로 서면 확인합니다.' },
+  ],
+};
+const faq = faqByLocale[locale] || faqByLocale.en;
 
 const ctaMap: Record<string, string> = {
   en: 'Browse all answers or get in touch with our sales team',

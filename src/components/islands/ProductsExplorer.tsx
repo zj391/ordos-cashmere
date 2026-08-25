@@ -313,18 +313,8 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
                     <span>{labels.micron}:</span>
                     <span className="font-medium">{p.micron}</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span>{labels.price}:</span>
-                    <span className="font-medium text-amber-700">
-                      ${p.price} {p.currency}
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>{labels.moq}:</span>
-                    <span className="font-medium">{p.moq} pcs</span>
-                  </div>
                 </div>
-                <p className="text-xs text-muted-foreground mb-2">{labels.colorCardPreview}</p>
+                <p className="text-xs text-muted-foreground mb-2">Project terms are confirmed in writing.</p>
                 <button
                   onClick={() => openProduct(p)}
                   className="w-full px-3 py-2 bg-brand-ink text-[#F7F3EC] text-xs hover:bg-brand-camel transition-colors"
@@ -418,23 +408,9 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
                     <p className="text-xs text-muted-foreground">{labels.micron}</p>
                     <p className="font-medium">{selectedProduct.micron}</p>
                   </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground">{labels.price}</p>
-                    <p className="font-medium text-amber-700">
-                      ${selectedProduct.price} {selectedProduct.currency}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground">{labels.moq}</p>
-                    <p className="font-medium">{selectedProduct.moq} pcs</p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground">{labels.leadTime}</p>
-                    <p className="font-medium">{selectedProduct.lead}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground">{labels.sampleTime}</p>
-                    <p className="font-medium">{selectedProduct.sample_time}</p>
+                  <div className="col-span-2">
+                    <p className="text-xs text-muted-foreground">Project terms</p>
+                    <p className="font-medium">MOQ, price, sampling and delivery requirements are confirmed in writing for the project.</p>
                   </div>
                   {selectedProduct.weight && (
                     <div className="col-span-2">
@@ -459,7 +435,7 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
                   onClick={() => {
                     const subject = encodeURIComponent(`Inquiry: ${selectedProduct.name} (${selectedProduct.id})`);
                     const body = encodeURIComponent(
-                      `Hi,\n\nI'm interested in: ${selectedProduct.name}\nProduct ID: ${selectedProduct.id}\nCategory: ${selectedProduct.categoryName}\nMaterial: ${selectedProduct.material}\nMOQ: ${selectedProduct.moq} pcs\n\nPlease send me more details, pricing, and lead time.\n\nThank you.`
+                      `Hi,\n\nI'm interested in: ${selectedProduct.name}\nProduct ID: ${selectedProduct.id}\nCategory: ${selectedProduct.categoryName}\nMaterial: ${selectedProduct.material}\n\nPlease review the applicable project terms, including specification, quantity, destination, documentation, sampling and delivery requirements.\n\nThank you.`
                     );
                     window.location.href = `/contact?subject=${subject}&body=${body}`;
                   }}

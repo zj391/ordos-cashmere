@@ -16,22 +16,22 @@ const { locale: rawLocale } = Astro.params;
 const locale = pickLocale(rawLocale);
 
 const t: Record<string, Record<string, string>> = {
-  en: { title: 'Download Center', subtitle: 'Catalogs, specifications, and certifications. B2B buyers only.' },
-  cn: { title: '资料下载中心', subtitle: '产品目录、技术规格、认证文件。填写信息后，我们将在24小时内将资料发送至您的邮箱。' },
-  de: { title: 'Download-Center', subtitle: 'Kataloge, Spezifikationen, Zertifizierungen.' },
-  fr: { title: 'Centre de téléchargement', subtitle: 'Catalogues, spécifications, certifications.' },
-  ja: { title: 'ダウンロードセンター', subtitle: 'カタログ、仕様、認証。B2Bバイヤー専用。' },
-  kr: { title: '다운로드 센터', subtitle: '카탈로그, 사양, 인증.' },
+  en: { title: 'Document Request Center', subtitle: 'Request sourcing documentation for your product, specification, destination and internal review needs.' },
+  cn: { title: '资料申请中心', subtitle: '产品目录、规格与采购核验资料。请说明项目需求，以书面方式确认可提供的资料范围。' },
+  de: { title: 'Unterlagenanfrage', subtitle: 'Fordern Sie Beschaffungsunterlagen für Produkt, Spezifikation, Zielort und interne Prüfung an.' },
+  fr: { title: 'Centre de demande de documents', subtitle: 'Demandez des documents d’approvisionnement selon le produit, les spécifications, la destination et vos besoins de validation.' },
+  ja: { title: '資料請求センター', subtitle: '製品、仕様、仕向地、社内審査の要件に合わせて調達資料を請求できます。' },
+  kr: { title: '자료 요청 센터', subtitle: '제품, 사양, 목적지 및 내부 검토 요건에 맞춰 소싱 자료를 요청하세요.' },
 };
 const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
 
 const downloads = [
-  { type: 'catalog', title: locale === 'cn' ? '羊绒产品采购目录' : 'Cashmere Wholesale Catalog', size: locale === 'cn' ? '按需发送' : 'Delivered on request', format: 'PDF dossier' },
-  { type: 'specs', title: locale === 'cn' ? '羊绒原料与纱线规格表' : 'Cashmere Fiber & Yarn Specifications', size: locale === 'cn' ? '按需发送' : 'Delivered on request', format: 'PDF dossier' },
-  { type: 'cert', title: locale === 'cn' ? 'ISO 9001 认证文件' : 'ISO 9001 Documentation', size: locale === 'cn' ? '最新版本' : 'Current version', format: 'PDF dossier' },
-  { type: 'cert', title: locale === 'cn' ? 'OEKO-TEX 合规资料' : 'OEKO-TEX Compliance Documents', size: locale === 'cn' ? '最新版本' : 'Current version', format: 'PDF dossier' },
-  { type: 'quality', title: locale === 'cn' ? '质量控制与验货流程' : 'Quality Control & Inspection Process', size: locale === 'cn' ? '按需发送' : 'Delivered on request', format: 'PDF dossier' },
-  { type: 'report', title: locale === 'cn' ? '工厂能力与验厂资料' : 'Factory Capability & Audit Dossier', size: locale === 'cn' ? '适用采购商' : 'For qualified buyers', format: 'PDF dossier' },
+  { type: 'catalog', title: locale === 'cn' ? '产品目录资料申请' : 'Product Catalog Request', size: locale === 'cn' ? '按项目沟通' : 'Project discussion', format: 'Document request' },
+  { type: 'specs', title: locale === 'cn' ? '原料与纱线规格资料申请' : 'Fiber & Yarn Specification Request', size: locale === 'cn' ? '按项目沟通' : 'Project discussion', format: 'Document request' },
+  { type: 'compliance', title: locale === 'cn' ? '合规资料申请' : 'Compliance Documentation Request', size: locale === 'cn' ? '确认范围' : 'Scope confirmed', format: 'Document request' },
+  { type: 'quality', title: locale === 'cn' ? '质量与验货资料申请' : 'Quality & Inspection Request', size: locale === 'cn' ? '确认范围' : 'Scope confirmed', format: 'Document request' },
+  { type: 'sampling', title: locale === 'cn' ? '打样与项目资料申请' : 'Sampling & Project Documentation Request', size: locale === 'cn' ? '按项目沟通' : 'Project discussion', format: 'Document request' },
+  { type: 'factory', title: locale === 'cn' ? '供应商核验资料申请' : 'Supplier Verification Documentation Request', size: locale === 'cn' ? '确认范围' : 'Scope confirmed', format: 'Document request' },
 ];
 
 const procurementPaths = [
@@ -41,65 +41,16 @@ const procurementPaths = [
   { href: 'shipping-logistics', number: '04', title: { en: 'Trade & logistics', cn: '贸易与物流', de: 'Handel & Logistik', fr: 'Commerce & logistique', ja: '貿易・物流', kr: '무역 및 물류' }, desc: { en: 'Align delivery terms, origin port and shipment planning with your destination market.', cn: '按目的国确认贸易条款、起运港和运输方案。', de: 'Stimmen Sie Lieferbedingungen, Abgangshafen und Versandplanung auf Ihren Markt ab.', fr: 'Alignez les conditions de livraison, le port de départ et la planification transport.', ja: '仕向地に合わせて貿易条件・出荷港・輸送計画を確認します。', kr: '목적지 시장에 맞춰 거래 조건, 출항 항구 및 운송 계획을 조정하세요.' } },
 ];
 
-// Trust Packs — 4 themed bundles (multiple PDFs compressed into 1 zip-equivalent)
-// B2B buyers save time vs downloading 6+ files individually
+// 采购资料请求范围：仅描述可讨论的核验主题，不预设文件、证书、报告或条款一定可交付。
 const trustPacks = [
-  {
-    slug: 'factory-pack',
-    eyebrow: { en: 'Factory Pack', cn: '工厂实力包', de: 'Fabrik-Paket', fr: 'Pack Usine', ja: '工場パック', kr: '공장 팩' },
-    title:   { en: 'Factory Credentials & Audit Pack', cn: '工厂资质 + 验厂报告包', de: 'Fabrikqualifikationen + Auditbericht', fr: 'Qualifications + Audit', ja: '工場資格 + 監査', kr: '공장 자격 + 감사' },
-    items: [
-      'Product Catalog 2024 (EN/CN)',
-      'SGS On-site Factory Audit Report',
-      'ISO 9001:2015 Certificate',
-      '23 Years Operating History Brief',
-    ],
-    size: '18.7 MB',
-  },
-  {
-    slug: 'quality-pack',
-    eyebrow: { en: 'Quality Pack', cn: '质量保证包', de: 'Qualitätspaket', fr: 'Pack Qualité', ja: '品質パック', kr: '품질 팩' },
-    title:   { en: 'Certifications & QC Process Pack', cn: '认证 + 质检流程包', de: 'Zertifizierungen + QC-Prozess', fr: 'Certifications + Processus QC', ja: '認証 + QC プロセス', kr: '인증 + QC 프로세스' },
-    items: [
-      'ISO 9001 Certificate',
-      'OEKO-TEX 100 Standard Certificate',
-      'Good Cashmere Standard (GCS) Blendscover',
-      'AQL 2.5 IQC/IPQC/OQC Workflow PDF',
-      'Inner Mongolia Origin Test Report',
-    ],
-    size: '4.3 MB',
-  },
-  {
-    slug: 'materials-pack',
-    eyebrow: { en: 'Materials Pack', cn: '原料规格包', de: 'Materialpaket', fr: 'Pack Matières', ja: '素材パック', kr: '소재 팩' },
-    title:   { en: 'Yarn Count & Dye Specification Pack', cn: '纱线支数 + 染色规格包', de: 'Garnnummer + Färbung Spezifikation', fr: 'Numéro + Teinture', ja: '番手 + 染色 仕様', kr: '번수 + 염색 사양' },
-    items: [
-      'Yarn Count Reference (2/26 to 2/120 Nm)',
-      'Micron Grade Specifications (14.5-19.5μm)',
-      'Pantone Color Matching Process (5kg+ MOQ)',
-      'Color Fastness Standards (ISO 105-C06 / B02)',
-      'Cone vs Hank Yarn Delivery Specifications',
-      'Wholesale Pricing Tier Document',
-    ],
-    size: '6.1 MB',
-  },
-  {
-    slug: 'buyer-pack',
-    eyebrow: { en: 'Buyer Pack', cn: '采购流程包', de: 'Käuferpaket', fr: 'Pack Acheteur', ja: 'バイヤーパック', kr: '바이어 팩' },
-    title:   { en: 'Sample Policy & Trade Terms Pack', cn: '样品政策 + 贸易条款包', de: 'Musterpolitik + Handelsbedingungen', fr: 'Échantillons + Conditions commerciales', ja: 'サンプル + 取引条件', kr: '샘플 + 무역 조건' },
-    items: [
-      'Sample Policy (4 sample types + refund terms)',
-      'MOQ Reference by Product Category',
-      'HS Code Guide (5108.20 / 6110 / 6202)',
-      'FOB / CIF / DDP Shipping Terms 2026',
-      'OEM/ODM Workflow 8-12 Weeks Timeline',
-    ],
-    size: '5.2 MB',
-  },
+  { slug: 'factory-pack', eyebrow: { en: 'Factory review', cn: '工厂核验', de: 'Fabrikprüfung', fr: 'Validation usine', ja: '工場審査', kr: '공장 검토' }, title: { en: 'Factory Information Request', cn: '工厂信息资料申请', de: 'Anfrage zu Fabrikinformationen', fr: 'Demande d’information usine', ja: '工場情報の請求', kr: '공장 정보 요청' }, items: ['Product scope and reference needs', 'Supplier review questions', 'Documentation requirements', 'Project context for written review'], size: 'Scope confirmed in writing' },
+  { slug: 'quality-pack', eyebrow: { en: 'Quality review', cn: '质量核验', de: 'Qualitätsprüfung', fr: 'Validation qualité', ja: '品質審査', kr: '품질 검토' }, title: { en: 'Quality & Compliance Request', cn: '质量与合规资料申请', de: 'Qualitäts- und Compliance-Anfrage', fr: 'Demande qualité et conformité', ja: '品質・コンプライアンス資料請求', kr: '품질 및 규정 준수 요청' }, items: ['Inspection approach to discuss', 'Specification and document needs', 'Acceptance requirements', 'Written project confirmation'], size: 'Scope confirmed in writing' },
+  { slug: 'materials-pack', eyebrow: { en: 'Material review', cn: '原料核验', de: 'Materialprüfung', fr: 'Validation matière', ja: '素材審査', kr: '소재 검토' }, title: { en: 'Material Specification Request', cn: '原料规格资料申请', de: 'Material-Spezifikationsanfrage', fr: 'Demande de spécifications matière', ja: '素材仕様資料請求', kr: '소재 사양 요청' }, items: ['Construction and composition direction', 'Color and finish requirements', 'Use, quantity and destination', 'Documentation for written review'], size: 'Scope confirmed in writing' },
+  { slug: 'buyer-pack', eyebrow: { en: 'Project review', cn: '项目核验', de: 'Projektprüfung', fr: 'Validation projet', ja: '案件審査', kr: '프로젝트 검토' }, title: { en: 'Project & Trade Discussion Request', cn: '项目与贸易资料申请', de: 'Projekt- und Handelsanfrage', fr: 'Demande projet et commerce', ja: '案件・貿易相談資料請求', kr: '프로젝트 및 무역 논의 요청' }, items: ['Product and sample purpose', 'Quantity and destination context', 'Delivery and commercial questions', 'Terms for written confirmation'], size: 'Scope confirmed in writing' },
 ];
-const packsEyebrow = { en: 'Trust Packs', cn: '一站式下载', de: 'Vertrauenspakete', fr: 'Packs de Confiance', ja: 'トラストパック', kr: '신뢰 팩' };
-const packsTitle = { en: 'Download Everything in One Bundle', cn: '一站式获取工厂全部资料', de: 'Alles in einem Paket herunterladen', fr: 'Tout télécharger en un seul pack', ja: '工場資料を 1 つにまとめて', kr: '공장 자료를 한 번에' };
-const packsSubtitle = { en: 'Each Trust Pack bundles 4-6 PDFs (catalog + certs + datasheets + trade terms) into one download — saving B2B buyers multiple round-trips.', cn: '每个信任包整合 4-6 份 PDF（目录 + 证书 + 规格表 + 贸易条款）——省去多次下载沟通。', de: 'Jedes Paket bündelt 4-6 PDFs.', fr: 'Chaque pack regroupe 4-6 PDF.', ja: '各パック 4-6 PDF 統合。', kr: '각 팩 4-6 PDF 통합.' };
+const packsEyebrow = { en: 'Document requests', cn: '资料申请', de: 'Unterlagenanfragen', fr: 'Demandes de documents', ja: '資料請求', kr: '자료 요청' };
+const packsTitle = { en: 'Request documents for your review', cn: '按采购需求申请核验资料', de: 'Unterlagen für Ihre Prüfung anfordern', fr: 'Demander des documents pour votre validation', ja: '審査用資料を請求', kr: '검토용 자료 요청' };
+const packsSubtitle = { en: 'Choose the topic that matches your current decision. The relevant scope is discussed and confirmed in writing for the project.', cn: '选择与当前采购决策相关的主题；可提供资料的范围将结合项目需求以书面方式确认。', de: 'Wählen Sie das Thema Ihrer Entscheidung; der Umfang wird schriftlich bestätigt.', fr: 'Choisissez le sujet correspondant à votre décision; le périmètre est confirmé par écrit.', ja: '現在の判断に合うテーマを選び、資料範囲を案件ごとに書面で確認します。', kr: '현재 결정에 맞는 주제를 선택하고 자료 범위를 프로젝트별로 서면 확인합니다.' };
 const packsCta = { en: 'Request a Custom Pack', cn: '索取定制资料包', de: 'Custom-Paket anfordern', fr: 'Pack personnalisé', ja: 'カスタムパック', kr: '맞춤 팩 요청' };
 
 ---
@@ -169,11 +120,11 @@ const packsCta = { en: 'Request a Custom Pack', cn: '索取定制资料包', de:
             </ul>
             <div class="flex flex-wrap items-center gap-3 pt-4 border-t border-border/60">
               <a href={`/${locale}/contact?inquiry=${p.slug}`} class="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-ink text-[#F7F3EC] hover:bg-brand-chocolate transition-colors text-xs uppercase tracking-[0.15em] font-medium">
-                {locale === 'cn' ? '索取此包' : 'Get this pack'}
+                {locale === 'cn' ? '申请资料' : 'Request documents'}
                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
               </a>
               <span class="text-xs text-muted-foreground">
-                {locale === 'cn' ? '我们 24 小时内邮件发送' : 'Email delivery within 24 hours'}
+                {locale === 'cn' ? '资料范围以书面沟通确认' : 'Document scope confirmed in writing'}
               </span>
             </div>
           </article>
@@ -186,8 +137,8 @@ const packsCta = { en: 'Request a Custom Pack', cn: '索取定制资料包', de:
         </h3>
         <p class="text-sm text-muted-foreground mb-5">
           {locale === 'cn'
-            ? '指定产品类 + MOQ + 目的国，我们整理专门的资料包给您。'
-            : "Tell us your category + target MOQ + destination. We'll build a tailored dossier."}
+            ? '请说明产品类别、数量、目的地和核验需求，以便书面确认适用资料。'
+            : "Share your category, quantity, destination and review needs so the relevant documentation scope can be confirmed in writing."}
         </p>
         <a href={`/${locale}/contact?inquiry=custom-pack`} class="inline-flex items-center gap-2 px-6 py-2.5 border border-brand-ink/30 text-brand-ink hover:bg-brand-ink hover:text-[#F7F3EC] transition-colors text-xs uppercase tracking-[0.15em] font-medium">
           {packsCta[locale] || packsCta.en}

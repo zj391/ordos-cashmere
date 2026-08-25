@@ -92,10 +92,48 @@ const privacyPolicy: Record<string, { title: string; sections: Array<{ h: string
   },
 };
 
-const policy = privacyPolicy[locale] || privacyPolicy.en;
+const privacyNotice: Record<string, { title: string; sections: Array<{ h: string; p: string }> }> = {
+  en: { title: 'Privacy Information', sections: [
+    { h: 'Information you provide', p: 'An inquiry may include contact details, company information, country, product interest and project requirements that you choose to submit.' },
+    { h: 'Project communication', p: 'Information submitted through the site is used to respond to the relevant sourcing or document request. Please avoid sending sensitive information that is not needed for the project discussion.' },
+    { h: 'Cookies and services', p: 'Site features and analytics settings may vary. Your browser and the site’s available controls can be used to manage cookies where those controls are provided.' },
+    { h: 'Questions and requests', p: 'For questions about information connected to a specific inquiry, contact dongxiaocashmere@erdosdx.com. Applicable privacy rights and handling requirements depend on the relevant jurisdiction and should be reviewed before relying on this summary.' },
+  ] },
+  cn: { title: '隐私信息说明', sections: [
+    { h: '您提供的信息', p: '询盘可能包含您选择提交的联系信息、公司信息、国家、产品兴趣和项目需求。' },
+    { h: '项目沟通', p: '通过网站提交的信息用于回复相关采购或资料申请。请避免发送与项目沟通无关的敏感信息。' },
+    { h: 'Cookie 与服务', p: '网站功能和分析设置可能因实际配置而变化；如提供相关控制，您可使用浏览器和网站控制项管理 Cookie。' },
+    { h: '咨询与请求', p: '如需了解与具体询盘相关的信息，请联系 dongxiaocashmere@erdosdx.com。适用的隐私权利和处理要求取决于相关法域，依赖本说明前应进行专业审阅。' },
+  ] },
+  de: { title: 'Datenschutzhinweise', sections: [
+    { h: 'Von Ihnen bereitgestellte Informationen', p: 'Eine Anfrage kann Kontakt-, Unternehmens-, Länder-, Produkt- und Projektinformationen enthalten, die Sie freiwillig übermitteln.' },
+    { h: 'Projektkommunikation', p: 'Über die Website eingereichte Informationen werden zur Beantwortung der betreffenden Beschaffungs- oder Unterlagenanfrage verwendet. Senden Sie keine für das Projekt unnötigen sensiblen Informationen.' },
+    { h: 'Cookies und Dienste', p: 'Website-Funktionen und Analytikeinstellungen können je nach Konfiguration variieren. Nutzen Sie verfügbare Browser- und Website-Steuerungen zur Cookie-Verwaltung.' },
+    { h: 'Fragen und Anfragen', p: 'Bei Fragen zu einer konkreten Anfrage kontaktieren Sie dongxiaocashmere@erdosdx.com. Anwendbare Rechte und Anforderungen hängen von der zuständigen Rechtsordnung ab und sollten professionell geprüft werden.' },
+  ] },
+  fr: { title: 'Informations de confidentialité', sections: [
+    { h: 'Informations que vous fournissez', p: 'Une demande peut inclure coordonnées, informations société, pays, intérêt produit et besoins de projet que vous choisissez de soumettre.' },
+    { h: 'Communication de projet', p: 'Les informations soumises servent à répondre à la demande d’approvisionnement ou de documents concernée. Évitez d’envoyer des informations sensibles non nécessaires au projet.' },
+    { h: 'Cookies et services', p: 'Les fonctions du site et réglages analytiques peuvent varier selon la configuration. Utilisez les contrôles disponibles du navigateur et du site pour gérer les cookies.' },
+    { h: 'Questions et demandes', p: 'Pour une question liée à une demande précise, contactez dongxiaocashmere@erdosdx.com. Les droits et exigences applicables dépendent de la juridiction concernée et doivent être examinés professionnellement.' },
+  ] },
+  ja: { title: 'プライバシー情報', sections: [
+    { h: 'ご提供いただく情報', p: 'お問い合わせには、ご自身で送信される連絡先、会社、国、製品関心、案件要件が含まれる場合があります。' },
+    { h: '案件コミュニケーション', p: 'サイトで送信された情報は、該当する調達または資料請求への回答に使用します。案件に不要な機微情報は送信しないでください。' },
+    { h: 'Cookie とサービス', p: 'サイト機能と分析設定は構成により異なる場合があります。利用可能なブラウザおよびサイトの管理機能で Cookie を管理してください。' },
+    { h: 'お問い合わせ', p: '特定のお問い合わせに関する質問は dongxiaocashmere@erdosdx.com へご連絡ください。適用される権利と要件は法域により異なるため、専門的に確認してください。' },
+  ] },
+  kr: { title: '개인정보 안내', sections: [
+    { h: '제공하는 정보', p: '문의에는 사용자가 선택하여 제출하는 연락처, 회사, 국가, 제품 관심사 및 프로젝트 요건이 포함될 수 있습니다.' },
+    { h: '프로젝트 커뮤니케이션', p: '사이트로 제출된 정보는 해당 소싱 또는 자료 요청에 답변하기 위해 사용됩니다. 프로젝트에 필요하지 않은 민감한 정보는 보내지 마세요.' },
+    { h: '쿠키 및 서비스', p: '사이트 기능과 분석 설정은 구성에 따라 달라질 수 있습니다. 제공되는 브라우저 및 사이트 제어 기능으로 쿠키를 관리하세요.' },
+    { h: '문의와 요청', p: '특정 문의와 관련한 질문은 dongxiaocashmere@erdosdx.com으로 연락해 주세요. 적용되는 권리와 요건은 관할에 따라 달라지므로 전문가 검토가 필요합니다.' },
+  ] },
+};
+const policy = privacyNotice[locale] || privacyNotice.en;
 ---
 
-<BaseLayout locale={locale} pageKey="privacy" path="/privacy-policy">
+<BaseLayout locale={locale} pageKey="privacy" path="/privacy-policy" noIndex={true}>
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/privacy-policy`} />
 
   <section class="relative bg-[#F5F0E7] border-b border-border/60 overflow-hidden">
