@@ -57,7 +57,6 @@ export interface ServiceItem {
   name: string;
   description: string;
   provider: string;
-  areaServed: string[];
   serviceType: string;
 }
 
@@ -72,8 +71,7 @@ export function servicesSchema(services: ServiceItem[]) {
         '@type': 'Service',
         name: s.name,
         description: s.description,
-        provider: { '@type': 'Organization', name: s.provider },
-        areaServed: s.areaServed.map((a) => ({ '@type': 'Country', name: a })),
+        provider: { '@type': 'Organization', name: s.provider, url: SITE_URL },
         serviceType: s.serviceType,
       },
     })),
@@ -141,40 +139,40 @@ export const PAGE_BREADCRUMB: Record<string, (locale: Locale) => BreadcrumbItem[
  */
 export const SERVICES: Record<Locale, ServiceItem[]> = {
   en: [
-    { name: 'Cashmere Raw Material Supply', description: 'Premium white, brown, purple cashmere fiber direct from Ordos source factory', provider: 'DONGXIAO® Cashmere', areaServed: ['EU', 'USA', 'Japan', 'Korea', 'UK'], serviceType: 'B2B Wholesale' },
-    { name: 'Cashmere Yarn Manufacturing', description: 'Worsted & woolen cashmere yarn (26/2, 28/2, 36/2, 48/2 counts)', provider: 'DONGXIAO® Cashmere', areaServed: ['EU', 'USA', 'Japan', 'Korea'], serviceType: 'Manufacturing' },
-    { name: 'Cashmere Woven Fabric', description: 'Premium cashmere fabric 180-450 g/m², custom weave and finish', provider: 'DONGXIAO® Cashmere', areaServed: ['EU', 'USA', 'Japan', 'Korea'], serviceType: 'Manufacturing' },
-    { name: 'Cashmere Garment OEM/ODM', description: 'Full-service garment OEM/ODM from design to shipment. MOQ 100pcs.', provider: 'DONGXIAO® Cashmere', areaServed: ['Worldwide'], serviceType: 'OEM Manufacturing' },
+    { name: 'Cashmere Raw Material Sourcing', description: 'A sourcing discussion for cashmere raw-material requirements and product specifications.', provider: 'DONGXIAO® Cashmere', serviceType: 'B2B Sourcing' },
+    { name: 'Cashmere Yarn Sourcing', description: 'A sourcing discussion for yarn construction, count, color and required documentation.', provider: 'DONGXIAO® Cashmere', serviceType: 'B2B Sourcing' },
+    { name: 'Cashmere Fabric Sourcing', description: 'A sourcing discussion for fabric construction, weight, finish and sampling requirements.', provider: 'DONGXIAO® Cashmere', serviceType: 'B2B Sourcing' },
+    { name: 'Cashmere Garment OEM/ODM Discussion', description: 'A written project discussion covering design references, product specifications, sampling and commercial requirements.', provider: 'DONGXIAO® Cashmere', serviceType: 'OEM/ODM Sourcing' },
   ],
   de: [
-    { name: 'Kaschmir-Rohmaterial', description: 'Premium Weiß, Braun, Lila Kaschmir aus Ordos', provider: 'DONGXIAO® Cashmere', areaServed: ['EU', 'USA', 'Japan', 'Korea'], serviceType: 'B2B Großhandel' },
-    { name: 'Kaschmirgarn-Herstellung', description: 'Kammgarn & Streichgarn Kaschmir', provider: 'DONGXIAO® Cashmere', areaServed: ['EU', 'USA', 'Japan', 'Korea'], serviceType: 'Herstellung' },
-    { name: 'Kaschmir-Webstoff', description: 'Premium Kaschmir-Stoff 180-450 g/m²', provider: 'DONGXIAO® Cashmere', areaServed: ['EU', 'USA', 'Japan', 'Korea'], serviceType: 'Herstellung' },
-    { name: 'Kaschmir-Bekleidung OEM/ODM', description: 'Full-Service OEM/ODM', provider: 'DONGXIAO® Cashmere', areaServed: ['Weltweit'], serviceType: 'OEM Herstellung' },
+    { name: 'Kaschmir-Rohmaterial Beschaffung', description: 'Abstimmung zu Rohmaterialanforderungen und Produktspezifikationen.', provider: 'DONGXIAO® Cashmere', serviceType: 'B2B Beschaffung' },
+    { name: 'Kaschmirgarn Beschaffung', description: 'Abstimmung zu Garnkonstruktion, Feinheit, Farbe und Dokumenten.', provider: 'DONGXIAO® Cashmere', serviceType: 'B2B Beschaffung' },
+    { name: 'Kaschmir-Stoff Beschaffung', description: 'Abstimmung zu Stoffkonstruktion, Gewicht, Ausrüstung und Musteranforderungen.', provider: 'DONGXIAO® Cashmere', serviceType: 'B2B Beschaffung' },
+    { name: 'Kaschmir Bekleidung OEM/ODM Abstimmung', description: 'Schriftliche Projektabstimmung zu Referenzen, Spezifikationen, Bemusterung und Geschäftsanforderungen.', provider: 'DONGXIAO® Cashmere', serviceType: 'OEM/ODM Beschaffung' },
   ],
   fr: [
-    { name: 'Cachemire brut', description: 'Cachemire blanc, brun, violet d\'Ordos', provider: 'DONGXIAO® Cashmere', areaServed: ['UE', 'USA', 'Japon', 'Corée'], serviceType: 'B2B Gros' },
-    { name: 'Fil cachemire', description: 'Peigné & cardé', provider: 'DONGXIAO® Cashmere', areaServed: ['UE', 'USA', 'Japon', 'Corée'], serviceType: 'Fabrication' },
-    { name: 'Tissu cachemire', description: 'Tissu premium 180-450 g/m²', provider: 'DONGXIAO® Cashmere', areaServed: ['UE', 'USA', 'Japon', 'Corée'], serviceType: 'Fabrication' },
-    { name: 'Vêtement cachemire OEM/ODM', description: 'Service complet OEM/ODM', provider: 'DONGXIAO® Cashmere', areaServed: ['Monde'], serviceType: 'Fabrication OEM' },
+    { name: 'Approvisionnement cachemire brut', description: 'Échange sur les exigences de matière et les spécifications produit.', provider: 'DONGXIAO® Cashmere', serviceType: 'Approvisionnement B2B' },
+    { name: 'Approvisionnement fil cachemire', description: 'Échange sur construction, titre, couleur et documents du fil.', provider: 'DONGXIAO® Cashmere', serviceType: 'Approvisionnement B2B' },
+    { name: 'Approvisionnement tissu cachemire', description: 'Échange sur construction, poids, finition et échantillonnage.', provider: 'DONGXIAO® Cashmere', serviceType: 'Approvisionnement B2B' },
+    { name: 'Discussion OEM/ODM cachemire', description: 'Discussion écrite sur références, spécifications, échantillons et besoins commerciaux.', provider: 'DONGXIAO® Cashmere', serviceType: 'Approvisionnement OEM/ODM' },
   ],
   ja: [
-    { name: '原料カシミア供給', description: '白・青・紫カシミア', provider: 'DONGXIAO® Cashmere', areaServed: ['EU', 'USA', '日本', '韓国'], serviceType: 'B2B卸売' },
-    { name: 'カシミア糸製造', description: '梳毛・紡毛', provider: 'DONGXIAO® Cashmere', areaServed: ['EU', 'USA', '日本', '韓国'], serviceType: '製造' },
-    { name: 'カシミア織物', description: 'プレミアム 180-450 g/m²', provider: 'DONGXIAO® Cashmere', areaServed: ['EU', 'USA', '日本', '韓国'], serviceType: '製造' },
-    { name: '衣料OEM/ODM', description: 'フルサービス', provider: 'DONGXIAO® Cashmere', areaServed: ['世界中'], serviceType: 'OEM製造' },
+    { name: '原料カシミア調達', description: '原料要件と製品仕様に関する調達相談。', provider: 'DONGXIAO® Cashmere', serviceType: 'B2B調達' },
+    { name: 'カシミア糸調達', description: '糸構造、番手、色、必要書類に関する調達相談。', provider: 'DONGXIAO® Cashmere', serviceType: 'B2B調達' },
+    { name: 'カシミア生地調達', description: '生地構造、重量、仕上げ、サンプル要件に関する調達相談。', provider: 'DONGXIAO® Cashmere', serviceType: 'B2B調達' },
+    { name: 'カシミア OEM/ODM 相談', description: '参考資料、仕様、サンプル、商務要件に関する書面でのプロジェクト相談。', provider: 'DONGXIAO® Cashmere', serviceType: 'OEM/ODM調達' },
   ],
   kr: [
-    { name: '원료 캐시미어 공급', description: '백색, 청색, 자색 캐시미어', provider: 'DONGXIAO® Cashmere', areaServed: ['EU', 'USA', '일본', '한국'], serviceType: 'B2B 도매' },
-    { name: '캐시미어 원사 제조', description: '소모사·방모사', provider: 'DONGXIAO® Cashmere', areaServed: ['EU', 'USA', '일본', '한국'], serviceType: '제조' },
-    { name: '캐시미어 직물', description: '프리미엄 180-450 g/m²', provider: 'DONGXIAO® Cashmere', areaServed: ['EU', 'USA', '일본', '한국'], serviceType: '제조' },
-    { name: '의류 OEM/ODM', description: '풀서비스 OEM/ODM', provider: 'DONGXIAO® Cashmere', areaServed: ['전세계'], serviceType: 'OEM 제조' },
+    { name: '원료 캐시미어 소싱', description: '원료 요건과 제품 사양에 관한 소싱 상담.', provider: 'DONGXIAO® Cashmere', serviceType: 'B2B 소싱' },
+    { name: '캐시미어 원사 소싱', description: '원사 구조, 번수, 색상, 필요 서류에 관한 소싱 상담.', provider: 'DONGXIAO® Cashmere', serviceType: 'B2B 소싱' },
+    { name: '캐시미어 직물 소싱', description: '직물 구조, 중량, 마감, 샘플 요건에 관한 소싱 상담.', provider: 'DONGXIAO® Cashmere', serviceType: 'B2B 소싱' },
+    { name: '캐시미어 OEM/ODM 상담', description: '참고 자료, 사양, 샘플, 상업 요건에 관한 서면 프로젝트 상담.', provider: 'DONGXIAO® Cashmere', serviceType: 'OEM/ODM 소싱' },
   ],
   cn: [
-    { name: '羊绒原料供应', description: '白绒/青绒/紫绒，鄂尔多斯源头直供', provider: '东霄羊绒', areaServed: ['欧盟', '美国', '日本', '韩国'], serviceType: 'B2B批发' },
-    { name: '羊绒纱线制造', description: '精纺/粗纺羊绒纱线', provider: '东霄羊绒', areaServed: ['欧盟', '美国', '日本', '韩国'], serviceType: '制造' },
-    { name: '羊绒面料织造', description: '180-450g/m² 高级羊绒面料', provider: '东霄羊绒', areaServed: ['欧盟', '美国', '日本', '韩国'], serviceType: '制造' },
-    { name: '羊绒成衣代工', description: '全流程 OEM/ODM 代工服务', provider: '东霄羊绒', areaServed: ['全球'], serviceType: 'OEM代工' },
+    { name: '羊绒原料采购沟通', description: '围绕原料要求与产品规格的采购沟通。', provider: '东霄羊绒', serviceType: 'B2B采购' },
+    { name: '羊绒纱线采购沟通', description: '围绕纱线结构、支数、颜色与文件要求的采购沟通。', provider: '东霄羊绒', serviceType: 'B2B采购' },
+    { name: '羊绒面料采购沟通', description: '围绕面料结构、克重、后整理与打样要求的采购沟通。', provider: '东霄羊绒', serviceType: 'B2B采购' },
+    { name: '羊绒成衣 OEM/ODM 沟通', description: '围绕参考资料、规格、打样与商务需求的书面项目沟通。', provider: '东霄羊绒', serviceType: 'OEM/ODM采购' },
   ],
 };
 

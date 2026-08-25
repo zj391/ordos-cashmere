@@ -1,8 +1,6 @@
 ---
 /**
- * Private Label Cashmere - dedicated SEO hub (7-8)
- * Target: private label cashmere knitwear / private label cashmere sweater factory
- * Route: /[locale]/private-label-cashmere × 6 locales = 6 URLs
+ * 私牌 OEM SEO：以采购方可准备的资料为核心；具体规格、样品、MOQ、交期、费用与交付条款均在书面报价中确认。
  */
 export const prerender = true;
 
@@ -14,276 +12,31 @@ import CookieConsent from '@/components/CookieConsent.astro';
 import SEOFaq from '@/components/SEOFaq.astro';
 import { LOCALES, isLocale, pickLocale } from '@/lib/i18n';
 
-export function getStaticPaths() {
-  return LOCALES.map((locale) => ({ params: { locale } }));
-}
-
+export function getStaticPaths() { return LOCALES.map((locale) => ({ params: { locale } })); }
 const { locale: rawLocale } = Astro.params;
 if (!isLocale(rawLocale)) { return new Response('Not Found', { status: 404 }); }
 const locale = pickLocale(rawLocale);
 
-const tdk = {
-  en: {
-    title: 'Private Label Cashmere Knitwear | OEM/ODM Manufacturer | DONGXIAO®',
-    description: 'Private label cashmere sweaters, scarves, hats for global brands. Custom labels, hangtags, packaging. MOQ 100pcs/style. 23+ years OEM/ODM experience. Ordos factory direct.',
-    h1: 'Private Label Cashmere Manufacturer',
-    intro: 'Build your own cashmere brand with our 23+ years of OEM/ODM experience. From yarn selection to final packaging, we handle every step under your label.',
-    bullets: [
-      'Custom woven labels, printed labels, or hangtags',
-      'Custom packaging (boxes, polybags, tissue paper)',
-      'Pattern + sample development in 7-10 days',
-      'Bulk production 30-45 days',
-      'MOQ 100 pieces per style',
-    ],
-    faqs: [
-      { q: 'What is the MOQ for private label cashmere?', a: 'MOQ is 100 pieces per style. We can mix colors within a style to help meet MOQ.' },
-      { q: 'How long does sampling take?', a: 'Counter-sample: 7-10 days. Production-ready sample with your labels: 14-21 days.' },
-      { q: 'Can you handle custom packaging?', a: 'Yes — boxes, polybags, tissue paper, hangtags, barcodes. We can source or work with your supplied packaging.' },
-      { q: 'Do you offer design support?', a: 'Yes — in-house design team can develop tech packs from sketches, reference photos, or trend briefs.' },
-    ],
-  },
-  cn: {
-    title: '羊绒私人标签代工 | OEM/ODM 贴牌生产 | DONGXIAO®',
-    description: '羊绒衫/围巾/帽子 贴牌代工。定制标签、吊牌、包装。MOQ 100件/款。23年 OEM/ODM 经验。',
-    h1: '羊绒私人标签代工',
-    intro: '23年 OEM/ODM 经验，从纱线选择到包装一站式贴牌。',
-    bullets: ['定制织标/印标/吊牌', '定制包装（盒/袋/纸）', '打样 7-10 天', '大货 30-45 天', 'MOQ 每款 100 件'],
-    faqs: [{ q: '羊绒贴牌起订量？', a: '每款 100 件。' }],
-  },
-  // 8-20: de/fr/ja/kr 翻译补齐
-  de: {
-    title: 'Private Label Kaschmir-Strick | OEM/ODM-Hersteller | DONGXIAO®',
-    description: 'Private-Label-Kaschmirpullover, -schals und -mützen für globale Marken. Eigene Etiketten, Anhänger, Verpackung. MOQ 100 Stk./Modell. 23+ Jahre OEM/ODM-Erfahrung. Direkt aus Ordos.',
-    h1: 'Private-Label-Kaschmir-Hersteller',
-    intro: 'Bauen Sie Ihre eigene Kaschmir-Marke mit unserer 23+ jährigen OEM/ODM-Erfahrung auf. Von der Garnauswahl bis zur Endverpackung – alles unter Ihrem Label.',
-    bullets: [
-      'Eigene Webetiketten, bedruckte Etiketten oder Anhänger',
-      'Eigene Verpackung (Boxen, Polybeutel, Seidenpapier)',
-      'Schnitt- + Musterentwicklung in 7–10 Tagen',
-      'Serienproduktion 30–45 Tage',
-      'MOQ 100 Stück pro Modell',
-    ],
-    faqs: [
-      { q: 'Was ist die MOQ für Private-Label-Kaschmir?', a: 'Die MOQ beträgt 100 Stück pro Modell. Wir können Farben innerhalb eines Modells mischen, um die MOQ zu erreichen.' },
-      { q: 'Wie lange dauert die Bemusterung?', a: 'Gegenmuster: 7–10 Tage. Produktionsreifes Muster mit Ihren Etiketten: 14–21 Tage.' },
-      { q: 'Übernehmen Sie kundenspezifische Verpackungen?', a: 'Ja — Boxen, Polybeutel, Seidenpapier, Anhänger, Barcodes. Wir können Verpackungen beschaffen oder mit Ihren bereitgestellten arbeiten.' },
-      { q: 'Bieten Sie Designunterstützung?', a: 'Ja — unser internes Designteam kann Tech-Packs aus Skizzen, Referenzfotos oder Trendbriefings entwickeln.' },
-    ],
-  },
-  fr: {
-    title: 'Cachemire marque privée | Fabricant OEM/ODM | DONGXIAO®',
-    description: 'Pulls, écharpes et bonnets cachemire en marque blanche pour marques mondiales. Étiquettes, cintres, packaging personnalisés. MOQ 100 pièces/modèle. 23+ ans d\'expérience OEM/ODM. Direct usine Ordos.',
-    h1: 'Fabricant cachemire marque privée',
-    intro: 'Construisez votre propre marque cachemire grâce à nos 23+ ans d\'expérience OEM/ODM. De la sélection du fil à l\'emballage final, nous gérons chaque étape sous votre étiquette.',
-    bullets: [
-      'Étiquettes tissées, imprimées ou cintres personnalisés',
-      'Packaging personnalisé (boîtes, sachets, papier de soie)',
-      'Développement patron + échantillon en 7–10 jours',
-      'Production série 30–45 jours',
-      'MOQ 100 pièces par modèle',
-    ],
-    faqs: [
-      { q: 'Quel est le MOQ pour le cachemire en marque privée ?', a: 'Le MOQ est de 100 pièces par modèle. Nous pouvons mélanger les couleurs au sein d\'un même modèle pour atteindre le MOQ.' },
-      { q: 'Combien de temps prend l\'échantillonnage ?', a: 'Contre-échantillon : 7–10 jours. Échantillon prêt à produire avec vos étiquettes : 14–21 jours.' },
-      { q: 'Pouvez-vous gérer un packaging personnalisé ?', a: 'Oui — boîtes, sachets, papier de soie, cintres, codes-barres. Nous pouvons sourcer ou travailler avec votre packaging fourni.' },
-      { q: 'Offrez-vous un soutien design ?', a: 'Oui — notre équipe design interne peut développer des tech packs à partir de croquis, photos de référence ou briefs de tendance.' },
-    ],
-  },
-  ja: {
-    title: 'プライベートブランド カシミア | OEM/ODM 製造 | DONGXIAO®',
-    description: 'グローバルブランド向けカシミアセーター・マフラー・帽子のプライベートブランド。オリジナルラベル・下げタグ・パッケージ対応。MOQ 100 個/スタイル。23 年以上の OEM/ODM 実績。オルドス直送。',
-    h1: 'プライベートブランド カシミア製造',
-    intro: '23 年以上の OEM/ODM 実績で、お客様のカシミアブランドを構築。糸選びから最終パッケージまで、ワンストップで対応。',
-    bullets: [
-      '織ラベル・印刷ラベル・下げタグのオリジナル対応',
-      'パッケージカスタマイズ（箱・袋・薄葉紙）',
-      'パターン + サンプル作成 7〜10 日',
-      '量産 30〜45 日',
-      'MOQ スタイルあたり 100 個',
-    ],
-    faqs: [
-      { q: 'プライベートブランド カシミアの最小発注量は？', a: 'MOQ はスタイルあたり 100 個。同一スタイル内で色を混合して MOQ 達成可能。' },
-      { q: 'サンプル作成にはどのくらいかかりますか？', a: 'カウンターサンプル：7〜10 日。ラベル付きの量産対応サンプル：14〜21 日。' },
-      { q: 'カスタムパッケージに対応できますか？', a: 'はい — 箱・袋・薄葉紙・下げタグ・バーコード対応。ご提供のパッケージ資材での対応も可。' },
-      { q: 'デザインサポートはありますか？', a: 'はい — 自社デザインチームがスケッチ・参照写真・トレンドブリーフからテックパックを作成します。' },
-    ],
-  },
-  kr: {
-    title: '프라이빗 라벨 캐시미어 니트 | OEM/ODM 제조 | DONGXIAO®',
-    description: '글로벌 브랜드 대상 캐시미어 스웨터·스카프·모자 프라이빗 라벨. 커스텀 라벨·행택·패키징. MOQ 100개/스타일. 23년 이상 OEM/ODM 노하우. 오르도스 공장 직송.',
-    h1: '프라이빗 라벨 캐시미어 제조',
-    intro: '23년 이상의 OEM/ODM 노하우로 고객님의 캐시미어 브랜드를 구축. 원사 선정부터 최종 패키징까지 전 과정을 고객 라벨로 진행.',
-    bullets: [
-      '직조 라벨, 인쇄 라벨, 행태 맞춤 제작',
-      '맞춤 패키징 (박스, 폴리백, 티슈 페이퍼)',
-      '패턴 + 샘플 개발 7–10일',
-      '양산 30–45일',
-      '스타일당 MOQ 100개',
-    ],
-    faqs: [
-      { q: '프라이빗 라벨 캐시미어의 MOQ는?', a: 'MOQ는 스타일당 100개. 동일 스타일 내에서 색상 혼합으로 MOQ 충족 가능.' },
-      { q: '샘플 제작 기간은?', a: '카운터 샘플: 7–10일. 라벨 부착 양산 샘플: 14–21일.' },
-      { q: '맞춤 패키징도 가능한가요?', a: '예 — 박스, 폴리백, 티슈 페이퍼, 행태, 바코드 모두 가능. 자체 패키징 도입재 작업도 가능.' },
-      { q: '디자인 지원이 있나요?', a: '예 — 자체 디자인팀이 스케치, 레퍼런스 사진, 트렌드 브리프로부터 테크팩을 개발합니다.' },
-    ],
-  },
+type Copy = { title: string; description: string; h1: string; intro: string; stepsTitle: string; steps: { title: string; text: string }[]; faqTitle: string; faqs: { q: string; a: string }[]; ctaTitle: string; ctaText: string; cta: string };
+const content: Record<string, Copy> = {
+  en: { title: 'Private Label Cashmere | OEM/ODM Sourcing Discussion | DONGXIAO®', description: 'Plan a private-label cashmere sourcing discussion with product references, specifications, sample requirements, destination and commercial documentation.', h1: 'Private Label Cashmere Sourcing', intro: 'Use this page to prepare the product information needed for a private-label project. Product scope, sample route, MOQ, timing, price, packaging and delivery terms are confirmed for the individual project in writing.', stepsTitle: 'Prepare a clearer private-label brief', steps: [{ title: '01 — Product reference', text: 'Share the product link, sketch, reference photo or technical pack, together with the intended category and buyer requirements.' }, { title: '02 — Specification direction', text: 'State the material target, color direction, measurements or gauge, label and packaging requirements, target quantity and destination.' }, { title: '03 — Sample and verification plan', text: 'Describe the sample purpose, approval route, inspection points, document needs and desired launch or delivery window.' }], faqTitle: 'Private-label sourcing FAQ', faqs: [{ q: 'What information should a private-label inquiry include?', a: 'Include a product reference, quantity, destination, material and color direction, measurements or gauge where known, label or packaging needs, and required documents.' }, { q: 'When are MOQ, sampling and lead-time terms confirmed?', a: 'They are reviewed against the individual product and order context, then confirmed in the written quotation or sales agreement.' }, { q: 'Can a buyer request custom labels or packaging?', a: 'State the label, hangtag, barcode or packaging requirements in the brief so feasibility, documentation and commercial terms can be discussed in writing.' }], ctaTitle: 'Start a documented private-label discussion', ctaText: 'Send your product reference, target quantity, destination and required specifications to begin a written project review.', cta: 'Request a sourcing discussion' },
+  cn: { title: '羊绒私人标签 | OEM/ODM 采购沟通 | DONGXIAO®', description: '围绕产品参考、规格、打样要求、目的地和商务文件准备羊绒贴牌采购沟通。', h1: '羊绒私人标签采购沟通', intro: '本页帮助采购方准备贴牌项目所需信息。产品范围、样品路径、起订量、时效、价格、包装和交付条款均应按具体项目书面确认。', stepsTitle: '准备更清晰的贴牌需求', steps: [{ title: '01 — 产品参考', text: '提供产品链接、草图、参考图片或技术包，以及预期品类和买方要求。' }, { title: '02 — 规格方向', text: '说明材质目标、颜色方向、尺寸或针型、标签和包装要求、目标数量与目的地。' }, { title: '03 — 打样与核验计划', text: '说明打样用途、确认路径、验货要点、文件需求和期望上市或交付窗口。' }], faqTitle: '贴牌采购常见问题', faqs: [{ q: '贴牌询盘应包含哪些信息？', a: '建议提供产品参考、数量、目的地、材质和颜色方向、已知尺寸或针型、标签或包装需求及文件要求。' }, { q: '何时确认起订量、打样和交期？', a: '应结合具体产品与订单背景审核，并在书面报价或销售协议中确认。' }, { q: '可以提出定制标签或包装需求吗？', a: '可以。请在需求中说明标签、吊牌、条码或包装要求，以便书面沟通可行性、文件与商务条款。' }], ctaTitle: '开始书面贴牌沟通', ctaText: '请提供产品参考、目标数量、目的地和所需规格，以启动书面项目审核。', cta: '申请采购沟通' },
+  de: { title: 'Private Label Kaschmir | OEM/ODM Beschaffung | DONGXIAO®', description: 'Bereiten Sie eine Private-Label-Beschaffungsanfrage mit Produktreferenz, Spezifikation, Musteranforderungen und Zielort vor.', h1: 'Private Label Kaschmir Beschaffung', intro: 'Produktscope, Bemusterung, MOQ, Zeitplan, Preis, Verpackung und Lieferung werden für jedes Projekt schriftlich bestätigt.', stepsTitle: 'Beschaffungsbrief vorbereiten', steps: [{ title: '01 — Produktreferenz', text: 'Produktlink, Skizze, Referenzfoto oder Tech Pack sowie Produktkategorie angeben.' }, { title: '02 — Spezifikationsrichtung', text: 'Material, Farbe, Maße oder Gauge, Etiketten, Verpackung, Menge und Zielort benennen.' }, { title: '03 — Muster und Prüfung', text: 'Musterzweck, Freigabe, Prüfpunkte, Dokumente und Lieferfenster beschreiben.' }], faqTitle: 'FAQ Private Label', faqs: [{ q: 'Was gehört in eine Anfrage?', a: 'Produktreferenz, Menge, Zielort, Material, Farbe, Maße, Etiketten, Verpackung und Dokumente.' }, { q: 'Wann werden MOQ und Zeiten bestätigt?', a: 'Nach Prüfung des individuellen Produkts und Auftrags im schriftlichen Angebot oder Vertrag.' }, { q: 'Kann ich eigene Etiketten oder Verpackungen anfragen?', a: 'Ja. Nennen Sie die Anforderungen zur schriftlichen Prüfung von Machbarkeit und Bedingungen.' }], ctaTitle: 'Schriftliche Projektabstimmung starten', ctaText: 'Senden Sie Referenz, Menge, Zielort und Spezifikationen.', cta: 'Beschaffung besprechen' },
+  fr: { title: 'Cachemire marque privée | Approvisionnement OEM/ODM | DONGXIAO®', description: 'Préparez une demande marque privée avec référence produit, spécifications, échantillonnage et destination.', h1: 'Approvisionnement cachemire marque privée', intro: 'Périmètre, échantillons, MOQ, délai, prix, emballage et livraison sont confirmés par écrit pour chaque projet.', stepsTitle: 'Préparer votre brief', steps: [{ title: '01 — Référence produit', text: 'Partagez lien produit, croquis, photo de référence ou dossier technique.' }, { title: '02 — Direction des spécifications', text: 'Indiquez matière, couleur, mesures ou jauge, étiquettes, emballage, quantité et destination.' }, { title: '03 — Échantillon et vérification', text: 'Décrivez le but de l’échantillon, l’approbation, les contrôles, documents et fenêtre de livraison.' }], faqTitle: 'FAQ marque privée', faqs: [{ q: 'Que doit contenir la demande ?', a: 'Référence, quantité, destination, matière, couleur, mesures, étiquettes, emballage et documents.' }, { q: 'Quand confirmer MOQ et délai ?', a: 'Après revue du produit et de la commande dans le devis ou contrat écrit.' }, { q: 'Puis-je demander étiquettes ou packaging ?', a: 'Oui, indiquez les exigences pour évaluer faisabilité et conditions par écrit.' }], ctaTitle: 'Lancer la discussion écrite', ctaText: 'Envoyez référence, quantité, destination et spécifications.', cta: 'Discuter approvisionnement' },
+  ja: { title: 'プライベートブランド カシミア | OEM/ODM 調達 | DONGXIAO®', description: '製品参考、仕様、サンプル要件、仕向地を含むプライベートブランド調達相談を準備します。', h1: 'プライベートブランド カシミア調達', intro: '製品範囲、サンプル、MOQ、時期、価格、包装、引渡条件は案件ごとに書面で確認します。', stepsTitle: '調達ブリーフを準備する', steps: [{ title: '01 — 製品参考', text: '製品リンク、スケッチ、参考写真、技術パックを共有します。' }, { title: '02 — 仕様方向', text: '素材、色、寸法またはゲージ、ラベル、包装、数量、仕向地を示します。' }, { title: '03 — サンプルと検証', text: 'サンプル目的、承認、検品、書類、希望時期を説明します。' }], faqTitle: 'プライベートブランド FAQ', faqs: [{ q: '問い合わせには何が必要ですか？', a: '製品参考、数量、仕向地、素材、色、寸法、ラベル、包装、書類です。' }, { q: 'MOQと時期はいつ確認しますか？', a: '個別製品と注文を確認後、書面見積もりまたは契約で確認します。' }, { q: 'ラベルや包装を依頼できますか？', a: 'はい。要件を記載し、実現可能性と条件を文書で確認します。' }], ctaTitle: '書面で相談を開始する', ctaText: '参考、数量、仕向地、仕様をお送りください。', cta: '調達を相談する' },
+  kr: { title: '프라이빗 라벨 캐시미어 | OEM/ODM 소싱 | DONGXIAO®', description: '제품 참고, 사양, 샘플 요건, 목적지를 포함한 프라이빗 라벨 소싱 상담을 준비하세요.', h1: '프라이빗 라벨 캐시미어 소싱', intro: '제품 범위, 샘플, MOQ, 일정, 가격, 포장, 인도 조건은 프로젝트별로 서면 확인합니다.', stepsTitle: '소싱 브리프 준비', steps: [{ title: '01 — 제품 참고', text: '제품 링크, 스케치, 참고 사진 또는 기술 팩을 공유합니다.' }, { title: '02 — 사양 방향', text: '소재, 색상, 치수 또는 게이지, 라벨, 포장, 수량, 목적지를 제시합니다.' }, { title: '03 — 샘플 및 검증', text: '샘플 목적, 승인, 검사, 서류, 희망 시기를 설명합니다.' }], faqTitle: '프라이빗 라벨 FAQ', faqs: [{ q: '문의에는 무엇이 필요합니까?', a: '제품 참고, 수량, 목적지, 소재, 색상, 치수, 라벨, 포장, 서류입니다.' }, { q: 'MOQ와 일정은 언제 확정합니까?', a: '개별 제품과 주문 검토 후 서면 견적 또는 계약에서 확정합니다.' }, { q: '라벨 또는 포장을 요청할 수 있습니까?', a: '네. 요건을 기재해 실현 가능성과 조건을 서면으로 확인합니다.' }], ctaTitle: '서면 상담 시작', ctaText: '참고 자료, 수량, 목적지, 사양을 보내 주세요.', cta: '소싱 상담하기' },
 };
-
-const t = tdk[locale] || tdk.en;
-const faqs = t.faqs || tdk.en.faqs;
-
-const serviceSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Service',
-  name: 'Private Label Cashmere Manufacturing',
-  provider: { '@type': 'Organization', name: 'DONGXIAO® Cashmere' },
-  areaServed: 'Worldwide',
-  serviceType: 'OEM/ODM Cashmere Manufacturing',
-  description: t.description,
-};
+const copy = content[locale] || content.en;
+const serviceSchema = { '@context': 'https://schema.org', '@type': 'Service', name: copy.h1, description: copy.description, provider: { '@id': 'https://www.erdosdx.com/#organization' }, serviceType: 'Private-label cashmere sourcing discussion' };
+const pathwayLinks = [{ href: `/${locale}/garment-oem/`, en: 'Garment OEM information', cn: '成衣 OEM 信息' }, { href: `/${locale}/quality-control/`, en: 'Quality-control preparation', cn: '质控准备' }, { href: `/${locale}/shipping-logistics/`, en: 'Delivery preparation', cn: '物流准备' }, { href: `/${locale}/contact/`, en: 'Send an inquiry', cn: '发起询盘' }];
 ---
 
-<BaseLayout
-  locale={locale}
-  pageKey="garment-oem"
-  path={'/' + locale + '/private-label-cashmere'}
-  title={t.title}
-  description={t.description}
-  keywords={['private label cashmere', 'private label cashmere knitwear', 'private label cashmere sweater factory', 'cashmere OEM ODM', 'custom cashmere knitwear', 'cashmere hat glove wholesale', 'wholesale cashmere shawl with custom logo']}
-  schema="general"
-  customSchemas={[serviceSchema]}
->
-  <Navigation slot="header" locale={locale} currentPath={'/' + locale + '/private-label-cashmere'} />
-
-  <section class="bg-[#F5F0E7] border-b border-border/60 py-20 md:py-28">
-    <div class="container-narrow">
-      <span class="text-xs tracking-[0.4em] text-brand-camel uppercase">Private Label · OEM · ODM</span>
-      <h1 class="font-display text-4xl md:text-5xl font-light mt-4 mb-6">{t.h1}</h1>
-      <p class="text-lg md:text-xl max-w-3xl opacity-90">{t.intro}</p>
-      <ul class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-2 max-w-3xl">
-        {t.bullets.map((b) => (
-          <li class="flex items-start gap-2 text-sm opacity-90">
-            <span class="text-brand-camel mt-1">•</span>
-            <span>{b}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  <section class="py-16 bg-background">
-    <div class="container-narrow max-w-4xl">
-      <h2 class="font-display text-3xl font-light mb-6">Our Private Label Process</h2>
-      <ol class="space-y-6">
-        <li class="flex gap-4">
-          <span class="flex-shrink-0 w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-display text-lg">1</span>
-          <div>
-            <h3 class="font-medium text-lg mb-1">Design & Tech Pack</h3>
-            <p class="text-sm text-foreground/80">Share your sketch, reference photo, or tech pack. Our in-house design team develops full tech packs including yarn spec, gauge, measurements, and colorway.</p>
-          </div>
-        </li>
-        <li class="flex gap-4">
-          <span class="flex-shrink-0 w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-display text-lg">2</span>
-          <div>
-            <h3 class="font-medium text-lg mb-1">Counter Sample</h3>
-            <p class="text-sm text-foreground/80">We knit a counter sample in 7-10 days. Sample cost is refundable against orders 500+ pcs.</p>
-          </div>
-        </li>
-        <li class="flex gap-4">
-          <span class="flex-shrink-0 w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-display text-lg">3</span>
-          <div>
-            <h3 class="font-medium text-lg mb-1">Sample Approval & Labels</h3>
-            <p class="text-sm text-foreground/80">You approve the sample. We produce custom woven/printed labels, hangtags, and packaging. Production-ready sample in 14-21 days.</p>
-          </div>
-        </li>
-        <li class="flex gap-4">
-          <span class="flex-shrink-0 w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-display text-lg">4</span>
-          <div>
-            <h3 class="font-medium text-lg mb-1">Bulk Production</h3>
-            <p class="text-sm text-foreground/80">30-45 days for garments, 30-45 days for scarves/hats. 5-stage QC: incoming material, in-process, pre-finishing, post-finishing, pre-shipment.</p>
-          </div>
-        </li>
-        <li class="flex gap-4">
-          <span class="flex-shrink-0 w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-display text-lg">5</span>
-          <div>
-            <h3 class="font-medium text-lg mb-1">Shipping & After-Sales</h3>
-            <p class="text-sm text-foreground/80">FOB Tianjin/Shanghai, CIF, DDP. Door-to-door logistics for DDP. After-sales support for quality issues within 30 days of receipt.</p>
-          </div>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <SEOFaq faqs={faqs} title="Frequently Asked Questions" />
-
-  <section class="py-16 bg-[#F5F0E7] border-y border-border/60">
-    <div class="container-narrow text-center">
-      <h2 class="font-display text-3xl font-light mb-4">Start your private label project</h2>
-      <p class="opacity-90 mb-8 max-w-2xl mx-auto">Send your reference, tech pack, or just a sketch. We'll reply within 24 hours with a feasibility assessment and quote.</p>
-      <div class="flex flex-wrap gap-4 justify-center">
-        <a href={'/' + locale + '/contact'} class="inline-block px-8 py-3 bg-brand-ink text-[#F7F3EC] rounded-none font-medium uppercase tracking-[0.15em] hover:bg-brand-chocolate">Start Your Project</a>
-        <a href={'/' + locale + '/garment-oem'} class="inline-block px-8 py-3 border border-brand-ink/30 rounded-none uppercase tracking-[0.15em] hover:bg-brand-ink hover:text-[#F7F3EC]">View Garment OEM Page</a>
-      </div>
-    </div>
-  </section>
-
-  {locale === 'en' && (
-  <section class="py-12 md:py-16 bg-secondary/20">
-    <div class="container-narrow">
-      <h2 class="font-display text-3xl md:text-4xl font-light mb-4">Private Label Cashmere: 5 Decisions Before You Start</h2>
-      <p class="text-base text-muted-foreground mb-8 max-w-3xl">
-        Launching a private label cashmere brand is a 90-day project if planned well, or a 9-month struggle if you make the wrong decisions upfront. Below are the 5 questions we ask every new private label client — and the answers that work for 80% of emerging cashmere brands.
-      </p>
-
-      <div class="space-y-8">
-        <div>
-          <h3 class="font-serif text-2xl mb-3">1. Where will you sell? (DTC, Wholesale, Department Store)</h3>
-          <p class="text-muted-foreground leading-relaxed mb-2">Your sales channel determines MOQ, packaging requirements, and price point. DTC Shopify brands typically start at 100-200 pieces total (low MOQ, basic packaging, premium pricing). Wholesale brands targeting boutiques need 300-1000 pieces per SKU (higher MOQ, branded labels/hangtags, mid-market pricing). Department store buyers (Nordstrom, Galeries Lafayette, Isetan) require 1000+ pieces per SKU + full compliance documentation (BSCI, OEKO-TEX, ISO 9001).</p>
-          <p class="text-sm text-muted-foreground"><strong>Recommendation:</strong> Start with 1 channel, prove demand, then expand. Mixing channels from day 1 dilutes focus and inflates MOQ.</p>
-        </div>
-
-        <div>
-          <h3 class="font-serif text-2xl mb-3">2. What's your target micron and gauge?</h3>
-          <p class="text-muted-foreground leading-relaxed mb-2">Micron (fiber fineness) determines hand feel and price tier: 14.5-15.5μm = premium (Loro Piana tier), 15.5-16.5μm = mid-market (most DTC brands), 16.5-19μm = entry-level (less soft, more durable). Gauge (stitches per inch) determines weight and seasonality: 12gg = chunky winter, 14gg = mid-weight, 16gg = fine all-season. Most private label brands start at 15.5μm / 14gg for sweaters — the sweet spot for hand feel vs. price.</p>
-          <p class="text-sm text-muted-foreground"><strong>Cost impact:</strong> Each 0.5μm micron improvement adds ~8-12% to yarn cost. Each gauge increase (12→14→16) adds ~5-8% to knitting time.</p>
-        </div>
-
-        <div>
-          <h3 class="font-serif text-2xl mb-3">3. How will you brand? (Labels, Hangtags, Packaging)</h3>
-          <p class="text-muted-foreground leading-relaxed mb-2">Three branding levels: (a) Woven main label + care label + paper hangtag — USD 0.30-0.50 per piece, MOQ 500 labels; (b) Custom woven labels with your logo + branded packaging (silk paper, branded zip lock) + outer carton with your sticker — USD 1.20-2.00 per piece, MOQ 1000 sets; (c) Full custom packaging (printed inner box, custom tissue paper, ribbon, branded mailer) — USD 3.50-6.00 per piece, MOQ 2000+ pieces. We can source labels and packaging separately or bundle into the knitwear quote.</p>
-          <p class="text-sm text-muted-foreground"><strong>Lead time:</strong> Custom labels take 15-20 days to produce; packaging 20-30 days. Add this to your timeline if launching a new collection.</p>
-        </div>
-
-        <div>
-          <h3 class="font-serif text-2xl mb-3">4. What colors do you need? (Standard vs. Custom Pantone)</h3>
-          <p class="text-muted-foreground leading-relaxed mb-2">Standard yarn colors (we hold 200+ shades in stock — see our <a href="/en/color-cards/" class="text-primary hover:underline">color cards</a>) ship in 7-10 days. Custom Pantone matching takes 25-35 days for dyeing + minimum dye lot 50kg per color. We recommend launching with 3-5 standard colors (camel, ivory, charcoal, navy, blush) and adding custom colors once you've validated sell-through. Dye-to-order cost is USD 2-4 per piece extra vs. stock yarn.</p>
-          <p class="text-sm text-muted-foreground"><strong>Inventory tip:</strong> Stock yarn is 40% cheaper than custom dye. Custom dye is 40% cheaper than "perfect" custom dye with multiple lab dips.</p>
-        </div>
-
-        <div>
-          <h3 class="font-serif text-2xl mb-3">5. How will you handle inventory risk? (MOQ, Lead Time, Reorder)</h3>
-          <p class="text-muted-foreground leading-relaxed mb-2">Cashmere has 16-25 day production lead time, so you cannot "test and reorder in 2 weeks" like fast fashion. We recommend a 3-phase inventory plan: (a) Launch order 200-500 pieces per SKU to test the market; (b) Core reorder 500-1500 pieces for proven SKUs (book capacity 60 days ahead); (c) Seasonal expansion 1500+ pieces for confirmed winners. For new brands we offer a 100-piece MOQ on standard colors/styles to lower the initial capital risk.</p>
-          <p class="text-sm text-muted-foreground"><strong>Working capital rule:</strong> Keep at least 3 reorder cycles in cash. Cash flow kills more emerging cashmere brands than product quality does.</p>
-        </div>
-      </div>
-
-      <div class="mt-10 p-6 border-l-4 border-brand-gold bg-brand-gold/5 rounded-r">
-        <h3 class="font-serif text-xl mb-3">3 Mistakes First-Time Private Label Brands Make</h3>
-        <ol class="list-decimal pl-5 space-y-2 text-muted-foreground">
-          <li><strong>Starting with too many SKUs.</strong> Five well-chosen styles outperform twenty mediocre ones. Cashmere buyers expect curated collections.</li>
-          <li><strong>Underestimating working capital.</strong> First order + customs duties + marketing = 4x the unit cost in cash needed before you see a single sale.</li>
-          <li><strong>Skipping the sample round.</strong> "Looks the same on screen" costs 6-8 weeks of rework. Always approve a physical hand-loom sample before bulk.</li>
-        </ol>
-      </div>
-
-      <div class="mt-10 text-center">
-        <a href="/en/contact?type=garment" class="inline-block px-8 py-3 bg-primary text-primary-foreground rounded-none font-medium hover:bg-primary/90 transition-colors">Discuss Your Private Label Project →</a>
-      </div>
-    </div>
-  </section>
-  )}
-
-  <Footer slot="footer" locale={locale} />
-  <FloatingChatButtons slot="footer" locale={locale} />
-  <CookieConsent slot="footer" locale={locale} />
+<BaseLayout locale={locale} pageKey="garment-oem" path="/private-label-cashmere" title={copy.title} description={copy.description} keywords={['private label cashmere', 'cashmere OEM ODM', 'custom cashmere knitwear', 'cashmere sourcing discussion']} schema="general" customSchemas={[serviceSchema]}>
+  <Navigation slot="header" locale={locale} currentPath={`/${locale}/private-label-cashmere`} />
+  <section class="bg-[#F5F0E7] border-b border-border/60 py-20 md:py-28"><div class="container-narrow max-w-4xl"><span class="text-xs tracking-[0.4em] text-brand-camel uppercase">PRIVATE LABEL · OEM · ODM</span><h1 class="font-display text-4xl md:text-5xl font-light mt-4 mb-6">{copy.h1}</h1><p class="text-lg md:text-xl max-w-3xl opacity-90">{copy.intro}</p></div></section>
+  <section class="py-16 md:py-20 bg-background"><div class="container-narrow"><h2 class="font-display text-3xl font-light mb-10">{copy.stepsTitle}</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6">{copy.steps.map((step) => <article class="border border-border bg-white p-6"><h3 class="font-serif text-xl mb-3">{step.title}</h3><p class="text-sm text-muted-foreground leading-relaxed">{step.text}</p></article>)}</div></div></section>
+  <section class="py-16 bg-secondary/20 border-y border-border/60"><div class="container-narrow"><div class="grid grid-cols-1 md:grid-cols-4 gap-4">{pathwayLinks.map((link) => <a href={link.href} class="border border-border bg-white p-5 text-sm font-medium hover:border-brand-camel transition-colors">{locale === 'cn' ? link.cn : link.en} →</a>)}</div></div></section>
+  <SEOFaq faqs={copy.faqs} title={copy.faqTitle} />
+  <section class="py-16 bg-[#F5F0E7] border-y border-border/60"><div class="container-narrow text-center"><h2 class="font-display text-3xl font-light mb-4">{copy.ctaTitle}</h2><p class="opacity-90 mb-8 max-w-2xl mx-auto">{copy.ctaText}</p><a href={`/${locale}/contact/`} class="inline-block px-8 py-3 bg-brand-ink text-[#F7F3EC] uppercase tracking-wider text-sm">{copy.cta}</a></div></section>
+  <Footer slot="footer" locale={locale} /><FloatingChatButtons slot="footer" locale={locale} /><CookieConsent slot="cookie-consent" locale={locale} />
 </BaseLayout>
