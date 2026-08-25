@@ -1,7 +1,7 @@
 ---
 /**
- * Quality Control - B2B SEO hub (long-tail: "cashmere payment terms", "T/T L/C wholesale")
- * Route: /[locale]/quality-control × 6 locales
+ * 采购信任页 SEO：质量控制与核验
+ * 设计原则：只描述页面可见且可在询盘中进一步确认的采购准备信息。
  */
 export const prerender = true;
 
@@ -21,203 +21,105 @@ const { locale: rawLocale } = Astro.params;
 if (!isLocale(rawLocale)) { return new Response('Not Found', { status: 404 }); }
 const locale = pickLocale(rawLocale);
 
-const tdk = {
-  en: {
-    title: 'Cashmere Quality Control - IQC IPQC OQC and AQL Inspection | DONGXIAO Cashmere',
-    description: 'Cashmere quality control: IQC incoming inspection, IPQC in-process, OQC pre-shipment. AQL sampling standards 1.0/2.5/4.0. Third-party test reports from SGS, Intertek, ITS. Batch traceability with 6-month sample retention. ISO 9001 + OEKO-TEX + GCS certified.',
-    h1: 'Cashmere Quality Control and Inspection',
-    intro: '23 years of cashmere quality control experience from our Ordos factory. Three-stage inspection: IQC incoming material check, IPQC in-process control, OQC pre-shipment audit. AQL sampling, third-party test reports, batch traceability. Each batch sampled and retained for 6 months.',
-    bullets: [
-      'IQC incoming inspection + IPQC in-process control + OQC pre-shipment audit',
-      'AQL sampling standards 1.0/2.5/4.0 (choose per order)',
-      'Third-party test reports from SGS, Intertek, ITS',
-      'Batch traceability with 6-month sample retention',
-      'ISO 9001 + OEKO-TEX + GCS certified factory',
-    ],
-    faqs: [
-      { q: 'What quality control steps do you use for cashmere production?', a: 'Three-stage inspection: IQC (incoming material check on raw cashmere fiber micron and color), IPQC (in-process control during spinning, knitting, and linking), OQC (pre-shipment final audit including measurement, defect count, and packaging). Every batch is sampled and retained for 6 months for traceability.' },
-      { q: 'What AQL sampling standard do you use?', a: 'We follow ISO 2859-1 / MIL-STD-105E AQL sampling. Standard level II inspection at AQL 1.0 (critical defects), 2.5 (major defects), 4.0 (minor defects). For premium clients we offer AQL 0.65/1.0/2.5 tightened inspection. Sample size determined by lot size and acceptable quality limit.' },
-      { q: 'Can you provide third-party inspection reports?', a: 'Yes - we coordinate with SGS, Intertek, Bureau Veritas, and ITS for pre-shipment inspection (PSI) on buyer request. Cost: USD 250-400 per man-day, typically 1-2 days for cashmere garment orders. Reports cover AQL result, measurements, packaging, and carton marking. Reports sent within 48 hours of inspection.' },
-      { q: 'What certifications does your factory hold?', a: 'ISO 9001:2015 (Quality Management System), OEKO-TEX Standard 100 (harmful substances), Good Cashmere Standard (GCS) by AbTF, BSCI (social compliance), Sedex SMETA, WRAP. All certificates renewed annually; current scans available in the Download Center.' },
-      { q: 'Can I visit the factory for a quality audit?', a: 'Yes - B2B client factory visit appointments with 7-day advance notice. Visit covers dehairing workshop, spinning workshop, knitting workshop, finished product QC line, warehouse. Travel: fly Baotou (BAV) or Hohhot (HET), then 1-2 hours by car to Ordos. Most factories arrange airport pickup.' },
-      { q: 'How do you handle defective products found after delivery?', a: 'Standard: replacement of defective units at no cost (buyer covers return shipping). Premium: 5-10% over-production included in every order for free replacement of small defects without return. Major issues: documented, photographed, and resolved within 5 business days. Each batch is traceable to specific fiber lot and production date.' },
-    ],
-  },
-  cn: {
-    title: '羊绒质量控制 | QC 检测 + AQL 抽样 | DONGXIAO®',
-    description: '羊绒质量控制体系：IQC/IPQC/OQC 三道检验 + AQL 抽样标准 + 第三方检测支持。ISO 9001 + OEKO-TEX + GCS 认证工厂。验货报告与可追溯批次证明。',
-    h1: '羊绒质量控制与检测',
-    intro: '鄂尔多斯工厂 23 年品控经验：IQC 来料检验 + IPQC 过程检验 + OQC 出厂检验三道关。AQL 抽样标准、第三方检测报告、批次可追溯。每批留样 6 个月。',
-    bullets: ['IQC 来料检验 + IPQC 过程检验 + OQC 出厂检验', 'AQL 抽样标准 1.0/2.5/4.0 三档可选', '第三方检测：SGS / Intertek / ITS 出具', '每批留样 6 个月，可追溯', 'ISO 9001 + OEKO-TEX + GCS 认证工厂'],
-    faqs: [
-      { q: '首单付款条款是什么？', a: '首单 30% T/T 定金（订单确认后）+ 70% 见提单副本付款。5000 美元以下订单 100% T/T 预付。定金在生产开始后不退。' },
-      { q: '接受信用证 L/C 吗？', a: '接受不可撤销即期 L/C（5 万美元+）。低于 5 万美元建议用 T/T（L/C 银行费用对小额订单不划算）。L/C 期限：30/60/90 天。开证行需顶级国际银行（汇丰、渣打、花旗、中国银行等）。' },
-      { q: '复购客户能享 O/A 账期吗？', a: '可以。6 个月良好交易记录 + 3 单以上成功合作后，复购客户可享 30% 定金 + 70% 30 天账期。20 万美元+ 大单 + 审计财报可延至 60 天 O/A。通过联系我们页面申请信用审批。' },
-      { q: '接受哪些币种电汇？', a: 'USD / EUR / GBP / JPY / AUD / CAD / CNY。收款方银行费用由我们承担；汇款方自付银行费用。SWIFT 通常 2-3 工作日到账；欧元区 SEPA 1 工作日。' },
-    ],
-  },
-  de: {
-    title: 'B2B Kaschmir Zahlungsbedingungen | T/T, L/C, O/A | DONGXIAO®',
-    description: 'Kaschmir-Großhandel Zahlungsbedingungen: T/T, L/C, O/A, D/P. Erste Bestellung 30% Anzahlung + 70% gegen B/L-Kopie. Stammkunden bis 30% O/A nach 6 Monaten.',
-    h1: 'B2B Kaschmir Zahlungsbedingungen',
-    intro: 'Transparente, international standardisierte Zahlungsbedingungen für Kaschmir-Großhandelsbestellungen. Wir akzeptieren T/T, L/C, O/A und D/P.',
-    bullets: ['Erste Bestellung: 30% T/T Anzahlung, 70% gegen B/L-Kopie', 'Stammkunden (nach 6 Monaten): bis 30% O/A, 70% netto 30', 'L/C akzeptiert bei Sicht oder 30/60/90 Tagen', 'Alibaba Trade Assurance akzeptiert'],
-    faqs: [
-      { q: 'Welche Zahlungsbedingungen gelten für Erstbestellungen?', a: 'Erstbesteller: 30% T/T Anzahlung bei Auftragsbestätigung, 70% Restzahlung T/T gegen B/L-Kopie. Bei Bestellungen unter USD 5.000 verlangen wir 100% T/T im Voraus.' },
-      { q: 'Akzeptieren Sie Akkreditive (L/C)?', a: 'Ja — wir akzeptieren unwiderrufliches L/C bei Sicht für Bestellungen ab USD 50.000. Für Beträge unter USD 50.000 empfehlen wir T/T.' },
-    ],
-  },
-  fr: {
-    title: 'Conditions de paiement cachemire B2B | T/T, L/C, O/A | DONGXIAO®',
-    description: 'Conditions de paiement pour cachemire en gros: T/T, L/C, O/A, D/P. Première commande 30% d\'acompte + 70% contre copie B/L.',
-    h1: 'Conditions de paiement cachemire B2B',
-    intro: 'Conditions de paiement standard internationales pour commandes de cachemire en gros.',
-    bullets: ['Première commande : 30% T/T d\'acompte, 70% contre copie B/L', 'Clients réguliers (après 6 mois) : jusqu\'à 30% O/A', 'L/C accepté à vue ou 30/60/90 jours'],
-    faqs: [
-      { q: 'Quelles conditions de paiement pour les premières commandes ?', a: '30% T/T d\'acompte à la confirmation, 70% contre copie B/L. Pour commandes inférieures à USD 5.000, 100% T/T à l\'avance.' },
-    ],
-  },
-  ja: {
-    title: 'カシミア B2B 支払条件 | T/T、L/C、O/A | DONGXIAO®',
-    description: 'カシミア卸売の支払条件：T/T、L/C、O/A、D/P。初回注文30%前払い+70%B/Lコピーに対し支払い。',
-    h1: 'カシミア B2B 支払条件',
-    intro: '国際標準のカシミア卸売支払条件。T/T、L/C、O/A、D/P に対応。',
-    bullets: ['初回：30% T/T 前払い + 70% B/L コピー', 'リピート（6ヶ月後）：30% O/A まで', 'L/C は USD 50,000 以上で受付'],
-    faqs: [
-      { q: '初回注文の支払条件は？', a: '初回：30% T/T 前払い（注文確認時）+ 70% B/L コピー支払い。USD 5,000 未満は 100% 前払い。' },
-    ],
-  },
-  kr: {
-    title: '캐시미어 B2B 결제 조건 | T/T, L/C, O/A | DONGXIAO®',
-    description: '캐시미어 도매 결제 조건: T/T, L/C, O/A, D/P. 첫 주문 30% 계약금 + 70% B/L 사본 결제.',
-    h1: '캐시미어 B2B 결제 조건',
-    intro: '국제 표준 캐시미어 도매 결제 조건. T/T, L/C, O/A, D/P 지원.',
-    bullets: ['첫 주문: 30% T/T 계약금 + 70% B/L 사본', '재주문 (6개월 후): 최대 30% O/A', 'L/C USD 50,000 이상'],
-    faqs: [
-      { q: '첫 주문 결제 조건은?', a: '첫 주문: 30% T/T 계약금 (주문 확정 시) + 70% B/L 사본 결제. USD 5,000 미만은 100% 선불.' },
-    ],
-  },
+type Copy = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  h1: string;
+  intro: string;
+  checksTitle: string;
+  checks: { title: string; text: string }[];
+  linksTitle: string;
+  faqTitle: string;
+  faqs: { q: string; a: string }[];
+  ctaTitle: string;
+  ctaText: string;
+  cta: string;
 };
 
-const t = tdk[locale] || tdk.en;
-const faqs = t.faqs || tdk.en.faqs;
+const content: Record<string, Copy> = {
+  en: {
+    eyebrow: 'PURCHASING VERIFICATION',
+    title: 'Cashmere Quality Control & Buyer Verification | DONGXIAO®',
+    description: 'Prepare a cashmere quality-control brief before ordering: material, measurements, sample approval, inspection scope, packing and shipment records.',
+    h1: 'Cashmere Quality Control & Buyer Verification',
+    intro: 'Use this page to prepare the product and inspection details that should be aligned in writing before bulk approval. Final specifications, sampling scope and acceptance criteria are confirmed for the individual order.',
+    checksTitle: 'Three checkpoints for a clearer inspection brief',
+    checks: [
+      { title: '01 — Product specification', text: 'Record the style reference, fiber composition target, color reference, measurements or gauge, label requirements and approved sample version.' },
+      { title: '02 — Production review', text: 'Align the pre-production sample, approved trims, packaging direction, measurement tolerances and any buyer-appointed inspection requirements before bulk work proceeds.' },
+      { title: '03 — Pre-shipment review', text: 'Confirm the order quantity, packing list, carton marks, document requirements and agreed inspection scope before shipment is released.' },
+    ],
+    linksTitle: 'Build the verification path',
+    faqTitle: 'Quality-control planning FAQ',
+    faqs: [
+      { q: 'What should be included in a cashmere quality-control brief?', a: 'Include the product reference, material target, color reference, key measurements, labeling, packaging, order quantity, destination requirements and the sample version used for approval.' },
+      { q: 'When should an inspection scope be agreed?', a: 'Agree the inspection scope before bulk approval so the supplier and buyer can use the same product, measurement, packing and document references.' },
+      { q: 'Can a buyer request independent testing or inspection?', a: 'State the requested test, inspection company, timing and reporting requirements in the inquiry or purchase agreement so feasibility and commercial terms can be confirmed in writing.' },
+    ],
+    ctaTitle: 'Prepare your product verification brief',
+    ctaText: 'Send the product link, target quantity, material or color direction, destination and required verification points with your inquiry.',
+    cta: 'Request a specification review',
+  },
+  cn: {
+    eyebrow: '采购核验',
+    title: '羊绒质量控制与采购核验 | DONGXIAO®',
+    description: '在下单前准备羊绒质量控制需求：材质、尺寸、样品确认、验货范围、包装与出运文件。',
+    h1: '羊绒质量控制与采购核验',
+    intro: '本页帮助采购方在大货确认前整理产品与验货信息。最终规格、抽检范围与验收标准应在对应订单中以书面形式确认。',
+    checksTitle: '建立清晰验货需求的三项检查',
+    checks: [
+      { title: '01 — 产品规格', text: '记录款号、材质目标、颜色参考、尺寸或针型、洗标要求和已确认样品版本。' },
+      { title: '02 — 生产确认', text: '在大货开始前对产前样、辅料、包装方向、尺寸公差以及买方指定验货要求进行确认。' },
+      { title: '03 — 出运前核验', text: '在放货前确认订单数量、装箱单、外箱唛头、文件要求和双方约定的验货范围。' },
+    ],
+    linksTitle: '建立核验链路',
+    faqTitle: '质控准备常见问题',
+    faqs: [
+      { q: '羊绒质控需求应包含哪些信息？', a: '建议包含产品链接或款号、材质目标、颜色参考、关键尺寸、标签、包装、数量、目的国要求和确认样品版本。' },
+      { q: '何时确定验货范围？', a: '应在大货确认前确定，以便买卖双方使用同一产品、尺寸、包装和文件依据。' },
+      { q: '买方可以要求第三方检测或验货吗？', a: '请在询盘或采购协议中说明检测项目、验货机构、时间和报告要求，以便书面确认可行性与商业条款。' },
+    ],
+    ctaTitle: '准备产品核验需求',
+    ctaText: '请在询盘中提供产品链接、目标数量、材质或颜色方向、目的国和所需核验项目。',
+    cta: '申请规格沟通',
+  },
+  de: { eyebrow: 'EINKAUFSVERIFIKATION', title: 'Kaschmir-Qualitätskontrolle & Einkaufsprüfung | DONGXIAO®', description: 'Bereiten Sie vor der Bestellung Material-, Maß-, Muster-, Verpackungs- und Prüfanforderungen vor.', h1: 'Kaschmir-Qualitätskontrolle & Einkaufsprüfung', intro: 'Spezifikationen und Abnahmekriterien werden für jede Bestellung schriftlich abgestimmt.', checksTitle: 'Drei Prüfpunkte', checks: [{ title: '01 — Spezifikation', text: 'Stil, Material, Farbe, Maße, Etiketten und freigegebenes Muster festhalten.' }, { title: '02 — Produktionsprüfung', text: 'Vorproduktion, Zutaten, Verpackung und Prüfumfang vor Bulk-Freigabe abgleichen.' }, { title: '03 — Versandprüfung', text: 'Menge, Packliste, Kartonmarkierung und Dokumente vor Versand bestätigen.' }], linksTitle: 'Prüfpfad aufbauen', faqTitle: 'FAQ zur Qualitätsplanung', faqs: [{ q: 'Was gehört in einen Prüfbrief?', a: 'Produktreferenz, Material, Farbe, Maße, Etiketten, Verpackung, Menge und freigegebenes Muster.' }, { q: 'Wann wird der Prüfumfang vereinbart?', a: 'Vor der Bulk-Freigabe, damit beide Seiten dieselben Referenzen verwenden.' }, { q: 'Kann eine unabhängige Prüfung angefragt werden?', a: 'Nennen Sie Institut, Zeitpunkt und Berichtsanforderungen in Ihrer Anfrage zur schriftlichen Bestätigung.' }], ctaTitle: 'Prüfanforderungen vorbereiten', ctaText: 'Senden Sie Produktlink, Menge, Zielmarkt und Prüfanforderungen mit Ihrer Anfrage.', cta: 'Spezifikation besprechen' },
+  fr: { eyebrow: 'VÉRIFICATION ACHAT', title: 'Contrôle qualité cachemire & vérification achat | DONGXIAO®', description: 'Préparez matière, mesures, échantillon, emballage et exigences de contrôle avant de commander.', h1: 'Contrôle qualité cachemire & vérification achat', intro: 'Les spécifications et critères d’acceptation sont confirmés par écrit pour chaque commande.', checksTitle: 'Trois points de contrôle', checks: [{ title: '01 — Spécification', text: 'Consignez le style, la matière, la couleur, les mesures, les étiquettes et l’échantillon approuvé.' }, { title: '02 — Revue production', text: 'Alignez échantillon, accessoires, emballage et périmètre de contrôle avant le lancement.' }, { title: '03 — Revue expédition', text: 'Confirmez quantité, liste de colisage, marquage cartons et documents avant expédition.' }], linksTitle: 'Construire le parcours de vérification', faqTitle: 'FAQ contrôle qualité', faqs: [{ q: 'Que doit contenir un brief qualité ?', a: 'Référence produit, matière, couleur, mesures, étiquettes, emballage, quantité et échantillon validé.' }, { q: 'Quand définir le contrôle ?', a: 'Avant l’approbation de production pour utiliser les mêmes références.' }, { q: 'Une inspection indépendante est-elle possible ?', a: 'Indiquez organisme, calendrier et rapport demandé dans votre demande pour confirmation écrite.' }], ctaTitle: 'Préparer vos exigences', ctaText: 'Envoyez le lien produit, la quantité, le marché et les exigences de vérification.', cta: 'Discuter des spécifications' },
+  ja: { eyebrow: '調達検証', title: 'カシミヤ品質管理・調達検証 | DONGXIAO®', description: '発注前に素材、寸法、承認サンプル、梱包、検品要件を整理します。', h1: 'カシミヤ品質管理・調達検証', intro: '仕様と受入基準は注文ごとに書面で確認します。', checksTitle: '3つの確認ポイント', checks: [{ title: '01 — 仕様', text: 'スタイル、素材、色、寸法、ラベル、承認サンプルを記録します。' }, { title: '02 — 生産確認', text: '量産前にサンプル、付属品、梱包、検品範囲を合わせます。' }, { title: '03 — 出荷前確認', text: '数量、パッキングリスト、カートンマーク、書類を確認します。' }], linksTitle: '検証経路を作る', faqTitle: '品質計画 FAQ', faqs: [{ q: '品質要件には何を含めますか？', a: '製品、素材、色、寸法、ラベル、梱包、数量、承認サンプルです。' }, { q: '検品範囲はいつ決めますか？', a: '量産承認前に双方が同じ基準を使えるよう決めます。' }, { q: '第三者検品は依頼できますか？', a: '検査機関、時期、報告要件を問い合わせに記載し書面で確認します。' }], ctaTitle: '検証要件を準備する', ctaText: '製品リンク、数量、市場、検証要件をお問い合わせに添えてください。', cta: '仕様を相談する' },
+  kr: { eyebrow: '구매 검증', title: '캐시미어 품질 관리 및 구매 검증 | DONGXIAO®', description: '주문 전 소재, 치수, 승인 샘플, 포장, 검사 요건을 준비하세요.', h1: '캐시미어 품질 관리 및 구매 검증', intro: '사양과 수락 기준은 주문별로 서면 확인합니다.', checksTitle: '세 가지 확인 단계', checks: [{ title: '01 — 제품 사양', text: '스타일, 소재, 색상, 치수, 라벨, 승인 샘플을 기록합니다.' }, { title: '02 — 생산 검토', text: '양산 전 샘플, 부자재, 포장, 검사 범위를 조율합니다.' }, { title: '03 — 출하 전 검토', text: '수량, 패킹리스트, 카톤 마크, 서류를 확인합니다.' }], linksTitle: '검증 경로 만들기', faqTitle: '품질 계획 FAQ', faqs: [{ q: '품질 브리프에는 무엇이 필요합니까?', a: '제품, 소재, 색상, 치수, 라벨, 포장, 수량, 승인 샘플입니다.' }, { q: '검사 범위는 언제 정합니까?', a: '양산 승인 전에 양측이 같은 기준을 사용하도록 정합니다.' }, { q: '독립 검사를 요청할 수 있습니까?', a: '검사 기관, 시점, 보고 요건을 문의에 기재해 서면 확인을 받으세요.' }], ctaTitle: '검증 요건 준비', ctaText: '제품 링크, 수량, 시장, 검증 요건을 문의에 포함해 주세요.', cta: '사양 상담하기' },
+};
 
-const paymentMethods = [
-  { method: 'T/T (Telegraphic Transfer)', firstOrder: '30% deposit + 70% before shipment', repeatOrder: '20% deposit + 80% before shipment', minOrder: 'No minimum', risk: 'Low', speed: '2-3 business days' },
-  { method: 'L/C (Letter of Credit)', firstOrder: 'L/C at sight', repeatOrder: 'L/C 30/60/90 days', minOrder: 'USD 50,000+', risk: 'Very low (bank-guaranteed)', speed: '7-14 business days' },
-  { method: 'O/A (Open Account)', firstOrder: 'Not available', repeatOrder: '30% deposit + 70% net 30 days', minOrder: 'USD 20,000+ (after 6 months clean history)', risk: 'Medium (unsecured)', speed: 'Net 30-60 days' },
-  { method: 'D/P (Documents against Payment)', firstOrder: 'Available', repeatOrder: 'Available', minOrder: 'USD 20,000-100,000', risk: 'Low', speed: 'Varies (at sight or 30/60/90 days)' },
-  { method: 'Alibaba Trade Assurance', firstOrder: 'Available', repeatOrder: 'Available', minOrder: 'USD 500-500,000', risk: 'Very low (escrow-protected)', speed: 'Order trigger instant' },
-  { method: 'Western Union / Wise', firstOrder: 'For samples only', repeatOrder: 'For samples only', minOrder: 'Under USD 5,000', risk: 'Low', speed: '1-2 business days' },
+const copy = content[locale] || content.en;
+const pathwayLinks = [
+  { href: `/${locale}/products/`, en: 'Product specifications', cn: '产品规格' },
+  { href: `/${locale}/cashmere-grades/`, en: 'Cashmere grade guide', cn: '羊绒等级指南' },
+  { href: `/${locale}/color-cards/`, en: 'Color-reference guide', cn: '色卡指南' },
+  { href: `/${locale}/shipping-logistics/`, en: 'Shipping preparation', cn: '物流准备' },
 ];
 ---
 
-<BaseLayout
-  locale={locale}
-  pageKey="quality-control"
-  path={'/' + locale + '/quality-control'}
-  title={t.title}
-  description={t.description}
-  keywords={['cashmere payment terms', 'B2B payment terms China', 'T/T L/C cashmere', 'cashmere wholesale payment', 'cashmere factory payment', 'cashmere O/A open account']}
-  schema="general"
->
-  <Navigation slot="header" locale={locale} currentPath={'/' + locale + '/quality-control'} />
-
+<BaseLayout locale={locale} pageKey="quality-control" path="/quality-control" title={copy.title} description={copy.description} keywords={['cashmere quality control', 'cashmere inspection brief', 'cashmere sample approval', 'cashmere buyer verification']} schema="general">
+  <Navigation slot="header" locale={locale} currentPath={`/${locale}/quality-control`} />
   <section class="bg-[#F5F0E7] border-b border-border/60 py-20 md:py-28">
-    <div class="container-narrow">
-      <span class="text-xs tracking-[0.4em] text-brand-camel uppercase">B2B Payment Terms</span>
-      <h1 class="font-display text-4xl md:text-5xl font-light mt-4 mb-6">{t.h1}</h1>
-      <p class="text-lg md:text-xl max-w-3xl opacity-90">{t.intro}</p>
-      <ul class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-2 max-w-3xl">
-        {t.bullets.map((b) => (
-          <li class="flex items-start gap-2 text-sm opacity-90">
-            <span class="text-brand-camel mt-1">•</span>
-            <span>{b}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  <section class="py-16 bg-background">
-    <div class="container-narrow">
-      <h2 class="font-display text-3xl font-light mb-8">Payment Methods at a Glance</h2>
-      <div class="overflow-x-auto">
-        <table class="w-full border border-border rounded-lg overflow-hidden text-sm">
-          <thead class="bg-secondary/30">
-            <tr>
-              <th class="text-left p-3 font-medium">Method</th>
-              <th class="text-left p-3 font-medium">First Order</th>
-              <th class="text-left p-3 font-medium">Repeat Order</th>
-              <th class="text-left p-3 font-medium">Min Order</th>
-              <th class="text-left p-3 font-medium">Risk Level</th>
-              <th class="text-left p-3 font-medium">Settlement</th>
-            </tr>
-          </thead>
-          <tbody>
-            {paymentMethods.map((p) => (
-              <tr class="border-t border-border">
-                <td class="p-3 font-medium">{p.method}</td>
-                <td class="p-3">{p.firstOrder}</td>
-                <td class="p-3">{p.repeatOrder}</td>
-                <td class="p-3 text-xs">{p.minOrder}</td>
-                <td class="p-3 text-xs">{p.risk}</td>
-                <td class="p-3 text-xs">{p.speed}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <p class="mt-6 text-sm text-muted-foreground">All methods are international-standard and used by 500+ B2B buyers worldwide. Bank wire fees on the receiving side are paid by us.</p>
-    </div>
-  </section>
-
-  <section class="py-16 bg-secondary/20">
     <div class="container-narrow max-w-4xl">
-      <h2 class="font-display text-3xl font-light mb-6">Which payment method is right for you?</h2>
-      <div class="space-y-6">
-        <div>
-          <h3 class="font-serif text-2xl mb-3">First-time buyers (under USD 20,000)</h3>
-          <p class="text-base leading-relaxed text-foreground/80">
-            Start with <strong>T/T (Telegraphic Transfer)</strong> — 30% deposit upon order confirmation, 70% balance against Bill of Lading copy. This is the standard 30/70 T/T structure used across Chinese B2B manufacturing. SWIFT wire from your bank in 2-3 business days.
-          </p>
-        </div>
-        <div>
-          <h3 class="font-serif text-2xl mb-3">Mid-size orders (USD 20,000-200,000)</h3>
-          <p class="text-base leading-relaxed text-foreground/80">
-            Use <strong>L/C (Letter of Credit)</strong> at sight for the lowest risk. Your issuing bank guarantees payment to us upon presentation of shipping documents. We accept L/C from HSBC, Standard Chartered, Citibank, Bank of China, ICBC, and other top-tier international banks. Settle 7-14 days faster than T/T when documents arrive cleanly.
-          </p>
-        </div>
-        <div>
-          <h3 class="font-serif text-2xl mb-3">Repeat buyers (after 6 months clean trading)</h3>
-          <p class="text-base leading-relaxed text-foreground/80">
-            Graduate to <strong>O/A (Open Account)</strong> terms: 30% deposit + 70% net 30 days. For orders over USD 200,000 with audited financials, we extend to net 60 days. This saves you the FX cost of prepaying and improves your cash flow. Apply for credit assessment via the Contact Us page.
-          </p>
-        </div>
-        <div>
-          <h3 class="font-serif text-2xl mb-3">Alibaba buyers (any size)</h3>
-          <p class="text-base leading-relaxed text-foreground/80">
-            Use <strong>Alibaba Trade Assurance</strong> for orders USD 500-500,000. Funds are held in escrow and released to us after you confirm shipment quality. We are a Verified Supplier since 2019 with USD 12M+ Trade Assurance coverage. Recommended for first orders if you want full Alibaba dispute resolution.
-          </p>
-        </div>
+      <span class="text-xs tracking-[0.4em] text-brand-camel uppercase">{copy.eyebrow}</span>
+      <h1 class="font-display text-4xl md:text-5xl font-light mt-4 mb-6">{copy.h1}</h1>
+      <p class="text-lg md:text-xl max-w-3xl opacity-90">{copy.intro}</p>
+    </div>
+  </section>
+  <section class="py-16 md:py-20 bg-background">
+    <div class="container-narrow">
+      <h2 class="font-display text-3xl font-light mb-10">{copy.checksTitle}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {copy.checks.map((item) => <article class="border border-border bg-white p-6"><h3 class="font-serif text-xl mb-3">{item.title}</h3><p class="text-sm text-muted-foreground leading-relaxed">{item.text}</p></article>)}
       </div>
     </div>
   </section>
-
-  <SEOFaq faqs={faqs} title="Payment Terms FAQ" />
-
-  <section class="py-16 bg-[#F5F0E7] border-y border-border/60">
-    <div class="container-narrow text-center">
-      <h2 class="font-display text-3xl font-light mb-4">Ready to discuss payment options?</h2>
-      <p class="opacity-90 mb-8 max-w-2xl mx-auto">Request a quote and our sales team will suggest the optimal payment structure for your order size, country, and trading history.</p>
-      <div class="flex flex-wrap gap-4 justify-center">
-        <a href={'/' + locale + '/contact'} class="inline-block px-8 py-3 bg-brand-ink text-[#F7F3EC] rounded-none font-medium uppercase tracking-wider text-sm">Request a Quote</a>
-        <a href={'/' + locale + '/factory'} class="inline-block px-8 py-3 border border-brand-ink/30 rounded-none uppercase tracking-wider text-sm">About Our Factory</a>
-      </div>
-    </div>
+  <section class="py-16 bg-secondary/20 border-y border-border/60">
+    <div class="container-narrow"><h2 class="font-display text-3xl font-light mb-8">{copy.linksTitle}</h2><div class="grid grid-cols-1 md:grid-cols-4 gap-4">{pathwayLinks.map((link) => <a href={link.href} class="border border-border bg-white p-5 text-sm font-medium hover:border-brand-camel transition-colors">{locale === 'cn' ? link.cn : link.en} →</a>)}</div></div>
   </section>
-
-  <Footer slot="footer" locale={locale} />
-  <FloatingChatButtons slot="floating" locale={locale} />
-  <CookieConsent slot="cookie-consent" locale={locale} />
+  <SEOFaq faqs={copy.faqs} title={copy.faqTitle} />
+  <section class="py-16 bg-[#F5F0E7] border-y border-border/60"><div class="container-narrow text-center"><h2 class="font-display text-3xl font-light mb-4">{copy.ctaTitle}</h2><p class="opacity-90 mb-8 max-w-2xl mx-auto">{copy.ctaText}</p><a href={`/${locale}/contact/`} class="inline-block px-8 py-3 bg-brand-ink text-[#F7F3EC] uppercase tracking-wider text-sm">{copy.cta}</a></div></section>
+  <Footer slot="footer" locale={locale} /><FloatingChatButtons slot="footer" locale={locale} /><CookieConsent slot="cookie-consent" locale={locale} />
 </BaseLayout>

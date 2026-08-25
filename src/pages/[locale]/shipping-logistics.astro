@@ -1,7 +1,6 @@
 ---
 /**
- * Shipping and Logistics - B2B SEO hub (long-tail: "cashmere payment terms", "T/T L/C wholesale")
- * Route: /[locale]/shipping-logistics × 6 locales
+ * 采购信任页 SEO：物流准备。所有路线、报价和文件要求应按目的地书面确认。
  */
 export const prerender = true;
 
@@ -13,211 +12,30 @@ import CookieConsent from '@/components/CookieConsent.astro';
 import SEOFaq from '@/components/SEOFaq.astro';
 import { LOCALES, isLocale, pickLocale } from '@/lib/i18n';
 
-export function getStaticPaths() {
-  return LOCALES.map((locale) => ({ params: { locale } }));
-}
-
+export function getStaticPaths() { return LOCALES.map((locale) => ({ params: { locale } })); }
 const { locale: rawLocale } = Astro.params;
 if (!isLocale(rawLocale)) { return new Response('Not Found', { status: 404 }); }
 const locale = pickLocale(rawLocale);
 
-const tdk = {
-  en: {
-    title: 'Cashmere Shipping and Logistics - FOB CIF DDP Worldwide - DONGXIAO Cashmere',
-    description: 'Cashmere wholesale shipping logistics from China. FOB Tianjin and Shanghai, CIF, DDP, EXW all supported. Sea freight LCL and FCL, air freight, courier DHL FedEx UPS TNT. HS code 5108.20 classification and customs clearance support included. Free DDP quotes for US and EU buyers.',
-    h1: 'Cashmere Shipping and Logistics',
-    intro: 'Worldwide shipping for cashmere wholesale orders from our Ordos factory. FOB Tianjin and Shanghai, CIF, DDP and EXW all supported. Sea freight LCL and FCL, air freight, courier DHL FedEx UPS TNT and EMS. Customs clearance and HS code classification included for all destinations.',
-    bullets: [
-      'Incoterms 2020: FOB Tianjin, CIF, DDP, EXW all supported',
-      'Sea freight: LCL (1-10 m3) or FCL (20ft/40ft container)',
-      'Air freight: 5-7 days to EU/US, 3-5 days to Asia/Middle East',
-      'Courier: DHL FedEx UPS TNT for samples and small orders',
-      'Customs clearance and HS code 5108.20 classification included',
-    ],
-    faqs: [
-      { q: 'What shipping methods do you support for cashmere wholesale orders?', a: 'We support sea freight (LCL and FCL), air freight, courier (DHL FedEx UPS TNT), and DDP door-to-door. Incoterms 2020: FOB Tianjin/Shanghai, CIF, DDP, EXW all available. Sea freight is most cost-effective for orders over 100 kg; air freight for samples or urgent restocks (5-7 days to EU/US); courier for under 100 kg samples and small orders.' },
-      { q: 'What is the transit time for cashmere shipping from China to my country?', a: 'Sea freight LCL: 25-35 days to EU/US, 18-25 days to Asia/Middle East, 30-40 days to South America/Africa. Sea freight FCL: 22-30 days to EU/US, 15-22 days to Asia. Air freight: 5-7 days to EU/US, 3-5 days to Asia/Middle East. Courier (DHL/FedEx/UPS): 3-7 days worldwide door-to-door.' },
-      { q: 'What is the HS code for cashmere products when importing to EU/US?', a: 'Cashmere knitwear (sweaters, scarves, hats): HS code 6110 (knitted). Cashmere woven fabric and yarn: HS code 5108.20. Cashmere coats: HS code 6202 (women) or 6201 (men). EU import duty for cashmere knitwear is 12%, US is duty-free under most-favored-nation tariff. We provide complete HS code classification with every shipment.' },
-      { q: 'Can you arrange DDP (Delivered Duty Paid) shipping to my country?', a: 'Yes - we offer DDP door-to-door for US, EU, UK, Canada, Australia. We pre-pay customs duties, GST/VAT, and last-mile delivery. Final landed cost is locked-in (no surprise fees). We use Amazon FBA Prep partner for US-bound shipments and EU 3PL warehouses for EU-bound. DDP quotes valid for 14 days; service adds 15-20% to FOB price.' },
-      { q: 'What is the difference between FOB, CIF, and DDP for cashmere orders?', a: 'FOB (Free on Board): We deliver goods to Tianjin/Shanghai port and load them on your nominated vessel. You pay for sea freight and insurance. CIF (Cost Insurance Freight): We pay for sea freight and insurance to your destination port; you pay customs duties. DDP (Delivered Duty Paid): We pay for everything including customs duties, GST/VAT, and last-mile delivery to your door. Most US/EU buyers prefer DDP for simplicity.' },
-      { q: 'How is cashmere packed for export to prevent damage during shipping?', a: 'Each garment in a polybag, 10-20 pieces per master polybag, then in an ISPM-15 compliant fumigation-free export carton (5-ply corrugated). Cartons stacked on standard wooden pallets, shrink-wrapped, and loaded into 20ft or 40ft containers. Knitwear is compressed 30-50% in vacuum bags for FCL loading. Average carton size 60x40x40 cm; 40ft container holds ~1,200 standard cartons.' },
-    ],
-  },
-  cn: {
-    title: '羊绒海运物流 | FOB CIF DDP 全球 | DONGXIAO®',
-    description: '羊绒批发海运物流：中国起运 FOB 天津/上海、CIF、DDP 全球。海运散货/整柜、空运、DHL/FedEx/UPS/TNT 快递。HS 5108.20 编码清关支持。',
-    h1: '羊绒海运与物流',
-    intro: '从鄂尔多斯工厂全球发货：FOB 天津/上海、CIF、DDP、EXW 全支持。海运散货/整柜、空运、DHL/FedEx/UPS/TNT 快递。HS 编码清关支持全目的地。',
-    bullets: ['首单 30% T/T 定金 + 70% 见提单副本', '复购 6 个月后：30% O/A + 70% 30 天账期', 'L/C 接受即期或 30/60/90 天（5 万美元+）', '阿里巴巴信保订单（2019 年金牌供应商）', '支持 USD / EUR / GBP / JPY / CNY'],
-    faqs: [
-      { q: '首单付款条款是什么？', a: '首单 30% T/T 定金（订单确认后）+ 70% 见提单副本付款。5000 美元以下订单 100% T/T 预付。定金在生产开始后不退。' },
-      { q: '接受信用证 L/C 吗？', a: '接受不可撤销即期 L/C（5 万美元+）。低于 5 万美元建议用 T/T（L/C 银行费用对小额订单不划算）。L/C 期限：30/60/90 天。开证行需顶级国际银行（汇丰、渣打、花旗、中国银行等）。' },
-      { q: '复购客户能享 O/A 账期吗？', a: '可以。6 个月良好交易记录 + 3 单以上成功合作后，复购客户可享 30% 定金 + 70% 30 天账期。20 万美元+ 大单 + 审计财报可延至 60 天 O/A。通过联系我们页面申请信用审批。' },
-      { q: '接受哪些币种电汇？', a: 'USD / EUR / GBP / JPY / AUD / CAD / CNY。收款方银行费用由我们承担；汇款方自付银行费用。SWIFT 通常 2-3 工作日到账；欧元区 SEPA 1 工作日。' },
-    ],
-  },
-  de: {
-    title: 'B2B Kaschmir Zahlungsbedingungen | T/T, L/C, O/A | DONGXIAO®',
-    description: 'Kaschmir-Großhandel Zahlungsbedingungen: T/T, L/C, O/A, D/P. Erste Bestellung 30% Anzahlung + 70% gegen B/L-Kopie. Stammkunden bis 30% O/A nach 6 Monaten.',
-    h1: 'B2B Kaschmir Zahlungsbedingungen',
-    intro: 'Transparente, international standardisierte Zahlungsbedingungen für Kaschmir-Großhandelsbestellungen. Wir akzeptieren T/T, L/C, O/A und D/P.',
-    bullets: ['Erste Bestellung: 30% T/T Anzahlung, 70% gegen B/L-Kopie', 'Stammkunden (nach 6 Monaten): bis 30% O/A, 70% netto 30', 'L/C akzeptiert bei Sicht oder 30/60/90 Tagen', 'Alibaba Trade Assurance akzeptiert'],
-    faqs: [
-      { q: 'Welche Zahlungsbedingungen gelten für Erstbestellungen?', a: 'Erstbesteller: 30% T/T Anzahlung bei Auftragsbestätigung, 70% Restzahlung T/T gegen B/L-Kopie. Bei Bestellungen unter USD 5.000 verlangen wir 100% T/T im Voraus.' },
-      { q: 'Akzeptieren Sie Akkreditive (L/C)?', a: 'Ja — wir akzeptieren unwiderrufliches L/C bei Sicht für Bestellungen ab USD 50.000. Für Beträge unter USD 50.000 empfehlen wir T/T.' },
-    ],
-  },
-  fr: {
-    title: 'Conditions de paiement cachemire B2B | T/T, L/C, O/A | DONGXIAO®',
-    description: 'Conditions de paiement pour cachemire en gros: T/T, L/C, O/A, D/P. Première commande 30% d\'acompte + 70% contre copie B/L.',
-    h1: 'Conditions de paiement cachemire B2B',
-    intro: 'Conditions de paiement standard internationales pour commandes de cachemire en gros.',
-    bullets: ['Première commande : 30% T/T d\'acompte, 70% contre copie B/L', 'Clients réguliers (après 6 mois) : jusqu\'à 30% O/A', 'L/C accepté à vue ou 30/60/90 jours'],
-    faqs: [
-      { q: 'Quelles conditions de paiement pour les premières commandes ?', a: '30% T/T d\'acompte à la confirmation, 70% contre copie B/L. Pour commandes inférieures à USD 5.000, 100% T/T à l\'avance.' },
-    ],
-  },
-  ja: {
-    title: 'カシミア B2B 支払条件 | T/T、L/C、O/A | DONGXIAO®',
-    description: 'カシミア卸売の支払条件：T/T、L/C、O/A、D/P。初回注文30%前払い+70%B/Lコピーに対し支払い。',
-    h1: 'カシミア B2B 支払条件',
-    intro: '国際標準のカシミア卸売支払条件。T/T、L/C、O/A、D/P に対応。',
-    bullets: ['初回：30% T/T 前払い + 70% B/L コピー', 'リピート（6ヶ月後）：30% O/A まで', 'L/C は USD 50,000 以上で受付'],
-    faqs: [
-      { q: '初回注文の支払条件は？', a: '初回：30% T/T 前払い（注文確認時）+ 70% B/L コピー支払い。USD 5,000 未満は 100% 前払い。' },
-    ],
-  },
-  kr: {
-    title: '캐시미어 B2B 결제 조건 | T/T, L/C, O/A | DONGXIAO®',
-    description: '캐시미어 도매 결제 조건: T/T, L/C, O/A, D/P. 첫 주문 30% 계약금 + 70% B/L 사본 결제.',
-    h1: '캐시미어 B2B 결제 조건',
-    intro: '국제 표준 캐시미어 도매 결제 조건. T/T, L/C, O/A, D/P 지원.',
-    bullets: ['첫 주문: 30% T/T 계약금 + 70% B/L 사본', '재주문 (6개월 후): 최대 30% O/A', 'L/C USD 50,000 이상'],
-    faqs: [
-      { q: '첫 주문 결제 조건은?', a: '첫 주문: 30% T/T 계약금 (주문 확정 시) + 70% B/L 사본 결제. USD 5,000 미만은 100% 선불.' },
-    ],
-  },
+type Copy = { eyebrow: string; title: string; description: string; h1: string; intro: string; planningTitle: string; planning: { title: string; text: string }[]; faqTitle: string; faqs: { q: string; a: string }[]; ctaTitle: string; ctaText: string; cta: string };
+const content: Record<string, Copy> = {
+  en: { eyebrow: 'DELIVERY PREPARATION', title: 'Cashmere Shipping & Logistics Preparation | DONGXIAO®', description: 'Prepare a cashmere shipping brief covering destination, packing, documents, Incoterms and delivery timing before requesting a landed quote.', h1: 'Cashmere Shipping & Logistics Preparation', intro: 'Shipping mode, route availability, quoted Incoterms, customs responsibilities and delivery timing vary by destination, order and buyer requirements. Confirm the final logistics plan in the written quotation.', planningTitle: 'Three details for a useful shipping quote', planning: [{ title: '01 — Destination and delivery point', text: 'Provide the destination country, city or port, postal code where relevant, and whether the quote should cover a port or final delivery point.' }, { title: '02 — Order and packing profile', text: 'Include product type, estimated quantity, carton or pallet preferences, sample versus bulk status, and the required ready-date window.' }, { title: '03 — Documents and terms', text: 'State the documents your importer needs and the Incoterm you want discussed. Customs classification and responsibilities should be confirmed for the specific shipment.' }], faqTitle: 'Shipping-planning FAQ', faqs: [{ q: 'What should I include when requesting a shipping quote?', a: 'Include product type, quantity, destination, requested delivery point, ready-date window, packing requirements and any document or Incoterm preference.' }, { q: 'Can a buyer request sea, air or courier options?', a: 'Yes. State the preferred mode and timing requirements so available options can be evaluated for the individual route and order.' }, { q: 'When are customs and delivery responsibilities confirmed?', a: 'They should be confirmed in the written quotation or sales agreement for the exact destination and agreed delivery term.' }], ctaTitle: 'Prepare a destination-specific logistics brief', ctaText: 'Share your product link, target quantity, destination, delivery point and timing requirements with the inquiry.', cta: 'Discuss shipping preparation' },
+  cn: { eyebrow: '出运准备', title: '羊绒物流与出运准备 | DONGXIAO®', description: '在申请落地物流报价前，准备目的地、包装、文件、贸易术语和交期需求。', h1: '羊绒物流与出运准备', intro: '运输方式、路线可行性、贸易术语、清关责任和交付时间会随目的地、订单和买方要求变化，最终物流方案应在书面报价中确认。', planningTitle: '获得有效物流报价的三项信息', planning: [{ title: '01 — 目的地与交付点', text: '提供目的国、城市或港口、必要时的邮编，以及报价是否覆盖到港或最终交付点。' }, { title: '02 — 订单与包装情况', text: '说明产品类型、预计数量、外箱或托盘偏好、样品或大货状态和预计备货时间。' }, { title: '03 — 文件与条款', text: '说明进口方需要的文件和希望讨论的贸易术语，报关归类和责任应按具体货运确认。' }], faqTitle: '物流准备常见问题', faqs: [{ q: '申请物流报价时应提供什么？', a: '请提供产品、数量、目的地、交付点、备货时间、包装要求和文件或贸易术语偏好。' }, { q: '可以指定海运、空运或快递吗？', a: '可以。请说明偏好运输方式和时效需求，以便按具体路线和订单评估。' }, { q: '何时确认清关和交付责任？', a: '应在对应目的地和约定交付条款的书面报价或销售协议中确认。' }], ctaTitle: '准备目的地物流需求', ctaText: '请在询盘中提供产品链接、目标数量、目的地、交付点和时效需求。', cta: '沟通物流准备' },
+  de: { eyebrow: 'LIEFERVORBEREITUNG', title: 'Kaschmir Versand- und Logistikvorbereitung | DONGXIAO®', description: 'Bereiten Sie Zielort, Verpackung, Dokumente, Incoterms und Lieferfenster vor.', h1: 'Kaschmir Versand- und Logistikvorbereitung', intro: 'Route, Lieferbedingung und Zuständigkeiten werden je Sendung schriftlich bestätigt.', planningTitle: 'Drei Angaben für ein Angebot', planning: [{ title: '01 — Zielort', text: 'Land, Stadt oder Hafen und gewünschter Lieferpunkt.' }, { title: '02 — Auftrag und Verpackung', text: 'Produkt, Menge, Verpackung und Bereitstellungsfenster.' }, { title: '03 — Dokumente und Bedingungen', text: 'Importdokumente und gewünschte Incoterms benennen.' }], faqTitle: 'FAQ zur Versandplanung', faqs: [{ q: 'Was gehört in eine Transportanfrage?', a: 'Produkt, Menge, Zielort, Lieferpunkt, Zeitfenster und Dokumentanforderungen.' }, { q: 'Kann ich die Versandart nennen?', a: 'Ja, nennen Sie Modus und Timing zur Prüfung pro Route.' }, { q: 'Wann werden Zuständigkeiten bestätigt?', a: 'In schriftlichem Angebot oder Vertrag für die konkrete Sendung.' }], ctaTitle: 'Logistikbrief vorbereiten', ctaText: 'Senden Sie Produktlink, Menge, Zielort und Zeitfenster.', cta: 'Logistik besprechen' },
+  fr: { eyebrow: 'PRÉPARATION LIVRAISON', title: 'Préparation logistique cachemire | DONGXIAO®', description: 'Préparez destination, emballage, documents, Incoterms et délai avant un devis.', h1: 'Préparation logistique cachemire', intro: 'Itinéraire, terme de livraison et responsabilités sont confirmés par écrit pour chaque expédition.', planningTitle: 'Trois éléments pour un devis', planning: [{ title: '01 — Destination', text: 'Pays, ville ou port et point de livraison souhaité.' }, { title: '02 — Commande et emballage', text: 'Produit, quantité, emballage et fenêtre de disponibilité.' }, { title: '03 — Documents et termes', text: 'Documents import et Incoterm souhaité.' }], faqTitle: 'FAQ préparation logistique', faqs: [{ q: 'Que fournir pour un devis transport ?', a: 'Produit, quantité, destination, point de livraison, délai et documents.' }, { q: 'Puis-je demander un mode de transport ?', a: 'Oui, indiquez mode et délai pour évaluation par route.' }, { q: 'Quand les responsabilités sont-elles confirmées ?', a: 'Dans le devis ou contrat écrit de l’expédition.' }], ctaTitle: 'Préparer votre brief logistique', ctaText: 'Envoyez lien produit, quantité, destination et délai.', cta: 'Discuter de la logistique' },
+  ja: { eyebrow: '出荷準備', title: 'カシミヤ物流・出荷準備 | DONGXIAO®', description: '見積もり前に仕向地、梱包、書類、インコタームズ、納期を整理します。', h1: 'カシミヤ物流・出荷準備', intro: 'ルート、引渡条件、責任は出荷ごとに書面で確認します。', planningTitle: '見積もりに必要な3項目', planning: [{ title: '01 — 仕向地', text: '国、都市または港、希望引渡地点。' }, { title: '02 — 注文と梱包', text: '製品、数量、梱包、出荷可能期間。' }, { title: '03 — 書類と条件', text: '輸入書類と希望インコタームズ。' }], faqTitle: '出荷計画 FAQ', faqs: [{ q: '見積もりに必要な情報は？', a: '製品、数量、仕向地、引渡地点、時期、書類要件です。' }, { q: '輸送方法を指定できますか？', a: 'はい。方法と希望時期を記載してください。' }, { q: '責任はいつ確認しますか？', a: '具体的な出荷の書面見積もりまたは契約で確認します。' }], ctaTitle: '物流ブリーフを準備する', ctaText: '製品リンク、数量、仕向地、時期をお送りください。', cta: '物流を相談する' },
+  kr: { eyebrow: '출하 준비', title: '캐시미어 물류 및 출하 준비 | DONGXIAO®', description: '견적 전 목적지, 포장, 서류, 인코텀즈, 납기를 준비하세요.', h1: '캐시미어 물류 및 출하 준비', intro: '경로, 인도 조건, 책임은 선적별로 서면 확인합니다.', planningTitle: '견적을 위한 세 가지 정보', planning: [{ title: '01 — 목적지', text: '국가, 도시 또는 항구와 희망 인도 지점.' }, { title: '02 — 주문 및 포장', text: '제품, 수량, 포장, 준비 가능 기간.' }, { title: '03 — 서류 및 조건', text: '수입 서류와 희망 인코텀즈.' }], faqTitle: '물류 계획 FAQ', faqs: [{ q: '운송 견적에 필요한 정보는?', a: '제품, 수량, 목적지, 인도 지점, 일정, 서류 요건입니다.' }, { q: '운송 방식을 지정할 수 있나요?', a: '네. 방식과 일정 요건을 알려 주세요.' }, { q: '책임은 언제 확정합니까?', a: '해당 선적의 서면 견적 또는 계약에서 확정합니다.' }], ctaTitle: '물류 브리프 준비', ctaText: '제품 링크, 수량, 목적지, 일정을 보내 주세요.', cta: '물류 상담하기' },
 };
-
-const t = tdk[locale] || tdk.en;
-const faqs = t.faqs || tdk.en.faqs;
-
-const paymentMethods = [
-  { method: 'T/T (Telegraphic Transfer)', firstOrder: '30% deposit + 70% before shipment', repeatOrder: '20% deposit + 80% before shipment', minOrder: 'No minimum', risk: 'Low', speed: '2-3 business days' },
-  { method: 'L/C (Letter of Credit)', firstOrder: 'L/C at sight', repeatOrder: 'L/C 30/60/90 days', minOrder: 'USD 50,000+', risk: 'Very low (bank-guaranteed)', speed: '7-14 business days' },
-  { method: 'O/A (Open Account)', firstOrder: 'Not available', repeatOrder: '30% deposit + 70% net 30 days', minOrder: 'USD 20,000+ (after 6 months clean history)', risk: 'Medium (unsecured)', speed: 'Net 30-60 days' },
-  { method: 'D/P (Documents against Payment)', firstOrder: 'Available', repeatOrder: 'Available', minOrder: 'USD 20,000-100,000', risk: 'Low', speed: 'Varies (at sight or 30/60/90 days)' },
-  { method: 'Alibaba Trade Assurance', firstOrder: 'Available', repeatOrder: 'Available', minOrder: 'USD 500-500,000', risk: 'Very low (escrow-protected)', speed: 'Order trigger instant' },
-  { method: 'Western Union / Wise', firstOrder: 'For samples only', repeatOrder: 'For samples only', minOrder: 'Under USD 5,000', risk: 'Low', speed: '1-2 business days' },
-];
+const copy = content[locale] || content.en;
+const planningLinks = [{ href: `/${locale}/products/`, en: 'Product catalog', cn: '产品目录' }, { href: `/${locale}/quality-control/`, en: 'Quality-control planning', cn: '质控准备' }, { href: `/${locale}/payment-terms/`, en: 'Payment discussion', cn: '付款沟通' }, { href: `/${locale}/contact/`, en: 'Request a quote', cn: '发起询盘' }];
 ---
 
-<BaseLayout
-  locale={locale}
-  pageKey="shipping-logistics"
-  path={'/' + locale + '/shipping-logistics'}
-  title={t.title}
-  description={t.description}
-  keywords={['cashmere payment terms', 'B2B payment terms China', 'T/T L/C cashmere', 'cashmere wholesale payment', 'cashmere factory payment', 'cashmere O/A open account']}
-  schema="general"
->
-  <Navigation slot="header" locale={locale} currentPath={'/' + locale + '/shipping-logistics'} />
-
-  <section class="bg-[#F5F0E7] border-b border-border/60 py-20 md:py-28">
-    <div class="container-narrow">
-      <span class="text-xs tracking-[0.4em] text-brand-camel uppercase">B2B Payment Terms</span>
-      <h1 class="font-display text-4xl md:text-5xl font-light mt-4 mb-6">{t.h1}</h1>
-      <p class="text-lg md:text-xl max-w-3xl opacity-90">{t.intro}</p>
-      <ul class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-2 max-w-3xl">
-        {t.bullets.map((b) => (
-          <li class="flex items-start gap-2 text-sm opacity-90">
-            <span class="text-brand-camel mt-1">•</span>
-            <span>{b}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  <section class="py-16 bg-background">
-    <div class="container-narrow">
-      <h2 class="font-display text-3xl font-light mb-8">Payment Methods at a Glance</h2>
-      <div class="overflow-x-auto">
-        <table class="w-full border border-border rounded-lg overflow-hidden text-sm">
-          <thead class="bg-secondary/30">
-            <tr>
-              <th class="text-left p-3 font-medium">Method</th>
-              <th class="text-left p-3 font-medium">First Order</th>
-              <th class="text-left p-3 font-medium">Repeat Order</th>
-              <th class="text-left p-3 font-medium">Min Order</th>
-              <th class="text-left p-3 font-medium">Risk Level</th>
-              <th class="text-left p-3 font-medium">Settlement</th>
-            </tr>
-          </thead>
-          <tbody>
-            {paymentMethods.map((p) => (
-              <tr class="border-t border-border">
-                <td class="p-3 font-medium">{p.method}</td>
-                <td class="p-3">{p.firstOrder}</td>
-                <td class="p-3">{p.repeatOrder}</td>
-                <td class="p-3 text-xs">{p.minOrder}</td>
-                <td class="p-3 text-xs">{p.risk}</td>
-                <td class="p-3 text-xs">{p.speed}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <p class="mt-6 text-sm text-muted-foreground">All methods are international-standard and used by 500+ B2B buyers worldwide. Bank wire fees on the receiving side are paid by us.</p>
-    </div>
-  </section>
-
-  <section class="py-16 bg-secondary/20">
-    <div class="container-narrow max-w-4xl">
-      <h2 class="font-display text-3xl font-light mb-6">Which payment method is right for you?</h2>
-      <div class="space-y-6">
-        <div>
-          <h3 class="font-serif text-2xl mb-3">First-time buyers (under USD 20,000)</h3>
-          <p class="text-base leading-relaxed text-foreground/80">
-            Start with <strong>T/T (Telegraphic Transfer)</strong> — 30% deposit upon order confirmation, 70% balance against Bill of Lading copy. This is the standard 30/70 T/T structure used across Chinese B2B manufacturing. SWIFT wire from your bank in 2-3 business days.
-          </p>
-        </div>
-        <div>
-          <h3 class="font-serif text-2xl mb-3">Mid-size orders (USD 20,000-200,000)</h3>
-          <p class="text-base leading-relaxed text-foreground/80">
-            Use <strong>L/C (Letter of Credit)</strong> at sight for the lowest risk. Your issuing bank guarantees payment to us upon presentation of shipping documents. We accept L/C from HSBC, Standard Chartered, Citibank, Bank of China, ICBC, and other top-tier international banks. Settle 7-14 days faster than T/T when documents arrive cleanly.
-          </p>
-        </div>
-        <div>
-          <h3 class="font-serif text-2xl mb-3">Repeat buyers (after 6 months clean trading)</h3>
-          <p class="text-base leading-relaxed text-foreground/80">
-            Graduate to <strong>O/A (Open Account)</strong> terms: 30% deposit + 70% net 30 days. For orders over USD 200,000 with audited financials, we extend to net 60 days. This saves you the FX cost of prepaying and improves your cash flow. Apply for credit assessment via the Contact Us page.
-          </p>
-        </div>
-        <div>
-          <h3 class="font-serif text-2xl mb-3">Alibaba buyers (any size)</h3>
-          <p class="text-base leading-relaxed text-foreground/80">
-            Use <strong>Alibaba Trade Assurance</strong> for orders USD 500-500,000. Funds are held in escrow and released to us after you confirm shipment quality. We are a Verified Supplier since 2019 with USD 12M+ Trade Assurance coverage. Recommended for first orders if you want full Alibaba dispute resolution.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <SEOFaq faqs={faqs} title="Payment Terms FAQ" />
-
-  <section class="py-16 bg-[#F5F0E7] border-y border-border/60">
-    <div class="container-narrow text-center">
-      <h2 class="font-display text-3xl font-light mb-4">Ready to discuss payment options?</h2>
-      <p class="opacity-90 mb-8 max-w-2xl mx-auto">Request a quote and our sales team will suggest the optimal payment structure for your order size, country, and trading history.</p>
-      <div class="flex flex-wrap gap-4 justify-center">
-        <a href={'/' + locale + '/contact'} class="inline-block px-8 py-3 bg-brand-ink text-[#F7F3EC] rounded-none font-medium uppercase tracking-wider text-sm">Request a Quote</a>
-        <a href={'/' + locale + '/factory'} class="inline-block px-8 py-3 border border-brand-ink/30 rounded-none uppercase tracking-wider text-sm">About Our Factory</a>
-      </div>
-    </div>
-  </section>
-
-  <Footer slot="footer" locale={locale} />
-  <FloatingChatButtons slot="floating" locale={locale} />
-  <CookieConsent slot="cookie-consent" locale={locale} />
+<BaseLayout locale={locale} pageKey="shipping-logistics" path="/shipping-logistics" title={copy.title} description={copy.description} keywords={['cashmere shipping logistics', 'cashmere export preparation', 'cashmere Incoterms', 'cashmere delivery quote']} schema="general">
+  <Navigation slot="header" locale={locale} currentPath={`/${locale}/shipping-logistics`} />
+  <section class="bg-[#F5F0E7] border-b border-border/60 py-20 md:py-28"><div class="container-narrow max-w-4xl"><span class="text-xs tracking-[0.4em] text-brand-camel uppercase">{copy.eyebrow}</span><h1 class="font-display text-4xl md:text-5xl font-light mt-4 mb-6">{copy.h1}</h1><p class="text-lg md:text-xl max-w-3xl opacity-90">{copy.intro}</p></div></section>
+  <section class="py-16 md:py-20 bg-background"><div class="container-narrow"><h2 class="font-display text-3xl font-light mb-10">{copy.planningTitle}</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6">{copy.planning.map((item) => <article class="border border-border bg-white p-6"><h3 class="font-serif text-xl mb-3">{item.title}</h3><p class="text-sm text-muted-foreground leading-relaxed">{item.text}</p></article>)}</div></div></section>
+  <section class="py-16 bg-secondary/20 border-y border-border/60"><div class="container-narrow"><div class="grid grid-cols-1 md:grid-cols-4 gap-4">{planningLinks.map((link) => <a href={link.href} class="border border-border bg-white p-5 text-sm font-medium hover:border-brand-camel transition-colors">{locale === 'cn' ? link.cn : link.en} →</a>)}</div></div></section>
+  <SEOFaq faqs={copy.faqs} title={copy.faqTitle} />
+  <section class="py-16 bg-[#F5F0E7] border-y border-border/60"><div class="container-narrow text-center"><h2 class="font-display text-3xl font-light mb-4">{copy.ctaTitle}</h2><p class="opacity-90 mb-8 max-w-2xl mx-auto">{copy.ctaText}</p><a href={`/${locale}/contact/`} class="inline-block px-8 py-3 bg-brand-ink text-[#F7F3EC] uppercase tracking-wider text-sm">{copy.cta}</a></div></section>
+  <Footer slot="footer" locale={locale} /><FloatingChatButtons slot="footer" locale={locale} /><CookieConsent slot="cookie-consent" locale={locale} />
 </BaseLayout>

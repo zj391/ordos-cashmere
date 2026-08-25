@@ -1,7 +1,6 @@
 ---
 /**
- * Payment Terms - B2B SEO hub (long-tail: "cashmere payment terms", "T/T L/C wholesale")
- * Route: /[locale]/payment-terms × 6 locales
+ * 采购信任页 SEO：付款沟通。实际币种、方式、账期和费用以书面报价为准。
  */
 export const prerender = true;
 
@@ -13,211 +12,30 @@ import CookieConsent from '@/components/CookieConsent.astro';
 import SEOFaq from '@/components/SEOFaq.astro';
 import { LOCALES, isLocale, pickLocale } from '@/lib/i18n';
 
-export function getStaticPaths() {
-  return LOCALES.map((locale) => ({ params: { locale } }));
-}
-
+export function getStaticPaths() { return LOCALES.map((locale) => ({ params: { locale } })); }
 const { locale: rawLocale } = Astro.params;
 if (!isLocale(rawLocale)) { return new Response('Not Found', { status: 404 }); }
 const locale = pickLocale(rawLocale);
 
-const tdk = {
-  en: {
-    title: 'B2B Cashmere Payment Terms | T/T, L/C, O/A, D/P | DONGXIAO®',
-    description: 'Cashmere wholesale payment terms for B2B buyers: T/T (telegraphic transfer), L/C (letter of credit), O/A (open account), D/P (documents against payment). First order 30% T/T deposit + 70% before shipment. Repeat orders up to 30% O/A after 6 months.',
-    h1: 'B2B Cashmere Payment Terms',
-    intro: 'Transparent, internationally-standard payment terms for cashmere wholesale orders. We support T/T, L/C, O/A, and D/P. New buyers start with 30% T/T deposit + 70% balance against B/L copy. Repeat buyers graduate to O/A (open account) terms after 6 months of clean trading history.',
-    bullets: [
-      'First order: 30% T/T deposit, 70% against B/L copy',
-      'Repeat orders (after 6 months): up to 30% O/A, 70% net 30',
-      'L/C accepted at sight or 30/60/90 days for orders $50,000+',
-      'Trade Assurance via Alibaba accepted (verified supplier since 2019)',
-      'Wire in USD, EUR, GBP, CNY, JPY — no FX fees on our side',
-    ],
-    faqs: [
-      { q: 'What payment terms do you offer for first-time cashmere orders?', a: 'First-time buyers: 30% T/T (telegraphic transfer) deposit upon order confirmation, 70% balance T/T against B/L (Bill of Lading) copy. For orders under USD 5,000 we require 100% T/T in advance. The deposit is non-refundable once production begins.' },
-      { q: 'Can I pay by Letter of Credit (L/C)?', a: 'Yes — we accept irrevocable L/C at sight for orders USD 50,000+. For amounts below USD 50,000 we recommend T/T instead (L/C fees are not economical for smaller orders). L/C terms we accept: 30 days, 60 days, 90 days. Issuing bank must be a top-tier international bank (HSBC, Standard Chartered, Citibank, Bank of China, etc.).' },
-      { q: 'Do you offer Open Account (O/A) terms for repeat buyers?', a: 'Yes — after 6 months of clean trading history and 3+ successful orders, repeat buyers qualify for O/A terms: 30% T/T deposit + 70% net 30 days. For orders over USD 200,000 with audited financials, we extend up to 60-day O/A. Request a credit application via the Contact Us page.' },
-      { q: 'What currencies do you accept for wire transfer?', a: 'USD, EUR, GBP, JPY, AUD, CAD, CNY (RMB). All bank fees on the receiving side are paid by us; the sender covers their own bank fees. SWIFT transfer usually settles in 2-3 business days; SEPA for EUR transfers within EU/EEA takes 1 business day.' },
-      { q: 'Do you accept Alibaba Trade Assurance or Letter of Credit via Alibaba?', a: 'Yes — Alibaba Trade Assurance is accepted for orders up to USD 500,000. We are a Verified Supplier since 2019 with USD 12M+ Trade Assurance coverage on Alibaba. For larger orders, direct bank L/C is more cost-effective.' },
-      { q: 'What is Documents against Payment (D/P) and when is it used?', a: 'D/P (Documents against Payment) means we ship the goods, then our bank sends the shipping documents to your bank. Your bank releases the documents (and therefore the goods) only after you pay the full invoice amount. D/P is used for orders USD 20,000-100,000 with buyers in countries where L/C is uncommon. Available as D/P at sight or 30/60/90 days.' },
-    ],
-  },
-  cn: {
-    title: '羊绒 B2B 付款条款 | T/T / L/C / O/A / D/P | DONGXIAO®',
-    description: '羊绒批发付款条款：T/T 电汇、信用证、O/A 赊账、D/P 付款交单。首单 30% 定金 + 70% 见提单副本付款。复购 6 个月后可享 O/A 30 天账期。',
-    h1: '羊绒 B2B 付款条款',
-    intro: '国际标准化的羊绒批发付款条款，支持 T/T、L/C、O/A、D/P。新客户首单 30% 定金 + 70% 见提单副本付款。复购客户 6 个月后可升级 O/A 账期。',
-    bullets: ['首单 30% T/T 定金 + 70% 见提单副本', '复购 6 个月后：30% O/A + 70% 30 天账期', 'L/C 接受即期或 30/60/90 天（5 万美元+）', '阿里巴巴信保订单（2019 年金牌供应商）', '支持 USD / EUR / GBP / JPY / CNY'],
-    faqs: [
-      { q: '首单付款条款是什么？', a: '首单 30% T/T 定金（订单确认后）+ 70% 见提单副本付款。5000 美元以下订单 100% T/T 预付。定金在生产开始后不退。' },
-      { q: '接受信用证 L/C 吗？', a: '接受不可撤销即期 L/C（5 万美元+）。低于 5 万美元建议用 T/T（L/C 银行费用对小额订单不划算）。L/C 期限：30/60/90 天。开证行需顶级国际银行（汇丰、渣打、花旗、中国银行等）。' },
-      { q: '复购客户能享 O/A 账期吗？', a: '可以。6 个月良好交易记录 + 3 单以上成功合作后，复购客户可享 30% 定金 + 70% 30 天账期。20 万美元+ 大单 + 审计财报可延至 60 天 O/A。通过联系我们页面申请信用审批。' },
-      { q: '接受哪些币种电汇？', a: 'USD / EUR / GBP / JPY / AUD / CAD / CNY。收款方银行费用由我们承担；汇款方自付银行费用。SWIFT 通常 2-3 工作日到账；欧元区 SEPA 1 工作日。' },
-    ],
-  },
-  de: {
-    title: 'B2B Kaschmir Zahlungsbedingungen | T/T, L/C, O/A | DONGXIAO®',
-    description: 'Kaschmir-Großhandel Zahlungsbedingungen: T/T, L/C, O/A, D/P. Erste Bestellung 30% Anzahlung + 70% gegen B/L-Kopie. Stammkunden bis 30% O/A nach 6 Monaten.',
-    h1: 'B2B Kaschmir Zahlungsbedingungen',
-    intro: 'Transparente, international standardisierte Zahlungsbedingungen für Kaschmir-Großhandelsbestellungen. Wir akzeptieren T/T, L/C, O/A und D/P.',
-    bullets: ['Erste Bestellung: 30% T/T Anzahlung, 70% gegen B/L-Kopie', 'Stammkunden (nach 6 Monaten): bis 30% O/A, 70% netto 30', 'L/C akzeptiert bei Sicht oder 30/60/90 Tagen', 'Alibaba Trade Assurance akzeptiert'],
-    faqs: [
-      { q: 'Welche Zahlungsbedingungen gelten für Erstbestellungen?', a: 'Erstbesteller: 30% T/T Anzahlung bei Auftragsbestätigung, 70% Restzahlung T/T gegen B/L-Kopie. Bei Bestellungen unter USD 5.000 verlangen wir 100% T/T im Voraus.' },
-      { q: 'Akzeptieren Sie Akkreditive (L/C)?', a: 'Ja — wir akzeptieren unwiderrufliches L/C bei Sicht für Bestellungen ab USD 50.000. Für Beträge unter USD 50.000 empfehlen wir T/T.' },
-    ],
-  },
-  fr: {
-    title: 'Conditions de paiement cachemire B2B | T/T, L/C, O/A | DONGXIAO®',
-    description: 'Conditions de paiement pour cachemire en gros: T/T, L/C, O/A, D/P. Première commande 30% d\'acompte + 70% contre copie B/L.',
-    h1: 'Conditions de paiement cachemire B2B',
-    intro: 'Conditions de paiement standard internationales pour commandes de cachemire en gros.',
-    bullets: ['Première commande : 30% T/T d\'acompte, 70% contre copie B/L', 'Clients réguliers (après 6 mois) : jusqu\'à 30% O/A', 'L/C accepté à vue ou 30/60/90 jours'],
-    faqs: [
-      { q: 'Quelles conditions de paiement pour les premières commandes ?', a: '30% T/T d\'acompte à la confirmation, 70% contre copie B/L. Pour commandes inférieures à USD 5.000, 100% T/T à l\'avance.' },
-    ],
-  },
-  ja: {
-    title: 'カシミア B2B 支払条件 | T/T、L/C、O/A | DONGXIAO®',
-    description: 'カシミア卸売の支払条件：T/T、L/C、O/A、D/P。初回注文30%前払い+70%B/Lコピーに対し支払い。',
-    h1: 'カシミア B2B 支払条件',
-    intro: '国際標準のカシミア卸売支払条件。T/T、L/C、O/A、D/P に対応。',
-    bullets: ['初回：30% T/T 前払い + 70% B/L コピー', 'リピート（6ヶ月後）：30% O/A まで', 'L/C は USD 50,000 以上で受付'],
-    faqs: [
-      { q: '初回注文の支払条件は？', a: '初回：30% T/T 前払い（注文確認時）+ 70% B/L コピー支払い。USD 5,000 未満は 100% 前払い。' },
-    ],
-  },
-  kr: {
-    title: '캐시미어 B2B 결제 조건 | T/T, L/C, O/A | DONGXIAO®',
-    description: '캐시미어 도매 결제 조건: T/T, L/C, O/A, D/P. 첫 주문 30% 계약금 + 70% B/L 사본 결제.',
-    h1: '캐시미어 B2B 결제 조건',
-    intro: '국제 표준 캐시미어 도매 결제 조건. T/T, L/C, O/A, D/P 지원.',
-    bullets: ['첫 주문: 30% T/T 계약금 + 70% B/L 사본', '재주문 (6개월 후): 최대 30% O/A', 'L/C USD 50,000 이상'],
-    faqs: [
-      { q: '첫 주문 결제 조건은?', a: '첫 주문: 30% T/T 계약금 (주문 확정 시) + 70% B/L 사본 결제. USD 5,000 미만은 100% 선불.' },
-    ],
-  },
+type Copy = { eyebrow: string; title: string; description: string; h1: string; intro: string; stepsTitle: string; steps: { title: string; text: string }[]; faqTitle: string; faqs: { q: string; a: string }[]; ctaTitle: string; ctaText: string; cta: string };
+const content: Record<string, Copy> = {
+  en: { eyebrow: 'COMMERCIAL PREPARATION', title: 'B2B Cashmere Payment Discussion | DONGXIAO®', description: 'Prepare a clear payment discussion for a cashmere quotation: buyer entity, order value, destination, documentary requirements and preferred commercial terms.', h1: 'B2B Cashmere Payment Discussion', intro: 'Payment method, currency, schedule, fees and documentary requirements are agreed in the written quotation or sales agreement for the individual transaction. This page helps buyers prepare the commercial information needed for that discussion.', stepsTitle: 'Prepare the commercial brief', steps: [{ title: '01 — Identify the buying entity', text: 'Provide the legal buyer name, billing country and the contact responsible for commercial documentation.' }, { title: '02 — Define the order context', text: 'Share the product link, quantity, estimated order value, destination and intended shipment window.' }, { title: '03 — State documentary needs', text: 'List the proforma invoice, shipping, banking or import documents your team requires so terms can be reviewed for the transaction.' }], faqTitle: 'Payment-discussion FAQ', faqs: [{ q: 'When are payment terms confirmed?', a: 'They are confirmed in the written quotation or sales agreement after the order, buyer and destination details have been reviewed.' }, { q: 'Can a buyer request a particular payment or documentary method?', a: 'Yes. Include the preferred method and documentary requirements in the inquiry so feasibility can be confirmed in writing.' }, { q: 'What should be reviewed before paying a deposit?', a: 'Review the product specification, quotation, buyer and seller details, delivery term, payment schedule and document requirements before proceeding.' }], ctaTitle: 'Start a documented commercial discussion', ctaText: 'Send your product selection, quantity, buying entity, destination and requested commercial or document requirements.', cta: 'Request a commercial quotation' },
+  cn: { eyebrow: '商务准备', title: '羊绒 B2B 付款沟通 | DONGXIAO®', description: '在申请羊绒报价前，准备买方主体、订单金额、目的地、文件要求和期望商务条款。', h1: '羊绒 B2B 付款沟通', intro: '付款方式、币种、付款节点、费用和单据要求应按具体交易在书面报价或销售协议中确认。本页帮助采购方准备沟通所需的商务信息。', stepsTitle: '准备商务需求', steps: [{ title: '01 — 明确采购主体', text: '提供买方公司法定名称、开票国家和负责商务文件的联系人。' }, { title: '02 — 说明订单背景', text: '提供产品链接、数量、预计订单金额、目的地和计划出运窗口。' }, { title: '03 — 列明文件要求', text: '说明团队需要的形式发票、运输、银行或进口文件，以便针对交易评估条款。' }], faqTitle: '付款沟通常见问题', faqs: [{ q: '何时确认付款条款？', a: '在审核订单、买方和目的地信息后，于书面报价或销售协议中确认。' }, { q: '买方可以提出付款或单据方式吗？', a: '可以。请在询盘中说明偏好方式与单据要求，以便书面确认可行性。' }, { q: '支付定金前应核对什么？', a: '应核对产品规格、报价、买卖方信息、交付条款、付款节点和文件要求。' }], ctaTitle: '开始书面商务沟通', ctaText: '请提供产品选择、数量、采购主体、目的地和希望讨论的商务或单据要求。', cta: '申请商务报价' },
+  de: { eyebrow: 'KAUFMÄNNISCHE VORBEREITUNG', title: 'B2B Kaschmir Zahlungsabstimmung | DONGXIAO®', description: 'Bereiten Sie Käufer, Auftragswert, Zielort und Dokumentanforderungen für ein Angebot vor.', h1: 'B2B Kaschmir Zahlungsabstimmung', intro: 'Zahlungsart, Währung, Zeitplan und Dokumente werden pro Transaktion schriftlich vereinbart.', stepsTitle: 'Kaufmännischen Brief vorbereiten', steps: [{ title: '01 — Käufer benennen', text: 'Rechtlicher Firmenname, Rechnungsland und Ansprechpartner.' }, { title: '02 — Auftrag beschreiben', text: 'Produkt, Menge, Wert, Zielort und Lieferfenster.' }, { title: '03 — Dokumente nennen', text: 'Benötigte Proforma-, Versand-, Bank- oder Importdokumente.' }], faqTitle: 'FAQ zur Zahlungsabstimmung', faqs: [{ q: 'Wann werden Zahlungsbedingungen bestätigt?', a: 'Im schriftlichen Angebot oder Vertrag nach Prüfung der Transaktion.' }, { q: 'Kann ein Käufer eine Methode anfragen?', a: 'Ja, nennen Sie sie in der Anfrage zur schriftlichen Prüfung.' }, { q: 'Was ist vor einer Anzahlung zu prüfen?', a: 'Spezifikation, Angebot, Parteien, Lieferbedingung, Zahlungsplan und Dokumente.' }], ctaTitle: 'Kaufmännische Abstimmung starten', ctaText: 'Senden Sie Produktauswahl, Menge, Käufer und Zielort.', cta: 'Angebot anfragen' },
+  fr: { eyebrow: 'PRÉPARATION COMMERCIALE', title: 'Discussion paiement cachemire B2B | DONGXIAO®', description: 'Préparez acheteur, valeur, destination et documents requis avant un devis.', h1: 'Discussion paiement cachemire B2B', intro: 'Mode, devise, calendrier et documents sont convenus par écrit pour chaque transaction.', stepsTitle: 'Préparer le brief commercial', steps: [{ title: '01 — Identifier l’acheteur', text: 'Raison sociale, pays de facturation et contact.' }, { title: '02 — Définir la commande', text: 'Produit, quantité, valeur, destination et période d’expédition.' }, { title: '03 — Indiquer les documents', text: 'Documents proforma, transport, banque ou import requis.' }], faqTitle: 'FAQ discussion paiement', faqs: [{ q: 'Quand les termes sont-ils confirmés ?', a: 'Dans le devis ou contrat écrit après revue de la transaction.' }, { q: 'Un acheteur peut-il demander une méthode ?', a: 'Oui, indiquez-la dans la demande pour évaluation écrite.' }, { q: 'Que vérifier avant un acompte ?', a: 'Spécification, devis, parties, livraison, calendrier et documents.' }], ctaTitle: 'Lancer la discussion commerciale', ctaText: 'Envoyez sélection produit, quantité, acheteur et destination.', cta: 'Demander un devis' },
+  ja: { eyebrow: '商務準備', title: 'カシミヤ B2B 支払相談 | DONGXIAO®', description: '見積もり前に買主、注文額、仕向地、必要書類を整理します。', h1: 'カシミヤ B2B 支払相談', intro: '支払方法、通貨、スケジュール、書類は取引ごとに書面で合意します。', stepsTitle: '商務ブリーフを準備する', steps: [{ title: '01 — 買主を確認', text: '法人名、請求国、担当者。' }, { title: '02 — 注文を定義', text: '製品、数量、金額、仕向地、出荷時期。' }, { title: '03 — 書類を示す', text: 'プロフォーマ、輸送、銀行、輸入書類。' }], faqTitle: '支払相談 FAQ', faqs: [{ q: '条件はいつ確認しますか？', a: '取引確認後、書面見積もりまたは契約で確認します。' }, { q: '希望する方式を伝えられますか？', a: 'はい。問い合わせに記載し書面で確認します。' }, { q: '前払前に何を確認しますか？', a: '仕様、見積もり、当事者、引渡条件、支払計画、書類です。' }], ctaTitle: '商務相談を開始する', ctaText: '製品、数量、買主、仕向地をお送りください。', cta: '見積もりを依頼する' },
+  kr: { eyebrow: '상업 준비', title: '캐시미어 B2B 결제 상담 | DONGXIAO®', description: '견적 전 구매자, 주문 금액, 목적지, 서류 요건을 준비하세요.', h1: '캐시미어 B2B 결제 상담', intro: '결제 방식, 통화, 일정, 서류는 거래별로 서면 합의합니다.', stepsTitle: '상업 브리프 준비', steps: [{ title: '01 — 구매자 확인', text: '법인명, 청구 국가, 담당자.' }, { title: '02 — 주문 정의', text: '제품, 수량, 금액, 목적지, 출하 시기.' }, { title: '03 — 서류 명시', text: '프로포마, 운송, 은행, 수입 서류.' }], faqTitle: '결제 상담 FAQ', faqs: [{ q: '조건은 언제 확정합니까?', a: '거래 검토 후 서면 견적 또는 계약에서 확정합니다.' }, { q: '선호 방식을 요청할 수 있습니까?', a: '네. 문의에 기재해 서면 검토를 받으세요.' }, { q: '선금 전 무엇을 확인합니까?', a: '사양, 견적, 당사자, 인도 조건, 결제 일정, 서류입니다.' }], ctaTitle: '상업 상담 시작', ctaText: '제품, 수량, 구매자, 목적지를 보내 주세요.', cta: '견적 요청하기' },
 };
-
-const t = tdk[locale] || tdk.en;
-const faqs = t.faqs || tdk.en.faqs;
-
-const paymentMethods = [
-  { method: 'T/T (Telegraphic Transfer)', firstOrder: '30% deposit + 70% before shipment', repeatOrder: '20% deposit + 80% before shipment', minOrder: 'No minimum', risk: 'Low', speed: '2-3 business days' },
-  { method: 'L/C (Letter of Credit)', firstOrder: 'L/C at sight', repeatOrder: 'L/C 30/60/90 days', minOrder: 'USD 50,000+', risk: 'Very low (bank-guaranteed)', speed: '7-14 business days' },
-  { method: 'O/A (Open Account)', firstOrder: 'Not available', repeatOrder: '30% deposit + 70% net 30 days', minOrder: 'USD 20,000+ (after 6 months clean history)', risk: 'Medium (unsecured)', speed: 'Net 30-60 days' },
-  { method: 'D/P (Documents against Payment)', firstOrder: 'Available', repeatOrder: 'Available', minOrder: 'USD 20,000-100,000', risk: 'Low', speed: 'Varies (at sight or 30/60/90 days)' },
-  { method: 'Alibaba Trade Assurance', firstOrder: 'Available', repeatOrder: 'Available', minOrder: 'USD 500-500,000', risk: 'Very low (escrow-protected)', speed: 'Order trigger instant' },
-  { method: 'Western Union / Wise', firstOrder: 'For samples only', repeatOrder: 'For samples only', minOrder: 'Under USD 5,000', risk: 'Low', speed: '1-2 business days' },
-];
+const copy = content[locale] || content.en;
+const commercialLinks = [{ href: `/${locale}/products/`, en: 'Select products', cn: '选择产品' }, { href: `/${locale}/quality-control/`, en: 'Plan verification', cn: '准备核验' }, { href: `/${locale}/shipping-logistics/`, en: 'Plan delivery', cn: '准备物流' }, { href: `/${locale}/download/`, en: 'Request procurement documents', cn: '申请采购资料' }];
 ---
 
-<BaseLayout
-  locale={locale}
-  pageKey="payment-terms"
-  path={'/' + locale + '/payment-terms'}
-  title={t.title}
-  description={t.description}
-  keywords={['cashmere payment terms', 'B2B payment terms China', 'T/T L/C cashmere', 'cashmere wholesale payment', 'cashmere factory payment', 'cashmere O/A open account']}
-  schema="general"
->
-  <Navigation slot="header" locale={locale} currentPath={'/' + locale + '/payment-terms'} />
-
-  <section class="bg-[#F5F0E7] border-b border-border/60 py-20 md:py-28">
-    <div class="container-narrow">
-      <span class="text-xs tracking-[0.4em] text-brand-camel uppercase">B2B Payment Terms</span>
-      <h1 class="font-display text-4xl md:text-5xl font-light mt-4 mb-6">{t.h1}</h1>
-      <p class="text-lg md:text-xl max-w-3xl opacity-90">{t.intro}</p>
-      <ul class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-2 max-w-3xl">
-        {t.bullets.map((b) => (
-          <li class="flex items-start gap-2 text-sm opacity-90">
-            <span class="text-brand-camel mt-1">•</span>
-            <span>{b}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  <section class="py-16 bg-background">
-    <div class="container-narrow">
-      <h2 class="font-display text-3xl font-light mb-8">Payment Methods at a Glance</h2>
-      <div class="overflow-x-auto">
-        <table class="w-full border border-border rounded-lg overflow-hidden text-sm">
-          <thead class="bg-secondary/30">
-            <tr>
-              <th class="text-left p-3 font-medium">Method</th>
-              <th class="text-left p-3 font-medium">First Order</th>
-              <th class="text-left p-3 font-medium">Repeat Order</th>
-              <th class="text-left p-3 font-medium">Min Order</th>
-              <th class="text-left p-3 font-medium">Risk Level</th>
-              <th class="text-left p-3 font-medium">Settlement</th>
-            </tr>
-          </thead>
-          <tbody>
-            {paymentMethods.map((p) => (
-              <tr class="border-t border-border">
-                <td class="p-3 font-medium">{p.method}</td>
-                <td class="p-3">{p.firstOrder}</td>
-                <td class="p-3">{p.repeatOrder}</td>
-                <td class="p-3 text-xs">{p.minOrder}</td>
-                <td class="p-3 text-xs">{p.risk}</td>
-                <td class="p-3 text-xs">{p.speed}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <p class="mt-6 text-sm text-muted-foreground">All methods are international-standard and used by 500+ B2B buyers worldwide. Bank wire fees on the receiving side are paid by us.</p>
-    </div>
-  </section>
-
-  <section class="py-16 bg-secondary/20">
-    <div class="container-narrow max-w-4xl">
-      <h2 class="font-display text-3xl font-light mb-6">Which payment method is right for you?</h2>
-      <div class="space-y-6">
-        <div>
-          <h3 class="font-serif text-2xl mb-3">First-time buyers (under USD 20,000)</h3>
-          <p class="text-base leading-relaxed text-foreground/80">
-            Start with <strong>T/T (Telegraphic Transfer)</strong> — 30% deposit upon order confirmation, 70% balance against Bill of Lading copy. This is the standard 30/70 T/T structure used across Chinese B2B manufacturing. SWIFT wire from your bank in 2-3 business days.
-          </p>
-        </div>
-        <div>
-          <h3 class="font-serif text-2xl mb-3">Mid-size orders (USD 20,000-200,000)</h3>
-          <p class="text-base leading-relaxed text-foreground/80">
-            Use <strong>L/C (Letter of Credit)</strong> at sight for the lowest risk. Your issuing bank guarantees payment to us upon presentation of shipping documents. We accept L/C from HSBC, Standard Chartered, Citibank, Bank of China, ICBC, and other top-tier international banks. Settle 7-14 days faster than T/T when documents arrive cleanly.
-          </p>
-        </div>
-        <div>
-          <h3 class="font-serif text-2xl mb-3">Repeat buyers (after 6 months clean trading)</h3>
-          <p class="text-base leading-relaxed text-foreground/80">
-            Graduate to <strong>O/A (Open Account)</strong> terms: 30% deposit + 70% net 30 days. For orders over USD 200,000 with audited financials, we extend to net 60 days. This saves you the FX cost of prepaying and improves your cash flow. Apply for credit assessment via the Contact Us page.
-          </p>
-        </div>
-        <div>
-          <h3 class="font-serif text-2xl mb-3">Alibaba buyers (any size)</h3>
-          <p class="text-base leading-relaxed text-foreground/80">
-            Use <strong>Alibaba Trade Assurance</strong> for orders USD 500-500,000. Funds are held in escrow and released to us after you confirm shipment quality. We are a Verified Supplier since 2019 with USD 12M+ Trade Assurance coverage. Recommended for first orders if you want full Alibaba dispute resolution.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <SEOFaq faqs={faqs} title="Payment Terms FAQ" />
-
-  <section class="py-16 bg-[#F5F0E7] border-y border-border/60">
-    <div class="container-narrow text-center">
-      <h2 class="font-display text-3xl font-light mb-4">Ready to discuss payment options?</h2>
-      <p class="opacity-90 mb-8 max-w-2xl mx-auto">Request a quote and our sales team will suggest the optimal payment structure for your order size, country, and trading history.</p>
-      <div class="flex flex-wrap gap-4 justify-center">
-        <a href={'/' + locale + '/contact'} class="inline-block px-8 py-3 bg-brand-ink text-[#F7F3EC] rounded-none font-medium uppercase tracking-wider text-sm">Request a Quote</a>
-        <a href={'/' + locale + '/factory'} class="inline-block px-8 py-3 border border-brand-ink/30 rounded-none uppercase tracking-wider text-sm">About Our Factory</a>
-      </div>
-    </div>
-  </section>
-
-  <Footer slot="footer" locale={locale} />
-  <FloatingChatButtons slot="floating" locale={locale} />
-  <CookieConsent slot="cookie-consent" locale={locale} />
+<BaseLayout locale={locale} pageKey="payment-terms" path="/payment-terms" title={copy.title} description={copy.description} keywords={['cashmere payment discussion', 'B2B cashmere quotation', 'cashmere commercial documents', 'cashmere purchase agreement']} schema="general">
+  <Navigation slot="header" locale={locale} currentPath={`/${locale}/payment-terms`} />
+  <section class="bg-[#F5F0E7] border-b border-border/60 py-20 md:py-28"><div class="container-narrow max-w-4xl"><span class="text-xs tracking-[0.4em] text-brand-camel uppercase">{copy.eyebrow}</span><h1 class="font-display text-4xl md:text-5xl font-light mt-4 mb-6">{copy.h1}</h1><p class="text-lg md:text-xl max-w-3xl opacity-90">{copy.intro}</p></div></section>
+  <section class="py-16 md:py-20 bg-background"><div class="container-narrow"><h2 class="font-display text-3xl font-light mb-10">{copy.stepsTitle}</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6">{copy.steps.map((item) => <article class="border border-border bg-white p-6"><h3 class="font-serif text-xl mb-3">{item.title}</h3><p class="text-sm text-muted-foreground leading-relaxed">{item.text}</p></article>)}</div></div></section>
+  <section class="py-16 bg-secondary/20 border-y border-border/60"><div class="container-narrow"><div class="grid grid-cols-1 md:grid-cols-4 gap-4">{commercialLinks.map((link) => <a href={link.href} class="border border-border bg-white p-5 text-sm font-medium hover:border-brand-camel transition-colors">{locale === 'cn' ? link.cn : link.en} →</a>)}</div></div></section>
+  <SEOFaq faqs={copy.faqs} title={copy.faqTitle} />
+  <section class="py-16 bg-[#F5F0E7] border-y border-border/60"><div class="container-narrow text-center"><h2 class="font-display text-3xl font-light mb-4">{copy.ctaTitle}</h2><p class="opacity-90 mb-8 max-w-2xl mx-auto">{copy.ctaText}</p><a href={`/${locale}/contact/`} class="inline-block px-8 py-3 bg-brand-ink text-[#F7F3EC] uppercase tracking-wider text-sm">{copy.cta}</a></div></section>
+  <Footer slot="footer" locale={locale} /><FloatingChatButtons slot="footer" locale={locale} /><CookieConsent slot="cookie-consent" locale={locale} />
 </BaseLayout>
