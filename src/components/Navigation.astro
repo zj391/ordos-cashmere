@@ -23,13 +23,20 @@ const { locale, currentPath = '/' } = Astro.props;
 // 历史原因：[category].astro 把 hats 和 accessories 合并到 hats-accessories 单 hub，
 // mega menu 子项要独立 filter 所以走总列表页更直接。
 const productListHref = localePath(locale, '/products');
+const categoryHubHref = {
+  hats: `/${locale}/products/hats-accessories/`,
+  sweaters: `/${locale}/products/garment-oem/`,
+  scarves: `/${locale}/products/scarves/`,
+  accessories: `/${locale}/products/accessories-cat/`,
+  yarn: `/${locale}/products/yarn/`,
+};
 
 const navItems = [
-  { href: `${productListHref}?cat=hats`, labelKey: 'nav.hats', hasSubmenu: 'hats', menuPos: 'left' },
-  { href: `${productListHref}?cat=sweaters`, labelKey: 'nav.sweaters', hasSubmenu: 'sweaters', menuPos: 'center' },
-  { href: `${productListHref}?cat=scarves`, labelKey: 'nav.scarves', hasSubmenu: 'scarves', menuPos: 'center' },
-  { href: `/${locale}/products/accessories-cat/`, labelKey: 'nav.accessories', hasSubmenu: 'accessories', menuPos: 'right' },
-  { href: `${productListHref}?cat=yarn`, labelKey: 'nav.yarn', hasSubmenu: 'yarn', menuPos: 'right' },
+  { href: categoryHubHref.hats, filterHref: `${productListHref}?cat=hats`, labelKey: 'nav.hats', hasSubmenu: 'hats', menuPos: 'left' },
+  { href: categoryHubHref.sweaters, filterHref: `${productListHref}?cat=sweaters`, labelKey: 'nav.sweaters', hasSubmenu: 'sweaters', menuPos: 'center' },
+  { href: categoryHubHref.scarves, filterHref: `${productListHref}?cat=scarves`, labelKey: 'nav.scarves', hasSubmenu: 'scarves', menuPos: 'center' },
+  { href: categoryHubHref.accessories, filterHref: `${productListHref}?cat=accessories`, labelKey: 'nav.accessories', hasSubmenu: 'accessories', menuPos: 'right' },
+  { href: categoryHubHref.yarn, filterHref: `${productListHref}?cat=yarn`, labelKey: 'nav.yarn', hasSubmenu: 'yarn', menuPos: 'right' },
   { href: localePath(locale, '/raw-material'), labelKey: 'nav.rawMaterial' },
   { href: localePath(locale, '/ordos-origin'), labelKey: 'nav.ordosOrigin' },
   { href: localePath(locale, '/factory'), labelKey: 'nav.factory' },
@@ -39,11 +46,11 @@ const navItems = [
 
 // 5 个产品分类的 tab 配置 (跟 products.astro 一致)
 const productTabs = [
-  { key: 'hats', href: `${productListHref}?cat=hats`, en: 'Cashmere Hats', cn: '羊绒帽子' },
-  { key: 'sweaters', href: `${productListHref}?cat=sweaters`, en: 'Sweaters', cn: '羊绒衫' },
-  { key: 'scarves', href: `${productListHref}?cat=scarves`, en: 'Scarves & Wraps', cn: '围巾披肩' },
-  { key: 'accessories', href: `/${locale}/products/accessories-cat/`, en: 'Accessories', cn: '配饰' },
-  { key: 'yarn', href: `${productListHref}?cat=yarn`, en: 'Yarn & Fiber', cn: '纱线' },
+  { key: 'hats', href: categoryHubHref.hats, en: 'Cashmere Hats', cn: '羊绒帽子' },
+  { key: 'sweaters', href: categoryHubHref.sweaters, en: 'Sweaters', cn: '羊绒衫' },
+  { key: 'scarves', href: categoryHubHref.scarves, en: 'Scarves & Wraps', cn: '围巾披肩' },
+  { key: 'accessories', href: categoryHubHref.accessories, en: 'Accessories', cn: '配饰' },
+  { key: 'yarn', href: categoryHubHref.yarn, en: 'Yarn & Fiber', cn: '纱线' },
 ];
 
 // 翻译文本
@@ -169,7 +176,7 @@ const groupLabel = (groupKey: string, group: any) => {
                   {group.items?.map((sub: any) => (
                     <li>
                       <a
-                        href={`${item.href}&${groupKey}=${sub.key}`}
+                        href={`${item.filterHref || item.href}&${groupKey}=${sub.key}`}
                         class="block text-[13px] text-muted-foreground hover:text-primary transition-colors py-1"
                       >
                         {subLabel(sub)}
