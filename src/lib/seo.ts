@@ -146,8 +146,8 @@ export const SEO: Record<Locale, LocaleSEO> = {
       ],
     },
     contact: {
-      title: 'Contact Dongxiao Cashmere | WhatsApp +86-156-6185-3999',
-      description: 'Contact our cashmere specialists directly via WhatsApp, WeChat, email or phone. Response within 24 hours. English & Chinese speaking team.',
+      title: 'Contact Dongxiao Cashmere | Product & Quote Inquiries',
+      description: 'Contact DONGXIAO Cashmere by WhatsApp, WeChat, email or phone. Include product, quantity, destination and specification requirements for a written sourcing discussion.',
       keywords: ['contact cashmere supplier', 'cashmere inquiry', 'WhatsApp cashmere'],
     },
     blog: {
@@ -209,7 +209,7 @@ export const SEO: Record<Locale, LocaleSEO> = {
     },
     contact: {
       title: 'Kontakt | Dongxiao Cashmere | WhatsApp +86-156-6185-3999',
-      description: 'Kontaktieren Sie unsere Kaschmir-Spezialisten direkt per WhatsApp, WeChat, E-Mail oder Telefon. Antwort innerhalb von 24 Stunden.',
+      description: 'Kontaktieren Sie DONGXIAO Cashmere per WhatsApp, WeChat, E-Mail oder Telefon. Nennen Sie Produkt, Menge, Zielort und Spezifikationen für eine schriftliche Beschaffungsabstimmung.',
       keywords: ['Kaschmir Kontakt', 'Kaschmir Anfrage'],
     },
     blog: {
@@ -270,8 +270,8 @@ export const SEO: Record<Locale, LocaleSEO> = {
       keywords: getSeoKeywords('fr', 'origin'),
     },
     contact: {
-      title: 'Contact | DONGXIAO Cachemire | WhatsApp +86-156-6185-3999 | Réponse 24h',
-      description: 'Contactez nos spécialistes cachemire par WhatsApp, WeChat, email ou téléphone. Équipe bilingue français-anglais. Réponse sous 24h, devis sous 48h.',
+      title: 'Contact | DONGXIAO Cachemire | Demandes de produits et devis',
+      description: 'Contactez DONGXIAO Cachemire par WhatsApp, WeChat, email ou téléphone. Indiquez produit, quantité, destination et spécifications pour une discussion écrite.',
       keywords: ['contact cachemire'],
     },
     blog: {
@@ -333,7 +333,7 @@ export const SEO: Record<Locale, LocaleSEO> = {
     },
     contact: {
       title: 'お問い合わせ | DONGXIAO カシミア | WhatsApp +86-156-6185-3999',
-      description: 'WhatsApp、WeChat、メールでカシミア専門家に直接お問い合わせください。日本市場専任チーム、24時間以内に返信、無料サンプル対応。',
+      description: 'WhatsApp、WeChat、メール、電話で DONGXIAO カシミアへお問い合わせください。製品、数量、仕向地、必要仕様を記載して書面で調達相談を開始できます。',
       keywords: ['カシミア お問い合わせ'],
     },
     blog: {
@@ -394,8 +394,8 @@ export const SEO: Record<Locale, LocaleSEO> = {
       keywords: getSeoKeywords('kr', 'origin'),
     },
     contact: {
-      title: '문의 | DONGXIAO 캐시미어 | WhatsApp +86-156-6185-3999 | 24시간 회신',
-      description: 'WhatsApp, WeChat, 이메일로 캐시미어 전문가에게 직접 문의하세요. 한국 시장 전담팀, 24시간 이내 회신, 무료 샘플 지원.',
+      title: '문의 | DONGXIAO 캐시미어 | 제품 및 견적 문의',
+      description: 'WhatsApp, WeChat, 이메일 또는 전화로 DONGXIAO 캐시미어에 문의하세요. 제품, 수량, 목적지, 필요 사양을 포함해 서면 소싱 상담을 시작할 수 있습니다.',
       keywords: ['캐시미어 문의'],
     },
     blog: {
@@ -456,8 +456,8 @@ export const SEO: Record<Locale, LocaleSEO> = {
       keywords: ['鄂尔多斯羊绒产地', '阿尔巴斯白绒山羊', '内蒙古羊绒产区'],
     },
     contact: {
-      title: '联系我们 | 东霄羊绒 | 微信/WhatsApp +86-156-6185-3999 | 24小时回复',
-      description: '通过微信、WhatsApp、邮件、电话联系我们的羊绒专家团队。中英双语，24小时内回复，48小时内出报价，免费打样。',
+      title: '联系我们 | 东霄羊绒 | 产品与报价询盘',
+      description: '通过微信、WhatsApp、邮件或电话联系东霄羊绒。请提供产品、数量、目的地和所需规格，以启动书面采购沟通。',
       keywords: ['羊绒供应商联系', '羊绒询盘'],
     },
     blog: {

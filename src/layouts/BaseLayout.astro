@@ -137,13 +137,15 @@ const hreflangs = generateHreflangs(cleanPath, alternateLocales);
 
 
 
-// GEO Schema - 全部页面都加 Organization + LocalBusiness
+// 品牌实体 Schema 仅在首页、联系页和工厂页输出，避免在无关页面重复声明。
 
 const orgSchema = {
 
   '@context': 'https://schema.org',
 
   '@type': 'Organization',
+
+  '@id': `${SITE_URL}/#organization`,
 
   name: SITE_INFO.name,
 
@@ -175,32 +177,10 @@ const orgSchema = {
 
     telephone: SITE_INFO.phone,
 
+    email: SITE_INFO.email,
+
     contactType: 'sales',
-
-    availableLanguage: ['English', 'Chinese', 'German', 'French', 'Japanese', 'Korean'],
-
-    areaServed: 'Worldwide',
-
   }],
-
-  sameAs: Object.values(SITE_INFO.social),
-  // Additional knowledge panel signals (Google uses these to verify brand identity)
-  founder: { '@type': 'Person', name: 'DONGXIAO Cashmere Founder' },
-  foundingLocation: {
-    '@type': 'Place',
-    name: 'Ordos, Inner Mongolia, China',
-    address: { '@type': 'PostalAddress', addressLocality: 'Ordos', addressRegion: 'Inner Mongolia', addressCountry: 'CN' },
-  },
-  naics: '313210',  // NAICS for broadwoven fabric mills / textile manufacturing
-  isicV4: '13.20',  // ISIC for textile weaving / finishing
-  knowsAbout: [
-    'Cashmere fiber grading (14.5-15.5µm)',
-    'Dehairing and combing process',
-    'Worsted and woolen spinning',
-    'Cashmere garment OEM/ODM manufacturing',
-    'OEKO-TEX Standard 100 certification',
-    'B2B international trade (FOB Tianjin export)',
-  ],
 
 };
 
@@ -241,8 +221,6 @@ const localBusinessSchema = {
   },
 
   telephone: SITE_INFO.phone,
-
-  priceRange: '$$$',
 
 };
 
@@ -350,7 +328,10 @@ const pageSchema = (() => {
 
 
 
-const allSchemas: any[] = [orgSchema, localBusinessSchema, pageSchema];
+const isBrandEntityPage = ['/', '/contact', '/factory'].includes(cleanPath);
+const allSchemas: any[] = isBrandEntityPage
+  ? [orgSchema, localBusinessSchema, pageSchema]
+  : [pageSchema];
 
 
 
