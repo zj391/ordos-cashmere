@@ -484,16 +484,26 @@ export const SEO: Record<Locale, LocaleSEO> = {
 };
 
 /**
- * 生成 hreflang 链接集合（每个语种 + x-default）
+ * 生成 hreflang 链接集合（每个实际存在的语种 + x-default）。
+ *
+ * 全站采用 trailingSlash: 'always'，所以这里始终输出带尾斜杠的首选 URL。
+ * 动态内容（如博客）可传入实际拥有该 slug 的语种，避免向搜索引擎声明
+ * 不存在的翻译页；静态页面不传参数时保留全部语种的既有行为。
  */
-export function generateHreflangs(path: string): Array<{ lang: string; href: string }> {
-  const list = Object.keys(SEO).map((loc) => {
-    const l = loc as Locale;
-    return {
-      lang: SEO[l].hreflang,
-      href: `${SITE_URL}/${l}${path}`,
-    };
-  });
-  list.push({ lang: 'x-default', href: `${SITE_URL}/en${path}` });
+export function generateHreflangs(
+  path: string,
+  availableLocales: Locale[] = Object.keys(SEO) as Locale[],
+): Array<{ lang: string; href: string }> {
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+  const canonicalPath = normalizedPath.endsWith('/') ? normalizedPath : `${normalizedPath}/`;
+  const locales = Array.from(new Set(availableLocales)).filter((locale) => Boolean(SEO[locale]));
+  const resolvedLocales = locales.length ? locales : ['en' as Locale];
+  const fallbackLocale = resolvedLocales.includes('en') ? 'en' : resolvedLocales[0];
+
+  const list = resolvedLocales.map((locale) => ({
+    lang: SEO[locale].hreflang,
+    href: `${SITE_URL}/${locale}${canonicalPath}`,
+  }));
+  list.push({ lang: 'x-default', href: `${SITE_URL}/${fallbackLocale}${canonicalPath}` });
   return list;
 }

@@ -9,7 +9,7 @@ import Navigation from '@/components/Navigation.astro';
 import Footer from '@/components/Footer.astro';
 import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
-import { LOCALES, pickLocale } from '@/lib/i18n';
+import { LOCALES, LOCALE_HREFLANG, type Locale, pickLocale } from '@/lib/i18n';
 import { SITE_URL } from '@/lib/seo';
 import { getCollection, render } from 'astro:content';
 import { extractBlogFAQ } from '@/lib/blog-faq';
@@ -17,17 +17,29 @@ import { blogHeroImage } from '@/lib/blog-hero';
 
 export async function getStaticPaths() {
   const all = await getCollection('blog');
-  return all.map((post) => {
-    const [locale, ...rest] = post.id.split('/');
+  const localesBySlug = new Map<string, Locale[]>();
+
+  for (const post of all) {
+    const [rawLocale, ...rest] = post.id.split('/');
     const slug = rest.join('/').replace(/\.md$/, '');
+    const locale = pickLocale(rawLocale);
+    const existing = localesBySlug.get(slug) || [];
+    if (!existing.includes(locale)) existing.push(locale);
+    localesBySlug.set(slug, existing);
+  }
+
+  return all.map((post) => {
+    const [rawLocale, ...rest] = post.id.split('/');
+    const slug = rest.join('/').replace(/\.md$/, '');
+    const locale = pickLocale(rawLocale);
     return {
       params: { locale, slug },
-      props: { post },
+      props: { post, alternateLocales: localesBySlug.get(slug) || [locale] },
     };
   });
 }
 
-const { post } = Astro.props;
+const { post, alternateLocales } = Astro.props as { post: any; alternateLocales: Locale[] };
 const locale = pickLocale(Astro.params.locale);
 const { Content } = await render(post);
 
@@ -73,7 +85,7 @@ const articleSchema = {
     caption: heroImage.alt,
   },
   keywords: (post.data.targetKeywords || []).join(', '),
-  inLanguage: locale,
+  inLanguage: LOCALE_HREFLANG[locale],
   articleSection: 'B2B Cashmere Sourcing',
   wordCount: post.body?.split(/\s+/).length || 0,
   isAccessibleForFree: true,
@@ -115,6 +127,7 @@ const blogFAQ = extractBlogFAQ(post.body, 4, locale);
   locale={locale}
   pageKey="blog"
   path={`/blog/${Astro.params.slug}`}
+  alternateLocales={alternateLocales}
   title={post.data.title}
   description={post.data.excerpt}
   ogType="article"

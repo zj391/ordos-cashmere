@@ -42,6 +42,12 @@ export interface Props {
 
   canonicalPath?: string;
 
+  /**
+   * 动态页面实际存在的本地化版本；未传入时视为全部站点语种都存在。
+   * 用于避免博客等部分翻译未生成时输出指向 404 的 hreflang。
+   */
+  alternateLocales?: Locale[];
+
   schema?: 'home' | 'raw-material' | 'yarn-fabric' | 'garment-oem' | 'factory' | 'ordos-origin' | 'contact' | 'blog' | 'faq' | 'products' | 'general';
 
   noIndex?: boolean;
@@ -73,6 +79,8 @@ const {
   ogType = 'website',
 
   canonicalPath,
+
+  alternateLocales,
 
   schema: _schema = 'general',
 
@@ -125,7 +133,7 @@ const socialImageAlt = finalTitle;
 
 
 
-const hreflangs = generateHreflangs(cleanPath);
+const hreflangs = generateHreflangs(cleanPath, alternateLocales);
 
 
 
