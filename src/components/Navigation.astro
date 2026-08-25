@@ -177,6 +177,7 @@ const groupLabel = (groupKey: string, group: any) => {
                     <li>
                       <a
                         href={`${item.filterHref || item.href}&${groupKey}=${sub.key}`}
+                        rel="nofollow"
                         class="block text-[13px] text-muted-foreground hover:text-primary transition-colors py-1"
                       >
                         {subLabel(sub)}
@@ -341,6 +342,7 @@ const groupLabel = (groupKey: string, group: any) => {
                   {(submenusData as any)[tab.key]?.slice(0, 4).map((sub: any) => (
                     <a
                       href={`${tab.href}?submenu=${sub.key}`}
+                      rel="nofollow"
                       class="block text-xs text-muted-foreground/80 hover:text-primary transition-colors py-0.5 pl-3"
                     >
                       · {subLabel(sub)}

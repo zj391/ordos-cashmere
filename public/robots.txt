@@ -2,6 +2,20 @@ User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /admin/
+# Interactive catalog refinements share the stable /[locale]/products/ canonical.
+# Keep category hubs and product details crawlable while preventing parameter combinations
+# from expanding the crawl space.
+Disallow: /*?*cat=
+Disallow: /*?*byStyle=
+Disallow: /*?*byMaterial=
+Disallow: /*?*byUse=
+Disallow: /*?*byAudience=
+Disallow: /*?*byType=
+Disallow: /*?*byPattern=
+Disallow: /*?*byGauge=
+Disallow: /*?*byCount=
+Disallow: /*?*byForm=
+Disallow: /*?*submenu=
 
 # Sitemaps
 Sitemap: https://www.erdosdx.com/sitemap-index.xml

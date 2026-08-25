@@ -184,7 +184,7 @@ function CartList({ items, locale }: { items: CartItem[]; locale: string }) {
               <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
                 <span>SKU: {it.id}</span>
                 {it.color && <span className="px-2 py-0.5 bg-secondary rounded">{L('color')}: {it.color}</span>}
-                <span>MOQ: {it.moq}</span>
+                <span>{locale === 'cn' ? '项目条件书面确认' : 'Project details confirmed in writing'}</span>
               </div>
               <div className="flex flex-wrap gap-3 items-center">
                 <label className="flex items-center gap-2 text-xs">
