@@ -170,3 +170,11 @@
 - [x] 实施最小范围的 sitemap、robots、内容与结构化数据修复，保留真实 URL、可用采购入口与多语言结构。
 - [x] 验证修复后的静态 HTML、canonical、hreflang、robots、JSON-LD、sitemap、Astro/Vercel 构建与五个 API 入口。
 - [x] 提交并同步经过验证的可索引页面 SEO 修复版本至 `master`。
+
+# 产品标题扩充与搜索语义 SEO 优化
+
+- [x] 审计产品标题、分类、材质、真实规格、六语本地化字段及详情页 `<title>`/H1 输出路径，统计重复与空缺情况。
+- [x] 制定只使用现有真实产品字段的六语标题扩充规则，避免添加认证、价格、MOQ、库存、交期、产能或未证实性能主张。
+- [x] 批量实施可逆的产品标题扩充，保持全部产品 ID、URL、产品数据、图片、询盘与多语言路由不变。
+- [x] 验证标题长度、唯一性、六语页面输出、canonical、hreflang、Product JSON-LD、sitemap、Astro/Vercel 构建与五个 API 入口。
+- [x] 提交并同步经过验证的产品标题 SEO 优化版本至 `master`。

@@ -45,6 +45,7 @@ import ColorPicker from '@/components/product/ColorPicker.astro';
 import { LOCALES, isLocale, pickLocale } from '@/lib/i18n';
 
 import { SEO, SITE_URL, SITE_INFO } from '@/lib/seo';
+import { buildProductHeading, buildProductSeoTitle } from '@/lib/product-seo-title';
 import { getCollection } from 'astro:content';
 
 import {
@@ -367,40 +368,6 @@ function localizedCategory(categoryId: string, locale: string, fallback: string)
 
 
 
-// --- SEO copy helpers: build unique, attribute-rich TDK from catalog fields ---
-// SHORT_CAT kept for English-only fallback; new LOCALE_SHORT_CAT below has
-// proper 6-locale coverage to avoid "Scarves Großhandel" (EN+DE mix).
-const SHORT_CAT: Record<string, string> = {
-  hats: 'Hats',
-  sweaters: 'Sweaters',
-  scarves: 'Scarves',
-  accessories: 'Accessories',
-  yarn: 'Yarn',
-};
-
-// Per-locale short category names for title construction. Compact
-// versions (vs full localizedCategory() in title body) so the title
-// stays within 65c Google snippet limit. Used by EN/DE/FR/JA/KR/CN.
-const LOCALE_SHORT_CAT: Record<string, Record<string, string>> = {
-  en: { hats: 'Hats', sweaters: 'Sweaters', scarves: 'Scarves',
-        accessories: 'Accessories', yarn: 'Yarn' },
-  de: { hats: 'Hüte', sweaters: 'Pullover', scarves: 'Schals',
-        accessories: 'Accessoires', yarn: 'Garn' },
-  fr: { hats: 'Bonnets', sweaters: 'Pulls', scarves: 'Écharpes',
-        accessories: 'Accessoires', yarn: 'Fil' },
-  ja: { hats: 'ハット', sweaters: 'ニット', scarves: 'スカーフ',
-        accessories: 'アクセサリー', yarn: 'ヤーン' },
-  kr: { hats: '모자', sweaters: '스웨터', scarves: '스카프',
-        accessories: '액세서리', yarn: '원사' },
-  cn: { hats: '帽', sweaters: '衫', scarves: '围巾',
-        accessories: '配饰', yarn: '纱线' },
-};
-
-function shortCategory(categoryId: string, locale: string, fallback: string): string {
-  const map = LOCALE_SHORT_CAT[locale];
-  if (map && map[categoryId]) return map[categoryId];
-  return fallback;
-}
 const SKIP_VALUES = /^(details?|description|n\/a|na|various|custom(ized|izable)?|多种颜色可选|customize)$/i;
 function cleanAttr(v: unknown): string {
   return String(v ?? '')
@@ -740,7 +707,7 @@ const tdk = {
       158
     );
     return {
-      title: `${shortName} | ${shortCategory(p.categoryId, locale, SHORT_CAT[p.categoryId] || c)} | DONGXIAO`,
+      title: buildProductSeoTitle(p, localizedCategory(p.categoryId, locale, c)),
       description,
       keywords: [
         `${p.name}`,
@@ -784,7 +751,7 @@ const tdk = {
       150
     );
     return {
-      title: `${shortName} | ${categoryName} | 东霄羊绒`,
+      title: buildProductSeoTitle(p, localizedCategory(p.categoryId, locale, categoryName), '东霄羊绒'),
       description,
       keywords: [p.name, `${categoryName}批发`, `${p.material}${categoryName}`, `羊绒代工 ${p.id}`, `OEM ${categoryName}`, '羊绒厂家', '鄂尔多斯羊绒'],
       buyCta: '立即询盘',
@@ -810,7 +777,7 @@ const tdk = {
       158
     );
     return {
-      title: `${shortName} | ${shortCategory(p.categoryId, locale, SHORT_CAT[p.categoryId] || c)} | DONGXIAO`,
+      title: buildProductSeoTitle(p, localizedCategory(p.categoryId, locale, c)),
       description,
       keywords: [p.name, `Kaschmir ${c} Großhandel`, `OEM ${c}`, `Kaschmir Hersteller China`, `B2B Cashmere Lieferant`],
       buyCta: 'Anfrage',
@@ -836,7 +803,7 @@ const tdk = {
       158
     );
     return {
-      title: `${shortName} | ${shortCategory(p.categoryId, locale, SHORT_CAT[p.categoryId] || c)} | DONGXIAO`,
+      title: buildProductSeoTitle(p, localizedCategory(p.categoryId, locale, c)),
       description,
       keywords: [p.name, `cachemire ${c} gros`, `OEM ${c}`, `fabricant cachemire Chine`, `fournisseur cachemire B2B`],
       buyCta: 'Demande',
@@ -862,7 +829,7 @@ const tdk = {
       150
     );
     return {
-      title: `${shortName} | ${c} | DONGXIAO`,
+      title: buildProductSeoTitle(p, localizedCategory(p.categoryId, locale, c)),
       description,
       keywords: [p.name, `${c}卸売`, `OEM ${c}`, `カシミア 製造 中国`, `B2B カシミア サプライヤー`],
       buyCta: '問い合わせ',
@@ -888,7 +855,7 @@ const tdk = {
       158
     );
     return {
-      title: `${shortName} | ${c} | DONGXIAO`,
+      title: buildProductSeoTitle(p, localizedCategory(p.categoryId, locale, c)),
       description,
       keywords: [p.name, `${c} 도매`, `OEM ${c}`, `캐시미어 제조 중국`, `B2B 캐시미어 공급업체`],
       buyCta: '문의',
@@ -900,9 +867,10 @@ const tdk = {
 const t = (tdk[locale] || tdk.en)(product, localizedCategory(product.categoryId, locale, category.name));
 // Display name for HTML/JSON-LD display (locale-aware)
 const displayCategory = localizedCategory(product.categoryId, locale, category.name);
-// Title clip: Google snippet ideal is 50-60c, max ~70c. Clip to 65c
-// but preserve last partial word boundary so we don't cut mid-word.
-const pageTitle = t.title.length > 65 ? `${t.title.slice(0, 64).replace(/\s+\S*$/, '').trimEnd()}…` : t.title;
+const productHeading = buildProductHeading(product);
+// buildProductSeoTitle() reserves space for the brand and clips the title at
+// a word boundary. Keep H1, title and Product Schema aligned.
+const pageTitle = t.title;
 
 
 
@@ -983,7 +951,7 @@ const enrichedFaqSchema = enrichedFaq.length > 0 ? {
 const productSchema = {
   '@context': 'https://schema.org',
   '@type': 'Product',
-  name: product.name,
+  name: productHeading,
   description: enrichedMetaDescription,
 
   image: galleryImages.map((img) => `${SITE_URL}${img}`),
@@ -1036,7 +1004,7 @@ const breadcrumbSchema = {
 
     { '@type': 'ListItem', position: 3, name: displayCategory, item: `${SITE_URL}/${locale}/products/${product.categoryId === 'hats' ? 'hats-accessories' : product.categoryId === 'accessories' ? 'accessories-cat' : product.categoryId === 'sweaters' ? 'garment-oem' : product.categoryId}/` },
 
-    { '@type': 'ListItem', position: 4, name: product.name, item: `${SITE_URL}/${locale}/products/${product.id}/` },
+    { '@type': 'ListItem', position: 4, name: productHeading, item: `${SITE_URL}/${locale}/products/${product.id}/` },
 
   ],
 
@@ -1315,7 +1283,7 @@ const relatedViewAll: Record<Locale, string> = {
 
           <span class="text-xs tracking-widest text-muted-foreground uppercase">{displayCategory}</span>
 
-          <h1 class="product-title font-display text-3xl md:text-4xl font-light mt-2 mb-3">{product.name}</h1>
+          <h1 class="product-title font-display text-3xl md:text-4xl font-light mt-2 mb-3">{productHeading}</h1>
 
 
 
