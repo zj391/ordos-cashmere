@@ -80,13 +80,13 @@ export const SEO: Record<Locale, LocaleSEO> = {
     region: 'Global',
     market: 'Global / Europe / North America',
     home: {
-      title: 'Erdos Cashmere Manufacturer | China Factory Direct | 23-Year | DONGXIAO®',
-      description: 'Erdos cashmere clothing manufacturer direct from Ordos, Inner Mongolia. 23-year factory: cashmere hats, sweaters, scarves, yarn for 50+ countries. ISO 9001 + OEKO-TEX certified.',
+      title: 'Cashmere Sourcing | Raw Material, Yarn, Fabric & Knitwear | DONGXIAO®',
+      description: 'Explore cashmere raw material, yarn, fabric and knitwear sourcing. Share a product reference, quantity, destination and required specifications for a written discussion.',
       keywords: ['cashmere manufacturer', 'B2B cashmere supplier', 'Ordos cashmere factory', 'Inner Mongolia cashmere', 'wholesale cashmere yarn', 'cashmere OEM', 'luxury knitwear manufacturer', 'Europe cashmere supplier', 'USA cashmere wholesale', 'erdos cashmere manufacturer', 'erdos clothing website', 'erdos cashmere clothing', 'ordos cashmere clothing'],
     },
     rawMaterial: {
-      title: 'Premium Raw Cashmere Material | White, Brown, Grey | Direct from Ordos Factory',
-      description: 'Buy premium raw cashmere fiber directly from Ordos factory. White, brown (qing), purple (zi) cashmere. 14.5-16.5μm fineness. Bulk pricing for global B2B buyers.',
+      title: 'Raw Cashmere Material Sourcing | White, Brown & Purple Fiber | DONGXIAO®',
+      description: 'Discuss white, brown or purple cashmere requirements with the intended use, quantity, destination and requested fiber documentation.',
       keywords: ['raw cashmere fiber', 'white cashmere', 'brown cashmere', 'cashmere raw material wholesale',
         'dehaired cashmere', 'combed cashmere',
         'dehaired cashmere tops', 'greasy cashmere goat wool', '14.5μm superfine cashmere',
@@ -97,19 +97,19 @@ export const SEO: Record<Locale, LocaleSEO> = {
       ],
     },
     yarnFabric: {
-      title: 'Cashmere Yarn Wholesale: Greige / Dyed | 26/2-48/2 | Inner Mongolia',
-      description: 'Wholesale cashmere yarn direct from Ordos mill. Greige (undyed natural white/brown/purple) + dyed options. Counts 26/2 to 48/2. 100% cashmere or blends. For brands that dye in-house. Free hand-loom sample.',
-      keywords: ['cashmere yarn wholesale', 'undyed cashmere yarn wholesale', 'greige cashmere yarn', 'raw white cashmere yarn', 'brown cashmere yarn qing', 'purple cashmere yarn zi', 'natural cashmere yarn for dyers', 'cashmere yarn 26/2', 'cashmere yarn 28/2', 'cashmere yarn 36/2', 'cashmere yarn 48/2', 'worsted cashmere yarn', 'woolen cashmere yarn', '100% cashmere yarn', 'wool cashmere blend yarn', 'hand knitting cashmere yarn', 'dyed cashmere yarn manufacturer', 'fine count cashmere yarn 2/48Nm 2/60Nm', 'cashmere yarn for sweater making', 'mixed Ordos Mongolian cashmere yarn', 'high quality worsted cashmere yarn from Inner Mongolia', 'anti-pilling cashmere blend yarn for knitwear brand', 'customized color cashmere yarn bulk order supplier', 'cashmere yarn moq 20kg', 'cashmere yarn sample',
+      title: 'Cashmere Yarn & Fabric Sourcing | Greige, Dyed & Woven | DONGXIAO®',
+      description: 'Discuss yarn and fabric construction, color direction, quantity, destination and required documentation for a written sourcing review.',
+      keywords: ['cashmere yarn wholesale', 'undyed cashmere yarn wholesale', 'greige cashmere yarn', 'raw white cashmere yarn', 'brown cashmere yarn qing', 'purple cashmere yarn zi', 'natural cashmere yarn for dyers', 'cashmere yarn 26/2', 'cashmere yarn 28/2', 'cashmere yarn 36/2', 'cashmere yarn 48/2', 'worsted cashmere yarn', 'woolen cashmere yarn', '100% cashmere yarn', 'wool cashmere blend yarn', 'hand knitting cashmere yarn', 'dyed cashmere yarn manufacturer', 'fine count cashmere yarn 2/48Nm 2/60Nm', 'cashmere yarn for sweater making', 'mixed Ordos Mongolian cashmere yarn', 'high quality worsted cashmere yarn from Inner Mongolia', 'anti-pilling cashmere blend yarn for knitwear brand', 'customized color cashmere yarn bulk order supplier', 'cashmere yarn project terms', 'cashmere yarn sample discussion',
         'cashmere coating fabric', 'woven cashmere fabric', 'cashmere jacquard fabric',
         'lightweight cashmere fabric', 'cashmere silk blend fabric', 'thick cashmere wool fabric for coats',
         'soft cashmere woven fabric for luxury overcoat',
-        'sustainable cashmere silk fabric manufacturer OEM',
+        'cashmere silk fabric manufacturer OEM',
         'lightweight cashmere fabric for women clothing',
       ],
     },
     garmentOem: {
       title: 'Cashmere Garment OEM/ODM | Sweater, Coat & Dress Manufacturer',
-      description: 'Full-service cashmere garment OEM/ODM: sweaters, cardigans, coats, dresses, scarves. Custom design, sampling, production. MOQ 100pcs. 23+ years experience serving global brands.',
+      description: 'Discuss cashmere garment OEM/ODM requirements with product references, specifications, quantity, destination, sampling and required documentation.',
       keywords: ['cashmere sweater OEM', 'cashmere garment manufacturer', 'private label cashmere',
         'custom cashmere knitwear', 'cashmere coat manufacturer',
         'custom cashmere sweater wholesale', 'cashmere coat manufacturer',
@@ -178,13 +178,13 @@ export const SEO: Record<Locale, LocaleSEO> = {
     region: 'Germany / EU',
     market: 'Deutschland / EU',
     home: {
-      title: 'Kaschmir Hersteller Ordos | Innere Mongolei B2B | 23+ Jahre',
-      description: 'Erdos Kaschmir Hersteller aus der Inneren Mongolei, China. 23+ Jahre Erfahrung: Rohkaschmir, Kaschmirgarn, Kaschmirstoff & OEM-Strickwaren für deutsche und EU-Marken. ISO 9001 + OEKO-TEX zertifiziert. Kleine MOQ möglich.',
+      title: 'Kaschmir Beschaffung | Rohmaterial, Garn, Stoff & Strick | DONGXIAO®',
+      description: 'Entdecken Sie Rohmaterial, Garn, Stoff und Strickwaren für die B2B-Beschaffung. Produktreferenz, Menge, Zielort und Spezifikationen werden schriftlich abgestimmt.',
       keywords: ['Kaschmir Hersteller', 'B2B Kaschmir Lieferant', 'Kaschmir Großhandel', 'Ordos Kaschmir', 'Innere Mongolei Kaschmir', 'Kaschmir Garn', 'Kaschmir stricken', 'Kaschmir Erdos', 'Kaschmir Hersteller Ordos', 'Erdos Kaschmir Hersteller', 'Kaschmir Großhandel Deutschland'],
     },
     rawMaterial: {
       title: 'Premium Rohkaschmir | Weiß, Braun, Grau | Direkt ab Werk Ordos',
-      description: 'Premium-Rohkaschmir direkt ab Werk Ordos kaufen. Weiß, Braun, Lila Kaschmir. 14.5-16.5μm Feinheit. Mengenpreise für B2B-Käufer.',
+      description: 'Beschaffungsgespräch für weißen, braunen oder violetten Kaschmir mit Einsatz, Menge, Zielort und Dokumentenbedarf.',
       keywords: getSeoKeywords('de', 'raw'),
     },
     yarnFabric: {
@@ -194,7 +194,7 @@ export const SEO: Record<Locale, LocaleSEO> = {
     },
     garmentOem: {
       title: 'Kaschmir-Strickwaren OEM/ODM | Pullover, Mantel Hersteller',
-      description: 'Full-Service Kaschmir-Strickwaren OEM/ODM: Pullover, Strickjacken, Mäntel, Kleider, Schals. Eigenes Design, Muster, Produktion. MOQ 100 Stk.',
+      description: 'OEM/ODM-Beschaffungsgespräch für Kaschmirbekleidung mit Referenzen, Spezifikationen, Menge, Zielort und Dokumentenbedarf.',
       keywords: getSeoKeywords('de', 'garment'),
     },
     factory: {
@@ -240,13 +240,13 @@ export const SEO: Record<Locale, LocaleSEO> = {
     region: 'France / EU',
     market: 'France / UE',
     home: {
-      title: 'Cachemire Erdos Fabricant | Mongolie Intérieure B2B | 23+ ans',
-      description: "Fabricant cachemire Erdos basé en Mongolie Intérieure, Chine. 23+ ans d'expérience: cachemire brut, fil à tricoter, tissu cachemire et OEM maille pour marques françaises et EU. Certifié ISO 9001 + OEKO-TEX. Petites MOQ acceptées. Échantillon gratuit.",
+      title: 'Approvisionnement cachemire | Matière, fil, tissu & maille | DONGXIAO®',
+      description: 'Explorez matière, fil, tissu et maille pour l’approvisionnement B2B. Les conditions sont confirmées par écrit selon le produit, la quantité, la destination et les spécifications.',
       keywords: ['fabricant cachemire', 'fournisseur cachemire B2B', 'cachemire Ordos', 'Mongolie Intérieure cachemire', 'gros cachemire', 'cachemire OEM', 'cachemire Erdos', 'cachemire Ordos fabricant', 'Mongolie Intérieure cachemire fournisseur', 'cachemire France grossiste'],
     },
     rawMaterial: {
       title: "Cachemire Brut Premium | Blanc, Brun, Gris | Usine Ordos",
-      description: "Achetez du cachemire brut directement de l'usine d'Ordos. Blanc, brun, violet. Finesse 14.5-16.5μm. Prix de gros pour acheteurs B2B.",
+      description: 'Échange sur cachemire blanc, brun ou violet avec usage, quantité, destination et documents requis.',
       keywords: getSeoKeywords('fr', 'raw'),
     },
     yarnFabric: {
@@ -255,8 +255,8 @@ export const SEO: Record<Locale, LocaleSEO> = {
       keywords: getSeoKeywords('fr', 'yarn'),
     },
     garmentOem: {
-      title: "Vêtements Cachemire OEM/ODM | Pull, Manteau, Robe Fabricant | MOQ 100",
-      description: "Service complet OEM/ODM vêtements cachemire: pulls, cardigans, manteaux, robes, écharpes. Design, prototypage, production. MOQ 100 pièces. 23+ ans d'expérience.",
+      title: 'Vêtements cachemire OEM/ODM | Discussion d’approvisionnement',
+      description: 'Échange OEM/ODM pour vêtements cachemire avec références, spécifications, quantité, destination, échantillonnage et documents requis.',
       keywords: getSeoKeywords('fr', 'garment'),
     },
     factory: {
@@ -302,13 +302,13 @@ export const SEO: Record<Locale, LocaleSEO> = {
     region: 'Japan',
     market: '日本市場',
     home: {
-      title: 'オルドス カシミア製造元 | 内モンゴル B2B 卸売 | 23年以上の実績',
-      description: 'オルドス（内モンゴル）発のカシミア製造元・卸売サプライヤー。23年以上の歴史。原料カシミア・紡績糸・生地・OEMニットを日本・アジア・欧米ブランドへ直送。ISO 9001・OEKO-TEX 認証。MOQ 小ロット対応。',
+      title: 'カシミア調達 | 原料・糸・生地・ニット | DONGXIAO®',
+      description: '原料、糸、生地、ニットウェアの B2B 調達情報。製品参考、数量、仕向地、必要仕様をもとに書面で相談します。',
       keywords: ['カシミア製造元', 'B2B カシミア サプライヤー', 'オルドス カシミア', '内モンゴル カシミア', 'カシミア 卸売', 'カシミア OEM', '日本 カシミア', 'オルドス カシミア製造', 'オルドス 内モンゴル カシミア', 'カシミア 卸売業者 日本向け'],
     },
     rawMaterial: {
       title: 'プレミアム原料カシミア | 白・青・紫 | オルドス工場直送 | B2B',
-      description: 'オルドス（内モンゴル）工場から直接原料カシミアを購入。白、青、紫カシミア、繊維径14.5-16.5μm。B2Bバイヤー向けロット価格、即時見積もり対応。',
+      description: '白・青・紫カシミアについて、用途、数量、仕向地、必要書類を含めて調達相談します。',
       keywords: getSeoKeywords('ja', 'raw'),
     },
     yarnFabric: {
@@ -317,8 +317,8 @@ export const SEO: Record<Locale, LocaleSEO> = {
       keywords: getSeoKeywords('ja', 'yarn'),
     },
     garmentOem: {
-      title: 'カシミア衣料 OEM/ODM | セーター・コート製造 | MOQ 100枚〜',
-      description: 'カシミア衣料のフルサービス OEM/ODM：セーター、カーディガン、コート、ドレス、ショール。デザイン・サンプル・量産。MOQ 100枚、23年以上の実績。',
+      title: 'カシミア衣料 OEM/ODM | 調達相談 | DONGXIAO®',
+      description: '製品参考、仕様、数量、仕向地、サンプル、必要書類を含むカシミア衣料 OEM/ODM の書面相談。',
       keywords: getSeoKeywords('ja', 'garment'),
     },
     factory: {
@@ -364,13 +364,13 @@ export const SEO: Record<Locale, LocaleSEO> = {
     region: 'Korea',
     market: '한국 시장',
     home: {
-      title: '오르도스 캐시미어 제조사 | 내몽골 B2B 도매 | 23년 이상의 경험',
-      description: '내몽골 오르도스 기반의 B2B 캐시미어 제조·도매 업체. 23년 이상의 업력으로 프리미엄 원료 캐시미아, 방모사·소모사, 원단, OEM 니트웨어를 한국·아시아·유럽·미국 브랜드에 직송합니다. ISO 9001·OEKO-TEX 인증. 소량 MOQ 가능.',
+      title: '캐시미어 소싱 | 원료·원사·직물·니트웨어 | DONGXIAO®',
+      description: '원료, 원사, 직물, 니트웨어의 B2B 소싱 정보를 확인하세요. 제품 참고, 수량, 목적지, 필요 사양을 바탕으로 서면 협의합니다.',
       keywords: ['캐시미어 제조사', 'B2B 캐시미어 공급', '오르도스 캐시미어', '내몽골 캐시미어', '캐시미어 도매', '캐시미어 OEM', '오르도스 캐시미어 공장', '내몽골 캐시미어 도매', '한국 캐시미어 수입'],
     },
     rawMaterial: {
       title: '프리미엄 원료 캐시미어 | 백색·청색·자색 | 오르도스 공장 직송 | B2B',
-      description: '오르도스(내몽골) 공장에서 직접 프리미엄 원료 캐시미어 구매. 백색, 청색, 자색, 섬유경 14.5-16.5μm. B2B 바이어 대상 lot 견적, 빠른 샘플 발송.',
+      description: '백색, 청색, 자색 캐시미어에 대해 용도, 수량, 목적지, 필요 서류를 포함해 소싱 상담을 진행합니다.',
       keywords: getSeoKeywords('kr', 'raw'),
     },
     yarnFabric: {
@@ -379,8 +379,8 @@ export const SEO: Record<Locale, LocaleSEO> = {
       keywords: getSeoKeywords('kr', 'yarn'),
     },
     garmentOem: {
-      title: '캐시미어 의류 OEM/ODM | 스웨터·코트 제조 | MOQ 100장부터',
-      description: '캐시미어 의류 풀서비스 OEM/ODM: 스웨터, 카디건, 코트, 드레스, 숄. 디자인·샘플·양산. MOQ 100장, 23년 이상의 업력.',
+      title: '캐시미어 의류 OEM/ODM | 소싱 상담 | DONGXIAO®',
+      description: '제품 참고, 사양, 수량, 목적지, 샘플, 필요 서류를 포함한 캐시미어 의류 OEM/ODM 서면 상담입니다.',
       keywords: getSeoKeywords('kr', 'garment'),
     },
     factory: {
@@ -426,23 +426,23 @@ export const SEO: Record<Locale, LocaleSEO> = {
     region: 'China',
     market: '中国 / 跨境贸易',
     home: {
-      title: '鄂尔多斯羊绒源头工厂 | 内蒙古B2B出口 | 23年ISO认证 | 东霄',
-      description: '内蒙古鄂尔多斯羊绒源头工厂，23年专注B2B出口。直供白绒/青绒/紫绒原料、精纺/粗纺羊绒纱线、羊绒面料、羊绒成衣OEM/ODM代工。ISO 9001+OEKO-TEX认证，年产能1200吨，服务全球50+国家。MOQ 100件起，免费打样。',
+      title: '羊绒 B2B 采购 | 原料、纱线、面料与成衣 | 东霄羊绒',
+      description: '浏览羊绒原料、纱线、面料与针织成衣的采购信息。请提供产品参考、数量、目的地和所需规格，以书面方式确认项目条件。',
       keywords: ['鄂尔多斯羊绒源头工厂', '内蒙古羊绒原料基地', '羊绒纱线出口工厂', '羊绒大衣代工', '羊绒衫代工', 'B2B羊绒供应商', '羊绒OEM', '鄂尔多斯羊绒厂家', '内蒙古羊绒纱线', '羊绒原料批发', '羊绒成衣代工厂', '山羊绒分梳', '羊绒OEM代工', '中国羊绒出口'],
     },
     rawMaterial: {
       title: '羊绒原料批发 | 白绒/青绒/紫绒 | 鄂尔多斯源头工厂直供 | B2B出口',
-      description: '内蒙古鄂尔多斯羊绒原料源头工厂直供。白绒、青绒、紫绒，细度14.5-16.5μm。B2B批发、全球出口、当年剪毛新鲜货源。MOQ 100kg起。',
+      description: '围绕白绒、青绒或紫绒的采购需求沟通用途、数量、目的地与所需纤维文件。',
       keywords: ['白绒', '青绒', '紫绒', '羊绒原料', '分梳山羊绒', '山羊原绒'],
     },
     yarnFabric: {
       title: '羊绒纱线/羊绒面料批发 | 精纺/粗纺 | B2B工厂直供 | 出口',
-      description: '羊绒纱线（26/2、28/2、36/2、48/2）和羊绒面料（精纺/粗纺）源头工厂直供。可定制支数、颜色、混纺。MOQ 20kg起，免费色卡与样品。',
+      description: '围绕纱线和面料结构、颜色方向、数量、目的地与文件需求发起书面采购沟通。',
       keywords: ['羊绒纱线', '羊绒面料', '精纺羊绒', '粗纺羊绒', '羊绒纱线26支', '羊绒纱线28支'],
     },
     garmentOem: {
-      title: '羊绒成衣代工OEM/ODM | 大衣/衫/裙源头工厂 | MOQ 100件 | 23年',
-      description: '羊绒成衣代工源头工厂：羊绒大衣、羊绒衫、羊绒裙、羊绒围巾。设计、打样、生产一站式。MOQ 100件起，服务全球品牌23年。',
+      title: '羊绒成衣 OEM/ODM | 采购沟通 | 东霄羊绒',
+      description: '围绕产品参考、规格、数量、目的地、打样和文件需求发起羊绒成衣 OEM/ODM 书面项目沟通。',
       keywords: ['羊绒大衣代工', '羊绒衫代工', '羊绒围巾代工', '羊绒OEM代工', '羊绒ODM', '羊绒服装定制'],
     },
     factory: {
