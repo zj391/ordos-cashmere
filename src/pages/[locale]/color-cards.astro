@@ -101,6 +101,22 @@ const t: Record<string, Record<string, string>> = {
 };
 const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
 
+const colorReferenceCopy = locale === 'cn'
+  ? {
+      title: '羊绒色彩参考',
+      intro: '本页展示的是数字颜色参考，不替代实物色样或书面颜色确认。实际颜色、可用性、打样和项目条件应按具体需求书面确认。',
+      ctaTitle: '需要进行颜色沟通？',
+      ctaBody: '请提供产品参考、目标颜色、数量、目的地和任何验货或文件需求，以便书面确认项目范围。',
+      cta: '联系采购团队',
+    }
+  : {
+      title: 'Cashmere Colour Reference',
+      intro: 'This page shows a digital colour reference only. It does not replace a physical sample or written colour confirmation. Availability, sampling and project terms are confirmed for the specific request.',
+      ctaTitle: 'Discuss a colour requirement',
+      ctaBody: 'Share the product reference, target colour, quantity, destination and any inspection or document requirements so the project scope can be confirmed in writing.',
+      cta: 'Contact our sourcing team',
+    };
+
 // 用真色卡数据
 const swatches = series?.swatches || [];
 
@@ -112,9 +128,10 @@ const totalColors = swatches.length;
   locale={locale}
   pageKey="color-cards"
   path="/color-cards"
-  title={T('seoTitle')}
-  description={T('seoDescription')}
-  keywords={T('seoKeywords')}
+  title={colorReferenceCopy.title}
+  description={colorReferenceCopy.intro}
+  keywords={['cashmere colour reference', 'digital colour reference', 'cashmere sourcing']}
+  noIndex={true}
 >
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/color-cards`} />
 
@@ -123,10 +140,10 @@ const totalColors = swatches.length;
     <div class="container-narrow py-24 md:py-32">
       <div class="flex items-center gap-3 mb-8">
         <span class="h-[2px] w-12 bg-brand-red"></span>
-        <span class="text-xs tracking-[0.4em] text-brand-camel uppercase font-medium">{T('eyebrow')}</span>
+        <span class="text-xs tracking-[0.4em] text-brand-camel uppercase font-medium">{locale === 'cn' ? '数字色彩参考' : 'Digital Colour Reference'}</span>
       </div>
-      <h1 class="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-8 text-balance">{T('title')}</h1>
-      <p class="text-lg text-muted-foreground leading-relaxed max-w-2xl font-light">{T('subtitle')}</p>
+      <h1 class="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-8 text-balance">{colorReferenceCopy.title}</h1>
+      <p class="text-lg text-muted-foreground leading-relaxed max-w-2xl font-light">{colorReferenceCopy.intro}</p>
       <!-- 系列元数据条 -->
       <div class="mt-12 flex flex-wrap gap-x-12 gap-y-4 text-sm text-muted-foreground">
         <div>
@@ -199,7 +216,7 @@ const totalColors = swatches.length;
   </section>
 
   <!-- ============ 采样方法说明 ============ -->
-  <section class="py-20 bg-brand-cream/40 border-y border-border">
+  {false && <section class="py-20 bg-brand-cream/40 border-y border-border">
     <div class="container-narrow max-w-3xl">
       <div class="flex items-center gap-3 mb-4">
         <span class="h-[2px] w-10 bg-brand-red"></span>
@@ -208,20 +225,20 @@ const totalColors = swatches.length;
       <h3 class="font-serif text-2xl md:text-3xl font-light mb-6 text-brand-ink">{T('methodologyTitle')}</h3>
       <p class="text-muted-foreground leading-relaxed">{T('methodologyBody')}</p>
     </div>
-  </section>
+  </section>}
 
   <!-- ============ CTA: 定制颜色 ============ -->
   <section class="py-24 md:py-32 bg-background">
     <div class="container-narrow">
       <div class="max-w-3xl mx-auto text-center">
         <div class="inline-block text-xs tracking-[0.3em] uppercase text-brand-gold mb-4">Custom</div>
-        <h2 class="font-serif text-4xl md:text-5xl font-light mb-6 leading-tight">{T('ctaTitle')}</h2>
-        <p class="text-muted-foreground mb-10 leading-relaxed">{T('ctaSub')}</p>
+        <h2 class="font-serif text-4xl md:text-5xl font-light mb-6 leading-tight">{colorReferenceCopy.ctaTitle}</h2>
+        <p class="text-muted-foreground mb-10 leading-relaxed">{colorReferenceCopy.ctaBody}</p>
         <a
           href={`/${locale}/contact/`}
           class="inline-flex items-center gap-3 px-10 py-5 bg-brand-ink text-white font-medium tracking-wider hover:bg-brand-gold hover:text-brand-ink transition-colors"
         >
-          {T('ctaBtn')}
+          {colorReferenceCopy.cta}
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
           </svg>
@@ -231,7 +248,7 @@ const totalColors = swatches.length;
   </section>
 
   <!-- ============ 底部: 完整 PDF 下载 ============ -->
-  <section class="py-20 bg-brand-chocolate text-white">
+  {false && <section class="py-20 bg-brand-chocolate text-white">
     <div class="container-narrow">
       <div class="flex flex-col md:flex-row items-center justify-between gap-8">
         <div>
@@ -249,7 +266,7 @@ const totalColors = swatches.length;
         </a>
       </div>
     </div>
-  </section>
+  </section>}
 
   <Footer slot="footer" locale={locale} />
   <FloatingChatButtons slot="floating" locale={locale} />

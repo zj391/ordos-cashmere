@@ -132,48 +132,40 @@ const t = tdk[locale] || tdk.en;
 
 const dehairedFaqs = t.faqs || tdk.en.faqs;
 
+const dehairedCopy = locale === 'cn'
+  ? { title: '分梳羊绒规格沟通 | DONGXIAO®', description: '提交目标规格、数量、目的地、验货方式和资料需求，以开展书面原料采购沟通。', h1: '分梳羊绒规格沟通', intro: '原料规格、可用性、资料和项目条件会因批次与目的地而异。请书面提供需求，以确认适用范围。', bullets: ['产品与规格参考', '目标数量与目的地', '验货与文件需求', '项目条件书面确认'], cta: '联系采购团队' }
+  : { title: 'Dehaired Cashmere Specification Requests | DONGXIAO®', description: 'Prepare target specification, quantity, destination, inspection approach and document requirements for a written raw-material sourcing discussion.', h1: 'Dehaired Cashmere Specification Requests', intro: 'Raw-material specifications, availability, documentation and project terms can vary by batch and destination. Share your requirements in writing so the applicable scope can be confirmed.', bullets: ['Product and specification reference', 'Target quantity and destination', 'Inspection and document requirements', 'Project terms confirmed in writing'], cta: 'Contact our sourcing team' };
+
+const projectFaqs = [
+  { q: locale === 'cn' ? '原料询盘应包含哪些信息？' : 'What should a raw-material inquiry include?', a: locale === 'cn' ? '请提供目标规格、数量、目的地、验货方式和资料范围；适用项目条件将书面确认。' : 'Provide the target specification, quantity, destination, inspection approach and document scope. Applicable project conditions are confirmed in writing.' },
+  { q: locale === 'cn' ? '价格、可用性和交付何时确认？' : 'When are price, availability and delivery confirmed?', a: locale === 'cn' ? '价格、可用性、检验、交付与资料条款将根据具体项目在书面沟通、报价或协议中确认。' : 'Price, availability, inspection, delivery and documentation terms are confirmed for the selected project in written correspondence, quotation or agreement.' },
+];
+
 const productCounts = {
   raw: productsData.categories.find((c) => c.id === 'raw'),
 };
 
-const dehairedSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Product',
-  name: 'Dehaired Cashmere Tops',
-  description: t.description,
-  brand: { '@type': 'Brand', name: 'DONGXIAO®' },
-  manufacturer: { '@type': 'Organization', name: 'Ordos Dongxiao Cashmere Co., Ltd.' },
-  category: 'Cashmere Raw Material',
-  offers: {
-    '@type': 'AggregateOffer',
-    priceCurrency: 'USD',
-    lowPrice: '75',
-    highPrice: '120',
-    offerCount: 3,
-    availability: 'https://schema.org/InStock',
-  },
-};
 ---
 
 <BaseLayout
   locale={locale}
   pageKey="raw-material"
   path={'/' + locale + '/dehaired-cashmere'}
-  title={t.title}
-  description={t.description}
-  keywords={['dehaired cashmere tops', 'cashmere combed top wholesale', 'Ordos dehaired cashmere', 'superfine white cashmere dehaired top factory', 'eco-friendly scoured cashmere fiber wholesale']}
+  title={dehairedCopy.title}
+  description={dehairedCopy.description}
+  keywords={['dehaired cashmere', 'cashmere fibre specification', 'cashmere raw material sourcing']}
   schema="general"
-  customSchemas={[dehairedSchema]}
+  noIndex={true}
 >
   <Navigation slot="header" locale={locale} currentPath={'/' + locale + '/dehaired-cashmere'} />
 
   <section class="bg-[#F5F0E7] border-b border-border/60 py-20 md:py-28">
     <div class="container-narrow">
       <span class="text-xs tracking-[0.4em] text-brand-camel uppercase">Dehaired Cashmere Tops</span>
-      <h1 class="font-display text-4xl md:text-5xl font-light mt-4 mb-6">{t.h1}</h1>
-      <p class="text-lg md:text-xl max-w-3xl opacity-90">{t.intro}</p>
+      <h1 class="font-display text-4xl md:text-5xl font-light mt-4 mb-6">{dehairedCopy.h1}</h1>
+      <p class="text-lg md:text-xl max-w-3xl opacity-90">{dehairedCopy.intro}</p>
       <ul class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-2 max-w-3xl">
-        {t.bullets.map((b) => (
+        {dehairedCopy.bullets.map((b) => (
           <li class="flex items-start gap-2 text-sm opacity-90">
             <span class="text-brand-camel mt-1">•</span>
             <span>{b}</span>
@@ -183,7 +175,7 @@ const dehairedSchema = {
     </div>
   </section>
 
-  <section class="py-16 bg-background">
+  {false && <section class="py-16 bg-background">
     <div class="container-narrow max-w-4xl">
       <h2 class="font-display text-3xl font-light mb-6">Dehairing Process</h2>
       <p class="text-base leading-relaxed text-foreground/80 mb-4">
@@ -196,16 +188,16 @@ const dehairedSchema = {
         <strong>Quality control:</strong> Every batch is tested for fiber diameter (laser scan), length (comb sorter), and purity (visual + microscope). A certificate of analysis ships with every order.
       </p>
     </div>
-  </section>
+  </section>}
 
-  <SEOFaq faqs={dehairedFaqs} title="Frequently Asked Questions" />
+  <SEOFaq faqs={projectFaqs} title="Frequently Asked Questions" />
 
   <section class="py-16 bg-[#F5F0E7] border-y border-border/60">
     <div class="container-narrow text-center">
-      <h2 class="font-display text-3xl font-light mb-4">Order dehaired cashmere today</h2>
-      <p class="opacity-90 mb-8 max-w-2xl mx-auto">Send your inquiry with target quantity, micron spec, and color. Free samples available for orders over 200kg.</p>
+      <h2 class="font-display text-3xl font-light mb-4">{locale === 'cn' ? '准备原料规格沟通' : 'Prepare a raw-material specification request'}</h2>
+      <p class="opacity-90 mb-8 max-w-2xl mx-auto">{locale === 'cn' ? '请提供目标规格、数量、目的地、验货方式和资料需求；适用项目条件将书面确认。' : 'Share target specification, quantity, destination, inspection approach and document needs. Applicable project conditions are confirmed in writing.'}</p>
       <div class="flex flex-wrap gap-4 justify-center">
-        <a href={'/' + locale + '/contact'} class="inline-block px-8 py-3 bg-brand-ink text-[#F7F3EC] rounded-none font-medium uppercase tracking-[0.15em] hover:bg-brand-chocolate">Request a Quote</a>
+        <a href={'/' + locale + '/contact'} class="inline-block px-8 py-3 bg-brand-ink text-[#F7F3EC] rounded-none font-medium uppercase tracking-[0.15em] hover:bg-brand-chocolate">{dehairedCopy.cta}</a>
         <a href={'/' + locale + '/products'} class="inline-block px-8 py-3 border border-brand-ink/30 rounded-none uppercase tracking-[0.15em] hover:bg-brand-ink hover:text-[#F7F3EC]">View All Products</a>
       </div>
     </div>

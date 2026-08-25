@@ -127,6 +127,20 @@ const tdk = {
 const t = tdk[locale] || tdk.en;
 const faqs = t.faqs || tdk.en.faqs;
 
+const verificationCopy = {
+  en: { title: 'Cashmere Documentation Requests | DONGXIAO®', description: 'Prepare product, specification, quantity, destination and documentation requirements for a written sourcing discussion.', h1: 'Documentation & Verification Requests', intro: 'Documentation requirements vary by product, destination and buyer programme. Share your requirements in writing so the applicable materials and scope can be confirmed.', ctaTitle: 'Prepare a documentation request', ctaBody: 'Include the product reference, intended market, quantity, inspection approach and the documents you need reviewed.', cta: 'Contact our sourcing team' },
+  cn: { title: '羊绒采购资料与核验请求 | DONGXIAO®', description: '提交产品、规格、数量、目的地和资料需求，以开展书面采购沟通。', h1: '采购资料与核验请求', intro: '资料需求会因产品、目的地和买方项目而异。请书面提供您的需求，以确认适用资料与范围。', ctaTitle: '准备资料核验请求', ctaBody: '请提供产品参考、目标市场、数量、验货方式及需要核验的资料。', cta: '联系采购团队' },
+  de: { title: 'Dokumentationsanfragen für Kaschmir | DONGXIAO®', description: 'Bereiten Sie Produkt, Spezifikation, Menge, Zielmarkt und Dokumentationsbedarf für eine schriftliche Beschaffungsanfrage vor.', h1: 'Dokumentations- und Prüfungsanfragen', intro: 'Der Dokumentationsbedarf hängt von Produkt, Zielmarkt und Käuferprogramm ab. Teilen Sie Ihre Anforderungen schriftlich mit.', ctaTitle: 'Dokumentationsanfrage vorbereiten', ctaBody: 'Nennen Sie Produktreferenz, Zielmarkt, Menge, Prüfansatz und die zu prüfenden Unterlagen.', cta: 'Beschaffungsteam kontaktieren' },
+  fr: { title: 'Demandes de documentation cachemire | DONGXIAO®', description: 'Préparez le produit, les spécifications, la quantité, la destination et les documents requis pour un échange écrit.', h1: 'Demandes de documentation et de vérification', intro: 'Les documents requis varient selon le produit, la destination et le programme acheteur. Partagez vos besoins par écrit.', ctaTitle: 'Préparer une demande documentaire', ctaBody: 'Indiquez la référence produit, le marché cible, la quantité, l’inspection et les documents à examiner.', cta: 'Contacter l’équipe sourcing' },
+  ja: { title: 'カシミア文書確認の依頼 | DONGXIAO®', description: '製品、仕様、数量、仕向地、必要書類を整理し、書面での調達確認にお進みください。', h1: '文書・確認依頼', intro: '必要書類は製品、仕向地、バイヤープログラムにより異なります。要件を書面でお知らせください。', ctaTitle: '文書確認を準備する', ctaBody: '製品参照、対象市場、数量、検品方法、確認したい書類をお知らせください。', cta: '調達チームに連絡' },
+  kr: { title: '캐시미어 문서 확인 요청 | DONGXIAO®', description: '제품, 사양, 수량, 목적지 및 필요 문서를 준비하여 서면 소싱 논의를 진행하세요.', h1: '문서 및 검증 요청', intro: '필요 문서는 제품, 목적지 및 바이어 프로그램에 따라 달라집니다. 요구사항을 서면으로 공유해 주세요.', ctaTitle: '문서 확인 요청 준비', ctaBody: '제품 참조, 목표 시장, 수량, 검사 방식 및 검토할 문서를 알려주세요.', cta: '소싱 팀에 문의' },
+}[locale] || verificationCopy.en;
+
+const verificationFaqs = [
+  { q: { en: 'What should I include in a documentation request?', cn: '资料请求应包含哪些信息？', de: 'Was gehört in eine Dokumentationsanfrage?', fr: 'Que doit contenir une demande documentaire ?', ja: '文書確認依頼には何を含めますか？', kr: '문서 요청에는 무엇을 포함해야 하나요?' }, a: { en: 'Provide the product reference, specification, quantity, destination, inspection approach and document scope. Applicable materials are confirmed for the specific project.', cn: '请提供产品参考、规格、数量、目的地、验货方式和资料范围；适用资料将按具体项目确认。', de: 'Nennen Sie Produktreferenz, Spezifikation, Menge, Zielmarkt, Prüfansatz und Dokumentenumfang. Die anwendbaren Unterlagen werden projektbezogen bestätigt.', fr: 'Indiquez la référence produit, les spécifications, la quantité, la destination, l’inspection et le périmètre documentaire. Les éléments applicables sont confirmés par projet.', ja: '製品参照、仕様、数量、仕向地、検品方法、書類範囲をお知らせください。適用資料は案件ごとに確認します。', kr: '제품 참조, 사양, 수량, 목적지, 검사 방식 및 문서 범위를 알려주세요. 적용 자료는 프로젝트별로 확인합니다.' } },
+  { q: { en: 'When are commercial and delivery terms confirmed?', cn: '商业与交付条款何时确认？', de: 'Wann werden Handels- und Lieferbedingungen bestätigt?', fr: 'Quand les conditions commerciales et de livraison sont-elles confirmées ?', ja: '商業条件と納品条件はいつ確認されますか？', kr: '상업 및 납품 조건은 언제 확인되나요?' }, a: { en: 'Price, availability, lead time, inspection, delivery and documentation terms are confirmed in written correspondence, quotation or agreement for the selected project.', cn: '价格、可用性、交期、验货、交付和资料条款将针对选定项目在书面沟通、报价或协议中确认。', de: 'Preis, Verfügbarkeit, Lieferzeit, Prüfung, Lieferung und Dokumentationsbedingungen werden für das gewählte Projekt schriftlich bestätigt.', fr: 'Le prix, la disponibilité, le délai, l’inspection, la livraison et les documents sont confirmés par écrit pour le projet concerné.', ja: '価格、可用性、納期、検品、納品、書類条件は選定案件について書面で確認します。', kr: '가격, 가용성, 리드타임, 검사, 납품 및 문서 조건은 선택된 프로젝트에 대해 서면으로 확인됩니다.' } },
+].map((faq) => ({ q: faq.q[locale] || faq.q.en, a: faq.a[locale] || faq.a.en }));
+
 const certList = [
   { code: 'ISO 9001', name: 'ISO 9001:2015', scope: 'Quality Management System', year: 'Since 2018', icon: '🏆' },
   { code: 'OEKO-TEX', name: 'OEKO-TEX Standard 100 (Class I)', scope: 'Tested for harmful substances — safe for babies & toddlers', year: 'Since 2020', icon: '🛡️' },
@@ -158,23 +172,23 @@ const certSchema = {
   locale={locale}
   pageKey="factory"
   path={'/' + locale + '/certifications'}
-  title={t.title}
-  description={t.description}
-  keywords={['ISO OEKO-TEX cashmere supplier', 'OEKO-TEX certified cashmere clothing supplier', 'ISO 9001 cashmere', 'GOTS certified cashmere', 'RWS cashmere supplier']}
+  title={verificationCopy.title}
+  description={verificationCopy.description}
+  keywords={['cashmere documentation request', 'cashmere sourcing documents', 'cashmere verification request']}
   schema="factory"
-  customSchemas={[certSchema]}
+  noIndex={true}
 >
   <Navigation slot="header" locale={locale} currentPath={'/' + locale + '/certifications'} />
 
   <section class="bg-[#F5F0E7] border-b border-border/60 py-20 md:py-28">
     <div class="container-narrow">
       <span class="text-xs tracking-[0.4em] text-brand-camel uppercase">Certifications & Compliance</span>
-      <h1 class="font-display text-4xl md:text-5xl font-light mt-4 mb-6">{t.h1}</h1>
-      <p class="text-lg md:text-xl max-w-3xl opacity-90">{t.intro}</p>
+      <h1 class="font-display text-4xl md:text-5xl font-light mt-4 mb-6">{verificationCopy.h1}</h1>
+      <p class="text-lg md:text-xl max-w-3xl opacity-90">{verificationCopy.intro}</p>
     </div>
   </section>
 
-  <section class="py-16 bg-background">
+  {false && <section class="py-16 bg-background">
     <div class="container-narrow">
       <h2 class="font-display text-3xl font-light mb-8 text-center">Active Certifications</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -188,19 +202,19 @@ const certSchema = {
         ))}
       </div>
     </div>
-  </section>
+  </section>}
 
-  <SEOFaq faqs={faqs} title="Frequently Asked Questions" />
+  <SEOFaq faqs={verificationFaqs} title="Frequently Asked Questions" />
 
   <section class="py-16 bg-secondary/20">
     <div class="container-narrow text-center">
-      <h2 class="font-display text-3xl font-light mb-4">Download certificates & audit reports</h2>
-      <p class="opacity-80 mb-8 max-w-2xl mx-auto">All current PDF certificates are available in our Download Center. For audit reports and additional documentation, contact us under NDA.</p>
-      <a href={'/' + locale + '/download'} class="inline-block px-8 py-3 bg-primary text-primary-foreground rounded-none font-medium hover:bg-primary/90">Visit Download Center</a>
+      <h2 class="font-display text-3xl font-light mb-4">{verificationCopy.ctaTitle}</h2>
+      <p class="opacity-80 mb-8 max-w-2xl mx-auto">{verificationCopy.ctaBody}</p>
+      <a href={'/' + locale + '/contact'} class="inline-block px-8 py-3 bg-primary text-primary-foreground rounded-none font-medium hover:bg-primary/90">{verificationCopy.cta}</a>
     </div>
   </section>
 
-  {locale === 'en' && (
+  {false && locale === 'en' && (
   <section class="py-12 md:py-16 bg-secondary/20">
     <div class="container-narrow">
       <h2 class="font-display text-3xl md:text-4xl font-light mb-4">How to Read a Cashmere Certification: 5 Standards Explained</h2>
