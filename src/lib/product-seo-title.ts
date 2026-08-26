@@ -12,6 +12,7 @@ export type ProductTitleInput = {
   knittingTechnology?: unknown;
   gender?: unknown;
   season?: unknown;
+  tags?: unknown;
   sizes?: unknown;
   colors?: unknown;
   packaging?: unknown;
@@ -77,13 +78,28 @@ const SEASON_LABELS: Record<TitleLocale, Record<string, string>> = {
 
 function audienceFacet(value: unknown, locale: string): string {
   const normalized = clean(value).toLowerCase();
-  const key = normalized.includes('women') ? 'women'
+  const key = normalized.includes('women') || normalized.includes('ladies') ? 'women'
     : normalized.includes('men') ? 'men'
     : normalized.includes('unisex') ? 'unisex'
-    : normalized.includes('kid') || normalized.includes('child') ? 'kids'
+    : normalized.includes('kid') || normalized.includes('child') || normalized.includes('girl') || normalized.includes('boy') ? 'kids'
     : normalized.includes('baby') ? 'baby'
     : '';
   return key ? AUDIENCE_LABELS[localeKey(locale)][key] : '';
+}
+
+function semanticTags(value: unknown): string[] {
+  const entries = Array.isArray(value) ? value : String(value ?? '').split(/[，,;/|]+/);
+  return entries
+    .map((entry) => clean(entry))
+    .filter((entry) => /^(women|men|unisex|kids?|children|ladies|girls?|boys?|baby|spring|summer|autumn|fall|winter|year-round)$/i.test(entry));
+}
+
+function audienceTagFacet(value: unknown, locale: string): string {
+  return audienceFacet(semanticTags(value).find((tag) => /women|men|unisex|kid|child|ladies|girl|boy|baby/i.test(tag)), locale);
+}
+
+function seasonTagFacet(value: unknown, locale: string): string {
+  return seasonFacet(semanticTags(value).find((tag) => /spring|summer|autumn|fall|winter|year-round/i.test(tag)), locale);
 }
 
 function seasonFacet(value: unknown, locale: string): string {
@@ -165,8 +181,8 @@ function titleFacets(product: ProductTitleInput, locale: string): string[] {
     constructionFacet(product.pattern),
     packagingFacet(product.packaging),
     weightFacet(product.weight_g),
-    audienceFacet(product.gender, locale),
-    seasonFacet(product.season, locale),
+    audienceFacet(product.gender, locale) || audienceTagFacet(product.tags, locale),
+    seasonFacet(product.season, locale) || seasonTagFacet(product.tags, locale),
     dimensionFacet(product.sizes),
   ].filter(Boolean);
   return facets.filter((facet, index, list) => !list.slice(0, index).some((prior) => includesFacet(prior, facet) || includesFacet(facet, prior)));
@@ -192,8 +208,8 @@ export function buildProductSeoTitle(
   locale = 'en',
 ): string {
   const category = clean(localizedCategory);
-  const audience = audienceFacet(product.gender, locale);
-  const season = seasonFacet(product.season, locale);
+  const audience = audienceFacet(product.gender, locale) || audienceTagFacet(product.tags, locale);
+  const season = seasonFacet(product.season, locale) || seasonTagFacet(product.tags, locale);
   const productName = clean(product.name) || 'Cashmere Product';
 
   // 高搜索价值的前缀 facet (人群/季节) 紧跟 category；Google SERP 优先收录
