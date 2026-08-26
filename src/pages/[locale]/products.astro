@@ -364,7 +364,7 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
   <section class="container-narrow py-8">
     <div class="flex flex-col lg:flex-row gap-4 mb-6 lg:items-center lg:justify-between">
       <div id="filter-buttons" class="flex flex-wrap gap-2">
-        <button data-cat="all" class="filter-btn px-4 py-2 text-sm border bg-brand-ink text-[#F7F3EC] border-brand-ink transition-colors">
+        <button data-cat="all" class="filter-btn px-4 py-2 text-sm border bg-brand-ink text-brand-cream border-brand-ink transition-colors">
           {labels.filterAll} ({allProducts.length})
         </button>
         {categories.map((cat) => (
@@ -404,7 +404,7 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
         <fieldset>
           <legend class="text-xs uppercase tracking-[0.16em] text-muted-foreground mb-2">{listingFilterCopy.material}</legend>
           <div class="flex flex-wrap gap-2">
-            <button type="button" data-proc-filter="material" data-value="all" class="proc-filter active px-3 py-2 text-xs border bg-brand-ink text-[#F7F3EC] border-brand-ink transition-colors">{listingFilterCopy.all}</button>
+            <button type="button" data-proc-filter="material" data-value="all" class="proc-filter active px-3 py-2 text-xs border bg-brand-ink text-brand-cream border-brand-ink transition-colors">{listingFilterCopy.all}</button>
             <button type="button" data-proc-filter="material" data-value="pure" class="proc-filter px-3 py-2 text-xs border border-border bg-white text-muted-foreground hover:border-brand-ink transition-colors">{listingFilterCopy.pure}</button>
             <button type="button" data-proc-filter="material" data-value="blend" class="proc-filter px-3 py-2 text-xs border border-border bg-white text-muted-foreground hover:border-brand-ink transition-colors">{listingFilterCopy.blend}</button>
             <button type="button" data-proc-filter="material" data-value="wool" class="proc-filter px-3 py-2 text-xs border border-border bg-white text-muted-foreground hover:border-brand-ink transition-colors">{listingFilterCopy.wool}</button>
@@ -484,7 +484,7 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
               <div class="flex justify-between"><span>{labels.micron}:</span><span class="font-medium">{p.micron}</span></div>
             </div>
             <p class="text-xs text-muted-foreground mb-2">{listingDiscovery.projectTerms}</p>
-            <span class="block w-full px-3 py-2 bg-brand-ink text-[#F7F3EC] text-xs hover:bg-brand-camel transition-colors text-center">
+            <span class="block w-full px-3 py-2 bg-brand-ink text-brand-cream text-xs hover:bg-brand-camel transition-colors text-center">
               {labels.requestQuote}
             </span>
           </div>
@@ -518,12 +518,12 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
       <nav id="pagination" class="flex items-center gap-1" aria-label="Pagination"></nav>
     </div>
 
-    <div id="compare-bar" class="hidden sticky bottom-4 z-30 mt-6 border border-brand-ink bg-brand-ink text-[#F7F3EC] px-4 py-3 shadow-xl">
+    <div id="compare-bar" class="hidden sticky bottom-4 z-30 mt-6 border border-brand-ink bg-brand-ink text-brand-cream px-4 py-3 shadow-xl">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-        <p class="text-sm"><span data-compare-count>0</span> <span data-compare-selected>{procurementCopy.selected}</span> · <span class="text-[#F7F3EC]/70">{procurementCopy.compareLimit}</span></p>
+        <p class="text-sm"><span data-compare-count>0</span> <span data-compare-selected>{procurementCopy.selected}</span> · <span class="text-brand-cream/70">{procurementCopy.compareLimit}</span></p>
         <div class="flex items-center gap-3">
           <button type="button" data-compare-clear class="text-xs uppercase tracking-[0.14em] underline underline-offset-4 hover:text-brand-gold">{procurementCopy.clear}</button>
-          <button type="button" data-compare-open class="px-4 py-2 bg-[#F7F3EC] text-brand-ink text-xs uppercase tracking-[0.12em] font-medium hover:bg-brand-gold transition-colors">{procurementCopy.compareCta}</button>
+          <button type="button" data-compare-open class="px-4 py-2 bg-brand-cream text-brand-ink text-xs uppercase tracking-[0.12em] font-medium hover:bg-brand-gold transition-colors">{procurementCopy.compareCta}</button>
         </div>
       </div>
     </div>
@@ -702,10 +702,10 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
           activeCat = btn.getAttribute('data-cat');
           filterButtons.forEach((b) => {
             if (b === btn) {
-              b.classList.add('bg-brand-ink', 'text-[#F7F3EC]', 'border-brand-ink');
+              b.classList.add('bg-brand-ink', 'text-brand-cream', 'border-brand-ink');
               b.classList.remove('bg-white', 'text-muted-foreground', 'border-border');
             } else {
-              b.classList.remove('bg-brand-ink', 'text-[#F7F3EC]', 'border-brand-ink');
+              b.classList.remove('bg-brand-ink', 'text-brand-cream', 'border-brand-ink');
               b.classList.add('bg-white', 'text-muted-foreground', 'border-border');
             }
           });
@@ -737,7 +737,7 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
             const active = peer.getAttribute('data-value') === value;
             peer.classList.toggle('active', active);
             peer.classList.toggle('bg-brand-ink', active);
-            peer.classList.toggle('text-[#F7F3EC]', active);
+            peer.classList.toggle('text-brand-cream', active);
             peer.classList.toggle('border-brand-ink', active);
           });
           currentPage = 1;
@@ -751,7 +751,7 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
           const active = button.getAttribute('data-value') === 'all';
           button.classList.toggle('active', active);
           button.classList.toggle('bg-brand-ink', active);
-          button.classList.toggle('text-[#F7F3EC]', active);
+          button.classList.toggle('text-brand-cream', active);
           button.classList.toggle('border-brand-ink', active);
         });
         currentPage = 1;
@@ -808,10 +808,10 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
         // Also reset category button UI
         filterButtons.forEach((b) => {
           if (b.getAttribute('data-cat') === 'all') {
-            b.classList.add('bg-brand-ink', 'text-[#F7F3EC]', 'border-brand-ink');
+            b.classList.add('bg-brand-ink', 'text-brand-cream', 'border-brand-ink');
             b.classList.remove('bg-white', 'text-muted-foreground', 'border-border');
           } else {
-            b.classList.remove('bg-brand-ink', 'text-[#F7F3EC]', 'border-brand-ink');
+            b.classList.remove('bg-brand-ink', 'text-brand-cream', 'border-brand-ink');
             b.classList.add('bg-white', 'text-muted-foreground', 'border-border');
           }
         });
@@ -828,10 +828,10 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
           activeCat = 'all';
           filterButtons.forEach((b) => {
             if (b.getAttribute('data-cat') === 'all') {
-              b.classList.add('bg-brand-ink', 'text-[#F7F3EC]', 'border-brand-ink');
+              b.classList.add('bg-brand-ink', 'text-brand-cream', 'border-brand-ink');
               b.classList.remove('bg-white', 'text-muted-foreground', 'border-border');
             } else {
-              b.classList.remove('bg-brand-ink', 'text-[#F7F3EC]', 'border-brand-ink');
+              b.classList.remove('bg-brand-ink', 'text-brand-cream', 'border-brand-ink');
               b.classList.add('bg-white', 'text-muted-foreground', 'border-border');
             }
           });
@@ -989,7 +989,7 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
           return '<button disabled class="' + baseCls + ' bg-brand-cream text-muted-foreground/50 border-border cursor-not-allowed">' + label + '</button>';
         }
         if (active) {
-          return '<button data-page="' + page + '" class="' + baseCls + ' bg-brand-ink text-[#F7F3EC] border-brand-ink">' + label + '</button>';
+          return '<button data-page="' + page + '" class="' + baseCls + ' bg-brand-ink text-brand-cream border-brand-ink">' + label + '</button>';
         }
         return '<button data-page="' + page + '" class="' + baseCls + ' bg-white text-muted-foreground border-border hover:border-brand-ink hover:text-foreground">' + label + '</button>';
       }
@@ -1016,7 +1016,7 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
                 '<div class="flex justify-between"><span>' + escapeHtml(labels.micron) + ':</span><span class="font-medium">' + escapeHtml(p.micron || '') + '</span></div>' +
               '</div>' +
               '<p class="text-xs text-muted-foreground mb-2">' + escapeHtml(listingDiscovery.projectTerms) + '</p>' +
-              '<span class="block w-full px-3 py-2 bg-brand-ink text-[#F7F3EC] text-xs hover:bg-brand-camel transition-colors text-center">' + escapeHtml(labels.requestQuote) + '</span>' +
+              '<span class="block w-full px-3 py-2 bg-brand-ink text-brand-cream text-xs hover:bg-brand-camel transition-colors text-center">' + escapeHtml(labels.requestQuote) + '</span>' +
             '</div>' +
             '</a>' +
             '<div class="px-4 pb-4">' +
@@ -1098,14 +1098,14 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
         modalEl.className = 'fixed inset-0 z-[260] bg-black/60 p-4 flex items-center justify-center';
         const columns = selected.map((product) => '<th class="min-w-[180px] p-3 text-left font-medium align-top"><a class="hover:text-brand-camel" href="/' + (window.__LOCALE__ || 'en') + '/products/' + escapeHtml(product.id) + '/">' + escapeHtml(product.name) + '</a></th>').join('');
         const row = (label, getValue) => '<tr class="border-t border-border"><th scope="row" class="p-3 text-left text-xs uppercase tracking-wider text-muted-foreground whitespace-nowrap">' + escapeHtml(label) + '</th>' + selected.map((product) => '<td class="p-3 text-sm text-foreground">' + escapeHtml(getValue(product) || '—') + '</td>').join('') + '</tr>';
-        modalEl.innerHTML = '<div class="w-full max-w-5xl max-h-[88vh] overflow-auto bg-[#F7F3EC] border border-brand-ink shadow-2xl">' +
+        modalEl.innerHTML = '<div class="w-full max-w-5xl max-h-[88vh] overflow-auto bg-brand-cream border border-brand-ink shadow-2xl">' +
           '<div class="flex items-start justify-between gap-4 p-5 border-b border-border"><div><p class="text-xs uppercase tracking-[0.2em] text-brand-camel mb-2">' + escapeHtml(procurementCopy.compareLimit) + '</p><h2 class="font-serif text-2xl text-brand-ink">' + escapeHtml(procurementCopy.compareTitle) + '</h2></div><button type="button" data-compare-close class="text-sm text-muted-foreground hover:text-brand-ink">' + escapeHtml(procurementCopy.close) + ' ×</button></div>' +
           '<div class="overflow-x-auto"><table class="w-full border-collapse"><thead><tr><th class="p-3"></th>' + columns + '</tr></thead><tbody>' +
             row('Category', (product) => product.categoryName) +
             row(labels.material || 'Material', (product) => product.material) +
             row(labels.micron || 'Micron', (product) => product.micron) +
           '</tbody></table></div>' +
-          '<div class="p-5 border-t border-border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"><p class="text-sm text-muted-foreground">' + escapeHtml(procurementCopy.compareLimit) + '</p><button type="button" data-compare-inquiry class="px-5 py-3 bg-brand-ink text-[#F7F3EC] text-xs uppercase tracking-[0.14em] hover:bg-brand-camel transition-colors">' + escapeHtml(procurementCopy.addToInquiry) + '</button></div>' +
+          '<div class="p-5 border-t border-border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"><p class="text-sm text-muted-foreground">' + escapeHtml(procurementCopy.compareLimit) + '</p><button type="button" data-compare-inquiry class="px-5 py-3 bg-brand-ink text-brand-cream text-xs uppercase tracking-[0.14em] hover:bg-brand-camel transition-colors">' + escapeHtml(procurementCopy.addToInquiry) + '</button></div>' +
         '</div>';
         modalEl.addEventListener('click', (event) => { if (event.target === modalEl) closeCompareModal(); });
         modalEl.querySelector('[data-compare-close]').addEventListener('click', closeCompareModal);
@@ -1215,7 +1215,7 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
         if (!toastEl) {
           toastEl = document.createElement('div');
           toastEl.id = 'app-toast';
-          toastEl.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 z-[400] px-4 py-2 bg-brand-ink text-[#F7F3EC] text-sm rounded-none shadow-lg transition-opacity duration-200 opacity-0 pointer-events-none';
+          toastEl.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 z-[400] px-4 py-2 bg-brand-ink text-brand-cream text-sm rounded-none shadow-lg transition-opacity duration-200 opacity-0 pointer-events-none';
           document.body.appendChild(toastEl);
         }
         toastEl.textContent = msg;
@@ -1254,10 +1254,10 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
       if (activeCat !== 'all') {
         filterButtons.forEach((b) => {
           if (b.getAttribute('data-cat') === activeCat) {
-            b.classList.add('bg-brand-ink', 'text-[#F7F3EC]', 'border-brand-ink');
+            b.classList.add('bg-brand-ink', 'text-brand-cream', 'border-brand-ink');
             b.classList.remove('bg-white', 'text-muted-foreground', 'border-border');
           } else {
-            b.classList.remove('bg-brand-ink', 'text-[#F7F3EC]', 'border-brand-ink');
+            b.classList.remove('bg-brand-ink', 'text-brand-cream', 'border-brand-ink');
             b.classList.add('bg-white', 'text-muted-foreground', 'border-border');
           }
         });

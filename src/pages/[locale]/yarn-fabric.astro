@@ -96,10 +96,10 @@ const IMG = {
 };
 ---
 
-<BaseLayout locale={locale} pageKey="yarnFabric" path="/yarn-fabric" noIndex={true}>
+<BaseLayout locale={locale} pageKey="yarnFabric" path="/yarn-fabric">
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/yarn-fabric`} />
 
-  <section class="relative bg-[#F5F0E7] border-b border-border/60 overflow-hidden">
+  <section class="relative bg-brand-sandwarm border-b border-border/60 overflow-hidden">
     <div class="grid grid-cols-1 lg:grid-cols-2 min-h-[70vh]">
       <div class="flex items-center py-20 lg:py-0 px-6 lg:pl-12 order-2 lg:order-1">
         <div class="max-w-xl">
@@ -113,7 +113,7 @@ const IMG = {
       </div>
       <div class="relative aspect-[4/3] lg:aspect-auto overflow-hidden order-1 lg:order-2">
         <img src={IMG.hero} alt="Cashmere fiber detail — dehairing process separates 14.5μm underdown from coarse guard hair, 99.95% purity" class="ken-burns absolute inset-0 w-full h-full object-cover opacity-95" decoding="async" loading="eager" fetchpriority="high" />
-        <div class="absolute inset-0 bg-gradient-to-l from-transparent to-[#F5F0E7]/40"></div>
+        <div class="absolute inset-0 bg-gradient-to-l from-transparent to-brand-sandwarm/40"></div>
       </div>
     </div>
   </section>

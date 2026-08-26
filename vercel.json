@@ -140,6 +140,16 @@
       "permanent": true
     },
     {
+      "source": "/cart/",
+      "destination": "/en/cart/",
+      "permanent": true
+    },
+    {
+      "source": "/cart",
+      "destination": "/en/cart/",
+      "permanent": true
+    },
+    {
       "source": "/download/",
       "destination": "/en/download/",
       "permanent": true

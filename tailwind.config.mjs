@@ -51,6 +51,18 @@ export default {
           ink: '#1C1813',
           gold: '#AD8A5C',
           red: '#9E3128',
+          // Extended warm-beige palette for inline-hex replacements (2026-08-26
+          // audit): these cover the 6 hex values that were duplicated across
+          // 89 component instances. Each value matches the exact hex it replaces
+          // so visual output is byte-identical.
+          sandwarm: '#F5F0E7',   // bg-[#F5F0E7] (29×) — hero sections, CTAs
+          shell: '#F8F5EF',      // bg-[#F8F5EF] (5×) — footer bg, base layer
+          mist: '#FBF8F2',       // bg-[#FBF8F2] (2×) — proof band, soft section
+          bone: '#F4EFE6',       // bg-[#F4EFE6] (1×) — single hero variant
+          goldhi: '#D8B787',     // text-[#D8B787] (2×) — bright gold accent
+          whatsapp: '#25D366',   // bg-[#25D366] (1×) — WhatsApp CTA
+          wechat: '#07C160',     // bg-[#07C160] (1×) — WeChat CTA
+          sandhi: '#E8DFD0',     // to-[#E8DFD0] (2×) — gradient endpoint in blog + category hero
         },
       },
       fontFamily: {

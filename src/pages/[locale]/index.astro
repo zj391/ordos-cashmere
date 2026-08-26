@@ -413,7 +413,7 @@ const IMG = {
   </script>
 
   <!-- ============ METRICS BAR（细线分隔） ============ -->
-  <section class="home-proof-band border-y border-border bg-[#FBF8F2] py-14">
+  <section class="home-proof-band border-y border-border bg-brand-mist py-14">
     <div class="container-narrow">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 md:divide-x md:divide-border">
         {c.metrics.map((m, i) => {
@@ -430,7 +430,7 @@ const IMG = {
   </section>
 
   <!-- ============ TRUST STRIP (cert badges + stats under hero) ============ -->
-  <section class="home-trust-strip py-12 md:py-14 bg-[#FBF8F2] border-b border-border">
+  <section class="home-trust-strip py-12 md:py-14 bg-brand-mist border-b border-border">
     <div class="container-narrow">
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-8 items-center">
         {trustBadges.map((b, i) => (
@@ -725,8 +725,8 @@ const IMG = {
     </div>
   </section>
 
-  <!-- ============ 项目资料与核验（仅使用书面项目确认原则） ============ -->
-  <section class="home-cert-section py-20 bg-[#F4EFE6]">
+<!-- ============ 资质徽章（圆形 SVG） ============ -->
+  <section class="home-cert-section py-20 bg-brand-bone">
     <div class="container-narrow">
       <div class="text-center mb-12">
         <div class="inline-block text-xs tracking-[0.3em] uppercase text-brand-camel mb-3">{t6('项目准备', 'Project preparation', 'Projektvorbereitung', 'Préparation du projet', '案件準備', '프로젝트 준비')}</div>
@@ -784,7 +784,7 @@ const IMG = {
         {categoryCards.map((c, i) => {
           const cat = productsData.categories.find((x: any) => c.slug === (x.id === 'hats' ? 'hats-accessories' : x.id === 'sweaters' ? 'garment-oem' : x.id === 'accessories' ? 'accessories-cat' : x.id));
           return (
-            <a href={`/${locale}/products/${c.slug}/`} class="group border border-border bg-[#F8F5EF]/50 p-6 hover:border-brand-gold hover:bg-white transition-colors duration-300 flex flex-col justify-between min-h-[150px]">
+            <a href={`/${locale}/products/${c.slug}/`} class="group border border-border bg-brand-shell/50 p-6 hover:border-brand-gold hover:bg-white transition-colors duration-300 flex flex-col justify-between min-h-[150px]">
               <div>
                 <div class="font-serif text-[11px] text-brand-camel tracking-[0.2em] uppercase mb-2">0{i + 1}</div>
                 <h3 class="font-serif text-xl leading-tight group-hover:text-brand-chocolate transition-colors">{c.name}</h3>
@@ -817,12 +817,12 @@ const IMG = {
   </section>
 
   <!-- ============ Final CTA（深色版 + 历史工厂背景） ============ -->
-  <section class="home-final-cta py-28 md:py-36 bg-[#F5F0E7] relative overflow-hidden">
+  <section class="home-final-cta py-28 md:py-36 bg-brand-sandwarm relative overflow-hidden">
     <!-- 背景图: 历史针织厂外景, 黑白, 传承感 (knittingMill 是 DPLA 公共域图) -->
     <div class="absolute inset-0">
       <img src={IMG.heroFiber} alt="" aria-hidden="true" class="w-full h-full object-cover opacity-10 grayscale" decoding="async" loading="lazy" />
       <img src={IMG.uiCraft} alt="" aria-hidden="true" class="home-craft-fill absolute inset-y-0 right-0 h-full w-[46%] object-cover" decoding="async" loading="lazy" />
-      <div class="absolute inset-0 bg-[#F5F0E7]/85"></div>
+      <div class="absolute inset-0 bg-brand-sandwarm/85"></div>
     </div>
     <!-- 装饰纤维纹理 -->
     <div class="absolute inset-0 opacity-10 pointer-events-none">

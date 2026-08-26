@@ -155,11 +155,10 @@ const productCounts = {
   description={dehairedCopy.description}
   keywords={['dehaired cashmere', 'cashmere fibre specification', 'cashmere raw material sourcing']}
   schema="general"
-  noIndex={true}
 >
   <Navigation slot="header" locale={locale} currentPath={'/' + locale + '/dehaired-cashmere'} />
 
-  <section class="bg-[#F5F0E7] border-b border-border/60 py-20 md:py-28">
+  <section class="bg-brand-sandwarm border-b border-border/60 py-20 md:py-28">
     <div class="container-narrow">
       <span class="text-xs tracking-[0.4em] text-brand-camel uppercase">Dehaired Cashmere Tops</span>
       <h1 class="font-display text-4xl md:text-5xl font-light mt-4 mb-6">{dehairedCopy.h1}</h1>
@@ -192,13 +191,13 @@ const productCounts = {
 
   <SEOFaq faqs={projectFaqs} title="Frequently Asked Questions" />
 
-  <section class="py-16 bg-[#F5F0E7] border-y border-border/60">
+  <section class="py-16 bg-brand-sandwarm border-y border-border/60">
     <div class="container-narrow text-center">
       <h2 class="font-display text-3xl font-light mb-4">{locale === 'cn' ? '准备原料规格沟通' : 'Prepare a raw-material specification request'}</h2>
       <p class="opacity-90 mb-8 max-w-2xl mx-auto">{locale === 'cn' ? '请提供目标规格、数量、目的地、验货方式和资料需求；适用项目条件将书面确认。' : 'Share target specification, quantity, destination, inspection approach and document needs. Applicable project conditions are confirmed in writing.'}</p>
       <div class="flex flex-wrap gap-4 justify-center">
-        <a href={'/' + locale + '/contact'} class="inline-block px-8 py-3 bg-brand-ink text-[#F7F3EC] rounded-none font-medium uppercase tracking-[0.15em] hover:bg-brand-chocolate">{dehairedCopy.cta}</a>
-        <a href={'/' + locale + '/products'} class="inline-block px-8 py-3 border border-brand-ink/30 rounded-none uppercase tracking-[0.15em] hover:bg-brand-ink hover:text-[#F7F3EC]">View All Products</a>
+        <a href={'/' + locale + '/contact'} class="inline-block px-8 py-3 bg-brand-ink text-brand-cream rounded-none font-medium uppercase tracking-[0.15em] hover:bg-brand-chocolate">{dehairedCopy.cta}</a>
+        <a href={'/' + locale + '/products'} class="inline-block px-8 py-3 border border-brand-ink/30 rounded-none uppercase tracking-[0.15em] hover:bg-brand-ink hover:text-brand-cream">View All Products</a>
       </div>
     </div>
   </section>

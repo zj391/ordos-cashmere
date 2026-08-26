@@ -104,7 +104,16 @@ const copy = {
 const t = copy[locale] || copy.en;
 ---
 
-<BaseLayout locale={locale} title={`${t.code} · Page Not Found | DONGXIAO® Cashmere`} description={t.intro} path="/" noIndex={true}>
+// Use the actual request URL path as the canonical target for 404 pages.
+// Without this the canonical would point at SITE_URL + path="/" which lands
+// on the homepage — Google would treat the 404 as a soft-404 and index the
+// homepage twice for every garbage URL the crawler hits. By using the real
+// request path (with a noindex hint downstream), each 404 URL gets its own
+// noindex canonical so Google drops it cleanly instead of folding it back
+// to the homepage and inflating duplicate-content signals.
+const requestedPath = Astro.url.pathname;
+
+<BaseLayout locale={locale} title={`${t.code} · Page Not Found | DONGXIAO® Cashmere`} description={t.intro} path={requestedPath} noIndex={true}>
   <Navigation slot="header" locale={locale} currentPath="/" />
 
   <section class="py-24 md:py-32 bg-background">
@@ -126,7 +135,7 @@ const t = copy[locale] || copy.en;
             placeholder={t.searchPh}
             class="flex-1 px-4 py-3 border border-border bg-white focus:outline-none focus:border-brand-ink text-base"
           />
-          <button type="submit" class="px-6 py-3 bg-brand-ink text-[#F7F3EC] text-sm font-medium hover:bg-brand-camel transition-colors">
+          <button type="submit" class="px-6 py-3 bg-brand-ink text-brand-cream text-sm font-medium hover:bg-brand-camel transition-colors">
             Search
           </button>
         </div>

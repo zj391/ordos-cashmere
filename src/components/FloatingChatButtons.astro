@@ -53,7 +53,7 @@ const wechatQrUrl = '/images/wechat-qr.png';
     href={`https://wa.me/${SITE_INFO.whatsapp.replace(/[^\d]/g, '')}?text=${encodeURIComponent(waMessage)}`}
     target="_blank"
     rel="noopener noreferrer"
-    class="group flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-full bg-[#25D366] text-white shadow-lg hover:shadow-xl hover:scale-105 transition-shadow transition-transform duration-200"
+    class="group flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-full bg-brand-whatsapp text-white shadow-lg hover:shadow-xl hover:scale-105 transition-shadow transition-transform duration-200"
     aria-label="WhatsApp"
     data-channel="whatsapp"
     onclick={`window.gtag?.('event', 'whatsapp_click', { locale: '${locale}', channel: 'whatsapp' }); window.__trackSalesChannel?.('whatsapp');`}
@@ -68,7 +68,7 @@ const wechatQrUrl = '/images/wechat-qr.png';
   <button
     id="btn-wechat"
     type="button"
-    class="group relative flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-full bg-[#07C160] text-white shadow-lg hover:shadow-xl hover:scale-105 transition-shadow transition-transform duration-200"
+    class="group relative flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-full bg-brand-wechat text-white shadow-lg hover:shadow-xl hover:scale-105 transition-shadow transition-transform duration-200"
     aria-label="WeChat"
     data-channel="wechat"
     onclick={`window.gtag?.('event', 'wechat_click', { locale: '${locale}', channel: 'wechat' }); window.__trackSalesChannel?.('wechat');`}

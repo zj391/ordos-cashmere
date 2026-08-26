@@ -133,7 +133,15 @@ const socialImageAlt = finalTitle;
 
 
 
-const hreflangs = generateHreflangs(cleanPath, alternateLocales);
+// 404/utility pages: only emit a self-referential hreflang so Google does
+// not index 6 "language variants" of a URL that doesn't exist. The single
+// hreflang uses the requested path's locale (e.g. /de/foo → de) and points
+// back to the same URL. Without this, the default 6-locale hreflang block
+// would tell crawlers "the same content exists in 6 languages" — a soft-404
+// pattern Google penalizes.
+const hreflangs = noIndex
+  ? [{ lang: LOCALE_HREFLANG[locale], href: canonical }]
+  : generateHreflangs(cleanPath, alternateLocales);
 
 
 
@@ -348,6 +356,8 @@ if (!noIndex && faqs && faqs.length > 0) {
     <meta charset="UTF-8" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1C1813" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1C1813" media="(prefers-color-scheme: dark)" />
 
     <meta name="generator" content={Astro.generator} />
 
@@ -422,6 +432,8 @@ if (!noIndex && faqs && faqs.length > 0) {
     <meta property="og:image" content={socialImage} />
     <meta property="og:image:secure_url" content={socialImage} />
     <meta property="og:image:alt" content={socialImageAlt} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
     <meta property="og:site_name" content={SITE_INFO.name} />
 

@@ -650,16 +650,16 @@ const latestBlogPosts = relevantBlogPosts
 <BaseLayout locale={locale} pageKey="products" path={`/products/${slug}`} title={t.title} description={t.description} keywords={t.keywords} schema="general" customSchemas={categoryHubSchema(locale, slug, t.h1, t.description, products.map((p) => ({ id: p.id, name: p.name, price: p.price, image: resolveCategoryCardImage(p.images?.[0]) })))}>
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/products/${slug}`} />
 
-  <section class="category-hub-hero !bg-[#F7F3EC] !text-[#1C1813] py-20 md:py-28">
+  <section class="category-hub-hero !bg-brand-cream !text-brand-ink py-20 md:py-28">
     <div class="container-narrow">
-      <span class="text-xs tracking-[0.4em] text-[#D8B787] uppercase">{CATEGORY_SLUGS_DEFS[catId].name}</span>
-      <h1 class="font-display text-4xl md:text-5xl font-light mt-4 mb-6 !text-[#1C1813]">{t.h1}</h1>
-      <p class="text-lg md:text-xl max-w-3xl !text-[#1C1813]/85">{t.intro}</p>
+      <span class="text-xs tracking-[0.4em] text-brand-goldhi uppercase">{CATEGORY_SLUGS_DEFS[catId].name}</span>
+      <h1 class="font-display text-4xl md:text-5xl font-light mt-4 mb-6 !text-brand-ink">{t.h1}</h1>
+      <p class="text-lg md:text-xl max-w-3xl !text-brand-ink/85">{t.intro}</p>
       <ul class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-2 max-w-3xl">
         {t.bullets.map((b) => (
-          <li class="flex items-start gap-2 text-sm !text-[#1C1813]/85">
-            <span class="text-[#D8B787] mt-1">•</span>
-            <span class="!text-[#1C1813]/85">{b}</span>
+          <li class="flex items-start gap-2 text-sm !text-brand-ink/85">
+            <span class="text-brand-goldhi mt-1">•</span>
+            <span class="!text-brand-ink/85">{b}</span>
           </li>
         ))}
       </ul>
@@ -837,7 +837,7 @@ loading="lazy"
   )}
 
 
-  <section class="py-16 md:py-20 bg-[#F8F5EF] border-y border-border/60">
+  <section class="py-16 md:py-20 bg-brand-shell border-y border-border/60">
     <div class="container-narrow">
       <div class="flex items-center gap-3 mb-4">
         <span class="h-[2px] w-8 bg-brand-red"></span>
@@ -912,7 +912,7 @@ loading="lazy"
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           {latestBlogPosts.map((p) => (
             <a href={`/${locale}/blog/${p.slug}/`} class="group block border border-border bg-white overflow-hidden hover:border-brand-gold hover:shadow-lg transition-colors transition-shadow duration-300">
-              <div class="aspect-[16/10] bg-gradient-to-br from-brand-cream via-[#F8F5EF] to-[#E8DFD0]"></div>
+              <div class="aspect-[16/10] bg-gradient-to-br from-brand-cream via-brand-shell to-brand-sandhi"></div>
               <div class="p-6">
                 <div class="text-xs text-muted-foreground tracking-wider mb-3 font-mono">{p.date}</div>
                 <h3 class="font-serif text-lg mb-3 group-hover:text-brand-chocolate transition-colors leading-tight line-clamp-2">{p.title}</h3>
@@ -932,13 +932,13 @@ loading="lazy"
 
   <SEOFaq faqs={t.faqs} title="Frequently Asked Questions" />
 
-  <section class="py-16 bg-[#F5F0E7] border-y border-border/60">
+  <section class="py-16 bg-brand-sandwarm border-y border-border/60">
     <div class="container-narrow text-center">
       <h2 class="font-display text-3xl font-light mb-4">{locale === 'cn' ? `为 ${category.name} 准备采购需求` : `Prepare a sourcing brief for ${category.name}`}</h2>
       <p class="opacity-90 mb-8 max-w-2xl mx-auto">{locale === 'cn' ? '请提供目标数量、规格方向、目的地和资料需求；适用报价、贸易术语、交付与文件范围将按具体项目书面确认。' : 'Share the target quantity, specification direction, destination and documentation needs; applicable pricing, trade terms, delivery and document scope are confirmed in writing for the project.'}</p>
       <div class="flex flex-wrap gap-4 justify-center">
-        <a href={`/${locale}/contact/`} class="inline-block px-8 py-3 bg-brand-ink text-[#F7F3EC] rounded-none font-medium uppercase tracking-[0.15em] hover:bg-brand-chocolate">Request a Quote</a>
-        <a href={`/${locale}/download/`} class="inline-block px-8 py-3 border border-brand-ink/30 rounded-none uppercase tracking-[0.15em] hover:bg-brand-ink hover:text-[#F7F3EC]">Download Catalog</a>
+        <a href={`/${locale}/contact/`} class="inline-block px-8 py-3 bg-brand-ink text-brand-cream rounded-none font-medium uppercase tracking-[0.15em] hover:bg-brand-chocolate">Request a Quote</a>
+        <a href={`/${locale}/download/`} class="inline-block px-8 py-3 border border-brand-ink/30 rounded-none uppercase tracking-[0.15em] hover:bg-brand-ink hover:text-brand-cream">Download Catalog</a>
         <a href={`/${locale}/products/`} class="inline-block px-8 py-3 text-brand-ink/70 rounded-none uppercase tracking-[0.15em] hover:text-brand-chocolate">View All Products</a>
       </div>
     </div>

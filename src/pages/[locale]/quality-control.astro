@@ -101,7 +101,7 @@ const pathwayLinks = [
 
 <BaseLayout locale={locale} pageKey="quality-control" path="/quality-control" title={copy.title} description={copy.description} keywords={['cashmere quality control', 'cashmere inspection brief', 'cashmere sample approval', 'cashmere buyer verification']} schema="general">
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/quality-control`} />
-  <section class="bg-[#F5F0E7] border-b border-border/60 py-20 md:py-28">
+  <section class="bg-brand-sandwarm border-b border-border/60 py-20 md:py-28">
     <div class="container-narrow max-w-4xl">
       <span class="text-xs tracking-[0.4em] text-brand-camel uppercase">{copy.eyebrow}</span>
       <h1 class="font-display text-4xl md:text-5xl font-light mt-4 mb-6">{copy.h1}</h1>
@@ -120,6 +120,6 @@ const pathwayLinks = [
     <div class="container-narrow"><h2 class="font-display text-3xl font-light mb-8">{copy.linksTitle}</h2><div class="grid grid-cols-1 md:grid-cols-4 gap-4">{pathwayLinks.map((link) => <a href={link.href} class="border border-border bg-white p-5 text-sm font-medium hover:border-brand-camel transition-colors">{locale === 'cn' ? link.cn : link.en} →</a>)}</div></div>
   </section>
   <SEOFaq faqs={copy.faqs} title={copy.faqTitle} />
-  <section class="py-16 bg-[#F5F0E7] border-y border-border/60"><div class="container-narrow text-center"><h2 class="font-display text-3xl font-light mb-4">{copy.ctaTitle}</h2><p class="opacity-90 mb-8 max-w-2xl mx-auto">{copy.ctaText}</p><a href={`/${locale}/contact/`} class="inline-block px-8 py-3 bg-brand-ink text-[#F7F3EC] uppercase tracking-wider text-sm">{copy.cta}</a></div></section>
+  <section class="py-16 bg-brand-sandwarm border-y border-border/60"><div class="container-narrow text-center"><h2 class="font-display text-3xl font-light mb-4">{copy.ctaTitle}</h2><p class="opacity-90 mb-8 max-w-2xl mx-auto">{copy.ctaText}</p><a href={`/${locale}/contact/`} class="inline-block px-8 py-3 bg-brand-ink text-brand-cream uppercase tracking-wider text-sm">{copy.cta}</a></div></section>
   <Footer slot="footer" locale={locale} /><FloatingChatButtons slot="footer" locale={locale} /><CookieConsent slot="cookie-consent" locale={locale} />
 </BaseLayout>

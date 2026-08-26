@@ -225,7 +225,7 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
             onClick={() => setActiveCategory("all")}
             className={`px-4 py-2 text-sm border transition-colors ${
               activeCategory === "all"
-                ? "bg-brand-ink text-[#F7F3EC] border-brand-ink"
+                ? "bg-brand-ink text-brand-cream border-brand-ink"
                 : "bg-white text-muted-foreground border-border hover:border-brand-ink"
             }`}
           >
@@ -239,7 +239,7 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
                 onClick={() => setActiveCategory(cat.id)}
                 className={`px-4 py-2 text-sm border transition-colors ${
                   activeCategory === cat.id
-                    ? "bg-brand-ink text-[#F7F3EC] border-brand-ink"
+                    ? "bg-brand-ink text-brand-cream border-brand-ink"
                     : "bg-white text-muted-foreground border-border hover:border-brand-ink"
                 }`}
               >
@@ -317,7 +317,7 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
                 <p className="text-xs text-muted-foreground mb-2">Project terms are confirmed in writing.</p>
                 <button
                   onClick={() => openProduct(p)}
-                  className="w-full px-3 py-2 bg-brand-ink text-[#F7F3EC] text-xs hover:bg-brand-camel transition-colors"
+                  className="w-full px-3 py-2 bg-brand-ink text-brand-cream text-xs hover:bg-brand-camel transition-colors"
                 >
                   {labels.requestQuote}
                 </button>
@@ -329,7 +329,7 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
             <div className="text-center mt-8">
               <button
                 onClick={loadMore}
-                className="px-8 py-3 bg-brand-ink text-[#F7F3EC] hover:bg-brand-camel transition-colors text-sm"
+                className="px-8 py-3 bg-brand-ink text-brand-cream hover:bg-brand-camel transition-colors text-sm"
               >
                 {(labels as any).loadMore
                   ? `${(labels as any).loadMore} (${filtered.length - displayCount})`

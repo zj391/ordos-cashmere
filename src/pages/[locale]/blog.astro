@@ -66,7 +66,7 @@ const itemListSchema = {
 <BaseLayout locale={locale} pageKey="blog" path="/blog" customSchemas={[itemListSchema]}>
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/blog`} />
 
-  <section class="relative bg-[#F5F0E7] border-b border-border/60 overflow-hidden">
+  <section class="relative bg-brand-sandwarm border-b border-border/60 overflow-hidden">
     <div class="container-narrow py-24 md:py-32">
       <div class="flex items-center gap-3 mb-8">
         <span class="h-[2px] w-12 bg-brand-red"></span>
@@ -357,7 +357,7 @@ const itemListSchema = {
       {posts.length > 0 && posts[0] && (
         <a href={`/${locale}/blog/${posts[0].slug}/`} class="group block mb-12 border border-border bg-white hover:border-brand-gold hover:shadow-2xl transition-colors transition-shadow duration-300 overflow-hidden">
           <div class="grid grid-cols-1 md:grid-cols-5">
-            <div class="md:col-span-2 aspect-[16/10] md:aspect-auto bg-gradient-to-br from-brand-cream via-[#F8F5EF] to-[#E8DFD0] flex items-center justify-center">
+            <div class="md:col-span-2 aspect-[16/10] md:aspect-auto bg-gradient-to-br from-brand-cream via-brand-shell to-brand-sandhi flex items-center justify-center">
               <div class="text-center px-6">
                 <div class="text-xs font-mono text-muted-foreground tracking-widest uppercase mb-3">{posts[0].date}</div>
                 <div class="text-xs tracking-[0.4em] text-brand-red uppercase font-medium">

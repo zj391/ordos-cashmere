@@ -38,7 +38,7 @@ const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
 <BaseLayout locale={locale} pageKey="cart" path="/cart" title={T('seoTitle')} description={T('seoDescription')} noIndex={true}>
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/cart`} />
 
-  <section class="bg-[#F5F0E7] border-b border-border/60">
+  <section class="bg-brand-sandwarm border-b border-border/60">
     <div class="container-narrow py-16 md:py-20">
       <div class="flex items-center gap-3 mb-6">
         <span class="h-[2px] w-12 bg-brand-red"></span>
