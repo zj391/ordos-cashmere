@@ -148,28 +148,9 @@ const orgSchema = {
   '@id': `${SITE_URL}/#organization`,
 
   name: SITE_INFO.name,
-
-  legalName: SITE_INFO.legalName,
-
   url: SITE_URL,
 
   logo: `${SITE_URL}/logo.svg`,
-
-  foundingDate: String(SITE_INFO.foundingYear),
-
-  address: {
-
-    '@type': 'PostalAddress',
-
-    streetAddress: SITE_INFO.address,
-
-    addressLocality: SITE_INFO.city,
-
-    addressRegion: SITE_INFO.region,
-
-    addressCountry: SITE_INFO.country,
-
-  },
 
   contactPoint: [{
 
@@ -183,48 +164,6 @@ const orgSchema = {
   }],
 
 };
-
-
-
-const localBusinessSchema = {
-
-  '@context': 'https://schema.org',
-
-  '@type': 'LocalBusiness',
-
-  '@id': `${SITE_URL}/#localbusiness`,
-
-  name: SITE_INFO.name,
-
-  description: finalDescription,
-
-  address: {
-
-    '@type': 'PostalAddress',
-
-    addressLocality: SITE_INFO.city,
-
-    addressRegion: SITE_INFO.region,
-
-    addressCountry: SITE_INFO.country,
-
-  },
-
-  geo: {
-
-    '@type': 'GeoCoordinates',
-
-    latitude: SITE_INFO.latitude,
-
-    longitude: SITE_INFO.longitude,
-
-  },
-
-  telephone: SITE_INFO.phone,
-
-};
-
-
 
 const pageSchema = (() => {
 
@@ -328,16 +267,18 @@ const pageSchema = (() => {
 
 
 
-const isBrandEntityPage = ['/', '/contact', '/factory'].includes(cleanPath);
-const allSchemas: any[] = isBrandEntityPage
-  ? [orgSchema, localBusinessSchema, pageSchema]
-  : [pageSchema];
+const isBrandEntityPage = !noIndex && ['/', '/contact'].includes(cleanPath);
+const allSchemas: any[] = noIndex
+  ? []
+  : isBrandEntityPage
+    ? [orgSchema, pageSchema]
+    : [pageSchema];
 
 
 
 // Append any caller-supplied custom schemas (Product, BreadcrumbList, etc.)
 
-if (customSchemas.length) {
+if (!noIndex && customSchemas.length) {
 
   for (const s of customSchemas) {
 
@@ -353,7 +294,7 @@ if (customSchemas.length) {
 
 const bc = PAGE_BREADCRUMB[_pageKey];
 
-if (bc) {
+if (!noIndex && bc) {
 
   allSchemas.push(breadcrumbSchema(locale, bc(locale)));
 
@@ -363,7 +304,7 @@ if (bc) {
 
 // 服务 Schema（首页 + 内容页）
 
-if (_schema === 'home' || ['raw-material', 'yarn-fabric', 'garment-oem', 'factory'].includes(_schema)) {
+if (!noIndex && (_schema === 'home' || ['raw-material', 'yarn-fabric', 'garment-oem', 'factory'].includes(_schema))) {
 
   allSchemas.push(servicesSchema(SERVICES[locale]));
 
@@ -377,7 +318,7 @@ if (_schema === 'home' || ['raw-material', 'yarn-fabric', 'garment-oem', 'factor
 
 // 通过 props.faqs 直接传入即可让它们自动获得 FAQPage rich result。
 
-if (faqs && faqs.length > 0) {
+if (!noIndex && faqs && faqs.length > 0) {
 
   allSchemas.push(faqPageSchema(faqs));
 
@@ -439,7 +380,6 @@ if (faqs && faqs.length > 0) {
 
     <link rel="prefetch" href={`/${locale}/contact/`} />
 
-    <link rel="prefetch" href={`/${locale}/factory/`} />
 
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
@@ -543,7 +483,9 @@ if (faqs && faqs.length > 0) {
 
     <!-- JSON-LD Schema (consolidated to one @graph block, 2026-08-19) -->
 
-    <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@graph': allSchemas })} is:inline />
+    {allSchemas.length > 0 && (
+      <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@graph': allSchemas })} is:inline />
+    )}
 
 
 

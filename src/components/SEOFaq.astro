@@ -17,9 +17,10 @@ interface FAQ {
 interface Props {
   faqs: FAQ[];
   title?: string;
+  suppressSchema?: boolean;
 }
 
-const { faqs, title } = Astro.props;
+const { faqs, title, suppressSchema = false } = Astro.props;
 const locale = pickLocale(Astro.params?.locale);
 const faqJsonLd = faqs.length > 0 ? faqPageSchema(faqs) : null;
 ---
@@ -46,6 +47,6 @@ const faqJsonLd = faqs.length > 0 ? faqPageSchema(faqs) : null;
     </div>
   </section>
 )}
-{faqJsonLd && (
+{!suppressSchema && faqJsonLd && (
   <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} is:inline />
 )}

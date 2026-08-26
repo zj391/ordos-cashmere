@@ -230,3 +230,12 @@
 - [x] 实施辅助页面正文、FAQ/Schema、内链和索引控制优化，保持现有产品数据与路由行为不变。
 - [x] 验证辅助页面 HTML、H1、canonical、hreflang、robots、Schema、sitemap、Astro/Vercel 构建与五个 API 入口。
 - [x] 提交并同步经过验证的辅助页面可信度 SEO 优化版本至 `master`。
+
+# 全局导航、页脚、首页与 Schema 索引质量优化
+
+- [x] 盘点导航、页脚、首页、面包屑、全局 Schema 与跨页面组件中指向专题、博客、工厂、认证和资料入口的链接及实体断言。
+- [x] 审计 noindex 页面、历史博客和未经核验页面是否仍被作为全局强入口、结构化数据对象或泛化商业背书输出。
+- [x] 设计保留用户访问与采购路径的链接收敛、锚文本和 Schema 修复方案，避免删除真实产品、多语言、询盘或后台能力。
+- [x] 实施全局链接、首页内容、面包屑或 Schema 的最小范围修复，并保留稳定 canonical 路径。
+- [x] 验证全局链接、H1、canonical、hreflang、robots、JSON-LD、sitemap、Astro/Vercel 构建与五个 API 入口。
+- [x] 提交并同步经过验证的全局索引质量优化版本至 `master`。
