@@ -61,23 +61,8 @@ const contactSchema = {
     '@type': 'Organization',
     '@id': 'https://www.erdosdx.com/#organization',
     name: SITE_INFO.name,
-    legalName: SITE_INFO.legalName,
     url: 'https://www.erdosdx.com',
     logo: 'https://www.erdosdx.com/logo.svg',
-    foundingDate: String(SITE_INFO.foundingYear),
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: SITE_INFO.address,
-      addressLocality: SITE_INFO.city,
-      addressRegion: SITE_INFO.region,
-      postalCode: '017000',
-      addressCountry: SITE_INFO.country,
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: SITE_INFO.latitude,
-      longitude: SITE_INFO.longitude,
-    },
     contactPoint: [{
       '@type': 'ContactPoint',
       telephone: SITE_INFO.phone,
