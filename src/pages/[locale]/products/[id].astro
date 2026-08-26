@@ -1432,7 +1432,7 @@ const relatedViewAll: Record<Locale, string> = {
 
                 )}
 
-                {product.colors && product.colors.length > 0 && (
+                {colorText && (
 
                   <tr>
 
@@ -1442,7 +1442,7 @@ const relatedViewAll: Record<Locale, string> = {
 
                       <p class="text-xs text-muted-foreground mb-2">
 
-                        Shown in: {product.colors.filter((c) => !['customize', '多种颜色可选', 'multiple colors available', 'color cards'].includes(c.toLowerCase())).join(', ') || 'Custom color'}
+                        Shown in: {colorText}
 
                       </p>
 

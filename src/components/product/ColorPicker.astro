@@ -11,6 +11,7 @@ const { productId, productName, productColors } = Astro.props;
 
 const swatches = suggestedSwatchesForProduct(productColors);
 ---
+{swatches.length > 0 && (
 <div
   class="color-picker"
   role="radiogroup"
@@ -50,6 +51,7 @@ const swatches = suggestedSwatchesForProduct(productColors);
     </button>
   </div>
 </div>
+)}
 <script>
   (function () {
     document.querySelectorAll('.color-picker').forEach((root) => {

@@ -44,8 +44,7 @@ const FAMILY_LOOKUP: Record<string, string[]> = {
 
 export function suggestedSwatchesForProduct(productColors: string[] | undefined): ColorSwatch[] {
   const palette = colorSeries.flatMap((s) => s.swatches);
-  const fallback = palette.slice(0, 6);
-  if (!productColors || productColors.length === 0) return fallback;
+  if (!productColors || productColors.length === 0) return [];
   const wanted = new Set<string>();
   for (const raw of productColors) {
     const key = raw.toLowerCase().trim();
@@ -54,7 +53,7 @@ export function suggestedSwatchesForProduct(productColors: string[] | undefined)
       for (const code of PRODUCT_COLOR_FAMILIES[family] || []) wanted.add(code);
     }
   }
-  if (wanted.size === 0) return fallback;
+  if (wanted.size === 0) return [];
   const matched = palette.filter((sw) => wanted.has(sw.code));
-  return matched.length > 0 ? matched : fallback;
+  return matched;
 }

@@ -371,3 +371,13 @@
 - [x] 提交并同步本轮经验证的产品与支持页 SEO 优化至 `master`。
 
 > 审计结论（2026-08-26）：产品 Product JSON-LD 已保持名称、材料、目录细度与可见标题一致，但制造商对象仍绕过全站策略输出成立年份、法律实体和地址字段。现已将该对象收敛为组织名称与站点 URL；代表性产品的六语静态 JSON-LD 均保留 Product、manufacturer、material 与 Fiber micron，移除字段命中均为 0，canonical 与 hreflang 保持正常。
+
+# 全局实体、真实规格与分类—产品发现路径 SEO 增量优化
+
+- [x] 审计 BaseLayout 与可索引首页/分类页的 Organization、WebSite、CollectionPage、Breadcrumb 和 FAQ Schema 实体字段一致性。
+- [x] 盘点真实目录规格在产品卡片、分类枢纽和产品详情页的覆盖，并审计分类到产品、产品到分类的可抓取发现路径。
+- [x] 实施最小范围的安全 Schema、真实规格呈现或可索引内链优化；不新增认证、价格、MOQ、库存、交期、产能、地域、样品、物流或付款承诺。
+- [x] 验证六语 HTML、H1、canonical、hreflang、robots、JSON-LD、sitemap、构建输出与五个 API 入口。
+- [x] 提交并同步本轮经验证的全局实体与发现路径 SEO 优化至 `master`。
+
+> 审计结论（2026-08-26）：全局 Organization、WebSite、CollectionPage、Breadcrumb、FAQ 与服务讨论 Schema 均符合现有书面确认边界。产品规格表仍会对某些通用颜色字段输出“Custom color”，色板建议也会在没有实际颜色时回退到默认色板；现已收敛为仅在目录列出具体颜色时显示颜色行和色板。英文构建产物中 `Shown in: Custom color` 及通用颜色承诺均为 0，保留 459 个实际列出颜色规格行和 1113 个对应色板节点；六语代表产品的 canonical 与 hreflang 保持正常。
