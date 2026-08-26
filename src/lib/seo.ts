@@ -20,8 +20,8 @@ export const SITE_INFO = {
   region: 'Inner Mongolia',
   address: 'Ordos Industrial Park, Inner Mongolia, China',
   phone: '+86-156-6185-3999',
-  whatsapp: '+8615661853999',
-  email: 'dongxiaocashmere@erdosdx.com',
+    whatsapp: '+86-156-6185-3999',
+    email: 'dongxiaocashmere@erdosdx.com',
   wechatId: 'dongxiaocashmere',
   // 地图坐标（鄂尔多斯）
   latitude: 39.6086,

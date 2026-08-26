@@ -37,7 +37,7 @@ const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD || '';
 const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL || GMAIL_USER;
 const FROM_EMAIL = process.env.FROM_EMAIL || (GMAIL_USER ? `DONGXIAO Cashmere <${GMAIL_USER}>` : 'sales@erdosdx.com');
 const REPLY_TO = process.env.REPLY_TO || 'dongxiaocashmere@erdosdx.com';
-const WHATSAPP_NUMBER = process.env.WHATSAPP_NUMBER || '+861****3999';
+const WHATSAPP_NUMBER = process.env.WHATSAPP_NUMBER || '+86-156-6185-3999';
 const WECHAT_ID = process.env.WECHAT_ID || 'dongxiaocashmere';
 
 // Per-IP token-bucket for soft rate limiting. Each IP gets a bucket refilled
