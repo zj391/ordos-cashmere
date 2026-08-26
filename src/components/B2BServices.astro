@@ -46,22 +46,31 @@ const servicesByVariant: Record<string, Array<{ icon: string; titleEn: string; t
     { icon: '✓', titleEn: 'AQL 2.5 Final Inspection', titleCn: 'AQL 2.5 终检', descEn: 'Final inspection per ISO 2859-1 AQL 2.5. Stitching, measurements, fabric defects. Photo report for every batch.', descCn: 'ISO 2859-1 AQL 2.5 终检。车缝、尺寸、面料瑕疵。每批附照片报告。' },
   ],
 };
-const services = servicesByVariant[variant] || servicesByVariant['raw-material'];
+// 可索引页面仅呈现采购准备项，不把样品、价格、付款、检验、文件、包装或物流
+// 的固定条款作为所有项目都适用的服务承诺。
+const services = [
+  { icon: '📋', titleEn: 'Product specification', titleCn: '产品规格', descEn: 'Provide the product reference, composition target, construction, color direction and acceptance criteria for written review.', descCn: '请提供产品参考、目标成分、结构、颜色方向和验收标准，以便书面审核。' },
+  { icon: '🧪', titleEn: 'Verification approach', titleCn: '核验方式', descEn: 'State the inspection, testing, sample or approval approach your project requires; the applicable scope is confirmed in writing.', descCn: '说明项目需要的验货、检测、样品或确认方式；适用范围以书面方式确认。' },
+  { icon: '📦', titleEn: 'Packing and presentation', titleCn: '包装与呈现', descEn: 'Describe the packing, labeling, presentation and handling requirements relevant to the selected product.', descCn: '请说明所选产品相关的包装、标签、呈现和搬运要求。' },
+  { icon: '📑', titleEn: 'Documentation needs', titleCn: '文件需求', descEn: 'List the product, import, commercial or inspection documents your team needs reviewed for the project.', descCn: '请列出团队需要针对项目审核的产品、进口、商务或检验文件。' },
+  { icon: '🚚', titleEn: 'Destination planning', titleCn: '目的地准备', descEn: 'Share the destination, delivery point, timing window and preferred trade terms for a route-specific discussion.', descCn: '请提供目的地、交付点、时间窗口和希望讨论的贸易术语，以便按路线沟通。' },
+  { icon: '✍️', titleEn: 'Written project terms', titleCn: '书面项目条件', descEn: 'Availability, pricing, samples, payment, delivery and final documentation are confirmed for the selected project in writing.', descCn: '可用性、价格、样品、付款、交付和最终文件范围将针对所选项目以书面方式确认。' },
+];
 ---
 <section class="py-16 md:py-20 bg-secondary/30 border-y border-border">
   <div class="container-narrow">
     <div class="max-w-3xl mb-12">
       <div class="flex items-center gap-3 mb-4">
         <span class="h-[2px] w-8 bg-brand-red"></span>
-        <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">{locale === 'cn' ? 'B2B 标配服务' : 'B2B Standard Services'}</span>
+            <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">{locale === 'cn' ? 'B2B 项目准备' : 'B2B Project Preparation'}</span>
       </div>
       <h2 class="font-serif text-3xl md:text-4xl font-light leading-tight mb-3">
-        {locale === 'cn' ? '每笔订单都包含的标准服务' : 'Standard services included with every order'}
+        {locale === 'cn' ? '准备清晰的项目需求' : 'Prepare a clear project brief'}
       </h2>
       <p class="text-muted-foreground leading-relaxed">
         {locale === 'cn'
-          ? '专业 B2B 出口工厂的标配服务 — 让您的采购流程标准化、风险可控。'
-          : 'What every professional B2B export factory provides — standardized procurement, risk-controlled.'}
+          ? '将规格、核验、文件、包装、目的地和商务要求写入询盘，便于针对所选产品书面确认适用条件。'
+          : 'Put specifications, verification, documents, packing, destination and commercial requirements in the inquiry so applicable terms can be confirmed in writing for the selected product.'}
       </p>
     </div>
 
