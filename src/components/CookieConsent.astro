@@ -23,26 +23,26 @@ const m = messages[locale] || messages.en;
 
 <div
   id="cookie-banner"
-  class="hidden fixed bottom-0 left-0 right-0 z-[55] bg-card border-t border-border shadow-2xl p-4 md:p-6"
+  class="hidden fixed inset-x-3 bottom-3 z-[55] max-h-[calc(100svh-1.5rem)] overflow-y-auto bg-card border border-border shadow-2xl p-3 md:inset-x-0 md:bottom-0 md:border-x-0 md:border-b-0 md:p-6"
   role="dialog"
   aria-labelledby="cookie-title"
 >
-  <div class="container-narrow flex flex-col md:flex-row items-start md:items-center gap-4">
+  <div class="container-narrow flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-4">
     <div class="flex-1">
-      <h2 id="cookie-title" class="font-medium text-base mb-1">{m.title}</h2>
-      <p class="text-sm text-muted-foreground">{m.desc}</p>
+      <h2 id="cookie-title" class="font-medium text-sm md:text-base mb-1">{m.title}</h2>
+      <p class="text-xs leading-relaxed text-muted-foreground md:text-sm">{m.desc}</p>
     </div>
-    <div class="flex flex-wrap gap-2">
+    <div class="flex w-full gap-2 md:w-auto">
       <button
         type="button"
-        class="px-4 py-2 text-sm font-medium border border-border rounded-none hover:bg-accent transition-colors"
+        class="flex-1 px-4 py-2 text-sm font-medium border border-border rounded-none hover:bg-accent transition-colors md:flex-none"
         onclick="window.__HERMES_COOKIE_DECLINE__?.()"
       >
         {m.decline}
       </button>
       <button
         type="button"
-        class="px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-none hover:bg-primary/90 transition-colors"
+        class="flex-1 px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-none hover:bg-primary/90 transition-colors md:flex-none"
         onclick="window.__HERMES_COOKIE_ACCEPT__?.()"
       >
         {m.accept}
