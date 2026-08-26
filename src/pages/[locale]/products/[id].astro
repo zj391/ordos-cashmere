@@ -562,7 +562,7 @@ function inferFromText(p: typeof product, locale: string): { colors: string; gen
   return result;
 }
 
-function listColors(p: typeof product, locale: string = 'en'): string {
+function listColors(p: typeof product): string {
   const raw = Array.isArray(p.colors)
     ? p.colors.join(', ')
     : String(p.colorsOffered || p.colors || '');
@@ -571,8 +571,9 @@ function listColors(p: typeof product, locale: string = 'en'): string {
     const items = s.split(/[,/]/).map((x) => x.trim()).filter(Boolean);
     return items.length > 4 ? `${items.slice(0, 4).join(', ')} +${items.length - 4}` : s;
   }
-  // Fallback: infer from text + pattern signals (locale-aware)
-  return inferFromText(p, locale).colors;
+  // Do not turn generic catalogue language or category defaults into an
+  // indexable colour claim. Product copy and metadata use only listed values.
+  return '';
 }
 function listSizes(p: typeof product, locale: string = 'en'): string {
   const raw = Array.isArray(p.sizes) ? p.sizes.join(', ') : String(p.sizes || '');
@@ -645,8 +646,7 @@ const HIGHLIGHT_LABELS: Record<string, Record<string, string>> = {
   kr: { title: '제품 하이라이트', fiber: '원사', colors: '색상', style: '스타일' },
 };
 const hl = HIGHLIGHT_LABELS[locale] || HIGHLIGHT_LABELS.en;
-const colorCount = Array.isArray(product.colors) ? product.colors.length : 0;
-const colorText = colorCount > 1 ? String(colorCount) + ' colors' : 'Custom colors';
+const colorText = listColors(product);
 const styleWords =
   String(product.name || '')
     .replace(/^(Premium|Wholesale|China|Inner Mongolia|Ordos|High Quality|European Style|Europe Style|Classic|New|Hot|Best|2024|2025|2026)\s+/i, '')
@@ -658,7 +658,7 @@ const highlights = [
   { label: hl.fiber, value: [product.material, product.micron].filter(Boolean).join(' · ') },
   { label: hl.colors, value: colorText },
   { label: hl.style, value: styleWords || product.name },
-];
+].filter((highlight) => Boolean(highlight.value));
 
 // Per-locale TDK
 
