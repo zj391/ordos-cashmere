@@ -24,6 +24,13 @@ function duplicateCount(values) {
   return [...counts.values()].filter((count) => count > 1).reduce((sum, count) => sum + count, 0);
 }
 
+const FACET_SIGNALS = {
+  color: /\b(?:Black|White|Grey|Gray|Beige|Navy|Blue|Green|Red|Pink|Brown|Purple|Camel|Ivory|Natural|Multicolor)\b/i,
+  yarnStructure: /\b(?:single[-\s]?strand|(?:2|two)[-\s]?ply|(?:3|three)[-\s]?ply)\b/i,
+  packaging: /\b(?:Cone|Hank)\s+\d+(?:\.\d+)?\s*g\b/i,
+  weight: /\b\d+(?:\s*[-–]\s*\d+)?\s*g(?:\s+per\s+\d+\s*m\s*cone)?\b/i,
+};
+
 async function productPages(locale) {
   const dir = path.join(DIST, locale, 'products');
   const slugs = await fs.readdir(dir, { withFileTypes: true });
@@ -55,6 +62,10 @@ for (const locale of LOCALES) {
       max: Math.max(...titleLengths),
       average: Number((titleLengths.reduce((sum, length) => sum + length, 0) / titleLengths.length).toFixed(1)),
     },
+    facetCoverage: Object.fromEntries(Object.entries(FACET_SIGNALS).map(([facet, expression]) => [
+      facet,
+      rows.filter((row) => expression.test(`${row.title} ${row.h1}`)).length,
+    ])),
     samples: rows.slice(0, 2).map((row) => ({ title: row.title, h1: row.h1 })),
   };
 }

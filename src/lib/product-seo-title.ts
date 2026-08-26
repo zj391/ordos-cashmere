@@ -1,6 +1,7 @@
 /**
- * 产品标题 SEO 规则：仅组合目录中已存在的名称、材质、细度、款式、版型、织法、
- * 人群、季节与尺寸字段；不生成认证、价格、MOQ、库存、交期、产能、地区或性能主张。
+ * 产品标题 SEO 规则：仅组合目录中已存在的名称、材质、细度、颜色、款式、版型、织法、
+ * 纱线结构、包装、重量、人群、季节与尺寸字段；不生成认证、价格、MOQ、库存、交期、
+ * 产能、地区或性能主张。
  */
 export type ProductTitleInput = {
   name?: unknown;
@@ -12,6 +13,9 @@ export type ProductTitleInput = {
   gender?: unknown;
   season?: unknown;
   sizes?: unknown;
+  colors?: unknown;
+  packaging?: unknown;
+  weight_g?: unknown;
 };
 
 type TitleLocale = 'en' | 'de' | 'fr' | 'ja' | 'kr' | 'cn';
@@ -99,6 +103,44 @@ function dimensionFacet(value: unknown): string {
   return raw.match(/\b(?:XXS|XS|S|M|L|XL|XXL|XXXL)(?:\s*\/\s*(?:XXS|XS|S|M|L|XL|XXL|XXXL)){0,5}\b/i)?.[0] || '';
 }
 
+function colorFacet(value: unknown): string {
+  const raw = clean(value)
+    .replace(/\bcolor cards?\b/ig, '')
+    .replace(/\bcustomi[sz]e?\b/ig, '')
+    .replace(/[，,]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  if (!canUseFacet(raw) || /多种颜色可选|multiple colors?|various colors?/i.test(raw)) return '';
+  const color = raw.match(/\b(?:black|white|grey|gray|beige|navy|blue|green|red|pink|brown|purple|camel|ivory|natural|multicolor)\b/i)?.[0];
+  return color ? color.replace(/^./, (letter) => letter.toUpperCase()) : '';
+}
+
+function constructionFacet(value: unknown): string {
+  const raw = clean(value);
+  if (!canUseFacet(raw)) return '';
+  const ply = raw.match(/\b(?:single[-\s]?strand|(?:2|two)[-\s]?ply|(?:3|three)[-\s]?ply)\b/i)?.[0];
+  return ply ? ply.replace(/\s+/g, ' ') : '';
+}
+
+function packagingFacet(value: unknown): string {
+  const raw = clean(value)
+    .replace(/\/?\s*custom packaging/ig, '')
+    .replace(/[，,;]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  if (!canUseFacet(raw)) return '';
+  const cone = raw.match(/(\d+(?:\.\d+)?\s*g)\s*cone\b/i)?.[1];
+  const hank = raw.match(/(\d+(?:\.\d+)?\s*g)\s*hank\b/i)?.[1];
+  return [cone ? `Cone ${cone}` : '', hank ? `Hank ${hank}` : ''].filter(Boolean).join(' / ');
+}
+
+function weightFacet(value: unknown): string {
+  const raw = clean(value);
+  if (!canUseFacet(raw) || /^(details?|description)$/i.test(raw)) return '';
+  const measured = raw.match(/\b\d+(?:\s*[-–]\s*\d+)?\s*g(?:\s+per\s+\d+\s*m\s*cone)?\b/i)?.[0];
+  return measured ? measured.replace(/\s+/g, ' ') : '';
+}
+
 function styleFacets(product: ProductTitleInput): string[] {
   const pattern = clean(product.pattern);
   const collar = clean(product.collar);
@@ -119,6 +161,10 @@ function titleFacets(product: ProductTitleInput, locale: string): string[] {
     canUseFacet(material) && !includesFacet(name, material) ? material : '',
     canUseFacet(micron) && !includesFacet(name, micron) ? micron : '',
     ...styleFacets(product),
+    colorFacet(product.colors),
+    constructionFacet(product.pattern),
+    packagingFacet(product.packaging),
+    weightFacet(product.weight_g),
     audienceFacet(product.gender, locale),
     seasonFacet(product.season, locale),
     dimensionFacet(product.sizes),
@@ -138,7 +184,7 @@ export function buildProductSeoTitle(
   product: ProductTitleInput,
   localizedCategory: string,
   brand = 'DONGXIAO',
-  maxLength = 112,
+  maxLength = 128,
   locale = 'en',
 ): string {
   const category = clean(localizedCategory);

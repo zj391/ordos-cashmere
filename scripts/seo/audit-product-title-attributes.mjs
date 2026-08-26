@@ -6,7 +6,13 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 const catalog = JSON.parse(await fs.readFile(path.join(ROOT, 'src/data/products.json'), 'utf8'));
 const products = catalog.categories.flatMap((category) => category.products.map((product) => ({ ...product, categoryId: category.id })));
 
-const FIELDS = ['knittingTechnology', 'pattern', 'season', 'gender', 'sizes', 'collar', 'weight_g'];
+const TITLE_FIELDS = ['material', 'micron', 'knittingTechnology', 'pattern', 'season', 'gender', 'sizes', 'collar'];
+const CANDIDATE_FIELDS = [
+  'color', 'colors', 'colorFamily', 'sleeve', 'sleeveType', 'closure', 'pockets',
+  'craft', 'craftsmanship', 'finish', 'weave', 'usage', 'use', 'occasion',
+  'packing', 'packaging', 'unit', 'weight_g',
+];
+const FIELDS = [...new Set([...TITLE_FIELDS, ...CANDIDATE_FIELDS])];
 const clean = (value) => String(value ?? '').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
 const topValues = (values, limit = 16) => {
   const count = new Map();
@@ -20,6 +26,9 @@ const allowedTags = tagValues.filter((tag) => allowedTagPattern.test(tag));
 
 const report = {
   totalProducts: products.length,
+  availableProductKeys: [...new Set(products.flatMap((product) => Object.keys(product)))].sort(),
+  titleFieldsAlreadyUsed: TITLE_FIELDS,
+  candidateFieldsNotYetUsed: CANDIDATE_FIELDS,
   fieldCoverage: Object.fromEntries(FIELDS.map((field) => [field, products.filter((product) => clean(product[field])).length])),
   topFieldValues: Object.fromEntries(FIELDS.map((field) => [field, topValues(products.map((product) => product[field]))])),
   tagCoverage: {
