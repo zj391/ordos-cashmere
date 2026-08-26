@@ -638,15 +638,27 @@ const productExtraText = '';
 
 // Per-product unique highlights (SEO differentiation: breaks category-template duplication)
 const HIGHLIGHT_LABELS: Record<string, Record<string, string>> = {
-  en: { title: 'Product Highlights', fiber: 'Fiber', colors: 'Color options', style: 'Style' },
-  cn: { title: '产品亮点', fiber: '纤维', colors: '颜色', style: '款式' },
-  de: { title: 'Produkthighlights', fiber: 'Faser', colors: 'Farben', style: 'Stil' },
-  fr: { title: 'Points forts du produit', fiber: 'Fibre', colors: 'Couleurs', style: 'Style' },
-  ja: { title: '製品ハイライト', fiber: '繊維', colors: 'カラー', style: 'スタイル' },
-  kr: { title: '제품 하이라이트', fiber: '원사', colors: '색상', style: '스타일' },
+  en: { title: 'Product Highlights', fiber: 'Fiber', colors: 'Color options', style: 'Style', packaging: 'Packaging', weight: 'Listed weight' },
+  cn: { title: '产品亮点', fiber: '纤维', colors: '颜色', style: '款式', packaging: '包装', weight: '已列重量' },
+  de: { title: 'Produkthighlights', fiber: 'Faser', colors: 'Farben', style: 'Stil', packaging: 'Verpackung', weight: 'Angegebenes Gewicht' },
+  fr: { title: 'Points forts du produit', fiber: 'Fibre', colors: 'Couleurs', style: 'Style', packaging: 'Conditionnement', weight: 'Poids indiqué' },
+  ja: { title: '製品ハイライト', fiber: '繊維', colors: 'カラー', style: 'スタイル', packaging: '包装', weight: '記載重量' },
+  kr: { title: '제품 하이라이트', fiber: '원사', colors: '색상', style: '스타일', packaging: '포장', weight: '기재 중량' },
 };
 const hl = HIGHLIGHT_LABELS[locale] || HIGHLIGHT_LABELS.en;
 const colorText = listColors(product);
+function listedPackaging(p: typeof product): string {
+  const raw = cleanAttr(p.packaging);
+  const matches = raw.match(/\b\d+(?:\.\d+)?\s*g\s*(?:cone|hank)\b/ig) || [];
+  return [...new Set(matches.map((match) => match.replace(/\s+/g, ' ').trim()))].join(' / ');
+}
+function listedWeight(p: typeof product): string {
+  const raw = cleanAttr(p.weight_g);
+  const matched = raw.match(/\b\d+(?:\s*[-–]\s*\d+)?\s*g(?:\s+per\s+\d+\s*m\s*cone)?\b/i)?.[0] || '';
+  return matched.replace(/\s+/g, ' ');
+}
+const packagingText = listedPackaging(product);
+const weightText = listedWeight(product);
 const styleWords =
   String(product.name || '')
     .replace(/^(Premium|Wholesale|China|Inner Mongolia|Ordos|High Quality|European Style|Europe Style|Classic|New|Hot|Best|2024|2025|2026)\s+/i, '')
@@ -658,6 +670,8 @@ const highlights = [
   { label: hl.fiber, value: [product.material, product.micron].filter(Boolean).join(' · ') },
   { label: hl.colors, value: colorText },
   { label: hl.style, value: styleWords || product.name },
+  { label: hl.packaging, value: packagingText },
+  { label: hl.weight, value: weightText },
 ].filter((highlight) => Boolean(highlight.value));
 
 // Per-locale TDK
