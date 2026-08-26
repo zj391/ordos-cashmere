@@ -80,9 +80,9 @@ export const SEO: Record<Locale, LocaleSEO> = {
     region: 'Global',
     market: 'Global / Europe / North America',
     home: {
-      title: 'Cashmere Sourcing | Raw Material, Yarn, Fabric & Knitwear | DONGXIAO®',
-      description: 'Explore cashmere raw material, yarn, fabric and knitwear sourcing. Share a product reference, quantity, destination and required specifications for a written discussion.',
-      keywords: ['cashmere manufacturer', 'B2B cashmere supplier', 'Ordos cashmere factory', 'Inner Mongolia cashmere', 'wholesale cashmere yarn', 'cashmere OEM', 'luxury knitwear manufacturer', 'Europe cashmere supplier', 'USA cashmere wholesale', 'erdos cashmere manufacturer', 'erdos clothing website', 'erdos cashmere clothing', 'ordos cashmere clothing'],
+      title: 'Ordos Cashmere Product Catalogue | Raw Material, Yarn, Fabric & Knitwear | DONGXIAO®',
+      description: 'Explore the DONGXIAO Ordos cashmere product catalogue for raw material, yarn, fabric, knitwear, scarves and accessories. Share a product reference, quantity, destination and required specifications for a written discussion.',
+      keywords: ['cashmere manufacturer', 'B2B cashmere supplier', 'Ordos cashmere catalogue', 'Ordos cashmere scarves', 'Inner Mongolia cashmere', 'wholesale cashmere yarn', 'cashmere OEM', 'luxury knitwear manufacturer', 'Europe cashmere supplier', 'USA cashmere wholesale', 'erdos cashmere manufacturer', 'erdos clothing website', 'erdos cashmere clothing', 'ordos cashmere clothing'],
     },
     rawMaterial: {
       title: 'Raw Cashmere Material Sourcing | White, Brown & Purple Fiber | DONGXIAO®',
@@ -317,9 +317,9 @@ export const SEO: Record<Locale, LocaleSEO> = {
       keywords: getSeoKeywords('ja', 'yarn'),
     },
     garmentOem: {
-      title: 'カシミア衣料 OEM/ODM | 調達相談 | DONGXIAO®',
+      title: 'カシミア衣料・コート OEM/ODM | 調達相談 | DONGXIAO®',
       description: '製品参考、仕様、数量、仕向地、サンプル、必要書類を含むカシミア衣料 OEM/ODM の書面相談。',
-      keywords: getSeoKeywords('ja', 'garment'),
+      keywords: [...getSeoKeywords('ja', 'garment'), 'ODM コート', 'カシミアコート OEM'],
     },
     factory: {
       title: '工場の強み | 23年以上カシミア生産 | オルドス工業団地 38,000㎡',

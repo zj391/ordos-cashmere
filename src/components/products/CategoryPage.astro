@@ -71,28 +71,28 @@ const products = getRepresentativeProductsByCategory(catId);
 const categoryGuides: Record<string, Array<{ href: string; en: string; cn: string }>> = {
   hats: [
     { href: `/${locale}/cashmere-grades`, en: 'Cashmere Grade Guide', cn: '羊绒等级指南' },
-    { href: `/${locale}/color-cards`, en: 'Cashmere Color Card', cn: '羊绒色卡指南' },
     { href: `/${locale}/blog`, en: 'Cashmere Sourcing Blog', cn: '羊绒采购博客' },
+    { href: `/${locale}/quality-control`, en: 'Quality-Control Preparation', cn: '质控准备指南' },
   ],
   scarves: [
     { href: `/${locale}/cashmere-grades`, en: 'Cashmere Grade Guide', cn: '羊绒等级指南' },
-    { href: `/${locale}/dehaired-cashmere`, en: 'Dehaired Cashmere Tops', cn: '无毛绒指南' },
     { href: `/${locale}/blog`, en: 'Cashmere Sourcing Blog', cn: '羊绒采购博客' },
+    { href: `/${locale}/quality-control`, en: 'Quality-Control Preparation', cn: '质控准备指南' },
   ],
   sweaters: [
     { href: `/${locale}/garment-oem`, en: 'Garment OEM/ODM Process', cn: '成衣代工流程' },
-    { href: `/${locale}/cashmere-yarn-types`, en: 'Cashmere Yarn Types & Counts', cn: '纱线支数指南' },
-    { href: `/${locale}/factory`, en: 'Ordos Factory Tour', cn: '鄂尔多斯工厂介绍' },
+    { href: `/${locale}/yarn-fabric`, en: 'Yarn & Fabric Sourcing', cn: '纱线与面料采购' },
+    { href: `/${locale}/quality-control`, en: 'Quality-Control Preparation', cn: '质控准备指南' },
   ],
   accessories: [
-    { href: `/${locale}/cashmere-yarn-types`, en: 'Cashmere Yarn Types & Counts', cn: '纱线支数指南' },
-    { href: `/${locale}/color-cards`, en: 'Cashmere Color Card', cn: '羊绒色卡指南' },
+    { href: `/${locale}/quality-control`, en: 'Quality-Control Preparation', cn: '质控准备指南' },
     { href: `/${locale}/blog`, en: 'Cashmere Sourcing Blog', cn: '羊绒采购博客' },
+    { href: `/${locale}/shipping-logistics`, en: 'Shipping Preparation', cn: '物流准备指南' },
   ],
   yarn: [
-    { href: `/${locale}/cashmere-yarn-types`, en: 'Cashmere Yarn Types & Counts', cn: '纱线支数指南' },
     { href: `/${locale}/raw-material`, en: 'Raw Cashmere Material', cn: '羊绒原料指南' },
     { href: `/${locale}/yarn-fabric`, en: 'Yarn & Fabric Capabilities', cn: '纱线面料能力' },
+    { href: `/${locale}/quality-control`, en: 'Quality-Control Preparation', cn: '质控准备指南' },
   ],
 };
 
@@ -443,9 +443,9 @@ const categorySeoTopics: Record<string, Record<string, { heading: string; keywor
   en: {
     hats: { heading: 'Cashmere Hats, Beanies, Berets & Caps: Ribbed, Cable Knit & Jacquard Styles', keywords: ['cashmere hats', 'cashmere beanies', 'cashmere berets', 'cashmere caps', 'ribbed cashmere hats', 'cable knit beanies'] },
     scarves: { heading: 'Cashmere Scarves, Wraps, Shawls & Ponchos: Woven, Printed & Jacquard Styles', keywords: ['cashmere scarves', 'cashmere wraps', 'cashmere shawls', 'cashmere ponchos', 'woven cashmere scarves', 'jacquard cashmere wraps'] },
-    sweaters: { heading: 'Cashmere Sweaters, Cardigans & Vests: Crew Neck, V-Neck & Cable Knit Styles', keywords: ['cashmere sweaters', 'cashmere cardigans', 'cashmere vests', 'crew neck cashmere sweaters', 'v neck cashmere cardigans', 'cable knit cashmere'] },
+    sweaters: { heading: 'Cashmere Sweaters, Turtlenecks, Cardigans & Vests: Crew Neck, V-Neck & Cable Knit Styles', keywords: ['cashmere sweaters', 'cashmere turtleneck', 'turtleneck cashmere sweater', 'cashmere cardigans', 'cashmere vests', 'crew neck cashmere sweaters', 'v neck cashmere cardigans', 'cable knit cashmere'] },
     accessories: { heading: 'Cashmere Leggings, Gloves, Socks & Knit Accessories: Product Catalog', keywords: ['cashmere leggings', 'cashmere gloves', 'cashmere socks', 'cashmere knit accessories', 'cashmere tights', 'cashmere pants'] },
-    yarn: { heading: 'Cashmere Yarn & Fiber: Cone, Hank, Knitting & Weaving Product Records', keywords: ['cashmere yarn', 'cashmere fiber', 'cashmere yarn cone', 'cashmere yarn hank', 'cashmere knitting yarn', 'cashmere weaving yarn'] },
+    yarn: { heading: 'Cashmere Yarn & Fiber: Worsted, Woollen, Cone, Hank, Knitting & Weaving Product Records', keywords: ['cashmere yarn', 'cashmere fiber', 'worsted cashmere yarn', 'woollen cashmere yarn', 'cashmere yarn cone', 'cashmere yarn hank', 'cashmere knitting yarn', 'cashmere weaving yarn'] },
   },
   cn: {
     hats: { heading: '羊绒帽子、毛线帽、贝雷帽与鸭舌帽：罗纹、麻花与提花款式', keywords: ['羊绒帽子', '羊绒毛线帽', '羊绒贝雷帽', '羊绒鸭舌帽', '罗纹羊绒帽', '麻花羊绒帽'] },
@@ -457,7 +457,7 @@ const categorySeoTopics: Record<string, Record<string, { heading: string; keywor
   de: {
     hats: { heading: 'Kaschmir-Mützen, Beanies, Baskenmützen & Caps: Ripp-, Zopf- und Jacquard-Stile', keywords: ['Kaschmir Mützen', 'Kaschmir Beanies', 'Kaschmir Baskenmützen', 'Kaschmir Caps'] },
     scarves: { heading: 'Kaschmir-Schals, Wraps, Tücher & Ponchos: Gewebte, bedruckte und Jacquard-Stile', keywords: ['Kaschmir Schals', 'Kaschmir Tücher', 'Kaschmir Ponchos', 'Kaschmir Wraps'] },
-    sweaters: { heading: 'Kaschmir-Pullover, Cardigans & Westen: Rundhals-, V-Ausschnitt- und Zopfstile', keywords: ['Kaschmir Pullover', 'Kaschmir Cardigans', 'Kaschmir Westen', 'Zopfstrick Kaschmir'] },
+    sweaters: { heading: 'Kaschmir-Pullover, Turtlenecks, Cardigans & Westen: Rundhals-, V-Ausschnitt- und Zopfstile', keywords: ['Kaschmir Pullover', 'Kaschmir Turtleneck', 'Kaschmir Cardigans', 'Kaschmir Westen', 'Zopfstrick Kaschmir'] },
     accessories: { heading: 'Kaschmir-Leggings, Handschuhe, Socken & Strick-Accessoires: Produktkatalog', keywords: ['Kaschmir Leggings', 'Kaschmir Handschuhe', 'Kaschmir Socken', 'Kaschmir Accessoires'] },
     yarn: { heading: 'Kaschmirgarn & Fasern: Konen, Stränge sowie Strick- und Webprodukte', keywords: ['Kaschmirgarn', 'Kaschmir Fasern', 'Kaschmir Konen', 'Kaschmir Stränge'] },
   },
