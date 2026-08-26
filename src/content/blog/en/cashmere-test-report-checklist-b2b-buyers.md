@@ -89,7 +89,7 @@ Use precise questions that a factory, yarn spinner, or trading partner can answe
 - Which destination-market labels are the buyer responsible for approving, and when is artwork locked?
 - If a result falls outside the written tolerance, what re-test, rework, credit, or rejection process applies?
 
-For an RFQ that starts from raw fiber or top, visit [Cashmere Raw Material](/en/raw-material/). For yarn construction and material discussions, use [Cashmere Yarn & Fabric](/en/yarn-fabric/). For an apparel technical pack, label review, and production sequence, begin with [Cashmere Garment OEM/ODM](/en/garment-oem/).
+For an RFQ that starts from raw fiber or top, visit [Cashmere Raw Material](/en/raw-material/). For yarn construction and material discussions, use the [Cashmere Yarn Product Records](/en/products/yarn/). For an apparel technical pack, label review, and production sequence, begin with [Cashmere Garment OEM/ODM](/en/garment-oem/).
 
 ## Final takeaway
 

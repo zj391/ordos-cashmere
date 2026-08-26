@@ -231,7 +231,7 @@ const blogFAQ = extractBlogFAQ(post.body, 4, locale);
       {post.data.relatedProducts && post.data.relatedProducts.length > 0 && (() => {
         const links: { id: string; label: string; href: string }[] = [
           { id: 'raw_material', label: locale === 'cn' ? '羊绒原料 — 白绒/青绒/紫绒' : 'Cashmere Raw Material — white, brown, purple', href: `/${locale}/raw-material` },
-          { id: 'yarn_fabric', label: locale === 'cn' ? '羊绒纱线/面料 — 精纺粗纺' : 'Cashmere Yarn & Fabric — worsted, woolen', href: `/${locale}/yarn-fabric` },
+          { id: 'yarn_fabric', label: locale === 'cn' ? '羊绒纱线产品记录 — 精纺、粗纺、筒纱与绞纱' : 'Cashmere Yarn Product Records — worsted, woollen, cone & hank', href: `/${locale}/products/yarn/` },
           { id: 'garment_oem', label: locale === 'cn' ? '羊绒成衣 OEM — 针织代工' : 'Cashmere Garment OEM/ODM', href: `/${locale}/garment-oem` },
           { id: 'factory', label: locale === 'cn' ? '鄂尔多斯工厂介绍' : 'Ordos Factory Tour', href: `/${locale}/factory` },
           { id: 'cashmere_yarn', label: locale === 'cn' ? '纱线支数指南' : 'Cashmere Yarn Types & Counts', href: `/${locale}/cashmere-yarn-types` },
