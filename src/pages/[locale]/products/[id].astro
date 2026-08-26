@@ -980,14 +980,7 @@ const productSchema = {
 
   manufacturer: {
     '@type': 'Organization',
-    name: SITE_INFO.legalName,
-    alternateName: SITE_INFO.name,
-    foundingDate: `${SITE_INFO.foundingYear}`,
-    address: {
-      '@type': 'PostalAddress',
-      addressCountry: SITE_INFO.country,
-      addressLocality: SITE_INFO.city,
-    },
+    name: SITE_INFO.name,
     url: SITE_URL,
   },
 

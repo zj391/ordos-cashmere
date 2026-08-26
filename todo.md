@@ -361,3 +361,13 @@
 - [x] 提交并同步本轮经验证的高价值搜索意图 SEO 优化至 `master`。
 
 > 审计结论（2026-08-26）：标题构建器已使用独立 `gender` 与 `season` 字段，但 582 条目录记录中有 307 条带受限语义标签，部分记录的这两个独立字段为空。现仅将完全匹配的人群（women/men/unisex/kids/ladies/girls/boys/baby）和季节（spring/summer/autumn/fall/winter/year-round）标签作为后备来源；不使用 `Bestseller`、`OEM/ODM` 或任何商业标签。构建后六语产品标题中均存在数百个真实人群或季节语义，代表产品的 canonical 与 hreflang 保持正常。
+
+# 产品可见规格、Product Schema 与支持页面发现路径一致性 SEO 优化
+
+- [x] 审计产品详情页中可见规格、产品标题、Product JSON-LD、图片替代文本和相关产品发现入口的实际目录字段一致性。
+- [x] 审计可索引支持页面是否仍指向 noindex 辅助页、重复主题或缺乏真实产品/核验上下文的内部目标。
+- [x] 实施最小范围的真实规格或索引内链一致性修复，不新增商业条款、认证、价格、库存、交期、物流或付款承诺。
+- [x] 验证六语 HTML、H1、canonical、hreflang、robots、Product/FAQ/Article Schema、sitemap、构建输出与五个 API 入口。
+- [x] 提交并同步本轮经验证的产品与支持页 SEO 优化至 `master`。
+
+> 审计结论（2026-08-26）：产品 Product JSON-LD 已保持名称、材料、目录细度与可见标题一致，但制造商对象仍绕过全站策略输出成立年份、法律实体和地址字段。现已将该对象收敛为组织名称与站点 URL；代表性产品的六语静态 JSON-LD 均保留 Product、manufacturer、material 与 Fiber micron，移除字段命中均为 0，canonical 与 hreflang 保持正常。
