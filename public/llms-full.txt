@@ -2,7 +2,7 @@
 
 > Premium B2B cashmere manufacturer and wholesale supplier from Ordos, Inner Mongolia, China. 23+ years expertise, OEKO-TEX certified, MOQ 100pcs, 7-day sampling, FOB Tianjin. Trusted by 500+ brands worldwide.
 
-This file is the full-text counterpart of /llms.txt. It contains all site pages, the complete 591-product catalog (with materials/micron/MOQ), and every published blog article. Generated 2026-08-20.
+This file is the full-text counterpart of /llms.txt. It contains all site pages, the complete 591-product catalog (with materials/micron/MOQ), and every published blog article. Generated 2026-08-26.
 
 ## Site Map
 
@@ -68,6 +68,247 @@ Total products: see /en/products/ for the full 591-SKU catalog (live, SSR'd from
 Categories: Cashmere Hats & Beanies, Cashmere Sweaters & Knitwear, Cashmere Scarves & Wraps, Cashmere Accessories, Cashmere Yarn & Fiber
 
 ## Blog Articles (English, full text)
+
+### Cashmere Test Report Checklist: How B2B Buyers Verify Fiber Claims
+
+*Published 2026-08-25*
+
+A practical cashmere test-report checklist for brand buyers: what to request, how to read fiber data, and when to verify labels before production.
+
+## Start with a claim that can be tested
+
+“Cashmere” is not a quality grade, a hand-feel description, or a substitute for a fiber-content declaration. For a buyer developing a private-label knitwear range, it should be treated as a claim that needs to match a product specification, a batch record, and—where the commercial risk warrants it—an independent test result.
+
+That distinction matters most when a sample becomes a production order. A beautifully soft swatch can help to approve color and handle, but it does not on its own establish composition, fiber-diameter distribution, or whether a later bulk lot matches the approved standard. Build the verification process into the purchase specification before sampling, rather than trying to reconstruct it after goods are packed.
+
+For U.S.-bound wool products, the Federal Trade Commission explains that the name **cashmere** is reserved for the fine, dehaired undercoat fiber of the cashmere goat. Its guidance also describes a 19-micron limit for average cashmere fiber diameter, a limit on fibers above 30 microns, and a maximum coefficient of variation around the mean of 24%. These are labeling-definition requirements—not a universal luxury ranking system—so buyers should not turn a single micron number into a shortcut for every performance or price decision. [1](https://www.ftc.gov/business-guidance/resources/cachet-cashmere-complying-wool-products-labeling-act)
+
+> **Buyer principle:** Match every marketing or label claim to a defined specification, a document owner, and a batch or style reference.
+
+## The cashmere test-report checklist
+
+Request documents in layers. The exact package varies by product, market, and contract, but the following checklist creates a practical starting point for raw fiber, yarn, and finished-garment sourcing.
+
+| Checkpoint | What to request | What it helps establish | Practical buyer question |
+| --- | --- | --- | --- |
+| Commercial specification | Signed product specification with composition, yarn count, gauge, weight, color, tolerances, and care-label wording | The standard against which production is approved | “Which approved sample and revision does this bulk lot follow?” |
+| Fiber identity and content | Independent lab report or agreed testing plan for composition and, where appropriate, cashmere identification | Whether the commercial claim is supported by testing | “Does the report identify both the method and the tested sample?” |
+| Diameter data | Average fiber diameter plus variation data, if fiber fineness is part of the contract | Consistency with the agreed raw-material specification | “Is this a lot-specific result or a general capability statement?” |
+| Lot traceability | Lot number, supplier/buying-station records, dehairing or spinning batch references, and material movement record | Whether the documents relate to the actual goods | “Can the mill link this cone, fabric roll, or garment lot to its source material?” |
+| Finished-product controls | Measurement chart, shade approval, appearance/defect standard, and final-inspection record | Whether the finished item meets the approved production specification | “Who signs the release before shipment, and what is the rework path?” |
+| Claim and label review | Artwork or label proof showing fiber percentages, origin statement, care instructions, and responsible business identity as required by the destination market | That consumer-facing claims match the approved composition | “Has the label been checked for the destination market before printing?” |
+
+This is a sourcing checklist, not a substitute for market-specific legal advice or a laboratory method selection. For a U.S. program, the FTC notes that importers and sellers remain responsible for accurate labels and that periodic testing by a qualified independent laboratory is the best way to help assure fiber-content accuracy. [1](https://www.ftc.gov/business-guidance/resources/cachet-cashmere-complying-wool-products-labeling-act)
+
+## Read the test method before comparing a number
+
+An average micron result is only useful when the buyer knows what was sampled and how it was measured. ASTM D2130-22 describes a microprojection procedure for determining average fiber diameter and diameter variation for wool and other animal fibers, including cashmere, and states that the method is suitable for acceptance testing of commercial shipments when the parties use comparable sampling and testing. [2](https://store.astm.org/d2130-22.html)
+
+The report should therefore be read as a chain rather than an isolated value:
+
+1. **Sample identity.** Confirm the laboratory sample ID, lot number, material form, date received, and any sealing or chain-of-custody information. A result from a development lot cannot automatically be carried over to every future production batch.
+2. **Method and scope.** Ask whether the report measures diameter, fiber identity, quantitative composition, or more than one property. One test does not necessarily answer every question.
+3. **Result and variation.** Record the reported average together with the measure of variation used by the laboratory. Variation has commercial meaning because it affects how consistently a specification can be met.
+4. **Decision rule.** State in the purchase order what happens when the result is outside tolerance: hold for review, re-test an agreed retained sample, downgrade, rework, or reject. Do not leave the consequence to a post-shipment negotiation.
+
+The FTC further notes that trained experts can distinguish cashmere from sheep’s wool by optical or electron microscopy following AATCC or ASTM procedures, and that diameter alone is not the complete distinction because some sheep produce very fine fibers as well. [1](https://www.ftc.gov/business-guidance/resources/cachet-cashmere-complying-wool-products-labeling-act) This is why a supplier’s verbal “micron grade” is not a complete identity test.
+
+## Separate fiber data from product performance
+
+Fiber fineness, length, spinning construction, knit gauge, finishing, garment weight, dyeing, and use conditions all contribute to the garment a customer receives. A lower reported average fiber diameter may support a particular raw-material specification, but it does not automatically guarantee less pilling, better recovery, warmer wear, or a higher retail position.
+
+For product development, translate a fiber requirement into an end-product brief. A good brief may specify the composition declaration, target yarn construction, gauge, garment weight, dimensional tolerances, pilling-test requirement where commercially relevant, approved hand-feel reference, and wash/care pathway. The corresponding factory release should then tie the finished style back to the approved sample and raw-material lot records.
+
+Buyers comparing yarn should also ask for the commercial unit and processing stage. A test result on dehaired fiber, a yarn technical sheet, and a finished-sweater test report are related documents, but they are not interchangeable. See the site’s [cashmere grades guide](/en/cashmere-grades/) for a buyer-oriented starting point on fiber descriptors, then ask the supplier to define the actual tolerance and test plan in the specification.
+
+## Treat sustainability and traceability claims as evidence requests
+
+Responsible-sourcing language should be as specific as a composition claim. It is more useful to ask “which standard, which scope, which site, which certificate period, and which transaction records?” than to accept broad language such as “eco-friendly” or “fully traceable.”
+
+Two industry reference points illustrate why scope matters. The Good Cashmere Standard describes an independent standard intended to address goat welfare, herders’ working conditions, and environmental protection, with independent audits at farms and production sites. [3](https://thegoodcashmerestandard.org/) The Sustainable Fibre Alliance’s Animal Fibre Standard identifies five principles: animal welfare, biodiversity and responsible land use, decent work, fiber-quality improvement, and an effective management system. [4](https://sustainablefibre.org/the-sfa-animal-fibre-standard/)
+
+Neither reference means that every cashmere supplier or every lot is certified. A buyer should only make a certification-related product claim after checking the certificate holder, scope, validity, material flow, and any applicable transaction documentation. If certification is not part of the program, the supplier can still document traceability through lot records, processing records, and an agreed audit or disclosure process; the claim should describe exactly that evidence and no more.
+
+## Build the review into three purchase gates
+
+The most workable process is not to demand every document at the end. Instead, place the right review at three points in the buying cycle.
+
+| Purchase gate | Buyer approval focus | Documents to retain |
+| --- | --- | --- |
+| Before sampling | Commercial intent and product definition | Technical pack, target composition, intended market, test-plan request, sample brief |
+| Before bulk production | Material choice and claim readiness | Approved sample, bill of materials, lot references, lab-plan agreement, label proof |
+| Before shipment | Conformity of finished goods and shipment documents | Final inspection record, packing list, final label artwork, lot traceability file, any agreed test reports |
+
+This sequence reduces a common B2B failure mode: approving samples for appearance while leaving fiber verification, label copy, and responsibility for non-conforming results undecided until the delivery window is already closing.
+
+## Questions to send with a quotation request
+
+Use precise questions that a factory, yarn spinner, or trading partner can answer in writing:
+
+- What is the proposed composition, and what evidence supports it for the production lot?
+- Which material lot or yarn lot will be used for the sample, and how will bulk lots be identified?
+- Which test methods are proposed for composition, fiber identity, or diameter if the contract requires them?
+- Does the quoted price include the agreed test plan, retained samples, and a final inspection record?
+- Which destination-market labels are the buyer responsible for approving, and when is artwork locked?
+- If a result falls outside the written tolerance, what re-test, rework, credit, or rejection process applies?
+
+For an RFQ that starts from raw fiber or top, visit [Cashmere Raw Material](/en/raw-material/). For yarn construction and material discussions, use [Cashmere Yarn & Fabric](/en/yarn-fabric/). For an apparel technical pack, label review, and production sequence, begin with [Cashmere Garment OEM/ODM](/en/garment-oem/).
+
+## Final takeaway
+
+The strongest cashmere claim is not the broadest one; it is the one a buyer can trace from product specification to batch record and, when needed, to an appropriate independent test. Ask for documents early, identify the exact sample each document represents, and agree the acceptance rule before bulk production begins. This produces a cleaner audit trail for the buyer, clearer instructions for the factory, and more credible product information for the eventual customer.
+
+If you are preparing a cashmere RFQ, [contact our B2B team](/en/contact/) with the product category, target composition, destination market, expected quantity, and required test or documentation package. We can use that brief to structure the sampling and production documentation discussion before a quote is finalized.
+
+## References
+
+1. U.S. Federal Trade Commission, [Cachet of Cashmere: Complying with the Wool Products Labeling Act](https://www.ftc.gov/business-guidance/resources/cachet-cashmere-complying-wool-products-labeling-act).
+2. ASTM International, [D2130-22: Standard Test Method for Diameter of Wool and Other Animal Fibers by Microprojection](https://store.astm.org/d2130-22.html).
+3. Aid by Trade Foundation, [The Good Cashmere Standard](https://thegoodcashmerestandard.org/).
+4. Sustainable Fibre Alliance, [The SFA Animal Fibre Standard](https://sustainablefibre.org/the-sfa-animal-fibre-standard/).
+
+---
+
+### B2B Cashmere Color Card Request: How to Get Samples & Timeline
+
+*Published 2026-08-21*
+
+Learn the exact information to send for a cashmere color card request, how to receive physical samples, and realistic B2B sample timelines from an Ordos source factory.
+
+# B2B Cashmere Color Card Request: How to Get Samples & Timeline
+
+## B2B Cashmere Color Card Request: What to Send, How to Get Samples, and Timeline Expectations
+
+When you're sourcing cashmere for a wholesale collection, a color card is not just a piece of paper—it's the bridge between your design vision and production reality. For B2B buyers, requesting a color card from a cashmere supplier like us (DONGXIAO Cashmere, based in Ordos, Inner Mongolia) is a critical first step. But many importers make costly mistakes: they send vague emails, expect instant samples, or don't know what information accelerates the process.
+
+This guide covers everything you need to know about B2B cashmere color card requests—what to include in your inquiry, how to receive physical samples, and realistic timelines at every stage. By the end, you'll know exactly how to streamline your sampling process and avoid delays.
+
+### Why a Color Card Matters for Wholesale Cashmere
+
+A cashmere color card is a swatch book or fan deck that displays the available dye colors for cashmere yarn, fabric, or finished garments. For a B2B buyer, it serves three purposes:
+
+- **Color accuracy**: Digital screens are notoriously unreliable for matching shades. A physical card ensures your team and our production team see the same color.
+- **Material quality**: You can feel the hand-feel, thickness, and fiber quality—something no PDF can replicate.
+- **Production planning**: Color cards often indicate which shades are standard (low MOQ) versus custom (higher MOQ).
+
+At DONGXIAO, our color cards are built on decades of experience dyeing cashmere in Ordos, where the finest Inner Mongolian fibers are processed. Every card includes 40–60 standard shades, plus options for custom Pantone matching.
+
+### What to Send in Your B2B Color Card Request
+
+To get the right color card and samples quickly, your initial request should be specific. Here’s a checklist of what to include:
+
+1. **Your company profile** – Name, country, and business type (importer, brand, trading company). This helps us tailor the response.
+2. **Product category** – Are you sourcing raw cashmere fiber, yarn, fabric, or finished garments? Each has a different color card format.
+3. **Target fiber specifications** – If known, specify micron count (e.g., 15.5–16.5 microns), yarn count (e.g., 2/28 NM), or fabric weight (e.g., 220 GSM). This narrows down the card.
+4. **Quantity estimates** – Your estimated annual or per-order volume. This informs MOQ discussions and whether we can send a full card or a smaller set.
+5. **Color preferences** – If you have a Pantone reference or a brand palette, mention it. We can highlight matching shades on the card.
+6. **Shipping address** – Physical address for courier delivery. Note that we ship worldwide via DHL, FedEx, or UPS.
+7. **Timeline expectations** – When do you need the card? This helps us prioritize.
+
+**Example inquiry**:
+
+> Subject: Color Card Request for 2/28 NM Cashmere Yarn
+> 
+> Hi, we are a knitwear brand in Japan importing 5,000 kg of cashmere yarn annually. We need a color card for 2/28 NM, 15.5–16.5 micron yarn. Please send standard shades and advise if you can match Pantone 19-4020. Our address is [Tokyo, Japan]. We need this by next month.
+
+### How to Receive Physical Samples: Step-by-Step
+
+Once you send a complete request, here’s what happens at our factory:
+
+- **Step 1: Review and confirm** – Our export team reviews your request within 1–2 business days. We may ask clarifying questions if anything is missing.
+- **Step 2: Prepare the color card** – We compile the relevant card (yarn, fabric, or garment). Standard cards are always in stock.
+- **Step 3: Ship via courier** – We ship using your preferred courier or our default (DHL). You receive a tracking number.
+- **Step 4: Follow-up** – After you review, we schedule a call to discuss color matches, MOQs, and next steps.
+
+**Important**: For standard color cards, we provide them free of charge to serious B2B buyers, but you may be asked to cover shipping costs (approximately $30–$60 depending on destination). For custom color matching (e.g., Pantone-specific shades), a small sample fee may apply, which is fully refundable against your first production order.
+
+### Timeline Expectations for B2B Cashmere Samples
+
+Timelines are the most common source of frustration in B2B sampling. Here’s a realistic breakdown based on our operations in Ordos, Inner Mongolia:
+
+| Sample Type | Preparation Time | Shipping Time (Global) | Total Typical Timeline |
+|-------------|------------------|------------------------|------------------------|
+| Standard color card (stock) | 1–2 business days | 3–5 business days | 4–7 business days |
+| Custom color card (dyed to match) | 5–7 business days | 3–5 business days | 8–12 business days |
+| Yarn sample (from stock) | 2–3 business days | 3–5 business days | 5–8 business days |
+| Fabric swatch (from stock) | 3–5 business days | 3–5 business days | 6–10 business days |
+| Custom yarn/fabric development | 2–4 weeks | 3–5 business days | 2–5 weeks |
+| Garment sample (pre-production) | 3–5 weeks | 3–5 business days | 4–6 weeks |
+
+**Note**: These timelines assume standard specifications and no customs delays. During peak season (May–August for yarn orders), sample preparation may take 2–3 extra days.
+
+### Factors That Affect Sample Speed
+
+Several variables can speed up or delay your sample request:
+
+- **Stock availability**: Standard colors are always in stock. Custom colors require dyeing, which takes longer.
+- **Fiber specifications**: If you request a non-standard micron count (e.g., 14.5 microns), we may need to source special lots, adding 1–2 weeks.
+- **Quantity of samples**: Requesting 20 swatches vs. 5 swatches affects preparation time.
+- **Seasonality**: Our factory runs production year-round, but sample requests spike before trade shows (e.g., Pitti Filati, Première Vision). Plan ahead.
+- **Customs and shipping**: International shipping is usually reliable, but some countries have stricter customs inspections. We recommend using express couriers to minimize delays.
+
+### How to Get Color-Matched Samples (Custom Development)
+
+If your brand requires exact Pantone or brand-specific colors, here’s the process:
+
+1. **Send your color reference** – Provide Pantone codes, hex codes, or physical swatches.
+2. **Lab dip** – We dye small yarn/fabric samples to match your reference. This takes 5–7 business days.
+3. **Approval** – You review lab dips under daylight and artificial light. We may adjust the formula (1–2 rounds).
+4. **Production sample** – Once approved, we create a full-size sample for your bulk order.
+
+**Cost**: Lab dips are typically $50–$100 per color, but at DONGXIAO, we waive this fee for orders above 500 kg per color. All custom sample costs are deducted from your first production invoice.
+
+### What to Do After Receiving Your Color Card
+
+Once your card arrives, don’t just file it away. Use it strategically:
+
+- **Evaluate hand-feel**: Compare the swatch against your quality standards. Cashmere should feel soft, not prickly.
+- **Test color fastness**: Rub the swatch on a white cloth to check for dye transfer. High-quality dyeing (as per OEKO-TEX standards) should not bleed.
+- **Check fiber content**: Ask for a certificate of analysis to confirm 100% cashmere (or your specified blend).
+- **Plan your collection**: Use the card to shortlist colors that align with your market trends.
+
+If you need additional swatches for your design team, just ask—we can send duplicate cards at cost.
+
+### Why Source from DONGXIAO Cashmere in Ordos?
+
+Ordos, Inner Mongolia, is the heart of the world’s finest cashmere production. Our factory has been operating here for 23 years, giving us direct access to premium raw cashmere and deep expertise in dyeing and spinning. We hold ISO9001 for quality management, OEKO-TEX Standard 100 for harmful substances, and GOTS certification for organic cashmere. When you request a color card from us, you’re not just getting colors—you’re getting a partnership with a source factory that controls the entire supply chain, from raw fiber to finished garment.
+
+### Common Mistakes to Avoid in B2B Sample Requests
+
+To ensure a smooth process, steer clear of these pitfalls:
+
+- **Vague requests**: “Send me your color card” without context leads to generic responses. Specify your product category.
+- **Ignoring MOQ**: Some buyers request custom colors without realizing the MOQ (usually 200–300 kg per color for yarn). Ask upfront.
+- **Assuming instant turnaround**: Sampling takes time. Plan 2–4 weeks ahead of your production schedule.
+- **Not checking shipping costs**: International shipping can be $50–$100. Confirm who bears the cost.
+- **Overlooking certifications**: If you need GOTS or OEKO-TEX documentation, request it during sampling, not after production starts.
+
+### Frequently Asked Questions (FAQ)
+
+**Q: How much does a cashmere color card cost?**  
+A: For serious B2B buyers, standard color cards are free. We only ask that you cover shipping (approx. $30–$60). Custom color cards may have a small fee.
+
+**Q: Can I get a digital color card?**  
+A: Yes, we can send a PDF with RGB/CMYK values, but we recommend physical cards for accurate color matching.
+
+**Q: What is the MOQ for cashmere yarn with custom colors?**  
+A: For custom-dyed yarn, the MOQ is typically 200 kg per color. For standard colors, MOQ is lower—around 100 kg.
+
+**Q: How long does a full garment sample take?**  
+A: Pre-production garment samples take 3–5 weeks, including pattern making and fitting. Rush services may be available at additional cost.
+
+**Q: Do you provide lab dip samples for free?**  
+A: We offer free lab dips for orders above 500 kg per color. Otherwise, a nominal fee applies and is refundable with your first order.
+
+### Ready to Request Your Cashmere Color Card?
+
+Now you know exactly what to send, how to get samples, and what to expect in terms of timing. The next step is simple: prepare your request with the details outlined above, and reach out to our export team.
+
+At DONGXIAO Cashmere, we’re committed to helping you build a successful cashmere collection with high-quality materials from Ordos, Inner Mongolia. Whether you need a standard color card, custom color matching, or full garment sampling, we’re here to support you.
+
+**[Contact us today]** to start your color card request. Include your product category, target specifications, and shipping address—we’ll respond within 1–2 business days with a tailored solution. Your perfect cashmere collection starts with a single swatch.
+
+---
 
 ### Cashmere Micron Count Guide: 14.5-19.5μm for B2B Buyers
 
@@ -3344,6 +3585,83 @@ French buyers importing cashmere from China pay VAT (20%) on the customs-declare
 
 ### What payment terms are typical for French buyers sourcing from China?
 Payment terms for French buyers sourcing cashmere from China typically follow T/T 30/70 — 30% deposit on order confirmation, 70% balance against bill of lading copy before shipment release. For established relationships (3+ completed orders), factories may extend to L/C at sight or T/T 30/70 with net 30 days after delivery. L/C adds 1–2% bank fees but provides security for both parties on larger orders (typically USD 50,000+). For first-time French buyers, T/T 30/70 is standard. Sample fees (USD 50–150 per piece) are often 50–100% credited toward the first bulk order. Pay attention to currency: most Chinese factories quote in USD; French buyers should clarify who bears the USD/EUR exchange risk (typically the buyer for the deposit and the seller for the balance, but negotiable).
+
+---
+
+### Cashmere Wholesale Germany: Direct Ordos Import Guide for German B2B Buyers
+
+*Published 2026-08-06*
+
+Complete guide for German fashion brands: direct import from Inner Mongolia, certifications (OEKO-TEX + IWTO + GB/T 21209), MOQ negotiation, FOB Tianjin/CIF Hamburg logistics.
+
+# Cashmere Wholesale Germany: Direct Ordos Import Guide for German B2B Buyers
+
+The German cashmere market imports approximately €120 million annually, primarily from Inner Mongolia and Mongolia. The majority flows through Hamburg, Frankfurt and Munich-based importers, who typically charge 25–40 % markup over factory price.
+
+This guide shows German B2B buyers how to work directly with verified Ordos mills and save €30–80 per kg.
+
+## Certifications for the EU market
+
+German importers require these certifications:
+- **OEKO-TEX Standard 100 Class I** — safe for direct skin contact
+- **REACH compliance** — EU chemical regulation
+- **IWTO certification** — international wool standard
+- **GB/T 21209** — Chinese national standard equivalent
+- **GCS (Good Cashmere Standard)** — sustainability and traceability
+
+## MOQ and delivery conditions
+
+| Parameter | Standard |
+|---|---|
+| Sample minimum order | 50 pieces per style/color |
+| Production minimum order | 500+ pieces |
+| Sample lead time | 7 days |
+| Production time | 30–45 days |
+| Payment | T/T 30/70, L/C for orders >€30k |
+| Shipping | FOB Tianjin/Shanghai, CIF Hamburg |
+
+## Quality verification before bulk orders
+
+Three mandatory checks:
+1. **OFDA fiber test** — diameter distribution (Grade A = <15.5 µm)
+2. **Length test** — ≥38 mm staple fiber length
+3. **GB/T 21209 compliance** — Chinese national standard
+
+## Direct import vs. via Hamburg importer
+
+Comparison for a 380 g sweater, Grade A cashmere, 1000 pieces:
+
+| Source | Price per piece |
+|---|---|
+| **FOB Tianjin direct** | €48–62 |
+| **Via Hamburg importer** | €78–110 |
+| **Retail price** | €180–280 |
+
+The €30–48 difference per piece between FOB and importer price equals accumulated intermediary margin. Direct import enables 35–50 % cost savings at the same quality.
+
+## Logistics and shipping
+
+For German importers:
+- **FOB Tianjin/Shanghai** → Sea freight to Hamburg: 28–35 days
+- **CIF Hamburg** — including insurance and freight
+- **LCL shipping** for trial orders <500 kg
+- **FCL shipping** (20′/40′ containers) for bulk orders
+
+## Customs clearance
+
+German importers need:
+- **Commercial invoice** with HS code 5108 (cashmere)
+- **Certificate of origin Form A** for EU preference
+- **Declaration of conformity** for OEKO-TEX
+- **Bill of lading**
+
+## Conclusion
+
+Direct import from Ordos offers German B2B buyers significant cost advantages without quality loss. With bilingual support and established certifications, the cooperation is reliably implementable even without prior China experience.
+
+---
+
+*Ready to source cashmere directly from Ordos? [Contact our team](https://www.erdosdx.com/en/contact) for sample packs, FOB quotes, and OEKO-TEX documentation.*
 
 ---
 
@@ -8544,6 +8862,7 @@ Cashmere quality is determined by fiber grade, not national origin. The finest M
 
 ## Blog Articles (CN — title + excerpt only; full text in /cn/blog/<slug>/)
 
+- [B2B羊绒色卡申请：如何获取样品及时间周期](https://www.erdosdx.com/cn/blog/wholesale-cashmere-color-card-sample-process/): 了解申请羊绒色卡所需提供的准确信息、如何获取实物样品，以及来自鄂尔多斯源头工厂的实际B2B样品时间周期。
 - [羊绒微米数指南：B2B采购商的14.5-19.5μm实用参考](https://www.erdosdx.com/cn/blog/cashmere-fiber-fineness-micron-chart-b2b/): 通过我们的实用微米指南，了解羊绒纤维细度。学习14.5-19.5μm羊绒的分级、质量控制和采购技巧。
 - [2026年羊绒毛衣设计趋势：Q3-Q4 B2B买家指南](https://www.erdosdx.com/cn/blog/cashmere-sweater-design-trends-2026-b2b/): 探索2026年Q3-Q4季度顶级羊绒毛衣设计趋势。从可持续纤维到超大廓形，了解全球B2B买家正在寻求什么，以及如何规划您的系列。
 - [羊绒过敏：迷思、真相与如何向客户解释](https://www.erdosdx.com/cn/blog/cashmere-allergies-myth-vs-reality/): 羊绒过敏真的存在吗？基于纤维科学，了解羊毛过敏与羊绒敏感之间的区别。学习如何解决客户疑虑，并自信地定位您的品牌。
@@ -8558,6 +8877,7 @@ Cashmere quality is determined by fiber grade, not national origin. The finest M
 - [羊绒与马海毛：B2B成本、手感与客户认知对比](https://www.erdosdx.com/cn/blog/cashmere-vs-mohair-b2b-luxury-fibers/): 为B2B采购对比羊绒与马海毛：成本、纤维手感、耐用性及市场认知。获取数据驱动的洞察，助力您的下一次奢侈纤维采购决策。
 - [26支与48支羊绒纱线：您的B2B产品该选哪个支数？](https://www.erdosdx.com/cn/blog/cashmere-yarn-count-explained-26s-48s/): 在26支和48支羊绒纱线之间做选择，会影响面料克重、成本和最终用途。本指南为全球进口商对比支数、应用和采购要点。
 - [再生羊绒：B2B品牌如何在不损失品质的前提下使用消费前废料纤维](https://www.erdosdx.com/cn/blog/cashmere-recycled-fiber-blends-b2b/): 了解如何利用消费前废料制成的再生羊绒，为B2B品牌提供可持续的纤维解决方案，同时不牺牲品质。从鄂尔多斯可信赖的工厂获取关于采购、加工、认证和最小起订量的信息。
+- [德国羊绒批发：德国 B2B 买家鄂尔多斯直接采购指南](https://www.erdosdx.com/cn/blog/cashmere-wholesale-germany-buyer-guide/): 面向德国时尚品牌的完整指南：内蒙古直接采购、认证（OEKO-TEX + IWTO + GB/T 21209）、MOQ 谈判、FOB 天津/CIF 汉堡物流。
 - [法国羊绒批发：法国买家如何从鄂尔多斯工厂直接采购](https://www.erdosdx.com/cn/blog/cashmere-wholesale-france-buyer-guide/): 法国时尚品牌如何从内蒙古工厂直接采购100%羊绒 —— 每公斤节省 €40-80，OEKO-TEX + IWTO + GB/T 21209 全套文件，FOB 天津 / CIF 勒阿弗尔物流方案。
 - [2026羊绒采购日历：最佳下单、生产与交货时间安排](https://www.erdosdx.com/cn/blog/cashmere-winter-sourcing-2026-buyers-guide/): 利用我们的专家日历规划您的2026年羊绒订单：何时预订生产、锁定原材料、安排交货。了解交货周期、季节性窗口以及B2B买家的实用建议。
 - [婴儿羊绒（Hircus Kids）：为何贵30%以及B2B买家何时应指定使用](https://www.erdosdx.com/cn/blog/baby-cashmere-vs-adult-cashmere-b2b/): 来自Hircus kids的婴儿羊绒价格高出30%，但提供卓越的柔软度和细度。了解B2B买家何时应将其用于奢侈产品线，并获取来自鄂尔多斯的采购洞察。
@@ -8572,8 +8892,8 @@ Cashmere quality is determined by fiber grade, not national origin. The finest M
 - [羊绒服装唛头与标签：B2B买家必须明确的5项规格（EAS+洗护）](https://www.erdosdx.com/cn/blog/cashmere-wholesale-shipping-marking-labels/): 从EAS防盗标签到洗护符号，了解每位羊绒进口商必须与工厂明确的5项关键标签规格。避免合规问题和退货。
 - [羊绒服装最终检验AQL标准：B2B采购商应坚持的要点](https://www.erdosdx.com/cn/blog/cashmere-quality-control-final-inspection-aql/): 了解羊绒服装最终检验的关键AQL标准。通过我们为从内蒙古鄂尔多斯采购的B2B买家提供的专家指南，确保品质。
 - [2026年从中国进口羊绒：HS编码、清关流程及5大常见错误](https://www.erdosdx.com/cn/blog/importing-cashmere-cn-customs-2026-guide/): 了解2026年从中国进口羊绒所需的HS编码、清关流程及常见陷阱。来自鄂尔多斯23年工厂的B2B买家专家指南。
+- [意大利纺纱 vs 国内纺纱：B2B 买家应了解的山羊绒纱线品质差异](https://www.erdosdx.com/cn/blog/italian-spinning-vs-domestic-cashmere-yarn/): 为 B2B 买家解析意大利纺纱与中国纺纱的山羊绒纱线主要差异：品质、成本、交期，以及从内蒙古鄂尔多斯采购。
 - [OEKO-TEX 100 羊绒认证：B2B买家真正需要的 vs 锦上添花的](https://www.erdosdx.com/cn/blog/oeko-tex-certification-cashmere-b2b-buyers/): 了解羊绒采购中OEKO-TEX 100的关键与可选要求。为B2B买家提供的实用指南，涵盖化学品安全、认证级别和供应链验证。
-- [意大利纺纱 vs 国内纺纱：B2B买家应了解的羊绒纱线质量要点](https://www.erdosdx.com/cn/blog/italian-spinning-vs-domestic-cashmere-yarn/): 为B2B买家揭示意大利与国内羊绒纱线纺纱的关键差异。了解质量、成本、交货期，以及如何从内蒙古鄂尔多斯采购。
 - [2026 年羊绒市场报告：原绒价格、供应与买家展望](https://www.erdosdx.com/cn/blog/cashmere-market-report-2026/): 面向 B2B 买家的独立 2026 年羊绒市场报告：按等级列出的原绒参考价格区间、五大价格驱动因素、各地区供应展望、买家场景及 2026 年采购清单。
 - [羊绒海运与进口指南：FOB、CIF、关税、交期与所需单证](https://www.erdosdx.com/cn/blog/cashmere-shipping-import-guide/): 面向 B2B 买家的羊绒进口指南：涵盖 FOB vs CIF vs DDP、中国起运的海运和空运参考费率、美国和欧盟羊绒进口关税基础、必需的发货单证、现实交期以及面向欧美买家的采购清单。
 - [阿拉善 vs 鄂尔多斯 vs 蒙古国羊绒山羊：真正的区别在哪里？](https://www.erdosdx.com/cn/blog/alashan-vs-ordos-cashmere-goats/): 不同产地的羊绒山羊纤维品质差异巨大 —— 细度、长度、颜色、绒含量都有差别。来自23年鄂尔多斯工厂的客观对比。
@@ -8585,11 +8905,11 @@ Cashmere quality is determined by fiber grade, not national origin. The finest M
 - [从牧场到成衣：23道工序将鄂尔多斯羊绒变为毛衣](https://www.erdosdx.com/cn/blog/from-pasture-to-garment-23-steps-ordos-cashmere/): 每一件羊绒衫背后，是跨越阿尔巴斯高原的年度旅程、分梳生产线、意大利纺纱机、德国STOLL针织机以及100%手工终检。揭秘从原绒到成衣的全过程，尽在一家垂直整合的源头工厂。
 - [OEKO-TEX认证羊绒：B2B买家需知的纺织品安全标准](https://www.erdosdx.com/cn/blog/oeko-tex-certified-cashmere-clothing-guide/): OEKO-TEX Standard 100、GOTS、RWS、BSCI——7种以上纺织品安全认证。哪些对羊绒真正重要，以及如何验证其真实性。
 - [如何验证鄂尔多斯羊绒：B2B采购商在签单前应执行的7项测试](https://www.erdosdx.com/cn/blog/ordos-cashmere-fiber-supplier-verification-guide/): 产地欺诈、纤维混纺和微米虚标每年让B2B采购商损失数百万美元。本文提供实用指南，通过7项实验室和现场测试验证您的鄂尔多斯羊绒供应商的声明。
-- [Private Label Cashmere Sweater Manufacturing: How to Build Your Own Brand from Ordos](https://www.erdosdx.com/cn/blog/private-label-cashmere-sweater-ordos-factory/): Launching a private label cashmere brand requires the right factory partner, clear tech packs, and a realistic understanding of MOQ, lead time, and per-unit cost. A practical guide.
-- [Small MOQ Cashmere Coat Manufacturing: How Boutique Brands Source from China](https://www.erdosdx.com/cn/blog/small-moq-cashmere-coat-manufacturer/): Most cashmere factories require 200-500 unit minimums. For boutique brands wanting 30-50 unit runs, here's how to make small-batch cashmere production work.
-- [Where to Buy Bulk Raw Mongolian Cashmere: A B2B Buyer's Guide to Sourcing Fiber, Pricing & Quality](https://www.erdosdx.com/cn/blog/where-to-buy-bulk-raw-mongolian-cashmere/): Buying bulk raw Mongolian cashmere in 2026 means navigating origin fraud, micron variance, and pricing volatility. This guide covers where to source, what to ask suppliers, and how to verify quality before signing a PO.
-- [Wholesale Cashmere Shawl with Custom Logo: A B2B Guide to Woven Labels, Hangtags & MOQ](https://www.erdosdx.com/cn/blog/wholesale-cashmere-shawl-custom-logo/): Custom logo on cashmere scarves and shawls requires the right label technology (woven vs printed vs embroidered) and proper hangtag integration. A B2B buyer's guide to private label accessories.
-- [Worsted vs Woolen Cashmere Yarn: Which to Choose for Your Product](https://www.erdosdx.com/cn/blog/worsted-vs-woolen-cashmere-yarn-guide/): Worsted and woolen cashmere yarns are spun differently and behave differently. Choose wrong and your finished product won't have the hand feel your customers expect.
+- [羊绒贴牌毛衣制造：如何从鄂尔多斯打造自己的品牌](https://www.erdosdx.com/cn/blog/private-label-cashmere-sweater-ordos-factory/): 启动羊绒贴牌业务需要合适的工厂伙伴、清晰的工艺单，以及对起订量、交期、单件成本的现实理解。一份实用手册。
+- [小起订量羊绒大衣制造：精品品牌如何在中国采购](https://www.erdosdx.com/cn/blog/small-moq-cashmere-coat-manufacturer/): 大多数羊绒工厂要求 200-500 件的最低起订量。针对每季只卖 30-50 件大衣的精品品牌，本文介绍如何让小批量羊绒生产跑通。
+- [批量采购蒙古原绒：B2B 买家纤维采购、定价与品质指南](https://www.erdosdx.com/cn/blog/where-to-buy-bulk-raw-mongolian-cashmere/): 2026 年批量采购蒙古原绒意味着要应对产地造假、细度差异与价格波动。本指南覆盖采购渠道、向供应商提出的问题，以及在签 PO 前如何验证品质。
+- [羊绒披肩批发定制 Logo：B2B 织标、吊牌与起订量指南](https://www.erdosdx.com/cn/blog/wholesale-cashmere-shawl-custom-logo/): 羊绒围巾/披肩定制 Logo 需要选用合适的标签工艺（织造/印刷/刺绣）与规范的吊牌集成。B2B 买家专属的贴牌配件指南。
+- [羊绒纱线 精纺 vs 粗纺：如何为产品选择](https://www.erdosdx.com/cn/blog/worsted-vs-woolen-cashmere-yarn-guide/): 精纺和粗纺羊绒纱线纺纱方式不同，性质差异显著。选错了，成品的触感就达不到客户的预期。
 - [2026年羊绒衫批发定价指南：B2B买家按国家应支付的预期价格](https://www.erdosdx.com/cn/blog/wholesale-cashmere-sweater-pricing-b2b-2026/): 一份全面的B2B指南，涵盖2026年羊绒衫批发定价、各国成本细分、市场趋势以及来自一家拥有23年历史的鄂尔多斯工厂的采购建议。
 - [B2B羊绒合同：我们始终包含的7个条款（付款、瑕疵、交期、不可抗力）](https://www.erdosdx.com/cn/blog/cashmere-b2b-contract-template-payment-terms/): 了解羊绒B2B合同中的7个关键条款，包括付款条件、瑕疵限度、交期和不可抗力。来自拥有23年经验的鄂尔多斯工厂的专业建议，保护您的供应链。
 - [B2B羊绒买家如何验证鄂尔多斯原产地并避免虚假标签：采购指南](https://www.erdosdx.com/cn/blog/how-b2b-cashmere-buyers-verify-ordos-origin-avoid-mislabeling/): 了解如何验证正宗鄂尔多斯羊绒、避免虚假标签，并从可靠的内蒙古工厂采购。为B2B买家提供关于认证、检测和尽职调查的实用技巧。
@@ -8601,6 +8921,7 @@ Cashmere quality is determined by fiber grade, not national origin. The finest M
 
 ## Blog Articles (DE — title + excerpt only; full text in /de/blog/<slug>/)
 
+- [B2B Cashmere Color Card Request: How to Get Samples & Timeline](https://www.erdosdx.com/de/blog/wholesale-cashmere-color-card-sample-process/): Learn the exact information to send for a cashmere color card request, how to receive physical samples, and realistic B2B sample timelines from an Ordos source factory.
 - [Leitfaden zur Kaschmir-Mikronzahl: 14,5–19,5 μm für B2B-Käufer](https://www.erdosdx.com/de/blog/cashmere-fiber-fineness-micron-chart-b2b/): Verstehen Sie die Feinheit von Kaschmirfasern mit unserem praktischen Mikron-Leitfaden. Erfahren Sie mehr über Einstufung, Qualitätskontrolle und Beschaffungstipps für Kaschmir mit 14,5–19,5 μm.
 - [Kaschmir-Pullover-Designtrends 2026: B2B-Käuferleitfaden für Q3-Q4](https://www.erdosdx.com/de/blog/cashmere-sweater-design-trends-2026-b2b/): Entdecken Sie die wichtigsten Kaschmir-Pullover-Designtrends für Q3-Q4 2026. Von nachhaltigen Fasern bis hin zu übergroßen Silhouetten – erfahren Sie, was globale B2B-Käufer anfragen und wie Sie Ihre Kollektion planen.
 - [Kaschmir-Allergien: Mythos, Realität und was Sie Ihren Kunden sagen sollten](https://www.erdosdx.com/de/blog/cashmere-allergies-myth-vs-reality/): Sind Kaschmir-Allergien real? Entdecken Sie den Unterschied zwischen Wollallergie und Kaschmir-Empfindlichkeit, gestützt auf Faserwissenschaft. Erfahren Sie, wie Sie Kundenbedenken ansprechen und Ihre Marke souverän positionieren.
@@ -8609,6 +8930,7 @@ Cashmere quality is determined by fiber grade, not national origin. The finest M
 - [Kaschmir vs. Mohair: B2B-Vergleich von Kosten, Haptik und Kundenwahrnehmung](https://www.erdosdx.com/de/blog/cashmere-vs-mohair-b2b-luxury-fibers/): Vergleichen Sie Kaschmir und Mohair für den B2B-Einkauf: Kosten, Faserhaptik, Haltbarkeit und Marktwahrnehmung. Erhalten Sie datenbasierte Erkenntnisse für Ihren nächsten Luxusfaser-Einkauf.
 - [26s vs. 48s Kaschmirgarn: Welche Garnfeinheit ist die richtige für Ihr B2B-Produkt?](https://www.erdosdx.com/de/blog/cashmere-yarn-count-explained-26s-48s/): Die Wahl zwischen 26s und 48s Kaschmirgarn beeinflusst Stoffgewicht, Kosten und Endverwendung. Dieser Leitfaden vergleicht Feinheiten, Anwendungen und Sourcing-Tipps für globale Importeure.
 - [Recyceltes Kaschmir: Wie B2B-Marken Pre-Consumer-Abfallfasern ohne Qualitätsverlust nutzen können](https://www.erdosdx.com/de/blog/cashmere-recycled-fiber-blends-b2b/): Entdecken Sie, wie recyceltes Kaschmir aus Pre-Consumer-Abfällen B2B-Marken eine nachhaltige Faserlösung bietet, ohne Kompromisse bei der Qualität einzugehen. Erfahren Sie mehr über Beschaffung, Verarbeitung, Zertifizierungen und Mindestbestellmengen von einer vertrauenswürdigen Fabrik in Ordos.
+- [Kaschmir-Großhandel Frankreich: Wie französische Käufer direkt von Ordos-Mühlen sourcen](https://www.erdosdx.com/de/blog/cashmere-wholesale-france-buyer-guide/): Wie französische Modemarken 100% Kaschmir direkt von inneren mongolischen Mühlen sourcen — €40-80/kg Ersparnis, OEKO-TEX + IWTO + GB/T 21209 Dokumentation, FOB Tianjin/CIF Le Havre Logistik.
 - [Cashmere Wholesale Germany: Direkter Import aus Ordos für Deutsche B2B-Einkäufer](https://www.erdosdx.com/de/blog/cashmere-wholesale-germany-buyer-guide/): Vollständiger Leitfaden für deutsche Mode-Marken: Direktimport aus Inner-Mongolei, Zertifizierungen (OEKO-TEX + IWTO + GB/T 21209), MOQ-Verhandlung, FOB Tianjin/CIF Hamburg Logistik.
 - [2026 Cashmere-Sourcing-Kalender: Optimale Bestell-, Produktions- und Lieferzeitpunkte](https://www.erdosdx.com/de/blog/cashmere-winter-sourcing-2026-buyers-guide/): Planen Sie Ihre Cashmere-Bestellungen für 2026 mit unserem Expertenkalender: Wann Sie Produktion buchen, Rohmaterial sichern und Lieferungen planen sollten. Erfahren Sie mehr über Vorlaufzeiten, saisonale Fenster und Tipps für B2B-Käufer.
 - [Baby-Kaschmir (Hircus Kids): Warum er 30 % teurer ist und wann B2B-Käufer ihn spezifizieren sollten](https://www.erdosdx.com/de/blog/baby-cashmere-vs-adult-cashmere-b2b/): Baby-Kaschmir von Hircus Kids ist 30 % teurer, bietet aber überlegene Weichheit und Feinheit. Erfahren Sie, wann B2B-Käufer ihn für Luxuslinien spezifizieren sollten, mit Sourcing-Einblicken aus Ordos.
@@ -8618,18 +8940,18 @@ Cashmere quality is determined by fiber grade, not national origin. The finest M
 - [Kaschmir-Bekleidungsetiketten & Kennzeichnung: 5 Pflichtangaben für B2B-Käufer (EAS + Pflege)](https://www.erdosdx.com/de/blog/cashmere-wholesale-shipping-marking-labels/): Von EAS-Sicherungsetiketten bis zu Pflegesymbolen: Erfahren Sie, welche 5 kritischen Kennzeichnungsvorgaben jeder Kaschmir-Importeur mit seiner Fabrik festlegen muss. Vermeiden Sie Compliance-Probleme und Retouren.
 - [Endkontrolle AQL für Kaschmirbekleidung: Worauf B2B-Käufer bestehen sollten](https://www.erdosdx.com/de/blog/cashmere-quality-control-final-inspection-aql/): Erfahren Sie die entscheidenden AQL-Standards für die Endkontrolle von Kaschmirbekleidung. Sichern Sie Qualität mit unserem Expertenleitfaden für B2B-Käufer, die aus Ordos, Innere Mongolei, beziehen.
 - [Cashmere-Import aus China 2026: HS-Codes, Zoll und 5 häufige Fehler](https://www.erdosdx.com/de/blog/importing-cashmere-cn-customs-2026-guide/): Erfahren Sie die wesentlichen HS-Codes, Zollverfahren und Fallstricke für den Cashmere-Import aus China im Jahr 2026. Expertenleitfaden für B2B-Käufer aus einer 23-jährigen Ordos-Fabrik.
+- [Italienische vs. chinesische Kaschmirgarn-Spinnerei: Was B2B-Käufer über Garnqualität wissen sollten](https://www.erdosdx.com/de/blog/italian-spinning-vs-domestic-cashmere-yarn/): Die wichtigsten Unterschiede zwischen italienischer und chinesischer Kaschmirgarn-Spinnerei für B2B-Käufer. Erfahren Sie mehr über Qualität, Kosten, Vorlaufzeiten und die Beschaffung aus Ordos, Innere Mongolei.
 - [OEKO-TEX 100 für Kaschmir: Was B2B-Käufer wirklich brauchen vs. Nice-to-Have](https://www.erdosdx.com/de/blog/oeko-tex-certification-cashmere-b2b-buyers/): Entdecken Sie die kritischen vs. optionalen OEKO-TEX 100-Anforderungen für den Kaschmir-Einkauf. Ein praktischer Leitfaden für B2B-Käufer zu Chemikaliensicherheit, Zertifizierungsstufen und Lieferkettenprüfung.
-- [Italian Spinning vs Domestic: What B2B Buyers Should Know About Cashmere Yarn Quality](https://www.erdosdx.com/de/blog/italian-spinning-vs-domestic-cashmere-yarn/): Discover the key differences between Italian and domestic cashmere yarn spinning for B2B buyers. Learn about quality, cost, lead times, and how to source from Ordos, Inner Mongolia.
 - [Cashmere-Garnfeinheit erklärt: 2/26 bis 2/60 Nm — Welche Feinheit für Ihr Produkt?](https://www.erdosdx.com/de/blog/cashmere-yarn-counts-2-26-to-2-60-nm/): Die falsche Cashmere-Garnfeinheit kann ein Design ruinieren. Ein praktischer Leitfaden zu Nm-Feinheiten, Maschenproben und Endverwendungsauswahl für B2B-Käufer und Produktdesigner.
 - [Entwollte Kaschmir-Tops: Der vollständige B2B-Einkaufsführer für gekämmten Kaschmir aus Ordos](https://www.erdosdx.com/de/blog/dehaired-cashmere-tops-wholesale-guide/): Nicht jeder enthaarte Kaschmir ist gleich. Die Qualität gekämmter Tops variiert je nach Mikron-Gleichmäßigkeit, Faserausrichtung und verbleibenden Grannenhaaren. Ein Einkaufsführer zur Auswahl des richtigen enthaarten Kaschmirs für Ihren Spinnprozess.
 - [Direkte Kaschmirfabrik, ohne Zwischenhändler: Wie Sie direkt von der Quelle kaufen und den Handelsaufschlag umgehen](https://www.erdosdx.com/de/blog/direct-cashmere-mill-no-middleman/): Handelsunternehmen schlagen 30-40 % auf Kaschmirpreise auf. Für B2B-Käufer ab 500 kg Bestellmenge eliminiert der direkte Bezug ab Werk den Zwischenhändler – erfordert jedoch andere Logistik.
 - [OEKO-TEX-zertifiziertes Kaschmir: Was B2B-Käufer über Textilsicherheitsstandards wissen müssen](https://www.erdosdx.com/de/blog/oeko-tex-certified-cashmere-clothing-guide/): OEKO-TEX Standard 100, GOTS, RWS, BSCI — es gibt über 7 Textilsicherheitszertifikate. Welche sind für Kaschmir wirklich relevant und wie man Behauptungen überprüft.
 - [Echtheit von Ordos-Kaschmir prüfen: 7 Tests, die jeder B2B-Käufer vor der PO-Unterzeichnung durchführen sollte](https://www.erdosdx.com/de/blog/ordos-cashmere-fiber-supplier-verification-guide/): Herkunftsbetrug, Fasermischung und Mikron-Inflation kosten B2B-Käufer jährlich Millionen. Ein praktischer Leitfaden zur Überprüfung der Angaben Ihres Ordos-Kaschmir-Lieferanten mit 7 Labor- und Vor-Ort-Tests.
-- [Private Label Cashmere Sweater Manufacturing: How to Build Your Own Brand from Ordos](https://www.erdosdx.com/de/blog/private-label-cashmere-sweater-ordos-factory/): Launching a private label cashmere brand requires the right factory partner, clear tech packs, and a realistic understanding of MOQ, lead time, and per-unit cost. A practical guide.
-- [Small MOQ Cashmere Coat Manufacturing: How Boutique Brands Source from China](https://www.erdosdx.com/de/blog/small-moq-cashmere-coat-manufacturer/): Most cashmere factories require 200-500 unit minimums. For boutique brands wanting 30-50 unit runs, here's how to make small-batch cashmere production work.
-- [Where to Buy Bulk Raw Mongolian Cashmere: A B2B Buyer's Guide to Sourcing Fiber, Pricing & Quality](https://www.erdosdx.com/de/blog/where-to-buy-bulk-raw-mongolian-cashmere/): Buying bulk raw Mongolian cashmere in 2026 means navigating origin fraud, micron variance, and pricing volatility. This guide covers where to source, what to ask suppliers, and how to verify quality before signing a PO.
-- [Wholesale Cashmere Shawl with Custom Logo: A B2B Guide to Woven Labels, Hangtags & MOQ](https://www.erdosdx.com/de/blog/wholesale-cashmere-shawl-custom-logo/): Custom logo on cashmere scarves and shawls requires the right label technology (woven vs printed vs embroidered) and proper hangtag integration. A B2B buyer's guide to private label accessories.
-- [Worsted vs Woolen Cashmere Yarn: Which to Choose for Your Product](https://www.erdosdx.com/de/blog/worsted-vs-woolen-cashmere-yarn-guide/): Worsted and woolen cashmere yarns are spun differently and behave differently. Choose wrong and your finished product won't have the hand feel your customers expect.
+- [Private Label Kaschmirpullover-Herstellung: Eigene Marke aus Ordos aufbauen](https://www.erdosdx.com/de/blog/private-label-cashmere-sweater-ordos-factory/): Eine Private-Label-Kaschmir-Marke zu starten erfordert den richtigen Fabrikpartner, klare Tech Packs und ein realistisches Verständnis von MOQ, Vorlaufzeit und Stückkosten. Ein praktischer Leitfaden.
+- [Kleine MOQ Kaschmir-Mantelproduktion: Wie Boutiquen aus China sourcen](https://www.erdosdx.com/de/blog/small-moq-cashmere-coat-manufacturer/): Die meisten Kaschmirfabriken verlangen 200–500 Stück Mindestmenge. Für Boutiquen, die 30–50 Mäntel pro Saison verkaufen, zeigt dieser Leitfaden, wie Kleinserien funktionieren.
+- [Großhandel Mongolisches Rohkaschmir kaufen: B2B-Leitfaden zu Faserbeschaffung, Preisen und Qualität](https://www.erdosdx.com/de/blog/where-to-buy-bulk-raw-mongolian-cashmere/): Der Kauf von Mongolischem Rohkaschmir in Großmengen 2026 erfordert die Navigation durch Herkunftsbetrug, Mikronabweichungen und Preisvolatilität. Dieser Leitfaden behandelt Beschaffungsquellen, Lieferantenfragen und Qualitätsprüfung vor PO-Unterzeichnung.
+- [Kaschmir-Schal im Großhandel mit eigenem Logo: B2B-Leitfaden zu Webetiketten, Anhängern & MOQ](https://www.erdosdx.com/de/blog/wholesale-cashmere-shawl-custom-logo/): Eigene Logos auf Kaschmir-Schals und Tüchern erfordern die richtige Etikettentechnik (gewebt, bedruckt oder gestickt) und eine saubere Anhänger-Integration. Ein B2B-Leitfaden für Private-Label-Zubehör.
+- [Kammgarn vs Streichgarn Kaschmirgarn: Welches für Ihr Produkt?](https://www.erdosdx.com/de/blog/worsted-vs-woolen-cashmere-yarn-guide/): Kammgarn und Streichgarn aus Kaschmir werden unterschiedlich gesponnen und verhalten sich unterschiedlich. Die falsche Wahl führt dazu, dass Ihr fertiges Produkt nicht das Griffgefühl hat, das Ihre Kunden erwarten.
 - [2026 Wholesale Cashmere Sweater Pricing: What B2B Buyers Should Expect to Pay by Country](https://www.erdosdx.com/de/blog/wholesale-cashmere-sweater-pricing-b2b-2026/): A comprehensive B2B guide to wholesale cashmere sweater pricing in 2026, with country-by-country cost breakdowns, market trends, and sourcing tips from a 23-year Ordos factory.
 - [B2B-Cashmere-Vertrag: 7 Klauseln, die wir immer aufnehmen (Zahlung, Mängel, Lieferzeit, Höhere Gewalt)](https://www.erdosdx.com/de/blog/cashmere-b2b-contract-template-payment-terms/): Entdecken Sie die 7 wesentlichen Klauseln in einem B2B-Cashmere-Vertrag, einschließlich Zahlungsbedingungen, Mängelgrenzen, Lieferzeiten und Höherer Gewalt. Schützen Sie Ihre Lieferkette mit Expertenrat einer 23 Jahre alten Fabrik aus Ordos.
 - [Wie B2B-Kaschmirkäufer die Herkunft aus Ordos verifizieren und Fehletikettierung vermeiden: Ein Leitfaden für die Beschaffung](https://www.erdosdx.com/de/blog/how-b2b-cashmere-buyers-verify-ordos-origin-avoid-mislabeling/): Erfahren Sie, wie Sie authentischen Ordos-Kaschmir verifizieren, Fehletikettierung vermeiden und von zuverlässigen Fabriken in der Inneren Mongolei beziehen. Praktische Tipps für B2B-Käufer zu Zertifizierungen, Tests und Sorgfaltspflicht.
@@ -8642,6 +8964,7 @@ Cashmere quality is determined by fiber grade, not national origin. The finest M
 
 ## Blog Articles (FR — title + excerpt only; full text in /fr/blog/<slug>/)
 
+- [B2B Cashmere Color Card Request: How to Get Samples & Timeline](https://www.erdosdx.com/fr/blog/wholesale-cashmere-color-card-sample-process/): Learn the exact information to send for a cashmere color card request, how to receive physical samples, and realistic B2B sample timelines from an Ordos source factory.
 - [Guide des microns de cachemire : 14,5-19,5 μm pour les acheteurs B2B](https://www.erdosdx.com/fr/blog/cashmere-fiber-fineness-micron-chart-b2b/): Comprenez la finesse des fibres de cachemire grâce à notre guide pratique sur les microns. Apprenez le classement, le contrôle qualité et les conseils d'approvisionnement pour le cachemire de 14,5 à 19,5 μm.
 - [Tendances Design des Pulls en Cachemire 2026 : Guide B2B pour les Acheteurs T3-T4](https://www.erdosdx.com/fr/blog/cashmere-sweater-design-trends-2026-b2b/): Découvrez les principales tendances design des pulls en cachemire pour le T3-T4 2026. Des fibres durables aux silhouettes oversize, apprenez ce que les acheteurs B2B mondiaux demandent et comment planifier votre collection.
 - [Allergies au cachemire : mythe, réalité et ce qu'il faut dire à vos clients](https://www.erdosdx.com/fr/blog/cashmere-allergies-myth-vs-reality/): Les allergies au cachemire sont-elles réelles ? Découvrez la différence entre l'allergie à la laine et la sensibilité au cachemire, appuyée par la science des fibres. Apprenez à répondre aux préoccupations de vos clients et à positionner votre marque avec confiance.
@@ -8650,6 +8973,7 @@ Cashmere quality is determined by fiber grade, not national origin. The finest M
 - [Cachemire vs Mohair : Comparaison B2B du Coût, du Toucher et de la Perception Client](https://www.erdosdx.com/fr/blog/cashmere-vs-mohair-b2b-luxury-fibers/): Comparez le cachemire et le mohair pour l'approvisionnement B2B : coût, toucher de la fibre, durabilité et perception du marché. Obtenez des informations basées sur des données pour votre prochain achat de fibres de luxe.
 - [Fil de cachemire 26s vs 48s : quel numéro choisir pour votre produit B2B ?](https://www.erdosdx.com/fr/blog/cashmere-yarn-count-explained-26s-48s/): Choisir entre le fil de cachemire 26s et 48s impacte le poids du tissu, le coût et l'utilisation finale. Ce guide compare les numéros, les applications et les conseils d'approvisionnement pour les importateurs internationaux.
 - [Cachemire recyclé : comment les marques B2B peuvent utiliser des fibres de déchets pré-consommation sans perte de qualité](https://www.erdosdx.com/fr/blog/cashmere-recycled-fiber-blends-b2b/): Découvrez comment le cachemire recyclé issu de déchets pré-consommation offre aux marques B2B une solution de fibre durable sans sacrifier la qualité. Apprenez-en plus sur l'approvisionnement, le traitement, les certifications et les MOQ auprès d'une usine de confiance à Ordos.
+- [Cachemire en gros Allemagne : Guide d'importation directe d'Ordos pour acheteurs B2B allemands](https://www.erdosdx.com/fr/blog/cashmere-wholesale-germany-buyer-guide/): Guide complet pour les marques de mode allemandes : importation directe depuis la Mongolie-Intérieure, certifications (OEKO-TEX + IWTO + GB/T 21209), négociation MOQ, logistique FOB Tianjin/CIF Hambourg.
 - [Cashmere Wholesale France : Guide Acheteur B2B pour Sourcer Directement d'Ordos](https://www.erdosdx.com/fr/blog/cashmere-wholesale-france-buyer-guide/): Comment les marques de mode françaises sourcent le cachemire 100% directement des filatures de Mongolie Intérieure — économies de €40-80/kg, certifications OEKO-TEX + IWTO + GB/T 21209, logistique FOB Tianjin/CIF Le Havre.
 - [Calendrier d'approvisionnement en cachemire 2026 : délais optimaux de commande, de production et de livraison](https://www.erdosdx.com/fr/blog/cashmere-winter-sourcing-2026-buyers-guide/): Planifiez vos commandes de cachemire 2026 avec notre calendrier expert : quand réserver la production, sécuriser la matière première et planifier la livraison. Découvrez les délais, les fenêtres saisonnières et des conseils pour les acheteurs B2B.
 - [Cachemire de bébé (Hircus kids) : pourquoi est-il 30 % plus cher et quand les acheteurs B2B devraient-ils le spécifier ?](https://www.erdosdx.com/fr/blog/baby-cashmere-vs-adult-cashmere-b2b/): Le cachemire de bébé issu de Hircus kids est 30 % plus cher, mais offre une douceur et une finesse supérieures. Découvrez quand les acheteurs B2B devraient le spécifier pour leurs lignes de luxe, avec des conseils d'approvisionnement depuis Ordos.
@@ -8659,18 +8983,18 @@ Cashmere quality is determined by fiber grade, not national origin. The finest M
 - [Marquage et étiquetage des vêtements en cachemire : 5 spécifications essentielles pour les acheteurs B2B (EAS + entretien)](https://www.erdosdx.com/fr/blog/cashmere-wholesale-shipping-marking-labels/): Des étiquettes EAS aux symboles d'entretien, découvrez les 5 spécifications d'étiquetage critiques que tout importateur de cachemire doit définir avec son usine. Évitez les problèmes de conformité et les retours.
 - [Inspection finale AQL pour les vêtements en cachemire : ce que les acheteurs B2B doivent exiger](https://www.erdosdx.com/fr/blog/cashmere-quality-control-final-inspection-aql/): Découvrez les normes AQL essentielles pour l'inspection finale des vêtements en cachemire. Garantissez la qualité grâce à notre guide expert destiné aux acheteurs B2B qui s'approvisionnent à Ordos, en Mongolie intérieure.
 - [Importer du cachemire de Chine en 2026 : codes SH, douane et 5 erreurs courantes](https://www.erdosdx.com/fr/blog/importing-cashmere-cn-customs-2026-guide/): Apprenez les codes SH essentiels, les procédures douanières et les pièges à éviter pour importer du cachemire de Chine en 2026. Guide expert pour acheteurs B2B issu d'une usine d'Ordos forte de 23 ans d'expérience.
+- [Filage italien vs domestique : Ce que les acheteurs B2B doivent savoir sur la qualité du fil cachemire](https://www.erdosdx.com/fr/blog/italian-spinning-vs-domestic-cashmere-yarn/): Découvrez les différences clés entre le filage italien et chinois du cachemire pour acheteurs B2B. Qualité, coût, délais, et approvisionnement depuis Ordos, Mongolie-Intérieure.
 - [OEKO-TEX 100 pour le cachemire : Ce que les acheteurs B2B doivent vraiment savoir vs ce qui est agréable à avoir](https://www.erdosdx.com/fr/blog/oeko-tex-certification-cashmere-b2b-buyers/): Découvrez les exigences critiques et optionnelles d'OEKO-TEX 100 pour l'approvisionnement en cachemire. Un guide pratique pour les acheteurs B2B sur la sécurité chimique, les niveaux de certification et la vérification de la chaîne d'approvisionnement.
-- [Italian Spinning vs Domestic: What B2B Buyers Should Know About Cashmere Yarn Quality](https://www.erdosdx.com/fr/blog/italian-spinning-vs-domestic-cashmere-yarn/): Discover the key differences between Italian and domestic cashmere yarn spinning for B2B buyers. Learn about quality, cost, lead times, and how to source from Ordos, Inner Mongolia.
 - [Explication du Titre de Fil Cachemire : De 2/26 à 2/60 Nm — Quel Titre Choisir pour Votre Produit](https://www.erdosdx.com/fr/blog/cashmere-yarn-counts-2-26-to-2-60-nm/): Choisir le mauvais titre de fil cachemire peut ruiner un design. Un guide pratique sur les titres Nm, l'adaptation de la jauge et la sélection en fonction de l'utilisation finale pour les acheteurs B2B et les designers de produits.
 - [Tops de Cachemire Épincé : Guide d'Achat B2B Complet pour le Cachemire Peigné d'Ordos](https://www.erdosdx.com/fr/blog/dehaired-cashmere-tops-wholesale-guide/): Tous les cachemires épincés ne se valent pas. La qualité des tops peignés varie selon l'uniformité du micron, l'alignement des fibres et les poils de garde résiduels. Un guide d'achat pour sélectionner le cachemire épincé adapté à votre processus de filature.
 - [Usine de cachemire directe, sans intermédiaire : comment acheter à la source et éviter la marge des sociétés de négoce](https://www.erdosdx.com/fr/blog/direct-cashmere-mill-no-middleman/): Les sociétés de négoce ajoutent 30 à 40 % aux prix du cachemire. Pour les acheteurs B2B commandant 500 kg+, s'approvisionner directement à l'usine élimine l'intermédiaire, mais nécessite une logistique différente.
 - [Cashmere certifié OEKO-TEX : Ce que les acheteurs B2B doivent savoir sur les normes de sécurité textile](https://www.erdosdx.com/fr/blog/oeko-tex-certified-cashmere-clothing-guide/): OEKO-TEX Standard 100, GOTS, RWS, BSCI — il existe plus de 7 certifications de sécurité textile. Lesquelles comptent vraiment pour le cachemire, et comment vérifier les allégations.
 - [Comment vérifier le cachemire d'Ordos : 7 tests que tout acheteur B2B doit effectuer avant de signer un bon de commande](https://www.erdosdx.com/fr/blog/ordos-cashmere-fiber-supplier-verification-guide/): La fraude sur l'origine, le mélange de fibres et l'inflation des microns coûtent des millions aux acheteurs B2B chaque année. Un guide pratique pour vérifier les affirmations de votre fournisseur de cachemire d'Ordos avec 7 tests en laboratoire et sur site.
-- [Private Label Cashmere Sweater Manufacturing: How to Build Your Own Brand from Ordos](https://www.erdosdx.com/fr/blog/private-label-cashmere-sweater-ordos-factory/): Launching a private label cashmere brand requires the right factory partner, clear tech packs, and a realistic understanding of MOQ, lead time, and per-unit cost. A practical guide.
-- [Small MOQ Cashmere Coat Manufacturing: How Boutique Brands Source from China](https://www.erdosdx.com/fr/blog/small-moq-cashmere-coat-manufacturer/): Most cashmere factories require 200-500 unit minimums. For boutique brands wanting 30-50 unit runs, here's how to make small-batch cashmere production work.
-- [Where to Buy Bulk Raw Mongolian Cashmere: A B2B Buyer's Guide to Sourcing Fiber, Pricing & Quality](https://www.erdosdx.com/fr/blog/where-to-buy-bulk-raw-mongolian-cashmere/): Buying bulk raw Mongolian cashmere in 2026 means navigating origin fraud, micron variance, and pricing volatility. This guide covers where to source, what to ask suppliers, and how to verify quality before signing a PO.
-- [Wholesale Cashmere Shawl with Custom Logo: A B2B Guide to Woven Labels, Hangtags & MOQ](https://www.erdosdx.com/fr/blog/wholesale-cashmere-shawl-custom-logo/): Custom logo on cashmere scarves and shawls requires the right label technology (woven vs printed vs embroidered) and proper hangtag integration. A B2B buyer's guide to private label accessories.
-- [Worsted vs Woolen Cashmere Yarn: Which to Choose for Your Product](https://www.erdosdx.com/fr/blog/worsted-vs-woolen-cashmere-yarn-guide/): Worsted and woolen cashmere yarns are spun differently and behave differently. Choose wrong and your finished product won't have the hand feel your customers expect.
+- [Fabrication de pulls cachemire marque blanche : Construire sa marque depuis Ordos](https://www.erdosdx.com/fr/blog/private-label-cashmere-sweater-ordos-factory/): Lancer une marque cachemire en marque blanche exige le bon partenaire industriel, des tech packs clairs, et une compréhension réaliste du MOQ, du délai et du coût unitaire. Un guide pratique.
+- [Fabrication de manteaux cachemire en petites quantités : Comment les boutiques s'approvisionnent en Chine](https://www.erdosdx.com/fr/blog/small-moq-cashmere-coat-manufacturer/): La plupart des usines cachemire exigent 200–500 pièces minimum. Pour les boutiques vendant 30–50 manteaux par saison, voici comment faire fonctionner la production en petits lots.
+- [Où acheter du cachemire brut mongolien en gros : Guide B2B sur l'approvisionnement, les prix et la qualité](https://www.erdosdx.com/fr/blog/where-to-buy-bulk-raw-mongolian-cashmere/): Acheter du cachemire brut mongolien en gros en 2026 exige de naviguer entre fraude d'origine, variance micronique et volatilité des prix. Ce guide couvre où sourcer, quelles questions poser et comment vérifier la qualité avant de signer un bon de commande.
+- [Châle cachemire en gros avec logo personnalisé : Guide B2B sur étiquettes tissées, cintres & MOQ](https://www.erdosdx.com/fr/blog/wholesale-cashmere-shawl-custom-logo/): Le logo personnalisé sur châles et étoles cachemire exige la bonne technique d'étiquetage (tissée, imprimée ou brodée) et une intégration soignée des cintres. Guide B2B pour accessoires marque blanche.
+- [Fil cachemire peigné vs cardé : Quel choisir pour votre produit ?](https://www.erdosdx.com/fr/blog/worsted-vs-woolen-cashmere-yarn-guide/): Les fils cachemire peigné et cardé sont filés différemment et se comportent différemment. Un mauvais choix et votre produit fini n'aura pas le toucher que vos clients attendent.
 - [2026 Wholesale Cashmere Sweater Pricing: What B2B Buyers Should Expect to Pay by Country](https://www.erdosdx.com/fr/blog/wholesale-cashmere-sweater-pricing-b2b-2026/): A comprehensive B2B guide to wholesale cashmere sweater pricing in 2026, with country-by-country cost breakdowns, market trends, and sourcing tips from a 23-year Ordos factory.
 - [Contrat B2B pour le cachemire : 7 clauses que nous incluons toujours (paiement, défauts, délais, force majeure)](https://www.erdosdx.com/fr/blog/cashmere-b2b-contract-template-payment-terms/): Découvrez les 7 clauses essentielles d'un contrat B2B pour le cachemire, incluant les conditions de paiement, les limites de défauts, les délais de livraison et la force majeure. Protégez votre chaîne d'approvisionnement grâce aux conseils d'experts d'une usine d'Ordos forte de 23 ans d'expérience.
 - [Comment les acheteurs B2B de cachemire vérifient l'origine d'Ordos et évitent les erreurs d'étiquetage : Guide d'approvisionnement](https://www.erdosdx.com/fr/blog/how-b2b-cashmere-buyers-verify-ordos-origin-avoid-mislabeling/): Apprenez à vérifier l'authenticité du cachemire d'Ordos, à éviter les erreurs d'étiquetage et à vous approvisionner auprès d'usines fiables de Mongolie-Intérieure. Conseils pratiques pour les acheteurs B2B sur les certifications, les tests et la diligence raisonnable.
@@ -8683,6 +9007,7 @@ Cashmere quality is determined by fiber grade, not national origin. The finest M
 
 ## Blog Articles (JA — title + excerpt only; full text in /ja/blog/<slug>/)
 
+- [B2B Cashmere Color Card Request: How to Get Samples & Timeline](https://www.erdosdx.com/ja/blog/wholesale-cashmere-color-card-sample-process/): Learn the exact information to send for a cashmere color card request, how to receive physical samples, and realistic B2B sample timelines from an Ordos source factory.
 - [カシミヤのマイクロン数ガイド：B2Bバイヤー向け14.5-19.5μm](https://www.erdosdx.com/ja/blog/cashmere-fiber-fineness-micron-chart-b2b/): 実用的なマイクロンガイドでカシミヤ繊維の細さを理解しましょう。14.5-19.5μmのカシミヤのグレーディング、品質管理、調達のポイントを学べます。
 - [2026年カシミヤセーターデザイントレンド：Q3-Q4 B2Bバイヤーガイド](https://www.erdosdx.com/ja/blog/cashmere-sweater-design-trends-2026-b2b/): 2026年Q3-Q4のカシミヤセーターデザイントレンドをご紹介します。サステナブルな繊維からオーバーサイズシルエットまで、世界中のB2Bバイヤーが求めているものと、コレクション計画の立て方を解説します。
 - [カシミヤアレルギー：誤解と真実、そして顧客に伝えるべきこと](https://www.erdosdx.com/ja/blog/cashmere-allergies-myth-vs-reality/): カシミヤアレルギーは本当に存在するのでしょうか？繊維科学に基づき、ウールアレルギーとカシミヤ感受性の違いを解説します。顧客の懸念への対応方法と、ブランドを自信を持って位置づけるための知識を学びましょう。
@@ -8691,6 +9016,8 @@ Cashmere quality is determined by fiber grade, not national origin. The finest M
 - [Cashmere vs Mohair: B2B Cost, Feel, and Customer Perception Compared](https://www.erdosdx.com/ja/blog/cashmere-vs-mohair-b2b-luxury-fibers/): Compare cashmere and mohair for B2B sourcing: cost, fiber feel, durability, and market perception. Get data-driven insights for your next luxury fiber purchase.
 - [26s vs 48sカシミヤ糸：B2B製品に適した番手はどちら？](https://www.erdosdx.com/ja/blog/cashmere-yarn-count-explained-26s-48s/): 26sと48sのカシミヤ糸の選択は、生地の重さ、コスト、最終用途に影響します。このガイドでは、番手の比較、用途、世界の輸入業者向け調達のヒントを解説します。
 - [リサイクルカシミア：B2Bブランドが品質を損なわずにプリコンシューマー廃棄繊維を活用する方法](https://www.erdosdx.com/ja/blog/cashmere-recycled-fiber-blends-b2b/): プリコンシューマー廃棄物から作られたリサイクルカシミアが、品質を犠牲にすることなくB2Bブランドに持続可能な繊維ソリューションを提供する方法をご紹介します。信頼のおけるオルドス工場からの調達、加工、認証、最小注文数量（MOQ）について学びます。
+- [フランス カシミア 卸売：フランスのバイヤーがオルドス工場から直接調達する方法](https://www.erdosdx.com/ja/blog/cashmere-wholesale-france-buyer-guide/): フランスのファッションブランドが内モンゴル工場から 100% カシミアを直接調達する方法 — €40-80/kg のコスト削減、OEKO-TEX + IWTO + GB/T 21209 書類、FOB 天津/CIF ル・アーブルの物流。
+- [ドイツ カシミア 卸売：ドイツ B2B バイヤー向けオルドス直接輸入ガイド](https://www.erdosdx.com/ja/blog/cashmere-wholesale-germany-buyer-guide/): ドイツ ファッションブランド向け完全ガイド：内モンゴルからの直接輸入、認証（OEKO-TEX + IWTO + GB/T 21209）、MOQ 交渉、FOB 天津/CIF ハンブルク物流。
 - [2026年カシミヤ調達カレンダー：最適な発注・生産・納期のタイミング](https://www.erdosdx.com/ja/blog/cashmere-winter-sourcing-2026-buyers-guide/): 専門家によるカレンダーで2026年のカシミヤ発注を計画しましょう。生産予約、原材料の確保、納期スケジュールのタイミングを解説します。リードタイム、季節ごとの窓、B2Bバイヤー向けのヒントをご紹介します。
 - [ベビーカシミヤ（Hircus Kids）：なぜ30%高価なのか、B2Bバイヤーがいつ指定すべきか](https://www.erdosdx.com/ja/blog/baby-cashmere-vs-adult-cashmere-b2b/): Hircus kids（子ヤギ）から採取されるベビーカシミヤは、通常の大人のカシミヤより30%高価ですが、優れた柔らかさと繊細さを提供します。高級ライン向けにB2Bバイヤーがいつ指定すべきか、オルドスからの調達インサイトとともに解説します。
 - [3プライカシミヤ製品：B2Bバイヤーが割増料金を支払うべきケース（そして過剰なケース）](https://www.erdosdx.com/ja/blog/cashmere-2-ply-3-ply-garment-durability/): 3プライカシミヤが常に優れているわけではありません。耐久性のために追加のプライに投資すべき時期と、それが不要な時期を学びましょう。高級ニットウェアを調達するB2Bバイヤーのための専門ガイドです。
@@ -8699,18 +9026,18 @@ Cashmere quality is determined by fiber grade, not national origin. The finest M
 - [カシミヤ製品のマーキング＆ラベル：B2Bバイヤーが指定すべき5つの必須項目（EAS＋ケア）](https://www.erdosdx.com/ja/blog/cashmere-wholesale-shipping-marking-labels/): EASタグからケアシンボルまで、カシミヤ輸入業者が工場と明確に定義すべき重要なラベル仕様5項目をご紹介。コンプライアンス違反や返品を回避します。
 - [カシミア製品の最終検査AQL：B2Bバイヤーが求めるべき基準](https://www.erdosdx.com/ja/blog/cashmere-quality-control-final-inspection-aql/): カシミア製品の最終検査における重要なAQL基準を解説。内モンゴル・オルドスから調達するB2Bバイヤー向けに、品質を確保するための専門ガイドを提供します。
 - [中国からのカシミア輸入2026：HSコード、通関手続き、よくある5つのミス](https://www.erdosdx.com/ja/blog/importing-cashmere-cn-customs-2026-guide/): 2026年に中国からカシミアを輸入する際に必要なHSコード、通関手続き、落とし穴を解説。23年の歴史を持つオルドス工場からのB2Bバイヤー向け専門ガイド。
+- [イタリア紡績 vs 国内紡績：B2B バイヤーが知るべきカシミア糸品質の違い](https://www.erdosdx.com/ja/blog/italian-spinning-vs-domestic-cashmere-yarn/): B2B バイヤー向けにイタリア紡績と中国紡績のカシミア糸の主な違いを解説。品質、コスト、リードタイム、鄂爾多斯（オルドス）内蒙古からの調達について。
 - [カシミアのためのOEKO-TEX 100：B2Bバイヤーが実際に必要なものと、あると便利なもの](https://www.erdosdx.com/ja/blog/oeko-tex-certification-cashmere-b2b-buyers/): カシミア調達におけるOEKO-TEX 100の必須要件とオプション要件を解説。化学的安全性、認証レベル、サプライチェーン検証に関するB2Bバイヤー向け実践ガイド。
-- [Italian Spinning vs Domestic: What B2B Buyers Should Know About Cashmere Yarn Quality](https://www.erdosdx.com/ja/blog/italian-spinning-vs-domestic-cashmere-yarn/): Discover the key differences between Italian and domestic cashmere yarn spinning for B2B buyers. Learn about quality, cost, lead times, and how to source from Ordos, Inner Mongolia.
 - [カシミヤ糸の番手解説：2/26 Nmから2/60 Nm — 製品に適した番手の選び方](https://www.erdosdx.com/ja/blog/cashmere-yarn-counts-2-26-to-2-60-nm/): 間違ったカシミヤ糸の番手を選ぶと、デザインが台無しになります。B2Bバイヤーや製品デザイナー向けに、Nm番手、ゲージの適合、最終用途の選び方を実践的に解説します。
 - [脱毛カシミヤトップス：オルドス産コーマカシミヤのB2Bバイヤー完全ガイド](https://www.erdosdx.com/ja/blog/dehaired-cashmere-tops-wholesale-guide/): すべての脱毛カシミヤが同じではありません。コーマトップの品質は、マイクロンの均一性、繊維の整列性、残留ガードヘアによって異なります。紡績工程に適した脱毛カシミヤを選ぶためのバイヤーガイドです。
 - [カシミヤ工場直販、中間業者なし：取引会社のマークアップを避けて直接仕入れる方法](https://www.erdosdx.com/ja/blog/direct-cashmere-mill-no-middleman/): 取引会社はカシミヤ価格に30〜40%のマークアップを加えます。500kg以上を注文するB2Bバイヤーにとって、工場からの直接調達は中間業者を排除しますが、異なる物流が必要です。
 - [OEKO-TEX認証カシミア：B2Bバイヤーが知るべき繊維安全基準](https://www.erdosdx.com/ja/blog/oeko-tex-certified-cashmere-clothing-guide/): OEKO-TEX Standard 100、GOTS、RWS、BSCI — カシミアに関係する7つ以上の繊維安全認証。実際に重要なものと、主張を検証する方法を解説します。
 - [オルドスカシミアの検証方法：B2BバイヤーがPO署名前に実施すべき7つのテスト](https://www.erdosdx.com/ja/blog/ordos-cashmere-fiber-supplier-verification-guide/): 原産地詐欺、繊維混入、マイクロン数偽装により、B2Bバイヤーは毎年数百万ドルの損失を被っています。この実践ガイドでは、7つのラボテストと現場テストでオルドスカシミアサプライヤーの主張を検証する方法を解説します。
-- [Private Label Cashmere Sweater Manufacturing: How to Build Your Own Brand from Ordos](https://www.erdosdx.com/ja/blog/private-label-cashmere-sweater-ordos-factory/): Launching a private label cashmere brand requires the right factory partner, clear tech packs, and a realistic understanding of MOQ, lead time, and per-unit cost. A practical guide.
-- [Small MOQ Cashmere Coat Manufacturing: How Boutique Brands Source from China](https://www.erdosdx.com/ja/blog/small-moq-cashmere-coat-manufacturer/): Most cashmere factories require 200-500 unit minimums. For boutique brands wanting 30-50 unit runs, here's how to make small-batch cashmere production work.
-- [Where to Buy Bulk Raw Mongolian Cashmere: A B2B Buyer's Guide to Sourcing Fiber, Pricing & Quality](https://www.erdosdx.com/ja/blog/where-to-buy-bulk-raw-mongolian-cashmere/): Buying bulk raw Mongolian cashmere in 2026 means navigating origin fraud, micron variance, and pricing volatility. This guide covers where to source, what to ask suppliers, and how to verify quality before signing a PO.
-- [Wholesale Cashmere Shawl with Custom Logo: A B2B Guide to Woven Labels, Hangtags & MOQ](https://www.erdosdx.com/ja/blog/wholesale-cashmere-shawl-custom-logo/): Custom logo on cashmere scarves and shawls requires the right label technology (woven vs printed vs embroidered) and proper hangtag integration. A B2B buyer's guide to private label accessories.
-- [Worsted vs Woolen Cashmere Yarn: Which to Choose for Your Product](https://www.erdosdx.com/ja/blog/worsted-vs-woolen-cashmere-yarn-guide/): Worsted and woolen cashmere yarns are spun differently and behave differently. Choose wrong and your finished product won't have the hand feel your customers expect.
+- [プライベートブランド カシミアセーター製造：オルドスでブランドを構築する方法](https://www.erdosdx.com/ja/blog/private-label-cashmere-sweater-ordos-factory/): プライベートブランド カシミアを立ち上げるには、適切な工場パートナー、明快なテックパック、そして MOQ・リードタイム・単価の現実理解が要ります。実践ガイド。
+- [小ロット カシミア コート製造：ブティックブランドが中国から調達する方法](https://www.erdosdx.com/ja/blog/small-moq-cashmere-coat-manufacturer/): 多くのカシミア工場は 200〜500 個の最低発注量を求めています。シーズン 30〜50 個のコートを扱うブティックブランド向けに、小ロット生産を実現する方法を解説します。
+- [モンゴル産原毛カシミアの大量購入：B2B バイヤー向け繊維調達・価格・品質ガイド](https://www.erdosdx.com/ja/blog/where-to-buy-bulk-raw-mongolian-cashmere/): 2026 年にモンゴル産原毛カシミアを大量購入するには、原産地詐欺、ミクロン変動、価格変動への対処が必要です。本ガイドでは、調達先、サプライヤーへの質問、PO 締結前の品質検証を解説します。
+- [カシミアショール 卸売 カスタムロゴ対応：織ラベル・下げタグ・MOQ の B2B ガイド](https://www.erdosdx.com/ja/blog/wholesale-cashmere-shawl-custom-logo/): カシミアスカーフ・ショールへのカスタムロゴ導入には、最適なラベル技術（織り／印刷／刺繍）と下げタグ統合が必要です。プライベートブランド向けアクセサリーの B2B バイヤーガイド。
+- [カシミア糸 梳毛 vs 紡毛：製品に合った選び方](https://www.erdosdx.com/ja/blog/worsted-vs-woolen-cashmere-yarn-guide/): 梳毛カシミア糸と紡毛カシミア糸は紡績方法が異なり、性質も大きく異なります。誤った選び方をすると、製品の風合いがお客様の期待に合いません。
 - [2026年卸売カシミヤセーター価格：B2Bバイヤーが国別に支払うべき金額](https://www.erdosdx.com/ja/blog/wholesale-cashmere-sweater-pricing-b2b-2026/): 2026年の卸売カシミヤセーター価格に関する包括的なB2Bガイド。国別のコスト内訳、市場動向、23年の歴史を持つオルドス工場からの調達のヒントを提供します。
 - [B2Bカシミヤ契約書：必ず含める7つの条項（支払条件、不良品許容範囲、リードタイム、不可抗力）](https://www.erdosdx.com/ja/blog/cashmere-b2b-contract-template-payment-terms/): カシミヤB2B契約書に不可欠な7つの条項をご紹介します。支払条件、不良品許容範囲、リードタイム、不可抗力など、23年の実績を持つオルドス工場の専門知識でサプライチェーンを保護します。
 - [B2Bカシミヤバイヤーがオルドス産地を確認し、誤表示を回避する方法：調達ガイド](https://www.erdosdx.com/ja/blog/how-b2b-cashmere-buyers-verify-ordos-origin-avoid-mislabeling/): 本物のオルドスカシミヤを確認し、誤表示を回避し、信頼できる内モンゴル工場から調達する方法を学びます。B2Bバイヤー向けの認証、テスト、デューデリジェンスに関する実践的なヒント。
@@ -8723,6 +9050,7 @@ Cashmere quality is determined by fiber grade, not national origin. The finest M
 
 ## Blog Articles (KR — title + excerpt only; full text in /kr/blog/<slug>/)
 
+- [B2B Cashmere Color Card Request: How to Get Samples & Timeline](https://www.erdosdx.com/kr/blog/wholesale-cashmere-color-card-sample-process/): Learn the exact information to send for a cashmere color card request, how to receive physical samples, and realistic B2B sample timelines from an Ordos source factory.
 - [캐시미어 마이크론 수치 가이드: B2B 바이어를 위한 14.5-19.5μm](https://www.erdosdx.com/kr/blog/cashmere-fiber-fineness-micron-chart-b2b/): 실용적인 마이크론 가이드를 통해 캐시미어 섬유의 가는 정도를 이해하세요. 14.5-19.5μm 캐시미어의 등급, 품질 관리, 소싱 팁을 알아보세요.
 - [2026 캐시미어 스웨터 디자인 트렌드: Q3-Q4 B2B 바이어 가이드](https://www.erdosdx.com/kr/blog/cashmere-sweater-design-trends-2026-b2b/): 2026년 Q3-Q4 캐시미어 스웨터 디자인 트렌드를 확인하세요. 지속 가능한 소재부터 오버사이즈 실루엣까지, 글로벌 B2B 바이어들이 요청하는 사항과 컬렉션을 계획하는 방법을 알아보세요.
 - [캐시미어 알레르기: 신화, 현실, 그리고 고객에게 전할 내용](https://www.erdosdx.com/kr/blog/cashmere-allergies-myth-vs-reality/): 캐시미어 알레르기는 실제로 존재할까요? 섬유 과학에 기반하여 울 알레르기와 캐시미어 민감성의 차이를 알아보세요. 고객의 우려를 해결하고 브랜드를 자신 있게 포지셔닝하는 방법을 배워보세요.
@@ -8731,6 +9059,8 @@ Cashmere quality is determined by fiber grade, not national origin. The finest M
 - [Cashmere vs Mohair: B2B Cost, Feel, and Customer Perception Compared](https://www.erdosdx.com/kr/blog/cashmere-vs-mohair-b2b-luxury-fibers/): Compare cashmere and mohair for B2B sourcing: cost, fiber feel, durability, and market perception. Get data-driven insights for your next luxury fiber purchase.
 - [26s vs 48s Cashmere Yarn: Which Count Is Right for Your B2B Product?](https://www.erdosdx.com/kr/blog/cashmere-yarn-count-explained-26s-48s/): Choosing between 26s and 48s cashmere yarn impacts fabric weight, cost, and end-use. This guide compares counts, applications, and sourcing tips for global importers.
 - [재활용 캐시미어: B2B 브랜드가 품질 저하 없이 생산 전 폐섬유를 활용하는 방법](https://www.erdosdx.com/kr/blog/cashmere-recycled-fiber-blends-b2b/): 생산 전 폐기물에서 얻은 재활용 캐시미어가 품질을 희생하지 않고 B2B 브랜드에 지속 가능한 섬유 솔루션을 제공하는 방법을 알아보세요. 신뢰할 수 있는 오르도스 공장에서의 소싱, 가공, 인증 및 MOQ에 대해 알아보세요.
+- [프랑스 캐시미어 도매: 프랑스 바이어가 오르도스 공장에서 직접 소싱하는 법](https://www.erdosdx.com/kr/blog/cashmere-wholesale-france-buyer-guide/): 프랑스 패션 브랜드가 내몽골 공장에서 100% 캐시미어를 직접 소싱하는 방법 — €40-80/kg 비용 절감, OEKO-TEX + IWTO + GB/T 21209 서류, FOB 천진/CIF 르아브르 물류.
+- [독일 캐시미어 도매: 독일 B2B 바이어를 위한 오르도스 직접 수입 가이드](https://www.erdosdx.com/kr/blog/cashmere-wholesale-germany-buyer-guide/): 독일 패션 브랜드를 위한 종합 가이드: 내몽골에서 직접 수입, 인증(OEKO-TEX + IWTO + GB/T 21209), MOQ 협상, FOB 천진/CIF 함부르크 물류.
 - [2026 캐시미어 소싱 캘린더: 최적의 주문, 생산 및 배송 시기](https://www.erdosdx.com/kr/blog/cashmere-winter-sourcing-2026-buyers-guide/): 전문가가 제공하는 캘린더로 2026년 캐시미어 주문을 계획하세요: 생산 예약, 원자재 확보, 배송 일정을 언제 잡아야 하는지 알아보세요. 리드 타임, 시즌별 기간, B2B 바이어를 위한 팁을 확인하세요.
 - [Baby Cashmere (Hircus Kids): Why It's 30% Pricier and When B2B Buyers Should Specify It](https://www.erdosdx.com/kr/blog/baby-cashmere-vs-adult-cashmere-b2b/): Baby cashmere from Hircus kids is 30% pricier but offers superior softness and fineness. Learn when B2B buyers should specify it for luxury lines, with sourcing insights from Ordos.
 - [3겹 캐시미어 의류: B2B 바이어가 더 지불해야 할 때 (그리고 과할 때)](https://www.erdosdx.com/kr/blog/cashmere-2-ply-3-ply-garment-durability/): 3겹 캐시미어가 항상 더 좋은 것은 아닙니다. 내구성을 위해 추가 겹을 투자해야 할 때와 불필요한 때를 알아보세요. 프리미엄 니트웨어를 소싱하는 B2B 바이어를 위한 전문 가이드.
@@ -8739,18 +9069,18 @@ Cashmere quality is determined by fiber grade, not national origin. The finest M
 - [캐시미어 의류 마킹 및 라벨: B2B 바이어가 반드시 지정해야 할 5가지 항목 (EAS + 케어)](https://www.erdosdx.com/kr/blog/cashmere-wholesale-shipping-marking-labels/): EAS 태그부터 케어 심볼까지, 캐시미어 수입업체가 공장과 반드시 정의해야 할 5가지 핵심 라벨링 사양을 알아보세요. 컴플라이언스 문제와 반품을 방지할 수 있습니다.
 - [캐시미어 의류 최종 검사 AQL: B2B 바이어가 반드시 요구해야 할 기준](https://www.erdosdx.com/kr/blog/cashmere-quality-control-final-inspection-aql/): 캐시미어 의류 최종 검사에서 중요한 AQL 기준을 알아보세요. 내몽골 오르도스에서 소싱하는 B2B 바이어를 위한 전문 가이드로 품질을 보장하세요.
 - [2026년 중국에서 캐시미어 수입: HS 코드, 통관 절차 및 5가지 흔한 실수](https://www.erdosdx.com/kr/blog/importing-cashmere-cn-customs-2026-guide/): 2026년 중국에서 캐시미어를 수입할 때 필요한 필수 HS 코드, 통관 절차 및 주의사항을 알아보세요. 23년 경력의 오르도스 공장이 B2B 바이어를 위해 제공하는 전문 가이드입니다.
+- [이탈리아 방적 vs 국내 방적: B2B 바이어가 알아야 할 캐시미어 원사 품질](https://www.erdosdx.com/kr/blog/italian-spinning-vs-domestic-cashmere-yarn/): B2B 바이어를 위한 이탈리아와 중국 캐시미어 원사 방적의 핵심 차이를 정리합니다. 품질, 원가, 리드타임, 내몽골 오르도스 소싱까지.
 - [캐시미어 OEKO-TEX 100: B2B 바이어가 실제로 알아야 할 필수 사항 vs 있으면 좋은 사항](https://www.erdosdx.com/kr/blog/oeko-tex-certification-cashmere-b2b-buyers/): 캐시미어 소싱 시 필수적인 OEKO-TEX 100 요구사항과 선택적 요구사항을 알아보세요. 화학 안전성, 인증 수준, 공급망 검증에 대한 B2B 바이어를 위한 실용 가이드입니다.
-- [Italian Spinning vs Domestic: What B2B Buyers Should Know About Cashmere Yarn Quality](https://www.erdosdx.com/kr/blog/italian-spinning-vs-domestic-cashmere-yarn/): Discover the key differences between Italian and domestic cashmere yarn spinning for B2B buyers. Learn about quality, cost, lead times, and how to source from Ordos, Inner Mongolia.
 - [캐시미어 원사 카운트 설명: 2/26 ~ 2/60 Nm — 제품에 적합한 카운트 선택 가이드](https://www.erdosdx.com/kr/blog/cashmere-yarn-counts-2-26-to-2-60-nm/): 잘못된 캐시미어 원사 카운트를 선택하면 디자인이 망가질 수 있습니다. B2B 구매자와 제품 디자이너를 위한 Nm 카운트, 게이지 매칭 및 최종 용도 선택에 대한 실용적인 가이드입니다.
 - [털 제거 캐시미어 탑: 오르도스산 코움드 캐시미어 B2B 바이어 완벽 가이드](https://www.erdosdx.com/kr/blog/dehaired-cashmere-tops-wholesale-guide/): 모든 털 제거 캐시미어가 동일하지 않습니다. 코움드 탑의 품질은 마이크론 균일성, 섬유 정렬, 잔여 가드 헤어에 따라 달라집니다. 방적 공정에 적합한 털 제거 캐시미어를 선택하는 바이어 가이드입니다.
 - [직접 캐시미어 공장, 중간상 없음: 소스에서 구매하고 무역 회사 마크업을 건너뛰는 방법](https://www.erdosdx.com/kr/blog/direct-cashmere-mill-no-middleman/): 무역 회사는 캐시미어 가격에 30-40%를 추가합니다. 500kg 이상 주문하는 B2B 구매자의 경우 공장에서 직접 소싱하면 중간상이 제거되지만 다른 물류가 필요합니다.
 - [OEKO-TEX 인증 캐시미어: B2B 바이어가 알아야 할 섬유 안전 기준](https://www.erdosdx.com/kr/blog/oeko-tex-certified-cashmere-clothing-guide/): OEKO-TEX Standard 100, GOTS, RWS, BSCI 등 7개 이상의 섬유 안전 인증이 있습니다. 캐시미어에 실제로 중요한 인증과 주장을 확인하는 방법을 알아보세요.
 - [How to Verify Ordos Cashmere: 7 Tests Every B2B Buyer Should Run Before Signing a PO](https://www.erdosdx.com/kr/blog/ordos-cashmere-fiber-supplier-verification-guide/): Origin fraud, fiber blending, and micron inflation cost B2B buyers millions annually. A practical guide to verifying your Ordos cashmere supplier's claims with 7 lab and on-site tests.
-- [Private Label Cashmere Sweater Manufacturing: How to Build Your Own Brand from Ordos](https://www.erdosdx.com/kr/blog/private-label-cashmere-sweater-ordos-factory/): Launching a private label cashmere brand requires the right factory partner, clear tech packs, and a realistic understanding of MOQ, lead time, and per-unit cost. A practical guide.
-- [Small MOQ Cashmere Coat Manufacturing: How Boutique Brands Source from China](https://www.erdosdx.com/kr/blog/small-moq-cashmere-coat-manufacturer/): Most cashmere factories require 200-500 unit minimums. For boutique brands wanting 30-50 unit runs, here's how to make small-batch cashmere production work.
-- [Where to Buy Bulk Raw Mongolian Cashmere: A B2B Buyer's Guide to Sourcing Fiber, Pricing & Quality](https://www.erdosdx.com/kr/blog/where-to-buy-bulk-raw-mongolian-cashmere/): Buying bulk raw Mongolian cashmere in 2026 means navigating origin fraud, micron variance, and pricing volatility. This guide covers where to source, what to ask suppliers, and how to verify quality before signing a PO.
-- [Wholesale Cashmere Shawl with Custom Logo: A B2B Guide to Woven Labels, Hangtags & MOQ](https://www.erdosdx.com/kr/blog/wholesale-cashmere-shawl-custom-logo/): Custom logo on cashmere scarves and shawls requires the right label technology (woven vs printed vs embroidered) and proper hangtag integration. A B2B buyer's guide to private label accessories.
-- [Worsted vs Woolen Cashmere Yarn: Which to Choose for Your Product](https://www.erdosdx.com/kr/blog/worsted-vs-woolen-cashmere-yarn-guide/): Worsted and woolen cashmere yarns are spun differently and behave differently. Choose wrong and your finished product won't have the hand feel your customers expect.
+- [프라이빗 라벨 캐시미어 스웨터 제조: 오르도스에서 브랜드 구축](https://www.erdosdx.com/kr/blog/private-label-cashmere-sweater-ordos-factory/): 프라이빗 라벨 캐시미어 브랜드를 시작하려면 적절한 공장 파트너, 명확한 테크팩, 그리고 MOQ·리드타임·개당 단가의 현실적 이해가 필요합니다. 실전 가이드.
+- [소량 MOQ 캐시미어 코트 제조: 부티크 브랜드의 중국 소싱 가이드](https://www.erdosdx.com/kr/blog/small-moq-cashmere-coat-manufacturer/): 대부분의 캐시미어 공장은 200~500개 MOQ를 요구합니다. 시즌 30~50 코트를 판매하는 부티크 브랜드를 위한 소량 생산 운영법을 정리합니다.
+- [몽골산 생캐시미어 대량 구매: 섬유 소싱·가격·품질을 위한 B2B 바이어 가이드](https://www.erdosdx.com/kr/blog/where-to-buy-bulk-raw-mongolian-cashmere/): 2026년 몽골산 생캐시미어 대량 구매는 원산지 사기, 마이크론 변동, 가격 변동성을 헤쳐 나가야 함을 의미합니다. 이 가이드는 소싱처, 공급사 질문, PO 체결 전 품질 검증을 다룹니다.
+- [캐시미어 숄 도매 커스텀 로고: 직조 라벨·행태·MOQ B2B 가이드](https://www.erdosdx.com/kr/blog/wholesale-cashmere-shawl-custom-logo/): 캐시미어 스카프·숄의 커스텀 로고는 최적의 라벨 기술(직조/인쇄/자수)과 행태 통합이 필요합니다. 프라이빗 브랜드 액세서리를 위한 B2B 바이어 가이드.
+- [캐시미어 원사 소면 vs 방면: 제품에 맞는 선택](https://www.erdosdx.com/kr/blog/worsted-vs-woolen-cashmere-yarn-guide/): 소면방적과 방면방적 캐시미어 원사는 방적 방식이 다르고 성질도 크게 다릅니다. 잘못 선택하면 완성 제품의 촉감이 고객이 기대하는 것과 달라집니다.
 - [2026 Wholesale Cashmere Sweater Pricing: What B2B Buyers Should Expect to Pay by Country](https://www.erdosdx.com/kr/blog/wholesale-cashmere-sweater-pricing-b2b-2026/): A comprehensive B2B guide to wholesale cashmere sweater pricing in 2026, with country-by-country cost breakdowns, market trends, and sourcing tips from a 23-year Ordos factory.
 - [B2B 캐시미어 계약서: 항상 포함하는 7가지 조항 (결제, 하자, 리드타임, 불가항력)](https://www.erdosdx.com/kr/blog/cashmere-b2b-contract-template-payment-terms/): 캐시미어 B2B 계약서에 반드시 포함되어야 할 7가지 필수 조항(결제 조건, 하자 기준, 리드타임, 불가항력)을 알아보세요. 23년 경력의 오르도스 공장이 제공하는 전문가 조언으로 공급망을 보호하십시오.
 - [B2B 캐시미어 바이어가 오르도스 원산지를 확인하고 허위 표시를 피하는 방법: 소싱 가이드](https://www.erdosdx.com/kr/blog/how-b2b-cashmere-buyers-verify-ordos-origin-avoid-mislabeling/): 진정한 오르도스 캐시미어를 확인하고, 허위 표시를 피하며, 신뢰할 수 있는 내몽골 공장에서 소싱하는 방법을 알아보세요. 인증, 테스트 및 실사에 대한 B2B 바이어를 위한 실용적인 팁을 제공합니다.

@@ -179,7 +179,11 @@ export function buildProductHeading(product: ProductTitleInput, locale = 'en'): 
   return facets.length ? `${name} — ${facets.join(' · ')}` : name;
 }
 
-/** `<title>` 保留本地化分类、产品级名称、真实属性和简短品牌尾缀，避免关键词堆砌。 */
+/**
+ * `<title>` 保留本地化分类、人群、季节、产品级名称、真实属性和简短品牌尾缀。
+ * 人群与季节 facet 紧跟分类之后（出现在 Google SERP 视窗前 70c 内），即使产品名较长
+ * 也不会被裁掉；其余长尾属性后置，超长时优先被裁。
+ */
 export function buildProductSeoTitle(
   product: ProductTitleInput,
   localizedCategory: string,
@@ -188,8 +192,45 @@ export function buildProductSeoTitle(
   locale = 'en',
 ): string {
   const category = clean(localizedCategory);
-  const productName = buildProductHeading(product, locale);
+  const audience = audienceFacet(product.gender, locale);
+  const season = seasonFacet(product.season, locale);
+  const productName = clean(product.name) || 'Cashmere Product';
+
+  // 高搜索价值的前缀 facet (人群/季节) 紧跟 category；Google SERP 优先收录
+  const prefixParts = [category];
+  if (audience) prefixParts.push(audience);
+  if (season) prefixParts.push(season);
+  const prefix = `${prefixParts.join(' ')}: `;
+
+  // 低优先级 facet = 排除 audience/season 后的 titleFacets (material/micron/style/color/construction/packaging/weight/dimension)
+  const highPriority = new Set([audience, season].filter(Boolean));
+  const lowPriority = titleFacets(product, locale).filter((f) => !highPriority.has(f));
+
   const brandSuffix = brand ? ` | ${brand}` : '';
-  const core = category ? `${category}: ${productName}` : productName;
-  return `${clipWords(core, Math.max(56, maxLength - brandSuffix.length))}${brandSuffix}`;
+  const totalBudget = Math.max(56, maxLength - brandSuffix.length);
+
+  // 找到 max lowPriority 数使得 prefix + name + facets 全部 fit
+  let keepN = lowPriority.length;
+  while (keepN > 0) {
+    const kept = lowPriority.slice(0, keepN);
+    const candidate = `${prefix}${productName} — ${kept.join(' · ')}`;
+    if (candidate.length <= totalBudget) break;
+    keepN -= 1;
+  }
+  let core = keepN > 0
+    ? `${prefix}${productName} — ${lowPriority.slice(0, keepN).join(' · ')}`
+    : `${prefix}${productName}`;
+
+  // 仍然过长 → 截 name (前缀完整保留)
+  if (core.length > totalBudget) {
+    const reserved = keepN > 0
+      ? prefix.length + 3 + lowPriority.slice(0, keepN).join(' · ').length
+      : prefix.length;
+    const nameMax = totalBudget - reserved;
+    const trimmed = nameMax > 8 ? clipWords(productName, nameMax) : '';
+    core = keepN > 0
+      ? `${prefix}${trimmed} — ${lowPriority.slice(0, keepN).join(' · ')}`
+      : `${prefix}${trimmed}`;
+  }
+  return `${clipWords(core, totalBudget)}${brandSuffix}`;
 }
