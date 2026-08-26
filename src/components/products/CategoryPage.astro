@@ -650,16 +650,16 @@ const latestBlogPosts = relevantBlogPosts
 <BaseLayout locale={locale} pageKey="products" path={`/products/${slug}`} title={t.title} description={t.description} keywords={t.keywords} schema="general" customSchemas={categoryHubSchema(locale, slug, t.h1, t.description, products.map((p) => ({ id: p.id, name: p.name, price: p.price, image: resolveCategoryCardImage(p.images?.[0]) })))}>
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/products/${slug}`} />
 
-  <section class="category-hub-hero !bg-[#1C1813] !text-[#F7F3EC] py-20 md:py-28">
+  <section class="category-hub-hero !bg-[#F7F3EC] !text-[#1C1813] py-20 md:py-28">
     <div class="container-narrow">
       <span class="text-xs tracking-[0.4em] text-[#D8B787] uppercase">{CATEGORY_SLUGS_DEFS[catId].name}</span>
-      <h1 class="font-display text-4xl md:text-5xl font-light mt-4 mb-6 !text-[#F7F3EC]">{t.h1}</h1>
-      <p class="text-lg md:text-xl max-w-3xl !text-[#F7F3EC]/90">{t.intro}</p>
+      <h1 class="font-display text-4xl md:text-5xl font-light mt-4 mb-6 !text-[#1C1813]">{t.h1}</h1>
+      <p class="text-lg md:text-xl max-w-3xl !text-[#1C1813]/85">{t.intro}</p>
       <ul class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-2 max-w-3xl">
         {t.bullets.map((b) => (
-          <li class="flex items-start gap-2 text-sm !text-[#F7F3EC]/90">
+          <li class="flex items-start gap-2 text-sm !text-[#1C1813]/85">
             <span class="text-[#D8B787] mt-1">•</span>
-            <span class="!text-[#F7F3EC]/90">{b}</span>
+            <span class="!text-[#1C1813]/85">{b}</span>
           </li>
         ))}
       </ul>
