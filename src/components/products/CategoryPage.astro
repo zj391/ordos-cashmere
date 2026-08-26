@@ -950,17 +950,17 @@ loading="lazy"
 </BaseLayout>
 
 <style is:global>
-  /* Classification hubs must remain readable even when surrounding themes or
-     cached CSS alter brand utility colors. */
+  /* Classification hubs retain a guaranteed light surface and dark text even
+     when surrounding themes or cached CSS alter brand utility colors. */
   .category-hub-hero {
-    background-color: #1C1813 !important;
-    color: #F7F3EC !important;
+    background-color: #F7F3EC !important;
+    color: #1C1813 !important;
   }
   .category-hub-hero h1,
   .category-hub-hero p,
   .category-hub-hero li,
   .category-hub-hero li span:not(:first-child) {
-    color: #F7F3EC !important;
+    color: #1C1813 !important;
   }
   .category-hub-hero li span:first-child {
     color: #D8B787 !important;
