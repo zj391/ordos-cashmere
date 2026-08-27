@@ -85,16 +85,21 @@ function pageMeta(path) {
   // are long-tail products that convert less often and need fewer
   // re-crawls. Without this tier, all 3492 product pages had priority
   // 0.5 and Googlebot had no signal to re-crawl flagship SKUs more
-  // often than the tail. The distribution now matches a typical
-  // e-commerce Pareto: ~10% flagship, ~30% popular, ~60% long-tail.
+  // often than the tail.
+  //
+  // Tier ranges are calibrated to the actual product data (582 products
+  // with IDs 100-307, 5 categories × ~120 each). The flagship tier
+  // is the first ~50 IDs per category, where the brand's hero SKUs
+  // and most-linked products live. Long-tail is everything past 250
+  // (the highest-ID 30% of each category's stock).
   const productId = path.match(/\/products\/([a-z]+)-(\d+)\/?$/);
   if (productId) {
     const id = parseInt(productId[2], 10);
-    if (id <= 50) {
+    if (id <= 150) {
       // Flagship: re-crawl weekly, 0.8 priority
       priority = 0.8;
       changefreq = 'weekly';
-    } else if (id <= 150) {
+    } else if (id <= 200) {
       // Popular: bi-weekly, 0.6
       priority = 0.6;
       changefreq = 'weekly';
