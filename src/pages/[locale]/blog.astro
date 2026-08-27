@@ -2,6 +2,7 @@
 /**
  * Blog 列表 - 从 src/content/blog/{locale}/*.md 读取
  * 由 scripts/generate-blog.mjs + GitHub Actions 每日自动生成
+ * 内容策略：归档文章可供访客阅读；仅独立审阅文章进入 sitemap 与 ItemList 搜索入口。
  */
 export const prerender = true;
 import BaseLayout from '@/layouts/BaseLayout.astro';
@@ -30,10 +31,19 @@ const t: Record<string, Record<string, string>> = {
 };
 const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
 
-// 从 Content Collections 读取该 locale 的所有博客（按发布日期倒序）
+const visibilityCopy = {
+  en: { eyebrow: 'Blog archive', title: 'Articles remain available to readers', body: 'Search indexing is limited to articles reviewed for sources, visible content and sourcing relevance. Other archive articles remain accessible here and are not submitted as search-entry pages.' },
+  cn: { eyebrow: '博客归档', title: '文章仍可供访客阅读', body: '搜索索引仅包含已完成引用、可见内容与采购相关性审阅的文章。其他归档文章仍在此保留访问，但不会作为搜索入口提交。' },
+  de: { eyebrow: 'Blogarchiv', title: 'Artikel bleiben für Leser verfügbar', body: 'Für die Suche werden nur Artikel mit geprüften Quellen, sichtbaren Inhalten und Beschaffungsbezug verwendet. Weitere Archivartikel bleiben hier zugänglich, werden jedoch nicht als Sucheinstiege eingereicht.' },
+  fr: { eyebrow: 'Archives du blog', title: 'Les articles restent accessibles aux lecteurs', body: 'L’indexation est limitée aux articles vérifiés pour leurs sources, leur contenu visible et leur utilité pour l’approvisionnement. Les autres archives restent accessibles ici sans être soumises comme pages d’entrée de recherche.' },
+  ja: { eyebrow: 'ブログアーカイブ', title: '記事は引き続き閲覧できます', body: '検索インデックスには、出典・表示内容・調達上の関連性を確認した記事のみを掲載します。その他のアーカイブ記事もここで閲覧できますが、検索導線としては送信しません。' },
+  kr: { eyebrow: '블로그 아카이브', title: '글은 계속 열람할 수 있습니다', body: '검색 색인에는 출처, 표시 내용 및 소싱 관련성을 검토한 글만 포함됩니다. 다른 아카이브 글도 이곳에서 계속 볼 수 있지만 검색 진입 페이지로 제출되지는 않습니다.' },
+}[locale] || { eyebrow: 'Blog archive', title: 'Articles remain available to readers', body: 'Search indexing is limited to reviewed articles. Other archive articles remain accessible here.' };
+
+// 从 Content Collections 读取该 locale 的全部博客（按发布日期倒序）。
+// 可见性与搜索索引是两个独立维度：历史文章不应因 noindex 而从读者面前消失。
 const allPosts = await getCollection('blog', ({ id }) => {
-  if (!id.startsWith(`${locale}/`)) return false;
-  return isIndexableBlogPost(locale, getBlogSlugFromId(id));
+  return id.startsWith(`${locale}/`);
 });
 const posts = allPosts
   .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
@@ -44,6 +54,7 @@ const posts = allPosts
     date: p.data.publishDate.toISOString().slice(0, 10),
     tags: p.data.tags,
   }));
+const indexablePosts = posts.filter((p) => isIndexableBlogPost(locale, p.slug));
 
 // ItemList JSON-LD: 让 Google 把博客列表做成富结果
 const itemListSchema = {
@@ -51,8 +62,8 @@ const itemListSchema = {
   '@type': 'ItemList',
   name: T('title'),
   description: T('subtitle'),
-  numberOfItems: posts.length,
-  itemListElement: posts.map((p, i) => ({
+  numberOfItems: indexablePosts.length,
+  itemListElement: indexablePosts.map((p, i) => ({
     '@type': 'ListItem',
     position: i + 1,
     url: `https://www.erdosdx.com/${locale}/blog/${p.slug}/`,
@@ -63,7 +74,7 @@ const itemListSchema = {
 // BreadcrumbList JSON-LD: 首页 > Blog
 ---
 
-<BaseLayout locale={locale} pageKey="blog" path="/blog" customSchemas={[itemListSchema]}>
+<BaseLayout locale={locale} pageKey="blog" path="/blog" noIndex={true} customSchemas={[itemListSchema]}>
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/blog`} />
 
   <section class="relative bg-brand-sandwarm border-b border-border/60 overflow-hidden">
@@ -325,17 +336,15 @@ const itemListSchema = {
     </section>
   )}
 
-  {posts.length > 0 && (
+  {indexablePosts.length > 0 && (
     <section class="py-16 md:py-20 bg-brand-cream/40 border-y border-border" aria-labelledby="verified-knowledge">
       <div class="container-narrow max-w-3xl">
-        <span class="text-xs tracking-[0.32em] text-brand-camel uppercase font-medium">{locale === 'cn' ? '已核验知识页' : 'Reviewed knowledge'}</span>
+        <span class="text-xs tracking-[0.32em] text-brand-camel uppercase font-medium">{visibilityCopy.eyebrow}</span>
         <h2 id="verified-knowledge" class="font-serif text-3xl md:text-4xl font-light leading-tight mt-3 mb-4">
-          {locale === 'cn' ? '从可核验资料开始采购准备' : 'Start sourcing preparation with verifiable documents'}
+          {visibilityCopy.title}
         </h2>
         <p class="text-base text-muted-foreground leading-relaxed">
-          {locale === 'cn'
-            ? '当前展示的文章已按其引用、可见内容和采购用途完成审阅。产品、合规、交付与商业条件仍应按具体项目书面确认。'
-            : 'The article shown here has been reviewed for its references, visible content and sourcing purpose. Product, compliance, delivery and commercial terms still require written project confirmation.'}
+          {visibilityCopy.body}
         </p>
       </div>
     </section>
