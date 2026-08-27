@@ -20,7 +20,7 @@
 
  * - hreflang 到 5 个其他语言版本
 
- * - JSON-LD Product + Offer + AggregateRating 占位
+ * - JSON-LD Product 基于已列目录规格
 
  * - 内部链接到 hub 页 + 其他产品
 
@@ -46,6 +46,7 @@ import { LOCALES, isLocale, pickLocale } from '@/lib/i18n';
 
 import { SEO, SITE_URL, SITE_INFO } from '@/lib/seo';
 import { buildProductHeading, buildProductSeoTitle } from '@/lib/product-seo-title';
+import { getBlogSlugFromId, isIndexableBlogPost } from '@/lib/blog-indexability';
 import { getCollection } from 'astro:content';
 
 import {
@@ -993,41 +994,6 @@ const productSchema = {
     { '@type': 'PropertyValue', name: 'Fiber micron', value: product.micron || '' },
   ].filter((p) => p.value),
 
-  // Offer block: Google uses price + availability + currency from the
-  // Product schema to surface "in stock" badges and price-range rich
-  // results. Without it, the product page shows up as generic content
-  // and Google Shopping can't index it. The price field in products.json
-  // is a range string like "9.2-16.5" — we expose the lower bound as
-  // price (Google shows range when min/max differ) and keep currency +
-  // availability hardcoded since the catalog doesn't track per-SKU stock.
-  offers: (() => {
-    const priceRange = String(product.price || '').match(/^([\d.]+)(?:\s*-\s*([\d.]+))?/);
-    if (!priceRange) return undefined;
-    const minPrice = priceRange[1];
-    const maxPrice = priceRange[2] || minPrice;
-    return {
-      '@type': 'Offer',
-      url: `${SITE_URL}/${locale}/products/${product.id}/`,
-      priceCurrency: product.currency || 'USD',
-      price: minPrice,
-      // When price has a range, set priceValidUntil + priceSpecification
-      // so Google can render the range instead of just the min.
-      priceSpecification: maxPrice !== minPrice ? {
-        '@type': 'PriceSpecification',
-        priceCurrency: product.currency || 'USD',
-        minPrice: minPrice,
-        maxPrice: maxPrice,
-      } : undefined,
-      availability: 'https://schema.org/InStock',
-      itemCondition: 'https://schema.org/NewCondition',
-      seller: {
-        '@type': 'Organization',
-        name: SITE_INFO.name,
-        url: SITE_URL,
-      },
-    };
-  })(),
-
 };
 
 
@@ -1054,21 +1020,9 @@ const breadcrumbSchema = {
 
 };
 
-// Related Articles — category-aware blog linking.
-//
-// Old behavior (slice(0,2)): every product page linked the SAME 2 newest blogs,
-// leaving 51 of 53 blogs with zero inbound links from any product. Google
-// treated them as orphan content and ranked them poorly.
-//
-// New behavior: each product page shows 4 blogs that match its category
-// via title/slug/tag/sourceTopic keyword scoring. If fewer than 4 match
-// (scarves/accessories have thin blog coverage today), fall back to the
-// most recent blogs so every product page still has 4 related links.
-//
-// Effect: 51 previously-orphan blogs now receive inbound links from the
-// relevant product pages, and each product page shows different related
-// blogs based on its category — a real internal link graph instead of a
-// fan-out from the latest 2.
+// Related Articles — category-aware links limited to the indexable-blog
+// whitelist. This prevents product records from promoting historical noindex
+// articles while preserving the available topic-relevant discovery route.
 //
 // Score weights:
 //   slug token match     +3
@@ -1100,7 +1054,9 @@ function scoreBlogAgainstCategory(blog: any, tokens: string[]): number {
   return s;
 }
 
-const allProductBlogPosts = await getCollection('blog', ({ id }) => id.startsWith(`${locale}/`));
+const allProductBlogPosts = await getCollection('blog', ({ id }) =>
+  id.startsWith(`${locale}/`) && isIndexableBlogPost(locale, getBlogSlugFromId(id))
+);
 const catTokens = PRODUCT_CATEGORY_TOKENS[product.categoryId] || [];
 
 const scoredBlogs = allProductBlogPosts
@@ -1111,7 +1067,8 @@ const scoredBlogs = allProductBlogPosts
     return new Date(b.post.data.publishDate).getTime() - new Date(a.post.data.publishDate).getTime();
   });
 
-// Take top 4 scored; if fewer than 4 scored > 0, top up with most-recent.
+// Take up to four scored articles; when needed, top up only from other
+// indexable articles in the same locale.
 let pickedBlogs = scoredBlogs.filter((x) => x.score > 0).map((x) => x.post);
 if (pickedBlogs.length < 4) {
   const pickedIds = new Set(pickedBlogs.map((b) => b.id));
@@ -1124,7 +1081,7 @@ if (pickedBlogs.length < 4) {
 pickedBlogs = pickedBlogs.slice(0, 4);
 
 const relatedBlogPosts = pickedBlogs.map((p) => ({
-  slug: p.id.replace(`${locale}/`, '').replace(/\.md$/, ''),
+  slug: getBlogSlugFromId(p.id),
   title: p.data.title,
   excerpt: p.data.excerpt,
   date: p.data.publishDate.toISOString().slice(0, 10),

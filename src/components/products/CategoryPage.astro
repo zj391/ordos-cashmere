@@ -16,6 +16,7 @@ import { LOCALES, isLocale, pickLocale } from '@/lib/i18n';
 import { SEO, SITE_URL } from '@/lib/seo';
 import { products as productsData, getCategoryById, getRepresentativeProductsByCategory } from '@/data/products';
 import { getCollection } from 'astro:content';
+import { getBlogSlugFromId, isIndexableBlogPost } from '@/lib/blog-indexability';
 import { categoryHubSchema } from '@/lib/schema';
 
 // Maps catId -> image directory (must match `CATEGORY_IMAGE_DIR` in [id].astro).
@@ -619,7 +620,9 @@ const itemListSchema = {
 
 // Category-aware journal links distribute internal equity to buying articles
 // that match the category, instead of sending every hub to the same newest posts.
-const allBlogPosts = await getCollection('blog', ({ id }) => id.startsWith(`${locale}/`));
+const allBlogPosts = await getCollection('blog', ({ id }) =>
+  id.startsWith(`${locale}/`) && isIndexableBlogPost(locale, getBlogSlugFromId(id))
+);
 const categoryBlogKeywords: Record<string, string[]> = {
   hats: ['hat', 'beanie', 'headwear', 'cashmere grade', 'color'],
   scarves: ['scarf', 'wrap', 'shawl', 'cashmere grade', 'color'],
@@ -640,7 +643,7 @@ const relevantBlogPosts = allBlogPosts
 const latestBlogPosts = relevantBlogPosts
   .slice(0, 3)
   .map(({ post: p }) => ({
-    slug: p.id.replace(`${locale}/`, '').replace(/\.md$/, ''),
+    slug: getBlogSlugFromId(p.id),
     title: p.data.title,
     excerpt: p.data.excerpt,
     date: p.data.publishDate.toISOString().slice(0, 10),
