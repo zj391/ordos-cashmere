@@ -530,12 +530,24 @@ const categorySeoSupport: Record<string, { description: string; intro: string; b
   },
 };
 
-const fallbackT = tdk[slug]?.[locale] || tdk[slug]?.en;
 const topic = categorySeoTopics[locale]?.[catId] || categorySeoTopics.en[catId];
 const support = categorySeoSupport[locale] || categorySeoSupport.en;
+// Legacy category copy is intentionally not used as a runtime fallback: it contains
+// unsupported commercial assertions. A missing topic keeps the route usable while
+// retaining the same catalog-first, project-confirmation boundary as active themes.
+const fallbackT = {
+  title: 'Cashmere Product Records | DONGXIAO',
+  description: support.description,
+  keywords: [] as string[],
+  h1: 'Cashmere Product Records',
+  intro: support.intro,
+  bullets: support.bullets,
+  faqs: support.faqs,
+  catalog: support.catalog,
+};
 const t = topic
   ? { title: `${topic.heading} | DONGXIAO`, description: support.description, keywords: topic.keywords, h1: topic.heading, intro: support.intro, bullets: support.bullets, faqs: support.faqs, catalog: support.catalog }
-  : fallbackT ? { ...fallbackT, catalog: fallbackT.h1 } : null;
+  : fallbackT;
 if (!t) return new Response('Not Found', { status: 404 });
 
 const archiveCopy = {
