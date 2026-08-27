@@ -196,7 +196,7 @@ const groupLabel = (groupKey: string, group: any) => {
                 <div class="aspect-[4/3] overflow-hidden">
                   <img
                     src={feature.image}
-                    alt=""
+                    alt={feature.title?.[locale] || feature.title?.en || ''}
                     loading="lazy"
                     class="w-full h-full object-cover transition-transform duration-700 group-hover/feature:scale-105"
                   />

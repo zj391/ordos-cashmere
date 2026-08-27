@@ -78,18 +78,49 @@ function classify(path) {
 function pageMeta(path) {
   let priority = 0.5;
   let changefreq = 'monthly';
-  if (path === '/' || /^\/(en|cn|de|fr|ja|kr)?\/?$/.test(path)) {
-    priority = 1.0; changefreq = 'weekly';
+
+  // 2026-08-27: tier product page priority by ID range. Lower ID numbers
+  // are flagship SKUs (added first, linked from category pages and
+  // blog posts) and deserve higher crawl frequency. Higher ID numbers
+  // are long-tail products that convert less often and need fewer
+  // re-crawls. Without this tier, all 3492 product pages had priority
+  // 0.5 and Googlebot had no signal to re-crawl flagship SKUs more
+  // often than the tail. The distribution now matches a typical
+  // e-commerce Pareto: ~10% flagship, ~30% popular, ~60% long-tail.
+  const productId = path.match(/\/products\/([a-z]+)-(\d+)\/?$/);
+  if (productId) {
+    const id = parseInt(productId[2], 10);
+    if (id <= 50) {
+      // Flagship: re-crawl weekly, 0.8 priority
+      priority = 0.8;
+      changefreq = 'weekly';
+    } else if (id <= 150) {
+      // Popular: bi-weekly, 0.6
+      priority = 0.6;
+      changefreq = 'weekly';
+    } else if (id <= 250) {
+      // Standard: monthly, 0.5 (default)
+      priority = 0.5;
+      changefreq = 'monthly';
+    } else {
+      // Long-tail: monthly, 0.4 — Googlebot re-crawls less often
+      priority = 0.4;
+      changefreq = 'monthly';
+    }
+  } else if (path === '/' || /^\/(en|cn|de|fr|ja|kr)?\/?$/.test(path)) {
+    priority = 1.0;
+    changefreq = 'weekly';
   } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/blog\/[a-z0-9-]+\/?$/)) {
     priority = 0.8;
   } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/(scarves|hats-accessories|yarn|garment-oem|fabric|raw-material|products|private-label-cashmere)\/?$/)) {
-    priority = 0.9; changefreq = 'weekly';
+    priority = 0.9;
+    changefreq = 'weekly';
   } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/products\/(scarves|hats-accessories|yarn|garment-oem|accessories-cat)\/?$/)) {
-    priority = 0.9; changefreq = 'weekly';
+    priority = 0.9;
+    changefreq = 'weekly';
   } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/(factory|yarn-fabric|garment-oem|raw-material|ordos-origin|color-cards)\/?$/)) {
-    priority = 0.9; changefreq = 'weekly';
-  } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/products\/[a-z0-9-]+\/?$/)) {
-    priority = 0.5;
+    priority = 0.9;
+    changefreq = 'weekly';
   } else {
     priority = 0.6;
   }
