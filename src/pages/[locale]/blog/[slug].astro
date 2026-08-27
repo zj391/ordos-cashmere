@@ -1,7 +1,8 @@
 ---
 /**
  * Blog 详情页 - 从 src/content/blog/{locale}/{slug}.md 读取
- * 由 scripts/generate-blog.mjs + GitHub Actions 每日自动生成
+ * 由 scripts/generate-blog.mjs + GitHub Actions 每日自动生成。
+ * Schema 策略：仅为可索引且可见内容完整的文章输出 BlogPosting、BreadcrumbList 和 FAQPage。
  */
 export const prerender = true;
 import BaseLayout from '@/layouts/BaseLayout.astro';
@@ -45,6 +46,18 @@ const locale = pickLocale(Astro.params.locale);
 const slug = getBlogSlugFromId(post.id);
 const isIndexable = isIndexableBlogPost(locale, slug);
 const { Content } = await render(post);
+const articleUrl = `${SITE_URL}/${locale}/blog/${Astro.params.slug}/`;
+const schemaLabels = {
+  en: { home: 'Home', blog: 'Blog', blogName: 'DONGXIAO Cashmere Sourcing Notes' },
+  cn: { home: '首页', blog: '博客', blogName: '东霄羊绒采购笔记' },
+  de: { home: 'Startseite', blog: 'Blog', blogName: 'DONGXIAO Kaschmir-Beschaffungsnotizen' },
+  fr: { home: 'Accueil', blog: 'Blog', blogName: 'Notes d’approvisionnement cachemire DONGXIAO' },
+  ja: { home: 'ホーム', blog: 'ブログ', blogName: 'DONGXIAO カシミヤ調達ノート' },
+  kr: { home: '홈', blog: '블로그', blogName: 'DONGXIAO 캐시미어 소싱 노트' },
+}[locale] || { home: 'Home', blog: 'Blog', blogName: 'DONGXIAO Cashmere Sourcing Notes' };
+const articleWordCount = ['en', 'de', 'fr'].includes(locale)
+  ? post.body?.trim().split(/\s+/).filter(Boolean).length
+  : undefined;
 
 // 2026-08-19: hero image picked from blog tags using curated brand images.
 // Visual differentiation across 1566 blog posts without storing 1566 hero images.
@@ -54,6 +67,7 @@ const heroImage = blogHeroImage(post.data.tags || [], post.data.title || '');
 const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
+  '@id': `${articleUrl}#article`,
   headline: post.data.title,
   description: post.data.excerpt,
   datePublished: post.data.publishDate.toISOString(),
@@ -77,9 +91,16 @@ const articleSchema = {
   },
   mainEntityOfPage: {
     '@type': 'WebPage',
-    '@id': `${SITE_URL}/${locale}/blog/${Astro.params.slug}/`,
+    '@id': articleUrl,
   },
-  url: `${SITE_URL}/${locale}/blog/${Astro.params.slug}/`,
+  isPartOf: {
+    '@type': 'Blog',
+    '@id': `${SITE_URL}/${locale}/blog/#blog`,
+    name: schemaLabels.blogName,
+    url: `${SITE_URL}/${locale}/blog/`,
+    inLanguage: LOCALE_HREFLANG[locale],
+  },
+  url: articleUrl,
   image: {
     '@type': 'ImageObject',
     url: heroImage.path,
@@ -89,8 +110,8 @@ const articleSchema = {
   },
   keywords: (post.data.targetKeywords || []).join(', '),
   inLanguage: LOCALE_HREFLANG[locale],
-  articleSection: 'B2B Cashmere Sourcing',
-  wordCount: post.body?.split(/\s+/).length || 0,
+  articleSection: schemaLabels.blog,
+  ...(articleWordCount ? { wordCount: articleWordCount } : {}),
   isAccessibleForFree: true,
 };
 
@@ -100,9 +121,9 @@ const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/${locale}/` },
-    { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/${locale}/blog/` },
-    { '@type': 'ListItem', position: 3, name: post.data.title, item: `${SITE_URL}/${locale}/blog/${Astro.params.slug}/` },
+    { '@type': 'ListItem', position: 1, name: schemaLabels.home, item: `${SITE_URL}/${locale}/` },
+    { '@type': 'ListItem', position: 2, name: schemaLabels.blog, item: `${SITE_URL}/${locale}/blog/` },
+    { '@type': 'ListItem', position: 3, name: post.data.title, item: articleUrl },
   ],
 };
 
@@ -137,6 +158,7 @@ const blogFAQ = extractBlogFAQ(post.body, 4, locale);
   ogImage={heroImage.path}
   schema="blog"
   noIndex={!isIndexable}
+  suppressDefaultBreadcrumb={true}
   faqs={isIndexable ? blogFAQ : []}
   customSchemas={isIndexable ? [articleSchema, breadcrumbSchema] : []}
 >

@@ -52,6 +52,8 @@ export interface Props {
 
   noIndex?: boolean;
 
+  suppressDefaultBreadcrumb?: boolean; // 动态详情页已有专用面包屑时避免重复 JSON-LD
+
   faqs?: FAQItem[]; // 用于 FAQ 页
 
   customSchemas?: any[]; // 额外的 JSON-LD schema（Product/BreadcrumbList 等）
@@ -85,6 +87,8 @@ const {
   schema: _schema = 'general',
 
   noIndex = false,
+
+  suppressDefaultBreadcrumb = false,
 
   faqs,
 
@@ -319,7 +323,7 @@ if (!noIndex && customSchemas.length) {
 
 const bc = PAGE_BREADCRUMB[_pageKey];
 
-if (!noIndex && bc) {
+if (!noIndex && !suppressDefaultBreadcrumb && bc) {
 
   allSchemas.push(breadcrumbSchema(locale, bc(locale)));
 
