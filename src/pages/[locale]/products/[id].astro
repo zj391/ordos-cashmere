@@ -993,6 +993,41 @@ const productSchema = {
     { '@type': 'PropertyValue', name: 'Fiber micron', value: product.micron || '' },
   ].filter((p) => p.value),
 
+  // Offer block: Google uses price + availability + currency from the
+  // Product schema to surface "in stock" badges and price-range rich
+  // results. Without it, the product page shows up as generic content
+  // and Google Shopping can't index it. The price field in products.json
+  // is a range string like "9.2-16.5" — we expose the lower bound as
+  // price (Google shows range when min/max differ) and keep currency +
+  // availability hardcoded since the catalog doesn't track per-SKU stock.
+  offers: (() => {
+    const priceRange = String(product.price || '').match(/^([\d.]+)(?:\s*-\s*([\d.]+))?/);
+    if (!priceRange) return undefined;
+    const minPrice = priceRange[1];
+    const maxPrice = priceRange[2] || minPrice;
+    return {
+      '@type': 'Offer',
+      url: `${SITE_URL}/${locale}/products/${product.id}/`,
+      priceCurrency: product.currency || 'USD',
+      price: minPrice,
+      // When price has a range, set priceValidUntil + priceSpecification
+      // so Google can render the range instead of just the min.
+      priceSpecification: maxPrice !== minPrice ? {
+        '@type': 'PriceSpecification',
+        priceCurrency: product.currency || 'USD',
+        minPrice: minPrice,
+        maxPrice: maxPrice,
+      } : undefined,
+      availability: 'https://schema.org/InStock',
+      itemCondition: 'https://schema.org/NewCondition',
+      seller: {
+        '@type': 'Organization',
+        name: SITE_INFO.name,
+        url: SITE_URL,
+      },
+    };
+  })(),
+
 };
 
 
