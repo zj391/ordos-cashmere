@@ -2,6 +2,7 @@
 title: "Worsted vs Woolen Cashmere Yarn: Which to Choose for Your Product"
 excerpt: "Worsted and woolen cashmere yarns are spun differently and behave differently. Choose wrong and your finished product won't have the hand feel your customers expect."
 publishDate: 2026-07-08
+updatedDate: "2026-07-08"
 author: "DONGXIAO® Editorial"
 tags: ["cashmere yarn", "worsted spinning", "woolen spinning", "yarn selection"]
 geoRegion: "GLOBAL"

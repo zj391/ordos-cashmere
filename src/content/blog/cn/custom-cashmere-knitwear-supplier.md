@@ -2,6 +2,7 @@
 title: "定制羊绒针织供应商：高端自有品牌OEM/ODM完整指南"
 excerpt: "如何以OEM/ODM规模采购定制羊绒针织：MOQ谈判、样品到大货周期、标签定制、针数选择。时尚品牌推出自有羊绒产品线的完整指南。"
 publishDate: 2026-08-05
+updatedDate: "2026-08-05"
 author: "东霄羊绒编辑部"
 tags: ["定制羊绒针织", "OEM羊绒制造商", "ODM羊绒", "自有品牌羊绒", "定制针织工厂"]
 geoRegion: "GLOBAL"

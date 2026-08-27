@@ -2,6 +2,7 @@
 title: "Premium-Kaschmir erkennen: 6 Schlüsselkennzahlen für jeden B2B-Einkäufer"
 excerpt: "Feinheit, Länge, Reinigungsausbeute, Farbe, Verunreinigung, Kräuselung — sechs messbare Indikatoren, die Standard-Kaschmir von Premium-Fasern aus Ordos unterscheiden."
 publishDate: 2026-05-20
+updatedDate: "2026-05-20"
 author: "DONGXIAO® Redaktion"
 tags: ["Kaschmirqualität", "B2B-Beschaffung", "Ordos-Herkunft", "Rohmaterial"]
 geoRegion: "EU"

@@ -2,6 +2,7 @@
 title: "羊绒纱线支数详解：2/26至2/60 Nm — 您的产品该选哪种支数"
 excerpt: "选错羊绒纱线支数可能毁掉整个设计。本指南为B2B买家及产品设计师提供Nm支数、机号匹配及终端用途选择的实用参考。"
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["羊绒纱线支数","Nm支数","羊绒机号","针织设计"]
 geoRegion: "GLOBAL"

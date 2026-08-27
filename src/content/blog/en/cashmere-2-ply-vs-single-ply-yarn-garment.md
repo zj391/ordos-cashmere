@@ -2,6 +2,7 @@
 title: "2-Ply vs Single-Ply Cashmere: What B2B Garment Buyers Should Specify (And Why)"
 excerpt: "Understand the structural difference between 2-ply and single-ply cashmere, and how plying affects durability, hand feel, and cost. Learn what to specify for your next B2B order."
 publishDate: "2026-08-11"
+updatedDate: "2026-08-11"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["2-ply cashmere","single ply cashmere","cashmere yarn specification","B2B cashmere sourcing","cashmere durability"]
 geoRegion: "GLOBAL"

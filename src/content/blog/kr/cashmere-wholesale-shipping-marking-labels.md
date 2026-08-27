@@ -2,6 +2,7 @@
 title: "캐시미어 의류 마킹 및 라벨: B2B 바이어가 반드시 지정해야 할 5가지 항목 (EAS + 케어)"
 excerpt: "EAS 태그부터 케어 심볼까지, 캐시미어 수입업체가 공장과 반드시 정의해야 할 5가지 핵심 라벨링 사양을 알아보세요. 컴플라이언스 문제와 반품을 방지할 수 있습니다."
 publishDate: "2026-07-31"
+updatedDate: "2026-07-31"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["캐시미어 라벨","EAS 태그","케어 라벨링","B2B 의류","컴플라이언스"]
 geoRegion: "GLOBAL"

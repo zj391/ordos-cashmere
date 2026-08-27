@@ -2,6 +2,7 @@
 title: "中国からのカシミア輸入2026：HSコード、通関手続き、よくある5つのミス"
 excerpt: "2026年に中国からカシミアを輸入する際に必要なHSコード、通関手続き、落とし穴を解説。23年の歴史を持つオルドス工場からのB2Bバイヤー向け専門ガイド。"
 publishDate: "2026-07-29"
+updatedDate: "2026-07-29"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["カシミア輸入","HSコード","中国通関","B2Bカシミア取引","輸入ミス"]
 geoRegion: "GLOBAL"

@@ -2,6 +2,7 @@
 title: "Baby Cashmere (Hircus Kids): Why It's 30% Pricier and When B2B Buyers Should Specify It"
 excerpt: "Baby cashmere from Hircus kids is 30% pricier but offers superior softness and fineness. Learn when B2B buyers should specify it for luxury lines, with sourcing insights from Ordos."
 publishDate: "2026-08-05"
+updatedDate: "2026-08-05"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["baby cashmere","Hircus kids","premium cashmere fiber","B2B sourcing","luxury yarn"]
 geoRegion: "GLOBAL"

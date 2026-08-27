@@ -2,6 +2,7 @@
 title: "Großhandel Mongolisches Rohkaschmir kaufen: B2B-Leitfaden zu Faserbeschaffung, Preisen und Qualität"
 excerpt: "Der Kauf von Mongolischem Rohkaschmir in Großmengen 2026 erfordert die Navigation durch Herkunftsbetrug, Mikronabweichungen und Preisvolatilität. Dieser Leitfaden behandelt Beschaffungsquellen, Lieferantenfragen und Qualitätsprüfung vor PO-Unterzeichnung."
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["raw cashmere sourcing", "Mongolian cashmere", "B2B sourcing guide", "cashmere fiber quality", "dehaired cashmere"]
 geoRegion: "GLOBAL"

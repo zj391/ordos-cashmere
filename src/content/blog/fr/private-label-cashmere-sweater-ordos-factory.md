@@ -2,6 +2,7 @@
 title: "Fabrication de pulls cachemire marque blanche : Construire sa marque depuis Ordos"
 excerpt: "Lancer une marque cachemire en marque blanche exige le bon partenaire industriel, des tech packs clairs, et une compréhension réaliste du MOQ, du délai et du coût unitaire. Un guide pratique."
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["private label", "cashmere OEM", "brand building", "manufacturing"]
 geoRegion: "GLOBAL"

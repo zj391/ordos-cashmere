@@ -2,6 +2,7 @@
 title: "羊绒贴牌毛衣制造：如何从鄂尔多斯打造自己的品牌"
 excerpt: "启动羊绒贴牌业务需要合适的工厂伙伴、清晰的工艺单，以及对起订量、交期、单件成本的现实理解。一份实用手册。"
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["private label", "cashmere OEM", "brand building", "manufacturing"]
 geoRegion: "GLOBAL"

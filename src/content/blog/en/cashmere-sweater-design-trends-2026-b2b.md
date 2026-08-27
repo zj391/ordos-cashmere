@@ -2,6 +2,7 @@
 title: "2026 Cashmere Sweater Design Trends: Q3-Q4 B2B Buyer Guide"
 excerpt: "Discover the top cashmere sweater design trends for Q3-Q4 2026. From sustainable fibers to oversized silhouettes, learn what global B2B buyers are requesting and how to plan your collection."
 publishDate: "2026-08-17"
+updatedDate: "2026-08-17"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere trends","B2B fashion","sweater design","luxury knitwear"]
 geoRegion: "GLOBAL"

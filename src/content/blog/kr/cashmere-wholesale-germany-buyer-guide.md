@@ -2,6 +2,7 @@
 title: "독일 캐시미어 도매: 독일 B2B 바이어를 위한 오르도스 직접 수입 가이드"
 excerpt: "독일 패션 브랜드를 위한 종합 가이드: 내몽골에서 직접 수입, 인증(OEKO-TEX + IWTO + GB/T 21209), MOQ 협상, FOB 천진/CIF 함부르크 물류."
 publishDate: "2026-08-07"
+updatedDate: "2026-08-07"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere wholesale germany", "kaschmir hersteller china", "kaschmir großhandel deutschland", "OEKO-TEX kaschmir", "kaschmir direktimport", "kaschmir Ordos"]
 targetKeywords:

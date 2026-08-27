@@ -2,6 +2,7 @@
 title: "Cashmere Hijab Manufacturing: MOQ, Fabric Weight, and Lead Time for B2B Buyers"
 excerpt: "Cashmere hijabs require finer yarn (2/48 to 2/60 Nm) and lighter fabric weight than scarves. A B2B guide to manufacturing cashmere hijabs: MOQ, fabric specs, lead time, and common customization options for the modest fashion market."
 publishDate: 2026-08-18
+updatedDate: "2026-08-18"
 author: "DONGXIAO® Editorial"
 tags: ["cashmere hijab", "cashmere scarf", "modest fashion wholesale", "cashmere scarf wholesale", "private label cashmere scarf", "hijab manufacturing"]
 geoRegion: "GLOBAL"

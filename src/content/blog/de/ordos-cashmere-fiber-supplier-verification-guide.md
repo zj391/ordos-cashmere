@@ -2,6 +2,7 @@
 title: "Echtheit von Ordos-Kaschmir prüfen: 7 Tests, die jeder B2B-Käufer vor der PO-Unterzeichnung durchführen sollte"
 excerpt: "Herkunftsbetrug, Fasermischung und Mikron-Inflation kosten B2B-Käufer jährlich Millionen. Ein praktischer Leitfaden zur Überprüfung der Angaben Ihres Ordos-Kaschmir-Lieferanten mit 7 Labor- und Vor-Ort-Tests."
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["Kaschmir-Prüfung","Ordos-Herkunft","Qualitätskontrolle","B2B-Beschaffung"]
 geoRegion: "GLOBAL"

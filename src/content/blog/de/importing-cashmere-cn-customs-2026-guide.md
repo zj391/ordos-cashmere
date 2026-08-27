@@ -2,6 +2,7 @@
 title: "Cashmere-Import aus China 2026: HS-Codes, Zoll und 5 häufige Fehler"
 excerpt: "Erfahren Sie die wesentlichen HS-Codes, Zollverfahren und Fallstricke für den Cashmere-Import aus China im Jahr 2026. Expertenleitfaden für B2B-Käufer aus einer 23-jährigen Ordos-Fabrik."
 publishDate: "2026-07-29"
+updatedDate: "2026-07-29"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["Cashmere-Import","HS-Code","China Zoll","B2B Cashmere-Handel","Importfehler"]
 geoRegion: "GLOBAL"

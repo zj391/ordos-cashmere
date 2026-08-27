@@ -2,6 +2,7 @@
 title: "Guide du fabricant de cachemire d'Ordos : comment les acheteurs B2B vérifient l'origine et évitent les erreurs d'étiquetage"
 excerpt: "Apprenez comment les acheteurs B2B de cachemire peuvent vérifier l'origine d'Ordos, éviter les erreurs d'étiquetage et s'approvisionner en authentique cachemire de Mongolie-Intérieure auprès d'usines de confiance comme DONGXIAO."
 publishDate: "2026-06-29"
+updatedDate: "2026-06-29"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cachemire d'Ordos","approvisionnement B2B","vérification du cachemire","erreur d'étiquetage"]
 geoRegion: "GLOBAL"

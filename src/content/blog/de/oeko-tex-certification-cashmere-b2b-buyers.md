@@ -2,6 +2,7 @@
 title: "OEKO-TEX 100 für Kaschmir: Was B2B-Käufer wirklich brauchen vs. Nice-to-Have"
 excerpt: "Entdecken Sie die kritischen vs. optionalen OEKO-TEX 100-Anforderungen für den Kaschmir-Einkauf. Ein praktischer Leitfaden für B2B-Käufer zu Chemikaliensicherheit, Zertifizierungsstufen und Lieferkettenprüfung."
 publishDate: "2026-07-28"
+updatedDate: "2026-07-28"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["OEKO-TEX Kaschmir","Kaschmir-Zertifizierung","B2B Textilzertifizierung","nachhaltiger Kaschmir","Chemikaliensicherheit Textil"]
 geoRegion: "GLOBAL"

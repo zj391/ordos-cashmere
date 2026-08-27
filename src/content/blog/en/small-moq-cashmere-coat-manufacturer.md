@@ -2,6 +2,7 @@
 title: "Small MOQ Cashmere Coat Manufacturing: How Boutique Brands Source from China"
 excerpt: "Most cashmere factories require 200-500 unit minimums. For boutique brands wanting 30-50 unit runs, here's how to make small-batch cashmere production work."
 publishDate: 2026-07-08
+updatedDate: "2026-07-08"
 author: "DONGXIAO® Editorial"
 tags: ["small MOQ", "boutique cashmere", "coat manufacturing", "low-volume production"]
 geoRegion: "GLOBAL"

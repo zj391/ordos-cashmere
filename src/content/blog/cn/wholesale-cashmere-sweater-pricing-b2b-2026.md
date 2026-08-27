@@ -2,6 +2,7 @@
 title: "2026年羊绒衫批发定价指南：B2B买家按国家应支付的预期价格"
 excerpt: "一份全面的B2B指南，涵盖2026年羊绒衫批发定价、各国成本细分、市场趋势以及来自一家拥有23年历史的鄂尔多斯工厂的采购建议。"
 publishDate: "2026-07-08"
+updatedDate: "2026-07-08"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["羊绒定价","B2B采购","羊绒衫批发","2026年市场趋势"]
 geoRegion: "全球"

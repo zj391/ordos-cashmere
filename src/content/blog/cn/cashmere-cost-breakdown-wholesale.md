@@ -2,6 +2,7 @@
 title: "为什么羊绒服装成本 8-50 美元：来自工厂的真实成本拆解"
 excerpt: "透明拆解一件成衣羊绒毛衣从原绒到 FOB 天津的完整成本 —— 原料、人工、工厂费用和利润。每个 B2B 买家在议价前都应了解的成本结构。"
 publishDate: "2026-07-24"
+updatedDate: "2026-07-24"
 author: "DONGXIAO® Editorial"
 tags: ["羊绒成本","羊绒批发价","羊绒工厂成本","B2B 羊绒定价","FOB 羊绒毛衣"]
 geoRegion: "GLOBAL"

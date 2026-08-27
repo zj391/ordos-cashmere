@@ -2,6 +2,7 @@
 title: "3겹 캐시미어 의류: B2B 바이어가 더 지불해야 할 때 (그리고 과할 때)"
 excerpt: "3겹 캐시미어가 항상 더 좋은 것은 아닙니다. 내구성을 위해 추가 겹을 투자해야 할 때와 불필요한 때를 알아보세요. 프리미엄 니트웨어를 소싱하는 B2B 바이어를 위한 전문 가이드."
 publishDate: "2026-08-04"
+updatedDate: "2026-08-04"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["3겹 캐시미어","B2B 캐시미어 소싱","니트웨어 구조","캐시미어 내구성","프리미엄 니트웨어"]
 geoRegion: "GLOBAL"

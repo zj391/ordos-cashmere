@@ -2,6 +2,7 @@
 title: "Final Inspection AQL for Cashmere Garments: What B2B Buyers Should Insist On"
 excerpt: "Learn the critical AQL standards for final inspection of cashmere garments. Ensure quality with our expert guide for B2B buyers sourcing from Ordos, Inner Mongolia."
 publishDate: "2026-07-30"
+updatedDate: "2026-07-30"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere quality control","AQL standards","garment inspection","B2B sourcing"]
 geoRegion: "GLOBAL"

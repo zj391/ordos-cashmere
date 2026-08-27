@@ -2,6 +2,7 @@
 title: "Kaschmir vs. Mohair: B2B-Vergleich von Kosten, Haptik und Kundenwahrnehmung"
 excerpt: "Vergleichen Sie Kaschmir und Mohair für den B2B-Einkauf: Kosten, Faserhaptik, Haltbarkeit und Marktwahrnehmung. Erhalten Sie datenbasierte Erkenntnisse für Ihren nächsten Luxusfaser-Einkauf."
 publishDate: "2026-08-09"
+updatedDate: "2026-08-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["Kaschmir vs. Mohair","Luxusfaser","B2B-Beschaffung","Naturfaser","Faservergleich"]
 geoRegion: "GLOBAL"

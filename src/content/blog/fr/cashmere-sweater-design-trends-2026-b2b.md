@@ -2,6 +2,7 @@
 title: "Tendances Design des Pulls en Cachemire 2026 : Guide B2B pour les Acheteurs T3-T4"
 excerpt: "Découvrez les principales tendances design des pulls en cachemire pour le T3-T4 2026. Des fibres durables aux silhouettes oversize, apprenez ce que les acheteurs B2B mondiaux demandent et comment planifier votre collection."
 publishDate: "2026-08-17"
+updatedDate: "2026-08-17"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["tendances cachemire","mode B2B","design de pulls","maille de luxe"]
 geoRegion: "GLOBAL"

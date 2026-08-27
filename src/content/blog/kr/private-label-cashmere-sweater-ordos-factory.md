@@ -2,6 +2,7 @@
 title: "프라이빗 라벨 캐시미어 스웨터 제조: 오르도스에서 브랜드 구축"
 excerpt: "프라이빗 라벨 캐시미어 브랜드를 시작하려면 적절한 공장 파트너, 명확한 테크팩, 그리고 MOQ·리드타임·개당 단가의 현실적 이해가 필요합니다. 실전 가이드."
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["private label", "cashmere OEM", "brand building", "manufacturing"]
 geoRegion: "GLOBAL"

@@ -2,6 +2,7 @@
 title: "ベビーカシミヤ（Hircus Kids）：なぜ30%高価なのか、B2Bバイヤーがいつ指定すべきか"
 excerpt: "Hircus kids（子ヤギ）から採取されるベビーカシミヤは、通常の大人のカシミヤより30%高価ですが、優れた柔らかさと繊細さを提供します。高級ライン向けにB2Bバイヤーがいつ指定すべきか、オルドスからの調達インサイトとともに解説します。"
 publishDate: "2026-08-05"
+updatedDate: "2026-08-05"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["ベビーカシミヤ","Hircus kids","プレミアムカシミヤ繊維","B2B調達","高級糸"]
 geoRegion: "GLOBAL"

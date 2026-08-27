@@ -2,6 +2,7 @@
 title: "B2Bカシミヤバイヤーがオルドス産地を確認し、誤表示を回避する方法"
 excerpt: "オルドスカシミヤの産地を確認し、誤表示を回避し、DONGXIAOのような信頼できるメーカーから本物の内蒙古カシミヤを調達するための実践的な方法を学びます。"
 publishDate: "2026-07-05"
+updatedDate: "2026-07-05"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["カシミヤ調達","オルドスカシミヤ","B2Bカシミヤ","誤表示","サプライチェーン検証"]
 geoRegion: "GLOBAL"

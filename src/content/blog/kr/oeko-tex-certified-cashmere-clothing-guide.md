@@ -2,6 +2,7 @@
 title: "OEKO-TEX 인증 캐시미어: B2B 바이어가 알아야 할 섬유 안전 기준"
 excerpt: "OEKO-TEX Standard 100, GOTS, RWS, BSCI 등 7개 이상의 섬유 안전 인증이 있습니다. 캐시미어에 실제로 중요한 인증과 주장을 확인하는 방법을 알아보세요."
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["OEKO-TEX","GOTS","캐시미어 인증","섬유 안전","B2B 규정 준수"]
 geoRegion: "GLOBAL"

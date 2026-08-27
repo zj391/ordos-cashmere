@@ -2,6 +2,7 @@
 title: "Importer du cachemire de Chine en 2026 : codes SH, douane et 5 erreurs courantes"
 excerpt: "Apprenez les codes SH essentiels, les procédures douanières et les pièges à éviter pour importer du cachemire de Chine en 2026. Guide expert pour acheteurs B2B issu d'une usine d'Ordos forte de 23 ans d'expérience."
 publishDate: "2026-07-29"
+updatedDate: "2026-07-29"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["importation cachemire","code SH","douane Chine","commerce B2B cachemire","erreurs importation"]
 geoRegion: "GLOBAL"

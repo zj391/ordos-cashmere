@@ -2,6 +2,7 @@
 title: "How to Verify Ordos Cashmere: 7 Tests Every B2B Buyer Should Run Before Signing a PO"
 excerpt: "Origin fraud, fiber blending, and micron inflation cost B2B buyers millions annually. A practical guide to verifying your Ordos cashmere supplier's claims with 7 lab and on-site tests."
 publishDate: 2026-07-08
+updatedDate: "2026-07-08"
 author: "DONGXIAO® Editorial"
 tags: ["cashmere verification", "Ordos origin", "quality control", "B2B sourcing"]
 geoRegion: "GLOBAL"

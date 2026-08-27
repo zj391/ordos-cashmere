@@ -2,6 +2,7 @@
 title: "Cashmere Garment Marking & Labels: 5 Must-Specify Items for B2B Buyers (EAS + Care)"
 excerpt: "From EAS tags to care symbols, learn the 5 critical labeling specifications every cashmere importer must define with their factory. Avoid compliance issues and returns."
 publishDate: "2026-07-31"
+updatedDate: "2026-07-31"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere labels","EAS tags","care labeling","B2B apparel","compliance"]
 geoRegion: "GLOBAL"

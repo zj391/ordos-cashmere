@@ -2,6 +2,7 @@
 title: "OEKO-TEX Certified Cashmere: What B2B Buyers Need to Know About Textile Safety Standards"
 excerpt: "OEKO-TEX Standard 100, GOTS, RWS, BSCI — there are 7+ textile safety certifications. Which ones actually matter for cashmere, and how to verify claims."
 publishDate: 2026-07-08
+updatedDate: "2026-07-08"
 author: "DONGXIAO® Editorial"
 tags: ["OEKO-TEX", "GOTS", "cashmere certifications", "textile safety", "B2B compliance"]
 geoRegion: "GLOBAL"

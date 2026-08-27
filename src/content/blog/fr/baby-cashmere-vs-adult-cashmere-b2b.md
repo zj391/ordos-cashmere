@@ -2,6 +2,7 @@
 title: "Cachemire de bébé (Hircus kids) : pourquoi est-il 30 % plus cher et quand les acheteurs B2B devraient-ils le spécifier ?"
 excerpt: "Le cachemire de bébé issu de Hircus kids est 30 % plus cher, mais offre une douceur et une finesse supérieures. Découvrez quand les acheteurs B2B devraient le spécifier pour leurs lignes de luxe, avec des conseils d'approvisionnement depuis Ordos."
 publishDate: "2026-08-05"
+updatedDate: "2026-08-05"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cachemire de bébé","Hircus kids","fibre de cachemire premium","approvisionnement B2B","fil de luxe"]
 geoRegion: "GLOBAL"

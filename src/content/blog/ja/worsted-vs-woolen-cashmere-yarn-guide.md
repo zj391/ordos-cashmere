@@ -2,6 +2,7 @@
 title: "カシミア糸 梳毛 vs 紡毛：製品に合った選び方"
 excerpt: "梳毛カシミア糸と紡毛カシミア糸は紡績方法が異なり、性質も大きく異なります。誤った選び方をすると、製品の風合いがお客様の期待に合いません。"
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere yarn", "worsted spinning", "woolen spinning", "yarn selection"]
 geoRegion: "GLOBAL"

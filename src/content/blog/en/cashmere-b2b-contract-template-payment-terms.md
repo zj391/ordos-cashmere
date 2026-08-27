@@ -2,6 +2,7 @@
 title: "B2B Cashmere Contract: 7 Clauses We Always Include (Payment, Defect, Lead Time, Force Majeure)"
 excerpt: "Discover the 7 essential clauses in a cashmere B2B contract, including payment terms, defect limits, lead times, and force majeure. Protect your supply chain with expert advice from a 23-year-old Ordos factory."
 publishDate: "2026-07-07"
+updatedDate: "2026-07-07"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere B2B contract","payment terms","defect clause","lead time","force majeure","cashmere sourcing","Ordos factory"]
 geoRegion: "GLOBAL"

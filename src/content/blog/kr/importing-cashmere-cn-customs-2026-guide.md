@@ -2,6 +2,7 @@
 title: "2026년 중국에서 캐시미어 수입: HS 코드, 통관 절차 및 5가지 흔한 실수"
 excerpt: "2026년 중국에서 캐시미어를 수입할 때 필요한 필수 HS 코드, 통관 절차 및 주의사항을 알아보세요. 23년 경력의 오르도스 공장이 B2B 바이어를 위해 제공하는 전문 가이드입니다."
 publishDate: "2026-07-29"
+updatedDate: "2026-07-29"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["캐시미어 수입","HS 코드","중국 통관","B2B 캐시미어 무역","수입 실수"]
 geoRegion: "GLOBAL"

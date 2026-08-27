@@ -2,6 +2,7 @@
 title: "From Pasture to Garment: 23 Steps That Turn Ordos Cashmere into a Sweater"
 excerpt: "Behind every cashmere sweater is a year-long journey across the Albas plateau, dehairing lines, Italian spinning frames, German STOLL knitting machines, and 100% hand-finished inspection. A walkthrough of how raw fiber becomes finished garment inside one vertical source factory."
 publishDate: 2026-07-01
+updatedDate: "2026-07-01"
 author: "DONGXIAO® Editorial"
 tags: ["cashmere craftsmanship", "Ordos origin", "garment manufacturing", "factory tour", "behind the scenes"]
 geoRegion: "GLOBAL"

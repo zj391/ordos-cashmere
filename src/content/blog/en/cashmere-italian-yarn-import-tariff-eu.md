@@ -2,6 +2,7 @@
 title: "Italian Cashmere Yarn Tariffs 2026: EU Import Rules & B2B Sourcing Impact"
 excerpt: "Understand 2026 EU import tariffs on Italian cashmere yarn, how they affect B2B sourcing costs, and strategic alternatives for global buyers. Expert insights from a 23-year Ordos factory."
 publishDate: "2026-08-01"
+updatedDate: "2026-08-01"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere yarn","EU tariffs","import duty","B2B sourcing","Italian yarn","supply chain"]
 geoRegion: "GLOBAL"

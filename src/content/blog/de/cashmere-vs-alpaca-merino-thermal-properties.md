@@ -2,6 +2,7 @@
 title: "Kaschmir vs. Alpaka vs. Merino: Thermische Leistung, Kosten und Kundenwahrnehmung im B2B-Vergleich"
 excerpt: "Vergleichen Sie Kaschmir, Alpaka und Merino für den B2B-Einkauf: thermische Leistung, Kosten pro Einheit und Verbraucherwahrnehmung. Treffen Sie fundierte Entscheidungen für Ihre nächste Luxusfaser-Kollektion."
 publishDate: "2026-08-10"
+updatedDate: "2026-08-10"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["Kaschmir vs. Alpaka","Merinowolle Vergleich","Luxusfaser-Beschaffung","thermische Leistung","B2B-Faserwahl"]
 geoRegion: "GLOBAL"

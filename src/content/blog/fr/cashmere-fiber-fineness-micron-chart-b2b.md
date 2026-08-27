@@ -2,6 +2,7 @@
 title: "Guide des microns de cachemire : 14,5-19,5 μm pour les acheteurs B2B"
 excerpt: "Comprenez la finesse des fibres de cachemire grâce à notre guide pratique sur les microns. Apprenez le classement, le contrôle qualité et les conseils d'approvisionnement pour le cachemire de 14,5 à 19,5 μm."
 publishDate: "2026-08-20"
+updatedDate: "2026-08-20"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["micron cachemire","finesse des fibres","classement cachemire","approvisionnement B2B","contrôle qualité"]
 geoRegion: "GLOBAL"

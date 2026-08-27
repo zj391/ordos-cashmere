@@ -2,6 +2,7 @@
 title: "Why Cashmere Costs USD 8-50 per Piece: A Factory's True Cost Breakdown"
 excerpt: "A transparent cost breakdown of a finished cashmere sweater from raw fiber to FOB Tianjin — material, labor, overhead, margin. What every B2B buyer should know before negotiating."
 publishDate: 2026-07-24
+updatedDate: "2026-07-24"
 author: "DONGXIAO® Editorial"
 tags: ["cashmere cost", "cashmere wholesale price", "cashmere factory cost", "B2B cashmere pricing", "FOB cashmere sweater"]
 geoRegion: "GLOBAL"

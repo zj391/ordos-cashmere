@@ -2,6 +2,7 @@
 title: "캐시미어 vs 알파카 vs 메리노: B2B 보온성, 원가, 고객 인식 비교"
 excerpt: "B2B 소싱을 위한 캐시미어, 알파카, 메리노 비교: 보온성, 단위 원가, 소비자 인식. 다음 럭셔리 섬유 컬렉션을 위한 정보에 기반한 결정을 내리세요."
 publishDate: "2026-08-10"
+updatedDate: "2026-08-10"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["캐시미어 vs 알파카","메리노 울 비교","럭셔리 섬유 소싱","보온성","B2B 섬유 선택"]
 geoRegion: "GLOBAL"

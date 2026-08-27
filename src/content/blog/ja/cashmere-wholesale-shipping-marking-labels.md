@@ -2,6 +2,7 @@
 title: "カシミヤ製品のマーキング＆ラベル：B2Bバイヤーが指定すべき5つの必須項目（EAS＋ケア）"
 excerpt: "EASタグからケアシンボルまで、カシミヤ輸入業者が工場と明確に定義すべき重要なラベル仕様5項目をご紹介。コンプライアンス違反や返品を回避します。"
 publishDate: "2026-07-31"
+updatedDate: "2026-07-31"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["カシミヤラベル","EASタグ","ケアラベリング","B2Bアパレル","コンプライアンス"]
 geoRegion: "GLOBAL"

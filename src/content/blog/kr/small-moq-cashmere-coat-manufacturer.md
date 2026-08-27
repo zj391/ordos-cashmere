@@ -2,6 +2,7 @@
 title: "소량 MOQ 캐시미어 코트 제조: 부티크 브랜드의 중국 소싱 가이드"
 excerpt: "대부분의 캐시미어 공장은 200~500개 MOQ를 요구합니다. 시즌 30~50 코트를 판매하는 부티크 브랜드를 위한 소량 생산 운영법을 정리합니다."
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["small MOQ", "boutique cashmere", "coat manufacturing", "low-volume production"]
 geoRegion: "GLOBAL"

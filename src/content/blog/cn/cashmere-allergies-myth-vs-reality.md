@@ -2,6 +2,7 @@
 title: "羊绒过敏：迷思、真相与如何向客户解释"
 excerpt: "羊绒过敏真的存在吗？基于纤维科学，了解羊毛过敏与羊绒敏感之间的区别。学习如何解决客户疑虑，并自信地定位您的品牌。"
 publishDate: "2026-08-14"
+updatedDate: "2026-08-14"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["羊绒过敏","羊毛过敏","敏感肌肤","B2B采购","纤维科学"]
 geoRegion: "全球"

@@ -2,6 +2,7 @@
 title: "Kammgarn vs Streichgarn Kaschmirgarn: Welches für Ihr Produkt?"
 excerpt: "Kammgarn und Streichgarn aus Kaschmir werden unterschiedlich gesponnen und verhalten sich unterschiedlich. Die falsche Wahl führt dazu, dass Ihr fertiges Produkt nicht das Griffgefühl hat, das Ihre Kunden erwarten."
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere yarn", "worsted spinning", "woolen spinning", "yarn selection"]
 geoRegion: "GLOBAL"

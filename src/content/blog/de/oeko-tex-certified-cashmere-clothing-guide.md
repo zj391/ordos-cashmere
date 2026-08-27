@@ -2,6 +2,7 @@
 title: "OEKO-TEX-zertifiziertes Kaschmir: Was B2B-Käufer über Textilsicherheitsstandards wissen müssen"
 excerpt: "OEKO-TEX Standard 100, GOTS, RWS, BSCI — es gibt über 7 Textilsicherheitszertifikate. Welche sind für Kaschmir wirklich relevant und wie man Behauptungen überprüft."
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["OEKO-TEX","GOTS","Kaschmir-Zertifizierungen","Textilsicherheit","B2B-Compliance"]
 geoRegion: "GLOBAL"

@@ -2,6 +2,7 @@
 title: "婴儿羊绒（Hircus Kids）：为何贵30%以及B2B买家何时应指定使用"
 excerpt: "来自Hircus kids的婴儿羊绒价格高出30%，但提供卓越的柔软度和细度。了解B2B买家何时应将其用于奢侈产品线，并获取来自鄂尔多斯的采购洞察。"
 publishDate: "2026-08-05"
+updatedDate: "2026-08-05"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["婴儿羊绒","Hircus kids","高端羊绒纤维","B2B采购","奢侈纱线"]
 geoRegion: "全球"

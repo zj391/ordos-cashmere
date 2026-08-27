@@ -2,6 +2,7 @@
 title: "Custom Cashmere Knitwear Supplier: OEM/ODM Guide for Premium Private Label Brands"
 excerpt: "How to source custom cashmere knitwear at OEM/ODM scale: MOQ negotiation, sample-to-bulk lead times, label customization, gauge selection. The complete guide for fashion brands launching their own cashmere line."
 publishDate: 2026-08-05
+updatedDate: "2026-08-05"
 author: "DONGXIAO® Editorial"
 tags: ["custom cashmere knitwear", "OEM cashmere manufacturer", "ODM cashmere", "private label cashmere", "custom knitwear factory"]
 geoRegion: "GLOBAL"

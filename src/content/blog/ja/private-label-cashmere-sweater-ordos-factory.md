@@ -2,6 +2,7 @@
 title: "プライベートブランド カシミアセーター製造：オルドスでブランドを構築する方法"
 excerpt: "プライベートブランド カシミアを立ち上げるには、適切な工場パートナー、明快なテックパック、そして MOQ・リードタイム・単価の現実理解が要ります。実践ガイド。"
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["private label", "cashmere OEM", "brand building", "manufacturing"]
 geoRegion: "GLOBAL"

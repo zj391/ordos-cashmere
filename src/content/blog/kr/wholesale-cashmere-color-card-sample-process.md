@@ -2,6 +2,7 @@
 title: "B2B Cashmere Color Card Request: How to Get Samples & Timeline"
 excerpt: "Learn the exact information to send for a cashmere color card request, how to receive physical samples, and realistic B2B sample timelines from an Ordos source factory."
 publishDate: "2026-08-21"
+updatedDate: "2026-08-21"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere color card","B2B sample request","cashmere sampling process","wholesale cashmere","sample timeline"]
 geoRegion: "GLOBAL"

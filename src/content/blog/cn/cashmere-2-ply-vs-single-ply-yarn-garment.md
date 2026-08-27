@@ -2,6 +2,7 @@
 title: "双股与单股羊绒：B2B服装采购商应如何指定（及原因）"
 excerpt: "了解双股与单股羊绒的结构差异，以及加捻如何影响耐用性、手感和成本。了解如何在下一笔B2B订单中指定正确的规格。"
 publishDate: "2026-08-11"
+updatedDate: "2026-08-11"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["双股羊绒","单股羊绒","羊绒纱线规格","B2B羊绒采购","羊绒耐用性"]
 geoRegion: "GLOBAL"

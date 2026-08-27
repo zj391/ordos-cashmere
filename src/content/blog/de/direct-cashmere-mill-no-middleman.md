@@ -2,6 +2,7 @@
 title: "Direkte Kaschmirfabrik, ohne Zwischenhändler: Wie Sie direkt von der Quelle kaufen und den Handelsaufschlag umgehen"
 excerpt: "Handelsunternehmen schlagen 30-40 % auf Kaschmirpreise auf. Für B2B-Käufer ab 500 kg Bestellmenge eliminiert der direkte Bezug ab Werk den Zwischenhändler – erfordert jedoch andere Logistik."
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["Direktbezug","Zwischenhändler","Kaschmirfabrik","B2B-Preisgestaltung"]
 geoRegion: "GLOBAL"

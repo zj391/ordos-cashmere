@@ -2,6 +2,7 @@
 title: "羊绒 vs 羊驼毛 vs 美利奴羊毛：B2B热性能、成本与消费者认知对比"
 excerpt: "为B2B采购对比羊绒、羊驼毛和美利奴羊毛：热性能、单位成本及消费者认知。为您的下一个奢华纤维系列做出明智决策。"
 publishDate: "2026-08-10"
+updatedDate: "2026-08-10"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["羊绒与羊驼毛对比","美利奴羊毛比较","奢华纤维采购","热性能","B2B纤维选择"]
 geoRegion: "GLOBAL"

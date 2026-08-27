@@ -2,6 +2,7 @@
 title: "Cashmere Allergies: Myth, Reality, and What to Tell Your Customers"
 excerpt: "Are cashmere allergies real? Discover the difference between wool allergy and cashmere sensitivity, backed by fiber science. Learn how to address customer concerns and position your brand with confidence."
 publishDate: "2026-08-14"
+updatedDate: "2026-08-14"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere allergies","wool allergy","sensitive skin","B2B sourcing","fiber science"]
 geoRegion: "GLOBAL"

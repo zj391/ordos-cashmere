@@ -2,6 +2,7 @@
 title: "Hand-Feel vs Micron Count: Why Two 15μm Cashmeres Can Feel Different (B2B Buyer's Quick Test)"
 excerpt: "Two cashmeres with the same micron count can feel worlds apart. Learn the hidden factors—fiber length, crimp, scale structure—and run a simple sensory test before you commit to a bulk order."
 publishDate: "2026-08-03"
+updatedDate: "2026-08-03"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere hand feel","micron count","fiber testing","B2B sourcing","quality control"]
 geoRegion: "GLOBAL"

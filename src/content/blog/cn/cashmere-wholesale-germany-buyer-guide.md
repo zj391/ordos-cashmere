@@ -2,6 +2,7 @@
 title: "德国羊绒批发：德国 B2B 买家鄂尔多斯直接采购指南"
 excerpt: "面向德国时尚品牌的完整指南：内蒙古直接采购、认证（OEKO-TEX + IWTO + GB/T 21209）、MOQ 谈判、FOB 天津/CIF 汉堡物流。"
 publishDate: "2026-08-07"
+updatedDate: "2026-08-07"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere wholesale germany", "kaschmir hersteller china", "kaschmir großhandel deutschland", "OEKO-TEX kaschmir", "kaschmir direktimport", "kaschmir Ordos"]
 targetKeywords:

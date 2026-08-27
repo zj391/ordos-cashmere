@@ -2,6 +2,7 @@
 title: "B2B 캐시미어 구매자가 오르도스 원산지를 확인하고 허위 표시를 피하는 방법"
 excerpt: "오르도스 캐시미어 원산지를 확인하고, 허위 표시를 피하며, DONGXIAO와 같은 신뢰할 수 있는 제조업체로부터 정품 내몽골 캐시미어를 조달하는 실용적인 방법을 알아보세요."
 publishDate: "2026-07-05"
+updatedDate: "2026-07-05"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["캐시미어 소싱","오르도스 캐시미어","B2B 캐시미어","허위 표시","공급망 검증"]
 geoRegion: "GLOBAL"

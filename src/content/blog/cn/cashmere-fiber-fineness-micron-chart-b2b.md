@@ -2,6 +2,7 @@
 title: "羊绒微米数指南：B2B采购商的14.5-19.5μm实用参考"
 excerpt: "通过我们的实用微米指南，了解羊绒纤维细度。学习14.5-19.5μm羊绒的分级、质量控制和采购技巧。"
 publishDate: "2026-08-20"
+updatedDate: "2026-08-20"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["羊绒微米","纤维细度","羊绒分级","B2B采购","质量控制"]
 geoRegion: "GLOBAL"

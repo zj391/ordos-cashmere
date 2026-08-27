@@ -2,6 +2,7 @@
 title: "OEKO-TEX认证羊绒：B2B买家需知的纺织品安全标准"
 excerpt: "OEKO-TEX Standard 100、GOTS、RWS、BSCI——7种以上纺织品安全认证。哪些对羊绒真正重要，以及如何验证其真实性。"
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["OEKO-TEX","GOTS","羊绒认证","纺织品安全","B2B合规"]
 geoRegion: "GLOBAL"

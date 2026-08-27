@@ -2,6 +2,7 @@
 title: "Importing Cashmere from China in 2026: HS Codes, Customs, and 5 Common Mistakes"
 excerpt: "Learn the essential HS codes, customs procedures, and pitfalls for importing cashmere from China in 2026. Expert guide for B2B buyers from a 23-year Ordos factory."
 publishDate: "2026-07-29"
+updatedDate: "2026-07-29"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere import","HS code","China customs","B2B cashmere trade","import mistakes"]
 geoRegion: "GLOBAL"

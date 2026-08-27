@@ -2,6 +2,7 @@
 title: "直营羊绒工厂，无中间商：如何从源头采购，跳过贸易公司加价"
 excerpt: "贸易公司通常给羊绒加价30-40%。对于订购500kg以上的B2B买家，直接从工厂采购可省去中间环节，但需要不同的物流安排。"
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["直营采购","中间商","羊绒工厂","B2B定价"]
 geoRegion: "GLOBAL"

@@ -2,6 +2,7 @@
 title: "Usine de cachemire directe, sans intermédiaire : comment acheter à la source et éviter la marge des sociétés de négoce"
 excerpt: "Les sociétés de négoce ajoutent 30 à 40 % aux prix du cachemire. Pour les acheteurs B2B commandant 500 kg+, s'approvisionner directement à l'usine élimine l'intermédiaire, mais nécessite une logistique différente."
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["approvisionnement direct","intermédiaire","usine de cachemire","tarification B2B"]
 geoRegion: "GLOBAL"

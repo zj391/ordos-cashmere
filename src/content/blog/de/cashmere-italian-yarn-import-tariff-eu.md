@@ -2,6 +2,7 @@
 title: "Italienisches Kaschmirgarn Zölle 2026: EU-Importregeln & B2B-Sourcing-Auswirkungen"
 excerpt: "Verstehen Sie die EU-Importzölle 2026 auf italienisches Kaschmirgarn, wie sie die B2B-Beschaffungskosten beeinflussen, und strategische Alternativen für globale Käufer. Expertenwissen aus einer 23-jährigen Fabrik in Ordos."
 publishDate: "2026-08-01"
+updatedDate: "2026-08-01"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["Kaschmirgarn","EU-Zölle","Einfuhrzoll","B2B-Beschaffung","Italienisches Garn","Lieferkette"]
 geoRegion: "GLOBAL"

@@ -2,6 +2,7 @@
 title: "직접 캐시미어 공장, 중간상 없음: 소스에서 구매하고 무역 회사 마크업을 건너뛰는 방법"
 excerpt: "무역 회사는 캐시미어 가격에 30-40%를 추가합니다. 500kg 이상 주문하는 B2B 구매자의 경우 공장에서 직접 소싱하면 중간상이 제거되지만 다른 물류가 필요합니다."
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["직접 소싱","중간상","캐시미어 공장","B2B 가격"]
 geoRegion: "GLOBAL"

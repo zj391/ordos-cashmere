@@ -2,6 +2,7 @@
 title: "意大利纺纱 vs 国内纺纱：B2B 买家应了解的山羊绒纱线品质差异"
 excerpt: "为 B2B 买家解析意大利纺纱与中国纺纱的山羊绒纱线主要差异：品质、成本、交期，以及从内蒙古鄂尔多斯采购。"
 publishDate: "2026-07-28"
+updatedDate: "2026-07-28"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere yarn","Italian spinning","yarn quality","B2B sourcing","cashmere manufacturing"]
 geoRegion: "GLOBAL"

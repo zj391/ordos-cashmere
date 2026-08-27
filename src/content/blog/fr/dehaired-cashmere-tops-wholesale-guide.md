@@ -2,6 +2,7 @@
 title: "Tops de Cachemire Épincé : Guide d'Achat B2B Complet pour le Cachemire Peigné d'Ordos"
 excerpt: "Tous les cachemires épincés ne se valent pas. La qualité des tops peignés varie selon l'uniformité du micron, l'alignement des fibres et les poils de garde résiduels. Un guide d'achat pour sélectionner le cachemire épincé adapté à votre processus de filature."
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cachemire épincé","tops de cachemire peigné","transformation du cachemire","filature"]
 geoRegion: "GLOBAL"

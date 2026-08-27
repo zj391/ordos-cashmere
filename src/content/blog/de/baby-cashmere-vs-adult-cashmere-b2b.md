@@ -2,6 +2,7 @@
 title: "Baby-Kaschmir (Hircus Kids): Warum er 30 % teurer ist und wann B2B-Käufer ihn spezifizieren sollten"
 excerpt: "Baby-Kaschmir von Hircus Kids ist 30 % teurer, bietet aber überlegene Weichheit und Feinheit. Erfahren Sie, wann B2B-Käufer ihn für Luxuslinien spezifizieren sollten, mit Sourcing-Einblicken aus Ordos."
 publishDate: "2026-08-05"
+updatedDate: "2026-08-05"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["Baby-Kaschmir","Hircus Kids","Premium-Kaschmirfaser","B2B-Sourcing","Luxusgarn"]
 geoRegion: "GLOBAL"

@@ -2,6 +2,7 @@
 title: "Cachemire en gros Allemagne : Guide d'importation directe d'Ordos pour acheteurs B2B allemands"
 excerpt: "Guide complet pour les marques de mode allemandes : importation directe depuis la Mongolie-Intérieure, certifications (OEKO-TEX + IWTO + GB/T 21209), négociation MOQ, logistique FOB Tianjin/CIF Hambourg."
 publishDate: "2026-08-07"
+updatedDate: "2026-08-07"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere wholesale germany", "fabricant cachemire chine", "cachemire en gros allemagne", "OEKO-TEX cachemire", "importation directe cachemire", "cachemire Ordos"]
 targetKeywords:

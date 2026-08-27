@@ -2,6 +2,7 @@
 title: "手感与细度：为什么同为15微米的羊绒手感不同（B2B采购快速测试）"
 excerpt: "同为15微米的羊绒，手感却可能天差地别。了解纤维长度、卷曲度、鳞片结构等隐藏因素，并在大批量下单前进行简单的感官测试。"
 publishDate: "2026-08-03"
+updatedDate: "2026-08-03"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["羊绒手感","细度","纤维测试","B2B采购","质量控制"]
 geoRegion: "GLOBAL"

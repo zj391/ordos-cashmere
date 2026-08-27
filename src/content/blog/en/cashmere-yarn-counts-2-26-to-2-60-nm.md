@@ -2,6 +2,7 @@
 title: "Cashmere Yarn Count Explained: 2/26 to 2/60 Nm — Which Count to Use for Your Product"
 excerpt: "Choosing the wrong cashmere yarn count can ruin a design. A practical guide to Nm counts, gauge matching, and end-use selection for B2B buyers and product designers."
 publishDate: 2026-07-08
+updatedDate: "2026-07-08"
 author: "DONGXIAO® Editorial"
 tags: ["cashmere yarn count", "Nm count", "cashmere gauge", "knitwear design"]
 geoRegion: "GLOBAL"

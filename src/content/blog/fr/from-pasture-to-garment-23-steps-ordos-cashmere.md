@@ -2,6 +2,7 @@
 title: "Du pâturage au vêtement : 23 étapes qui transforment le cachemire d'Ordos en pull"
 excerpt: "Derrière chaque pull en cachemire se cache un voyage d'un an à travers le plateau d'Albas, les lignes d'épilage, les métiers à filer italiens, les machines à tricoter allemandes STOLL et une inspection 100 % finie à la main. Un aperçu de la transformation de la fibre brute en vêtement fini au sein d'une usine source verticale."
 publishDate: "2026-07-03"
+updatedDate: "2026-07-03"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["artisanat du cachemire","origine Ordos","fabrication de vêtements","visite d'usine","coulisses"]
 geoRegion: "GLOBAL"

@@ -2,6 +2,7 @@
 title: "Calendrier d'approvisionnement en cachemire 2026 : délais optimaux de commande, de production et de livraison"
 excerpt: "Planifiez vos commandes de cachemire 2026 avec notre calendrier expert : quand réserver la production, sécuriser la matière première et planifier la livraison. Découvrez les délais, les fenêtres saisonnières et des conseils pour les acheteurs B2B."
 publishDate: "2026-08-06"
+updatedDate: "2026-08-06"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["approvisionnement cachemire","cachemire B2B","planification production","délai de livraison","planification 2026"]
 geoRegion: "GLOBAL"

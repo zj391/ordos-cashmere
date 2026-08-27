@@ -2,6 +2,7 @@
 title: "Toucher vs Micronage : Pourquoi Deux Cachemires de 15 μm Peuvent Sembler Différents (Test Rapide pour Acheteurs B2B)"
 excerpt: "Deux cachemires avec le même micronage peuvent sembler radicalement différents. Découvrez les facteurs cachés—longueur des fibres, frisure, structure des écailles—et effectuez un test sensoriel simple avant de vous engager dans une commande en gros."
 publishDate: "2026-08-03"
+updatedDate: "2026-08-03"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["toucher cachemire","micronage","test de fibres","approvisionnement B2B","contrôle qualité"]
 geoRegion: "GLOBAL"

@@ -2,6 +2,7 @@
 title: "Alashan vs Ordos vs Mongolian Cashmere Goats: What's the Real Difference?"
 excerpt: "Not all cashmere goats are the same. Alashan, Ordos, and Mongolian goats produce measurably different fiber — micron, length, color, down content. A 23-year Ordos factory's honest comparison."
 publishDate: 2026-07-24
+updatedDate: "2026-07-24"
 author: "DONGXIAO® Editorial"
 tags: ["Alashan goat", "Ordos cashmere goat", "Mongolian cashmere", "cashmere goat breed", "cashmere fiber origin"]
 geoRegion: "GLOBAL"

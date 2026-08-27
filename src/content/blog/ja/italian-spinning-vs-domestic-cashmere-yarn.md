@@ -2,6 +2,7 @@
 title: "イタリア紡績 vs 国内紡績：B2B バイヤーが知るべきカシミア糸品質の違い"
 excerpt: "B2B バイヤー向けにイタリア紡績と中国紡績のカシミア糸の主な違いを解説。品質、コスト、リードタイム、鄂爾多斯（オルドス）内蒙古からの調達について。"
 publishDate: "2026-07-28"
+updatedDate: "2026-07-28"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere yarn","Italian spinning","yarn quality","B2B sourcing","cashmere manufacturing"]
 geoRegion: "GLOBAL"

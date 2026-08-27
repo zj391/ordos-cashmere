@@ -2,6 +2,7 @@
 title: "2026年羊绒毛衣设计趋势：Q3-Q4 B2B买家指南"
 excerpt: "探索2026年Q3-Q4季度顶级羊绒毛衣设计趋势。从可持续纤维到超大廓形，了解全球B2B买家正在寻求什么，以及如何规划您的系列。"
 publishDate: "2026-08-17"
+updatedDate: "2026-08-17"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["羊绒趋势","B2B时尚","毛衣设计","奢华针织"]
 geoRegion: "GLOBAL"

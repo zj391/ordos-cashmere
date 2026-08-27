@@ -2,6 +2,7 @@
 title: "Cashmere Micron Count Guide: 14.5-19.5μm for B2B Buyers"
 excerpt: "Understand cashmere fiber fineness with our practical micron guide. Learn grading, quality control, and sourcing tips for 14.5-19.5μm cashmere."
 publishDate: "2026-08-20"
+updatedDate: "2026-08-20"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere micron","fiber fineness","cashmere grading","B2B sourcing","quality control"]
 geoRegion: "GLOBAL"

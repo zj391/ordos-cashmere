@@ -2,6 +2,7 @@
 title: "モンゴル産原毛カシミアの大量購入：B2B バイヤー向け繊維調達・価格・品質ガイド"
 excerpt: "2026 年にモンゴル産原毛カシミアを大量購入するには、原産地詐欺、ミクロン変動、価格変動への対処が必要です。本ガイドでは、調達先、サプライヤーへの質問、PO 締結前の品質検証を解説します。"
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["raw cashmere sourcing", "Mongolian cashmere", "B2B sourcing guide", "cashmere fiber quality", "dehaired cashmere"]
 geoRegion: "GLOBAL"

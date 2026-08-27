@@ -2,6 +2,7 @@
 title: "如何验证鄂尔多斯羊绒：B2B采购商在签单前应执行的7项测试"
 excerpt: "产地欺诈、纤维混纺和微米虚标每年让B2B采购商损失数百万美元。本文提供实用指南，通过7项实验室和现场测试验证您的鄂尔多斯羊绒供应商的声明。"
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["羊绒验证","鄂尔多斯产地","质量控制","B2B采购"]
 geoRegion: "GLOBAL"

@@ -2,6 +2,7 @@
 title: "How to Wash, Dry, and Store Cashmere: A Factory's Honest Care Guide"
 excerpt: "Hand wash, machine wash, dry clean — what's actually safe for cashmere? How to fix pilling, remove stains, and store cashmere so it lasts 10+ years. A practical care guide from a 23-year cashmere manufacturer."
 publishDate: 2026-07-24
+updatedDate: "2026-07-24"
 author: "DONGXIAO® Editorial"
 tags: ["how to wash cashmere", "cashmere care", "cashmere pilling", "cashmere storage", "cashmere maintenance"]
 geoRegion: "GLOBAL"

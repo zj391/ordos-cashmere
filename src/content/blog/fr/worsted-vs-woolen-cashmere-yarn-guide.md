@@ -2,6 +2,7 @@
 title: "Fil cachemire peigné vs cardé : Quel choisir pour votre produit ?"
 excerpt: "Les fils cachemire peigné et cardé sont filés différemment et se comportent différemment. Un mauvais choix et votre produit fini n'aura pas le toucher que vos clients attendent."
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere yarn", "worsted spinning", "woolen spinning", "yarn selection"]
 geoRegion: "GLOBAL"

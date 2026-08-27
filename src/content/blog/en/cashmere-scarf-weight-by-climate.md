@@ -2,6 +2,7 @@
 title: "How to Choose Cashmere Scarf Weight (GSM) by Climate: B2B Buyer's Climate-Matched Guide"
 excerpt: "Cashmere scarf weight ranges from 60g (lightweight for tropical climates) to 240g (heavyweight for arctic winters). A B2B buyer's guide to matching cashmere scarf weight to target climate for optimal customer satisfaction."
 publishDate: 2026-08-18
+updatedDate: "2026-08-18"
 author: "DONGXIAO® Editorial"
 tags: ["cashmere scarf", "cashmere scarf weight", "cashmere GSM", "climate adjusted cashmere", "wholesale cashmere scarf", "B2B cashmere sourcing"]
 geoRegion: "GLOBAL"

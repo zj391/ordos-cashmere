@@ -2,6 +2,7 @@
 title: "Wie man die Herkunft von Ordos-Kaschmir überprüft: Ein Leitfaden für B2B-Käufer zur Vermeidung von Falschdeklarationen"
 excerpt: "Erfahren Sie, wie B2B-Kaschmirkäufer die Herkunft von Ordos authentifizieren, Falschdeklarationen erkennen und ethisch von Fabriken in der Inneren Mongolei beziehen können. Praktische Tipps mit Mikronzahlen, Zertifizierungen und Prüfschritten."
 publishDate: "2026-07-04"
+updatedDate: "2026-07-04"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["Ordos-Kaschmir","Kaschmir-Beschaffung","B2B-Kaschmirkäufer","Kaschmir aus der Inneren Mongolei","Vermeidung von Falschdeklarationen"]
 geoRegion: "GLOBAL"

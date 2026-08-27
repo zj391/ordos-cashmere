@@ -2,6 +2,7 @@
 title: "26s vs 48sカシミヤ糸：B2B製品に適した番手はどちら？"
 excerpt: "26sと48sのカシミヤ糸の選択は、生地の重さ、コスト、最終用途に影響します。このガイドでは、番手の比較、用途、世界の輸入業者向け調達のヒントを解説します。"
 publishDate: "2026-08-08"
+updatedDate: "2026-08-08"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["カシミヤ糸","糸番手","B2B調達","カシミヤ生地","ニットウェア"]
 geoRegion: "GLOBAL"

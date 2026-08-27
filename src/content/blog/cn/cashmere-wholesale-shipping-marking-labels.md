@@ -2,6 +2,7 @@
 title: "羊绒服装唛头与标签：B2B买家必须明确的5项规格（EAS+洗护）"
 excerpt: "从EAS防盗标签到洗护符号，了解每位羊绒进口商必须与工厂明确的5项关键标签规格。避免合规问题和退货。"
 publishDate: "2026-07-31"
+updatedDate: "2026-07-31"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["羊绒标签","EAS防盗标签","洗护标签","B2B服装","合规"]
 geoRegion: "GLOBAL"

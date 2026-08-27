@@ -2,6 +2,7 @@
 title: "Explication du Titre de Fil Cachemire : De 2/26 à 2/60 Nm — Quel Titre Choisir pour Votre Produit"
 excerpt: "Choisir le mauvais titre de fil cachemire peut ruiner un design. Un guide pratique sur les titres Nm, l'adaptation de la jauge et la sélection en fonction de l'utilisation finale pour les acheteurs B2B et les designers de produits."
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["titre de fil cachemire","titre Nm","jauge cachemire","conception de tricot"]
 geoRegion: "GLOBAL"

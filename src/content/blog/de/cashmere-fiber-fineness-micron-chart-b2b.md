@@ -2,6 +2,7 @@
 title: "Leitfaden zur Kaschmir-Mikronzahl: 14,5–19,5 μm für B2B-Käufer"
 excerpt: "Verstehen Sie die Feinheit von Kaschmirfasern mit unserem praktischen Mikron-Leitfaden. Erfahren Sie mehr über Einstufung, Qualitätskontrolle und Beschaffungstipps für Kaschmir mit 14,5–19,5 μm."
 publishDate: "2026-08-20"
+updatedDate: "2026-08-20"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["Kaschmir-Mikron","Faserfeinheit","Kaschmir-Einstufung","B2B-Beschaffung","Qualitätskontrolle"]
 geoRegion: "GLOBAL"

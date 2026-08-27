@@ -2,6 +2,7 @@
 title: "이탈리아 방적 vs 국내 방적: B2B 바이어가 알아야 할 캐시미어 원사 품질"
 excerpt: "B2B 바이어를 위한 이탈리아와 중국 캐시미어 원사 방적의 핵심 차이를 정리합니다. 품질, 원가, 리드타임, 내몽골 오르도스 소싱까지."
 publishDate: "2026-07-28"
+updatedDate: "2026-07-28"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere yarn","Italian spinning","yarn quality","B2B sourcing","cashmere manufacturing"]
 geoRegion: "GLOBAL"

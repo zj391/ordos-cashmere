@@ -2,6 +2,7 @@
 title: "Kleine MOQ Kaschmir-Mantelproduktion: Wie Boutiquen aus China sourcen"
 excerpt: "Die meisten Kaschmirfabriken verlangen 200–500 Stück Mindestmenge. Für Boutiquen, die 30–50 Mäntel pro Saison verkaufen, zeigt dieser Leitfaden, wie Kleinserien funktionieren."
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["small MOQ", "boutique cashmere", "coat manufacturing", "low-volume production"]
 geoRegion: "GLOBAL"

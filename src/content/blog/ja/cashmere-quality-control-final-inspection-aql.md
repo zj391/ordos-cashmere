@@ -2,6 +2,7 @@
 title: "カシミア製品の最終検査AQL：B2Bバイヤーが求めるべき基準"
 excerpt: "カシミア製品の最終検査における重要なAQL基準を解説。内モンゴル・オルドスから調達するB2Bバイヤー向けに、品質を確保するための専門ガイドを提供します。"
 publishDate: "2026-07-30"
+updatedDate: "2026-07-30"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["カシミア品質管理","AQL基準","製品検査","B2B調達"]
 geoRegion: "GLOBAL"

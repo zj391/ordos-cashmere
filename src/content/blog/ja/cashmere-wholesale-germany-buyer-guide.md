@@ -2,6 +2,7 @@
 title: "ドイツ カシミア 卸売：ドイツ B2B バイヤー向けオルドス直接輸入ガイド"
 excerpt: "ドイツ ファッションブランド向け完全ガイド：内モンゴルからの直接輸入、認証（OEKO-TEX + IWTO + GB/T 21209）、MOQ 交渉、FOB 天津/CIF ハンブルク物流。"
 publishDate: "2026-08-07"
+updatedDate: "2026-08-07"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere wholesale germany", "kaschmir hersteller china", "kaschmir großhandel deutschland", "OEKO-TEX kaschmir", "kaschmir direktimport", "kaschmir Ordos"]
 targetKeywords:

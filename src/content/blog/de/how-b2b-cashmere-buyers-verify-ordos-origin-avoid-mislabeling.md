@@ -2,6 +2,7 @@
 title: "Wie B2B-Kaschmirkäufer die Herkunft aus Ordos verifizieren und Fehletikettierung vermeiden: Ein Leitfaden für die Beschaffung"
 excerpt: "Erfahren Sie, wie Sie authentischen Ordos-Kaschmir verifizieren, Fehletikettierung vermeiden und von zuverlässigen Fabriken in der Inneren Mongolei beziehen. Praktische Tipps für B2B-Käufer zu Zertifizierungen, Tests und Sorgfaltspflicht."
 publishDate: "2026-07-06"
+updatedDate: "2026-07-06"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["Ordos-Kaschmir-Beschaffung","Kaschmir-Herkunftsverifizierung","B2B-Kaschmir-Compliance","Fabrikprüfung Innere Mongolei","Prävention von Kaschmir-Fehletikettierung"]
 geoRegion: "GLOBAL"

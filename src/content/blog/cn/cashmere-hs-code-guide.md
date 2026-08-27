@@ -2,6 +2,7 @@
 title: "羊绒 HS 编码指南：5108.20 vs 6110 vs 6202，B2B 进口商必读 (2026)"
 excerpt: "掌握国际贸易中三个关键的羊绒 HS 编码：5108.20（纱线）、6110（针织服装）、6202（梭织大衣）。含欧盟进口关税率及 2026 年海关最新动态。"
 publishDate: "2026-08-13"
+updatedDate: "2026-08-13"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["羊绒 HS 编码","5108.20","6110","6202","进口关税","B2B 进口","羊绒批发"]
 geoRegion: "GLOBAL"

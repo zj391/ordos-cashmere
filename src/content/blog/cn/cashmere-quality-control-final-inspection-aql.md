@@ -2,6 +2,7 @@
 title: "羊绒服装最终检验AQL标准：B2B采购商应坚持的要点"
 excerpt: "了解羊绒服装最终检验的关键AQL标准。通过我们为从内蒙古鄂尔多斯采购的B2B买家提供的专家指南，确保品质。"
 publishDate: "2026-07-30"
+updatedDate: "2026-07-30"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["羊绒质量控制","AQL标准","服装检验","B2B采购"]
 geoRegion: "GLOBAL"

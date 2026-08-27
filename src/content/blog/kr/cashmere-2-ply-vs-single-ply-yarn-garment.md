@@ -2,6 +2,7 @@
 title: "2-Ply vs Single-Ply 캐시미어: B2B 의류 바이어가 지정해야 할 사항 (그리고 그 이유)"
 excerpt: "2-ply와 single-ply 캐시미어의 구조적 차이와 ply가 내구성, 촉감, 비용에 미치는 영향을 이해하세요. 다음 B2B 주문에서 무엇을 지정해야 하는지 알아보세요."
 publishDate: "2026-08-11"
+updatedDate: "2026-08-11"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["2-ply 캐시미어","single ply 캐시미어","캐시미어 원사 사양","B2B 캐시미어 소싱","캐시미어 내구성"]
 geoRegion: "GLOBAL"

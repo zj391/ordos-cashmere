@@ -2,6 +2,7 @@
 title: "羊绒与马海毛：B2B成本、手感与客户认知对比"
 excerpt: "为B2B采购对比羊绒与马海毛：成本、纤维手感、耐用性及市场认知。获取数据驱动的洞察，助力您的下一次奢侈纤维采购决策。"
 publishDate: "2026-08-09"
+updatedDate: "2026-08-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["羊绒与马海毛","奢侈纤维","B2B采购","天然纤维","纤维对比"]
 geoRegion: "GLOBAL"

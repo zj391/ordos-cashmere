@@ -2,6 +2,7 @@
 title: "Cashmere Pantone Color Matching: How Custom Dyeing Works for B2B Knitwear (2026)"
 excerpt: "Complete B2B guide to Pantone color matching on cashmere — from submitting a Pantone code to lab dip, bulk dyeing, color fastness ratings, and minimum order quantities by color."
 publishDate: "2026-08-14"
+updatedDate: "2026-08-14"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere Pantone","cashmere custom color","cashmere dyeing","Pantone color matching","custom cashmere color","OEM cashmere color","B2B cashmere","Ordos factory"]
 geoRegion: "GLOBAL"

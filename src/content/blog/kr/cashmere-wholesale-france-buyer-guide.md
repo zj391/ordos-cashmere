@@ -2,6 +2,7 @@
 title: "프랑스 캐시미어 도매: 프랑스 바이어가 오르도스 공장에서 직접 소싱하는 법"
 excerpt: "프랑스 패션 브랜드가 내몽골 공장에서 100% 캐시미어를 직접 소싱하는 방법 — €40-80/kg 비용 절감, OEKO-TEX + IWTO + GB/T 21209 서류, FOB 천진/CIF 르아브르 물류."
 publishDate: "2026-08-07"
+updatedDate: "2026-08-07"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere wholesale france", "캐시미어 공급사 중국", "캐시미어 제조사 검증", "MOQ 캐시미어 50개", "OEM 캐시미어 프랑스", "캐시미어 오르도스 직송"]
 targetKeywords:

@@ -2,6 +2,7 @@
 title: "2026 Cashmere Sourcing Calendar: Optimal Order, Production & Delivery Timing"
 excerpt: "Plan your 2026 cashmere orders with our expert calendar: when to book production, secure raw material, and schedule delivery. Learn lead times, seasonal windows, and tips for B2B buyers."
 publishDate: "2026-08-06"
+updatedDate: "2026-08-06"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere sourcing","B2B cashmere","production schedule","lead time","2026 planning"]
 geoRegion: "GLOBAL"

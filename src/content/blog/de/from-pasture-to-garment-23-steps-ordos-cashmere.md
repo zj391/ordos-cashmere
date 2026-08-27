@@ -2,6 +2,7 @@
 title: "Von der Weide zum Kleidungsstück: 23 Schritte, die Ordos-Kaschmir zu einem Pullover machen"
 excerpt: "Hinter jedem Kaschmirpullover steckt eine einjährige Reise über das Albas-Plateau, Enthaarungslinien, italienische Spinnmaschinen, deutsche STOLL- Strickmaschinen und 100% handgefertigte Endkontrolle. Ein Rundgang, wie aus Rohfaser ein fertiges Kleidungsstück in einer vertikalen Quellfabrik wird."
 publishDate: "2026-07-03"
+updatedDate: "2026-07-03"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["Kaschmir-Handwerk","Ordos-Ursprung","Bekleidungsherstellung","Fabrikbesichtigung","Hinter den Kulissen"]
 geoRegion: "GLOBAL"

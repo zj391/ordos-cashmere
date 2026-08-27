@@ -2,6 +2,7 @@
 title: "OEKO-TEX 100 羊绒认证：B2B买家真正需要的 vs 锦上添花的"
 excerpt: "了解羊绒采购中OEKO-TEX 100的关键与可选要求。为B2B买家提供的实用指南，涵盖化学品安全、认证级别和供应链验证。"
 publishDate: "2026-07-28"
+updatedDate: "2026-07-28"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["OEKO-TEX 羊绒","羊绒认证","B2B纺织品认证","可持续羊绒","纺织品化学品安全"]
 geoRegion: "GLOBAL"

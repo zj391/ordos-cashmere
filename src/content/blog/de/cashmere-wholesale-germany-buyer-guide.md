@@ -2,6 +2,7 @@
 title: "Cashmere Wholesale Germany: Direkter Import aus Ordos für Deutsche B2B-Einkäufer"
 excerpt: "Vollständiger Leitfaden für deutsche Mode-Marken: Direktimport aus Inner-Mongolei, Zertifizierungen (OEKO-TEX + IWTO + GB/T 21209), MOQ-Verhandlung, FOB Tianjin/CIF Hamburg Logistik."
 publishDate: 2026-08-06
+updatedDate: "2026-08-06"
 author: "DONGXIAO® Cashmere Redaktion"
 tags: ["cashmere wholesale germany", "kaschmir hersteller china", "kaschmir großhandel deutschland", "OEKO-TEX kaschmir", "kaschmir direktimport", "kaschmir Ordos"]
 targetKeywords:

@@ -2,6 +2,7 @@
 title: "小ロット カシミア コート製造：ブティックブランドが中国から調達する方法"
 excerpt: "多くのカシミア工場は 200〜500 個の最低発注量を求めています。シーズン 30〜50 個のコートを扱うブティックブランド向けに、小ロット生産を実現する方法を解説します。"
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["small MOQ", "boutique cashmere", "coat manufacturing", "low-volume production"]
 geoRegion: "GLOBAL"

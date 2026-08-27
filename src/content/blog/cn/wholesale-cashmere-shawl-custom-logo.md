@@ -2,6 +2,7 @@
 title: "羊绒披肩批发定制 Logo：B2B 织标、吊牌与起订量指南"
 excerpt: "羊绒围巾/披肩定制 Logo 需要选用合适的标签工艺（织造/印刷/刺绣）与规范的吊牌集成。B2B 买家专属的贴牌配件指南。"
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["custom logo","wholesale cashmere shawl","private label","woven labels"]
 geoRegion: "GLOBAL"

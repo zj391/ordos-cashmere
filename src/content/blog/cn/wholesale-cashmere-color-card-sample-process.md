@@ -2,6 +2,7 @@
 title: "B2B羊绒色卡申请：如何获取样品及时间周期"
 excerpt: "了解申请羊绒色卡所需提供的准确信息、如何获取实物样品，以及来自鄂尔多斯源头工厂的实际B2B样品时间周期。"
 publishDate: "2026-08-21"
+updatedDate: "2026-08-21"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["羊绒色卡","B2B样品申请","羊绒打样流程","羊绒批发","样品时间周期"]
 geoRegion: "GLOBAL"

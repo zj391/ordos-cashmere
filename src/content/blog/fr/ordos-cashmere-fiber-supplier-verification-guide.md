@@ -2,6 +2,7 @@
 title: "Comment vérifier le cachemire d'Ordos : 7 tests que tout acheteur B2B doit effectuer avant de signer un bon de commande"
 excerpt: "La fraude sur l'origine, le mélange de fibres et l'inflation des microns coûtent des millions aux acheteurs B2B chaque année. Un guide pratique pour vérifier les affirmations de votre fournisseur de cachemire d'Ordos avec 7 tests en laboratoire et sur site."
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["vérification du cachemire","origine Ordos","contrôle qualité","approvisionnement B2B"]
 geoRegion: "GLOBAL"

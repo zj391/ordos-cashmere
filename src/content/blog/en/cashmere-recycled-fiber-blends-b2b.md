@@ -2,6 +2,7 @@
 title: "Recycled Cashmere: How B2B Brands Can Use Pre-Consumer Waste Fiber Without Quality Loss"
 excerpt: "Discover how recycled cashmere from pre-consumer waste offers B2B brands a sustainable fiber solution without sacrificing quality. Learn about sourcing, processing, certifications, and MOQs from a trusted Ordos factory."
 publishDate: "2026-08-07"
+updatedDate: "2026-08-07"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["recycled cashmere","sustainable cashmere","B2B eco fiber","cashmere waste upcycle","circular fashion"]
 geoRegion: "GLOBAL"

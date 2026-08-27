@@ -2,6 +2,7 @@
 title: "B2B-Cashmere-Vertrag: 7 Klauseln, die wir immer aufnehmen (Zahlung, Mängel, Lieferzeit, Höhere Gewalt)"
 excerpt: "Entdecken Sie die 7 wesentlichen Klauseln in einem B2B-Cashmere-Vertrag, einschließlich Zahlungsbedingungen, Mängelgrenzen, Lieferzeiten und Höherer Gewalt. Schützen Sie Ihre Lieferkette mit Expertenrat einer 23 Jahre alten Fabrik aus Ordos."
 publishDate: "2026-07-07"
+updatedDate: "2026-07-07"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["B2B-Cashmere-Vertrag","Zahlungsbedingungen","Mängelklausel","Lieferzeit","Höhere Gewalt","Cashmere-Beschaffung","Ordos-Fabrik"]
 geoRegion: "GLOBAL"

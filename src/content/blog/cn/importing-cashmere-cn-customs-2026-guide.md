@@ -2,6 +2,7 @@
 title: "2026年从中国进口羊绒：HS编码、清关流程及5大常见错误"
 excerpt: "了解2026年从中国进口羊绒所需的HS编码、清关流程及常见陷阱。来自鄂尔多斯23年工厂的B2B买家专家指南。"
 publishDate: "2026-07-29"
+updatedDate: "2026-07-29"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["羊绒进口","HS编码","中国海关","B2B羊绒贸易","进口错误"]
 geoRegion: "GLOBAL"

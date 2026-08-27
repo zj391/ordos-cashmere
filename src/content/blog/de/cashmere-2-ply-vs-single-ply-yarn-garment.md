@@ -2,6 +2,7 @@
 title: "2-fädig vs. einfädig Kaschmir: Was B2B-Bekleidungskäufer spezifizieren sollten (und warum)"
 excerpt: "Verstehen Sie den strukturellen Unterschied zwischen 2-fädigem und einfädigem Kaschmir und wie sich die Fadenanzahl auf Haltbarkeit, Griff und Kosten auswirkt. Erfahren Sie, was Sie für Ihre nächste B2B-Bestellung spezifizieren sollten."
 publishDate: "2026-08-11"
+updatedDate: "2026-08-11"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["2-fädiges Kaschmir","einfädiges Kaschmir","Kaschmirgarn-Spezifikation","B2B-Kaschmir-Beschaffung","Kaschmir-Haltbarkeit"]
 geoRegion: "GLOBAL"

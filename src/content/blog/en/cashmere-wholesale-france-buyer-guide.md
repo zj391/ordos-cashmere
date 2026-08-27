@@ -2,6 +2,7 @@
 title: "Cashmere Wholesale France: How French Buyers Source Directly from Ordos Mills"
 excerpt: "How French fashion brands source 100% cashmere directly from Inner Mongolian mills — €40-80/kg savings, OEKO-TEX + IWTO + GB/T 21209 documentation, FOB Tianjin/CIF Le Havre logistics."
 publishDate: 2026-08-06
+updatedDate: "2026-08-06"
 author: "DONGXIAO® Cashmere Editorial"
 tags: ["cashmere wholesale france", "fournisseur cachemire chine", "fabricant cachemir vérifié", "MOQ cachemire 50 pièces", "OEM cachemire France", "cachemire Ordos direct"]
 targetKeywords:

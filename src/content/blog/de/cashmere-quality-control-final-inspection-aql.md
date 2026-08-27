@@ -2,6 +2,7 @@
 title: "Endkontrolle AQL für Kaschmirbekleidung: Worauf B2B-Käufer bestehen sollten"
 excerpt: "Erfahren Sie die entscheidenden AQL-Standards für die Endkontrolle von Kaschmirbekleidung. Sichern Sie Qualität mit unserem Expertenleitfaden für B2B-Käufer, die aus Ordos, Innere Mongolei, beziehen."
 publishDate: "2026-07-30"
+updatedDate: "2026-07-30"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["Kaschmir Qualitätskontrolle","AQL-Standards","Bekleidungsinspektion","B2B-Beschaffung"]
 geoRegion: "GLOBAL"

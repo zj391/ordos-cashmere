@@ -2,6 +2,7 @@
 title: "2026羊绒采购日历：最佳下单、生产与交货时间安排"
 excerpt: "利用我们的专家日历规划您的2026年羊绒订单：何时预订生产、锁定原材料、安排交货。了解交货周期、季节性窗口以及B2B买家的实用建议。"
 publishDate: "2026-08-06"
+updatedDate: "2026-08-06"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["羊绒采购","B2B羊绒","生产计划","交货周期","2026年规划"]
 geoRegion: "GLOBAL"

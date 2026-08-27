@@ -2,6 +2,7 @@
 title: "Kaschmir-Bekleidungsetiketten & Kennzeichnung: 5 Pflichtangaben für B2B-Käufer (EAS + Pflege)"
 excerpt: "Von EAS-Sicherungsetiketten bis zu Pflegesymbolen: Erfahren Sie, welche 5 kritischen Kennzeichnungsvorgaben jeder Kaschmir-Importeur mit seiner Fabrik festlegen muss. Vermeiden Sie Compliance-Probleme und Retouren."
 publishDate: "2026-07-31"
+updatedDate: "2026-07-31"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["Kaschmir-Etiketten","EAS-Sicherungsetiketten","Pflegekennzeichnung","B2B-Bekleidung","Compliance"]
 geoRegion: "GLOBAL"

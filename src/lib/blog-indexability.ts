@@ -5,6 +5,10 @@
  */
 export const INDEXABLE_BLOG_IDS = new Set([
   'en/cashmere-test-report-checklist-b2b-buyers',
+  'en/eu-textile-dpp-registry-2026-update',
+  'cn/eu-textile-dpp-registry-2026-update',
+  'en/eu-unsold-apparel-rules-2026-update',
+  'cn/eu-unsold-apparel-rules-2026-update',
 ]);
 
 export function getBlogSlugFromId(id: string) {

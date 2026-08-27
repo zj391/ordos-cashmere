@@ -2,6 +2,7 @@
 title: "2026年卸売カシミヤセーター価格：B2Bバイヤーが国別に支払うべき金額"
 excerpt: "2026年の卸売カシミヤセーター価格に関する包括的なB2Bガイド。国別のコスト内訳、市場動向、23年の歴史を持つオルドス工場からの調達のヒントを提供します。"
 publishDate: "2026-07-08"
+updatedDate: "2026-07-08"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["カシミヤ価格","B2B調達","卸売セーター","2026年市場動向"]
 geoRegion: "GLOBAL"

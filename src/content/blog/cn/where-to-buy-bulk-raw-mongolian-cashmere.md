@@ -2,6 +2,7 @@
 title: "批量采购蒙古原绒：B2B 买家纤维采购、定价与品质指南"
 excerpt: "2026 年批量采购蒙古原绒意味着要应对产地造假、细度差异与价格波动。本指南覆盖采购渠道、向供应商提出的问题，以及在签 PO 前如何验证品质。"
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["raw cashmere sourcing", "Mongolian cashmere", "B2B sourcing guide", "cashmere fiber quality", "dehaired cashmere"]
 geoRegion: "GLOBAL"

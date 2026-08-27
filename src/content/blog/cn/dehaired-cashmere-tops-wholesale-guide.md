@@ -2,6 +2,7 @@
 title: "分梳羊绒条：鄂尔多斯精梳羊绒B2B采购完整指南"
 excerpt: "并非所有分梳羊绒都相同。精梳条的质量因微米均匀度、纤维排列和残留粗毛而异。本指南助您为纺纱工艺选择合适的分梳羊绒。"
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["分梳羊绒","精梳羊绒条","羊绒加工","纺纱"]
 geoRegion: "GLOBAL"

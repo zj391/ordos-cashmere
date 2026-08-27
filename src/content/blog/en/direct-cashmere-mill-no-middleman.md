@@ -2,6 +2,7 @@
 title: "Direct Cashmere Mill, No Middleman: How to Buy from the Source and Skip the Trading Company Markup"
 excerpt: "Trading companies add 30-40% to cashmere prices. For B2B buyers ordering 500kg+, sourcing direct from the mill cuts out the middleman — but requires different logistics."
 publishDate: 2026-07-08
+updatedDate: "2026-07-08"
 author: "DONGXIAO® Editorial"
 tags: ["direct sourcing", "middleman", "cashmere factory", "B2B pricing"]
 geoRegion: "GLOBAL"

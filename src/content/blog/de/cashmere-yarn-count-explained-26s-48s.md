@@ -2,6 +2,7 @@
 title: "26s vs. 48s Kaschmirgarn: Welche Garnfeinheit ist die richtige für Ihr B2B-Produkt?"
 excerpt: "Die Wahl zwischen 26s und 48s Kaschmirgarn beeinflusst Stoffgewicht, Kosten und Endverwendung. Dieser Leitfaden vergleicht Feinheiten, Anwendungen und Sourcing-Tipps für globale Importeure."
 publishDate: "2026-08-08"
+updatedDate: "2026-08-08"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["Kaschmirgarn","Garnfeinheit","B2B-Sourcing","Kaschmirstoff","Strickwaren"]
 geoRegion: "GLOBAL"

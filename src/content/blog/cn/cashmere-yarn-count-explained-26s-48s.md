@@ -2,6 +2,7 @@
 title: "26支与48支羊绒纱线：您的B2B产品该选哪个支数？"
 excerpt: "在26支和48支羊绒纱线之间做选择，会影响面料克重、成本和最终用途。本指南为全球进口商对比支数、应用和采购要点。"
 publishDate: "2026-08-08"
+updatedDate: "2026-08-08"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["羊绒纱线","纱线支数","B2B采购","羊绒面料","针织服装"]
 geoRegion: "GLOBAL"

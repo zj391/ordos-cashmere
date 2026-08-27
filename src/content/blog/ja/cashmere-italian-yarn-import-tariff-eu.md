@@ -2,6 +2,7 @@
 title: "イタリアンカシミヤ糸の関税2026年：EU輸入規則とB2B調達への影響"
 excerpt: "2026年のEU輸入関税がイタリアンカシミヤ糸に与える影響、B2B調達コストへの影響、そして世界のバイヤー向け戦略的代替案を解説します。23年の実績を持つオルドス工場からの専門的見解。"
 publishDate: "2026-08-01"
+updatedDate: "2026-08-01"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["カシミヤ糸","EU関税","輸入関税","B2B調達","イタリアン糸","サプライチェーン"]
 geoRegion: "GLOBAL"

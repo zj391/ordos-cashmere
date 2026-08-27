@@ -2,6 +2,7 @@
 title: "Filage italien vs domestique : Ce que les acheteurs B2B doivent savoir sur la qualité du fil cachemire"
 excerpt: "Découvrez les différences clés entre le filage italien et chinois du cachemire pour acheteurs B2B. Qualité, coût, délais, et approvisionnement depuis Ordos, Mongolie-Intérieure."
 publishDate: "2026-07-28"
+updatedDate: "2026-07-28"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere yarn","Italian spinning","yarn quality","B2B sourcing","cashmere manufacturing"]
 geoRegion: "GLOBAL"

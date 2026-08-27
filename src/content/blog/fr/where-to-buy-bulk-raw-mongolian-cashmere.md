@@ -2,6 +2,7 @@
 title: "Où acheter du cachemire brut mongolien en gros : Guide B2B sur l'approvisionnement, les prix et la qualité"
 excerpt: "Acheter du cachemire brut mongolien en gros en 2026 exige de naviguer entre fraude d'origine, variance micronique et volatilité des prix. Ce guide couvre où sourcer, quelles questions poser et comment vérifier la qualité avant de signer un bon de commande."
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["raw cashmere sourcing", "Mongolian cashmere", "B2B sourcing guide", "cashmere fiber quality", "dehaired cashmere"]
 geoRegion: "GLOBAL"

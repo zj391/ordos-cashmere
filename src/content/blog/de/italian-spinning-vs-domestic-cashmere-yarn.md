@@ -2,6 +2,7 @@
 title: "Italienische vs. chinesische Kaschmirgarn-Spinnerei: Was B2B-Käufer über Garnqualität wissen sollten"
 excerpt: "Die wichtigsten Unterschiede zwischen italienischer und chinesischer Kaschmirgarn-Spinnerei für B2B-Käufer. Erfahren Sie mehr über Qualität, Kosten, Vorlaufzeiten und die Beschaffung aus Ordos, Innere Mongolei."
 publishDate: "2026-07-28"
+updatedDate: "2026-07-28"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere yarn","Italian spinning","yarn quality","B2B sourcing","cashmere manufacturing"]
 geoRegion: "GLOBAL"

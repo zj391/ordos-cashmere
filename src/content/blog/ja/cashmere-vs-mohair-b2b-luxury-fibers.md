@@ -2,6 +2,7 @@
 title: "Cashmere vs Mohair: B2B Cost, Feel, and Customer Perception Compared"
 excerpt: "Compare cashmere and mohair for B2B sourcing: cost, fiber feel, durability, and market perception. Get data-driven insights for your next luxury fiber purchase."
 publishDate: "2026-08-09"
+updatedDate: "2026-08-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere vs mohair","luxury fiber","B2B sourcing","natural fiber","fiber comparison"]
 geoRegion: "GLOBAL"

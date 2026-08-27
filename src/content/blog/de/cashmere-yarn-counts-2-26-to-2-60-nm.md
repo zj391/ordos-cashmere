@@ -2,6 +2,7 @@
 title: "Cashmere-Garnfeinheit erklärt: 2/26 bis 2/60 Nm — Welche Feinheit für Ihr Produkt?"
 excerpt: "Die falsche Cashmere-Garnfeinheit kann ein Design ruinieren. Ein praktischer Leitfaden zu Nm-Feinheiten, Maschenproben und Endverwendungsauswahl für B2B-Käufer und Produktdesigner."
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["Cashmere-Garnfeinheit","Nm-Feinheit","Cashmere-Maschenprobe","Strickdesign"]
 geoRegion: "GLOBAL"

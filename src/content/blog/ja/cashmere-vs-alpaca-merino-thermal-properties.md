@@ -2,6 +2,7 @@
 title: "カシミヤ vs アルパカ vs メリノ：B2B向け保温性、コスト、顧客認識の比較"
 excerpt: "B2B調達におけるカシミヤ、アルパカ、メリノの比較：保温性、単価、消費者認識を解説。次のラグジュアリーファイバーコレクションのための情報に基づいた意思決定をサポートします。"
 publishDate: "2026-08-10"
+updatedDate: "2026-08-10"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["カシミヤ vs アルパカ","メリノウール比較","高級繊維調達","保温性","B2B繊維選定"]
 geoRegion: "GLOBAL"

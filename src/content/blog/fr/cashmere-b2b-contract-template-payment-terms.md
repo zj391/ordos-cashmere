@@ -2,6 +2,7 @@
 title: "Contrat B2B pour le cachemire : 7 clauses que nous incluons toujours (paiement, défauts, délais, force majeure)"
 excerpt: "Découvrez les 7 clauses essentielles d'un contrat B2B pour le cachemire, incluant les conditions de paiement, les limites de défauts, les délais de livraison et la force majeure. Protégez votre chaîne d'approvisionnement grâce aux conseils d'experts d'une usine d'Ordos forte de 23 ans d'expérience."
 publishDate: "2026-07-07"
+updatedDate: "2026-07-07"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["contrat B2B cachemire","conditions de paiement","clause de défauts","délai de livraison","force majeure","approvisionnement cachemire","usine Ordos"]
 geoRegion: "GLOBAL"

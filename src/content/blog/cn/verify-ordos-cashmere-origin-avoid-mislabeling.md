@@ -2,6 +2,7 @@
 title: "B2B羊绒买家如何验证鄂尔多斯原产地并避免虚假标签"
 excerpt: "学习实用方法验证鄂尔多斯羊绒原产地，避免虚假标签，从东晓等可信赖的制造商处采购正宗内蒙古羊绒。"
 publishDate: "2026-07-05"
+updatedDate: "2026-07-05"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["羊绒采购","鄂尔多斯羊绒","B2B羊绒","虚假标签","供应链验证"]
 geoRegion: "GLOBAL"

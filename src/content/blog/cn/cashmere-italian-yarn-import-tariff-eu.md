@@ -2,6 +2,7 @@
 title: "意大利羊绒纱线关税2026：欧盟进口规则与B2B采购影响"
 excerpt: "了解2026年欧盟对意大利羊绒纱线的进口关税，及其对B2B采购成本的影响，并为全球买家提供战略性替代方案。来自拥有23年经验的鄂尔多斯工厂的专业见解。"
 publishDate: "2026-08-01"
+updatedDate: "2026-08-01"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["羊绒纱线","欧盟关税","进口关税","B2B采购","意大利纱线","供应链"]
 geoRegion: "GLOBAL"

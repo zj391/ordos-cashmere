@@ -2,6 +2,7 @@
 title: "阿拉善 vs 鄂尔多斯 vs 蒙古国羊绒山羊：真正的区别在哪里？"
 excerpt: "不同产地的羊绒山羊纤维品质差异巨大 —— 细度、长度、颜色、绒含量都有差别。来自23年鄂尔多斯工厂的客观对比。"
 publishDate: "2026-07-24"
+updatedDate: "2026-07-24"
 author: "DONGXIAO® Editorial"
 tags: ["阿拉善山羊","鄂尔多斯羊绒山羊","蒙古羊绒","羊绒山羊品种","羊绒纤维产地"]
 geoRegion: "GLOBAL"

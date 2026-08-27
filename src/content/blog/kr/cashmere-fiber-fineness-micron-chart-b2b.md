@@ -2,6 +2,7 @@
 title: "캐시미어 마이크론 수치 가이드: B2B 바이어를 위한 14.5-19.5μm"
 excerpt: "실용적인 마이크론 가이드를 통해 캐시미어 섬유의 가는 정도를 이해하세요. 14.5-19.5μm 캐시미어의 등급, 품질 관리, 소싱 팁을 알아보세요."
 publishDate: "2026-08-20"
+updatedDate: "2026-08-20"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["캐시미어 마이크론","섬유 가는 정도","캐시미어 등급","B2B 소싱","품질 관리"]
 geoRegion: "GLOBAL"

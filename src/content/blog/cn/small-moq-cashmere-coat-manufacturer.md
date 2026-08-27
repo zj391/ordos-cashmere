@@ -2,6 +2,7 @@
 title: "小起订量羊绒大衣制造：精品品牌如何在中国采购"
 excerpt: "大多数羊绒工厂要求 200-500 件的最低起订量。针对每季只卖 30-50 件大衣的精品品牌，本文介绍如何让小批量羊绒生产跑通。"
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["small MOQ", "boutique cashmere", "coat manufacturing", "low-volume production"]
 geoRegion: "GLOBAL"

@@ -2,6 +2,7 @@
 title: "Fil de cachemire 26s vs 48s : quel numéro choisir pour votre produit B2B ?"
 excerpt: "Choisir entre le fil de cachemire 26s et 48s impacte le poids du tissu, le coût et l'utilisation finale. Ce guide compare les numéros, les applications et les conseils d'approvisionnement pour les importateurs internationaux."
 publishDate: "2026-08-08"
+updatedDate: "2026-08-08"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["fil de cachemire","numéro de fil","approvisionnement B2B","tissu en cachemire","maille"]
 geoRegion: "GLOBAL"

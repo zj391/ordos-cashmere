@@ -2,6 +2,7 @@
 title: "캐시미어 OEKO-TEX 100: B2B 바이어가 실제로 알아야 할 필수 사항 vs 있으면 좋은 사항"
 excerpt: "캐시미어 소싱 시 필수적인 OEKO-TEX 100 요구사항과 선택적 요구사항을 알아보세요. 화학 안전성, 인증 수준, 공급망 검증에 대한 B2B 바이어를 위한 실용 가이드입니다."
 publishDate: "2026-07-28"
+updatedDate: "2026-07-28"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["OEKO-TEX 캐시미어","캐시미어 인증","B2B 섬유 인증","지속 가능한 캐시미어","화학 안전 섬유"]
 geoRegion: "GLOBAL"

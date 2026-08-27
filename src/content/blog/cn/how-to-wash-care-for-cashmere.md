@@ -2,6 +2,7 @@
 title: "羊绒洗涤、晾晒与存放：来自工厂的客观护理指南"
 excerpt: "羊绒可以手洗、机洗还是必须干洗？如何解决起球、去除污渍、正确存放以使羊绒使用寿命超过10年。23年羊绒制造商的实用护理指南。"
 publishDate: "2026-07-24"
+updatedDate: "2026-07-24"
 author: "DONGXIAO® Editorial"
 tags: ["羊绒洗涤方法","羊绒护理","羊绒起球","羊绒存放","羊绒保养"]
 geoRegion: "GLOBAL"

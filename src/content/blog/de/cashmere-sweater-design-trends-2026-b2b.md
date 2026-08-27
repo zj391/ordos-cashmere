@@ -2,6 +2,7 @@
 title: "Kaschmir-Pullover-Designtrends 2026: B2B-Käuferleitfaden für Q3-Q4"
 excerpt: "Entdecken Sie die wichtigsten Kaschmir-Pullover-Designtrends für Q3-Q4 2026. Von nachhaltigen Fasern bis hin zu übergroßen Silhouetten – erfahren Sie, was globale B2B-Käufer anfragen und wie Sie Ihre Kollektion planen."
 publishDate: "2026-08-17"
+updatedDate: "2026-08-17"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["Kaschmir-Trends","B2B-Mode","Pullover-Design","Luxus-Strickwaren"]
 geoRegion: "GLOBAL"

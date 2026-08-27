@@ -2,6 +2,7 @@
 title: "Cashmere Travel Wrap: B2B Guide to Luxury Travel Sets (Cashmere Wrap + Eye Mask + Socks)"
 excerpt: "Cashmere travel wraps are 200x100cm luxury pieces designed for first-class travel and resort wear. B2B guide to manufacturing cashmere travel sets including wrap, eye mask, and socks as a bundled gift or retail collection."
 publishDate: 2026-08-18
+updatedDate: "2026-08-18"
 author: "DONGXIAO® Editorial"
 tags: ["cashmere wrap", "cashmere travel set", "cashmere scarf wholesale", "luxury cashmere gift set", "private label cashmere", "cashmere travel wrap"]
 geoRegion: "GLOBAL"

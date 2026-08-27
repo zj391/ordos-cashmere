@@ -2,6 +2,7 @@
 title: "몽골산 생캐시미어 대량 구매: 섬유 소싱·가격·품질을 위한 B2B 바이어 가이드"
 excerpt: "2026년 몽골산 생캐시미어 대량 구매는 원산지 사기, 마이크론 변동, 가격 변동성을 헤쳐 나가야 함을 의미합니다. 이 가이드는 소싱처, 공급사 질문, PO 체결 전 품질 검증을 다룹니다."
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["raw cashmere sourcing", "Mongolian cashmere", "B2B sourcing guide", "cashmere fiber quality", "dehaired cashmere"]
 geoRegion: "GLOBAL"

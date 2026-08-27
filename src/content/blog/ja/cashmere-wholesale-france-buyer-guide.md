@@ -2,6 +2,7 @@
 title: "フランス カシミア 卸売：フランスのバイヤーがオルドス工場から直接調達する方法"
 excerpt: "フランスのファッションブランドが内モンゴル工場から 100% カシミアを直接調達する方法 — €40-80/kg のコスト削減、OEKO-TEX + IWTO + GB/T 21209 書類、FOB 天津/CIF ル・アーブルの物流。"
 publishDate: "2026-08-07"
+updatedDate: "2026-08-07"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere wholesale france", "カシミア サプライヤー 中国", "カシミアメーカー 検証済", "MOQ カシミア 50 個", "OEM カシミア フランス", "カシミア オルドス 直送"]
 targetKeywords:

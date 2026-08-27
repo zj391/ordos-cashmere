@@ -2,6 +2,7 @@
 title: "Cashmere vs Alpaca vs Merino: B2B Thermal Performance, Cost, and Customer Perception"
 excerpt: "Compare cashmere, alpaca, and merino for B2B sourcing: thermal performance, cost per unit, and consumer perception. Make informed decisions for your next luxury fiber collection."
 publishDate: "2026-08-10"
+updatedDate: "2026-08-10"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere vs alpaca","merino wool comparison","luxury fiber sourcing","thermal performance","B2B fiber choice"]
 geoRegion: "GLOBAL"

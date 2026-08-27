@@ -2,6 +2,7 @@
 title: "B2Bカシミアバイヤーがオルドス産地を確認し、誤表示を回避する方法"
 excerpt: "B2Bバイヤーが内モンゴル産の正真正銘のオルドスカシミアを確認し、誤表示を回避し、DONGXIAO Cashmereのような信頼できるメーカーから倫理的に調達する方法をご紹介します。"
 publishDate: "2026-07-03"
+updatedDate: "2026-07-03"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["オルドスカシミア","B2B調達","カシミア検証","誤表示防止"]
 geoRegion: "GLOBAL"

@@ -2,6 +2,7 @@
 title: "2026 캐시미어 스웨터 디자인 트렌드: Q3-Q4 B2B 바이어 가이드"
 excerpt: "2026년 Q3-Q4 캐시미어 스웨터 디자인 트렌드를 확인하세요. 지속 가능한 소재부터 오버사이즈 실루엣까지, 글로벌 B2B 바이어들이 요청하는 사항과 컬렉션을 계획하는 방법을 알아보세요."
 publishDate: "2026-08-17"
+updatedDate: "2026-08-17"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["캐시미어 트렌드","B2B 패션","스웨터 디자인","럭셔리 니트웨어"]
 geoRegion: "GLOBAL"

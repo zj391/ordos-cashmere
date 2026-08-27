@@ -2,6 +2,7 @@
 title: "カシミアのためのOEKO-TEX 100：B2Bバイヤーが実際に必要なものと、あると便利なもの"
 excerpt: "カシミア調達におけるOEKO-TEX 100の必須要件とオプション要件を解説。化学的安全性、認証レベル、サプライチェーン検証に関するB2Bバイヤー向け実践ガイド。"
 publishDate: "2026-07-28"
+updatedDate: "2026-07-28"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["OEKO-TEX カシミア","カシミア認証","B2B繊維認証","サステナブルカシミア","化学的安全性 繊維"]
 geoRegion: "GLOBAL"

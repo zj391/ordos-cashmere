@@ -2,6 +2,7 @@
 title: "B2B羊绒合同：我们始终包含的7个条款（付款、瑕疵、交期、不可抗力）"
 excerpt: "了解羊绒B2B合同中的7个关键条款，包括付款条件、瑕疵限度、交期和不可抗力。来自拥有23年经验的鄂尔多斯工厂的专业建议，保护您的供应链。"
 publishDate: "2026-07-07"
+updatedDate: "2026-07-07"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["羊绒B2B合同","付款条款","瑕疵条款","交期","不可抗力","羊绒采购","鄂尔多斯工厂"]
 geoRegion: "GLOBAL"

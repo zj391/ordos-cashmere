@@ -2,6 +2,7 @@
 title: "Cashmere Wholesale Germany: Direct Ordos Import Guide for German B2B Buyers"
 excerpt: "Complete guide for German fashion brands: direct import from Inner Mongolia, certifications (OEKO-TEX + IWTO + GB/T 21209), MOQ negotiation, FOB Tianjin/CIF Hamburg logistics."
 publishDate: "2026-08-06"
+updatedDate: "2026-08-06"
 author: "DONGXIAO® Cashmere Editorial"
 tags: ["cashmere wholesale germany", "cashmere manufacturer china", "cashmere wholesale germany", "OEKO-TEX cashmere", "cashmere direct import", "cashmere Ordos"]
 targetKeywords:

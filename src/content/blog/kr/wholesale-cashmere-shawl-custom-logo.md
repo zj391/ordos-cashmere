@@ -2,6 +2,7 @@
 title: "캐시미어 숄 도매 커스텀 로고: 직조 라벨·행태·MOQ B2B 가이드"
 excerpt: "캐시미어 스카프·숄의 커스텀 로고는 최적의 라벨 기술(직조/인쇄/자수)과 행태 통합이 필요합니다. 프라이빗 브랜드 액세서리를 위한 B2B 바이어 가이드."
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["custom logo","wholesale cashmere shawl","private label","woven labels"]
 geoRegion: "GLOBAL"

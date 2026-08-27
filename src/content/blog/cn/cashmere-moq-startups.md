@@ -2,6 +2,7 @@
 title: "初创品牌羊绒最低起订量：100件已取代500件成为行业新门槛 (2026 指南)"
 excerpt: "了解为何100件的最低起订量（MOQ）已取代500件成为羊绒批发对初创品牌的最低要求，以及如何与工厂协商更低的起订量。"
 publishDate: "2026-08-13"
+updatedDate: "2026-08-13"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["羊绒起订量","羊绒初创","低起订量羊绒","羊绒批发","羊绒小单","B2B 羊绒","鄂尔多斯工厂"]
 geoRegion: "GLOBAL"

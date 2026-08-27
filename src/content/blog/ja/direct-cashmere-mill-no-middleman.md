@@ -2,6 +2,7 @@
 title: "カシミヤ工場直販、中間業者なし：取引会社のマークアップを避けて直接仕入れる方法"
 excerpt: "取引会社はカシミヤ価格に30〜40%のマークアップを加えます。500kg以上を注文するB2Bバイヤーにとって、工場からの直接調達は中間業者を排除しますが、異なる物流が必要です。"
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["直接調達","中間業者","カシミヤ工場","B2B価格"]
 geoRegion: "GLOBAL"

@@ -2,6 +2,7 @@
 title: "OEKO-TEX 100 for Cashmere: What B2B Buyers Actually Need vs Nice-to-Have"
 excerpt: "Discover the critical vs optional OEKO-TEX 100 requirements for cashmere sourcing. A practical guide for B2B buyers on chemical safety, certification levels, and supply chain verification."
 publishDate: "2026-07-28"
+updatedDate: "2026-07-28"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["OEKO-TEX cashmere","cashmere certification","B2B textile certification","sustainable cashmere","chemical safety textile"]
 geoRegion: "GLOBAL"

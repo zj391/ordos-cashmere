@@ -2,6 +2,7 @@
 title: "Cashmere Bulk Pricing: How Wholesale Costs Scale by Volume, Gauge, and Grade"
 excerpt: "Cashmere pricing isn't just per-piece cost — it scales with volume, gauge, ply, and grade. Full pricing breakdown for 100-piece to 10,000-piece orders, with formulas B2B buyers can use to negotiate."
 publishDate: 2026-08-05
+updatedDate: "2026-08-05"
 author: "DONGXIAO® Editorial"
 tags: ["cashmere bulk pricing", "cashmere wholesale price", "cashmere MOQ pricing", "B2B cashmere cost", "cashmere volume discount"]
 geoRegion: "GLOBAL"

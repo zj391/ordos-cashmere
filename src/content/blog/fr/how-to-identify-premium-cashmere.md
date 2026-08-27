@@ -2,6 +2,7 @@
 title: "Identifier le cachemire premium : 6 indicateurs clés pour tout acheteur B2B"
 excerpt: "Finesse, longueur, rendement débourré, couleur, impuretés, ondulation — six indicateurs mesurables qui distinguent le cachemire standard de la fibre premium d'Ordos."
 publishDate: 2026-05-20
+updatedDate: "2026-05-20"
 author: "Rédaction DONGXIAO®"
 tags: ["qualité cachemire", "sourcing B2B", "origine Ordos", "matière première"]
 geoRegion: "EU"

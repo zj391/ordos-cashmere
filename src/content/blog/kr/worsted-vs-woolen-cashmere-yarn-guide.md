@@ -2,6 +2,7 @@
 title: "캐시미어 원사 소면 vs 방면: 제품에 맞는 선택"
 excerpt: "소면방적과 방면방적 캐시미어 원사는 방적 방식이 다르고 성질도 크게 다릅니다. 잘못 선택하면 완성 제품의 촉감이 고객이 기대하는 것과 달라집니다."
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere yarn", "worsted spinning", "woolen spinning", "yarn selection"]
 geoRegion: "GLOBAL"

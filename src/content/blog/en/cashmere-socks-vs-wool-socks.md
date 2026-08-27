@@ -2,6 +2,7 @@
 title: "Cashmere Socks vs Wool Socks: B2B Buyer's Guide to 7 Differences (Warmth, Durability, Price)"
 excerpt: "Cashmere socks are 3x warmer than merino wool socks per gram but cost 5-8x more. A B2B buyer's guide to choosing between cashmere and wool socks for different market segments: warmth, durability, care, price, and target customer."
 publishDate: 2026-08-18
+updatedDate: "2026-08-18"
 author: "DONGXIAO® Editorial"
 tags: ["cashmere socks", "wool socks vs cashmere", "cashmere sock wholesale", "private label cashmere socks", "cashmere accessories wholesale", "B2B cashmere sourcing"]
 geoRegion: "GLOBAL"

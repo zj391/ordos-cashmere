@@ -2,6 +2,7 @@
 title: "再生羊绒：B2B品牌如何在不损失品质的前提下使用消费前废料纤维"
 excerpt: "了解如何利用消费前废料制成的再生羊绒，为B2B品牌提供可持续的纤维解决方案，同时不牺牲品质。从鄂尔多斯可信赖的工厂获取关于采购、加工、认证和最小起订量的信息。"
 publishDate: "2026-08-07"
+updatedDate: "2026-08-07"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["再生羊绒","可持续羊绒","B2B环保纤维","羊绒废料升级再造","循环时尚"]
 geoRegion: "GLOBAL"

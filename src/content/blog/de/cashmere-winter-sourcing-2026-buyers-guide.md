@@ -2,6 +2,7 @@
 title: "2026 Cashmere-Sourcing-Kalender: Optimale Bestell-, Produktions- und Lieferzeitpunkte"
 excerpt: "Planen Sie Ihre Cashmere-Bestellungen für 2026 mit unserem Expertenkalender: Wann Sie Produktion buchen, Rohmaterial sichern und Lieferungen planen sollten. Erfahren Sie mehr über Vorlaufzeiten, saisonale Fenster und Tipps für B2B-Käufer."
 publishDate: "2026-08-06"
+updatedDate: "2026-08-06"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["Cashmere-Sourcing","B2B-Cashmere","Produktionsplanung","Vorlaufzeit","Planung 2026"]
 geoRegion: "GLOBAL"

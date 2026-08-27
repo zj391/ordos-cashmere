@@ -2,6 +2,7 @@
 title: "羊绒 Pantone 颜色定制：B2B 针织 OEM 染色流程全解（2026）"
 excerpt: "B2B 羊绒 Pantone 配色完整指南——从提交 Pantone 色号、实验室打样、批量染色、色牢度等级，到按颜色划分的最小起订量，一篇讲清。"
 publishDate: "2026-08-14"
+updatedDate: "2026-08-14"
 author: "东霄羊绒编辑部"
 tags: ["羊绒 Pantone","羊绒定制颜色","羊绒染色","Pantone 颜色匹配","定制羊绒颜色","OEM 羊绒颜色","B2B 羊绒","鄂尔多斯工厂"]
 geoRegion: "GLOBAL"

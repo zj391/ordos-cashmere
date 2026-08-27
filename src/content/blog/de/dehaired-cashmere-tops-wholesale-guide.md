@@ -2,6 +2,7 @@
 title: "Entwollte Kaschmir-Tops: Der vollständige B2B-Einkaufsführer für gekämmten Kaschmir aus Ordos"
 excerpt: "Nicht jeder enthaarte Kaschmir ist gleich. Die Qualität gekämmter Tops variiert je nach Mikron-Gleichmäßigkeit, Faserausrichtung und verbleibenden Grannenhaaren. Ein Einkaufsführer zur Auswahl des richtigen enthaarten Kaschmirs für Ihren Spinnprozess."
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["enthaarter Kaschmir","gekämmte Kaschmir-Tops","Kaschmirverarbeitung","Spinnen"]
 geoRegion: "GLOBAL"

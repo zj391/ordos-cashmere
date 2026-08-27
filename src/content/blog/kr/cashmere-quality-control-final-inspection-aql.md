@@ -2,6 +2,7 @@
 title: "캐시미어 의류 최종 검사 AQL: B2B 바이어가 반드시 요구해야 할 기준"
 excerpt: "캐시미어 의류 최종 검사에서 중요한 AQL 기준을 알아보세요. 내몽골 오르도스에서 소싱하는 B2B 바이어를 위한 전문 가이드로 품질을 보장하세요."
 publishDate: "2026-07-30"
+updatedDate: "2026-07-30"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["캐시미어 품질 관리","AQL 기준","의류 검사","B2B 소싱"]
 geoRegion: "GLOBAL"

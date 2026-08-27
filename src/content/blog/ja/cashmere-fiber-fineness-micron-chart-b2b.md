@@ -2,6 +2,7 @@
 title: "カシミヤのマイクロン数ガイド：B2Bバイヤー向け14.5-19.5μm"
 excerpt: "実用的なマイクロンガイドでカシミヤ繊維の細さを理解しましょう。14.5-19.5μmのカシミヤのグレーディング、品質管理、調達のポイントを学べます。"
 publishDate: "2026-08-20"
+updatedDate: "2026-08-20"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["カシミヤマイクロン","繊維の細さ","カシミヤグレーディング","B2B調達","品質管理"]
 geoRegion: "GLOBAL"

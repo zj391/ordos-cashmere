@@ -2,6 +2,7 @@
 title: "Allergies au cachemire : mythe, réalité et ce qu'il faut dire à vos clients"
 excerpt: "Les allergies au cachemire sont-elles réelles ? Découvrez la différence entre l'allergie à la laine et la sensibilité au cachemire, appuyée par la science des fibres. Apprenez à répondre aux préoccupations de vos clients et à positionner votre marque avec confiance."
 publishDate: "2026-08-14"
+updatedDate: "2026-08-14"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["allergies au cachemire","allergie à la laine","peau sensible","approvisionnement B2B","science des fibres"]
 geoRegion: "GLOBAL"

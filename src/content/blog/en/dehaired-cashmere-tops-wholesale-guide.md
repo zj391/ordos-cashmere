@@ -2,6 +2,7 @@
 title: "Dehaired Cashmere Tops: The Complete B2B Buyer's Guide to Combed Cashmere from Ordos"
 excerpt: "Not all dehaired cashmere is equal. Combed top quality varies by micron uniformity, fiber alignment, and residual guard hair. A buyer's guide to selecting the right dehaired cashmere for your spinning process."
 publishDate: 2026-07-08
+updatedDate: "2026-07-08"
 author: "DONGXIAO® Editorial"
 tags: ["dehaired cashmere", "combed cashmere tops", "cashmere processing", "spinning"]
 geoRegion: "GLOBAL"

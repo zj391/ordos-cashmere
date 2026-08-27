@@ -2,6 +2,7 @@
 title: "Comment vérifier l'origine du cachemire d'Ordos : Guide de l'acheteur B2B pour éviter les fausses étiquettes"
 excerpt: "Apprenez comment les acheteurs B2B de cachemire peuvent authentifier l'origine d'Ordos, repérer les fausses étiquettes et s'approvisionner de manière éthique auprès d'usines de Mongolie-Intérieure. Conseils pratiques avec des mesures en microns, certifications et étapes d'audit."
 publishDate: "2026-07-04"
+updatedDate: "2026-07-04"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cachemire d'Ordos","approvisionnement en cachemire","acheteur B2B de cachemire","cachemire de Mongolie-Intérieure","prévention des fausses étiquettes"]
 geoRegion: "GLOBAL"

@@ -2,6 +2,7 @@
 title: "캐시미어 원사 카운트 설명: 2/26 ~ 2/60 Nm — 제품에 적합한 카운트 선택 가이드"
 excerpt: "잘못된 캐시미어 원사 카운트를 선택하면 디자인이 망가질 수 있습니다. B2B 구매자와 제품 디자이너를 위한 Nm 카운트, 게이지 매칭 및 최종 용도 선택에 대한 실용적인 가이드입니다."
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["캐시미어 원사 카운트","Nm 카운트","캐시미어 게이지","니트웨어 디자인"]
 geoRegion: "GLOBAL"

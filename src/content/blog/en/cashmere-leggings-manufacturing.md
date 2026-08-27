@@ -2,6 +2,7 @@
 title: "Cashmere Leggings Manufacturing: MOQ, Fabric Weight, and B2B Wholesale Guide"
 excerpt: "Cashmere leggings are a fast-growing loungewear and athleisure segment. B2B buyer's guide to manufacturing cashmere leggings: yarn selection (2/26 to 2/48 Nm), MOQ, lead time, sizing, and target customer segments."
 publishDate: 2026-08-18
+updatedDate: "2026-08-18"
 author: "DONGXIAO® Editorial"
 tags: ["cashmere leggings", "cashmere loungewear wholesale", "cashmere accessories wholesale", "private label cashmere leggings", "B2B cashmere sourcing", "cashmere garment manufacturing"]
 geoRegion: "GLOBAL"

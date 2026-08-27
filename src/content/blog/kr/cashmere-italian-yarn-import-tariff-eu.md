@@ -2,6 +2,7 @@
 title: "2026년 이탈리아 캐시미어 원사 관세: EU 수입 규정 및 B2B 소싱 영향"
 excerpt: "2026년 EU의 이탈리아 캐시미어 원사 수입 관세와 B2B 소싱 비용에 미치는 영향, 그리고 글로벌 바이어를 위한 전략적 대안을 알아보세요. 23년 경력의 오르도스 공장이 제공하는 전문 인사이트."
 publishDate: "2026-08-01"
+updatedDate: "2026-08-01"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["캐시미어 원사","EU 관세","수입 관세","B2B 소싱","이탈리아 원사","공급망"]
 geoRegion: "GLOBAL"

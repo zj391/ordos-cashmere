@@ -2,6 +2,7 @@
 title: "Inspection finale AQL pour les vêtements en cachemire : ce que les acheteurs B2B doivent exiger"
 excerpt: "Découvrez les normes AQL essentielles pour l'inspection finale des vêtements en cachemire. Garantissez la qualité grâce à notre guide expert destiné aux acheteurs B2B qui s'approvisionnent à Ordos, en Mongolie intérieure."
 publishDate: "2026-07-30"
+updatedDate: "2026-07-30"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["contrôle qualité cachemire","normes AQL","inspection vêtements","approvisionnement B2B"]
 geoRegion: "GLOBAL"

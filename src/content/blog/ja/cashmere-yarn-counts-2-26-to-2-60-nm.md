@@ -2,6 +2,7 @@
 title: "カシミヤ糸の番手解説：2/26 Nmから2/60 Nm — 製品に適した番手の選び方"
 excerpt: "間違ったカシミヤ糸の番手を選ぶと、デザインが台無しになります。B2Bバイヤーや製品デザイナー向けに、Nm番手、ゲージの適合、最終用途の選び方を実践的に解説します。"
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["カシミヤ糸番手","Nm番手","カシミヤゲージ","ニットウェアデザイン"]
 geoRegion: "GLOBAL"

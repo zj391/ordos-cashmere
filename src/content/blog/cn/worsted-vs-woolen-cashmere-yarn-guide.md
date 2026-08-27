@@ -2,6 +2,7 @@
 title: "羊绒纱线 精纺 vs 粗纺：如何为产品选择"
 excerpt: "精纺和粗纺羊绒纱线纺纱方式不同，性质差异显著。选错了，成品的触感就达不到客户的预期。"
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere yarn", "worsted spinning", "woolen spinning", "yarn selection"]
 geoRegion: "GLOBAL"

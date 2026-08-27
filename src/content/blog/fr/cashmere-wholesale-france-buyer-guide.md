@@ -2,6 +2,7 @@
 title: "Cashmere Wholesale France : Guide Acheteur B2B pour Sourcer Directement d'Ordos"
 excerpt: "Comment les marques de mode françaises sourcent le cachemire 100% directement des filatures de Mongolie Intérieure — économies de €40-80/kg, certifications OEKO-TEX + IWTO + GB/T 21209, logistique FOB Tianjin/CIF Le Havre."
 publishDate: 2026-08-06
+updatedDate: "2026-08-06"
 author: "DONGXIAO® Cashmere Éditorial"
 tags: ["cashmere wholesale france", "fournisseur cachemire chine", "fabricant cachemir vérifié", "MOQ cachemire 50 pièces", "OEM cachemire France", "cachemire Ordos direct"]
 targetKeywords:

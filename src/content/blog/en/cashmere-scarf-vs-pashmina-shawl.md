@@ -2,6 +2,7 @@
 title: "Cashmere Scarf vs Pashmina Shawl: B2B Buyer's Guide to 8 Differences (Fiber, Weight, Width)"
 excerpt: "Cashmere scarves and pashmina shawls are sold as similar products but differ in 8 ways that matter for B2B buyers: micron count, weight, width, weave, hand-feel, price, MOQ, and lead time. A comparison guide for sourcing managers."
 publishDate: 2026-08-18
+updatedDate: "2026-08-18"
 author: "DONGXIAO® Editorial"
 tags: ["cashmere scarf", "pashmina shawl", "cashmere vs pashmina", "wholesale cashmere scarf", "cashmere shawl wholesale", "B2B cashmere sourcing"]
 geoRegion: "GLOBAL"

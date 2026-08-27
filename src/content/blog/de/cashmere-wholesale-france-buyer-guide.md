@@ -2,6 +2,7 @@
 title: "Kaschmir-Großhandel Frankreich: Wie französische Käufer direkt von Ordos-Mühlen sourcen"
 excerpt: "Wie französische Modemarken 100% Kaschmir direkt von inneren mongolischen Mühlen sourcen — €40-80/kg Ersparnis, OEKO-TEX + IWTO + GB/T 21209 Dokumentation, FOB Tianjin/CIF Le Havre Logistik."
 publishDate: "2026-08-07"
+updatedDate: "2026-08-07"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere wholesale france", "Kaschmir Lieferant China", "Kaschmirhersteller verifiziert", "MOQ Kaschmir 50 Stück", "OEM Kaschmir Frankreich", "Kaschmir Ordos direkt"]
 targetKeywords:

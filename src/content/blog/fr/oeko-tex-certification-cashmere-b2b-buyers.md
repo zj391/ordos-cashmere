@@ -2,6 +2,7 @@
 title: "OEKO-TEX 100 pour le cachemire : Ce que les acheteurs B2B doivent vraiment savoir vs ce qui est agréable à avoir"
 excerpt: "Découvrez les exigences critiques et optionnelles d'OEKO-TEX 100 pour l'approvisionnement en cachemire. Un guide pratique pour les acheteurs B2B sur la sécurité chimique, les niveaux de certification et la vérification de la chaîne d'approvisionnement."
 publishDate: "2026-07-28"
+updatedDate: "2026-07-28"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cachemire OEKO-TEX","certification cachemire","certification textile B2B","cachemire durable","sécurité chimique textile"]
 geoRegion: "GLOBAL"

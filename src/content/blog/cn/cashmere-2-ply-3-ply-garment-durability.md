@@ -2,6 +2,7 @@
 title: "3股羊绒服装：B2B买家何时应多花钱（何时是过度设计）"
 excerpt: "3股羊绒并非总是更好。了解何时投资于增加股数以提升耐用性，以及何时无此必要。为采购高端针织品的B2B买家提供的专家指南。"
 publishDate: "2026-08-04"
+updatedDate: "2026-08-04"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["3股羊绒","B2B羊绒采购","针织品结构","羊绒耐用性","高端针织品"]
 geoRegion: "GLOBAL"

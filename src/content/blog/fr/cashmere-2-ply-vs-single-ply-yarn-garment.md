@@ -2,6 +2,7 @@
 title: "Cachemire 2 fils vs 1 fil : Ce que les acheteurs B2B de vêtements doivent spécifier (et pourquoi)"
 excerpt: "Comprenez la différence structurelle entre le cachemire 2 fils et 1 fil, et comment le retordage affecte la durabilité, le toucher et le coût. Apprenez quoi spécifier pour votre prochaine commande B2B."
 publishDate: "2026-08-11"
+updatedDate: "2026-08-11"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cachemire 2 fils","cachemire 1 fil","spécification de fil de cachemire","approvisionnement B2B en cachemire","durabilité du cachemire"]
 geoRegion: "GLOBAL"

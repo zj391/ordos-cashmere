@@ -2,6 +2,7 @@
 title: "Cashmere MOQ for Startups: Why 100 Pieces Is the New 500 (2026 Guide)"
 excerpt: "Understand why 100-piece MOQ has replaced 500-piece as the cashmere wholesale minimum for startups, and how to negotiate lower MOQs with manufacturers."
 publishDate: "2026-08-13"
+updatedDate: "2026-08-13"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere MOQ","cashmere startup","low MOQ cashmere","wholesale cashmere","cashmere small order","B2B cashmere","Ordos factory"]
 geoRegion: "GLOBAL"

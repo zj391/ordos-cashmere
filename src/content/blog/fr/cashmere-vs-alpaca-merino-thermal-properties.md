@@ -2,6 +2,7 @@
 title: "Cachemire vs Alpaga vs Mérinos : Performance thermique, coût et perception client en B2B"
 excerpt: "Comparez le cachemire, l'alpaga et le mérinos pour l'approvisionnement B2B : performance thermique, coût unitaire et perception du consommateur. Prenez des décisions éclairées pour votre prochaine collection de fibres de luxe."
 publishDate: "2026-08-10"
+updatedDate: "2026-08-10"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cachemire vs alpaga","comparaison laine mérinos","approvisionnement fibres de luxe","performance thermique","choix de fibres B2B"]
 geoRegion: "GLOBAL"

@@ -2,6 +2,7 @@
 title: "OEKO-TEX認証カシミア：B2Bバイヤーが知るべき繊維安全基準"
 excerpt: "OEKO-TEX Standard 100、GOTS、RWS、BSCI — カシミアに関係する7つ以上の繊維安全認証。実際に重要なものと、主張を検証する方法を解説します。"
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["OEKO-TEX","GOTS","カシミア認証","繊維安全","B2Bコンプライアンス"]
 geoRegion: "GLOBAL"

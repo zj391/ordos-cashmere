@@ -2,6 +2,7 @@
 title: "羊绒 OEM/ODM 工作流程：从设计稿到出货仅需 8-12 周 (2026)"
 excerpt: "羊绒 OEM/ODM 完整时间线：从初始设计稿到打版、样品、大货、品控和出货，端到端 8-12 周。"
 publishDate: "2026-08-13"
+updatedDate: "2026-08-13"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["羊绒 OEM","羊绒 ODM","羊绒贴牌","OEM 流程","服装制造","B2B 羊绒","鄂尔多斯工厂"]
 geoRegion: "GLOBAL"

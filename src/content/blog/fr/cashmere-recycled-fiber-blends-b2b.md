@@ -2,6 +2,7 @@
 title: "Cachemire recyclé : comment les marques B2B peuvent utiliser des fibres de déchets pré-consommation sans perte de qualité"
 excerpt: "Découvrez comment le cachemire recyclé issu de déchets pré-consommation offre aux marques B2B une solution de fibre durable sans sacrifier la qualité. Apprenez-en plus sur l'approvisionnement, le traitement, les certifications et les MOQ auprès d'une usine de confiance à Ordos."
 publishDate: "2026-08-07"
+updatedDate: "2026-08-07"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cachemire recyclé","cachemire durable","fibre écologique B2B","upcyclage de déchets de cachemire","mode circulaire"]
 geoRegion: "GLOBAL"

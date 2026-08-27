@@ -2,6 +2,7 @@
 title: "法国羊绒批发：法国买家如何从鄂尔多斯工厂直接采购"
 excerpt: "法国时尚品牌如何从内蒙古工厂直接采购100%羊绒 —— 每公斤节省 €40-80，OEKO-TEX + IWTO + GB/T 21209 全套文件，FOB 天津 / CIF 勒阿弗尔物流方案。"
 publishDate: "2026-08-06"
+updatedDate: "2026-08-06"
 author: "DONGXIAO® Cashmere Editorial"
 tags: ["羊绒批发法国","中国羊绒供应商","认证羊绒厂商","羊绒 MOQ 50件","羊绒 OEM 法国","鄂尔多斯羊绒直采"]
 geoRegion: "FR"

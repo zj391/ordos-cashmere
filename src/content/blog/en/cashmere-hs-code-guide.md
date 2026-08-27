@@ -2,6 +2,7 @@
 title: "Cashmere HS Code Guide: 5108.20 vs 6110 vs 6202 for B2B Importers (2026)"
 excerpt: "Master the three critical cashmere HS codes for international trade: 5108.20 for yarn, 6110 for knitwear, 6202 for coats. Includes EU import duty rates and 2026 customs update."
 publishDate: "2026-08-13"
+updatedDate: "2026-08-13"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere HS code","5108.20","6110","6202","customs duty","B2B import","cashmere wholesale"]
 geoRegion: "GLOBAL"

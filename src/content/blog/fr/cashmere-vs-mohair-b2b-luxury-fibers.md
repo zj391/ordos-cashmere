@@ -2,6 +2,7 @@
 title: "Cachemire vs Mohair : Comparaison B2B du Coût, du Toucher et de la Perception Client"
 excerpt: "Comparez le cachemire et le mohair pour l'approvisionnement B2B : coût, toucher de la fibre, durabilité et perception du marché. Obtenez des informations basées sur des données pour votre prochain achat de fibres de luxe."
 publishDate: "2026-08-09"
+updatedDate: "2026-08-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cachemire vs mohair","fibre de luxe","approvisionnement B2B","fibre naturelle","comparaison de fibres"]
 geoRegion: "GLOBAL"

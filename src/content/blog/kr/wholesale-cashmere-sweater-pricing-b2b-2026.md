@@ -2,6 +2,7 @@
 title: "2026 Wholesale Cashmere Sweater Pricing: What B2B Buyers Should Expect to Pay by Country"
 excerpt: "A comprehensive B2B guide to wholesale cashmere sweater pricing in 2026, with country-by-country cost breakdowns, market trends, and sourcing tips from a 23-year Ordos factory."
 publishDate: "2026-07-08"
+updatedDate: "2026-07-08"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere pricing","B2B sourcing","wholesale sweaters","2026 market trends"]
 geoRegion: "GLOBAL"

@@ -2,6 +2,7 @@
 title: "26s vs 48s Cashmere Yarn: Which Count Is Right for Your B2B Product?"
 excerpt: "Choosing between 26s and 48s cashmere yarn impacts fabric weight, cost, and end-use. This guide compares counts, applications, and sourcing tips for global importers."
 publishDate: "2026-08-08"
+updatedDate: "2026-08-08"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere yarn","yarn count","B2B sourcing","cashmere fabric","knitwear"]
 geoRegion: "GLOBAL"

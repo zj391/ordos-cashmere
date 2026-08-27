@@ -2,6 +2,7 @@
 title: "Fabrication de manteaux cachemire en petites quantités : Comment les boutiques s'approvisionnent en Chine"
 excerpt: "La plupart des usines cachemire exigent 200–500 pièces minimum. Pour les boutiques vendant 30–50 manteaux par saison, voici comment faire fonctionner la production en petits lots."
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["small MOQ", "boutique cashmere", "coat manufacturing", "low-volume production"]
 geoRegion: "GLOBAL"

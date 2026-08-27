@@ -2,6 +2,7 @@
 title: "Marquage et étiquetage des vêtements en cachemire : 5 spécifications essentielles pour les acheteurs B2B (EAS + entretien)"
 excerpt: "Des étiquettes EAS aux symboles d'entretien, découvrez les 5 spécifications d'étiquetage critiques que tout importateur de cachemire doit définir avec son usine. Évitez les problèmes de conformité et les retours."
 publishDate: "2026-07-31"
+updatedDate: "2026-07-31"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["étiquettes cachemire","étiquettes EAS","étiquetage d'entretien","vêtements B2B","conformité"]
 geoRegion: "GLOBAL"

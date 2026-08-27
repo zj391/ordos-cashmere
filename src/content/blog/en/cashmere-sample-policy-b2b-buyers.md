@@ -2,6 +2,7 @@
 title: "Cashmere Sample Policy for B2B Buyers: Costs, Lead Times, Refunds, and How to Read a Factory's Sample Terms (2026)"
 excerpt: "Complete B2B guide to cashmere sample policies — free vs paid samples, sample lead time benchmarks, refund rules for bulk conversion, and the 4 sample clauses every buyer should negotiate before signing."
 publishDate: "2026-08-14"
+updatedDate: "2026-08-14"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["cashmere sample","cashmere sample policy","free cashmere sample","wholesale sample","sample order cashmere","B2B cashmere","Ordos factory","cashmere OEM"]
 geoRegion: "GLOBAL"

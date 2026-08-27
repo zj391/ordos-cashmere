@@ -2,6 +2,7 @@
 title: "从牧场到成衣：23道工序将鄂尔多斯羊绒变为毛衣"
 excerpt: "每一件羊绒衫背后，是跨越阿尔巴斯高原的年度旅程、分梳生产线、意大利纺纱机、德国STOLL针织机以及100%手工终检。揭秘从原绒到成衣的全过程，尽在一家垂直整合的源头工厂。"
 publishDate: "2026-07-09"
+updatedDate: "2026-07-09"
 author: "DONGXIAO Cashmere Editorial"
 tags: ["羊绒工艺","鄂尔多斯原产地","服装制造","工厂参观","幕后揭秘"]
 geoRegion: "GLOBAL"

@@ -2,6 +2,7 @@
 title: "How to Identify Premium Cashmere: 6 Key Metrics Every B2B Buyer Must Know"
 excerpt: "Fineness, length, yield, color, impurity, crimp — six measurable indicators that separate commodity cashmere from premium Ordos fiber. A practical checklist for importers and brand buyers."
 publishDate: 2026-05-20
+updatedDate: "2026-05-20"
 author: "DONGXIAO® Editorial"
 tags: ["cashmere quality", "B2B sourcing", "Ordos origin", "raw material"]
 geoRegion: "GLOBAL"
