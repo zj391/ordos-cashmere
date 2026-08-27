@@ -897,7 +897,7 @@ const tdk = {
 const displayCategory = localizedCategory(product.categoryId, locale, category.name);
 const baseTdk = (tdk[locale] || tdk.en)(product, displayCategory);
 const titleBrand = locale === 'cn' ? '东霄羊绒' : 'DONGXIAO';
-const t = { ...baseTdk, title: buildProductSeoTitle(product, displayCategory, titleBrand, 112, locale) };
+const t = { ...baseTdk, title: buildProductSeoTitle(product, displayCategory, titleBrand, 132, locale) };
 const productHeading = buildProductHeading(product, locale);
 // buildProductSeoTitle() reserves space for the brand and clips the title at
 // a word boundary. Keep H1, title and Product Schema aligned.

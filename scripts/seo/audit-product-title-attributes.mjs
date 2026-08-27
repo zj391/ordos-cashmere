@@ -6,11 +6,11 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 const catalog = JSON.parse(await fs.readFile(path.join(ROOT, 'src/data/products.json'), 'utf8'));
 const products = catalog.categories.flatMap((category) => category.products.map((product) => ({ ...product, categoryId: category.id })));
 
-const TITLE_FIELDS = ['material', 'micron', 'knittingTechnology', 'pattern', 'season', 'gender', 'sizes', 'collar'];
+const TITLE_FIELDS = ['material', 'micron', 'colors', 'knittingTechnology', 'pattern', 'season', 'gender', 'sizes', 'collar', 'packaging', 'weight_g', 'function'];
 const CANDIDATE_FIELDS = [
   'color', 'colors', 'colorFamily', 'sleeve', 'sleeveType', 'closure', 'pockets',
   'craft', 'craftsmanship', 'finish', 'weave', 'usage', 'use', 'occasion',
-  'packing', 'packaging', 'unit', 'weight_g',
+  'packing', 'unit',
 ];
 const FIELDS = [...new Set([...TITLE_FIELDS, ...CANDIDATE_FIELDS])];
 const clean = (value) => String(value ?? '').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();

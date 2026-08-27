@@ -1,7 +1,7 @@
 /**
  * 产品标题 SEO 规则：仅组合目录中已存在的名称、材质、细度、颜色、款式、版型、织法、
- * 纱线结构、包装、重量、人群、季节与尺寸字段；不生成认证、价格、MOQ、库存、交期、
- * 产能、地区或性能主张。
+ * 纱线支数/结构、包装、重量、已列应用、人群、季节与尺寸字段；不生成认证、价格、MOQ、
+ * 库存、交期、产能、地区或性能主张。主产品名始终在前，避免关键词堆砌。
  */
 export type ProductTitleInput = {
   name?: unknown;
@@ -17,6 +17,7 @@ export type ProductTitleInput = {
   colors?: unknown;
   packaging?: unknown;
   weight_g?: unknown;
+  function?: unknown;
 };
 
 type TitleLocale = 'en' | 'de' | 'fr' | 'ja' | 'kr' | 'cn';
@@ -28,6 +29,16 @@ function clean(value: unknown): string {
     .replace(/&amp;/g, '&')
     .replace(/\s+/g, ' ')
     .trim();
+}
+
+function primaryProductName(value: unknown): string {
+  const cleaned = clean(value)
+    .replace(/^(?:(?:premium|wholesale|china|inner mongolia|ordos|high quality|european style|europe style|classic|new|hot|best|best sell|new arrival|2020|2021|2022|2023|2024|2025|2026)\s+)+/i, '')
+    .replace(/\b(?:factory customized|factory direct|factory|manufacturer|supplier|wholesale|cheap|best sell|hot sell|price)\b/ig, '')
+    .replace(/\s{2,}/g, ' ')
+    .replace(/\s+([,;:/])/g, '$1')
+    .trim();
+  return cleaned.length >= 6 ? cleaned : clean(value);
 }
 
 function comparable(value: string): string {
@@ -157,6 +168,20 @@ function weightFacet(value: unknown): string {
   return measured ? measured.replace(/\s+/g, ' ') : '';
 }
 
+function yarnCountFacet(value: unknown): string {
+  const raw = clean(value);
+  if (!canUseFacet(raw)) return '';
+  const count = raw.match(/\b(?:\d+\s*\/\s*\d+\s*(?:Nm|Ne)|Nm\s*\d+\s*\/\s*\d+)\b/i)?.[0];
+  return count ? count.replace(/\s+/g, ' ') : '';
+}
+
+function applicationFacet(value: unknown): string {
+  const raw = clean(value);
+  if (!canUseFacet(raw)) return '';
+  const match = raw.match(/\b(?:machine\s+knitting|hand\s+knitting|knitting|weaving|flat\s+knit)\b/i)?.[0];
+  return match ? match.replace(/\s+/g, ' ') : '';
+}
+
 function styleFacets(product: ProductTitleInput): string[] {
   const pattern = clean(product.pattern);
   const collar = clean(product.collar);
@@ -170,7 +195,7 @@ function styleFacets(product: ProductTitleInput): string[] {
 }
 
 function titleFacets(product: ProductTitleInput, locale: string): string[] {
-  const name = clean(product.name);
+  const name = primaryProductName(product.name);
   const material = clean(product.material);
   const micron = clean(product.micron);
   const facets = [
@@ -178,9 +203,11 @@ function titleFacets(product: ProductTitleInput, locale: string): string[] {
     canUseFacet(micron) && !includesFacet(name, micron) ? micron : '',
     ...styleFacets(product),
     colorFacet(product.colors),
-    constructionFacet(product.pattern),
+    yarnCountFacet(product.sizes),
     packagingFacet(product.packaging),
     weightFacet(product.weight_g),
+    applicationFacet(product.function),
+    constructionFacet(product.pattern),
     audienceFacet(product.gender, locale) || audienceTagFacet(product.tags, locale),
     seasonFacet(product.season, locale) || seasonTagFacet(product.tags, locale),
     dimensionFacet(product.sizes),
@@ -190,15 +217,14 @@ function titleFacets(product: ProductTitleInput, locale: string): string[] {
 
 /** H1、Product Schema 和面包屑统一使用产品名称与真实长尾属性。 */
 export function buildProductHeading(product: ProductTitleInput, locale = 'en'): string {
-  const name = clean(product.name) || 'Cashmere Product';
+  const name = primaryProductName(product.name) || 'Cashmere Product';
   const facets = titleFacets(product, locale);
   return facets.length ? `${name} — ${facets.join(' · ')}` : name;
 }
 
 /**
- * `<title>` 保留本地化分类、人群、季节、产品级名称、真实属性和简短品牌尾缀。
- * 人群与季节 facet 紧跟分类之后（出现在 Google SERP 视窗前 70c 内），即使产品名较长
- * 也不会被裁掉；其余长尾属性后置，超长时优先被裁。
+ * `<title>` 以产品主名称开头，后接真实规格和简短品牌尾缀。主名称优先于类别或泛化
+ * 促销词，使搜索结果更容易区分具体款式；超长时从末尾的低优先级规格开始裁切。
  */
 export function buildProductSeoTitle(
   product: ProductTitleInput,
@@ -208,45 +234,37 @@ export function buildProductSeoTitle(
   locale = 'en',
 ): string {
   const category = clean(localizedCategory);
-  const audience = audienceFacet(product.gender, locale) || audienceTagFacet(product.tags, locale);
-  const season = seasonFacet(product.season, locale) || seasonTagFacet(product.tags, locale);
-  const productName = clean(product.name) || 'Cashmere Product';
+  const productName = primaryProductName(product.name) || 'Cashmere Product';
 
-  // 高搜索价值的前缀 facet (人群/季节) 紧跟 category；Google SERP 优先收录
-  const prefixParts = [category];
-  if (audience) prefixParts.push(audience);
-  if (season) prefixParts.push(season);
-  const prefix = `${prefixParts.join(' ')}: `;
-
-  // 低优先级 facet = 排除 audience/season 后的 titleFacets (material/micron/style/color/construction/packaging/weight/dimension)
-  const highPriority = new Set([audience, season].filter(Boolean));
-  const lowPriority = titleFacets(product, locale).filter((f) => !highPriority.has(f));
+  // 以具体产品名为主体。类别仅在名称极短时提供行业语境，其余均为目录真实规格。
+  const productContext = productName.length < 18 && category && !includesFacet(productName, category) ? category : '';
+  const lowPriority = [productContext, ...titleFacets(product, locale)].filter(Boolean);
 
   const brandSuffix = brand ? ` | ${brand}` : '';
   const totalBudget = Math.max(56, maxLength - brandSuffix.length);
 
-  // 找到 max lowPriority 数使得 prefix + name + facets 全部 fit
+  // 找到最大规格数，使主名称与规格保持完整、可读且不重复。
   let keepN = lowPriority.length;
   while (keepN > 0) {
     const kept = lowPriority.slice(0, keepN);
-    const candidate = `${prefix}${productName} — ${kept.join(' · ')}`;
+    const candidate = `${productName} — ${kept.join(' · ')}`;
     if (candidate.length <= totalBudget) break;
     keepN -= 1;
   }
   let core = keepN > 0
-    ? `${prefix}${productName} — ${lowPriority.slice(0, keepN).join(' · ')}`
-    : `${prefix}${productName}`;
+    ? `${productName} — ${lowPriority.slice(0, keepN).join(' · ')}`
+    : productName;
 
-  // 仍然过长 → 截 name (前缀完整保留)
+  // 仍然过长 → 仅在必要时截产品名，规格仍维持从高到低的目录字段顺序。
   if (core.length > totalBudget) {
     const reserved = keepN > 0
-      ? prefix.length + 3 + lowPriority.slice(0, keepN).join(' · ').length
-      : prefix.length;
+      ? 3 + lowPriority.slice(0, keepN).join(' · ').length
+      : 0;
     const nameMax = totalBudget - reserved;
     const trimmed = nameMax > 8 ? clipWords(productName, nameMax) : '';
     core = keepN > 0
-      ? `${prefix}${trimmed} — ${lowPriority.slice(0, keepN).join(' · ')}`
-      : `${prefix}${trimmed}`;
+      ? `${trimmed} — ${lowPriority.slice(0, keepN).join(' · ')}`
+      : trimmed;
   }
   return `${clipWords(core, totalBudget)}${brandSuffix}`;
 }
