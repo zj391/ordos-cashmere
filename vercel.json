@@ -150,6 +150,36 @@
       "permanent": true
     },
     {
+      "source": "/products/sweaters/",
+      "destination": "/en/products/garment-oem/",
+      "permanent": true
+    },
+    {
+      "source": "/products/sweaters",
+      "destination": "/en/products/garment-oem/",
+      "permanent": true
+    },
+    {
+      "source": "/products/hats/",
+      "destination": "/en/products/hats-accessories/",
+      "permanent": true
+    },
+    {
+      "source": "/products/hats",
+      "destination": "/en/products/hats-accessories/",
+      "permanent": true
+    },
+    {
+      "source": "/products/accessories/",
+      "destination": "/en/products/accessories-cat/",
+      "permanent": true
+    },
+    {
+      "source": "/products/accessories",
+      "destination": "/en/products/accessories-cat/",
+      "permanent": true
+    },
+    {
       "source": "/download/",
       "destination": "/en/download/",
       "permanent": true
