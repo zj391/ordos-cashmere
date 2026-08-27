@@ -3,6 +3,8 @@
  * 产品列表页 - 6 国通用
  * 全部 591 个产品 + 5 个分类，筛选/搜索/排序/弹窗用 vanilla JS 增强
  * 不依赖 React 岛（避免 Astro 5 + React 19 hydration 不兼容）
+ * UI direction: warm-gray procurement archive with a continuous catalog
+ * control console; real product fields remain primary over sales claims.
  */
 export const prerender = true;
 import BaseLayout from '@/layouts/BaseLayout.astro';
@@ -308,6 +310,14 @@ const listingFilterCopy = {
   addToInquiry: procurementCopy.addToInquiry,
   close: procurementCopy.close,
 };
+const catalogUiCopy = {
+  en: { index: 'Catalog index', records: 'product records', families: 'product families', explore: 'Explore family record', controls: 'Catalog controls', refine: 'Find by product family, listed material or product reference.' },
+  cn: { index: '目录索引', records: '条产品记录', families: '个产品系列', explore: '查看系列记录', controls: '目录控制台', refine: '按产品系列、已列材质或产品编号查找。' },
+  de: { index: 'Katalogindex', records: 'Produktdatensätze', families: 'Produktfamilien', explore: 'Familienübersicht ansehen', controls: 'Katalogsteuerung', refine: 'Nach Produktfamilie, aufgeführtem Material oder Produktreferenz suchen.' },
+  fr: { index: 'Index du catalogue', records: 'fiches produit', families: 'familles de produits', explore: 'Voir la famille', controls: 'Contrôles du catalogue', refine: 'Rechercher par famille, matière indiquée ou référence produit.' },
+  ja: { index: 'カタログ索引', records: '件の製品記録', families: '製品系列', explore: '系列を確認', controls: 'カタログ操作', refine: '製品系列、記載素材、製品番号から検索。' },
+  kr: { index: '카탈로그 인덱스', records: '개 제품 기록', families: '제품 계열', explore: '계열 기록 보기', controls: '카탈로그 컨트롤', refine: '제품 계열, 기재 소재 또는 제품 참조로 찾으세요.' },
+}[locale] || { index: 'Catalog index', records: 'product records', families: 'product families', explore: 'Explore family record', controls: 'Catalog controls', refine: 'Find by product family, listed material or product reference.' };
 
 const subLabelsJson = JSON.stringify(SUB_LABELS);
 const groupLabelsJson = JSON.stringify(GROUP_LABELS);
@@ -327,43 +337,48 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/products`} />
 
   <!-- Page header -->
-  <section class="bg-background border-b border-border">
-    <div class="container-narrow py-12 sm:py-16">
-      <div class="flex items-center gap-3 mb-4"><span class="h-[2px] w-8 bg-brand-red"></span><span class="text-xs tracking-[0.3em] uppercase text-brand-camel">
-        {locale === 'cn' ? 'B2B 采购目录' : 'B2B Sourcing Catalog'}
-      </span></div>
-      <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-light text-brand-ink mb-4">
-        {labels.title}
-      </h1>
-      <p class="text-muted-foreground max-w-3xl leading-relaxed">
-        {labels.subtitle}
-      </p>
-      <div class="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm text-muted-foreground">
-        <span class="flex items-center gap-2">
-          <span class="w-1.5 h-1.5 bg-brand-gold rounded-full"></span>
-          {locale === 'cn' ? `${allProducts.length} 款精选代表款` : `${allProducts.length} Curated Styles`}
-        </span>
-        <span class="flex items-center gap-2">
-          <span class="w-2 h-2 bg-brand-camel rounded-full"></span>
-          {locale === 'cn' ? '5大品类' : '5 Categories'}
-        </span>
-        <span class="flex items-center gap-2">
-          <span class="w-2 h-2 bg-brand-camel rounded-full"></span>
-          {locale === 'cn' ? '项目条件书面确认' : 'Project terms confirmed in writing'}
-        </span>
-        <span class="flex items-center gap-2">
-          <span class="w-2 h-2 bg-brand-camel rounded-full"></span>
-          {locale === 'cn' ? '采购资料准备' : 'Sourcing brief preparation'}
-        </span>
+  <section class="catalog-hero border-b border-border">
+    <div class="container-narrow catalog-hero-layout py-12 sm:py-16">
+      <div class="catalog-hero-copy">
+        <div class="flex items-center gap-3 mb-4"><span class="h-[2px] w-8 bg-brand-red"></span><span class="text-xs tracking-[0.3em] uppercase text-brand-camel">
+          {locale === 'cn' ? 'B2B 采购目录' : 'B2B Sourcing Catalog'}
+        </span></div>
+        <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-light text-brand-ink mb-4">
+          {labels.title}
+        </h1>
+        <p class="text-muted-foreground max-w-3xl leading-relaxed">
+          {seo.description}
+        </p>
+        <div class="catalog-hero-signals">
+          <span><strong>{allProducts.length}</strong> {catalogUiCopy.records}</span>
+          <span><strong>{categories.length}</strong> {catalogUiCopy.families}</span>
+          <span>{locale === 'cn' ? '项目条件书面确认' : 'Project terms confirmed in writing'}</span>
+        </div>
       </div>
+
+      <aside class="catalog-index-panel" aria-label={catalogUiCopy.index}>
+        <div class="catalog-index-heading"><span>{catalogUiCopy.index}</span><span>01–05</span></div>
+        <div class="catalog-index-links">
+          {categories.map((cat, index) => {
+            const hub = CATEGORY_HUBS[cat.id];
+            return hub ? <a href={`/${locale}/products/${hub.slug}/`}><span>0{index + 1}</span><span>{cat.name}</span><strong>{curatedCountsByCategory[cat.id] || 0}</strong></a> : null;
+          })}
+        </div>
+        <span class="catalog-index-caption">{catalogUiCopy.explore} <span aria-hidden="true">→</span></span>
+      </aside>
     </div>
   </section>
 
 
   <!-- Filter bar (静态渲染，按钮 + 搜索 + 排序) -->
-  <section class="container-narrow py-8">
-    <div class="flex flex-col lg:flex-row gap-4 mb-6 lg:items-center lg:justify-between">
-      <div id="filter-buttons" class="flex flex-wrap gap-2">
+  <section class="catalog-controls-section">
+    <div class="container-narrow py-8">
+      <div class="catalog-controls-heading">
+        <div><span>{catalogUiCopy.controls}</span><p>{catalogUiCopy.refine}</p></div>
+        <p id="result-count" class="catalog-result-count"></p>
+      </div>
+      <div class="catalog-controls-shell">
+        <div id="filter-buttons" class="catalog-category-rail flex flex-wrap gap-2">
         <button data-cat="all" class="filter-btn px-4 py-2 text-sm border bg-brand-ink text-brand-cream border-brand-ink transition-colors">
           {labels.filterAll} ({allProducts.length})
         </button>
@@ -373,7 +388,8 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
           </button>
         ))}
       </div>
-      <div class="flex flex-col sm:flex-row gap-2">
+        </div>
+        <div class="catalog-search-controls flex flex-col sm:flex-row gap-2">
         <input
           id="search-input"
           type="text"
@@ -388,11 +404,10 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
             <option value={opt.value}>{opt.label}</option>
           ))}
         </select>
+        </div>
       </div>
-    </div>
-    <p id="result-count" class="text-sm text-muted-foreground mb-4"></p>
 
-    <div id="procurement-filters" class="border border-border bg-brand-cream/25 p-5 mb-5">
+    <div id="procurement-filters" class="catalog-filter-panel border border-border bg-brand-cream/25 p-5 mb-5">
       <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5">
         <div>
           <p class="text-xs tracking-[0.24em] uppercase text-brand-camel font-medium mb-2">{listingFilterCopy.title}</p>
@@ -439,7 +454,7 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
         return featured.map((p) => (
         <a
           href={`/${locale}/products/${p.id}/`}
-          class="product-card bg-white border border-border overflow-hidden hover:border-brand-camel hover:shadow-[0_16px_32px_-20px_rgba(28,24,19,0.18)] transition-colors transition-shadow duration-300 group block"
+          class="catalog-product-card product-card bg-white border border-border overflow-hidden hover:border-brand-camel hover:shadow-[0_16px_32px_-20px_rgba(28,24,19,0.18)] transition-colors transition-shadow duration-300 group block"
           data-id={p.id}
           data-cat={p.categoryId}
           data-name={p.name.toLowerCase()}
@@ -1279,3 +1294,49 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
   <FloatingChatButtons slot="floating" locale={locale} />
   <CookieConsent slot="cookie-consent" locale={locale} />
 </BaseLayout>
+
+<style is:global>
+  /* Warm-gray procurement archive: a single browsing console connects family
+     records, catalog controls and real product specifications. */
+  .catalog-hero { position: relative; overflow: hidden; background: #F7F3EC; }
+  .catalog-hero::after { content: ''; position: absolute; right: -11rem; top: -18rem; width: 42rem; height: 42rem; border: 1px solid rgba(28,24,19,.12); border-radius: 50%; }
+  .catalog-hero-layout { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(18rem, .7fr); gap: clamp(2rem, 6vw, 6rem); align-items: end; }
+  .catalog-hero-signals { display: flex; flex-wrap: wrap; gap: .7rem 1.5rem; margin-top: 2.2rem; color: #71685F; font-size: .78rem; }
+  .catalog-hero-signals span { display: inline-flex; gap: .3rem; align-items: baseline; }
+  .catalog-hero-signals strong { color: #A5724D; font-family: var(--font-display, Georgia, serif); font-size: 1.55rem; font-weight: 400; }
+  .catalog-index-panel { background: #1C1813; color: #F7F3EC; padding: 1.2rem 1.35rem; border-top: 3px solid #A5724D; box-shadow: 18px 18px 0 rgba(28,24,19,.08); }
+  .catalog-index-heading { display: flex; justify-content: space-between; color: rgba(247,243,236,.62); font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; }
+  .catalog-index-links { margin: 1rem 0; border-top: 1px solid rgba(247,243,236,.18); }
+  .catalog-index-links a { display: grid; grid-template-columns: 1.9rem 1fr auto; align-items: baseline; gap: .5rem; padding: .7rem 0; border-bottom: 1px solid rgba(247,243,236,.14); color: #F7F3EC; font-size: .78rem; line-height: 1.25; transition: color 180ms ease-out, padding-left 180ms ease-out; }
+  .catalog-index-links a:hover { color: #D8B787; padding-left: .35rem; }
+  .catalog-index-links a span:first-child { color: #A5724D; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .65rem; }
+  .catalog-index-links strong { color: #D8B787; font-size: .75rem; font-weight: 500; }
+  .catalog-index-caption { color: rgba(247,243,236,.67); font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; }
+  .catalog-controls-section { background: linear-gradient(to bottom, #F7F3EC 0, #F7F3EC 14rem, var(--background) 14rem); }
+  .catalog-controls-heading { display: flex; align-items: end; justify-content: space-between; gap: 1rem; padding: 0 0 .85rem; border-bottom: 1px solid #D9D1C6; }
+  .catalog-controls-heading > div > span { display: block; color: #A5724D; font-size: .64rem; letter-spacing: .2em; text-transform: uppercase; }
+  .catalog-controls-heading > div > p { margin: .45rem 0 0; color: #71685F; font-size: .88rem; }
+  .catalog-result-count { margin: 0; color: #1C1813; font-family: var(--font-display, Georgia, serif); font-size: 1.3rem; white-space: nowrap; }
+  .catalog-controls-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(15rem, .42fr); gap: 1.5rem; padding: 1.15rem; background: #fff; border: 1px solid #D9D1C6; border-top: 0; box-shadow: 0 13px 30px -26px rgba(28,24,19,.65); }
+  .catalog-category-rail { align-content: start; }
+  .catalog-category-rail .filter-btn { border-radius: 0; }
+  .catalog-search-controls input, .catalog-search-controls select { border-radius: 0; min-height: 2.7rem; }
+  .catalog-filter-panel { border-radius: 0; box-shadow: inset 3px 0 #A5724D; }
+  .catalog-filter-panel .proc-filter { border-radius: 0; }
+  .catalog-product-card { position: relative; transition: transform 180ms ease-out, box-shadow 180ms ease-out, border-color 180ms ease-out; }
+  .catalog-product-card::before { content: ''; position: absolute; top: 0; left: 0; z-index: 2; width: 2.8rem; height: 2px; background: #A5724D; transform: scaleX(0); transform-origin: left; transition: transform 180ms ease-out; }
+  .catalog-product-card:hover { transform: translateY(-5px); box-shadow: 0 20px 32px -26px rgba(28,24,19,.56); }
+  .catalog-product-card:hover::before { transform: scaleX(1); }
+  .catalog-product-card .product-card-title { font-family: var(--font-display, Georgia, serif); font-weight: 400; }
+  @media (max-width: 767px) {
+    .catalog-hero-layout { grid-template-columns: 1fr; }
+    .catalog-hero::after { width: 29rem; height: 29rem; top: -9rem; right: -17rem; }
+    .catalog-index-panel { box-shadow: 10px 10px 0 rgba(28,24,19,.08); }
+    .catalog-controls-section { background: linear-gradient(to bottom, #F7F3EC 0, #F7F3EC 23rem, var(--background) 23rem); }
+    .catalog-controls-heading { display: block; }
+    .catalog-result-count { margin-top: .85rem; }
+    .catalog-controls-shell { grid-template-columns: 1fr; padding: .85rem; }
+    .catalog-search-controls { width: 100%; }
+    .catalog-search-controls > * { width: 100% !important; }
+  }
+</style>
