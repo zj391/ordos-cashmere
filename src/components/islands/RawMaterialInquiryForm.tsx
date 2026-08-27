@@ -19,8 +19,8 @@ export default function RawMaterialInquiryForm({ locale }: { locale: string }) {
         kr: '원료 캐시미어 대량 견적 문의',
       }}
       submitLabel={{
-        en: 'Submit Bulk Inquiry', cn: '提交批量询盘', de: 'Anfrage senden',
-        fr: 'Envoyer la demande', ja: '送信する', kr: '문의 보내기',
+        en: 'Request a Bulk Quote', cn: '索取批量报价', de: 'Mengenangebot anfordern',
+        fr: 'Demander un devis en gros', ja: '大量見積もり依頼', kr: '대량 견적 요청',
       }}
       submittingLabel={{
         en: 'Submitting...', cn: '提交中...', de: 'Wird gesendet...',

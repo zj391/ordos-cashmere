@@ -19,8 +19,8 @@ export default function GarmentOemInquiryForm({ locale }: { locale: string }) {
         kr: '의류 OEM 맞춤 견적 문의',
       }}
       submitLabel={{
-        en: 'Submit Custom Inquiry', cn: '提交定制询盘', de: 'Anfrage senden',
-        fr: 'Envoyer', ja: '送信', kr: '문의 보내기',
+        en: 'Request a Custom Quote', cn: '索取定制报价', de: 'Custom-Angebot anfordern',
+        fr: 'Demander un devis personnalisé', ja: 'カスタム見積もり依頼', kr: '맞춤 견적 요청',
       }}
       submittingLabel={{
         en: 'Submitting...', cn: '提交中...', de: 'Wird gesendet...',

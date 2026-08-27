@@ -19,8 +19,8 @@ export default function YarnFabricInquiryForm({ locale }: { locale: string }) {
         kr: '원사·직물 견적 문의',
       }}
       submitLabel={{
-        en: 'Submit Inquiry', cn: '提交询盘', de: 'Anfrage senden',
-        fr: 'Envoyer', ja: '送信', kr: '문의 보내기',
+        en: 'Request a Quote', cn: '索取报价', de: 'Angebot anfordern',
+        fr: 'Demander un devis', ja: '見積もりを依頼', kr: '견적 요청',
       }}
       submittingLabel={{
         en: 'Submitting...', cn: '提交中...', de: 'Wird gesendet...',
