@@ -768,3 +768,37 @@ main:has(.product-detail-hero) > section.py-16 { padding-top:clamp(4.5rem,7vw,6.
   .product-actions button:first-child { grid-column:1 / -1; }
   .product-actions button,.product-actions a { justify-content:center; text-align:center; padding-inline:.75rem !important; }
 }
+
+
+/* EU/US B2B navigation — extracted from Navigation.astro inline <style>.
+   Was inlined on every page (~2.5 KB × 3546 pages = 8.6 MB wasted).
+   Now in global.css so Astro extracts it into the shared _astro CSS
+   bundle (single fetch, cacheable across all pages). */
+.snowline-nav { border-top: 0 !important; border-bottom: 1px solid #d9dfda; background: rgba(255, 255, 253, .96); box-shadow: 0 1px 0 rgba(27, 39, 37, .03); }
+.snowline-nav .font-display { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 600; letter-spacing: .09em; }
+.snowline-nav #desktop-nav { padding-top: .8rem; padding-bottom: .8rem; letter-spacing: .13em; }
+.snowline-nav .nav-link { position: relative; font-size: .69rem; }
+.snowline-nav .nav-link::after { content: ""; position: absolute; left: 0; right: 0; bottom: -5px; height: 1px; background: #254d45; transform: scaleX(0); transform-origin: left; transition: transform .18s ease-out; }
+.snowline-nav .nav-link:hover::after, .snowline-nav .nav-link.is-active::after { transform: scaleX(1); }
+.snowline-nav-action { border: 1px solid #254d45; border-radius: 3px; background: #254d45; color: #fff; font-weight: 700; letter-spacing: .13em; }
+.snowline-nav-action:hover { border-color: #173a33; color: #fff; background: #173a33; box-shadow: 0 8px 16px -14px rgba(27, 39, 37, .58); }
+.snowline-nav [data-mega-panel] { background: #fff; border-top-color: #d9dfda; box-shadow: 0 18px 36px -24px rgba(27, 39, 37, .26); }
+.snowline-nav [data-mega-panel] h3 { color: #254d45; }
+.snowline-nav [data-mega-panel] .bg-brand-cream { background: #eef2ee; }
+@media (max-width: 1023px) {
+  .snowline-nav { box-shadow: 0 2px 12px -10px rgba(27, 39, 37, .22); }
+}
+
+/* EU/US B2B footer — extracted from Footer.astro inline <style>.
+   Was inlined on every page. */
+.snowline-footer { position: relative; border-top: 0; background: #1b2725; color: #f7f8f5; }
+.snowline-footer::before { content: ""; position: absolute; right: 7%; top: 0; width: 220px; height: 54px; border-top: 1px solid rgba(196, 215, 202, .3); border-radius: 50%; transform: rotate(-9deg); }
+.snowline-footer .font-display { color: #fff; font-family: "Cormorant Garamond", Georgia, serif; letter-spacing: .1em; }
+.snowline-footer .micro-label { border-left-color: #c7794f; color: #f7f8f5; }
+.snowline-footer .text-muted-foreground { color: #bac7c1 !important; }
+.snowline-footer .text-primary { color: #edf3ee !important; }
+.snowline-footer .border-border { border-color: rgba(217, 223, 218, .22) !important; }
+.snowline-footer a:hover { color: #fff; }
+@media (max-width: 640px) {
+  .snowline-footer::before { right: -58px; width: 170px; }
+}
