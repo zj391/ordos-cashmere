@@ -19,6 +19,7 @@ import { products as productsData, getAllProducts, ensureDbOverlay } from '@/dat
 import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
 import { SEO, SITE_INFO } from '@/lib/seo';
 import { getCollection } from 'astro:content';
+import { getBlogSlugFromId, isIndexableBlogPost } from '@/lib/blog-indexability';
 
 export function getStaticPaths() {
   return LOCALES.map((locale) => ({ params: { locale } }));
@@ -31,12 +32,14 @@ if (!isLocale(rawLocale)) {
 const locale = pickLocale(rawLocale);
 
 // 拿该 locale 最新 3 篇博客（首页展示用）
-const allPosts = await getCollection('blog', ({ id }) => id.startsWith(`${locale}/`));
+const allPosts = await getCollection('blog', ({ id }) =>
+  id.startsWith(`${locale}/`) && isIndexableBlogPost(locale, getBlogSlugFromId(id))
+);
 const latestPosts = allPosts
   .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
   .slice(0, 3)
   .map((p) => ({
-    slug: p.id.replace(`${locale}/`, '').replace(/\.md$/, ''),
+    slug: getBlogSlugFromId(p.id),
     title: p.data.title,
     excerpt: p.data.excerpt,
     date: p.data.publishDate.toISOString().slice(0, 10),
@@ -449,14 +452,14 @@ const IMG = {
   </section>
 
 
-  <!-- ============ 产地故事 ============ -->
+  <!-- ============ 原料信息 ============ -->
   <section class="home-origin-section py-28 md:py-36 bg-background overflow-hidden">
     <div class="container-narrow">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <!-- 左侧大图（占 7/12） -->
         <div class="lg:col-span-7 relative reveal-left">
           <div class="aspect-[3/2] overflow-hidden hover-zoom">
-            <img src={IMG.ordosLandscape} alt="Albus goat grazing on Ordos pasture at sunrise — Inner Mongolia" class="w-full h-full object-cover" decoding="async" loading="lazy" />
+            <img src={IMG.ordosLandscape} alt="Cashmere sourcing landscape image" class="w-full h-full object-cover" decoding="async" loading="lazy" />
           </div>
           <div class="home-origin-detail hidden lg:block">
             <img src={IMG.uiKnit} alt="" aria-hidden="true" decoding="async" loading="lazy" />
@@ -473,39 +476,39 @@ const IMG = {
         <div class="lg:col-span-5 lg:pl-8 lg:pt-16 reveal-right" data-reveal-delay="1">
           <div class="eyebrow mb-8">
             <span class="eyebrow-label">
-              {t('产地溯源', 'Origin Story')}
+              {t6('原料信息', 'Material Information', 'Materialinformationen', 'Informations matière', '原料情報', '원료 정보')}
             </span>
           </div>
           <h2 class="font-serif text-5xl md:text-6xl font-light leading-[1.08] mb-8 text-brand-ink" set:html={t6(
-            '鄂尔多斯：<br/>世界顶级羊绒产区',
-            'Ordos:<br/>The World\'s Premium Cashmere Region',
-            'Ordos:<br/>Premium-Kaschmirregion',
-            'Ordos :<br/>Région du cachemire premium',
-            'オルドス：<br/>世界の最高級カシミア産地',
-            '오르도스:<br/>세계 최고급 캐시미어 산지'
+            '鄂尔多斯：<br/>羊绒产品与原料信息',
+            'Ordos:<br/>Cashmere Product & Material Information',
+            'Ordos:<br/>Kaschmir-Produkt- und Materialinformationen',
+            'Ordos :<br/>Informations produit et matière cachemire',
+            'オルドス：<br/>カシミア製品と原料情報',
+            '오르도스:<br/>캐시미어 제품 및 원료 정보'
           )} />
           <p class="text-muted-foreground leading-relaxed mb-8">
             {t6(
-              '鄂尔多斯位于内蒙古，北纬39度，海拔1300米，年均气温6℃。独特的高原大陆性气候孕育了阿尔巴斯白绒山羊——世界顶级羊绒品种，每根纤维细度仅14.5微米。',
-              'Located in Inner Mongolia at 1,300m altitude, Ordos\'s unique continental plateau climate nurtures the Albus goat — the world\'s premium cashmere breed, with each fiber measuring just 14.5 microns.',
-              'Ordos liegt in der Inneren Mongolei auf 1300m Höhe. Das einzigartige Hochlandklima bringt die Albus-Kaschmirziege hervor.',
-              'Ordos, située à 1300m d\'altitude en Mongolie-Intérieure, abrite la chèvre Albus.',
-              'オルドスは内モンゴル、標高1300mに位置。',
-              '오르도스는 내몽골 해발 1300m에 위치.'
+              '请以目录中已列出的材质、颜色、细度与其他规格为起点了解原料；适用的来源、文件与项目要求将结合具体产品书面确认。',
+              'Use the material, color, fineness and other specifications listed in the catalog as a starting point for raw-material sourcing; applicable origin, documentation and project requirements are confirmed in writing for the specific product.',
+              'Nutzen Sie die im Katalog aufgeführten Material-, Farb-, Feinheits- und weiteren Spezifikationen als Grundlage für die Rohmaterialbeschaffung; geltende Herkunfts-, Dokumentations- und Projektanforderungen werden für das konkrete Produkt schriftlich bestätigt.',
+              'Utilisez la matière, la couleur, la finesse et les autres spécifications listées dans le catalogue comme point de départ pour l’approvisionnement matière ; les exigences applicables d’origine, de documentation et de projet sont confirmées par écrit pour le produit concerné.',
+              'カタログに記載された素材、色、細度、その他の仕様を原料調達の出発点としてご確認ください。適用される原産地・書類・案件要件は対象製品に応じて書面で確認します。',
+              '카탈로그에 기재된 소재, 색상, 섬도 및 기타 사양을 원료 조달의 출발점으로 확인하세요. 적용되는 원산지·서류·프로젝트 요건은 해당 제품에 따라 서면으로 확인됩니다.'
             )}
           </p>
           <div class="space-y-3 mb-8">
             <div class="flex items-center gap-3 text-sm">
-              <span class="font-serif text-2xl text-brand-gold">39°N</span>
-              <span class="text-muted-foreground">{t('黄金纬度带', 'Latitude')}</span>
+              <span class="font-serif text-2xl text-brand-gold">01</span>
+              <span class="text-muted-foreground">{t6('已列材质', 'Listed materials', 'Aufgeführte Materialien', 'Matières listées', '記載素材', '기재 소재')}</span>
             </div>
             <div class="flex items-center gap-3 text-sm">
-              <span class="font-serif text-2xl text-brand-gold">1,300m</span>
-              <span class="text-muted-foreground">{t('平均海拔', 'Altitude')}</span>
+              <span class="font-serif text-2xl text-brand-gold">02</span>
+              <span class="text-muted-foreground">{t6('已列颜色', 'Listed colors', 'Aufgeführte Farben', 'Couleurs listées', '記載カラー', '기재 색상')}</span>
             </div>
             <div class="flex items-center gap-3 text-sm">
-              <span class="font-serif text-2xl text-brand-gold">14.5μm</span>
-              <span class="text-muted-foreground">{t('纤维细度', 'Fiber Fineness')}</span>
+              <span class="font-serif text-2xl text-brand-gold">03</span>
+              <span class="text-muted-foreground">{t6('已列规格', 'Listed specifications', 'Aufgeführte Spezifikationen', 'Spécifications listées', '記載仕様', '기재 사양')}</span>
             </div>
           </div>
           <a href={`/${locale}/raw-material/`} class="group inline-flex items-center gap-2 text-brand-chocolate font-medium border-b border-brand-chocolate pb-1 hover:border-brand-gold hover:text-brand-gold transition-colors">
@@ -584,14 +587,14 @@ const IMG = {
               {t6('羊绒原料', 'Cashmere Raw Material', 'Rohkaschmir', 'Cachemire brut', '原料カシミア', '원료 캐시미어')}
             </h3>
             <p class="text-sm text-white/80 max-w-md">
-              {t6('白绒/青绒/紫绒，细度14.5-16.5μm', 'White, brown, purple cashmere · 14.5-16.5μm', 'Weiß, braun, lila', 'Blanc, brun, violet', '白・茶・紫', '백색·청색·자색')}
+              {t6('按单品页查看已列材质、颜色与规格', 'See listed material, color and specification details on product pages', 'Material-, Farb- und Spezifikationsdetails auf Produktseiten ansehen', 'Voir les détails de matière, couleur et spécification sur les fiches produit', '製品ページで記載素材・色・仕様を確認', '제품 페이지에서 기재 소재·색상·사양 확인')}
             </p>
           </div>
         </a>
 
         <!-- 纱线面料（右小） -->
         <a href={`/${locale}/products/yarn/`} class="group md:col-span-5 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden hover-lift reveal" data-reveal-delay="2">
-          <img src={IMG.scarfDetail} alt="Cashmere knitwear — premium winter hat and sweater for B2B wholesale" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" decoding="async" loading="lazy" />
+          <img src={IMG.scarfDetail} alt="Cashmere yarn and knitwear detail image" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" decoding="async" loading="lazy" />
           <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/75 via-brand-ink/25 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
             <div class="flex items-center gap-4 mb-3">
@@ -616,7 +619,7 @@ const IMG = {
 
         <!-- 成衣代工（下大） -->
         <a href={`/${locale}/garment-oem/`} class="group md:col-span-12 relative aspect-[4/3] md:aspect-[21/9] overflow-hidden hover-lift reveal" data-reveal-delay="3">
-          <img src={IMG.productGarment} alt="Cashmere shawl styling — premium B2B apparel from Ordos factory" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" decoding="async" loading="lazy" />
+          <img src={IMG.productGarment} alt="Cashmere garment styling image" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" decoding="async" loading="lazy" />
           <div class="absolute inset-0 bg-gradient-to-r from-brand-ink/80 via-brand-ink/35 to-transparent"></div>
           <div class="absolute bottom-0 left-0 p-8 md:p-12 text-white max-w-2xl">
             <div class="flex items-center gap-4 mb-3">
@@ -658,36 +661,36 @@ const IMG = {
           </span>
         </div>
         <h2 class="font-serif text-5xl md:text-6xl font-light leading-[1.08]">
-          {t6('23年只做一件事：从牧场到成衣的羊绒全链路把控', 'One craft for 23 years: full-chain cashmere from pasture to garment', '23 Jahre ein Handwerk: vom Weideland bis zum fertigen Kleidungsstück', '23 ans d\'un seul métier : du pâturage au vêtement fini', '23年一貫、カシミアの全工程', '23년 한 가지: 목장에서 의류까지')}
+          {t6('从产品资料到项目讨论，围绕羊绒规格逐项确认', 'From product records to project discussion, confirm cashmere specifications step by step', 'Von Produktdaten zur Projektabstimmung: Kaschmirspezifikationen Schritt für Schritt bestätigen', 'Des fiches produit à l’échange projet, confirmer les spécifications cachemire étape par étape', '製品情報から案件協議まで、カシミア仕様を段階的に確認', '제품 기록부터 프로젝트 협의까지, 캐시미어 사양을 단계별로 확인')}
         </h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
-        <!-- 条目 1：自有牧场 + 图 -->
+        <!-- 条目 1：原料信息准备 -->
         <div class="space-y-6 reveal" data-reveal-delay="1">
           <div class="aspect-[4/3] overflow-hidden hover-zoom relative">
             <img src={IMG.mongoliaGoat} alt="Cashmere goat on Mongolian pasture, with combed fiber mark" class="w-full h-full object-cover" decoding="async" loading="lazy" />
           </div>
           <div class="flex items-baseline gap-4">
             <span class="font-serif text-5xl text-brand-gold font-light">01</span>
-            <h3 class="font-serif text-2xl">{t6('自有牧场', 'Pasture-Owned', 'Eigene Weiden', 'Pâturages propres', '自社牧場', '자체 목장')}</h3>
+            <h3 class="font-serif text-2xl">{t6('原料信息准备', 'Raw-Material Preparation', 'Rohmaterialvorbereitung', 'Préparation matière', '原料情報の準備', '원료 정보 준비')}</h3>
           </div>
           <p class="text-muted-foreground leading-relaxed">
-            {t6('鄂尔多斯阿尔巴斯白绒山羊保种基地，血统可追溯。羊绒细度、长度、色泽从源头把控。', 'Albus goat breeding base in Ordos. Full pedigree traceability. Fiber fineness, length, and color controlled from source.', 'Albus-Ziegenzuchtbasis in Ordos. Volle Stammbaumrückverfolgbarkeit.', 'Base d\'élevage de chèvres Albus à Ordos. Traçabilité complète.', 'オルドス・アルバス山羊の繁殖基地。血統の完全な追跡。', '오르도스 알버스 산양 사육 기지. 혈통 완전 추적.')}
+            {t6('可结合单品记录中的已列材质、细度、颜色与规格信息准备原料讨论；适用的来源与文件要求以项目书面确认。', 'Use the listed material, fineness, color and specification attributes on product records to prepare a raw-material discussion; applicable origin and document requirements are confirmed in writing for the project.', 'Nutzen Sie die aufgeführten Material-, Feinheits-, Farb- und Spezifikationsmerkmale der Produktdatensätze für die Rohmaterialabstimmung; Herkunfts- und Dokumentenanforderungen werden schriftlich bestätigt.', 'Utilisez les attributs de matière, finesse, couleur et spécification listés sur les fiches produit pour préparer l’échange matière ; les exigences d’origine et de documents applicables sont confirmées par écrit.', '製品記録に記載された素材、細度、色、仕様を原料協議に活用してください。適用される原産地・書類要件は案件ごとに書面で確認します。', '제품 기록에 기재된 소재, 섬도, 색상 및 사양을 원료 협의에 활용하세요. 적용되는 원산지 및 서류 요건은 프로젝트별로 서면 확인됩니다.')}
           </p>
         </div>
 
         <!-- 条目 2：原料分梳 + 图 -->
         <div class="space-y-6 md:pt-20 reveal" data-reveal-delay="2">
           <div class="aspect-[4/3] overflow-hidden hover-zoom">
-            <img src={IMG.craftHand} alt="Cashmere dehairing process — separating fine underdown from coarse guard hair, 99.95% purity" class="w-full h-full object-cover" decoding="async" loading="lazy" />
+            <img src={IMG.craftHand} alt="Cashmere fiber preparation — material discussion context" class="w-full h-full object-cover" decoding="async" loading="lazy" />
           </div>
           <div class="flex items-baseline gap-4">
             <span class="font-serif text-5xl text-brand-gold font-light">02</span>
-            <h3 class="font-serif text-2xl">{t6('原料分梳', 'Dehairing Facility', 'Kämmerei', 'Démêlage', '脱毛工程', '분공정')}</h3>
+            <h3 class="font-serif text-2xl">{t6('纤维准备', 'Fiber preparation', 'Faservorbereitung', 'Préparation de la fibre', '繊維準備', '섬유 준비')}</h3>
           </div>
           <p class="text-muted-foreground leading-relaxed">
-            {t6('意大利进口分梳设备，含绒率≥99.95%，无染色无化学处理，保留羊绒天然光泽与手感。', 'Imported Italian dehairing lines. Cashmere purity ≥99.95%. No dye, no chemical treatment — preserves natural luster and handfeel.', 'Italienische Kämm-Maschinen. Kaschmirreinheit ≥99,95%.', 'Équipement italien. Pureté du cachemire ≥99,95%.', 'イタリア製コーマ機。カシミア純度99.95%以上。', '이탈리아 도입 설비. 캐시미어 순도 99.95% 이상.')}
+            {t6('针对所选产品，可在书面沟通中明确纤维细度、组成、处理方式与所需核验资料。', 'For the selected product, define fiber fineness, composition, processing context and required verification material in written correspondence.', 'Für den ausgewählten Artikel können Faserfeinheit, Zusammensetzung, Verarbeitungsrahmen und erforderliche Prüfnachweise schriftlich festgelegt werden.', 'Pour le produit sélectionné, définissez par écrit la finesse, la composition, le contexte de traitement et les éléments de vérification nécessaires.', '選択製品について、繊維の細度、組成、加工条件、必要な検証資料を文書で確認してください。', '선택 제품의 섬도, 조성, 가공 범위 및 필요한 검증 자료를 서면으로 확인하세요.')}
           </p>
         </div>
 
@@ -698,56 +701,59 @@ const IMG = {
           </div>
           <div class="flex items-baseline gap-4">
             <span class="font-serif text-5xl text-brand-gold font-light">03</span>
-            <h3 class="font-serif text-2xl">{t6('纺纱织造', 'Spinning & Weaving', 'Spinnerei & Weberei', 'Filature & Tissage', '紡績・織造', '방사·제조')}</h3>
+            <h3 class="font-serif text-2xl">{t6('纱线与织物结构', 'Yarn and fabric construction', 'Garn- und Stoffkonstruktion', 'Construction du fil et du tissu', '糸と生地の構造', '원사 및 원단 구조')}</h3>
           </div>
           <p class="text-muted-foreground leading-relaxed">
-            {t6('精纺/粗纺双工艺，覆盖 26/2 至 36/2 主流支数。可定制混纺比例（羊绒/羊毛/丝）。', 'Worsted & woolen processes. Counts from 26/2 to 36/2. Custom blend ratios (cashmere/wool/silk).', 'Kammgarn- und Streichgarnverarbeitung. Sondermischungen möglich.', 'Procédés peigné et cardé. Mélanges personnalisés.', '梳毛・紡毛両工程。カスタム混紡比率。', '워스트드·울렌 공정. 맞춤 배합 비율.')}
+            {t6('可按单品页已列的纱线结构、支数、针型或其他规格准备采购需求；适用的项目范围以书面确认。', 'Use the yarn construction, count, gauge and other attributes listed on the product page to prepare a sourcing brief; applicable project scope is confirmed in writing.', 'Nutzen Sie die auf der Produktseite aufgeführten Garnkonstruktionen, Titer, Maschenweiten und weiteren Merkmale für Ihre Anfrage; der anwendbare Projektumfang wird schriftlich bestätigt.', 'Utilisez la construction du fil, le titre, la jauge et les autres attributs listés sur la fiche produit pour préparer votre demande ; le périmètre applicable est confirmé par écrit.', '製品ページに記載された糸構造、番手、ゲージなどの属性を調達要件に活用してください。適用範囲は書面で確認します。', '제품 페이지에 기재된 원사 구조, 번수, 게이지 및 기타 속성을 구매 요건에 활용하세요. 적용 범위는 서면으로 확인됩니다.')}
           </p>
         </div>
 
         <!-- 条目 4：成衣厂 -->
         <div class="space-y-6 md:pt-20 reveal" data-reveal-delay="4">
           <div class="aspect-[4/3] overflow-hidden hover-zoom relative">
-            <img src={IMG.knittingMill} alt="German STOLL knitting machines — 38,000 sqm Ordos knitting facility, OEM private label" class="w-full h-full object-cover" decoding="async" loading="lazy" />
+            <img src={IMG.knittingMill} alt="Cashmere knitwear development — product discussion context" class="w-full h-full object-cover" decoding="async" loading="lazy" />
           </div>
           <div class="flex items-baseline gap-4">
             <span class="font-serif text-5xl text-brand-gold font-light">04</span>
-            <h3 class="font-serif text-2xl">{t6('成衣厂', 'Knitting Factory', 'Strickerei', 'Atelier tricot', 'ニット工場', '니트 공장')}</h3>
+            <h3 class="font-serif text-2xl">{t6('针织成衣开发', 'Knitwear development', 'Strickwarenentwicklung', 'Développement maille', 'ニット製品開発', '니트웨어 개발')}</h3>
           </div>
           <p class="text-muted-foreground leading-relaxed">
-            {t6('38,000㎡自有成衣厂，德国 STOLL 全成型电脑横机，支持 OEM 贴牌和小单快反。', '38,000 sqm facility. German STOLL fully-fashioned knitting machines. OEM private label, low MOQ, fast turnaround.', '38.000 qm Anlage. Deutsche STOLL-Strickmaschinen.', '38 000 m². Machines à tricoter STOLL allemandes.', '38,000平米。ドイツSTOLL成型機。', '38,000sqm. 독일 STOLL 편직기.')}
+            {t6('可使用设计参考、单品规格、包装与文件需求准备针织成衣项目沟通；价格、样品、交付与其他适用条件以书面确认。', 'Use design references, product specifications, packaging and document needs to prepare a knitwear project discussion; price, sampling, delivery and other applicable conditions are confirmed in writing.', 'Nutzen Sie Designreferenzen, Produktspezifikationen, Verpackungs- und Dokumentenbedarf für die Abstimmung eines Strickwarenprojekts; Preis, Muster, Lieferung und weitere Bedingungen werden schriftlich bestätigt.', 'Utilisez les références de design, les spécifications produit, le conditionnement et les documents nécessaires pour préparer un échange sur un projet maille ; le prix, les échantillons, la livraison et les autres conditions sont confirmés par écrit.', 'デザイン参考、製品仕様、包装、書類要件をニット製品案件の協議に活用してください。価格、サンプル、納期などの適用条件は書面で確認します。', '디자인 참고자료, 제품 사양, 포장 및 서류 요건을 니트웨어 프로젝트 협의에 활용하세요. 가격, 샘플, 납기 및 기타 적용 조건은 서면으로 확인됩니다.')}
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ 资质徽章（圆形 SVG） ============ -->
+  <!-- ============ 项目资料与核验（仅使用书面项目确认原则） ============ -->
   <section class="home-cert-section py-20 bg-[#F4EFE6]">
     <div class="container-narrow">
       <div class="text-center mb-12">
-        <div class="inline-block text-xs tracking-[0.3em] uppercase text-brand-camel mb-3">{c.trustTitle}</div>
+        <div class="inline-block text-xs tracking-[0.3em] uppercase text-brand-camel mb-3">{t6('项目准备', 'Project preparation', 'Projektvorbereitung', 'Préparation du projet', '案件準備', '프로젝트 준비')}</div>
         <h2 class="font-serif text-3xl md:text-4xl font-light">
-          {t6('国际权威认证', 'Internationally Certified', 'International zertifiziert', 'Certifié internationalement', '国際認証取得', '국제 공인 인증')}
+          {t6('项目文件与核验要求以书面方式确认', 'Project documentation and verification requirements are confirmed in writing', 'Projektdokumentation und Prüfanforderungen werden schriftlich bestätigt', 'Les documents et exigences de vérification sont confirmés par écrit', '案件書類と検証要件は書面で確認します', '프로젝트 문서 및 검증 요건은 서면으로 확인됩니다')}
         </h2>
+        <p class="max-w-3xl mx-auto mt-5 text-sm leading-relaxed text-muted-foreground">
+          {t6('请在询盘中列出所选产品、材料规格、核验方式、包装、目的地和文件需求；适用范围以具体项目书面沟通为准。', 'Include the selected product, material specification, verification approach, packaging, destination and document needs in your inquiry; applicable scope is confirmed in writing for the project.', 'Nennen Sie im Anfragebrief Produkt, Materialspezifikation, Prüfweg, Verpackung, Zielort und Dokumentenbedarf; der anwendbare Umfang wird schriftlich bestätigt.', 'Indiquez dans votre demande le produit, la spécification matière, la méthode de vérification, le conditionnement, la destination et les documents requis ; le périmètre applicable est confirmé par écrit.', 'お問い合わせには、製品、素材仕様、検証方法、包装、仕向地、必要書類を記載してください。適用範囲は案件ごとに書面で確認します。', '문의 시 선택 제품, 소재 사양, 검증 방식, 포장, 목적지 및 필요 서류를 알려 주세요. 적용 범위는 프로젝트별로 서면 확인됩니다.')}
+        </p>
       </div>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
         {[
-          { short: 'ISO 9001', full: 'Quality Mgmt' },
-          { short: 'OEKO-TEX', full: 'Standard 100' },
-          { short: 'GCS',      full: 'Good Cashmere' },
-          { short: 'BSCI',     full: 'Social Compliance' },
-          { short: 'Sedex',    full: 'Ethical Trade' },
-          { short: 'WRAP',     full: 'Worldwide Responsible' },
-        ].map((cert) => (
+          { short: '01', full: t6('产品规格', 'Product specification', 'Produktspezifikation', 'Spécification produit', '製品仕様', '제품 사양') },
+          { short: '02', full: t6('材料核验', 'Material verification', 'Materialprüfung', 'Vérification matière', '素材検証', '소재 검증') },
+          { short: '03', full: t6('包装与呈现', 'Packaging and presentation', 'Verpackung und Präsentation', 'Conditionnement et présentation', '包装と表示', '포장 및 표시') },
+          { short: '04', full: t6('商务条件', 'Commercial terms', 'Geschäftsbedingungen', 'Conditions commerciales', '取引条件', '상업 조건') },
+          { short: '05', full: t6('目的地准备', 'Destination preparation', 'Zielortvorbereitung', 'Préparation destination', '仕向地準備', '목적지 준비') },
+          { short: '06', full: t6('文件需求', 'Documentation needs', 'Dokumentenbedarf', 'Documents requis', '書類要件', '서류 요건') },
+        ].map((item) => (
           <div class="group flex flex-col items-center">
             <div class="relative w-32 h-32 flex items-center justify-center mb-3 transition-transform group-hover:scale-105">
               <div class="absolute inset-0 rounded-full border border-brand-camel/40 group-hover:border-brand-gold transition-colors"></div>
               <div class="absolute inset-1.5 rounded-full border border-brand-camel/20 group-hover:border-brand-gold/60 transition-colors"></div>
               <div class="absolute inset-0 rounded-full bg-brand-camel/0 group-hover:bg-brand-camel/5 transition-colors"></div>
               <div class="relative text-center px-2">
-                <div class="font-serif text-base text-brand-chocolate tracking-wider leading-tight">{cert.short}</div>
-                <div class="text-[8px] tracking-[0.15em] uppercase text-muted-foreground mt-1 leading-tight">{cert.full}</div>
+                <div class="font-serif text-base text-brand-chocolate tracking-wider leading-tight">{item.short}</div>
+                <div class="text-[8px] tracking-[0.15em] uppercase text-muted-foreground mt-1 leading-tight">{item.full}</div>
               </div>
             </div>
           </div>
@@ -802,7 +808,7 @@ const IMG = {
             <div class="p-4">
               <p class="text-[10px] uppercase tracking-wider text-muted-foreground mb-1">{p.categoryName}</p>
               <h3 class="text-sm font-medium leading-snug line-clamp-2 mb-2 group-hover:text-brand-chocolate transition-colors">{p.name}</h3>
-              <p class="text-xs text-brand-red font-medium">USD {p.price}</p>
+              <p class="text-xs text-brand-red font-medium">{t6('查看已列规格 →', 'View listed specifications →', 'Aufgeführte Spezifikationen ansehen →', 'Voir les spécifications listées →', '記載仕様を見る →', '기재 사양 보기 →')}</p>
             </div>
           </a>
         ))}
@@ -855,17 +861,17 @@ const IMG = {
 
   <SEOFaq faqs={[
     locale === 'cn'
-      ? { q: '你们是工厂还是贸易商？', a: '东霄羊绒是鄂尔多斯源头工厂，2002年成立，自有牧场、原料分梳厂、纺纱厂、针织厂。23年专注B2B出口，无中间商。' }
-      : { q: 'Are you a factory or trading company?', a: 'DONGXIAO® Cashmere is a source factory in Ordos, established 2002. We own the pasture, dehairing facility, spinning mill, and knitting factory. 23+ years B2B export, no middleman.' },
+      ? { q: '你们是工厂还是贸易商？', a: '本网站提供羊绒产品、原料、纱线及针织品的可检索目录。具体供应结构、产品适配性、文件与商业条件，将以产品参考、数量、目的地和项目要求为依据书面确认。' }
+      : { q: 'Are you a factory or trading company?', a: 'This website provides a searchable catalog of cashmere products, raw material, yarn and knitwear. The applicable supply structure, product suitability, documentation and commercial terms are confirmed in writing based on the product reference, quantity, destination and project requirements.' },
     locale === 'cn'
-      ? { q: '主要出口哪些国家？', a: '我们服务于全球50+国家的B2B客户，主要市场包括欧盟（德国、法国、意大利、英国）、美国、日本、韩国、俄罗斯等。' }
+      ? { q: '询盘中应提供哪些目的地信息？', a: '请说明目的地以及与项目相关的商业或文件要求，以便在书面沟通中逐项核对。' }
       : { q: 'What destination information should an inquiry include?', a: 'State the destination and the commercial or document requirements relevant to the project so they can be reviewed in written correspondence.' },
     locale === 'cn'
-      ? { q: '如何确保羊绒品质？', a: '从原料到成品全链路把控：阿尔巴斯山羊血统认证 → 牧场溯源 → 原料分梳 → 纱线支数控制 → 成品 100% 检验。ISO 9001 + OEKO-TEX + GCS 认证。' }
-      : { q: 'How do you ensure cashmere quality?', a: 'Full-process control: Albus goat pedigree → pasture traceability → dehairing → yarn count control → 100% finished product QC. ISO 9001 + OEKO-TEX + GCS certified.' },
+      ? { q: '如何准备羊绒品质核验？', a: '请在询盘中说明所选产品、材料规格、检验方式和文件需求，并在项目批准前针对相应产品记录以书面方式确认。' }
+      : { q: 'How should I prepare cashmere quality verification?', a: 'Include the selected product, material specification, verification approach and document needs in your inquiry, then confirm the applicable scope in writing against the relevant product record before approval.' },
     locale === 'cn'
-      ? { q: '能否贴牌做自有品牌？', a: '可以。我们提供OEM贴牌和ODM设计开发服务，最小起订100件/款。可加您的品牌标签、洗水标、包装。' }
-      : { q: 'Can you do private label / OEM?', a: 'Yes. We offer OEM private label and ODM design development. Minimum 100pcs/style. We can add your brand labels, care labels, and packaging.' },
+      ? { q: '能否贴牌做自有品牌？', a: '请在询盘中说明品牌、产品类别、材质、尺寸、标签、包装和文件要求；是否适用及项目条件应结合具体产品资料书面确认。' }
+      : { q: 'Can you do private label / OEM?', a: 'Please include brand, product category, material, size, label, packaging and document requirements in your inquiry; applicability and project terms are confirmed in writing against the relevant product information.' },
   ]} />
 
   <!-- Latest from our blog (首页 SEO 内链 + 新内容曝光) -->
