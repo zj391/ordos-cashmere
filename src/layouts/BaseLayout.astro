@@ -191,6 +191,23 @@ const pageSchema = (() => {
 
         inLanguage: ['en', 'de', 'fr', 'ja', 'ko', 'zh-CN'],
 
+        // SearchAction: enables the Google sitelinks searchbox in SERPs.
+        // Without this, Google doesn't render the search input below
+        // the site's main link on result pages. The target must be a
+        // single concrete URL template (Google's parser doesn't accept
+        // nested placeholders like {locale}); we point at /en/products/
+        // because English is the primary indexed locale. The actual
+        // products page also accepts ?q= in /de/, /fr/, /ja/, /kr/,
+        // /cn/ — they're functionally identical, just not registered
+        // in this schema block.
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: 'https://www.erdosdx.com/en/products/?q={search_term_string}',
+          // 'query-input' must be the literal template string
+          // 'required name=search_term_string' for Google to parse it.
+          'query-input': 'required name=search_term_string',
+        },
+
       };
 
     case 'ordos-origin':
