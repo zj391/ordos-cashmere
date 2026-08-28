@@ -550,6 +550,39 @@ const t = topic
   : fallbackT;
 if (!t) return new Response('Not Found', { status: 404 });
 
+// Classification hubs are an evidence-led procurement archive: aggregate only
+// fields already present in product records, never commercial or factory claims.
+const SAFE_LISTED_VALUE = /Italian|French|German|Stoll|Sant['’]?Agostino|NCSI|OFDA|factory|mill|custom|OEM|ODM|MOQ|price|stock|lead|delivery|sample|certif|Pantone|capacity|tons?/i;
+const EMPTY_LISTED_VALUE = /^(?:see specification|see product page|查看规格|详见规格)$/i;
+const cleanListedValue = (value: unknown) => {
+  const text = typeof value === 'string' || typeof value === 'number' ? String(value).replace(/\s+/g, ' ').trim() : '';
+  return text && !SAFE_LISTED_VALUE.test(text) && !EMPTY_LISTED_VALUE.test(text) ? text : '';
+};
+const uniqueListedValues = (values: unknown[], limit = 6) => Array.from(new Set(values.map(cleanListedValue).filter(Boolean))).slice(0, limit) as string[];
+const OMITTED_COLOR_LABEL = /^(?:color cards?|multiple colors?(?: available)?|various colors?|assorted colors?|多种颜色可选|多色可选|多种颜色)$/i;
+const listedColors = uniqueListedValues(products.flatMap((product: any) => Array.isArray(product.colors) ? product.colors : [product.colors]), 10)
+  .filter((value) => !OMITTED_COLOR_LABEL.test(value))
+  .slice(0, 8);
+const listedAttributes = [
+  { key: 'material', values: uniqueListedValues(products.map((product: any) => product.material)), icon: '01' },
+  { key: 'micron', values: uniqueListedValues(products.map((product: any) => product.micron)), icon: '02' },
+  { key: 'color', values: listedColors, icon: '03' },
+].filter((item) => item.values.length > 0);
+const cardFacts = (product: any) => [
+  { key: 'material', value: cleanListedValue(product.material) },
+  { key: 'micron', value: cleanListedValue(product.micron) },
+  { key: 'packaging', value: cleanListedValue(product.packaging) || cleanListedValue(product.weight) },
+].filter((item) => item.value);
+const hubCopy = {
+  en: { mapEyebrow: 'Listed attribute map', mapTitle: 'Read the category before opening a record', mapIntro: 'These values appear in the product records currently listed in this category. Use each record to assess the applicable details.', material: 'Material', micron: 'Fiber fineness', color: 'Listed colors', packaging: 'Listed packaging', flowEyebrow: 'Shortlist workflow', flowTitle: 'Move from category context to a written project brief', flowIntro: 'Keep discovery focused on listed specifications; project conditions are confirmed in writing.', stepOne: 'Review records', stepOneText: 'Open a style to review listed specifications and reference.', stepOneAction: 'Browse records', stepTwo: 'Plan verification', stepTwoText: 'Prepare inspection and documentation needs for the selected product.', stepTwoAction: 'Review quality preparation', stepThree: 'Prepare inquiry', stepThreeText: 'Send product reference, target specification, quantity and destination.', stepThreeAction: 'Prepare inquiry', record: 'Product record', viewRecord: 'View record' },
+  cn: { mapEyebrow: '已列属性地图', mapTitle: '打开产品记录前，先阅读本分类', mapIntro: '以下内容来自本分类当前已列产品记录。请在单品记录中核对适用的具体信息。', material: '材质', micron: '纤维细度', color: '已列颜色', packaging: '已列包装', flowEyebrow: '候选款路径', flowTitle: '从品类理解到书面项目需求', flowIntro: '产品发现以已列规格为起点，项目条件通过书面方式确认。', stepOne: '查看产品记录', stepOneText: '打开款式记录，查看已列规格和产品参考。', stepOneAction: '浏览产品记录', stepTwo: '准备核验', stepTwoText: '为选定产品整理验货与文件需求。', stepTwoAction: '查看质控准备', stepThree: '准备询盘', stepThreeText: '提交产品参考、目标规格、数量和目的地。', stepThreeAction: '准备询盘', record: '产品记录', viewRecord: '查看产品记录' },
+  de: { mapEyebrow: 'Index aufgeführter Merkmale', mapTitle: 'Kategorie lesen, dann einen Datensatz öffnen', mapIntro: 'Diese Werte erscheinen in den aktuell gelisteten Produktdatensätzen dieser Kategorie. Prüfen Sie die anwendbaren Details im einzelnen Datensatz.', material: 'Material', micron: 'Faserfeinheit', color: 'Aufgeführte Farben', packaging: 'Aufgeführte Verpackung', flowEyebrow: 'Shortlist-Ablauf', flowTitle: 'Vom Kategorieüberblick zum schriftlichen Projektbrief', flowIntro: 'Die Auswahl beginnt mit aufgeführten Spezifikationen; Projektbedingungen werden schriftlich bestätigt.', stepOne: 'Datensätze prüfen', stepOneText: 'Öffnen Sie einen Style für aufgeführte Spezifikationen und Referenz.', stepOneAction: 'Datensätze ansehen', stepTwo: 'Prüfung planen', stepTwoText: 'Bereiten Sie Prüf- und Dokumentationsanforderungen vor.', stepTwoAction: 'Qualitätsvorbereitung', stepThree: 'Anfrage vorbereiten', stepThreeText: 'Senden Sie Referenz, Zielvorgabe, Menge und Zielort.', stepThreeAction: 'Anfrage vorbereiten', record: 'Produktdatensatz', viewRecord: 'Datensatz ansehen' },
+  fr: { mapEyebrow: 'Index des attributs listés', mapTitle: 'Lire la catégorie avant d’ouvrir une fiche', mapIntro: 'Ces valeurs apparaissent dans les fiches produit actuellement listées dans cette catégorie. Vérifiez les détails applicables dans chaque fiche.', material: 'Matière', micron: 'Finesse de fibre', color: 'Couleurs listées', packaging: 'Conditionnement indiqué', flowEyebrow: 'Parcours de sélection', flowTitle: 'Du contexte catégorie au brief écrit', flowIntro: 'La sélection commence avec les spécifications listées ; les conditions sont confirmées par écrit.', stepOne: 'Consulter les fiches', stepOneText: 'Ouvrez un style pour ses spécifications et sa référence.', stepOneAction: 'Voir les fiches', stepTwo: 'Préparer la vérification', stepTwoText: 'Préparez les besoins de contrôle et de documents.', stepTwoAction: 'Préparation qualité', stepThree: 'Préparer la demande', stepThreeText: 'Envoyez référence, spécification visée, quantité et destination.', stepThreeAction: 'Préparer la demande', record: 'Fiche produit', viewRecord: 'Voir la fiche' },
+  ja: { mapEyebrow: '記載属性インデックス', mapTitle: '製品記録を開く前にカテゴリーを確認', mapIntro: '以下の値は、このカテゴリーで現在掲載されている製品記録に含まれます。各記録で適用される詳細を確認してください。', material: '素材', micron: '繊維の細さ', color: '記載カラー', packaging: '記載包装', flowEyebrow: '候補選定の流れ', flowTitle: 'カテゴリー理解から書面の案件要件へ', flowIntro: '製品選定は記載仕様から始め、案件条件は書面で確認します。', stepOne: '製品記録を見る', stepOneText: 'スタイルを開き、記載仕様と参照番号を確認します。', stepOneAction: '記録を閲覧', stepTwo: '検証を準備', stepTwoText: '選定製品の検品・書類要件を整理します。', stepTwoAction: '品質準備を見る', stepThree: '問い合わせを準備', stepThreeText: '参照番号、目標仕様、数量、仕向地を送信します。', stepThreeAction: '問い合わせを準備', record: '製品記録', viewRecord: '製品記録を見る' },
+  kr: { mapEyebrow: '기재 속성 인덱스', mapTitle: '제품 기록을 열기 전에 카테고리 확인하기', mapIntro: '아래 값은 이 카테고리에 현재 기재된 제품 기록에 나타납니다. 각 기록에서 적용 가능한 세부 사항을 확인하세요.', material: '소재', micron: '섬유 섬도', color: '기재 색상', packaging: '기재 포장', flowEyebrow: '후보 선정 흐름', flowTitle: '카테고리 이해에서 서면 프로젝트 브리프까지', flowIntro: '제품 발견은 기재 사양에서 시작하며 프로젝트 조건은 서면으로 확인됩니다.', stepOne: '제품 기록 검토', stepOneText: '스타일을 열어 기재 사양과 참조 번호를 확인하세요.', stepOneAction: '기록 보기', stepTwo: '검증 준비', stepTwoText: '선정 제품의 검사 및 서류 요건을 준비하세요.', stepTwoAction: '품질 준비 보기', stepThree: '문의 준비', stepThreeText: '참조 번호, 목표 사양, 수량 및 목적지를 보내세요.', stepThreeAction: '문의 준비', record: '제품 기록', viewRecord: '제품 기록 보기' },
+}[locale] || { mapEyebrow: 'Listed attribute map', mapTitle: 'Read the category before opening a record', mapIntro: 'Values below are from listed product records.', material: 'Material', micron: 'Fiber fineness', color: 'Listed colors', packaging: 'Listed packaging', flowEyebrow: 'Shortlist workflow', flowTitle: 'Move from category context to a written project brief', flowIntro: 'Project conditions are confirmed in writing.', stepOne: 'Review records', stepOneText: 'Open a record to review listed specifications.', stepOneAction: 'Browse records', stepTwo: 'Plan verification', stepTwoText: 'Prepare inspection and documentation needs.', stepTwoAction: 'Review quality preparation', stepThree: 'Prepare inquiry', stepThreeText: 'Send reference, specification, quantity and destination.', stepThreeAction: 'Prepare inquiry', record: 'Product record', viewRecord: 'View record' };
+const listedAttributeLabel = (key: string) => key === 'material' ? hubCopy.material : key === 'micron' ? hubCopy.micron : key === 'color' ? hubCopy.color : hubCopy.packaging;
+
 const archiveCopy = {
   en: { eyebrow: 'SPECIFICATION INDEX', listed: 'listed product records', browse: 'Browse records', keywords: 'Search themes' },
   cn: { eyebrow: '规格索引', listed: '条已列产品记录', browse: '浏览产品记录', keywords: '检索主题' },
@@ -713,6 +746,28 @@ const latestBlogPosts = relevantBlogPosts
     </div>
   </section>
 
+  <section class="category-attribute-map" aria-labelledby="category-attribute-map-title">
+    <div class="container-narrow py-14 md:py-18">
+      <div class="category-attribute-map-heading">
+        <p>{hubCopy.mapEyebrow}</p><h2 id="category-attribute-map-title">{hubCopy.mapTitle}</h2><span>{hubCopy.mapIntro}</span>
+      </div>
+      <dl class="category-attribute-grid">
+        {listedAttributes.map((attribute) => <div class="category-attribute-card"><dt><span>{attribute.icon}</span>{listedAttributeLabel(attribute.key)}</dt><dd>{attribute.values.map((value) => <span>{value}</span>)}</dd></div>)}
+      </dl>
+    </div>
+  </section>
+
+  <section class="category-shortlist-route" aria-labelledby="category-shortlist-route-title">
+    <div class="container-narrow py-12 md:py-14">
+      <div class="category-shortlist-heading"><p>{hubCopy.flowEyebrow}</p><h2 id="category-shortlist-route-title">{hubCopy.flowTitle}</h2><span>{hubCopy.flowIntro}</span></div>
+      <ol class="category-shortlist-steps">
+        <li><span>01</span><div><strong>{hubCopy.stepOne}</strong><p>{hubCopy.stepOneText}</p><a href="#category-records">{hubCopy.stepOneAction} <i aria-hidden="true">→</i></a></div></li>
+        <li><span>02</span><div><strong>{hubCopy.stepTwo}</strong><p>{hubCopy.stepTwoText}</p><a href={`/${locale}/quality-control/`}>{hubCopy.stepTwoAction} <i aria-hidden="true">→</i></a></div></li>
+        <li><span>03</span><div><strong>{hubCopy.stepThree}</strong><p>{hubCopy.stepThreeText}</p><a href={`/${locale}/contact/`}>{hubCopy.stepThreeAction} <i aria-hidden="true">→</i></a></div></li>
+      </ol>
+    </div>
+  </section>
+
   <!-- Leggings dedicated sub-section (target: "cashmere leggings" search) -->
  {slug === 'accessories' && (() => {
 const leggings = products.filter((p) => /legging|leggin|pant|tight|trouser|leggings|tights|long john/i.test(p.name));
@@ -838,9 +893,11 @@ loading="lazy"
                 loading="lazy"
               />
             </div>
-            <div class="p-3">
-              <h3 class="text-xs font-medium leading-snug line-clamp-2 mb-1">{p.name}</h3>
-              <p class="text-[10px] text-muted-foreground">{locale === 'cn' ? '项目条件书面确认' : 'Project details confirmed in writing'}</p>
+            <div class="category-record-card-copy">
+              <div class="category-record-card-index"><span>{hubCopy.record}</span><span>{p.id}</span></div>
+              <h3>{p.name}</h3>
+              <dl class="category-record-card-facts">{cardFacts(p).map((fact) => <div><dt>{listedAttributeLabel(fact.key)}</dt><dd>{fact.value}</dd></div>)}</dl>
+              <span class="category-record-card-action">{hubCopy.viewRecord} <i aria-hidden="true">→</i></span>
             </div>
           </a>
         ))}
@@ -1001,8 +1058,8 @@ loading="lazy"
 </BaseLayout>
 
 <style is:global>
-  /* Classification hubs retain a guaranteed light surface and dark text even
-     when surrounding themes or cached CSS alter brand utility colors. */
+  /* Classification hubs are a warm, evidence-led procurement archive: dark
+     specification maps, sequential shortlisting rail and terse record cards. */
   .category-hub-hero {
     background-color: #F7F3EC !important;
     color: #1C1813 !important;
@@ -1068,6 +1125,31 @@ loading="lazy"
   .category-record-keywords > div span { border: 1px solid rgba(247, 243, 236, 0.24); padding: 0.3rem 0.45rem; color: #F7F3EC; font-size: 0.7rem; line-height: 1.15; }
   .category-record-browse { border-top: 1px solid rgba(247, 243, 236, 0.18); padding-top: 1rem; color: #F7F3EC; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; transition: color 180ms ease-out; }
   .category-record-browse:hover { color: #D8B787; }
+  .category-attribute-map { background: #1C1813 !important; color: #F7F3EC !important; }
+  .category-attribute-map-heading, .category-shortlist-heading { display: grid; grid-template-columns: minmax(9rem, .38fr) minmax(16rem, 1.05fr) minmax(17rem, .85fr); gap: 1.5rem; align-items: baseline; padding-bottom: 1.35rem; }
+  .category-attribute-map-heading { border-bottom: 1px solid rgba(247, 243, 236, .22); }
+  .category-shortlist-heading { border-bottom: 1px solid #D9D1C6; }
+  .category-attribute-map-heading p, .category-shortlist-heading p { margin: 0; color: #D8B787; font-size: .64rem; letter-spacing: .22em; text-transform: uppercase; }
+  .category-attribute-map-heading h2, .category-shortlist-heading h2 { margin: 0; font-family: var(--font-display, Georgia, serif); font-size: clamp(1.6rem, 2.8vw, 2.4rem); font-weight: 300; line-height: 1.08; }
+  .category-attribute-map-heading h2 { color: #F7F3EC !important; }
+  .category-shortlist-heading h2 { color: #1C1813; }
+  .category-attribute-map-heading > span { color: rgba(247, 243, 236, .72); font-size: .88rem; line-height: 1.65; }
+  .category-shortlist-heading > span { color: #71685F; font-size: .88rem; line-height: 1.65; }
+  .category-attribute-grid, .category-shortlist-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; padding: 1.35rem 0 0; }
+  .category-attribute-card { min-height: 10rem; padding: .3rem 1.6rem 1rem; border-left: 1px solid rgba(247, 243, 236, .2); }
+  .category-attribute-card:first-child { padding-left: 0; border-left: 0; }
+  .category-attribute-card dt { display: flex; gap: .65rem; color: #F7F3EC; font-family: var(--font-display, Georgia, serif); font-size: 1.15rem; }
+  .category-attribute-card dt span, .category-shortlist-steps > li > span { color: #A5724D; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .66rem; letter-spacing: .12em; }
+  .category-attribute-card dd { display: flex; flex-wrap: wrap; gap: .45rem; margin: 1rem 0 0; }
+  .category-attribute-card dd span { color: rgba(247, 243, 236, .88); border: 1px solid rgba(247, 243, 236, .25); padding: .36rem .48rem; font-size: .72rem; }
+  .category-shortlist-route { background: #F7F3EC; border-bottom: 1px solid #D9D1C6; }
+  .category-shortlist-steps { list-style: none; }
+  .category-shortlist-steps li { display: grid; grid-template-columns: 2.2rem 1fr; gap: .75rem; min-height: 10rem; padding: .15rem 1.5rem 1rem; border-left: 1px solid #D9D1C6; }
+  .category-shortlist-steps li:first-child { padding-left: 0; border-left: 0; }
+  .category-shortlist-steps strong { display: block; color: #1C1813; font-family: var(--font-display, Georgia, serif); font-size: 1.15rem; font-weight: 400; }
+  .category-shortlist-steps p { margin: .55rem 0 1rem; color: #71685F; font-size: .8rem; line-height: 1.55; }
+  .category-shortlist-steps a, .category-record-card-action { color: #765338; font-size: .73rem; letter-spacing: .08em; text-transform: uppercase; }
+  .category-shortlist-steps i, .category-record-card-action i { font-style: normal; }
   .category-record-heading { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.5rem 2rem; align-items: end; margin-bottom: 2.25rem; padding-bottom: 1rem; border-bottom: 1px solid #E2DCD2; }
   .category-record-heading > span { grid-column: 1 / -1; color: #A5724D; font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; }
   .category-record-heading p { color: #71685F; font-size: 0.82rem; white-space: nowrap; }
@@ -1075,11 +1157,25 @@ loading="lazy"
   .category-record-card::before { content: ''; position: absolute; z-index: 1; top: 0; left: 0; width: 2.6rem; height: 2px; background: #A5724D; transform: scaleX(0); transform-origin: left; transition: transform 180ms ease-out; }
   .category-record-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px -22px rgba(28, 24, 19, 0.7); }
   .category-record-card:hover::before { transform: scaleX(1); }
+  .category-record-card-copy { display: grid; gap: .65rem; padding: .85rem .85rem 1rem; }
+  .category-record-card-index { display: flex; justify-content: space-between; gap: .5rem; color: #8A8178; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; }
+  .category-record-card-copy h3 { margin: 0; color: #1C1813; font-family: var(--font-display, Georgia, serif); font-size: .94rem; font-weight: 400; line-height: 1.25; }
+  .category-record-card-facts { display: grid; gap: .36rem; margin: 0; padding-top: .15rem; border-top: 1px solid #EEE9E2; }
+  .category-record-card-facts div { display: flex; justify-content: space-between; gap: .6rem; padding-top: .36rem; }
+  .category-record-card-facts dt { color: #8A8178; font-size: .58rem; letter-spacing: .06em; text-transform: uppercase; }
+  .category-record-card-facts dd { margin: 0; color: #4C443C; font-size: .68rem; font-weight: 500; text-align: right; }
+  .category-record-card-action { display: block; margin-top: .2rem; }
   @media (max-width: 767px) {
     .category-hub-hero-inner { grid-template-columns: 1fr; }
     .category-hub-hero::after { width: 78vw; top: 3rem; right: -34vw; }
     .category-record-guide { box-shadow: 10px 10px 0 rgba(28, 24, 19, 0.08); }
     .category-record-heading { grid-template-columns: 1fr; }
     .category-record-heading p { white-space: normal; }
+    .category-attribute-map-heading, .category-shortlist-heading { grid-template-columns: 1fr; gap: .65rem; }
+    .category-attribute-grid, .category-shortlist-steps { grid-template-columns: 1fr; padding-top: .9rem; }
+    .category-attribute-card, .category-attribute-card:first-child { min-height: auto; padding: .95rem 0 .95rem 1rem; border-left: 2px solid rgba(247, 243, 236, .32); border-bottom: 1px solid rgba(247, 243, 236, .15); }
+    .category-attribute-card:last-child { border-bottom: 0; }
+    .category-shortlist-steps li, .category-shortlist-steps li:first-child { min-height: auto; padding: .95rem 0 .95rem 1rem; border-left: 2px solid #D9D1C6; border-bottom: 1px solid #E4DDD2; }
+    .category-shortlist-steps li:last-child { border-bottom: 0; }
   }
 </style>
