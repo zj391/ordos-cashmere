@@ -2,7 +2,7 @@
 
 > Premium B2B cashmere manufacturer and wholesale supplier from Ordos, Inner Mongolia, China. 23+ years expertise, OEKO-TEX certified, MOQ 100pcs, 7-day sampling, FOB Tianjin. Trusted by 500+ brands worldwide.
 
-This file is the full-text counterpart of /llms.txt. It contains all site pages, the complete 591-product catalog (with materials/micron/MOQ), and every published blog article. Generated 2026-08-27.
+This file is the full-text counterpart of /llms.txt. It contains all site pages, the complete 591-product catalog (with materials/micron/MOQ), and every published blog article. Generated 2026-08-28.
 
 ## Site Map
 
@@ -68,6 +68,93 @@ Total products: see /en/products/ for the full 591-SKU catalog (live, SSR'd from
 Categories: Cashmere Hats & Beanies, Cashmere Sweaters & Knitwear, Cashmere Scarves & Wraps, Cashmere Accessories, Cashmere Yarn & Fiber
 
 ## Blog Articles (English, full text)
+
+### EU Textile Digital Product Passport Update: What Is Confirmed in August 2026
+
+*Published 2026-08-27*
+
+A dated update for cashmere and apparel buyers on the EU Digital Product Passport registry, the textile timetable, and the product records worth preparing before textile-specific rules are adopted.
+
+## The August 2026 position: framework activity is real; textile requirements are not final
+
+The European Commission’s Digital Product Passport (DPP) registry became operational on 20 July 2026. The Commission describes the DPP as a digital container for product, component and material information, with information requirements defined by the legal act that applies to each product group. [1](https://single-market-economy.ec.europa.eu/single-market/digital-product-passport_en)
+
+For textile apparel, the important distinction is between the operational DPP framework and future textile-specific rules. The Commission’s current indicative timeline places adoption of sector-specific DPP requirements for textiles in **Q3–Q4 2027**. The data points, access rights and product obligations for textiles therefore remain dependent on the future delegated act; they should not be presented as final requirements today. [1](https://single-market-economy.ec.europa.eu/single-market/digital-product-passport_en)
+
+## What the Commission has actually said
+
+On 17 July 2026, the Commission launched its DPP information page as a central reference for economic operators, authorities, consumers and other value-chain participants. It says that, depending on the product group, a DPP may cover composition, circularity, environmental impact, usage and maintenance, safety, end-of-life guidance and regulatory compliance. [2](https://single-market-economy.ec.europa.eu/news/new-digital-product-passport-dpp-web-page-launched-2026-07-17_en)
+
+The Commission also makes clear that the DPP will be introduced progressively. Textiles are identified as a priority product group, but the content of any passport must follow the product-specific legislation rather than a generic textile checklist. [1](https://single-market-economy.ec.europa.eu/single-market/digital-product-passport_en) This matters for cashmere programs: a QR code, a fiber statement or a generic origin narrative is not by itself a completed textile DPP.
+
+## A practical product-record checklist for cashmere programs
+
+The current period is useful for building disciplined product records, not for claiming future compliance. A buyer and supplier can agree which of the following records are available for a given style, lot or shipment:
+
+| Record area | Practical reference to agree in writing | Why it is useful now |
+| --- | --- | --- |
+| Product identity | Style code, internal SKU, product category and revision | Keeps samples, production records and later data requests aligned. |
+| Listed composition | Fiber declaration and the approved specification version | Provides a clear reference for labeling and product communication. |
+| Material linkage | Lot, yarn or material references where they are actually maintained | Helps distinguish a product-level claim from a general supplier statement. |
+| Care and use | Approved care-label wording and maintenance information | Supports product communication without assuming a future DPP data field. |
+| Documentation owner | The party responsible for each document and its revision date | Makes it easier to answer brand or importer data requests consistently. |
+
+These are procurement controls, not a claim that a product is DPP-ready. The appropriate scope, evidence and legal responsibility depend on the product, destination and the legislation in force when the product is placed on the market.
+
+## Questions to raise in an upcoming sourcing review
+
+For a cashmere yarn, knitwear or accessory program intended for the EU, a useful brief can ask: Which product identifiers are stable through sampling and bulk production? Which material and color records can be linked to the approved style? Which party will own and retain the records? Which details are documented today, and which would require a new process? Agreeing these points in writing creates a clearer working file while the textile delegated act is still pending.
+
+For product-level starting points, see the [cashmere yarn product records](/en/products/yarn/), [raw-material records](/en/raw-material/) and [garment development information](/en/garment-oem/). For an EU program, confirm the applicable legal requirements with qualified legal or compliance advisers before making a market claim.
+
+## References
+
+1. European Commission, [Digital Product Passport](https://single-market-economy.ec.europa.eu/single-market/digital-product-passport_en), accessed 27 August 2026.
+2. European Commission, [New Digital Product Passport (DPP) web page launched](https://single-market-economy.ec.europa.eu/news/new-digital-product-passport-dpp-web-page-launched-2026-07-17_en), 17 July 2026.
+
+---
+
+### EU Update: New Rules on Unsold Apparel and Accessories Took Effect for Large Companies in July 2026
+
+*Published 2026-08-27*
+
+A dated overview of the European Commission’s 2026 measures on unsold apparel, clothing accessories and footwear, with practical record-keeping questions for cashmere brand and sourcing teams.
+
+## What changed in July 2026
+
+On 9 February 2026, the European Commission announced delegated and implementing measures under the Ecodesign for Sustainable Products Regulation (ESPR) concerning unsold consumer products. The Commission states that the ban on destroying unsold apparel, clothing accessories and footwear applies to large companies from **19 July 2026**; medium-sized companies are expected to follow in 2030. [1](https://environment.ec.europa.eu/news/new-eu-rules-stop-destruction-unsold-clothes-and-shoes-2026-02-09_en)
+
+The same Commission update says that large companies are already subject to disclosure requirements relating to discarded unsold consumer products, while the standardised disclosure format applies from February 2027. The legal details, derogations and company scope should be checked against the applicable regulations rather than inferred from a product category alone. [1](https://environment.ec.europa.eu/news/new-eu-rules-stop-destruction-unsold-clothes-and-shoes-2026-02-09_en)
+
+## Why this matters to a cashmere sourcing brief
+
+This change is not a claim about any particular brand, importer or supplier. It is a reason for parties that place apparel or accessories on the EU market to ask more precise questions about item identity, inventory status and end-of-life decisions. A cashmere program may involve finished knitwear, scarves, hats, gloves or other accessories; the applicable legal duties depend on the responsible economic operator and the facts of that program.
+
+The Commission says the measures clarify limited, justified circumstances in which destruction may be permitted, such as safety reasons or product damage, and that national authorities will oversee compliance. [1](https://environment.ec.europa.eu/news/new-eu-rules-stop-destruction-unsold-clothes-and-shoes-2026-02-09_en) A sourcing partner should therefore not use a generic “circular” statement in place of a documented decision process.
+
+## Records worth discussing before production
+
+| Project record | Question to agree | Avoid assuming |
+| --- | --- | --- |
+| Style identification | Can the approved style, color and size range be identified consistently? | That a style code alone proves legal compliance. |
+| Quantity records | Which party maintains order, shipment, return and unsold-goods records? | That the upstream maker controls the importer’s inventory. |
+| Defect and safety process | How are damaged, non-conforming or safety-related goods recorded and reviewed? | That every damaged item can be handled in the same way. |
+| Alternative pathways | Which resale, repair, donation, reuse or recycling options are commercially and legally available? | That a pathway is available in every destination. |
+| Responsibility map | Who is responsible for the applicable EU disclosure or prohibition requirements? | That responsibility follows the purchase order automatically. |
+
+The value of these records is operational clarity. They can help a buyer separate product specification, inventory ownership, returns handling and environmental communication before a program launches. They do not replace legal advice, national guidance or a contract allocation of responsibility.
+
+## A useful August 2026 review question
+
+For a new EU-facing cashmere program, ask the brand or importer: *Which entity places the finished goods on the EU market, and what information will that entity need from its suppliers to support its unsold-goods process?* The answer can be translated into a project-specific documentation list rather than a broad claim about disposal, returns or circularity.
+
+For specification-led discussions, begin with [cashmere garment development](/en/garment-oem/) or [cashmere yarn product records](/en/products/yarn/), then confirm the applicable EU and destination-market requirements in writing.
+
+## References
+
+1. European Commission, [New EU rules to stop destruction of unsold clothes and shoes](https://environment.ec.europa.eu/news/new-eu-rules-stop-destruction-unsold-clothes-and-shoes-2026-02-09_en), 9 February 2026.
+
+---
 
 ### Cashmere Test Report Checklist: How B2B Buyers Verify Fiber Claims
 
@@ -8862,6 +8949,8 @@ Cashmere quality is determined by fiber grade, not national origin. The finest M
 
 ## Blog Articles (CN — title + excerpt only; full text in /cn/blog/<slug>/)
 
+- [欧盟纺织品数字产品护照更新：截至 2026 年 8 月已确认的事项](https://www.erdosdx.com/cn/blog/eu-textile-dpp-registry-2026-update/): 面向羊绒及服装采购方的日期化更新：欧盟数字产品护照注册系统、纺织品时间表，以及在具体规则出台前可准备的产品记录。
+- [欧盟更新：针对未售服装与配饰的新规则已于 2026 年 7 月适用于大型企业](https://www.erdosdx.com/cn/blog/eu-unsold-apparel-rules-2026-update/): 梳理欧盟委员会 2026 年关于未售服装、服装配饰和鞋类的最新措施，并为羊绒品牌与采购团队提供可讨论的产品记录问题。
 - [B2B羊绒色卡申请：如何获取样品及时间周期](https://www.erdosdx.com/cn/blog/wholesale-cashmere-color-card-sample-process/): 了解申请羊绒色卡所需提供的准确信息、如何获取实物样品，以及来自鄂尔多斯源头工厂的实际B2B样品时间周期。
 - [羊绒微米数指南：B2B采购商的14.5-19.5μm实用参考](https://www.erdosdx.com/cn/blog/cashmere-fiber-fineness-micron-chart-b2b/): 通过我们的实用微米指南，了解羊绒纤维细度。学习14.5-19.5μm羊绒的分级、质量控制和采购技巧。
 - [2026年羊绒毛衣设计趋势：Q3-Q4 B2B买家指南](https://www.erdosdx.com/cn/blog/cashmere-sweater-design-trends-2026-b2b/): 探索2026年Q3-Q4季度顶级羊绒毛衣设计趋势。从可持续纤维到超大廓形，了解全球B2B买家正在寻求什么，以及如何规划您的系列。
