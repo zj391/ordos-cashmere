@@ -1205,6 +1205,8 @@ const relatedViewAll: Record<Locale, string> = {
 
   schema="general"
 
+  suppressDefaultBreadcrumb={true}
+
   customSchemas={enrichedFaqSchema ? [productSchema, breadcrumbSchema, enrichedFaqSchema] : [productSchema, breadcrumbSchema]}
 
   faqs={wholesaleFaq.map((f) => ({ question: f.q[locale], answer: f.a[locale] }))}
