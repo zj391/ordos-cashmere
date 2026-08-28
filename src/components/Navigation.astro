@@ -1,5 +1,6 @@
 ---
 /**
+ * Archive House visual system: visual-only editorial masthead; navigation text, links, locale switching, inquiry and menu behavior stay unchanged.
  * 顶部导航（响应式 + 多语言切换器）
  * 含产品分类下拉菜单
  */
@@ -140,12 +141,12 @@ const groupLabel = (groupKey: string, group: any) => {
 };
 ---
 
-<header class="snowline-nav sticky top-0 z-40 w-full border-t-2 border-brand-red bg-background/95 backdrop-blur-sm relative">
-  <div class="container-narrow flex h-16 lg:h-20 items-center justify-between lg:grid lg:grid-cols-3">
+<header class="snowline-nav archive-nav sticky top-0 z-40 w-full border-t-2 border-brand-red bg-background/95 backdrop-blur-sm relative">
+  <div class="container-narrow archive-nav-utility flex h-16 lg:h-20 items-center justify-between lg:grid lg:grid-cols-3">
     <!-- 左侧留白 -->
     <div class="hidden lg:block"></div>
     <!-- Logo（桌面端居中） -->
-    <a href={localePath(locale, '/')} class="flex items-baseline gap-2.5 group justify-self-center">
+    <a href={localePath(locale, '/')} class="archive-brand flex items-baseline gap-2.5 group justify-self-center">
       <span class="font-display text-[1.85rem] font-normal tracking-[0.08em] text-primary transition-colors group-hover:text-brand-red">
         DONGXIAO<sup class="text-xs">®</sup>
       </span>
@@ -158,7 +159,7 @@ const groupLabel = (groupKey: string, group: any) => {
     {navItems.filter((i) => i.hasSubmenu).map((item) => (
       <div
         data-mega-panel={item.hasSubmenu}
-        class="hidden lg:block absolute left-0 right-0 top-full w-full bg-white border-t border-border shadow-[0_18px_40px_-18px_rgba(28,24,19,0.12)] opacity-0 invisible pointer-events-none transition-all duration-300 ease-out z-50"
+        class="archive-mega hidden lg:block absolute left-0 right-0 top-full w-full bg-white border-t border-border shadow-[0_18px_40px_-18px_rgba(28,24,19,0.12)] opacity-0 invisible pointer-events-none transition-all duration-300 ease-out z-50"
       >
         <div class="container-narrow py-12 grid grid-cols-[1fr_320px] gap-14">
           <!-- Left: 4 category groups -->
@@ -220,7 +221,7 @@ const groupLabel = (groupKey: string, group: any) => {
     ))}
 
     <!-- Right side -->
-    <div class="flex items-center justify-end gap-3">
+    <div class="archive-nav-tools flex items-center justify-end gap-3">
       <!-- Language Switcher -->
       <div class="relative group">
         <button
@@ -294,7 +295,7 @@ const groupLabel = (groupKey: string, group: any) => {
 
   <!-- Desktop Nav（居中菜单栏） -->
   <div class="hidden lg:block border-t border-border/60">
-    <nav class="container-narrow flex items-center justify-center gap-10 py-5 text-xs uppercase tracking-[0.18em]" id="desktop-nav">
+    <nav class="container-narrow archive-nav-links flex items-center justify-center gap-10 py-5 text-xs uppercase tracking-[0.18em]" id="desktop-nav">
       {navItems.map((item) => (
         <div class="relative group/item" data-mega-trigger={item.hasSubmenu || ''}>
           <a
@@ -317,7 +318,7 @@ const groupLabel = (groupKey: string, group: any) => {
   </div>
 
   <!-- Mobile Menu -->
-  <nav id="mobile-menu" class="lg:hidden hidden border-t border-border bg-background">
+  <nav id="mobile-menu" class="archive-mobile-menu lg:hidden hidden border-t border-border bg-background">
     <div class="container-narrow py-4 space-y-1">
       {navItems.map((item) => (
         <div>

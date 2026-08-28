@@ -3,8 +3,8 @@
  * 产品列表页 - 6 国通用
  * 全部 591 个产品 + 5 个分类，筛选/搜索/排序/弹窗用 vanilla JS 增强
  * 不依赖 React 岛（避免 Astro 5 + React 19 hydration 不兼容）
- * UI direction: warm-gray procurement archive with a continuous catalog
- * control console; real product fields remain primary over sales claims.
+ * UI direction: Archive House editorial product dossier; visual-only changes
+ * preserve all catalog copy, real product fields, filters, comparison and inquiry behavior.
  */
 export const prerender = true;
 import BaseLayout from '@/layouts/BaseLayout.astro';
@@ -1329,13 +1329,15 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
 <style is:global>
   /* Warm-gray procurement archive: a single browsing console connects family
      records, catalog controls and real product specifications. */
-  .catalog-hero { position: relative; overflow: hidden; background: #F7F3EC; }
-  .catalog-hero::after { content: ''; position: absolute; right: -11rem; top: -18rem; width: 42rem; height: 42rem; border: 1px solid rgba(28,24,19,.12); border-radius: 50%; }
+  main > section.catalog-hero.catalog-hero { position: relative; overflow: hidden; background-color: #1C2320 !important; background-image: none !important; color: #FFFDF8; }
+  .catalog-hero::after { content: ''; position: absolute; right: -11rem; top: -18rem; width: 42rem; height: 42rem; border: 1px solid rgba(255,253,248,.24); border-radius: 50%; }
   .catalog-hero-layout { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(18rem, .7fr); gap: clamp(2rem, 6vw, 6rem); align-items: end; }
-  .catalog-hero-signals { display: flex; flex-wrap: wrap; gap: .7rem 1.5rem; margin-top: 2.2rem; color: #71685F; font-size: .78rem; }
+  main > section.catalog-hero.catalog-hero .catalog-hero-copy h1, main > section.catalog-hero.catalog-hero .catalog-hero-copy h2 { color: #FFFDF8 !important; }
+  main > section.catalog-hero.catalog-hero .catalog-hero-copy p { color: rgba(255,253,248,.72) !important; }
+  .catalog-hero-signals { display: flex; flex-wrap: wrap; gap: .7rem 1.5rem; margin-top: 2.2rem; color: rgba(255,253,248,.72); font-size: .78rem; }
   .catalog-hero-signals span { display: inline-flex; gap: .3rem; align-items: baseline; }
-  .catalog-hero-signals strong { color: #A5724D; font-family: var(--font-display, Georgia, serif); font-size: 1.55rem; font-weight: 400; }
-  .catalog-index-panel { background: #1C1813; color: #F7F3EC; padding: 1.2rem 1.35rem; border-top: 3px solid #A5724D; box-shadow: 18px 18px 0 rgba(28,24,19,.08); }
+  .catalog-hero-signals strong { color: #E3B084; font-family: var(--font-display, Georgia, serif); font-size: 1.55rem; font-weight: 400; }
+  main > section.catalog-hero.catalog-hero .catalog-index-panel { background: #1C1813 !important; color: #F7F3EC; padding: 1.2rem 1.35rem; border-top: 3px solid #A5724D; box-shadow: 18px 18px 0 rgba(28,24,19,.08); }
   .catalog-index-heading { display: flex; justify-content: space-between; color: rgba(247,243,236,.62); font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; }
   .catalog-index-links { margin: 1rem 0; border-top: 1px solid rgba(247,243,236,.18); }
   .catalog-index-links a { display: grid; grid-template-columns: 1.9rem 1fr auto; align-items: baseline; gap: .5rem; padding: .7rem 0; border-bottom: 1px solid rgba(247,243,236,.14); color: #F7F3EC; font-size: .78rem; line-height: 1.25; transition: color 180ms ease-out, padding-left 180ms ease-out; }
