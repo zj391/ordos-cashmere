@@ -9,8 +9,10 @@
 
 const sitemapUrl = process.env.SITEMAP_URL || 'https://www.erdosdx.com/sitemap-products.xml';
 const concurrency = Math.max(1, Math.min(Number(process.env.CONCURRENCY || 8), 16));
+const requestTimeout = Math.max(20_000, Math.min(Number(process.env.REQUEST_TIMEOUT_MS || 45_000), 90_000));
 const siteOrigin = new URL(sitemapUrl).origin;
 const localeHreflangs = { en: 'en', cn: 'zh-CN', de: 'de', fr: 'fr', ja: 'ja', kr: 'ko' };
+const categoryHubs = new Set(['hats-accessories', 'garment-oem', 'scarves', 'accessories-cat', 'yarn']);
 const forbiddenLegacy = /Italian Sant|French NCSI|German STOLL|\bOFDA\b|stock Nm counts|tons\/year|no middleman|Custom Nm counts|Pantone color matching|\+\$0\.50|15-25 day lead|MOQ 50|MOQ 100|2002-[0-9]{4}|cashmere factory China|Ordos cashmere factory/i;
 
 const decode = (value = '') => value
@@ -85,7 +87,7 @@ function pageIdentity(url) {
 
 async function fetchText(url) {
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 20_000);
+  const timer = setTimeout(() => controller.abort(), requestTimeout);
   try {
     const response = await fetch(url, {
       redirect: 'follow',
@@ -101,6 +103,7 @@ async function fetchText(url) {
 function auditPage(requestedUrl, response) {
   const failures = [];
   const { locale, id } = pageIdentity(requestedUrl);
+  const isHub = categoryHubs.has(id);
   if (response.status !== 200) return { requestedUrl, locale, id, failures: [`http:${response.status}`] };
   if (response.url !== requestedUrl) failures.push(`redirect:${response.url}`);
 
@@ -125,7 +128,7 @@ function auditPage(requestedUrl, response) {
   if (robots.includes('noindex')) failures.push(`robots:${robots}`);
   if (!h1) failures.push('h1:missing');
   if (schemas.some((schema) => schema.__parseError)) failures.push('jsonld:parse-error');
-  if (products.length !== 1) failures.push(`product-schema:${products.length}`);
+  if (isHub ? products.length !== 0 : products.length !== 1) failures.push(`product-schema:${products.length}`);
   if (breadcrumbs.length !== 1) failures.push(`breadcrumb-schema:${breadcrumbs.length}`);
 
   const expectedHreflangs = Object.entries(localeHreflangs).map(([expectedLocale, hreflang]) => ({
@@ -140,14 +143,14 @@ function auditPage(requestedUrl, response) {
   }
 
   const product = products[0];
-  if (product) {
+  if (!isHub && product) {
     if (!decode(product.name)) failures.push('product-name:missing');
     else if (decode(product.name) !== h1) failures.push('product-name:h1-mismatch');
     if (hasForbiddenStructuredField(product)) failures.push('product-schema:offer-or-price-field');
   }
-  if (forbiddenLegacy.test(html)) failures.push('legacy-claim');
+  if (!isHub && forbiddenLegacy.test(html)) failures.push('legacy-claim');
 
-  return { requestedUrl, locale, id, titleLength: title.length, descriptionLength: description.length, failures };
+  return { requestedUrl, locale, id, isHub, titleLength: title.length, descriptionLength: description.length, failures };
 }
 
 const sitemap = await fetchText(sitemapUrl);
@@ -185,6 +188,9 @@ console.log(JSON.stringify({
   sitemapUrl,
   sitemapUrls: urls.length,
   concurrency,
+  requestTimeout,
+  detailPages: count((report) => !report.isHub),
+  categoryHubs: count((report) => report.isHub),
   cleanPages: count((report) => report.failures.length === 0),
   pagesWithIssues: count((report) => report.failures.length > 0),
   byLocale,

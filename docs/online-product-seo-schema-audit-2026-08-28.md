@@ -31,3 +31,11 @@
 使用构建后的 `sitemap-products.xml` 为唯一清单重新审计本地静态产物，结果为 **3,522/3,522 通过**：其中 3,492 条为产品详情页、30 条为分类枢纽；每条详情页均有且仅有一个 Product JSON-LD 和一个 BreadcrumbList，分类枢纽不输出 Product JSON-LD。所有路由均保留 H1、尾斜杠 canonical、六语 hreflang 与 x-default、元描述、可解析 JSON-LD；产品详情页不含 Offer/价格货币/库存 Schema 或指定旧断言。完整生产构建和 sitemap 生成也已通过。
 
 这说明 GitHub 当前修复版本的静态输出已符合本审计契约；公开站点仍需在发布平台获取该提交后，以代表产品页复核单一 BreadcrumbList。审计过程不会直接操作线上环境。
+
+## GitHub 同步后的公开响应复核
+
+GitHub `master` 同步后，公开 sitemap 的更新时间刷新为 `2026-08-28T01:29:18.018Z`。线上代表页 `/en/products/yarn-106/` 的公开 HTTP 响应已从 2 个 BreadcrumbList 刷新为 **1 个 Product、1 个 BreadcrumbList、0 个 Offer/价格货币/库存相关字段**。对前次高并发审计中超时的中文围巾、中文毛衫、德文围巾及英文围巾代表 URL 进行低并发复核，均得到相同的 `1 / 1 / 0` 结果。
+
+修正分类枢纽口径并延长单请求时限后，第二次线上全量读取成功检查 **3,484/3,522** 条 URL，所有成功读取页面均通过 title、元描述、canonical、hreflang、robots、JSON-LD、Product/Breadcrumb 数量和禁止字段检查。其余 38 条是传输层结果（37 个 `AbortError`、1 个 `TypeError`），未产生任何标签或 Schema 失败；低并发样本复核显示这些为高并发读取时延，而非可复现的页面结构错误。
+
+因此，结论应表述为：**公开站点已可观察到本次 Schema 修复，且全部成功读取的线上产品 URL 均符合审计契约；本地静态 sitemap 全量 3,522 条为 100% 通过。** 由于 38 条线上请求在批量读取中未返回，不能将公开网络层结果表述为 3,522/3,522 已逐条成功读取。
