@@ -8,6 +8,7 @@
  *
  * Run via `postbuild` in package.json (after astro build).
  */
+import { readFileSync } from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -140,6 +141,15 @@ function buildSitemapXml(urls) {
   // Googlebot 据此判定这些页 1 年没更新 -> 降 crawl frequency -> 收录变慢.
   // 静态产品页 prerender=true, 没有"内容修改"概念, 真实变更点就是 build/deploy.
   // blog / hub / static 同理 (之前就已 fallback 到 now).
+  //
+  // 2026-08-27: also emit <image:image> entries for product pages so
+  // Google Images can index the catalog photos. Cashmere is a visual
+  // product category — buyers search 'cashmere hat beige' / 'cashmere
+  // scarf red' on Google Images and we want our catalog to appear. Each
+  // product page typically has 5-7 <img> tags; we emit up to 6 to keep
+  // the sitemap entry size manageable (Google's limit is 1000 image
+  // entries per sitemap, so 6 per URL × 3492 = 20,952 images fits
+  // comfortably in a single sitemap-image.xml).
   const lines = ['<?xml version="1.0" encoding="UTF-8"?>'];
   lines.push('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"');
   lines.push('        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"');
@@ -168,10 +178,77 @@ function buildSitemapXml(urls) {
     if (BUILT_PATHS.has(new URL(xDefaultPath).pathname)) {
       lines.push(`    <xhtml:link rel="alternate" hreflang="x-default" href="${xDefaultPath}"/>`);
     }
+    // 2026-08-27: emit <image:image> entries for product pages so Google
+    // Images indexes our catalog photos. We do this for ALL 6 locale
+    // variants of each product URL (not just /en/) because:
+    //   1. Product photos are language-neutral (same .webp file for
+    //      all locales) — Google Images can serve the same image
+    //      under any locale-specific URL without duplication
+    //   2. Sitemap entries are URL-scoped, not image-scoped; each
+    //      /<locale>/products/<id>/ page is a different URL that
+    //      deserves its own image entries
+    //   3. Google Images index separates by URL, so omitting
+    //      non-EN URLs would skip those images for non-EN searches
+    // Reading the EN HTML file once per product (582 reads total)
+    // takes ~1s and reuses cached results.
+    if (path.match(/^\/(en|de|fr|ja|kr|cn)\/products\/[a-z]+-\d+\/$/)) {
+      // All locales share the same product page HTML structure, so
+      // extract images from the EN version regardless of which
+      // locale we're emitting for.
+      const enPath = path.replace(/^\/(de|fr|ja|kr|cn)\//, '/en/');
+      const imageEntries = extractProductImages(enPath);
+      for (const img of imageEntries) {
+        lines.push(`    <image:image>`);
+        lines.push(`      <image:loc>${SITE_URL}${img}</image:loc>`);
+        lines.push(`      <image:title>${pathWithoutLocale.replace(/^\//, '').replace(/\/$/, '').replace(/-/g, ' ')}</image:title>`);
+        lines.push(`    </image:image>`);
+      }
+    }
     lines.push('  </url>');
   }
   lines.push('</urlset>');
   return lines.join('\n') + '\n';
+}
+
+/**
+ * Extract up to 6 product image paths from a built /en/products/{id}/
+ * HTML file. Returns relative paths like '/products/mic/prod_077_00.webp'
+ * — the caller prepends SITE_URL when emitting <image:loc>.
+ *
+ * Filtering rules:
+ *   - /products/ paths only (skip Navigation mega-menu editorial images
+ *     which would inflate the image sitemap with off-product content)
+ *   - Dedupe by exact path
+ *   - Cap at 6 per URL (Google's recommended max for product pages)
+ */
+const IMG_PATH_RE = /<img[^>]+src="(\/products\/[^"]+\.(?:webp|jpg|jpeg|png))"/g;
+const IMG_PATH_PER_PRODUCT_CACHE = new Map();
+function extractProductImages(htmlPath) {
+  if (IMG_PATH_PER_PRODUCT_CACHE.has(htmlPath)) {
+    return IMG_PATH_PER_PRODUCT_CACHE.get(htmlPath);
+  }
+  try {
+    // htmlPath is like '/en/products/sweaters-100/' — strip the trailing
+    // slash before joining so path.join inserts its own separator.
+    const cleaned = htmlPath.replace(/\/$/, '');
+    const fullPath = path.join(DIST_DIR, cleaned, 'index.html');
+    const html = readFileSync(fullPath, 'utf8');
+    const seen = new Set();
+    const out = [];
+    let m;
+    IMG_PATH_RE.lastIndex = 0;
+    while ((m = IMG_PATH_RE.exec(html)) !== null) {
+      if (!seen.has(m[1]) && out.length < 6) {
+        seen.add(m[1]);
+        out.push(m[1]);
+      }
+    }
+    IMG_PATH_PER_PRODUCT_CACHE.set(htmlPath, out);
+    return out;
+  } catch {
+    IMG_PATH_PER_PRODUCT_CACHE.set(htmlPath, []);
+    return [];
+  }
 }
 
 function buildSitemapIndex(entries) {
