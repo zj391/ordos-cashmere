@@ -612,14 +612,37 @@ function cleanScraped(text: unknown): string {
   s = s.replace(/\s+/g, ' ').trim();
   return s;
 }
+/**
+ * Product data includes some inherited machine and entity references alongside
+ * otherwise useful construction labels. Public product copy may only reuse
+ * neutral construction terms that can be read directly from the directory.
+ */
+function listedConstruction(p: typeof product): string {
+  const raw = pickAttr(p.knittingTechnology);
+  if (!raw) return '';
+  const allowed = [
+    ['worsted', 'Worsted'],
+    ['woolen', 'Woolen'],
+    ['jacquard', 'Jacquard'],
+    ['cable knit', 'Cable knit'],
+    ['flat knitting', 'Flat knitting'],
+    ['knitted', 'Knitted'],
+    ['knit', 'Knit'],
+    ['gauge', 'Gauge'],
+  ] as const;
+  const matched = allowed
+    .filter(([token]) => new RegExp(`\\b${token.replace(' ', '\\s+')}\\b`, 'i').test(raw))
+    .map(([, label]) => label);
+  return [...new Set(matched)].slice(0, 2).join(', ');
+}
 function buildProductBody(p: typeof product): string {
   const parts: string[] = [];
   if (p.material) parts.push(cleanAttr(p.material));
   if (p.micron) parts.push(`${cleanAttr(p.micron)} micron`);
   const colors = listColors(p);
   if (colors) parts.push(`${colors} colors`);
-  const tech = pickAttr(p.knittingTechnology);
-  if (tech && !/details?/i.test(tech)) parts.push(tech);
+  const tech = listedConstruction(p);
+  if (tech) parts.push(tech);
   const patt = pickAttr(p.pattern);
   if (patt && !/single strand/i.test(patt)) parts.push(`${patt} pattern`);
   const season = pickAttr(p.season);
@@ -718,13 +741,13 @@ const tdk = {
     const season = pickSeason(p, locale);
     const gender = pickGender(p, locale);
     const pattern = pickPattern(p, locale);
-    const knit = pickAttr(p.knittingTechnology);
+    const knit = listedConstruction(p);
     const attrs = [
       p.material ? cleanAttr(p.material) : '',
       p.micron ? `${cleanAttr(p.micron)} micron` : '',
       colors ? (isSelfContainedColorLabel(colors) ? colors : `${colors} colors`) : '',
       pattern ? `${pattern} pattern` : '',
-      knit && !/details?/i.test(knit) ? knit : '',
+      knit,
       season ? `for ${season}` : '',
       gender ? `${gender.toLowerCase()} fit` : '',
       sizes ? `sizes ${sizes}` : '',
@@ -895,10 +918,29 @@ const tdk = {
 
 // Display name for HTML/JSON-LD display (locale-aware)
 const displayCategory = localizedCategory(product.categoryId, locale, category.name);
+const productHeading = buildProductHeading(product, locale);
 const baseTdk = (tdk[locale] || tdk.en)(product, displayCategory);
 const titleBrand = locale === 'cn' ? '东霄羊绒' : 'DONGXIAO';
-const t = { ...baseTdk, title: buildProductSeoTitle(product, displayCategory, titleBrand, 132, locale) };
-const productHeading = buildProductHeading(product, locale);
+const safeMetaDescription = {
+  en: `${productHeading}. Review listed material, color and specification attributes; project terms are confirmed in writing.`,
+  cn: `${productHeading}。查看已列材料、颜色和规格属性；项目条件以书面方式确认。`,
+  de: `${productHeading}. Aufgeführte Material-, Farb- und Spezifikationsmerkmale prüfen; Projektbedingungen werden schriftlich bestätigt.`,
+  fr: `${productHeading}. Consultez les attributs de matière, couleur et spécification listés ; les conditions du projet sont confirmées par écrit.`,
+  ja: `${productHeading}。記載された素材・カラー・仕様属性をご確認ください。案件条件は書面で確認します。`,
+  kr: `${productHeading}. 기재된 소재·색상·사양 속성을 확인하세요. 프로젝트 조건은 서면으로 확인됩니다.`,
+}[locale] || `${productHeading}. Project terms are confirmed in writing.`;
+const safeMetaKeywords = [
+  productHeading,
+  `${displayCategory} product record`,
+  product.material ? `${product.material} ${displayCategory}` : '',
+  'cashmere product specifications',
+].filter(Boolean);
+const t = {
+  ...baseTdk,
+  title: buildProductSeoTitle(product, displayCategory, titleBrand, 132, locale),
+  description: clip(safeMetaDescription, 158),
+  keywords: safeMetaKeywords,
+};
 // buildProductSeoTitle() reserves space for the brand and clips the title at
 // a word boundary. Keep H1, title and Product Schema aligned.
 const pageTitle = t.title;
@@ -1485,7 +1527,7 @@ const relatedViewAll: Record<Locale, string> = {
 
           <!-- Technical Specifications (imf-derived 15-field spec, 7-9) -->
 
-          {detail?.technicalSpecs && (
+          {false && detail?.technicalSpecs && (
 
             <details class="border border-border rounded-lg mb-6 group">
 
@@ -1823,7 +1865,7 @@ const relatedViewAll: Record<Locale, string> = {
 
   <!-- Section 1: Material Story -->
 
-  {detail.materialStory && (
+  {false && detail.materialStory && (
 
     <section class="py-12 bg-secondary/20">
 
@@ -1843,7 +1885,7 @@ const relatedViewAll: Record<Locale, string> = {
 
   <!-- Section 2: Manufacturing Process -->
 
-  {detail.process && (
+  {false && detail.process && (
 
     <section class="py-12 bg-background">
 
@@ -1883,7 +1925,7 @@ const relatedViewAll: Record<Locale, string> = {
 
   <!-- Section 3: Custom Service (6 bullets) -->
 
-  {detail.customServiceBullets && (
+  {false && detail.customServiceBullets && (
 
     <section class="py-12 bg-secondary/20">
 
@@ -1921,7 +1963,7 @@ const relatedViewAll: Record<Locale, string> = {
 
   <!-- Section 4: Why Choose Us (6 USPs) -->
 
-  {detail.whyChooseBullets && (
+  {false && detail.whyChooseBullets && (
 
     <section class="py-12 bg-background">
 
@@ -2017,7 +2059,7 @@ const relatedViewAll: Record<Locale, string> = {
 
   <!-- Section 6: Applications / Use Cases -->
 
-  {detail.applicationScenarios && (
+  {false && detail.applicationScenarios && (
 
     <section class="py-12 bg-background">
 
@@ -2049,7 +2091,7 @@ const relatedViewAll: Record<Locale, string> = {
 
   <!-- Section 7: OEM Workflow (3-5 steps) -->
 
-  {detail.oemWorkflow && detail.oemWorkflow.length > 0 && (
+  {false && detail.oemWorkflow && detail.oemWorkflow.length > 0 && (
 
     <section class="py-12 bg-secondary/20">
 
@@ -2083,7 +2125,7 @@ const relatedViewAll: Record<Locale, string> = {
 
   <!-- Section 8: Care Instructions -->
 
-  {detail.careInstructions && (
+  {false && detail.careInstructions && (
 
     <section class="py-12 bg-background">
 
@@ -2188,7 +2230,7 @@ const relatedViewAll: Record<Locale, string> = {
 
   <!-- Section 10b: Custom Options (private label / branding) -->
 
-  {detail.customOptions && detail.customOptions.length > 0 && (
+  {false && detail.customOptions && detail.customOptions.length > 0 && (
     <section class="py-12 bg-secondary/20">
       <div class="container-narrow max-w-3xl">
         <h2 class="reveal font-display text-2xl font-light mb-4">{customOptionsTitle[locale]}</h2>
