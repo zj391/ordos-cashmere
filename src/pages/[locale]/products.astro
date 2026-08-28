@@ -54,32 +54,32 @@ const tdk: Record<string, { title: string; description: string; keywords: string
   en: {
     title: 'Curated Cashmere Product Catalog | DONGXIAO®',
     description: 'Browse selected cashmere hats, scarves, sweaters, accessories and yarn. Discuss project specifications, quantity, destination and documentation in writing.',
-    keywords: ['cashmere products', 'cashmere catalog', 'B2B cashmere wholesale', 'OEM cashmere', 'Ordos cashmere factory', 'cashmere hats', 'cashmere scarves', 'cashmere sweaters'],
+    keywords: ['cashmere products', 'cashmere catalog', 'cashmere product records', 'cashmere hats', 'cashmere scarves', 'cashmere sweaters', 'cashmere yarn'],
   },
   de: {
-    title: 'Ausgewählte Kaschmirprodukte | Ordos Fabrik Direkt | DONGXIAO®',
+    title: 'Ausgewählter Kaschmir-Produktkatalog | DONGXIAO®',
     description: 'Durchsuchen Sie ausgewählte Kaschmirprodukte: Mützen, Schals, Pullover, Accessoires und Garn. Projektbedingungen werden schriftlich abgestimmt.',
-    keywords: ['Kaschmirprodukte', 'Kaschmir Katalog', 'B2B Kaschmir Großhandel', 'OEM Kaschmir', 'Ordos Kaschmirfabrik'],
+    keywords: ['Kaschmirprodukte', 'Kaschmir Katalog', 'Kaschmir Produktdaten', 'Kaschmir Mützen', 'Kaschmir Schals', 'Kaschmir Pullover'],
   },
   fr: {
-    title: 'Sélection cachemire | Usine directe Ordos | DONGXIAO®',
+    title: 'Sélection de produits en cachemire | DONGXIAO®',
     description: 'Parcourez une sélection de bonnets, écharpes, pulls, accessoires et fils cachemire. Les conditions sont discutées par écrit selon le projet.',
-    keywords: ['produits cachemire', 'catalogue cachemire', 'B2B cachemire gros', 'OEM cachemire', 'usine cachemire Ordos'],
+    keywords: ['produits cachemire', 'catalogue cachemire', 'fiches produit cachemire', 'bonnets cachemire', 'écharpes cachemire', 'pulls cachemire'],
   },
   ja: {
-    title: 'カシミヤ製品セレクション | オルドス工場直販 | DONGXIAO®',
+    title: 'カシミア製品セレクション | DONGXIAO®',
     description: '帽子、マフラー、セーター、アクセサリー、糸のカシミア製品を閲覧できます。案件条件は書面で確認します。',
-    keywords: ['カシミア製品', 'カシミアカタログ', 'B2B カシミア卸売', 'OEM カシミア'],
+    keywords: ['カシミア製品', 'カシミアカタログ', 'カシミア製品記録', 'カシミア帽子', 'カシミアマフラー', 'カシミアセーター'],
   },
   kr: {
-    title: '캐시미어 제품 셀렉션 | 어얼어스 공장 직송 | DONGXIAO®',
+    title: '캐시미어 제품 셀렉션 | DONGXIAO®',
     description: '모자, 스카프, 스웨터, 액세서리, 원사의 캐시미어 제품을 살펴보세요. 프로젝트 조건은 서면으로 확인합니다.',
-    keywords: ['캐시미어 제품', '캐시미어 카탈로그', 'B2B 캐시미어 도매', 'OEM 캐시미어'],
+    keywords: ['캐시미어 제품', '캐시미어 카탈로그', '캐시미어 제품 기록', '캐시미어 모자', '캐시미어 스카프', '캐시미어 스웨터'],
   },
   cn: {
-    title: '羊绒产品精选目录 | 鄂尔多斯工厂直供 | 东霄DONGXIAO®',
+    title: '羊绒产品精选目录 | 东霄 DONGXIAO®',
     description: '浏览帽子、围巾、毛衫、配饰与纱线的羊绒产品精选。项目规格、数量、目的地和文件需求以书面方式确认。',
-    keywords: ['羊绒产品', '羊绒目录', 'B2B羊绒批发', 'OEM羊绒代工', '鄂尔多斯羊绒工厂', '羊绒帽子', '羊绒围巾', '羊绒衫'],
+    keywords: ['羊绒产品', '羊绒目录', '羊绒产品记录', '羊绒帽子', '羊绒围巾', '羊绒衫', '羊绒纱线'],
   },
 };
 
@@ -136,7 +136,6 @@ const categoriesJson = JSON.stringify(listCategories);
 const listingSortOptions = labels.sortOptions.filter((option) => !/price|moq/i.test(option.value));
 const listingLabels = {
   title: labels.title,
-  subtitle: labels.subtitle,
   filterAll: labels.filterAll,
   searchPlaceholder: labels.searchPlaceholder,
   sortOptions: listingSortOptions,
@@ -146,8 +145,8 @@ const listingLabels = {
   showingProducts: labels.showingProducts,
   activeFilterPrefix: labels.activeFilterPrefix,
   clearAll: labels.clearAll,
+  viewProduct: '',
 };
-const labelsJson = JSON.stringify(listingLabels);
 const listingDiscoveryJson = JSON.stringify(listingDiscovery);
 
 // Active subcategory labels for the "You are viewing: …" chip strip.
@@ -319,6 +318,23 @@ const catalogUiCopy = {
   kr: { index: '카탈로그 인덱스', records: '개 제품 기록', families: '제품 계열', explore: '계열 기록 보기', controls: '카탈로그 컨트롤', refine: '제품 계열, 기재 소재 또는 제품 참조로 찾으세요.' },
 }[locale] || { index: 'Catalog index', records: 'product records', families: 'product families', explore: 'Explore family record', controls: 'Catalog controls', refine: 'Find by product family, listed material or product reference.' };
 
+// Warm-gray procurement archive: make the existing catalog behavior legible
+// before selection without changing real records, links or inquiry handoff.
+const CATALOG_DECISION_COPY: Record<string, {
+  eyebrow: string; title: string; intro: string; filterTitle: string; filterBody: string;
+  recordTitle: string; recordBody: string; compareTitle: string; compareBody: string; viewProduct: string;
+}> = {
+  en: { eyebrow: 'Catalog workflow', title: 'Find a product record in three deliberate steps', intro: 'Use the catalog to narrow listed attributes first, then inspect one record or compare a short list.', filterTitle: '01 · Refine the catalog', filterBody: 'Choose a product family, listed material, keyword or sort order to narrow the visible records.', recordTitle: '02 · Inspect one style', recordBody: 'Open a product record to review its listed specifications and prepare a project inquiry.', compareTitle: '03 · Compare a short list', compareBody: 'Select up to three styles to review their listed category, material and micron side by side.', viewProduct: 'View product record' },
+  cn: { eyebrow: '目录操作路径', title: '按三步找到产品记录', intro: '先按已列属性缩小目录，再查看单款记录或比较少量候选款。', filterTitle: '01 · 缩小目录', filterBody: '选择产品系列、已列材质、关键词或排序方式，缩小当前可见记录。', recordTitle: '02 · 查看单款档案', recordBody: '打开产品记录，查看已列规格并准备项目询盘。', compareTitle: '03 · 比较候选款', compareBody: '最多选择三款，并列查看其已列类别、材质与细度。', viewProduct: '查看产品记录' },
+  de: { eyebrow: 'Katalogablauf', title: 'In drei Schritten zum Produktdatensatz', intro: 'Grenzen Sie zuerst die aufgeführten Merkmale ein und prüfen Sie dann einen Datensatz oder vergleichen Sie eine kurze Auswahl.', filterTitle: '01 · Katalog eingrenzen', filterBody: 'Wählen Sie Produktfamilie, aufgeführtes Material, Stichwort oder Sortierung.', recordTitle: '02 · Einen Style prüfen', recordBody: 'Öffnen Sie einen Produktdatensatz, um die aufgeführten Spezifikationen zu prüfen und eine Anfrage vorzubereiten.', compareTitle: '03 · Kurze Auswahl vergleichen', compareBody: 'Wählen Sie bis zu drei Styles, um Kategorie, Material und Mikronangabe nebeneinander zu prüfen.', viewProduct: 'Produktdatensatz ansehen' },
+  fr: { eyebrow: 'Parcours catalogue', title: 'Trouver une fiche produit en trois étapes', intro: 'Affinez d’abord les attributs listés, puis consultez une fiche ou comparez une courte sélection.', filterTitle: '01 · Affiner le catalogue', filterBody: 'Choisissez une famille, une matière indiquée, un mot-clé ou un ordre de tri.', recordTitle: '02 · Consulter un style', recordBody: 'Ouvrez une fiche produit pour vérifier ses spécifications indiquées et préparer une demande.', compareTitle: '03 · Comparer une sélection', compareBody: 'Sélectionnez jusqu’à trois styles pour voir côte à côte catégorie, matière et micron indiqué.', viewProduct: 'Voir la fiche produit' },
+  ja: { eyebrow: 'カタログの進め方', title: '3ステップで製品記録を探す', intro: 'まず記載属性で絞り込み、単一の記録を確認するか少数の候補を比較します。', filterTitle: '01 · カタログを絞り込む', filterBody: '製品系列、記載素材、キーワード、並び順を選択します。', recordTitle: '02 · 1つのスタイルを確認', recordBody: '製品記録を開き、記載仕様を確認して案件問い合わせを準備します。', compareTitle: '03 · 候補を比較', compareBody: '最大3スタイルを選択し、記載カテゴリ・素材・ミクロンを並べて確認します。', viewProduct: '製品記録を見る' },
+  kr: { eyebrow: '카탈로그 이용 순서', title: '3단계로 제품 기록 찾기', intro: '먼저 기재된 속성으로 카탈로그를 좁힌 뒤 단일 기록을 확인하거나 소수 후보를 비교하세요.', filterTitle: '01 · 카탈로그 좁히기', filterBody: '제품 계열, 기재 소재, 키워드 또는 정렬 방식을 선택하세요.', recordTitle: '02 · 한 스타일 확인', recordBody: '제품 기록을 열어 기재 사양을 확인하고 프로젝트 문의를 준비하세요.', compareTitle: '03 · 후보 비교', compareBody: '최대 3개 스타일을 선택해 기재 카테고리·소재·마이크론을 나란히 확인하세요.', viewProduct: '제품 기록 보기' },
+};
+const catalogDecision = CATALOG_DECISION_COPY[locale] || CATALOG_DECISION_COPY.en;
+listingLabels.viewProduct = catalogDecision.viewProduct;
+const labelsJson = JSON.stringify(listingLabels);
+
 const subLabelsJson = JSON.stringify(SUB_LABELS);
 const groupLabelsJson = JSON.stringify(GROUP_LABELS);
 const procurementCopyJson = JSON.stringify(listingFilterCopy);
@@ -366,6 +382,21 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
         </div>
         <span class="catalog-index-caption">{catalogUiCopy.explore} <span aria-hidden="true">→</span></span>
       </aside>
+    </div>
+  </section>
+
+  <section class="catalog-decision-section" aria-labelledby="catalog-decision-title">
+    <div class="container-narrow py-8 md:py-10">
+      <div class="catalog-decision-heading">
+        <p>{catalogDecision.eyebrow}</p>
+        <h2 id="catalog-decision-title">{catalogDecision.title}</h2>
+        <span>{catalogDecision.intro}</span>
+      </div>
+      <ol class="catalog-decision-steps">
+        <li><strong>{catalogDecision.filterTitle}</strong><span>{catalogDecision.filterBody}</span></li>
+        <li><strong>{catalogDecision.recordTitle}</strong><span>{catalogDecision.recordBody}</span></li>
+        <li><strong>{catalogDecision.compareTitle}</strong><span>{catalogDecision.compareBody}</span></li>
+      </ol>
     </div>
   </section>
 
@@ -500,7 +531,7 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
             </div>
             <p class="text-xs text-muted-foreground mb-2">{listingDiscovery.projectTerms}</p>
             <span class="block w-full px-3 py-2 bg-brand-ink text-brand-cream text-xs hover:bg-brand-camel transition-colors text-center">
-              {labels.requestQuote}
+              {catalogDecision.viewProduct}
             </span>
           </div>
         </a>
@@ -1031,7 +1062,7 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
                 '<div class="flex justify-between"><span>' + escapeHtml(labels.micron) + ':</span><span class="font-medium">' + escapeHtml(p.micron || '') + '</span></div>' +
               '</div>' +
               '<p class="text-xs text-muted-foreground mb-2">' + escapeHtml(listingDiscovery.projectTerms) + '</p>' +
-              '<span class="block w-full px-3 py-2 bg-brand-ink text-brand-cream text-xs hover:bg-brand-camel transition-colors text-center">' + escapeHtml(labels.requestQuote) + '</span>' +
+              '<span class="block w-full px-3 py-2 bg-brand-ink text-brand-cream text-xs hover:bg-brand-camel transition-colors text-center">' + escapeHtml(labels.viewProduct || labels.requestQuote) + '</span>' +
             '</div>' +
             '</a>' +
             '<div class="px-4 pb-4">' +
@@ -1312,6 +1343,18 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
   .catalog-index-links a span:first-child { color: #A5724D; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .65rem; }
   .catalog-index-links strong { color: #D8B787; font-size: .75rem; font-weight: 500; }
   .catalog-index-caption { color: rgba(247,243,236,.67); font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; }
+  /* The route guide distinguishes filtering, product-record reading and comparison
+     before any card action; keep this archive-like hierarchy across breakpoints. */
+  .catalog-decision-section { background: #fff; border-bottom: 1px solid #D9D1C6; }
+  .catalog-decision-heading { display: grid; grid-template-columns: minmax(9rem, .45fr) minmax(16rem, 1fr) minmax(17rem, 1fr); gap: 1.5rem; align-items: baseline; padding-bottom: 1.4rem; border-bottom: 1px solid #D9D1C6; }
+  .catalog-decision-heading p { margin: 0; color: #A5724D; font-size: .64rem; letter-spacing: .2em; text-transform: uppercase; }
+  .catalog-decision-heading h2 { margin: 0; color: #1C1813; font-family: var(--font-display, Georgia, serif); font-size: clamp(1.5rem, 2.5vw, 2.1rem); font-weight: 400; line-height: 1.1; }
+  .catalog-decision-heading span { color: #71685F; font-size: .88rem; line-height: 1.6; }
+  .catalog-decision-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; padding: 1.35rem 0 0; list-style: none; }
+  .catalog-decision-steps li { display: grid; gap: .55rem; min-height: 7rem; padding: .2rem 1.5rem .4rem; border-left: 2px solid #D9D1C6; }
+  .catalog-decision-steps li:first-child { padding-left: 0; border-left: 0; }
+  .catalog-decision-steps strong { color: #1C1813; font-family: var(--font-display, Georgia, serif); font-size: 1.12rem; font-weight: 400; line-height: 1.2; }
+  .catalog-decision-steps span { color: #71685F; font-size: .82rem; line-height: 1.55; }
   .catalog-controls-section { background: linear-gradient(to bottom, #F7F3EC 0, #F7F3EC 14rem, var(--background) 14rem); }
   .catalog-controls-heading { display: flex; align-items: end; justify-content: space-between; gap: 1rem; padding: 0 0 .85rem; border-bottom: 1px solid #D9D1C6; }
   .catalog-controls-heading > div > span { display: block; color: #A5724D; font-size: .64rem; letter-spacing: .2em; text-transform: uppercase; }
@@ -1338,5 +1381,9 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
     .catalog-controls-shell { grid-template-columns: 1fr; padding: .85rem; }
     .catalog-search-controls { width: 100%; }
     .catalog-search-controls > * { width: 100% !important; }
+    .catalog-decision-heading { grid-template-columns: 1fr; gap: .65rem; }
+    .catalog-decision-steps { grid-template-columns: 1fr; gap: 0; padding-top: .9rem; }
+    .catalog-decision-steps li, .catalog-decision-steps li:first-child { min-height: auto; padding: .95rem 0 .95rem 1rem; border-left: 2px solid #D9D1C6; border-bottom: 1px solid #E9E3D9; }
+    .catalog-decision-steps li:last-child { border-bottom: 0; }
   }
 </style>
