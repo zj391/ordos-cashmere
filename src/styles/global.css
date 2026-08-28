@@ -1244,3 +1244,12 @@ main details summary { color: var(--archive-ink) !important; }
   .catalog-decision-steps > * { min-height: 0; border-left: 0; border-top: 1px solid var(--archive-line); padding-inline: 0 !important; }
   .catalog-decision-steps > *:first-child { border-top: 0; }
 }
+
+/* 2026-08-28: Override Astro's page-scoped z-index:2 rule that targets
+   any direct child of .home-enhanced-hero (except .home-hero-trajectory).
+   Without this, the homepage hero slider tablist gets forced to z-2 by
+   Astro's CSS scoping, leaving it covered by the navigation mega-menu
+   (z-30) when users hover a nav item. !important is needed because
+   Astro's selector includes [data-astro-cid-XXX] which has higher
+   specificity than a bare class. */
+.hero-tablist-fix { z-index: 40 !important; }
