@@ -161,6 +161,97 @@ function packagingFacet(value: unknown): string {
   return [cone ? `Cone ${cone}` : '', hank ? `Hank ${hank}` : ''].filter(Boolean).join(' / ');
 }
 
+function gaugeFacet(value: unknown): string {
+  const raw = clean(value);
+  if (!canUseFacet(raw)) return '';
+  const m = raw.match(/\b(\d{1,2}(?:\.\d+)?\s*(?:gg|gauge|gg\.|G))\b/i)?.[0];
+  if (m) return m.replace(/\./g, '.').replace(/\s+/g, '');
+  const m2 = raw.match(/\b(\d{1,2})\s*gauge\b/i)?.[0];
+  if (m2) return m2.replace(/\s+/g, '') + 'gg';
+  return '';
+}
+
+function materialCompositionFacet(value: unknown): string {
+  // For non-100% cashmere blends, expose the composition as a facet.
+  // "100% Cashmere" is already covered by the material facet.
+  const raw = clean(value);
+  if (!canUseFacet(raw)) return '';
+  if (/^100\s?%\s*cashmere$/i.test(raw)) return '';
+  const blend = raw.match(/\b\d{1,3}\s?%\s*cashmere(?:\s*\d{1,3}\s?%\s*\w+)?\b/i)?.[0];
+  return blend ? blend.replace(/\s+/g, ' ') : '';
+}
+
+function colorFallbackFacet(value: unknown): string {
+  // When colors is empty or the placeholder "多种颜色可选" / "various colors",
+  // expose a generic "Multi-color" hint so the title signals variety.
+  const raw = clean(value);
+  if (Array.isArray(value)) {
+    if (value.length === 0) return '';
+    const joined = raw.toLowerCase();
+    if (/多种颜色|various|multiple|multi-?colou?r/i.test(joined)) return '';
+  }
+  // Real colors already extracted by colorFacet, this is a no-op
+  return '';
+}
+
+function patternFromName(value: unknown): string {
+  // When the `pattern` field is empty, fall back to keywords from the
+  // product name. Common long-tail patterns for B2B cashmere.
+  // Skip the strict canUseFacet length (48) + banned-words (custom/oem/...)
+  // filters since those are meant for short attribute fields; product
+  // names are much longer and frequently contain "Custom", "Wholesale"
+  // and similar commerce wording that should not disqualify extraction.
+  const raw = clean(value);
+  if (!raw) return '';
+  const candidates = [
+    'Cable Knit', 'Cable knit', 'Cable',
+    'Solid', 'Solid Color', 'Solid Colour',
+    'Jacquard', 'Printed', 'Print', 'Stripe', 'Striped',
+    'Ribbed', 'Rib',
+    'Crochet', 'Plain Dyed',
+    'Diamond', 'Argyle', 'Fair Isle',
+    'Twisted', 'Brushed', 'Boucle',
+  ];
+  for (const c of candidates) {
+    if (new RegExp(`\\b${c.replace(/\s+/g, '\\s+')}\\b`, 'i').test(raw)) {
+      return c.replace(/\b\w/g, (l) => l.toUpperCase());
+    }
+  }
+  return '';
+}
+
+function styleFromTags(value: unknown): string {
+  // Pull common style keywords from the tags array. Tags typically
+  // contain short labels like "Cable Knit", "Solid", "Crochet".
+  // Skip canUseFacet because tags are short labels — they're already
+  // curated, so the strict length / banned-words check would block
+  // legitimate extractions.
+  const entries = Array.isArray(value) ? value : String(value ?? '').split(/[，,;/|]+/);
+  const keywords = [
+    'Cable Knit', 'Solid', 'Jacquard', 'Printed', 'Ribbed', 'Rib',
+    'Crochet', 'Braided', 'Twisted', 'Brushed', 'Boucle', 'Diamond',
+  ];
+  for (const entry of entries) {
+    const cleaned = clean(entry);
+    if (!cleaned) continue;
+    for (const k of keywords) {
+      if (new RegExp(`\\b${k}\\b`, 'i').test(cleaned)) return k;
+    }
+  }
+  return '';
+}
+
+function audienceFromName(value: unknown, locale: string): string {
+  // Fall back to extracting audience keywords from the product name
+  // when the gender field is empty. Name patterns: "Women/Ladies", "Men",
+  // "Kids/Children/Boys/Girls", "Baby/Infant", "Unisex".
+  const raw = clean(value);
+  if (!raw) return '';
+  const lc = raw.toLowerCase();
+  if (!/(women|men|ladies|kid|child|girl|boy|baby|unisex)/i.test(lc)) return '';
+  return audienceFacet(raw, locale);
+}
+
 function weightFacet(value: unknown): string {
   const raw = clean(value);
   if (!canUseFacet(raw) || /^(details?|description)$/i.test(raw)) return '';
@@ -199,17 +290,23 @@ function titleFacets(product: ProductTitleInput, locale: string): string[] {
   const material = clean(product.material);
   const micron = clean(product.micron);
   const facets = [
-    canUseFacet(material) && !includesFacet(name, material) ? material : '',
+    canUseFacet(material) && !includesFacet(name, material) ? materialCompositionFacet(material) || material : '',
     canUseFacet(micron) && !includesFacet(name, micron) ? micron : '',
+    patternFromName(name),
     ...styleFacets(product),
+    styleFromTags(product.tags),
     colorFacet(product.colors),
     yarnCountFacet(product.sizes),
     packagingFacet(product.packaging),
     weightFacet(product.weight_g),
     applicationFacet(product.function),
+    gaugeFacet(product.knittingTechnology),
     constructionFacet(product.pattern),
-    audienceFacet(product.gender, locale) || audienceTagFacet(product.tags, locale),
-    seasonFacet(product.season, locale) || seasonTagFacet(product.tags, locale),
+    audienceFacet(product.gender, locale)
+      || audienceTagFacet(product.tags, locale)
+      || audienceFromName(product.name, locale),
+    seasonFacet(product.season, locale)
+      || seasonTagFacet(product.tags, locale),
     dimensionFacet(product.sizes),
   ].filter(Boolean);
   return facets.filter((facet, index, list) => !list.slice(0, index).some((prior) => includesFacet(prior, facet) || includesFacet(facet, prior)));
