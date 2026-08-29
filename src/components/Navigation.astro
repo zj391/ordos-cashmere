@@ -11,9 +11,20 @@ import submenusData from '@/data/nav-submenus.json';
 interface Props {
   locale: Locale;
   currentPath?: string;
+  /**
+   * Locales that have a translation of the current page. When set, the
+   * language switcher dropdown only shows entries for these locales
+   * (plus the current one) — preventing 404s when users click a
+   * language that hasn't been translated yet.
+   *
+   * When undefined (default), all 6 locales are listed, matching the
+   * pre-fix behavior. Pages with translation-specific routing
+   * (e.g. blog posts) should pass this explicitly.
+   */
+  availableLocales?: Locale[];
 }
 
-const { locale, currentPath = '/' } = Astro.props;
+const { locale, currentPath = '/', availableLocales } = Astro.props;
 
 // 主导航
 // Pura-style: 5 product category tabs each with own submenu
@@ -236,14 +247,27 @@ const groupLabel = (groupKey: string, group: any) => {
           </svg>
         </button>
         <div class="absolute right-0 top-full mt-2 w-48 rounded-none border border-border bg-popover shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
-          {LOCALES.map((loc) => {
+          {(availableLocales
+            ? LOCALES.map((loc) => {
+                // If this page isn't translated into `loc`, fall back to
+                // that locale's homepage instead of a 404 with the same
+                // slug. The current locale is always available.
+                const isAvailable = availableLocales.includes(loc) || loc === locale;
+                const stripped = currentPath.replace(new RegExp(`^/${locale}(?=/|$)`), '') || '/';
+                const targetPath = isAvailable ? stripped : '/';
+                return { loc, targetPath };
+              })
+            : LOCALES.map((loc) => {
+                const stripped = currentPath.replace(new RegExp(`^/${locale}(?=/|$)`), '') || '/';
+                return { loc, targetPath: stripped };
+              })
+          ).map(({ loc, targetPath }) => {
             // Strip the *current* locale prefix (if any) so localePath can
             // safely re-prefix with the target locale. Without this, paths
             // like /cn/products/hats-100 get re-prefixed to /de/cn/... 404 land.
-            const stripped = currentPath.replace(new RegExp(`^/${locale}(?=/|$)`), '') || '/';
             return (
               <a
-                href={localePath(loc, stripped)}
+                href={localePath(loc, targetPath)}
                 class:list={[
                   'flex items-center gap-2 px-4 py-2 text-sm hover:bg-accent transition-colors',
                   loc === locale ? 'bg-accent font-medium' : '',
@@ -251,6 +275,9 @@ const groupLabel = (groupKey: string, group: any) => {
               >
                 <span>{LOCALE_FLAGS[loc]}</span>
                 <span>{LOCALE_NAMES[loc]}</span>
+                {!availableLocales?.includes(loc) && loc !== locale && (
+                  <span class="ml-auto text-[10px] uppercase tracking-wider text-muted-foreground/70">home</span>
+                )}
               </a>
             );
           })}

@@ -191,7 +191,7 @@ const blogFAQ = extractBlogFAQ(post.body, 4, locale);
     })()} />
   </Fragment>
 
-  <Navigation slot="header" locale={locale} currentPath={`/${locale}/blog/${Astro.params.slug}`} />
+  <Navigation slot="header" locale={locale} currentPath={`/${locale}/blog/${Astro.params.slug}`} availableLocales={alternateLocales} />
 
   <article class="pt-32 pb-16 container-narrow max-w-3xl">
     <a href={`/${locale}/blog/`} class="text-sm text-muted-foreground hover:text-primary mb-8 inline-block">{T('backToBlog')}</a>
@@ -289,7 +289,7 @@ const blogFAQ = extractBlogFAQ(post.body, 4, locale);
     </div>
   </article>
 
-  <Footer slot="footer" locale={locale} />
+  <Footer slot="footer" locale={locale} availableLocales={alternateLocales} />
   <FloatingChatButtons slot="floating" locale={locale} />
   <CookieConsent slot="cookie-consent" locale={locale} />
 </BaseLayout>

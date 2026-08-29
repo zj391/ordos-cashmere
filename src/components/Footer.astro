@@ -16,9 +16,15 @@ interface Props {
    * 链接全指向死链。
    */
   currentPath?: string;
+  /**
+   * Locales that have a translation of the current page. When set,
+   * footer language links for untranslated locales fall back to that
+   * locale's homepage instead of a 404 with the same slug.
+   */
+  availableLocales?: Locale[];
 }
 
-const { locale, currentPath } = Astro.props;
+const { locale, currentPath, availableLocales } = Astro.props;
 // 默认走当前真实路径；只有显式传入时才覆盖（404 页传 '/'）。
 const pathForLangSwitch = currentPath ?? Astro.url.pathname;
 
@@ -144,9 +150,14 @@ const resourceLinks = [
         // 显式传 currentPath='/'），strippedPath = '/'，所有语言链接
         // 落到各自 locale 的根。
         const strippedPath = pathForLangSwitch.replace(/^\/[a-z]{2,3}(?=\/|$)/, '') || '/';
+        // If this page isn't translated into `loc`, fall back to that
+        // locale's homepage. Same behavior as the Navigation language
+        // switcher — prevents 404s on language switching for blog posts
+        // that only exist in some locales.
+        const targetPath = (availableLocales?.includes(loc) || loc === locale) ? strippedPath : '/';
         return (
           <a
-            href={localePath(loc, strippedPath)}
+            href={localePath(loc, targetPath)}
             class:list={[
               'text-xs flex items-center gap-1 hover:text-primary transition-colors',
               loc === locale ? 'text-primary font-medium' : 'text-muted-foreground',
