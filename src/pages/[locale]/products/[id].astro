@@ -922,13 +922,13 @@ const productHeading = buildProductHeading(product, locale);
 const baseTdk = (tdk[locale] || tdk.en)(product, displayCategory);
 const titleBrand = locale === 'cn' ? '东霄羊绒' : 'DONGXIAO';
 const safeMetaDescription = {
-  en: `${productHeading}. Review listed material, color and specification attributes; project terms are confirmed in writing.`,
-  cn: `${productHeading}。查看已列材料、颜色和规格属性；项目条件以书面方式确认。`,
-  de: `${productHeading}. Aufgeführte Material-, Farb- und Spezifikationsmerkmale prüfen; Projektbedingungen werden schriftlich bestätigt.`,
-  fr: `${productHeading}. Consultez les attributs de matière, couleur et spécification listés ; les conditions du projet sont confirmées par écrit.`,
-  ja: `${productHeading}。記載された素材・カラー・仕様属性をご確認ください。案件条件は書面で確認します。`,
-  kr: `${productHeading}. 기재된 소재·색상·사양 속성을 확인하세요. 프로젝트 조건은 서면으로 확인됩니다.`,
-}[locale] || `${productHeading}. Project terms are confirmed in writing.`;
+  en: `${productHeading}. Compare listed material, color and specification attributes; request quote or contact factory for project-specific terms — sample and delivery confirmed in writing.`,
+  cn: `${productHeading}。比较已列材料、颜色和规格属性；索取报价或联系工厂确认项目条件 —— 样品与交付以书面方式确认。`,
+  de: `${productHeading}. Aufgeführte Material-, Farb- und Spezifikationsmerkmale vergleichen; Angebot anfordern oder Kontakt mit dem Werk aufnehmen — Muster und Lieferung werden schriftlich bestätigt.`,
+  fr: `${productHeading}. Comparez les attributs de matière, couleur et spécification listés ; demandez un devis ou contactez l'usine pour les conditions du projet — échantillon et livraison confirmés par écrit.`,
+  ja: `${productHeading}。記載された素材・カラー・仕様属性を比較；見積もり依頼または工場へのお問い合わせを —— サンプル・納期は書面で確認します。`,
+  kr: `${productHeading}. 기재된 소재·색상·사양 속성을 비교하세요. 견적 요청 또는 공장 연락 —— 샘플·납기는 서면 확인.`,
+}[locale] || `${productHeading}. Review listed material, color and specification attributes; project terms are confirmed in writing.`;
 const safeMetaKeywords = [
   productHeading,
   `${displayCategory} product record`,
@@ -938,7 +938,7 @@ const safeMetaKeywords = [
 const t = {
   ...baseTdk,
   title: buildProductSeoTitle(product, displayCategory, titleBrand, 132, locale),
-  description: clip(safeMetaDescription, 158),
+  description: clip(safeMetaDescription, 200),
   keywords: safeMetaKeywords,
 };
 // buildProductSeoTitle() reserves space for the brand and clips the title at

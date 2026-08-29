@@ -150,7 +150,6 @@ const hreflangs = noIndex
 
 
 // 品牌实体 Schema 仅在首页、联系页和工厂页输出，避免在无关页面重复声明。
-
 const orgSchema = {
 
   '@context': 'https://schema.org',
@@ -159,10 +158,37 @@ const orgSchema = {
 
   '@id': `${SITE_URL}/#organization`,
 
-  name: SITE_INFO.name,
+  // Legal + display name: legalName feeds Google's Knowledge Panel
+  // legal entity field; alternateName preserves the marketing brand
+  // (DONGXIAO® CASHMERE) as a known alias.
+  name: SITE_INFO.legalName || SITE_INFO.name,
+  alternateName: SITE_INFO.name,
+  legalName: SITE_INFO.legalName,
   url: SITE_URL,
 
   logo: `${SITE_URL}/logo.svg`,
+
+  description: `${SITE_INFO.name} — Ordos, Inner Mongolia based cashmere manufacturer with ${SITE_INFO.scale.yearsExperience} years of vertical production, ${SITE_INFO.scale.factoryArea} facility, ${SITE_INFO.scale.annualCapacity} capacity. Project terms confirmed in writing for B2B buyers in ${SITE_INFO.scale.countries} countries.`,
+
+  foundingDate: String(SITE_INFO.foundingYear),
+
+  // PostalAddress enables Google to show location info in the Knowledge
+  // Panel; combined with geo coordinates below, it also powers the
+  // "Cashmere manufacturer in Ordos" local SERP signal.
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: SITE_INFO.address,
+    addressLocality: SITE_INFO.city,
+    addressRegion: SITE_INFO.region,
+    postalCode: '017000',
+    addressCountry: SITE_INFO.country,
+  },
+
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: SITE_INFO.latitude,
+    longitude: SITE_INFO.longitude,
+  },
 
   contactPoint: [{
 
@@ -173,10 +199,27 @@ const orgSchema = {
     email: SITE_INFO.email,
 
     contactType: 'sales',
+    areaServed: ['CN', 'DE', 'FR', 'JP', 'KR', 'US'],
+    availableLanguage: ['en', 'de', 'fr', 'ja', 'ko', 'zh-CN'],
+
   }],
 
-};
+  // sameAs links the brand entity to its real-world social profiles,
+  // strengthening Google's confidence in the brand's authority. Unlinked
+  // profiles leave the Knowledge Panel incomplete and reduce trust
+  // signals for branded queries.
+  sameAs: [
+    SITE_INFO.social.linkedin,
+    SITE_INFO.social.instagram,
+    SITE_INFO.social.facebook,
+    SITE_INFO.social.youtube,
+  ].filter(Boolean),
 
+  // Languages the entity actually serves — feeds Google the brand
+  // market coverage signal.
+  knowsLanguage: ['en', 'de', 'fr', 'ja', 'ko', 'zh-CN'],
+
+};
 const pageSchema = (() => {
 
   switch (_schema) {
