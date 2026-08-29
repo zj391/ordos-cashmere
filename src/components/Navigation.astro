@@ -159,7 +159,7 @@ const groupLabel = (groupKey: string, group: any) => {
     {navItems.filter((i) => i.hasSubmenu).map((item) => (
       <div
         data-mega-panel={item.hasSubmenu}
-        class="archive-mega hidden lg:block absolute left-0 right-0 top-full w-full bg-white border-t border-border shadow-[0_18px_40px_-18px_rgba(28,24,19,0.12)] opacity-0 invisible pointer-events-none transition-all duration-300 ease-out z-30"
+        class="archive-mega hidden lg:block absolute left-0 right-0 top-full w-full bg-white border-t border-border shadow-[0_18px_40px_-18px_rgba(28,24,19,0.12)] opacity-0 invisible pointer-events-none transition-all duration-300 ease-out z-50"
       >
         <div class="container-narrow py-12 grid grid-cols-[1fr_320px] gap-14">
           <!-- Left: 4 category groups -->
@@ -462,7 +462,9 @@ const groupLabel = (groupKey: string, group: any) => {
     });
   })();
 
-  // 滚动时隐藏/显示顶部导航（下滑隐藏，上滑显示）
+  // 滚动时隐藏/显示顶部导航（下滑隐藏，上滑显示）。
+  // 2026-08-28 fix: 鼠标在视口顶部 120px 内时不隐藏导航，避免用户想打开
+  // 下拉菜单时整条导航消失看不见。同时 mega-menu 开着时也始终显示。
   (function () {
     const header = document.querySelector('header.sticky');
     if (!header) return;
@@ -470,14 +472,19 @@ const groupLabel = (groupKey: string, group: any) => {
     const menu = document.getElementById('mobile-menu');
     let lastY = window.scrollY;
     let ticking = false;
+    let mouseNearTop = false;
     const THRESHOLD = 80;
+    const TOP_PROXIMITY = 120; // viewport pixels from top
+    document.addEventListener('mousemove', (e) => {
+      mouseNearTop = e.clientY < TOP_PROXIMITY;
+    }, { passive: true });
     function update() {
       const y = window.scrollY;
       const delta = y - lastY;
       lastY = y;
       const menuOpen = menu && !menu.classList.contains('hidden');
       const megaOpen = document.querySelector('[data-mega-panel].visible') !== null;
-      if (y < THRESHOLD) {
+      if (y < THRESHOLD || mouseNearTop) {
         header.classList.remove('header-hidden');
       } else if (delta > 8 && !menuOpen && !megaOpen) {
         header.classList.add('header-hidden');
