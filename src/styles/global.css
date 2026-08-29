@@ -854,7 +854,9 @@ main::after {
 }
 .archive-nav-utility {
   min-height: 4.65rem !important;
-  position: relative;
+  /* Keep mega menus positioned against the full sticky header (including
+     the desktop tab row), not just this utility strip. */
+  position: static;
 }
 .archive-brand { position: relative; z-index: 1; }
 .archive-brand .font-display {
