@@ -1005,10 +1005,28 @@ const PRODUCT_CONTENT_LABELS: Record<string, Record<string, string>> = {
 };
 const pcl = PRODUCT_CONTENT_LABELS[locale] || PRODUCT_CONTENT_LABELS.en;
 
-const enrichedMetaDescription = t.description;
-const enrichedDescription = '';
-const enrichedAdvantages: string[] = [];
-const enrichedFaq: Array<{ q: string; a: string }> = [];
+const enrichedMetaDescription = (typeof t.description === 'string' && t.description) || (product as any).meta_description?.[locale] || (product as any).meta_description?.en || '';
+const enrichedDescription = (product as any).description?.[locale] || (product as any).description?.en || '';
+const enrichedAdvantages: string[] = (product as any).product_advantages && Array.isArray((product as any).product_advantages)
+  ? (product as any).product_advantages.filter((a: unknown) => typeof a === 'string' && a.trim())
+  : [];
+// Wire up product-specific FAQ from products.json: { q, a } or { q: { en, de, ... }, a: { en, de, ... } }.
+// Fallback to wholesaleFaq (generic B2B questions) when no per-product FAQ exists, so the
+// FAQPage schema and the visible "Wholesale Buying FAQ" section always have content.
+// `enrichedFaqIsProductSpecific` distinguishes between the two so the standalone wholesale
+// section (which renders the same 3 generic questions) can be skipped to avoid duplication.
+const enrichedFaqIsProductSpecific = Array.isArray((product as any).faq) && (product as any).faq.length > 0;
+const enrichedFaq: Array<{ q: string; a: string }> = (() => {
+  const raw = (product as any).faq;
+  if (Array.isArray(raw) && raw.length > 0) {
+    return raw.map((f: any) => ({
+      q: typeof f.q === 'string' ? f.q : f.q?.[locale] || f.q?.en || '',
+      a: typeof f.a === 'string' ? f.a : f.a?.[locale] || f.a?.en || '',
+    })).filter((f: any) => f.q && f.a);
+  }
+  // Fallback to wholesaleFaq generic questions (already in locale-specific form)
+  return wholesaleFaq.map((f) => ({ q: f.q[locale] || f.q.en, a: f.a[locale] || f.a.en }));
+})();
 
 const enrichedFaqSchema = enrichedFaq.length > 0 ? {
   '@context': 'https://schema.org',
@@ -2147,39 +2165,28 @@ const relatedViewAll: Record<Locale, string> = {
 
 
 
-  <!-- Section 8b: Wholesale Buying FAQ - universal 3 Q&A per locale (B2B lead gen) -->
-
-  <section class="py-12 bg-background">
-
-    <div class="container-narrow max-w-3xl">
-
-      <h2 class="reveal font-display text-2xl font-light mb-6 text-center">{wholesaleFaqTitle[locale]}</h2>
-
-      <div class="space-y-4">
-
-        {wholesaleFaq.map((f) => (
-
-          <details class="bg-card border border-border rounded-lg p-4 group">
-
-            <summary class="font-medium text-base cursor-pointer flex items-center justify-between">
-
-              <span>{f.q[locale]}</span>
-
-              <span class="text-brand-gold text-xl group-open:rotate-45 transition-transform">+</span>
-
-            </summary>
-
-            <p class="text-sm leading-relaxed text-foreground/80 mt-3">{f.a[locale]}</p>
-
-          </details>
-
-        ))}
-
+  <!-- Section 8b: Wholesale Buying FAQ - only rendered when no per-product FAQ exists.
+       When products.json has product-specific FAQ entries, the body section above
+       (driven by enrichedFaq + enrichedAdvantages + enrichedDescription) renders
+       them, and the generic wholesale questions would duplicate that content. -->
+  {!enrichedFaqIsProductSpecific && (
+    <section class="py-12 bg-background">
+      <div class="container-narrow max-w-3xl">
+        <h2 class="reveal font-display text-2xl font-light mb-6 text-center">{wholesaleFaqTitle[locale]}</h2>
+        <div class="space-y-4">
+          {wholesaleFaq.map((f) => (
+            <details class="bg-card border border-border rounded-lg p-4 group">
+              <summary class="font-medium text-base cursor-pointer flex items-center justify-between">
+                <span>{f.q[locale]}</span>
+                <span class="text-brand-gold text-xl group-open:rotate-45 transition-transform">+</span>
+              </summary>
+              <p class="text-sm leading-relaxed text-foreground/80 mt-3">{f.a[locale]}</p>
+            </details>
+          ))}
+        </div>
       </div>
-
-    </div>
-
-  </section>
+    </section>
+  )}
 
 
   <!-- Section 9: Sample Policy -->
