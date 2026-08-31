@@ -1,0 +1,155 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
+import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
+import { products as productsData, getRepresentativeProducts, getAllProducts, ensureDbOverlay } from '@/data/products';
+import { buildProductHeading } from '@/lib/product-seo-title';
+import { type Locale } from '@/lib/i18n';
+import { SITE_URL } from '@/lib/seo';
+import { CATEGORY_SEO, CATEGORY_SLUGS, CATEGORY_DISPLAY } from '@/data/category-seo';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const LOCALES: Locale[] = ['en', 'de', 'fr', 'ja', 'kr', 'cn'];
+  const SLUGS = Object.keys(CATEGORY_SLUGS);
+  return LOCALES.flatMap((locale) =>
+    SLUGS.map((slug) => ({ params: { locale, slug } })),
+  );
+}
+
+const locale = Astro.params.locale as Locale;
+const slug = Astro.params.slug as string;
+const categoryId = CATEGORY_SLUGS[slug];
+if (!categoryId) {
+  return Astro.redirect(`/${locale}/products/`, 301);
+}
+
+await ensureDbOverlay();
+const products = getAllProducts().filter((p) => p.categoryId === categoryId);
+const seo = CATEGORY_SEO[categoryId][locale] || CATEGORY_SEO[categoryId].en;
+const canonical = `${SITE_URL}/${locale}/category/${slug}/`;
+const catName = CATEGORY_DISPLAY[categoryId];
+
+const t: Record<Locale, any> = {
+  en: {
+    productCountLabel: (n: number) => `${n} cashmere product records`,
+    viewAll: 'View all product records',
+    browseRelated: 'Browse related categories',
+    requestQuote: 'Request a quotation quote',
+  },
+  cn: {
+    productCountLabel: (n: number) => `${n} 条羊绒产品记录`,
+    viewAll: '查看全部产品记录',
+    browseRelated: '浏览相关品类',
+    requestQuote: '索取报价',
+  },
+};
+const ui = t[locale] || t.en;
+---
+
+<BaseLayout
+  locale={locale}
+  title={seo.title}
+  description={seo.description}
+  keywords={seo.keywords}
+  canonicalPath={`/${locale}/category/${slug}/`}
+  schema="general"
+  ogImage={`${SITE_URL}/images/home/ordos-origins.webp`}
+  customSchemas={[
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: seo.h1,
+      description: seo.description,
+      url: canonical,
+      inLanguage: locale,
+      isPartOf: { '@type': 'WebSite', name: 'DONGXIAO Cashmere', url: SITE_URL },
+      about: { '@type': 'Product', name: seo.h1, description: seo.description },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/${locale}/` },
+        { '@type': 'ListItem', position: 2, name: 'Products', item: `${SITE_URL}/${locale}/products/` },
+        { '@type': 'ListItem', position: 3, name: seo.h1, item: canonical },
+      ],
+    },
+  ]}
+>
+  <Navigation slot="header" locale={locale} currentPath={`/${locale}/category/${slug}/`} />
+
+  <section class="bg-background pt-32 pb-12 border-b border-border">
+    <div class="container-narrow">
+      <nav class="text-xs text-muted-foreground mb-6" aria-label="Breadcrumb">
+        <a href={`/${locale}/`} class="hover:text-primary">Home</a>
+        <span class="mx-2">/</span>
+        <a href={`/${locale}/products/`} class="hover:text-primary">Products</a>
+        <span class="mx-2">/</span>
+        <span class="text-foreground">{seo.h1}</span>
+      </nav>
+      <h1 class="font-serif text-4xl md:text-6xl font-light leading-[1.05] mb-6">{seo.h1}</h1>
+      <p class="text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl mb-4">{seo.intro}</p>
+      <p class="text-sm text-muted-foreground">{ui.productCountLabel(products.length)}</p>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16">
+    <div class="container-narrow">
+      <h2 class="font-display text-2xl md:text-3xl font-light mb-8">{seo.h1}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {products.slice(0, 24).map((p) => (
+          <a
+            href={`/${locale}/products/${p.id}/`}
+            class="group block border border-border p-6 hover:border-brand-gold hover:shadow-lg transition-colors transition-shadow duration-300"
+          >
+            <div class="text-[10px] uppercase tracking-[0.18em] text-muted-foreground mb-2">{p.categoryName || catName}</div>
+            <h3 class="font-display text-lg leading-tight mb-3 group-hover:text-brand-chocolate transition-colors">
+              {buildProductHeading(p, locale)}
+            </h3>
+            <div class="text-xs text-muted-foreground">
+              {p.material ? `${p.material}` : ''}
+              {p.micron ? ` · ${p.micron}` : ''}
+              {p.moq ? ` · MOQ ${p.moq}` : ''}
+            </div>
+            <div class="mt-4 text-sm text-brand-chocolate font-medium border-b border-brand-chocolate pb-0.5 w-fit group-hover:border-brand-gold group-hover:text-brand-gold transition-colors">
+              {locale === 'cn' ? '查看详情 →' : 'View details →'}
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-brand-cream/30 border-t border-border">
+    <div class="container-narrow">
+      <h2 class="font-display text-2xl md:text-3xl font-light mb-8">{ui.browseRelated}</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {Object.entries(CATEGORY_SLUGS).filter(([s]) => s !== slug).map(([s, cid]) => (
+          <a href={`/${locale}/category/${s}/`} class="block border border-border p-4 hover:border-brand-gold transition-colors">
+            <div class="font-display text-base">{CATEGORY_SEO[cid][locale]?.h1 || CATEGORY_SEO[cid].en.h1}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 border-t border-border">
+    <div class="container-narrow text-center">
+      <h2 class="font-display text-2xl md:text-3xl font-light mb-6">{ui.requestQuote}</h2>
+      <a
+        href={`/${locale}/contact/`}
+        class="inline-flex items-center justify-center px-8 py-3 border border-primary text-xs uppercase tracking-[0.18em] text-primary hover:border-brand-red hover:text-brand-red hover:bg-brand-red/[0.04] transition-colors duration-300"
+      >
+        {ui.requestQuote}
+      </a>
+    </div>
+  </section>
+
+  <Footer slot="footer" locale={locale} />
+  <FloatingChatButtons slot="floating" locale={locale} />
+  <CookieConsent slot="cookie-consent" locale={locale} />
+</BaseLayout>
