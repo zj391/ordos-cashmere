@@ -198,11 +198,15 @@ const t6 = (cn: string, en: string, de: string, fr: string, ja: string, kr: stri
   return m[locale] || en;
 };
 
+// 2026-08-29 SEO: these slugs used to map to /products/<slug>/ legacy pages
+// (hats-accessories, garment-oem, accessories-cat). Now route to the new
+// /[locale]/category/cashmere-<id>/ SEO landing pages which use simple
+// category IDs (cashmere-hats, cashmere-sweaters, etc.).
 const categoryCards = [
-  { slug: 'hats-accessories', name: t6('羊绒帽', 'Hats & Beanies', 'Mützen & Beanies', 'Bonnets & casquettes', '帽子', '모자') },
+  { slug: 'hats', name: t6('羊绒帽', 'Hats & Beanies', 'Mützen & Beanies', 'Bonnets & casquettes', '帽子', '모자') },
   { slug: 'scarves', name: t6('围巾披肩', 'Scarves & Wraps', 'Schals & Tücher', 'Écharpes & étoles', 'スカーフ', '스카프') },
-  { slug: 'garment-oem', name: t6('羊绒衫', 'Sweaters & Knitwear', 'Pullover & Strick', 'Pulls & maille', 'セーター', '스웨터') },
-  { slug: 'accessories-cat', name: t6('羊绒配饰', 'Accessories', 'Accessoires', 'Accessoires', 'アクセサリー', '액세서리') },
+  { slug: 'sweaters', name: t6('羊绒衫', 'Sweaters & Knitwear', 'Pullover & Strick', 'Pulls & maille', 'セーター', '스웨터') },
+  { slug: 'accessories', name: t6('羊绒配饰', 'Accessories', 'Accessoires', 'Accessoires', 'アクセサリー', '액세서리') },
   { slug: 'yarn', name: t6('纱线面料', 'Yarn & Fiber', 'Garn & Stoff', 'Fil & tissu', '糸・生地', '원사') },
 ];
 
@@ -784,9 +788,14 @@ const IMG = {
       <!-- 5 大分类入口 -->
       <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-16">
         {categoryCards.map((c, i) => {
-          const cat = productsData.categories.find((x: any) => c.slug === (x.id === 'hats' ? 'hats-accessories' : x.id === 'sweaters' ? 'garment-oem' : x.id === 'accessories' ? 'accessories-cat' : x.id));
+          // 2026-08-29 SEO: c.slug now uses simple IDs (hats, scarves, etc.)
+          // matching the /[locale]/category/cashmere-<id>/ landing pages.
+          const cat = productsData.categories.find((x: any) => x.id === c.slug);
+          // Route homepage category tiles to the dedicated SEO landing pages
+          // with unique title/H1/canonical + CollectionPage schema.
+          const categoryHref = `/${locale}/category/cashmere-${c.slug}/`;
           return (
-            <a href={`/${locale}/products/${c.slug}/`} class="group border border-border bg-brand-shell/50 p-6 hover:border-brand-gold hover:bg-white transition-colors duration-300 flex flex-col justify-between min-h-[150px]">
+            <a href={categoryHref} class="group border border-border bg-brand-shell/50 p-6 hover:border-brand-gold hover:bg-white transition-colors duration-300 flex flex-col justify-between min-h-[150px]">
               <div>
                 <div class="font-serif text-[11px] text-brand-camel tracking-[0.2em] uppercase mb-2">0{i + 1}</div>
                 <h3 class="font-serif text-xl leading-tight group-hover:text-brand-chocolate transition-colors">{c.name}</h3>

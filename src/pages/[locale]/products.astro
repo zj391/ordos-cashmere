@@ -548,8 +548,14 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
         {categories.map((category) => {
           const hub = CATEGORY_HUBS[category.id];
           if (!hub) return null;
+          // 2026-08-29 SEO: route these discovery cards to the dedicated
+          // /[locale]/category/<slug>/ landing page (which has its own
+          // title, description, H1, canonical and CollectionPage schema)
+          // instead of /[locale]/products/<slug>/ which renders the same
+          // hub template and adds nothing SEO-wise.
+          const categoryHref = `/${locale}/category/cashmere-${category.id}/`;
           return (
-            <a href={`/${locale}/products/${hub.slug}/`} class="group border border-border bg-white p-5 hover:border-brand-gold hover:shadow-[0_14px_28px_-22px_rgba(28,24,19,0.28)] transition-colors transition-shadow">
+            <a href={categoryHref} class="group border border-border bg-white p-5 hover:border-brand-gold hover:shadow-[0_14px_28px_-22px_rgba(28,24,19,0.28)] transition-colors transition-shadow">
               <p class="text-[10px] uppercase tracking-[0.18em] text-brand-camel mb-3">{locale === 'cn' ? '产品系列' : 'PRODUCT FAMILY'}</p>
               <h3 class="font-serif text-lg text-brand-ink leading-snug group-hover:text-brand-camel transition-colors">{hub.label[locale] || hub.label.en}</h3>
               <span class="inline-flex mt-4 text-xs uppercase tracking-[0.14em] text-muted-foreground group-hover:text-brand-ink transition-colors">{listingDiscovery.action} <span aria-hidden="true" class="ml-2">→</span></span>
