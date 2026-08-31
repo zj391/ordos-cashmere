@@ -1,0 +1,176 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
+import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
+import { products as productsData, getAllProducts, ensureDbOverlay } from '@/data/products';
+import { buildProductHeading } from '@/lib/product-seo-title';
+import { type Locale } from '@/lib/i18n';
+import { SITE_URL } from '@/lib/seo';
+import { TAG_PAGES, TAG_PAGE_LOCALIZE } from '@/data/tag-seo';
+import { CATEGORY_DISPLAY } from '@/data/category-seo';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const LOCALES: Locale[] = ['en', 'de', 'fr', 'ja', 'kr', 'cn'];
+  const SLUGS = Object.keys(TAG_PAGES);
+  return LOCALES.flatMap((locale) =>
+    SLUGS.map((slug) => ({ params: { locale, slug } })),
+  );
+}
+
+const locale = Astro.params.locale as Locale;
+const slug = Astro.params.slug as string;
+const tag = TAG_PAGES[slug];
+
+// Default fallback: tag without per-locale copy uses EN strings.
+const seo = tag && (TAG_PAGE_LOCALIZE[slug]?.[locale] || TAG_PAGE_LOCALIZE[slug]?.en || {
+  title: tag.title,
+  description: tag.description,
+  h1: tag.h1,
+  intro: tag.intro,
+  keywords: tag.keywords,
+});
+
+if (!tag) {
+  return Astro.redirect(`/${locale}/products/`, 301);
+}
+
+await ensureDbOverlay();
+const allProducts = getAllProducts();
+
+// Filter products: must be in this category AND match at least one keyword.
+// matchField=*all* checks name + pattern + collar + tags. name-only checks name.
+function matchesTag(product: any, kw: string): boolean {
+  const haystack = [
+    product.name || '',
+    product.pattern || '',
+    product.collar || '',
+    ...(product.tags || []),
+  ].join(' ').toLowerCase();
+  return haystack.includes(kw.toLowerCase());
+}
+
+const products = allProducts.filter((p) => {
+  if (p.categoryId !== tag.categoryId) return false;
+  return tag.matchKeywords.some((kw) => matchesTag(p, kw));
+});
+
+const canonical = `${SITE_URL}/${locale}/tag/${slug}/`;
+const catName = CATEGORY_DISPLAY[tag.categoryId];
+
+const ui: any = {
+  en: {
+    productCountLabel: (n: number) => `${n} cashmere product records`,
+    viewAll: 'View all category products',
+    backToCategory: `Back to ${catName}`,
+    requestQuote: 'Request a quotation quote',
+  },
+  cn: {
+    productCountLabel: (n: number) => `${n} 条羊绒产品记录`,
+    viewAll: '查看全部分类产品',
+    backToCategory: `返回 ${catName}`,
+    requestQuote: '索取报价',
+  },
+}[locale] || {
+  productCountLabel: (n: number) => `${n} cashmere product records`,
+  viewAll: 'View all category products',
+  backToCategory: `Back to ${catName}`,
+  requestQuote: 'Request a quotation quote',
+};
+---
+
+<BaseLayout
+  locale={locale}
+  title={seo.title}
+  description={seo.description}
+  keywords={seo.keywords}
+  canonicalPath={`/${locale}/tag/${slug}/`}
+  schema="general"
+  ogImage={`${SITE_URL}/images/home/ordos-origins.webp`}
+  customSchemas={[
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: seo.h1,
+      description: seo.description,
+      url: canonical,
+      inLanguage: locale,
+      isPartOf: { '@type': 'WebSite', name: 'DONGXIAO Cashmere', url: SITE_URL },
+      about: { '@type': 'Product', name: seo.h1, description: seo.description },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/${locale}/` },
+        { '@type': 'ListItem', position: 2, name: catName, item: `${SITE_URL}/${locale}/category/cashmere-${tag.categoryId}/` },
+        { '@type': 'ListItem', position: 3, name: seo.h1, item: canonical },
+      ],
+    },
+  ]}
+>
+  <Navigation slot="header" locale={locale} currentPath={`/${locale}/tag/${slug}/`} />
+
+  <section class="bg-background pt-32 pb-12 border-b border-border">
+    <div class="container-narrow">
+      <nav class="text-xs text-muted-foreground mb-6" aria-label="Breadcrumb">
+        <a href={`/${locale}/`} class="hover:text-primary">Home</a>
+        <span class="mx-2">/</span>
+        <a href={`/${locale}/category/cashmere-${tag.categoryId}/`} class="hover:text-primary">{catName}</a>
+        <span class="mx-2">/</span>
+        <span class="text-foreground">{seo.h1}</span>
+      </nav>
+      <h1 class="font-serif text-4xl md:text-6xl font-light leading-[1.05] mb-6">{seo.h1}</h1>
+      <p class="text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl mb-4">{seo.intro}</p>
+      <p class="text-sm text-muted-foreground">{ui.productCountLabel(products.length)}</p>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16">
+    <div class="container-narrow">
+      <h2 class="font-display text-2xl md:text-3xl font-light mb-8">{seo.h1}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {products.slice(0, 24).map((p) => (
+          <a
+            href={`/${locale}/products/${p.id}/`}
+            class="group block border border-border p-6 hover:border-brand-gold hover:shadow-lg transition-colors transition-shadow duration-300"
+          >
+            <div class="text-[10px] uppercase tracking-[0.18em] text-muted-foreground mb-2">{p.categoryName || catName}</div>
+            <h3 class="font-display text-lg leading-tight mb-3 group-hover:text-brand-chocolate transition-colors">
+              {buildProductHeading(p, locale)}
+            </h3>
+            <div class="text-xs text-muted-foreground">
+              {p.material ? `${p.material}` : ''}
+              {p.micron ? ` · ${p.micron}` : ''}
+              {p.moq ? ` · MOQ ${p.moq}` : ''}
+            </div>
+            <div class="mt-4 text-sm text-brand-chocolate font-medium border-b border-brand-chocolate pb-0.5 w-fit group-hover:border-brand-gold group-hover:text-brand-gold transition-colors">
+              {locale === 'cn' ? '查看详情 →' : 'View details →'}
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-brand-cream/30 border-t border-border">
+    <div class="container-narrow flex flex-col sm:flex-row gap-6 justify-between items-center">
+      <a href={`/${locale}/category/cashmere-${tag.categoryId}/`} class="text-sm text-brand-chocolate border-b border-brand-chocolate hover:border-brand-gold hover:text-brand-gold transition-colors">
+        {ui.backToCategory} →
+      </a>
+      <a
+        href={`/${locale}/contact/`}
+        class="inline-flex items-center justify-center px-8 py-3 border border-primary text-xs uppercase tracking-[0.18em] text-primary hover:border-brand-red hover:text-brand-red hover:bg-brand-red/[0.04] transition-colors duration-300"
+      >
+        {ui.requestQuote}
+      </a>
+    </div>
+  </section>
+
+  <Footer slot="footer" locale={locale} />
+  <FloatingChatButtons slot="floating" locale={locale} />
+  <CookieConsent slot="cookie-consent" />
+</BaseLayout>
