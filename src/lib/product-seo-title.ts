@@ -203,14 +203,19 @@ function patternFromName(value: unknown): string {
   // and similar commerce wording that should not disqualify extraction.
   const raw = clean(value);
   if (!raw) return '';
+  // Order matters: more specific (multi-word) candidates come first so
+  // 'Cable Knit' wins over 'Knit' alone.
   const candidates = [
     'Cable Knit', 'Cable knit', 'Cable',
-    'Solid', 'Solid Color', 'Solid Colour',
-    'Jacquard', 'Printed', 'Print', 'Stripe', 'Striped',
-    'Ribbed', 'Rib',
+    'Solid Color', 'Solid Colour', 'Solid',
+    'Jacquard', 'Printed', 'Print',
+    'Stripe', 'Striped', 'Ribbed', 'Rib',
+    'POM Pom', 'POM', 'Pom Pom',
     'Crochet', 'Plain Dyed',
     'Diamond', 'Argyle', 'Fair Isle',
     'Twisted', 'Brushed', 'Boucle',
+    'Knit', 'Knitted', 'Knitting',
+    'Woven', 'Weaving',
   ];
   for (const c of candidates) {
     if (new RegExp(`\\b${c.replace(/\s+/g, '\\s+')}\\b`, 'i').test(raw)) {
