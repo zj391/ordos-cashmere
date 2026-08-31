@@ -1279,7 +1279,7 @@ const relatedViewAll: Record<Locale, string> = {
 
                       <div
 
-                        class="product-main-frame aspect-square bg-secondary/30 rounded-lg mb-4 ring-1 ring-border w-full block hover:ring-2 hover:ring-primary transition-shadow"
+                        class="product-main-frame aspect-square bg-secondary/30 rounded-lg overflow-hidden mb-4 ring-1 ring-border w-full block hover:ring-2 hover:ring-primary transition-shadow"
 
                         data-main-frame={primaryImage}
 
@@ -1287,39 +1287,17 @@ const relatedViewAll: Record<Locale, string> = {
 
                         <img id="main-product-img" src={primaryImage} alt={buildSeoAlt(product)} class="product-main-image w-full h-full object-cover object-[center_top] transition-opacity" decoding="async" loading="eager" />
 
-                      </div>
-
-                    </div>
-        </div>
-
-        {/*
-          Zoom panel — sibling of gallery and summary at the grid level.
-          Placing it here (rather than inside the gallery) lets it have a
-          clean sibling-stacking relationship with product-summary: a high
-          z-index here wins over the (later-DOM, lower-z) summary.
-
-          The previous "absolute left-[calc(100%+1rem)] from the gallery"
-          pattern positioned the magnifier over the product-summary column,
-          where the later-DOM summary element was painting on top of the
-          zoom panel — the magnifier appeared partially or fully hidden behind
-          the specs/price/details block.
-
-          The panel is still pointer-events-none, so it never blocks clicks.
-          When the modal chat dialog opens, this panel's z-50 sits below the
-          modal's z-[60] so clicks fall through correctly to the dialog.
-        */}
+                                            </div>
+        <!-- Desktop magnifier: keep the zoom view beside the main image, inside
+             the gallery wrapper. This preserves the two-column grid so the
+             product summary/specification column remains visible. -->
         <div
-
           id="product-zoom-panel"
-
           aria-hidden="true"
-
-          class="hidden md:block absolute left-1/2 top-0 z-50 w-[calc(50%-1rem)] aspect-square rounded-lg border border-border bg-white bg-no-repeat shadow-2xl opacity-0 invisible pointer-events-none transition-opacity duration-150"
-
+          class="hidden md:block absolute left-[calc(100%+1rem)] top-0 z-[45] w-full aspect-square rounded-lg border border-border bg-white bg-no-repeat shadow-2xl opacity-0 invisible pointer-events-none transition-opacity duration-150"
           style={`background-image:url('${primaryImage}');background-size:130%;background-position:50% 50%;`}
-
         ></div>
-
+                    </div>
           {galleryImages.length > 1 && (
 
                       <div class="grid grid-cols-4 gap-2">
