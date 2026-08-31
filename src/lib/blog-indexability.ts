@@ -9,6 +9,10 @@ export const INDEXABLE_BLOG_IDS = new Set([
   'cn/eu-textile-dpp-registry-2026-update',
   'en/eu-unsold-apparel-rules-2026-update',
   'cn/eu-unsold-apparel-rules-2026-update',
+  'en/eu-csddd-textile-supply-chain-2026',
+  'en/good-cashmere-standard-2026-update',
+  'en/eu-green-claims-directive-textile-2026',
+  'en/japan-korea-cashmere-import-market-2026',
 ]);
 
 export function getBlogSlugFromId(id: string) {

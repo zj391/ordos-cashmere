@@ -69,6 +69,280 @@ Categories: Cashmere Hats & Beanies, Cashmere Sweaters & Knitwear, Cashmere Scar
 
 ## Blog Articles (English, full text)
 
+### EU CSDDD for Textile Supply Chains: What B2B Cashmere Buyers Should Confirm in 2026
+
+*Published 2026-08-28*
+
+A working note on the EU Corporate Sustainability Due Diligence Directive (CSDDD), its implementation timetable for the textile sector, and the practical records a cashmere buyer should confirm with suppliers during the 2026 preparation year before obligations apply from 2027.
+
+## What CSDDD is, and when its textile obligations apply
+
+The Corporate Sustainability Due Diligence Directive (CSDDD), Directive (EU) 2024/1760, was adopted in July 2024 and published in the Official Journal on 5 July 2024. Member States have until 26 July 2026 to transpose it into national law; the first reporting obligations begin three years after entry into force, with the first wave of obligations applying from 2027. [1](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32024L1760)
+
+For textile supply chains, CSDDD creates obligations for the **largest companies**: EU companies with more than 1,000 employees and €450 million worldwide turnover, and non-EU companies with comparable turnover generated in the EU. [1](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32024L1760)
+
+Smaller cashmere buyers and suppliers are not directly subject to CSDDD obligations in the first wave. They become relevant as **chain partners** whose information, records and cooperation are needed by the larger obligated company to fulfil its own due diligence.
+
+#### What CSDDD requires of an obligated company
+
+For an obligated textile company, the directive identifies five practical obligations. The actual text and recitals are public; the following list summarises the topics for procurement reference:
+
+1. **Embedding due diligence into company policies and risk management** — formalise the procedure rather than rely on ad hoc supplier checks.
+2. **Identifying actual or potential adverse impacts** across the chain, prioritising high-risk areas.
+3. **Stopping, preventing or mitigating identified impacts**, including through contractual cascading.
+4. **Tracking the effectiveness** of measures.
+5. **Public communication** on due diligence, in line with the reporting requirements. [1](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32024L1760)
+
+For a cashmere supply chain, the most likely high-risk areas a textile buyer would investigate are animal welfare in fibre sourcing, environmental impact at fibre and yarn stages, and labour conditions at dehairing, spinning, knitting and finishing facilities. Each of these maps to records a cashmere supplier can already provide — origin statements, fibre declarations, dehairing facility audits, processing chemical inventories, social compliance documentation — rather than to new measures.
+
+#### Practical records a cashmere buyer can confirm with a supplier
+
+During the 2026 preparation year, a useful buyer brief can ask which records are actually available today. The following list is not exhaustive; it is a starting point to discuss with a cashmere manufacturer:
+
+| Area | Practical record to agree | Why it is useful now |
+| --- | --- | --- |
+| Origin | Region, herd type and whether goats are Alashan, Ordos or other Mongolian sub-population | Supports fibre provenance and brand origin claims |
+| Fibre grade | Micron range (e.g. 14–15.5 μm), sorted or unsorted, length and down percentage | Supports quality claims and product specification |
+| Dehairing | Facility name and location, audit status (Good Cashmere Standard, SFA, or equivalent) | Demonstrates traceability into the first processing stage |
+| Spinning | Yarn count (Nm, Ne), twist direction, ply, machine type | Supports yarn performance and care claims |
+| Knitting and finishing | Gauge, knit construction, dye method, chemical inventory | Supports environmental and care communication |
+| Social compliance | Worker count, working hours policy, audit results where available | Supports chain-of-custody due diligence |
+| Documentation owner | Which party owns each record and for how long | Defines who answers a buyer's data request |
+
+The actual scope depends on the buyer's destination, the brand's claim policy and the country-of-origin obligations on the supplier. Treat this list as a starting point for an inquiry, not as a standard checklist.
+
+#### How this affects a cashmere supplier's preparation
+
+For a cashmere supplier working with EU brands, 2026 is the practical preparation year. CSDDD itself does not impose new obligations on smaller suppliers, but obligated buyers will be asking for records that previously were informal. Suppliers can prepare by:
+
+- Agreeing with each customer which records are shared in writing.
+- Clarifying which records are factory-level versus lot-specific.
+- Deciding which information is shared only with the brand, not with downstream retailers.
+- Updating internal traceability of micron range, lot references and dehairing facility per shipment.
+
+For a practical perspective on the EU regulatory timetable, see the [EU Textile Digital Product Passport update](/en/blog/eu-textile-dpp-registry-2026-update/) and the [EU Digital Product Passport for cashmere garments](/en/blog/cashmere-eu-dpp-compliance/). CSDDD is one of several frameworks a buyer will evaluate together; the cashmere-specific records a supplier already maintains will be needed for most of them.
+
+For legal advice on specific obligations under CSDDD, refer to qualified advisers in the relevant Member State.
+
+#### References
+
+1. Directive (EU) 2024/1760 of the European Parliament and of the Council of 13 June 2024 on corporate sustainability due diligence, [CELEX 32024L1760](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32024L1760), published 5 July 2024, accessed 28 August 2026.
+
+---
+
+### EU Green Claims Directive for Textile Suppliers: What Changes in September 2026
+
+*Published 2026-08-28*
+
+A dated working note on the EU Green Claims Directive, the September 2026 substantiation obligations that apply to environmental marketing claims on textile products, and the practical record-keeping a cashmere supplier should expect from EU buyers.
+
+## What the EU Green Claims Directive is, and when it applies to textile claims
+
+The EU Green Claims Directive is part of the European Commission's 2023 consumer-empowerment package. It was adopted in 2024 to harmonise the substantiation and presentation of voluntary environmental marketing claims on products sold in the EU. Member States transpose the directive into national law and apply it from **27 September 2026**. [1](https://environment.ec.europa.eu/topics/eu-ecolabel-and-green-public-procurement/green-claims_en)
+
+For textile products, including cashmere garments, yarn and accessories, the directive requires that any environmental claim — "sustainable", "eco-friendly", "natural", "biodegradable", "carbon-neutral", "100% cashmere", and so on — be substantiated against a recognised assessment method and presented in a way that does not mislead the consumer. The directive is enforced by national consumer protection authorities. [1](https://environment.ec.europa.eu/topics/eu-ecolabel-and-green-public-procurement/green-claims_en)
+
+#### What the directive does not do
+
+It is worth being explicit about the limits of the Green Claims Directive so the buyer and supplier do not over-interpret it:
+
+- The directive does **not** ban natural fibres like cashmere. Natural-fibre claims are permitted when substantiated.
+- The directive does **not** create a single EU-wide label. Existing frameworks (EU Ecolabel, OEKO-TEX, GCS) continue to apply in parallel.
+- The directive does **not** impose LCA on every product. Smaller-volume and B2B-only communications have different thresholds. The exact thresholds are in the directive and should be checked with the buyer's compliance team. [1](https://environment.ec.europa.eu/topics/eu-ecolabel-and-green-public-procurement/green-claims_en)
+
+#### Practical claims the directive covers in a cashmere context
+
+The directive addresses how environmental claims are made, not whether natural fibres are used. The following examples illustrate the most common cashmere-relevant claims that must be substantiated from September 2026:
+
+| Claim type | Typical use on cashmere | Substantiation expectation |
+| --- | --- | --- |
+| "Natural fibre" or "100% cashmere" | On packaging, hangtags, brand websites | Fibre composition declaration, supported by production records |
+| "Sustainable" or "responsibly sourced" | On marketing copy and brand pages | Chain-of-custody documentation, certification reference, audit results |
+| "Biodegradable" | On product pages and care guides | Fibre behaviour evidence for the actual construction (pure cashmere vs. blends) |
+| "Carbon-neutral" or "low-carbon" | On product launch pages and PR | Quantified emissions, third-party verification or an LCA reference |
+| "Eco-friendly production" | On brand stories and supplier pages | Specific process records (water, energy, chemical use) for the facility in question |
+| "Recycled" or "recyclable" | On packaging or product description | Material composition records, recycled-content standards reference |
+
+These are not exhaustive. The directive applies to any environmental claim made on or in connection with a textile product placed on the EU market. [1](https://environment.ec.europa.eu/topics/eu-ecolabel-and-green-public-procurement/green-claims_en)
+
+#### What a cashmere supplier can expect from EU buyers in 2026
+
+From September 2026, an EU buyer placing a cashmere product on the market may ask a supplier to:
+
+- Confirm which environmental claims are being made on or for the product.
+- Provide the supporting evidence in writing (composition, origin, audit, certification).
+- Adjust or remove claims that cannot be substantiated.
+- Restrict use of generic sustainability language (e.g. "eco", "green") unless backed by a recognised framework.
+
+Suppliers can prepare by listing the environmental claims currently on their marketing material, and matching each one to a record the factory can already produce. Where no record exists, the claim should be revised or removed before the September 2026 enforcement date.
+
+#### Records a cashmere supplier can already maintain
+
+The records below are useful starting points. Whether each is appropriate depends on the product, the claim and the buyer's compliance policy:
+
+| Record | Format | Why it is useful now |
+| --- | --- | --- |
+| Fibre composition declaration | Per style, per lot | Substantiates "100% cashmere" or blend claims |
+| Origin statement | Per lot, with region and herd | Substantiates "Inner Mongolia cashmere" claims |
+| Certification reference | Certificate number, scope, validity | Substantiates "Good Cashmere Standard", "OEKO-TEX" etc. |
+| Audit results | Most recent facility audit summary | Supports chain-of-custody claims |
+| Chemical inventory | Approved substance list per process | Supports environmental process claims |
+| Care guidance | Approved care label wording | Supports product-use claims |
+| Documentation owner | Internal record of who owns each document | Supports audit response |
+
+The actual scope depends on the claim being made. The substantive principle is that any environmental claim must be supported by evidence the supplier or buyer can produce.
+
+#### How the directive relates to other cashmere frameworks
+
+The Green Claims Directive sits alongside the EU Digital Product Passport, the EU CSDDD and the various private cashmere certifications. The directive does not replace any of these frameworks; it sets the minimum standard for how environmental claims are made and substantiated. A cashmere supplier participating in GCS or providing EU-aligned product records will be in a better position than one relying on informal sustainability language.
+
+For context, see the [EU Textile Digital Product Passport update](/en/blog/eu-textile-dpp-registry-2026-update/) and the [EU CSDDD for textile supply chains](/en/blog/eu-csddd-textile-supply-chain-2026/). For specific legal advice on the directive's application to a particular product or claim, refer to qualified advisers in the relevant Member State.
+
+#### References
+
+1. European Commission, [Green Claims Directive](https://environment.ec.europa.eu/topics/eu-ecolabel-and-green-public-procurement/green-claims_en), accessed 28 August 2026.
+
+---
+
+### Good Cashmere Standard 2026: Updated Animal Welfare and Traceability Requirements for Cashmere B2B Programs
+
+*Published 2026-08-28*
+
+A dated working note on the Good Cashmere Standard (GCS) updates issued by the Aid by Trade Foundation in 2026, the new animal welfare and traceability requirements that apply to certified cashmere, and the records a buyer should expect from a GCS-aligned supplier.
+
+## What the Good Cashmere Standard is, and who maintains it
+
+The Good Cashmere Standard (GCS) is an independent standard for cashmere fibre, set and administered by the Aid by Trade Foundation (AbTF). The standard defines animal welfare, environmental, and chain-of-custody criteria for raw cashmere, and provides a labelled pathway for downstream products. The AbTF publishes the standard documents and the list of certified farms, dehairing facilities and brands. [1](https://www.goodcashmerestandard.com/)
+
+In 2026, the AbTF released an updated version of the Good Cashmere Standard with refined animal welfare criteria and expanded traceability requirements for the dehairing and trading stages. The updates apply to all newly certified operations from 1 January 2026; existing certified operations transition during 2026 in line with the AbTF's published timetable. [1](https://www.goodcashmerestandard.com/)
+
+#### Where to confirm the current version
+
+The most reliable reference for the standard's current text, the transition timetable and the list of certified operations is the AbTF's own publication. Earlier reference materials, including older blog posts or buyer guides, may not reflect the 2026 revisions. When confirming compliance or preparing an inquiry, treat the AbTF site as the canonical source rather than secondary summaries. [1](https://www.goodcashmerestandard.com/)
+
+#### Practical areas updated for 2026
+
+Based on the AbTF's published updates, three areas are most relevant to a cashmere B2B buyer:
+
+1. **Animal welfare criteria** — the standard already covers grazing, shelter, handling and shearing. The 2026 update raises expectations on cold-weather shelter, the timing and method of fibre collection, and the documentation of veterinary care. The objective is to align GCS with broader animal welfare standard practice without changing the underlying principle of combing rather than shearing. [1](https://www.goodcashmerestandard.com/)
+
+2. **Chain-of-custody documentation** — the updated standard expands the requirement to record fibre origin, herd type, and the dehairing facility for each lot traded under the standard. The records must be auditable; the AbTF publishes the audit frequency and the certification body's scope. [1](https://www.goodcashmerestandard.com/)
+
+3. **Brand and retailer obligations** — brands and retailers using the GCS label must keep the labelled fibre traceable through processing stages. This is the practical impact on a private-label or retail program sourcing GCS-aligned cashmere. [1](https://www.goodcashmerestandard.com/)
+
+These are administrative controls, not a guarantee of any specific outcome. The actual scope, evidence and certification body decision depend on the AbTF's published rules and the buyer's product category.
+
+#### What a B2B buyer can confirm with a cashmere supplier
+
+For a private-label, retail, or wholesale program using GCS-aligned cashmere, the following records are typically worth confirming in writing:
+
+| Area | Practical record to ask for | Why it is useful now |
+| --- | --- | --- |
+| Certification status | GCS certificate number and scope, valid until date | Confirms the operation is currently certified |
+| Origin | Region, herd type, list of certified farms | Supports fibre origin claims and DPP-style records |
+| Dehairing | Certified dehairing facility name and address | Demonstrates chain-of-custody compliance |
+| Lot reference | Internal lot, bale or shipment reference linked to origin records | Allows traceability per shipment |
+| Brand licence | Brand or retailer's own GCS label licence number, if applicable | Confirms the downstream user is licensed to use the mark |
+| Documentation owner | Which party is responsible for each record | Clarifies the data request process |
+
+The actual scope depends on the buyer's product, destination and brand policy. Treat this list as a starting point for an inquiry, not as a standard checklist.
+
+#### How GCS relates to other cashmere frameworks
+
+GCS is one of several frameworks a cashmere buyer may need to evaluate together. Each framework has its own scope:
+
+- **Textile Exchange Recycled Cashmere Standard** — for cashmere fibre recovered from pre- or post-consumer textile waste.
+- **OEKO-TEX Standard 100** — for finished textile products at the consumer level.
+- **EU CSDDD / DPP** — chain-of-custody records for the largest companies selling textile products in the EU.
+
+A cashmere supplier may participate in one or several frameworks. The buyer should clarify which framework applies to each material or product, rather than assume a single certification covers everything.
+
+#### References
+
+1. Aid by Trade Foundation, [The Good Cashmere Standard](https://www.goodcashmerestandard.com/), accessed 28 August 2026.
+
+For practical context on the broader EU regulatory landscape affecting cashmere, see the [EU CSDDD for textile supply chains](/en/blog/eu-csddd-textile-supply-chain-2026/) and the [EU Textile Digital Product Passport update](/en/blog/eu-textile-dpp-registry-2026-update/).
+
+---
+
+### Japan and Korea Cashmere Knitwear Import Market: What B2B Buyers Should Confirm in 2026
+
+*Published 2026-08-28*
+
+A dated working note on the Japan and South Korea cashmere knitwear import markets, the buyer profiles, import flow considerations, and practical records a cashmere manufacturer should expect from Japanese and Korean B2B buyers in 2026.
+
+## What we observed at a glance
+
+Japan and South Korea are the largest Asian cashmere knitwear import markets outside Greater China. The two markets differ in buyer profile, product preference and import flow, but share several practical concerns: premium grade selection, lot consistency, documentation requirements and brand-led marketing claims. This note covers both markets for comparison; specific buyer assumptions should be confirmed per inquiry.
+
+The numbers cited below are working estimates drawn from publicly available trade statistics and the patterns observed at our facility. Where a figure is precise, the source is named; where it is directional, it is described as such.
+
+#### Japan — premium grade, brand-led, low MOQ per style
+
+The Japan cashmere knitwear import market is dominated by:
+
+- **Luxury houses** (e.g. the established Japanese luxury conglomerates and the European houses with Japanese subsidiaries) sourcing premium-grade yarn for in-house knitwear programs.
+- **Mid-tier Japanese brands** that produce seasonal knitwear for the domestic department store and select-shop retail channels.
+- **Boutique brands and ateliers** that work with small lots and prioritise grade, hand-feel and pattern development.
+
+Key practical considerations for Japan-bound cashmere programs:
+
+- **Grade preference**: Japanese buyers typically specify fine micron ranges (often 14–15.5 μm, sometimes finer) and request grade documentation per lot.
+- **Lot consistency**: Programs tend to favour suppliers that can deliver consistent micron range, length and down content across multiple deliveries within a season.
+- **Ply and construction**: The Japan market has a strong preference for 2-ply and 12-gauge knitwear, with seasonal variation between thicker gauge for autumn/winter and finer gauge for spring layering.
+- **Yarn twist and hand-feel**: Japanese knitters and brand product teams are typically hand-feel-conscious. Yarn sample swatches are often requested before bulk order confirmation.
+- **Documentation**: Beyond the standard invoice and packing list, Japanese buyers may request certificate of origin, fibre declaration and, for some programs, an explicit "Mongolian cashmere" origin statement.
+- **Lead time and seasonality**: Programs are typically planned 6–9 months ahead, with autumn/winter deliveries peaking in July–September for arrival in October–November.
+
+For an overview of how Ordos-origin cashmere fits into these programs, see the [from pasture to garment guide](/en/blog/from-pasture-to-garment-23-steps-ordos-cashmere/).
+
+#### South Korea — growth segment, K-fashion-led, direct sourcing
+
+The Korean cashmere knitwear import market has expanded as K-fashion brands have grown globally. The buyer landscape includes:
+
+- **Mid- to high-end Korean brands** sourcing directly from Inner Mongolia for premium programs.
+- **Cashmere specialists and ODM factories** in Korea working with both Korean and Japanese buyers.
+- **Online-first brands** that market cashmere knitwear as a premium category, often with a transparent pricing and origin narrative.
+
+Key practical considerations for Korea-bound cashmere programs:
+
+- **Direct sourcing**: Korean brands are more likely to source directly from the mill or the dehairing facility, rather than through a trading house, in line with the trend toward transparent origin claims.
+- **Lot traceability**: Several Korean brands ask for per-lot fibre origin records, including farm region and dehairing facility, in line with the broader traceability trend.
+- **Yarn selection**: Korean buyers tend to specify 14–15.5 μm micron range for premium programs; some also work with 15.5–16.5 μm for entry-level lines.
+- **Lead time**: Korean programs tend to be planned 4–6 months ahead, slightly shorter than Japan, with greater willingness to sample across multiple options.
+- **Documentation**: Korean buyers typically request certificate of origin and fibre declaration; some also request specific labelling language for the consumer-facing tag.
+
+For the underlying fibre-origin discussion relevant to both markets, see [how to identify premium cashmere](/en/blog/how-to-identify-premium-cashmere/).
+
+#### Common practical records for both markets
+
+The following records are typically worth confirming in writing for any Japan- or Korea-bound cashmere program, regardless of the specific buyer:
+
+| Area | Practical record | Why it is useful now |
+| --- | --- | --- |
+| Origin | Region (Ordos, Alashan, other Inner Mongolia sub-region) and herd type | Supports premium positioning and brand claims |
+| Fibre grade | Micron range, length, down percentage | Supports hand-feel and quality claims |
+| Lot reference | Lot or shipment reference linked to origin | Supports traceability per delivery |
+| Composition | Per-style fibre declaration, including any blend components | Supports labelling and import declaration |
+| Care guidance | Approved care label wording in the destination language | Supports product use and warranty claims |
+| Documentation owner | Which party is responsible for each record | Clarifies the data request process |
+
+These are administrative controls, not guarantees of any specific outcome. The actual scope, evidence and label wording depend on the buyer's brand policy and the destination's regulatory requirements.
+
+#### How this fits with broader cashmere B2B trends
+
+The Japan and Korea cashmere import markets are affected by the same frameworks as the EU market — traceability requirements, sustainability substantiation and labelling obligations — though the specific dates and scope differ. For an overview of the EU frameworks, see the [EU Digital Product Passport update](/en/blog/eu-textile-dpp-registry-2026-update/) and the [EU CSDDD for textile supply chains](/en/blog/eu-csddd-textile-supply-chain-2026/).
+
+For Asia-specific questions about cashmere grading, hand-feel and knit construction, see the [micron chart guide](/en/blog/cashmere-fiber-fineness-micron-chart-b2b/) and the [ply vs single-ply comparison](/en/blog/cashmere-2-ply-vs-single-ply-yarn-garment/).
+
+#### Working notes
+
+The figures in this note are directional and intended for B2B reference. Actual import volumes, market share and brand activity should be confirmed with the latest trade statistics and current buyer intelligence before being used in commercial planning. For specific buyer introductions or program briefs, contact us through the project inquiry page.
+
+For product-side starting points, see the [cashmere knitwear product records](/en/garment-oem/), [yarn specifications](/en/products/yarn/) and [raw-material sourcing information](/en/raw-material/).
+
+---
+
 ### EU Textile Digital Product Passport Update: What Is Confirmed in August 2026
 
 *Published 2026-08-27*
