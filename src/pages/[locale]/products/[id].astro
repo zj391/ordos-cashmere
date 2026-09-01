@@ -1274,7 +1274,7 @@ const relatedViewAll: Record<Locale, string> = {
 
         <!-- Image gallery: unique thumbnails + desktop hover magnifier -->
 
-        <div class="product-gallery product-gallery--archive">
+        <div class="product-gallery product-gallery--archive relative z-20">
           <div class="relative">
 
                       <div
@@ -1297,6 +1297,8 @@ const relatedViewAll: Record<Locale, string> = {
           class="hidden md:block absolute left-[calc(100%+1rem)] top-0 z-[45] w-full aspect-square rounded-lg border border-border bg-white bg-no-repeat shadow-2xl opacity-0 invisible pointer-events-none transition-opacity duration-150"
           style={`background-image:url('${primaryImage}');background-size:130%;background-position:50% 50%;`}
         ></div>
+
+>>>>>>> ee49b02 (fix(ui): revert zoom panel to inside gallery + lift gallery z-20)
                     </div>
           {galleryImages.length > 1 && (
 
@@ -1343,7 +1345,7 @@ const relatedViewAll: Record<Locale, string> = {
                       </div>
 
                     )}
-
+        </div>
         </div>
 
 
