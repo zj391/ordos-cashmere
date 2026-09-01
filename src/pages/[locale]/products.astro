@@ -18,6 +18,7 @@ import { SEO, SITE_INFO } from '@/lib/seo';
 import { products as productsData, getRepresentativeProducts, ensureDbOverlay } from '@/data/products';
 import { getProductLabels } from '@/lib/product-labels';
 import { tagAllProducts, PRODUCT_TAG_RULES } from '@/data/product-tags';
+import { TAG_PAGES } from '@/data/tag-seo';
 
 export async function getStaticPaths() {
   await ensureDbOverlay();
@@ -562,6 +563,37 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
             </a>
           );
         })}
+      </div>
+    </section>
+
+    {/*
+      2026-09-01 SEO: the products hub /[locale]/products/ has zero tag
+      cluster inbound links. The 60 tag pages only receive inbound from
+      their parent category page, leaving the cluster isolated. This
+      block surfaces all 10 tag landing pages from the products hub so
+      Googlebot following a /products/ -> /category/<id>/> -> /tag/<id>/
+      crawl path gets an additional inbound link at every step.
+    */}
+    <section class="py-12 border-t border-border/40">
+      <div class="container-narrow">
+        <div class="flex items-baseline justify-between mb-4">
+          <h2 class="font-serif text-base tracking-[0.18em] uppercase text-muted-foreground">
+            {locale === 'cn' ? '按品类快速筛选' : 'Browse by Specific Search'}
+          </h2>
+          <span class="text-xs text-muted-foreground">
+            {locale === 'cn' ? '10 个热门长尾关键词' : '10 long-tail combinations'}
+          </span>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          {Object.entries(TAG_PAGES).map(([tagSlug, t]) => (
+            <a
+              href={`/${locale}/tag/${tagSlug}/`}
+              class="text-sm px-4 py-2 border border-border bg-background hover:border-brand-gold hover:bg-brand-cream/40 transition-colors"
+            >
+              {t.h1}
+            </a>
+          ))}
+        </div>
       </div>
     </section>
     <!-- 分页控件（vanilla JS 控制） -->

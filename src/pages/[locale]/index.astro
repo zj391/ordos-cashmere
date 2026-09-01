@@ -20,6 +20,7 @@ import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
 import { SEO, SITE_INFO } from '@/lib/seo';
 import { getCollection } from 'astro:content';
 import { getBlogSlugFromId, isIndexableBlogPost } from '@/lib/blog-indexability';
+import { TAG_PAGES } from '@/data/tag-seo';
 
 export function getStaticPaths() {
   return LOCALES.map((locale) => ({ params: { locale } }));
@@ -807,6 +808,36 @@ const IMG = {
             </a>
           );
         })}
+      </div>
+
+      {/*
+        2026-09-01 SEO: homepage has zero inbound links to the 60 /tag/ pages.
+        The category cards link to /category/ hubs, but the tag cluster had no
+        discovery surface from the homepage. This block surfaces the 10 tag
+        landing pages (the highest-traffic long-tail combinations) so Googlebot
+        gets 10 additional inbound paths to the tag cluster from the homepage
+        alone. Section title is keyword-rich ("Popular B2B Cashmere Searches")
+        so it also contributes to the page's topical authority for those terms.
+      */}
+      <div class="mb-16">
+        <div class="flex items-baseline justify-between mb-4">
+          <h2 class="font-serif text-base tracking-[0.18em] uppercase text-muted-foreground">
+            {locale === 'cn' ? '热门 B2B 羊绒搜索' : 'Popular B2B Cashmere Searches'}
+          </h2>
+          <span class="text-xs text-muted-foreground">
+            {locale === 'cn' ? '按热门度排序' : 'Sorted by long-tail demand'}
+          </span>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          {Object.entries(TAG_PAGES).map(([tagSlug, t]) => (
+            <a
+              href={`/${locale}/tag/${tagSlug}/`}
+              class="text-sm px-4 py-2 border border-border bg-background hover:border-brand-gold hover:bg-brand-cream/40 transition-colors"
+            >
+              {t.h1}
+            </a>
+          ))}
+        </div>
       </div>
 
       <!-- 精选产品（每类 3 款，共 15 张） -->
