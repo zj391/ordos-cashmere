@@ -74,7 +74,7 @@ const itemListSchema = {
 // BreadcrumbList JSON-LD: 首页 > Blog
 ---
 
-<BaseLayout locale={locale} pageKey="blog" path="/blog" noIndex={true} customSchemas={[itemListSchema]}>
+<BaseLayout locale={locale} pageKey="blog" path="/blog" noIndex={false} customSchemas={[itemListSchema]}>
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/blog`} />
 
   <section class="relative bg-brand-sandwarm border-b border-border/60 overflow-hidden">
