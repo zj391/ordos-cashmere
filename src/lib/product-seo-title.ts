@@ -338,8 +338,8 @@ export function buildProductSeoTitle(
   const category = clean(localizedCategory);
   const productName = primaryProductName(product.name) || 'Cashmere Product';
 
-  // 以具体产品名为主体。类别仅在名称极短时提供行业语境，其余均为目录真实规格。
-  const productContext = productName.length < 18 && category && !includesFacet(productName, category) ? category : '';
+  // 以具体产品名为主体；若产品名未明确类别，则加入类别语境，帮助搜索引擎和采购者识别产品线。
+  const productContext = category && !includesFacet(productName, category) ? category : '';
   const lowPriority = [productContext, ...titleFacets(product, locale)].filter(Boolean);
 
   const brandSuffix = brand ? ` | ${brand}` : '';

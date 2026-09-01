@@ -46,6 +46,7 @@ import { LOCALES, isLocale, pickLocale } from '@/lib/i18n';
 
 import { SEO, SITE_URL, SITE_INFO } from '@/lib/seo';
 import { buildProductHeading, buildProductSeoTitle } from '@/lib/product-seo-title';
+import { SEO_KEYWORDS } from '@/data/seo-keywords';
 import { getBlogSlugFromId, isIndexableBlogPost } from '@/lib/blog-indexability';
 import { getCollection } from 'astro:content';
 
@@ -922,8 +923,17 @@ const displayCategory = localizedCategory(product.categoryId, locale, category.n
 const productHeading = buildProductHeading(product, locale);
 const baseTdk = (tdk[locale] || tdk.en)(product, displayCategory);
 const titleBrand = locale === 'cn' ? '东霄羊绒' : 'DONGXIAO';
+const CATEGORY_KEYWORDS: Record<string, string[]> = {
+  hats: ['cashmere hat wholesale', 'cashmere beanie supplier', 'private label cashmere hats', 'cashmere hat manufacturer'],
+  scarves: ['cashmere scarf wholesale', 'cashmere shawl supplier', 'custom cashmere scarf', 'cashmere stole manufacturer'],
+  sweaters: ['cashmere sweater manufacturer', 'private label cashmere knitwear', 'cashmere pullover wholesale', 'cashmere garment OEM'],
+  accessories: ['cashmere gloves wholesale', 'cashmere socks supplier', 'cashmere accessories manufacturer', 'private label cashmere accessories'],
+  yarn: SEO_KEYWORDS.en.yarn.slice(0, 4),
+};
+const categoryKeywords = CATEGORY_KEYWORDS[product.categoryId] || SEO_KEYWORDS.en.factory.slice(0, 4);
+const categoryKeywordHint = categoryKeywords[0] || 'cashmere products';
 const safeMetaDescription = {
-  en: `${productHeading}. Compare listed material, color and specification attributes; request quote or contact factory for project-specific terms — sample and delivery confirmed in writing.`,
+  en: `${productHeading}. Source this ${displayCategory.toLowerCase()} for B2B projects; compare listed material, color and specification attributes, then request a written quotation for sampling and delivery terms.`,
   cn: `${productHeading}。比较已列材料、颜色和规格属性；索取报价或联系工厂确认项目条件 —— 样品与交付以书面方式确认。`,
   de: `${productHeading}. Aufgeführte Material-, Farb- und Spezifikationsmerkmale vergleichen; Angebot anfordern oder Kontakt mit dem Werk aufnehmen — Muster und Lieferung werden schriftlich bestätigt.`,
   fr: `${productHeading}. Comparez les attributs de matière, couleur et spécification listés ; demandez un devis ou contactez l'usine pour les conditions du projet — échantillon et livraison confirmés par écrit.`,
@@ -934,6 +944,8 @@ const safeMetaKeywords = [
   productHeading,
   `${displayCategory} product record`,
   product.material ? `${product.material} ${displayCategory}` : '',
+  categoryKeywordHint,
+  ...categoryKeywords.slice(1),
   'cashmere product specifications',
 ].filter(Boolean);
 const t = {
