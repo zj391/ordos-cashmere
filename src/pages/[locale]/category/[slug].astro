@@ -9,6 +9,7 @@ import { buildProductHeading } from '@/lib/product-seo-title';
 import { type Locale } from '@/lib/i18n';
 import { SITE_URL } from '@/lib/seo';
 import { CATEGORY_SEO, CATEGORY_SLUGS, CATEGORY_DISPLAY } from '@/data/category-seo';
+import { TAG_PAGES } from '@/data/tag-seo';
 
 export const prerender = true;
 
@@ -38,12 +39,14 @@ const t: Record<Locale, any> = {
     productCountLabel: (n: number) => `${n} cashmere product records`,
     viewAll: 'View all product records',
     browseRelated: 'Browse related categories',
+    browseByTag: 'Browse by tag',
     requestQuote: 'Request a quotation quote',
   },
   cn: {
     productCountLabel: (n: number) => `${n} 条羊绒产品记录`,
     viewAll: '查看全部产品记录',
     browseRelated: '浏览相关品类',
+    browseByTag: '按标签浏览',
     requestQuote: '索取报价',
   },
 };
@@ -136,6 +139,39 @@ const ui = t[locale] || t.en;
       </div>
     </div>
   </section>
+
+  {/*
+    Browse-by-tag grid: every tag page (60 total) only has one inbound
+    link from its associated category page. Without this section, the
+    60 tag pages would form an isolated cluster with low internal PageRank.
+    This block gives every tag 1–2 additional inbound links from a
+    topically related category page, distributing authority across the
+    cluster. The section sits between "Browse related categories" and
+    the contact CTA, visible to both users and crawlers.
+  */}
+  {(() => {
+    const categoryTags = Object.entries(TAG_PAGES).filter(([, tag]) => tag.categoryId === categoryId);
+    if (categoryTags.length === 0) return null;
+    return (
+      <section class="py-12 md:py-16 border-t border-border">
+        <div class="container-narrow">
+          <h2 class="font-display text-2xl md:text-3xl font-light mb-8">{ui.browseByTag}</h2>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+            {categoryTags.map(([tagSlug, tag]) => (
+              <a
+                href={`/${locale}/tag/${tagSlug}/`}
+                class="block border border-border px-4 py-3 hover:border-brand-gold hover:bg-brand-cream/30 transition-colors"
+              >
+                <div class="font-display text-sm leading-snug">
+                  {tag.h1}
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  })()}
 
   <section class="py-12 md:py-16 border-t border-border">
     <div class="container-narrow text-center">
