@@ -153,15 +153,13 @@ const groupLabel = (groupKey: string, group: any) => {
 ---
 
 <header class="snowline-nav archive-nav sticky top-0 z-40 w-full border-t-2 border-brand-red bg-background/95 backdrop-blur-sm relative">
-  <div class="container-narrow archive-nav-utility flex h-16 lg:h-20 items-center justify-between lg:grid lg:grid-cols-3">
-    <!-- 左侧留白 -->
-    <div class="hidden lg:block"></div>
-    <!-- Logo（桌面端居中） -->
-    <a href={localePath(locale, '/')} class="archive-brand flex items-baseline gap-2.5 group justify-self-center">
-      <span class="font-display text-[1.85rem] font-normal tracking-[0.08em] text-primary transition-colors group-hover:text-brand-red">
-        DONGXIAO<sup class="text-xs">®</sup>
+  <div class="container-narrow archive-nav-utility flex h-16 lg:h-[72px] items-center justify-between gap-6">
+    <!-- Logo（桌面端左对齐） -->
+    <a href={localePath(locale, '/')} class="archive-brand flex items-baseline gap-2.5 group shrink-0">
+      <span class="font-display text-[1.6rem] lg:text-[1.75rem] font-medium tracking-[0.06em] text-primary transition-colors group-hover:text-brand-red leading-none">
+        DONGXIAO<sup class="text-[0.6em] align-super">®</sup>
       </span>
-      <span class="hidden md:inline text-[0.65rem] text-muted-foreground tracking-[0.22em] uppercase">
+      <span class="hidden md:inline text-[0.6rem] lg:text-[0.65rem] text-muted-foreground tracking-[0.2em] uppercase font-light">
         Cashmere · Ordos
       </span>
     </a>
@@ -232,7 +230,7 @@ const groupLabel = (groupKey: string, group: any) => {
     ))}
 
     <!-- Right side -->
-    <div class="archive-nav-tools flex items-center justify-end gap-3">
+    <div class="archive-nav-tools flex items-center justify-end gap-2 lg:gap-3 shrink-0">
       <!-- Language Switcher -->
       <div class="relative group">
         <button
@@ -289,7 +287,7 @@ const groupLabel = (groupKey: string, group: any) => {
         href={localePath(locale, '/cart')}
         data-cart-link
         aria-label={({ cn: '询价清单', en: 'Inquiry List', de: 'Anfrageliste', fr: 'Liste de demandes', ja: '見積りリスト', kr: '문의 목록' } as Record<string, string>)[locale] || 'Inquiry List'}
-        class="relative inline-flex items-center justify-center p-2 text-muted-foreground hover:text-primary transition-colors"
+        class="relative inline-flex items-center justify-center w-9 h-9 border border-border/0 hover:border-border text-muted-foreground hover:text-primary transition-all"
       >
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
         <span
@@ -301,7 +299,7 @@ const groupLabel = (groupKey: string, group: any) => {
       <!-- CTA: Contact -->
       <a
         href={localePath(locale, '/contact')}
-        class="snowline-nav-action hidden sm:inline-flex items-center justify-center border border-primary px-6 py-2.5 text-xs uppercase tracking-[0.18em] text-primary hover:border-brand-red hover:text-brand-red hover:bg-brand-red/[0.04] transition-colors duration-300"
+        class="snowline-nav-action hidden sm:inline-flex items-center justify-center border border-primary px-5 py-2 text-[0.65rem] uppercase tracking-[0.2em] text-primary hover:border-brand-red hover:text-brand-red hover:bg-brand-red/[0.04] transition-colors duration-300"
       >
         {locale === 'cn' ? '立即询盘' : 'Request a Quote'}
       </a>
@@ -320,9 +318,9 @@ const groupLabel = (groupKey: string, group: any) => {
     </div>
   </div>
 
-  <!-- Desktop Nav（居中菜单栏） -->
+  <!-- Desktop Nav（左侧对齐菜单栏） -->
   <div class="hidden lg:block border-t border-border/60">
-    <nav class="container-narrow archive-nav-links flex items-center justify-center gap-10 py-5 text-xs uppercase tracking-[0.18em]" id="desktop-nav">
+    <nav class="container-narrow archive-nav-links flex items-center justify-start gap-8 py-3 text-[0.7rem] uppercase tracking-[0.18em]" id="desktop-nav">
       {navItems.map((item) => (
         <div class="relative group/item" data-mega-trigger={item.hasSubmenu || ''}>
           <a
