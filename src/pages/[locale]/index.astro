@@ -821,7 +821,7 @@ const IMG = {
       */}
       <div class="mb-16">
         <div class="flex items-baseline justify-between mb-4">
-          <h2 class="font-serif text-base tracking-[0.18em] uppercase text-muted-foreground">
+          <h2 class="font-serif text-base tracking-[0.18em] uppercase text-foreground font-medium">
             {locale === 'cn' ? '热门 B2B 羊绒搜索' : 'Popular B2B Cashmere Searches'}
           </h2>
           <span class="text-xs text-muted-foreground">
@@ -832,7 +832,7 @@ const IMG = {
           {Object.entries(TAG_PAGES).map(([tagSlug, t]) => (
             <a
               href={`/${locale}/tag/${tagSlug}/`}
-              class="text-sm px-4 py-2 border border-border bg-background hover:border-brand-gold hover:bg-brand-cream/40 transition-colors"
+              class="text-sm px-4 py-2 border border-border bg-background text-foreground hover:border-brand-gold hover:bg-brand-cream/40 transition-colors"
             >
               {t.h1}
             </a>

@@ -2509,14 +2509,14 @@ const relatedViewAll: Record<Locale, string> = {
     return (
       <section class="py-8 border-t border-border/40 bg-background">
         <div class="container-narrow">
-          <h3 class="text-xs uppercase tracking-[0.18em] text-muted-foreground font-medium mb-4">
+          <h3 class="text-xs uppercase tracking-[0.18em] text-foreground font-medium mb-4">
             {locale === 'cn' ? '相关标签' : 'Related Tags'}
           </h3>
           <div class="flex flex-wrap gap-2">
             {relatedTags.map(([tagSlug, t]) => (
               <a
                 href={`/${locale}/tag/${tagSlug}/`}
-                class="text-xs px-3 py-1.5 border border-border rounded-full hover:border-brand-gold hover:bg-brand-cream/30 transition-colors"
+                class="text-xs px-3 py-1.5 border border-border rounded-full text-foreground hover:border-brand-gold hover:bg-brand-cream/30 transition-colors"
               >
                 {t.h1}
               </a>
