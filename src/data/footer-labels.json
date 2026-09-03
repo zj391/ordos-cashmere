@@ -24,7 +24,12 @@
     "nav.faq": "FAQ",
     "nav.paymentTerms": "Payment Terms",
     "nav.shippingLogistics": "Shipping & Logistics",
-    "nav.qualityControl": "Quality Control"
+    "nav.qualityControl": "Quality Control",
+    "footer.scaleEstablished": "Established",
+    "footer.scaleYears": "Industry yrs",
+    "footer.scaleEmployees": "Employees",
+    "footer.scaleFactory": "Factory area",
+    "footer.scaleCapacity": "Annual capacity"
   },
   "de": {
     "footer.tagline": "Kaschmir-Produktdaten und B2B-Beschaffungsinformationen. Projektbedingungen werden schriftlich bestätigt.",
@@ -51,7 +56,12 @@
     "nav.faq": "FAQ",
     "nav.paymentTerms": "Zahlungsbedingungen",
     "nav.shippingLogistics": "Versand & Logistik",
-    "nav.qualityControl": "Qualitätskontrolle"
+    "nav.qualityControl": "Qualitätskontrolle",
+    "footer.scaleEstablished": "Gegründet",
+    "footer.scaleYears": "Branchenerfahrung",
+    "footer.scaleEmployees": "Mitarbeiter",
+    "footer.scaleFactory": "Fabrikfläche",
+    "footer.scaleCapacity": "Jahreskapazität"
   },
   "fr": {
     "footer.tagline": "Fiches produit cachemire et informations d’approvisionnement B2B. Les conditions sont confirmées par écrit.",
@@ -78,7 +88,12 @@
     "nav.faq": "FAQ",
     "nav.paymentTerms": "Conditions de paiement",
     "nav.shippingLogistics": "Livraison & Logistique",
-    "nav.qualityControl": "Contrôle qualité"
+    "nav.qualityControl": "Contrôle qualité",
+    "footer.scaleEstablished": "Fondée",
+    "footer.scaleYears": "Années d'expérience",
+    "footer.scaleEmployees": "Employés",
+    "footer.scaleFactory": "Surface usine",
+    "footer.scaleCapacity": "Capacité annuelle"
   },
   "ja": {
     "footer.tagline": "カシミヤ製品資料とB2B調達情報。案件条件は書面で確認します。",
@@ -105,7 +120,12 @@
     "nav.faq": "よくある質問",
     "nav.paymentTerms": "支払条件",
     "nav.shippingLogistics": "配送・物流",
-    "nav.qualityControl": "品質管理"
+    "nav.qualityControl": "品質管理",
+    "footer.scaleEstablished": "設立",
+    "footer.scaleYears": "業界経験年数",
+    "footer.scaleEmployees": "従業員数",
+    "footer.scaleFactory": "工場面積",
+    "footer.scaleCapacity": "年間生産能力"
   },
   "kr": {
     "footer.tagline": "캐시미어 제품 기록과 B2B 소싱 정보. 프로젝트 조건은 서면으로 확인됩니다.",
@@ -132,7 +152,12 @@
     "nav.faq": "자주 묻는 질문",
     "nav.paymentTerms": "결제 조건",
     "nav.shippingLogistics": "배송 및 물류",
-    "nav.qualityControl": "품질 관리"
+    "nav.qualityControl": "품질 관리",
+    "footer.scaleEstablished": "설립연도",
+    "footer.scaleYears": "업계 경력",
+    "footer.scaleEmployees": "직원 수",
+    "footer.scaleFactory": "공장 면적",
+    "footer.scaleCapacity": "연간 생산 능력"
   },
   "cn": {
     "footer.tagline": "羊绒产品资料与 B2B 采购信息，项目条件以书面方式确认。",
@@ -159,6 +184,11 @@
     "nav.faq": "常见问题",
     "nav.paymentTerms": "付款条款",
     "nav.shippingLogistics": "物流运输",
-    "nav.qualityControl": "质量控制"
+    "nav.qualityControl": "质量控制",
+    "footer.scaleEstablished": "成立年份",
+    "footer.scaleYears": "行业经验",
+    "footer.scaleEmployees": "员工人数",
+    "footer.scaleFactory": "工厂面积",
+    "footer.scaleCapacity": "年产能"
   }
 }

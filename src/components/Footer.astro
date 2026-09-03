@@ -38,6 +38,8 @@ const productLinks = [
   { href: '/raw-material', labelKey: 'nav.rawMaterial' },
   { href: '/products/yarn', labelKey: 'nav.yarnFabric' },
   { href: '/garment-oem', labelKey: 'nav.garmentOem' },
+  { href: '/factory', labelKey: 'nav.factory' },
+  { href: '/ordos-origin', labelKey: 'nav.ordosOrigin' },
 ];
 const companyLinks = [
   { href: '/blog', labelKey: 'nav.blog' },
@@ -63,10 +65,36 @@ const resourceLinks = [
         <p class="text-sm text-muted-foreground leading-relaxed mb-4 max-w-sm">
           {fl('footer.tagline')}
         </p>
-        <div class="text-xs text-muted-foreground space-y-1">
+        <div class="text-xs text-muted-foreground space-y-1 mb-4">
           <div>{fl('footer.address')}</div>
           <div class="text-primary font-medium">{fl('footer.certifications')}</div>
         </div>
+        <!-- Scale signals: factual B2B trust markers drawn from SITE_INFO.scale.
+             Static numbers — no derived claims. Each line is sourced from a single
+             field that's already used in product/category pages and the JSON-LD
+             Organization schema, so footers across all 6 locales stay in sync. -->
+        <ul class="grid grid-cols-3 gap-3 pt-3 border-t border-border/60 max-w-sm">
+          <li>
+            <div class="font-display text-lg text-primary leading-none">{SITE_INFO.foundingYear}</div>
+            <div class="text-[10px] uppercase tracking-[0.14em] text-muted-foreground mt-1">{fl('footer.scaleEstablished')}</div>
+          </li>
+          <li>
+            <div class="font-display text-lg text-primary leading-none">{SITE_INFO.scale.yearsExperience}</div>
+            <div class="text-[10px] uppercase tracking-[0.14em] text-muted-foreground mt-1">{fl('footer.scaleYears')}</div>
+          </li>
+          <li>
+            <div class="font-display text-lg text-primary leading-none">{SITE_INFO.scale.employees}</div>
+            <div class="text-[10px] uppercase tracking-[0.14em] text-muted-foreground mt-1">{fl('footer.scaleEmployees')}</div>
+          </li>
+          <li class="col-span-3">
+            <div class="font-display text-lg text-primary leading-none">{SITE_INFO.scale.factoryArea}</div>
+            <div class="text-[10px] uppercase tracking-[0.14em] text-muted-foreground mt-1">{fl('footer.scaleFactory')}</div>
+          </li>
+          <li class="col-span-3">
+            <div class="font-display text-lg text-primary leading-none">{SITE_INFO.scale.annualCapacity}</div>
+            <div class="text-[10px] uppercase tracking-[0.14em] text-muted-foreground mt-1">{fl('footer.scaleCapacity')}</div>
+          </li>
+        </ul>
       </div>
 
       <!-- Products -->
