@@ -332,7 +332,7 @@ export function buildProductSeoTitle(
   product: ProductTitleInput,
   localizedCategory: string,
   brand = 'DONGXIAO',
-  maxLength = 128,
+  maxLength = 150,
   locale = 'en',
 ): string {
   const category = clean(localizedCategory);
