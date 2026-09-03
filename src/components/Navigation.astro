@@ -167,8 +167,10 @@ const groupLabel = (groupKey: string, group: any) => {
     <!-- Mega Menu container (rendered once, content swapped by JS based on hovered nav item) -->
     {navItems.filter((i) => i.hasSubmenu).map((item) => (
       <div
+        id={`mega-panel-${item.hasSubmenu}`}
         data-mega-panel={item.hasSubmenu}
         class="archive-mega hidden lg:block absolute left-0 right-0 top-full w-full bg-white border-t border-border shadow-[0_18px_40px_-18px_rgba(28,24,19,0.12)] opacity-0 invisible pointer-events-none transition-all duration-300 ease-out z-50"
+        aria-hidden="true"
       >
         <div class="container-narrow py-12 grid grid-cols-[1fr_320px] gap-14">
           <!-- Left: 4 category groups -->
@@ -309,6 +311,8 @@ const groupLabel = (groupKey: string, group: any) => {
         type="button"
         class="lg:hidden p-2"
         aria-label={t('nav.menuToggle')}
+        aria-controls="mobile-menu"
+        aria-expanded="false"
         id="mobile-menu-toggle"
       >
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -329,6 +333,9 @@ const groupLabel = (groupKey: string, group: any) => {
               'nav-link inline-flex items-center gap-1.5 py-1 transition-colors hover:text-primary',
               isActive(item.href) ? 'text-primary is-active' : 'text-muted-foreground',
             ]}
+            aria-expanded={item.hasSubmenu ? 'false' : undefined}
+            aria-haspopup={item.hasSubmenu ? 'true' : undefined}
+            aria-controls={item.hasSubmenu ? `mega-panel-${item.hasSubmenu}` : undefined}
           >
             {t(item.labelKey)}
             {item.hasSubmenu && (
@@ -343,7 +350,7 @@ const groupLabel = (groupKey: string, group: any) => {
   </div>
 
   <!-- Mobile Menu -->
-  <nav id="mobile-menu" class="archive-mobile-menu lg:hidden hidden border-t border-border bg-background">
+  <nav id="mobile-menu" class="archive-mobile-menu lg:hidden hidden border-t border-border bg-background" aria-hidden="true">
     <div class="container-narrow py-4 space-y-1">
       {navItems.map((item) => (
         <div>
@@ -386,11 +393,20 @@ const groupLabel = (groupKey: string, group: any) => {
   // 移动端菜单
   const toggle = document.getElementById('mobile-menu-toggle');
   const menu = document.getElementById('mobile-menu');
+  function syncMobileMenu() {
+    const isOpen = menu && !menu.classList.contains('hidden');
+    if (toggle) toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    if (menu) menu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+  }
   toggle?.addEventListener('click', () => {
     menu?.classList.toggle('hidden');
+    syncMobileMenu();
   });
   menu?.querySelectorAll('a').forEach((a) => {
-    a.addEventListener('click', () => menu.classList.add('hidden'));
+    a.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      syncMobileMenu();
+    });
   });
 
   // Pura-style mega menu: show panel matching the hovered nav item.
@@ -408,13 +424,23 @@ const groupLabel = (groupKey: string, group: any) => {
       if (key === activeKey) return;
       activeKey = key;
       panels.forEach((p) => {
-        if (p.getAttribute('data-mega-panel') === key) {
+        const pKey = p.getAttribute('data-mega-panel');
+        const isActive = pKey === key;
+        if (isActive) {
           p.classList.remove('opacity-0', 'invisible', 'pointer-events-none');
           p.classList.add('opacity-100', 'visible', 'pointer-events-auto');
+          p.setAttribute('aria-hidden', 'false');
         } else {
           p.classList.add('opacity-0', 'invisible', 'pointer-events-none');
           p.classList.remove('opacity-100', 'visible', 'pointer-events-auto');
+          p.setAttribute('aria-hidden', 'true');
         }
+      });
+      // Sync aria-expanded on trigger links
+      triggers.forEach((t) => {
+        const triggerKey = t.getAttribute('data-mega-trigger');
+        const link = t.querySelector('a');
+        if (link) link.setAttribute('aria-expanded', triggerKey === key ? 'true' : 'false');
       });
     }
 
@@ -425,6 +451,11 @@ const groupLabel = (groupKey: string, group: any) => {
         panels.forEach((p) => {
           p.classList.add('opacity-0', 'invisible', 'pointer-events-none');
           p.classList.remove('opacity-100', 'visible', 'pointer-events-auto');
+          p.setAttribute('aria-hidden', 'true');
+        });
+        triggers.forEach((t) => {
+          const link = t.querySelector('a');
+          if (link) link.setAttribute('aria-expanded', 'false');
         });
       }, 120); // small grace period so cursor can move from trigger to panel
     }
