@@ -499,6 +499,7 @@ const groupLabel = (groupKey: string, group: any) => {
     let ticking = false;
     let mouseNearTop = false;
     const THRESHOLD = 80;
+    const SCROLL_SHADOW_THRESHOLD = 16; // add is-scrolled class once scrolled past this much
     const TOP_PROXIMITY = 120; // viewport pixels from top
     document.addEventListener('mousemove', (e) => {
       mouseNearTop = e.clientY < TOP_PROXIMITY;
@@ -515,6 +516,13 @@ const groupLabel = (groupKey: string, group: any) => {
         header.classList.add('header-hidden');
       } else if (delta < -8) {
         header.classList.remove('header-hidden');
+      }
+      // Toggle is-scrolled for progressive shadow on small scrolls (independent
+      // of header-hidden which is for the larger hide-on-scroll-down pattern).
+      if (y > SCROLL_SHADOW_THRESHOLD) {
+        header.classList.add('is-scrolled');
+      } else {
+        header.classList.remove('is-scrolled');
       }
       ticking = false;
     }

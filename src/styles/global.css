@@ -120,13 +120,12 @@ html {
   height: 2px;
   background: #9E3128;
   transform: scaleX(0);
-  transform-origin: right;
+  transform-origin: left;
   transition: transform var(--duration-normal) var(--ease-soft);
 }
 .nav-link:hover::after,
 .nav-link.is-active::after {
   transform: scaleX(1);
-  transform-origin: left;
 }
 @media (prefers-reduced-motion: reduce) {
   .nav-link::after {
