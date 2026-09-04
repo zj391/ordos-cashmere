@@ -486,7 +486,7 @@ const IMG = {
               {t6('原料信息', 'Material Information', 'Materialinformationen', 'Informations matière', '原料情報', '원료 정보')}
             </span>
           </div>
-          <h2 class="font-serif text-5xl md:text-6xl font-light leading-[1.08] mb-8 text-brand-ink" set:html={t6(
+          <h2 class="text-4xl md:text-5xl font-bold leading-[1.1] mb-8 text-foreground" set:html={t6(
             '鄂尔多斯：<br/>羊绒产品与原料信息',
             'Ordos:<br/>Cashmere Product & Material Information',
             'Ordos:<br/>Kaschmir-Produkt- und Materialinformationen',
@@ -540,7 +540,7 @@ const IMG = {
               {t6('产品矩阵', 'Product Range', 'Produktpalette', 'Gamme', '製品範囲', '제품 범위')}
             </span>
           </div>
-          <h2 class="font-serif text-5xl md:text-6xl font-light leading-[1.08] max-w-2xl">
+          <h2 class="text-4xl md:text-5xl font-bold leading-[1.1] max-w-2xl">
             {t6(
               '羊绒产品资料：从原料到针织成衣',
               'Cashmere Product Records, from Material to Knitwear',
@@ -667,7 +667,7 @@ const IMG = {
             {t6('为什么选东霄', 'Why DONGXIAO', 'Warum DONGXIAO', 'Pourquoi', 'なぜ東霄', '왜 동소')}
           </span>
         </div>
-        <h2 class="font-serif text-5xl md:text-6xl font-light leading-[1.08]">
+        <h2 class="text-4xl md:text-5xl font-bold leading-[1.1]">
           {t6('从产品资料到项目讨论，围绕羊绒规格逐项确认', 'From product records to project discussion, confirm cashmere specifications step by step', 'Von Produktdaten zur Projektabstimmung: Kaschmirspezifikationen Schritt für Schritt bestätigen', 'Des fiches produit à l’échange projet, confirmer les spécifications cachemire étape par étape', '製品情報から案件協議まで、カシミア仕様を段階的に確認', '제품 기록부터 프로젝트 협의까지, 캐시미어 사양을 단계별로 확인')}
         </h2>
       </div>
@@ -737,7 +737,7 @@ const IMG = {
     <div class="container-narrow">
       <div class="text-center mb-12">
         <div class="inline-block text-xs tracking-[0.3em] uppercase text-brand-camel mb-3">{t6('项目准备', 'Project preparation', 'Projektvorbereitung', 'Préparation du projet', '案件準備', '프로젝트 준비')}</div>
-        <h2 class="font-serif text-3xl md:text-4xl font-light">
+        <h2 class="text-2xl md:text-3xl font-bold">
           {t6('项目文件与核验要求以书面方式确认', 'Project documentation and verification requirements are confirmed in writing', 'Projektdokumentation und Prüfanforderungen werden schriftlich bestätigt', 'Les documents et exigences de vérification sont confirmés par écrit', '案件書類と検証要件は書面で確認します', '프로젝트 문서 및 검증 요건은 서면으로 확인됩니다')}
         </h2>
         <p class="max-w-3xl mx-auto mt-5 text-sm leading-relaxed text-muted-foreground">
@@ -777,7 +777,7 @@ const IMG = {
           <div class="eyebrow mb-6">
             <span class="text-xs tracking-[0.3em] text-brand-gold uppercase font-medium">{t6('产品中心', 'Product Center', 'Produktzentrum', 'Centre Produits', '製品センター', '제품 센터')}</span>
           </div>
-          <h2 class="font-serif text-3xl md:text-5xl font-light leading-tight text-balance">
+          <h2 class="text-2xl md:text-4xl font-bold leading-tight text-balance">
             {t6('5 大品类 · 从原料到成衣', '5 categories, from raw fiber to finished knitwear', '5 Kategorien, vom Rohmaterial bis zur Strickware', '5 catégories, de la fibre au tricot fini', '5カテゴリー、原料からニットまで', '5개 카테고리, 원료부터 니트까지')}
           </h2>
         </div>
@@ -881,20 +881,20 @@ const IMG = {
     </div>
     <div class="container-narrow relative z-10 text-center max-w-3xl mx-auto reveal">
       <img src={IMG.uiMark} alt="" aria-hidden="true" class="home-fiber-mark" decoding="async" loading="lazy" />
-      <div class="inline-block text-xs tracking-[0.3em] uppercase text-brand-camel mb-6">
+      <div class="inline-block text-xs tracking-[0.3em] uppercase text-copper font-bold mb-6">
         {t6('下一步', 'Next Step', 'Nächster Schritt', 'Étape suivante', '次のステップ', '다음 단계')}
       </div>
-      <h2 class="font-serif text-4xl md:text-6xl font-light mb-6 leading-tight">
+      <h2 class="text-3xl md:text-5xl font-bold mb-6 leading-tight text-foreground">
         {t6('准备好开始您的羊绒采购了吗？', 'Ready to start your cashmere sourcing?', 'Bereit für Ihre Kaschmir-Beschaffung?', 'Prêt à démarrer votre sourcing cachemire ?', 'カシミア調達を始めますか？', '캐시미어 소싱을 시작하시겠습니까?')}
       </h2>
-      <p class="text-muted-foreground mb-12 text-lg font-light">
+      <p class="text-muted-foreground mb-12 text-lg max-w-2xl mx-auto">
         {t6('请提供产品参考、数量、目的地和文件要求，以启动书面采购沟通。', 'Share a product reference, quantity, destination and document requirements to begin a written sourcing discussion.', 'Produktreferenz, Menge, Zielort und Dokumentenbedarf für die schriftliche Beschaffung angeben.', 'Indiquez référence produit, quantité, destination et documents requis pour un échange écrit.', '製品参考、数量、仕向地、書類要件を共有して書面で相談します。', '제품 참고, 수량, 목적지, 서류 요건을 공유해 서면 소싱 상담을 시작하세요.')}
       </p>
       <div class="flex flex-wrap justify-center gap-4">
-        <a href={`/${locale}/contact/`} class="btn-lux">
+        <a href={`/${locale}/contact/`} class="inline-flex items-center justify-center bg-brand-cocoa hover:bg-brand-cocoa-dark px-8 py-3.5 text-sm uppercase tracking-[0.16em] text-white font-semibold transition-colors duration-200">
           {c.cta}
         </a>
-        <a href={`https://wa.me/${SITE_INFO.whatsapp.replace(/[^\d]/g, '')}`} target="_blank" rel="noopener noreferrer" class="btn-lux-outline">
+        <a href={`https://wa.me/${SITE_INFO.whatsapp.replace(/[^\d]/g, '')}`} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center border border-copper text-copper hover:bg-copper hover:text-white px-8 py-3.5 text-sm uppercase tracking-[0.16em] font-semibold transition-colors duration-200">
           WhatsApp
         </a>
       </div>
@@ -926,7 +926,7 @@ const IMG = {
               <span class="h-[2px] w-10 bg-brand-red"></span>
               <span class="text-xs tracking-[0.3em] text-brand-gold uppercase font-medium">{locale === 'cn' ? '博客' : 'Blog'}</span>
             </div>
-            <h2 class="font-serif text-3xl md:text-5xl font-light leading-tight text-balance">
+            <h2 class="text-2xl md:text-4xl font-bold leading-tight text-balance">
               {locale === 'cn' ? '最新行业洞察' : 'Latest from our blog'}
             </h2>
           </div>
