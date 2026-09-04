@@ -51,6 +51,13 @@ export default {
           ink: '#1C1813',
           gold: '#AD8A5C',
           red: '#9E3128',
+          // 2026-09-04 arbas-inspired palette: cocoa brown for primary CTAs,
+          // copper orange for stat highlights and brand emphasis. Lighter
+          // surface tints for white/cream section backgrounds.
+          cocoa: '#5C3D2E',
+          'cocoa-dark': '#4B3225',
+          copper: '#C77D3F',
+          'copper-light': '#E29B6A',
           // Extended warm-beige palette for inline-hex replacements (2026-08-26
           // audit): these cover the 6 hex values that were duplicated across
           // 89 component instances. Each value matches the exact hex it replaces
