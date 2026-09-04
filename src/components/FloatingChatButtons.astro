@@ -84,20 +84,24 @@ const wechatQrUrl = '/images/wechat-qr.png';
 <div
   id="wechat-modal"
   class="hidden fixed inset-0 z-[60] bg-black/60 items-center justify-center p-4"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="wechat-modal-title"
   onclick="if(event.target.id==='wechat-modal') document.getElementById('wechat-modal').classList.add('hidden'); document.getElementById('wechat-modal').classList.remove('flex');"
 >
   <div class="bg-white rounded-lg shadow-2xl p-8 max-w-sm w-full relative">
     <button
       type="button"
       class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center text-gray-500 hover:text-gray-900"
+      aria-label="Close WeChat QR dialog"
       onclick="document.getElementById('wechat-modal').classList.add('hidden'); document.getElementById('wechat-modal').classList.remove('flex');"
     >
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
       </svg>
     </button>
     <div class="text-center">
-      <h3 class="font-display text-2xl mb-2">WeChat</h3>
+      <h3 id="wechat-modal-title" class="font-display text-2xl mb-2">WeChat</h3>
       <p class="text-sm text-gray-600 mb-4">
         {locale === 'cn' ? '扫描二维码添加微信' : 'Scan QR code to add WeChat'}
       </p>
