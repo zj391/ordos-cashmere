@@ -332,18 +332,18 @@ const IMG = {
         <div class="eyebrow eyebrow-on-dark mb-10">
           <span>{c.tagline}</span>
         </div>
-        <h1 class="font-serif text-6xl md:text-8xl font-light leading-[1.05] tracking-[-0.02em] mb-10" set:html={c.title.replace(/\n/g, '<br/>')} />
+        <h1 class="text-5xl md:text-7xl font-bold leading-[1.05] tracking-[-0.02em] mb-10 text-white" set:html={c.title.replace(/\n/g, '<br/>')} />
         <p class="text-lg md:text-xl text-white/80 mb-14 leading-relaxed max-w-2xl font-light">
           {c.subtitle}
         </p>
         <div class="flex flex-wrap items-center gap-6">
-          <a href={`/${locale}/contact/`} class="home-thread-cta group inline-flex items-center gap-3 px-10 py-5 bg-white text-brand-ink text-sm font-medium uppercase tracking-[0.22em] hover:bg-brand-gold hover:text-white transition-colors duration-300">
+          <a href={`/${locale}/contact/`} class="group inline-flex items-center gap-3 px-10 py-5 bg-brand-cocoa hover:bg-brand-cocoa-dark text-white text-sm font-semibold uppercase tracking-[0.16em] transition-colors duration-200">
             {c.cta}
             <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
             </svg>
           </a>
-          <a href={`/${locale}/download/`} class="group inline-flex items-center gap-2 text-white text-sm uppercase tracking-[0.2em] border-b border-white/40 pb-1 hover:border-brand-gold hover:text-brand-gold transition-colors">
+          <a href={`/${locale}/download/`} class="group inline-flex items-center gap-2 text-white text-sm uppercase tracking-[0.2em] border-b border-white/40 pb-1 hover:border-brand-copper hover:text-brand-copper transition-colors">
             {c.ctaSecondary}
           </a>
         </div>
