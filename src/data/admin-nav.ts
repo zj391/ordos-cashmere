@@ -125,4 +125,14 @@ export const ADMIN_NAV_ITEMS: AdminNavItem[] = [
       ja: 'システム設定', kr: '시스템 설정',
     },
   },
+  // 2026-09-04 multi-channel sync (LinkedIn / 小红书 / 1688)
+  {
+    key: 'sync',
+    path: 'sync',
+    icon: '<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>',
+    label: {
+      en: 'Multi-channel Sync', cn: '多平台同步', de: 'Sync', fr: 'Synchronisation',
+      ja: '同期', kr: '동기화',
+    },
+  },
 ];

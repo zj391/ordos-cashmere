@@ -1,0 +1,316 @@
+---
+/**
+ * Admin → Multi-channel Sync (2026-09-04)
+ *
+ * zj ask: 一键把 ordos-cashmere 产品同步到 LinkedIn / 小红书 / 1688.
+ *
+ * Phase 1 (this commit): skeleton + manual template for 小红书.
+ *   - Lists 582 products (paginated, search-by-name filter).
+ *   - User toggles which products to include in this batch.
+ *   - User picks which channels to push to.
+ *   - Click "Sync now" → POST /api/sync → renders per-channel result
+ *     cards (status badge + external link or "open template" modal for
+ *     小红书 manual copy-paste).
+ *   - Recent sync log table at the bottom (last 30 entries).
+ *
+ * Phase 2 (next, when creds available):
+ *   - Real LinkedIn Marketing API call (channel push() body)
+ *   - Real 1688 Open Platform call (alibaba.product.add flow)
+ *   - Auth middleware that gates /api/sync on admin session cookie
+ *
+ * This file is a NEW admin page — does not modify zj's existing
+ * admin pages. The AdminLayout shared chrome is reused.
+ */
+export const prerender = false;
+import AdminLayout from '@/layouts/AdminLayout.astro';
+import { listAllProductIds } from '@/lib/sync/loader';
+import { listChannels } from '@/lib/sync/registry';
+import type { ChannelId } from '@/lib/sync/types';
+
+// 582 products on first render — fast, in-memory, no DB round-trip
+const products = listAllProductIds();
+const channels = listChannels();
+const defaultChannels: ChannelId[] = ['linkedin', 'alibaba', 'xiaohongshu'];
+
+const labels = {
+  pageTitle: { en: 'Multi-channel sync', cn: '多平台同步', de: 'Mehrkanal-Synchronisierung', fr: 'Synchronisation multicanal', ja: 'マルチチャネル同期', kr: '다채널 동기화' },
+  pageDesc: {
+    en: 'Push ordos-cashmere products to LinkedIn, 小红书, and 1688. Pick products below, select channels, then sync.',
+    cn: '一键同步东霄羊绒产品到 LinkedIn、小红书、1688。下方选择产品与平台即可推送。',
+    de: 'Ordos-Cashmere-Produkte auf LinkedIn, 小红书 und 1688 übertragen.',
+    fr: 'Transférer les produits Ordos Cashmere vers LinkedIn, 小红书 et 1688.',
+    ja: 'オールドス・カシミア製品を LinkedIn、小红书、1688 に配信。',
+    kr: '오르도스 캐시미어 제품을 LinkedIn, 小红书, 1688에 동시 배포.',
+  },
+  selectAll: { en: 'Select all', cn: '全选', de: 'Alle auswählen', fr: 'Tout sélectionner', ja: 'すべて選択', kr: '전체 선택' },
+  clear: { en: 'Clear', cn: '清空', de: 'Löschen', fr: 'Effacer', ja: 'クリア', kr: '지우기' },
+  searchPlaceholder: { en: 'Filter by product name / id…', cn: '按产品名 / id 筛选…', de: 'Nach Produktname filtern…', fr: 'Filtrer par nom…', ja: '製品名で絞り込み…', kr: '제품명 필터…' },
+  channelLabel: { en: 'Channel', cn: '平台', de: 'Kanal', fr: 'Canal', ja: 'チャンネル', kr: '채널' },
+  selectProducts: { en: 'Select products', cn: '选择产品', de: 'Produkte wählen', fr: 'Choisir produits', ja: '製品選択', kr: '제품 선택' },
+  syncNow: { en: 'Sync now', cn: '立即同步', de: 'Jetzt synchronisieren', fr: 'Synchroniser', ja: '今すぐ同期', kr: '지금 동기화' },
+  syncing: { en: 'Syncing…', cn: '同步中…', de: 'Synchronisiere…', fr: 'Synchronisation…', ja: '同期中…', kr: '동기화 중…' },
+  recent: { en: 'Recent sync log', cn: '最近同步记录', de: 'Letzte Synchronisierungen', fr: 'Journal récent', ja: '最近の同期', kr: '최근 동기화' },
+  noLogs: { en: 'No sync activity yet.', cn: '暂无同步记录。', de: 'Noch keine Synchronisierungen.', fr: 'Aucune activité.', ja: '同期履歴なし。', kr: '동기화 기록 없음.' },
+  productCol: { en: 'Product', cn: '产品', de: 'Produkt', fr: 'Produit', ja: '製品', kr: '제품' },
+  statusCol: { en: 'Status', cn: '状态', de: 'Status', fr: 'Statut', ja: '状態', kr: '상태' },
+  whenCol: { en: 'When', cn: '时间', de: 'Wann', fr: 'Quand', ja: '日時', kr: '시간' },
+  template: { en: 'Template', cn: '模板', de: 'Vorlage', fr: 'Modèle', ja: 'テンプレート', kr: '템플릿' },
+  copy: { en: 'Copy', cn: '复制', de: 'Kopieren', fr: 'Copier', ja: 'コピー', kr: '복사' },
+  copied: { en: 'Copied!', cn: '已复制！', de: 'Kopiert!', fr: 'Copié !', ja: 'コピーしました', kr: '복사됨!' },
+  phase1: { en: 'Phase 1 — API integrations pending. LinkedIn / 1688 channels will report status:skipped until env vars are set. 小红书 channel always runs in manual mode (no public B2B API).', cn: '第一阶段 — API 集成待完成。LinkedIn / 1688 渠道在环境变量未配置时显示 skipped；小红书始终为 manual_ready（无公开 B2B API）。', de: 'Phase 1 — API-Integration ausstehend. LinkedIn / 1688 melden status:skipped, bis Env-Variablen gesetzt sind. 小红书 läuft immer im manuellen Modus.', fr: 'Phase 1 — Intégrations API en attente. LinkedIn / 1688 renverront status:skipped tant que les variables d\'env ne sont pas définies. 小红书 reste en mode manuel.', ja: 'フェーズ 1 — API 統合は保留中。LinkedIn / 1688 は環境変数が設定されるまで status:skipped を返します。小红书 は常に手動モードです。', kr: '1단계 — API 통합 대기 중. LinkedIn / 1688은 환경 변수가 설정될 때까지 status:skipped를 반환합니다. 小红书은 항상 수동 모드입니다.' },
+};
+type L = typeof labels;
+
+const locale = 'en';
+const t = (k: keyof L) => (labels[k] as Record<string, string>)[locale];
+---
+<AdminLayout title={t('pageTitle')} activeNav="sync" locale={locale}>
+  <div class="space-y-6">
+    <header>
+      <h1 class="text-2xl font-bold text-foreground">{t('pageTitle')}</h1>
+      <p class="text-sm text-muted-foreground mt-1 max-w-3xl">{t('pageDesc')}</p>
+      <p class="text-xs text-copper mt-3 px-3 py-2 bg-brand-copper/10 border-l-2 border-brand-copper rounded">
+        {t('phase1')}
+      </p>
+    </header>
+
+    <!-- Channel selector -->
+    <section class="bg-card border border-border rounded-lg p-5">
+      <h2 class="text-sm font-semibold text-foreground mb-3 uppercase tracking-wider">{t('channelLabel')}</h2>
+      <div class="flex flex-wrap gap-4">
+        {channels.map((ch) => (
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              name="channel"
+              value={ch.id}
+              checked
+              class="w-4 h-4 accent-brand-cocoa"
+              data-channel-checkbox
+            />
+            <span class="text-sm font-medium text-foreground">{ch.label}</span>
+            <span class="text-xs text-muted-foreground">({ch.isAutomated ? 'auto' : 'manual'})</span>
+          </label>
+        ))}
+      </div>
+    </section>
+
+    <!-- Product selector + actions -->
+    <section class="bg-card border border-border rounded-lg p-5">
+      <div class="flex items-center justify-between mb-3 gap-4 flex-wrap">
+        <h2 class="text-sm font-semibold text-foreground uppercase tracking-wider">{t('selectProducts')}</h2>
+        <div class="flex gap-2 items-center">
+          <input
+            type="text"
+            id="sync-product-search"
+            placeholder={t('searchPlaceholder')}
+            class="border border-border rounded px-3 py-1.5 text-sm w-64"
+            data-sync-search
+          />
+          <button
+            type="button"
+            id="sync-select-all"
+            class="text-xs px-3 py-1.5 bg-secondary text-foreground rounded hover:bg-secondary/80"
+          >{t('selectAll')}</button>
+          <button
+            type="button"
+            id="sync-clear"
+            class="text-xs px-3 py-1.5 border border-border text-foreground rounded hover:bg-secondary"
+          >{t('clear')}</button>
+        </div>
+      </div>
+
+      <div
+        id="sync-product-list"
+        class="max-h-96 overflow-y-auto border border-border rounded p-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1 text-sm"
+      >
+        {products.map((p) => (
+          <label
+            class="flex items-center gap-2 px-2 py-1 hover:bg-secondary/40 rounded cursor-pointer sync-product-row"
+            data-product-name={`${p.id} ${p.name} ${p.category}`.toLowerCase()}
+          >
+            <input
+              type="checkbox"
+              name="productIds"
+              value={p.id}
+              class="w-3.5 h-3.5 accent-brand-cocoa"
+              data-product-checkbox
+            />
+            <span class="truncate text-foreground">{p.name}</span>
+            <span class="text-xs text-muted-foreground ml-auto shrink-0">{p.id}</span>
+          </label>
+        ))}
+      </div>
+
+      <div class="mt-4 flex items-center gap-3">
+        <button
+          type="button"
+          id="sync-now"
+          class="bg-brand-cocoa hover:bg-brand-cocoa-dark text-white px-5 py-2.5 text-sm font-semibold uppercase tracking-wider transition-colors disabled:opacity-50"
+        >{t('syncNow')}</button>
+        <span id="sync-selected-count" class="text-xs text-muted-foreground">0 {t('selectProducts').toLowerCase()}</span>
+      </div>
+    </section>
+
+    <!-- Result panels (filled by JS after POST) -->
+    <section id="sync-results" class="space-y-3 hidden"></section>
+
+    <!-- Recent log -->
+    <section class="bg-card border border-border rounded-lg p-5">
+      <h2 class="text-sm font-semibold text-foreground mb-3 uppercase tracking-wider">{t('recent')}</h2>
+      <div id="sync-recent-log" class="text-sm text-muted-foreground">{t('noLogs')}</div>
+    </section>
+  </div>
+</AdminLayout>
+
+<script is:inline>
+  (function () {
+    const $ = (s, root = document) => root.querySelector(s);
+    const $$ = (s, root = document) => Array.from(root.querySelectorAll(s));
+
+    const rows = $$('.sync-product-row');
+    const search = $('[data-sync-search]');
+    const cbs = $$('[data-product-checkbox]');
+    const channelCbs = $$('[data-channel-checkbox]');
+    const countLabel = $('#sync-selected-count');
+    const selectAllBtn = $('#sync-select-all');
+    const clearBtn = $('#sync-clear');
+    const syncBtn = $('#sync-now');
+    const resultsBox = $('#sync-results');
+    const recentBox = $('#sync-recent-log');
+
+    function updateCount() {
+      const n = cbs.filter((c) => c.checked).length;
+      countLabel.textContent = `${n} selected`;
+      syncBtn.disabled = n === 0;
+    }
+    function applyFilter() {
+      const q = (search.value || '').toLowerCase().trim();
+      rows.forEach((row) => {
+        const name = row.getAttribute('data-product-name') || '';
+        row.style.display = !q || name.includes(q) ? '' : 'none';
+      });
+    }
+    search?.addEventListener('input', applyFilter);
+
+    selectAllBtn?.addEventListener('click', () => {
+      rows.forEach((row) => {
+        if (row.style.display === 'none') return;
+        const cb = row.querySelector('[data-product-checkbox]');
+        if (cb) cb.checked = true;
+      });
+      updateCount();
+    });
+    clearBtn?.addEventListener('click', () => {
+      cbs.forEach((c) => (c.checked = false));
+      updateCount();
+    });
+    cbs.forEach((c) => c.addEventListener('change', updateCount));
+    updateCount();
+
+    function statusBadge(s) {
+      const map = {
+        pushed:        'bg-emerald-100 text-emerald-800',
+        manual_ready:  'bg-amber-100 text-amber-800',
+        skipped:       'bg-stone-100 text-stone-600',
+        error:         'bg-red-100 text-red-700',
+        pending:       'bg-blue-100 text-blue-800',
+      };
+      return map[s] || 'bg-stone-100 text-stone-600';
+    }
+
+    function renderResults(data) {
+      resultsBox.classList.remove('hidden');
+      resultsBox.innerHTML = '';
+      for (const r of data.results) {
+        const card = document.createElement('div');
+        card.className = 'bg-card border border-border rounded-lg p-4';
+        const channels = r.perChannel || {};
+        const channelCells = Object.entries(channels)
+          .map(([ch, res]) => {
+            const status = res.status || 'error';
+            const badge = `<span class="inline-block text-[10px] uppercase tracking-wider px-2 py-0.5 rounded ${statusBadge(status)}">${status}</span>`;
+            const link = res.externalUrl
+              ? `<a href="${res.externalUrl}" target="_blank" rel="noopener" class="text-xs text-brand-cocoa hover:underline ml-2">view</a>`
+              : (res.previewUrl
+                ? `<a href="${res.previewUrl}" class="text-xs text-brand-cocoa hover:underline ml-2">template</a>`
+                : '');
+            const err = res.errorMessage ? `<div class="text-xs text-red-600 mt-1">${res.errorMessage}</div>` : '';
+            return `<div class="text-sm"><span class="text-foreground font-medium">${ch}</span> ${badge}${link}${err}</div>`;
+          })
+          .join('');
+        card.innerHTML = `
+          <div class="font-medium text-foreground">${r.productName || r.productId}</div>
+          <div class="text-xs text-muted-foreground mb-2">${r.productId}</div>
+          <div class="space-y-1">${channelCells || '<div class="text-xs text-muted-foreground">no channel results</div>'}</div>
+        `;
+        resultsBox.appendChild(card);
+      }
+    }
+
+    function renderRecent(logs) {
+      if (!logs || !logs.length) {
+        recentBox.textContent = 'No sync activity yet.';
+        return;
+      }
+      recentBox.innerHTML = `
+        <table class="w-full text-sm">
+          <thead class="text-xs uppercase text-muted-foreground border-b border-border">
+            <tr><th class="text-left py-1">Product</th><th class="text-left">Status</th><th class="text-left">When</th></tr>
+          </thead>
+          <tbody>
+            ${logs.map((l) => {
+              const when = new Date(l.startedAt).toLocaleString();
+              const statuses = (l.channels || []).map((c) => `${c.channel}:${c.status}`).join(', ');
+              return `<tr class="border-b border-border/40">
+                <td class="py-1 pr-2"><div class="text-foreground truncate max-w-xs">${l.productName || l.productId}</div><div class="text-xs text-muted-foreground">${l.productId}</div></td>
+                <td class="pr-2 text-xs text-muted-foreground">${statuses}</td>
+                <td class="text-xs text-muted-foreground">${when}</td>
+              </tr>`;
+            }).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+
+    async function refreshRecent() {
+      try {
+        const r = await fetch('/api/sync');
+        if (r.ok) {
+          const data = await r.json();
+          renderRecent(data.logs || []);
+        }
+      } catch (e) { /* silent */ }
+    }
+    refreshRecent();
+
+    syncBtn?.addEventListener('click', async () => {
+      const productIds = cbs.filter((c) => c.checked).map((c) => c.value);
+      const channels = channelCbs.filter((c) => c.checked).map((c) => c.value);
+      if (productIds.length === 0 || channels.length === 0) return;
+      syncBtn.disabled = true;
+      syncBtn.textContent = 'Syncing…';
+      try {
+        const r = await fetch('/api/sync', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ productIds, channels, triggeredBy: 'admin:manual', locale: 'en' }),
+        });
+        const data = await r.json();
+        if (!r.ok) {
+          resultsBox.classList.remove('hidden');
+          resultsBox.innerHTML = `<div class="bg-red-50 border border-red-200 rounded p-3 text-sm text-red-700">${(data && data.error) || 'Request failed'}</div>`;
+        } else {
+          renderResults(data);
+          refreshRecent();
+        }
+      } catch (e) {
+        resultsBox.classList.remove('hidden');
+        resultsBox.innerHTML = `<div class="bg-red-50 border border-red-200 rounded p-3 text-sm text-red-700">Network error: ${String(e)}</div>`;
+      } finally {
+        syncBtn.disabled = false;
+        syncBtn.textContent = 'Sync now';
+      }
+    });
+  })();
+</script>
