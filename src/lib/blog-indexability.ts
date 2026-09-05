@@ -13,6 +13,7 @@ export const INDEXABLE_BLOG_IDS = new Set([
   'en/good-cashmere-standard-2026-update',
   'en/eu-green-claims-directive-textile-2026',
   'en/japan-korea-cashmere-import-market-2026',
+  'en/2026-inner-mongolia-cashmere-harvest-season-b2b-guide',
 ]);
 
 export function getBlogSlugFromId(id: string) {
