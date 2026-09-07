@@ -15,21 +15,24 @@
  *
  * 做法:
  *   这个 shim 把 Astro `context.request` 包装成 Vercel 风格 `req`,把
- *   `res.setHeader / status / json / send` 映射到原生 Web Response,
- *   让原 handler 代码几乎零改动就能跑在 Astro SSR 之上。
+ *   `res.setHeader / status / json / send / redirect / end` 映射到原生
+ *   Web Response,让原 handler 代码几乎零改动就能跑在 Astro SSR 之上。
  *
  * 覆盖范围:
- *   - req.body (await context.request.json())
+ *   - req.body (await context.request.json()) — POST/PUT 默认读, 其他方法读 raw
  *   - req.method (context.request.method)
  *   - req.headers (Object.fromEntries(headers))
  *   - req.socket.remoteAddress (context.clientAddress)
  *   - req.url (context.url.href)
- *   - res.setHeader(k, v) / res.status(n) / res.json(o) / res.send(s) / res.text(s)
- *   - res.end() 终结响应
+ *   - req.query (parse URLSearchParams + context.params, 单值 string/多值 array)
+ *   - res.setHeader / status / json / send / text / redirect / end
+ *   - res.redirect(status?, path) — Vercel signature: redirect(res, status, path) 或 redirect(res, path)
  *
  * 已知差异:
- *   - req.body 是一次性消费的(stream);如 handler 既读 body 又访问
- *     context.request,请避免,直接读 shim 的 req.body。
+ *   - req.body 是一次性消费的(stream);handler 不要既读 body 又访问
+ *     context.request (会撞到)。
+ *   - req.query 在 Astro 动态路由下不可用 (我们用 context.params 取)。
+ *     Vercel-style catch-all 的 [...route] 我们用 URLSearchParams 模拟。
  */
 import type { APIContext } from 'astro';
 
@@ -39,6 +42,7 @@ export interface VercelLikeRequest {
   headers: Record<string, string | string[] | undefined>;
   socket: { remoteAddress: string };
   url: string;
+  query: Record<string, string | string[] | undefined>;
 }
 
 export interface VercelLikeResponse {
@@ -46,11 +50,13 @@ export interface VercelLikeResponse {
   headers: Record<string, string>;
   body: any; // 当 end() 时使用
   ended: boolean;
+  redirected: { status: number; location: string } | null;
   setHeader: (name: string, value: string | string[]) => void;
   status: (code: number) => VercelLikeResponse;
   json: (obj: any) => void;
   text: (str: string) => void;
   send: (body: any) => void;
+  redirect: (statusOrPath: number | string, pathArg?: string) => VercelLikeResponse;
   end: (body?: any) => void;
 }
 
@@ -60,10 +66,27 @@ export type VercelHandler = (
 ) => void | Promise<void>;
 
 /**
+ * 把 query string (Vercel-style) 解析成 Vercel 风格的 query 对象
+ * 单值 string, 多值 array。
+ */
+function parseQuery(url: URL): Record<string, string | string[] | undefined> {
+  const out: Record<string, string | string[] | undefined> = {};
+  for (const [k, v] of url.searchParams) {
+    if (k in out) {
+      const existing = out[k];
+      out[k] = Array.isArray(existing) ? [...existing, v] : [existing as string, v];
+    } else {
+      out[k] = v;
+    }
+  }
+  return out;
+}
+
+/**
  * 把 Vercel-style handler 包成 Astro APIRoute。
  *
  * 使用方式:
- *   import type { VercelHandler } from '@/lib/api/vercel-shim';
+ *   import { toAstroApiRoute } from '@/lib/api/vercel-shim';
  *
  *   const handler: VercelHandler = async (req, res) => {
  *     if (req.method !== 'POST') return res.status(405).json({error:'method'});
@@ -82,16 +105,24 @@ export function toAstroApiRoute(handler: VercelHandler) {
       headersObj[key] = value;
     });
 
-    // 安全读取 body (避免空 body 抛 JSON 解析错)
+    // 安全读取 body。Vercel 默认 body={};handler 自己判断
+    // 支持 application/json 和 application/x-www-form-urlencoded
     let body: any = {};
     try {
       const ct = context.request.headers.get('content-type') || '';
       if (context.request.method !== 'GET' && context.request.method !== 'HEAD') {
         if (ct.includes('application/json')) {
           body = await context.request.json().catch(() => ({}));
-        } else {
-          body = {};
+        } else if (ct.includes('application/x-www-form-urlencoded')) {
+          const raw = await context.request.text().catch(() => '');
+          if (raw) {
+            const params = new URLSearchParams(raw);
+            const obj: Record<string, string> = {};
+            for (const [k, v] of params) obj[k] = v;
+            body = obj;
+          }
         }
+        // multipart/form-data 和 raw:handler 自己用 context.request.formData()
       }
     } catch {
       body = {};
@@ -103,6 +134,7 @@ export function toAstroApiRoute(handler: VercelHandler) {
       headers: headersObj,
       socket: { remoteAddress: context.clientAddress || 'unknown' },
       url: context.url.href,
+      query: { ...parseQuery(context.url), ...(context.params || {}) },
     };
 
     // 构建 Vercel-like res
@@ -111,6 +143,7 @@ export function toAstroApiRoute(handler: VercelHandler) {
       headers: {},
       body: undefined,
       ended: false,
+      redirected: null,
       setHeader(name, value) {
         this.headers[name] = Array.isArray(value) ? value.join(',') : String(value);
       },
@@ -131,6 +164,23 @@ export function toAstroApiRoute(handler: VercelHandler) {
       send(b) {
         this.body = b;
         this.ended = true;
+      },
+      redirect(statusOrPath, pathArg) {
+        // Vercel signature: redirect(res, status, path) OR redirect(res, path)
+        let status: number;
+        let path: string;
+        if (typeof statusOrPath === 'number') {
+          status = statusOrPath;
+          path = String(pathArg || '/');
+        } else {
+          status = 302;
+          path = String(statusOrPath);
+        }
+        this.headers['Location'] = path;
+        this.redirected = { status, location: path };
+        this.statusCode = status;
+        this.ended = true;
+        return this;
       },
       end(b) {
         if (b !== undefined) this.body = b;
