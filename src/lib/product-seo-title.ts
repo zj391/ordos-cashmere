@@ -18,6 +18,9 @@ export type ProductTitleInput = {
   packaging?: unknown;
   weight_g?: unknown;
   function?: unknown;
+  origin?: unknown;
+  knitStructure?: unknown;
+  certifications?: unknown;
 };
 
 type TitleLocale = 'en' | 'de' | 'fr' | 'ja' | 'kr' | 'cn';
@@ -85,6 +88,101 @@ const SEASON_LABELS: Record<TitleLocale, Record<string, string>> = {
   ja: { spring: '春', summer: '夏', autumn: '秋', fall: '秋', winter: '冬', 'year-round': '通年' },
   kr: { spring: '봄', summer: '여름', autumn: '가을', fall: '가을', winter: '겨울', 'year-round': '사계절' },
   cn: { spring: '春季', summer: '夏季', autumn: '秋季', fall: '秋季', winter: '冬季', 'year-round': '全年' },
+};
+
+// V4 long-tail: origin labels identify the fiber's geographic source.
+// Only the origin keys actually attested in the products catalog are listed;
+// unrecognized values are dropped (strict facts-only policy).
+const ORIGIN_LABELS: Record<TitleLocale, Record<string, string>> = {
+  en: {
+    'inner-mongolia': 'Inner Mongolia Cashmere',
+    'ordos': 'Ordos Cashmere',
+    'alashan': 'Alashan Cashmere',
+    'mongolia': 'Mongolian Cashmere',
+    'china': 'China Cashmere',
+  },
+  de: {
+    'inner-mongolia': 'Innere Mongolei Kaschmir',
+    'ordos': 'Ordos Kaschmir',
+    'alashan': 'Alashan Kaschmir',
+    'mongolia': 'Mongolisches Kaschmir',
+    'china': 'Kaschmir aus China',
+  },
+  fr: {
+    'inner-mongolia': 'Cachemire de Mongolie-Intérieure',
+    'ordos': 'Cachemire d\u2019Ordos',
+    'alashan': 'Cachemire d\u2019Alashan',
+    'mongolia': 'Cachemire mongol',
+    'china': 'Cachemire de Chine',
+  },
+  ja: {
+    'inner-mongolia': '内モンゴル産カシミア',
+    'ordos': 'オルドス産カシミア',
+    'alashan': '阿拉善産カシミア',
+    'mongolia': 'モンゴル産カシミア',
+    'china': '中国産カシミア',
+  },
+  kr: {
+    'inner-mongolia': '내몽골 캐시미어',
+    'ordos': '오르도스 캐시미어',
+    'alashan': '알라산 캐시미어',
+    'mongolia': '몽골 캐시미어',
+    'china': '중국 캐시미어',
+  },
+  cn: {
+    'inner-mongolia': '内蒙古羊绒',
+    'ordos': '鄂尔多斯羊绒',
+    'alashan': '阿拉善羊绒',
+    'mongolia': '蒙古国羊绒',
+    'china': '中国羊绒',
+  },
+};
+
+// V4 long-tail: knit-structure labels identify construction techniques
+// that materially affect hand-feel, durability, and B2B search intent.
+const KNIT_STRUCTURE_LABELS: Record<TitleLocale, Record<string, string>> = {
+  en: {
+    'fully-fashioned': 'Fully Fashioned',
+    'whole-garment': 'Whole Garment',
+    'seamless': 'Seamless',
+    'linking': 'Linked',
+    'intarsia': 'Intarsia',
+  },
+  de: {
+    'fully-fashioned': 'Fully Fashioned',
+    'whole-garment': 'Ganzstrick',
+    'seamless': 'Nahtlos',
+    'linking': 'Vernäht',
+    'intarsia': 'Intarsia',
+  },
+  fr: {
+    'fully-fashioned': 'Façonné',
+    'whole-garment': 'Tricot entier',
+    'seamless': 'Sans couture',
+    'linking': 'Rembourré',
+    'intarsia': 'Intarsia',
+  },
+  ja: {
+    'fully-fashioned': 'フルファッション',
+    'whole-garment': 'ホールガーメント',
+    'seamless': 'シームレス',
+    'linking': 'リンキング',
+    'intarsia': 'インターシャ',
+  },
+  kr: {
+    'fully-fashioned': '풀패션',
+    'whole-garment': '홀가먼트',
+    'seamless': '심리스',
+    'linking': '링킹',
+    'intarsia': '인터시아',
+  },
+  cn: {
+    'fully-fashioned': '全成型',
+    'whole-garment': '一体成型',
+    'seamless': '无缝',
+    'linking': '套口缝合',
+    'intarsia': '嵌花',
+  },
 };
 
 function audienceFacet(value: unknown, locale: string): string {
@@ -278,6 +376,75 @@ function applicationFacet(value: unknown): string {
   return match ? match.replace(/\s+/g, ' ') : '';
 }
 
+// V4 long-tail: origin facet. Sourced from (in priority order):
+// 1. explicit product.origin field (when populated)
+// 2. tags array entries that match the origin taxonomy
+// 3. product name keyword scan
+// All paths use a strict allow-list of origin keys; unknown strings are
+// dropped to keep the SEO signal consistent and avoid false claims.
+const ORIGIN_KEY_PATTERN = /\b(?:inner\s*mongolia|ordos|alashan|mongolia|china)\b/i;
+
+function originKeyFromRaw(raw: string): string {
+  if (!raw) return '';
+  const lc = raw.toLowerCase();
+  if (/\balashan\b/i.test(lc)) return 'alashan';
+  if (/\bordos\b/i.test(lc)) return 'ordos';
+  if (/\b(?:inner\s*mongolia|inner\s*mongolian)\b/i.test(lc)) return 'inner-mongolia';
+  if (/\bmongolia\b/i.test(lc) && !/\binn/i.test(lc)) return 'mongolia';
+  if (/\bchina\b/i.test(lc)) return 'china';
+  return '';
+}
+
+function originFacet(value: unknown, locale: string): string {
+  const raw = clean(value);
+  if (!raw || !ORIGIN_KEY_PATTERN.test(raw)) return '';
+  const key = originKeyFromRaw(raw);
+  if (!key) return '';
+  return ORIGIN_LABELS[localeKey(locale)][key] || '';
+}
+
+function originFromTags(value: unknown, locale: string): string {
+  const entries = Array.isArray(value) ? value : String(value ?? '').split(/[，,;/|]+/);
+  for (const entry of entries) {
+    const cleaned = clean(entry).replace(/^["']|["']$/g, '');
+    if (!cleaned) continue;
+    const label = originFacet(cleaned, locale);
+    if (label) return label;
+  }
+  return '';
+}
+
+function originFromName(value: unknown, locale: string): string {
+  const raw = clean(value);
+  if (!raw || !ORIGIN_KEY_PATTERN.test(raw)) return '';
+  return originFacet(raw, locale);
+}
+
+// V4 long-tail: knit structure facet. Extracted from explicit
+// product.knitStructure field or, fall-back, from product name keyword
+// scan. Strict allow-list of techniques that have clear buyer intent.
+const KNIT_STRUCTURE_KEY_PATTERN = /\b(?:fully[\s-]?fashioned|whole[\s-]?garment|seamless|linking|intarsia)\b/i;
+
+function knitStructureFacet(value: unknown, locale: string): string {
+  const raw = clean(value);
+  if (!raw || !KNIT_STRUCTURE_KEY_PATTERN.test(raw)) return '';
+  const lc = raw.toLowerCase();
+  let key = '';
+  if (/fully[\s-]?fashioned/.test(lc)) key = 'fully-fashioned';
+  else if (/whole[\s-]?garment/.test(lc)) key = 'whole-garment';
+  else if (/\bseamless\b/.test(lc)) key = 'seamless';
+  else if (/\bintarsia\b/.test(lc)) key = 'intarsia';
+  else if (/\blinking\b/.test(lc)) key = 'linking';
+  if (!key) return '';
+  return KNIT_STRUCTURE_LABELS[localeKey(locale)][key] || '';
+}
+
+function knitStructureFromName(value: unknown, locale: string): string {
+  const raw = clean(value);
+  if (!raw || !KNIT_STRUCTURE_KEY_PATTERN.test(raw)) return '';
+  return knitStructureFacet(raw, locale);
+}
+
 function styleFacets(product: ProductTitleInput): string[] {
   const pattern = clean(product.pattern);
   const collar = clean(product.collar);
@@ -296,6 +463,9 @@ function titleFacets(product: ProductTitleInput, locale: string): string[] {
   const micron = clean(product.micron);
   const facets = [
     canUseFacet(material) && !includesFacet(name, material) ? materialCompositionFacet(material) || material : '',
+    originFacet(product.origin, locale)
+      || originFromTags(product.tags, locale)
+      || originFromName(name, locale),
     canUseFacet(micron) && !includesFacet(name, micron) ? micron : '',
     patternFromName(name),
     ...styleFacets(product),
@@ -306,6 +476,8 @@ function titleFacets(product: ProductTitleInput, locale: string): string[] {
     weightFacet(product.weight_g),
     applicationFacet(product.function),
     gaugeFacet(product.knittingTechnology),
+    knitStructureFacet(product.knitStructure, locale)
+      || knitStructureFromName(name, locale),
     constructionFacet(product.pattern),
     audienceFacet(product.gender, locale)
       || audienceTagFacet(product.tags, locale)
