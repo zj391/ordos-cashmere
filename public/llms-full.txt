@@ -2,7 +2,7 @@
 
 > Premium B2B cashmere manufacturer and wholesale supplier from Ordos, Inner Mongolia, China. 23+ years expertise, OEKO-TEX certified, MOQ 100pcs, 7-day sampling, FOB Tianjin. Trusted by 500+ brands worldwide.
 
-This file is the full-text counterpart of /llms.txt. It contains all site pages, the complete 591-product catalog (with materials/micron/MOQ), and every published blog article. Generated 2026-09-02.
+This file is the full-text counterpart of /llms.txt. It contains all site pages, the complete 591-product catalog (with materials/micron/MOQ), and every published blog article. Generated 2026-09-07.
 
 ## Site Map
 
@@ -68,6 +68,446 @@ Total products: see /en/products/ for the full 591-SKU catalog (live, SSR'd from
 Categories: Cashmere Hats & Beanies, Cashmere Sweaters & Knitwear, Cashmere Scarves & Wraps, Cashmere Accessories, Cashmere Yarn & Fiber
 
 ## Blog Articles (English, full text)
+
+### 2026 Cashmere Payment Terms: How T/T, LC, and Open Account Actually Affect Your Order at an Ordos Factory
+
+*Published 2026-09-05*
+
+Payment terms are not just finance paperwork — they directly shape which fiber lot your factory holds for you, which knitting slot you get, and how much attention your QC gets. A buyer-side field note on T/T, LC at sight, LC 30/60/90 days, and open account, drawn from 23 years of cashmere factory observations in Ordos.
+
+# 2026 Cashmere Payment Terms: How T/T, LC, and Open Account Actually Affect Your Order at an Ordos Factory
+
+When a B2B buyer asks a cashmere factory for a quotation, the conversation usually focuses on **micron, ply, gauge, color, and quantity**. Payment terms are often the last item discussed, and sometimes they are not discussed at all — the buyer just sends a PO with the factory's "standard" terms attached and moves on.
+
+This note is for buyers who want to understand what their payment terms **actually do** at the factory side. Not the financial mechanics of letters of credit — those are well-documented elsewhere — but the operational mechanics: which fiber lot is set aside, which knitting slot is allocated, how the production timeline moves, and where the visible (and invisible) risks sit when the payment term is shorter or longer than the production cycle.
+
+We have observed all four major payment terms at our Ordos facility across many programs and many years. The structural pattern below holds regardless of the specific factory you work with, because it is driven by the **cash flow cycle of a Chinese cashmere garment manufacturer**, not by individual negotiation preferences.
+
+## The four payment terms we see most often in cashmere B2B
+
+For international cashmere buyers sourcing from China, the four most common payment terms are:
+
+1. **T/T in advance (30/70 or 50/50)** — Telegraphic Transfer, with a deposit paid before production starts and the balance paid against a pre-shipment document pack.
+2. **LC at sight** — Letter of Credit, payable immediately on presentation of conforming shipping documents.
+3. **LC 30/60/90 days** — Letter of Credit, payable 30, 60, or 90 days after presentation of conforming shipping documents.
+4. **Open account (O/A) 30/60/90 days** — Goods ship and the buyer pays 30, 60, or 90 days after the invoice date, on the buyer's promise alone.
+
+There is a fifth option — **consignment** — which we occasionally see and would never recommend for a buyer new to a supplier. The financial exposure on consignment is structurally the same as a 90-day open account with no order commitment, and the operational impact on the factory is the most severe of any term we have seen.
+
+## What each payment term actually does at the factory
+
+The payment term is not just "when the money moves." It is a **signal to the factory about how much financial risk to absorb on your behalf**, and the factory responds with three operational decisions:
+
+- **How much fiber to pool and reserve for your program** — fiber is the binding working-capital constraint in any cashmere program. Reserving fiber for a buyer whose payment is uncertain means tying up capital that could be used for the next confirmed order.
+- **Which production slot to allocate** — knitting capacity in the Ordos cluster is finite, and slots are allocated first to programs with confirmed working capital.
+- **How much QC attention to assign** — a program with confirmed payment gets the full inspection-slot allocation; a program with delayed or uncertain payment may see its inspection slot deferred.
+
+These three decisions are not visible in the quotation, but they determine whether your order hits the lead time you were quoted.
+
+### T/T in advance (30/70 or 50/50)
+
+A T/T deposit — typically 30% on PO confirmation and 70% against pre-shipment documents — is the **most factory-friendly** payment term. The factory receives working capital before it spends money on fiber, dyeing, knitting, and finishing. Operationally, this means:
+
+- **Fiber is reserved on receipt of the deposit.** The mill stops offering that lot to other buyers.
+- **The knitting slot is allocated in the next weekly scheduling round.** No slot competition.
+- **The QC slot is in the standard pre-shipment window.** No deferral.
+- **Lead time matches the quotation.** The buyer sees the production calendar we described in the [lead time guide](/en/blog/2026-inner-mongolia-cashmere-factory-lead-time-b2b-guide/).
+
+For a buyer, T/T 30/70 is the **lowest-risk delivery option**, and the deposit is typically the buyer's only cash-flow exposure during production. The financial risk sits with the factory — and the factory accepts that risk because the deposit covers its working-capital needs.
+
+### LC at sight
+
+An LC at sight gives the buyer a **documentary guarantee** of payment on shipment, and gives the factory a **bank-guaranteed payment** immediately on document presentation. Operationally:
+
+- **Fiber is reserved on LC opening or first advising-bank confirmation**, not on PO confirmation. A buyer who opens the LC quickly gets the same fiber reservation as a T/T deposit; a buyer who delays LC opening may see the lot offered to other buyers in the interim.
+- **The knitting slot is allocated when the LC is confirmed.** Same allocation logic as T/T, with a slight delay (typically 5–10 banking days) for the LC opening and advising process.
+- **The QC slot is in the standard pre-shipment window.** No deferral, assuming the LC documents match the shipment cleanly.
+- **Lead time matches the quotation**, plus the LC opening cycle if it has not been opened by the time of PO.
+
+The trade-off for the buyer: an LC at sight costs more than T/T (bank fees of typically 0.125%–0.25% of the LC value per quarter, plus an advising-bank fee) but provides documentary protection against shipment disputes. For a buyer new to a Chinese cashmere factory, an LC at sight is often a reasonable middle ground — the factory gets working-capital certainty, the buyer gets documentary protection.
+
+### LC 30/60/90 days
+
+An LC with a deferred payment schedule — typically 30, 60, or 90 days after document presentation — keeps the documentary protection of an LC but **defers the buyer's actual cash outflow**. Operationally, this is where the structure of the payment term starts to interact visibly with the production cycle:
+
+- **Fiber is still reserved on LC opening**, but the factory's working-capital position is materially different. The factory has shipped goods and is waiting 30/60/90 days for payment, which means the factory's capital is tied up in work-in-progress plus shipped goods plus receivables for that the period.
+- **The knitting slot is allocated when the LC is confirmed**, same as LC at sight. But a factory with limited working capital may prioritize confirmed T/T deposits over confirmed-but-deferred LCs in slot allocation, because the deferred LC still ties up capital.
+- **The QC slot is in the standard pre-shipment window**, but the factory's incentive to manage QC disputes with extra care is reduced — once the goods ship, the dispute resolution falls on the documentary chain, not on the factory's own risk absorption.
+
+For a buyer, an LC 30/60/90 days is **a slightly higher-friction delivery option** than LC at sight. The buyer gets cash-flow flexibility; the factory accepts a longer working-capital cycle; the operational risk of slot allocation is small but real.
+
+### Open account 30/60/90 days
+
+Open account is the **most buyer-friendly and most factory-stressed** payment term. Goods ship on the buyer's promise to pay in 30/60/90 days. There is no documentary protection; the factory's only recourse if the buyer does not pay is commercial collection or litigation. Practically, what we see:
+
+- **Fiber reservation is conditional, not confirmed.** A factory with limited working capital will typically pool fiber for an O/A program only after the buyer's credit has been verified by a third party (e.g., Dun & Bradstreet, a Chinese credit-insurance provider, or a prior trade history).
+- **The knitting slot is allocated after fiber reservation, with a buffer.** A factory that has been burned by an O/A default in the past will hold a 1–2 week buffer in the slot allocation, to allow reallocation if the buyer's credit check fails or the buyer's PO is amended.
+- **The QC slot is in the standard window**, but the factory's exposure to post-shipment disputes is highest — once the goods are in the buyer's hands and the payment is not yet due, the factory has very limited recourse.
+- **Lead time is typically 1–3 weeks longer than the quoted lead time** for a T/T or LC program of equivalent size. The buffer does not appear in the quotation, but it appears in the actual delivery date.
+
+For a buyer, O/A 30/60/90 is the **highest-friction delivery option** for any program that has not been done with the factory before. The cash-flow benefit is real, but the operational cost shows up in the delivery date and in the factory's day-to-day attention to your program.
+
+## The hidden factor: working-capital stress at the factory
+
+The structural reason for the slot, fiber, and QC behavior above is the **working-capital cycle of a cashmere garment factory in Inner Mongolia**. A typical cashmere garment program ties up factory capital across these stages:
+
+| Stage | Capital tied up | Typical duration |
+|---|---|---|
+| Fiber reservation (auction-round lots) | 100% of fiber cost | 30–60 days before knitting |
+| Yarn spinning | Fiber cost + spinning fee | 14–21 days |
+| Yarn dyeing | Yarn cost + dyeing fee | 14–28 days |
+| Knitting | All previous + labor | 21–45 days |
+| Finishing + QC | All previous + finishing labor | 7–14 days |
+| Goods in transit to buyer | All previous + shipping | 28–45 days |
+
+The factory's capital is tied up **for the entire production cycle plus the transit cycle** — typically 90–150 days from fiber reservation to buyer payment under T/T, and 120–210 days under O/A 90 days. A factory running 20 active programs at any time has working capital tied up across all of them.
+
+This is why a T/T deposit — even at 30% — is operationally meaningful: it covers a meaningful share of the fiber and yarn costs, and lets the factory commit its own working capital to the rest of the program with less risk. And it is why an O/A 90-day program for a new buyer gets the buffer treatment: the factory cannot tell, before shipment, whether the buyer's payment will actually arrive on day 90.
+
+## What the buyer actually sees
+
+The operational behaviors above show up in the buyer's experience in three concrete ways:
+
+1. **Lead-time variance.** T/T and LC-at-sight programs hit the quoted lead time within a small variance (typically ±5%). LC deferred and O/A programs show a wider variance — typically 1–3 weeks longer than the quoted lead time, with occasional earlier delays if the factory is short on working capital and prioritizes confirmed-payment programs.
+
+2. **Color and specification flexibility.** A buyer who wants to amend a color or specification mid-program is more likely to be accommodated on a T/T or LC-at-sight program, because the factory has already absorbed its working-capital risk and the marginal cost of an amendment is small. A buyer on an O/A program is more likely to be asked to re-confirm the PO with the amendment, because the factory is still exposed.
+
+3. **QC dispute handling.** A QC dispute (e.g., a minor color variation, a small mending issue) is typically resolved in the buyer's favor with a small allowance or rework on a T/T program, because the factory wants to maintain the buyer's repeat business and the deposit is already in hand. On an O/A program, the factory has less incentive to absorb the cost of a dispute that has emerged after shipment, and the resolution is more likely to be a formal claim against the documentary chain.
+
+These are not moral claims about any payment term being "better" or "worse" — they are structural outcomes of where the financial risk sits.
+
+## How to think about the right payment term for a program
+
+The right payment term depends on three things:
+
+- **The size and frequency of your orders.** A buyer placing a one-off small trial order is more likely to get a T/T or LC-at-sight quote as the factory's standard, and the operational impact is small. A buyer placing a large recurring program is more likely to negotiate an LC-deferred or O/A term, and the operational impact is significant.
+- **The trade history between you and the factory.** A buyer with a multi-year history of confirmed payments on prior programs will get more accommodating treatment on a deferred term than a buyer with no history, regardless of the buyer's underlying creditworthiness.
+- **The cash-flow importance to your business.** A buyer for whom the 30/60/90 day cash flow materially affects their working capital should have an honest conversation with the factory about that, rather than asking for O/A on a new program and expecting the factory's standard slot allocation.
+
+A practical framing: **if the lead time and quality of your program matter to your business, the cheapest payment term is rarely the most expensive one in total cost.** A T/T 30/70 with a 5% lead-time advantage over O/A 90 days delivers goods faster, with higher QC attention, and with the factory's full operational commitment. The buyer loses the 30/60/90 day cash flow benefit but gains in delivery certainty and program attention.
+
+## A note on consignment
+
+Consignment — where the factory ships goods to the buyer's warehouse and is paid only when the buyer sells them — is a **cashmere trade term we have seen fail more often than any other**. The factory's working capital is fully exposed (no deposit, no documentary protection, no buyer commitment beyond "I'll pay you when I sell"), and the structural incentives are misaligned: the factory carries the cost; the buyer carries the risk of non-sale.
+
+We do not recommend consignment for a B2B buyer sourcing cashmere from China for resale, except in narrow circumstances where (a) the buyer has a multi-year trade history with the factory, (b) the consigned quantity is small relative to the buyer's overall cashmere program, and (c) the consignment period is short (typically 30–60 days).
+
+## What this guide deliberately does not include
+
+For honesty and to manage expectations:
+
+- **No specific 2026 bank fee or LC cost data.** Bank fees, advising-bank fees, and LC discount rates vary by bank, by country, and by program size. Use your bank's published tariff and your trade-finance advisor for current numbers.
+- **No ranking of "best" payment term.** The right term depends on program size, trade history, and cash-flow importance — see the framing above. We describe the structural trade-offs; you decide what fits your program.
+- **No specific factories, banks, or trade-finance providers named.** Payment-term behavior is structural across the Ordos cluster and across Chinese manufacturing more generally, not factory-specific.
+- **No currency hedging or FX risk analysis.** FX volatility between USD, EUR, RMB, and JPY is a separate concern from payment terms; we touch on it in the [2026 cashmere market report](/en/blog/cashmere-market-report-2026/) but it deserves its own analysis.
+
+## Where to go next
+
+- **For the production calendar and lead time**: [2026 Inner Mongolia cashmere factory lead time B2B guide](/en/blog/2026-inner-mongolia-cashmere-factory-lead-time-b2b-guide/)
+- **For the pasture-side calendar (April–August)**: [2026 Inner Mongolia cashmere harvest season field guide](/en/blog/2026-inner-mongolia-cashmere-harvest-season-b2b-guide/)
+- **For cost-per-piece breakdown**: [Wholesale cashmere sweater pricing 2026](/en/blog/wholesale-cashmere-sweater-pricing-b2b-2026/)
+- **For price ranges and supply outlook**: [2026 cashmere market report](/en/blog/cashmere-market-report-2026/)
+- **For shipping, customs, and import**: [Cashmere shipping and import guide](/en/blog/cashmere-shipping-import-guide/)
+- **For contract and payment-term templates**: [Cashmere B2B contract template and payment terms](/en/blog/cashmere-b2b-contract-template-payment-terms/)
+- **For end-to-end fiber-to-garment process**: [From pasture to garment: 23 steps at our Ordos facility](/en/blog/from-pasture-to-garment-23-steps-ordos-cashmere/)
+
+If your 2026 or 2027 program involves a payment-term decision, request a quotation and we will lay out the operational implications of each term for your specific program size, lead time, and trade history. The right term is the one that matches your cash-flow needs without adding unnecessary friction to the production cycle.
+
+---
+
+*DONGXIAO® Editorial is the publishing name for sourcing notes produced by the factory and procurement team at our Ordos, Inner Mongolia facility. The observations in this note are drawn from many years of cashmere garment programs under T/T, LC at sight, LC deferred, and open account payment terms. The structural patterns described are not unique to our facility; they reflect the working-capital cycle of any cashmere garment manufacturer in China. For program-specific payment-term guidance, request a quotation tied to your program size, lead time, and trade history.*
+
+---
+
+### 2026 Inner Mongolia Cashmere Factory Lead Time: A B2B Production Calendar from Ordos
+
+*Published 2026-09-05*
+
+What actually happens inside an Ordos cashmere factory between September and March — yarn spinning, dyeing, knitting, finishing, QC and shipping windows. A capacity-and-lead-time field note for B2B buyers planning 2026–2027 deliveries.
+
+# 2026 Inner Mongolia Cashmere Factory Lead Time: A B2B Production Calendar from Ordos
+
+Most B2B buyers plan their cashmere program around the **retail delivery window** — the date a sweater or scarf needs to be in a store for the autumn or holiday season. They then ask a factory: *"Can you hit this date?"* and accept the answer at face value. What they rarely see is the **production calendar behind that answer** — the spinning slots, the dyeing windows, the knitting-program allocation, the finishing capacity, and the inspection slots that have to line up for a yes to be true.
+
+This note is the **factory-side companion** to our [2026 Inner Mongolia cashmere harvest season field guide](/en/blog/2026-inner-mongolia-cashmere-harvest-season-b2b-guide/). Where the harvest guide covers April–August on the pasture side, this one covers September–March inside our Ordos facility. It is written for B2B procurement, brand, and sourcing teams who need to understand **why some lead times are firm and some are not**, and how to plan backward from a retail delivery date with confidence.
+
+## Why Ordos factory lead times are not a single number
+
+When a buyer asks "what is your lead time?", the honest answer is usually a range — and the range reflects four underlying constraints, not factory efficiency:
+
+1. **Yarn availability**: Dehaired fiber from the May–June auction round has to be spun into the required count, ply, twist and color. Spinning capacity is finite, and a mill's autumn spinning slots are allocated first to programs with confirmed purchase orders.
+2. **Dyeing window**: Yarn-dye lots and garment-dye lots use different equipment and different capacity calendars. Yarn-dyed programs lock color 60–90 days before knitting; garment-dyed programs can run closer to the knitting date but are limited by dye-house capacity in any given week.
+3. **Knitting-program allocation**: A factory's knitting machines are configured for a specific gauge range (e.g., 12-gauge, 14-gauge, 16-gauge) and stitch structure. Switching gauge or major stitch pattern between programs costs setup time that the buyer doesn't see in the lead-time quote.
+4. **Finishing, mending, and pre-shipment inspection**: Washing, softening, pressing, mending, and final AQL inspection are skilled-labor steps with their own weekly capacity. A pre-shipment inspection slot is typically booked 7–14 days before ex-works date.
+
+A buyer who treats "lead time" as a single number is treating four constraints as one. A buyer who understands the four constraints can plan around each one.
+
+## The September–March production calendar at our Ordos facility
+
+The following is the production calendar we run each year, observed at our facility and across the wider Ordos cashmere-manufacturing cluster. **It is a structural calendar, not a 2026-specific forecast** — the same shape repeats every year, with one-to-two-week shifts driven by Spring Festival date and the May–June auction timing.
+
+### September–October: yarn-spinning peak
+
+The Ordos and Bayannur spinning mills move into their **highest-capacity period** in September–October. Two reasons: dehaired fiber from the May–July auction round has been pooled and graded, and knitting programs are queueing for autumn yarn deliveries. **For a buyer, this is the moment to confirm yarn-spinning slots**, not to wait for the mill to be free.
+
+What a buyer should do in September–October:
+
+- **Issue a purchase order with deposit** for any program that wants March–May 2027 retail delivery. Yarn-locked programs take priority over inquiries in the mill's allocation.
+- **Confirm yarn specification in writing** — count (Nm), ply, micron, color, twist direction, oil content. "Premium 2/48nm" is a discussion point, not a specification.
+- **Confirm fiber-lot traceability paperwork** — OEKO-TEX, GCS, RWS, the Inner Mongolia GI, or your customer's house standard. The documentation chain starts at the dehaired-lot level and cannot be backfilled at the finished-garment stage.
+
+### November: dyeing peak
+
+Yarn-dyed programs move into the **dye-house peak in November**. The dye houses in the Ordos cluster run their largest lots of the year between late October and mid-December, ahead of the Spring Festival shipping cutoff. **Garment-dyed programs** (where color is applied after knitting) can run later, but are constrained by dye-house capacity after the New Year.
+
+What a buyer should know about November:
+
+- **Yarn-dyed color approval has to be locked by mid-October** for an autumn knitting start. Late-November color approval pushes the program into the New Year.
+- **Custom Pantone matches** require lab-dip approval (typically 7–14 days) before bulk dyeing starts. A buyer who asks for a custom color in December is asking for the dye house to add their lot to a January backlog.
+- **Color fastness testing** (wash, light, rub) is usually run on the lab-dip or first bulk lot and adds 5–10 days to the timeline.
+
+### December–January: knitting-program peak and Spring Festival stop
+
+December is the **knitting-program peak** in our Ordos facility and across most of the cluster. Programs that locked yarn in September and color in November are now in full production. January is interrupted by **Spring Festival (Chinese New Year)**, which in 2027 falls on February 6. The practical impact:
+
+- **Production effectively stops 7–10 days before the Spring Festival date** for travel, factory shutdown, and machine maintenance.
+- **Production restarts 7–14 days after the Spring Festival date**, depending on worker return and supplier reopening.
+- **The Spring Festival window is non-negotiable** — it is the single largest calendar constraint in any China-based cashmere program, and any 2026/2027 plan that crosses it needs explicit acknowledgement from the factory.
+
+What a buyer should do in December–January:
+
+- **Treat Spring Festival as a hard lead-time boundary.** Any program that needs to ship between late January and mid-February is at material risk of missing the date.
+- **Approve pre-production hand-feel samples before the Spring Festival** so knitting can resume immediately after the holiday.
+- **Do not place new orders in the last 10 days before the Spring Festival** unless you accept the production start date in late February or later.
+
+### February–March: knitting resume and finishing ramp
+
+Knitting resumes across the cluster in **mid-to-late February**. Finishing (washing, softening, mending, pressing) and pre-shipment inspection ramp up through March. **For a buyer, this is the window when late-spring and early-summer 2027 deliveries should be cleared** — not started.
+
+What a buyer should know about February–March:
+
+- **Pre-shipment inspection slots book out 7–14 days ahead.** A buyer who needs an inspection on March 20 should confirm the slot by early March.
+- **Final AQL inspection** (typically 2.5 AQL for major defects, 4.0 AQL for minor defects, per ISO 2859-1) is the last gate before ex-works delivery. Plan for 2–5 days of inspection time depending on lot size.
+- **Shipping documents** — commercial invoice, packing list, certificate of origin, fiber-lot certificates, OEKO-TEX or GCS certificates, bill of lading — are prepared in parallel with inspection, not after.
+
+## Backward planning: a worked example for 2027 spring delivery
+
+A common B2B buyer request is: "I want 1,000 pieces of 14.5μm 2/48nm women's crewneck sweaters in our custom Pantone, delivered to a Hamburg DC by mid-March 2027 for an April retail floor." Here is what that timeline actually requires when worked backward from the retail date.
+
+| Working backward | Date | What has to happen |
+|---|---|---|
+| Retail floor | **Mid-March 2027** | Goods on shelf or in DC |
+| Hamburg DC delivery | **Early March 2027** | Sea-freight transit (typically 28–35 days Tianjin → Hamburg) + EU customs clearance |
+| Ex-works Ordos | **Late January 2027** | Goods ready at Ordos factory gate |
+| Pre-shipment inspection | **Mid-January 2027** | AQL inspection, document prep |
+| Finishing complete | **Early January 2027** | Washing, softening, mending, pressing |
+| Knitting complete | **Mid-December 2026** | All knitting done, surplus yarn and labels on hand |
+| Knitting starts | **Early November 2026** | Yarn and color locked, knitting slot allocated |
+| **Color approval** | **Mid-September 2026** | Lab-dip approved, bulk dyeing scheduled |
+| Yarn spinning | **August–September 2026** | Fiber pooled, yarn spun to spec |
+| **Purchase order with deposit** | **July–August 2026** | Yarn-spinning slot allocated at the mill |
+
+What this timeline shows: **the buyer's last actionable decision is yarn-locking in July–August 2026** — five months before the yarn even reaches the knitting machine, and **eight months before the retail floor date**. A buyer who delays the PO to October has already missed the spring 2027 delivery window; the realistic next slot is summer 2027.
+
+## What a "rush" lead time actually means
+
+Almost every B2B conversation eventually includes a "rush" or "express" request. Here is what is realistically possible from our Ordos facility, and what is not:
+
+- **Stock-yarn, stock-color, simple knit (12-gauge or 14-gauge jersey or rib)**: 25–35 days ex-works from PO. Possible because yarn and color are already in the warehouse. **This is the only realistic "rush" tier.**
+- **Stock-yarn, custom Pantone**: 35–50 days. Yarn is ready but dyeing adds 2–3 weeks.
+- **Custom yarn, stock color**: 50–70 days. Spinning a new yarn lot is the bottleneck.
+- **Custom yarn, custom color**: 70–110 days. Both spinning and dyeing have to be sequenced.
+- **Custom yarn, custom color, complex knit (e.g., 16-gauge intarsia, cabling, fine gauge with shaping)**: 90–140 days. The knitting machine allocation becomes the binding constraint.
+
+What is **not** realistically possible regardless of rush:
+
+- Spring Festival-crossing programs that need to ship in the last 10 days before or first 10 days after the holiday.
+- Custom baby cashmere (<13.5μm) lots outside the September–October combing window.
+- Programs that require fiber from a specific pasture or herder cooperative outside the May–June combing round.
+
+A buyer who asks for any of these as a "rush" is asking for an answer that no factory in Ordos can honestly give.
+
+## A practical 2026/2027 procurement calendar for B2B buyers
+
+The following table consolidates the buyer-side actions implied by the production calendar above. Use it as a backward-planning reference, with the Spring Festival date and your retail delivery date as the two fixed points.
+
+| Buyer action | When | What it influences |
+|---|---|---|
+| Issue PO with deposit, lock yarn spec | **7–8 months before ex-works** | Spinning-mill slot allocation |
+| Lab-dip color approval | **6–7 months before ex-works** | Dye-house slot allocation |
+| Approve pre-production hand-feel sample | **4–5 months before ex-works** | Knitting-program start |
+| Approve pre-shipment sample + lab test | **6–8 weeks before ex-works** | Bulk production completion |
+| Pre-shipment inspection booked | **4–6 weeks before ex-works** | Inspection slot availability |
+| Goods ex-works Ordos | **Target ex-works date** | Sea-freight booking window |
+
+For a 2027 spring delivery (retail floor March–May 2027), the PO with deposit should land at the factory in **July–August 2026**. For a 2027 autumn delivery (retail floor September–November 2027), the PO should land in **January–February 2027** — accounting for the Spring Festival interruption.
+
+## How to pressure-test a factory's lead-time quote
+
+When a factory gives you a lead-time quote — whether 30 days, 60 days, or 90 days — five questions separate a real commitment from a wishful one:
+
+1. **"What yarn-spinning slot are you allocating?"** A real answer names the mill and the week. A vague answer ("we'll spin it") is not a slot.
+2. **"What is the lab-dip and color-approval timeline?"** A real answer gives the day count. A vague answer hides the dye-house bottleneck.
+3. **"How does the Spring Festival affect this program?"** A real answer gives the specific shutdown and restart dates for the facility. A vague answer means the program will slip.
+4. **"What is the pre-shipment inspection slot?"** A real answer names the inspection date. A vague answer ("we'll inspect before shipping") is not an AQL plan.
+5. **"What documentation chain is included?"** A real answer lists the certificates, the test reports, and the origin documents. A vague answer means these will be backfilled — or skipped.
+
+A factory that answers all five clearly is giving you a real commitment. A factory that answers one or two vaguely is giving you a wishful number.
+
+## What this guide deliberately does not include
+
+For honesty and to manage expectations:
+
+- **No specific capacity numbers.** Machine counts, worker counts, and weekly throughput figures vary across the Ordos cluster and are not a meaningful comparison point across factories. What matters is whether your specific program has a slot, not whether the factory has "X machines."
+- **No 2026 freight or shipping cost data.** Sea-freight rates, fuel surcharges, EU customs duties, and US tariff codes are country-specific and change continuously. Use our [cashmere shipping and import guide](/en/blog/cashmere-shipping-import-guide/) for the structural framework, and request a current freight quote for your specific lane.
+- **No claims about specific mills, dye houses, or subcontractors.** Most cashmere garment programs involve a vertically integrated facility plus specialist partners for spinning or dyeing. We name the structure but not the specific partner list.
+- **No ranking of "fastest" or "most reliable" factories.** Lead-time reliability is program-specific and depends on yarn availability, color complexity, gauge, and timing. There is no general ranking that would survive contact with a specific program.
+
+## Where to go next
+
+- **For the pasture-side calendar (April–August)**: [2026 Inner Mongolia cashmere harvest season field guide](/en/blog/2026-inner-mongolia-cashmere-harvest-season-b2b-guide/)
+- **For price ranges and supply outlook**: [2026 cashmere market report](/en/blog/cashmere-market-report-2026/)
+- **For cost-per-piece breakdown**: [Wholesale cashmere sweater pricing 2026](/en/blog/wholesale-cashmere-sweater-pricing-b2b-2026/)
+- **For fiber-side goat breed differences**: [Alashan vs Ordos vs Mongolian cashmere goats](/en/blog/alashan-vs-ordos-cashmere-goats/)
+- **For shipping, customs, and import**: [Cashmere shipping and import guide](/en/blog/cashmere-shipping-import-guide/)
+- **For end-to-end fiber-to-garment process**: [From pasture to garment: 23 steps at our Ordos facility](/en/blog/from-pasture-to-garment-23-steps-ordos-cashmere/)
+- **For lot-level verification before you buy**: [How to verify Ordos cashmere origin](/en/blog/how-b2b-cashmere-buyers-verify-ordos-origin-avoid-mislabeling/)
+
+If your 2026 or 2027 program has a specific retail delivery date, gauge, or order volume, request a quotation and we will work the production calendar backward from your retail date, flagging any Spring Festival or combing-window conflicts at the quotation stage rather than at the delivery stage.
+
+---
+
+*DONGXIAO® Editorial is the publishing name for sourcing notes produced by the factory and procurement team at our Ordos, Inner Mongolia facility. The production calendar in this note reflects structural constraints observed across multiple years — Spring Festival date, spinning-mill capacity cycles, dye-house peak windows, and finishing-ramp timing — not capacity claims about specific machines or workers. For program-specific lead-time commitments, refer to the five pressure-test questions in this note and request a written quotation tied to a specific yarn-spinning slot and pre-shipment inspection date.*
+
+---
+
+### 2026 Inner Mongolia Cashmere Harvest Season: A B2B Buyer's Field Guide from Ordos
+
+*Published 2026-09-05*
+
+What actually happens on Inner Mongolian pastures and at the Ordos factory gate between April and October 2026 — combing, grading, herder pricing, and how B2B buyers should time their 2026 procurement. A field-level note, not a market forecast.
+
+# 2026 Inner Mongolia Cashmere Harvest Season: A B2B Buyer's Field Guide from Ordos
+
+Most cashmere market notes focus on **finished yarn price per kg** or **FOB sweater cost**. They say very little about the **pasture side of the calendar** — the months when fiber is actually leaving the goat, when herders are deciding what to keep and what to sell, and when the first bidding window opens for mills and factories in Ordos.
+
+This note is a field-level companion for B2B buyers planning 2026 collections. It is based on what we see every year at our Ordos facility and in conversations with herders, combs, and dehairing mills across Inner Mongolia. **It is not a price forecast** — for indicative price ranges see our [2026 cashmere market report](/en/blog/cashmere-market-report-2026). The goal here is the **timing layer**: what happens on the ground, when, and how a buyer should plan around it.
+
+## The two Inner Mongolian cashmere seasons you actually need to know
+
+Most buyers think of "cashmere season" as one block. In practice, Inner Mongolia has **two distinct fiber flows**, separated by climate and goat biology:
+
+1. **Spring combing (April – early June)** — the main commercial harvest. Goats naturally shed their winter undercoat as temperatures rise, and herders comb (or in lower-grade operations, shear) the loose fiber. This is the **primary supply** for the year's spinning pipeline.
+2. **Autumn transition (September – October)** — a shorter secondary window for adult goats regrowing undercoat, and the **only** window for the kid-goat (baby cashmere) harvest, which is combed once as the kid is weaned.
+
+If you remember only one thing from this note: **most of the raw cashmere your 2026–2027 finished garment is made from was combed in April–May 2026, and the price your mill will quote you in September was largely set by the herder-bidding rounds in May–June.**
+
+## The April–June combing window: what actually happens
+
+### The combing calendar by region
+
+Inner Mongolia's pastoral zones do not all warm up at the same time. A buyer who treats "Inner Mongolia" as one block will miss important lot-availability differences:
+
+| Region | Typical combing start | Typical combing end | Notes for buyers |
+|---|---|---|---|
+| **Alashan League** (western Inner Mongolia) | Mid-April | Late May | Earliest start. Smaller herds (~1.5M head) but the highest-grade fiber on average. White-fibre lots dominate. |
+| **Ordos / eastern Inner Mongolia** | Late April | Mid-June | The largest commercial volume. Vertically integrated fiber → yarn → garment pipeline. |
+| **Xilin Gol / central grassland** | Early May | Mid-June | Recovering grassland; combing constrained by grazing-restoration rules. |
+| **Bayannur / northern foothills** | Mid-May | Late June | Later start, slightly coarser average micron, but reliable volume for mainstream sweater programs. |
+
+The regional stagger means **a buyer sourcing only from Ordos in early May may miss Alashan lots** that were already combed and pooled in late April. Conversely, **Alashan-only sourcing runs into availability limits by July** because the herd is small. Most of our own 14.5–15.5μm lots are blended across at least two regions to balance volume and grade.
+
+### What the fiber looks like the day it is combed
+
+Two facts that often surprise new buyers:
+
+- **Combed fiber is not yet cashmere.** Raw combed fiber is roughly 30–50% grease (lanolin-like suint), guard hair, and vegetable matter by weight. The tradeable unit is **dehaired cashmere**, which is what the spinning mill pays for. A buyer who sees a "cashmere price per kg" without specifying whether it is raw or dehaired is reading two different products.
+- **Greasy fiber yellows within weeks.** Even within a single combing week, a lot that is bagged and stored cold will dehair differently from a lot that sits in a herder's shed. We see meaningful micron and color drift across lots that are nominally the same grade, which is why dehairing mills grade after the wash step, not at the herder gate.
+
+### Herder pricing: how the first number is set
+
+The number that ends up in your finished FOB price has its origin in **a bidding conversation between a herder household and a local comb-collector**, usually in the herder's pasture, usually in cash, usually in May. The dynamics we have observed for 23 years:
+
+- **The first buyer at the gate sets the local reference price for the week.** When a comb-collector from a major Ordos dehairing cluster arrives in an Alashan village in early May, the price they pay per raw kilogram becomes the anchor for the entire village that week.
+- **Quality premiums are visible, not negotiated.** Herders with consistently finer, whiter, longer-staple fiber get a per-kg premium that is visible to other herders in the same pasture. The premium is small per kg but compounds across a season.
+- **Herders with grazing-permit quotas are price-takers, not price-makers.** Inner Mongolia's grassland-restoration program caps herd sizes in many pastures. The herder cannot easily expand supply in a high-price year, which structurally limits short-term supply elasticity.
+
+A buyer who wants to understand why "raw cashmere price" can move 10–15% within a single season is watching the May–June bidding rounds. A buyer who only watches the spinning-mill quote in September is watching a derivative number.
+
+## May–June: the dehaired-lot auction window
+
+After combing, fiber is pooled at the village, washed and dehaired at regional mills, and then sold in lots at the **Ordos and Bayannur dehaired-fiber auctions** — typically late May through July. This is where the **per-grade indicative prices** that end up in your mill quotation are first established.
+
+What matters for a B2B buyer:
+
+- **Lot size at auction is typically 50–500 kg of dehaired fiber**, not a container load. To get a 20-ton program-grade lot, a mill usually pools 40–80 auction lots. **Pooling is where the real cost and the real risk live** — micron drift, length drift, color drift across pooled lots.
+- **White fiber commands a separate, persistent premium.** The premium widens in years when bleached-white garment demand is strong (2024–2025 saw this), and narrows when ecru/natural-tone knitwear is fashionable.
+- **Cashmere auction prices are not public.** Unlike wool, there is no open cashmere auction index. The numbers in any "cashmere market report" — including ours — are factory-sourcing ranges, not exchange-published indices. Treat all numbers as indicative and re-quote for your specific grade and lot size.
+
+## July–August: the quiet month
+
+July and August are the **low-information** months for raw cashmere. Combing is finished, the auction round is mostly cleared, and the spinning mills are blending lots in preparation for the autumn yarn-spinning cycle. **This is when a buyer can still meaningfully influence their autumn delivery timeline**, because yarn-spinning takes 60–90 days from lot-pool to finished cone, and the autumn delivery slot is fixed by the mill, not the buyer.
+
+Three actions that matter in July–August:
+
+1. **Confirm your grade with the mill in writing** — micron range, length range, white-vs-natural, down content. Not "premium" or "Grade A" as words, but numbers and a fiber-lot certificate reference.
+2. **Lock your yarn-spinning slot** — the mill's autumn spinning capacity is finite and is allocated first to programs with confirmed purchase orders, not to inquiries.
+3. **Confirm fiber-lot traceability paperwork** — if your customer requires RWS, GCS, OEKO-TEX, or the Inner Mongolia geographical indication, the documentation chain starts at the combed-lot level and cannot be backfilled at the finished-garment stage.
+
+## September–October: what changes at the factory gate
+
+By September, the year's main fiber flow has been converted into dehaired lots and is sitting in mill warehouses. What happens next is **logistics and order-book management**, not new fiber supply. The notable changes at the factory gate in September:
+
+- **The autumn kid-goat (baby cashmere) combing opens.** This is the only window for < 13.5μm fiber, and it is short — typically 4–6 weeks in September–October. Volumes are small and programs are planned 12–18 months in advance.
+- **Mill-quoted prices for autumn delivery are anchored on the May–July auction rounds**, plus currency, freight, and certification costs. They are not reactive to September pasture conditions.
+- **Lead times for spring 2027 garment delivery are set now.** A buyer who wants March–May 2027 retail delivery needs yarn locked by October 2026 at the latest. Yarn locked in November moves the delivery window to June–July 2027.
+
+## November–March: the planning window for next year
+
+This is the most underrated part of the cashmere calendar for B2B buyers. While the herd is on winter pasture and the mill is spinning autumn lots, the **commercial planning** for the following year happens:
+
+- **Herders review the season.** Pasture rotation, combing yield, herd health, and pricing economics are reviewed at the household and village level. Grazing-permit renewals are negotiated.
+- **Mills publish indicative ranges** for the coming year's spinning slots. These ranges are not commitments, but they anchor buyer budgets for the spring collection cycle.
+- **Brand buyers should be confirming their 2027 grade and program specs**, not starting from scratch in February. The mills that produce the most consistent year-over-year quality are the ones with the most stable buyer programs, and stability is built in this window.
+
+## A practical 2026 procurement timeline for B2B buyers
+
+If you are planning a 2026 or 2027 cashmere program and want to align with the Inner Mongolian calendar:
+
+| Buyer action | When | What it influences |
+|---|---|---|
+| Confirm grade spec (micron, length, white/natural) | **July–August 2026** | Yarn-spinning slot allocation |
+| Issue purchase order with deposit | **August–September 2026** | Autumn yarn-spinning capacity |
+| Approve pre-production hand-feel sample | **October 2026** | Knitting program start |
+| Approve pre-shipment sample + lab test | **January–February 2027** | Bulk production completion |
+| Bulk shipment ex-works Ordos | **February–April 2027** | Spring–summer 2027 retail delivery |
+
+This timeline assumes a **standard 2/48nm 14.5μm program** for a 300–1,000 piece order. Faster timelines are possible but compress the lot-pooling window and raise the cost of grade drift; slower timelines are possible but reduce the mill's willingness to hold yarn-spinning capacity.
+
+## What this guide deliberately does not include
+
+For honesty and to manage expectations:
+
+- **No 2026 price numbers.** Indicative price ranges for 2026 are in our [market report](/en/blog/cashmere-market-report-2026) and are updated when our own quotation book changes. They are factory sourcing ranges, not a market index.
+- **No pasture-condition forecasts.** We do not have access to real-time weather, vegetation, or herd-health data; we only observe what arrives at the factory gate.
+- **No claims about specific herders, villages, or cooperatives.** Privacy and commercial sensitivity aside, single-herder anecdotes are not a reliable procurement signal.
+- **No ranking of "best" or "worst" regions.** All four major pastoral zones produce legitimate, traceable cashmere. The right region depends on your grade, volume, and lead time — see our [Alashan vs Ordos vs Mongolian goat comparison](/en/blog/alashan-vs-ordos-cashmere-goats/) for the fiber-side differences.
+
+## Where to go next
+
+- **For price ranges and supply outlook**: [2026 cashmere market report](/en/blog/cashmere-market-report-2026)
+- **For fiber-side goat breed differences**: [Alashan vs Ordos vs Mongolian cashmere goats](/en/blog/alashan-vs-ordos-cashmere-goats/)
+- **For lot-level verification before you buy**: [How to verify Ordos cashmere origin](/en/blog/how-b2b-cashmere-buyers-verify-ordos-origin-avoid-mislabeling/)
+- **For testing and certification paperwork**: [Cashmere test report checklist for B2B buyers](/en/blog/cashmere-test-report-checklist-b2b-buyers/)
+- **For end-to-end fiber-to-garment process**: [From pasture to garment: 23 steps at our Ordos facility](/en/blog/from-pasture-to-garment-23-steps-ordos-cashmere/)
+
+If your 2026 or 2027 program has a specific grade, volume, or delivery window that you want to pressure-test against this calendar, request a quotation and we will lay the timeline against your spec.
+
+---
+
+*DONGXIAO® Editorial is the publishing name for sourcing notes produced by the factory and procurement team at our Ordos, Inner Mongolia facility. Field observations in this note are drawn from our own combing-season purchasing, herder conversations, and dehairing-mill lot records across multiple years. Numerical price claims are deliberately excluded; refer to the linked market report for indicative ranges.*
+
+---
 
 ### EU CSDDD for Textile Supply Chains: What B2B Cashmere Buyers Should Confirm in 2026
 
