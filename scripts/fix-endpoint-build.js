@@ -59,6 +59,14 @@ for await (const file of walk(pagesDir)) {
       changed = true;
     }
 
+    // Remove orphan `export { page }` that Astro emits but doesn't define
+    // (was added by earlier versions of this script and breaks ESM import)
+    const orphanPage = /^export\s*\{\s*page\s*\};?\s*$/m;
+    if (orphanPage.test(src)) {
+      src = src.replace(orphanPage, '');
+      changed = true;
+    }
+
     if (changed) {
       await writeFile(file, src);
       console.log('[fix-endpoint-build] patched ' + file.replace(root + '/', '') + ' -> removed _page wrapper' + (hasGET ? ' + GET' : '') + (hasPOST ? ' + POST' : ''));
