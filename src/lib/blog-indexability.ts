@@ -15,6 +15,7 @@ export const INDEXABLE_BLOG_IDS = new Set([
   'en/japan-korea-cashmere-import-market-2026',
   'en/2026-inner-mongolia-cashmere-harvest-season-b2b-guide',
   'en/2026-inner-mongolia-cashmere-factory-lead-time-b2b-guide',
+  'en/2026-cashmere-payment-terms-buyer-impact-ordos',
 ]);
 
 export function getBlogSlugFromId(id: string) {
