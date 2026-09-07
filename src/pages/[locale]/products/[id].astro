@@ -369,6 +369,69 @@ function localizedCategory(categoryId: string, locale: string, fallback: string)
   return fallback;
 }
 
+// B2B buyer-relevant category title modifier. Adds a wholesale /
+// manufacturer / factory-direct prefix to the category name so that
+// <title> tags carry a clear B2B intent signal for search engines.
+// Only used inside buildProductSeoTitle calls; the visible category
+// label in HTML and the JSON-LD `category` field continue to use the
+// unmodified localizedCategory() result.
+//
+// Keep this list SHORT — adding more words eats the 150-char title
+// budget and pushes real spec facets out of the SERP snippet.
+const BUYER_INTENT_PREFIX: Record<string, Record<string, string>> = {
+  en: {
+    hats: 'Wholesale',
+    sweaters: 'Wholesale',
+    scarves: 'Wholesale',
+    accessories: 'Wholesale',
+    yarn: 'Wholesale',
+  },
+  de: {
+    hats: 'Großhandel',
+    sweaters: 'Großhandel',
+    scarves: 'Großhandel',
+    accessories: 'Großhandel',
+    yarn: 'Großhandel',
+  },
+  fr: {
+    hats: 'Grossiste',
+    sweaters: 'Grossiste',
+    scarves: 'Grossiste',
+    accessories: 'Grossiste',
+    yarn: 'Grossiste',
+  },
+  ja: {
+    hats: '卸売り',
+    sweaters: '卸売り',
+    scarves: '卸売り',
+    accessories: '卸売り',
+    yarn: '卸売り',
+  },
+  kr: {
+    hats: '도매',
+    sweaters: '도매',
+    scarves: '도매',
+    accessories: '도매',
+    yarn: '도매',
+  },
+  cn: {
+    hats: '批发',
+    sweaters: '批发',
+    scarves: '批发',
+    accessories: '批发',
+    yarn: '批发',
+  },
+};
+
+function buyerModifiedCategory(categoryId: string, locale: string, baseCategory: string): string {
+  const prefix = BUYER_INTENT_PREFIX[locale]?.[categoryId];
+  if (!prefix) return baseCategory;
+  // Avoid doubling up if the base already contains a wholesale-style word.
+  const lower = baseCategory.toLowerCase();
+  if (/(wholesale|grossist|großhandel|卸売|도매|批发)/i.test(lower)) return baseCategory;
+  return `${prefix} ${baseCategory}`;
+}
+
 
 
 const SKIP_VALUES = /^(details?|description|n\/a|na|various|custom(ized|izable)?|多种颜色可选|customize)$/i;
@@ -720,12 +783,16 @@ const highlights = [
 // to break duplicate-content pattern across 591 products × 6 locales.
 // Each variant keeps the same trust signals (Ordos/ISO/MOQ/etc.) but
 // differs in word choice so Google doesn't see 591 identical endings.
-const EN_SUFFIXES = ['. Project terms confirmed in writing. DONGXIAO.'];
-const DE_SUFFIXES = ['. Projektbedingungen werden schriftlich bestätigt. DONGXIAO.'];
-const FR_SUFFIXES = ['. Les conditions du projet sont confirmées par écrit. DONGXIAO.'];
-const JA_SUFFIXES = ['。案件条件は書面で確認します。DONGXIAO。'];
-const KR_SUFFIXES = ['. 프로젝트 조건은 서면으로 확인합니다. DONGXIAO.'];
-const CN_SUFFIXES = ['。项目条件以书面方式确认。东霄羊绒。'];
+// Description suffixes carry a clear B2B next-step CTA so search-engine
+// snippets surface a buyer-actionable signal (request quote + sample
+// lead time). Length kept short to stay inside the 158-char total
+// description budget after attribute prefix.
+const EN_SUFFIXES = ['. Request written quote; sample 7-10 days. DONGXIAO.'];
+const DE_SUFFIXES = ['. Schriftliches Angebot anfordern; Muster 7-10 Tage. DONGXIAO.'];
+const FR_SUFFIXES = ['. Demande de devis écrit; échantillon 7-10 jours. DONGXIAO.'];
+const JA_SUFFIXES = ['。書面で見積もり依頼；サンプル 7-10 日。DONGXIAO。'];
+const KR_SUFFIXES = ['. 서면 견적 요청; 샘플 7-10일. DONGXIAO.'];
+const CN_SUFFIXES = ['。索取书面报价；样品 7-10 天。东霄羊绒。'];
 
 function suffixFor(id: string, list: readonly string[]): string {
   // Simple hash: sum char codes mod list length
@@ -761,7 +828,7 @@ const tdk = {
       158
     );
     return {
-      title: buildProductSeoTitle(p, localizedCategory(p.categoryId, locale, c)),
+      title: buildProductSeoTitle(p, buyerModifiedCategory(p.categoryId, locale, localizedCategory(p.categoryId, locale, c))),
       description,
       keywords: [
         `${p.name}`,
@@ -805,7 +872,7 @@ const tdk = {
       150
     );
     return {
-      title: buildProductSeoTitle(p, localizedCategory(p.categoryId, locale, categoryName), '东霄羊绒'),
+      title: buildProductSeoTitle(p, buyerModifiedCategory(p.categoryId, locale, localizedCategory(p.categoryId, locale, categoryName)), '东霄羊绒'),
       description,
       keywords: [p.name, `${categoryName}批发`, `${p.material}${categoryName}`, `羊绒代工 ${p.id}`, `OEM ${categoryName}`, '羊绒厂家', '鄂尔多斯羊绒'],
       buyCta: '立即询盘',
@@ -831,7 +898,7 @@ const tdk = {
       158
     );
     return {
-      title: buildProductSeoTitle(p, localizedCategory(p.categoryId, locale, c)),
+      title: buildProductSeoTitle(p, buyerModifiedCategory(p.categoryId, locale, localizedCategory(p.categoryId, locale, c))),
       description,
       keywords: [p.name, `Kaschmir ${c} Großhandel`, `OEM ${c}`, `Kaschmir Hersteller China`, `B2B Cashmere Lieferant`],
       buyCta: 'Anfrage',
@@ -857,7 +924,7 @@ const tdk = {
       158
     );
     return {
-      title: buildProductSeoTitle(p, localizedCategory(p.categoryId, locale, c)),
+      title: buildProductSeoTitle(p, buyerModifiedCategory(p.categoryId, locale, localizedCategory(p.categoryId, locale, c))),
       description,
       keywords: [p.name, `cachemire ${c} gros`, `OEM ${c}`, `fabricant cachemire Chine`, `fournisseur cachemire B2B`],
       buyCta: 'Demande',
@@ -883,7 +950,7 @@ const tdk = {
       150
     );
     return {
-      title: buildProductSeoTitle(p, localizedCategory(p.categoryId, locale, c)),
+      title: buildProductSeoTitle(p, buyerModifiedCategory(p.categoryId, locale, localizedCategory(p.categoryId, locale, c))),
       description,
       keywords: [p.name, `${c}卸売`, `OEM ${c}`, `カシミア 製造 中国`, `B2B カシミア サプライヤー`],
       buyCta: '問い合わせ',
@@ -909,7 +976,7 @@ const tdk = {
       158
     );
     return {
-      title: buildProductSeoTitle(p, localizedCategory(p.categoryId, locale, c)),
+      title: buildProductSeoTitle(p, buyerModifiedCategory(p.categoryId, locale, localizedCategory(p.categoryId, locale, c))),
       description,
       keywords: [p.name, `${c} 도매`, `OEM ${c}`, `캐시미어 제조 중국`, `B2B 캐시미어 공급업체`],
       buyCta: '문의',
@@ -933,13 +1000,13 @@ const CATEGORY_KEYWORDS: Record<string, string[]> = {
 const categoryKeywords = CATEGORY_KEYWORDS[product.categoryId] || SEO_KEYWORDS.en.factory.slice(0, 4);
 const categoryKeywordHint = categoryKeywords[0] || 'cashmere products';
 const safeMetaDescription = {
-  en: `${productHeading}. Source this ${displayCategory.toLowerCase()} for B2B projects; compare listed material, color and specification attributes, then request a written quotation for sampling and delivery terms.`,
-  cn: `${productHeading}。比较已列材料、颜色和规格属性；索取报价或联系工厂确认项目条件 —— 样品与交付以书面方式确认。`,
-  de: `${productHeading}. Aufgeführte Material-, Farb- und Spezifikationsmerkmale vergleichen; Angebot anfordern oder Kontakt mit dem Werk aufnehmen — Muster und Lieferung werden schriftlich bestätigt.`,
-  fr: `${productHeading}. Comparez les attributs de matière, couleur et spécification listés ; demandez un devis ou contactez l'usine pour les conditions du projet — échantillon et livraison confirmés par écrit.`,
-  ja: `${productHeading}。記載された素材・カラー・仕様属性を比較；見積もり依頼または工場へのお問い合わせを —— サンプル・納期は書面で確認します。`,
-  kr: `${productHeading}. 기재된 소재·색상·사양 속성을 비교하세요. 견적 요청 또는 공장 연락 —— 샘플·납기는 서면 확인.`,
-}[locale] || `${productHeading}. Review listed material, color and specification attributes; project terms are confirmed in writing.`;
+  en: `Request a written quote (sample 7-10 days). ${productHeading}. Source this ${displayCategory.toLowerCase()} for B2B projects; compare listed material, color and specification attributes.`,
+  cn: `索取书面报价（样品 7-10 天）。${productHeading}。比较已列材料、颜色和规格属性；或联系工厂确认项目条件。`,
+  de: `Schriftliches Angebot anfordern (Muster 7-10 Tage). ${productHeading}. Aufgeführte Material-, Farb- und Spezifikationsmerkmale vergleichen; Kontakt mit dem Werk aufnehmen.`,
+  fr: `Demande de devis écrit (échantillon 7-10 jours). ${productHeading}. Comparez les attributs de matière, couleur et spécification listés ; contactez l'usine pour les conditions du projet.`,
+  ja: `書面で見積もり依頼 (サンプル 7-10 日)。${productHeading}。記載された素材・カラー・仕様属性を比較；工場へのお問い合わせを。`,
+  kr: `서면 견적 요청 (샘플 7-10일). ${productHeading}. 기재된 소재·색상·사양 속성을 비교하세요; 공장 연락.`,
+}[locale] || `Request written quote (sample 7-10 days). ${productHeading}. Review listed material, color and specification attributes.`;
 const safeMetaKeywords = [
   productHeading,
   `${displayCategory} product record`,
@@ -950,7 +1017,7 @@ const safeMetaKeywords = [
 ].filter(Boolean);
 const t = {
   ...baseTdk,
-  title: buildProductSeoTitle(product, displayCategory, titleBrand, 132, locale),
+  title: buildProductSeoTitle(product, buyerModifiedCategory(product.categoryId, locale, displayCategory), titleBrand, 132, locale),
   description: clip(safeMetaDescription, 200),
   keywords: safeMetaKeywords,
 };
