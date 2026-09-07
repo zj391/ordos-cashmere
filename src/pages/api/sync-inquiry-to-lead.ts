@@ -12,7 +12,7 @@
  * Body: { email, contact_name, company_name, country, phone, inquiry_id,
  *         source, source_detail, industry, company_size, job_title, quantity, message }
  */
-import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { toAstroApiRoute, type VercelLikeRequest, type VercelLikeResponse } from '../../lib/api/vercel-shim';
 
 const SUPABASE_URL = process.env.SUPABASE_URL || process.env.PUBLIC_SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_ANON_KEY;
@@ -239,7 +239,7 @@ async function sb(pathname: string, opts: any = {}) {
   return res.json();
 }
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+async function _internalHandler(req: VercelLikeRequest, res: VercelLikeResponse) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'method_not_allowed' });
   if (!SUPABASE_URL || !SUPABASE_KEY) {
     return res.status(500).json({ error: 'supabase_not_configured' });
@@ -392,3 +392,8 @@ function heuristicScore(enriched: any): { score: number; grade: string; reasonin
   const reasoning = `Heuristic (no LLM): ${factors.join(', ')}`;
   return { score, grade, reasoning, nextAction };
 }
+
+export const prerender = false;
+const handler = async (req: any, res: any) => { await _internalHandler(req, res); };
+export const POST = toAstroApiRoute(handler);
+export const OPTIONS = toAstroApiRoute(handler);

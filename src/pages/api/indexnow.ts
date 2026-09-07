@@ -20,10 +20,10 @@
  * because the URL list is not secret; if abuse becomes a problem we'll add a
  * shared-secret header.
  */
-import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { submitToIndexNow, submitFullSitemap } from '../../../lib/indexnow.js';
+import { toAstroApiRoute, type VercelLikeRequest, type VercelLikeResponse } from '../../lib/api/vercel-shim';
+import { submitToIndexNow, submitFullSitemap } from '../../lib/indexnow.js';
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+async function _internalHandler(req: VercelLikeRequest, res: VercelLikeResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ ok: false, error: 'method_not_allowed' });
   }
@@ -57,3 +57,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(500).json({ ok: false, error: e?.message || String(e) });
   }
 }
+
+
+export const prerender = false;
+const handler = async (req: any, res: any) => { await _internalHandler(req, res); };
+export const POST = toAstroApiRoute(handler);
+export const OPTIONS = toAstroApiRoute(handler);

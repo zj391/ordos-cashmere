@@ -21,7 +21,7 @@
  *
  * 这是合并到 api/inquiry.ts 之前预留的独立 fn，因为需要独立的鉴权 + cron 接入面。
  */
-import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { toAstroApiRoute, type VercelLikeRequest, type VercelLikeResponse } from '../../lib/api/vercel-shim';
 
 function setCors(res: any) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -394,7 +394,7 @@ function gradeEmailSubject(grade: 'A' | 'B' | 'C' | 'D', extraction: LeadExtract
   return { subject: '', body: '' };
 }
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+async function _internalHandler(req: VercelLikeRequest, res: VercelLikeResponse) {
   setCors(res);
   if (req.method === 'OPTIONS') {
     return res.status(204).end();
@@ -494,3 +494,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     email_to_sales: emailToSales,
   });
 }
+
+
+export const prerender = false;
+const handler = async (req: any, res: any) => { await _internalHandler(req, res); };
+export const POST = toAstroApiRoute(handler);
+export const OPTIONS = toAstroApiRoute(handler);
