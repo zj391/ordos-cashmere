@@ -67,6 +67,24 @@ for await (const file of walk(pagesDir)) {
       changed = true;
     }
 
+    // Astro 5's @astrojs/ssr-adapter calls `await mod.page()` for every SSR
+    // route (verified in chunk line 31085) and throws
+    // FailedToFindPageMapSSR if mod.page is undefined. For endpoint files,
+    // mod.page() must return an object that exposes the HTTP-method
+    // handlers as properties (so renderEndpoint's `mod[method]` lookup
+    // finds the right function). Our `POST = toAstroApiRoute(handler)`
+    // already gives us POST; wire page as a factory that returns it.
+    if (hasPOST && !/\bpage\s*=\s*\(\)\s*=>\s*\(/.test(src)) {
+      const pageFactory = hasGET
+        ? "\nexport const page = () => ({ POST, GET });\n"
+        : "\nexport const page = () => ({ POST });\n";
+      src = src.trimEnd() + pageFactory;
+      changed = true;
+    } else if (hasGET && !hasPOST && !/\bpage\s*=\s*\(\)\s*=>\s*\(/.test(src)) {
+      src = src.trimEnd() + "\nexport const page = () => ({ GET });\n";
+      changed = true;
+    }
+
     if (changed) {
       await writeFile(file, src);
       console.log('[fix-endpoint-build] patched ' + file.replace(root + '/', '') + ' -> removed _page wrapper' + (hasGET ? ' + GET' : '') + (hasPOST ? ' + POST' : ''));
