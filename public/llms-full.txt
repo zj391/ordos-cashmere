@@ -9746,6 +9746,7 @@ Cashmere quality is determined by fiber grade, not national origin. The finest M
 ## Blog Articles (CN — title + excerpt only; full text in /cn/blog/<slug>/)
 
 - [羊绒专家公开反驳\](https://www.erdosdx.com/cn/blog/cashmere-unsustainable-claim-expert-rebuttal-b2b/): 羊绒行业专家已公开质疑将羊绒一概称为\
+- [2026 羊绒付款条款:T/T、LC 和 O/A 实际如何影响你在鄂尔多斯工厂的订单](https://www.erdosdx.com/cn/blog/2026-cashmere-payment-terms-buyer-impact-ordos/): 付款条款不只是金融文件,它们直接决定工厂为你预留哪一批纤维、安排哪个针织时段、以及 QC 给你多少注意力。一篇面向买家的实操说明。
 - [欧盟纺织品数字产品护照更新：截至 2026 年 8 月已确认的事项](https://www.erdosdx.com/cn/blog/eu-textile-dpp-registry-2026-update/): 面向羊绒及服装采购方的日期化更新：欧盟数字产品护照注册系统、纺织品时间表，以及在具体规则出台前可准备的产品记录。
 - [欧盟更新：针对未售服装与配饰的新规则已于 2026 年 7 月适用于大型企业](https://www.erdosdx.com/cn/blog/eu-unsold-apparel-rules-2026-update/): 梳理欧盟委员会 2026 年关于未售服装、服装配饰和鞋类的最新措施，并为羊绒品牌与采购团队提供可讨论的产品记录问题。
 - [B2B羊绒色卡申请：如何获取样品及时间周期](https://www.erdosdx.com/cn/blog/wholesale-cashmere-color-card-sample-process/): 了解申请羊绒色卡所需提供的准确信息、如何获取实物样品，以及来自鄂尔多斯源头工厂的实际B2B样品时间周期。

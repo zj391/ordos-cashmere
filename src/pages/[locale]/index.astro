@@ -346,6 +346,16 @@ const IMG = {
           <a href={`/${locale}/download/`} class="group inline-flex items-center gap-2 text-white text-sm uppercase tracking-[0.2em] border-b border-white/40 pb-1 hover:border-brand-copper hover:text-brand-copper transition-colors">
             {c.ctaSecondary}
           </a>
+          <!-- 新增：观看工厂视频（in-page anchor, no modal） -->
+          <a
+            href={`/${locale}/factory/#factory-video-heading`}
+            class="group inline-flex items-center gap-2 text-white text-sm uppercase tracking-[0.2em] border-b border-white/40 pb-1 hover:border-brand-copper hover:text-brand-copper transition-colors"
+          >
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+            {locale === 'cn' ? '观看工厂视频' : locale === 'ja' ? '動画を見る' : locale === 'kr' ? '영상 보기' : locale === 'de' ? 'Video ansehen' : locale === 'fr' ? 'Voir la vidéo' : 'Watch factory video'}
+          </a>
         </div>
       </div>
     </div>

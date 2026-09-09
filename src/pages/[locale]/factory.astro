@@ -19,6 +19,7 @@ import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
 
 import SEOFaq from '@/components/SEOFaq.astro';
+import FactoryVideoSection from '@/components/factory/FactoryVideoSection.astro';
 
 import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
 
@@ -461,6 +462,9 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
       </div>
     </div>
   </section>
+
+  <!-- ============ 06.5 工厂车间视频（90秒实拍，桌面端插入） ============ -->
+  <FactoryVideoSection locale={locale} />
 
   <!-- ============ 07 预约考察 CTA（背景图） ============ -->
   <section class="relative py-28 md:py-36 overflow-hidden bg-brand-chocolate">

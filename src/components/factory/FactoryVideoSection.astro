@@ -1,0 +1,269 @@
+---
+/**
+ * FactoryVideoSection
+ *
+ * 90-second Ordos factory floor walkthrough. Plays inline (not in a modal) so
+ * desktop B2B buyers see the workshop before they click a CTA. The two buttons
+ * below the video still pivot to the existing /contact?type=visit and
+ * /download flows so the section funnels into the same downstream actions.
+ *
+ * Why inline (not modal):
+ *   - 11.7 MB MP4 won't blow up the page when lazy-loaded
+ *   - Visitors who reached the factory page want to see the floor; not
+ *     hunt for a play icon
+ *   - Modal covers the editorial chrome (fibermark SVG, decorative ring)
+ *     that we paid real design cost to put there
+ *   - Auto-pause when offscreen (IntersectionObserver) is more reliable
+ *     than modal close handlers on mobile back gestures
+ *   - 576x1024 portrait footage scales down gracefully on a phone
+ *     viewport and centers on a desktop viewport without modal chrome
+ */
+type Props = {
+  locale: string;
+};
+
+const { locale } = Astro.props;
+
+const t: Record<string, Record<string, string>> = {
+  en: {
+    eyebrow: 'On the floor',
+    title: '90 seconds inside our Ordos facility',
+    subtitle: 'Walk through dehairing, spinning, knitting and finishing. The same line your bulk order would travel on.',
+    duration: '1 min 30 sec',
+    primaryCta: 'Schedule a visit',
+    primaryCtaHref: '/en/contact/?type=visit',
+    secondaryCta: 'Download catalog',
+    secondaryCtaHref: '/en/download/',
+    caption: 'Ordos, Inner Mongolia — dehairing → spinning → knitting → finishing',
+    posterAlt: 'Inside the Ordos cashmere facility — dehairing line at the front, knitting frames at the back.',
+    playLabel: 'Play factory walkthrough',
+  },
+  cn: {
+    eyebrow: '车间现场',
+    title: '90 秒看完鄂尔多斯工厂',
+    subtitle: '从分梳、纺纱、针织到整理——你的大货走的也是这条线。',
+    duration: '1 分 30 秒',
+    primaryCta: '预约参观',
+    primaryCtaHref: '/cn/contact/?type=visit',
+    secondaryCta: '下载目录',
+    secondaryCtaHref: '/cn/download/',
+    caption: '内蒙古鄂尔多斯 — 分梳 → 纺纱 → 针织 → 整理',
+    posterAlt: '鄂尔多斯羊绒工厂内部 — 前方是分梳线,后方是针织车间。',
+    playLabel: '播放工厂实拍',
+  },
+  de: {
+    eyebrow: 'In der Werkstatt',
+    title: '90 Sekunden in unserer Ordos-Fabrik',
+    subtitle: 'Dehairing, Spinnen, Stricken, Finishen — die gleiche Linie, die Ihre Großbestellung durchläuft.',
+    duration: '1 Min 30 Sek',
+    primaryCta: 'Besuch planen',
+    primaryCtaHref: '/de/contact/?type=visit',
+    secondaryCta: 'Katalog herunterladen',
+    secondaryCtaHref: '/de/download/',
+    caption: 'Ordos, Innere Mongolei — Dehairing → Spinnen → Stricken → Finishen',
+    posterAlt: 'In der Ordos-Kaschmirfabrik — Dehairing-Linie vorn, Strickmaschinen hinten.',
+    playLabel: 'Werkstattrundgang abspielen',
+  },
+  fr: {
+    eyebrow: 'Sur le terrain',
+    title: "90 secondes dans notre usine d'Ordos",
+    subtitle: 'Dehairing, filage, tricotage, finition — la même ligne que traverse votre commande en gros.',
+    duration: '1 min 30 sec',
+    primaryCta: 'Planifier une visite',
+    primaryCtaHref: '/fr/contact/?type=visit',
+    secondaryCta: 'Télécharger le catalogue',
+    secondaryCtaHref: '/fr/download/',
+    caption: 'Ordos, Mongolie-Intérieure — Dehairing → Filage → Tricotage → Finition',
+    posterAlt: "À l'intérieur de l'usine de cachemire d'Ordos — ligne de dehairing devant, métiers à tricoter derrière.",
+    playLabel: "Lire la visite d'usine",
+  },
+  ja: {
+    eyebrow: '現場より',
+    title: '90秒で鄂爾多ス工場を見る',
+    subtitle: '分梳・紡績・ニット・仕上げ — あなたの大口注文が走るのと同じラインです。',
+    duration: '1分30秒',
+    primaryCta: '見学を予約',
+    primaryCtaHref: '/ja/contact/?type=visit',
+    secondaryCta: 'カタログをダウンロード',
+    secondaryCtaHref: '/ja/download/',
+    caption: '内モンゴル・鄂爾多ス — 分梳 → 紡績 → ニット → 仕上げ',
+    posterAlt: '鄂爾多ス・カシミア工場内部 — 手前は分梳ライン、奥はニット機。',
+    playLabel: '工場見学を再生',
+  },
+  kr: {
+    eyebrow: '공장 현장',
+    title: '90초만에 보는 어얼도스 공장',
+    subtitle: '분梳·방적·편직·마감 — 대량 주문이 지나가는 그 동일한 라인을 보여드립니다.',
+    duration: '1분 30초',
+    primaryCta: '방문 예약',
+    primaryCtaHref: '/kr/contact/?type=visit',
+    secondaryCta: '카탈로그 다운로드',
+    secondaryCtaHref: '/kr/download/',
+    caption: '내몽골 어얼도스 — 분梳 → 방적 → 편직 → 마감',
+    posterAlt: '어얼도스 캐시미어 공장 내부 — 앞쪽은 분梳 라인, 뒤쪽은 편직 기계.',
+    playLabel: '공장 견학 영상 재생',
+  },
+};
+
+// 默认 fallback (locale 不匹配时用 EN)
+// 注: 用 string 而非 keyof, 因为 6 语言 object 的 keyof 在 index signature 下推断为 string
+const T = (key: string): string => {
+  const dict = (t as Record<string, Record<string, string>>)[locale];
+  return (dict && dict[key]) || t.en[key];
+};
+
+const videoSrc = '/videos/factory-floor.mp4';
+---
+
+<section class="factory-video-section py-20 md:py-28 bg-brand-cream relative overflow-hidden" aria-labelledby="factory-video-heading">
+  <!-- 装饰纤维轨迹: 跟首页 hero 的轨迹设计呼应,保持视觉一致 -->
+  <div class="absolute inset-0 opacity-[0.04] pointer-events-none" aria-hidden="true">
+    <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <defs>
+        <pattern id="factory-video-fibers" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+          <path d="M0 30 Q15 22, 30 30 T60 30" stroke="#1C1813" stroke-width="0.5" fill="none" />
+          <path d="M0 38 Q15 30, 30 38 T60 38" stroke="#1C1813" stroke-width="0.5" fill="none" />
+          <path d="M0 22 Q15 14, 30 22 T60 22" stroke="#1C1813" stroke-width="0.5" fill="none" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#factory-video-fibers)" />
+    </svg>
+  </div>
+
+  <div class="container-narrow relative z-10">
+    <!-- 头部文案 -->
+    <div class="text-center mb-12 reveal">
+      <div class="inline-flex items-center gap-3 mb-6">
+        <span class="h-[2px] w-8 bg-brand-cocoa"></span>
+        <span class="text-xs tracking-[0.3em] uppercase text-brand-cocoa font-bold">{T('eyebrow')}</span>
+        <span class="h-[2px] w-8 bg-brand-cocoa"></span>
+      </div>
+      <h2 id="factory-video-heading" class="font-serif text-4xl md:text-5xl font-light mb-4 text-balance text-brand-ink leading-tight">
+        {T('title')}
+      </h2>
+      <p class="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
+        {T('subtitle')}
+      </p>
+    </div>
+
+    <!-- 视频框架: 9:16 竖屏镜头在桌面两侧留白;手机全宽 -->
+    <!-- 用 aspect-ratio 让高度自适应;max-w 控制桌面最大宽度 -->
+    <div class="flex justify-center mb-6">
+      <div class="relative w-full max-w-[420px] mx-auto factory-video-frame">
+        <div class="relative overflow-hidden bg-brand-ink shadow-[0_24px_64px_-24px_rgba(45,40,36,0.45)] ring-1 ring-brand-cocoa/15">
+          <!-- 视频主体 (竖屏 9:16) -->
+          <div class="relative w-full" style="aspect-ratio: 9 / 16;">
+            <video
+              id="factory-walkthrough"
+              class="absolute inset-0 w-full h-full object-cover bg-brand-ink"
+              controls
+              preload="metadata"
+              playsinline
+              aria-label={T('playLabel')}
+            >
+              <source src={videoSrc} type="video/mp4" />
+            </video>
+            <!-- 自定义播放按钮: 浮于视频正中,播放后自动隐藏 -->
+            <button
+              type="button"
+              class="factory-video-play-overlay absolute inset-0 flex items-center justify-center bg-brand-ink/35 text-white transition-opacity duration-500 group-hover:opacity-90 hover:bg-brand-ink/45 focus:outline-none focus:ring-4 focus:ring-brand-cocoa/40"
+              aria-label={T('playLabel')}
+              data-play-target="factory-walkthrough"
+            >
+              <span class="relative flex items-center justify-center">
+                <span class="absolute inset-0 rounded-full animate-ping bg-white/30"></span>
+                <span class="relative flex items-center justify-center w-20 h-20 md:w-24 md:h-24 rounded-full bg-white/95 backdrop-blur-sm shadow-[0_8px_28px_rgba(0,0,0,0.35)] group-hover:bg-white transition-all">
+                  <svg class="w-8 h-8 md:w-10 md:h-10 ml-1 text-brand-cocoa" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </span>
+              </span>
+            </button>
+          </div>
+        </div>
+        <!-- 装饰金线边 (匹配 hero 的品牌铜色) -->
+        <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 w-3/4 h-[2px] bg-gradient-to-r from-transparent via-brand-cocoa/55 to-transparent" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <!-- 视频下文字 -->
+    <div class="text-center mb-8 max-w-2xl mx-auto">
+      <p class="text-xs tracking-[0.18em] uppercase text-muted-foreground font-mono">
+        <span aria-hidden="true">●</span>
+        <span class="ml-2">{T('duration')}</span>
+        <span aria-hidden="true" class="mx-3">·</span>
+        <span>{T('caption')}</span>
+      </p>
+    </div>
+
+    <!-- 双 CTA: 跟工厂页第七节同流向 (Schedule visit + Download catalog) -->
+    <div class="flex flex-wrap justify-center gap-4">
+      <a
+        href={T('primaryCtaHref')}
+        class="inline-flex items-center gap-2 px-10 py-5 bg-brand-cocoa hover:bg-brand-cocoa-dark text-white text-sm font-semibold uppercase tracking-[0.16em] transition-colors duration-200"
+      >
+        {T('primaryCta')}
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+      <a
+        href={T('secondaryCtaHref')}
+        class="inline-flex items-center gap-2 border border-brand-cocoa text-brand-cocoa hover:bg-brand-cocoa hover:text-white px-10 py-5 text-sm uppercase tracking-[0.16em] font-semibold transition-colors duration-200"
+      >
+        {T('secondaryCta')}
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 微 JS: 播放按钮点击触发 video.play(),播放后隐藏按钮;视频离开视口时暂停 -->
+<script>
+  (function () {
+    const buttons = document.querySelectorAll<HTMLButtonElement>('[data-play-target]');
+    buttons.forEach((btn) => {
+      const targetId = btn.getAttribute('data-play-target');
+      if (!targetId) return;
+      const video = document.getElementById(targetId) as HTMLVideoElement | null;
+      if (!video) return;
+      btn.addEventListener('click', () => {
+        video.play().catch(() => {
+          // autoplay may fail (e.g., muted policy); user can use native controls
+        });
+        btn.style.opacity = '0';
+        btn.style.pointerEvents = 'none';
+        setTimeout(() => btn.remove(), 600);
+      });
+    });
+
+    // 离屏时暂停: 避免看不见的视频继续下载
+    const videos = document.querySelectorAll<HTMLVideoElement>('video[id="factory-walkthrough"]');
+    if (videos.length && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const v = entry.target as HTMLVideoElement;
+            if (entry.isIntersecting) {
+              // 用户进入视野时不要自动播放 (避免一进页面就开始)
+              // 保持静音自动播放留给浏览器原生 controls
+            } else {
+              if (!v.paused) v.pause();
+            }
+          });
+        },
+        { threshold: 0.25 }
+      );
+      videos.forEach((v) => io.observe(v));
+    }
+  })();
+</script>
+
+<style>
+  .factory-video-frame { container-type: inline-size; }
+  /* 当用户开始 hover 时,播放按钮更明显 */
+  .factory-video-frame:hover .factory-video-play-overlay { background-color: rgba(28, 24, 19, 0.42); }
+  /* prefers-reduced-motion: 取消 ping 动画,避免分散注意力 */
+  @media (prefers-reduced-motion: reduce) {
+    .factory-video-play-overlay span:first-child { animation: none; }
+  }
+</style>
