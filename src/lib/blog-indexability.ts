@@ -16,6 +16,10 @@ export const INDEXABLE_BLOG_IDS = new Set([
   'en/2026-inner-mongolia-cashmere-harvest-season-b2b-guide',
   'en/2026-inner-mongolia-cashmere-factory-lead-time-b2b-guide',
   'en/2026-cashmere-payment-terms-buyer-impact-ordos',
+  // 2026-09-08 — Just Style: "Cashmere experts contest 'unsustainable' production claims"
+  // B2B buyer angle: scope-specific evidence over generic ESG labels.
+  'en/cashmere-unsustainable-claim-expert-rebuttal-b2b',
+  'cn/cashmere-unsustainable-claim-expert-rebuttal-b2b',
 ]);
 
 export function getBlogSlugFromId(id: string) {
