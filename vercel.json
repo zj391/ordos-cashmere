@@ -5,7 +5,7 @@
   "framework": "astro",
   "crons": [
     {
-      "path": "/api/cron/nurture-tick",
+      "path": "/api/cron/daily-tick",
       "schedule": "0 0 * * *"
     },
     {

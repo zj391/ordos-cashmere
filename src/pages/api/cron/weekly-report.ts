@@ -87,6 +87,11 @@ interface ActivityRow {
   created_at: string;
 }
 
+interface SyncLogRow {
+  channel: string;
+  status: string;
+}
+
 function fmtPct(num: number, denom: number): string {
   if (denom === 0) return '0%';
   return `${Math.round((num / denom) * 100)}%`;
@@ -233,11 +238,35 @@ async function _internalHandler(req: VercelLikeRequest, res: VercelLikeResponse)
       `/lead_activities?created_at=gte.${weekStart.toISOString()}&channel=eq.email&limit=2000`,
     );
 
-    // 4. 同步 — sync_log 表不存在（runner.ts 是内存 Map）— 暂时从 lead_activities 的 li/wa channel 推断（空）
-    const syncs: { total: number; failed: number; failureRate: string; byChannel: Record<string, { ok: number; failed: number }> } = {
-      total: 0, failed: 0, failureRate: '0%', byChannel: { linkedin: { ok: 0, failed: 0 }, alibaba: { ok: 0, failed: 0 }, xiaohongshu: { ok: 0, failed: 0 } },
-    };
-    // 注：sync runner.ts 当前用内存 Map，无持久化。Sync 失败监控后续独立 PR 加 supabase sync_log 表。
+    // 4. 同步 — 从 sync_logs 表聚合上周推送统计 (阶段 1.5)
+    const syncStats: SyncLogRow[] = await sb(
+      `/sync_logs?created_at=gte.${weekStart.toISOString()}&select=channel,status&limit=5000`,
+    );
+    const syncs: { total: number; failed: number; failureRate: string; byChannel: Record<string, { ok: number; failed: number }> } = (() => {
+      const byChannel: Record<string, { ok: number; failed: number }> = { linkedin: { ok: 0, failed: 0 }, alibaba: { ok: 0, failed: 0 }, xiaohongshu: { ok: 0, failed: 0 } };
+      let total = 0;
+      let failed = 0;
+      for (const row of syncStats) {
+        const ch = row.channel;
+        const st = row.status;
+        if (!byChannel[ch]) byChannel[ch] = { ok: 0, failed: 0 };
+        // 计入 'pushed' 和 'manual_ready' 都算 ok；'error' 算 failed；'skipped' 不计入 (env 没配不算失败)
+        if (st === 'pushed' || st === 'manual_ready') {
+          byChannel[ch].ok += 1;
+          total += 1;
+        } else if (st === 'error') {
+          byChannel[ch].failed += 1;
+          total += 1;
+          failed += 1;
+        }
+      }
+      return {
+        total,
+        failed,
+        failureRate: total === 0 ? 'N/A' : `${Math.round((failed / total) * 100)}%`,
+        byChannel,
+      };
+    })();
 
     // 聚合
     const inquiriesByType = bucketBy(inquiries, (i) => i.inquiry_type);
