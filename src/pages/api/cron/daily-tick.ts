@@ -117,7 +117,7 @@ function inquiryTypeLabel(industry: string | null): string {
   return 'cashmere';
 }
 
-function planNextDue(grade: LeadGrade, currentStep: number, sentAt: Date): Date | null {
+function planNextDue(grade: LeadGrade, currentStep: number, sentAt: Date, previousOpened: boolean = false, previousClicked: boolean = false): Date | null {
   const STEPS_DAYS = [0, 3, 4, 7, 7, 9, 15, 15];
   const A_STEPS = [0, 1, 2, 3, 4, 5, 6, 7];
   const B_STEPS = [0, 2, 3, 5, 7];
@@ -136,7 +136,38 @@ function planNextDue(grade: LeadGrade, currentStep: number, sentAt: Date): Date 
   const currentDays = STEPS_DAYS[currentStep - 1];
   const deltaDays = daysAfter - currentDays;
   if (deltaDays < 0) return null;
-  return new Date(sentAt.getTime() + deltaDays * 24 * 60 * 60 * 1000);
+
+  // 阶段 4 P1 (2026-09-10): engagement-driven cadence
+  // 上一步邮件被 clicked → 立即推下一步 (0.3x)
+  // 被 opened 但没 clicked → 加速 (0.5x)
+  // 没 opened → 拉长间隔 (1.5x, 让营销疲劳感消散)
+  let multiplier = 1.0;
+  if (previousClicked) multiplier = 0.3;
+  else if (previousOpened) multiplier = 0.5;
+  else multiplier = 1.5;
+
+  const adjustedDelta = Math.max(1, Math.round(deltaDays * multiplier));
+  return new Date(sentAt.getTime() + adjustedDelta * 24 * 60 * 60 * 1000);
+}
+
+/**
+ * 查询上一封邮件 (sequence_step = currentStep - 1) 的 engagement
+ * 返回 { opened, clicked }
+ */
+async function checkPreviousEngagement(leadId: number, currentStep: number): Promise<{ opened: boolean; clicked: boolean }> {
+  if (currentStep <= 1) return { opened: true, clicked: false }; // day-0 总是当做 opened
+  try {
+    const rows = await sb(
+      `/lead_activities?lead_id=eq.${leadId}&sequence_step=eq.${currentStep - 1}&channel=eq.email&direction=eq.out&limit=1`,
+    );
+    const r = rows?.[0];
+    if (!r) return { opened: false, clicked: false };
+    const opened = ['opened', 'clicked'].includes(r.status);
+    const clicked = r.status === 'clicked';
+    return { opened, clicked };
+  } catch {
+    return { opened: false, clicked: false };
+  }
 }
 
 async function processNurtureOne(lead: DueLead): Promise<{ ok: boolean; error?: string }> {
@@ -212,7 +243,8 @@ async function processNurtureOne(lead: DueLead): Promise<{ ok: boolean; error?: 
   };
 
   if (!isSequenceDone) {
-    const nextDue = planNextDue(grade, lead.email_sequence_step, sentAt);
+    const engagement = await checkPreviousEngagement(lead.id, lead.email_sequence_step);
+    const nextDue = planNextDue(grade, lead.email_sequence_step, sentAt, engagement.opened, engagement.clicked);
     if (nextDue) statusUpdate.email_next_due_at = nextDue.toISOString();
   }
 
