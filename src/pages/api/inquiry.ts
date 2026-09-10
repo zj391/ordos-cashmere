@@ -8,6 +8,7 @@
  * 5. 推送 Hermes 私有化系统
  */
 import { toAstroApiRoute, type VercelLikeRequest, type VercelLikeResponse } from '../../lib/api/vercel-shim';
+import { sendEmail } from '../../lib/email-sender';
 
 function setCors(res: any) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -35,8 +36,7 @@ const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const GMAIL_USER = process.env.GMAIL_USER || '';
 const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD || '';
 const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL || GMAIL_USER;
-const FROM_EMAIL = process.env.FROM_EMAIL || (GMAIL_USER ? `DONGXIAO Cashmere <${GMAIL_USER}>` : 'sales@erdosdx.com');
-const REPLY_TO = process.env.REPLY_TO || 'dongxiaocashmere@erdosdx.com';
+// FROM_EMAIL / REPLY_TO moved to src/lib/email-sender.ts (2026-09-10)
 const WHATSAPP_NUMBER = process.env.WHATSAPP_NUMBER || '+86-156-6185-3999';
 const WECHAT_ID = process.env.WECHAT_ID || 'dongxiaocashmere';
 
@@ -181,45 +181,7 @@ const INQUIRY_TYPE_MAP = {
   yarn: 'yarn_fabric',
   garment: 'garment_oem',
 } as const;
-async function sendEmail(payload: { to: string; subject: string; html: string; replyTo?: string; tag?: string; attachments?: Array<{ name: string; type: string; dataUrl: string }> }): Promise<{ ok: boolean; id?: string; error?: string }> {
-  if (!RESEND_API_KEY) return { ok: false, error: 'no_api_key' };
-  try {
-    // Resend attachments API: array of {filename, content (base64)} per https://resend.com/docs/api-reference/emails/send-email
-    // dataUrl is "data:<mime>;base64,<payload>" — strip the prefix to get raw base64.
-    const resendAttachments = (payload.attachments || []).map((a) => {
-      const base64 = a.dataUrl.includes('base64,')
-        ? a.dataUrl.split('base64,')[1]
-        : a.dataUrl;
-      return { filename: a.name, content: base64 };
-    });
-    const res = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        from: FROM_EMAIL,
-        to: payload.to,
-        subject: payload.subject,
-        html: payload.html,
-        reply_to: payload.replyTo || REPLY_TO,
-        tags: payload.tag ? [{ name: 'category', value: payload.tag }] : undefined,
-        attachments: resendAttachments.length > 0 ? resendAttachments : undefined,
-      }),
-    });
-    if (!res.ok) {
-      const err = await res.text();
-      console.error('Resend error:', res.status, err);
-      return { ok: false, error: err };
-    }
-    const data = await res.json();
-    return { ok: true, id: data.id };
-  } catch (e: any) {
-    console.error('sendEmail exception:', e);
-    return { ok: false, error: String(e) };
-  }
-}
+async function _sendEmailShim() { /* sendEmail moved to src/lib/email-sender.ts (2026-09-10) — cron/nurture-tick reuses it */ }
 
 /**
  * WeChat / enterprise WeChat notification helpers.
@@ -227,7 +189,7 @@ async function sendEmail(payload: { to: string; subject: string; html: string; r
  * - Server 酱 at ftqq.com/sctapi uses {title, desp}
  * - Generic webhook falls back to {subject, message}
  */
-function formatInquiryForWeChat(data: InquiryPayload, inquiryId: string, known: any | null): string {
+function formatInquiryForWeChat(data: InquiryPayload, inquiryId: string, known: any | null, attachmentsArr: any[]): string {
   const knownLine = known ? `👤 老客户 (${known.grade || 'ungraded'})` : '🆕 新客户';
   const attCount = attachmentsArr.length;
   const attLine = attCount > 0 ? `\n📎 附件: ${attCount} 个` : '';
@@ -452,9 +414,12 @@ async function _internalHandler(req: VercelLikeRequest, res: VercelLikeResponse)
       }).catch(err => console.error('Hermes error:', err));
     }
 
+    // 自动回执邮件 — 先收集 attachments (多个块共用)
+    const attachmentsArr = Array.isArray(data.attachments) ? data.attachments : (data.attachments && typeof data.attachments === 'object' && (data.attachments as any).name ? [data.attachments] : []);
+
     // 5. 推送微信/企业微信通知 (fire-and-forget，failure 不阻塞主流程)
     if (WECHAT_WEBHOOK_URL) {
-      const msg = formatInquiryForWeChat(data, String(inquiryId || 'pending'), known);
+      const msg = formatInquiryForWeChat(data, String(inquiryId || 'pending'), known, attachmentsArr);
       fetch(WECHAT_WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -464,7 +429,6 @@ async function _internalHandler(req: VercelLikeRequest, res: VercelLikeResponse)
 
     // 5. 自动回执邮件（如果配置了 Resend）
     const reply = renderCustomerEmail(data.locale, data);
-    const attachmentsArr = Array.isArray(data.attachments) ? data.attachments : (data.attachments && typeof data.attachments === 'object' && (data.attachments as any).name ? [data.attachments] : []);
     const customerEmailResult = sendEmail({ to: data.email, ...reply, tag: 'inquiry-reply', attachments: attachmentsArr })
       .catch(err => { console.error('Email error:', err); return { ok: false as const, id: undefined, error: String(err) }; });
     const internalEmailResult = sendEmail({

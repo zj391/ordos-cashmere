@@ -3,6 +3,16 @@
   "buildCommand": "pnpm install --no-frozen-lockfile && pnpm build",
   "outputDirectory": "dist",
   "framework": "astro",
+  "crons": [
+    {
+      "path": "/api/cron/nurture-tick",
+      "schedule": "0 0 * * *"
+    },
+    {
+      "path": "/api/cron/weekly-report",
+      "schedule": "0 9 * * 1"
+    }
+  ],
   "redirects": [
     {
       "source": "/sitemap.xml",
