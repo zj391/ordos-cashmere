@@ -325,6 +325,8 @@ async function _internalHandler(req: VercelLikeRequest, res: VercelLikeResponse)
       email_next_due_at: nextAction === 'day_0_email' ? new Date().toISOString() : null,
       converted_to_inquiry: data.inquiry_id || null,
       converted_to_customer: false,
+      // 阶段 3 P0 (2026-09-10): GDPR / Meta WhatsApp opt-in. 默认 false — 必须明确勾选
+      wa_opted_in: data.wa_opted_in === true || data.wa_opted_in === 'true' || data.wa_opted_in === 'on',
     };
 
     const inserted = await sb('/leads', {

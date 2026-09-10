@@ -239,6 +239,26 @@ export default function ProductInquiryForm({
         <p className="text-xs text-muted-foreground">{L(attachLabel)}</p>
       )}
 
+      {/* WhatsApp opt-in checkbox (阶段 3 P0 — GDPR / Meta WhatsApp Business policy 必需) */}
+      <label className="flex items-start gap-2 text-sm">
+        <input
+          type="checkbox"
+          name="wa_opted_in"
+          value="true"
+          className="mt-1"
+        />
+        <span className="text-muted-foreground">
+          {{
+            en: 'I agree to receive order updates via WhatsApp from DONGXIAO Cashmere. You can opt out anytime by replying STOP.',
+            cn: '我同意通过 WhatsApp 接收东霄羊绒的订单进展信息。回复 STOP 即可随时退订。',
+            de: 'Ich stimme zu, Bestellupdates per WhatsApp von DONGXIAO Cashmere zu erhalten. Sie können jederzeit per STOP abbestellen.',
+            fr: 'J\'accepte de recevoir des mises à jour de commande via WhatsApp de DONGXIAO Cashmere. Vous pouvez vous désabonner à tout moment en répondant STOP.',
+            ja: 'DONGXIAO Cashmere から WhatsApp で注文の更新を受け取ることに同意します。STOP と返信することでいつでも配信停止できます。',
+            kr: 'DONGXIAO Cashmere의 WhatsApp 주문 업데이트 수신에 동의합니다. STOP으로 회신하여 언제든지 구독을 취소할 수 있습니다.',
+          }[locale] || 'I agree to receive order updates via WhatsApp from DONGXIAO Cashmere.'}
+        </span>
+      </label>
+
       <button
         type="submit"
         disabled={submitting}

@@ -174,6 +174,7 @@ interface InquiryPayload {
   preferred_channel?: 'email' | 'whatsapp' | 'wechat';
   purchase_intent?: 'quote' | 'samples' | 'documents' | 'factory';
   market_preference?: string;
+  wa_opted_in?: boolean | string;        // 阶段 3 P0 (2026-09-10) — GDPR / Meta WhatsApp opt-in
 }
 
 const INQUIRY_TYPE_MAP = {
@@ -374,6 +375,8 @@ async function _internalHandler(req: VercelLikeRequest, res: VercelLikeResponse)
           preferred_channel: data.preferred_channel,
           purchase_intent: data.purchase_intent,
           market_preference: data.market_preference,
+          // 阶段 3 P0: HTML checkbox value 是 'on' 或 undefined, 转成 boolean
+          wa_opted_in: data.wa_opted_in === true || data.wa_opted_in === 'true' || data.wa_opted_in === 'on',
         }),
       }).catch((err) => console.error("sync-inquiry-to-lead error:", err));
     }
