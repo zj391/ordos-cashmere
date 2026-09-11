@@ -28,6 +28,7 @@ import {
   type LeadGrade,
 } from '../../../lib/email-sequence';
 import { sendWhatsAppTemplate, WHATSAPP_DEFAULTS } from '../../../lib/whatsapp-sender';
+import { broadcast } from '../../../lib/n8n-broadcast';
 
 const SUPABASE_URL = process.env.SUPABASE_URL || process.env.PUBLIC_SUPABASE_URL || '';
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_ANON_KEY || '';
@@ -218,6 +219,17 @@ async function processNurtureOne(lead: DueLead): Promise<{ ok: boolean; error?: 
         metadata: { error: result.error || 'unknown', sent_at_iso: new Date().toISOString() },
       }),
     }).catch(() => {});
+    // 阶段 6 P0: 推 nurture_email_failed 事件到 n8n
+    broadcast({
+      event: 'nurture_email_failed',
+      data: {
+        lead_id: lead.id,
+        email: lead.email,
+        sequence_step: lead.email_sequence_step,
+        campaign: stepDef.campaign,
+        error: result.error,
+      },
+    });
     return { ok: false, error: result.error };
   }
 
@@ -269,6 +281,18 @@ async function processNurtureOne(lead: DueLead): Promise<{ ok: boolean; error?: 
       campaign: stepDef.campaign,
       metadata: { sent_at_iso: sentAt.toISOString() },
     }),
+  });
+
+  // 阶段 6 P0: 推 nurture_email_sent 事件到 n8n
+  broadcast({
+    event: 'nurture_email_sent',
+    data: {
+      lead_id: lead.id,
+      email: lead.email,
+      sequence_step: lead.email_sequence_step,
+      campaign: stepDef.campaign,
+      resend_id: result.id,
+    },
   });
 
   return { ok: true };
@@ -362,7 +386,19 @@ async function runWAPhase(): Promise<{ processed: number; sent: number; skipped:
     }
     try {
       const r = await processWAOne(c);
-      if (r.ok) result.sent++;
+      if (r.ok) {
+        result.sent++;
+        // 阶段 6 P0: 推 nurture_wa_sent 事件到 n8n
+        broadcast({
+          event: 'nurture_wa_sent',
+          data: {
+            lead_id: c.id,
+            phone: c.phone,
+            wa_message_id: r.messageId,
+            campaign: 'wa_nurture_day3_followup',
+          },
+        });
+      }
       else { result.failed++; result.errors.push({ lead_id: c.id, error: r.error }); }
     } catch (e: any) {
       result.failed++;

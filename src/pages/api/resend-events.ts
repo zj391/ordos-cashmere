@@ -22,6 +22,7 @@
  */
 
 import { toAstroApiRoute, type VercelLikeRequest, type VercelLikeResponse } from '../../lib/api/vercel-shim';
+import { broadcast } from '../../lib/n8n-broadcast';
 
 const SUPABASE_URL = process.env.SUPABASE_URL || process.env.PUBLIC_SUPABASE_URL || '';
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_ANON_KEY || '';
@@ -174,6 +175,28 @@ async function _internalHandler(req: VercelLikeRequest, res: VercelLikeResponse)
           }),
         });
       }
+
+      // 阶段 6 P0: 推 email engagement 事件到 n8n
+      const n8nEventMap: Record<string, string> = {
+        'email.sent': 'nurture_email_sent',
+        'email.delivered': 'nurture_email_delivered',
+        'email.opened': 'email_opened',
+        'email.clicked': 'email_clicked',
+        'email.bounced': 'email_bounced',
+        'email.complained': 'email_complained',
+        'email.delivery_delayed': 'email_delayed',
+      };
+      broadcast({
+        event: n8nEventMap[eventType] || `email_${newStatus}`,
+        data: {
+          lead_id: activity.lead_id,
+          email_id: emailId,
+          status: newStatus,
+          resend_event_type: eventType,
+          click_link: event.data?.click?.link || null,
+          resend_timestamp: event.created_at,
+        },
+      });
 
       results.push({
         type: eventType,

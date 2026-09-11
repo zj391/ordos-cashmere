@@ -26,6 +26,7 @@
 
 import { toAstroApiRoute, type VercelLikeRequest, type VercelLikeResponse } from '../../lib/api/vercel-shim';
 import { detectUnsubscribeIntent } from '../../lib/unsubscribe-detect';
+import { broadcast } from '../../lib/n8n-broadcast';
 
 const SUPABASE_URL = process.env.SUPABASE_URL || process.env.PUBLIC_SUPABASE_URL || '';
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_ANON_KEY || '';
@@ -192,6 +193,20 @@ async function _internalHandler(req: VercelLikeRequest, res: VercelLikeResponse)
       method: 'PATCH',
       headers: { 'Prefer': 'return=minimal' },
       body: JSON.stringify(statusUpdate),
+    });
+
+    // 阶段 6 P0: 推 lead lifecycle 事件到 n8n (zj 可视化 workflow)
+    broadcast({
+      event: wantsUnsub ? 'lead_unsubscribed' : 'lead_replied',
+      data: {
+        lead_id: lead.id,
+        email: fromEmail,
+        contact_name: lead.contact_name,
+        company_name: lead.company_name,
+        previous_step: lead.email_sequence_step,
+        subject: subject.slice(0, 200),
+        wants_unsubscribe: wantsUnsub,
+      },
     });
 
     return res.status(200).json({
