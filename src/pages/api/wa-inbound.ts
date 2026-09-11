@@ -24,6 +24,7 @@
  */
 
 import { toAstroApiRoute, type VercelLikeRequest, type VercelLikeResponse } from '../../lib/api/vercel-shim';
+import { detectUnsubscribeIntent } from '../../lib/unsubscribe-detect';
 
 const SUPABASE_URL = process.env.SUPABASE_URL || process.env.PUBLIC_SUPABASE_URL || '';
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_ANON_KEY || '';
@@ -195,15 +196,35 @@ async function _internalHandler(req: VercelLikeRequest, res: VercelLikeResponse)
             continue;
           }
 
-          // 标记 lead 已回复 + 停 nurture + 停 WA 后续 outbound (7 天冷却)
+          // 阶段 5 P0: 检测客户在 WA 里要求退订 (STOP / unsubscribe)
+          // WA message body 在 msg.text.body (text type) 或 msg[msgType] (其他类型)
+          let msgBody = '';
+          if (msgType === 'text' && msg.text?.body) msgBody = msg.text.body;
+          else if (msg[msgType]?.body) msgBody = msg[msgType].body;
+          else if (msg[msgType]?.caption) msgBody = msg[msgType].caption;  // 图片/视频
+          const wantsUnsub = detectUnsubscribeIntent(msgBody, msgType);
+
+          // 标记 lead 状态 (replied 或 unsubscribed)
+          const statusUpdate: Record<string, any> = {
+            email_replied_at: new Date().toISOString(),
+            email_next_due_at: null,
+          };
+          let action: string;
+          if (wantsUnsub) {
+            // 客户明确退订 → 拉黑 (阶段 5 P0)
+            statusUpdate.status = 'unsubscribed';
+            statusUpdate.is_blacklisted = true;
+            statusUpdate.blacklist_reason = `wa_unsubscribe: ${msgType}`;
+            action = 'unsubscribed_and_blacklisted';
+          } else {
+            statusUpdate.status = 'replied';
+            action = 'replied_paused';
+          }
+
           await sb(`/leads?id=eq.${lead.id}`, {
             method: 'PATCH',
             headers: { 'Prefer': 'return=minimal' },
-            body: JSON.stringify({
-              email_replied_at: new Date().toISOString(),  // 复用字段: WA 回复也算主动回复
-              email_next_due_at: null,
-              status: 'replied',
-            }),
+            body: JSON.stringify(statusUpdate),
           });
 
           // 同步写一条 lead_activities 便于 timeline UI 展示
@@ -216,17 +237,18 @@ async function _internalHandler(req: VercelLikeRequest, res: VercelLikeResponse)
               direction: 'in',
               subject: `WhatsApp reply (${msgType})`,
               body_excerpt: contactName ? `${contactName} replied via WhatsApp` : 'Replied via WhatsApp',
-              status: 'replied',
+              status: wantsUnsub ? 'unsubscribed' : 'replied',
               external_id: msgId,
-              campaign: 'wa_inbound_reply',
+              campaign: wantsUnsub ? 'wa_unsubscribe_request' : 'wa_inbound_reply',
               metadata: {
                 wa_timestamp: waTimestamp,
                 received_at_iso: new Date().toISOString(),
+                wants_unsubscribe: wantsUnsub,
               },
             }),
           });
 
-          results.push({ msg_id: msgId, lead_id: lead.id, action: 'replied_paused' });
+          results.push({ msg_id: msgId, lead_id: lead.id, action, wants_unsubscribe: wantsUnsub });
         } catch (e: any) {
           console.error('[wa-inbound] error processing msg', msgId, e?.message || e);
           results.push({ msg_id: msgId, action: 'error', error: String(e?.message || e) });

@@ -46,6 +46,61 @@ if (SUPABASE_URL && SUPABASE_KEY) {
   }
 }
 
+// 阶段 5 P1: nurture funnel 数据 (独立 fetch — 不影响主 inquiries 查询)
+let nurtureFunnel: any = {
+  total_leads: 0,
+  byStep: { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0 },
+  emailsSent: 0,
+  emailsOpened: 0,
+  emailsClicked: 0,
+  emailsReplied: 0,
+  openRate: '0%',
+  clickRate: '0%',
+  replyRate: '0%',
+};
+if (SUPABASE_URL && SUPABASE_KEY) {
+  try {
+    // leads 当前 step 分布
+    const leads = await fetch(
+      `${SUPABASE_URL}/rest/v1/leads?select=email_sequence_step,status&limit=500`,
+      { headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY } },
+    ).then(r => r.ok ? r.json() : []).catch(() => []);
+
+    const byStep: Record<number, number> = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0 };
+    for (const l of leads) {
+      const s = Math.max(0, Math.min(9, Number(l.email_sequence_step) || 0));
+      byStep[s] = (byStep[s] || 0) + 1;
+    }
+
+    // 最近 30 天 nurture 邮件状态聚合
+    const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
+    const activities = await fetch(
+      `${SUPABASE_URL}/rest/v1/lead_activities?channel=eq.email&direction=eq.out&created_at=gte.${thirtyDaysAgo}&select=status&limit=5000`,
+      { headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY } },
+    ).then(r => r.ok ? r.json() : []).catch(() => []);
+
+    const emailsSent = activities.length;
+    const emailsOpened = activities.filter((a: any) => ['opened', 'clicked'].includes(a.status)).length;
+    const emailsClicked = activities.filter((a: any) => a.status === 'clicked').length;
+    const emailsReplied = activities.filter((a: any) => a.status === 'replied').length;
+    const pct = (n: number) => emailsSent === 0 ? '0%' : `${Math.round((n / emailsSent) * 100)}%`;
+
+    nurtureFunnel = {
+      total_leads: leads.length,
+      byStep,
+      emailsSent,
+      emailsOpened,
+      emailsClicked,
+      emailsReplied,
+      openRate: pct(emailsOpened),
+      clickRate: pct(emailsClicked),
+      replyRate: pct(emailsReplied),
+    };
+  } catch (e) {
+    // funnel 失败不影响主页面
+  }
+}
+
 const MARKET_GROUPS: Record<string, string[]> = {
   china: ['CN', 'HK', 'TW'],
   north_america: ['US', 'CA', 'MX'],
@@ -88,7 +143,6 @@ inquiries.forEach(i => {
   const s = i.status || 'unknown';
   byStatus[s] = (byStatus[s] || 0) + 1;
   const queue = slaForInquiry(i).key;
-  slaCounts[queue] = (slaCounts[queue] || 0) + 1;
 });
 
 function fmtDate(iso: string) {
@@ -189,6 +243,20 @@ function badgeSla(inquiry: any) {
     .b-sla-attention { background:#fef3c7; color:#92400e; }
     .b-sla-overdue { background:#fee2e2; color:#991b1b; }
     .b-sla-progress { background:#d1fae5; color:#065f46; }
+    /* 阶段 5 P1: Nurture funnel */
+    .funnel { max-width: 1400px; margin: 0 auto 1rem; background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid #e7e5e4; }
+    .funnel h3 { font-size: 0.75rem; text-transform: uppercase; color: #57534e; margin-bottom: 0.5rem; font-weight: 600; }
+    .funnel h4 { font-size: 0.7rem; text-transform: uppercase; color: #78716c; margin-bottom: 0.5rem; font-weight: 600; }
+    .funnel-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+    .funnel-metric { background: #fafaf9; padding: 0.75rem; border-radius: 0.375rem; text-align: center; }
+    .metric-label { font-size: 0.7rem; color: #78716c; text-transform: uppercase; letter-spacing: 0.04em; }
+    .metric-value { font-size: 1.75rem; font-weight: 600; margin: 0.25rem 0; }
+    .metric-sub { font-size: 0.7rem; color: #a8a29e; font-variant-numeric: tabular-nums; }
+    .funnel-steps { display: flex; align-items: flex-end; gap: 0.5rem; padding: 1rem 0; min-height: 120px; border-top: 1px solid #f5f5f4; }
+    .funnel-step { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.25rem; }
+    .step-num { font-size: 0.7rem; color: #57534e; font-weight: 600; }
+    .step-bar { width: 100%; max-width: 60px; border-radius: 0.25rem 0.25rem 0 0; min-height: 4px; }
+    .step-count { font-size: 0.75rem; color: #1c1917; font-weight: 600; font-variant-numeric: tabular-nums; }
     .market { font-size:0.75rem; color:#57534e; text-transform:uppercase; letter-spacing:.03em; }
     @media (max-width: 720px) { .sla-panel { grid-template-columns: repeat(2, minmax(0, 1fr)); } table { display:block; overflow-x:auto; } }
   </style>
@@ -219,6 +287,41 @@ function badgeSla(inquiry: any) {
     <a class="sla-card sla-card-attention" href="/admin/inquiries/?sla=attention"><small>4–24 小时待跟进</small><strong>{slaCounts.attention || 0}</strong></a>
     <a class="sla-card sla-card-overdue" href="/admin/inquiries/?sla=overdue"><small>超过 24 小时</small><strong>{slaCounts.overdue || 0}</strong></a>
     <a class="sla-card" href="/admin/inquiries/?status=contacted"><small>已开始跟进</small><strong>{byStatus.contacted || 0}</strong></a>
+  </div>
+
+  <div class="funnel" aria-label="Nurture 序列漏斗 (阶段 5 P1, 2026-09-10)">
+    <h3>Nurture 邮件漏斗（最近 30 天）</h3>
+    <p style="font-size: 0.7rem; color: #78716c; margin-bottom: 0.75rem;">
+      {nurtureFunnel.total_leads} leads 跨 8 轮序列 · {nurtureFunnel.emailsSent} 封发出 · {nurtureFunnel.emailsReplied} 收到回复
+    </p>
+    <div class="funnel-grid">
+      <div class="funnel-metric">
+        <div class="metric-label">打开率</div>
+        <div class="metric-value" style="color: #10b981;">{nurtureFunnel.openRate}</div>
+        <div class="metric-sub">{nurtureFunnel.emailsOpened} / {nurtureFunnel.emailsSent}</div>
+      </div>
+      <div class="funnel-metric">
+        <div class="metric-label">点击率</div>
+        <div class="metric-value" style="color: #3b82f6;">{nurtureFunnel.clickRate}</div>
+        <div class="metric-sub">{nurtureFunnel.emailsClicked} / {nurtureFunnel.emailsSent}</div>
+      </div>
+      <div class="funnel-metric">
+        <div class="metric-label">回复率</div>
+        <div class="metric-value" style="color: #f59e0b;">{nurtureFunnel.replyRate}</div>
+        <div class="metric-sub">{nurtureFunnel.emailsReplied} / {nurtureFunnel.emailsSent}</div>
+      </div>
+    </div>
+    <h4 style="margin-top: 1rem;">Lead 序列分布（当前 step）</h4>
+    <div class="funnel-steps">
+      {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((step) => (
+        <div class="funnel-step">
+          <div class="step-num">{step === 9 ? '✓' : step}</div>
+          <div class="step-bar" style={`height: ${Math.min(80, Math.max(4, (nurtureFunnel.byStep[step] || 0) * 6))}px; ${step === 9 ? 'background: #10b981;' : 'background: linear-gradient(180deg, #44403c, #78716c);'}`}></div>
+          <div class="step-count">{nurtureFunnel.byStep[step] || 0}</div>
+        </div>
+      ))}
+    </div>
+    <p style="font-size: 0.65rem; color: #a8a29e; margin-top: 0.5rem;">step 9 = 序列完成 (8 轮发完)</p>
   </div>
 
   <div class="dist">

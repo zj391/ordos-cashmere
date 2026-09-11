@@ -25,6 +25,7 @@
  */
 
 import { toAstroApiRoute, type VercelLikeRequest, type VercelLikeResponse } from '../../lib/api/vercel-shim';
+import { detectUnsubscribeIntent } from '../../lib/unsubscribe-detect';
 
 const SUPABASE_URL = process.env.SUPABASE_URL || process.env.PUBLIC_SUPABASE_URL || '';
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_ANON_KEY || '';
@@ -78,6 +79,9 @@ function ipAuthorized(ip: string): boolean {
   }
   return RESEND_INBOUND_IPS.some(allowed => ip.startsWith(allowed));
 }
+
+// detectUnsubscribeIntent() moved to src/lib/unsubscribe-detect.ts (阶段 5 P0, 2026-09-10)
+// — 共享给 wa-inbound.ts
 
 async function _internalHandler(req: VercelLikeRequest, res: VercelLikeResponse) {
   setCors(res);
@@ -158,29 +162,46 @@ async function _internalHandler(req: VercelLikeRequest, res: VercelLikeResponse)
       return res.status(200).json({ ok: true, action: 'blacklisted_skipped', lead_id: lead.id });
     }
 
-    if (lead.email_replied_at) {
+    // 阶段 5 P0: 检测客户在邮件里要求退订 (STOP / unsubscribe)
+    const wantsUnsub = detectUnsubscribeIntent(text, subject);
+
+    if (lead.email_replied_at && !wantsUnsub) {
       // 之前已经标记为已回复 (可能是重复邮件 / Resend 重试)
       return res.status(200).json({ ok: true, action: 'already_replied', lead_id: lead.id });
     }
 
-    // 3. 标记 lead 已回复 + 取消后续 nurture
+    // 3. 标记 lead 状态
+    const statusUpdate: Record<string, any> = {
+      email_replied_at: new Date().toISOString(),
+      email_next_due_at: null,
+    };
+    let action: string;
+    if (wantsUnsub) {
+      // 客户明确退订 → 拉黑名单 + status=unsubscribed (阶段 5 P0)
+      statusUpdate.status = 'unsubscribed';
+      statusUpdate.is_blacklisted = true;
+      statusUpdate.blacklist_reason = `inbound_unsubscribe_request: ${subject.slice(0, 100)}`;
+      statusUpdate.wa_opted_in = false;  // 同步撤 WA 同意 (合规: 同一信号撤所有渠道)
+      action = 'unsubscribed_and_blacklisted';
+    } else {
+      // 普通回复
+      action = 'replied_paused';
+    }
+
     await sb(`/leads?id=eq.${lead.id}`, {
       method: 'PATCH',
       headers: { 'Prefer': 'return=minimal' },
-      body: JSON.stringify({
-        email_replied_at: new Date().toISOString(),
-        email_next_due_at: null,  // 关键: 清掉 due 时间,nurture cron 会跳过
-        // status 保留 — 销售可能会切到 'replied' 或 'qualified'
-      }),
+      body: JSON.stringify(statusUpdate),
     });
 
     return res.status(200).json({
       ok: true,
-      action: 'replied_paused',
+      action,
       lead_id: lead.id,
       contact_name: lead.contact_name,
       company: lead.company_name,
       previous_step: lead.email_sequence_step,
+      wants_unsubscribe: wantsUnsub,
     });
   } catch (e: any) {
     console.error('[resend-inbound] error:', e?.message || e);
