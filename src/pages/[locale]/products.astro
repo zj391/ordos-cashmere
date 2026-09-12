@@ -623,10 +623,10 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
     <div class="container-narrow py-12">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-sm">
         {categories.map((cat) => (
-          <div class="bg-background p-6 border border-border hover:border-brand-gold transition-colors">
-            <h3 class="font-serif text-lg text-brand-ink mb-2">{cat.name}</h3>
+          <div class="card-editorial group block bg-background p-6">
+            <h3 class="font-serif text-lg text-brand-ink mb-2 group-hover:text-brand-copper transition-colors">{cat.name}</h3>
             <p class="text-muted-foreground text-xs leading-relaxed mb-3">{cat.description}</p>
-            <p class="text-xs text-brand-gold font-medium tracking-wider">
+            <p class="text-xs text-brand-copper font-medium tracking-wider">
               {curatedCountsByCategory[cat.id] || 0} {locale === 'cn' ? '款精选代表款' : 'curated styles'}
             </p>
           </div>

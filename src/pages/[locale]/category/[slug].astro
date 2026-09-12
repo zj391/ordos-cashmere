@@ -103,14 +103,14 @@ const ui = t[locale] || t.en;
   <section class="py-12 md:py-16">
     <div class="container-narrow">
       <h2 class="font-display text-2xl md:text-3xl font-light mb-8">{seo.h1}</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
         {products.slice(0, 24).map((p) => (
           <a
             href={`/${locale}/products/${p.id}/`}
-            class="group block border border-border p-6 hover:border-brand-gold hover:shadow-lg transition-colors transition-shadow duration-300"
+            class="card-editorial group block bg-background p-6"
           >
             <div class="text-[10px] uppercase tracking-[0.18em] text-muted-foreground mb-2">{p.categoryName || catName}</div>
-            <h3 class="font-display text-lg leading-tight mb-3 group-hover:text-brand-chocolate transition-colors">
+            <h3 class="font-display text-lg leading-tight mb-3 group-hover:text-brand-copper transition-colors">
               {buildProductHeading(p, locale)}
             </h3>
             <div class="text-xs text-muted-foreground">
@@ -118,7 +118,7 @@ const ui = t[locale] || t.en;
               {p.micron ? ` · ${p.micron}` : ''}
               {p.moq ? ` · MOQ ${p.moq}` : ''}
             </div>
-            <div class="mt-4 text-sm text-brand-chocolate font-medium border-b border-brand-chocolate pb-0.5 w-fit group-hover:border-brand-gold group-hover:text-brand-gold transition-colors">
+            <div class="mt-4 text-sm text-brand-cocoa font-medium border-b border-brand-cocoa pb-0.5 w-fit group-hover:border-brand-copper group-hover:text-brand-copper transition-colors">
               {locale === 'cn' ? '查看详情 →' : 'View details →'}
             </div>
           </a>
@@ -130,10 +130,10 @@ const ui = t[locale] || t.en;
   <section class="py-12 md:py-16 bg-brand-cream/30 border-t border-border">
     <div class="container-narrow">
       <h2 class="font-display text-2xl md:text-3xl font-normal text-foreground mb-8">{ui.browseRelated}</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">
         {Object.entries(CATEGORY_SLUGS).filter(([s]) => s !== slug).map(([s, cid]) => (
-          <a href={`/${locale}/category/${s}/`} class="block border border-border p-4 hover:border-brand-gold transition-colors">
-            <div class="font-display text-base text-foreground">{CATEGORY_SEO[cid][locale]?.h1 || CATEGORY_SEO[cid].en.h1}</div>
+          <a href={`/${locale}/category/${s}/`} class="card-editorial group block bg-background p-4">
+            <div class="font-display text-base text-foreground group-hover:text-brand-copper transition-colors">{CATEGORY_SEO[cid][locale]?.h1 || CATEGORY_SEO[cid].en.h1}</div>
           </a>
         ))}
       </div>
