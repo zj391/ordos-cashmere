@@ -151,7 +151,7 @@ export default function ProductInquiryForm({
   const honeypotLabel = { en: 'Website', cn: '网站', de: 'Webseite', fr: 'Site web', ja: 'ウェブサイト', kr: '웹사이트' };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 bg-card border border-border rounded-lg p-8">
+    <form onSubmit={handleSubmit} className="space-y-6 border-t border-stone-200 pt-8">
       <h2 className="font-display text-2xl md:text-3xl font-light mb-6">{L(title)}</h2>
 
       {/* Honeypot: hidden from real users via CSS + tabindex=-1, but bots auto-fill */}
@@ -169,13 +169,13 @@ export default function ProductInquiryForm({
                 name={f.name}
                 required={f.required}
                 rows={5}
-                className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary"
+                className="input-editorial"
               />
             ) : f.type === 'select' && f.options ? (
               <select
                 name={f.name}
                 required={f.required}
-                className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary bg-background"
+                className="input-editorial"
               >
                 {Object.entries(f.options).map(([k, labels]) => (
                   <option key={k} value={k}>
@@ -188,7 +188,7 @@ export default function ProductInquiryForm({
                 type="date"
                 name={f.name}
                 required={f.required}
-                className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary"
+                className="input-editorial"
               />
             ) : f.type === 'file' ? (
               <input
@@ -205,7 +205,7 @@ export default function ProductInquiryForm({
                 name={f.name}
                 required={f.required}
                 placeholder={f.placeholder ? L(f.placeholder) : undefined}
-                className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary"
+                className="input-editorial"
               />
             )}
           </div>

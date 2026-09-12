@@ -335,15 +335,15 @@ export default function ContactForm({ locale }: Props) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-medium mb-2">{L(locale, 'name')}</label>
-          <input type="text" name="name" required className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary" />
+          <input type="text" name="name" required className="input-editorial" />
         </div>
         <div>
           <label className="block text-sm font-medium mb-2">{L(locale, 'company')}</label>
-          <input type="text" name="company" required className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary" />
+          <input type="text" name="company" required className="input-editorial" />
         </div>
         <div>
           <label className="block text-sm font-medium mb-2">{L(locale, 'country')}</label>
-          <select name="country" required defaultValue="" className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary bg-white">
+          <select name="country" required defaultValue="" className="input-editorial">
             <option value="" disabled>—</option>
             {COUNTRIES.map((c) => {
               const field = LOCALE_TO_FIELD[locale] || 'name_en';
@@ -354,11 +354,11 @@ export default function ContactForm({ locale }: Props) {
         </div>
         <div>
           <label className="block text-sm font-medium mb-2">{L(locale, 'email')}</label>
-          <input type="email" name="email" required className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary" />
+          <input type="email" name="email" required className="input-editorial" />
         </div>
         <div className="md:col-span-2">
           <label className="block text-sm font-medium mb-2">{L(locale, 'phone')}</label>
-          <input type="tel" name="phone" className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary" />
+          <input type="tel" name="phone" className="input-editorial" />
         </div>
         <fieldset className="md:col-span-2 border-t border-border pt-5 mt-1">
           <legend className="text-sm font-medium">{Q(locale, 'title')}</legend>
@@ -366,21 +366,21 @@ export default function ContactForm({ locale }: Props) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <label className="block text-sm font-medium mb-2">{Q(locale, 'industry')}</label>
-              <select name="industry" defaultValue="" className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary bg-white">
+              <select name="industry" defaultValue="" className="input-editorial">
                 <option value="">—</option>
                 {INDUSTRY_OPTIONS.map((option) => <option key={option} value={option}>{Q(locale, option)}</option>)}
               </select>
             </div>
             <div>
               <label className="block text-sm font-medium mb-2">{Q(locale, 'companySize')}</label>
-              <select name="company_size" defaultValue="" className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary bg-white">
+              <select name="company_size" defaultValue="" className="input-editorial">
                 <option value="">—</option>
                 {COMPANY_SIZE_OPTIONS.map((option) => <option key={option} value={option}>{Q(locale, option)}</option>)}
               </select>
             </div>
             <div>
               <label className="block text-sm font-medium mb-2">{Q(locale, 'jobTitle')}</label>
-              <input type="text" name="job_title" className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary" />
+              <input type="text" name="job_title" className="input-editorial" />
             </div>
           </div>
         </fieldset>
@@ -390,7 +390,7 @@ export default function ContactForm({ locale }: Props) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium mb-2">{S(locale, 'channel')}</label>
-              <select name="preferred_channel" defaultValue={locale === 'cn' ? 'wechat' : 'email'} className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary bg-white">
+              <select name="preferred_channel" defaultValue={locale === 'cn' ? 'wechat' : 'email'} className="input-editorial">
                 <option value="email">{S(locale, 'email')}</option>
                 <option value="whatsapp">{S(locale, 'whatsapp')}</option>
                 <option value="wechat">{S(locale, 'wechat')}</option>
@@ -398,7 +398,7 @@ export default function ContactForm({ locale }: Props) {
             </div>
             <div>
               <label className="block text-sm font-medium mb-2">{S(locale, 'intent')}</label>
-              <select name="purchase_intent" defaultValue="quote" className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary bg-white">
+              <select name="purchase_intent" defaultValue="quote" className="input-editorial">
                 <option value="quote">{S(locale, 'quote')}</option>
                 <option value="samples">{S(locale, 'samples')}</option>
                 <option value="documents">{S(locale, 'documents')}</option>
@@ -410,15 +410,15 @@ export default function ContactForm({ locale }: Props) {
         </fieldset>
         <div>
           <label className="block text-sm font-medium mb-2">{L(locale, 'delivery_date')}</label>
-          <input type="date" name="delivery_date" className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary" />
+          <input type="date" name="delivery_date" className="input-editorial" />
         </div>
         <div>
           <label className="block text-sm font-medium mb-2">{L(locale, 'quantity')}</label>
-          <input type="text" name="quantity" placeholder={L(locale, 'quantityHelp')} className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary" />
+          <input type="text" name="quantity" placeholder={L(locale, 'quantityHelp')} className="input-editorial" />
         </div>
         <div className="md:col-span-2">
           <label className="block text-sm font-medium mb-2">{L(locale, 'message')}</label>
-          <textarea name="message" rows={5} defaultValue={cartItems.length > 0 ? 'INQUIRY LIST (from my saved list):\n' + cartItems.map((it, i) => `${i + 1}. ${it.name}${it.color ? ' [' + it.color + ']' : ''} — SKU ${it.id} — qty ${it.qty}${it.note ? ' — note: ' + it.note : ''}`).join('\n') + '\n\n' : ''} className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+          <textarea name="message" rows={5} defaultValue={cartItems.length > 0 ? 'INQUIRY LIST (from my saved list):\n' + cartItems.map((it, i) => `${i + 1}. ${it.name}${it.color ? ' [' + it.color + ']' : ''} — SKU ${it.id} — qty ${it.qty}${it.note ? ' — note: ' + it.note : ''}`).join('\n') + '\n\n' : ''} className="input-editorial"></textarea>
         </div>
         <div className="md:col-span-2">
           <label className="block text-sm font-medium mb-2">{L(locale, 'attachments')}</label>
