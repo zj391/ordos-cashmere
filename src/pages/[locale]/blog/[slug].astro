@@ -220,7 +220,7 @@ const blogFAQ = extractBlogFAQ(post.body, 4, locale);
     </div>
 
     {blogFAQ.length > 0 && (
-      <details class="mt-12 border border-border rounded-lg p-6 bg-secondary/10" open>
+      <details class="mt-12 pt-6 border-t border-stone-200 open:bg-transparent" open>
         <summary class="font-display text-xl cursor-pointer list-none flex items-center justify-between">
           <span>Quick answers from this article</span>
           <svg class="w-5 h-5 transition-transform group-open:rotate-180 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -237,14 +237,14 @@ const blogFAQ = extractBlogFAQ(post.body, 4, locale);
     )}
 
     <footer class="mt-16 pt-8 border-t border-border">
-      <div class="bg-muted/50 border border-border rounded-lg p-6">
+      <div class="card-editorial p-6">
         <h3 class="font-display text-xl mb-2">{locale === 'cn' ? '需要报价？' : 'Need a quotation?'}</h3>
         <p class="text-muted-foreground mb-4">
           {locale === 'cn'
             ? '请提供产品类型、数量、目的地和资料需求；适用范围与项目条件将在书面沟通中确认。'
             : 'Share the product type, quantity, destination and documentation needs; the applicable scope and project terms are confirmed in writing.'}
         </p>
-        <a href={`/${locale}/contact/`} class="inline-block px-6 py-3 bg-primary text-primary-foreground rounded-none font-medium hover:bg-primary/90 transition-colors">
+        <a href={`/${locale}/contact/`} class="btn-tier-1">
           {locale === 'cn' ? '索取报价 →' : 'Request a Quote →'}
         </a>
       </div>
@@ -269,8 +269,7 @@ const blogFAQ = extractBlogFAQ(post.body, 4, locale);
             <ul class="space-y-2">
               {matched.map((l) => (
                 <li>
-                  <a href={l.href} class="inline-flex items-center gap-2 text-primary hover:text-brand-chocolate hover:underline transition-colors">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                  <a href={l.href} class="btn-tier-3">
                     {l.label}
                   </a>
                 </li>
