@@ -65,7 +65,7 @@ export default function DownloadsGrid({ locale, downloads }: Props) {
             key={d.type + d.title}
             type="button"
             onClick={() => { setActiveIdx(i); setStep('preview'); }}
-            className="flex items-center gap-4 border border-border rounded-lg p-6 hover:border-primary hover:shadow-md transition-all text-left w-full group"
+            className="card-editorial flex items-center gap-4 p-6 text-left w-full group"
           >
             <div className="w-12 h-12 rounded-none bg-primary/10 flex items-center justify-center group-hover:bg-primary/20">
               <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -87,10 +87,10 @@ export default function DownloadsGrid({ locale, downloads }: Props) {
             <div className="text-xs text-muted-foreground mb-4">{L('desc')}</div>
             {step === 'preview' && (
               <form onSubmit={handleSubmit} className="space-y-3">
-                <input name="name" required placeholder={L('name')} className="w-full px-3 py-2 border border-border rounded-none text-sm" />
-                <input name="email" type="email" required placeholder={L('email')} className="w-full px-3 py-2 border border-border rounded-none text-sm" />
-                <input name="company" required placeholder={L('company')} className="w-full px-3 py-2 border border-border rounded-none text-sm" />
-                <select name="country" required defaultValue="" className="w-full px-3 py-2 border border-border rounded-none text-sm bg-white">
+                <input name="name" required placeholder={L('name')} className="input-editorial !py-2 !text-sm" />
+                <input name="email" type="email" required placeholder={L('email')} className="input-editorial !py-2 !text-sm" />
+                <input name="company" required placeholder={L('company')} className="input-editorial !py-2 !text-sm" />
+                <select name="country" required defaultValue="" className="input-editorial !py-2 !text-sm bg-white">
                   <option value="" disabled>{L('country')}</option>
                   {COUNTRIES.map((c) => {
                     const field = LOCALE_TO_FIELD[locale] || 'name_en';

@@ -177,13 +177,13 @@ function CartList({ items, locale }: { items: CartItem[]; locale: string }) {
     <div className="space-y-4">
       <ul className="space-y-3">
         {items.map((it) => (
-          <li key={`${it.id}-${it.color || ''}`} className="grid grid-cols-[80px_1fr_auto] gap-4 items-start bg-card border border-border rounded-lg p-4">
-            <img src={it.image} alt={it.name} className="w-20 h-20 object-cover rounded" decoding="async" loading="lazy" />
+          <li key={`${it.id}-${it.color || ''}`} className="card-editorial grid grid-cols-[80px_1fr_auto] gap-4 items-start bg-card p-4">
+            <img src={it.image} alt={it.name} className="w-20 h-20 object-cover rounded-none" decoding="async" loading="lazy" />
             <div className="min-w-0 space-y-2">
-              <a href={it.href} className="font-medium hover:text-primary line-clamp-2 block">{it.name}</a>
+              <a href={it.href} className="font-medium hover:text-brand-copper line-clamp-2 block">{it.name}</a>
               <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
                 <span>SKU: {it.id}</span>
-                {it.color && <span className="px-2 py-0.5 bg-secondary rounded">{L('color')}: {it.color}</span>}
+                {it.color && <span className="px-2 py-0.5 bg-secondary rounded-none">{L('color')}: {it.color}</span>}
                 <span>{locale === 'cn' ? '项目条件书面确认' : 'Project details confirmed in writing'}</span>
               </div>
               <div className="flex flex-wrap gap-3 items-center">
@@ -194,7 +194,7 @@ function CartList({ items, locale }: { items: CartItem[]; locale: string }) {
                     min="1"
                     value={it.qty}
                     onChange={(e) => window.dxCart?.update(it.id, { qty: Math.max(1, parseInt(e.target.value, 10) || 1) }, it.color)}
-                    className="w-20 px-2 py-1 border border-border rounded text-sm bg-background"
+                    className="w-20 input-editorial !py-1 !text-sm"
                   />
                 </label>
                 <label className="flex items-center gap-2 text-xs flex-1 min-w-[200px]">
@@ -204,7 +204,7 @@ function CartList({ items, locale }: { items: CartItem[]; locale: string }) {
                     defaultValue={it.note || ''}
                     placeholder={L('notePh')}
                     onBlur={(e) => window.dxCart?.update(it.id, { note: e.target.value }, it.color)}
-                    className="flex-1 px-2 py-1 border border-border rounded text-sm bg-background"
+                    className="flex-1 input-editorial !py-1 !text-sm"
                   />
                 </label>
               </div>
