@@ -749,24 +749,22 @@ return (
 : 'Browse the listed cashmere leggings, knit tights, trousers and related accessory records. Use the attributes on each product page to prepare a sourcing brief; applicable project details are confirmed in writing.'}
 </p>
 </div>
-<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10">
 {leggings.slice(0, 8).map((p) => (
 <a
 href={`/${locale}/products/${p.id}/`}
-class="group block border border-border rounded-lg overflow-hidden hover:border-primary transition-colors bg-white"
+class="card-editorial group block bg-white"
 >
-<div class="aspect-square bg-secondary/30 overflow-hidden">
+<div class="aspect-square bg-stone-100 overflow-hidden mb-4">
 <img
 src={resolveCategoryCardImage(p.images[0])}
 alt={p.name}
-class="w-full h-full object-cover group-hover:scale-105 transition-transform"
+class="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-90"
 loading="lazy"
 />
 </div>
-<div class="p-3">
-<h3 class="text-xs font-medium leading-snug line-clamp-2 mb-1">{p.name}</h3>
-                  <p class="text-[10px] text-muted-foreground">{locale === 'cn' ? '项目条件书面确认' : 'Project details confirmed in writing'}</p>
-</div>
+<h3 class="card-editorial-title">{p.name}</h3>
+                  <p class="card-editorial-meta">{locale === 'cn' ? '项目条件书面确认' : 'Project details confirmed in writing'}</p>
 </a>
 ))}
           </div>
@@ -801,24 +799,22 @@ return (
 : 'Browse the listed cashmere leggings, knit tights, trousers and related accessory records. Use the attributes on each product page to prepare a sourcing brief; applicable project details are confirmed in writing.'}
 </p>
 </div>
-<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10">
 {leggings.slice(0, 8).map((p) => (
 <a
 href={`/${locale}/products/${p.id}/`}
-class="group block border border-border rounded-lg overflow-hidden hover:border-primary transition-colors bg-white"
+class="card-editorial group block bg-white"
 >
-<div class="aspect-square bg-secondary/30 overflow-hidden">
+<div class="aspect-square bg-stone-100 overflow-hidden mb-4">
 <img
 src={resolveCategoryCardImage(p.images[0])}
 alt={p.name}
-class="w-full h-full object-cover group-hover:scale-105 transition-transform"
+class="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-90"
 loading="lazy"
 />
 </div>
-<div class="p-3">
-<h3 class="text-xs font-medium leading-snug line-clamp-2 mb-1">{p.name}</h3>
-                  <p class="text-[10px] text-muted-foreground">{locale === 'cn' ? '项目条件书面确认' : 'Project details confirmed in writing'}</p>
-</div>
+<h3 class="card-editorial-title">{p.name}</h3>
+                  <p class="card-editorial-meta">{locale === 'cn' ? '项目条件书面确认' : 'Project details confirmed in writing'}</p>
 </a>
 ))}
           </div>
@@ -890,14 +886,14 @@ loading="lazy"
         </p>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {crossLinks.map((cl) => (
-            <a href={`/${locale}/products/${cl.slug}/`} class="group block border border-border bg-white p-6 hover:border-brand-gold hover:shadow-lg transition-colors transition-shadow duration-300">
+            <a href={`/${locale}/products/${cl.slug}/`} class="card-editorial group block bg-white p-6">
               <div class="flex items-center justify-between mb-3">
                 <span class="text-[10px] tracking-[0.2em] uppercase text-brand-camel font-mono">
                   {locale === 'cn' ? '分类目录' : 'CATEGORY CATALOG'}
                 </span>
-                <svg class="w-4 h-4 text-muted-foreground group-hover:text-brand-chocolate group-hover:translate-x-1 transition-colors transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                <svg class="w-4 h-4 text-muted-foreground group-hover:text-brand-copper group-hover:translate-x-1 transition-colors transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
               </div>
-              <h3 class="font-serif text-xl mb-2 group-hover:text-brand-chocolate transition-colors leading-tight">
+              <h3 class="font-serif text-xl mb-2 group-hover:text-brand-copper transition-colors leading-tight">
                 {cl.name[locale] || cl.name.en}
               </h3>
               <p class="text-xs text-muted-foreground leading-relaxed line-clamp-3">{locale === 'cn' ? '查看该品类的产品记录、款式属性和已列规格信息。' : 'Explore the product records, style attributes and listed specifications in this category.'}</p>
@@ -919,8 +915,8 @@ loading="lazy"
       <h2 class="font-serif text-3xl md:text-4xl font-light mb-8">{locale === 'cn' ? '相关指南' : 'Related Guides'}</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         {guides.map((g) => (
-          <a href={g.href} class="group block border border-border bg-white p-6 hover:border-brand-camel transition-colors">
-            <h3 class="font-serif text-xl mb-2 group-hover:text-brand-camel transition-colors">{locale === 'cn' ? g.cn : g.en}</h3>
+          <a href={g.href} class="card-editorial group block bg-white p-6">
+            <h3 class="font-serif text-xl mb-2 group-hover:text-brand-copper transition-colors">{locale === 'cn' ? g.cn : g.en}</h3>
             <span class="text-sm text-muted-foreground group-hover:text-primary transition-colors inline-flex items-center gap-1">
               {locale === 'cn' ? '阅读指南 →' : 'Read guide →'}
             </span>
@@ -983,17 +979,15 @@ loading="lazy"
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           {latestBlogPosts.map((p) => (
-            <a href={`/${locale}/blog/${p.slug}/`} class="group block border border-border bg-white overflow-hidden hover:border-brand-gold hover:shadow-lg transition-colors transition-shadow duration-300">
-              <div class="aspect-[16/10] bg-gradient-to-br from-brand-cream via-brand-shell to-brand-sandhi"></div>
-              <div class="p-6">
-                <div class="text-xs text-muted-foreground tracking-wider mb-3 font-mono">{p.date}</div>
-                <h3 class="font-serif text-lg mb-3 group-hover:text-brand-chocolate transition-colors leading-tight line-clamp-2">{p.title}</h3>
-                <p class="text-muted-foreground leading-relaxed mb-4 text-sm line-clamp-3">{p.excerpt}</p>
-                <span class="inline-flex items-center gap-1 text-sm text-brand-chocolate font-medium">
-                  {locale === 'cn' ? '阅读文章' : 'Read article'}
-                  <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </span>
-              </div>
+            <a href={`/${locale}/blog/${p.slug}/`} class="card-editorial group block bg-white">
+              <div class="aspect-[16/10] bg-gradient-to-br from-brand-cream via-brand-shell to-brand-sandhi mb-4"></div>
+              <div class="text-xs text-muted-foreground tracking-wider mb-3 font-mono">{p.date}</div>
+              <h3 class="font-serif text-lg mb-3 group-hover:text-brand-copper transition-colors leading-tight line-clamp-2">{p.title}</h3>
+              <p class="text-muted-foreground leading-relaxed mb-4 text-sm line-clamp-3">{p.excerpt}</p>
+              <span class="inline-flex items-center gap-1 text-sm text-brand-cocoa font-medium">
+                {locale === 'cn' ? '阅读文章' : 'Read article'}
+                <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+              </span>
             </a>
           ))}
         </div>
