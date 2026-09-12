@@ -22,7 +22,11 @@ const error = url.searchParams.get('error');
 const cookieHeader = Astro.request.headers.get('cookie') || '';
 const sessionMatch = /(?:^|;\s*)admin_session=([^;]*)/.exec(cookieHeader);
 const sessionValue = sessionMatch ? decodeURIComponent(sessionMatch[1] || '').trim() : '';
-const hasValidSession = sessionValue.length > 0;
+// 2026-09-10 (Stage 13): 不再只看 cookie 存在 — 还要求格式像 `<timestamp>.<64-hex>`,
+// 防止 attacker 拿 `admin_session=anything` 绕过. 真正的 HMAC 验证在
+// /admin/* 路径的 middleware 里做 (那里可以 server-side 调 verifySession).
+const SESSION_TOKEN_RE = new RegExp('^\\d+\\.[a-f0-9]{64}$', 'i');
+const hasValidSession = SESSION_TOKEN_RE.test(sessionValue);
 
 if (hasValidSession) {
   // 308 so the browser does not resend a POST body on retry.

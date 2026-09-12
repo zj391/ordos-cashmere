@@ -1,4 +1,5 @@
 import { defineMiddleware } from 'astro:middleware';
+import { verifySession } from './server/admin/admin-session.js';
 
 /**
  * Single request handler that:
@@ -37,7 +38,11 @@ export const onRequest = defineMiddleware(async (context, next) => {
       return next();
     }
     const cookie = context.cookies.get('admin_session');
-    if (!cookie) {
+    // 2026-09-10 (Stage 13 admin 跳转逻辑修复): 不仅检查 cookie 存在,
+    // 还要 verifySession 验证 HMAC 签名. 防止 attacker 用任意字符串 cookie 绕过.
+    const adminSecret = process.env.ADMIN_PASSWORD || '';
+    const sessionValid = cookie ? verifySession(cookie.value, adminSecret) : false;
+    if (!sessionValid) {
       if (pathname.startsWith('/api/')) {
         return new Response(JSON.stringify({ error: 'unauthorized' }), {
           status: 401,
