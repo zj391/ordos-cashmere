@@ -3,6 +3,156 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   EDITORIAL DESIGN SYSTEM (merged from design-system.css 2026-09-10)
+   ============================================================ */
+/**
+ * Editorial Design System (阶段 7 P0, 2026-09-10)
+ *
+ * 全站 UI 统一规则 — 不替代 Tailwind utility, 而是在 editorial 上下文
+ * 提供语义化 utility class, 让 hero / CTA / product card 风格统一。
+ *
+ * 原则:
+ *   - rounded-none 是 editorial 默认 (报纸杂志感)
+ *   - button tier 三档 (primary action / secondary action / inline link)
+ *   - section header 用 "section number + small caps title" 模式
+ *   - hairline border (1px solid) 替代阴影
+ */
+
+/* ============================================================
+   BUTTON TIER SYSTEM
+   ============================================================ */
+
+/* Tier 1 — Primary action (hero CTA, "Request Quote", "Submit")
+   对应 hero 主行动按钮: cocoa + uppercase + 大字距 + rounded-none */
+.btn-tier-1 {
+  @apply inline-flex items-center justify-center gap-3
+         px-10 py-5 bg-brand-cocoa text-white
+         text-xs md:text-sm font-semibold uppercase tracking-[0.16em]
+         border border-brand-cocoa rounded-none
+         transition-colors duration-200
+         hover:bg-brand-cocoa-dark hover:border-brand-cocoa-dark
+         focus-visible:outline-2 focus-visible:outline-brand-copper focus-visible:outline-offset-2;
+}
+
+/* Tier 2 — Secondary action (Section "View all", "Download catalog") */
+.btn-tier-2 {
+  @apply inline-flex items-center gap-2
+         text-xs md:text-sm font-semibold uppercase tracking-[0.2em]
+         text-foreground pb-1 border-b border-foreground/40 rounded-none
+         transition-colors duration-200
+         hover:text-brand-copper hover:border-brand-copper
+         focus-visible:outline-2 focus-visible:outline-brand-copper focus-visible:outline-offset-2;
+}
+
+/* 暗色背景上的 Tier 2 (hero/footer 深色 section) */
+.btn-tier-2-on-dark {
+  @apply inline-flex items-center gap-2
+         text-xs md:text-sm font-semibold uppercase tracking-[0.2em]
+         text-white pb-1 border-b border-white/40 rounded-none
+         transition-colors duration-200
+         hover:text-brand-copper hover:border-brand-copper
+         focus-visible:outline-2 focus-visible:outline-brand-copper focus-visible:outline-offset-2;
+}
+
+/* Tier 3 — Inline link ("Read more", "Learn how") */
+.btn-tier-3 {
+  @apply inline-flex items-center gap-1
+         font-serif italic text-base text-brand-cocoa
+         border-b border-brand-cocoa/30 rounded-none
+         transition-colors duration-200
+         hover:text-brand-copper hover:border-brand-copper
+         focus-visible:outline-2 focus-visible:outline-brand-copper focus-visible:outline-offset-2;
+}
+
+/* ============================================================
+   SECTION HEADER PATTERN
+   ============================================================ */
+
+/* 数字编号 + 全大写小字标签 (editorial magazine section header) */
+.section-eyebrow {
+  @apply text-[10px] md:text-xs font-semibold uppercase tracking-[0.3em] text-brand-copper;
+}
+
+/* section 标题 (h2 级, serif + light weight) */
+.section-title {
+  @apply font-serif text-3xl md:text-4xl lg:text-5xl font-light leading-tight tracking-[-0.01em];
+}
+
+/* 暗背景上的 section eyebrow */
+.section-eyebrow-on-dark {
+  @apply text-[10px] md:text-xs font-semibold uppercase tracking-[0.3em] text-brand-gold;
+}
+
+/* ============================================================
+   CARD PATTERNS (replaces rounded-lg + shadow)
+   ============================================================ */
+
+/* Editorial product card — border-top hairline, serif title, sans meta */
+.card-editorial {
+  @apply bg-background border-t border-stone-200 pt-6
+         transition-colors duration-200
+         hover:border-brand-copper;
+}
+
+.card-editorial-title {
+  @apply font-serif text-xl md:text-2xl font-light leading-tight
+         text-foreground group-hover:text-brand-copper
+         transition-colors duration-200;
+}
+
+.card-editorial-meta {
+  @apply text-[10px] md:text-xs uppercase tracking-[0.2em] text-muted-foreground mt-2;
+}
+
+/* ============================================================
+   HAIRLINE DIVIDER (替代 1px 实线分割)
+   ============================================================ */
+
+.hairline {
+  @apply border-0 border-t border-stone-200;
+}
+
+.hairline-dashed {
+  @apply border-0 border-t border-dashed border-stone-300;
+}
+
+/* editorial 杂志标志: 三粒小点 (·  ·  ·) 替代传统分割线 */
+.ornament-trio {
+  @apply inline-flex items-center gap-2 text-stone-400 text-xs;
+}
+.ornament-trio::before,
+.ornament-trio::after {
+  content: "";
+  @apply flex-1 border-t border-stone-200;
+}
+
+/* ============================================================
+   FORM ELEMENTS (询盘表单 + 输入框统一)
+   ============================================================ */
+
+/* Editorial input — rounded-none + 底部 border-only underline 风格 */
+.input-editorial {
+  @apply w-full bg-transparent border-0 border-b border-stone-300
+         px-1 py-3 text-base text-foreground
+         focus:border-brand-copper focus:outline-none focus:ring-0
+         rounded-none transition-colors duration-200;
+}
+
+.input-editorial::placeholder {
+  @apply text-stone-400;
+}
+
+/* Checkbox editorial 风格 — 用 brand-copper 替代默认 blue */
+.checkbox-editorial {
+  @apply h-4 w-4 rounded-none border-stone-400 text-brand-copper
+         focus:ring-brand-copper focus:ring-offset-0;
+}
+
+
+/* End of design system */
+
+
 @layer base {
   :root {
     /* 2026-09-04 arbas-inspired shift: white-leaning surfaces + cocoa
