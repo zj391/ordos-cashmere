@@ -337,19 +337,19 @@ const IMG = {
           {c.subtitle}
         </p>
         <div class="flex flex-wrap items-center gap-6">
-          <a href={`/${locale}/contact/`} class="group inline-flex items-center gap-3 px-10 py-5 bg-brand-cocoa hover:bg-brand-cocoa-dark text-white text-sm font-semibold uppercase tracking-[0.16em] transition-colors duration-200">
+          <a href={`/${locale}/contact/`} class="btn-tier-1 group">
             {c.cta}
             <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
             </svg>
           </a>
-          <a href={`/${locale}/download/`} class="group inline-flex items-center gap-2 text-white text-sm uppercase tracking-[0.2em] border-b border-white/40 pb-1 hover:border-brand-copper hover:text-brand-copper transition-colors">
+          <a href={`/${locale}/download/`} class="btn-tier-2-on-dark group">
             {c.ctaSecondary}
           </a>
           <!-- 新增：观看工厂视频（in-page anchor, no modal） -->
           <a
             href={`/${locale}/factory/#factory-video-heading`}
-            class="group inline-flex items-center gap-2 text-white text-sm uppercase tracking-[0.2em] border-b border-white/40 pb-1 hover:border-brand-copper hover:text-brand-copper transition-colors"
+            class="btn-tier-2-on-dark group"
           >
             <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M8 5v14l11-7z" />
@@ -901,10 +901,10 @@ const IMG = {
         {t6('请提供产品参考、数量、目的地和文件要求，以启动书面采购沟通。', 'Share a product reference, quantity, destination and document requirements to begin a written sourcing discussion.', 'Produktreferenz, Menge, Zielort und Dokumentenbedarf für die schriftliche Beschaffung angeben.', 'Indiquez référence produit, quantité, destination et documents requis pour un échange écrit.', '製品参考、数量、仕向地、書類要件を共有して書面で相談します。', '제품 참고, 수량, 목적지, 서류 요건을 공유해 서면 소싱 상담을 시작하세요.')}
       </p>
       <div class="flex flex-wrap justify-center gap-4">
-        <a href={`/${locale}/contact/`} class="inline-flex items-center justify-center bg-brand-cocoa hover:bg-brand-cocoa-dark px-8 py-3.5 text-sm uppercase tracking-[0.16em] text-white font-semibold transition-colors duration-200">
+        <a href={`/${locale}/contact/`} class="btn-tier-1">
           {c.cta}
         </a>
-        <a href={`https://wa.me/${SITE_INFO.whatsapp.replace(/[^\d]/g, '')}`} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center border border-copper text-copper hover:bg-copper hover:text-white px-8 py-3.5 text-sm uppercase tracking-[0.16em] font-semibold transition-colors duration-200">
+        <a href={`https://wa.me/${SITE_INFO.whatsapp.replace(/[^\d]/g, '')}`} target="_blank" rel="noopener noreferrer" class="btn-tier-1 !bg-transparent !text-brand-copper !border-brand-copper hover:!bg-brand-copper hover:!text-white">
           WhatsApp
         </a>
       </div>
