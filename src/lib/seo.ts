@@ -94,6 +94,7 @@ export const SEO: Record<Locale, LocaleSEO> = {
         'Ordos dehaired cashmere', 'Mongolian greasy cashmere fiber',
         'where to buy bulk raw Mongolian cashmere', 'best Ordos cashmere fiber supplier China',
         'superfine white cashmere dehaired top factory', 'eco-friendly scoured cashmere fiber wholesale',
+        ...getSeoKeywords('en', 'pricing'),
       ],
     },
     yarnFabric: {
@@ -105,6 +106,7 @@ export const SEO: Record<Locale, LocaleSEO> = {
         'soft cashmere woven fabric for luxury overcoat',
         'cashmere silk fabric manufacturer OEM',
         'lightweight cashmere fabric for women clothing',
+        ...getSeoKeywords('en', 'pricing'),
       ],
     },
     garmentOem: {
@@ -119,6 +121,9 @@ export const SEO: Record<Locale, LocaleSEO> = {
         'small MOQ cashmere coat manufacturer',
         'wholesale cashmere shawl with custom logo',
         'OEKO-TEX certified cashmere clothing supplier',
+        ...getSeoKeywords('en', 'seasonal'),
+        ...getSeoKeywords('en', 'inquiry'),
+        ...getSeoKeywords('en', 'pricing'),
       ],
     },
     factory: {
@@ -134,6 +139,7 @@ export const SEO: Record<Locale, LocaleSEO> = {
         'cashmere factory with Mongolia raw material source',
         'direct cashmere mill no middleman', 'large capacity cashmere factory bulk export',
         'ISO OEKO-TEX cashmere supplier China',
+        ...getSeoKeywords('en', 'leadtime'),
       ],
     },
     ordosOrigin: {
@@ -148,12 +154,16 @@ export const SEO: Record<Locale, LocaleSEO> = {
     contact: {
       title: 'Contact Dongxiao Cashmere | Product & Quote Inquiries',
       description: 'Contact DONGXIAO Cashmere by WhatsApp, WeChat, email or phone. Include product, quantity, destination and specification requirements for a written sourcing discussion.',
-      keywords: ['contact cashmere supplier', 'cashmere inquiry', 'WhatsApp cashmere'],
+      keywords: ['contact cashmere supplier', 'cashmere inquiry', 'WhatsApp cashmere',
+        ...getSeoKeywords('en', 'inquiry'),
+      ],
     },
     blog: {
       title: 'Cashmere B2B Insights & Sourcing Guides | DONGXIAO Blog',
       description: 'Industry insights, cashmere sourcing guides, MOQ/lead-time/shipping tips for global B2B buyers. Updated weekly by Ordos factory experts.',
-      keywords: ['cashmere blog', 'B2B sourcing guide', 'cashmere industry insights'],
+      keywords: ['cashmere blog', 'B2B sourcing guide', 'cashmere industry insights',
+        ...getSeoKeywords('en', 'seasonal'),
+      ],
     },
     download: {
       title: 'Download Center | Catalog, Specs, Certifications | Dongxiao Cashmere',
@@ -163,7 +173,9 @@ export const SEO: Record<Locale, LocaleSEO> = {
     faq: {
       title: 'B2B Cashmere Sourcing FAQ | MOQ, Lead Time, Samples, Payment',
       description: 'Common questions about cashmere sourcing: MOQ, lead time, sample policy, payment terms, shipping, customs. B2B buyer guide.',
-      keywords: ['cashmere MOQ', 'cashmere lead time', 'cashmere sample policy', 'B2B cashmere FAQ'],
+      keywords: ['cashmere MOQ', 'cashmere lead time', 'cashmere sample policy', 'B2B cashmere FAQ',
+        ...getSeoKeywords('en', 'leadtime'),
+      ],
     },
     privacy: {
       title: 'Privacy Policy | Dongxiao Cashmere',
@@ -185,22 +197,22 @@ export const SEO: Record<Locale, LocaleSEO> = {
     rawMaterial: {
       title: 'Premium Rohkaschmir | Weiß, Braun, Grau | Direkt ab Werk Ordos',
       description: 'Beschaffungsgespräch für weißen, braunen oder violetten Kaschmir mit Einsatz, Menge, Zielort und Dokumentenbedarf.',
-      keywords: getSeoKeywords('de', 'raw'),
+      keywords: [...getSeoKeywords('de', 'raw'), ...getSeoKeywords('de', 'pricing')],
     },
     yarnFabric: {
       title: 'Kaschmirgarn & Webstoff | Kammgarn & Streichgarn | B2B',
       description: 'Premium-Kaschmirgarn und Webstoff für B2B-Käufer. Individuelle Feinheiten, Farben, Mischungen. Direkt aus der Ordos-Spinnerei.',
-      keywords: getSeoKeywords('de', 'yarn'),
+      keywords: [...getSeoKeywords('de', 'yarn'), ...getSeoKeywords('de', 'pricing')],
     },
     garmentOem: {
       title: 'Kaschmir-Strickwaren OEM/ODM | Pullover, Mantel Hersteller',
       description: 'OEM/ODM-Beschaffungsgespräch für Kaschmirbekleidung mit Referenzen, Spezifikationen, Menge, Zielort und Dokumentenbedarf.',
-      keywords: getSeoKeywords('de', 'garment'),
+      keywords: [...getSeoKeywords('de', 'garment'), ...getSeoKeywords('de', 'seasonal'), ...getSeoKeywords('de', 'inquiry'), ...getSeoKeywords('de', 'pricing')],
     },
     factory: {
       title: 'Fabrikstärke | 23+ Jahre Kaschmirproduktion | Ordos Industriepark',
       description: '38.000 qm Fabrik in Ordos. 500+ Mitarbeiter. 1.200+ Tonnen Jahreskapazität. ISO 9001, OEKO-TEX zertifiziert. Direkt vom Erzeuger.',
-      keywords: getSeoKeywords('de', 'factory'),
+      keywords: [...getSeoKeywords('de', 'factory'), ...getSeoKeywords('de', 'leadtime')],
     },
     ordosOrigin: {
       title: 'Ordos Kaschmir Herkunft | Innere Mongolei Erbe & Qualität',
@@ -247,22 +259,22 @@ export const SEO: Record<Locale, LocaleSEO> = {
     rawMaterial: {
       title: "Cachemire Brut Premium | Blanc, Brun, Gris | Usine Ordos",
       description: 'Échange sur cachemire blanc, brun ou violet avec usage, quantité, destination et documents requis.',
-      keywords: getSeoKeywords('fr', 'raw'),
+      keywords: [...getSeoKeywords('fr', 'raw'), ...getSeoKeywords('fr', 'pricing')],
     },
     yarnFabric: {
       title: "Fil & Tissu Cachemire | Peigné & Cardé | B2B Grossiste | Ordos",
       description: "Fil et tissu de cachemire premium pour acheteurs B2B. Titres, couleurs, mélanges personnalisés. Directement de la filature d'Ordos, Mongolie Intérieure. Échantillon gratuit.",
-      keywords: getSeoKeywords('fr', 'yarn'),
+      keywords: [...getSeoKeywords('fr', 'yarn'), ...getSeoKeywords('fr', 'pricing')],
     },
     garmentOem: {
       title: 'Vêtements cachemire OEM/ODM | Discussion d’approvisionnement',
       description: 'Échange OEM/ODM pour vêtements cachemire avec références, spécifications, quantité, destination, échantillonnage et documents requis.',
-      keywords: getSeoKeywords('fr', 'garment'),
+      keywords: [...getSeoKeywords('fr', 'garment'), ...getSeoKeywords('fr', 'seasonal'), ...getSeoKeywords('fr', 'inquiry'), ...getSeoKeywords('fr', 'pricing')],
     },
     factory: {
       title: "Force de l'Usine | 23+ Ans Production Cachemire | Ordos",
       description: 'Usine de 38 000 m² à Ordos. 500+ employés. 1 200+ tonnes de capacité annuelle. Certifié ISO, OEKO-TEX.',
-      keywords: getSeoKeywords('fr', 'factory'),
+      keywords: [...getSeoKeywords('fr', 'factory'), ...getSeoKeywords('fr', 'leadtime')],
     },
     ordosOrigin: {
       title: 'Origine Cachemire Ordos | Patrimoine Mongolie Intérieure | Traçabilité',
@@ -309,22 +321,22 @@ export const SEO: Record<Locale, LocaleSEO> = {
     rawMaterial: {
       title: 'プレミアム原料カシミア | 白・青・紫 | オルドス工場直送 | B2B',
       description: '白・青・紫カシミアについて、用途、数量、仕向地、必要書類を含めて調達相談します。',
-      keywords: getSeoKeywords('ja', 'raw'),
+      keywords: [...getSeoKeywords('ja', 'raw'), ...getSeoKeywords('ja', 'pricing')],
     },
     yarnFabric: {
       title: 'カシミア糸・生地 | 梳毛・紡毛 | B2B卸売 | オルドス紡績',
       description: 'B2Bバイヤー向けプレミアムカシミア糸（26/2〜48/2）と織物。カスタム番手・色・混紡対応。オルドス紡績工場直送、無料サンプル提供。',
-      keywords: getSeoKeywords('ja', 'yarn'),
+      keywords: [...getSeoKeywords('ja', 'yarn'), ...getSeoKeywords('ja', 'pricing')],
     },
     garmentOem: {
       title: 'カシミア衣料・コート OEM/ODM | 調達相談 | DONGXIAO®',
       description: '製品参考、仕様、数量、仕向地、サンプル、必要書類を含むカシミア衣料 OEM/ODM の書面相談。',
-      keywords: [...getSeoKeywords('ja', 'garment'), 'ODM コート', 'カシミアコート OEM'],
+      keywords: [...getSeoKeywords('ja', 'garment'), ...getSeoKeywords('ja', 'seasonal'), ...getSeoKeywords('ja', 'inquiry'), ...getSeoKeywords('ja', 'pricing'), 'ODM コート', 'カシミアコート OEM'],
     },
     factory: {
       title: '工場の強み | 23年以上カシミア生産 | オルドス工業団地 38,000㎡',
       description: '38,000平方メートルのオルドス工場。500名以上の従業員。年間1,200トン以上の生産能力。ISO 9001・OEKO-TEX 認証取得。工場見学歓迎。',
-      keywords: getSeoKeywords('ja', 'factory'),
+      keywords: [...getSeoKeywords('ja', 'factory'), ...getSeoKeywords('ja', 'leadtime')],
     },
     ordosOrigin: {
       title: 'オルドス カシミアの起源 | 内モンゴルの遺産と品質保証',
@@ -371,22 +383,22 @@ export const SEO: Record<Locale, LocaleSEO> = {
     rawMaterial: {
       title: '프리미엄 원료 캐시미어 | 백색·청색·자색 | 오르도스 공장 직송 | B2B',
       description: '백색, 청색, 자색 캐시미어에 대해 용도, 수량, 목적지, 필요 서류를 포함해 소싱 상담을 진행합니다.',
-      keywords: getSeoKeywords('kr', 'raw'),
+      keywords: [...getSeoKeywords('kr', 'raw'), ...getSeoKeywords('kr', 'pricing')],
     },
     yarnFabric: {
       title: '캐시미어 원사 & 직물 | 소모사 & 방모사 | B2B 도매 | 오르도스 방적',
       description: 'B2B 바이어를 위한 프리미엄 캐시미어 원사(26/2~48/2) 및 직물. 맞춤 번수·색상·혼방. 오르도스 방적 공장 직송, 무료 샘플 제공.',
-      keywords: getSeoKeywords('kr', 'yarn'),
+      keywords: [...getSeoKeywords('kr', 'yarn'), ...getSeoKeywords('kr', 'pricing')],
     },
     garmentOem: {
       title: '캐시미어 의류 OEM/ODM | 소싱 상담 | DONGXIAO®',
       description: '제품 참고, 사양, 수량, 목적지, 샘플, 필요 서류를 포함한 캐시미어 의류 OEM/ODM 서면 상담입니다.',
-      keywords: getSeoKeywords('kr', 'garment'),
+      keywords: [...getSeoKeywords('kr', 'garment'), ...getSeoKeywords('kr', 'seasonal'), ...getSeoKeywords('kr', 'inquiry'), ...getSeoKeywords('kr', 'pricing')],
     },
     factory: {
       title: '공장 강점 | 23년 이상의 캐시미어 생산 | 오르도스 산업단지 38,000㎡',
       description: '38,000 sqm 오르도스 공장. 500명 이상 직원. 연 1,200톤 이상 생산 능력. ISO 9001·OEKO-TEX 인증. 공장 방문 환영.',
-      keywords: getSeoKeywords('kr', 'factory'),
+      keywords: [...getSeoKeywords('kr', 'factory'), ...getSeoKeywords('kr', 'leadtime')],
     },
     ordosOrigin: {
       title: '오르도스 캐시미어 원산지 | 내몽골 유산과 품질 보증',
@@ -433,22 +445,32 @@ export const SEO: Record<Locale, LocaleSEO> = {
     rawMaterial: {
       title: '羊绒原料 | 白绒、青绒与紫绒产品记录 | B2B 采购沟通',
       description: '围绕白绒、青绒或紫绒的采购需求沟通用途、数量、目的地与所需纤维文件。',
-      keywords: ['白绒', '青绒', '紫绒', '羊绒原料', '分梳山羊绒', '山羊原绒'],
+      keywords: ['白绒', '青绒', '紫绒', '羊绒原料', '分梳山羊绒', '山羊原绒',
+        ...getSeoKeywords('cn', 'pricing'),
+      ],
     },
     yarnFabric: {
       title: '羊绒纱线与面料 | 精纺、粗纺与纱线支数 | B2B 采购沟通',
       description: '围绕纱线和面料结构、颜色方向、数量、目的地与文件需求发起书面采购沟通。',
-      keywords: ['羊绒纱线', '羊绒面料', '精纺羊绒', '粗纺羊绒', '羊绒纱线26支', '羊绒纱线28支'],
+      keywords: ['羊绒纱线', '羊绒面料', '精纺羊绒', '粗纺羊绒', '羊绒纱线26支', '羊绒纱线28支',
+        ...getSeoKeywords('cn', 'pricing'),
+      ],
     },
     garmentOem: {
       title: '羊绒成衣 OEM/ODM | 采购沟通 | 东霄羊绒',
       description: '围绕产品参考、规格、数量、目的地、打样和文件需求发起羊绒成衣 OEM/ODM 书面项目沟通。',
-      keywords: ['羊绒大衣代工', '羊绒衫代工', '羊绒围巾代工', '羊绒OEM代工', '羊绒ODM', '羊绒服装定制'],
+      keywords: ['羊绒大衣代工', '羊绒衫代工', '羊绒围巾代工', '羊绒OEM代工', '羊绒ODM', '羊绒服装定制',
+        ...getSeoKeywords('cn', 'seasonal'),
+        ...getSeoKeywords('cn', 'inquiry'),
+        ...getSeoKeywords('cn', 'pricing'),
+      ],
     },
     factory: {
       title: '工厂实力 | 23年羊绒生产 | 鄂尔多斯38,000㎡产业园 | ISO认证',
       description: '38,000平米鄂尔多斯生产基地，500+员工，年产能1200+吨分梳羊绒。ISO 9001、OEKO-TEX、GCS认证。源头直供无中间商，工厂视频可看。',
-      keywords: ['羊绒工厂', '鄂尔多斯羊绒厂', '羊绒生产基地'],
+      keywords: ['羊绒工厂', '鄂尔多斯羊绒厂', '羊绒生产基地',
+        ...getSeoKeywords('cn', 'leadtime'),
+      ],
     },
     ordosOrigin: {
       title: '鄂尔多斯羊绒产地 | 内蒙古地理优势 | 阿尔巴斯白绒山羊溯源',
@@ -458,12 +480,16 @@ export const SEO: Record<Locale, LocaleSEO> = {
     contact: {
       title: '联系我们 | 东霄羊绒 | 产品与报价询盘',
       description: '通过微信、WhatsApp、邮件或电话联系东霄羊绒。请提供产品、数量、目的地和所需规格，以启动书面采购沟通。',
-      keywords: ['羊绒供应商联系', '羊绒询盘'],
+      keywords: ['羊绒供应商联系', '羊绒询盘',
+        ...getSeoKeywords('cn', 'inquiry'),
+      ],
     },
     blog: {
       title: '羊绒行业洞察 & B2B采购指南 | 东霄博客',
       description: '羊绒行业洞察、采购指南、趋势分析、MOQ/交期/物流实操。面向跨境B2B买家，每周更新。',
-      keywords: ['羊绒博客', '羊绒采购指南'],
+      keywords: ['羊绒博客', '羊绒采购指南',
+        ...getSeoKeywords('cn', 'seasonal'),
+      ],
     },
     download: {
       title: '资料下载中心 | 羊绒目录/规格/ISO/OEKO-TEX/GCS认证',
@@ -473,7 +499,9 @@ export const SEO: Record<Locale, LocaleSEO> = {
     faq: {
       title: '羊绒采购常见问题 | MOQ/交期/打样/付款/物流/清关',
       description: '羊绒采购常见问题：起订量、交期、打样政策、付款方式、物流、清关、出口退税等全流程解答。',
-      keywords: ['羊绒MOQ', '羊绒交期'],
+      keywords: ['羊绒MOQ', '羊绒交期',
+        ...getSeoKeywords('cn', 'leadtime'),
+      ],
     },
     privacy: {
       title: '隐私政策 | 东霄羊绒',
