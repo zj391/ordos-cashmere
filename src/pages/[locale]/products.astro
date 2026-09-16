@@ -19,6 +19,7 @@ import { products as productsData, getRepresentativeProducts, ensureDbOverlay } 
 import { getProductLabels } from '@/lib/product-labels';
 import { tagAllProducts, PRODUCT_TAG_RULES } from '@/data/product-tags';
 import { TAG_PAGES } from '@/data/tag-seo';
+import { HZNZCN_PRODUCTS } from '@/data/hznzcn-products';
 
 export async function getStaticPaths() {
   await ensureDbOverlay();
@@ -308,8 +309,18 @@ const listingFilterCopy = {
   compareTitle: procurementCopy.compareTitle,
   compareLimit: procurementCopy.compareLimit,
   addToInquiry: procurementCopy.addToInquiry,
+  compareEmpty: procurementCopy.compareEmpty,
   close: procurementCopy.close,
 };
+const MARKET_REF_COPY: Record<string, { eyebrow: string; title: string; subtitle: string; viewAll: string; disclaimer: string }> = {
+  en: { eyebrow: 'MARKET REFERENCE · INDUSTRY COMPARISON', title: 'Public listings from hznzcn.com (清河 cashmere market)', subtitle: '20 wholesale listings from independent stands at the Qinghe market for buyer-side comparison with our Ordos factory catalogue.', viewAll: 'View all 20 listings', disclaimer: 'Reference only. Images and titles sourced from public hznzcn.com listings (2026-09-07). All project quotation, sampling and production are handled through the main catalogue above.' },
+  cn: { eyebrow: '市场参考 · 行业对比', title: 'hznzcn.com（清河羊绒市场）公开款式', subtitle: '清河市场独立档口批发款式 20 个，供 B2B 买家与鄂尔多斯工厂目录对比参考。', viewAll: '查看全部 20 个款式', disclaimer: '仅供对比参考。图片与标题采集自 hznzcn.com 公开页面（2026-09-07）。实际项目报价、打样与生产以上方主目录为准。' },
+  de: { eyebrow: 'MARKTREFERENZ · INDUSTRIEVERGLEICH', title: 'Öffentliche Angebote von hznzcn.com (清河-Cashmeremarkt)', subtitle: '20 Großhandelsangebote unabhängiger Stände vom Qinghe-Markt zum Vergleich mit unserem Ordos-Fabrikkatalog.', viewAll: 'Alle 20 Angebote anzeigen', disclaimer: 'Nur als Referenz. Bilder und Titel aus öffentlichen hznzcn.com-Angeboten (2026-09-07). Projektangebot, Muster und Produktion laufen über den Hauptkatalog.' },
+  fr: { eyebrow: 'RÉFÉRENCE MARCHÉ · COMPARAISON INDUSTRIE', title: 'Annonces publiques de hznzcn.com (marché cachemire 清河)', subtitle: '20 annonces de gros de stands indépendants du marché de Qinghe pour comparaison avec notre catalogue d\'usine d\'Ordos.', viewAll: 'Voir les 20 annonces', disclaimer: 'Référence uniquement. Images et titres issus des annonces publiques hznzcn.com (2026-09-07). Devis, échantillonnage et production via le catalogue principal.' },
+  ja: { eyebrow: '市場参考 · 業界比較', title: 'hznzcn.com（清河カシミア市場）公開出品', subtitle: '清河市場の独立店舗による卸売出品 20 件。当社オルドス工場カタログとの比較用。', viewAll: '全 20 出品を見る', disclaimer: '参考用のみ。画像・タイトルは hznzcn.com 公開ページより取得（2026-09-07）。見積・サンプル・生産は上記メインカタログ経由。' },
+  kr: { eyebrow: '시장 참고 · 업계 비교', title: 'hznzcn.com(칭허 캐시미어 시장) 공개 출품', subtitle: '칭허 시장 독립 매장의 도매 출품 20건. 당사 오르도스 공장 카탈로그 비교용.', viewAll: '전체 20건 보기', disclaimer: '참고용. 이미지와 제목은 hznzcn.com 공개 페이지(2026-09-07) 기준. 견적·샘플·생산은 위 메인 카탈로그를 통해 진행.' },
+};
+const marketRefCopy = MARKET_REF_COPY[locale] || MARKET_REF_COPY.en;
 const catalogUiCopy = {
   en: { index: 'Catalog index', records: 'product records', families: 'product families', explore: 'Explore family record', controls: 'Catalog controls', refine: 'Find by product family, listed material or product reference.' },
   cn: { index: '目录索引', records: '条产品记录', families: '个产品系列', explore: '查看系列记录', controls: '目录控制台', refine: '按产品系列、已列材质或产品编号查找。' },
@@ -728,6 +739,56 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
       </div>
     </section>
   )}
+
+  {/* Market Reference: hznzcn.com (清河) public listings — for buyer-side comparison.
+      NOT in catalog schema, NOT in main sitemap, NOT in pagination. Section-level
+      noindex (page-level robots already noindex-friendly via canonical). */}
+  <section class="py-12 md:py-16 bg-brand-sandwarm/30 border-t border-border/40" aria-label={marketRefCopy.title}>
+    <div class="container-narrow">
+      <div class="flex items-end justify-between mb-6 md:mb-8 gap-4 flex-wrap">
+        <div>
+          <p class="section-eyebrow">{marketRefCopy.eyebrow}</p>
+          <h2 class="font-display text-2xl md:text-3xl font-light mt-2 text-primary">
+            {marketRefCopy.title}
+          </h2>
+          <p class="text-sm text-muted-foreground mt-2 max-w-2xl">{marketRefCopy.subtitle}</p>
+        </div>
+        <a href={`/${locale}/market-reference/hznzcn/`} class="btn-tier-2 shrink-0">
+          {marketRefCopy.viewAll} →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
+        {HZNZCN_PRODUCTS.slice(0, 10).map((p) => (
+          <article class="bg-white border border-border overflow-hidden hover:border-brand-camel hover:shadow-[0_8px_20px_-12px_rgba(28,24,19,0.18)] transition-colors transition-shadow group">
+            <div class="aspect-square bg-brand-cream overflow-hidden">
+              {p.images[0] && (
+                <img
+                  src={p.images[0]}
+                  alt={`${p.title} — ${marketRefCopy.eyebrow}`}
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              )}
+            </div>
+            <div class="p-2.5 md:p-3">
+              <p class="text-[10px] uppercase tracking-wider text-muted-foreground mb-0.5 truncate">
+                {p.shop}
+              </p>
+              <h3 class="text-xs md:text-sm font-medium text-foreground line-clamp-2 group-hover:text-brand-camel leading-snug">
+                {p.title}
+              </h3>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <p class="text-xs text-muted-foreground mt-6 max-w-3xl">
+        {marketRefCopy.disclaimer}
+      </p>
+    </div>
+  </section>
 
 
   <!-- 隐藏的 JSON 数据源（vanilla JS 用） -->
