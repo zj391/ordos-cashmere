@@ -20,6 +20,9 @@ export const INDEXABLE_BLOG_IDS = new Set([
   // B2B buyer angle: scope-specific evidence over generic ESG labels.
   'en/cashmere-unsustainable-claim-expert-rebuttal-b2b',
   'cn/cashmere-unsustainable-claim-expert-rebuttal-b2b',
+  // 2026-09-16 — Autumn OEM cutoff calendar: per-SKU final order dates for Q4/holiday 2026 delivery
+  'en/2026-autumn-cashmere-sweater-oem-order-cutoff',
+  'cn/2026-autumn-cashmere-sweater-oem-order-cutoff',
 ]);
 
 export function getBlogSlugFromId(id: string) {
