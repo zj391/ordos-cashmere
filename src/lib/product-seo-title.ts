@@ -497,6 +497,49 @@ export function buildProductHeading(product: ProductTitleInput, locale = 'en'): 
 }
 
 /**
+ * H1 (页面主标题) — 仅显示产品主名 + 1-2 个最关键规格。
+ *
+ * 与 buildProductHeading (用于 SEO title、og:title、schema、breadcrumb) 分离：
+ * SEO 长尾保留在 meta 层，视觉 H1 只承担"这是什么产品"的传达，
+ * 避免 6 行 H1 撕裂 hero 区视觉。
+ *
+ * 设计原则 (2026-09-16 editorial 重构):
+ *   - 最多 3 段：name + material + micron
+ *   - 总长度 ≤ 60 字符
+ *   - 所有 token 必须是 buildProductHeading 的子串 (SEO 等价)
+ */
+export function buildProductH1(product: ProductTitleInput, locale = 'en'): string {
+  const name = primaryProductName(product.name) || 'Cashmere Product';
+  const material = clean(product.material);
+  const micron = clean(product.micron);
+
+  // 拼接候选 segment，每个 segment 都来自 buildProductHeading 的 facet 池
+  // 这样 H1 的可见文本在 SEO 长尾里一定存在，不会引入新 token
+  const candidates: string[] = [name];
+  if (canUseFacet(material) && !includesFacet(name, material)) {
+    candidates.push(materialCompositionFacet(material) || material);
+  }
+  if (canUseFacet(micron) && !includesFacet(name, micron)) {
+    candidates.push(micron);
+  }
+
+  // 由长到短尝试，确保 ≤ 60 chars
+  const joiner = ' · ';
+  let result = candidates.join(joiner);
+  while (result.length > 60 && candidates.length > 1) {
+    candidates.pop();
+    result = candidates.join(joiner);
+  }
+  // 仍超长则截断 name
+  if (result.length > 60) {
+    const tail = candidates.length > 1 ? joiner + candidates.slice(1).join(joiner) : '';
+    const budget = 60 - tail.length;
+    result = clipWords(name, budget) + tail;
+  }
+  return result;
+}
+
+/**
  * `<title>` 以产品主名称开头，后接真实规格和简短品牌尾缀。主名称优先于类别或泛化
  * 促销词，使搜索结果更容易区分具体款式；超长时从末尾的低优先级规格开始裁切。
  */

@@ -45,7 +45,7 @@ import ColorPicker from '@/components/product/ColorPicker.astro';
 import { LOCALES, isLocale, pickLocale } from '@/lib/i18n';
 
 import { SEO, SITE_URL, SITE_INFO } from '@/lib/seo';
-import { buildProductHeading, buildProductSeoTitle } from '@/lib/product-seo-title';
+import { buildProductHeading, buildProductH1, buildProductSeoTitle } from '@/lib/product-seo-title';
 import { SEO_KEYWORDS } from '@/data/seo-keywords';
 import { getBlogSlugFromId, isIndexableBlogPost } from '@/lib/blog-indexability';
 import { getCollection } from 'astro:content';
@@ -988,6 +988,7 @@ const tdk = {
 // Display name for HTML/JSON-LD display (locale-aware)
 const displayCategory = localizedCategory(product.categoryId, locale, category.name);
 const productHeading = buildProductHeading(product, locale);
+const productH1 = buildProductH1(product, locale);
 const baseTdk = (tdk[locale] || tdk.en)(product, displayCategory);
 const titleBrand = locale === 'cn' ? '东霄羊绒' : 'DONGXIAO';
 const CATEGORY_KEYWORDS: Record<string, string[]> = {
@@ -1434,7 +1435,7 @@ const relatedViewAll: Record<Locale, string> = {
 
           <span class="text-xs tracking-widest text-muted-foreground uppercase">{displayCategory}</span>
 
-          <h1 class="product-title font-display text-3xl md:text-4xl font-light mt-2 mb-3">{productHeading}</h1>
+          <h1 class="product-title font-display text-3xl md:text-4xl font-light mt-2 mb-3">{productH1}</h1>
 
 
 
@@ -1470,24 +1471,7 @@ const relatedViewAll: Record<Locale, string> = {
             </dl>
           </section>
 
-
-
-          <!-- Product Highlights: unique per-product content (SEO differentiation) -->
-          <div class="product-highlights mb-6 border-t border-border pt-5">
-            <h2 class="text-xs font-semibold uppercase tracking-[0.18em] text-primary mb-3">{hl.title}</h2>
-            <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
-              {highlights.map((h) => (
-                <div class="flex justify-between gap-3 border-b border-border/60 py-1.5">
-                  <dt class="text-muted-foreground">{h.label}</dt>
-                  <dd class="text-right font-medium">{h.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-
           <p class="product-summary-copy text-base text-foreground/80 mb-6">{productBodyText}</p>
-
-
 
           <!-- Detailed Description (imf-derived, 7-10) -->
 
@@ -1777,43 +1761,27 @@ const relatedViewAll: Record<Locale, string> = {
 
 
           <!-- CTA + same-page inquiry form toggle (imf style) -->
-
-          <div class="product-actions flex flex-wrap gap-3 mb-3">
-
+          <div class="product-actions flex flex-wrap items-center gap-3 mb-3">
             <button
-
               type="button"
-
               data-inquiry-toggle
-
-              class="inline-block px-6 py-3 bg-primary text-primary-foreground rounded-none font-medium hover:bg-primary/90"
-
+              class="inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground rounded-none font-medium uppercase tracking-[0.15em] hover:bg-primary/90"
             >
-
               {t.buyCta} ▼
-
             </button>
-
-            <a href={`/${locale}/quality-control/`} class="inline-block px-6 py-3 border border-border rounded-none hover:bg-secondary">Verification Planning</a>
-
-            <a href={`/${locale}/contact?product=${product.id}`} class="inline-block px-6 py-3 border border-border rounded-none hover:bg-secondary">Contact Page</a>
 
             <button
-
               type="button"
-
               data-add-to-inquiry
-
-              class="inline-flex items-center gap-2 px-6 py-3 border border-primary text-primary rounded-none hover:bg-primary hover:text-primary-foreground transition-colors"
-
+              class="inline-flex items-center gap-2 px-6 py-3 border border-primary text-primary rounded-none uppercase tracking-[0.15em] hover:bg-primary hover:text-primary-foreground transition-colors"
             >
-
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-
               <span data-add-label>{inquiryLabelSet.add}</span>
-
             </button>
 
+            <a href={`/${locale}/quality-control/`} class="inline-flex items-center text-sm underline-offset-4 hover:underline text-muted-foreground hover:text-foreground transition-colors">
+              {locale === 'cn' ? '验货规划' : 'Verification Planning'}
+            </a>
           </div>
 
 
@@ -2515,7 +2483,8 @@ const relatedViewAll: Record<Locale, string> = {
                     <img
                       src={rpImg}
                       alt={`${rp.name} — ${rp.categoryName}, ${rp.material}`}
-                      loading="lazy"
+                      loading="eager"
+                      fetchpriority="low"
                       decoding="async"
                       class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
