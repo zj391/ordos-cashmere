@@ -7,6 +7,10 @@ dist/
 build/
 *.dist
 
+# Local imports / scrapes (kept on disk for analysis only — never push)
+.imports/
+public/products/hznzcn/
+
 # Environment variables
 .env
 .env.local
