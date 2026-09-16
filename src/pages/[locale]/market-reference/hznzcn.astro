@@ -1,0 +1,244 @@
+---
+/**
+ * /[locale]/market-reference/hznzcn/ — 市场参考 · 行业对比页
+ *
+ * 列出清河羊绒市场 hznzcn.com 上 20 个公开档口款式（绒知纯羊绒、朝思纯
+ * 山羊绒、九月九羊绒、美莎羊绒等），仅供 B2B 买家对比参考。
+ *
+ * 关键设计 (2026-09-16):
+ *   - 不接 products.json schema，不进 sitemap-products.xml，不进 nav
+ *   - 整页 noindex,nofollow
+ *   - 不进 nav、不进 internal linking、不进首页 popular searches
+ *   - 顶部 disclaimer 明确"market reference / industry comparison"
+ *   - 每个产品的询盘按钮跳 /contact 而非新建 [id] 详情页
+ *   - 6 国语言全做（en/cn/de/fr/ja/kr）
+ *
+ * 数据：src/data/hznzcn-products.ts（不接 products.json）
+ * 图片：public/products/hznzcn/{sku}/01_*.jpg ~ 04_*.jpg
+ */
+export const prerender = true;
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
+import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
+import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
+import { HZNZCN_PRODUCTS } from '@/data/hznzcn-products';
+
+export function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const { locale: rawLocale } = Astro.params;
+if (!isLocale(rawLocale)) { return new Response('Not Found', { status: 404 }); }
+const locale = pickLocale(rawLocale);
+
+const T = {
+  en: {
+    eyebrow: 'MARKET REFERENCE · INDUSTRY COMPARISON',
+    title: 'Cashmere market reference: 20 pieces from hznzcn.com',
+    subtitle: 'Public listings from hznzcn.com (清河 cashmere market) for buyer-side comparison. Specifications sourced 2026-09-07.',
+    noticeTitle: 'About this page',
+    notice: 'This page indexes 20 public listings from hznzcn.com (清河 cashmere wholesale market) — a separate sourcing channel. Listings here are reference only. Our main product catalogue (3,500+ items across 5 categories) is sourced directly from our Ordos factory. For B2B project quotation, refer to the main catalogue or contact us directly.',
+    contactCta: 'Contact us for factory-direct quotation',
+    mainCatalogue: '← Back to main catalogue',
+    fieldsShop: 'Shop',
+    fieldsViews: 'Views',
+    fieldsUpdated: 'Updated',
+    fieldsSizes: 'Sizes',
+    fieldsColors: 'Colors',
+    fieldsImages: 'Images',
+    inquireCta: 'Inquire about a comparable item',
+  },
+  cn: {
+    eyebrow: '市场参考 · 行业对比',
+    title: '羊绒市场参考：来自 hznzcn.com 的 20 个款式',
+    subtitle: 'hznzcn.com（清河羊绒市场）公开档口款式，供买家对比参考。规格采集于 2026-09-07。',
+    noticeTitle: '关于本页面',
+    notice: '本页汇总了 hznzcn.com（清河羊绒批发市场）公开的 20 个档口款式，作为独立采购渠道的参考对照。本页内容仅供对比用途。我们的主产品目录（5 大类目共 3500+ 款）来自鄂尔多斯源头工厂直供。B2B 项目报价请参考主目录或直接联系我们。',
+    contactCta: '联系工厂获取源头直供报价',
+    mainCatalogue: '← 返回主目录',
+    fieldsShop: '档口',
+    fieldsViews: '浏览量',
+    fieldsUpdated: '更新',
+    fieldsSizes: '尺码',
+    fieldsColors: '颜色',
+    fieldsImages: '图片',
+    inquireCta: '询盘同款源头货',
+  },
+  de: {
+    eyebrow: 'MARKTREFERENZ · INDUSTRIEVERGLEICH',
+    title: 'Cashmere-Marktreferenz: 20 Stücke von hznzcn.com',
+    subtitle: 'Öffentliche Angebote von hznzcn.com (Cashmere-Großmarkt 清河) zum Käufervergleich. Daten erfasst am 2026-09-07.',
+    noticeTitle: 'Über diese Seite',
+    notice: 'Diese Seite listet 20 öffentliche Angebote von hznzcn.com (Cashmere-Großhandelsmarkt 清河) als separaten Beschaffungskanal. Nur als Referenz. Unser Hauptproduktkatalog (3.500+ Artikel, 5 Kategorien) wird direkt von unserer Ordos-Fabrik bezogen. For B2B project quotation, refer to the main catalogue or contact us directly.',
+    contactCta: 'Werksangebot anfordern',
+    mainCatalogue: '← Zurück zum Hauptkatalog',
+    fieldsShop: 'Stand',
+    fieldsViews: 'Aufrufe',
+    fieldsUpdated: 'Aktualisiert',
+    fieldsSizes: 'Größen',
+    fieldsColors: 'Farben',
+    fieldsImages: 'Bilder',
+    inquireCta: 'Vergleichbares anfragen',
+  },
+  fr: {
+    eyebrow: 'RÉFÉRENCE MARCHÉ · COMPARAISON INDUSTRIE',
+    title: 'Référence marché cachemire : 20 articles de hznzcn.com',
+    subtitle: 'Annonces publiques de hznzcn.com (marché de gros du cachemire 清河) pour comparaison. Données du 2026-09-07.',
+    noticeTitle: 'À propos de cette page',
+    notice: 'Cette page recense 20 annonces publiques de hznzcn.com (marché de gros du cachemire 清河) comme canal d\'approvisionnement distinct. Référence uniquement. Notre catalogue principal (3 500+ articles, 5 catégories) provient directement de notre usine d\'Ordos. For B2B project quotation, refer to the main catalogue or contact us directly.',
+    contactCta: 'Devis direct usine',
+    mainCatalogue: '← Retour au catalogue principal',
+    fieldsShop: 'Stand',
+    fieldsViews: 'Vues',
+    fieldsUpdated: 'Mise à jour',
+    fieldsSizes: 'Tailles',
+    fieldsColors: 'Couleurs',
+    fieldsImages: 'Images',
+    inquireCta: 'Demander un article comparable',
+  },
+  ja: {
+    eyebrow: '市場参考 · 業界比較',
+    title: 'カシミア市場参考：hznzcn.com の 20点',
+    subtitle: 'hznzcn.com（清河カシミア卸売市場）の公開出品、買主側比較用。データ取得 2026-09-07。',
+    noticeTitle: '本ページについて',
+    notice: '本ページは hznzcn.com（清河カシミア卸売市場）の公開出品 20 件を独立した調達チャネルとして参照用にまとめたものです。当社の主要カタログ（3,500 点以上、5 カテゴリ）はオルドス工場直送です。B2B プロジェクトの見積は主要カタログ参照または直接お問い合わせください。',
+    contactCta: '工場直送の見積を依頼',
+    mainCatalogue: '← メインカタログへ',
+    fieldsShop: '店舗',
+    fieldsViews: '閲覧',
+    fieldsUpdated: '更新',
+    fieldsSizes: 'サイズ',
+    fieldsColors: 'カラー',
+    fieldsImages: '画像',
+    inquireCta: '同等品を問い合わせ',
+  },
+  kr: {
+    eyebrow: '시장 참고 · 업계 비교',
+    title: '캐시미어 시장 참고: hznzcn.com 20개 아이템',
+    subtitle: 'hznzcn.com(칭허 캐시미어 도매시장) 공개 출품, 바이어 비교용. 데이터 2026-09-07.',
+    noticeTitle: '본 페이지 안내',
+    notice: '본 페이지는 hznzcn.com(칭허 캐시미어 도매시장)의 공개 출품 20건을 별도 소싱 채널 참고용으로 정리한 것입니다. 참고용입니다. 당사 메인 카탈로그(3,500+ 항목, 5개 카테고리)는 오르도스 공장 직송입니다. B2B 프로젝트 견적은 메인 카탈로그 참조 또는 직접 문의하세요.',
+    contactCta: '공장 직송 견적 요청',
+    mainCatalogue: '← 메인 카탈로그로',
+    fieldsShop: '매장',
+    fieldsViews: '조회',
+    fieldsUpdated: '업데이트',
+    fieldsSizes: '사이즈',
+    fieldsColors: '컬러',
+    fieldsImages: '이미지',
+    inquireCta: '동급품 문의',
+  },
+}[locale];
+
+// SEO meta — kept short because page is noindex anyway
+const meta = {
+  en: { title: 'Market Reference · hznzcn.com Cashmere Listings | DONGXIAO', description: 'Reference index of 20 public cashmere listings from hznzcn.com (清河 market) for buyer-side comparison with our Ordos factory catalogue.' },
+  cn: { title: '市场参考 · hznzcn.com 羊绒款式索引 | DONGXIAO', description: 'hznzcn.com（清河市场）20 个公开羊绒款式索引，供买家与鄂尔多斯工厂目录对比参考。' },
+  de: { title: 'Marktreferenz · hznzcn.com Kaschmir-Listings | DONGXIAO', description: 'Referenzindex mit 20 öffentlichen Kaschmir-Listings von hznzcn.com (清河-Markt) zum Vergleich mit unserem Ordos-Fabrikkatalog.' },
+  fr: { title: 'Référence marché · listings cachemire hznzcn.com | DONGXIAO', description: 'Index de référence de 20 annonces cachemire publiques de hznzcn.com (marché 清河) pour comparaison avec notre catalogue d\'usine d\'Ordos.' },
+  ja: { title: '市場参考 · hznzcn.com カシミア出品 | DONGXIAO', description: 'hznzcn.com（清河市場）の公開カシミア出品 20 件の参考索引。当社オルドス工場カタログとの比較用。' },
+  kr: { title: '시장 참고 · hznzcn.com 캐시미어 출품 | DONGXIAO', description: 'hznzcn.com(칭허 시장) 공개 캐시미어 출품 20건 참고 색인. 당사 오르도스 공장 카탈로그 비교용.' },
+}[locale];
+
+// Sort by views desc for richer reference ordering
+const products = [...HZNZCN_PRODUCTS].sort((a, b) => b.views - a.views);
+const contactLink = `/${locale}/contact?ref=hznzcn`;
+---
+
+<BaseLayout
+  locale={locale}
+  pageKey="market-reference-hznzcn"
+  path="/market-reference/hznzcn"
+  title={meta.title}
+  description={meta.description}
+  noIndex={true}
+>
+  <Navigation slot="nav" locale={locale} />
+  <main class="container-narrow py-12 md:py-16">
+    <p class="section-eyebrow">{T.eyebrow}</p>
+    <h1 class="font-display text-3xl md:text-5xl font-light leading-tight mt-3 mb-4">
+      {T.title}
+    </h1>
+    <p class="text-base text-muted-foreground max-w-3xl mb-8">{T.subtitle}</p>
+
+    <aside class="border-l-2 border-brand-copper pl-4 py-2 mb-10 max-w-3xl bg-secondary/30">
+      <p class="font-medium text-sm mb-1">{T.noticeTitle}</p>
+      <p class="text-sm text-muted-foreground leading-relaxed">{T.notice}</p>
+    </aside>
+
+    <div class="flex flex-wrap gap-3 mb-10">
+      <a href={`/${locale}/contact?ref=hznzcn`} class="btn-tier-1">{T.contactCta}</a>
+      <a href={`/${locale}/products/`} class="btn-tier-2">{T.mainCatalogue}</a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {products.map((p) => (
+        <article class="bg-background border-t border-stone-200 pt-5 group" data-sku={p.sku}>
+          <a
+            href={p.images[0] || '#'}
+            class="block aspect-square overflow-hidden bg-brand-cream mb-3"
+            data-fallback-href={contactLink}
+            onclick={`event.preventDefault(); const l=this.getAttribute('href'); if(l && l !== '#') { window.__openImagePreview ? window.__openImagePreview(${JSON.stringify(p.images)}) : window.open(l, '_blank'); } else { location.href = this.getAttribute('data-fallback-href'); }`}
+          >
+            {p.images[0] && (
+              <img
+                src={p.images[0]}
+                alt={`${p.title} — hznzcn market reference`}
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            )}
+          </a>
+
+          <h2 class="font-serif text-lg font-light leading-snug mb-2 group-hover:text-brand-copper transition-colors">
+            {p.title}
+          </h2>
+
+          <dl class="text-xs text-muted-foreground space-y-1 mb-3">
+            <div class="flex justify-between gap-2">
+              <dt class="uppercase tracking-wider text-[10px]">{T.fieldsShop}</dt>
+              <dd class="text-right font-medium text-foreground/80">{p.shop}</dd>
+            </div>
+            <div class="flex justify-between gap-2">
+              <dt class="uppercase tracking-wider text-[10px]">{T.fieldsViews}</dt>
+              <dd class="text-right font-medium text-foreground/80">{p.views.toLocaleString()}</dd>
+            </div>
+            <div class="flex justify-between gap-2">
+              <dt class="uppercase tracking-wider text-[10px]">{T.fieldsUpdated}</dt>
+              <dd class="text-right font-medium text-foreground/80">{p.updatedAt}</dd>
+            </div>
+            {p.sizes.length > 0 && (
+              <div class="flex justify-between gap-2">
+                <dt class="uppercase tracking-wider text-[10px]">{T.fieldsSizes}</dt>
+                <dd class="text-right font-medium text-foreground/80">{p.sizes.join(' / ')}</dd>
+              </div>
+            )}
+            {p.colors.length > 0 && (
+              <div class="flex justify-between gap-2">
+                <dt class="uppercase tracking-wider text-[10px]">{T.fieldsColors}</dt>
+                <dd class="text-right font-medium text-foreground/80">{p.colors.join(' / ')}</dd>
+              </div>
+            )}
+            <div class="flex justify-between gap-2">
+              <dt class="uppercase tracking-wider text-[10px]">{T.fieldsImages}</dt>
+              <dd class="text-right font-medium text-foreground/80">{p.imageCount}</dd>
+            </div>
+          </dl>
+
+          <a
+            href={contactLink}
+            class="inline-flex items-center gap-1 text-xs uppercase tracking-[0.18em] text-foreground pb-1 border-b border-foreground/30 hover:text-brand-copper hover:border-brand-copper rounded-none transition-colors"
+          >
+            {T.inquireCta} →
+          </a>
+        </article>
+      ))}
+    </div>
+  </main>
+  <Footer slot="footer" locale={locale} />
+  <FloatingChatButtons slot="footer" locale={locale} />
+  <CookieConsent slot="footer" locale={locale} />
+</BaseLayout>
