@@ -766,7 +766,8 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
                 <img
                   src={p.images[0]}
                   alt={`${p.title} — ${marketRefCopy.eyebrow}`}
-                  loading="lazy"
+                  loading="eager"
+                  fetchpriority="low"
                   decoding="async"
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
