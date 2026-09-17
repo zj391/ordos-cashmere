@@ -32,7 +32,9 @@ export const INDEXABLE_BLOG_IDS = new Set([
   'en/cashmere-mock-neck-wholesale-b2b-sizing-guide',
   // 2026-09-16 — hznzcn batch #2: cross-link showcase + sourcing guide for new sweaters-281..300
   'en/fw2025-cashmere-sweater-wholesale-showcase',
+  'cn/fw2025-cashmere-sweater-wholesale-showcase',
   'en/sourcing-cashmere-from-china-b2b-fw2025-guide',
+  'cn/sourcing-cashmere-from-china-b2b-fw2025-guide',
 ]);
 
 export function getBlogSlugFromId(id: string) {
