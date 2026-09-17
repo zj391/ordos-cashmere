@@ -18,6 +18,7 @@ import { products as productsData, getCategoryById, getRepresentativeProductsByC
 import { getCollection } from 'astro:content';
 import { getBlogSlugFromId, isIndexableBlogPost } from '@/lib/blog-indexability';
 import { categoryHubSchema } from '@/lib/schema';
+import { YARN_FORMULAS, YARN_FORMULA_LABELS, YARN_FORMULA_STATS } from '@/data/yarn-formulas';
 
 // Maps catId -> image directory (must match `CATEGORY_IMAGE_DIR` in [id].astro).
 const CATEGORY_IMAGE_DIR = {
@@ -863,10 +864,87 @@ loading="lazy"
         ))}
       </div>
     </div>
-  </section>
+    </section>
 
 
-  <!-- Compare Categories — 类目页交叉链接 (5 cats × 6 langs = 30 URLs, internal link equity + browse-path to sibling categories) -->
+    <!-- Yarn Formulations — yarn category only (2026-09-17 batch, src/data/yarn-formulas.ts) -->
+    {slug === 'yarn' && (
+    <section class="category-yarn-formulas py-14 md:py-20 bg-brand-cream/40 border-t border-border" aria-labelledby="yarn-formulas-title">
+     <div class="container-narrow">
+       <div class="mb-8">
+         <span class="inline-block px-3 py-1 border border-brand-chocolate text-brand-chocolate text-[10px] tracking-[0.2em] uppercase">
+           {locale === 'cn' ? '纱线配方' : 'YARN FORMULATIONS'}
+         </span>
+         <h2 id="yarn-formulas-title" class="font-display text-3xl md:text-4xl font-light mt-3 mb-3">
+           {locale === 'cn'
+             ? `我们鄂尔多斯工厂可生产的 ${YARN_FORMULAS.length} 种羊绒纱线配方`
+             : `${YARN_FORMULAS.length} Cashmere Yarn Formulations Manufactured at Our Ordos Facility`}
+         </h2>
+         <p class="text-muted-foreground leading-relaxed max-w-3xl">
+           {locale === 'cn'
+             ? '下方为工厂已通过量产验证的纱线配方。按配比归类，覆盖 4 种主要方向：纯羊绒、羊绒与羊毛、羊绒与特种纤维、招牌混纺。每个配方可按订单需求调整比例与支数。'
+             : 'Production-validated yarn formulations spun at our Ordos facility. Grouped into 4 blend categories: pure cashmere, cashmere + wool, cashmere + specialty fibers, and signature blends. Each formulation can be adjusted for ratio and yarn count per order requirements.'}
+         </p>
+       </div>
+
+       <!-- Blend category chips -->
+       <div class="flex flex-wrap gap-2 mb-6">
+         {Object.entries(YARN_FORMULA_STATS).map(([cat, count]) => {
+           const labels = YARN_FORMULA_LABELS[cat as keyof typeof YARN_FORMULA_LABELS];
+           return (
+             <span class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs border border-border bg-white">
+               <span class="text-muted-foreground">{locale === 'cn' ? labels.cn : labels.en}</span>
+               <span class="font-mono text-brand-ink">{count}</span>
+             </span>
+           );
+         })}
+       </div>
+
+       <!-- Formulations table -->
+       <div class="border border-border bg-white overflow-x-auto">
+         <table class="w-full text-sm">
+           <thead>
+             <tr class="border-b border-border bg-brand-cream/30 text-xs uppercase tracking-[0.12em] text-muted-foreground">
+               <th class="text-left px-4 py-3 font-medium">{locale === 'cn' ? '支数 (Nm)' : 'Yarn Count'}</th>
+               <th class="text-left px-4 py-3 font-medium">{locale === 'cn' ? '配比' : 'Fiber Blend'}</th>
+               <th class="text-left px-4 py-3 font-medium hidden md:table-cell">{locale === 'cn' ? '用途' : 'Typical Use'}</th>
+               <th class="text-right px-4 py-3 font-medium hidden lg:table-cell">{locale === 'cn' ? '起订 (kg)' : 'MOQ (kg)'}</th>
+               <th class="text-right px-4 py-3 font-medium hidden lg:table-cell">{locale === 'cn' ? 'FOB 天津 (USD/kg)' : 'FOB Tianjin (USD/kg)'}</th>
+             </tr>
+           </thead>
+           <tbody>
+             {YARN_FORMULAS.map((f) => {
+               const labels = YARN_FORMULA_LABELS[f.category];
+               return (
+                 <tr class="border-b border-border last:border-b-0 hover:bg-brand-cream/20 transition-colors">
+                   <td class="px-4 py-3 font-mono text-brand-ink whitespace-nowrap">{f.count}</td>
+                   <td class="px-4 py-3">
+                     <span class="block">{f.blend}</span>
+                     <span class="block text-xs text-muted-foreground mt-0.5">
+                       {locale === 'cn' ? labels.cn : labels.en}
+                     </span>
+                   </td>
+                   <td class="px-4 py-3 hidden md:table-cell text-muted-foreground">{f.useCase}</td>
+                   <td class="px-4 py-3 hidden lg:table-cell text-right font-mono">{f.moqKg}</td>
+                   <td class="px-4 py-3 hidden lg:table-cell text-right font-mono whitespace-nowrap">{f.fobUsdPerKg}</td>
+                 </tr>
+               );
+             })}
+           </tbody>
+         </table>
+       </div>
+
+       <!-- Cross-link footer -->
+       <p class="text-xs text-muted-foreground mt-6">
+         {locale === 'cn'
+           ? '下方列出的羊绒纱线产品记录来自工厂真实目录。具体项目条件以书面沟通确认。'
+           : 'The cashmere yarn product records listed below are drawn from the actual factory catalog. Project terms are confirmed in writing for each inquiry.'}
+       </p>
+     </div>
+    </section>
+    )}
+
+    <!-- Compare Categories — 类目页交叉链接 (5 cats × 6 langs = 30 URLs, internal link equity + browse-path to sibling categories) -->
   {crossLinks.length > 0 && (
     <section class="py-14 md:py-20 bg-background border-t border-border">
       <div class="container-narrow">
