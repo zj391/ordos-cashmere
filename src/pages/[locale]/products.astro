@@ -420,6 +420,17 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
         <div><span>{catalogUiCopy.controls}</span><p>{catalogUiCopy.refine}</p></div>
         <p id="result-count" class="catalog-result-count"></p>
       </div>
+      <!-- 2026-09-16: Browse all by category — direct path to each family hub
+           so a buyer can pivot from the curated 71-product listing into a single
+           category page with deeper product records (20+ per family). -->
+      <nav class="catalog-all-by-cat mt-3 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-xs uppercase tracking-[0.18em] text-brand-ink" aria-label="Browse all cashmere by category">
+        <span class="text-muted-foreground">{labels.allByCategoryLabel || 'Browse all by category:'}</span>
+        <a href={`/${locale}/products/hats-accessories/`} class="hover:text-brand-camel transition-colors">Hats</a>
+        <a href={`/${locale}/products/garment-oem/`} class="hover:text-brand-camel transition-colors">Sweaters</a>
+        <a href={`/${locale}/products/scarves/`} class="hover:text-brand-camel transition-colors">Scarves</a>
+        <a href={`/${locale}/products/accessories-cat/`} class="hover:text-brand-camel transition-colors">Accessories</a>
+        <a href={`/${locale}/products/yarn/`} class="hover:text-brand-camel transition-colors">Yarn</a>
+      </nav>
       <div class="catalog-controls-shell">
         <div id="filter-buttons" class="catalog-category-rail flex flex-wrap gap-2">
         <button data-cat="all" class="filter-btn px-4 py-2 text-sm border bg-brand-ink text-brand-cream border-brand-ink transition-colors">
@@ -610,7 +621,26 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
     <!-- 分页控件（vanilla JS 控制） -->
     <div id="pagination-wrap" class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-border pt-6">
       <p id="page-info" class="text-sm text-muted-foreground"></p>
-      <nav id="pagination" class="flex items-center gap-1" aria-label="Pagination"></nav>
+      <div class="flex flex-col sm:flex-row items-center gap-4">
+        <nav id="pagination" class="flex items-center gap-1" aria-label="Pagination"></nav>
+        <div id="page-jump" class="flex items-center gap-2 text-sm text-muted-foreground">
+          <label for="page-jump-input" class="hidden sm:inline whitespace-nowrap">Go to page:</label>
+          <input
+            id="page-jump-input"
+            type="number"
+            min="1"
+            placeholder="—"
+            class="w-14 h-10 px-2 text-sm text-center border border-border bg-white focus:outline-none focus:border-brand-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+            aria-label="Jump to page number"
+          />
+          <button
+            id="page-jump-go"
+            type="button"
+            class="h-10 px-3 text-sm border border-brand-ink bg-brand-ink text-brand-cream hover:bg-brand-ink/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            aria-label="Jump to specified page"
+          >Go</button>
+        </div>
+      </div>
     </div>
 
     <div id="compare-bar" class="hidden sticky bottom-4 z-30 mt-6 border border-brand-ink bg-brand-ink text-brand-cream px-4 py-3 shadow-xl">
@@ -825,6 +855,36 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
       // Active subcategory filters from URL (e.g. ?byStyle=beanies&byMaterial=100pct-cashmere).
       // Mega menu links use ?groupKey=subKey; multiple params AND together.
       const activeTags = new Set();
+
+      // Jump-to-page input + button — bound once on page load
+      function setupJumpToPage() {
+        const input = document.getElementById('page-jump-input');
+        const btn = document.getElementById('page-jump-go');
+        if (!input || !btn) return;
+        const tryGo = () => {
+          const totalPagesEl = document.getElementById('pagination');
+          if (!totalPagesEl) return;
+          // totalPages is rendered into the nav via button data-page attrs; we read max from input.max set by renderPagination
+          const max = parseInt(input.max) || 1;
+          const p = parseInt(input.value);
+          if (!jumpToPage(p, max)) {
+            // invalid input — flash border
+            input.classList.add('border-red-500');
+            setTimeout(() => input.classList.remove('border-red-500'), 1200);
+          } else {
+            input.value = '';
+          }
+        };
+        btn.addEventListener('click', tryGo);
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') { e.preventDefault(); tryGo(); }
+        });
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupJumpToPage);
+      } else {
+        setupJumpToPage();
+      }
 
       function materialBucket(material) {
         const value = String(material || '').toLowerCase();
@@ -1127,6 +1187,30 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
             }
           });
         });
+
+        // 绑定 jump-to-page 输入框（每次 render 后重新绑定 + 同步 max/placeholder）
+        const jumpInput = document.getElementById('page-jump-input');
+        const jumpBtn = document.getElementById('page-jump-go');
+        if (jumpInput) {
+          jumpInput.max = totalPages;
+          jumpInput.placeholder = totalPages > 0 ? '1–' + totalPages : '—';
+          jumpInput.value = '';
+          jumpInput.disabled = totalPages <= 1;
+        }
+        if (jumpBtn) {
+          jumpBtn.disabled = totalPages <= 1;
+        }
+      }
+
+      function jumpToPage(p, totalPages) {
+        if (isNaN(p) || p < 1 || p > totalPages) return false;
+        if (p === currentPage) return true;
+        currentPage = p;
+        render();
+        // 滚回产品列表顶部
+        const grid = document.getElementById('catalog-grid');
+        if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return true;
       }
 
       function pageBtnHtml(label, page, disabled, active) {
