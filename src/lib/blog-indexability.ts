@@ -23,13 +23,19 @@ export const INDEXABLE_BLOG_IDS = new Set([
   // 2026-09-16 — Autumn OEM cutoff calendar: per-SKU final order dates for Q4/holiday 2026 delivery
   'en/2026-autumn-cashmere-sweater-oem-order-cutoff',
   'cn/2026-autumn-cashmere-sweater-oem-order-cutoff',
-  // 2026-09-16 — hznzcn batch #2: 6 B2B long-tail buying guides (V-Neck batwing / hoodie / wide-leg pants / polo / V-neck cardigan / mock neck specs)
+  // 2026-09-16 — hznzcn batch #1: 6 B2B long-tail buying guides (V-Neck batwing / hoodie / wide-leg pants / polo / V-neck cardigan / mock neck specs)
   'en/cashmere-knit-beanie-wholesale-b2b-buying-guide',
+  'cn/cashmere-knit-beanie-wholesale-b2b-buying-guide',
   'en/cashmere-hoodie-wholesale-knit-gauge-guide',
+  'cn/cashmere-hoodie-wholesale-knit-gauge-guide',
   'en/cashmere-wide-leg-knit-pants-wholesale-guide',
+  'cn/cashmere-wide-leg-knit-pants-wholesale-guide',
   'en/cashmere-polo-sweater-wholesale-style-guide',
+  'cn/cashmere-polo-sweater-wholesale-style-guide',
   'en/cashmere-v-neck-cardigan-wholesale-b2b-guide',
+  'cn/cashmere-v-neck-cardigan-wholesale-b2b-guide',
   'en/cashmere-mock-neck-wholesale-b2b-sizing-guide',
+  'cn/cashmere-mock-neck-wholesale-b2b-sizing-guide',
   // 2026-09-16 — hznzcn batch #2: cross-link showcase + sourcing guide for new sweaters-281..300
   'en/fw2025-cashmere-sweater-wholesale-showcase',
   'cn/fw2025-cashmere-sweater-wholesale-showcase',
