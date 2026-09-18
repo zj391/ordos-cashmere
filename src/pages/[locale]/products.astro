@@ -998,6 +998,24 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
             if (activeCat !== 'all') break;
           }
         }
+        // 2026-09-17: honor explicit ?cat=<id> (e.g. /en/products/?cat=hats)
+        // Map URL slug back to internal categoryId. URL uses 'hats-accessories' for hats, etc.
+        if (params.get('cat')) {
+          const catParam = params.get('cat');
+          const catSlugToId = {
+            'hats': 'hats',
+            'sweaters': 'sweaters',
+            'scarves': 'scarves',
+            'accessories': 'accessories',
+            'yarn': 'yarn',
+            'hats-accessories': 'hats',
+            'garment-oem': 'sweaters',
+            'accessories-cat': 'accessories',
+          };
+          if (catSlugToId[catParam]) {
+            activeCat = catSlugToId[catParam];
+          }
+        }
       }
 
       function clearAllTags() {
