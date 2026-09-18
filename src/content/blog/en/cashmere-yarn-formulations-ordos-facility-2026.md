@@ -176,4 +176,4 @@ Yes. Sample lead time is 7–10 days for 1–5 kg samples. Sample cost USD 8–2
 
 For formulation samples, Pantone matching, or to discuss a custom blend for your program, contact our team with your target retail tier and product application. We return a written quote with sample timeline, bulk lead time, and shipping options within 48 hours.
 
-*[Cross-reference: our [Cashmere V-Neck Cardigan Wholesale Guide](/en/blog/cashmere-v-neck-cardigan-wholesale-b2b-guide/) shows how these yarns convert into knitwear products; the [FW2025 Sweater Showcase](/en/blog/fw2025-cashmere-sweater-wholesale-showcase/) highlights finished products that use these yarn formulations.]*
+*[Cross-reference: our [Erdos cashmere factory origin story](/en/ordos-origin/) explains why our Ordos, Inner Mongolia facility produces premium cashmere; the [Cashmere V-Neck Cardigan Wholesale Guide](/en/blog/cashmere-v-neck-cardigan-wholesale-b2b-guide/) shows how these yarns convert into knitwear products; the [FW2025 Sweater Showcase](/en/blog/fw2025-cashmere-sweater-wholesale-showcase/) highlights finished products that use these yarn formulations.]*
