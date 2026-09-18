@@ -19,6 +19,7 @@ import { getCollection } from 'astro:content';
 import { getBlogSlugFromId, isIndexableBlogPost } from '@/lib/blog-indexability';
 import { categoryHubSchema } from '@/lib/schema';
 import { YARN_FORMULAS, YARN_FORMULA_LABELS, YARN_FORMULA_STATS } from '@/data/yarn-formulas';
+import { initCategoryCatalog } from '@/lib/category-catalog-client';
 
 // Maps catId -> image directory (must match `CATEGORY_IMAGE_DIR` in [id].astro).
 const CATEGORY_IMAGE_DIR = {
@@ -839,13 +840,41 @@ loading="lazy"
       <div class="category-record-heading">
         <span>{archiveCopy.eyebrow}</span>
         <h2 class="font-display text-3xl font-light">{t.catalog}</h2>
-        <p>{products.length} {archiveCopy.listed}</p>
+        <p id="category-info" class="text-sm text-muted-foreground">
+          {locale === 'cn' ? `显示 ${products.length} 条 / 共 ${products.length} 条` : `Showing ${products.length} of ${products.length}`}
+        </p>
       </div>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+
+      {/* Search box + category filter rail (added 2026-09-17 to match /en/products/) */}
+      <div class="mt-6 mb-6 flex flex-col gap-3">
+        <div class="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center">
+          <input
+            id="category-search-input"
+            type="text"
+            placeholder={locale === 'cn' ? '按名称、ID、材质搜索' : 'Search by name, ID, material…'}
+            class="w-full sm:w-auto sm:min-w-[220px] px-4 py-2 text-sm border border-border bg-white focus:outline-none focus:border-brand-ink"
+            aria-label={locale === 'cn' ? '搜索产品' : 'Search products'}
+          />
+          <div class="flex flex-wrap gap-2" id="category-filter-buttons">
+            <button data-cat="all" class="category-filter-btn px-4 py-2 text-sm border bg-brand-ink text-brand-cream border-brand-ink transition-colors">
+              {locale === 'cn' ? '全部' : 'All'} ({products.length})
+            </button>
+            <button data-cat={catId} class="category-filter-btn px-4 py-2 text-sm border bg-white text-muted-foreground border-border hover:border-brand-ink transition-colors">
+              {t.catalog.split(':')[0] || 'Catalog'} ({products.length})
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Product grid (wrapped for client filter/pagination) */}
+      <div id="category-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {products.map((p) => (
           <a
             href={`/${locale}/products/${p.id}/`}
-            class="category-record-card group block border border-border overflow-hidden hover:border-primary transition-colors"
+            class="category-record-card group block border border-border overflow-hidden hover:border-primary transition-colors bg-background"
+            data-product-id={p.id}
+            data-product-category={catId}
+            data-product-name={p.name}
           >
             <div class="aspect-square bg-secondary/30 overflow-hidden">
               <img
@@ -863,8 +892,54 @@ loading="lazy"
           </a>
         ))}
       </div>
+
+      {/* Pagination block (page-jump input + prev/next) */}
+      <div id="category-pagination-wrap" class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-border pt-6">
+        <p id="category-page-info" class="text-sm text-muted-foreground">
+          {locale === 'cn' ? `显示第 1-${Math.min(24, products.length)} 条 / 共 ${products.length} 条` : `Showing 1–${Math.min(24, products.length)} of ${products.length} products`}
+        </p>
+        <div class="flex flex-col sm:flex-row items-center gap-4">
+          <nav id="category-pagination" class="flex items-center gap-1" aria-label={locale === 'cn' ? '分页' : 'Pagination'}></nav>
+          <div class="flex items-center gap-2 text-sm text-muted-foreground">
+            <label for="category-jump-input" class="hidden sm:inline whitespace-nowrap">
+              {locale === 'cn' ? '跳转到第' : 'Go to page:'}
+            </label>
+            <input
+              id="category-jump-input"
+              type="number"
+              min="1"
+              placeholder="—"
+              class="w-14 h-10 px-2 text-sm text-center border border-border bg-white focus:outline-none focus:border-brand-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+              aria-label={locale === 'cn' ? '跳转到指定页' : 'Jump to page number'}
+            />
+            <button
+              id="category-jump-go"
+              type="button"
+              class="h-10 px-3 text-sm border border-brand-ink bg-brand-ink text-brand-cream hover:bg-brand-ink/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              aria-label={locale === 'cn' ? '跳转' : 'Jump to specified page'}
+            >
+              {locale === 'cn' ? '页' : 'Go'}
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-    </section>
+  </section>
+
+  <script define:vars={{ locale }}>
+    import { initCategoryCatalog } from '@/lib/category-catalog-client';
+    initCategoryCatalog({
+      gridSelector: '#category-grid',
+      searchSelector: '#category-search-input',
+      filterSelector: '#category-filter-buttons button[data-cat]',
+      infoSelector: '#category-page-info',
+      paginationSelector: '#category-pagination',
+      jumpInputSelector: '#category-jump-input',
+      jumpButtonSelector: '#category-jump-go',
+      pageSize: 24,
+      locale,
+    });
+  </script>
 
 
     <!-- Yarn Formulations — yarn category only (2026-09-17 batch, src/data/yarn-formulas.ts) -->
