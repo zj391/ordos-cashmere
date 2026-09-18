@@ -67,6 +67,52 @@ const catId = SLUG_TO_CATEGORY_DEFS[slug];
 const category = getCategoryById(catId);
 if (!category) return;
 
+// 2026-09-18: i18n strings for the search + pagination controls added to
+// category pages. Other locales (de/fr/ja/kr) fall back to English until
+// translations are added — extend this map to localize them.
+const CATALOG_UI: Record<string, {
+  searchPlaceholder: string;
+  searchAria: string;
+  showingTotal: (n: number) => string;
+  showingPage: (start: number, end: number, total: number) => string;
+  noMatch: string;
+  pageLabel: string;
+  jumpInputAria: string;
+  jumpBtnAria: string;
+  jumpBtnText: string;
+  paginationAria: string;
+  allLabel: (n: number) => string;
+}> = {
+  en: {
+    searchPlaceholder: 'Search by name, ID, material…',
+    searchAria: 'Search products',
+    showingTotal: (n) => `Showing ${n} of ${n}`,
+    showingPage: (start, end, total) => `Showing ${start}–${Math.min(end, total)} of ${total} products`,
+    noMatch: 'No products match your filters',
+    pageLabel: 'Go to page:',
+    jumpInputAria: 'Jump to page number',
+    jumpBtnAria: 'Jump to specified page',
+    jumpBtnText: 'Go',
+    paginationAria: 'Pagination',
+    allLabel: (n) => `All (${n})`,
+  },
+  cn: {
+    searchPlaceholder: '按名称、ID、材质搜索',
+    searchAria: '搜索产品',
+    showingTotal: (n) => `显示 ${n} 条 / 共 ${n} 条`,
+    showingPage: (start, end, total) => `显示第 ${start}-${Math.min(end, total)} 条 / 共 ${total} 条`,
+    noMatch: '没有符合筛选条件的产品',
+    pageLabel: '跳转到第',
+    jumpInputAria: '跳转到指定页',
+    jumpBtnAria: '跳转',
+    jumpBtnText: '页',
+    paginationAria: '分页',
+    allLabel: (n) => `全部 (${n})`,
+  },
+};
+// Fallback for de/fr/ja/kr — English until translations are added.
+const CAT = CATALOG_UI[locale as keyof typeof CATALOG_UI] || CATALOG_UI.en;
+
 // Listing hubs render the same curated catalog as /products; full source data
 // remains available on existing product detail routes.
 const products = getRepresentativeProductsByCategory(catId);
@@ -841,7 +887,7 @@ loading="lazy"
         <span>{archiveCopy.eyebrow}</span>
         <h2 class="font-display text-3xl font-light">{t.catalog}</h2>
         <p id="category-info" class="text-sm text-muted-foreground">
-          {locale === 'cn' ? `显示 ${products.length} 条 / 共 ${products.length} 条` : `Showing ${products.length} of ${products.length}`}
+          {CAT.showingTotal(products.length)}
         </p>
       </div>
 
@@ -851,13 +897,13 @@ loading="lazy"
           <input
             id="category-search-input"
             type="text"
-            placeholder={locale === 'cn' ? '按名称、ID、材质搜索' : 'Search by name, ID, material…'}
+            placeholder={CAT.searchPlaceholder}
             class="w-full sm:w-auto sm:min-w-[220px] px-4 py-2 text-sm border border-border bg-white focus:outline-none focus:border-brand-ink"
-            aria-label={locale === 'cn' ? '搜索产品' : 'Search products'}
+            aria-label={CAT.searchAria}
           />
           <div class="flex flex-wrap gap-2" id="category-filter-buttons">
             <button data-cat="all" class="category-filter-btn px-4 py-2 text-sm border bg-brand-ink text-brand-cream border-brand-ink transition-colors">
-              {locale === 'cn' ? '全部' : 'All'} ({products.length})
+              {CAT.allLabel(products.length)}
             </button>
             <button data-cat={catId} class="category-filter-btn px-4 py-2 text-sm border bg-white text-muted-foreground border-border hover:border-brand-ink transition-colors">
               {t.catalog.split(':')[0] || 'Catalog'} ({products.length})
@@ -896,13 +942,13 @@ loading="lazy"
       {/* Pagination block (page-jump input + prev/next) */}
       <div id="category-pagination-wrap" class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-border pt-6">
         <p id="category-page-info" class="text-sm text-muted-foreground">
-          {locale === 'cn' ? `显示第 1-${Math.min(24, products.length)} 条 / 共 ${products.length} 条` : `Showing 1–${Math.min(24, products.length)} of ${products.length} products`}
+          {CAT.showingPage(1, Math.min(24, products.length), products.length)}
         </p>
         <div class="flex flex-col sm:flex-row items-center gap-4">
-          <nav id="category-pagination" class="flex items-center gap-1" aria-label={locale === 'cn' ? '分页' : 'Pagination'}></nav>
+          <nav id="category-pagination" class="flex items-center gap-1" aria-label={CAT.paginationAria}></nav>
           <div class="flex items-center gap-2 text-sm text-muted-foreground">
             <label for="category-jump-input" class="hidden sm:inline whitespace-nowrap">
-              {locale === 'cn' ? '跳转到第' : 'Go to page:'}
+              {CAT.pageLabel}
             </label>
             <input
               id="category-jump-input"
@@ -910,15 +956,15 @@ loading="lazy"
               min="1"
               placeholder="—"
               class="w-14 h-10 px-2 text-sm text-center border border-border bg-white focus:outline-none focus:border-brand-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-              aria-label={locale === 'cn' ? '跳转到指定页' : 'Jump to page number'}
+              aria-label={CAT.jumpInputAria}
             />
             <button
               id="category-jump-go"
               type="button"
               class="h-10 px-3 text-sm border border-brand-ink bg-brand-ink text-brand-cream hover:bg-brand-ink/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              aria-label={locale === 'cn' ? '跳转' : 'Jump to specified page'}
+              aria-label={CAT.jumpBtnAria}
             >
-              {locale === 'cn' ? '页' : 'Go'}
+              {CAT.jumpBtnText}
             </button>
           </div>
         </div>
