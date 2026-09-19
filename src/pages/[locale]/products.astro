@@ -397,22 +397,6 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
     </div>
   </section>
 
-  <section class="catalog-decision-section" aria-labelledby="catalog-decision-title">
-    <div class="container-narrow py-8 md:py-10">
-      <div class="catalog-decision-heading">
-        <p>{catalogDecision.eyebrow}</p>
-        <h2 id="catalog-decision-title">{catalogDecision.title}</h2>
-        <span>{catalogDecision.intro}</span>
-      </div>
-      <ol class="catalog-decision-steps">
-        <li><strong>{catalogDecision.filterTitle}</strong><span>{catalogDecision.filterBody}</span></li>
-        <li><strong>{catalogDecision.recordTitle}</strong><span>{catalogDecision.recordBody}</span></li>
-        <li><strong>{catalogDecision.compareTitle}</strong><span>{catalogDecision.compareBody}</span></li>
-      </ol>
-    </div>
-  </section>
-
-
   <!-- Filter bar (静态渲染，按钮 + 搜索 + 排序) -->
   <section class="catalog-controls-section">
     <div class="container-narrow py-8">
@@ -769,58 +753,6 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
       </div>
     </section>
   )}
-
-  {/* Market Reference: hznzcn.com (清河) public listings — for buyer-side comparison.
-      NOT in catalog schema, NOT in main sitemap, NOT in pagination. Section-level
-      noindex (page-level robots already noindex-friendly via canonical). */}
-  <section class="py-12 md:py-16 bg-brand-sandwarm/30 border-t border-border/40" aria-label={marketRefCopy.title}>
-    <div class="container-narrow">
-      <div class="flex items-end justify-between mb-6 md:mb-8 gap-4 flex-wrap">
-        <div>
-          <p class="section-eyebrow">{marketRefCopy.eyebrow}</p>
-          <h2 class="font-display text-2xl md:text-3xl font-light mt-2 text-primary">
-            {marketRefCopy.title}
-          </h2>
-          <p class="text-sm text-muted-foreground mt-2 max-w-2xl">{marketRefCopy.subtitle}</p>
-        </div>
-        <a href={`/${locale}/market-reference/hznzcn/`} class="btn-tier-2 shrink-0">
-          {marketRefCopy.viewAll} →
-        </a>
-      </div>
-
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
-        {HZNZCN_PRODUCTS.slice(0, 10).map((p) => (
-          <article class="bg-white border border-border overflow-hidden hover:border-brand-camel hover:shadow-[0_8px_20px_-12px_rgba(28,24,19,0.18)] transition-colors transition-shadow group">
-            <div class="aspect-square bg-brand-cream overflow-hidden">
-              {p.images[0] && (
-                <img
-                  src={p.images[0]}
-                  alt={`${p.title} — ${marketRefCopy.eyebrow}`}
-                  loading="eager"
-                  fetchpriority="low"
-                  decoding="async"
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              )}
-            </div>
-            <div class="p-2.5 md:p-3">
-              <p class="text-[10px] uppercase tracking-wider text-muted-foreground mb-0.5 truncate">
-                {p.shop}
-              </p>
-              <h3 class="text-xs md:text-sm font-medium text-foreground line-clamp-2 group-hover:text-brand-camel leading-snug">
-                {p.title}
-              </h3>
-            </div>
-          </article>
-        ))}
-      </div>
-
-      <p class="text-xs text-muted-foreground mt-6 max-w-3xl">
-        {marketRefCopy.disclaimer}
-      </p>
-    </div>
-  </section>
-
 
   <!-- 隐藏的 JSON 数据源（vanilla JS 用） -->
   <script id="products-data" type="application/json" set:html={productsJson}></script>
