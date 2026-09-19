@@ -44,6 +44,19 @@ export const INDEXABLE_BLOG_IDS = new Set([
   // 2026-09-17 — yarn formulations guide: cross-link to /products/yarn/ category page
   // (yarn-formulas.ts + CategoryPage.astro yarn section are the inbound targets)
   'en/cashmere-yarn-formulations-ordos-facility-2026',
+  'cn/cashmere-yarn-formulations-ordos-facility-2026',
+  // 2026-09-17 — CN translations for the 8 priority EN-only blog posts (B2B
+  // manufacturing guides + EU policy compliance + Asia sourcing). All 8 are
+  // quality-graded (>=1400 EN words, full frontmatter + structured body)
+  // and were previously used as EN-only; adding CN versions brings CN sitemap
+  // from 12 to 20 indexable entries.
+  'cn/2026-inner-mongolia-cashmere-factory-lead-time-b2b-guide',
+  'cn/2026-inner-mongolia-cashmere-harvest-season-b2b-guide',
+  'cn/cashmere-test-report-checklist-b2b-buyers',
+  'cn/eu-csddd-textile-supply-chain-2026',
+  'cn/eu-green-claims-directive-textile-2026',
+  'cn/good-cashmere-standard-2026-update',
+  'cn/japan-korea-cashmere-import-market-2026',
 ]);
 
 export function getBlogSlugFromId(id: string) {
