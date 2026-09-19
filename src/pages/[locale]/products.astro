@@ -666,8 +666,10 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
     locale === 'cn' ? { q: '如何比较不同产品？', a: '可比较目录中呈现的材质、细度和产品描述；其他项目条件应按具体需求书面确认。' } : { q: 'How should different products be compared?', a: 'Compare the material, micron information and product description presented in the catalog; other project terms should be confirmed in writing.' },
   ]} />
 
-  <!-- EN buyer guide: placed after the product catalog so products remain primary. -->
-  {false && locale === 'en' && (
+  <!-- EN buyer guide: placed after the product catalog so products remain primary.
+       Was previously rendered behind `{false && ...}` (draft state from
+       2026-09-15; sibling agent forgot to flip it on). Now active. -->
+  {locale === 'en' && (
     <section class="py-12 md:py-16 bg-secondary/20">
       <div class="container-narrow">
         <h2 class="font-display text-3xl md:text-4xl font-light mb-4">Cashmere Product Formats: Which Suits Your Brand?</h2>
