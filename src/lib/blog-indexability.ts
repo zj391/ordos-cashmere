@@ -57,6 +57,20 @@ export const INDEXABLE_BLOG_IDS = new Set([
   'cn/eu-green-claims-directive-textile-2026',
   'cn/good-cashmere-standard-2026-update',
   'cn/japan-korea-cashmere-import-market-2026',
+  // 2026-09-17 — Promote 9 EN blog posts that were previously not in
+  // INDEXABLE_BLOG_IDS (they had full frontmatter + 1000-2600 words + aiGen=false
+  // but were missed from the whitelist when first written). All 9 are
+  // B2B product comparison / manufacturing guides that match the
+  // existing indexable blog pattern.
+  'en/cashmere-baby-blanket-vs-set',
+  'en/cashmere-gloves-private-label',
+  'en/cashmere-hijab-manufacturing',
+  'en/cashmere-leggings-manufacturing',
+  'en/cashmere-scarf-vs-pashmina-shawl',
+  'en/cashmere-scarf-weight-by-climate',
+  'en/cashmere-socks-vs-wool-socks',
+  'en/cashmere-travel-wrap-set',
+  'en/cashmere-eu-dpp-compliance',
 ]);
 
 export function getBlogSlugFromId(id: string) {
