@@ -71,6 +71,20 @@ export const INDEXABLE_BLOG_IDS = new Set([
   'en/cashmere-socks-vs-wool-socks',
   'en/cashmere-travel-wrap-set',
   'en/cashmere-eu-dpp-compliance',
+  // 2026-09-21 — CN translations for the 9 EN-only B2B product/mfg guides that
+  // were promoted to INDEXABLE on 2026-09-21 (commit 6b001a1). These are the
+  // CN counterparts — without these entries the CN sitemap-blog would not
+  // include them and Google would not index the CN versions. All 9 share the
+  // B2B product comparison / manufacturing guide pattern.
+  'cn/cashmere-baby-blanket-vs-set',
+  'cn/cashmere-eu-dpp-compliance',
+  'cn/cashmere-gloves-private-label',
+  'cn/cashmere-hijab-manufacturing',
+  'cn/cashmere-leggings-manufacturing',
+  'cn/cashmere-scarf-vs-pashmina-shawl',
+  'cn/cashmere-scarf-weight-by-climate',
+  'cn/cashmere-socks-vs-wool-socks',
+  'cn/cashmere-travel-wrap-set',
 ]);
 
 export function getBlogSlugFromId(id: string) {
