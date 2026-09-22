@@ -101,10 +101,27 @@ async function _internalHandler(req: VercelLikeRequest, res: VercelLikeResponse)
       micron: strOrNull(form.get('micron')),
       lead: strOrNull(form.get('lead')),
       description: strOrNull(form.get('description')),
+      // 2026-09-21 fix: read images[] (JSON array of URLs) + cover URL.
+      // Frontend sends both as hidden inputs; previous version silently dropped
+      // them which made uploaded images disappear on save.
+      cover: strOrNull(form.get('cover')),
+      images: (() => {
+        try {
+          const v = JSON.parse(String(form.get('images') || '[]'));
+          if (!Array.isArray(v)) return null;
+          const cleaned = v.map((x) => String(x || '').trim()).filter(Boolean);
+          return cleaned;
+        } catch {
+          return null;
+        }
+      })(),
       updated_at: new Date().toISOString(),
     };
     for (const k of Object.keys(update)) {
-      if (update[k] === null || update[k] === '') delete update[k];
+      if (update[k] === null || update[k] === '' ||
+          (k === 'images' && Array.isArray(update[k]) && update[k].length === 0)) {
+        delete update[k];
+      }
     }
 
     const result = await patchSupabaseProduct(id, update);

@@ -65,7 +65,10 @@ async function handleImageUpload(req, res) {
     return;
   }
   if (buf.length === 0 || buf.length > MAX_UPLOAD_BYTES) {
-    res.status(413).json({ error: 'file_too_large' });
+    res.status(413).json({
+      error: 'file_too_large',
+      message: `File ${buf.length} bytes exceeds limit ${MAX_UPLOAD_BYTES} bytes (5MB)`,
+    });
     return;
   }
   const m = /\.([a-zA-Z0-9]+)$/.exec(filename);
@@ -77,12 +80,27 @@ async function handleImageUpload(req, res) {
     return;
   }
   await ensureUploadBucket();
-  const up = await fetch(`${SUPABASE_URL}/storage/v1/object/${UPLOAD_BUCKET}/${safeName}`, {
+  // 2026-09-21 fix: Supabase Storage API requires x-upsert header to allow
+  // overwrites and needs Content-Type set correctly. Previously when the ext
+  // was unknown (e.g. .heic) we fell back to octet-stream which Supabase
+  // rejects. Now we normalize unknown extensions to jpg (with proper mime)
+  // and add the upsert + cache-control headers.
+  const finalContentType = contentType === 'application/octet-stream' ? 'image/jpeg' : contentType;
+  const finalExt = finalContentType === 'image/jpeg' ? 'jpg'
+                  : finalContentType === 'image/png' ? 'png'
+                  : finalContentType === 'image/webp' ? 'webp'
+                  : finalContentType === 'image/gif' ? 'gif'
+                  : finalContentType === 'image/avif' ? 'avif'
+                  : 'jpg';
+  const finalSafeName = `${Date.now()}-${Math.random().toString(36).slice(2, 10)}.${finalExt}`;
+  const up = await fetch(`${SUPABASE_URL}/storage/v1/object/${UPLOAD_BUCKET}/${finalSafeName}`, {
     method: 'POST',
     headers: {
       apikey: SUPABASE_KEY,
       Authorization: 'Bearer ' + SUPABASE_KEY,
-      'Content-Type': contentType,
+      'Content-Type': finalContentType,
+      'x-upsert': 'true',
+      'Cache-Control': 'public, max-age=31536000, immutable',
     },
     body: buf,
   });
@@ -91,7 +109,12 @@ async function handleImageUpload(req, res) {
     res.status(500).json({ error: `storage ${up.status}: ${t.slice(0, 200)}` });
     return;
   }
-  res.json({ url: `${SUPABASE_URL}/storage/v1/object/public/${UPLOAD_BUCKET}/${safeName}` });
+  res.json({
+    url: `${SUPABASE_URL}/storage/v1/object/public/${UPLOAD_BUCKET}/${finalSafeName}`,
+    filename: finalSafeName,
+    size: buf.length,
+    contentType: finalContentType,
+  });
 }
 
 function readForm(req) {

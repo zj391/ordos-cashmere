@@ -209,10 +209,11 @@ const duplicateId = url.searchParams.get('error_code') === 'duplicate_id';
         </a>
         <button
           type="submit"
+          id="create-product-btn"
           class="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
         >
           <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-          {L('Create product', '创建产品')}
+          <span id="create-product-label">{L('Create product', '创建产品')}</span>
         </button>
       </div>
     </div>
@@ -243,6 +244,8 @@ const duplicateId = url.searchParams.get('error_code') === 'duplicate_id';
       const imgInput = document.getElementById('img-input');
       const preview = document.getElementById('img-preview');
       const hidden = document.getElementById('images-input');
+      const createBtn = document.getElementById('create-product-btn');
+      const createLabel = document.getElementById('create-product-label');
       if (!uploadBtn || !imgInput || !preview || !hidden) return;
       let images = [];
       try { images = JSON.parse(hidden.value || '[]'); } catch {}
@@ -262,7 +265,9 @@ const duplicateId = url.searchParams.get('error_code') === 'duplicate_id';
         const file = imgInput.files && imgInput.files[0];
         if (!file) return;
         if (file.size > 5 * 1024 * 1024) { alert('图片不能超过 5MB'); imgInput.value = ''; return; }
-        uploadBtn.disabled = true; uploadBtn.textContent = '...';
+        uploadBtn.disabled = true;
+        const orig = uploadBtn.textContent;
+        uploadBtn.textContent = '上传中...';
         try {
           const dataUrl = await new Promise((resolve, reject) => {
             const r = new FileReader();
@@ -277,17 +282,27 @@ const duplicateId = url.searchParams.get('error_code') === 'duplicate_id';
             body: JSON.stringify({ action: 'upload', filename: file.name, data }),
           });
           const j = await r.json();
-          if (!r.ok) throw new Error(j.error || 'upload failed');
+          if (!r.ok) throw new Error(j.error || j.message || 'upload failed');
           images.push(j.url);
           render();
-          alert('上传成功');
         } catch (e) {
           alert('上传失败: ' + e.message);
         } finally {
-          uploadBtn.disabled = false; uploadBtn.textContent = '上传图片';
+          uploadBtn.disabled = false;
+          uploadBtn.textContent = orig;
           imgInput.value = '';
         }
       });
+
+      // Submit loading state
+      const form = document.querySelector('form[method="post"]');
+      if (form && createBtn && createLabel) {
+        form.addEventListener('submit', () => {
+          createBtn.disabled = true;
+          createLabel.textContent = '创建中... / Creating...';
+        });
+      }
+
       render();
     })();
   </script>

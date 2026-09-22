@@ -227,13 +227,24 @@ const noSupabase = url.searchParams.get('notice') === 'no_supabase';
         <a href={`/admin/products/?cat=${found.categoryId}`} class="text-sm text-stone-600 hover:text-primary">
           {L('Cancel', '取消')}
         </a>
-        <button
-          type="submit"
-          class="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
-        >
-          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-          {L('Save changes', '保存')}
-        </button>
+        <div class="flex items-center gap-2">
+          <button
+            type="button"
+            id="delete-product-btn"
+            data-product-id={p.id}
+            class="rounded-md border border-red-200 bg-white px-4 py-2 text-sm font-medium text-red-700 hover:bg-red-50"
+          >
+            {L('Delete', '删除')}
+          </button>
+          <button
+            type="submit"
+            id="save-product-btn"
+            class="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+          >
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span id="save-product-label">{L('Save changes', '保存')}</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -304,9 +315,12 @@ const noSupabase = url.searchParams.get('notice') === 'no_supabase';
     const coverInput = document.getElementById('cover-input');
     const coverPreview = document.getElementById('cover-preview');
     const grid = document.getElementById('img-grid');
+    const saveBtn = document.getElementById('save-product-btn');
+    const saveLabel = document.getElementById('save-product-label');
+    const deleteBtn = document.getElementById('delete-product-btn');
     let images = [];
     try { images = JSON.parse(imagesInput.value || '[]'); } catch (e) { images = []; }
-    function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+    function esc(s) { return String(s).replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>').replace(/"/g, '"'); }
     function render() {
       imagesInput.value = JSON.stringify(images);
       grid.innerHTML = '';
@@ -332,7 +346,9 @@ const noSupabase = url.searchParams.get('notice') === 'no_supabase';
       const file = imgInput.files && imgInput.files[0];
       if (!file) return;
       if (file.size > 5 * 1024 * 1024) { alert('图片不能超过 5MB / Max 5MB'); imgInput.value = ''; return; }
-      uploadBtn.disabled = true; uploadBtn.textContent = '...';
+      uploadBtn.disabled = true;
+      const orig = uploadBtn.textContent;
+      uploadBtn.textContent = '上传中...';
       try {
         const dataUrl = await new Promise((resolve, reject) => {
           const r = new FileReader();
@@ -347,17 +363,54 @@ const noSupabase = url.searchParams.get('notice') === 'no_supabase';
           body: JSON.stringify({ action: 'upload', filename: file.name, data }),
         });
         const j = await r.json();
-        if (!r.ok) throw new Error(j.error || 'upload failed');
+        if (!r.ok) throw new Error(j.error || j.message || 'upload failed');
         images.push(j.url);
         render();
-        alert('上传成功 / Uploaded');
       } catch (e) {
-        alert('上传失败: ' + e.message + ' / Upload failed');
+        alert('上传失败 / Upload failed: ' + e.message);
       } finally {
-        uploadBtn.disabled = false; uploadBtn.textContent = 'Upload';
+        uploadBtn.disabled = false;
+        uploadBtn.textContent = orig;
         imgInput.value = '';
       }
     });
+
+    // Save button: disable + show spinner while form submits.
+    const form = document.querySelector('form[method="post"]');
+    if (form && saveBtn && saveLabel) {
+      form.addEventListener('submit', () => {
+        saveBtn.disabled = true;
+        saveLabel.textContent = '保存中... / Saving...';
+      });
+    }
+
+    // Delete button: send DELETE and redirect to list.
+    if (deleteBtn) {
+      const pid = deleteBtn.getAttribute('data-product-id');
+      deleteBtn.addEventListener('click', async () => {
+        if (!pid) return;
+        if (!confirm('确定删除产品 ' + pid + ' ? 此操作不可撤销 / Delete product ' + pid + '? This cannot be undone.')) return;
+        deleteBtn.disabled = true;
+        const orig = deleteBtn.textContent;
+        deleteBtn.textContent = '删除中... / Deleting...';
+        try {
+          const r = await fetch('/api/admin/products/' + encodeURIComponent(pid), { method: 'DELETE', credentials: 'same-origin' });
+          const j = await r.json().catch(() => ({}));
+          if (r.ok) {
+            window.location.href = '/admin/products/?deleted=1';
+          } else {
+            alert('删除失败 / Delete failed: ' + (j.text || j.error || ('HTTP ' + r.status)));
+            deleteBtn.disabled = false;
+            deleteBtn.textContent = orig;
+          }
+        } catch (e) {
+          alert('删除失败 / Delete failed: ' + e.message);
+          deleteBtn.disabled = false;
+          deleteBtn.textContent = orig;
+        }
+      });
+    }
+
     render();
   </script>
 </AdminLayout>
