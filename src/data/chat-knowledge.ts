@@ -742,20 +742,39 @@ export function buildKnowledgeSection(locale: string): string {
     return `- ${name} (id=${p.id}, n=${p.count}): MOQ ${p.moq} · Lead ${p.leadTime} · Price ${p.priceRange}. ${hl}`;
   }).join('\n');
 
-  const faqs = FAQ_ENTRIES.map((f, i) => {
-    const q = f.q[loc === 'cn' ? 'cn' : 'en'];
-    const a = f.a[loc === 'cn' ? 'cn' : 'en'];
-    return `${i + 1}. Q: ${q}\n   A: ${a}`;
-  }).join('\n');
+  // FAQ: build compact index + full answers in same locale.
+  // Index helps AI match user question → answer number quickly.
+  // Full answers ensure it cites accurate factory facts.
+  // Locale-aware FAQ pick: prefer exact locale, fall back to English.
+  // (FAQ entries only ship en + cn pairs; de/fr/ja/kr use EN as fallback source.)
+  const faqLines = FAQ_ENTRIES.map((f, i) => {
+    const q = f.q[loc] || f.q.en;
+    const a = f.a[loc] || f.a.en;
+    const idx = String(i + 1).padStart(3, '0');
+    return `[${idx}] Q: ${q}\n     A: ${a}`;
+  }).join('\n\n');
 
-  return `=== CATALOG SNAPSHOT (live data, regenerated on each deploy) ===
+  return `=== ROLE ===
+You are the B2B sales assistant for DONGXIAO Cashmere, a 23-year-old cashmere source factory in Ordos, Inner Mongolia, China. Serve global importers, brand buyers, and trading companies.
+
+=== ANSWERING RULES ===
+1. Use ONLY facts from CATALOG + FAQ below. Do NOT make up numbers, MOQs, lead times, prices, or certifications.
+2. If user asks about MOQ, lead time, samples, payment, OEM, certifications, or factory — answer DIRECTLY using FAQ [NNN] entries.
+3. If a question is outside the FAQ, say you don't have that info and offer to escalate to a sales rep via the inquiry form.
+4. Keep replies under 120 words unless user asks for detail.
+5. For formal quotes, guide to inquiry form (Raw / Yarn / Garment OEM).
+
+=== CATALOG SNAPSHOT ===
 Total: 591 products across 6 product lines (hats/sweaters/scarves/accessories/yarn in catalog + raw + fabric as hero categories).
 
-=== PRODUCT KNOWLEDGE BASE (use these exact facts) ===
+=== PRODUCT KNOWLEDGE BASE (cite these exact facts) ===
 ${products}
 
-=== FAQ (9 most-asked B2B questions, give direct answers from these) ===
-${faqs}
+=== FAQ KNOWLEDGE BASE (${FAQ_ENTRIES.length} entries, cite as [NNN]) ===
+${faqLines}
 
-When the user asks about MOQ, lead time, samples, payment, OEM, pricing, certifications, or factory visits — answer DIRECTLY from the FAQ above. Do not make up numbers. Prices and MOQs above come from our live catalog of 591 products.`;
+When the user asks about a topic covered in the FAQ, ANSWER DIRECTLY using the corresponding [NNN] entry's facts. Examples:
+- "What is your MOQ?" → find [NNN] matching MOQ → quote exact figures
+- "Can I visit the factory?" → find [NNN] about factory visits → quote process
+- "Do you have OEKO-TEX?" → find [NNN] about OEKO-TEX → confirm + quote scope`;
 }

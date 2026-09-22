@@ -18,6 +18,7 @@
  * Env: LLM_API_URL, LLM_API_KEY, LLM_MODEL, SUPABASE_URL, SUPABASE_SERVICE_KEY
  */
 import { toAstroApiRoute } from '../../lib/api/vercel-shim';
+import { buildKnowledgeSection as buildChatKnowledge } from '../../data/chat-knowledge';
 
 export const prerender = false;
 
@@ -83,18 +84,22 @@ B2B 도매 문의를 전문적이고 간결하게 답변하세요. MOQ, 리드�
 공식 견적이나 샘플을 원하시면 이 페이지의 문의 양식으로 안내하세요. 답변은 120단어 이내(상세 요청 시 제외).`,
 };
 
-// Optional injected knowledge (loaded from src/data/chat-knowledge if present).
-// Inlined here as an empty fallback so the function is self-contained.
-const KNOWLEDGE_FALLBACK: Record<string, string> = {
-  en: '',
-  cn: '',
-  de: '',
-  fr: '',
-  ja: '',
-  kr: '',
-};
+// Inject real FAQ knowledge from src/data/chat-knowledge.ts (111 entries, 10 categories).
+// buildChatKnowledge() reads PRODUCT_CATEGORIES + FAQ_ENTRIES and formats
+// them for the system prompt. This is the actual source of truth for AI answers.
+//
+// 2026-09-21 W42 update: previous inline fallback was empty string, which meant
+// AI never got FAQ context despite chat-knowledge.ts having 111 entries. Now
+// properly delegated.
 function buildKnowledgeSection(locale: string): string {
-  return KNOWLEDGE_FALLBACK[locale] || '';
+  try {
+    return buildChatKnowledge(locale);
+  } catch (e) {
+    // If chat-knowledge.ts has any compile-time issues, fall back to empty
+    // rather than crash the chat endpoint.
+    console.error('[chat] buildKnowledgeSection failed:', e);
+    return '';
+  }
 }
 
 function convertToGemini(messages: Array<{ role: string; content: string }>, systemInstruction: string) {
