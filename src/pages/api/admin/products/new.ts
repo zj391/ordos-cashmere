@@ -18,7 +18,12 @@ import { toAstroApiRoute, type VercelLikeRequest, type VercelLikeResponse } from
 const SUPABASE_URL = process.env.PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || '';
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_KEY || '';
 const UPLOAD_BUCKET = 'product-images';
-const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;
+// 2026-09-21 update: client compresses via image-compress.ts before uploading,
+// so typical payload is 200-800KB. We keep a generous limit (8MB) so admin
+// can also bypass compression when needed (e.g. lossless PNG).
+// Note: Vercel hard-limits request body to 4.5MB. Any image > ~3MB raw should
+// be compressed client-side; we cannot handle larger requests here.
+const MAX_UPLOAD_BYTES = 8 * 1024 * 1024;
 
 const UPLOAD_MIME = {
   jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png',

@@ -7,11 +7,15 @@
  *
  * Phase 2 status: backend wired (POST handler reads JSON file / Supabase depending on env).
  * The Supabase migration is documented in docs/products-table.sql.
+ *
+ * 2026-09-21 update: image upload runs client-side compression via
+ * image-compress.ts before sending. No server-side deps needed.
  */
 export const prerender = false;
 import AdminLayout from '@/layouts/AdminLayout.astro';
 import { LOCALES } from '@/lib/i18n';
 import { products as productsData, getCategoryImageUrl } from '@/data/products';
+import { compressImageForUpload, blobToBase64 } from '@/components/admin/image-compress';
 
 const locale = 'cn';
 
@@ -345,27 +349,39 @@ const noSupabase = url.searchParams.get('notice') === 'no_supabase';
     imgInput.addEventListener('change', async () => {
       const file = imgInput.files && imgInput.files[0];
       if (!file) return;
-      if (file.size > 5 * 1024 * 1024) { alert('图片不能超过 5MB / Max 5MB'); imgInput.value = ''; return; }
+      if (file.size > 50 * 1024 * 1024) {
+        alert('源文件不能超过 50MB / Source file must be under 50MB');
+        imgInput.value = '';
+        return;
+      }
       uploadBtn.disabled = true;
       const orig = uploadBtn.textContent;
-      uploadBtn.textContent = '上传中...';
+      uploadBtn.textContent = '处理中... / Processing...';
       try {
-        const dataUrl = await new Promise((resolve, reject) => {
-          const r = new FileReader();
-          r.onload = () => resolve(String(r.result));
-          r.onerror = reject;
-          r.readAsDataURL(file);
-        });
-        const data = dataUrl.split(',')[1];
+        // Client-side compress + resize (no server deps needed).
+        const result = await compressImageForUpload(file);
+        const data = await blobToBase64(result.blob);
         const r = await fetch('/api/admin/products/new/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: 'upload', filename: file.name, data }),
+          body: JSON.stringify({
+            action: 'upload',
+            filename: result.filename,
+            data,
+            mimeType: result.mimeType,
+            width: result.width,
+            height: result.height,
+          }),
         });
         const j = await r.json();
         if (!r.ok) throw new Error(j.error || j.message || 'upload failed');
         images.push(j.url);
         render();
+        if (!result.skipped && result.compressedSize < result.originalSize) {
+          const saved = result.originalSize - result.compressedSize;
+          const pct = Math.round((saved / result.originalSize) * 100);
+          console.log(`[upload] ${result.filename}: ${(result.originalSize/1024).toFixed(0)}KB → ${(result.compressedSize/1024).toFixed(0)}KB (saved ${pct}%, ${result.width}×${result.height})`);
+        }
       } catch (e) {
         alert('上传失败 / Upload failed: ' + e.message);
       } finally {
