@@ -3,12 +3,22 @@
  * Admin /admin/images/ — image library.
  *
  * Lists files in Supabase Storage bucket `product-images` (public).
+ *
  * 2026-09-21 upgrade: now supports deletion via DELETE /api/admin/images?name=<file>.
- * Upload still happens from the product edit page (UI for direct upload
- * coming in a follow-up); this page is the management view.
+ *
+ * 2026-09-21 upgrade (bulk upload): drag-and-drop or click-to-pick multi-file
+ * upload. Uses src/components/admin/image-compress.ts for client-side resize +
+ * JPEG re-encode, so a 6 MB phone photo becomes ~300 KB on the wire. Per-file
+ * progress (queued / compressing / uploading / done / error) shown in a panel.
+ * Concurrent uploads capped at 3 to avoid request bursts.
  */
 export const prerender = false;
 import AdminLayout from '@/layouts/AdminLayout.astro';
+// 2026-09-21: removed import of image-compress here. Bulk upload uses an
+// <script> block below that imports it directly so Astro bundles the
+// helper into a single module-aware script tag (not inline). The
+// /admin/products/new and /admin/products/[id]/edit pages still use the
+// shared helper via the same module path.
 
 const locale = 'cn';
 const L = (en: string, cn: string) => (locale === 'cn' ? cn : en);
@@ -61,7 +71,7 @@ const fmtSize = (n?: number) => {
 ---
 <AdminLayout locale={locale} activeNav="images" title={L('Image Library', '图片管理')} breadcrumb={[L('Images', '图片管理')]}>
   <div class="mb-4 rounded-lg border border-stone-200 bg-white p-4 text-sm text-stone-600">
-    {L('Images are stored in the public Supabase Storage bucket `product-images` and uploaded from the product edit page. Use the search to filter; click Delete to permanently remove an image (this affects any product using it).', '图片存储在 Supabase Storage 公共桶 `product-images` 中，可从产品编辑页上传。点击删除会永久移除该图片（会影响引用此图的所有产品）。')}
+    {L('Images are stored in the public Supabase Storage bucket `product-images`. Drag files into the upload zone below or use the product edit page. Click Delete to permanently remove an image (this affects any product using it).', '图片存储在 Supabase Storage 公共桶 `product-images` 中。可拖文件到下方上传区，或从产品编辑页上传。点击删除会永久移除该图片（会影响引用此图的所有产品）。')}
   </div>
 
   {deleteOk && (
@@ -79,6 +89,42 @@ const fmtSize = (n?: number) => {
       {L('Could not load images:', '无法加载图片：')} {error}
     </div>
   )}
+
+  {/* Bulk upload zone */}
+  <div
+    id="bulk-drop"
+    class="mb-4 cursor-pointer rounded-lg border-2 border-dashed border-stone-300 bg-white p-6 text-center transition-colors hover:border-primary hover:bg-stone-50"
+  >
+    <svg class="mx-auto mb-2 h-8 w-8 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+    </svg>
+    <p class="text-sm text-stone-700">
+      {L('Drag images here, or click to select files', '将图片拖到这里，或点击选择文件')}
+    </p>
+    <p class="mt-1 text-xs text-stone-500">
+      {L('JPG / PNG / WebP / GIF · Max 50 MB each · Compressed to ≤1600 px on upload', 'JPG / PNG / WebP / GIF · 单张最大 50MB · 上传时压缩至 1600px')}
+    </p>
+    <input type="file" id="bulk-input" accept="image/*" multiple class="hidden" />
+  </div>
+
+  {/* Bulk upload progress panel */}
+  <div id="bulk-panel" class="mb-4 hidden rounded-lg border border-stone-200 bg-white">
+    <div class="flex items-center justify-between border-b border-stone-200 px-4 py-2">
+      <div class="text-sm font-medium text-stone-700">
+        <span id="bulk-summary">0 / 0</span>
+        <span class="ml-2 text-xs text-stone-500" id="bulk-status"></span>
+      </div>
+      <div class="flex items-center gap-2">
+        <button type="button" id="bulk-clear" class="hidden rounded-md border border-stone-300 px-2 py-1 text-xs text-stone-700 hover:bg-stone-50">
+          {L('Clear finished', '清掉已完成')}
+        </button>
+        <button type="button" id="bulk-cancel" class="hidden rounded-md border border-red-300 px-2 py-1 text-xs text-red-700 hover:bg-red-50">
+          {L('Cancel all', '取消全部')}
+        </button>
+      </div>
+    </div>
+    <ul id="bulk-list" class="divide-y divide-stone-100 max-h-96 overflow-y-auto"></ul>
+  </div>
 
   {/* Search bar */}
   <form method="get" class="mb-4 flex items-center gap-2 rounded-lg border border-stone-200 bg-white p-3">
@@ -143,8 +189,8 @@ const fmtSize = (n?: number) => {
     })}
   </div>
 
+  {/* Copy URL helper — independent inline script (no module deps). */}
   <script is:inline>
-    // Copy URL helper
     document.querySelectorAll('[data-copy]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var url = btn.getAttribute('data-copy');
@@ -182,5 +228,200 @@ const fmtSize = (n?: number) => {
           });
       });
     });
+  </script>
+
+  {/* Bulk upload — module-aware script so Astro bundles the image-compress
+      helper into a real ES module (works for `import` + tree-shakes). */}
+  <script>
+    import { compressImageForUpload, blobToBase64 } from '@/components/admin/image-compress';
+
+    (function () {
+      var drop = document.getElementById('bulk-drop');
+      var input = document.getElementById('bulk-input');
+      var panel = document.getElementById('bulk-panel');
+      var list = document.getElementById('bulk-list');
+      var summary = document.getElementById('bulk-summary');
+      var status = document.getElementById('bulk-status');
+      var clearBtn = document.getElementById('bulk-clear');
+      var cancelBtn = document.getElementById('bulk-cancel');
+      if (!drop || !input || !panel || !list) return;
+
+      var MAX_BYTES = 50 * 1024 * 1024;
+      var MAX_CONCURRENT = 3;
+      var items = [];
+      var nextId = 0;
+
+      function fmtSize(n) {
+        if (!n) return '—';
+        if (n < 1024) return n + ' B';
+        if (n < 1024 * 1024) return (n / 1024).toFixed(1) + ' KB';
+        return (n / (1024 * 1024)).toFixed(1) + ' MB';
+      }
+
+      function setState(item, state, label) {
+        item.state = state;
+        var badge = item.li.querySelector('[data-role="state"]');
+        if (badge) {
+          badge.className = 'rounded-full px-2 py-0.5 text-[10px] font-medium ' + (
+            state === 'done' ? 'bg-emerald-100 text-emerald-700' :
+            state === 'error' ? 'bg-red-100 text-red-700' :
+            state === 'uploading' ? 'bg-blue-100 text-blue-700' :
+            state === 'compressing' ? 'bg-amber-100 text-amber-700' :
+            'bg-stone-100 text-stone-600'
+          );
+          badge.textContent = label;
+        }
+        renderSummary();
+      }
+
+      function renderSummary() {
+        var total = items.length;
+        var done = items.filter(function (i) { return i.state === 'done'; }).length;
+        var err = items.filter(function (i) { return i.state === 'error'; }).length;
+        var active = items.filter(function (i) { return i.state === 'uploading' || i.state === 'compressing' || i.state === 'queued'; }).length;
+        summary.textContent = done + ' / ' + total;
+        status.textContent = active > 0 ? (active + ' 进行中 / in progress') : '';
+        cancelBtn.classList.toggle('hidden', active === 0);
+        clearBtn.classList.toggle('hidden', done + err === 0);
+      }
+
+      function makeLi(item) {
+        var li = document.createElement('li');
+        li.className = 'flex items-center gap-3 px-4 py-2 text-sm';
+        var saved = item.compressedSize && item.originalSize && item.compressedSize < item.originalSize
+          ? ' (saved ' + Math.round((1 - item.compressedSize / item.originalSize) * 100) + '%)' : '';
+        li.innerHTML = '' +
+          '<div class="flex-1 min-w-0">' +
+            '<div class="truncate text-stone-800" title="' + item.file.name + '">' + item.file.name + '</div>' +
+            '<div class="text-xs text-stone-500">' +
+              fmtSize(item.originalSize) + (saved ? ' → ' + fmtSize(item.compressedSize) + saved : '') +
+            '</div>' +
+          '</div>' +
+          '<span data-role="state" class="rounded-full bg-stone-100 px-2 py-0.5 text-[10px] font-medium text-stone-600">queued</span>' +
+          '<button type="button" data-role="remove" class="ml-2 rounded px-1.5 py-0.5 text-xs text-stone-500 hover:bg-stone-100">✕</button>';
+        li.querySelector('[data-role="remove"]').addEventListener('click', function () {
+          if (item.controller) item.controller.abort();
+          var idx = items.indexOf(item);
+          if (idx >= 0) items.splice(idx, 1);
+          li.remove();
+          renderSummary();
+        });
+        return li;
+      }
+
+      function addFiles(files) {
+        var added = 0;
+        for (var i = 0; i < files.length; i++) {
+          var f = files[i];
+          if (!f.type || !f.type.startsWith('image/')) continue;
+          if (f.size > MAX_BYTES) {
+            alert(f.name + ': 文件超过 50MB / exceeds 50MB limit');
+            continue;
+          }
+          var item = { id: ++nextId, file: f, originalSize: f.size, compressedSize: 0, state: 'queued', controller: null, li: null };
+          item.li = makeLi(item);
+          list.appendChild(item.li);
+          items.push(item);
+          added++;
+        }
+        if (added > 0) {
+          panel.classList.remove('hidden');
+          renderSummary();
+          pump();
+        }
+      }
+
+      function pump() {
+        var inFlight = items.filter(function (i) {
+          return i.state === 'uploading' || i.state === 'compressing';
+        }).length;
+        var pending = items.filter(function (i) { return i.state === 'queued'; });
+        while (inFlight < MAX_CONCURRENT && pending.length > 0) {
+          var item = pending.shift();
+          inFlight++;
+          compressAndUpload(item);
+        }
+      }
+
+      function compressAndUpload(item) {
+        item.controller = new AbortController();
+        setState(item, 'compressing', '压缩中 / compressing');
+        compressImageForUpload(item.file)
+          .then(function (result) {
+            item.compressedSize = result.compressedSize;
+            if (item.controller.signal.aborted) return;
+            setState(item, 'uploading', '上传中 / uploading');
+            return blobToBase64(result.blob).then(function (data) {
+              if (item.controller.signal.aborted) return;
+              return fetch('/api/admin/products/new/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'same-origin',
+                body: JSON.stringify({
+                  action: 'upload',
+                  filename: result.filename,
+                  data: data,
+                  mimeType: result.mimeType,
+                  width: result.width,
+                  height: result.height,
+                }),
+                signal: item.controller.signal,
+              });
+            });
+          })
+          .then(function (r) {
+            if (!r) return null;
+            return r.json().catch(function () { return {}; }).then(function (j) {
+              if (!r.ok) throw new Error(j.error || j.message || ('HTTP ' + r.status));
+              item.url = j.url;
+              setState(item, 'done', '完成 / done');
+            });
+          })
+          .catch(function (e) {
+            if (e && (e.name === 'AbortError' || /abort/i.test(String(e.message)))) return;
+            item.error = String(e.message || e);
+            setState(item, 'error', '失败: ' + (e.message || e));
+          })
+          .then(function () { pump(); });
+      }
+
+      drop.addEventListener('click', function () { input.click(); });
+      input.addEventListener('change', function () {
+        addFiles(Array.prototype.slice.call(input.files || []));
+        input.value = '';
+      });
+      ['dragenter', 'dragover'].forEach(function (evt) {
+        drop.addEventListener(evt, function (e) {
+          e.preventDefault(); e.stopPropagation();
+          drop.classList.add('border-primary', 'bg-stone-50');
+        });
+      });
+      ['dragleave', 'drop'].forEach(function (evt) {
+        drop.addEventListener(evt, function (e) {
+          e.preventDefault(); e.stopPropagation();
+          drop.classList.remove('border-primary', 'bg-stone-50');
+        });
+      });
+      drop.addEventListener('drop', function (e) {
+        var dt = e.dataTransfer;
+        if (!dt || !dt.files) return;
+        addFiles(Array.prototype.slice.call(dt.files));
+      });
+
+      clearBtn.addEventListener('click', function () {
+        items = items.filter(function (i) { return i.state !== 'done' && i.state !== 'error'; });
+        Array.prototype.forEach.call(list.querySelectorAll('li'), function (li) { li.remove(); });
+        renderSummary();
+      });
+      cancelBtn.addEventListener('click', function () {
+        items.forEach(function (i) {
+          if (i.controller) i.controller.abort();
+          if (i.state === 'queued' || i.state === 'compressing' || i.state === 'uploading') {
+            setState(i, 'error', '已取消 / cancelled');
+          }
+        });
+        pump();
+      });
+    })();
   </script>
 </AdminLayout>
