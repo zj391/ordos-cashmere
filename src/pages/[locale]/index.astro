@@ -431,15 +431,15 @@ const IMG = {
   </script>
 
   <!-- ============ METRICS BAR（细线分隔） ============ -->
-  <section class="home-proof-band border-y border-border bg-brand-mist py-14">
+  <section class="home-proof-band border-y border-border/40 bg-brand-cream/30 py-16">
     <div class="container-narrow">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 md:divide-x md:divide-border">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 md:divide-x md:divide-border/40">
         {c.metrics.map((m, i) => {
           const cv = parseCounter(m.value);
           return (
           <div class={`md:px-10 first:md:pl-0 last:md:pr-0 text-center md:text-left reveal`} data-reveal-delay={i + 1}>
             <div class="counter stat-num text-5xl md:text-6xl text-brand-ink font-light leading-none mb-3" data-counter={cv.n} data-suffix={cv.s} data-display={m.value}>{m.value}</div>
-            <div class="micro-label text-muted-foreground">{m.label}</div>
+            <div class="micro-label">{m.label}</div>
           </div>
           );
         })}

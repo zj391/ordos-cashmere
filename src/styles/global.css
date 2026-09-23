@@ -751,10 +751,15 @@ header.sticky.is-scrolled {
 
 /* Refined uppercase micro-label */
 .micro-label {
-  font-size: 0.6875rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  font-weight: 500;
+  /* 2026-09-23 — Editorial: small italic serif kicker, not uppercase tracked.
+     Same logic as .eyebrow-label: replace SaaS-style uppercase with a
+     Cormorant Garamond italic kicker that reads like a magazine label. */
+  font-family: 'Cormorant Garamond', 'Noto Serif SC', Georgia, serif;
+  font-style: italic;
+  font-size: 0.8125rem;
+  letter-spacing: 0.01em;
+  font-weight: 400;
+  color: #A98B5F;
 }
 
 /* Subtle fade for luxury: longer, slower easing */
