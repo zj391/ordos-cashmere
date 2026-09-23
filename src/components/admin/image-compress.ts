@@ -41,6 +41,9 @@ export type CompressionResult = {
   mimeType: string;
   skipped: boolean;
   reason?: string;
+  /** SHA-256 hex of the blob that will be uploaded (compressed or original).
+   *  Used for dedup detection. */
+  sha256: string;
 };
 
 const MAX_DIM_LARGE = 1600;       // target longest edge for resize
@@ -119,11 +122,42 @@ function renameForMime(filename: string, mimeType: string): string {
 }
 
 /**
+ * Compute SHA-256 hex of a Blob using Web Crypto API. Returns 64-char lowercase hex.
+ * Browser-native (works in all modern browsers). SubtleCrypto is async-only.
+ */
+export async function sha256Hex(blob: Blob): Promise<string> {
+  const buf = await blob.arrayBuffer();
+  const digest = await crypto.subtle.digest('SHA-256', buf);
+  const bytes = new Uint8Array(digest);
+  let hex = '';
+  for (let i = 0; i < bytes.length; i++) {
+    hex += bytes[i].toString(16).padStart(2, '0');
+  }
+  return hex;
+}
+
+/**
+ * Build a dedup-tagged filename: {hash[:8]}-{sanitized-name}.{ext}
+ *
+ * Including the hash in the filename lets /api/admin/images list (which doesn't
+ * expose arbitrary metadata) double as a dedup index: when a new file's hash
+ * prefix is already present in any existing filename, we know it's a duplicate.
+ *
+ * Files uploaded before this feature won't have the prefix — that's fine, they
+ * just won't trigger dedup matches.
+ */
+export function withHashPrefix(hash: string, sanitizedBase: string, ext: string): string {
+  const prefix = hash.slice(0, 8);
+  return `${prefix}-${sanitizedBase}.${ext}`;
+}
+
+/**
  * Compress an image File for upload.
  *
  * - Resizes to MAX_DIM_LARGE longest edge if file > 200 KB or larger than
  *   2000 px on either side.
  * - Re-encodes as JPEG quality 0.85 by default; PNG alpha is preserved.
+ * - Computes SHA-256 of the compressed blob for client-side dedup.
  * - Returns both blob (for upload) and metadata (for UI feedback).
  */
 export async function compressImageForUpload(file: File): Promise<CompressionResult> {
@@ -138,6 +172,7 @@ export async function compressImageForUpload(file: File): Promise<CompressionRes
   const { width: w0, height: h0 } = img;
   const skip = shouldSkip(file, w0, h0);
   if (skip.skip) {
+    const hash = await sha256Hex(file);
     return {
       blob: file,
       filename: file.name,
@@ -148,6 +183,7 @@ export async function compressImageForUpload(file: File): Promise<CompressionRes
       mimeType: file.type,
       skipped: true,
       reason: skip.reason,
+      sha256: hash,
     };
   }
 
@@ -156,6 +192,7 @@ export async function compressImageForUpload(file: File): Promise<CompressionRes
   const outMime = transparent ? 'image/png' : 'image/jpeg';
   const quality = outMime === 'image/jpeg' ? JPEG_QUALITY : undefined;
   const blob = await canvasToBlob(canvas, outMime, quality ?? 0.92);
+  const hash = await sha256Hex(blob);
 
   return {
     blob,
@@ -166,6 +203,7 @@ export async function compressImageForUpload(file: File): Promise<CompressionRes
     height: canvas.height,
     mimeType: outMime,
     skipped: false,
+    sha256: hash,
   };
 }
 

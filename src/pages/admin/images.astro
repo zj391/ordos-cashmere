@@ -162,7 +162,7 @@ const fmtSize = (n?: number) => {
     {images.map((img) => {
       const url = `${SUPABASE_URL}/storage/v1/object/public/${BUCKET}/${encodeURIComponent(img.name)}`;
       return (
-        <div class="rounded-lg border border-stone-200 bg-white p-3">
+        <div class="rounded-lg border border-stone-200 bg-white p-3" data-img-name={img.name}>
           <a href={url} target="_blank" rel="noopener" class="block">
             <img src={url} alt={img.name} loading="lazy" class="aspect-square w-full rounded border border-stone-100 object-cover" />
           </a>
@@ -251,6 +251,23 @@ const fmtSize = (n?: number) => {
       var items = [];
       var nextId = 0;
 
+      // Dedup: filename prefix = first 8 chars of SHA-256 (committed to Supabase).
+      // Existing files we know about have hash prefix in their name. Anything new
+      // we upload gets the same prefix → duplicate file name would collide on Supabase
+      // (auto-renamed to -1 etc.). So check the list before upload and skip with
+      // 'duplicate' badge showing the existing URL.
+      var knownHashPrefixes = new Set();
+      function buildKnownHashSet() {
+        knownHashPrefixes = new Set();
+        var grid = document.querySelectorAll('[data-img-name]');
+        grid.forEach(function (el) {
+          var name = el.getAttribute('data-img-name') || '';
+          var m = name.match(/^([0-9a-f]{8})-/);
+          if (m) knownHashPrefixes.add(m[1]);
+        });
+      }
+      buildKnownHashSet();
+
       function fmtSize(n) {
         if (!n) return '—';
         if (n < 1024) return n + ' B';
@@ -264,6 +281,7 @@ const fmtSize = (n?: number) => {
         if (badge) {
           badge.className = 'rounded-full px-2 py-0.5 text-[10px] font-medium ' + (
             state === 'done' ? 'bg-emerald-100 text-emerald-700' :
+            state === 'duplicate' ? 'bg-purple-100 text-purple-700' :
             state === 'error' ? 'bg-red-100 text-red-700' :
             state === 'uploading' ? 'bg-blue-100 text-blue-700' :
             state === 'compressing' ? 'bg-amber-100 text-amber-700' :
@@ -277,12 +295,16 @@ const fmtSize = (n?: number) => {
       function renderSummary() {
         var total = items.length;
         var done = items.filter(function (i) { return i.state === 'done'; }).length;
+        var dup = items.filter(function (i) { return i.state === 'duplicate'; }).length;
         var err = items.filter(function (i) { return i.state === 'error'; }).length;
         var active = items.filter(function (i) { return i.state === 'uploading' || i.state === 'compressing' || i.state === 'queued'; }).length;
         summary.textContent = done + ' / ' + total;
-        status.textContent = active > 0 ? (active + ' 进行中 / in progress') : '';
+        var parts = [];
+        if (dup) parts.push(dup + ' 重复 / duplicate');
+        if (active > 0) parts.push(active + ' 进行中 / in progress');
+        status.textContent = parts.join(' · ');
         cancelBtn.classList.toggle('hidden', active === 0);
-        clearBtn.classList.toggle('hidden', done + err === 0);
+        clearBtn.classList.toggle('hidden', done + err + dup === 0);
       }
 
       function makeLi(item) {
@@ -318,7 +340,7 @@ const fmtSize = (n?: number) => {
             alert(f.name + ': 文件超过 50MB / exceeds 50MB limit');
             continue;
           }
-          var item = { id: ++nextId, file: f, originalSize: f.size, compressedSize: 0, state: 'queued', controller: null, li: null };
+          var item = { id: ++nextId, file: f, originalSize: f.size, compressedSize: 0, state: 'queued', controller: null, li: null, hash: null };
           item.li = makeLi(item);
           list.appendChild(item.li);
           items.push(item);
@@ -349,17 +371,24 @@ const fmtSize = (n?: number) => {
         compressImageForUpload(item.file)
           .then(function (result) {
             item.compressedSize = result.compressedSize;
-            if (item.controller.signal.aborted) return;
+            item.hash = result.sha256;
+            // Dedup check: prefix collision with anything we've seen.
+            var prefix = result.sha256.slice(0, 8);
+            if (knownHashPrefixes.has(prefix)) {
+              setState(item, 'duplicate', '重复 / duplicate');
+              return null;
+            }
+            if (item.controller.signal.aborted) return null;
             setState(item, 'uploading', '上传中 / uploading');
             return blobToBase64(result.blob).then(function (data) {
-              if (item.controller.signal.aborted) return;
+              if (item.controller.signal.aborted) return null;
               return fetch('/api/admin/products/new/', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'same-origin',
                 body: JSON.stringify({
                   action: 'upload',
-                  filename: result.filename,
+                  filename: prefix + '-' + result.filename,
                   data: data,
                   mimeType: result.mimeType,
                   width: result.width,
@@ -374,6 +403,8 @@ const fmtSize = (n?: number) => {
             return r.json().catch(function () { return {}; }).then(function (j) {
               if (!r.ok) throw new Error(j.error || j.message || ('HTTP ' + r.status));
               item.url = j.url;
+              item.uploadedName = j.filename;
+              knownHashPrefixes.add(item.hash.slice(0, 8));
               setState(item, 'done', '完成 / done');
             });
           })
@@ -409,7 +440,7 @@ const fmtSize = (n?: number) => {
       });
 
       clearBtn.addEventListener('click', function () {
-        items = items.filter(function (i) { return i.state !== 'done' && i.state !== 'error'; });
+        items = items.filter(function (i) { return i.state !== 'done' && i.state !== 'error' && i.state !== 'duplicate'; });
         Array.prototype.forEach.call(list.querySelectorAll('li'), function (li) { li.remove(); });
         renderSummary();
       });
