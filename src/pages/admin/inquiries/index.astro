@@ -258,7 +258,21 @@ function badgeSla(inquiry: any) {
     .step-bar { width: 100%; max-width: 60px; border-radius: 0.25rem 0.25rem 0 0; min-height: 4px; }
     .step-count { font-size: 0.75rem; color: #1c1917; font-weight: 600; font-variant-numeric: tabular-nums; }
     .market { font-size:0.75rem; color:#57534e; text-transform:uppercase; letter-spacing:.03em; }
-    @media (max-width: 720px) { .sla-panel { grid-template-columns: repeat(2, minmax(0, 1fr)); } table { display:block; overflow-x:auto; } }
+    /* 2026-09-23 — bulk-update bar + checkboxes for batch status change */
+    .th-check, .td-check { width: 36px; padding-left: 1rem !important; padding-right: 0 !important; }
+    .th-check input[type="checkbox"], .td-check input[type="checkbox"] { cursor: pointer; }
+    .bulk-bar { display: flex; align-items: center; gap: 1rem; background: #1c1917; color: white; padding: 0.85rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.08); flex-wrap: wrap; }
+    .bulk-bar-info { display: flex; align-items: center; gap: 0.6rem; font-size: 0.875rem; }
+    .bulk-bar-info strong { font-size: 1rem; color: #fef3c7; }
+    .link-btn { background: transparent; border: none; color: #d6d3d1; text-decoration: underline; cursor: pointer; padding: 0; font: inherit; }
+    .link-btn:hover { color: white; }
+    .bulk-bar-actions { display: flex; align-items: end; gap: 0.75rem; margin-left: auto; flex-wrap: wrap; }
+    .bulk-field { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.75rem; color: #d6d3d1; }
+    .bulk-field select { padding: 0.4rem 0.6rem; border-radius: 0.375rem; border: 1px solid #44403c; background: #292524; color: white; font-size: 0.875rem; min-width: 110px; }
+    .bulk-submit { padding: 0.5rem 1rem; background: #fef3c7; color: #1c1917; border: none; border-radius: 0.375rem; font-weight: 600; font-size: 0.875rem; cursor: pointer; }
+    .bulk-submit:disabled { background: #44403c; color: #78716c; cursor: not-allowed; }
+    .bulk-submit:hover:not(:disabled) { background: #fde68a; }
+    @media (max-width: 720px) { .sla-panel { grid-template-columns: repeat(2, minmax(0, 1fr)); } table { display:block; overflow-x:auto; } .bulk-bar-actions { margin-left: 0; } }
   </style>
 </head>
 <body>
@@ -425,42 +439,159 @@ function badgeSla(inquiry: any) {
   {inquiries.length === 0 ? (
     <table><tr><td class="empty">没有匹配的询盘。</td></tr></table>
   ) : (
-    <table>
-      <thead>
-        <tr>
-          <th>日期</th>
-          <th>联系人</th>
-          <th>公司</th>
-          <th>国家</th>
-          <th>市场</th>
-          <th>类型</th>
-          <th>产品</th>
-          <th>数量</th>
-          <th>等级</th>
-          <th>评分</th>
-          <th>首次响应</th>
-          <th>状态</th>
-        </tr>
-      </thead>
-      <tbody>
-        {inquiries.map((i) => (
-          <tr class={`row-${(i.lead_grade || 'ungraded').toLowerCase()} sla-${slaForInquiry(i).key}`}>
-            <td>{fmtDate(i.created_at)}</td>
-            <td><a href={`/admin/inquiries/${i.id}/`}>{i.contact_name}</a></td>
-            <td>{i.company_name}</td>
-            <td>{i.country}</td>
-            <td><span class="market">{marketForCountry(i.country)}</span></td>
-            <td>{i.inquiry_type}</td>
-            <td>{i.product_interest || '—'}</td>
-            <td>{i.quantity_kg || i.quantity_m || i.quantity_pcs || '—'}</td>
-            <td set:html={badgeGrade(i.lead_grade)} />
-            <td class="score-cell">{i.lead_score ?? '—'}</td>
-            <td set:html={badgeSla(i)} />
-            <td set:html={badgeStatus(i.status)} />
+    <form id="bulk-form" method="POST" action="/api/admin/inquiries/?action=batch-update">
+      {/* Bulk action bar: only visible when at least one row is selected. */}
+      <div id="bulk-bar" hidden class="bulk-bar">
+        <div class="bulk-bar-info">
+          <span>已选 <strong id="bulk-count">0</strong> 条</span>
+          <button type="button" id="bulk-clear" class="link-btn">清除选择</button>
+        </div>
+        <div class="bulk-bar-actions">
+          <label class="bulk-field">
+            <span>状态</span>
+            <select name="status" id="bulk-status" required>
+              <option value="">— 选择 —</option>
+              <option value="new">new</option>
+              <option value="contacted">contacted</option>
+              <option value="qualified">qualified</option>
+              <option value="won">won</option>
+              <option value="lost">lost</option>
+              <option value="archived">archived</option>
+            </select>
+          </label>
+          <label class="bulk-field">
+            <span>等级</span>
+            <select name="lead_grade" id="bulk-grade">
+              <option value="">— 不变 —</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="ungraded">未评分</option>
+            </select>
+          </label>
+          <input type="hidden" name="redirect_to" value={url.pathname + url.search}>
+          <button type="submit" id="bulk-submit" class="bulk-submit" disabled>应用批量更新</button>
+        </div>
+      </div>
+      {/* Container for checkbox values (one input per selected row, refreshed on submit). */}
+      <div id="bulk-ids"></div>
+
+      <table>
+        <thead>
+          <tr>
+            <th class="th-check">
+              <input type="checkbox" id="check-all" aria-label="全选">
+            </th>
+            <th>日期</th>
+            <th>联系人</th>
+            <th>公司</th>
+            <th>国家</th>
+            <th>市场</th>
+            <th>类型</th>
+            <th>产品</th>
+            <th>数量</th>
+            <th>等级</th>
+            <th>评分</th>
+            <th>首次响应</th>
+            <th>状态</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {inquiries.map((i) => (
+            <tr class={`row-${(i.lead_grade || 'ungraded').toLowerCase()} sla-${slaForInquiry(i).key}`}>
+              <td class="td-check">
+                <input type="checkbox" class="row-check" data-inquiry-id={i.id} aria-label={`Select ${i.contact_name || i.id}`}>
+              </td>
+              <td>{fmtDate(i.created_at)}</td>
+              <td><a href={`/admin/inquiries/${i.id}/`}>{i.contact_name}</a></td>
+              <td>{i.company_name}</td>
+              <td>{i.country}</td>
+              <td><span class="market">{marketForCountry(i.country)}</span></td>
+              <td>{i.inquiry_type}</td>
+              <td>{i.product_interest || '—'}</td>
+              <td>{i.quantity_kg || i.quantity_m || i.quantity_pcs || '—'}</td>
+              <td set:html={badgeGrade(i.lead_grade)} />
+              <td class="score-cell">{i.lead_score ?? '—'}</td>
+              <td set:html={badgeSla(i)} />
+              <td set:html={badgeStatus(i.status)} />
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </form>
   )}
+
+  <script is:inline>
+    (function () {
+      var bulkBar = document.getElementById('bulk-bar');
+      var bulkCount = document.getElementById('bulk-count');
+      var bulkSubmit = document.getElementById('bulk-submit');
+      var bulkStatus = document.getElementById('bulk-status');
+      var bulkClear = document.getElementById('bulk-clear');
+      var checkAll = document.getElementById('check-all');
+      var idsContainer = document.getElementById('bulk-ids');
+      if (!bulkBar || !idsContainer) return;
+
+      function getChecks() { return Array.prototype.slice.call(document.querySelectorAll('.row-check')); }
+      function getSelected() { return getChecks().filter(function (c) { return c.checked; }); }
+
+      function refresh() {
+        var selected = getSelected();
+        var count = selected.length;
+        bulkCount.textContent = String(count);
+        if (count > 0) {
+          bulkBar.hidden = false;
+        } else {
+          bulkBar.hidden = true;
+          bulkStatus.value = '';
+          if (checkAll) checkAll.checked = false;
+        }
+        // Submit enabled only when at least one row selected AND a status chosen.
+        bulkSubmit.disabled = !(count > 0 && bulkStatus.value);
+        // Sync the master checkbox indeterminate state.
+        if (checkAll) {
+          var total = getChecks().length;
+          if (count === 0) checkAll.checked = false;
+          else if (count === total) checkAll.checked = true;
+          else checkAll.indeterminate = true;
+        }
+      }
+
+      // Event delegation: every checkbox changes updates the bar.
+      document.addEventListener('change', function (e) {
+        var t = e.target;
+        if (!t) return;
+        if (t.classList && t.classList.contains('row-check')) refresh();
+        else if (t.id === 'check-all') {
+          getChecks().forEach(function (c) { c.checked = t.checked; });
+          refresh();
+        }
+        else if (t.id === 'bulk-status') refresh();
+      });
+
+      if (bulkClear) {
+        bulkClear.addEventListener('click', function () {
+          getChecks().forEach(function (c) { c.checked = false; });
+          refresh();
+        });
+      }
+
+      // On submit: convert selected row checkboxes into hidden inputs so the
+      // server-side action=batch-update endpoint can read ids[].
+      document.getElementById('bulk-form').addEventListener('submit', function () {
+        idsContainer.innerHTML = '';
+        getSelected().forEach(function (c) {
+          var input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = 'ids';
+          input.value = c.getAttribute('data-inquiry-id') || '';
+          idsContainer.appendChild(input);
+        });
+      });
+
+      refresh();
+    })();
+  </script>
 </body>
 </html>

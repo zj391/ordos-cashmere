@@ -111,6 +111,113 @@ async function _internalHandler(req: VercelLikeRequest, res: VercelLikeResponse)
     return;
   }
 
+  // 2026-09-23 — Batch update: apply status (and optional lead_grade) to many
+  // inquiries in one click from the list page. Body: ids (CSV or repeated),
+  // status (required, one of new/contacted/qualified/won/lost/archived),
+  // lead_grade (optional, A/B/C/D/ungraded). Up to 200 ids per request to
+  // avoid Supabase PATCH URL length limits.
+  if (req.method === 'POST' && action === 'batch-update') {
+    if (!SUPABASE_URL || !SUPABASE_KEY) {
+      res.status(500).send('Supabase not configured');
+      return;
+    }
+    const allowedStatuses = new Set(['new', 'contacted', 'qualified', 'won', 'lost', 'archived']);
+    const allowedGrades = new Set(['A', 'B', 'C', 'D', 'ungraded', '']);
+
+    // Accept ids as repeated form field, JSON array, or comma-separated string.
+    let ids: string[] = [];
+    if (Array.isArray(body.ids)) {
+      ids = (body.ids as unknown[]).filter((v) => typeof v === 'string' && v).map(String);
+    } else if (typeof body.ids === 'string' && body.ids.trim()) {
+      ids = body.ids.split(',').map((s) => s.trim()).filter(Boolean);
+    }
+    const status = typeof body.status === 'string' ? body.status : '';
+    const leadGrade = typeof body.lead_grade === 'string' ? body.lead_grade : '';
+
+    if (ids.length === 0) {
+      res.status(400).send('No inquiry ids provided');
+      return;
+    }
+    if (ids.length > 200) {
+      res.status(400).send(`Too many ids (${ids.length}); limit is 200 per request`);
+      return;
+    }
+    if (!allowedStatuses.has(status)) {
+      res.status(400).send(`Invalid status: ${status}`);
+      return;
+    }
+    if (!allowedGrades.has(leadGrade)) {
+      res.status(400).send(`Invalid lead_grade: ${leadGrade}`);
+      return;
+    }
+
+    // Sanitize each id: must be a UUID-like string (no SQL/URL injection).
+    const safeIds = ids.filter((s) => /^[0-9a-f-]{6,64}$/i.test(s));
+    if (safeIds.length === 0) {
+      res.status(400).send('No valid inquiry ids after sanitization');
+      return;
+    }
+
+    // Build PATCH payload: only the fields the caller asked to change.
+    const patch: Record<string, unknown> = { status };
+    if (leadGrade) patch.lead_grade = leadGrade === 'ungraded' ? null : leadGrade;
+
+    // Supabase: filter by id=in.(uuid1,uuid2,...) and PATCH in one request.
+    const inList = safeIds.map((id) => `"${id}"`).join(',');
+    const url = `${SUPABASE_URL}/rest/v1/inquiries?id=in.(${inList})`;
+    const rs = await fetch(url, {
+      method: 'PATCH',
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: 'Bearer ' + SUPABASE_KEY,
+        'Content-Type': 'application/json',
+        Prefer: 'return=minimal',
+      },
+      body: JSON.stringify(patch),
+    });
+    if (!rs.ok) {
+      res.status(500).send('Supabase error: ' + (await rs.text()).slice(0, 300));
+      return;
+    }
+
+    // Log the bulk action to lead_activities (best-effort) so the inquiry
+    // timeline records who changed what and when. We log one activity per
+    // updated id so the per-inquiry detail page timeline is intact.
+    const actor = req.headers['x-forwarded-for']?.toString().split(',')[0]?.trim() || 'admin';
+    const noteSuffix = leadGrade ? `status→${status}, grade→${leadGrade}` : `status→${status}`;
+    await Promise.allSettled(
+      safeIds.map((id) =>
+        fetch(`${SUPABASE_URL}/rest/v1/lead_activities`, {
+          method: 'POST',
+          headers: {
+            apikey: SUPABASE_KEY,
+            Authorization: 'Bearer ' + SUPABASE_KEY,
+            'Content-Type': 'application/json',
+            Prefer: 'return=minimal',
+          },
+          body: JSON.stringify({
+            lead_id: id,
+            channel: 'admin',
+            direction: 'in',
+            activity_type: 'bulk_status_change',
+            subject: `Bulk update: ${noteSuffix}`,
+            note: `Updated from admin list page by ${actor}`,
+            created_at: new Date().toISOString(),
+          }),
+        })
+      )
+    );
+
+    // Redirect back to the list page with same filters so the user sees
+    // their updated results in the same view.
+    const back = (typeof body.redirect_to === 'string' && body.redirect_to.startsWith('/admin/inquiries'))
+      ? body.redirect_to
+      : '/admin/inquiries/';
+    res.setHeader('Location', back);
+    res.status(303).end();
+    return;
+  }
+
   if (req.method === 'GET' && action === 'export') {
     if (!SUPABASE_URL || !SUPABASE_KEY) {
       res.status(500).send('Supabase not configured');
