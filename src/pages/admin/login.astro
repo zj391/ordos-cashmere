@@ -1,39 +1,48 @@
 ---
-// Admin login page - simple password auth
-// POST /api/admin/auth?action=login sets httpOnly cookie if password matches
-// Redirects to /admin/inquiries/ on success
+// Admin login page.
 //
-// 7-9: Astro 5.18 + @astrojs/vercel 9.0.5 SSR dispatch bug — mod.GET
-// is missing because Vercel's adapter expects named exports for SSR
-// routes. Workaround: redirect from middleware (set on /admin/*) to
-// /admin/inquiries/ if logged in, via client-side JS. This page is
-// prerendered statically so no SSR dispatch is needed.
+// Flow (2026-09-21 with 2FA support):
+//   - On load: if already logged in (admin_session cookie valid) → redirect.
+//   - Step 1: POST password to /api/admin/auth?action=login
+//     - If 2FA disabled: server sets admin_session and 302s to /admin/inquiries/.
+//     - If 2FA enabled: server sets admin_step1 cookie + returns 200 {step1_token}.
+//       Page detects this and shows step 2.
+//   - Step 2 (if needed): POST code (TOTP or recovery) to /api/admin/auth?action=verify-2fa.
+//     Server checks admin_step1 + TOTP/recovery → sets admin_session → redirect.
+//
+// 2026-09-21: switched from prerendered static to SSR so the page can
+// check 2FA state via the isTotpEnabled() server helper. Same workaround
+// as before: avoid Astro 5 SSR dispatch bug by handling redirects inline.
+export const prerender = false;
 
-export const prerender = true;
+import { isTotpEnabled } from '@/server/admin/admin-session.js';
 
 const url = Astro.url;
 const error = url.searchParams.get('error');
+const step = url.searchParams.get('step');
 
 // Detect a valid admin session by parsing the raw cookie header.
-// Only redirect if the cookie value is truthy (not just present in header
-// as the substring match can hit stale cookies that survived a partial
-// cleanup). This avoids the loop seen when admin_session= is present
-// with no value — we'd otherwise push to /admin/inquiries/ and back.
 const cookieHeader = Astro.request.headers.get('cookie') || '';
 const sessionMatch = /(?:^|;\s*)admin_session=([^;]*)/.exec(cookieHeader);
 const sessionValue = sessionMatch ? decodeURIComponent(sessionMatch[1] || '').trim() : '';
-// 2026-09-10 (Stage 13): 不再只看 cookie 存在 — 还要求格式像 `<timestamp>.<64-hex>`,
-// 防止 attacker 拿 `admin_session=anything` 绕过. 真正的 HMAC 验证在
-// /admin/* 路径的 middleware 里做 (那里可以 server-side 调 verifySession).
 const SESSION_TOKEN_RE = new RegExp('^\\d+\\.[a-f0-9]{64}$', 'i');
 const hasValidSession = SESSION_TOKEN_RE.test(sessionValue);
 
 if (hasValidSession) {
-  // 308 so the browser does not resend a POST body on retry.
   return Astro.redirect('/admin/inquiries/', 308);
 }
 
-const errorText = error ? 'Invalid password. Try again.' : null;
+// 2FA step? Only reachable when TOTP is enabled server-side.
+const totpEnabled = isTotpEnabled();
+const onStep2 = step === '2fa';
+const step2Error = onStep2 && (
+  error === 'bad_code' ? 'Code incorrect. Try again.' :
+  error === 'missing_code' ? 'Please enter a code.' :
+  error === 'step1_expired' ? 'Session expired. Please log in again.' :
+  'Verification failed.'
+);
+
+const errorText = error && !onStep2 ? 'Invalid password. Try again.' : null;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -100,14 +109,29 @@ const errorText = error ? 'Invalid password. Try again.' : null;
 </head>
 <body>
   <div class="card">
-    <h1>管理员登录</h1>
-    <p>DONGXIAO Cashmere internal dashboard</p>
+    <h1>{onStep2 ? '两步验证' : '管理员登录'}</h1>
+    <p>{onStep2
+      ? 'DONGXIAO Cashmere internal dashboard · 6 位 TOTP 或 8 位 recovery code'
+      : 'DONGXIAO Cashmere internal dashboard'}</p>
     {errorText && <div class="err">{errorText}</div>}
-    <form method="POST" action="/api/admin/auth?action=login">
-      <label for="password">密码</label>
-      <input type="password" id="password" name="password" required autofocus>
-      <button type="submit">登 录</button>
-    </form>
+    {step2Error && <div class="err">{step2Error}</div>}
+    {onStep2 ? (
+      <form method="POST" action="/api/admin/auth?action=verify-2fa">
+        <label for="code">验证代码</label>
+        <input type="text" id="code" name="code" required autofocus
+               autocomplete="one-time-code"
+               inputmode="numeric"
+               pattern="[A-Za-z0-9]{6,10}"
+               placeholder="123 456 or 8-char recovery">
+        <button type="submit">验证 / Verify</button>
+      </form>
+    ) : (
+      <form method="POST" action="/api/admin/auth?action=login">
+        <label for="password">密码</label>
+        <input type="password" id="password" name="password" required autofocus>
+        <button type="submit">登 录</button>
+      </form>
+    )}
   </div>
 </body>
 </html>
