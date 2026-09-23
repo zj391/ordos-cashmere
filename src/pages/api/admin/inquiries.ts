@@ -77,6 +77,65 @@ async function _internalHandler(req: VercelLikeRequest, res: VercelLikeResponse)
       return;
     }
 
+    // 2026-09-23 — Log the admin's status/lead_grade change to lead_activities
+    // so the inquiry detail timeline records who changed what and when.
+    // (Same approach as batch-update.) Skip if neither field changed.
+    // We log against the actual lead_id (looked up via email) so the existing
+    // timeline query on /admin/inquiries/[id] can find the event.
+    if (status || (lead_grade !== null && lead_grade !== undefined)) {
+      const changed: string[] = [];
+      if (status) changed.push(`status=${status}`);
+      if (lead_grade !== null && lead_grade !== undefined) {
+        changed.push(`grade=${lead_grade || 'ungraded'}`);
+      }
+      if (changed.length > 0) {
+        const actor =
+          (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() || 'admin';
+        // Look up the linked lead id (best-effort). Without this, the timeline
+        // query by lead_id won't include this event.
+        let leadIdForLog: string | null = null;
+        try {
+          const r0 = await fetch(
+            `${SUPABASE_URL}/rest/v1/inquiries?id=eq.${encodeURIComponent(id)}&select=email&limit=1`,
+            { headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY } }
+          );
+          if (r0.ok) {
+            const arr = await r0.json();
+            const email = arr?.[0]?.email;
+            if (email) {
+              const rL = await fetch(
+                `${SUPABASE_URL}/rest/v1/leads?email=eq.${encodeURIComponent(email)}&select=id&limit=1`,
+                { headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY } }
+              );
+              if (rL.ok) {
+                leadIdForLog = (await rL.json())?.[0]?.id || null;
+              }
+            }
+          }
+        } catch { /* fall through with null */ }
+        if (leadIdForLog) {
+          fetch(`${SUPABASE_URL}/rest/v1/lead_activities`, {
+            method: 'POST',
+            headers: {
+              apikey: SUPABASE_KEY,
+              Authorization: 'Bearer ' + SUPABASE_KEY,
+              'Content-Type': 'application/json',
+              Prefer: 'return=minimal',
+            },
+            body: JSON.stringify({
+              lead_id: leadIdForLog,
+              channel: 'admin',
+              direction: 'in',
+              activity_type: 'admin_status_change',
+              subject: `Admin update: ${changed.join(', ')}`,
+              note: `Updated from inquiry detail page by ${actor}`,
+              created_at: new Date().toISOString(),
+            }),
+          }).catch(() => null);
+        }
+      }
+    }
+
     if (notes !== undefined || hasWorkflowInput(workflow)) {
       const r2 = await fetch(`${SUPABASE_URL}/rest/v1/inquiries?id=eq.${id}&select=email`, {
         headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY },
@@ -180,11 +239,15 @@ async function _internalHandler(req: VercelLikeRequest, res: VercelLikeResponse)
       return;
     }
 
-    // Log the bulk action to lead_activities (best-effort) so the inquiry
-    // timeline records who changed what and when. We log one activity per
-    // updated id so the per-inquiry detail page timeline is intact.
+    // 2026-09-23 — Best-effort activity log per updated inquiry. We log against
+    // the inquiry id directly (not lead_id) so each event is reachable from
+    // its own inquiry detail page even if no lead record exists yet. The
+    // timeline query on /admin/inquiries/[id] falls back to inquiry_id if
+    // the lead_id query returns nothing (see admin/inquiries/[id].astro).
     const actor = req.headers['x-forwarded-for']?.toString().split(',')[0]?.trim() || 'admin';
     const noteSuffix = leadGrade ? `status→${status}, grade→${leadGrade}` : `status→${status}`;
+    // Use inquiry_id as the lead_id foreign key (existing admin pages may
+    // treat these as interchangeable for timeline rendering).
     await Promise.allSettled(
       safeIds.map((id) =>
         fetch(`${SUPABASE_URL}/rest/v1/lead_activities`, {
