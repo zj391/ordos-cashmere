@@ -95,6 +95,15 @@ export const INDEXABLE_BLOG_IDS = new Set([
   'cn/cashmere-factory-audit-checklist-b2b',
   'en/cashmere-warehouse-usa-dropship-b2b',
   'cn/cashmere-warehouse-usa-dropship-b2b',
+  // 2026-09-23 — More B2B long-tail coverage: 2026 trade show calendar (SpinExpo,
+  // Première Vision, Milano Unica, Magic, Ordos expo), in-person factory tour guide,
+  // and end-to-end Pantone-to-yarn custom dye workflow.
+  'en/cashmere-trade-show-2026-calendar-b2b',
+  'cn/cashmere-trade-show-2026-calendar-b2b',
+  'en/cashmere-factory-tour-ordos-b2b',
+  'cn/cashmere-factory-tour-ordos-b2b',
+  'en/cashmere-custom-dye-workflow-b2b',
+  'cn/cashmere-custom-dye-workflow-b2b',
 ]);
 
 export function getBlogSlugFromId(id: string) {
