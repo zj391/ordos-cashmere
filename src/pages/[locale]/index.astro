@@ -293,27 +293,30 @@ const IMG = {
 
   <!-- ============ HERO (3 张明亮图轮播 + 文字层) ============ -->
   <section class="home-enhanced-hero relative bg-brand-ink text-white overflow-hidden">
-    <!-- 轮播图: 3 张明亮图自动循环 (CSS transition + 底部圆点 + JS) -->
-    <div class="absolute inset-0" data-hero-slider>
-      {[
-        { src: IMG.scarvesFolded, alt: 'Cashmere wrap — premium B2B apparel piece styled in urban setting' },
-        { src: IMG.heroCraft,    alt: 'Handwoven cashmere detail — craftsmanship' },
-        { src: IMG.heroLandscape, alt: 'Inner Mongolian highland landscape — Ordos origin' },
-        { src: IMG.uiHero, alt: 'Premium cashmere coat on Ordos highland — material-led B2B collection inspiration' },
-      ].map((slide, i) => (
-        <img
-          src={slide.src}
-          alt={slide.alt}
-          class={`ken-burns absolute inset-0 w-full h-full object-cover transition-opacity duration-[1500ms] ease-in-out ${
-            i === 0 ? 'opacity-100 visible' : 'opacity-0 invisible'
-          }`}
-          decoding="async" loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : 'auto'}
-          data-hero-slide={i}
-        />
-      ))}
-      <!-- 左侧暗化叠层: 保证文字可读, 右侧保持明亮 (gradient from-left) -->
-      <div class="absolute inset-0 bg-gradient-to-r from-brand-ink/60 via-brand-ink/25 to-transparent"></div>
-    </div>
+      <!-- 轮播图: 3 张明亮图自动循环 (CSS transition + 底部圆点 + JS) -->
+      <div class="absolute inset-0" data-hero-slider>
+        {[
+          { src: IMG.scarvesFolded, alt: 'Cashmere wrap — premium B2B apparel piece styled in urban setting' },
+          { src: IMG.heroCraft,    alt: 'Handwoven cashmere detail — craftsmanship' },
+          { src: IMG.heroLandscape, alt: 'Inner Mongolian highland landscape — Ordos origin' },
+          { src: IMG.uiHero, alt: 'Premium cashmere coat on Ordos highland — material-led B2B collection inspiration' },
+        ].map((slide, i) => (
+          <img
+            src={slide.src}
+            alt={slide.alt}
+            class={`ken-burns absolute inset-0 w-full h-full object-cover transition-opacity duration-[1500ms] ease-in-out ${
+              i === 0 ? 'opacity-100 visible' : 'opacity-0 invisible'
+            }`}
+            decoding="async" loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : 'auto'}
+            data-hero-slide={i}
+          />
+        ))}
+        <!-- Editorial overlay: lighter than before, leaves image visible.
+             Three-stop gradient (top→mid→bottom) for legibility without weight. -->
+        <div class="absolute inset-0 bg-gradient-to-b from-brand-ink/30 via-transparent to-brand-ink/70"></div>
+        <!-- A soft white veil across the lower-mid so serif type stays legible on bright sky portions. -->
+        <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-brand-cream/15 via-brand-cream/5 to-transparent"></div>
+      </div>
     <!-- 羊绒纤维纹理 (装饰) -->
     <svg class="absolute inset-0 w-full h-full opacity-[0.05] pointer-events-none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
       <defs>
@@ -332,7 +335,7 @@ const IMG = {
         <div class="eyebrow eyebrow-on-dark mb-10">
           <span>{c.tagline}</span>
         </div>
-        <h1 class="text-5xl md:text-7xl font-bold leading-[1.05] tracking-[-0.02em] mb-10 text-white" set:html={c.title.replace(/\n/g, '<br/>')} />
+        <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-light leading-[1.02] tracking-[-0.025em] mb-10 text-white" set:html={c.title.replace(/\n/g, '<br/>')} />
         <p class="text-lg md:text-xl text-white/80 mb-14 leading-relaxed max-w-2xl font-light">
           {c.subtitle}
         </p>
@@ -445,20 +448,20 @@ const IMG = {
   </section>
 
   <!-- ============ TRUST STRIP (cert badges + stats under hero) ============ -->
-  <section class="home-trust-strip py-12 md:py-14 bg-brand-mist border-b border-border">
+  <section class="home-trust-strip py-12 md:py-14 bg-brand-mist/60 border-b border-border/60">
     <div class="container-narrow">
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-8 items-center">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-8 gap-y-8 items-center">
         {trustBadges.map((b, i) => (
           <div class="flex items-start gap-3 reveal" data-reveal-delay={i + 1}>
-            <svg class="w-8 h-8 flex-shrink-0 text-brand-gold mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {i % 4 === 0 && <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />}
-              {i % 4 === 1 && <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />}
-              {i % 4 === 2 && <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />}
-              {i % 4 === 3 && <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />}
+            <svg class="w-5 h-5 flex-shrink-0 text-brand-camel mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.25">
+              {i % 4 === 0 && <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />}
+              {i % 4 === 1 && <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />}
+              {i % 4 === 2 && <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />}
+              {i % 4 === 3 && <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />}
             </svg>
             <div>
-              <div class="text-sm md:text-base font-medium text-brand-ink leading-tight">{b.label[locale] || b.label.en}</div>
-              <div class="text-xs text-muted-foreground mt-0.5 leading-tight">{b.sub[locale] || b.sub.en}</div>
+              <div class="text-sm font-medium text-brand-ink leading-tight tracking-tight">{b.label[locale] || b.label.en}</div>
+              <div class="text-xs text-muted-foreground/70 mt-0.5 leading-tight">{b.sub[locale] || b.sub.en}</div>
             </div>
           </div>
         ))}
@@ -468,7 +471,7 @@ const IMG = {
 
 
   <!-- ============ 原料信息 ============ -->
-  <section class="home-origin-section py-28 md:py-36 bg-background overflow-hidden">
+  <section class="home-origin-section py-20 md:py-28 bg-background overflow-hidden">
     <div class="container-narrow">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <!-- 左侧大图（占 7/12） -->
@@ -496,7 +499,7 @@ const IMG = {
               {t6('原料信息', 'Material Information', 'Materialinformationen', 'Informations matière', '原料情報', '원료 정보')}
             </span>
           </div>
-          <h2 class="text-4xl md:text-5xl font-bold leading-[1.1] mb-8 text-foreground" set:html={t6(
+          <h2 class="text-4xl md:text-5xl font-light leading-[1.1] mb-8 text-foreground font-display" set:html={t6(
             '鄂尔多斯：<br/>羊绒产品与原料信息',
             'Ordos:<br/>Cashmere Product & Material Information',
             'Ordos:<br/>Kaschmir-Produkt- und Materialinformationen',
@@ -540,7 +543,7 @@ const IMG = {
   </section>
 
   <!-- ============ Product Range（不对称 Bento 布局） ============ -->
-  <section class="home-product-section py-28 md:py-36 bg-brand-cream/50">
+  <section class="home-product-section py-20 md:py-28 bg-brand-cream/50">
     <div class="container-narrow">
       <!-- 段头 -->
       <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-16 gap-6">
@@ -550,7 +553,7 @@ const IMG = {
               {t6('产品矩阵', 'Product Range', 'Produktpalette', 'Gamme', '製品範囲', '제품 범위')}
             </span>
           </div>
-          <h2 class="text-4xl md:text-5xl font-bold leading-[1.1] max-w-2xl">
+          <h2 class="text-4xl md:text-5xl font-light leading-[1.1] max-w-2xl font-display">
             {t6(
               '羊绒产品资料：从原料到针织成衣',
               'Cashmere Product Records, from Material to Knitwear',
@@ -669,7 +672,7 @@ const IMG = {
   </section>
 
   <!-- ============ 为什么选我们（工艺感：图+引文+数据 交错） ============ -->
-  <section class="home-craft-section py-28 md:py-36 bg-background">
+  <section class="home-craft-section py-20 md:py-28 bg-background">
     <div class="container-narrow">
       <div class="max-w-3xl mb-20">
         <div class="eyebrow mb-8">
@@ -677,7 +680,7 @@ const IMG = {
             {t6('为什么选东霄', 'Why DONGXIAO', 'Warum DONGXIAO', 'Pourquoi', 'なぜ東霄', '왜 동소')}
           </span>
         </div>
-        <h2 class="text-4xl md:text-5xl font-bold leading-[1.1]">
+        <h2 class="text-4xl md:text-5xl font-light leading-[1.1] font-display">
           {t6('从产品资料到项目讨论，围绕羊绒规格逐项确认', 'From product records to project discussion, confirm cashmere specifications step by step', 'Von Produktdaten zur Projektabstimmung: Kaschmirspezifikationen Schritt für Schritt bestätigen', 'Des fiches produit à l’échange projet, confirmer les spécifications cachemire étape par étape', '製品情報から案件協議まで、カシミア仕様を段階的に確認', '제품 기록부터 프로젝트 협의까지, 캐시미어 사양을 단계별로 확인')}
         </h2>
       </div>
@@ -747,7 +750,7 @@ const IMG = {
     <div class="container-narrow">
       <div class="text-center mb-12">
         <div class="inline-block text-xs tracking-[0.3em] uppercase text-brand-camel mb-3">{t6('项目准备', 'Project preparation', 'Projektvorbereitung', 'Préparation du projet', '案件準備', '프로젝트 준비')}</div>
-        <h2 class="text-2xl md:text-3xl font-bold">
+        <h2 class="text-2xl md:text-3xl font-light font-display">
           {t6('项目文件与核验要求以书面方式确认', 'Project documentation and verification requirements are confirmed in writing', 'Projektdokumentation und Prüfanforderungen werden schriftlich bestätigt', 'Les documents et exigences de vérification sont confirmés par écrit', '案件書類と検証要件は書面で確認します', '프로젝트 문서 및 검증 요건은 서면으로 확인됩니다')}
         </h2>
         <p class="max-w-3xl mx-auto mt-5 text-sm leading-relaxed text-muted-foreground">
@@ -780,14 +783,14 @@ const IMG = {
   </section>
 
   <!-- ============ 产品中心：5 大分类 + 精选产品 ============ -->
-  <section class="home-catalog-section py-28 md:py-36 bg-background">
+  <section class="home-catalog-section py-20 md:py-28 bg-background">
     <div class="container-narrow">
       <div class="flex items-end justify-between mb-12 gap-6 flex-wrap">
         <div>
           <div class="eyebrow mb-6">
             <span class="text-xs tracking-[0.3em] text-brand-gold uppercase font-medium">{t6('产品中心', 'Product Center', 'Produktzentrum', 'Centre Produits', '製品センター', '제품 센터')}</span>
           </div>
-          <h2 class="text-2xl md:text-4xl font-bold leading-tight text-balance">
+          <h2 class="text-2xl md:text-4xl font-light leading-tight text-balance font-display">
             {t6('5 大品类 · 从原料到成衣', '5 categories, from raw fiber to finished knitwear', '5 Kategorien, vom Rohmaterial bis zur Strickware', '5 catégories, de la fibre au tricot fini', '5カテゴリー、原料からニットまで', '5개 카테고리, 원료부터 니트까지')}
           </h2>
         </div>
@@ -869,7 +872,7 @@ const IMG = {
   </section>
 
   <!-- ============ Final CTA（深色版 + 旧版针织场景背景） ============ -->
-  <section class="home-final-cta py-28 md:py-36 bg-brand-sandwarm relative overflow-hidden">
+  <section class="home-final-cta py-20 md:py-28 bg-brand-sandwarm relative overflow-hidden">
     <!-- 背景图：历史针织场景，黑白调性（knittingMill 是 DPLA 公共域图） -->
     <div class="absolute inset-0">
       <img src={IMG.heroFiber} alt="" aria-hidden="true" class="w-full h-full object-cover opacity-10 grayscale" decoding="async" loading="lazy" />
@@ -894,7 +897,7 @@ const IMG = {
       <div class="inline-block text-xs tracking-[0.3em] uppercase text-copper font-bold mb-6">
         {t6('下一步', 'Next Step', 'Nächster Schritt', 'Étape suivante', '次のステップ', '다음 단계')}
       </div>
-      <h2 class="text-3xl md:text-5xl font-bold mb-6 leading-tight text-foreground">
+      <h2 class="text-3xl md:text-5xl font-light mb-6 leading-tight text-foreground font-display">
         {t6('准备好开始您的羊绒采购了吗？', 'Ready to start your cashmere sourcing?', 'Bereit für Ihre Kaschmir-Beschaffung?', 'Prêt à démarrer votre sourcing cachemire ?', 'カシミア調達を始めますか？', '캐시미어 소싱을 시작하시겠습니까?')}
       </h2>
       <p class="text-muted-foreground mb-12 text-lg max-w-2xl mx-auto">
@@ -936,7 +939,7 @@ const IMG = {
               <span class="h-[2px] w-10 bg-brand-red"></span>
               <span class="text-xs tracking-[0.3em] text-brand-gold uppercase font-medium">{locale === 'cn' ? '博客' : 'Blog'}</span>
             </div>
-            <h2 class="text-2xl md:text-4xl font-bold leading-tight text-balance">
+            <h2 class="text-2xl md:text-4xl font-light leading-tight text-balance font-display">
               {locale === 'cn' ? '最新行业洞察' : 'Latest from our blog'}
             </h2>
           </div>

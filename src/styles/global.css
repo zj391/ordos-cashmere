@@ -583,16 +583,24 @@ header.sticky.is-scrolled {
   content: '';
   width: 2.5rem;
   height: 1px;
-  background: #9E3128;
+  /* 2026-09-23 — replace brand-red (#9E3128) with editorial camel for a
+     softer kicker rule. Brand-red reads as alert/urgency, not editorial. */
+  background: #A98B5F;
   flex: none;
 }
+
 .eyebrow > span,
 .eyebrow-label {
-  font-size: 0.6875rem;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
+  /* 2026-09-23 — Editorial: italic small serif, not uppercase tracked.
+     International editorial section openers use an italic or small-cap
+     serif kicker (Vogue, Kinfolk, Cereal magazine style), not the SaaS
+     "tracking 0.3em" pattern that screams generic-template. */
+  font-family: 'Cormorant Garamond', 'Noto Serif SC', Georgia, serif;
+  font-style: italic;
+  font-size: 0.875rem;
+  letter-spacing: 0.01em;
   color: #A98B5F;
-  font-weight: 500;
+  font-weight: 400;
   white-space: nowrap;
 }
 .eyebrow-center {
@@ -608,7 +616,7 @@ header.sticky.is-scrolled {
 
 /* Hero eyebrow on dark imagery */
 .eyebrow-on-dark::before {
-  background: #9E3128;
+  background: #C9A97C;
 }
 .eyebrow-on-dark > span,
 .eyebrow-on-dark .eyebrow-label {
