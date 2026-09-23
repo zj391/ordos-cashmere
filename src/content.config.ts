@@ -18,6 +18,13 @@ const blog = defineCollection({
     updatedDate: z.coerce.date().optional(),
     author: z.string().default('DONGXIAO® Editorial'),
     tags: z.array(z.string()).default([]),
+    // SERP 优化（2026-09-23）：短版标题+描述，控制在 60/160 chars 内，
+    // 避免 Google 截断时把核心关键词推到省略号。如果没填，自动从
+    // title/excerpt 截断到合适长度。
+    metaTitle: z.string().optional(),
+    metaDescription: z.string().optional(),
+    // 内容语言 (BCP-47)
+    language: z.string().optional(),
     // GEO 字段 - 自动填充到页面和 schema
     geoRegion: z.string().optional(),         // 'CN-15' / 'EU' / 'JP' / 'KR' / 'NA' / 'GLOBAL'
     targetKeywords: z.array(z.string()).default([]),  // ['Europe cashmere supplier', 'Ordos cashmere manufacturer']

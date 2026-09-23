@@ -18,10 +18,10 @@ import { blogHeroImage } from '@/lib/blog-hero';
 import { getBlogSlugFromId, isIndexableBlogPost } from '@/lib/blog-indexability';
 
 export async function getStaticPaths() {
-  const all = await getCollection('blog');
+  const allBlogPaths = await getCollection('blog');
   const localesBySlug = new Map<string, Locale[]>();
 
-  for (const post of all) {
+  for (const post of allBlogPaths) {
     const [rawLocale, ...rest] = post.id.split('/');
     const slug = rest.join('/').replace(/\.md$/, '');
     const locale = pickLocale(rawLocale);
@@ -30,7 +30,7 @@ export async function getStaticPaths() {
     localesBySlug.set(slug, existing);
   }
 
-  return all.map((post) => {
+  return allBlogPaths.map((post) => {
     const [rawLocale, ...rest] = post.id.split('/');
     const slug = rest.join('/').replace(/\.md$/, '');
     const locale = pickLocale(rawLocale);
@@ -47,6 +47,39 @@ const slug = getBlogSlugFromId(post.id);
 const isIndexable = isIndexableBlogPost(locale, slug);
 const { Content } = await render(post);
 const articleUrl = `${SITE_URL}/${locale}/blog/${Astro.params.slug}/`;
+
+// 2026-09-23 — Related reading: 在 frontmatter 计算同语言其他博客,
+// 按 tag 重叠度 + 发布日期排序, 前 5 条作为底部 "Related Reading" 区块。
+// 这给所有 86+ 篇博客自动获得 3-5 个内部链接, 改善 SEO orphan 问题。
+const allBlogPosts = await getCollection('blog');
+const myTags = new Set((post.data.tags || []).map((t: string) => t.toLowerCase()));
+type RelatedPost = { slug: string; title: string; excerpt: string; score: number; dateMs: number };
+const relatedPosts: RelatedPost[] = [];
+for (const p of allBlogPosts) {
+  if (p.id === post.id) continue;
+  if (!p.id.startsWith(locale + '/')) continue;
+  const pSlug = getBlogSlugFromId(p.id);
+  const theirTags = (p.data.tags || []).map((t: string) => String(t).toLowerCase());
+  const overlap = theirTags.filter((t: string) => myTags.has(t)).length;
+  const dateMs = p.data.publishDate?.getTime?.() || 0;
+  relatedPosts.push({
+    slug: pSlug,
+    title: String(p.data.title || ''),
+    excerpt: String(p.data.excerpt || '').replace(/\s+/g, ' ').slice(0, 140),
+    score: overlap,
+    dateMs,
+  });
+}
+// Sort: most overlapping tags first; tiebreaker = most recent
+relatedPosts.sort((a, b) => (b.score - a.score) || (b.dateMs - a.dateMs));
+const relatedByTags = relatedPosts.filter((r) => r.score > 0).slice(0, 5);
+if (relatedByTags.length < 3) {
+  const fallback = relatedPosts
+    .filter((r) => r.score === 0 && !relatedByTags.some((x) => x.slug === r.slug))
+    .slice(0, 5 - relatedByTags.length);
+  relatedByTags.push(...fallback);
+}
+const relatedReading = relatedByTags.slice(0, 5);
 const schemaLabels = {
   en: { home: 'Home', blog: 'Blog', blogName: 'DONGXIAO Cashmere Sourcing Notes' },
   cn: { home: '首页', blog: '博客', blogName: '东霄羊绒采购笔记' },
@@ -63,13 +96,37 @@ const articleWordCount = ['en', 'de', 'fr'].includes(locale)
 // Visual differentiation across 1566 blog posts without storing 1566 hero images.
 const heroImage = blogHeroImage(post.data.tags || [], post.data.title || '');
 
+// SERP 优化（2026-09-23）：如果 frontmatter 写了 metaTitle/metaDescription，
+// 用短版给 <title> 和 <meta description>。否则 fallback 到 title/excerpt。
+// SERP 显示 title 受 ~60 chars 限制、description 受 ~160 chars 限制，
+// 超长会被 Google 截断到省略号，关键词消失在前几 char 之外 = CTR 损失。
+const MAX_META_TITLE = 60;
+const MAX_META_DESC = 160;
+
+function trimTo(text: string, max: number): string {
+  if (text.length <= max) return text;
+  // Prefer ending at a word boundary
+  const cut = text.slice(0, max - 1);
+  const lastSpace = cut.lastIndexOf(' ');
+  return (lastSpace > max - 15 ? cut.slice(0, lastSpace) : cut).trimEnd() + '…';
+}
+
+const rawMetaTitle = (post.data as any).metaTitle;
+const rawMetaDesc = (post.data as any).metaDescription;
+const serpTitle = (typeof rawMetaTitle === 'string' && rawMetaTitle.trim())
+  ? rawMetaTitle.trim()
+  : trimTo(String(post.data.title || ''), MAX_META_TITLE);
+const serpDesc = (typeof rawMetaDesc === 'string' && rawMetaDesc.trim())
+  ? rawMetaDesc.trim()
+  : trimTo(String(post.data.excerpt || ''), MAX_META_DESC);
+
 // Schema.org Article + BlogPosting for SEO
 const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
   '@id': `${articleUrl}#article`,
-  headline: post.data.title,
-  description: post.data.excerpt,
+  headline: serpTitle,
+  description: serpDesc,
   datePublished: post.data.publishDate.toISOString(),
   dateModified: (post.data.updatedDate || post.data.publishDate).toISOString(),
   author: {
@@ -152,8 +209,8 @@ const blogFAQ = extractBlogFAQ(post.body, 4, locale);
   pageKey="blog"
   path={`/blog/${Astro.params.slug}`}
   alternateLocales={alternateLocales}
-  title={post.data.title}
-  description={post.data.excerpt}
+  title={serpTitle}
+  description={serpDesc}
   ogType="article"
   ogImage={heroImage.path}
   schema="blog"
@@ -279,6 +336,36 @@ const blogFAQ = extractBlogFAQ(post.body, 4, locale);
         );
       })()}
     </footer>
+
+    {/*
+      Related reading: 内部链接到同语言的其他博客（2026-09-23 SEO 加分）。
+      数据由 frontmatter 计算（按 tag 重叠度），给所有 86+ 篇博客自动获得
+      3-5 个内部链接, 提升爬虫可达性 + 降低 orphan 比例。
+    */}
+    {relatedReading.length > 0 && (
+      <aside class="mt-12 pt-8 border-t border-border">
+        <h3 class="font-display text-xl font-medium mb-4">
+          {locale === 'cn' ? '延伸阅读' : 'Related Reading'}
+        </h3>
+        <ul class="space-y-3">
+          {relatedReading.map((r) => (
+            <li>
+              <a
+                href={`/${locale}/blog/${r.slug}/`}
+                class="block group hover:bg-stone-50 -mx-2 px-2 py-2 rounded transition-colors"
+              >
+                <div class="font-medium group-hover:text-brand-camel transition-colors">
+                  {r.title}
+                </div>
+                {r.excerpt && (
+                  <div class="text-sm text-muted-foreground mt-1">{r.excerpt}…</div>
+                )}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </aside>
+    )}
 
     <div class="mt-10 flex items-center gap-3">
       <span class="text-xs uppercase tracking-wider text-muted-foreground">{locale === 'cn' ? '分享到 LinkedIn' : 'Share on LinkedIn'}</span>

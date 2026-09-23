@@ -85,6 +85,16 @@ export const INDEXABLE_BLOG_IDS = new Set([
   'cn/cashmere-scarf-weight-by-climate',
   'cn/cashmere-socks-vs-wool-socks',
   'cn/cashmere-travel-wrap-set',
+  // 2026-09-23 — B2B payment / audit / fulfillment guides (cashmere-letter-of-credit,
+  // cashmere-factory-audit-checklist, cashmere-warehouse-usa-dropship). Each covers
+  // a long-tail B2B topic not previously addressed: L/C clauses + UCP 600,
+  // 12-point on-site factory verification, US warehouse + dropship + FBA programs.
+  'en/cashmere-letter-of-credit-b2b-buyers-guide',
+  'cn/cashmere-letter-of-credit-b2b-buyers-guide',
+  'en/cashmere-factory-audit-checklist-b2b',
+  'cn/cashmere-factory-audit-checklist-b2b',
+  'en/cashmere-warehouse-usa-dropship-b2b',
+  'cn/cashmere-warehouse-usa-dropship-b2b',
 ]);
 
 export function getBlogSlugFromId(id: string) {
