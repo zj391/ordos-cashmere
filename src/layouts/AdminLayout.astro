@@ -21,6 +21,7 @@
 import '@/styles/global.css';
 import { ADMIN_NAV_ITEMS } from '@/data/admin-nav';
 import { LOCALES, LOCALE_NAMES } from '@/lib/i18n';
+import { csrfToken, getSecret, signSession, verifySession } from '@/server/admin/admin-session.js';
 
 interface Props {
   locale: string;
@@ -52,6 +53,20 @@ const navItems = ADMIN_NAV_ITEMS.map((n) => ({
   label: n.label[locale as keyof typeof n.label] || n.label.en,
   badge: n.badge,
 }));
+
+// 2026-09-23 — Compute CSRF token for the current admin session. The token
+// is HMAC-SHA256(secret, session) where session is the verified cookie.
+// We expose it as a global var so child pages can read it, AND inject it
+// into every <form method="POST"> as a hidden __csrf field, AND auto-add
+// the x-csrf-token header to every fetch() that hits /api/admin/. This
+// belt-and-suspenders setup means new admin pages automatically inherit CSRF.
+const adminSecret = getSecret();
+const sessionCookie = Astro.request.headers.get('cookie') || '';
+const sessionMatch = /(?:^|;\s*)admin_session=([^;]+)/.exec(sessionCookie);
+const sessionToken = sessionMatch ? decodeURIComponent(sessionMatch[1]) : '';
+const csrf = adminSecret && sessionToken && verifySession(sessionToken, adminSecret)
+  ? csrfToken(sessionToken, adminSecret)
+  : '';
 ---
 <!DOCTYPE html>
 <html lang="zh-CN" class="h-full bg-stone-50">
@@ -140,5 +155,67 @@ const navItems = ADMIN_NAV_ITEMS.map((n) => ({
       </main>
     </div>
   </div>
+
+  <!-- 2026-09-23 — Admin CSRF auto-injection. Reads window.__ADMIN_CSRF__
+       (set via Astro frontmatter above), then:
+       (a) injects a hidden __csrf input into every <form method="POST"> on the page
+       (b) wraps window.fetch so any non-GET request to /api/admin/ gets
+           the x-csrf-token header automatically.
+       The /api/admin/auth?action=logout GET is unaffected (no CSRF needed). -->
+  {csrf && (
+    <script is:inline define:vars={{ csrf }}>
+      (function () {
+        if (!csrf) return;
+        // (a) Inject __csrf into forms on initial load + on dynamically added forms.
+        function injectIntoForms() {
+          var nodes = document.querySelectorAll('form[method="post"], form[method="POST"]');
+          for (var i = 0; i < nodes.length; i++) {
+            var form = nodes[i];
+            // Skip forms that already have an explicit __csrf field
+            // (allows custom forms to opt out if they need to).
+            if (form.querySelector('input[name="__csrf"]')) continue;
+            // Skip forms that POST to /api/admin/auth?action=logout — those
+            // don't need CSRF and adding it would just clutter the request.
+            var action = (form.getAttribute('action') || '').toLowerCase();
+            if (action.indexOf('/api/admin/auth') >= 0 && action.indexOf('logout') >= 0) continue;
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = '__csrf';
+            input.value = csrf;
+            form.appendChild(input);
+          }
+        }
+        injectIntoForms();
+        // Observe DOM mutations for forms added later by JS.
+        if (typeof MutationObserver !== 'undefined') {
+          var mo = new MutationObserver(function () {
+            injectIntoForms();
+          });
+          mo.observe(document.documentElement, { childList: true, subtree: true });
+        }
+        // (b) Wrap window.fetch to add x-csrf-token to admin mutating calls.
+        var origFetch = window.fetch;
+        if (!window.__ADMIN_CSRF_FETCH_WRAPPED__) {
+          window.fetch = function (input, init) {
+            init = init || {};
+            try {
+              var u = (typeof input === 'string') ? input : (input && input.url) || '';
+              var method = (init.method || (input && input.method) || 'GET').toUpperCase();
+              if (u.indexOf('/api/admin/') === 0 && method !== 'GET' && method !== 'HEAD' && method !== 'OPTIONS') {
+                init.headers = init.headers || {};
+                if (init.headers instanceof Headers) {
+                  if (!init.headers.has('x-csrf-token')) init.headers.set('x-csrf-token', csrf);
+                } else {
+                  if (!init.headers['x-csrf-token']) init.headers['x-csrf-token'] = csrf;
+                }
+              }
+            } catch (e) { /* ignore header setting errors */ }
+            return origFetch.call(this, input, init);
+          };
+          window.__ADMIN_CSRF_FETCH_WRAPPED__ = true;
+        }
+      })();
+    </script>
+  )}
 </body>
 </html>

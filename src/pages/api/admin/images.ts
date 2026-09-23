@@ -10,6 +10,7 @@
  * had the URL cached. Front-end should warn the admin before deletion.
  */
 import { verifySession, getSecret } from '../../../server/admin/admin-session.js';
+import { verifyCsrfOrReject } from '../../../server/admin/csrf-check.js';
 import { toAstroApiRoute, type VercelLikeRequest, type VercelLikeResponse } from '../../../lib/api/vercel-shim';
 
 const SUPABASE_URL = process.env.PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || '';
@@ -65,6 +66,13 @@ async function _internalHandler(req: VercelLikeRequest, res: VercelLikeResponse)
   if (!authed(req)) {
     res.status(401).json({ error: 'unauthorized' });
     return;
+  }
+
+  // 2026-09-23 — CSRF check on every mutating method. POST and DELETE
+  // both modify storage; GET stays CSRF-free.
+  if (req.method === 'POST' || req.method === 'DELETE') {
+    const denied = verifyCsrfOrReject(req, res);
+    if (denied) return denied;
   }
 
   if (req.method === 'GET' || req.method === 'POST') {

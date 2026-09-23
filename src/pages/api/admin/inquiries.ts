@@ -4,6 +4,7 @@
  *   GET  /api/admin/inquiries/?action=export[&grade=&status=&country=&q=]
  */
 import { toAstroApiRoute, type VercelLikeRequest, type VercelLikeResponse } from '../../../lib/api/vercel-shim';
+import { verifyCsrfOrReject } from '../../../server/admin/csrf-check.js';
 import { hasWorkflowInput, isActionDate, isDealStage, isQuoteStatus, isSampleStatus, stripWorkflowSummary, workflowSummary } from '../../../lib/deal-workflow';
 
 const SUPABASE_URL = process.env.PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || '';
@@ -15,8 +16,14 @@ async function _internalHandler(req: VercelLikeRequest, res: VercelLikeResponse)
   const id = url.searchParams.get('id');
 
   if (req.method === 'POST') {
-    if (!id) {
-      res.status(400).send('Missing id');
+    // 2026-09-23 — CSRF protection on every mutating endpoint. Reads the
+    // admin_session cookie + x-csrf-token header (or __csrf form field)
+    // and rejects with 401/403 if either is missing or invalid.
+    const denied = verifyCsrfOrReject(req, res);
+    if (denied) return denied;
+
+    if (!id && action !== 'batch-update') {
+      res.status(400).send('Missing id (or use ?action=batch-update)');
       return;
     }
     if (!SUPABASE_URL || !SUPABASE_KEY) {

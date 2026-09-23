@@ -1,5 +1,7 @@
 /** Protected customer-success profile updates for linked sales leads. */
 import { toAstroApiRoute, type VercelLikeRequest, type VercelLikeResponse } from '../../../lib/api/vercel-shim';
+import { verifySession, getSecret } from '../../../server/admin/admin-session.js';
+import { verifyCsrfOrReject } from '../../../server/admin/csrf-check.js';
 import { customerSuccessSummary, isAccountTier, isCustomerDate, isServiceCadence, stripCustomerSuccessSummary } from '../../../lib/customer-success';
 import { extractWorkflowSummary } from '../../../lib/deal-workflow';
 
@@ -14,6 +16,9 @@ function parseBody(req: VercelLikeRequest): Record<string, string> {
 
 async function _internalHandler(req: VercelLikeRequest, res: VercelLikeResponse) {
   if (req.method !== 'POST') return res.status(405).send('Method not allowed');
+  // 2026-09-23 — CSRF protection on this mutating endpoint.
+  const denied = verifyCsrfOrReject(req, res);
+  if (denied) return denied;
   const url = new URL(req.url || '/', `https://${req.headers.host || 'erdosdx.com'}`);
   const id = url.searchParams.get('id');
   if (!id) return res.status(400).send('Missing lead id');
