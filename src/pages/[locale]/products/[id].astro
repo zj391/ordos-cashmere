@@ -1343,7 +1343,7 @@ const relatedViewAll: Record<Locale, string> = {
       </nav>
 
       <div class="product-share flex items-center gap-3 mb-8">
-        <span class="text-xs uppercase tracking-wider text-muted-foreground">{locale === 'cn' ? '分享到 LinkedIn' : 'Share on LinkedIn'}</span>
+        <span class="text-xs font-display italic text-muted-foreground tracking-tight">{locale === 'cn' ? '分享到 LinkedIn' : 'Share on LinkedIn'}</span>
         <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`${SITE_URL}/${locale}/products/${product.id}/`)}`} target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm text-primary hover:text-brand-camel transition-colors">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg> {locale === 'cn' ? '分享' : 'Share'}
         </a>
@@ -1407,7 +1407,7 @@ const relatedViewAll: Record<Locale, string> = {
 
                               {kind === 'model' && (
 
-                                <span class="absolute top-1 left-1 text-[9px] tracking-wider uppercase bg-brand-ink/85 text-white px-1.5 py-0.5 rounded">
+                                <span class="absolute top-1 left-1 text-[9px] tracking-tight font-medium bg-brand-ink/85 text-white px-1.5 py-0.5 rounded">
 
                                   {locale === 'cn' ? '模特' : 'Model'}
 
@@ -1433,14 +1433,14 @@ const relatedViewAll: Record<Locale, string> = {
 
         <div class="product-summary product-summary--archive">
 
-          <span class="text-xs tracking-widest text-muted-foreground uppercase">{displayCategory}</span>
+          <span class="text-xs font-display italic text-muted-foreground tracking-tight">{displayCategory}</span>
 
           <h1 class="product-title font-display text-3xl md:text-4xl font-light mt-2 mb-3">{productH1}</h1>
 
 
 
           <div class="product-confirmation-note mb-5">
-            <p class="text-sm font-medium">{locale === 'cn' ? '项目条件书面确认' : 'Project terms confirmed in writing'}</p>
+            <p class="text-sm font-display font-light">{locale === 'cn' ? '项目条件书面确认' : 'Project terms confirmed in writing'}</p>
             <p class="text-sm text-muted-foreground mt-1">{locale === 'cn' ? '请在询盘中说明规格、数量、目的地、验货与文件需求。' : 'Include specification, quantity, destination, inspection and documentation needs in your inquiry.'}</p>
           </div>
 
@@ -2319,8 +2319,8 @@ const relatedViewAll: Record<Locale, string> = {
     <section class="py-12 md:py-16 bg-brand-shell border-y border-border/60">
       <div class="container-narrow">
         <div class="flex items-center gap-3 mb-4">
-          <span class="h-[2px] w-8 bg-brand-red"></span>
-          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">
+          <span class="h-[2px] w-8 bg-brand-camel"></span>
+          <span class="text-xs font-display italic text-brand-camel tracking-tight">
             {locale === 'cn' ? '起运港口 & 物流' : 'Shipping & Origin'}
           </span>
         </div>
@@ -2348,8 +2348,8 @@ const relatedViewAll: Record<Locale, string> = {
     <section class="py-12 bg-secondary/20">
       <div class="container-narrow max-w-3xl">
         <div class="flex items-center gap-3 mb-4">
-          <span class="h-[2px] w-8 bg-brand-red"></span>
-          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">
+          <span class="h-[2px] w-8 bg-brand-camel"></span>
+          <span class="text-xs font-display italic text-brand-camel tracking-tight">
             {locale === 'cn' ? '退货与质量保证' : 'Returns & Quality Guarantee'}
           </span>
         </div>
@@ -2372,8 +2372,8 @@ const relatedViewAll: Record<Locale, string> = {
     <section class="py-12 bg-background">
       <div class="container-narrow">
         <div class="flex items-center gap-3 mb-4">
-          <span class="h-[2px] w-8 bg-brand-red"></span>
-          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">
+          <span class="h-[2px] w-8 bg-brand-camel"></span>
+          <span class="text-xs font-display italic text-brand-camel tracking-tight">
             {locale === 'cn' ? '工厂资质' : 'Factory Credentials'}
           </span>
         </div>
@@ -2492,8 +2492,8 @@ const relatedViewAll: Record<Locale, string> = {
                 </div>
                 <div class="p-2.5 md:p-3">
                   <p class="text-[10px] uppercase tracking-wider text-muted-foreground mb-0.5 truncate">{rp.categoryName}</p>
-                  <h3 class="text-xs md:text-sm font-medium text-foreground line-clamp-2 group-hover:text-brand-camel leading-snug">{rp.name}</h3>
-                  <p class="text-[11px] md:text-xs text-brand-red font-medium mt-1">{locale === 'cn' ? '项目条件书面确认' : 'Project terms confirmed in writing'}</p>
+                  <h3 class="text-xs md:text-sm font-display font-light text-foreground line-clamp-2 group-hover:text-brand-camel leading-snug">{rp.name}</h3>
+                  <p class="text-[11px] md:text-xs text-brand-copper font-display italic mt-1">{locale === 'cn' ? '项目条件书面确认' : 'Project terms confirmed in writing'}</p>
                 </div>
               </a>
             );
@@ -2526,7 +2526,7 @@ const relatedViewAll: Record<Locale, string> = {
     return (
       <section class="py-8 border-t border-border/40 bg-background">
         <div class="container-narrow">
-          <h3 class="text-xs uppercase tracking-[0.18em] text-foreground font-medium mb-4">
+          <h3 class="text-xs font-display italic text-foreground tracking-tight mb-4">
             {locale === 'cn' ? '相关标签' : 'Related Tags'}
           </h3>
           <div class="flex flex-wrap gap-x-4 gap-y-2">
