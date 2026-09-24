@@ -368,7 +368,7 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
   <section class="catalog-hero border-b border-border">
     <div class="container-narrow catalog-hero-layout py-12 sm:py-16">
       <div class="catalog-hero-copy">
-        <div class="flex items-center gap-3 mb-4"><span class="h-[2px] w-8 bg-brand-red"></span><span class="text-xs tracking-[0.3em] uppercase text-brand-camel">
+        <div class="flex items-center gap-3 mb-4"><span class="h-[2px] w-8 bg-brand-camel"></span><span class="text-xs font-display italic text-brand-camel tracking-tight">
           {locale === 'cn' ? 'B2B 采购目录' : 'B2B Sourcing Catalog'}
         </span></div>
         <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-light text-brand-ink mb-4">
@@ -448,7 +448,7 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
     <div id="procurement-filters" class="catalog-filter-panel border border-border bg-brand-cream/25 p-5 mb-5">
       <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5">
         <div>
-          <p class="text-xs tracking-[0.24em] uppercase text-brand-camel font-medium mb-2">{listingFilterCopy.title}</p>
+          <p class="text-xs font-display italic text-brand-camel tracking-tight mb-2">{listingFilterCopy.title}</p>
           <p class="text-sm text-muted-foreground">{listingFilterCopy.intro}</p>
         </div>
         <button type="button" data-proc-reset class="text-xs uppercase tracking-[0.14em] text-brand-ink hover:text-brand-camel underline underline-offset-4">{listingFilterCopy.reset}</button>
@@ -547,7 +547,7 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
     </div>
     <section class="mt-12 border-t border-border pt-12" aria-labelledby="category-discovery-title">
       <div class="max-w-3xl mb-8">
-        <p class="text-xs tracking-[0.22em] uppercase text-brand-camel font-medium mb-3">{listingDiscovery.eyebrow}</p>
+        <p class="text-xs font-display italic text-brand-camel tracking-tight mb-3">{listingDiscovery.eyebrow}</p>
         <h2 id="category-discovery-title" class="font-display text-3xl md:text-4xl text-brand-ink font-light mb-4">{listingDiscovery.title}</h2>
         <p class="text-sm md:text-base text-muted-foreground leading-relaxed">{listingDiscovery.intro}</p>
       </div>
@@ -583,7 +583,7 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
     <section class="py-12 border-t border-border/40">
       <div class="container-narrow">
         <div class="flex items-baseline justify-between mb-4">
-          <h2 class="font-serif text-base tracking-[0.18em] uppercase text-foreground font-medium">
+          <h2 class="font-display italic text-sm text-foreground tracking-tight">
             {locale === 'cn' ? '按品类快速筛选' : 'Browse by Specific Search'}
           </h2>
           <span class="text-xs text-muted-foreground">
