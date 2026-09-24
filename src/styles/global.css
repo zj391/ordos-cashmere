@@ -809,7 +809,10 @@ main::before { content:''; position:fixed; z-index:-1; inset:0; pointer-events:n
 .section-padding { padding-top:clamp(5rem,9vw,10rem); padding-bottom:clamp(5rem,9vw,10rem); }
 h1,h2,main h1[class*="text-"],main h2[class*="text-"] { color:var(--snow-ink) !important; letter-spacing:-.052em; line-height:.95; text-shadow:none; }
 h3 { color:var(--snow-ink); letter-spacing:-.028em; }
-p { text-wrap:pretty; }
+/* 2026-09-23 — Editorial: add a small bottom margin so consecutive paragraphs
+     breathe vertically (the theme p { line-height:1.9 } is generous; this
+     keeps the rhythm tight without making prose airy). */
+  p { text-wrap:pretty; margin-bottom: 0.85em; }
 .text-muted-foreground { color:var(--snow-muted) !important; }
 .micro-label,.eyebrow > span,.eyebrow-label { color:var(--snow-thread); letter-spacing:.24em; }
 .eyebrow::before { background:var(--snow-thread); width:2rem; }
