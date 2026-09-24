@@ -81,7 +81,7 @@ const itemListSchema = {
     <div class="container-narrow py-24 md:py-32">
       <div class="flex items-center gap-3 mb-8">
         <span class="h-[2px] w-12 bg-brand-camel"></span>
-        <span class="text-xs tracking-[0.4em] text-brand-camel uppercase font-medium">{locale === 'cn' ? '博客' : 'Blog'}</span>
+        <span class="text-xs font-display italic text-brand-camel tracking-tight">{locale === 'cn' ? '博客' : 'Blog'}</span>
       </div>
       <h1 class="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-8 text-balance">{T('title')}</h1>
       <p class="text-lg text-muted-foreground leading-relaxed max-w-xl font-light">{T('subtitle')}</p>
@@ -93,7 +93,7 @@ const itemListSchema = {
       <div class="container-narrow">
         <div class="flex items-center gap-3 mb-6">
           <span class="h-[2px] w-12 bg-brand-camel"></span>
-          <span class="text-xs tracking-[0.4em] text-brand-gold uppercase font-medium">Knowledge Hub</span>
+          <span class="text-xs font-display italic text-brand-gold tracking-tight">Knowledge Hub</span>
         </div>
         <h2 id="knowledge-hub" class="font-serif text-4xl md:text-5xl font-light leading-[1.1] mb-6 text-balance">
           Cashmere Buyer Knowledge Hub
@@ -339,7 +339,7 @@ const itemListSchema = {
   {indexablePosts.length > 0 && (
     <section class="py-16 md:py-20 bg-brand-cream/40 border-y border-border" aria-labelledby="verified-knowledge">
       <div class="container-narrow max-w-3xl">
-        <span class="text-xs tracking-[0.32em] text-brand-camel uppercase font-medium">{visibilityCopy.eyebrow}</span>
+        <span class="text-xs font-display italic text-brand-camel tracking-tight">{visibilityCopy.eyebrow}</span>
         <h2 id="verified-knowledge" class="font-serif text-3xl md:text-4xl font-light leading-tight mt-3 mb-4">
           {visibilityCopy.title}
         </h2>
@@ -368,8 +368,8 @@ const itemListSchema = {
           <div class="grid grid-cols-1 md:grid-cols-5">
             <div class="md:col-span-2 aspect-[16/10] md:aspect-auto bg-gradient-to-br from-brand-cream via-brand-shell to-brand-sandhi flex items-center justify-center">
               <div class="text-center px-6">
-                <div class="text-xs font-mono text-muted-foreground tracking-widest uppercase mb-3">{posts[0].date}</div>
-                <div class="text-xs tracking-[0.4em] text-brand-red uppercase font-medium">
+                <div class="text-xs font-mono text-muted-foreground tracking-tight mb-3">{posts[0].date}</div>
+                <div class="text-xs font-display italic text-brand-camel tracking-tight">
                   {locale === 'cn' ? '精选 / 最新' : 'Featured'}
                 </div>
               </div>
