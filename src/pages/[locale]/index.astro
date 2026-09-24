@@ -593,7 +593,7 @@ const IMG = {
           <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/75 via-brand-ink/25 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
             <div class="flex items-center gap-4 mb-3">
-              <span class="text-xs tracking-[0.3em] uppercase text-brand-gold">01 / {t6('原料', 'Material', 'Material', 'Matière', '原料', '원료')}</span>
+              <span class="text-xs font-display italic text-brand-gold tracking-tight">01 / {t6('原料', 'Material', 'Material', 'Matière', '原料', '원료')}</span>
               <span class="hidden md:inline-flex items-center gap-3 ml-auto text-xs text-white/70">
                 {prodMeta[0].map((m) => (
                   <span class="inline-flex items-center gap-1.5">
@@ -618,7 +618,7 @@ const IMG = {
           <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/75 via-brand-ink/25 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
             <div class="flex items-center gap-4 mb-3">
-              <span class="text-xs tracking-[0.3em] uppercase text-brand-gold">02 / {t6('纱线', 'Yarn', 'Garn', 'Fil', '糸', '원사')}</span>
+              <span class="text-xs font-display italic text-brand-gold tracking-tight">02 / {t6('纱线', 'Yarn', 'Garn', 'Fil', '糸', '원사')}</span>
               <span class="hidden md:inline-flex items-center gap-3 ml-auto text-xs text-white/70">
                 {prodMeta[1].map((m) => (
                   <span class="inline-flex items-center gap-1.5">
@@ -643,7 +643,7 @@ const IMG = {
           <div class="absolute inset-0 bg-gradient-to-r from-brand-ink/80 via-brand-ink/35 to-transparent"></div>
           <div class="absolute bottom-0 left-0 p-8 md:p-12 text-white max-w-2xl">
             <div class="flex items-center gap-4 mb-3">
-              <span class="text-xs tracking-[0.3em] uppercase text-brand-gold">03 / {t6('成衣', 'Garment', 'Bekleidung', 'Vêtement', '衣料', '의류')}</span>
+              <span class="text-xs font-display italic text-brand-gold tracking-tight">03 / {t6('成衣', 'Garment', 'Bekleidung', 'Vêtement', '衣料', '의류')}</span>
               <span class="hidden md:inline-flex items-center gap-3 ml-6 text-xs text-white/70">
                 {prodMeta[2].map((m) => (
                   <span class="inline-flex items-center gap-1.5">
@@ -749,7 +749,7 @@ const IMG = {
   <section class="home-cert-section py-20 bg-brand-bone">
     <div class="container-narrow">
       <div class="text-center mb-12">
-        <div class="inline-block text-xs tracking-[0.3em] uppercase text-brand-camel mb-3">{t6('项目准备', 'Project preparation', 'Projektvorbereitung', 'Préparation du projet', '案件準備', '프로젝트 준비')}</div>
+        <div class="inline-block text-xs font-display italic text-brand-camel mb-3 tracking-tight">{t6('项目准备', 'Project preparation', 'Projektvorbereitung', 'Préparation du projet', '案件準備', '프로젝트 준비')}</div>
         <h2 class="text-2xl md:text-3xl font-light font-display">
           {t6('项目文件与核验要求以书面方式确认', 'Project documentation and verification requirements are confirmed in writing', 'Projektdokumentation und Prüfanforderungen werden schriftlich bestätigt', 'Les documents et exigences de vérification sont confirmés par écrit', '案件書類と検証要件は書面で確認します', '프로젝트 문서 및 검증 요건은 서면으로 확인됩니다')}
         </h2>
@@ -811,7 +811,7 @@ const IMG = {
           return (
             <a href={categoryHref} class="group border border-border bg-brand-shell/50 p-6 hover:border-brand-gold hover:bg-white transition-colors duration-300 flex flex-col justify-between min-h-[150px]">
               <div>
-                <div class="font-serif text-[11px] text-brand-camel tracking-[0.2em] uppercase mb-2">0{i + 1}</div>
+                <div class="font-display italic text-sm text-brand-camel tracking-tight mb-2">0{i + 1}</div>
                 <h3 class="font-serif text-xl leading-tight group-hover:text-brand-chocolate transition-colors">{c.name}</h3>
               </div>
               <div class="flex items-center justify-between mt-6">
@@ -834,7 +834,7 @@ const IMG = {
       */}
       <div class="mb-16">
         <div class="flex items-baseline justify-between mb-4">
-          <h2 class="font-serif text-base tracking-[0.18em] uppercase text-foreground font-medium">
+          <h2 class="font-display italic text-sm text-foreground tracking-tight">
             {locale === 'cn' ? '热门 B2B 羊绒搜索' : 'Popular B2B Cashmere Searches'}
           </h2>
           <span class="text-xs text-muted-foreground">
@@ -894,7 +894,7 @@ const IMG = {
     </div>
     <div class="container-narrow relative z-10 text-center max-w-3xl mx-auto reveal">
       <img src={IMG.uiMark} alt="" aria-hidden="true" class="home-fiber-mark" decoding="async" loading="lazy" />
-      <div class="inline-block text-xs tracking-[0.3em] uppercase text-copper font-bold mb-6">
+      <div class="inline-block text-xs font-display italic text-copper mb-6 tracking-tight">
         {t6('下一步', 'Next Step', 'Nächster Schritt', 'Étape suivante', '次のステップ', '다음 단계')}
       </div>
       <h2 class="text-3xl md:text-5xl font-light mb-6 leading-tight text-foreground font-display">
