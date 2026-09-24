@@ -62,9 +62,9 @@ const resourceLinks = [
     <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-12">
       <!-- Brand -->
       <div class="col-span-2">
-        <div class="text-2xl font-bold tracking-[0.04em] text-background mb-4">
-          DONGXIAO<sup class="text-xs">®</sup> CASHMERE
-        </div>
+        <div class="text-3xl font-display font-light tracking-[0.04em] text-background mb-4">
+            DONGXIAO<sup class="text-xs">®</sup> CASHMERE
+          </div>
         <p class="text-sm text-background/70 leading-relaxed mb-4 max-w-sm">
           {fl('footer.tagline')}
         </p>
@@ -78,31 +78,31 @@ const resourceLinks = [
              Organization schema, so footers across all 6 locales stay in sync. -->
         <ul class="grid grid-cols-3 gap-3 pt-3 border-t border-background/20 max-w-sm">
           <li>
-            <div class="text-lg text-background font-bold leading-none">{SITE_INFO.foundingYear}</div>
-            <div class="text-[10px] uppercase tracking-[0.14em] text-background/60 mt-1">{fl('footer.scaleEstablished')}</div>
+            <div class="text-lg text-background font-display font-light leading-none">{SITE_INFO.foundingYear}</div>
+            <div class="text-[11px] font-display italic text-copper/70 mt-1 tracking-tight">{fl('footer.scaleEstablished')}</div>
           </li>
           <li>
-            <div class="text-lg text-background font-bold leading-none">{SITE_INFO.scale.yearsExperience}</div>
-            <div class="text-[10px] uppercase tracking-[0.14em] text-background/60 mt-1">{fl('footer.scaleYears')}</div>
+            <div class="text-lg text-background font-display font-light leading-none">{SITE_INFO.scale.yearsExperience}</div>
+            <div class="text-[11px] font-display italic text-copper/70 mt-1 tracking-tight">{fl('footer.scaleYears')}</div>
           </li>
           <li>
-            <div class="text-lg text-background font-bold leading-none">{SITE_INFO.scale.employees}</div>
-            <div class="text-[10px] uppercase tracking-[0.14em] text-background/60 mt-1">{fl('footer.scaleEmployees')}</div>
+            <div class="text-lg text-background font-display font-light leading-none">{SITE_INFO.scale.employees}</div>
+            <div class="text-[11px] font-display italic text-copper/70 mt-1 tracking-tight">{fl('footer.scaleEmployees')}</div>
           </li>
           <li class="col-span-3">
-            <div class="text-lg text-background font-bold leading-none">{SITE_INFO.scale.factoryArea}</div>
-            <div class="text-[10px] uppercase tracking-[0.14em] text-background/60 mt-1">{fl('footer.scaleFactory')}</div>
+            <div class="text-lg text-background font-display font-light leading-none">{SITE_INFO.scale.factoryArea}</div>
+            <div class="text-[11px] font-display italic text-copper/70 mt-1 tracking-tight">{fl('footer.scaleFactory')}</div>
           </li>
           <li class="col-span-3">
-            <div class="text-lg text-background font-bold leading-none">{SITE_INFO.scale.annualCapacity}</div>
-            <div class="text-[10px] uppercase tracking-[0.14em] text-background/60 mt-1">{fl('footer.scaleCapacity')}</div>
+            <div class="text-lg text-background font-display font-light leading-none">{SITE_INFO.scale.annualCapacity}</div>
+            <div class="text-[11px] font-display italic text-copper/70 mt-1 tracking-tight">{fl('footer.scaleCapacity')}</div>
           </li>
         </ul>
       </div>
 
       <!-- Products -->
       <div>
-        <h4 class="text-[11px] font-bold uppercase tracking-[0.18em] text-copper mb-5">{fl('footer.products')}</h4>
+        <h4 class="text-sm font-display italic text-copper mb-5 tracking-tight">{fl('footer.products')}</h4>
         <ul class="space-y-2 text-sm">
           {productLinks.map((l) => (
             <li>
@@ -116,7 +116,7 @@ const resourceLinks = [
 
       <!-- Company -->
       <div>
-        <h4 class="text-[11px] font-bold uppercase tracking-[0.18em] text-copper mb-5">{fl('footer.company')}</h4>
+        <h4 class="text-sm font-display italic text-copper mb-5 tracking-tight">{fl('footer.company')}</h4>
         <ul class="space-y-2 text-sm">
           {companyLinks.map((l) => (
             <li>
@@ -130,7 +130,7 @@ const resourceLinks = [
 
       <!-- Resources -->
       <div>
-        <h4 class="text-[11px] font-bold uppercase tracking-[0.18em] text-copper mb-5">{fl('footer.resources')}</h4>
+        <h4 class="text-sm font-display italic text-copper mb-5 tracking-tight">{fl('footer.resources')}</h4>
         <ul class="space-y-2 text-sm">
           {resourceLinks.map((l) => (
             <li>
@@ -144,7 +144,7 @@ const resourceLinks = [
 
       <!-- Contact -->
       <div>
-        <h4 class="text-[11px] font-bold uppercase tracking-[0.18em] text-copper mb-5">{fl('footer.contact')}</h4>
+        <h4 class="text-sm font-display italic text-copper mb-5 tracking-tight">{fl('footer.contact')}</h4>
         <ul class="space-y-2 text-sm text-background/70">
           <li>
             <a href={`https://wa.me/${SITE_INFO.whatsapp.replace(/[^\d]/g, '')}`} class="hover:text-copper transition-colors">
