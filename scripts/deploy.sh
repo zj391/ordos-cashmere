@@ -25,6 +25,10 @@
 set -euo pipefail
 
 DOMAIN="${PROD_DOMAIN:-www.erdosdx.com}"
+# 2026-09-23 — Also rebind bare erdosdx.com alias. Vercel production aliases
+# are sticky (do not auto-follow new deployments), and we use both the apex
+# domain and the www subdomain in production, so both must be re-pointed.
+BARE_DOMAIN="erdosdx.com"
 
 echo "==> Building & deploying to Vercel production"
 # Capture deploy stdout so we can extract the new canonical URL from its
@@ -68,5 +72,9 @@ echo "==> Aliasing ${LATEST_URL} → ${DOMAIN}"
 vercel alias set "${LATEST_URL}" "${DOMAIN}"
 
 echo
-echo "==> Done. Production is now ${LATEST_URL} (alias: ${DOMAIN})"
+echo "==> Aliasing ${LATEST_URL} → ${BARE_DOMAIN}"
+vercel alias set "${LATEST_URL}" "${BARE_DOMAIN}"
+
+echo
+echo "==> Done. Production is now ${LATEST_URL} (alias: ${DOMAIN}, ${BARE_DOMAIN})"
 echo "    Tip: curl -sS \"https://${DOMAIN}/<path>?nocache=\$(date +%s%N)\" to verify"
