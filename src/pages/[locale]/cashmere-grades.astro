@@ -115,7 +115,7 @@ const s = seo[locale] || seo.en;
     <div class="container-narrow py-16 md:py-20">
       <div class="flex items-center gap-3 mb-6">
         <span class="h-[2px] w-12 bg-brand-camel"></span>
-        <span class="text-xs tracking-[0.4em] text-brand-camel uppercase font-medium">{T('tagline')}</span>
+        <span class="text-xs font-display italic text-brand-camel tracking-tight">{T('tagline')}</span>
       </div>
       <h1 class="font-serif text-5xl md:text-6xl font-light leading-[1.05] mb-4" set:html={T('title').replace(/\n/g, '<br/>')} />
       <p class="opacity-90 max-w-2xl text-lg">{T('subtitle')}</p>
@@ -235,19 +235,19 @@ const s = seo[locale] || seo.en;
       </p>
       <div class="space-y-3">
         <div class="border-l-4 border-brand-gold pl-4 py-2">
-          <p class="font-medium">Luxury scarf or premium sweater at USD 200+ retail?</p>
+          <p class="font-display font-light text-foreground">Luxury scarf or premium sweater at USD 200+ retail?</p>
           <p class="text-sm text-muted-foreground">→ Grade A (14-15.5μm, 36mm+). The hand feel justifies the price premium.</p>
         </div>
         <div class="border-l-4 border-brand-gold pl-4 py-2">
-          <p class="font-medium">Mid-market DTC brand (USD 80-200 retail)?</p>
+          <p class="font-display font-light text-foreground">Mid-market DTC brand (USD 80-200 retail)?</p>
           <p class="text-sm text-muted-foreground">→ Grade B (15.5-16.5μm, 30-36mm). Best balance of quality and price.</p>
         </div>
         <div class="border-l-4 border-brand-gold pl-4 py-2">
-          <p class="font-medium">Entry-level fashion brand or accessories?</p>
+          <p class="font-display font-light text-foreground">Entry-level fashion brand or accessories?</p>
           <p class="text-sm text-muted-foreground">→ Grade C (16.5-19μm) or cashmere blend (70% cashmere / 30% wool). Cost-efficient without sacrificing the "cashmere" claim.</p>
         </div>
         <div class="border-l-4 border-brand-gold pl-4 py-2">
-          <p class="font-medium">Hand-knitting yarn brand?</p>
+          <p class="font-display font-light text-foreground">Hand-knitting yarn brand?</p>
           <p class="text-sm text-muted-foreground">→ Grade A or B, depending on your price point. Hand-knitters feel the difference.</p>
         </div>
       </div>
