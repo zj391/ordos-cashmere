@@ -155,8 +155,8 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
     <div class="container-narrow relative z-10 py-20 md:py-28">
       <div class="max-w-3xl">
         <div class="flex items-center gap-3 mb-6">
-          <span class="h-[2px] w-12 bg-brand-red"></span>
-          <span class="text-xs tracking-[0.4em] uppercase text-brand-gold font-medium">{T('tagline')}</span>
+          <span class="h-[2px] w-12 bg-brand-camel"></span>
+          <span class="text-xs font-display italic text-brand-gold tracking-tight">{T('tagline')}</span>
         </div>
         <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-light text-white leading-[1.05] mb-6" set:html={T('title').replace(/\n/g, '<br/>')} />
         <p class="text-lg md:text-xl text-white/80 leading-relaxed max-w-2xl font-light mb-10">{T('subtitle')}</p>
@@ -188,8 +188,8 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
     <div class="container-narrow">
       <div class="max-w-2xl mb-16">
         <div class="flex items-center gap-3 mb-4">
-          <span class="h-[2px] w-8 bg-brand-red"></span>
-          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">{locale === 'cn' ? '公司简介' : 'Company Profile'}</span>
+          <span class="h-[2px] w-8 bg-brand-camel"></span>
+          <span class="text-xs font-display italic text-brand-camel tracking-tight">{locale === 'cn' ? '公司简介' : 'Company Profile'}</span>
         </div>
         <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{locale === 'cn' ? '鄂尔多斯市东霄羊绒制品厂' : 'Erdos Dongxiao Cashmere Products Factory'}</h2>
       </div>
@@ -214,8 +214,8 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
     <div class="container-narrow">
       <div class="max-w-2xl mb-16">
         <div class="flex items-center gap-3 mb-4">
-          <span class="h-[2px] w-8 bg-brand-red"></span>
-          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">01 / {T('scaleTitle')}</span>
+          <span class="h-[2px] w-8 bg-brand-camel"></span>
+          <span class="text-xs font-display italic text-brand-camel tracking-tight">01 / {T('scaleTitle')}</span>
         </div>
         <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{T('scaleTitle')}</h2>
         <p class="text-muted-foreground leading-relaxed">{T('scaleSub')}</p>
@@ -226,7 +226,7 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
           const cv = s.counter;
           return (
           <div class="bg-background p-8 md:p-10 hover:bg-brand-cream/30 transition-colors group">
-            <div class="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4 flex items-baseline justify-between">
+            <div class="text-xs font-display italic text-muted-foreground tracking-tight mb-4 flex items-baseline justify-between">
               <span>{s.label}</span>
               <span class="font-serif text-sm text-brand-gold/50">{String(i+1).padStart(2,'0')}</span>
             </div>
@@ -247,8 +247,8 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
       <div class="flex items-end justify-between mb-16 gap-6 flex-wrap">
         <div class="max-w-2xl">
           <div class="flex items-center gap-3 mb-4">
-            <span class="h-[2px] w-8 bg-brand-red"></span>
-            <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">02 / {locale === 'cn' ? '厂区实拍' : 'Inside the Factory'}</span>
+            <span class="h-[2px] w-8 bg-brand-camel"></span>
+            <span class="text-xs font-display italic text-brand-camel tracking-tight">02 / {locale === 'cn' ? '厂区实拍' : 'Inside the Factory'}</span>
           </div>
           <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{locale === 'cn' ? '车间与展会，眼见为实' : 'Workshops & exhibitions, in real light'}</h2>
           <p class="text-muted-foreground leading-relaxed">{locale === 'cn' ? '从原料分梳到成品检验，全部自有产能。欢迎实地考察，眼见为实。' : 'From dehairing to final QC — every step under our own roof. On-site visits welcome.'}</p>
@@ -313,8 +313,8 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
     <div class="container-narrow">
       <div class="max-w-2xl mb-16">
         <div class="flex items-center gap-3 mb-4">
-          <span class="h-[2px] w-8 bg-brand-red"></span>
-          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">03 / {T('equipTitle')}</span>
+          <span class="h-[2px] w-8 bg-brand-camel"></span>
+          <span class="text-xs font-display italic text-brand-camel tracking-tight">03 / {T('equipTitle')}</span>
         </div>
         <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{T('equipTitle')}</h2>
         <p class="text-muted-foreground leading-relaxed">{T('equipSub')}</p>
@@ -339,8 +339,8 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
     <div class="container-narrow">
       <div class="max-w-2xl mb-16">
         <div class="flex items-center gap-3 mb-4">
-          <span class="h-[2px] w-8 bg-brand-red"></span>
-          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">04 / {T('certTitle')}</span>
+          <span class="h-[2px] w-8 bg-brand-camel"></span>
+          <span class="text-xs font-display italic text-brand-camel tracking-tight">04 / {T('certTitle')}</span>
         </div>
         <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight">{T('certTitle')}</h2>
       </div>
@@ -361,8 +361,8 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
     <div class="container-narrow">
       <div class="max-w-2xl mb-16">
         <div class="flex items-center gap-3 mb-4">
-          <span class="h-[2px] w-8 bg-brand-red"></span>
-          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">05 / {locale === 'cn' ? '产品类别' : 'Product Range'}</span>
+          <span class="h-[2px] w-8 bg-brand-camel"></span>
+          <span class="text-xs font-display italic text-brand-camel tracking-tight">05 / {locale === 'cn' ? '产品类别' : 'Product Range'}</span>
         </div>
         <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{locale === 'cn' ? '产品类别' : 'Full Product Range'}</h2>
         <p class="text-muted-foreground leading-relaxed">{locale === 'cn' ? '针织、梭织围巾、配饰、童装 — 集团全系列覆盖。' : 'Knitwear, woven scarves, accessories, childrenswear — all groups under one factory.'}</p>
@@ -414,8 +414,8 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
     <div class="container-narrow">
       <div class="max-w-2xl mb-16">
         <div class="flex items-center gap-3 mb-4">
-          <span class="h-[2px] w-8 bg-brand-red"></span>
-          <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">06 / {locale === 'cn' ? '终端模式' : 'Business Models'}</span>
+          <span class="h-[2px] w-8 bg-brand-camel"></span>
+          <span class="text-xs font-display italic text-brand-camel tracking-tight">06 / {locale === 'cn' ? '终端模式' : 'Business Models'}</span>
         </div>
         <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{locale === 'cn' ? '多元化终端模式' : 'Six Business Models'}</h2>
         <p class="text-muted-foreground leading-relaxed">{locale === 'cn' ? '从 ODM/OEM 制造到品牌加盟、线上线下一体化 — 适配不同 B2B 客户需求。' : 'From ODM/OEM manufacturing to brand franchise and online-offline integration.'}</p>
@@ -474,9 +474,9 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
     </div>
     <div class="container-narrow relative z-10 text-center">
       <div class="flex items-center justify-center gap-3 mb-4">
-        <span class="h-[2px] w-8 bg-brand-red"></span>
-        <span class="text-xs tracking-[0.3em] uppercase text-brand-gold">{locale === 'cn' ? '下一步' : 'Next Step'}</span>
-        <span class="h-[2px] w-8 bg-brand-red"></span>
+        <span class="h-[2px] w-8 bg-brand-camel"></span>
+        <span class="text-xs font-display italic text-brand-gold tracking-tight">{locale === 'cn' ? '下一步' : 'Next Step'}</span>
+        <span class="h-[2px] w-8 bg-brand-camel"></span>
       </div>
       <h2 class="reveal font-serif text-4xl md:text-5xl font-light mb-4 text-balance text-white">{T('ctaTitle')}</h2>
       <p class="text-white/75 mb-8 max-w-2xl mx-auto">{T('ctaSub')}</p>

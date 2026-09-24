@@ -104,7 +104,7 @@ const IMG = {
       <div class="flex items-center py-20 lg:py-0 px-6 lg:pl-12 order-2 lg:order-1">
         <div class="max-w-xl">
           <div class="flex items-center gap-3 mb-8">
-            <span class="h-[2px] w-12 bg-brand-red"></span>
+            <span class="h-[2px] w-12 bg-brand-camel"></span>
             <span class="text-xs tracking-[0.4em] text-brand-camel uppercase font-medium">{T('tagline')}</span>
           </div>
           <h1 class="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-8" set:html={T('title').replace(/\n/g, '<br/>')} />
@@ -124,8 +124,8 @@ const IMG = {
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
         <div class="lg:col-span-5">
           <div class="flex items-center gap-3 mb-4">
-            <span class="h-[2px] w-8 bg-brand-red"></span>
-            <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">02A</span>
+            <span class="h-[2px] w-8 bg-brand-camel"></span>
+            <span class="text-xs font-display italic text-brand-camel tracking-tight">02A</span>
           </div>
           <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-4">{T('yarnTitle')}</h2>
         </div>
@@ -137,7 +137,7 @@ const IMG = {
       <div class="grid grid-cols-2 md:grid-cols-3 gap-px bg-border">
         {yarnSpecs.map((s, i) => (
           <div class="bg-background p-8 md:p-10">
-            <div class="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4 flex items-baseline justify-between">
+            <div class="text-xs font-display italic text-muted-foreground tracking-tight mb-4 flex items-baseline justify-between">
               <span>{s.label}</span>
               <span class="font-serif text-sm text-brand-gold/50">{String(i+1).padStart(2,'0')}</span>
             </div>
@@ -157,8 +157,8 @@ const IMG = {
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
         <div class="lg:col-span-5">
           <div class="flex items-center gap-3 mb-4">
-            <span class="px-2 py-0.5 border border-brand-chocolate text-brand-chocolate text-[10px] tracking-[0.2em] uppercase font-medium">{T('greigeTag')}</span>
-            <span class="h-[2px] w-8 bg-brand-red"></span>
+            <span class="px-2 py-0.5 border border-brand-chocolate text-brand-chocolate text-[10px] font-display italic tracking-tight">{T('greigeTag')}</span>
+            <span class="h-[2px] w-8 bg-brand-camel"></span>
           </div>
           <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-4" set:html={T('greigeTitle').replace(/\n/g, '<br/>')} />
           <p class="text-sm text-brand-gold uppercase tracking-[0.2em] mb-4">{T('greigeKick')}</p>
@@ -178,7 +178,7 @@ const IMG = {
           { label: T('greigeCt6'), value: T('greigeCv6'), unit: T('greigeUnit2') },
         ].map((s, i) => (
           <div class="bg-stone-50 p-8 md:p-10">
-            <div class="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4 flex items-baseline justify-between">
+            <div class="text-xs font-display italic text-muted-foreground tracking-tight mb-4 flex items-baseline justify-between">
               <span>{s.label}</span>
               <span class="font-serif text-sm text-brand-gold/50">{String(i+1).padStart(2,'0')}</span>
             </div>
@@ -214,15 +214,15 @@ const IMG = {
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div class="order-2 lg:order-1">
           <div class="flex items-center gap-3 mb-4">
-            <span class="h-[2px] w-8 bg-brand-red"></span>
-            <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">02B</span>
+            <span class="h-[2px] w-8 bg-brand-camel"></span>
+            <span class="text-xs font-display italic text-brand-camel tracking-tight">02B</span>
           </div>
           <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-6">{T('fabricTitle')}</h2>
           <p class="text-muted-foreground leading-relaxed text-lg mb-8">{T('fabricSub')}</p>
           <div class="grid grid-cols-2 gap-px bg-border">
             {fabricSpecs.slice(0, 4).map((s, i) => (
               <div class="bg-brand-cream/50 p-5">
-                <div class="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-2">{s.label}</div>
+                <div class="text-xs font-display italic text-muted-foreground tracking-tight mb-2">{s.label}</div>
                 <div class="flex items-baseline gap-1">
                   <span class="font-serif text-2xl text-brand-chocolate font-light">{s.value}</span>
                   {s.unit && <span class="text-xs text-muted-foreground">{s.unit}</span>}
@@ -244,8 +244,8 @@ const IMG = {
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
         <div>
           <div class="flex items-center gap-3 mb-4">
-            <span class="h-[2px] w-8 bg-brand-red"></span>
-            <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">{locale === 'cn' ? '询盘' : 'Inquiry'}</span>
+            <span class="h-[2px] w-8 bg-brand-camel"></span>
+            <span class="text-xs font-display italic text-brand-camel tracking-tight">{locale === 'cn' ? '询盘' : 'Inquiry'}</span>
           </div>
           <h2 class="reveal font-serif text-4xl md:text-5xl font-light leading-tight mb-6">{T('inquiryTitle')}</h2>
           <p class="text-muted-foreground leading-relaxed mb-8">{T('inquirySub')}</p>

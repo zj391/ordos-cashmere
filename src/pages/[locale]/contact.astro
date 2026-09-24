@@ -81,7 +81,7 @@ const contactSchema = {
   <section class="relative bg-brand-sandwarm border-b border-border/60 overflow-hidden">
     <div class="container-narrow py-24 md:py-32">
       <div class="flex items-center gap-3 mb-8">
-        <span class="h-[2px] w-12 bg-brand-red"></span>
+        <span class="h-[2px] w-12 bg-brand-camel"></span>
         <span class="text-xs tracking-[0.4em] text-brand-camel uppercase font-medium">{T('tagline')}</span>
       </div>
       <h1 class="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-8" set:html={T('title').replace(/\n/g, '<br/>')} />
@@ -95,8 +95,8 @@ const contactSchema = {
         <!-- Left: Contact info (5 列) -->
         <div class="lg:col-span-5">
           <div class="flex items-center gap-3 mb-4">
-            <span class="h-[2px] w-8 bg-brand-red"></span>
-            <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">01 / {T('infoTitle')}</span>
+            <span class="h-[2px] w-8 bg-brand-camel"></span>
+            <span class="text-xs font-display italic text-brand-camel tracking-tight">01 / {T('infoTitle')}</span>
           </div>
           <h2 class="font-serif text-3xl md:text-4xl font-light leading-tight mb-4">{T('infoTitle')}</h2>
           <p class="text-muted-foreground leading-relaxed mb-10">{T('infoSub')}</p>
@@ -177,8 +177,8 @@ const contactSchema = {
         <!-- Right: Form (7 列) -->
         <div class="lg:col-span-7 lg:pl-8 lg:pt-8">
           <div class="flex items-center gap-3 mb-4">
-            <span class="h-[2px] w-8 bg-brand-red"></span>
-            <span class="text-xs tracking-[0.3em] uppercase text-brand-camel">02 / {T('formTitle')}</span>
+            <span class="h-[2px] w-8 bg-brand-camel"></span>
+            <span class="text-xs font-display italic text-brand-camel tracking-tight">02 / {T('formTitle')}</span>
           </div>
           <h2 class="font-serif text-3xl md:text-4xl font-light leading-tight mb-4">{T('formTitle')}</h2>
           <p class="text-muted-foreground leading-relaxed mb-10">{T('formSub')}</p>

@@ -61,7 +61,7 @@ const packsCta = { en: 'Request a Custom Pack', cn: '索取定制资料包', de:
   <section class="relative bg-brand-sandwarm border-b border-border/60 overflow-hidden">
     <div class="container-narrow py-24 md:py-32">
       <div class="flex items-center gap-3 mb-8">
-        <span class="h-[2px] w-12 bg-brand-red"></span>
+        <span class="h-[2px] w-12 bg-brand-camel"></span>
         <span class="text-xs tracking-[0.4em] text-brand-camel uppercase font-medium">{locale === 'cn' ? '资料下载' : 'Downloads'}</span>
       </div>
       <h1 class="font-serif text-5xl md:text-7xl font-light leading-[1.05] mb-8 text-balance">{T('title')}</h1>
@@ -72,15 +72,15 @@ const packsCta = { en: 'Request a Custom Pack', cn: '索取定制资料包', de:
   <section class="py-16 md:py-20 bg-background border-b border-border/60">
     <div class="container-narrow">
       <div class="flex items-center gap-3 mb-4">
-        <span class="h-[2px] w-10 bg-brand-red"></span>
-        <span class="text-xs tracking-[0.3em] uppercase text-brand-camel font-medium">{locale === 'cn' ? '采购核验路径' : 'Buyer verification path'}</span>
+        <span class="h-[2px] w-10 bg-brand-camel"></span>
+        <span class="text-xs font-display italic text-brand-camel tracking-tight font-medium">{locale === 'cn' ? '采购核验路径' : 'Buyer verification path'}</span>
       </div>
       <h2 class="font-serif text-3xl md:text-5xl font-light leading-tight mb-4">{locale === 'cn' ? '用一套资料完成供应商核验' : 'Verify a supplier with one clear dossier'}</h2>
       <p class="text-base text-muted-foreground max-w-3xl leading-relaxed mb-10">{locale === 'cn' ? '先核验合规与工厂能力，再确认质量、打样和贸易条款；需要正式文件时，可在下方提交资料申请。' : 'Review compliance and factory capability first, then align quality, sampling and trade terms. Request the current supporting documents below when your internal review requires them.'}</p>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {procurementPaths.map((item) => (
           <a href={`/${locale}/${item.href}/`} class="group border border-border bg-card p-5 hover:border-brand-gold transition-colors">
-            <span class="text-[10px] tracking-[0.25em] uppercase text-brand-gold font-mono">{item.number}</span>
+            <span class="text-[10px] font-display italic text-brand-gold font-mono tracking-tight">{item.number}</span>
             <h3 class="font-serif text-xl mt-3 mb-2 group-hover:text-brand-camel transition-colors">{item.title[locale] || item.title.en}</h3>
             <p class="text-sm text-muted-foreground leading-relaxed">{item.desc[locale] || item.desc.en}</p>
             <span class="inline-flex items-center gap-1.5 mt-5 text-xs font-medium text-brand-ink group-hover:text-brand-camel transition-colors">{locale === 'cn' ? '查看说明' : 'Review details'} <span aria-hidden="true">→</span></span>
@@ -94,8 +94,8 @@ const packsCta = { en: 'Request a Custom Pack', cn: '索取定制资料包', de:
   <section class="py-20 md:py-24 bg-brand-shell border-y border-border/60">
     <div class="container-narrow">
       <div class="flex items-center gap-3 mb-4">
-        <span class="h-[2px] w-10 bg-brand-red"></span>
-        <span class="text-xs tracking-[0.3em] uppercase text-brand-camel font-medium">{packsEyebrow[locale] || packsEyebrow.en}</span>
+        <span class="h-[2px] w-10 bg-brand-camel"></span>
+        <span class="text-xs font-display italic text-brand-camel tracking-tight font-medium">{packsEyebrow[locale] || packsEyebrow.en}</span>
       </div>
       <h2 class="font-serif text-3xl md:text-5xl font-light leading-tight mb-3 text-balance">{packsTitle[locale] || packsTitle.en}</h2>
       <p class="text-base md:text-lg text-muted-foreground max-w-2xl mb-12 leading-relaxed">{packsSubtitle[locale] || packsSubtitle.en}</p>
@@ -104,10 +104,10 @@ const packsCta = { en: 'Request a Custom Pack', cn: '索取定制资料包', de:
         {trustPacks.map((p, idx) => (
           <article class="bg-background border border-border p-6 md:p-8 hover:border-brand-gold hover:shadow-xl transition-colors transition-shadow duration-300 flex flex-col">
             <div class="flex items-center justify-between mb-3 gap-4">
-              <span class="text-[10px] tracking-[0.3em] uppercase text-brand-gold font-mono font-medium">
+              <span class="text-[10px] font-display italic text-brand-gold font-mono tracking-tight">
                 0{idx + 1} · {p.eyebrow[locale] || p.eyebrow.en}
               </span>
-              <span class="text-[10px] tracking-[0.2em] uppercase text-muted-foreground font-mono">{locale === 'cn' ? '资料申请' : 'Document request'}</span>
+              <span class="text-[10px] font-display italic text-muted-foreground tracking-tight font-mono">{locale === 'cn' ? '资料申请' : 'Document request'}</span>
             </div>
             <h3 class="font-serif text-xl md:text-2xl font-light mb-4 leading-tight">{p.title[locale] || p.title.en}</h3>
             <ul class="space-y-2.5 mb-6 flex-grow">
