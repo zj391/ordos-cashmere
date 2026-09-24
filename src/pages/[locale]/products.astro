@@ -15,6 +15,7 @@ import CookieConsent from '@/components/CookieConsent.astro';
 import SEOFaq from '@/components/SEOFaq.astro';
 import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
 import { SEO, SITE_INFO } from '@/lib/seo';
+import { productsListingSchema } from '@/lib/schema';
 import { products as productsData, getRepresentativeProducts, ensureDbOverlay } from '@/data/products';
 import { getProductLabels } from '@/lib/product-labels';
 import { tagAllProducts, PRODUCT_TAG_RULES } from '@/data/product-tags';
@@ -38,6 +39,14 @@ const categories = productsData.categories;
 const labels = getProductLabels(locale);
 const curatedCountsByCategory = Object.fromEntries(
   categories.map((category) => [category.id, allProducts.filter((product) => product.categoryId === category.id).length])
+);
+
+// 2026-09-24 SEO: emit CollectionPage + ItemList (top 50) so Google has a
+// page-type signal AND crawlable deep links to product URLs even when the
+// JS-driven filter UI never runs.
+const listingCatalogSchema = productsListingSchema(
+  locale,
+  allProducts.map((p) => ({ id: p.id, name: p.name }))
 );
 
 // Pre-tag every product once at build time so URL params (e.g. ?byStyle=beanies)
@@ -360,6 +369,7 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
   description={seo.description}
   keywords={seo.keywords}
   schema="products"
+  customSchemas={[listingCatalogSchema]}
 >
 
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/products`} />

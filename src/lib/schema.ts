@@ -238,3 +238,44 @@ export function categoryHubSchema(
 
   return [collectionPage];
 }
+
+/**
+ * 2026-09-24 SEO: Product listing page (/[locale]/products/) full catalog schema.
+ * This is the entry hub for all 591 SKUs × 6 locales = 3,546 product URLs.
+ * Schema.org ItemList (top 50) tells Google this is a paginated catalog with
+ * explicit crawl signals (ItemListOrder) so deep products get crawled even when
+ * JavaScript-driven filters aren't run.
+ */
+export function productsListingSchema(
+  locale: Locale,
+  products: CategoryHubProduct[]
+): Record<string, any> {
+  const pageUrl = `${SITE_URL}/${locale}/products/`;
+  const size = products.length;
+  const top = products.slice(0, 50);
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': pageUrl,
+    name: locale === 'cn' ? '羊绒产品目录' : 'Cashmere Product Catalog',
+    description: locale === 'cn'
+      ? 'B2B 羊绒产品采购目录，含针织帽、围巾、毛衫、配饰、纱线等品类'
+      : 'B2B cashmere wholesale catalog with 591 SKUs across 5 categories',
+    url: pageUrl,
+    inLanguage: locale,
+    isPartOf: { '@type': 'WebSite', url: SITE_URL, name: 'DONGXIAO® CASHMERE' },
+    about: { '@type': 'Thing', name: 'Cashmere Products' },
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: size,
+      itemListOrder: 'https://schema.org/ItemListUnordered',
+      itemListElement: top.map((p, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        url: `${SITE_URL}/${locale}/products/${p.id}/`,
+        name: p.name,
+      })),
+    },
+  };
+}
