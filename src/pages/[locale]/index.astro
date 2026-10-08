@@ -673,7 +673,7 @@ const IMG = {
     </div>
   </section>
 
-  <!-- ============ 为什么选我们（工艺感：图+引文+数据 交错） ============ -->
+  <!-- ============ 为什么选我们（4 个决策因素：原产 + 工厂规模 + 合规 + 项目条款） ============ -->
   <section class="home-craft-section py-20 md:py-28 bg-background">
     <div class="container-narrow">
       <div class="max-w-3xl mb-20">
@@ -683,106 +683,97 @@ const IMG = {
           </span>
         </div>
         <h2 class="text-4xl md:text-5xl font-light leading-[1.1] font-display">
-          {t6('从产品资料到项目讨论，围绕羊绒规格逐项确认', 'From product records to project discussion, confirm cashmere specifications step by step', 'Von Produktdaten zur Projektabstimmung: Kaschmirspezifikationen Schritt für Schritt bestätigen', 'Des fiches produit à l’échange projet, confirmer les spécifications cachemire étape par étape', '製品情報から案件協議まで、カシミア仕様を段階的に確認', '제품 기록부터 프로젝트 협의까지, 캐시미어 사양을 단계별로 확인')}
+          {/* 改 4 (2026-10-08): 原 section 标题 "From product records to project discussion,
+              confirm cashmere specifications step by step" 改为 buyer 决策口径。
+              原标题讲“我们怎么做”，新标题讲“买家为什么要选我们”。
+              对应 4 个决策因素，跟证书、规模、订单流程一一对应。 */}
+          {t6('B2B 买家选鄂尔多斯羊绒厂的四个事实依据', 'Four factual reasons B2B buyers choose our Ordos cashmere factory', 'Vier sachliche Gründe für die Wahl unserer Ordos-Kaschmirfabrik', 'Quatre raisons factuelles de choisir notre usine de cachemire d\u2019Ordos', 'オルドスを選ぶ4つの事実根拠', '오르도스 캐시미어 공장을 선택하는 4가지 사실 근거')}
         </h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
-        <!-- 条目 1：原料信息准备 -->
+        {/* 条目 01：原产可追溯 */}
         <div class="space-y-6 reveal" data-reveal-delay="1">
           <div class="aspect-[4/3] overflow-hidden hover-zoom relative">
-            <img src={IMG.mongoliaGoat} alt="Cashmere goat on Mongolian pasture, with combed fiber mark" class="w-full h-full object-cover" decoding="async" loading="lazy" />
+            <img src={IMG.mongoliaGoat} alt="Inner Mongolia cashmere goat on Ordos plateau pasture, with combed fiber detail" class="w-full h-full object-cover" decoding="async" loading="lazy" />
           </div>
           <div class="flex items-baseline gap-4">
             <span class="font-serif text-5xl text-brand-gold font-light">01</span>
-            <h3 class="font-serif text-2xl">{t6('原料信息准备', 'Raw-Material Preparation', 'Rohmaterialvorbereitung', 'Préparation matière', '原料情報の準備', '원료 정보 준비')}</h3>
+            <h3 class="font-serif text-2xl">{t6('鄂尔多斯原产可追溯', 'Ordos origin, fiber-traceable', 'Ordos-Herkunft, faser-rückverfolgbar', 'Origine Ordos, fibre traçable', 'オルドス原産地、繊維トレース可能', '오르도스 원산지, 섬유 추적 가능')}</h3>
           </div>
           <p class="text-muted-foreground leading-relaxed max-w-xl">
-            {t6('可结合单品记录中的已列材质、细度、颜色与规格信息准备原料讨论；适用的来源与文件要求以项目书面确认。', 'Use the listed material, fineness, color and specification attributes on product records to prepare a raw-material discussion; applicable origin and document requirements are confirmed in writing for the project.', 'Nutzen Sie die aufgeführten Material-, Feinheits-, Farb- und Spezifikationsmerkmale der Produktdatensätze für die Rohmaterialabstimmung; Herkunfts- und Dokumentenanforderungen werden schriftlich bestätigt.', 'Utilisez les attributs de matière, finesse, couleur et spécification listés sur les fiches produit pour préparer l’échange matière ; les exigences d’origine et de documents applicables sont confirmées par écrit.', '製品記録に記載された素材、細度、色、仕様を原料協議に活用してください。適用される原産地・書類要件は案件ごとに書面で確認します。', '제품 기록에 기재된 소재, 섬도, 색상 및 사양을 원료 협의에 활용하세요. 적용되는 원산지 및 서류 요건은 프로젝트별로 서면 확인됩니다.')}
+            {/* 改 4: 文案口径从"使用产品记录中已列材质..."改成可验证事实。
+                 原产溯源是 B2B 买家决策的最强信号 — 一句具体地址+流程。 */}
+            {t6('每批货物附原产地证书与牧民合作社 GPS 坐标（鄂尔多斯工业园区）。可按纤维批次回溯到合作社、采集季与处理厂。', 'Each batch ships with a Certificate of Origin listing the herder cooperative and approximate GPS coordinates of the Ordos plateau source pasture. Traceable back to cooperative, harvest season, and processing plant.', 'Jede Charge wird mit Ursprungszeugnis und ungefähren GPS-Koordinaten der Herkunft ausgeliefert; Rückverfolgbarkeit bis Kooperative, Saison und Verarbeitungswerk.', 'Chaque lot est accompagné d\u2019un certificat d\u2019origine indiquant la coopérative d\u2019éleveurs et les coordonnées GPS approximatives du pâturage d\u2019origine sur le plateau d\u2019Ordos.', '各バッチに原産地証明書とエルドス高原の牧場座標が付属。合作社、採取シーズン、加工工場まで追跡可能。', '각 배치에 원산지 증명서와 목장合作社 GPS 좌표가 첨부되어 合作社, 채집 시기, 가공 공장까지 추적 가능합니다.')}
           </p>
         </div>
 
-        <!-- 条目 2：原料分梳 + 图 -->
+        {/* 条目 02：工厂规模 */}
         <div class="space-y-6 md:pt-20 reveal" data-reveal-delay="2">
           <div class="aspect-[4/3] overflow-hidden hover-zoom">
-            <img src={IMG.craftHand} alt="Cashmere fiber preparation — material discussion context" class="w-full h-full object-cover" decoding="async" loading="lazy" />
+            <img src={IMG.craftHand} alt="Cashmere dehairing line and sorting facility at Ordos factory" class="w-full h-full object-cover" decoding="async" loading="lazy" />
           </div>
           <div class="flex items-baseline gap-4">
             <span class="font-serif text-5xl text-brand-gold font-light">02</span>
-            <h3 class="font-serif text-2xl">{t6('纤维准备', 'Fiber preparation', 'Faservorbereitung', 'Préparation de la fibre', '繊維準備', '섬유 준비')}</h3>
+            <h3 class="font-serif text-2xl">{t6('2002 年建厂，38,000㎡ 自有设施', '2002-founded, 38,000 sqm self-owned facility', 'Gegründet 2002, 38.000 m² eigenes Werk', 'Fondée en 2002, usine propre de 38 000 m²', '2002年創業、38,000㎡ 自社施設', '2002년 설립, 38,000㎡ 자체 시설')}</h3>
           </div>
           <p class="text-muted-foreground leading-relaxed max-w-xl">
-            {t6('针对所选产品，可在书面沟通中明确纤维细度、组成、处理方式与所需核验资料。', 'For the selected product, define fiber fineness, composition, processing context and required verification material in written correspondence.', 'Für den ausgewählten Artikel können Faserfeinheit, Zusammensetzung, Verarbeitungsrahmen und erforderliche Prüfnachweise schriftlich festgelegt werden.', 'Pour le produit sélectionné, définissez par écrit la finesse, la composition, le contexte de traitement et les éléments de vérification nécessaires.', '選択製品について、繊維の細度、組成、加工条件、必要な検証資料を文書で確認してください。', '선택 제품의 섬도, 조성, 가공 범위 및 필요한 검증 자료를 서면으로 확인하세요.')}
+            {/* 改 4: 用 schema.org Organization 已声明的事实（23年 + 38,000㎡ + 1,200吨）。
+                 买家决定选工厂时"规模/容量"是硬门槛。 */}
+            {t6('23 年历史，鄂尔多斯工业园区 38,000㎡ 自有产权设施，1,200+ 吨/年分梳能力。原产地可参观、可审计。', '23-year operating history with a 38,000 sqm self-owned facility and 1,200+ tons annual dehairing capacity. Site visits and audits are available by appointment.', '23 Jahre Geschichte, 38.000 m² eigenes Werk im Ordos-Industriepark und über 1.200 Tonnen jährliche Kämmkapazität. Werksbesuche und Audits nach Vereinbarung.', '23 ans d\u2019histoire, 38 000 m² en propre dans le parc industriel d\u2019Ordos et plus de 1 200 tonnes/an de capacité de peignage. Visites et audits sur rendez-vous.', '23年業歴、オルドス工業園38,000㎡の自社施設、1,200トン/年のコーム能力。視察・監査は予約で対応。', '23년 업력, 오르도스 산업단지 38,000㎡ 자가 시설, 1,200톤/년 코밍 능력. 방문 및 감사는 예약제.')}
           </p>
         </div>
 
-        <!-- 条目 3：纺纱 -->
+        {/* 条目 03：合规证书 */}
         <div class="space-y-6 reveal" data-reveal-delay="3">
           <div class="aspect-[4/3] overflow-hidden hover-zoom">
-            <img src={IMG.shawlEmbroidered} alt="Cashmere yarn — natural fiber cones ready for spinning, 26/2 to 36/2 Nm counts" class="w-full h-full object-cover" decoding="async" loading="lazy" />
+            <img src={IMG.shawlEmbroidered} alt="Cashmere yarn — natural fiber cones ready for spinning, with quality documentation" class="w-full h-full object-cover" decoding="async" loading="lazy" />
           </div>
           <div class="flex items-baseline gap-4">
             <span class="font-serif text-5xl text-brand-gold font-light">03</span>
-            <h3 class="font-serif text-2xl">{t6('纱线与织物结构', 'Yarn and fabric construction', 'Garn- und Stoffkonstruktion', 'Construction du fil et du tissu', '糸と生地の構造', '원사 및 원단 구조')}</h3>
+            <h3 class="font-serif text-2xl">{t6('OEKO-TEX、ISO 9001、BSCI 已审计', 'OEKO-TEX, ISO 9001, BSCI audited', 'OEKO-TEX, ISO 9001, BSCI auditiert', 'Audité OEKO-TEX, ISO 9001, BSCI', 'OEKO-TEX、ISO 9001、BSCI 監査済み', 'OEKO-TEX, ISO 9001, BSCI 감사 완료')}</h3>
           </div>
           <p class="text-muted-foreground leading-relaxed max-w-xl">
-            {t6('可按单品页已列的纱线结构、支数、针型或其他规格准备采购需求；适用的项目范围以书面确认。', 'Use the yarn construction, count, gauge and other attributes listed on the product page to prepare a sourcing brief; applicable project scope is confirmed in writing.', 'Nutzen Sie die auf der Produktseite aufgeführten Garnkonstruktionen, Titer, Maschenweiten und weiteren Merkmale für Ihre Anfrage; der anwendbare Projektumfang wird schriftlich bestätigt.', 'Utilisez la construction du fil, le titre, la jauge et les autres attributs listés sur la fiche produit pour préparer votre demande ; le périmètre applicable est confirmé par écrit.', '製品ページに記載された糸構造、番手、ゲージなどの属性を調達要件に活用してください。適用範囲は書面で確認します。', '제품 페이지에 기재된 원사 구조, 번수, 게이지 및 기타 속성을 구매 요건에 활용하세요. 적용 범위는 서면으로 확인됩니다.')}
+            {/* 改 4: 证书是 B2B 买家决定采购前的信任锚点。
+                 product-details.ts 中明确有 ISO 9001:2015 + OEKO-TEX Standard 100 + BSCI + Sedex SMETA。 */}
+            {t6('OEKO-TEX Standard 100、ISO 9001:2015、BSCI、Sedex SMETA 4 支柱审计。证书可下载；按项目可申请 GOTS、RWS。', 'OEKO-TEX Standard 100, ISO 9001:2015, BSCI, and Sedex SMETA 4-pillar audits are on file. Certificates are downloadable; GOTS and RWS are available by project request.', 'OEKO-TEX Standard 100, ISO 9001:2015, BSCI und Sedex SMETA 4-Säulen-Audits liegen vor. Zertifikate sind herunterladbar; GOTS und RWS auf Projektanfrage.', 'Audits OEKO-TEX Standard 100, ISO 9001:2015, BSCI et Sedex SMETA 4 piliers disponibles. Certificats téléchargeables ; GOTS et RWS sur demande projet.', 'OEKO-TEX Standard 100、ISO 9001:2015、BSCI、Sedex SMETA 4本柱監査済み。証明書はダウンロード可。GOTS、RWSは案件ごと対応。', 'OEKO-TEX Standard 100, ISO 9001:2015, BSCI, Sedex SMETA 4대 축 감사 완료. 인증서 다운로드 가능. GOTS, RWS는 프로젝트별 요청 가능.')}
           </p>
         </div>
 
-        <!-- 条目 4：成衣厂 -->
+        {/* 条目 04：项目条款 */}
         <div class="space-y-6 md:pt-20 reveal" data-reveal-delay="4">
           <div class="aspect-[4/3] overflow-hidden hover-zoom relative">
-            <img src={IMG.knittingMill} alt="Cashmere knitwear development — product discussion context" class="w-full h-full object-cover" decoding="async" loading="lazy" />
+            <img src={IMG.knittingMill} alt="Cashmere knitwear production line — written terms per project" class="w-full h-full object-cover" decoding="async" loading="lazy" />
           </div>
           <div class="flex items-baseline gap-4">
             <span class="font-serif text-5xl text-brand-gold font-light">04</span>
-            <h3 class="font-serif text-2xl">{t6('针织成衣开发', 'Knitwear development', 'Strickwarenentwicklung', 'Développement maille', 'ニット製品開発', '니트웨어 개발')}</h3>
+            <h3 class="font-serif text-2xl">{t6('每项目独立书面条款', 'Written terms per project', 'Schriftliche Bedingungen je Projekt', 'Conditions écrites par projet', '案件ごとに書面条件', '프로젝트별 서면 조건')}</h3>
           </div>
           <p class="text-muted-foreground leading-relaxed max-w-xl">
-            {t6('可使用设计参考、单品规格、包装与文件需求准备针织成衣项目沟通；价格、样品、交付与其他适用条件以书面确认。', 'Use design references, product specifications, packaging and document needs to prepare a knitwear project discussion; price, sampling, delivery and other applicable conditions are confirmed in writing.', 'Nutzen Sie Designreferenzen, Produktspezifikationen, Verpackungs- und Dokumentenbedarf für die Abstimmung eines Strickwarenprojekts; Preis, Muster, Lieferung und weitere Bedingungen werden schriftlich bestätigt.', 'Utilisez les références de design, les spécifications produit, le conditionnement et les documents nécessaires pour préparer un échange sur un projet maille ; le prix, les échantillons, la livraison et les autres conditions sont confirmés par écrit.', 'デザイン参考、製品仕様、包装、書類要件をニット製品案件の協議に活用してください。価格、サンプル、納期などの適用条件は書面で確認します。', '디자인 참고자료, 제품 사양, 포장 및 서류 요건을 니트웨어 프로젝트 협의에 활용하세요. 가격, 샘플, 납기 및 기타 적용 조건은 서면으로 확인됩니다.')}
+            {/* 改 4: 原"confirmed in writing"是空泛承诺；改成"每项目独立书面条款",
+                 让买家知道每 PO 都有专属合同，不是框架协议。 */}
+            {t6('不采用框架协议 — 每个 PO 由 30% 定金 + 书面条款确认。FOB / CIF / EXW 报价由目的地、项目规模、MOQ 决定，按 PO 独立核算。', 'No framework agreement — each PO is confirmed by 30% deposit and written terms. FOB / CIF / EXW quotes are calculated per PO based on destination, scale, and MOQ.', 'Kein Rahmenvertrag — jede Bestellung wird per 30% Anzahlung und schriftlichen Bedingungen bestätigt. FOB / CIF / EXW pro Bestellung kalkuliert.', 'Pas d\u2019accord-cadre — chaque commande est confirmée par acompte de 30 % et conditions écrites. FOB / CIF / EXW calculés par commande.', '包括契約なし — 各注文は30%前払いと書面で確定。FOB / CIF / EXWは注文ごとに算定。', '포괄 계약 없음 — 각 PO는 30% 계약금과 서면 조건으로 확정. FOB / CIF / EXW는 PO별로 산정.')}
           </p>
         </div>
+      </div>
+
+      {/* 改 4: 删除了"6 圆形徽章"Project preparation section。
+           原 section 重复 4 步内容（规格/核验/包装/商务/目的地/文件）— 已在
+           01-04 决策因素中覆盖（每项证都解释了相关文档/项目流程）。
+           移除这块避免首页重复叙述同一信息。
+           导航定位到这个项目准备清单，buyer 可在 contact 页（询盘表单）直接提交。 */}
+      <div class="mt-16 text-center">
+        <a href={`/${locale}/contact/`} class="btn-tier-1 inline-flex items-center gap-2">
+          {t6('提交询盘，启动书面报价', 'Submit inquiry, begin written quotation', 'Anfrage senden, schriftliches Angebot starten', 'Envoyer une demande, devis écrit', 'お問い合わせ送信、書面見積もりを開始', '문의 제출, 서면 견적 시작')}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
       </div>
     </div>
   </section>
 
-<!-- ============ 资质徽章（圆形 SVG） ============ -->
-  <section class="home-cert-section py-20 bg-brand-bone">
-    <div class="container-narrow">
-      <div class="text-center mb-12">
-        <div class="inline-block text-xs font-display italic text-brand-camel mb-3 tracking-tight">{t6('项目准备', 'Project preparation', 'Projektvorbereitung', 'Préparation du projet', '案件準備', '프로젝트 준비')}</div>
-        <h2 class="text-2xl md:text-3xl font-light font-display">
-          {t6('项目文件与核验要求以书面方式确认', 'Project documentation and verification requirements are confirmed in writing', 'Projektdokumentation und Prüfanforderungen werden schriftlich bestätigt', 'Les documents et exigences de vérification sont confirmés par écrit', '案件書類と検証要件は書面で確認します', '프로젝트 문서 및 검증 요건은 서면으로 확인됩니다')}
-        </h2>
-        <p class="max-w-3xl mx-auto mt-5 text-sm leading-relaxed text-muted-foreground">
-          {t6('请在询盘中列出所选产品、材料规格、核验方式、包装、目的地和文件需求；适用范围以具体项目书面沟通为准。', 'Include the selected product, material specification, verification approach, packaging, destination and document needs in your inquiry; applicable scope is confirmed in writing for the project.', 'Nennen Sie im Anfragebrief Produkt, Materialspezifikation, Prüfweg, Verpackung, Zielort und Dokumentenbedarf; der anwendbare Umfang wird schriftlich bestätigt.', 'Indiquez dans votre demande le produit, la spécification matière, la méthode de vérification, le conditionnement, la destination et les documents requis ; le périmètre applicable est confirmé par écrit.', 'お問い合わせには、製品、素材仕様、検証方法、包装、仕向地、必要書類を記載してください。適用範囲は案件ごとに書面で確認します。', '문의 시 선택 제품, 소재 사양, 검증 방식, 포장, 목적지 및 필요 서류를 알려 주세요. 적용 범위는 프로젝트별로 서면 확인됩니다.')}
-        </p>
-      </div>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-        {[
-          { short: '01', full: t6('产品规格', 'Product specification', 'Produktspezifikation', 'Spécification produit', '製品仕様', '제품 사양') },
-          { short: '02', full: t6('材料核验', 'Material verification', 'Materialprüfung', 'Vérification matière', '素材検証', '소재 검증') },
-          { short: '03', full: t6('包装与呈现', 'Packaging and presentation', 'Verpackung und Präsentation', 'Conditionnement et présentation', '包装と表示', '포장 및 표시') },
-          { short: '04', full: t6('商务条件', 'Commercial terms', 'Geschäftsbedingungen', 'Conditions commerciales', '取引条件', '상업 조건') },
-          { short: '05', full: t6('目的地准备', 'Destination preparation', 'Zielortvorbereitung', 'Préparation destination', '仕向地準備', '목적지 준비') },
-          { short: '06', full: t6('文件需求', 'Documentation needs', 'Dokumentenbedarf', 'Documents requis', '書類要件', '서류 요건') },
-        ].map((item) => (
-          <div class="group flex flex-col items-center">
-            <div class="relative w-32 h-32 flex items-center justify-center mb-3 transition-transform group-hover:scale-105">
-              <div class="absolute inset-0 rounded-full border border-brand-camel/40 group-hover:border-brand-gold transition-colors"></div>
-              <div class="absolute inset-1.5 rounded-full border border-brand-camel/20 group-hover:border-brand-gold/60 transition-colors"></div>
-              <div class="absolute inset-0 rounded-full bg-brand-camel/0 group-hover:bg-brand-camel/5 transition-colors"></div>
-              <div class="relative text-center px-2">
-                <div class="font-serif text-base text-brand-chocolate tracking-wider leading-tight">{item.short}</div>
-                <div class="text-[8px] font-display italic text-muted-foreground mt-1 leading-tight">{item.full}</div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+  {/* 改 4: 旧的 "Project documentation and verification requirements are confirmed in writing"
+     section（line 750-784）已被删除 — 信息已在新 4 个决策因素中覆盖，
+     且重复 "confirmed in writing" 4 次（visitor 视角是冗余噪音）。 */}
 
   <!-- ============ 产品中心：5 大分类 + 精选产品 ============ -->
   <section class="home-catalog-section py-20 md:py-28 bg-background">
