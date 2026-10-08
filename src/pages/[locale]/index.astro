@@ -340,26 +340,28 @@ const IMG = {
           {c.subtitle}
         </p>
         <div class="flex flex-wrap items-center gap-6">
-          <a href={`/${locale}/contact/`} class="btn-tier-1 group">
-            {c.cta}
-            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-            </svg>
-          </a>
-          <a href={`/${locale}/download/`} class="btn-tier-2-on-dark group">
-            {c.ctaSecondary}
-          </a>
-          <!-- 新增：观看工厂视频（in-page anchor, no modal） -->
-          <a
-            href={`/${locale}/factory/#factory-video-heading`}
-            class="btn-tier-2-on-dark group"
-          >
-            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-            {locale === 'cn' ? '观看工厂视频' : locale === 'ja' ? '動画を見る' : locale === 'kr' ? '영상 보기' : locale === 'de' ? 'Video ansehen' : locale === 'fr' ? 'Voir la vidéo' : 'Watch factory video'}
-          </a>
-        </div>
+                  <a href={`/${locale}/contact/`} class="btn-tier-1 group">
+                    {c.cta}
+                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                  </a>
+                  <a href={`/${locale}/download/`} class="btn-tier-2-on-dark group">
+                    {c.ctaSecondary}
+                  </a>
+                  {/* 改 1: 第三个 CTA 从 "Watch factory video" (out-page) 改为
+                       "View Product Paths" (in-page anchor to #home-catalog)，
+                       避免错误把焦点错放在 factory 页。 */}
+                  <a
+                    href={`#home-catalog`}
+                    class="btn-tier-2-on-dark group"
+                  >
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                    {locale === 'cn' ? '查看产品中心' : locale === 'ja' ? '製品を見る' : locale === 'kr' ? '제품 보기' : locale === 'de' ? 'Produkte ansehen' : locale === 'fr' ? 'Voir les produits' : 'View Product Paths'}
+                  </a>
+                </div>
       </div>
     </div>
 
@@ -823,35 +825,12 @@ const IMG = {
         })}
       </div>
 
-      {/*
-        2026-09-01 SEO: homepage has zero inbound links to the 60 /tag/ pages.
-        The category cards link to /category/ hubs, but the tag cluster had no
-        discovery surface from the homepage. This block surfaces the 10 tag
-        landing pages (the highest-traffic long-tail combinations) so Googlebot
-        gets 10 additional inbound paths to the tag cluster from the homepage
-        alone. Section title is keyword-rich ("Popular B2B Cashmere Searches")
-        so it also contributes to the page's topical authority for those terms.
-      */}
-      <div class="mb-16">
-        <div class="flex items-baseline justify-between mb-4">
-          <h2 class="font-display italic text-sm text-foreground tracking-tight">
-            {locale === 'cn' ? '热门 B2B 羊绒搜索' : 'Popular B2B Cashmere Searches'}
-          </h2>
-          <span class="text-xs text-muted-foreground">
-            {locale === 'cn' ? '按热门度排序' : 'Sorted by long-tail demand'}
-          </span>
-        </div>
-        <div class="flex flex-wrap gap-2">
-          {Object.entries(TAG_PAGES).map(([tagSlug, t]) => (
-            <a
-              href={`/${locale}/tag/${tagSlug}/`}
-              class="text-sm px-4 py-2 border border-border bg-background text-foreground hover:border-brand-gold hover:bg-brand-cream/40 transition-colors"
-            >
-              {t.h1}
-            </a>
-          ))}
-        </div>
-      </div>
+      {/* 改 5 (2026-10-08): "Popular B2B Cashmere Searches" section 已从首页移除。
+           14 个 SEO-only 长尾链接 (TAG_PAGES 映射) 在首页占位过重，
+           与产品矩阵重复，且影响 B2B 逻辑表达。
+           现产品中心仅留 5 个分类卡 + 15 张精选产品卡 — 一个 buyer 出口。
+           14 个 long-tail 的 inbound link 流量 已转移到
+           src/content/blog/en/popular-b2b-cashmere-searches.md (blog 资产)。 */}
 
       <!-- 精选产品（每类 3 款，共 15 张） -->
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
