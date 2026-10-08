@@ -428,6 +428,204 @@ async function sendAlertIfHighFailure(label: string, processed: number, failed: 
   }
 }
 
+// ============================================================================
+// Phase 3: GitHub Actions "Daily GEO Blog" monitor
+//
+// 背景:
+//   ordos-cashmere 的博客自动生成依赖 GitHub Actions workflow
+//   .github/workflows/blog.yml (每天 UTC 02:00 跑)。当 LLM_API_KEY 失效 /
+//   余额空 / fallback 模型下架时,workflow 会持续失败,但没人会知道——
+//   zj 直到 SEO 曝光开始下滑 1-2 周后才发现。
+//
+//   这个 phase 监控最近 3 次 runs,若连续 3 次失败且最近一次在 36h 内,
+//   发邮件提醒 NOTIFICATION_EMAIL(默认只发一次,直到恢复 success)。
+//
+// 设计:
+//   1. 查 GitHub REST API: /repos/{owner}/{repo}/actions/workflows/blog.yml/runs?per_page=3
+//      用 GITHUB_REPO_TOKEN(轻量 PAT)鉴权,rate limit 提升到 1000/hr。
+//      不需要 secrets:workload 那种细粒度 token。
+//   2. 失败判定: 连续 3 次 conclusion == 'failure' AND 至少 1 次在 36h 内
+//      (跳过 schedule skip / cancelled / in_progress)
+//   3. Anti-spam: Supabase 表 cron_alert_log 记录 last_alert_at
+//      同一种 alert 至少 48h 间隔再发一次(避免连续失败 30 天发 30 封)
+//
+// 注意:
+//   - 必须在 GH repo > Settings > Secrets 里设 GITHUB_REPO_TOKEN 和
+//     GITHUB_REPO_OWNER + GITHUB_REPO_NAME
+//   - 未配置 env vars 时整个 phase 静默跳过,不报错
+// ============================================================================
+
+const GH_REPO_OWNER = process.env.GITHUB_REPO_OWNER || '';
+const GH_REPO_NAME = process.env.GITHUB_REPO_NAME || '';
+const GH_REPO_TOKEN = process.env.GITHUB_REPO_TOKEN || '';
+const GH_WORKFLOW_FILE = 'blog.yml';
+const ACTIONS_RECENT_HARD_FAIL_THRESHOLD = 3; // 最近 3 runs 都失败
+const ACTIONS_RECENT_HOURS_WINDOW = 36;
+const ACTIONS_ALERT_COOLDOWN_HOURS = 48;
+
+async function runActionsMonitorPhase(): Promise<{
+  enabled: boolean;
+  workflow_status: string | null;
+  recent_runs: any[];
+  alert_sent: boolean;
+  alert_skipped_reason: string | null;
+  error: string | null;
+}> {
+  const result = {
+    enabled: false,
+    workflow_status: null as string | null,
+    recent_runs: [] as any[],
+    alert_sent: false,
+    alert_skipped_reason: null as string | null,
+    error: null as string | null,
+  };
+
+  // 静默跳过:env vars 没配齐时 — 让没配 GH 的 deploy 也能跑
+  if (!GH_REPO_OWNER || !GH_REPO_NAME || !GH_REPO_TOKEN) {
+    result.alert_skipped_reason = 'github_actions_env_not_configured';
+    return result;
+  }
+  result.enabled = true;
+
+  // 1. 拉最近 3 runs
+  const url = `https://api.github.com/repos/${GH_REPO_OWNER}/${GH_REPO_NAME}/actions/workflows/${GH_WORKFLOW_FILE}/runs?per_page=${ACTIONS_RECENT_HARD_FAIL_THRESHOLD}`;
+  let runsRes;
+  try {
+    const ghRes = await fetch(url, {
+      headers: {
+        'Authorization': `Bearer ${GH_REPO_TOKEN}`,
+        'Accept': 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28',
+        'User-Agent': 'ordos-cashmere-daily-tick',
+      },
+    });
+    if (!ghRes.ok) {
+      const t = await ghRes.text();
+      throw new Error(`GitHub API ${ghRes.status}: ${t.slice(0, 200)}`);
+    }
+    runsRes = await ghRes.json();
+  } catch (e: any) {
+    result.error = `github_api_failed: ${String(e?.message || e).slice(0, 200)}`;
+    return result;
+  }
+
+  const runs = (runsRes?.workflow_runs || []).slice(0, ACTIONS_RECENT_HARD_FAIL_THRESHOLD);
+  result.recent_runs = runs.map((r: any) => ({
+    id: r.id,
+    conclusion: r.conclusion,
+    status: r.status,
+    created_at: r.created_at,
+    html_url: r.html_url,
+    head_sha: r.head_sha?.slice(0, 7),
+  }));
+  result.workflow_status = runs[0]?.conclusion || null;
+
+  if (runs.length < ACTIONS_RECENT_HARD_FAIL_THRESHOLD) {
+    result.alert_skipped_reason = 'not_enough_runs';
+    return result;
+  }
+
+  // 2. 判定:连续 3 次都是 failure(必须都是 'failure',不接受 'cancelled')
+  const allFailed = runs.every((r: any) => r.conclusion === 'failure');
+  if (!allFailed) {
+    result.alert_skipped_reason = 'not_all_failed';
+    return result;
+  }
+
+  // 3. 时间窗口:必须在过去 36h 内至少有一次
+  const nowMs = Date.now();
+  const windowMs = ACTIONS_RECENT_HOURS_WINDOW * 60 * 60 * 1000;
+  const anyInWindow = runs.some((r: any) => {
+    const t = new Date(r.created_at).getTime();
+    return nowMs - t <= windowMs;
+  });
+  if (!anyInWindow) {
+    result.alert_skipped_reason = 'failures_outside_36h_window';
+    return result;
+  }
+
+  // 4. Anti-spam:查 Supabase cron_alert_log 表
+  // 表 schema 假设 (如果不存在,本 phase 静默跳过 spam check):
+  //   create table cron_alert_log (
+  //     id serial primary key,
+  //     alert_type text not null,
+  //     last_alert_at timestamptz not null default now()
+  //   );
+  //   create unique index idx_cron_alert_log_type on cron_alert_log(alert_type);
+  let cooldownOK = true;
+  if (SUPABASE_URL && SUPABASE_KEY) {
+    try {
+      const logRows: any = await sb(`/cron_alert_log?alert_type=eq.actions_monitor_failed&limit=1`);
+      if (Array.isArray(logRows) && logRows.length > 0) {
+        const lastAt = new Date(logRows[0].last_alert_at).getTime();
+        const cooldownMs = ACTIONS_ALERT_COOLDOWN_HOURS * 60 * 60 * 1000;
+        if (nowMs - lastAt < cooldownMs) {
+          cooldownOK = false;
+          result.alert_skipped_reason = `cooldown_active_until_${new Date(lastAt + cooldownMs).toISOString()}`;
+        }
+      }
+    } catch (e: any) {
+      // 表不存在或权限问题:log warning 但不阻断 alert
+      console.warn('actions-monitor: cron_alert_log lookup failed:', String(e?.message || e).slice(0, 100));
+    }
+  }
+
+  if (!cooldownOK) return result;
+
+  // 5. 发邮件提醒
+  const recentLines = result.recent_runs.map((r: any) =>
+    `<li><a href="${r.html_url}">run #${r.id}</a> — ${r.conclusion} at ${r.created_at} (commit ${r.head_sha})</li>`
+  ).join('');
+  const html = `
+    <div style="font-family: -apple-system, sans-serif; max-width: 600px;">
+      <h2 style="color:#b91c1c;">⚠️ Daily GEO Blog workflow failing</h2>
+      <p>GitHub Actions workflow <code>blog.yml</code> has failed <strong>${ACTIONS_RECENT_HARD_FAIL_THRESHOLD} times in a row</strong>.
+      This will block daily SEO blog publishing and may cause sitemap lastmod to drift again.</p>
+      <p><strong>Likely causes (verified 2026-10-08):</strong></p>
+      <ul>
+        <li><code>LLM_API_KEY</code> expired or out of credits</li>
+        <li><code>LLM_API_URL</code> endpoint changed</li>
+        <li>Fallback model (e.g. <code>openrouter/free</code>) deprecated</li>
+      </ul>
+      <p><strong>Next step:</strong> Open one of the run URLs below to see the exact error in step "Generate blog", then update secrets at:<br>
+        <a href="https://github.com/${GH_REPO_OWNER}/${GH_REPO_NAME}/settings/secrets/actions">https://github.com/${GH_REPO_OWNER}/${GH_REPO_NAME}/settings/secrets/actions</a></p>
+      <h3>Recent runs</h3>
+      <ul>${recentLines}</ul>
+      <p style="color:#666;font-size:12px;">Auto-detected by daily-tick Phase 3 (actions-monitor). Cooldown: ${ACTIONS_ALERT_COOLDOWN_HOURS}h per alert type.</p>
+    </div>`;
+
+  if (NOTIFICATION_EMAIL) {
+    try {
+      await sendEmail({
+        to: NOTIFICATION_EMAIL,
+        subject: `⚠️ [actions-monitor] blog.yml failed ${ACTIONS_RECENT_HARD_FAIL_THRESHOLD}x in a row`,
+        html,
+        tag: 'actions-monitor',
+      });
+      result.alert_sent = true;
+    } catch (e: any) {
+      result.error = `email_send_failed: ${String(e?.message || e).slice(0, 200)}`;
+      return result;
+    }
+  }
+
+  // 6. 写 Supabase log (fire-and-forget,失败不阻断)
+  if (SUPABASE_URL && SUPABASE_KEY && result.alert_sent) {
+    sb('/cron_alert_log', {
+      method: 'POST',
+      headers: { 'Prefer': 'return=minimal, resolution=ignore-duplicates' },
+      body: JSON.stringify({
+        alert_type: 'actions_monitor_failed',
+        last_alert_at: new Date().toISOString(),
+      }),
+    }).catch((e: any) => {
+      console.warn('actions-monitor: log write failed:', String(e?.message || e).slice(0, 100));
+    });
+  }
+
+  return result;
+}
+
 async function _internalHandler(req: VercelLikeRequest, res: VercelLikeResponse) {
   setCors(res);
   if (req.method === 'OPTIONS') return res.status(204).end();
@@ -449,6 +647,10 @@ async function _internalHandler(req: VercelLikeRequest, res: VercelLikeResponse)
     // Phase 2: WhatsApp (only A grade, only if configured)
     const wa = await runWAPhase();
 
+    // Phase 3: GitHub Actions "Daily GEO Blog" monitor
+    // 静默跳过直到配置了 GITHUB_REPO_* env vars
+    const actionsMonitor = await runActionsMonitorPhase();
+
     const summary = {
       ok: true,
       tick_duration_ms: Date.now() - tickStart,
@@ -456,6 +658,7 @@ async function _internalHandler(req: VercelLikeRequest, res: VercelLikeResponse)
       nurture,
       whatsapp: wa,
       wa_configured: WHATSAPP_DEFAULTS.ENABLED,
+      actions_monitor: actionsMonitor,
     };
 
     // 高失败率告警
