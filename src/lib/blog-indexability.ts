@@ -115,6 +115,18 @@ export const INDEXABLE_BLOG_IDS = new Set([
   'fr/oem-cashmere-garment-development-process',
   'ja/oem-cashmere-garment-development-process',
   'kr/oem-cashmere-garment-development-process',
+  // 2026-10-08 — Popular B2B Cashmere Searches, Sorted by Long-Tail Demand.
+  // Unique asset: drawn from our own Google Search Console 90-day query log
+  // (175 queries, 661 impressions, all 6 locales). First piece of content on
+  // erdosdx.com that surfaces real GSC buyer-intent data publicly. Inbound
+  // magnet for sourcing managers running their own keyword research, and a
+  // signal to Google that the site publishes unique first-party SEO research.
+  'en/popular-b2b-cashmere-searches',
+  'cn/popular-b2b-cashmere-searches',
+  'de/popular-b2b-cashmere-searches',
+  'fr/popular-b2b-cashmere-searches',
+  'ja/popular-b2b-cashmere-searches',
+  'kr/popular-b2b-cashmere-searches',
 ]);
 
 export function getBlogSlugFromId(id: string) {
