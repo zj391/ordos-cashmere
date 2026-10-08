@@ -104,6 +104,17 @@ export const INDEXABLE_BLOG_IDS = new Set([
   'cn/cashmere-factory-tour-ordos-b2b',
   'en/cashmere-custom-dye-workflow-b2b',
   'cn/cashmere-custom-dye-workflow-b2b',
+  // 2026-10-08 — Q4 OEM process recovery post (oem-cashmere-garment-development-process).
+  // 7-stage / 90-day OEM timeline in all 6 locales. Companion piece to the
+  // 2026-09-16 cutoff calendar: cutoff tells buyers "deadline", this tells
+  // them "how the 90 days actually run". All 6 locales are full translations
+  // with identical structure (frontmatter + 7 sections + closing CTA).
+  'en/oem-cashmere-garment-development-process',
+  'cn/oem-cashmere-garment-development-process',
+  'de/oem-cashmere-garment-development-process',
+  'fr/oem-cashmere-garment-development-process',
+  'ja/oem-cashmere-garment-development-process',
+  'kr/oem-cashmere-garment-development-process',
 ]);
 
 export function getBlogSlugFromId(id: string) {
