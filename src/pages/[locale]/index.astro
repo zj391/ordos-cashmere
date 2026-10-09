@@ -885,6 +885,16 @@ const IMG = {
         <a href={`https://wa.me/${SITE_INFO.whatsapp.replace(/[^\d]/g, '')}`} target="_blank" rel="noopener noreferrer" class="btn-tier-1 !bg-transparent !text-brand-copper !border-brand-copper hover:!bg-brand-copper hover:!text-white">
           WhatsApp
         </a>
+        {/* 改 P3 (2026-10-09): Final CTA 加 email 直接联系链接（mailto）。
+             visitor 不喜欢填 form 时，可以直接邮件 — frictionless 出口。
+             给 buyer 三个选项 (form / WhatsApp / email) = 三种询盘节奏。
+             Email 默认值跟 daily-tick.ts 的 FROM_EMAIL 一致（sales@erdosdx.com）。 */}
+        <a
+          href={`mailto:sales@erdosdx.com?subject=${encodeURIComponent(t6('B2B 羊绒采购询盘', 'B2B cashmere sourcing inquiry', 'B2B-Kaschmir-Beschaffungsanfrage', 'Demande de sourcing cachemire B2B', 'B2B カシミア調達お問い合わせ', 'B2B 캐시미어 소싱 문의'))}&body=${encodeURIComponent(t6('您好，\n\n我方对贵司的羊绒产品/原料感兴趣。请附上：\n• 产品参考（链接或规格）\n• 数量\n• 目的地\n• 需要的文件\n\n谢谢。', 'Hello,\n\nWe are interested in your cashmere products / raw material. Please attach:\n• Product reference (link or spec)\n• Quantity\n• Destination\n• Documentation needs\n\nThank you.', 'Hallo,\n\nWir interessieren uns für Ihre Kaschmirprodukte / Rohmaterial. Bitte fügen Sie bei:\n• Produktreferenz (Link oder Spezifikation)\n• Menge\n• Zielort\n• Dokumentenbedarf\n\nVielen Dank.', 'Bonjour,\n\nNous nous intéressons à vos produits cachemire / matière première. Veuillez joindre :\n• Référence produit (lien ou spécification)\n• Quantité\n• Destination\n• Besoins en documentation\n\nMerci.', 'こんにちは、\n\n御社のカシミア製品/原料に興味があります。以下を添付してください：\n• 製品参考（リンクまたは仕様）\n• 数量\n• 仕向地\n• 必要書類\n\nよろしくお願いいたします。', '안녕하세요,\n\n귀사의 캐시미어 제품/원료에 관심이 있습니다. 다음을 첨부해 주세요:\n• 제품 참고(링크 또는 사양)\n• 수량\n• 목적지\n• 필요 서류\n\n감사합니다.'))}`}
+          class="btn-tier-1 !bg-transparent !text-brand-copper !border-brand-copper hover:!bg-brand-copper hover:!text-white"
+        >
+          Email
+        </a>
       </div>
     </div>
   </section>
