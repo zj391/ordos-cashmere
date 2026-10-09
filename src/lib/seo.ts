@@ -104,8 +104,13 @@ export const SEO: Record<Locale, LocaleSEO> = {
       ],
     },
     yarnFabric: {
-      title: 'Erdos Cashmere Yarn — Greige, Dyed & Woven | Ordos Factory | DONGXIAO®',
-      description: 'Erdos cashmere yarn spun at our Ordos, Inner Mongolia factory. 73 yarn configurations across pure cashmere, cashmere-wool, cashmere-silk, cashmere-linen, and YARK signature blends. MOQ 50 kg, FOB Tianjin.',
+      // 改 P1 (2026-10-09): EN title + description 加入 "worsted cashmere yarn for machine knitting"
+      // 直接命中 GSC 高 imp query `stock supply worsted 100% cashmere yarn for machine knitting`
+      // (12 imp, pos 3, 0% CTR — snippet mismatch on existing yarn-fabric page)。
+      // 把这个 phrase 放到 title 前段 + description 中段，确保 Google 抽取 snippet
+      // 时能匹配 GSC query。
+      title: 'Worsted Cashmere Yarn for Machine Knitting & Woven Fabric | Ordos Factory | DONGXIAO®',
+      description: 'Stock supply worsted 100% cashmere yarn for machine knitting — Erdos cashmere yarn spun at our Ordos, Inner Mongolia factory. 73 yarn configurations across pure cashmere, cashmere-wool, cashmere-silk, cashmere-linen. MOQ 50 kg, FOB Tianjin.',
       keywords: ['erdos cashmere yarn', 'erdos cashmere factory yarn', 'cashmere yarn wholesale',
         'undyed cashmere yarn wholesale', 'greige cashmere yarn', 'raw white cashmere yarn',
         'brown cashmere yarn', 'cashmere yarn 2/26NM', 'cashmere yarn 3/68NM',
