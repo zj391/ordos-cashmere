@@ -127,6 +127,21 @@ export const INDEXABLE_BLOG_IDS = new Set([
   'fr/popular-b2b-cashmere-searches',
   'ja/popular-b2b-cashmere-searches',
   'kr/popular-b2b-cashmere-searches',
+  // 2026-10-09 — How undyed/greige cashmere yarn is produced, B2B buyer's guide.
+  // 7-stage production cycle: dehairing → top sorting → scouring → carding →
+  // roving → spinning → winding. Captures `undyed cashmere yarn wholesale`
+  // (24 imp, pos 55), `stock supply worsted 100% cashmere yarn for machine
+  // knitting` (12 imp, pos 3, 0% CTR — snippet fix opportunity), and
+  // `cashmere yarn wholesale` (10 imp, pos 35). Companion piece to the
+  // yarn formulations post; this one focuses on the production process
+  // and how to negotiate price/yield with suppliers, while the other
+  // focuses on specific formulations we offer.
+  'en/cashmere-undyed-greige-yarn-production-cycle-b2b-guide',
+  'cn/cashmere-undyed-greige-yarn-production-cycle-b2b-guide',
+  'de/cashmere-undyed-greige-yarn-production-cycle-b2b-guide',
+  'fr/cashmere-undyed-greige-yarn-production-cycle-b2b-guide',
+  'ja/cashmere-undyed-greige-yarn-production-cycle-b2b-guide',
+  'kr/cashmere-undyed-greige-yarn-production-cycle-b2b-guide',
 ]);
 
 export function getBlogSlugFromId(id: string) {
