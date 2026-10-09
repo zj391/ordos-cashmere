@@ -142,6 +142,18 @@ export const INDEXABLE_BLOG_IDS = new Set([
   'fr/cashmere-undyed-greige-yarn-production-cycle-b2b-guide',
   'ja/cashmere-undyed-greige-yarn-production-cycle-b2b-guide',
   'kr/cashmere-undyed-greige-yarn-production-cycle-b2b-guide',
+  // 2026-10-09 — Cashmere Grade A vs B vs C, Baby Cashmere, and Price Per Kilo.
+  // Captures the GSC query `cashmere grade a b c baby cashmere price per kilo luxury coat`
+  // (16 imp, pos 5.6, 0% CTR — snippet mismatch on existing pages). Provides
+  // explicit 2026 FOB China price benchmarks per grade (Grade A $50-65/kg,
+  // baby cashmere $80-120/kg, etc.), 3 audit questions for any cashmere
+  // grade claim, and 3 negotiation levers within a grade.
+  'en/cashmere-grade-a-b-c-baby-cashmere-price-per-kilo-b2b-guide',
+  'cn/cashmere-grade-a-b-c-baby-cashmere-price-per-kilo-b2b-guide',
+  'de/cashmere-grade-a-b-c-baby-cashmere-price-per-kilo-b2b-guide',
+  'fr/cashmere-grade-a-b-c-baby-cashmere-price-per-kilo-b2b-guide',
+  'ja/cashmere-grade-a-b-c-baby-cashmere-price-per-kilo-b2b-guide',
+  'kr/cashmere-grade-a-b-c-baby-cashmere-price-per-kilo-b2b-guide',
 ]);
 
 export function getBlogSlugFromId(id: string) {
