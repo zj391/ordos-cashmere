@@ -204,17 +204,26 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
     return result;
   }, [cards, activeCategory, searchQuery, sortBy]);
 
-  const [displayCount, setDisplayCount] = useState(24);
+  const PAGE_SIZE = 16;
+  const [page, setPage] = useState(1);
 
-  // Reset display count when filters change
+  // Reset page to 1 when filters change
   useEffect(() => {
-    setDisplayCount(24);
+    setPage(1);
   }, [activeCategory, searchQuery, sortBy]);
 
-  const displayed = filtered.slice(0, displayCount);
-  const hasMore = filtered.length > displayCount;
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const pageStart = (page - 1) * PAGE_SIZE;
+  const displayed = filtered.slice(pageStart, pageStart + PAGE_SIZE);
+  const hasMore = page < totalPages;
 
-  const loadMore = () => setDisplayCount((c) => c + 24);
+  const loadMore = () => {
+    if (hasMore) setPage((p) => p + 1);
+  };
+
+  const goToPage = (n: number) => {
+    if (n >= 1 && n <= totalPages) setPage(n);
+  };
 
   return (
     <div className="w-full">
@@ -325,16 +334,51 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
             </div>
           ))}
           </div>
-          {hasMore && (
-            <div className="text-center mt-8">
+          {/* Pagination: prev / page numbers / next */}
+          {totalPages > 1 && (
+            <div className="flex items-center justify-center gap-2 mt-10 text-sm">
               <button
-                onClick={loadMore}
-                className="px-8 py-3 bg-brand-ink text-brand-cream hover:bg-brand-camel transition-colors text-sm"
+                onClick={() => goToPage(page - 1)}
+                disabled={page <= 1}
+                className="px-3 py-1.5 border border-border bg-white text-foreground hover:border-brand-ink disabled:opacity-40 disabled:hover:border-border disabled:cursor-not-allowed transition-colors"
               >
-                {(labels as any).loadMore
-                  ? `${(labels as any).loadMore} (${filtered.length - displayCount})`
-                  : `Load More (${filtered.length - displayCount})`}
+                ← Prev
               </button>
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => {
+                // Show first, last, current ±2; collapse others to ellipsis
+                const show = n === 1 || n === totalPages || Math.abs(n - page) <= 2;
+                if (!show) {
+                  // Render single ellipsis between visible numbers
+                  const prev = n - 1;
+                  if (prev === 1 || prev === page - 3 || (prev > 1 && Math.abs(prev - page) > 2 && prev < totalPages - 1)) {
+                    return <span key={`e${n}`} className="px-2 text-muted-foreground">…</span>;
+                  }
+                  return null;
+                }
+                return (
+                  <button
+                    key={n}
+                    onClick={() => goToPage(n)}
+                    className={`min-w-[36px] px-2 py-1.5 border transition-colors ${
+                      n === page
+                        ? "bg-brand-ink text-brand-cream border-brand-ink"
+                        : "bg-white text-foreground border-border hover:border-brand-ink"
+                    }`}
+                  >
+                    {n}
+                  </button>
+                );
+              })}
+              <button
+                onClick={() => goToPage(page + 1)}
+                disabled={page >= totalPages}
+                className="px-3 py-1.5 border border-border bg-white text-foreground hover:border-brand-ink disabled:opacity-40 disabled:hover:border-border disabled:cursor-not-allowed transition-colors"
+              >
+                Next →
+              </button>
+              <span className="ml-3 text-muted-foreground text-xs">
+                Page {page} of {totalPages} · {filtered.length} products
+              </span>
             </div>
           )}
         </>
