@@ -119,17 +119,42 @@ export const PRODUCT_TAG_RULES: Record<string, CategoryRules> = {
 
   yarn: {
     byCount: {
-      // Numeric count parsed from "2/26 Nm", "26nm 2", "26s 2" etc.
-      // Product data only contains 26nm so only 2-26 bucket is exposed.
-      '2-26': [],  // sentinel: matched by regex, see tagProduct()
+      // Yarn count buckets: each subkey matches specific Nm numbers + notation.
+      // 2/26NM = "2/26" or "26nm" or "26nm 2" or "26s 2"
+      '2-26':  ['2/26', '26nm', '26s 2', '26nm 2'],
+      '1-13':  ['1/13', '13nm'],
+      '2-36':  ['2/36', '36nm', '36s 2', '36nm 2'],
+      '1-17':  ['1/17', '17nm'],
+      '2-16':  ['2/16', '16nm'],
+      '3-68':  ['3/68', '68nm'],
+      '2-60':  ['2/60', '60nm', '60s 2', '60nm 2'],
+      '1-43':  ['1/4.3', '4.3nm'],   // chunky 1/4.3NM
+      '1-65':  ['1/6.5', '6.5nm'],   // chunky 1/6.5NM
+      '2-80':  ['2/80', '80nm'],
+    },
+    byMaterial: {
+      '100pct-cashmere':  ['100% cashmere', 'pure cashmere', '100 cashmere', '100%羊绒', '纯羊绒'],
+      'wool-cashmere':    ['30% cashmere 70% wool', '70% cashmere 30% wool', 'cashmere wool', 'wool cashmere', 'cashmere wool blend', '羊绒羊毛', '羊绒羊毛混纺'],
+      'cashmere-linen':   ['65% cashmere 35% linen', 'cashmere linen', '羊绒亚麻'],
+      'cashmere-yak':     ['50% cashmere 50% yak', 'cashmere yak', '棉牛绒', '羊绒棉牛绒', '羊绒牦牛绒'],
+      'cashmere-silk':    ['70% cashmere 30% silk', 'cashmere silk', '桑蚕丝', '羊绒桑蚕丝'],
+      'taiji-stone':      ['taiji stone', '太极石', 'taiji stone fiber', '再生纤维素', 'cashmere wool rayon'],
     },
     byType: {
       woolen: ['woolen', 'carded'],
     },
     byUse: {
-      machine: ['machine knit', 'machine-knitting', 'machine'],
-      hand: ['hand knit', 'hand-knitting', 'hand knit', 'handwoven'],
-      weaving: ['weaving', 'woven'],
+      // application buckets (per desktop cashmere-yarn spec)
+      knitting:  ['knitting', 'cashmere knitting yarn', '针织'],
+      weaving:   ['weaving', 'woven', 'cashmere weaving yarn', '梭织'],
+      sweater:   ['sweater', 'cashmere sweater yarn', '毛衣'],
+      scarf:     ['scarf', 'cashmere scarf yarn', '围巾'],
+      coat:      ['coat', 'cashmere coat yarn', '大衣'],
+      underwear: ['underwear', '内衣'],
+      sport:     ['sportswear', 'sport', '运动'],
+      // gender / audience
+      womens:     ["women's wear", 'womens wear', 'women knitwear', 'high-end women', '高档女装'],
+      mens:       ["men's", 'mens ', '男装'],
     },
     byForm: {
       cone: ['cone'],
