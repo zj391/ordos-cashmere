@@ -1,6 +1,6 @@
 # GEO SEO Blog System
 
-每日自动生成多语言 GEO SEO 博客，覆盖 6 个语种（en/cn/de/fr/ja/kr）。由 LLM 生成英文原稿 → 自动翻译 5 个其他语言 → 写入 Astro Content Collections。
+每日自动生成多语言 GEO SEO 博客，覆盖 6 个语种（en/cn/de/fr/ja/kr）。由 LLM 生成英文原稿 → 自动翻译 5 个其他语言 → 写入 Astro Content Collections。 (deploy test 2026-10-09)
 
 ## 文件结构
 
