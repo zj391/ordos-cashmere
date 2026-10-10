@@ -906,8 +906,8 @@ loading="lazy"
       </div>
 
       {/* Product grid (wrapped for client filter/pagination) */}
-      <div id="category-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {products.map((p) => (
+      <div id="category-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" data-page-size="16">
+        {products.slice(0, 16).map((p) => (
           <a
             href={`/${locale}/products/${p.id}/`}
             class="category-record-card group block border border-border overflow-hidden hover:border-primary transition-colors bg-background"
@@ -935,7 +935,7 @@ loading="lazy"
       {/* Pagination block (page-jump input + prev/next) */}
       <div id="category-pagination-wrap" class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-border pt-6">
         <p id="category-page-info" class="text-sm text-muted-foreground">
-          {CAT.showingPage(1, Math.min(24, products.length), products.length)}
+          {CAT.showingPage(1, Math.min(16, products.length), products.length)}
         </p>
         <div class="flex flex-col sm:flex-row items-center gap-4">
           <nav id="category-pagination" class="flex items-center gap-1" aria-label={CAT.paginationAria}></nav>
@@ -975,7 +975,7 @@ loading="lazy"
       paginationSelector: '#category-pagination',
       jumpInputSelector: '#category-jump-input',
       jumpButtonSelector: '#category-jump-go',
-      pageSize: 24,
+      pageSize: 16,
       locale,
     });
   </script>
