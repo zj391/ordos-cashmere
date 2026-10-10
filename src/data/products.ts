@@ -273,7 +273,7 @@ export interface RepresentativeProductOptions {
   perGroup?: number;
 }
 
-export function getRepresentativeProducts({ perGroup = 2 }: RepresentativeProductOptions = {}): ProductWithCategory[] {
+export function getRepresentativeProducts({ perGroup = 100 }: RepresentativeProductOptions = {}): ProductWithCategory[] {
   const selected = new Map<string, ProductWithCategory[]>();
   for (const product of getAllProducts()) {
     const key = [
