@@ -833,15 +833,6 @@
           "kr": "2/26 Nm"
         },
         {
-          "key": "1-13",
-          "en": "1/13 Nm",
-          "cn": "1/13 Nm",
-          "de": "1/13 Nm",
-          "fr": "1/13 Nm",
-          "ja": "1/13 Nm",
-          "kr": "1/13 Nm"
-        },
-        {
           "key": "2-36",
           "en": "2/36 Nm",
           "cn": "2/36 Nm",
@@ -912,27 +903,6 @@
           "fr": "2/80 Nm",
           "ja": "2/80 Nm",
           "kr": "2/80 Nm"
-        }
-      ]
-    },
-    "byType": {
-      "label": {
-        "en": "By Yarn Type",
-        "cn": "按纱型",
-        "de": "Nach Garnart",
-        "fr": "Par type de fil",
-        "ja": "糸タイプ別",
-        "kr": "사 종류별"
-      },
-      "items": [
-        {
-          "key": "woolen",
-          "en": "Woolen",
-          "cn": "粗纺",
-          "de": "Streichgarn",
-          "fr": "Cardé",
-          "ja": "紡毛",
-          "kr": "방모사"
         }
       ]
     },
@@ -1020,27 +990,6 @@
         }
       ]
     },
-    "byForm": {
-      "label": {
-        "en": "By Form",
-        "cn": "按形态",
-        "de": "Nach Form",
-        "fr": "Par forme",
-        "ja": "形状別",
-        "kr": "형태별"
-      },
-      "items": [
-        {
-          "key": "cone",
-          "en": "Cone",
-          "cn": "筒子纱",
-          "de": "Konus",
-          "fr": "Cône",
-          "ja": "コーン",
-          "kr": "콘사"
-        }
-      ]
-    },
     "byMaterial": {
       "label": {
         "en": "By Material",
@@ -1104,6 +1053,27 @@
           "fr": "Taiji Stone Fiber",
           "ja": "Taiji Stone Fiber",
           "kr": "Taiji Stone Fiber"
+        }
+      ]
+    },
+    "byForm": {
+      "label": {
+        "en": "By Form",
+        "cn": "按形态",
+        "de": "Nach Form",
+        "fr": "Par forme",
+        "ja": "形状別",
+        "kr": "형태별"
+      },
+      "items": [
+        {
+          "key": "cone",
+          "en": "Cone",
+          "cn": "筒子",
+          "de": "Konus",
+          "fr": "Cône",
+          "ja": "コーン",
+          "kr": "콘"
         }
       ]
     }
