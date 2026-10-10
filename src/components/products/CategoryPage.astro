@@ -907,7 +907,7 @@ loading="lazy"
 
       {/* Product grid (wrapped for client filter/pagination) */}
       <div id="category-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" data-page-size="16">
-        {products.slice(0, 16).map((p) => (
+        {products.map((p) => (
           <a
             href={`/${locale}/products/${p.id}/`}
             class="category-record-card group block border border-border overflow-hidden hover:border-primary transition-colors bg-background"
