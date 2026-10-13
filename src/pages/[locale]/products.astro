@@ -103,6 +103,7 @@ const CATEGORY_HUBS: Record<string, { slug: string; label: Record<string, string
   sweaters: { slug: 'garment-oem', label: { en: 'Cashmere Sweaters, Cardigans & Vests', cn: '羊绒衫、开衫与背心', de: 'Kaschmir-Pullover, Cardigans & Westen', fr: 'Pulls, cardigans et gilets en cachemire', ja: 'カシミアセーター・カーディガン・ベスト', kr: '캐시미어 스웨터·가디건·베스트' } },
   scarves: { slug: 'scarves', label: { en: 'Cashmere Scarves, Wraps, Shawls & Ponchos', cn: '羊绒围巾、披肩、方巾与斗篷', de: 'Kaschmir-Schals, Wraps, Tücher & Ponchos', fr: 'Écharpes, étoles, châles et ponchos en cachemire', ja: 'カシミアスカーフ・ストール・ショール・ポンチョ', kr: '캐시미어 스카프·랩·숄·판초' } },
   accessories: { slug: 'accessories-cat', label: { en: 'Cashmere Leggings, Gloves, Socks & Knit Accessories', cn: '羊绒打底裤、手套、袜子与针织配饰', de: 'Kaschmir-Leggings, Handschuhe, Socken & Strick-Accessoires', fr: 'Leggings, gants, chaussettes et accessoires tricotés en cachemire', ja: 'カシミアレギンス・手袋・靴下・ニットアクセサリー', kr: '캐시미어 레깅스·장갑·양말·니트 액세서리' } },
+  blankets: { slug: 'cashmere-blankets', label: { en: 'Cashmere & Wool Blankets, Throws & Baby Blankets', cn: '羊绒与羊毛毯、盖毯与婴儿毯', de: 'Kaschmir- & Wolldecken, Würfe & Babydecken', fr: 'Couvertures et plaids en cachemire et laine', ja: 'カシミア・ウールブランケット・スロー・ベビーブランケット', kr: '캐시미어·울 담요·스로·아기 담요' } },
   yarn: { slug: 'yarn', label: { en: 'Cashmere Yarn & Fiber: Cone, Hank, Knitting & Weaving', cn: '羊绒纱线与纤维：筒纱、绞纱、针织与机织', de: 'Kaschmirgarn & Fasern: Konen, Stränge, Strick- und Webprodukte', fr: 'Fil et fibre de cachemire : cônes, écheveaux, tricot et tissage', ja: 'カシミア糸・繊維：コーン・かせ・編み物・織物', kr: '캐시미어 원사·섬유: 콘·타래·편물·직물' } },
 };
 
@@ -268,6 +269,36 @@ const SUB_LABELS: Record<string, Record<string, Record<string, Record<string, st
     },
     byForm: {
       cone: { en: "Cone", cn: "筒子纱", de: "Konus", fr: "Cône", ja: "コーン", kr: "콘사" },
+    },
+  },
+  blankets: {
+    byStyle: {
+      throw: { en: "Throws", cn: "盖毯", de: "Würfe", fr: "Plaids", ja: "スロー", kr: "스로" },
+      baby: { en: "Baby Blankets", cn: "婴儿毯", de: "Babydecken", fr: "Couvertures bébé", ja: "ベビーブランケット", kr: "아기 담요" },
+      travel: { en: "Travel Blankets", cn: "旅行毯", de: "Reisedecken", fr: "Couvertures de voyage", ja: "旅行ブランケット", kr: "여행 담요" },
+      bed: { en: "Bed Blankets", cn: "床用毯", de: "Bettdecken", fr: "Couvertures de lit", ja: "ベッドブランケット", kr: "침대 담요" },
+    },
+    byMaterial: {
+      '100pct-cashmere': { en: "100% Cashmere", cn: "100%羊绒", de: "100% Kaschmir", fr: "100% Cachemire", ja: "100%カシミア", kr: "100% 캐시미어" },
+      '100pct-wool': { en: "100% Wool", cn: "100%羊毛", de: "100% Wolle", fr: "100% Laine", ja: "100%ウール", kr: "100% 울" },
+      'wool-cashmere': { en: "Cashmere/Wool", cn: "羊绒/羊毛", de: "Kaschmir/Wolle", fr: "Cachemire/Laine", ja: "カシミア/ウール", kr: "캐시미어/울" },
+    },
+    byPattern: {
+      solid: { en: "Solid", cn: "纯色", de: "Uni", fr: "Uni", ja: "無地", kr: "무지" },
+      check: { en: "Check", cn: "格子", de: "Karo", fr: "Carreaux", ja: "チェック", kr: "체크" },
+      houndstooth: { en: "Houndstooth", cn: "千鸟格", de: "Pepita", fr: "Pied-de-poule", ja: "千鳥格子", kr: "하운드투스" },
+      jacquard: { en: "Jacquard", cn: "提花", de: "Jacquard", fr: "Jacquard", ja: "ジャカード", kr: "자카드" },
+      stripe: { en: "Stripe", cn: "条纹", de: "Streifen", fr: "Rayures", ja: "ストライプ", kr: "스트라이프" },
+    },
+    byUse: {
+      home: { en: "Home Textiles", cn: "家用纺织", de: "Heimtextilien", fr: "Textile de maison", ja: "ホームテキスタイル", kr: "홈텍스타일" },
+      travel: { en: "Travel", cn: "旅行用", de: "Reise", fr: "Voyage", ja: "旅行", kr: "여행" },
+      gift: { en: "Gift", cn: "礼品", de: "Geschenk", fr: "Cadeau", ja: "ギフト", kr: "선물" },
+    },
+    byAudience: {
+      adult: { en: "Adult", cn: "成人", de: "Erwachsene", fr: "Adulte", ja: "大人", kr: "성인" },
+      kids: { en: "Baby & Kids", cn: "婴幼儿", de: "Babys & Kinder", fr: "Bébé & Enfants", ja: "ベビー&キッズ", kr: "아기&어린이" },
+      unisex: { en: "Unisex", cn: "中性", de: "Unisex", fr: "Unisexe", ja: "ユニセックス", kr: "유니섹스" },
     },
   },
 };
@@ -924,6 +955,7 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
           Object.keys(subLabels.sweaters || {}),
           Object.keys(subLabels.scarves || {}),
           Object.keys(subLabels.accessories || {}),
+          Object.keys(subLabels.blankets || {}),
           Object.keys(subLabels.yarn || {})
         );
         const seen = new Set();
@@ -951,10 +983,12 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
             'sweaters': 'sweaters',
             'scarves': 'scarves',
             'accessories': 'accessories',
+            'blankets': 'blankets',
             'yarn': 'yarn',
             'hats-accessories': 'hats',
             'garment-oem': 'sweaters',
             'accessories-cat': 'accessories',
+            'cashmere-blankets': 'blankets',
           };
           if (catSlugToId[catParam]) {
             activeCat = catSlugToId[catParam];

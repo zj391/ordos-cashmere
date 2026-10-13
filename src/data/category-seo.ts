@@ -233,6 +233,50 @@ export const CATEGORY_SEO: Record<string, Record<Locale, CategorySeoEntry>> = {
       keywords: ['羊绒纱线', '羊绒纤维', '羊绒筒纱', '羊绒绞纱', '羊绒针织纱', '羊绒机织纱', '羊绒纱线批发', '蒙古羊绒纱线', '羊绒纱线厂家'],
     },
   },
+  blankets: {
+    en: {
+      title: 'Cashmere & Wool Blankets Wholesale | Throws, Baby Blankets | DONGXIAO®',
+      description: 'Wholesale cashmere and wool blankets: bed throws, travel blankets, baby blankets. 100% Mongolian cashmere and pure wool in knit and woven constructions. Custom dimensions, Pantone match, private label. MOQ 30–50.',
+      h1: 'Cashmere & Wool Blankets Wholesale',
+      intro: 'Browse cashmere and wool blankets from our Ordos facility: bed throws, travel blankets, baby blankets and stroller blankets. 100% Mongolian cashmere (14.5–16.5µm) and pure wool variants available. Hand-finished construction, multiple sizes and Pantone color matching supported.',
+      keywords: ['cashmere blankets', 'cashmere throws', 'cashmere baby blankets', 'wool blankets wholesale', 'cashmere blanket manufacturer', 'wool throw wholesale', 'baby cashmere blanket', 'travel blanket cashmere', 'cashmere bed throw'],
+    },
+    de: {
+      title: 'Kaschmir- & Wolldecken Großhandel | DONGXIAO®',
+      description: 'Großhandel Kaschmir- und Wolldecken: Bettdecken, Reisedecken, Babydecken. Mongolisches Kaschmir und reine Wolle. Sondermaße, Pantone.',
+      h1: 'Kaschmir- & Wolldecken Großhandel',
+      intro: 'Kaschmir- und Wolldecken aus unserer Ordos-Fabrik.',
+      keywords: ['Kaschmir Decken', 'Kaschmir Babydecken', 'Kaschmir Reisedecken', 'Woll Decken Großhandel', 'Kaschmir Decken Hersteller'],
+    },
+    fr: {
+      title: 'Couvertures et Plaids en Cachemire et Laine en Gros | DONGXIAO®',
+      description: 'Couvertures et plaids en cachemire et laine en gros: plaids, couvertures de voyage, couvertures bébé. Cachemire mongol et laine vierge.',
+      h1: 'Couvertures et Plaids en Cachemire et Laine en Gros',
+      intro: 'Couvertures et plaids en cachemire et laine de notre usine d\'Ordos.',
+      keywords: ['couvertures cachemire', 'plaids cachemire', 'couvertures bébé cachemire', 'couvertures laine gros'],
+    },
+    ja: {
+      title: 'カシミア・ウールブランケット卸売り | DONGXIAO®',
+      description: 'カシミア・ウールブランケット卸売り。ベッドブランケット、旅行ブランケット、ベビーブランケット。モンゴル産カシミアと純粋ウール。',
+      h1: 'カシミア・ウールブランケット卸売り',
+      intro: 'オルドス工場のカシミア・ウールブランケット。',
+      keywords: ['カシミアブランケット', 'カシミアベビー毛布', 'ウールブランケット卸売り', 'カシミアベッドスロー'],
+    },
+    kr: {
+      title: '캐시미어·울 담요 도매 | DONGXIAO®',
+      description: '캐시미어·울 담요 도매. 침대 담요, 여행 담요, 아기 담요. 몽골 캐시미어와 순수 울.',
+      h1: '캐시미어·울 담요 도매',
+      intro: '오르도스 공장의 캐시미어·울 담요.',
+      keywords: ['캐시미어 담요', '캐시미어 아기 담요', '울 담요 도매', '캐시미어 침대 스로'],
+    },
+    cn: {
+      title: '羊绒·羊毛毯批发 | 盖毯·旅行毯·婴儿毯 | 东霄 DONGXIAO®',
+      description: '羊绒、羊毛毯批发：床用盖毯、旅行毯、婴儿毯。100% 蒙古 Grade A 羊绒与纯羊毛，手工缝边，可定制尺寸和 Pantone 配色。MOQ 30–50 件。',
+      h1: '羊绒·羊毛毯批发',
+      intro: '浏览鄂尔多斯工厂精选羊绒和羊毛毯：床用盖毯、旅行毯、婴儿毯与推车毯。14.5–16.5µm 蒙古羊绒与纯羊毛，手工工艺，多种尺寸，支持 Pantone 配色。',
+      keywords: ['羊绒毯', '羊绒盖毯', '羊绒婴儿毯', '羊毛毯批发', '羊绒旅行毯', '羊绒毯厂家', '羊绒床品'],
+    },
+  },
 };
 
 // Static URL slug → categoryId map for /[locale]/category/[slug]/ routing.
@@ -241,6 +285,7 @@ export const CATEGORY_SLUGS: Record<string, string> = {
   'cashmere-sweaters': 'sweaters',
   'cashmere-scarves': 'scarves',
   'cashmere-accessories': 'accessories',
+  'cashmere-blankets': 'blankets',
   'cashmere-yarn': 'yarn',
 };
 
@@ -250,5 +295,6 @@ export const CATEGORY_DISPLAY: Record<string, string> = {
   sweaters: 'Cashmere Sweaters & Knitwear',
   scarves: 'Cashmere Scarves & Wraps',
   accessories: 'Cashmere Accessories',
+  blankets: 'Cashmere & Wool Blankets',
   yarn: 'Cashmere Yarn & Fiber',
 };
