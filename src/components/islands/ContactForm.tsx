@@ -18,6 +18,8 @@ const labels: Record<string, Record<string, string>> = {
     typeRaw: 'Raw Material',
     typeYarn: 'Yarn & Fabric',
     typeGarment: 'Garment OEM',
+    typeSample: 'Sample Request',
+    typeSpec: 'Spec Sheet',
     name: 'Your Name *',
     company: 'Company *',
     country: 'Country *',
@@ -35,7 +37,7 @@ const labels: Record<string, Record<string, string>> = {
     error: 'Something went wrong. Please try again or contact us via WhatsApp.',
   },
   cn: {
-    typeLabel: '询盘类型', typeRaw: '羊绒原料', typeYarn: '纱线/面料', typeGarment: '成衣代工',
+    typeLabel: '询盘类型', typeRaw: '羊绒原料', typeYarn: '纱线/面料', typeGarment: '成衣代工', typeSample: '索取样品', typeSpec: '规格书',
     name: '姓名 *', company: '公司 *', country: '国家 *', email: '邮箱 *', phone: '电话/微信',
     quantity: '预计数量', quantityHelp: '如：500kg / 5000m / 1000件',
     delivery_date: '期望交货日期',
@@ -46,7 +48,7 @@ const labels: Record<string, Record<string, string>> = {
     error: '提交失败，请重试或通过微信联系我们。',
   },
   de: {
-    typeLabel: 'Anfrage-Typ', typeRaw: 'Rohmaterial', typeYarn: 'Garn & Stoff', typeGarment: 'Bekleidung OEM',
+    typeLabel: 'Anfrage-Typ', typeRaw: 'Rohmaterial', typeYarn: 'Garn & Stoff', typeGarment: 'Bekleidung OEM', typeSample: 'Muster', typeSpec: 'Datenblatt',
     name: 'Name *', company: 'Firma *', country: 'Land *', email: 'E-Mail *', phone: 'Telefon',
     quantity: 'Geschätzte Menge', quantityHelp: 'z.B. 500kg / 5000m / 1000 Stk.',
     delivery_date: 'Wunschliefertermin',
@@ -57,7 +59,7 @@ const labels: Record<string, Record<string, string>> = {
     error: 'Etwas ist schiefgelaufen. Bitte erneut versuchen.',
   },
   fr: {
-    typeLabel: 'Type', typeRaw: 'Matière', typeYarn: 'Fil & Tissu', typeGarment: 'Vêtement OEM',
+    typeLabel: 'Type', typeRaw: 'Matière', typeYarn: 'Fil & Tissu', typeGarment: 'Vêtement OEM', typeSample: 'Échantillon', typeSpec: 'Fiche technique',
     name: 'Nom *', company: 'Société *', country: 'Pays *', email: 'Email *', phone: 'Téléphone',
     quantity: 'Quantité estimée', quantityHelp: 'ex: 500kg / 5000m / 1000 pcs',
     delivery_date: 'Date de livraison souhaitée',
@@ -68,7 +70,7 @@ const labels: Record<string, Record<string, string>> = {
     error: 'Erreur. Veuillez réessayer.',
   },
   ja: {
-    typeLabel: '問い合わせ種別', typeRaw: '原料', typeYarn: '糸・生地', typeGarment: '衣料OEM',
+    typeLabel: '問い合わせ種別', typeRaw: '原料', typeYarn: '糸・生地', typeGarment: '衣料OEM', typeSample: 'サンプル', typeSpec: '仕様書',
     name: 'お名前 *', company: '会社 *', country: '国 *', email: 'メール *', phone: '電話',
     quantity: '数量目安', quantityHelp: '例: 500kg / 5000m / 1000枚',
     delivery_date: '希望納期',
@@ -79,7 +81,7 @@ const labels: Record<string, Record<string, string>> = {
     error: 'エラーが発生しました。再試行してください。',
   },
   kr: {
-    typeLabel: '문의 유형', typeRaw: '원료', typeYarn: '원사·직물', typeGarment: '의류 OEM',
+    typeLabel: '문의 유형', typeRaw: '원료', typeYarn: '원사·직물', typeGarment: '의류 OEM', typeSample: '샘플', typeSpec: '사양서',
     name: '이름 *', company: '회사 *', country: '국가 *', email: '이메일 *', phone: '전화',
     quantity: '예상 수량', quantityHelp: '예: 500kg / 5000m / 1000pcs',
     delivery_date: '희망 납기일',
@@ -139,7 +141,7 @@ const SALES_ROUTE_COPY: Record<string, Record<string, string>> = {
 const S = (locale: string, key: string) => SALES_ROUTE_COPY[locale]?.[key] || SALES_ROUTE_COPY.en[key] || key;
 
 export default function ContactForm({ locale }: Props) {
-  const [type, setType] = useState<'raw' | 'yarn' | 'garment'>('raw');
+  const [type, setType] = useState<'raw' | 'yarn' | 'garment' | 'sample' | 'spec'>('raw');
   const [submitting, setSubmitting] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [attachments, setAttachments] = useState<Array<{ name: string; type: string; dataUrl: string }>>([]);
@@ -154,7 +156,11 @@ export default function ContactForm({ locale }: Props) {
     const productReference = params.get('product');
     if (productReference) {
       setProductInterest(productReference);
-      setType('garment');
+      const typeFromQuery = params.get('type');
+      // 'sample' → sample request, 'spec' → spec sheet request, otherwise 'garment' (default).
+      if (typeFromQuery === 'sample') setType('sample');
+      else if (typeFromQuery === 'spec') setType('spec');
+      else setType('garment');
     }
     if (params.get('from') !== 'cart') return;
 
@@ -293,7 +299,7 @@ export default function ContactForm({ locale }: Props) {
       <div>
         <label className="block text-sm font-medium mb-3">{L(locale, 'typeLabel')}</label>
         <div className="grid grid-cols-3 gap-3">
-          {(['raw', 'yarn', 'garment'] as const).map((t) => (
+          {(['raw', 'yarn', 'garment', 'sample', 'spec'] as const).map((t) => (
             <button
               key={t}
               type="button"
@@ -302,7 +308,7 @@ export default function ContactForm({ locale }: Props) {
                 type === t ? 'border-primary bg-primary text-primary-foreground' : 'border-border hover:border-primary'
               }`}
             >
-              {L(locale, `type${t.charAt(0).toUpperCase() + t.slice(1)}`)}
+              {L(locale, `type${t.charAt(0).toUpperCase() + t.slice(1)}`) || t}
             </button>
           ))}
         </div>

@@ -60,7 +60,23 @@ const swatches = suggestedSwatchesForProduct(productColors);
       const copyBtn = root.querySelector('[data-cp-copy]');
       const hiddenInput = document.querySelector('#inquiry-form input[name="color"]');
 
-      function selectSwatch(btn) {
+      // Best-effort image swap: when user picks a swatch, change the main
+      // gallery image to gallery image at the same index (if it exists).
+      // This is a light fallback — most products have many photos of the same
+      // item from different angles, so a deterministic per-swatch index gives
+      // the user clear feedback that the swatch click did something.
+      const mainImg = document.getElementById('main-product-img');
+      const galleryThumbs = Array.from(document.querySelectorAll('[data-gallery-thumb]'));
+      function applyMainImageByIndex(idx) {
+        if (!mainImg || !galleryThumbs.length) return;
+        const target = galleryThumbs[Math.min(idx, galleryThumbs.length - 1)];
+        if (target && target.getAttribute('data-gallery-thumb')) {
+          mainImg.src = target.getAttribute('data-gallery-thumb');
+          mainImg.alt = target.querySelector('img')?.getAttribute('alt') || mainImg.alt;
+        }
+      }
+
+      function selectSwatch(btn, idx) {
         swatches.forEach((s) => {
           s.classList.remove('ring-amber-700');
           s.setAttribute('aria-checked', 'false');
@@ -73,10 +89,11 @@ const swatches = suggestedSwatchesForProduct(productColors);
         if (selectedEl) selectedEl.textContent = `${code} · ${name} · ${hex}`;
         if (copyBtn) copyBtn.classList.remove('hidden');
         if (hiddenInput) hiddenInput.value = `${code} (${name})`;
+        if (typeof idx === 'number') applyMainImageByIndex(idx);
       }
 
-      swatches.forEach((btn) => {
-        btn.addEventListener('click', () => selectSwatch(btn));
+      swatches.forEach((btn, idx) => {
+        btn.addEventListener('click', () => selectSwatch(btn, idx));
       });
 
       if (copyBtn) {
