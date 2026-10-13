@@ -744,7 +744,10 @@ function listedPackaging(p: typeof product): string {
 function listedWeight(p: typeof product): string {
   const raw = cleanAttr(p.weight_g);
   const matched = raw.match(/\b\d+(?:\s*[-–]\s*\d+)?\s*g(?:\s+per\s+\d+\s*m\s*cone)?\b/i)?.[0] || '';
-  return matched.replace(/\s+/g, ' ');
+  // Ensure unit is always present (returns "870" → "870g" if no unit was captured)
+  const trimmed = matched.replace(/\s+/g, ' ').trim();
+  if (!trimmed) return '';
+  return /\bg\b/i.test(trimmed) ? trimmed : `${trimmed} g`;
 }
 const packagingText = listedPackaging(product);
 const weightText = listedWeight(product);
@@ -1492,8 +1495,8 @@ const relatedViewAll: Record<Locale, string> = {
 
 
           <div class="product-confirmation-note mb-5">
-            <p class="text-sm font-display font-light">{locale === 'cn' ? '项目条件书面确认' : 'Project terms confirmed in writing'}</p>
-            <p class="text-sm text-muted-foreground mt-1">{locale === 'cn' ? '请在询盘中说明规格、数量、目的地、验货与文件需求。' : 'Include specification, quantity, destination, inspection and documentation needs in your inquiry.'}</p>
+            <p class="text-sm font-display font-light">{locale === 'cn' ? '请在询盘中说明规格、数量、目的地、验货与文件需求。' : 'Include specification, quantity, destination, inspection and documentation needs in your inquiry.'}</p>
+            <p class="text-xs text-muted-foreground mt-1.5 italic">{locale === 'cn' ? '项目条件以书面方式确认' : 'Project terms confirmed in writing'}</p>
           </div>
 
 
@@ -1562,7 +1565,8 @@ const relatedViewAll: Record<Locale, string> = {
 
 
 
-                    <!-- Spec table (imf 2-column style) -->
+                    <!-- Spec table (imf 2-column style) - now shows ONLY project terms + colors,
+                         since material/micron/weight are already in product-record-ledger above. -->
 
           <div class="product-spec-sheet border border-border rounded-lg overflow-hidden mb-6">
 
@@ -1572,53 +1576,19 @@ const relatedViewAll: Record<Locale, string> = {
 
                 <tr class="border-b border-border">
 
-                  <td class="px-4 py-3 bg-secondary/40 font-medium w-2/5">Material</td>
-
-                  <td class="px-4 py-3">{product.material}</td>
-
-                </tr>
-
-                <tr class="border-b border-border">
-
-                  <td class="px-4 py-3 bg-secondary/40 font-medium">Fiber fineness</td>
-
-                  <td class="px-4 py-3">{product.micron}</td>
-
-                </tr>
-
-                <tr class="border-b border-border">
-
-                  <td class="px-4 py-3 bg-secondary/40 font-medium">{locale === 'cn' ? '项目条件' : 'Project terms'}</td>
+                  <td class="px-4 py-3 bg-secondary/40 font-medium w-2/5">{locale === 'cn' ? '项目条件' : 'Project terms'}</td>
 
                   <td class="px-4 py-3">{locale === 'cn' ? '起订量、价格、打样、交付和文件要求以书面方式确认。' : 'MOQ, price, sampling, delivery and documentation requirements are confirmed in writing.'}</td>
 
                 </tr>
 
-                {product.weight && (
-
-                  <tr class="border-b border-border">
-
-                    <td class="px-4 py-3 bg-secondary/40 font-medium">Weight</td>
-
-                    <td class="px-4 py-3">{product.weight}</td>
-
-                  </tr>
-
-                )}
-
                 {colorText && (
 
                   <tr>
 
-                    <td class="px-4 py-3 bg-secondary/40 font-medium align-top">Available Colors</td>
+                    <td class="px-4 py-3 bg-secondary/40 font-medium align-top">{locale === 'cn' ? '可选颜色' : 'Available Colors'}</td>
 
                     <td class="px-4 py-3">
-
-                      <p class="text-xs text-muted-foreground mb-2">
-
-                        Shown in: {colorText}
-
-                      </p>
 
                       <ColorPicker productId={product.id} productName={product.name} productColors={product.colors} />
 

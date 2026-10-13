@@ -1,7 +1,7 @@
 ---
 /**
  * 产品列表页 - 6 国通用
- * 全部 591 个产品 + 5 个分类，筛选/搜索/排序/弹窗用 vanilla JS 增强
+ * 全部 663 个产品 + 6 个分类，筛选/搜索/排序/弹窗用 vanilla JS 增强
  * 不依赖 React 岛（避免 Astro 5 + React 19 hydration 不兼容）
  * UI direction: Archive House editorial product dossier; visual-only changes
  * preserve all catalog copy, real product fields, filters, comparison and inquiry behavior.
@@ -117,12 +117,12 @@ const LISTING_DISCOVERY_COPY: Record<string, { eyebrow: string; title: string; i
 };
 const listingDiscovery = LISTING_DISCOVERY_COPY[locale] || LISTING_DISCOVERY_COPY.en;
 
-// 一次性把 591 个产品 + 5 个分类序列化成 JSON，inline 给前端 vanilla JS 用（筛选/搜索/弹窗）。
+// 一次性把 663 个产品 + 6 个分类序列化成 JSON，inline 给前端 vanilla JS 用（筛选/搜索/弹窗）。
 // 2026-08-20 SEO/perf fix: 列表页 JS 实际只用 products 的 11 个字段做 filter/search/card 渲染；
 // detail/description/detailedDescription 等长 markdown 在 listing 上是 100% 死数据。
 // categories.products[] 数组前端 JS 完全不用 —— 但 SSR 模板要用 cat.products.length 渲染徽章，
 // 故精简版 categories 仅含 {id, name, description, productCount}（count 直接从 products.length 转）。
-// 591 产品 + 5 分类精简前 gzip 后 ~6 MB，精简后 ~120 KB（98%↓）。
+// 663 产品 + 6 分类精简前 gzip 后 ~6 MB，精简后 ~120 KB（98%↓）。
 // 详情页 (/en/products/<id>/) 继续用 getAllProducts() 全量，不受影响。
 const LISTING_FIELDS = [
   'id', 'name', 'categoryId', 'categoryName',
@@ -516,13 +516,13 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
       <!-- chips injected by JS -->
     </div>
 
-    <!-- 591 个产品卡片（全部静态渲染，初始只显示前 24 个，其余懒加载） -->
+    <!-- 663 个产品卡片（全部静态渲染，初始只显示前 36 个，其余懒加载） -->
     <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      {/* 8-20 SEO: SSR emit at least 6 cards per category so Googlebot can discover
+      {/* 2026-10-13 SEO: SSR emit at least 6 cards per category so Googlebot can discover
           every category from /products/ without depending on JS pagination.
           Before: allProducts.slice(0,24) emitted only hats (first category) → 0
           sweaters/scarves/yarn/accessories links in raw HTML. After: 6 cards ×
-          5 categories = 30 mixed cards, each category gets indexed. */}
+          6 categories = 36 mixed cards, each category gets indexed. */}
       {(() => {
         const PER_CAT = 6;
         const featured: typeof allProducts = [];
