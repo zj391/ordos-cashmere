@@ -516,6 +516,12 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
       <!-- chips injected by JS -->
     </div>
 
+    <!-- Top pagination (mirror of bottom; also serves as a quick "where am I" anchor) -->
+    <div id="pagination-top" class="sticky top-0 z-20 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 -mx-4 px-4 sm:-mx-6 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 mb-4 py-3 border-b border-border">
+      <p id="page-info-top" class="text-sm text-muted-foreground order-2 sm:order-1"></p>
+      <nav id="pagination-top-nav" class="flex items-center gap-1 order-1 sm:order-2" aria-label="Pagination (top)"></nav>
+    </div>
+
     <!-- 663 个产品卡片（全部静态渲染，初始只显示前 36 个，其余懒加载） -->
     <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       {/* 2026-10-13 SEO: SSR emit at least 6 cards per category so Googlebot can discover
@@ -1172,6 +1178,23 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
         // Next
         html += pageBtnHtml('›', currentPage < totalPages ? currentPage + 1 : null, currentPage === totalPages);
         nav.innerHTML = html;
+
+        // Mirror to the top pagination (so users see "Page 1 of 48" before scrolling)
+        const navTop = document.getElementById('pagination-top-nav');
+        if (navTop) {
+          navTop.innerHTML = html;
+          navTop.querySelectorAll('button[data-page]').forEach((b) => {
+            b.addEventListener('click', () => {
+              const p = parseInt(b.getAttribute('data-page'));
+              if (!isNaN(p) && p !== currentPage) {
+                currentPage = p;
+                render();
+              }
+            });
+          });
+        }
+        const infoTop = document.getElementById('page-info-top');
+        if (infoTop) infoTop.textContent = info.textContent;
 
         // 绑定事件
         nav.querySelectorAll('button[data-page]').forEach((b) => {
