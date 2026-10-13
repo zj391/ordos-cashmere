@@ -2570,7 +2570,7 @@ const relatedViewAll: Record<Locale, string> = {
   )}
 
   {/* Related: same material — helps buyers find alternatives when out-of-stock on a specific color. */}
-  {relatedByMaterial.length > 0 && relatedByMaterial.length !== relatedProducts.length && (
+  {relatedByMaterial.length > 0 && sameMaterial.length !== sameCategory.length && (
     <section class="py-10 md:py-12 border-t border-border/40 bg-secondary/10">
       <div class="container-narrow">
         <div class="flex items-end justify-between mb-5">
@@ -2613,7 +2613,7 @@ const relatedViewAll: Record<Locale, string> = {
   )}
 
   {/* Related: same color — useful for buyers who like this specific color shade. */}
-  {relatedByColor.length > 0 && relatedByColor.length !== relatedProducts.length && (
+  {relatedByColor.length > 0 && sameColor.length !== sameCategory.length && (
     <section class="py-10 md:py-12 border-t border-border/40 bg-background">
       <div class="container-narrow">
         <div class="flex items-end justify-between mb-5">
