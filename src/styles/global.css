@@ -1245,14 +1245,19 @@ input:focus, select:focus, textarea:focus {
 }
 .home-enhanced-hero .eyebrow { margin-bottom: 1.5rem !important; }
 .home-enhanced-hero .eyebrow::before { background: var(--archive-copper) !important; }
+/* 2026-10-14 P1-editorial: hero changed from dark-bg/full-bleed to
+   light-bg/2-column. The old "max-width 13ch, 7.4rem font, dark text" no longer
+   applies — reset to inherit so the per-element Tailwind controls take over. */
 .home-enhanced-hero h1 {
-  max-width: 13ch;
-  font-size: clamp(3.8rem, 6.7vw, 7.4rem) !important;
-  line-height: .9 !important;
-  letter-spacing: -.065em !important;
+  max-width: 18ch;
+  font-size: inherit;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: inherit;
+  text-shadow: none;
   text-wrap: balance;
 }
-.home-enhanced-hero p { max-width: 36rem !important; color: rgba(255,253,248,.82) !important; }
+.home-enhanced-hero p { max-width: 36rem; color: inherit; }
 .home-thread-cta {
   position: relative;
   border: 1px solid var(--archive-white) !important;
@@ -1265,12 +1270,12 @@ input:focus, select:focus, textarea:focus {
 .home-proof-band {
   position: relative;
   z-index: 1;
-  margin: -3rem auto 0;
+  margin: 0 auto;
   width: min(90rem, calc(100% - 3rem));
   border: 0 !important;
-  background: var(--archive-carbon) !important;
-  color: var(--archive-white) !important;
-  box-shadow: 0 24px 54px -36px rgba(16,25,21,.82);
+  background: var(--archive-cream-30, rgba(243, 238, 229, 0.4)) !important;
+  color: inherit !important;
+  box-shadow: none;
 }
 .home-proof-band .container-narrow { padding: 1.7rem clamp(1.5rem, 3vw, 3rem) !important; }
 .home-proof-band [class*="divide-"] { border-color: rgba(255,253,248,.18) !important; }

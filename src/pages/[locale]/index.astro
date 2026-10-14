@@ -293,160 +293,92 @@ const IMG = {
 ---
 
 <BaseLayout locale={locale} pageKey="home" path="/" schema="home">
-  <link slot="head" rel="preload" as="image" href={IMG.scarvesFolded} fetchpriority="high" />
+  <link slot="head" rel="preload" as="image" href={IMG.uiHero} fetchpriority="high" />
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/`} />
 
-  <!-- ============ HERO (3 张明亮图轮播 + 文字层) ============ -->
-  <section class="home-enhanced-hero relative bg-brand-ink text-white overflow-hidden">
-      <!-- 轮播图: 3 张明亮图自动循环 (CSS transition + 底部圆点 + JS) -->
-      <div class="absolute inset-0" data-hero-slider>
-        {[
-          { src: IMG.scarvesFolded, alt: 'Cashmere wrap — premium B2B apparel piece styled in urban setting' },
-          { src: IMG.heroCraft,    alt: 'Handwoven cashmere detail — craftsmanship' },
-          { src: IMG.heroLandscape, alt: 'Inner Mongolian highland landscape — Ordos origin' },
-          { src: IMG.uiHero, alt: 'Premium cashmere coat on Ordos highland — material-led B2B collection inspiration' },
-        ].map((slide, i) => (
-          <img
-            src={slide.src}
-            alt={slide.alt}
-            class={`ken-burns absolute inset-0 w-full h-full object-cover transition-opacity duration-[1500ms] ease-in-out ${
-              i === 0 ? 'opacity-100 visible' : 'opacity-0 invisible'
-            }`}
-            decoding="async" loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : 'auto'}
-            data-hero-slide={i}
-          />
-        ))}
-        <!-- Editorial overlay: lighter than before, leaves image visible.
-             Three-stop gradient (top→mid→bottom) for legibility without weight. -->
-        <div class="absolute inset-0 bg-gradient-to-b from-brand-ink/30 via-transparent to-brand-ink/70"></div>
-        <!-- A soft white veil across the lower-mid so serif type stays legible on bright sky portions. -->
-        <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-brand-cream/15 via-brand-cream/5 to-transparent"></div>
-      </div>
-    <!-- 羊绒纤维纹理 (装饰) -->
-    <svg class="absolute inset-0 w-full h-full opacity-[0.05] pointer-events-none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-      <defs>
-        <pattern id="fibers" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-          <path d="M0 30 Q15 22, 30 30 T60 30" stroke="white" stroke-width="0.5" fill="none"/>
-          <path d="M0 38 Q15 30, 30 38 T60 38" stroke="white" stroke-width="0.5" fill="none"/>
-          <path d="M0 22 Q15 14, 30 22 T60 22" stroke="white" stroke-width="0.5" fill="none"/>
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#fibers)"/>
-    </svg>
-    <div class="home-hero-trajectory" aria-hidden="true"><span></span><span></span><span></span></div>
-
-    <div class="relative container-narrow min-h-[88vh] flex items-center py-24">
-      <div class="max-w-3xl">
-        <div class="eyebrow eyebrow-on-dark mb-10">
-          <span>{c.tagline}</span>
-        </div>
-        <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-light leading-[1.02] tracking-[-0.025em] mb-10 text-white" set:html={c.title.replace(/\n/g, '<br/>')} />
-        <p class="text-lg md:text-xl text-white/80 mb-14 leading-relaxed max-w-2xl font-light">
-          {c.subtitle}
-        </p>
-        <div class="flex flex-wrap items-center gap-6">
-                  <a href={`/${locale}/contact/`} class="btn-tier-1 group">
-                    {c.cta}
-                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                    </svg>
-                  </a>
-                  <a href={`/${locale}/download/`} class="btn-tier-2-on-dark group">
-                    {c.ctaSecondary}
-                  </a>
-                  {/* 改 1: 第三个 CTA 从 "Watch factory video" (out-page) 改为
-                       "View Product Paths" (in-page anchor to #home-catalog)，
-                       避免错误把焦点错放在 factory 页。 */}
-                  <a
-                    href={`#home-catalog`}
-                    class="btn-tier-2-on-dark group"
-                  >
-                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                    {locale === 'cn' ? '查看产品中心' : locale === 'ja' ? '製品を見る' : locale === 'kr' ? '제품 보기' : locale === 'de' ? 'Produkte ansehen' : locale === 'fr' ? 'Voir les produits' : 'View Product Paths'}
-                  </a>
-                </div>
+  <!-- ============ HERO (editorial 2-column: text + portrait image) ============ -->
+  <!-- 2026-10-14 P1-editorial: single hero image (no carousel), italic serif eyebrow,
+       1 primary CTA + 2 text-link CTAs, portrait right column with caption. -->
+  <section class="home-enhanced-hero relative bg-background text-foreground overflow-hidden">
+    <!-- Editorial canvas: cream background + tall portrait image on the right -->
+    <div class="absolute inset-0 hidden lg:block" aria-hidden="true">
+      <div class="absolute top-0 right-0 h-full w-[55%] overflow-hidden">
+        <img
+          src={IMG.uiHero}
+          alt="Premium cashmere coat on Ordos highland — material-led B2B collection inspiration"
+          class="w-full h-full object-cover"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+        <!-- Soft cream-to-transparent gradient at the very left so the image
+             blends into the text-side background. -->
+        <div class="absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background to-transparent"></div>
       </div>
     </div>
+    <div class="absolute inset-0 lg:hidden" aria-hidden="true">
+      <img
+        src={IMG.uiHero}
+        alt="Premium cashmere on Ordos highland"
+        class="w-full h-full object-cover"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-background/40 via-background/30 to-background"></div>
+    </div>
 
-    <!-- 轮播指示器: 3 个圆点 (居中底部, 自动循环 7s/张) -->
-    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-3 z-10" role="tablist" aria-label="Hero slides">
-      {[0, 1, 2, 3].map((i) => (
-        <button
-          type="button"
-          class={`w-2 h-2 rounded-full hero-dot ${
-            i === 0 ? 'bg-brand-gold hero-dot-active' : 'bg-white/40 hover:bg-white/70'
-          }`}
-          aria-label={`Slide ${i + 1}`}
-          aria-current={i === 0 ? 'true' : 'false'}
-          data-hero-dot={i}
-        />
-      ))}
+    <div class="relative container-narrow min-h-[88vh] flex items-center py-24 lg:py-32">
+      <div class="max-w-2xl">
+        <!-- Italic serif eyebrow (kicker) — editorial magazine style -->
+        <p class="font-serif italic text-sm md:text-base text-brand-copper mb-6 tracking-wide">
+          {locale === 'cn' ? '鄂尔多斯 · 自有工厂 · 二〇〇二年建' : locale === 'ja' ? 'オルドス · 自社工場 · 2002年創業' : locale === 'kr' ? '오르도스 · 자가 공장 · 2002년 설립' : locale === 'de' ? 'Ordos · Eigene Manufaktur · Gegründet 2002' : locale === 'fr' ? 'Ordos · Usine propre · Fondée en 2002' : 'Ordos · Self-owned mill · Est. 2002'}
+        </p>
+
+        <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light leading-[1.04] tracking-[-0.02em] mb-8 text-foreground" set:html={c.title.replace(/\n/g, '<br/>')} />
+
+        <!-- Italic serif sub-kicker (replaces generic body copy) -->
+        <p class="font-serif italic text-lg md:text-xl text-foreground/70 mb-12 leading-relaxed max-w-xl">
+          {locale === 'cn' ? '原料 · 纱线 · 面料 · 针织成衣 — 一座工厂完成每一道工序。' : locale === 'ja' ? '原料・糸・生地・ニット — 一つの工場で全工程を。' : locale === 'kr' ? '원료, 원사, 직물, 니트웨어 — 한 공장에서 모든 공정을. ' : 'From raw fiber to finished knitwear — under one roof in Inner Mongolia.'}
+        </p>
+
+        <!-- 1 primary + 2 text-link CTAs (editorial: hierarchy without competing buttons) -->
+        <div class="flex flex-col sm:flex-row sm:items-baseline gap-6 sm:gap-10">
+          <a href={`/${locale}/contact/`} class="btn-tier-1 group">
+            {c.cta}
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+          <a href={`/${locale}/download/`} class="font-serif italic text-base md:text-lg text-foreground border-b border-foreground/40 hover:border-brand-copper hover:text-brand-copper pb-0.5 transition-colors">
+            {locale === 'cn' ? '下载目录 ↗' : locale === 'ja' ? 'カタログをダウンロード ↗' : locale === 'kr' ? '카탈로그 다운로드 ↗' : 'Download catalog ↗'}
+          </a>
+          <a href="#home-catalog" class="font-serif italic text-base md:text-lg text-foreground border-b border-foreground/40 hover:border-brand-copper hover:text-brand-copper pb-0.5 transition-colors">
+            {locale === 'cn' ? '查看产品中心' : locale === 'ja' ? '製品を見る' : locale === 'kr' ? '제품 보기' : locale === 'de' ? 'Produkte ansehen' : locale === 'fr' ? 'Voir les produits' : 'View product paths'}
+          </a>
+        </div>
+
+        <!-- Caption (small, editorial) under the CTAs -->
+        <p class="mt-12 text-[11px] md:text-xs uppercase tracking-[0.25em] text-foreground/55 font-medium">
+          {locale === 'cn' ? '供 B2B 采购沟通 · 项目条件以书面方式确认' : locale === 'ja' ? 'B2B 調達のご連絡 · 案件条件は書面で確認' : locale === 'kr' ? 'B2B 소싱 문의 · 프로젝트 조건은 서면 확인' : 'For B2B sourcing — project terms confirmed in writing'}
+        </p>
+      </div>
     </div>
   </section>
 
-  <!-- 轮播脚本: 自动 7s 切换 + 圆点同步 + prefers-reduced-motion 禁用 -->
-  <script>
-    (() => {
-      const root = document.querySelector('[data-hero-slider]');
-      if (!root) return;
-      const slides = root.querySelectorAll('[data-hero-slide]');
-      const dots = document.querySelectorAll('[data-hero-dot]');
-      if (slides.length < 2) return;
-      const total = slides.length;
-      let current = 0;
-      let timer = null;
-
-      // 尊重用户的 reduced-motion 设置
-      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      const show = (i) => {
-        slides.forEach((el, idx) => {
-          const active = idx === i;
-          el.classList.toggle('opacity-100', active);
-          el.classList.toggle('opacity-0', !active);
-          // visibility:hidden makes browser skip paint for hidden slides,
-          // halving GPU work on the hero stack (3x .ken-burns animations).
-          el.classList.toggle('visible', active);
-          el.classList.toggle('invisible', !active);
-          el.setAttribute('aria-hidden', active ? 'false' : 'true');
-        });
-        dots.forEach((d, idx) => {
-          d.classList.toggle('bg-brand-gold', idx === i);
-          d.classList.toggle('hero-dot-active', idx === i);
-          d.classList.toggle('bg-white/40', idx !== i);
-          d.setAttribute('aria-current', idx === i ? 'true' : 'false');
-        });
-        current = i;
-      };
-
-      const next = () => show((current + 1) % total);
-      const start = () => { if (!reduceMotion) timer = setInterval(next, 7000); };
-      const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
-
-      dots.forEach((d, i) => {
-        d.addEventListener('click', () => {
-          stop();
-          show(i);
-          start();
-        });
-      });
-
-      start();
-    })();
-  </script>
-
-  <!-- ============ METRICS BAR（细线分隔） ============ -->
-  <section class="home-proof-band border-y border-border/40 bg-brand-cream/30 py-16">
+  <!-- ============ METRICS BAR（editorial: italic kicker + huge numbers with periods） ============ -->
+  <section class="home-proof-band border-y border-border/40 bg-brand-cream/30 py-20">
     <div class="container-narrow">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 md:divide-x md:divide-border/40">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-0 md:divide-x md:divide-border/40">
         {c.metrics.map((m, i) => {
           const cv = parseCounter(m.value);
           return (
-          <div class={`md:px-10 first:md:pl-0 last:md:pr-0 text-center md:text-left reveal`} data-reveal-delay={i + 1}>
-            <div class="counter stat-num text-5xl md:text-6xl text-brand-ink font-light leading-none mb-3" data-counter={cv.n} data-suffix={cv.s} data-display={m.value}>{m.value}</div>
-            <div class="micro-label">{m.label}</div>
+          <div class={`md:px-8 first:md:pl-0 last:md:pr-0 text-center md:text-left reveal`} data-reveal-delay={i + 1}>
+            <p class="font-serif italic text-[11px] md:text-xs text-brand-copper tracking-wide mb-3 uppercase">
+              <span class="inline-block">{(i + 1).toString().padStart(2, '0')}</span>
+            </p>
+            <div class="counter stat-num text-6xl md:text-7xl text-foreground font-serif font-light leading-none mb-3" data-counter={cv.n} data-suffix={cv.s} data-display={m.value}>{m.value}</div>
+            <div class="micro-label text-foreground/60">{m.label}</div>
           </div>
           );
         })}
