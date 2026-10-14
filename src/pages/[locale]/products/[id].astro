@@ -1003,26 +1003,44 @@ const CATEGORY_KEYWORDS: Record<string, string[]> = {
 };
 const categoryKeywords = CATEGORY_KEYWORDS[product.categoryId] || SEO_KEYWORDS.en.factory.slice(0, 4);
 const categoryKeywordHint = categoryKeywords[0] || 'cashmere products';
-const safeMetaDescription = {
-  en: `Request a written quote (sample 7-10 days). ${productHeading}. Source this ${displayCategory.toLowerCase()} for B2B projects; compare listed material, color and specification attributes.`,
-  cn: `索取书面报价（样品 7-10 天）。${productHeading}。比较已列材料、颜色和规格属性；或联系工厂确认项目条件。`,
-  de: `Schriftliches Angebot anfordern (Muster 7-10 Tage). ${productHeading}. Aufgeführte Material-, Farb- und Spezifikationsmerkmale vergleichen; Kontakt mit dem Werk aufnehmen.`,
-  fr: `Demande de devis écrit (échantillon 7-10 jours). ${productHeading}. Comparez les attributs de matière, couleur et spécification listés ; contactez l'usine pour les conditions du projet.`,
-  ja: `書面で見積もり依頼 (サンプル 7-10 日)。${productHeading}。記載された素材・カラー・仕様属性を比較；工場へのお問い合わせを。`,
-  kr: `서면 견적 요청 (샘플 7-10일). ${productHeading}. 기재된 소재·색상·사양 속성을 비교하세요; 공장 연락.`,
-}[locale] || `Request written quote (sample 7-10 days). ${productHeading}. Review listed material, color and specification attributes.`;
+const safeMetaDescription = (() => {
+  // Use the SEO-optimized product.description (1-2 sentences, B2B terms)
+  // and the first few product.tags to build a 150-160 char meta description
+  // per locale. Falls back to a generic sentence if the product has no
+  // description (legacy data).
+  const baseDesc = String(product.description || product.detailedDescription || '').trim();
+  // truncate to ~155 chars with ellipsis
+  const truncate = (s: string, max: number) => {
+    if (s.length <= max) return s;
+    const cut = s.slice(0, max - 1);
+    const lastSpace = cut.lastIndexOf(' ');
+    return (lastSpace > 0 ? cut.slice(0, lastSpace) : cut) + '…';
+  };
+  return {
+    en: truncate(`${baseDesc} Source this ${displayCategory.toLowerCase()} for B2B projects.`, 158),
+    cn: truncate(`索取书面报价（样品 7-10 天）。${baseDesc} 比较已列材料、颜色和规格属性。`, 158),
+    de: truncate(`${baseDesc} Aufgeführte Material-, Farb- und Spezifikationsmerkmale vergleichen.`, 158),
+    fr: truncate(`${baseDesc} Comparez les attributs de matière, couleur et spécification.`, 158),
+    ja: truncate(`${baseDesc} 記載された素材・カラー・仕様属性を比較。`, 158),
+    kr: truncate(`${baseDesc} 기재된 소재·색상·사양 속성을 비교하세요.`, 158),
+  };
+})();
 const safeMetaKeywords = [
   productHeading,
   `${displayCategory} product record`,
   product.material ? `${product.material} ${displayCategory}` : '',
   categoryKeywordHint,
   ...categoryKeywords.slice(1),
+  // 2026-10-14 SEO: surface the highest-volume B2B terms from product.tags
+  // (Wholesale, OEM, Private Label, Inner Mongolia Cashmere, etc.) so they
+  // appear in the meta keywords tag for crawlers that still consult it.
+  ...(product.tags || []).filter((t: string) => /wholesale|oem|private label|inner mongolia|mongolian|ordos|factory direct|free sample|custom|pantone/i.test(t)).slice(0, 6),
   'cashmere product specifications',
 ].filter(Boolean);
 const t = {
   ...baseTdk,
   title: buildProductSeoTitle(product, buyerModifiedCategory(product.categoryId, locale, displayCategory), titleBrand, 132, locale),
-  description: clip(safeMetaDescription, 200),
+  description: clip(safeMetaDescription[locale] || safeMetaDescription.en || '', 200),
   keywords: safeMetaKeywords,
 };
 // buildProductSeoTitle() reserves space for the brand and clips the title at
