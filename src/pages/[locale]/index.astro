@@ -213,6 +213,7 @@ const categoryCards = [
   { slug: 'scarves', name: t6('围巾披肩', 'Scarves & Wraps', 'Schals & Tücher', 'Écharpes & étoles', 'スカーフ', '스카프') },
   { slug: 'sweaters', name: t6('羊绒衫', 'Sweaters & Knitwear', 'Pullover & Strick', 'Pulls & maille', 'セーター', '스웨터') },
   { slug: 'accessories', name: t6('羊绒配饰', 'Accessories', 'Accessoires', 'Accessoires', 'アクセサリー', '액세서리') },
+  { slug: 'blankets', name: t6('羊绒毯 · 羊毛毯', 'Cashmere & Wool Blankets', 'Kaschmir- & Wolldecken', 'Couvertures cachemire & laine', 'ブランケット', '담요') },
   { slug: 'yarn', name: t6('纱线面料', 'Yarn & Fiber', 'Garn & Stoff', 'Fil & tissu', '糸・生地', '원사') },
 ];
 
@@ -635,7 +636,11 @@ const IMG = {
   </section>
 
   <!-- ============ 为什么选我们（4 个决策因素：原产 + 工厂规模 + 合规 + 项目条款） ============ -->
-  <section class="home-craft-section py-20 md:py-28 bg-background">
+  <!-- ============ Why DONGXIAO: 1+3 editorial layout (1 hero + 3 small) ============ -->
+  <!-- 2026-10-14 P1-editorial-3: was a 2x2 grid of 4 equal cards. Now: 1 large
+       "From the Atelier" hero block (left 7/12) + 3 compact right blocks
+       (right 5/12, 3 stacked). Asymmetric magazine layout. -->
+  <section class="home-craft-section py-24 md:py-36 bg-background">
     <div class="container-narrow">
       <div class="max-w-3xl mb-20">
         <div class="eyebrow mb-8">
@@ -643,91 +648,102 @@ const IMG = {
             {t6('为什么选东霄', 'Why DONGXIAO', 'Warum DONGXIAO', 'Pourquoi', 'なぜ東霄', '왜 동소')}
           </span>
         </div>
-        <h2 class="text-4xl md:text-5xl font-light leading-[1.1] font-display">
-          {/* 改 4 (2026-10-08): 原 section 标题 "From product records to project discussion,
-              confirm cashmere specifications step by step" 改为 buyer 决策口径。
-              原标题讲“我们怎么做”，新标题讲“买家为什么要选我们”。
-              对应 4 个决策因素，跟证书、规模、订单流程一一对应。 */}
+        <h2 class="text-3xl md:text-5xl font-serif font-light leading-[1.1] tracking-[-0.015em]">
           {t6('B2B 买家选鄂尔多斯羊绒厂的四个事实依据', 'Four factual reasons B2B buyers choose our Ordos cashmere factory', 'Vier sachliche Gründe für die Wahl unserer Ordos-Kaschmirfabrik', 'Quatre raisons factuelles de choisir notre usine de cachemire d\u2019Ordos', 'オルドスを選ぶ4つの事実根拠', '오르도스 캐시미어 공장을 선택하는 4가지 사실 근거')}
         </h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
-        {/* 条目 01：原产可追溯 */}
-        <div class="space-y-6 reveal" data-reveal-delay="1">
-          <div class="aspect-[4/3] overflow-hidden hover-zoom relative">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-x-10 gap-y-16">
+        {/* Hero reason: Ordos origin, fiber-traceable (1) — 7 cols */}
+        <div class="md:col-span-7 relative">
+          <div class="relative aspect-[4/3] overflow-hidden mb-8">
             <img src={IMG.mongoliaGoat} alt="Inner Mongolia cashmere goat on Ordos plateau pasture, with combed fiber detail" class="w-full h-full object-cover" decoding="async" loading="lazy" />
+            {/* Large background watermark number */}
+            <div class="absolute -bottom-8 -right-2 md:-right-4 font-serif italic text-[180px] md:text-[260px] text-brand-copper/10 leading-none select-none pointer-events-none">
+              01
+            </div>
           </div>
-          <div class="flex items-baseline gap-4">
-            <span class="font-serif text-5xl text-brand-gold font-light">01</span>
-            <h3 class="font-serif text-2xl">{t6('鄂尔多斯原产可追溯', 'Ordos origin, fiber-traceable', 'Ordos-Herkunft, faser-rückverfolgbar', 'Origine Ordos, fibre traçable', 'オルドス原産地、繊維トレース可能', '오르도스 원산지, 섬유 추적 가능')}</h3>
+          <div class="flex items-baseline gap-4 mb-4">
+            <span class="font-serif italic text-sm text-brand-copper tracking-wide">
+              {locale === 'cn' ? '理由 一' : locale === 'ja' ? '理由 一' : locale === 'kr' ? '이유 일' : 'Reason 01'}
+            </span>
           </div>
+          <h3 class="font-serif text-3xl md:text-4xl font-light leading-[1.1] tracking-[-0.015em] mb-5">
+            {t6('鄂尔多斯原产可追溯', 'Ordos origin, fiber-traceable', 'Ordos-Herkunft, faser-rückverfolgbar', 'Origine Ordos, fibre traçable', 'オルドス原産地、繊維トレース可能', '오르도스 원산지, 섬유 추적 가능')}
+          </h3>
           <p class="text-muted-foreground leading-relaxed max-w-xl">
-            {/* 改 4: 文案口径从"使用产品记录中已列材质..."改成可验证事实。
-                 原产溯源是 B2B 买家决策的最强信号 — 一句具体地址+流程。 */}
             {t6('每批货物附原产地证书与牧民合作社 GPS 坐标（鄂尔多斯工业园区）。可按纤维批次回溯到合作社、采集季与处理厂。', 'Each batch ships with a Certificate of Origin listing the herder cooperative and approximate GPS coordinates of the Ordos plateau source pasture. Traceable back to cooperative, harvest season, and processing plant.', 'Jede Charge wird mit Ursprungszeugnis und ungefähren GPS-Koordinaten der Herkunft ausgeliefert; Rückverfolgbarkeit bis Kooperative, Saison und Verarbeitungswerk.', 'Chaque lot est accompagné d\u2019un certificat d\u2019origine indiquant la coopérative d\u2019éleveurs et les coordonnées GPS approximatives du pâturage d\u2019origine sur le plateau d\u2019Ordos.', '各バッチに原産地証明書とエルドス高原の牧場座標が付属。合作社、採取シーズン、加工工場まで追跡可能。', '각 배치에 원산지 증명서와 목장合作社 GPS 좌표가 첨부되어 合作社, 채집 시기, 가공 공장까지 추적 가능합니다.')}
           </p>
         </div>
 
-        {/* 条目 02：工厂规模 */}
-        <div class="space-y-6 md:pt-20 reveal" data-reveal-delay="2">
-          <div class="aspect-[4/3] overflow-hidden hover-zoom">
-            <img src={IMG.craftHand} alt="Cashmere dehairing line and sorting facility at Ordos factory" class="w-full h-full object-cover" decoding="async" loading="lazy" />
+        {/* Right column: 3 stacked compact reasons (5 cols) */}
+        <div class="md:col-span-5 space-y-12">
+          {/* Reason 02: 2002-founded */}
+          <div class="relative">
+            <div class="grid grid-cols-12 gap-4">
+              <div class="col-span-4 aspect-square overflow-hidden">
+                <img src={IMG.craftHand} alt="Cashmere dehairing line and sorting facility at Ordos factory" class="w-full h-full object-cover" decoding="async" loading="lazy" />
+              </div>
+              <div class="col-span-8">
+                <div class="flex items-baseline gap-3 mb-2">
+                  <span class="font-serif italic text-sm text-brand-copper tracking-wide">
+                    {locale === 'cn' ? '理由 二' : locale === 'ja' ? '理由 二' : locale === 'kr' ? '이유 이' : 'Reason 02'}
+                  </span>
+                </div>
+                <h3 class="font-serif text-xl md:text-2xl font-light leading-[1.15] tracking-[-0.015em] mb-3">
+                  {t6('2002 年建厂，38,000㎡ 自有设施', '2002-founded, 38,000 sqm self-owned facility', 'Gegründet 2002, 38.000 m² eigenes Werk', 'Fondée en 2002, usine propre de 38 000 m²', '2002年創業、38,000㎡ 自社施設', '2002년 설립, 38,000㎡ 자체 시설')}
+                </h3>
+                <p class="text-sm text-muted-foreground leading-relaxed">
+                  {t6('23 年历史，鄂尔多斯工业园区 38,000㎡ 自有产权设施，1,200+ 吨/年分梳能力。原产地可参观、可审计。', '23-year operating history with a 38,000 sqm self-owned facility and 1,200+ tons annual dehairing capacity. Site visits and audits are available by appointment.', '23 Jahre Geschichte, 38.000 m² eigenes Werk im Ordos-Industriepark und über 1.200 Tonnen jährliche Kämmkapazität. Werksbesuche und Audits nach Vereinbarung.', '23 ans d\u2019histoire, 38 000 m² en propre dans le parc industriel d\u2019Ordos et plus de 1 200 tonnes/an de capacité de peignage. Visites et audits sur rendez-vous.', '23年業歴、オルドス工業園38,000㎡の自社施設、1,200トン/年のコーム能力。視察・監査は予約で対応。', '23년 업력, 오르도스 산업단지 38,000㎡ 자가 시설, 1,200톤/년 코밍 능력. 방문 및 감사는 예약제.')}
+                </p>
+              </div>
+            </div>
           </div>
-          <div class="flex items-baseline gap-4">
-            <span class="font-serif text-5xl text-brand-gold font-light">02</span>
-            <h3 class="font-serif text-2xl">{t6('2002 年建厂，38,000㎡ 自有设施', '2002-founded, 38,000 sqm self-owned facility', 'Gegründet 2002, 38.000 m² eigenes Werk', 'Fondée en 2002, usine propre de 38 000 m²', '2002年創業、38,000㎡ 自社施設', '2002년 설립, 38,000㎡ 자체 시설')}</h3>
-          </div>
-          <p class="text-muted-foreground leading-relaxed max-w-xl">
-            {/* 改 4: 用 schema.org Organization 已声明的事实（23年 + 38,000㎡ + 1,200吨）。
-                 买家决定选工厂时"规模/容量"是硬门槛。 */}
-            {t6('23 年历史，鄂尔多斯工业园区 38,000㎡ 自有产权设施，1,200+ 吨/年分梳能力。原产地可参观、可审计。', '23-year operating history with a 38,000 sqm self-owned facility and 1,200+ tons annual dehairing capacity. Site visits and audits are available by appointment.', '23 Jahre Geschichte, 38.000 m² eigenes Werk im Ordos-Industriepark und über 1.200 Tonnen jährliche Kämmkapazität. Werksbesuche und Audits nach Vereinbarung.', '23 ans d\u2019histoire, 38 000 m² en propre dans le parc industriel d\u2019Ordos et plus de 1 200 tonnes/an de capacité de peignage. Visites et audits sur rendez-vous.', '23年業歴、オルドス工業園38,000㎡の自社施設、1,200トン/年のコーム能力。視察・監査は予約で対応。', '23년 업력, 오르도스 산업단지 38,000㎡ 자가 시설, 1,200톤/년 코밍 능력. 방문 및 감사는 예약제.')}
-          </p>
-        </div>
 
-        {/* 条目 03：合规证书 */}
-        <div class="space-y-6 reveal" data-reveal-delay="3">
-          <div class="aspect-[4/3] overflow-hidden hover-zoom">
-            <img src={IMG.shawlEmbroidered} alt="Cashmere yarn — natural fiber cones ready for spinning, with quality documentation" class="w-full h-full object-cover" decoding="async" loading="lazy" />
+          {/* Reason 03: certs */}
+          <div class="relative">
+            <div class="grid grid-cols-12 gap-4">
+              <div class="col-span-4 aspect-square overflow-hidden">
+                <img src={IMG.shawlEmbroidered} alt="Cashmere yarn — natural fiber cones ready for spinning, with quality documentation" class="w-full h-full object-cover" decoding="async" loading="lazy" />
+              </div>
+              <div class="col-span-8">
+                <div class="flex items-baseline gap-3 mb-2">
+                  <span class="font-serif italic text-sm text-brand-copper tracking-wide">
+                    {locale === 'cn' ? '理由 三' : locale === 'ja' ? '理由 三' : locale === 'kr' ? '이유 삼' : 'Reason 03'}
+                  </span>
+                </div>
+                <h3 class="font-serif text-xl md:text-2xl font-light leading-[1.15] tracking-[-0.015em] mb-3">
+                  {t6('OEKO-TEX、ISO 9001、BSCI 已审计', 'OEKO-TEX, ISO 9001, BSCI audited', 'OEKO-TEX, ISO 9001, BSCI auditiert', 'Audité OEKO-TEX, ISO 9001, BSCI', 'OEKO-TEX、ISO 9001、BSCI 監査済み', 'OEKO-TEX, ISO 9001, BSCI 감사 완료')}
+                </h3>
+                <p class="text-sm text-muted-foreground leading-relaxed">
+                  {t6('OEKO-TEX Standard 100、ISO 9001:2015、BSCI、Sedex SMETA 4 支柱审计。证书可下载；按项目可申请 GOTS、RWS。', 'OEKO-TEX Standard 100, ISO 9001:2015, BSCI, and Sedex SMETA 4-pillar audits are on file. Certificates are downloadable; GOTS and RWS are available by project request.', 'OEKO-TEX Standard 100, ISO 9001:2015, BSCI und Sedex SMETA 4-Säulen-Audits liegen vor. Zertifikate sind herunterladbar; GOTS und RWS auf Projektanfrage.', 'Audits OEKO-TEX Standard 100, ISO 9001:2015, BSCI et Sedex SMETA 4 piliers disponibles. Certificats téléchargeables ; GOTS et RWS sur demande projet.', 'OEKO-TEX Standard 100、ISO 9001:2015、BSCI、Sedex SMETA 4本柱監査済み。証明書はダウンロード可。GOTS、RWSは案件ごと対応。', 'OEKO-TEX Standard 100, ISO 9001:2015, BSCI, Sedex SMETA 4대 축 감사 완료. 인증서 다운로드 가능. GOTS, RWS는 프로젝트별 요청 가능.')}
+                </p>
+              </div>
+            </div>
           </div>
-          <div class="flex items-baseline gap-4">
-            <span class="font-serif text-5xl text-brand-gold font-light">03</span>
-            <h3 class="font-serif text-2xl">{t6('OEKO-TEX、ISO 9001、BSCI 已审计', 'OEKO-TEX, ISO 9001, BSCI audited', 'OEKO-TEX, ISO 9001, BSCI auditiert', 'Audité OEKO-TEX, ISO 9001, BSCI', 'OEKO-TEX、ISO 9001、BSCI 監査済み', 'OEKO-TEX, ISO 9001, BSCI 감사 완료')}</h3>
-          </div>
-          <p class="text-muted-foreground leading-relaxed max-w-xl">
-            {/* 改 4: 证书是 B2B 买家决定采购前的信任锚点。
-                 product-details.ts 中明确有 ISO 9001:2015 + OEKO-TEX Standard 100 + BSCI + Sedex SMETA。 */}
-            {t6('OEKO-TEX Standard 100、ISO 9001:2015、BSCI、Sedex SMETA 4 支柱审计。证书可下载；按项目可申请 GOTS、RWS。', 'OEKO-TEX Standard 100, ISO 9001:2015, BSCI, and Sedex SMETA 4-pillar audits are on file. Certificates are downloadable; GOTS and RWS are available by project request.', 'OEKO-TEX Standard 100, ISO 9001:2015, BSCI und Sedex SMETA 4-Säulen-Audits liegen vor. Zertifikate sind herunterladbar; GOTS und RWS auf Projektanfrage.', 'Audits OEKO-TEX Standard 100, ISO 9001:2015, BSCI et Sedex SMETA 4 piliers disponibles. Certificats téléchargeables ; GOTS et RWS sur demande projet.', 'OEKO-TEX Standard 100、ISO 9001:2015、BSCI、Sedex SMETA 4本柱監査済み。証明書はダウンロード可。GOTS、RWSは案件ごと対応。', 'OEKO-TEX Standard 100, ISO 9001:2015, BSCI, Sedex SMETA 4대 축 감사 완료. 인증서 다운로드 가능. GOTS, RWS는 프로젝트별 요청 가능.')}
-          </p>
-        </div>
 
-        {/* 条目 04：项目条款 */}
-        <div class="space-y-6 md:pt-20 reveal" data-reveal-delay="4">
-          <div class="aspect-[4/3] overflow-hidden hover-zoom relative">
-            <img src={IMG.knittingMill} alt="Cashmere knitwear production line — written terms per project" class="w-full h-full object-cover" decoding="async" loading="lazy" />
+          {/* Reason 04: written terms */}
+          <div class="relative">
+            <div class="grid grid-cols-12 gap-4">
+              <div class="col-span-4 aspect-square overflow-hidden">
+                <img src={IMG.knittingMill} alt="Cashmere knitwear production line — written terms per project" class="w-full h-full object-cover" decoding="async" loading="lazy" />
+              </div>
+              <div class="col-span-8">
+                <div class="flex items-baseline gap-3 mb-2">
+                  <span class="font-serif italic text-sm text-brand-copper tracking-wide">
+                    {locale === 'cn' ? '理由 四' : locale === 'ja' ? '理由 四' : locale === 'kr' ? '이유 사' : 'Reason 04'}
+                  </span>
+                </div>
+                <h3 class="font-serif text-xl md:text-2xl font-light leading-[1.15] tracking-[-0.015em] mb-3">
+                  {t6('每项目独立书面条款', 'Written terms per project', 'Schriftliche Bedingungen je Projekt', 'Conditions écrites par projet', '案件ごとに書面条件', '프로젝트별 서면 조건')}
+                </h3>
+                <p class="text-sm text-muted-foreground leading-relaxed">
+                  {t6('无框架协议 — 每一份 PO 收 30% 定金后书面确认条款。按目的地、规模和起订量逐单计算 FOB / CIF / EXW 报价。', 'No framework agreement — each PO is confirmed by 30% deposit and written terms. FOB / CIF / EXW quotes are calculated per PO based on destination, scale, and MOQ.', 'Kein Rahmenvertrag — jede Bestellung wird per 30 % Anzahlung und schriftlich bestätigt. FOB / CIF / EXW Angebote werden pro Bestellung anhand von Zielort, Volumen und MOQ kalkuliert.', 'Pas d\u2019accord-cadre — chaque PO est confirmé par un acompte de 30 % et des conditions écrites. Les cotations FOB / CIF / EXW sont calculées par PO selon destination, volume et MOQ.', '枠組み契約なし — 各 PO は 30% 前払いと書面で確認。FOB / CIF / EXW 見積もりは宛先、規模、MOQ に基づき都度算出。', '프레임워크 계약 없음 — 각 PO는 30% 계약금과 서면 조건 확인. FOB / CIF / EXW 견적은 목적지, 규모, MOQ에 따라 매번 산출.')}
+                </p>
+              </div>
+            </div>
           </div>
-          <div class="flex items-baseline gap-4">
-            <span class="font-serif text-5xl text-brand-gold font-light">04</span>
-            <h3 class="font-serif text-2xl">{t6('每项目独立书面条款', 'Written terms per project', 'Schriftliche Bedingungen je Projekt', 'Conditions écrites par projet', '案件ごとに書面条件', '프로젝트별 서면 조건')}</h3>
-          </div>
-          <p class="text-muted-foreground leading-relaxed max-w-xl">
-            {/* 改 4: 原"confirmed in writing"是空泛承诺；改成"每项目独立书面条款",
-                 让买家知道每 PO 都有专属合同，不是框架协议。 */}
-            {t6('不采用框架协议 — 每个 PO 由 30% 定金 + 书面条款确认。FOB / CIF / EXW 报价由目的地、项目规模、MOQ 决定，按 PO 独立核算。', 'No framework agreement — each PO is confirmed by 30% deposit and written terms. FOB / CIF / EXW quotes are calculated per PO based on destination, scale, and MOQ.', 'Kein Rahmenvertrag — jede Bestellung wird per 30% Anzahlung und schriftlichen Bedingungen bestätigt. FOB / CIF / EXW pro Bestellung kalkuliert.', 'Pas d\u2019accord-cadre — chaque commande est confirmée par acompte de 30 % et conditions écrites. FOB / CIF / EXW calculés par commande.', '包括契約なし — 各注文は30%前払いと書面で確定。FOB / CIF / EXWは注文ごとに算定。', '포괄 계약 없음 — 각 PO는 30% 계약금과 서면 조건으로 확정. FOB / CIF / EXW는 PO별로 산정.')}
-          </p>
         </div>
-      </div>
-
-      {/* 改 4: 删除了"6 圆形徽章"Project preparation section。
-           原 section 重复 4 步内容（规格/核验/包装/商务/目的地/文件）— 已在
-           01-04 决策因素中覆盖（每项证都解释了相关文档/项目流程）。
-           移除这块避免首页重复叙述同一信息。
-           导航定位到这个项目准备清单，buyer 可在 contact 页（询盘表单）直接提交。 */}
-      <div class="mt-16 text-center">
-        <a href={`/${locale}/contact/`} class="btn-tier-1 inline-flex items-center gap-2">
-          {t6('提交询盘，启动书面报价', 'Submit inquiry, begin written quotation', 'Anfrage senden, schriftliches Angebot starten', 'Envoyer une demande, devis écrit', 'お問い合わせ送信、書面見積もりを開始', '문의 제출, 서면 견적 시작')}
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-        </a>
       </div>
     </div>
   </section>
@@ -736,68 +752,66 @@ const IMG = {
      section（line 750-784）已被删除 — 信息已在新 4 个决策因素中覆盖，
      且重复 "confirmed in writing" 4 次（visitor 视角是冗余噪音）。 */}
 
-  <!-- ============ 产品中心：5 大分类 + 精选产品 ============ -->
-  <section class="home-catalog-section py-20 md:py-28 bg-background">
+  <!-- ============ Product Center: 6 categories (editorial 3x2 grid, no product thumbnails) ============ -->
+  <!-- 2026-10-14 P1-editorial-3: dropped the 15 product-card row (those products
+       are also featured on /products/ — duplicate noise). Replaced with
+       3x2 large editorial category cards: numbered kicker, category name,
+       small description, hover-underline. Plus a single "Explore catalog"
+       link below. Less visual weight, more magazine-style restraint. -->
+  <section class="home-catalog-section py-24 md:py-36 bg-background" id="home-catalog">
     <div class="container-narrow">
-      <div class="flex items-end justify-between mb-12 gap-6 flex-wrap">
-        <div>
+      <div class="flex items-end justify-between mb-16 gap-6 flex-wrap">
+        <div class="max-w-2xl">
           <div class="eyebrow mb-6">
             <span class="text-xs tracking-[0.3em] text-brand-gold uppercase font-medium">{t6('产品中心', 'Product Center', 'Produktzentrum', 'Centre Produits', '製品センター', '제품 센터')}</span>
           </div>
-          <h2 class="text-2xl md:text-4xl font-light leading-tight text-balance font-display">
-            {t6('6 大品类 · 从原料到家纺', '6 categories, from raw fiber to home textile', '6 Kategorien, vom Rohmaterial bis zur Heimtextilie', '6 catégories, de la fibre au textile de maison', '6カテゴリー、原料からホームテキスタイルまで', '6개 카테고리, 원료부터 홈텍스타일까지')}
+          <h2 class="text-3xl md:text-5xl font-serif font-light leading-[1.08] tracking-[-0.015em] text-foreground">
+            {t6('六大品类 · 从原料到家纺', 'Six categories, from raw fiber to home textile', 'Sechs Kategorien, vom Rohmaterial bis zur Heimtextilie', 'Six catégories, de la fibre au textile de maison', '6カテゴリー、原料からホームテキスタイルまで', '6개 카테고리, 원료부터 홈텍스타일까지')}
           </h2>
         </div>
-        <a href={`/${locale}/products/`} class="text-link-lux text-sm">
-          {t6('浏览全部产品 →', 'View all products →', 'Alle Produkte ansehen →', 'Voir tous les produits →', 'すべての製品を見る →', '전체 제품 보기 →')}
+        <a href={`/${locale}/products/`} class="font-serif italic text-base md:text-lg text-foreground border-b border-foreground/40 hover:border-brand-copper hover:text-brand-copper pb-0.5 transition-colors">
+          {t6('查看全部 →', 'Explore catalog →', 'Katalog ansehen →', 'Voir le catalogue →', 'カタログを見る →', '카탈로그 보기 →')}
         </a>
       </div>
 
-      <!-- 5 大分类入口 -->
-      <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-16">
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-px bg-border/40 border border-border/40">
         {categoryCards.map((c, i) => {
-          // 2026-08-29 SEO: c.slug now uses simple IDs (hats, scarves, etc.)
-          // matching the /[locale]/category/cashmere-<id>/ landing pages.
           const cat = productsData.categories.find((x: any) => x.id === c.slug);
-          // Route homepage category tiles to the dedicated SEO landing pages
-          // with unique title/H1/canonical + CollectionPage schema.
+          const count = cat && cat.products ? cat.products.length : 0;
           const categoryHref = `/${locale}/category/cashmere-${c.slug}/`;
           return (
-            <a href={categoryHref} class="group p-6 hover:bg-brand-cream/40 transition-colors duration-300 flex flex-col justify-between min-h-[150px] border-t border-border/40 first:border-t-0 md:border-t-0 md:border-r md:last:border-r-0">
-              <div>
-                <div class="font-display italic text-sm text-brand-camel tracking-tight mb-2">0{i + 1}</div>
-                <h3 class="font-serif text-xl leading-tight group-hover:text-brand-chocolate transition-colors">{c.name}</h3>
+            <a href={categoryHref} class="group relative bg-background p-8 md:p-10 flex flex-col justify-between min-h-[260px] md:min-h-[300px] transition-colors duration-300 hover:bg-brand-cream/40">
+              {/* Top-right: large italic number watermark */}
+              <div class="absolute top-6 right-6 font-serif italic text-5xl md:text-6xl text-brand-copper/15 leading-none select-none">
+                {String(i + 1).padStart(2, '0')}
               </div>
-              <div class="flex items-center justify-between mt-6">
-                <span class="text-xs italic text-muted-foreground">{cat && cat.products ? cat.products.length : ''} {t6('款', 'styles', 'Modelle', 'modèles', 'スタイル', '스타일')}</span>
-                <svg class="w-4 h-4 text-brand-chocolate group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+              {/* Center: category name + count */}
+              <div class="relative">
+                <p class="font-serif italic text-xs text-brand-copper tracking-wide mb-3">
+                  {locale === 'cn' ? '品类' : 'Category'}
+                </p>
+                <h3 class="font-serif text-2xl md:text-3xl font-light leading-[1.15] tracking-[-0.01em] group-hover:text-brand-chocolate transition-colors">
+                  {c.name}
+                </h3>
+              </div>
+              {/* Bottom: count + arrow */}
+              <div class="relative flex items-center justify-between border-t border-border/40 pt-5 mt-6">
+                <span class="font-serif italic text-sm text-muted-foreground">
+                  {count} {t6('款', 'styles', 'Modelle', 'modèles', 'スタイル', '스타일')}
+                </span>
+                <span class="font-serif italic text-sm text-foreground/60 group-hover:text-brand-copper group-hover:translate-x-1 inline-block transition-all">
+                  →
+                </span>
               </div>
             </a>
           );
         })}
       </div>
 
-      {/* 改 5 (2026-10-08): "Popular B2B Cashmere Searches" section 已从首页移除。
-           14 个 SEO-only 长尾链接 (TAG_PAGES 映射) 在首页占位过重，
-           与产品矩阵重复，且影响 B2B 逻辑表达。
-           现产品中心仅留 5 个分类卡 + 15 张精选产品卡 — 一个 buyer 出口。
-           14 个 long-tail 的 inbound link 流量 已转移到
-           src/content/blog/en/popular-b2b-cashmere-searches.md (blog 资产)。 */}
-
-      <!-- 精选产品（每类 3 款，共 15 张） -->
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
-        {featured.map((p) => (
-          <a href={`/${locale}/products/${p.id}/`} class="group block border border-border overflow-hidden hover:border-brand-gold hover:shadow-lg transition-colors transition-shadow duration-300">
-            <div class="aspect-square bg-brand-cream overflow-hidden">
-              <img src={homeImg(p)} alt={p.name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" decoding="async" loading="lazy" />
-            </div>
-            <div class="p-4">
-              <p class="text-[10px] uppercase tracking-wider text-muted-foreground mb-1">{p.categoryName}</p>
-              <h3 class="text-sm font-medium leading-snug line-clamp-2 mb-2 group-hover:text-brand-chocolate transition-colors">{p.name}</h3>
-              <p class="text-xs text-brand-red font-medium">{t6('查看已列规格 →', 'View listed specifications →', 'Aufgeführte Spezifikationen ansehen →', 'Voir les spécifications listées →', '記載仕様を見る →', '기재 사양 보기 →')}</p>
-            </div>
-          </a>
-        ))}
+      <div class="mt-12 text-center">
+        <a href={`/${locale}/products/`} class="font-serif italic text-base text-foreground border-b border-foreground/40 hover:border-brand-copper hover:text-brand-copper pb-0.5 transition-colors">
+          {t6('浏览全部 663 条产品记录 →', 'Browse all 663 product records →', 'Alle 663 Produktdatensätze ansehen →', 'Parcourir les 663 fiches produit →', '663 件の製品記録を見る →', '663개 제품 기록 전체 보기 →')}
+        </a>
       </div>
     </div>
   </section>
