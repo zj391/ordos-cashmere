@@ -296,13 +296,22 @@ const IMG = {
   <link slot="head" rel="preload" as="image" href={IMG.uiHero} fetchpriority="high" />
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/`} />
 
-  <!-- ============ HERO (editorial 2-column: text + portrait image) ============ -->
-  <!-- 2026-10-14 P1-editorial: single hero image (no carousel), italic serif eyebrow,
-       1 primary CTA + 2 text-link CTAs, portrait right column with caption. -->
+  <!-- ============ HERO (editorial: magazine cover, 3-col, with image bleed) ============ -->
+  <!-- 2026-10-14 P1-editorial-2: magazine-cover treatment — column rule on left,
+       Vol/FW metadata in top-right, image bleeds below the fold, decorative
+       ornament between kicker and h1, all type in serif with italic accents. -->
   <section class="home-enhanced-hero relative bg-background text-foreground overflow-hidden">
-    <!-- Editorial canvas: cream background + tall portrait image on the right -->
+
+    <!-- Top-right magazine metadata (desktop only) — small uppercase tracking -->
+    <div class="hidden lg:block absolute top-8 right-8 xl:right-12 z-20 text-right">
+      <p class="font-serif italic text-[11px] tracking-[0.18em] uppercase text-foreground/55">
+        {locale === 'cn' ? '卷 24 · 羊绒特辑 · 二〇二六秋冬季' : locale === 'ja' ? 'Vol. XXIV · カシミア特集 · 2026-27 AW' : locale === 'kr' ? 'Vol. XXIV · 캐시미어 특집 · 2026-27 F/W' : 'Vol. XXIV · Cashmere Atelier · 2026-27 F/W'}
+      </p>
+    </div>
+
+    <!-- Background image: large portrait on right, bleeds below the section (overlaps metrics) -->
     <div class="absolute inset-0 hidden lg:block" aria-hidden="true">
-      <div class="absolute top-0 right-0 h-full w-[55%] overflow-hidden">
+      <div class="absolute top-0 right-0 h-[110%] w-[50%] overflow-hidden">
         <img
           src={IMG.uiHero}
           alt="Premium cashmere coat on Ordos highland — material-led B2B collection inspiration"
@@ -311,11 +320,20 @@ const IMG = {
           fetchpriority="high"
           decoding="async"
         />
-        <!-- Soft cream-to-transparent gradient at the very left so the image
-             blends into the text-side background. -->
-        <div class="absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background to-transparent"></div>
+        <!-- Soft cream-to-transparent gradient on the left so the image
+             blends into the text-side background; deeper fade at top-right
+             to anchor the magazine metadata. -->
+        <div class="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-background via-background/80 to-transparent"></div>
+        <div class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background/60 to-transparent"></div>
+        <!-- Bottom-edge fade so image bleeds smoothly into next section -->
+        <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent"></div>
       </div>
+      <!-- Image caption (editorial credit), positioned under the image in the column -->
+      <p class="absolute bottom-6 right-8 xl:right-12 z-20 max-w-md text-right font-serif italic text-[11px] text-foreground/60 leading-snug">
+        {locale === 'cn' ? '封面：内蒙古高原，2026 拍摄。模特身着本厂 100% 羊绒双面呢大衣。' : locale === 'ja' ? '表紙：内モンゴル高原、2026年撮影。モデル：本工場製 100% カシミア ダブルフェイス コート。' : locale === 'kr' ? '표지: 내몽골 고원, 2026 촬영. 모델은 본 공장 100% 캐시미어 더블페이스 코트.' : 'Cover: Inner Mongolian highland, FW 2026. Model wears 100% cashmere double-face coat, woven in our Ordos atelier.'}
+      </p>
     </div>
+
     <div class="absolute inset-0 lg:hidden" aria-hidden="true">
       <img
         src={IMG.uiHero}
@@ -328,21 +346,27 @@ const IMG = {
       <div class="absolute inset-0 bg-gradient-to-b from-background/40 via-background/30 to-background"></div>
     </div>
 
-    <div class="relative container-narrow min-h-[88vh] flex items-center py-24 lg:py-32">
-      <div class="max-w-2xl">
-        <!-- Italic serif eyebrow (kicker) — editorial magazine style -->
+    <div class="relative container-narrow min-h-[92vh] flex items-center py-28 lg:py-40">
+      <div class="relative max-w-2xl pl-8 lg:pl-12">
+        <!-- Vertical column rule (magazine masthead accent) -->
+        <div class="absolute left-0 top-2 bottom-2 w-px bg-brand-copper/40" aria-hidden="true"></div>
+
+        <!-- Italic serif eyebrow (kicker) -->
         <p class="font-serif italic text-sm md:text-base text-brand-copper mb-6 tracking-wide">
           {locale === 'cn' ? '鄂尔多斯 · 自有工厂 · 二〇〇二年建' : locale === 'ja' ? 'オルドス · 自社工場 · 2002年創業' : locale === 'kr' ? '오르도스 · 자가 공장 · 2002년 설립' : locale === 'de' ? 'Ordos · Eigene Manufaktur · Gegründet 2002' : locale === 'fr' ? 'Ordos · Usine propre · Fondée en 2002' : 'Ordos · Self-owned mill · Est. 2002'}
         </p>
 
-        <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light leading-[1.04] tracking-[-0.02em] mb-8 text-foreground" set:html={c.title.replace(/\n/g, '<br/>')} />
+        <!-- Decorative ornament (small typographic flourish) -->
+        <div class="font-serif italic text-brand-copper/60 text-2xl mb-2 select-none" aria-hidden="true">§</div>
 
-        <!-- Italic serif sub-kicker (replaces generic body copy) -->
-        <p class="font-serif italic text-lg md:text-xl text-foreground/70 mb-12 leading-relaxed max-w-xl">
+        <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] 2xl:text-[6.5rem] font-light leading-[1.02] tracking-[-0.025em] mb-10 text-foreground" set:html={c.title.replace(/\n/g, '<br/>')} />
+
+        <!-- Italic serif sub-kicker -->
+        <p class="font-serif italic text-lg md:text-xl lg:text-2xl text-foreground/70 mb-14 leading-snug max-w-lg">
           {locale === 'cn' ? '原料 · 纱线 · 面料 · 针织成衣 — 一座工厂完成每一道工序。' : locale === 'ja' ? '原料・糸・生地・ニット — 一つの工場で全工程を。' : locale === 'kr' ? '원료, 원사, 직물, 니트웨어 — 한 공장에서 모든 공정을. ' : 'From raw fiber to finished knitwear — under one roof in Inner Mongolia.'}
         </p>
 
-        <!-- 1 primary + 2 text-link CTAs (editorial: hierarchy without competing buttons) -->
+        <!-- 1 primary + 2 text-link CTAs -->
         <div class="flex flex-col sm:flex-row sm:items-baseline gap-6 sm:gap-10">
           <a href={`/${locale}/contact/`} class="btn-tier-1 group">
             {c.cta}
@@ -359,7 +383,7 @@ const IMG = {
         </div>
 
         <!-- Caption (small, editorial) under the CTAs -->
-        <p class="mt-12 text-[11px] md:text-xs uppercase tracking-[0.25em] text-foreground/55 font-medium">
+        <p class="mt-14 text-[11px] md:text-xs uppercase tracking-[0.25em] text-foreground/55 font-medium">
           {locale === 'cn' ? '供 B2B 采购沟通 · 项目条件以书面方式确认' : locale === 'ja' ? 'B2B 調達のご連絡 · 案件条件は書面で確認' : locale === 'kr' ? 'B2B 소싱 문의 · 프로젝트 조건은 서면 확인' : 'For B2B sourcing — project terms confirmed in writing'}
         </p>
       </div>
@@ -367,7 +391,7 @@ const IMG = {
   </section>
 
   <!-- ============ METRICS BAR（editorial: italic kicker + huge numbers with periods） ============ -->
-  <section class="home-proof-band border-y border-border/40 bg-brand-cream/30 py-20">
+  <section class="home-proof-band border-y border-border/40 bg-brand-cream/30 py-24 mt-20">
     <div class="container-narrow">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-0 md:divide-x md:divide-border/40">
         {c.metrics.map((m, i) => {
