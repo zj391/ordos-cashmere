@@ -1,0 +1,259 @@
+---
+/**
+ * Inquiry Cart Dashboard — a small client island that shows aggregate
+ * stats (total items, total pcs, materials, categories) and quick filter
+ * chips for the inquiry list. Pairs with /[locale]/cart/ which renders
+ * the editable InquiryCart island below.
+ */
+import { LOCALES, isLocale, pickLocale } from '@/lib/i18n';
+
+interface Props {
+  locale: string;
+}
+
+const { locale: rawLocale } = Astro.props;
+const locale = isLocale(rawLocale) ? pickLocale(rawLocale) : 'en';
+
+const t: Record<string, Record<string, string>> = {
+  en: {
+    kicker: 'Inquiry summary',
+    title: 'Project at a glance',
+    subtitle: 'A snapshot of your inquiry — totals, materials, and categories. The mill team uses the same view internally to scope your quotation.',
+    totalItems: 'styles',
+    totalPcs: 'pcs total',
+    totalMaterials: 'materials',
+    totalCategories: 'categories',
+    mixLabel: 'Material mix',
+    noItems: 'No items yet. Add products from any product page.',
+    filterAll: 'All',
+    readyToSend: 'Ready to send?',
+  },
+  cn: {
+    kicker: '询价摘要',
+    title: '项目一瞥',
+    subtitle: '您的询价快照 — 总数、材质、品类。工厂内部使用相同视图来评估您的报价范围。',
+    totalItems: '款',
+    totalPcs: '件总计',
+    totalMaterials: '种材质',
+    totalCategories: '个品类',
+    mixLabel: '材质占比',
+    noItems: '尚无项目。从任何产品页添加。',
+    filterAll: '全部',
+    readyToSend: '准备发送？',
+  },
+  de: {
+    kicker: 'Anfrage-Übersicht', title: 'Projekt auf einen Blick', subtitle: 'Eine Übersicht Ihrer Anfrage — Summen, Materialien, Kategorien.',
+    totalItems: 'Styles', totalPcs: 'Stk gesamt', totalMaterials: 'Materialien', totalCategories: 'Kategorien', mixLabel: 'Materialmix', noItems: 'Noch keine Artikel.', filterAll: 'Alle', readyToSend: 'Bereit zum Senden?',
+  },
+  fr: {
+    kicker: 'Résumé', title: 'Projet en un coup d\'œil', subtitle: 'Aperçu de votre demande — totaux, matières, catégories.',
+    totalItems: 'modèles', totalPcs: 'pcs total', totalMaterials: 'matières', totalCategories: 'catégories', mixLabel: 'Mix matières', noItems: 'Aucun article.', filterAll: 'Tout', readyToSend: 'Prêt à envoyer?',
+  },
+  ja: {
+    kicker: '概算', title: 'プロジェクト概要', subtitle: '見積もりのスナップショット — 合計、素材、カテゴリー。', totalItems: 'スタイル', totalPcs: '点合計', totalMaterials: '素材', totalCategories: 'カテゴリー', mixLabel: '素材構成', noItems: 'アイテムなし。', filterAll: '全て', readyToSend: '送信準備OK?',
+  },
+  kr: {
+    kicker: '요약', title: '프로젝트 한눈에', subtitle: '문의 요약 — 합계, 소재, 카테고리.', totalItems: '스타일', totalPcs: '개 합계', totalMaterials: '소재', totalCategories: '카테고리', mixLabel: '소재 구성', noItems: '아이템 없음.', filterAll: '전체', readyToSend: '보낼 준비?',
+  },
+};
+const T = (k: keyof typeof t.en) => t[locale]?.[k] || t.en[k];
+---
+
+<aside
+  id="inquiry-dashboard"
+  class="inquiry-dashboard border border-border/60 bg-brand-cream/30 px-5 py-4 mb-6"
+  aria-label={T('title')}
+>
+  <p class="font-serif italic text-[11px] text-brand-copper tracking-wide mb-1">
+    {T('kicker')}
+  </p>
+  <h2 class="font-serif text-2xl md:text-3xl font-light leading-tight mb-2 text-foreground">
+    {T('title')}
+  </h2>
+  <p class="text-sm text-muted-foreground leading-relaxed max-w-2xl mb-5">
+    {T('subtitle')}
+  </p>
+
+  <!-- 4 stat tiles -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-border/40 border border-border/40 mb-5" data-dx-stats>
+    <div class="bg-background px-4 py-4">
+      <p class="font-serif italic text-[10px] text-brand-copper tracking-wide uppercase mb-1.5">
+        {T('totalItems')}
+      </p>
+      <p class="font-serif text-3xl font-light leading-none text-foreground" data-stat="items">0</p>
+    </div>
+    <div class="bg-background px-4 py-4">
+      <p class="font-serif italic text-[10px] text-brand-copper tracking-wide uppercase mb-1.5">
+        {T('totalPcs')}
+      </p>
+      <p class="font-serif text-3xl font-light leading-none text-foreground" data-stat="pcs">0</p>
+    </div>
+    <div class="bg-background px-4 py-4">
+      <p class="font-serif italic text-[10px] text-brand-copper tracking-wide uppercase mb-1.5">
+        {T('totalMaterials')}
+      </p>
+      <p class="font-serif text-3xl font-light leading-none text-foreground" data-stat="materials">0</p>
+    </div>
+    <div class="bg-background px-4 py-4">
+      <p class="font-serif italic text-[10px] text-brand-copper tracking-wide uppercase mb-1.5">
+        {T('totalCategories')}
+      </p>
+      <p class="font-serif text-3xl font-light leading-none text-foreground" data-stat="categories">0</p>
+    </div>
+  </div>
+
+  <!-- Material mix bars -->
+  <div data-dx-mix class="hidden">
+    <p class="font-serif italic text-[11px] text-brand-copper tracking-wide mb-2">
+      {T('mixLabel')}
+    </p>
+    <div class="space-y-1.5" data-dx-mix-bars></div>
+  </div>
+
+  <!-- Filter chips (active when user clicks, broadcasts event to InquiryCart island) -->
+  <div class="flex flex-wrap items-center gap-2 pt-4 border-t border-border/40" data-dx-filter-chips>
+    <span class="font-serif italic text-[11px] text-brand-copper tracking-wide uppercase mr-2">
+      {locale === 'cn' ? '按材质筛选' : 'Filter by material'}
+    </span>
+    <button
+      type="button"
+      data-dx-filter="all"
+      data-dx-filter-label={T('filterAll')}
+      class="dx-filter-chip text-xs px-3 py-1 border border-foreground bg-foreground text-background font-medium transition-colors"
+    >{T('filterAll')} (<span data-dx-filter-count="all">0</span>)</button>
+    <!-- Material chips are populated by JS based on cart contents -->
+  </div>
+
+  <!-- Empty state message (visible when cart is empty) -->
+  <p class="hidden text-sm text-muted-foreground italic mt-4" data-dx-empty>{T('noItems')}</p>
+</aside>
+
+<script is:inline>
+  (function () {
+    var KEY = 'dx-inquiry-cart-v1';
+    var dashboard = document.getElementById('inquiry-dashboard');
+    if (!dashboard) return;
+
+    function readCart() {
+      try {
+        var raw = localStorage.getItem(KEY);
+        if (!raw) return [];
+        var parsed = JSON.parse(raw);
+        // Both {items: []} and [] are valid shapes across the codebase.
+        if (Array.isArray(parsed)) return parsed;
+        if (Array.isArray(parsed.items)) return parsed.items;
+        return [];
+      } catch (e) { return []; }
+    }
+
+    function writeCart(items) {
+      try {
+        localStorage.setItem(KEY, JSON.stringify({ items: items, updatedAt: Date.now() }));
+      } catch (e) {}
+    }
+
+    function detectMaterial(item) {
+      // Heuristics: derive a material bucket from categoryId + name.
+      var cat = (item.categoryId || '').toLowerCase();
+      var name = (item.name || '').toLowerCase();
+      if (cat === 'yarn' || /yarn|cone|nm\b|worsted/.test(name)) return 'Yarn';
+      if (cat === 'blankets' || /blanket|throw|baby/.test(name)) return 'Blankets';
+      if (cat === 'hats' || /hat|beanie|beret|cap/.test(name)) return 'Hats';
+      if (cat === 'scarves' || /scarf|wrap|stole/.test(name)) return 'Scarves';
+      if (cat === 'sweaters' || /sweater|cardigan|vest|pullover/.test(name)) return 'Knitwear';
+      if (cat === 'accessories' || /glove|sock|trouser|pant/.test(name)) return 'Accessories';
+      return 'Other';
+    }
+
+    function render() {
+      var items = readCart();
+      var totalPcs = 0;
+      var mats = {};
+      var cats = {};
+      items.forEach(function (it) {
+        totalPcs += parseInt(it.qty || it.moq || 1, 10);
+        var m = detectMaterial(it);
+        mats[m] = (mats[m] || 0) + (parseInt(it.qty || it.moq || 1, 10));
+        var c = (it.categoryId || 'other').toLowerCase();
+        cats[c] = (cats[c] || 0) + 1;
+      });
+
+      // 4 stat tiles
+      var setStat = function (key, val) {
+        var el = dashboard.querySelector('[data-stat="' + key + '"]');
+        if (el) el.textContent = String(val);
+      };
+      setStat('items', items.length);
+      setStat('pcs', totalPcs);
+      setStat('materials', Object.keys(mats).length);
+      setStat('categories', Object.keys(cats).length);
+
+      // Material mix bars (only when items present)
+      var mix = dashboard.querySelector('[data-dx-mix]');
+      var mixBars = dashboard.querySelector('[data-dx-mix-bars]');
+      var empty = dashboard.querySelector('[data-dx-empty]');
+      if (items.length === 0) {
+        if (mix) mix.classList.add('hidden');
+        if (empty) empty.classList.remove('hidden');
+      } else {
+        if (mix) mix.classList.remove('hidden');
+        if (empty) empty.classList.add('hidden');
+        if (mixBars) {
+          var totalMix = totalPcs || 1;
+          var matOrder = Object.keys(mats).sort(function (a, b) { return mats[b] - mats[a]; });
+          var html = matOrder.map(function (m) {
+            var pct = Math.round((mats[m] / totalMix) * 100);
+            return '<div class="flex items-center gap-3"><span class="font-serif text-xs text-foreground w-24 shrink-0">' + m + '</span><div class="flex-1 h-1.5 bg-border/40 overflow-hidden"><div class="h-full bg-brand-copper" style="width:' + pct + '%"></div></div><span class="font-serif text-xs text-muted-foreground w-12 text-right tabular-nums">' + pct + '%</span></div>';
+          }).join('');
+          mixBars.innerHTML = html;
+        }
+      }
+
+      // Filter chips: rebuild with material + "all"
+      var chipContainer = dashboard.querySelector('[data-dx-filter-chips]');
+      if (chipContainer) {
+        // Keep the kicker label, the "All" button, then add material chips
+        var existing = chipContainer.querySelectorAll('button[data-dx-filter]');
+        existing.forEach(function (b) { b.remove(); });
+        var activeFilter = chipContainer.getAttribute('data-active-filter') || 'all';
+
+        // "All" button
+        var allBtn = document.createElement('button');
+        allBtn.type = 'button';
+        allBtn.setAttribute('data-dx-filter', 'all');
+        allBtn.className = 'dx-filter-chip text-xs px-3 py-1 border font-medium transition-colors ' + (activeFilter === 'all' ? 'border-foreground bg-foreground text-background' : 'border-border text-foreground/70 hover:border-foreground');
+        allBtn.innerHTML = (chipContainer.querySelector('span') ? '' : '') + 'All (<span data-dx-filter-count="all">' + items.length + '</span>)';
+        allBtn.addEventListener('click', function () { setFilter('all'); });
+        chipContainer.appendChild(allBtn);
+
+        // Material chips (only those present in cart)
+        Object.keys(mats).sort(function (a, b) { return mats[b] - mats[a]; }).forEach(function (m) {
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.setAttribute('data-dx-filter', m);
+          btn.className = 'dx-filter-chip text-xs px-3 py-1 border font-medium transition-colors ' + (activeFilter === m ? 'border-foreground bg-foreground text-background' : 'border-border text-foreground/70 hover:border-foreground');
+          btn.textContent = m + ' (' + mats[m] + ' pcs)';
+          btn.addEventListener('click', function () { setFilter(m); });
+          chipContainer.appendChild(btn);
+        });
+      }
+    }
+
+    function setFilter(value) {
+      dashboard.setAttribute('data-active-filter', value);
+      render();
+      // Broadcast to InquiryCart island to filter its visible items.
+      try {
+        window.dispatchEvent(new CustomEvent('dx-cart-filter', { detail: { filter: value } }));
+      } catch (e) {}
+    }
+
+    render();
+    window.addEventListener('storage', function (e) {
+      if (e.key === KEY) render();
+    });
+    window.addEventListener('dx-cart-updated', render);
+    // Re-render periodically to catch programmatic updates within same tab.
+    setInterval(render, 1500);
+  })();
+</script>

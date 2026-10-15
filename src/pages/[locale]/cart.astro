@@ -13,6 +13,7 @@ import Footer from '@/components/Footer.astro';
 import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
 import InquiryCart from '@/components/islands/InquiryCart.tsx';
+import InquiryDashboard from '@/components/InquiryDashboard.astro';
 import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
 import { localePath } from '@/lib/i18n';
 
@@ -51,6 +52,7 @@ const T = (k: string) => t[locale]?.[k] || t.en[k] || k;
 
   <section class="py-12 md:py-16 bg-background">
     <div class="container-narrow">
+      <InquiryDashboard locale={locale} />
       <InquiryCart client:load locale={locale} mode="full" />
     </div>
   </section>
