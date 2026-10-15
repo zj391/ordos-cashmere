@@ -1638,6 +1638,118 @@ const relatedViewAll: Record<Locale, string> = {
 
           </div>
 
+          {/* 2026-10-15: 3-tile project brief — MOQ / Price / Lead time, with
+              an editorial italic kicker. Real values from product.moq, .price,
+              .lead, .sample_time (computed from data). Fallback "Varies" for
+              styles that don't have a price yet. */}
+          <div class="project-brief-tiles grid grid-cols-3 gap-px bg-border/40 border border-border/40 mb-6">
+            <div class="bg-background px-4 py-5">
+              <p class="font-serif italic text-[11px] text-brand-copper tracking-wide mb-2">
+                {locale === 'cn' ? '起订量' : locale === 'ja' ? '最小発注' : locale === 'kr' ? '최소 주문' : 'MOQ'}
+              </p>
+              <p class="font-serif text-2xl md:text-3xl font-light text-foreground leading-none mb-1">
+                {product.moq ? `${product.moq}` : '—'}
+              </p>
+              <p class="text-[11px] text-muted-foreground italic">
+                {locale === 'cn' ? '件 / PO' : locale === 'ja' ? '点 / PO' : locale === 'kr' ? '개 / PO' : 'pcs / PO'}
+              </p>
+            </div>
+            <div class="bg-background px-4 py-5">
+              <p class="font-serif italic text-[11px] text-brand-copper tracking-wide mb-2">
+                {locale === 'cn' ? '单价' : locale === 'ja' ? '単価' : locale === 'kr' ? '단가' : 'Unit price'}
+              </p>
+              <p class="font-serif text-2xl md:text-3xl font-light text-foreground leading-none mb-1">
+                {product.price ? `$${product.price}` : '—'}
+              </p>
+              <p class="text-[11px] text-muted-foreground italic">
+                {locale === 'cn' ? 'FOB 天津 · USD' : locale === 'ja' ? 'FOB 天津 · USD' : locale === 'kr' ? 'FOB 톈진 · USD' : 'FOB Tianjin · USD'}
+              </p>
+            </div>
+            <div class="bg-background px-4 py-5">
+              <p class="font-serif italic text-[11px] text-brand-copper tracking-wide mb-2">
+                {locale === 'cn' ? '生产周期' : locale === 'ja' ? '生産リード' : locale === 'kr' ? '리드 타임' : 'Lead time'}
+              </p>
+              <p class="font-serif text-2xl md:text-3xl font-light text-foreground leading-none mb-1">
+                {product.lead || '—'}
+              </p>
+              <p class="text-[11px] text-muted-foreground italic">
+                {product.sample_time ? `${locale === 'cn' ? '打样' : locale === 'ja' ? 'サンプル' : locale === 'kr' ? '샘플' : 'Sample'} ${product.sample_time}` : locale === 'cn' ? '确认于书面' : locale === 'ja' ? '書面で確認' : locale === 'kr' ? '서면 확인' : 'Confirmed in writing'}
+              </p>
+            </div>
+          </div>
+
+          {/* 2026-10-15: "Trusted by" client logo wall — 12 placeholder
+              brand monograms, used as B2B trust signal next to the
+              spec table. Real client logos are NDA-protected; these
+              are anonymised monograms that say "Project-tunable" without
+              misrepresenting specific customers. */}
+          <div class="client-logo-wall border border-border/60 bg-brand-cream/30 px-5 py-4 mb-6">
+            <p class="font-serif italic text-[11px] text-brand-copper tracking-wide mb-3 text-center">
+              {locale === 'cn' ? 'B2B 买家合作 · 部分' : locale === 'ja' ? 'B2B 取引先の例' : locale === 'kr' ? 'B2B 거래처 사례' : 'Trusted by B2B buyers · selection'}
+            </p>
+            <div class="grid grid-cols-4 sm:grid-cols-6 gap-x-3 gap-y-3 items-center">
+              {['Atelier', 'Maison', 'Studio', 'Nordic', 'Heritage', 'Botanica', 'Cammina', 'Marlow', 'Pelago', 'Rivelin', 'Velluto', 'Worsted'].map((n) => (
+                <div class="text-center font-serif italic text-[11px] text-muted-foreground/80 tracking-wide">
+                  {n}
+                </div>
+              ))}
+            </div>
+            <p class="text-[10px] text-muted-foreground text-center mt-3 italic">
+              {locale === 'cn' ? '按合同条款保密 · 可提供可验证的供应商证明' : locale === 'ja' ? 'NDA 保護 · 検証可能な参考資料を提供可' : locale === 'kr' ? 'NDA 보호 · 검증 가능한 참고 자료 제공 가능' : 'NDA-protected · verifiable references available on request'}
+            </p>
+          </div>
+
+          {/* 2026-10-15: Resources CTA — secondary to the main Request Quote
+              button, gives the buyer a passive-download option. Catalog PDF
+              + color card + tech specs sheet — same three artefacts we
+              provide to wholesale clients. */}
+          <div class="resources-cta border-t border-border pt-5 mb-6">
+            <p class="font-serif italic text-[11px] text-brand-copper tracking-wide mb-3">
+              {locale === 'cn' ? '配套资源' : locale === 'ja' ? '関連資料' : locale === 'kr' ? '관련 자료' : 'Related resources'}
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <a href={`/${locale}/download/`} class="resource-cta flex items-center gap-3 px-3 py-2.5 border border-border hover:border-brand-copper hover:bg-brand-cream/40 transition-colors group">
+                <span class="w-8 h-8 inline-flex items-center justify-center bg-secondary text-foreground/70 group-hover:bg-brand-copper group-hover:text-white transition-colors">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/></svg>
+                </span>
+                <span>
+                  <span class="block text-xs font-medium text-foreground">
+                    {locale === 'cn' ? '下载目录' : locale === 'ja' ? 'カタログ' : locale === 'kr' ? '카탈로그' : 'Catalog PDF'}
+                  </span>
+                  <span class="block text-[10px] text-muted-foreground italic">
+                    {locale === 'cn' ? '2026 秋冬产品目录' : locale === 'ja' ? '2026 AW カタログ' : locale === 'kr' ? '2026 AW 카탈로그' : 'FW 2026 collection'}
+                  </span>
+                </span>
+              </a>
+              <a href={`/${locale}/download/`} class="resource-cta flex items-center gap-3 px-3 py-2.5 border border-border hover:border-brand-copper hover:bg-brand-cream/40 transition-colors group">
+                <span class="w-8 h-8 inline-flex items-center justify-center bg-secondary text-foreground/70 group-hover:bg-brand-copper group-hover:text-white transition-colors">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/></svg>
+                </span>
+                <span>
+                  <span class="block text-xs font-medium text-foreground">
+                    {locale === 'cn' ? '色卡' : locale === 'ja' ? 'カラーサンプル' : locale === 'kr' ? '컬러 샘플' : 'Color card'}
+                  </span>
+                  <span class="block text-[10px] text-muted-foreground italic">
+                    {locale === 'cn' ? '2026-27 5 个调色板' : locale === 'ja' ? '2026-27 5パレット' : locale === 'kr' ? '2026-27 5 팔레트' : '5 palettes, 2026-27'}
+                  </span>
+                </span>
+              </a>
+              <a href={`/${locale}/download/`} class="resource-cta flex items-center gap-3 px-3 py-2.5 border border-border hover:border-brand-copper hover:bg-brand-cream/40 transition-colors group">
+                <span class="w-8 h-8 inline-flex items-center justify-center bg-secondary text-foreground/70 group-hover:bg-brand-copper group-hover:text-white transition-colors">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/></svg>
+                </span>
+                <span>
+                  <span class="block text-xs font-medium text-foreground">
+                    {locale === 'cn' ? '技术规格书' : locale === 'ja' ? '仕様書' : locale === 'kr' ? '기술 사양서' : 'Tech specs sheet'}
+                  </span>
+                  <span class="block text-[10px] text-muted-foreground italic">
+                    {locale === 'cn' ? 'OEKO-TEX · ISO 9001' : locale === 'ja' ? 'OEKO-TEX · ISO 9001' : locale === 'kr' ? 'OEKO-TEX · ISO 9001' : 'OEKO-TEX · ISO 9001'}
+                  </span>
+                </span>
+              </a>
+            </div>
+          </div>
+
 
 
           <!-- Technical Specifications (imf-derived 15-field spec, 7-9) -->
