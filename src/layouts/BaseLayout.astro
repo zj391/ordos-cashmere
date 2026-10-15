@@ -17,8 +17,8 @@ import { SEO, SITE_URL, SITE_INFO, generateHreflangs } from '@/lib/seo';
 import { breadcrumbSchema, faqPageSchema, servicesSchema, PAGE_BREADCRUMB, SERVICES, type FAQItem } from '@/lib/schema';
 
 import AIChatWidget from '@/components/islands/AIChatWidget.tsx';
-
 import InquiryCart from '@/components/islands/InquiryCart.tsx';
+import StickyCtaBar from '@/components/StickyCtaBar.astro';
 
 
 
@@ -624,6 +624,8 @@ if (!noIndex && faqs && faqs.length > 0) {
     <slot name="floating" />
 
     <slot name="cookie-consent" />
+
+    <StickyCtaBar locale={locale} />
 
 
 

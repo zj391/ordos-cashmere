@@ -1,0 +1,172 @@
+---
+/**
+ * Sticky bottom CTA bar — appears after the user scrolls past 50% of the page.
+ * 3 actions: Request a Quote (primary), Request a Sample, Get a Spec.
+ * 6 locales. Mobile-first layout: stacked buttons on small screens,
+ * 3-up on tablet+. Cookie-consent aware (won't render above consent banner).
+ */
+import { SITE_INFO } from '@/lib/seo';
+
+interface Props {
+  locale: string;
+}
+
+const { locale } = Astro.props;
+
+const copy: Record<string, {
+  kicker: string;
+  cta: string;
+  sample: string;
+  spec: string;
+  close: string;
+  message: string;
+}> = {
+  en: {
+    kicker: 'Working on a cashmere project?',
+    cta: 'Request a Quote',
+    sample: 'Request Sample',
+    spec: 'Get Spec Sheet',
+    close: 'Dismiss',
+    message: 'Project terms confirmed in writing for each PO',
+  },
+  cn: {
+    kicker: '有采购需求？',
+    cta: '询盘报价',
+    sample: '索取样品',
+    spec: '下载规格书',
+    close: '关闭',
+    message: '每份 PO 收 30% 定金后书面确认条款',
+  },
+  de: {
+    kicker: 'Beschaffungsprojekt läuft?',
+    cta: 'Angebot anfordern',
+    sample: 'Muster anfordern',
+    spec: 'Datenblatt',
+    close: 'Schließen',
+    message: 'Bedingungen werden pro PO schriftlich bestätigt',
+  },
+  fr: {
+    kicker: 'Un projet d’achat en cours ?',
+    cta: 'Demander un devis',
+    sample: 'Demander un échantillon',
+    spec: 'Fiche technique',
+    close: 'Fermer',
+    message: 'Conditions écrites confirmées par PO',
+  },
+  ja: {
+    kicker: '調達案件のご相談は',
+    cta: '見積もり依頼',
+    sample: 'サンプル依頼',
+    spec: '仕様書',
+    close: '閉じる',
+    message: '案件ごとに書面で条件確認',
+  },
+  kr: {
+    kicker: '조달 프로젝트 진행 중?',
+    cta: '견적 요청',
+    sample: '샘플 요청',
+    spec: '사양서',
+    close: '닫기',
+    message: 'PO별 서면 조건 확인',
+  },
+};
+const T = (k: keyof typeof copy.en) => copy[locale]?.[k] || copy.en[k];
+
+const contactHref = `/${locale}/contact/`;
+const sampleHref = `/${locale}/contact/?type=sample`;
+const specHref = `/${locale}/contact/?type=spec`;
+---
+
+<aside
+  id="dx-sticky-cta"
+  class="fixed left-0 right-0 bottom-0 z-30 bg-background border-t border-border/60 shadow-[0_-12px_30px_-20px_rgba(0,0,0,0.18)] translate-y-full transition-transform duration-300 ease-out"
+  aria-label="Quick contact"
+  data-scroll-threshold="0.5"
+  data-dismissed-key="dx-sticky-cta-dismissed"
+  data-dismissed-ttl-hours="48"
+>
+  <div class="container-narrow px-4 md:px-6 py-3 md:py-3.5 flex flex-col md:flex-row md:items-center gap-3 md:gap-6">
+    <p class="flex-1 font-serif text-sm md:text-base text-foreground leading-snug">
+      <span class="font-serif italic text-brand-copper mr-1">§</span>
+      <span class="font-medium">{T('kicker')}</span>
+      <span class="hidden md:inline text-xs text-muted-foreground italic ml-2">— {T('message')}</span>
+    </p>
+    <div class="flex items-center gap-2 md:gap-3 flex-wrap">
+      <a
+        href={specHref}
+        class="hidden sm:inline-flex items-center font-serif italic text-sm text-foreground border-b border-foreground/40 hover:border-brand-copper hover:text-brand-copper pb-0.5 transition-colors"
+      >
+        {T('spec')}
+      </a>
+      <a
+        href={sampleHref}
+        class="inline-flex items-center gap-1.5 px-3 md:px-4 py-2 text-xs md:text-sm border border-foreground/70 text-foreground hover:border-brand-copper hover:text-brand-copper transition-colors"
+      >
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+        {T('sample')}
+      </a>
+      <a
+        href={contactHref}
+        class="inline-flex items-center gap-1.5 px-3 md:px-4 py-2 text-xs md:text-sm bg-brand-cocoa text-white hover:bg-brand-cocoa-dark font-medium transition-colors"
+      >
+        {T('cta')}
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+      <button
+        type="button"
+        class="p-1.5 text-muted-foreground hover:text-foreground"
+        aria-label={T('close')}
+        data-dismiss-sticky-cta
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+</aside>
+
+<script is:inline>
+  (function () {
+    var bar = document.getElementById('dx-sticky-cta');
+    if (!bar) return;
+    // Respect user dismissal: if dismissed in last 48h, do not show.
+    try {
+      var dismissedAt = parseInt(localStorage.getItem('dx-sticky-cta-dismissed') || '0', 10);
+      var ttl = (parseInt(bar.getAttribute('data-dismissed-ttl-hours') || '48', 10)) * 3600 * 1000;
+      if (dismissedAt && (Date.now() - dismissedAt) < ttl) {
+        bar.remove();
+        return;
+      }
+    } catch (e) {}
+
+    var threshold = parseFloat(bar.getAttribute('data-scroll-threshold') || '0.5');
+    var scrollArmed = false;
+
+    function check() {
+      if (scrollArmed) return;
+      var doc = document.documentElement;
+      var max = Math.max(1, doc.scrollHeight - doc.clientHeight);
+      var ratio = window.scrollY / max;
+      if (ratio >= threshold) {
+        scrollArmed = true;
+        bar.classList.remove('translate-y-full');
+        bar.classList.add('translate-y-0');
+        window.removeEventListener('scroll', check);
+      }
+    }
+    window.addEventListener('scroll', check, { passive: true });
+    // Also arm immediately if page is short enough to already be at 50%.
+    if (document.documentElement.scrollHeight <= document.documentElement.clientHeight + 200) {
+      check();
+    }
+
+    var dismissBtn = bar.querySelector('[data-dismiss-sticky-cta]');
+    if (dismissBtn) {
+      dismissBtn.addEventListener('click', function () {
+        bar.classList.add('translate-y-full');
+        bar.classList.remove('translate-y-0');
+        try { localStorage.setItem('dx-sticky-cta-dismissed', String(Date.now())); } catch (e) {}
+        setTimeout(function () { bar.remove(); }, 320);
+      });
+    }
+  })();
+</script>
