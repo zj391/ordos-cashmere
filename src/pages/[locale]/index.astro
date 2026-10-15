@@ -779,29 +779,44 @@ const IMG = {
           const cat = productsData.categories.find((x: any) => x.id === c.slug);
           const count = cat && cat.products ? cat.products.length : 0;
           const categoryHref = `/${locale}/category/cashmere-${c.slug}/`;
+          // Pick the first product's first image as a category hero shot
+          const heroProduct = cat && cat.products && cat.products[0];
+          const heroImg = heroProduct ? homeImg(heroProduct) : '';
           return (
-            <a href={categoryHref} class="group relative bg-background p-8 md:p-10 flex flex-col justify-between min-h-[260px] md:min-h-[300px] transition-colors duration-300 hover:bg-brand-cream/40">
+            <a href={categoryHref} class="group relative bg-background flex flex-col justify-between min-h-[280px] md:min-h-[360px] transition-colors duration-300 hover:bg-brand-cream/40 overflow-hidden">
               {/* Top-right: large italic number watermark */}
-              <div class="absolute top-6 right-6 font-serif italic text-5xl md:text-6xl text-brand-copper/15 leading-none select-none">
+              <div class="absolute top-6 right-6 font-serif italic text-5xl md:text-6xl text-brand-copper/15 leading-none select-none z-10">
                 {String(i + 1).padStart(2, '0')}
               </div>
-              {/* Center: category name + count */}
-              <div class="relative">
-                <p class="font-serif italic text-xs text-brand-copper tracking-wide mb-3">
-                  {locale === 'cn' ? '品类' : 'Category'}
-                </p>
-                <h3 class="font-serif text-2xl md:text-3xl font-light leading-[1.15] tracking-[-0.01em] group-hover:text-brand-chocolate transition-colors">
-                  {c.name}
-                </h3>
-              </div>
-              {/* Bottom: count + arrow */}
-              <div class="relative flex items-center justify-between border-t border-border/40 pt-5 mt-6">
-                <span class="font-serif italic text-sm text-muted-foreground">
-                  {count} {t6('款', 'styles', 'Modelle', 'modèles', 'スタイル', '스타일')}
-                </span>
-                <span class="font-serif italic text-sm text-foreground/60 group-hover:text-brand-copper group-hover:translate-x-1 inline-block transition-all">
-                  →
-                </span>
+              {/* Center: image + name + count */}
+              <div class="relative flex-1 overflow-hidden">
+                {heroImg && (
+                  <img
+                    src={heroImg}
+                    alt={`${c.name} — sample product`}
+                    class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                )}
+                {/* Bottom gradient so text below stays legible */}
+                <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-background via-background/85 to-transparent"></div>
+                <div class="absolute inset-x-0 bottom-0 p-6 md:p-8 z-10">
+                  <p class="font-serif italic text-xs text-brand-copper tracking-wide mb-2">
+                    {locale === 'cn' ? '品类' : 'Category'}
+                  </p>
+                  <h3 class="font-serif text-2xl md:text-3xl font-light leading-[1.15] tracking-[-0.01em] group-hover:text-brand-chocolate transition-colors mb-3">
+                    {c.name}
+                  </h3>
+                  <div class="flex items-center justify-between border-t border-foreground/20 pt-3">
+                    <span class="font-serif italic text-sm text-muted-foreground">
+                      {count} {t6('款', 'styles', 'Modelle', 'modèles', 'スタイル', '스타일')}
+                    </span>
+                    <span class="font-serif italic text-sm text-foreground/60 group-hover:text-brand-copper group-hover:translate-x-1 inline-block transition-all">
+                      →
+                    </span>
+                  </div>
+                </div>
               </div>
             </a>
           );
