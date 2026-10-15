@@ -181,7 +181,38 @@ const contactSchema = {
             <span class="text-xs font-display italic text-brand-camel tracking-tight">02 / {T('formTitle')}</span>
           </div>
           <h2 class="font-serif text-3xl md:text-4xl font-light leading-tight mb-4">{T('formTitle')}</h2>
-          <p class="text-muted-foreground leading-relaxed mb-10">{T('formSub')}</p>
+          <p class="text-muted-foreground leading-relaxed mb-6">{T('formSub')}</p>
+
+          {/* 2026-10-14: 5-step inquiry preparation guide so the buyer sees
+              what information the form will need. Editorial, italic kicker. */}
+          <div class="inquiry-step-rail mb-8 border border-border/60 bg-brand-cream/30 px-5 py-4">
+            <p class="font-serif italic text-xs text-brand-copper tracking-wide mb-3">
+              {locale === 'cn' ? '询盘准备 · 5 步' : locale === 'ja' ? '問い合わせ準備 · 5ステップ' : locale === 'kr' ? '문의 준비 · 5단계' : 'Inquiry preparation · 5 steps'}
+            </p>
+            <ol class="grid grid-cols-1 sm:grid-cols-5 gap-3 sm:gap-4 text-xs">
+              <li class="flex items-start gap-2">
+                <span class="font-serif italic text-base text-brand-copper leading-none shrink-0">01</span>
+                <span class="leading-snug">{locale === 'cn' ? '产品参考' : locale === 'ja' ? '製品参照' : locale === 'kr' ? '제품 참조' : 'Product reference'}</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="font-serif italic text-base text-brand-copper leading-none shrink-0">02</span>
+                <span class="leading-snug">{locale === 'cn' ? '规格' : locale === 'ja' ? '仕様' : locale === 'kr' ? '사양' : 'Specification'}</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="font-serif italic text-base text-brand-copper leading-none shrink-0">03</span>
+                <span class="leading-snug">{locale === 'cn' ? '数量' : locale === 'ja' ? '数量' : locale === 'kr' ? '수량' : 'Quantity'}</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="font-serif italic text-base text-brand-copper leading-none shrink-0">04</span>
+                <span class="leading-snug">{locale === 'cn' ? '目的地' : locale === 'ja' ? '仕向地' : locale === 'kr' ? '목적지' : 'Destination'}</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="font-serif italic text-base text-brand-copper leading-none shrink-0">05</span>
+                <span class="leading-snug">{locale === 'cn' ? '文件需求' : locale === 'ja' ? '書類' : locale === 'kr' ? '서류' : 'Document needs'}</span>
+              </li>
+            </ol>
+          </div>
+
           <ContactForm client:load locale={locale} />
         </div>
       </div>

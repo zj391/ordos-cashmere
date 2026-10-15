@@ -314,11 +314,33 @@ export default function ContactForm({ locale }: Props) {
         </div>
       </div>
 
-      {productInterest && (
-        <div className="border border-primary/25 bg-primary/5 rounded-none px-4 py-3 text-sm">
-          <span className="font-medium">{Q(locale, 'productReference')}:</span> <span className="text-muted-foreground">{productInterest}</span>
+      {/* Product reference (editable) — auto-prefilled from ?product= URL or
+          the saved inquiry list, but the buyer can edit / extend. */}
+      <div className="border border-primary/25 bg-primary/5 rounded-none px-4 py-3 text-sm">
+        <div className="flex items-center justify-between gap-3 mb-1">
+          <span className="font-medium">{Q(locale, 'productReference')}:</span>
+          {!productInterest && (
+            <span className="text-[11px] italic text-muted-foreground">
+              {locale === 'cn' ? '例: hats-167（100% 羊绒针织帽）' : locale === 'ja' ? '例: hats-167（100% カシミア ニット帽）' : locale === 'kr' ? '예: hats-167 (100% 캐시미어 니트 모자)' : 'e.g. hats-167 (100% cashmere knit beanie), or a brief description'}
+            </span>
+          )}
         </div>
-      )}
+        <input
+          type="text"
+          name="product_reference"
+          value={productInterest}
+          onChange={(e) => setProductInterest(e.target.value)}
+          placeholder={
+            locale === 'cn' ? '例: hats-167 (100% 羊绒针织帽)，或简短描述' :
+            locale === 'ja' ? '例: hats-167（100% カシミア ニット帽）、または簡単な説明' :
+            locale === 'kr' ? '예: hats-167 (100% 캐시미어 니트 모자) 또는 간단한 설명' :
+            locale === 'de' ? 'z. B. hats-167 (100% Kaschmir-Strickmütze) oder Kurzbeschreibung' :
+            locale === 'fr' ? 'ex. hats-167 (bonnet 100% cachemire), ou brève description' :
+            'e.g. hats-167 (100% cashmere knit beanie), or a brief description'
+          }
+          className="w-full mt-1 bg-transparent text-foreground placeholder:text-muted-foreground/60 placeholder:italic focus:outline-none"
+        />
+      </div>
 
       {cartItems.length > 0 && (
         <div className="border border-primary/30 bg-primary/5 rounded-none p-4 mb-2">

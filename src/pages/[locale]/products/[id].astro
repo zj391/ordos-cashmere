@@ -2859,6 +2859,12 @@ const relatedViewAll: Record<Locale, string> = {
 
           }
 
+          // 2026-10-14: show a floating "added" banner so the buyer can move
+          // quickly to the inquiry list. Auto-dismisses after 4s.
+          if (typeof window.dxShowInquiryToast === 'function') {
+            window.dxShowInquiryToast(item);
+          }
+
         });
 
       }
@@ -3187,4 +3193,115 @@ const relatedViewAll: Record<Locale, string> = {
     .product-actions { display: grid !important; grid-template-columns: 1fr 1fr; }
     .product-actions > button:first-child { grid-column: 1 / -1; }
   }
+
+  /* 2026-10-14: floating "added to inquiry" toast — bottom-right slide-in,
+     auto-dismiss after 4s. Same width as the FAB chat widget. */
+  .dx-inquiry-toast {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 5.5rem;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--background, #fbfaf7);
+    color: var(--foreground, #171513);
+    border: 1px solid var(--border, #d9d1c6);
+    border-left: 3px solid var(--brand-copper, #a5724d);
+    padding: 0.85rem 1rem;
+    box-shadow: 0 14px 38px -16px rgba(0, 0, 0, 0.32);
+    max-width: 22rem;
+    transform: translateY(140%);
+    opacity: 0;
+    transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), opacity 280ms ease-out;
+  }
+  .dx-inquiry-toast.is-visible { transform: translateY(0); opacity: 1; }
+  .dx-inquiry-toast .dx-inquiry-toast-text { font-size: 0.82rem; line-height: 1.35; }
+  .dx-inquiry-toast .dx-inquiry-toast-text strong { display: block; font-family: var(--font-display, Georgia, serif); font-weight: 500; margin-bottom: 0.15rem; }
+  .dx-inquiry-toast .dx-inquiry-toast-text small { color: var(--muted-foreground, #6c6c6c); font-style: italic; }
+  .dx-inquiry-toast a.dx-inquiry-toast-cta {
+    flex-shrink: 0;
+    padding: 0.45rem 0.85rem;
+    background: var(--brand-cocoa, #4a2a1a);
+    color: #fff;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    transition: background 180ms ease-out;
+  }
+  .dx-inquiry-toast a.dx-inquiry-toast-cta:hover { background: var(--brand-cocoa-dark, #2f1a0f); }
+  .dx-inquiry-toast button.dx-inquiry-toast-close {
+    flex-shrink: 0;
+    padding: 0.25rem;
+    background: transparent;
+    border: 0;
+    color: var(--muted-foreground, #6c6c6c);
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+  }
 </style>
+
+<script is:inline>
+  // 2026-10-14: floating toast for "added to inquiry" — shows on PDP and
+  // (if bound) any other page that calls window.dxShowInquiryToast(item).
+  (function () {
+    var cartLink = document.querySelector('[data-cart-link]');
+    var cartHref = cartLink ? cartLink.getAttribute('href') : '/en/cart/';
+    var TOAST_TTL = 4000;
+
+    function ensureToast() {
+      var t = document.getElementById('dx-inquiry-toast');
+      if (t) return t;
+      t = document.createElement('aside');
+      t.id = 'dx-inquiry-toast';
+      t.className = 'dx-inquiry-toast';
+      t.setAttribute('role', 'status');
+      t.setAttribute('aria-live', 'polite');
+      t.innerHTML = '<div class="dx-inquiry-toast-text"><strong></strong><small></small></div>' +
+        '<a class="dx-inquiry-toast-cta" href="' + cartHref + '">View Inquiry</a>' +
+        '<button class="dx-inquiry-toast-close" type="button" aria-label="Close">×</button>';
+      document.body.appendChild(t);
+      t.querySelector('.dx-inquiry-toast-close').addEventListener('click', function () {
+        hideToast(t);
+      });
+      return t;
+    }
+
+    function hideToast(t) {
+      t.classList.remove('is-visible');
+      if (t._hideTimer) clearTimeout(t._hideTimer);
+    }
+
+    function buildLabel(item) {
+      var name = (item && (item.name || item.id)) || 'item';
+      var color = item && item.color ? ' · ' + item.color : '';
+      var qty = item && item.qty ? ' · ' + item.qty + ' pcs' : '';
+      return name + color + qty;
+    }
+
+    function updateCount() {
+      try {
+        var cart = JSON.parse(localStorage.getItem('dx-inquiry-cart-v1') || '[]');
+        var total = Array.isArray(cart) ? cart.length : 0;
+        var t = document.getElementById('dx-inquiry-toast');
+        if (!t) return;
+        var small = t.querySelector('small');
+        if (small) {
+          small.textContent = total + (total === 1 ? ' item in your inquiry' : ' items in your inquiry');
+        }
+      } catch (e) {}
+    }
+
+    window.dxShowInquiryToast = function (item) {
+      var t = ensureToast();
+      var labelEl = t.querySelector('strong');
+      if (labelEl) labelEl.textContent = buildLabel(item);
+      updateCount();
+      t.classList.add('is-visible');
+      if (t._hideTimer) clearTimeout(t._hideTimer);
+      t._hideTimer = setTimeout(function () { hideToast(t); }, TOAST_TTL);
+    };
+  })();
+</script>
