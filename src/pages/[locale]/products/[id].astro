@@ -1408,36 +1408,36 @@ const relatedViewAll: Record<Locale, string> = {
 
 
 
-  <section class="product-detail-hero py-10 md:py-14 bg-background" data-product-detail>
+  <section class="product-detail-hero py-12 md:py-20 bg-background" data-product-detail>
 
     <div class="container-narrow">
 
-      <!-- Breadcrumb -->
-
-      <nav class="product-breadcrumb text-xs text-muted-foreground mb-5">
-
-        <a href={`/${locale}/`} class="hover:text-foreground">Home</a>
-
-        <span class="mx-2">/</span>
-
-        <a href={`/${locale}/products/`} class="hover:text-foreground">Products</a>
-
-        <span class="mx-2">/</span>
-
-        <a href={`/${locale}/products/${product.categoryId === 'hats' ? 'hats-accessories' : product.categoryId === 'accessories' ? 'accessories-cat' : product.categoryId === 'sweaters' ? 'garment-oem' : product.categoryId}`} class="hover:text-foreground">{displayCategory}</a>
-
-        <span class="mx-2">/</span>
-
-        <span class="text-foreground">{product.name}</span>
-
-      </nav>
-
-      <div class="product-share flex items-center gap-3 mb-8">
-        <span class="text-xs font-display italic text-muted-foreground tracking-tight">{locale === 'cn' ? '分享到 LinkedIn' : 'Share on LinkedIn'}</span>
-        <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`${SITE_URL}/${locale}/products/${product.id}/`)}`} target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm text-primary hover:text-brand-camel transition-colors">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg> {locale === 'cn' ? '分享' : 'Share'}
-        </a>
+      <!-- Editorial eyebrow: kicker + record id -->
+      <div class="flex items-end justify-between gap-6 mb-6 border-b border-border/40 pb-4">
+        <div class="flex items-baseline gap-3">
+          <span class="font-serif italic text-xs text-brand-copper tracking-wide">
+            {locale === 'cn' ? '羊绒特辑' : locale === 'ja' ? 'カシミア特集' : locale === 'kr' ? '캐시미어 특집' : 'From the Atelier'}
+          </span>
+          <span class="text-xs text-muted-foreground">·</span>
+          <span class="font-serif italic text-xs text-muted-foreground">
+            {locale === 'cn' ? '档案编号' : locale === 'ja' ? 'レコード番号' : locale === 'kr' ? '레코드 번호' : 'Reference'} {product.id}
+          </span>
+        </div>
+        <div class="text-xs text-muted-foreground hidden md:block">
+          {locale === 'cn' ? '奥尔多斯 · 自有工厂' : locale === 'ja' ? 'オルドス · 自社工場' : locale === 'kr' ? '오르도스 · 자가 공장' : 'Ordos · Self-owned mill · Est. 2002'}
+        </div>
       </div>
+
+      <!-- Breadcrumb (compact, no share inline) -->
+      <nav class="product-breadcrumb text-xs text-muted-foreground mb-8">
+        <a href={`/${locale}/`} class="hover:text-foreground">{locale === 'cn' ? '首页' : 'Home'}</a>
+        <span class="mx-2">/</span>
+        <a href={`/${locale}/products/`} class="hover:text-foreground">{locale === 'cn' ? '产品' : 'Products'}</a>
+        <span class="mx-2">/</span>
+        <a href={`/${locale}/category/cashmere-${product.categoryId}/`} class="hover:text-foreground">{displayCategory}</a>
+        <span class="mx-2">/</span>
+        <span class="text-foreground font-serif italic">{product.id}</span>
+      </nav>
 
 
 
@@ -1523,9 +1523,8 @@ const relatedViewAll: Record<Locale, string> = {
 
         <div class="product-summary product-summary--archive">
 
-          <span class="text-xs font-display italic text-muted-foreground tracking-tight">{displayCategory}</span>
-
-          <h1 class="product-title font-display text-3xl md:text-4xl font-light mt-2 mb-3">{productH1}</h1>
+          <span class="font-serif italic text-xs text-brand-copper tracking-wide">{displayCategory}</span>
+          <h1 class="product-title font-serif text-3xl md:text-4xl lg:text-5xl font-light mt-3 mb-4 leading-[1.1] tracking-[-0.015em]">{productH1}</h1>
 
 
 
