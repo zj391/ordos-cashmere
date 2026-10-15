@@ -1947,6 +1947,26 @@ const relatedViewAll: Record<Locale, string> = {
               <span data-add-label>{inquiryLabelSet.add}</span>
             </button>
 
+            {/* 2026-10-15: Add to Compare — cross-page compare (cart in localStorage).
+                The compare modal is the same one on /en/products/ — uses window.dxCompare API. */}
+            <button
+              type="button"
+              data-add-to-compare
+              data-product-id={product.id}
+              data-product-name={product.name}
+              data-product-material={product.material || ''}
+              data-product-micron={product.micron || ''}
+              data-product-category={displayCategory}
+              data-product-image={(product.images || [])[0] || ''}
+              data-product-moq={product.moq || 0}
+              data-product-lead={product.lead || ''}
+              data-product-price={product.price || ''}
+              class="inline-flex items-center gap-2 px-5 py-3 border border-foreground/20 text-foreground rounded-none uppercase tracking-[0.15em] hover:border-foreground hover:bg-foreground/5 transition-colors"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+              <span data-compare-label>{locale === 'cn' ? '对比' : locale === 'ja' ? '比較' : locale === 'kr' ? '비교' : locale === 'de' ? 'Vergleichen' : locale === 'fr' ? 'Comparer' : 'Compare'}</span>
+            </button>
+
             <a
               href={`/${locale}/contact?product=${product.id}&type=sample`}
               data-action="sample"
@@ -2987,6 +3007,71 @@ const relatedViewAll: Record<Locale, string> = {
 
     })();
 
+  </script>
+
+  <!-- 2026-10-15: cross-page Add to Compare — uses localStorage key
+       'dx-compare-v1' so the buyer can compare products added from
+       /en/products/<id>/ and from the listing page. The compare modal
+       itself is rendered by the listing page (lives on /en/products/);
+       on PDP we just persist + redirect the buyer to open the modal
+       on the listing page. -->
+  <script is:inline>
+    (function () {
+      var COMPARE_KEY = 'dx-compare-v1';
+      var COMPARE_LIMIT = 3;
+
+      function readCompare() {
+        try {
+          var raw = localStorage.getItem(COMPARE_KEY);
+          if (!raw) return [];
+          var arr = JSON.parse(raw);
+          return Array.isArray(arr) ? arr : [];
+        } catch (e) { return []; }
+      }
+      function writeCompare(items) {
+        try { localStorage.setItem(COMPARE_KEY, JSON.stringify(items)); } catch (e) {}
+        try {
+          window.dispatchEvent(new CustomEvent('dx-compare-updated', { detail: { items: items } }));
+        } catch (e) {}
+      }
+      function addToCompare(dataAttr) {
+        var btn = dataAttr;
+        var product = {
+          id: btn.getAttribute('data-product-id'),
+          name: btn.getAttribute('data-product-name'),
+          material: btn.getAttribute('data-product-material'),
+          micron: btn.getAttribute('data-product-micron'),
+          categoryName: btn.getAttribute('data-product-category'),
+          images: [btn.getAttribute('data-product-image')].filter(Boolean),
+          moq: parseInt(btn.getAttribute('data-product-moq') || '0', 10),
+          lead: btn.getAttribute('data-product-lead'),
+          price: btn.getAttribute('data-product-price'),
+        };
+        var items = readCompare();
+        if (items.some(function (i) { return i.id === product.id; })) {
+          items = items.filter(function (i) { return i.id !== product.id; });
+        } else if (items.length >= COMPARE_LIMIT) {
+          if (typeof window.dxShowInquiryToast === 'function') {
+            window.dxShowInquiryToast({ name: 'Compare list full (3 max)' });
+          }
+          return;
+        } else {
+          items.push(product);
+        }
+        writeCompare(items);
+        var label = btn.querySelector('[data-compare-label]');
+        if (label) {
+          var original = label.textContent;
+          label.textContent = items.some(function (i) { return i.id === product.id; }) ? '✓ ' + original : original;
+          setTimeout(function () { label.textContent = original; }, 1400);
+        }
+      }
+
+      var btns = document.querySelectorAll('[data-add-to-compare]');
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener('click', function () { addToCompare(this); });
+      }
+    })();
   </script>
 
 

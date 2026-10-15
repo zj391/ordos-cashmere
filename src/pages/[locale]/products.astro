@@ -839,6 +839,21 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
       let currentPage = 1;
       const procurementFilters = { material: 'all' };
       const comparedIds = new Set();
+      // 2026-10-15: cross-page compare bridge. PDP's [data-add-to-compare] writes
+      // product objects to localStorage; on listing page load we re-hydrate
+      // comparedIds from that list so the buyer can immediately click 'Compare'
+      // and see PDP-added items in the modal.
+      (function () {
+        try {
+          var raw = localStorage.getItem('dx-compare-v1');
+          if (raw) {
+            var items = JSON.parse(raw);
+            if (Array.isArray(items)) {
+              items.forEach(function (it) { if (it && it.id) comparedIds.add(it.id); });
+            }
+          }
+        } catch (e) {}
+      })();
       // Active subcategory filters from URL (e.g. ?byStyle=beanies&byMaterial=100pct-cashmere).
       // Mega menu links use ?groupKey=subKey; multiple params AND together.
       const activeTags = new Set();
@@ -954,6 +969,7 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
       document.querySelector('[data-compare-clear]').addEventListener('click', () => {
         comparedIds.clear();
         updateCompareBar();
+        persistCompare();
         render();
       });
       document.querySelector('[data-compare-open]').addEventListener('click', openCompareModal);
@@ -1296,6 +1312,29 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
       const modalContent = document.getElementById('modal-content');
       const modalBackdrop = document.getElementById('modal-backdrop');
 
+      // 2026-10-15: write comparedIds to localStorage so PDP-added items
+      // sync. Called from bindCardEvents and clearCompare.
+      function persistCompare() {
+        try {
+          var arr = allProducts.filter(function (p) { return comparedIds.has(p.id); });
+          // Keep only the fields the PDP button sets; same shape as PDP.
+          var compact = arr.map(function (p) {
+            return {
+              id: p.id,
+              name: p.name,
+              material: p.material || '',
+              micron: p.micron || '',
+              categoryName: p.categoryName || '',
+              images: (p.images || []).slice(0, 1),
+              moq: p.moq || 0,
+              lead: p.lead || '',
+              price: p.price || '',
+            };
+          });
+          localStorage.setItem('dx-compare-v1', JSON.stringify(compact));
+        } catch (e) {}
+      }
+
       function bindCardEvents() {
         document.querySelectorAll('[data-compare]').forEach((button) => {
           button.addEventListener('click', () => {
@@ -1310,6 +1349,7 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
               return;
             }
             updateCompareBar();
+            persistCompare();
             render();
           });
         });
@@ -1359,6 +1399,12 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
             row('Category', (product) => product.categoryName) +
             row(labels.material || 'Material', (product) => product.material) +
             row(labels.micron || 'Micron', (product) => product.micron) +
+            row('MOQ', (product) => product.moq ? product.moq + ' pcs' : '—') +
+            row('Unit price', (product) => product.price ? '$' + product.price + ' / FOB Tianjin' : '—') +
+            row('Lead time', (product) => product.lead || '—') +
+            row('Pattern', (product) => (product.tags || []).find((t) => /Reversible|Houndstooth|Cable|Herringbone|Solid|Chunky|Jacquard|Fisherman/i.test(t)) || '—') +
+            row('Season', (product) => (product.tags || []).find((t) => /FW|AW|SS|Year/.test(t)) || '—') +
+            row('Customization', (product) => /Custom|Color|Logo/i.test((product.tags || []).join(' ')) ? 'Available' : '—') +
           '</tbody></table></div>' +
           '<div class="p-5 border-t border-border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"><p class="text-sm text-muted-foreground">' + escapeHtml(procurementCopy.compareLimit) + '</p><button type="button" data-compare-inquiry class="px-5 py-3 bg-brand-ink text-brand-cream text-xs uppercase tracking-[0.14em] hover:bg-brand-camel transition-colors">' + escapeHtml(procurementCopy.addToInquiry) + '</button></div>' +
         '</div>';
