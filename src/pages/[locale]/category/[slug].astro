@@ -34,6 +34,20 @@ const seo = CATEGORY_SEO[categoryId][locale] || CATEGORY_SEO[categoryId].en;
 const canonical = `${SITE_URL}/${locale}/category/${slug}/`;
 const catName = CATEGORY_DISPLAY[categoryId];
 
+// 2026-10-15 P1: SSR pagination — 24/page. Page 1 = this file; pages 2+
+// live in [slug]/[...page].astro. We share PAGE_SIZE via copy-paste; if
+// you change it, change both.
+const PAGE_SIZE = 24;
+const totalPages = Math.max(1, Math.ceil(products.length / PAGE_SIZE));
+const currentPage = 1;
+const pageStart = 0;
+const pageProducts = products.slice(pageStart, PAGE_SIZE);
+// Page-1 always shows the full window. Other pages build a windowed list
+// in [slug]/[...page].astro.
+const pageList: (number | '…')[] = totalPages <= 7
+  ? Array.from({ length: totalPages }, (_, i) => i + 1)
+  : [1, 2, 3, '…', totalPages];
+
 const t: Record<Locale, any> = {
   en: {
     productCountLabel: (n: number) => `${n} cashmere product records`,
@@ -102,9 +116,14 @@ const ui = t[locale] || t.en;
 
   <section class="py-12 md:py-16">
     <div class="container-narrow">
-      <h2 class="font-display text-2xl md:text-3xl font-light mb-8">{seo.h1}</h2>
+      <div class="flex items-end justify-between mb-8 gap-4 flex-wrap">
+        <h2 class="font-display text-2xl md:text-3xl font-light">{seo.h1}</h2>
+        <p class="font-serif italic text-sm text-muted-foreground">
+          {locale === 'cn' ? `第 ${currentPage} / ${totalPages} 页 · 共 ${products.length} 条` : locale === 'ja' ? `${currentPage} / ${totalPages} ページ · 全 ${products.length} 件` : locale === 'kr' ? `${currentPage} / ${totalPages} 페이지 · 총 ${products.length}개` : `Page ${currentPage} of ${totalPages} · ${products.length} records`}
+        </p>
+      </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
-        {products.slice(0, 24).map((p) => (
+        {pageProducts.map((p) => (
           <a
             href={`/${locale}/products/${p.id}/`}
             class="card-editorial group block bg-background p-6"
@@ -124,6 +143,37 @@ const ui = t[locale] || t.en;
           </a>
         ))}
       </div>
+
+      {totalPages > 1 && (
+        <nav class="mt-14 pt-8 border-t border-border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4" aria-label={locale === 'cn' ? '分页' : locale === 'ja' ? 'ページネーション' : locale === 'kr' ? '페이지 매김' : 'Pagination'}>
+          <p class="font-serif italic text-xs text-muted-foreground">
+            {locale === 'cn' ? `第 ${currentPage} / ${totalPages} 页` : locale === 'ja' ? `${currentPage} / ${totalPages} ページ` : locale === 'kr' ? `${currentPage} / ${totalPages} 페이지` : `Page ${currentPage} of ${totalPages}`}
+          </p>
+          <div class="flex items-center gap-1 flex-wrap">
+            <span class="px-3 py-1.5 text-sm border border-border pointer-events-none opacity-30">‹</span>
+            {pageList.map((entry, i) =>
+              entry === '…' ? (
+                <span key={`ellipsis-${i}`} class="px-2 text-muted-foreground/60 text-sm">…</span>
+              ) : (
+                <a
+                  key={`p-${entry}`}
+                  href={entry === 1 ? `/${locale}/category/${slug}/` : `/${locale}/category/${slug}/${entry}/`}
+                  aria-current={entry === currentPage ? 'page' : undefined}
+                  class={`px-3 py-1.5 text-sm border tabular-nums transition-colors ${entry === currentPage ? 'border-foreground bg-foreground text-background font-medium' : 'border-border text-foreground/70 hover:border-foreground'}`}
+                >{entry}</a>
+              )
+            )}
+            <a
+              href={`/${locale}/category/${slug}/2/`}
+              aria-label={locale === 'cn' ? '下一页' : 'Next'}
+              class="px-3 py-1.5 text-sm border border-border hover:border-foreground text-foreground/70 transition-colors"
+            >›</a>
+          </div>
+          <p class="font-serif italic text-xs text-muted-foreground hidden sm:block">
+            {locale === 'cn' ? `共 ${products.length} 条` : locale === 'ja' ? `全 ${products.length} 件` : locale === 'kr' ? `총 ${products.length}개` : `${products.length} total`}
+          </p>
+        </nav>
+      )}
     </div>
   </section>
 
@@ -140,15 +190,6 @@ const ui = t[locale] || t.en;
     </div>
   </section>
 
-  {/*
-    Browse-by-tag grid: every tag page (60 total) only has one inbound
-    link from its associated category page. Without this section, the
-    60 tag pages would form an isolated cluster with low internal PageRank.
-    This block gives every tag 1–2 additional inbound links from a
-    topically related category page, distributing authority across the
-    cluster. The section sits between "Browse related categories" and
-    the contact CTA, visible to both users and crawlers.
-  */}
   {(() => {
     const categoryTags = Object.entries(TAG_PAGES).filter(([, tag]) => tag.categoryId === categoryId);
     if (categoryTags.length === 0) return null;

@@ -1,0 +1,250 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
+import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
+import { products as productsData, getAllProducts, ensureDbOverlay } from '@/data/products';
+import { buildProductHeading } from '@/lib/product-seo-title';
+import { type Locale } from '@/lib/i18n';
+import { SITE_URL } from '@/lib/seo';
+import { CATEGORY_SEO, CATEGORY_SLUGS, CATEGORY_DISPLAY } from '@/data/category-seo';
+import { TAG_PAGES } from '@/data/tag-seo';
+
+export const prerender = true;
+
+// 2026-10-15: page 2+ routes — emit one static HTML per (locale, slug, page).
+// Mirrors the [slug].astro file (page 1) but the page index is taken from
+// the URL path instead of defaulting to 1.
+export async function getStaticPaths() {
+  const LOCALES: Locale[] = ['en', 'de', 'fr', 'ja', 'kr', 'cn'];
+  const SLUGS = Object.keys(CATEGORY_SLUGS);
+  await ensureDbOverlay();
+  const all = getAllProducts();
+  const PAGE_SIZE = 24;
+  const paths: Array<{ params: any; props: any }> = [];
+  for (const locale of LOCALES) {
+    for (const slug of SLUGS) {
+      const categoryId = CATEGORY_SLUGS[slug];
+      const count = all.filter((p) => p.categoryId === categoryId).length;
+      const totalPages = Math.max(1, Math.ceil(count / PAGE_SIZE));
+      for (let page = 2; page <= totalPages; page++) {
+        paths.push({ params: { locale, slug, page: String(page) }, props: { page } });
+      }
+    }
+  }
+  return paths;
+}
+
+const locale = Astro.params.locale as Locale;
+const slug = Astro.params.slug as string;
+const pageParam = (Astro.params as any).page as string;
+const categoryId = CATEGORY_SLUGS[slug];
+if (!categoryId) {
+  return Astro.redirect(`/${locale}/products/`, 301);
+}
+
+await ensureDbOverlay();
+const products = getAllProducts().filter((p) => p.categoryId === categoryId);
+const seo = CATEGORY_SEO[categoryId][locale] || CATEGORY_SEO[categoryId].en;
+const canonical = `${SITE_URL}/${locale}/category/${slug}/`;
+const catName = CATEGORY_DISPLAY[categoryId];
+
+const PAGE_SIZE = 24;
+const totalPages = Math.max(1, Math.ceil(products.length / PAGE_SIZE));
+const currentPage = Math.max(2, Math.min(parseInt(pageParam, 10) || 2, totalPages));
+const pageStart = (currentPage - 1) * PAGE_SIZE;
+const pageProducts = products.slice(pageStart, pageStart + PAGE_SIZE);
+
+function buildPageList(p: number, total: number): (number | '…')[] {
+  if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+  const out: (number | '…')[] = [1];
+  const left = Math.max(2, p - 1);
+  const right = Math.min(total - 1, p + 1);
+  if (left > 2) out.push('…');
+  for (let i = left; i <= right; i++) out.push(i);
+  if (right < total - 1) out.push('…');
+  out.push(total);
+  return out;
+}
+const pageList = buildPageList(currentPage, totalPages);
+
+function pageHref(p: number): string {
+  return p === 1 ? `/${locale}/category/${slug}/` : `/${locale}/category/${slug}/${p}/`;
+}
+
+const t: Record<Locale, any> = {
+  en: { productCountLabel: (n: number) => `${n} cashmere product records`, viewAll: 'View all product records', browseRelated: 'Browse related categories', browseByTag: 'Browse by tag', requestQuote: 'Request a quotation quote' },
+  cn: { productCountLabel: (n: number) => `${n} 条羊绒产品记录`, viewAll: '查看全部产品记录', browseRelated: '浏览相关品类', browseByTag: '按标签浏览', requestQuote: '索取报价' },
+};
+const ui = t[locale] || t.en;
+---
+
+<BaseLayout
+  locale={locale}
+  title={`${seo.title} (Page ${currentPage})`}
+  description={`${seo.description} — Page ${currentPage} of ${totalPages}.`}
+  keywords={seo.keywords}
+  canonicalPath={`/${locale}/category/${slug}/`}
+  noIndex={true}
+  schema="general"
+  ogImage={`${SITE_URL}/images/home/ordos-origins.webp`}
+  customSchemas={[
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: seo.h1,
+      description: seo.description,
+      url: canonical,
+      inLanguage: locale,
+      isPartOf: { '@type': 'WebSite', name: 'DONGXIAO Cashmere', url: SITE_URL },
+      about: { '@type': 'Product', name: seo.h1, description: seo.description },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/${locale}/` },
+        { '@type': 'ListItem', position: 2, name: 'Products', item: `${SITE_URL}/${locale}/products/` },
+        { '@type': 'ListItem', position: 3, name: seo.h1, item: canonical },
+      ],
+    },
+  ]}
+>
+  <Navigation slot="header" locale={locale} currentPath={`/${locale}/category/${slug}/`} />
+
+  <section class="bg-background pt-32 pb-12 border-b border-border">
+    <div class="container-narrow">
+      <nav class="text-xs text-muted-foreground mb-6" aria-label="Breadcrumb">
+        <a href={`/${locale}/`} class="hover:text-primary">Home</a>
+        <span class="mx-2">/</span>
+        <a href={`/${locale}/products/`} class="hover:text-primary">Products</a>
+        <span class="mx-2">/</span>
+        <a href={`/${locale}/category/${slug}/`} class="hover:text-primary">{seo.h1}</a>
+        <span class="mx-2">/</span>
+        <span class="text-foreground">Page {currentPage}</span>
+      </nav>
+      <h1 class="font-serif text-4xl md:text-6xl font-light leading-[1.05] mb-6">{seo.h1}</h1>
+      <p class="text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl mb-4">{seo.intro}</p>
+      <p class="text-sm text-muted-foreground">{ui.productCountLabel(products.length)} · Page {currentPage} of {totalPages}</p>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16">
+    <div class="container-narrow">
+      <div class="flex items-end justify-between mb-8 gap-4 flex-wrap">
+        <h2 class="font-display text-2xl md:text-3xl font-light">{seo.h1}</h2>
+        <p class="font-serif italic text-sm text-muted-foreground">
+          {locale === 'cn' ? `第 ${currentPage} / ${totalPages} 页 · 共 ${products.length} 条` : locale === 'ja' ? `${currentPage} / ${totalPages} ページ · 全 ${products.length} 件` : locale === 'kr' ? `${currentPage} / ${totalPages} 페이지 · 총 ${products.length}개` : `Page ${currentPage} of ${totalPages} · ${products.length} records`}
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
+        {pageProducts.map((p) => (
+          <a
+            href={`/${locale}/products/${p.id}/`}
+            class="card-editorial group block bg-background p-6"
+          >
+            <div class="text-[10px] uppercase tracking-[0.18em] text-muted-foreground mb-2">{p.categoryName || catName}</div>
+            <h3 class="font-display text-lg leading-tight mb-3 group-hover:text-brand-copper transition-colors">
+              {buildProductHeading(p, locale)}
+            </h3>
+            <div class="text-xs text-muted-foreground">
+              {p.material ? `${p.material}` : ''}
+              {p.micron ? ` · ${p.micron}` : ''}
+              {p.moq ? ` · MOQ ${p.moq}` : ''}
+            </div>
+            <div class="mt-4 text-sm text-brand-cocoa font-medium border-b border-brand-cocoa pb-0.5 w-fit group-hover:border-brand-copper group-hover:text-brand-copper transition-colors">
+              {locale === 'cn' ? '查看详情 →' : 'View details →'}
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <nav class="mt-14 pt-8 border-t border-border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4" aria-label={locale === 'cn' ? '分页' : locale === 'ja' ? 'ページネーション' : locale === 'kr' ? '페이지 매김' : 'Pagination'}>
+        <p class="font-serif italic text-xs text-muted-foreground">
+          {locale === 'cn' ? `第 ${currentPage} / ${totalPages} 页` : locale === 'ja' ? `${currentPage} / ${totalPages} ページ` : locale === 'kr' ? `${currentPage} / ${totalPages} 페이지` : `Page ${currentPage} of ${totalPages}`}
+        </p>
+        <div class="flex items-center gap-1 flex-wrap">
+          <a
+            href={pageHref(currentPage - 1)}
+            aria-label={locale === 'cn' ? '上一页' : 'Previous'}
+            class="px-3 py-1.5 text-sm border border-border hover:border-foreground text-foreground/70 transition-colors"
+          >‹</a>
+          {pageList.map((entry, i) =>
+            entry === '…' ? (
+              <span key={`ellipsis-${i}`} class="px-2 text-muted-foreground/60 text-sm">…</span>
+            ) : (
+              <a
+                key={`p-${entry}`}
+                href={pageHref(entry)}
+                aria-current={entry === currentPage ? 'page' : undefined}
+                class={`px-3 py-1.5 text-sm border tabular-nums transition-colors ${entry === currentPage ? 'border-foreground bg-foreground text-background font-medium' : 'border-border text-foreground/70 hover:border-foreground'}`}
+              >{entry}</a>
+            )
+          )}
+          <a
+            href={pageHref(Math.min(currentPage + 1, totalPages))}
+            aria-label={locale === 'cn' ? '下一页' : 'Next'}
+            class={`px-3 py-1.5 text-sm border border-border transition-colors ${currentPage === totalPages ? 'pointer-events-none opacity-30' : 'hover:border-foreground text-foreground/70'}`}
+          >›</a>
+        </div>
+        <p class="font-serif italic text-xs text-muted-foreground hidden sm:block">
+          {locale === 'cn' ? `共 ${products.length} 条` : locale === 'ja' ? `全 ${products.length} 件` : locale === 'kr' ? `총 ${products.length}개` : `${products.length} total`}
+        </p>
+      </nav>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-brand-cream/30 border-t border-border">
+    <div class="container-narrow">
+      <h2 class="font-display text-2xl md:text-3xl font-normal text-foreground mb-8">{ui.browseRelated}</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">
+        {Object.entries(CATEGORY_SLUGS).filter(([s]) => s !== slug).map(([s, cid]) => (
+          <a href={`/${locale}/category/${s}/`} class="card-editorial group block bg-background p-4">
+            <div class="font-display text-base text-foreground group-hover:text-brand-copper transition-colors">{CATEGORY_SEO[cid][locale]?.h1 || CATEGORY_SEO[cid].en.h1}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {(() => {
+    const categoryTags = Object.entries(TAG_PAGES).filter(([, tag]) => tag.categoryId === categoryId);
+    if (categoryTags.length === 0) return null;
+    return (
+      <section class="py-12 md:py-16 border-t border-border">
+        <div class="container-narrow">
+          <h2 class="font-display text-2xl md:text-3xl font-normal text-foreground mb-8">{ui.browseByTag}</h2>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-6">
+            {categoryTags.map(([tagSlug, tag]) => (
+              <a
+                href={`/${locale}/tag/${tagSlug}/`}
+                class="card-editorial group block bg-background px-4 py-3"
+              >
+                <div class="font-display text-sm leading-snug text-foreground group-hover:text-brand-copper transition-colors">
+                  {tag.h1}
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  })()}
+
+  <section class="py-12 md:py-16 border-t border-border">
+    <div class="container-narrow text-center">
+      <h2 class="font-display text-2xl md:text-3xl font-normal text-foreground mb-6">{ui.requestQuote}</h2>
+      <a
+        href={`/${locale}/contact/`}
+        class="inline-flex items-center justify-center px-8 py-3 border border-primary text-xs uppercase tracking-[0.18em] text-primary hover:border-brand-red hover:text-brand-red hover:bg-brand-red/[0.04] transition-colors duration-300"
+      >
+        {ui.requestQuote}
+      </a>
+    </div>
+  </section>
+
+  <Footer slot="footer" locale={locale} />
+  <FloatingChatButtons slot="floating" locale={locale} />
+  <CookieConsent slot="cookie-consent" locale={locale} />
+</BaseLayout>
