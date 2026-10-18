@@ -2,7 +2,7 @@
 
 > Premium B2B cashmere manufacturer and wholesale supplier from Ordos, Inner Mongolia, China. 23+ years expertise, OEKO-TEX certified, MOQ 100pcs, 7-day sampling, FOB Tianjin. Trusted by 500+ brands worldwide.
 
-This file is the full-text counterpart of /llms.txt. It contains all site pages, the complete 591-product catalog (with materials/micron/MOQ), and every published blog article. Generated 2026-10-16.
+This file is the full-text counterpart of /llms.txt. It contains all site pages, the complete 591-product catalog (with materials/micron/MOQ), and every published blog article. Generated 2026-10-18.
 
 ## Site Map
 
@@ -68,6 +68,476 @@ Total products: see /en/products/ for the full 591-SKU catalog (live, SSR'd from
 Categories: Cashmere Hats & Beanies, Cashmere Sweaters & Knitwear, Cashmere Scarves & Wraps, Cashmere Accessories, Cashmere Yarn & Fiber
 
 ## Blog Articles (English, full text)
+
+### Third-Party Inspection for Cashmere: How to Pick a B2B QC Company (And When It Matters)
+
+*Published 2026-10-18*
+
+When B2B cashmere orders warrant a third-party pre-shipment inspection, how the four main QC companies (SGS, Bureau Veritas, Intertek, QIMA) differ on price, AQL specialty, and on-site turnaround for cashmere, and what the inspector actually checks during a 1,000-piece knitwear PSI at an Ordos factory — including the 7 defects they catch that the mill's own QC misses.
+
+# Third-Party Inspection for Cashmere: How to Pick a B2B QC Company (And When It Matters)
+
+A B2B cashmere buyer has three options for pre-shipment quality control: rely on the mill's internal QC, send a buyer's own QC person to the factory, or hire a third-party inspection company. For first orders, large orders (>2,000 pieces), and orders with strict AQL requirements, third-party PSI is the standard recommendation. The question is which company — and what the inspector is actually checking during the 3-5 day on-site visit.
+
+This page covers when third-party PSI is worth the cost, how the four main QC companies (SGS, Bureau Veritas, Intertek, QIMA) differ on price, AQL specialty, and turnaround for cashmere, what the inspector checks during a 1,000-piece knitwear PSI at an Ordos factory, and the 7 defects they typically catch that the mill's internal QC does not. The framework applies whether you are sourcing knitwear, woven fabric, or finished yarn.
+
+## When third-party PSI is worth the cost
+
+Third-party PSI on a cashmere order typically costs $250-400 per inspector-day plus travel expenses. For a 1,000-piece knitwear order, a 3-day PSI at an Ordos mill comes to roughly $1,500-2,500 total (one inspector, 3 days on site, plus travel). That is a meaningful percentage of the order value (typically 1-3% of a $50,000-100,000 order).
+
+The cost is worth it in three scenarios:
+
+**First orders with a new mill.** Even if the mill's references are excellent, the PSI on the first order establishes a quality baseline. If the mill knows the buyer has a third-party inspector visiting, the mill's internal QC standard goes up on that order and on every subsequent order.
+
+**Large orders (2,000+ pieces).** At 2,000+ pieces, the absolute cost of a 3-5% defect rate is meaningful (60-100+ pieces at risk), and a $1,500-2,500 PSI is a small percentage of the order value. Below 2,000 pieces, the math is less compelling and buyer-direct inspection or mill self-inspection is more common.
+
+**Orders with strict AQL requirements.** AQL 1.0 (1.0% defect rate acceptable) is harder to verify by visual inspection alone. A third-party inspector with calibrated equipment and AQL 1.0 sampling tables is materially more accurate than a mill's internal QC team for that AQL level.
+
+For repeat orders (3+ successful orders with the same mill), PSI frequency can be reduced to every 2-3 orders. For orders below 500 pieces, PSI is rarely cost-effective — a buyer-direct visit is more common.
+
+## The four main QC companies for cashmere
+
+There are four main third-party QC companies that serve B2B cashmere buyers at Ordos mills. All four are accredited to ISO 17020 for inspection bodies and offer AQL-based pre-shipment inspection services. The differences are in price, lead time, and specialization.
+
+| Company | Inspector-day rate | Typical lead time | Cashmere / textile specialty | On-site report turnaround |
+|---|---|---|---|---|
+| **SGS** | $300-380/day | 3-5 working days | Generalist, large inspection teams in Tianjin | Note 24-48 hours after PSI |
+| **Bureau Veritas** | $280-360/day | 3-5 working days | Strong in EU compliance, REACH | Note 24-48 hours after PSI |
+| **Intertek** | $290-370/day | 3-5 working days | Strong in textile and softlines specialty | Note 24-48 hours after PSI |
+| **QIMA** (formerly AsiaInspection) | $260-340/day | 2-4 working days | Cashmere and knitwear specific, fastest booking | Note 24 hours after PSI |
+
+For B2B cashmere buyers at Ordos mills, QIMA typically has the fastest booking lead time (often 2-3 working days from request to on-site) and the most cashmere-specific experience. SGS and Bureau Veritas are the larger generalist firms with stronger brand recognition but slower booking. Intertek is mid-range with strong textile specialty. The choice often comes down to which company the buyer's existing supply chain uses for other product categories — most buyers standardize on one company across their product line.
+
+## What the inspector actually checks during a cashmere PSI
+
+A standard pre-shipment inspection at a cashmere apparel mill follows the AQL sampling protocol. For a 1,000-piece order at AQL 2.5, the inspector pulls a random sample of 80 pieces (per ISO 2859-1 General Inspection Level II) and runs through a structured checklist. The checklist has 7 categories.
+
+**1. Quantity verification.** The inspector counts the finished pieces in the warehouse, broken down by size and color, against the buyer's PO. Discrepancies of more than 2-3% are flagged.
+
+**2. Visual appearance.** Random sampling against the buyer's approved sample (counter sample or pre-production sample). The inspector checks for color drift, yarn irregularities, dye spots, stains, holes, and obvious knitting defects.
+
+**3. Measurements.** Each sampled piece is measured at the agreed measurement points (chest width, body length, sleeve length, shoulder width, etc.) against the buyer's size spec. Tolerances are typically +/- 1cm for body measurements and +/- 0.5cm for neck/collar/cuff dimensions.
+
+**4. Hand-feel and pilling test.** The inspector runs a Martindale pilling test on a fabric swatch (5,000 cycles per ISO 12945-2) and reports the pilling grade (1-5, where 5 is best). For premium cashmere programs, the buyer specifies a minimum grade (typically 3-4). The inspector also does a subjective hand-feel check against the approved sample — soft enough, surface smooth enough.
+
+**5. Fiber composition.** The inspector pulls a yarn sample from each color and sends it to a lab for fiber composition verification (typically optical microscopy or chemical dissolution per AATCC 20 or ISO 1833). For 100% cashmere claims, this confirms the cashmere content and checks for the presence of other fibers (wool, acrylic, viscose). Turnaround for the lab test is 3-5 working days after the PSI.
+
+**6. Trims and accessories.** Buttons, zippers, brand labels, care labels, hang tags. The inspector checks the count, the position, the stitching, and the labeling accuracy against the spec.
+
+**7. Packaging.** Inner polybag, individual box (if applicable), master carton dimensions and weight, carton markings (buyer's marks, PO number, size/color breakdown), and palletization if shipped by pallet.
+
+## The 7 defects third-party PSI typically catches that mill QC misses
+
+Based on our experience hosting third-party inspectors at our Ordos mill over the past 5 years, the 7 most common defects caught by the PSI that the mill's internal QC did not catch are:
+
+**1. Color drift between approved lab dip and bulk dye.** The mill's QC compares bulk pieces to a lab dip that was approved earlier, but the lab dip may have been bleached slightly differently. The third-party inspector pulls a fabric swatch and checks it against the agreed Delta E tolerance (typically ≤ 1.0 against the master standard).
+
+**2. Measurement creep on larger sizes.** The mill's QC checks the medium size carefully, but XL and XXL may have measurement creep (proportional measurements not correctly scaled). The third-party inspector measures all size samples, not just medium.
+
+**3. Pilling grade below spec.** The mill's internal QC does not typically run a Martindale pilling test on every order — it is a destructive test that consumes the sample. The third-party inspector pulls a separate swatch and runs the test independently.
+
+**4. Fiber composition drift.** The mill's internal QC does not run fiber composition tests on every order. A cashmere/wool blend that was specified as 70/30 may have shifted to 65/35 because of how the fiber was blended. The third-party inspector sends the sample to a lab for independent verification.
+
+**5. Stitch density drift.** The mill's knitting specification is typically a target stitch count per 10cm. The mill's internal QC checks the average stitch count, but the third-party inspector checks the variability across the garment (under-arm vs center-front vs side-seam) and may find drift that the average masked.
+
+**6. Care label accuracy.** The care label on the finished garment must match the fiber composition and the wash instructions. Cashmere garments that are labeled 'dry clean only' but the fiber content is 30% wool may have a different recommended care. The third-party inspector verifies the label against the actual fiber content and the care standards (ISO 3758).
+
+**7. Packaging markings.** Carton markings that are wrong (PO number, size/color breakdown, destination port) cause customs clearance delays and warehouse receiving errors. The third-party inspector checks the carton markings against the buyer's spec — the mill's internal QC rarely checks this in detail.
+
+## How to brief the inspection company
+
+To get the most out of a third-party PSI, the buyer should provide the inspection company with:
+
+- **The approved counter sample** (sent to the inspection company in advance, or held at the mill for the inspector to use)
+- **The size spec with tolerances**
+- **The AQL standard** (typically AQL 2.5 for cashmere, AQL 1.0 for premium)
+- **The fiber composition spec** (e.g., 100% cashmere, or 70% cashmere + 30% merino)
+- **The pilling grade requirement** (e.g., minimum grade 3-4 on the Martindale test)
+- **The packaging spec** (carton markings, individual packaging, palletization)
+- **A list of previous defects** if this is a repeat order — the inspector can specifically check for those defects this time
+
+The inspection company typically produces a report within 24-48 hours of the PSI completing, with photos of any defects found, measurements tabulated, and a pass/fail recommendation. The buyer has 2-3 working days to accept the report or request re-inspection.
+
+## Working with us on third-party PSI
+
+At our Ordos mill, we host inspectors from SGS, Bureau Veritas, Intertek, and QIMA on a regular basis. Our standard PSI protocol is AQL 2.5, and we provide the inspector with full access to the finished goods, the yarn samples, the bulk dye records, and the production records. For buyers who want to use a different inspection company (or their own QC person), the same access applies.
+
+For more on factory-side QC standards, see our AQL final inspection guide. For the actual supplier audit checklist before placing an order, see our 12-point factory audit guide. For the broader procurement workflow, see our 9-step B2B procurement process.
+
+---
+
+### B2B Cashmere Procurement: 9 Steps From RFQ to Container (Timeline + Checkpoints)
+
+*Published 2026-10-18*
+
+A B2B buyer's roadmap for sourcing cashmere from a Chinese factory — the 9 steps from initial RFQ to container loading, what each step actually takes in calendar days, the 5 checkpoints where most orders go wrong, and how to structure your inquiry so that you get a comparable quote back from any Ordos, Nepal, or Tibet mill.
+
+# B2B Cashmere Procurement: 9 Steps From RFQ to Container (Timeline + Checkpoints)
+
+A B2B cashmere order, from the first RFQ to the container loaded at Tianjin port, takes 90 to 150 calendar days for a typical 1,000-5,000 piece program. The variation comes from the 9 steps each order has to pass through and the 5 checkpoints where most orders go wrong — specification drift, color-matching rejection, payment term confusion, pre-shipment inspection failure. Knowing the steps and the checkpoints before you start is the difference between a smooth first order and a six-month delay.
+
+This page walks through the 9 steps in calendar order, what each step actually takes in days at a typical Ordos mill, the 5 checkpoints where orders typically go wrong and how to prevent them, and a sourcing checklist you can copy into your next RFQ. The framework is the same whether you are sourcing raw fiber, finished yarn, woven fabric, or finished garments — the timeline is shorter for upstream products but the checkpoints are similar.
+
+## The 9 steps, with typical calendar days
+
+| # | Step | Typical days | Owner |
+|---|---|---|---|
+| 1 | Inquiry + brief preparation | 2-5 | Buyer |
+| 2 | Supplier shortlist + RFQ dispatch | 3-7 | Buyer |
+| 3 | Quote receipt + first comparison | 5-10 | Buyer |
+| 4 | Sample request + approval | 15-30 | Buyer + Mill |
+| 5 | Order confirmation + deposit | 3-7 | Buyer + Mill |
+| 6 | Bulk production (yarn + knit + finish) | 45-90 | Mill |
+| 7 | Pre-shipment inspection | 3-5 | Buyer (or 3rd-party) |
+| 8 | Container loading + export documents | 5-10 | Mill + Freight forwarder |
+| 9 | Ocean transit + arrival at destination port | 18-35 | Freight forwarder |
+
+Total: roughly 95-200 days from first RFQ to goods arriving at destination port. For a 1,000 piece garment program at 7-12 gauge knitwear, the typical timeline is 110-130 days from inquiry to arrival.
+
+## Step 1: Inquiry + brief preparation
+
+Before you contact any factory, you need a brief that the factory can quote against. A useful cashmere brief has these components:
+
+- **Product category**: finished garment, finished yarn, dehaired top, woven fabric
+- **Quantity**: target pieces (garment) or kg (fiber/yarn/fabric), broken down by size and color if applicable
+- **Yarn specification**: count (e.g., 2/26 Nm, 2/48 Nm), ply, fiber blend (100% cashmere, or cashmere/wool blend with percentages), color (stock or Pantone-matched)
+- **Knit specification** (for garments): gauge, stitch type, key measurements, trims, finishing (machine wash, hand wash, dry clean)
+- **Quality standards**: AQL acceptance level (1.0 / 2.5 / 4.0), fiber micron range if specified, certificate requirements (OEKO-TEX, GCS)
+- **Target price**: per-piece FOB or per-kg, with or without duty
+- **Delivery date**: required date at destination port
+- **Payment terms preferred**: T/T, L/C, Open Account, or other
+
+If you do not have some of these defined (e.g., you do not know what yarn count to specify), that is normal for a first RFQ. The brief should still include the categories so the factory can ask the right questions back, and so the factory knows your target market.
+
+## Step 2: Supplier shortlist + RFQ dispatch
+
+For most B2B cashmere buyers, the supplier shortlist is 3-5 mills. The typical selection criteria:
+
+- **Region of origin**: Ordos (Inner Mongolia), Nepal, Tibet, or other. The choice depends on your fiber preference (see our origin comparison).
+- **Product category fit**: not every mill does everything. Some mills specialize in raw fiber and yarn, others in finished knitwear, others in woven fabric.
+- **Capacity**: a mill with 1,000+ ton annual capacity can support a 10,000-piece program; a mill with 100-ton capacity may struggle at 2,000 pieces.
+- **Certifications**: OEKO-TEX 100, Good Cashmere Standard, ISO 9001, BSCI. For EU buyers, the relevant certifications are EU-specific (DPP-ready, Green Claims compliance).
+- **Communication responsiveness**: a mill that responds within 24 hours to your first RFQ will be much easier to work with during bulk production than one that takes 3-5 days to reply.
+
+The RFQ itself is the same brief you prepared in Step 1, sent as a structured email or RFQ form to all shortlisted mills on the same day, with a clear deadline for quote return (typically 5-7 working days).
+
+## Step 3: Quote receipt + first comparison
+
+A useful quote is structured. A typical cashmere mill quote includes:
+
+- Per-piece or per-kg price, broken down by FOB component, ocean freight, and any optional costs (Pantone-matching, special packaging, certificates)
+- Yarn cost, knitting cost, finishing cost, trim cost, packaging cost — broken out separately
+- MOQ per style/color
+- Lead time from order confirmation to ex-factory
+- Payment terms (typically 30% deposit + 70% balance, or L/C at sight, or staged payments)
+- Validity of the quote (typically 30 days)
+- Sample cost (free or paid, refundable against bulk order)
+
+The comparison should normalize all quotes to the same basis (FOB Tianjin, per-piece at the same quantity, same yarn spec, same Pantone reference if applicable). Two quotes are not comparable if one is FOB and the other is CIF, or if one quotes 2/26 Nm and the other quotes 2/36 Nm at the same per-piece price.
+
+## Step 4: Sample request + approval
+
+Once you have shortlisted 2-3 mills from the quote comparison, the next step is sample. Cashmere samples typically fall into three categories:
+
+- **Yarn sample**: a 50-100g cone of the proposed yarn, dyed to the agreed color. Lead time 7-15 days.
+- **Knit-down sample (hand-knit or single-piece machine knit)**: a small swatch or single finished piece at the proposed gauge and stitch. Lead time 15-25 days.
+- **Counter sample / production sample**: a piece knit on the same machine that will run the bulk production, with the bulk yarn. Lead time 25-40 days.
+
+For most first orders, the sample sequence is yarn sample → knit-down → counter sample. The buyer approves each step before the next one is started. Skipping straight to counter sample without yarn approval is one of the most common causes of color-rejection at pre-shipment inspection.
+
+## Step 5: Order confirmation + deposit
+
+Once the sample is approved, the order is confirmed with a formal purchase order or contract. The key elements:
+
+- Total quantity per style/size/color
+- Per-piece or per-kg price (matching the quote)
+- Total deposit (typically 30% of order value)
+- Payment terms (T/T deposit + balance against B/L copy, or L/C at sight, etc.)
+- Delivery date (ex-factory date, not arrival date)
+- AQL standard for pre-shipment inspection
+- Penalty clauses for late delivery or quality failure (optional but recommended for first orders)
+- Governing law and dispute resolution (typically ICC arbitration or CIETAC for China-export contracts)
+
+The deposit is typically paid within 3-7 days of order confirmation. Production scheduling at the mill typically starts on receipt of the deposit, not on the PO date.
+
+## Step 6: Bulk production
+
+Bulk production at a typical cashmere apparel mill takes 45-90 days for a 1,000-5,000 piece program. The breakdown is roughly:
+
+- **Yarn production (spinning + dyeing)**: 15-25 days
+- **Knitting**: 10-20 days (longer for 12+ gauge knitwear, shorter for 3-7 gauge)
+- **Linking + finishing**: 10-20 days
+- **Washing + softening + final finishing**: 5-10 days
+- **QC + repair + packaging**: 5-10 days
+
+For Pantone-matched custom dye programs, add 15-25 days at the front end for the lab dip → buyer approval → bulk dye cycle. For first orders with a new factory, add 5-10 days for production scheduling delays.
+
+## Step 7: Pre-shipment inspection
+
+The pre-shipment inspection (PSI) is the buyer's last opportunity to reject the order before it ships. It is conducted at the mill's warehouse, typically when 80-100% of the order is complete and packaged. The buyer can conduct the PSI in person, send a third-party inspection company, or accept the mill's self-inspection report (not recommended for first orders).
+
+The AQL (Acceptable Quality Level) standard for the PSI should be defined in the purchase order. The most common AQL levels for cashmere:
+
+- **AQL 1.0**: premium brands, 1.0% defect rate acceptable
+- **AQL 2.5**: standard for most B2B cashmere orders, 2.5% defect rate acceptable
+- **AQL 4.0**: budget or promotional orders, 4.0% defect rate acceptable
+
+A typical PSI on a 1,000 piece program takes 3-5 days on site, with a 2-person inspection team. Common reasons for PSI failure: measurement deviations outside the tolerance, color drift from the approved lab dip, pilling or hand-feel complaints, packaging errors.
+
+## Step 8: Container loading + export documents
+
+Once the PSI is passed, the order is packed for export. For garment orders, this typically means polybag + individual box + master carton. For yarn orders, cone packing + carton. For raw fiber, compressed bale + woven outer.
+
+The mill prepares the export document set:
+
+- Commercial invoice
+- Packing list
+- Bill of lading (B/L) — issued by the freight forwarder
+- Certificate of Origin (typically issued by CCPIT in China)
+- For EU buyers: EUR.1 movement certificate (if preferential tariff applies)
+- Any buyer-required certificates: OEKO-TEX, GCS, fiber composition test report
+
+The buyer pays the balance (70% of order value under T/T terms) against the B/L copy. The mill releases the B/L original only on receipt of payment.
+
+## Step 9: Ocean transit + arrival
+
+For shipments from Tianjin (the main cashmere export port), the typical ocean transit times are:
+
+- **EU (Hamburg, Rotterdam)**: 28-32 days
+- **US West Coast (Long Beach, Oakland)**: 16-20 days
+- **US East Coast (New York, Savannah)**: 26-32 days
+- **Japan (Yokohama)**: 4-6 days
+- **Korea (Busan)**: 4-6 days
+
+Once the container arrives at the destination port, the buyer's customs broker handles clearance. For EU imports, this includes CBAM declaration filing (see our CBAM guide). For US imports, UFLPA documentation if required.
+
+## The 5 checkpoints where orders go wrong
+
+Based on our experience with B2B buyers over the past 5 years, the 5 most common causes of cashmere order delays or disputes are:
+
+**Checkpoint 1: Specification drift in the brief.** A brief that says "cashmere sweater" without specifying yarn count, gauge, micron range, or finishing method produces quotes that are not comparable. Fix: include all 7 brief components in Step 1, even if some are approximate. Approximate is fine; missing is not.
+
+**Checkpoint 2: Color drift between lab dip and bulk dye.** The lab dip is approved by the buyer, but the bulk dye comes out slightly different because the bulk dye bath uses a different fiber lot or different dye concentration. Fix: require the mill to use the same fiber lot for lab dip and bulk dye, and request a pre-bulk dye color sample before bulk production starts.
+
+**Checkpoint 3: Payment term confusion at order confirmation.** The quote says T/T 30/70 but the contract says L/C at sight. Fix: confirm the payment term in writing before order confirmation, and make sure the PO, the contract, and the proforma invoice all match.
+
+**Checkpoint 4: AQL standard not defined.** The PSI fails because the AQL standard was not defined in advance, and the mill and buyer disagree on the acceptable defect rate. Fix: include the AQL standard in the PO, ideally AQL 2.5 for most cashmere orders.
+
+**Checkpoint 5: Pre-shipment inspection skipped for first orders.** The buyer trusts the mill's self-inspection on a first order, finds a quality issue on arrival at destination. Fix: conduct PSI on every first order, regardless of mill reputation. After 2-3 successful orders, PSI frequency can be reduced to every 2-3 orders.
+
+## The RFQ checklist (copy-paste)
+
+```
+Subject: Cashmere [product category] RFQ — [Brand] — [Target delivery date]
+
+1. Product: [e.g., women's cashmere sweater, V-neck, 7 gauge]
+2. Quantity: [e.g., 1,000 pieces total — 400 S / 400 M / 200 L in 3 colors]
+3. Yarn: [e.g., 2/26 Nm, 100% cashmere, Grade A/B (15.5-16.5 µm)]
+4. Color: [e.g., Navy Blue Pantone 19-3926, Transformative Teal Pantone 17-1463, Cloud Dancer Pantone 11-0602]
+5. Knit: [e.g., 7 gauge fully-fashioned, STOLL machine]
+6. Size set: [attach size chart or reference S/M/L measurements]
+7. Trims: [e.g., self-fabric neck ribbing, woven brand label at center back neck]
+8. Packaging: [e.g., individual polybag, 5 pcs per master carton]
+9. Certificates: [e.g., OEKO-TEX 100, Good Cashmere Standard — buyer will require copies]
+10. AQL: [e.g., 2.5 standard inspection]
+11. Target FOB price: [USD per piece at 1,000 quantity]
+12. Delivery date: [target ex-factory date and/or destination port arrival date]
+13. Payment terms: [T/T 30/70 or L/C at sight or other]
+
+Please quote by [date]. Quote should include: per-piece price breakdown, MOQ per color, lead time from order confirmation to ex-factory, payment terms, sample cost and lead time.
+```
+
+## Working with us on the 9-step process
+
+At our Ordos mill, we provide a structured response to every RFQ within 24 hours, with a complete quote in 5-7 working days. Our standard RFQ response includes the per-piece price breakdown, the lead time, the sample cost and timeline, and the payment terms. Our PSI protocol is AQL 2.5 by default, with AQL 1.0 available for premium programs.
+
+For more on the actual OEM development process inside the mill, see our 7-stage / 90-day OEM guide. For payment terms in detail, see our B2B payment terms guide. For L/C-specific clauses, see our letter of credit guide.
+
+---
+
+### Pantone 2026 + Cashmere: Which Colors B2B Buyers Are Specifying for Fall/Winter 2026
+
+*Published 2026-10-18*
+
+What Pantone's 2026 color forecasts mean for cashmere knitwear, yarn, and accessory sourcing — the 6 colors B2B buyers are specifying most for FW26/27, why undyed cashmere's natural palette is making a comeback, and how to brief an Ordos factory on Pantone-matched custom dye without getting trapped by MOQ or color-matching tolerances.
+
+# Pantone 2026 + Cashmere: Which Colors B2B Buyers Are Specifying for Fall/Winter 2026
+
+Pantone's 2026 color forecasts were published in September 2025 and again at New York Fashion Week in February 2026, and three of the top six FW26/27 colors — Cloud Dancer, Transformative Teal, and Aurora Red — are showing up in our cashmere sampling room roughly twice as often as the next six most-requested colors. The shift is partly aesthetic, but it is also driven by what cashmere fiber can do at the dye bath: a tight fiber-diameter yarn takes saturated color more cleanly than a coarse one, which is why the FW26 palette skews toward the colors that actually perform well on fine-gauge cashmere.
+
+If you are a sourcing manager, brand owner, or designer planning a FW26 or FW27 cashmere collection, this page covers the colors we are seeing most in 2026 briefs, why the natural undyed cashmere palette is making a quiet comeback, and the practical points to confirm with your factory before signing a Pantone-matching dye commitment — MOQ, color-matching tolerance, dye method, and how the same Pantone reference can come out different on different yarn counts.
+
+## 1. The 6 colors B2B cashmere buyers are specifying most for FW26
+
+Based on the Pantone Fashion Color Trend Report (FW26/27 New York Fashion Week, February 2026) and the 110+ color-matching briefs we received for our FW26 sampling at our Ordos mill, the six colors that appear most often across cashmere knitwear, accessory, and yarn briefs are:
+
+| Pantone reference | Name | Typical cashmere application | Notes |
+|---|---|---|---|
+| **11-0602 Cloud Dancer** | Warm off-white | Luxury knitwear, accessories, bridal cashmere | Reads as 'undyed' — see section 3 |
+| **17-1463 Transformative Teal** | Saturated teal | Sweaters, scarves, statement pieces | High dye uptake on fine cashmere |
+| **18-1664 Aurora Red** | Brightened red | Caps, gloves, scarves, accent knitwear | Pantone Color of the Year 2026 runner-up |
+| **19-3926 Navy Blue** | Deep navy | Classic knitwear, the year-round cashmere staple | Steady demand year over year |
+| **14-0827 Pale Pastel Yellow** | Soft yellow | Spring cashmere accessories, FW26 early deliveries | Best on light-gauge (12+ gg) knitwear |
+| **16-1546 Living Coral** | Warm coral | SS27 early bookings, women's accessories | Frequently spec'd as 'Pantone 2026 Living Coral' |
+
+The full Pantone FW26/27 New York palette is 12 colors; we have listed the six with the highest request volume at our mill. The other six (Vermillion Orange, Hot Fudge, Chambray Blue, Misted Yellow, Forest Biome, and a soft pastel) each appear in single-digit percentages of our FW26 briefs.
+
+One practical observation: three of the six top-requested colors (Cloud Dancer, Transformative Teal, Navy Blue) are the same colors that have appeared in the Pantone forecast for the past 4-5 seasons. This is not a fad. The fact that they keep returning indicates that the cashmere industry's color pipeline is anchored on a small set of fiber-friendly shades, and the new additions rotate around them rather than replacing them.
+
+## 2. Why these colors work technically on cashmere
+
+A cashmere yarn that is fine (16-19 micron) and well-dehaired takes saturated dye more cleanly than a coarser yarn, because there is less surface variation and fiber-to-fiber light scatter. This is why the FW26 colors that are showing up most are colors that test well on fine-gauge knitwear — saturated mid-tone colors (teal, navy, red) and warm neutrals (off-white, pale yellow, coral).
+
+There are three color categories that perform poorly on cashmere and rarely appear in our color-matching briefs:
+
+- **Very light pastels** (under 5% dye saturation): show fiber variation and yarn irregularities too clearly. They require a higher-grade fiber and are typically only spec'd for premium yarn.
+- **Pure black** (Pantone 19-3911): requires multiple dye baths, weakens the fiber, and is the color most associated with cashmere pilling. Most premium cashmere programs avoid pure black in favor of dark navy, charcoal, or very dark brown.
+- **Bright fluorescent colors**: outside the cashmere industry's normal performance envelope. Some vendors will accept the brief; the fiber tends to feel harsher after the dye process.
+
+If your collection requires one of these three categories, expect to negotiate MOQ upward (because the dye yield is lower) and confirm the fiber hand-feel tolerance in advance.
+
+## 3. The undyed cashmere comeback
+
+The most under-reported color trend in cashmere for 2026 is the quiet return of undyed (greige) cashmere — fiber that is left in its natural color after dehairing and is not bleached or dyed. There are three natural cashmere colors:
+
+- **White cashmere** (from white Alashan and Ordos goats): the most dyeable, traditionally reserved for pastels and saturated shades
+- **Brown cashmere / 'qing'** (from brown goats): warm mid-tone, naturally beige-brown
+- **Purple cashmere / 'zi'** (from grey-purple goats): the rarest and most expensive natural color
+
+Undyed cashmere has a 25-35% lower price per kilo than bleached-and-dyed cashmere (no dye cost, no bleach, no color-matching trial cost), and the fiber retains more of its natural softness because it has not been through the additional chemical baths. The trade-off is that you are limited to the natural palette plus overdyes in compatible tones.
+
+Why is undyed making a comeback in 2026? Two reasons:
+
+1. **Sustainability positioning**: bleached undyed reduces chemical use by 70-80% compared to bleached-and-dyed, which fits the EU Green Claims Directive (in force September 2026) and the buyer demand for traceable, low-impact fiber
+2. **Aesthetic preference for the natural look**: Pantone Cloud Dancer (off-white) is the most-requested Pantone reference in our FW26 briefs, and an undyed white cashmere can hit Cloud Dancer without any dye bath at all
+
+We offer undyed white, brown, and purple cashmere as stock fiber (MOQ 10kg per color, no dye MOQ required). For bleached-and-dyed or Pantone-matched custom dye, see section 4.
+
+## 4. What to confirm with your factory on Pantone-matched custom dye
+
+If your brief requires a Pantone-matched color that is not in your supplier's stock yarn color card, the process is custom dye. There are five practical points to confirm before committing:
+
+**MOQ.** Custom dye on cashmere typically requires 30-50kg per color minimum at the yarn dyeing stage, which translates to roughly 100-200 finished garments depending on yarn count and garment weight. If your collection volume is below that threshold, you have three options: (1) use a supplier's stock yarn color that is visually close to the Pantone reference, (2) combine stock colors (e.g., 60% stock-color-A + 40% stock-color-B) to approximate the Pantone reference, or (3) commission a smaller-lot dye run at a 20-30% price premium per kilo.
+
+**Color-matching tolerance.** Standard Pantone-matching tolerance is Delta E ≤ 1.0 against the master color standard, measured under D65 lighting. Tighter tolerance (Delta E ≤ 0.5) is achievable but adds 10-15% to the dye cost and lengthens the sampling timeline. Confirm the tolerance in writing before sampling; verbal 'we can match Pantone' without specifying Delta E is the most common cause of color-rejection at pre-shipment inspection.
+
+**Dye method.** The four most common cashmere dye methods are acid dyes (the standard for protein fibers), reactive dyes (slightly better colorfastness, slightly higher cost), low-impact reactive dyes (the EU-preferred option for the Green Claims Directive), and natural/plant dyes (premium positioning, lower colorfastness, 30-50% cost premium). For most cashmere B2B buyers, low-impact reactive is the default recommendation in 2026 because it aligns with EU buyer requirements and adds only 5-8% to the dye cost over standard acid dyes.
+
+**Same Pantone reference, different yarn counts = different visual color.** A 2/26 Nm yarn in Pantone Navy Blue is a noticeably different visual color than a 2/48 Nm yarn in the same Pantone Navy Blue, because the finer yarn has more fiber-to-fiber light scatter. If your collection includes multiple yarn counts in the same color, plan for separate color-matching trials per yarn count.
+
+**Lead time.** A standard Pantone-matching sample cycle (lab dip → buyer approval → bulk dye) takes 15-25 working days. Plan it into your development timeline from tech-pack approval, not from bulk order confirmation, because the dye trial often runs in parallel with the yarn order.
+
+## 5. How we handle Pantone matching at our Ordos mill
+
+We offer three options for cashmere buyers sourcing FW26 or FW27 collections from us:
+
+**Option 1 — Stock yarn color card.** 28 stock cashmere yarn colors, including the 6 Pantone references most commonly requested for FW26 (Cloud Dancer, Transformative Teal, Aurora Red, Navy Blue, Pale Pastel Yellow, Living Coral). MOQ 10kg per color, no dye MOQ, 3-5 day dispatch.
+
+**Option 2 — Pantone-match with 5kg minimum dye.** We added a 5kg minimum dye lot in 2026 for buyers who need a Pantone-matched color but are below the typical 30-50kg MOQ. Per-kilo cost is 22-28% above the bulk dye rate, but the MOQ makes it viable for sample programs and small-batch collections. Lead time 20-25 working days for the dye + 10-15 days for knitting.
+
+**Option 3 — Custom Pantone + custom blend.** Full custom service: Pantone-matched dye on a custom yarn blend (e.g., 70% cashmere + 30% merino, Pantone Transformative Teal, 2/36 Nm). MOQ 50kg per color, 30-35 day lead time including yarn spinning, dyeing, and knitting.
+
+To start a Pantone-matching brief with us, send the Pantone reference, the yarn count or finished garment spec, the target volume, and your color-matching tolerance (Delta E ≤ 1.0 is our standard). A lab dip is typically dispatched within 7-10 working days.
+
+---
+
+### Ordos vs Nepal vs Tibet Cashmere: B2B Quality, Cost, and Lead Time Compared
+
+*Published 2026-10-18*
+
+How cashmere fiber from Ordos (Inner Mongolia), Nepal, and Tibet actually differs on micron, length, color, and yield — and what those differences mean for B2B buyers comparing price per kilo, MOQ, sampling lead time, and end-use suitability across raw fiber, yarn, woven fabric, and finished knitwear.
+
+# Ordos vs Nepal vs Tibet Cashmere: B2B Quality, Cost, and Lead Time Compared
+
+A B2B buyer asking "where should I source cashmere from" usually gets one of three answers — Ordos (Inner Mongolia), Nepal, or Tibet. Each region produces cashmere commercially, and each has built a distinct reputation: Ordos for bulk-supply reliability and price competitiveness, Nepal for the finest micron and the pashmina tradition, Tibet for high-altitude fiber length. The reality underneath those reputations is more nuanced, and the right choice depends on which of three things you are prioritizing — fiber quality, cost per kilo, or volume flexibility.
+
+This page compares the three regions on the variables a sourcing decision actually depends on: micron range and length (the two fiber parameters that determine quality), color and dye behavior, yield from raw fiber, price per kilo, MOQ and lead time, and end-use suitability. The goal is to give a buyer the framework to pick the right origin for their specific product, not to declare one region universally better.
+
+## 1. Fiber quality: micron and length
+
+Cashmere fiber quality is determined primarily by two parameters — fiber diameter (measured in microns) and fiber length (measured in millimeters). The grade (A/B/C) is a function of these two numbers.
+
+| Region | Typical micron range | Typical length range | Grade mix (A/B/C share) | Notes |
+|---|---|---|---|---|
+| **Ordos (Inner Mongolia)** | 14.5-19.5 µm | 28-36 mm | 25% / 50% / 25% | Best bulk consistency, broadest grade coverage |
+| **Alashan (Inner Mongolia)** | 14.5-17.0 µm | 32-40 mm | 45% / 40% / 15% | Premium inner-Mongolia grade, comparable to Mongolian goat |
+| **Nepal (high-altitude pashmina)** | 12.5-16.0 µm | 30-50 mm | 50% / 40% / 10% | Finest micron globally, but lower yield |
+| **Tibet (high-altitude)** | 14.0-17.5 µm | 32-42 mm | 35% / 50% / 15% | Longer fiber length, premium grade share |
+
+The most important point: Nepal's reputation for being the 'finest' cashmere in the world is accurate — the 12.5-14.5 micron fiber from Chyangra goats (the Nepalese mountain goat) is genuinely finer than anything produced at scale in Inner Mongolia. But micron is only one parameter, and the trade-off is yield. Nepalese Chyangra goats produce roughly 100-150 grams of usable dehaired fiber per animal per year, compared to 250-400 grams for Inner Mongolian Alashan goats. The lower yield is the main reason Nepalese cashmere commands a 40-80% higher price per kilo than Ordos cashmere of comparable grade.
+
+For B2B buyers, the practical implication is that Nepalese cashmere is the right choice when fiber fineness is the primary product differentiator (luxury scarves, premium yarn for 14+ gauge knitwear, soft-handle accessories). For most other cashmere product categories — knitwear at 7-12 gauge, woven fabric, mid-range accessories — Inner Mongolian cashmere at the equivalent grade gives the same end-product hand-feel at a 40-80% lower fiber cost.
+
+## 2. Color and dye behavior
+
+Cashmere fiber color is partly genetic (the goat breed) and partly environmental (the grazing conditions). All three regions produce the three natural cashmere colors — white, brown (called 'qing' in Inner Mongolia), and purple/grey (called 'zi') — but the proportions differ.
+
+| Region | White fiber share | Brown fiber share | Purple/grey fiber share |
+|---|---|---|---|
+| **Ordos** | 75-80% | 15-20% | 5-8% |
+| **Alashan** | 70-75% | 18-22% | 5-8% |
+| **Nepal** | 35-45% | 40-50% | 10-15% |
+| **Tibet** | 50-60% | 30-35% | 8-12% |
+
+White cashmere is the most dyeable (can be bleached to off-white and dyed to any color), so Inner Mongolian white cashmere is the default fiber for Pantone-matched custom dye programs. Nepalese and Tibetan white fiber is rarer and commands a premium. Brown and purple fiber is typically used undyed — over-dyeing brown or purple to a saturated color requires an extra bleaching step that weakens the fiber, so most brown/purple cashmere is sold as undyed natural color.
+
+## 3. Yield from raw fiber
+
+Raw cashmere fiber (the combed fiber harvested from the goat) contains guard hair, dander, and vegetable matter. The dehairing process — separating the soft underdown from the coarse guard hair — typically yields 25-40% of usable cashmere fiber from raw fiber by weight. The yield depends on the dehairing line and the source herd.
+
+| Region | Typical dehairing yield | Notes |
+|---|---|---|
+| **Ordos** | 30-40% | Industrial dehairing lines, consistent yield |
+| **Alashan** | 28-35% | Slightly lower yield, higher grade share |
+| **Nepal** | 18-28% | Hand-combing tradition, lower yield |
+| **Tibet** | 22-30% | Mixed mechanical and hand-combing |
+
+The yield matters because the price per kilo of dehaired cashmere is calculated from the price of the raw fiber. If raw Ordos cashmere costs $60/kg and the yield is 35%, the dehaired cashmere cost is $60 / 0.35 = $171/kg before further processing. If raw Nepalese cashmere costs $120/kg and the yield is 22%, the dehaired cashmere cost is $120 / 0.22 = $545/kg. The fiber cost difference of $374/kg is then passed through the yarn spinning, dyeing, and garment stages.
+
+## 4. Price per kilo and MOQ
+
+The price per kilo varies by grade, region, and processing stage. The 2026 approximate ranges for dehaired cashmere top (undyed, scoured, ready for spinning) are:
+
+| Origin | Grade A (14.5-15.5 µm) | Grade A/B (15.5-16.5 µm) | Grade B (16.5-17.5 µm) |
+|---|---|---|---|
+| **Ordos** | $50-65/kg | $42-55/kg | $32-42/kg |
+| **Alashan** | $65-85/kg | $55-70/kg | $42-55/kg |
+| **Nepal (Chyangra)** | $120-180/kg | $85-120/kg | $65-85/kg |
+| **Tibet** | $75-100/kg | $60-80/kg | $48-65/kg |
+
+For finished yarn, add the spinning cost (roughly $10-25/kg depending on yarn count, with finer counts costing more). For finished knitwear, add the knitting, dyeing, and finishing cost (which is typically the same regardless of fiber origin).
+
+MOQ is similar across regions at the finished yarn and garment stage (typically 30-50kg per yarn lot, 50-100 finished pieces per style). At the raw fiber stage, Ordos and Alashan suppliers typically accept 10-50kg MOQ per grade, while Nepal and Tibet suppliers typically require 50-100kg minimum because the fiber is processed in smaller lots.
+
+## 5. Lead time and supply reliability
+
+Lead time for cashmere fiber supply varies by region and by season:
+
+- **Ordos (Inner Mongolia)**: 30-45 day lead time for dehaired top from order confirmation, 60-90 days for finished yarn, 90-120 days for finished garments. Industrial-scale supply, year-round availability with peak pricing in March-May (comb season) and lower pricing in October-December (post-harvest inventory).
+- **Nepal**: 60-90 day lead time for dehaired top, 90-120 days for yarn. Smaller-scale supply, with annual yield variations. More vulnerable to monsoon season logistics disruptions (June-August).
+- **Tibet**: 60-90 day lead time for dehaired top, 90-120 days for yarn. Mid-scale supply, more reliable than Nepal but less than Ordos. Logistics transit time through inland China adds 10-15 days versus Ordos coastal shipments.
+
+Supply reliability — the probability that a confirmed order can be filled at the agreed price and timeline — is materially different across regions. Ordos is the most reliable at industrial volumes (we are a Tier-1 supplier at our mill in Ordos with consistent capacity). Nepal is reliable at small-batch volumes (50-200kg per order) but less reliable at bulk volumes (>500kg). Tibet is mid-range. The reliability difference is one of the main reasons Ordos has become the dominant cashmere supplier for B2B buyers scaling up to 10,000+ piece programs.
+
+## 6. Which origin for which product
+
+A simplified mapping of cashmere origin to product category:
+
+- **Luxury scarves and shawls (pashmina tradition)**: Nepal. The 12.5-14.5 micron fiber is the genuine 'pashmina' standard, and the lower yield and higher cost are appropriate for the product positioning.
+- **Premium yarn for 14+ gauge knitwear**: Alashan or Nepal, depending on price tolerance. Alashan is the better value when the buyer wants premium fiber without the full Nepal premium.
+- **Mid-to-premium knitwear (7-12 gauge)**: Ordos Grade A or A/B. The micron range (15.5-16.5) is the sweet spot for 7-12 gauge knitwear, and the cost is roughly half of Nepal at equivalent grade.
+- **Heavy-gauge knitwear (3-7 gauge)**: Ordos Grade B. Cost-driven, the hand-feel difference between Grade A and Grade B at 5-7 gauge is small but the cost difference is meaningful.
+- **Woven fabric (overcoating, suiting)**: Ordos or Alashan, with the grade chosen based on the warp/weft yarn count.
+- **Cashmere accessories (gloves, hats, socks)**: Ordos Grade B or A/B. The product category does not require the very finest micron, so the cost saving is appropriate.
+- **Undyed natural-color cashmere**: All three origins. Nepal and Tibet produce more brown and purple fiber, which can be a positioning advantage for the natural-color trend.
+
+## 7. Working with us on cashmere origin
+
+At our Ordos mill, we work with Ordos and Alashan Inner Mongolian cashmere as our primary fiber supply, and we have relationships with Nepal and Tibet fiber traders for buyers who specifically need those origins. For most B2B buyers with programs in the 1,000-10,000 piece range, Inner Mongolian cashmere (Ordos or Alashan) gives the best balance of quality, cost, and supply reliability. For luxury programs of 500 pieces or fewer where fiber fineness is the primary differentiator, Nepal is the right origin despite the cost premium.
+
+For more detail on cashmere grading, see our reference on cashmere Grade A vs B vs C. For the actual import and customs process, see our 2026 guide on importing cashmere from China.
+
+---
 
 ### Case Study: 8,000-Piece 100% Cashmere Throw Program for a European Hotel Group (2025-2026)
 
@@ -14200,6 +14670,10 @@ Cashmere quality is determined by fiber grade, not national origin. The finest M
 
 ## Blog Articles (CN — title + excerpt only; full text in /cn/blog/<slug>/)
 
+- [羊绒第三方验货：B2B QC 公司如何选择（以及何时重要）](https://www.erdosdx.com/cn/blog/cashmere-b2b-inspection-company-third-party/): B2B 羊绒订单何时需要第三方出货前验货，SGS、Bureau Veritas、Intertek、QIMA 四大 QC 公司在价格、AQL 专业度与鄂尔多斯工厂现场周转上如何差异，以及在鄂尔多斯工厂进行 1,000 件针织 PSI 期间验货员实际检查什么 — 包括他们发现而工厂内部 QC 漏掉的 7 类缺陷。
+- [B2B 羊绒采购：从询价到装柜的 9 步流程（时间表 + 检查点）](https://www.erdosdx.com/cn/blog/cashmere-b2b-procurement-process-step-by-step/): B2B 买家从中国工厂采购羊绒的路线图 — 从首次询价到装柜的 9 步，每步实际所需日历天数、5 个大多数订单出错的检查点、以及如何结构化您的询价以从任何鄂尔多斯、尼泊尔或西藏工厂获得可比的报价。
+- [Pantone 2026 与羊绒：B2B 买家为2026秋冬季指定的颜色](https://www.erdosdx.com/cn/blog/cashmere-color-pantone-2026-trends-b2b/): Pantone 2026 色彩预测对羊绒针织、纱线及配饰采购意味着什么 — B2B 买家为 FW26/27 指定最多的6种颜色、为什么未染色羊绒的自然色板正在回归、以及如何在不被起订量或色差容忍度陷阱卡住的前提下，向鄂尔多斯工厂清晰说明潘通配色定制染色的需求。
+- [鄂尔多斯 vs 尼泊尔 vs 西藏羊绒：B2B 质量、成本与周期对比](https://www.erdosdx.com/cn/blog/cashmere-factory-ordos-vs-nepal-tibet-quality/): 鄂尔多斯（内蒙古）、尼泊尔与西藏的羊绒纤维在 micron、长度、色泽与得率上实际差异 — 以及这些差异对 B2B 买家在比较每公斤价、起订量、打样周期、终端用途适配性时意味着什么，覆盖原纤维、纱线、机织面料及成品针织。
 - [羊绒等级A与B与C、婴羊绒与每公斤价格：奢华衣料与针织品的B2B买家参考](https://www.erdosdx.com/cn/blog/cashmere-grade-a-b-c-baby-cashmere-price-per-kilo-b2b-guide/): 羊绒纤维如何按micron范围与长度分为A级至C级，什么使婴羊绒（Hircus幼羊）每公斤比成年羊绒贵30%，以及如何解读奢华衣料与针织品的每公斤报价 — 包括2026年纯羊绒纱线、机织面料及成衣每个等级的典型价格区间。
 - [未染色羊绒纱线如何生产：从分梳纤维到机织用纱筒，B2B 买家指南](https://www.erdosdx.com/cn/blog/cashmere-undyed-greige-yarn-production-cycle-b2b-guide/): 羊绒纱线生产 7 阶段全流程详解——从分梳线上的羊绒纤维到机织用精梳或粗纺纱筒。B2B 买家必须知道的分梳得率、毛条分拣、洗涤、梳棉、粗纱、环锭纺纱 — 包括为什么 24 吨纤维批次最终只能产出 7-8 吨成品纱线。
 - [从技术包到量产：羊绒服装OEM项目实际怎么跑（7个阶段，90天）](https://www.erdosdx.com/cn/blog/oem-cashmere-garment-development-process/): 羊绒服装OEM项目实战7阶段90天时间表——从技术包提交到批量出厂——含各阶段交付周期、买家需提交资料、可压缩环节与不可跳过节点。

@@ -154,6 +154,20 @@ export const INDEXABLE_BLOG_IDS = new Set([
   'fr/cashmere-grade-a-b-c-baby-cashmere-price-per-kilo-b2b-guide',
   'ja/cashmere-grade-a-b-c-baby-cashmere-price-per-kilo-b2b-guide',
   'kr/cashmere-grade-a-b-c-baby-cashmere-price-per-kilo-b2b-guide',
+  // 2026-10-18 — 4 new B2B long-tail buying guides covering Pantone FW26/27
+  // color specification (差异化于已有的 pantone-color-matching 技术文),
+  // Ordos/Nepal/Tibet 跨产地对比 (无重复),
+  // 9-step RFQ-to-container 采购总览 (覆盖 payment-terms / factory-audit / oem-workflow 三篇的中间层),
+  // 第三方验货公司选择 (互补 factory-audit 自审维度, 加第三方 PSI 视角)。
+  // 每篇含表格、checklist、引用站内子文, 与已有站点的链接密度提升。
+  'en/cashmere-color-pantone-2026-trends-b2b',
+  'cn/cashmere-color-pantone-2026-trends-b2b',
+  'en/cashmere-factory-ordos-vs-nepal-tibet-quality',
+  'cn/cashmere-factory-ordos-vs-nepal-tibet-quality',
+  'en/cashmere-b2b-procurement-process-step-by-step',
+  'cn/cashmere-b2b-procurement-process-step-by-step',
+  'en/cashmere-b2b-inspection-company-third-party',
+  'cn/cashmere-b2b-inspection-company-third-party',
 ]);
 
 export function getBlogSlugFromId(id: string) {
