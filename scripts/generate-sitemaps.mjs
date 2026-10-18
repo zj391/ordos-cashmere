@@ -71,8 +71,10 @@ async function walkBuiltPages() {
 }
 
 function classify(path) {
-  if (path.match(/^\/(en|de|fr|ja|kr|cn)\/products\/[a-z0-9-]+\/?$/)) return 'products';
-  if (path.match(/^\/(en|de|fr|ja|kr|cn)\/blog\/[a-z0-9-]+\/?$/)) return 'blog';
+  // 2026-10-18: 新增 DXS-* 系列 ID (大写字母+数字+短横线, e.g. DXS-A003-1)
+  // 之前 [a-z0-9-]+ 不允许大写, 导致 48 个新产品 PDP 落到 static bucket.
+  if (path.match(/^\/(en|de|fr|ja|kr|cn)\/products\/[A-Za-z0-9_-]+\/?$/)) return 'products';
+  if (path.match(/^\/(en|de|fr|ja|kr|cn)\/blog\/[A-Za-z0-9_-]+\/?$/)) return 'blog';
   return 'static';
 }
 
@@ -93,18 +95,19 @@ function pageMeta(path) {
   // is the first ~50 IDs per category, where the brand's hero SKUs
   // and most-linked products live. Long-tail is everything past 250
   // (the highest-ID 30% of each category's stock).
-  const productId = path.match(/\/products\/([a-z]+)-(\d+)\/?$/);
+  // 2026-10-18: also support DXS-* prefixed IDs (e.g. DXS-A003-1).
+  const productId = path.match(/\/products\/([A-Za-z]+)-([A-Za-z0-9_-]+)\/?$/);
   if (productId) {
     const id = parseInt(productId[2], 10);
-    if (id <= 150) {
+    if (Number.isFinite(id) && id <= 150) {
       // Flagship: re-crawl weekly, 0.8 priority
       priority = 0.8;
       changefreq = 'weekly';
-    } else if (id <= 200) {
+    } else if (Number.isFinite(id) && id <= 200) {
       // Popular: bi-weekly, 0.6
       priority = 0.6;
       changefreq = 'weekly';
-    } else if (id <= 250) {
+    } else if (Number.isFinite(id) && id <= 250) {
       // Standard: monthly, 0.5 (default)
       priority = 0.5;
       changefreq = 'monthly';
@@ -116,7 +119,7 @@ function pageMeta(path) {
   } else if (path === '/' || /^\/(en|cn|de|fr|ja|kr)?\/?$/.test(path)) {
     priority = 1.0;
     changefreq = 'weekly';
-  } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/blog\/[a-z0-9-]+\/?$/)) {
+  } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/blog\/[A-Za-z0-9_-]+\/?$/)) {
     priority = 0.8;
   } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/(scarves|hats-accessories|yarn|garment-oem|fabric|raw-material|products|private-label-cashmere)\/?$/)) {
     priority = 0.9;
@@ -191,7 +194,8 @@ function buildSitemapXml(urls) {
     //      non-EN URLs would skip those images for non-EN searches
     // Reading the EN HTML file once per product (582 reads total)
     // takes ~1s and reuses cached results.
-    if (path.match(/^\/(en|de|fr|ja|kr|cn)\/products\/[a-z]+-\d+\/$/)) {
+    // 2026-10-18: also support DXS-* prefixed IDs.
+    if (path.match(/^\/(en|de|fr|ja|kr|cn)\/products\/[A-Za-z]+-[A-Za-z0-9_-]+\/$/)) {
       // All locales share the same product page HTML structure, so
       // extract images from the EN version regardless of which
       // locale we're emitting for.
