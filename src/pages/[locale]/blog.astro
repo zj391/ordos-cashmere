@@ -54,16 +54,23 @@ const posts = allPosts
     date: p.data.publishDate.toISOString().slice(0, 10),
     tags: p.data.tags,
   }));
+// 让 ItemList.numberOfItems (= posts.length) 与卡片渲染一致；
+// visibility 文案仅说明 INDEXABLE 子集与读者可见集合是独立维度。
+// (2026-10-18 — ItemList 改为 posts 全集, 卡片也一直用 posts)
 const indexablePosts = posts.filter((p) => isIndexableBlogPost(locale, p.slug));
 
-// ItemList JSON-LD: 让 Google 把博客列表做成富结果
+// ItemList JSON-LD: 让 Google 把博客列表做成富结果。
+// 一致性原则：numberOfItems = 页面实际显示的卡片数 (posts.length, 全部)。
+// itemListElement 只列前 50 条最新 — Google 推荐 ItemList 长度 100 以内,
+// 仍能让搜索引擎把博客枢纽做成 List 类型的富结果。
+const ITEM_LIST_LIMIT = 50;
 const itemListSchema = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
   name: T('title'),
   description: T('subtitle'),
-  numberOfItems: indexablePosts.length,
-  itemListElement: indexablePosts.map((p, i) => ({
+  numberOfItems: posts.length,
+  itemListElement: posts.slice(0, ITEM_LIST_LIMIT).map((p, i) => ({
     '@type': 'ListItem',
     position: i + 1,
     url: `https://www.erdosdx.com/${locale}/blog/${p.slug}/`,
@@ -88,7 +95,9 @@ const itemListSchema = {
     </div>
   </section>
 
-  {false && locale === 'en' && (
+  {/* Knowledge Hub — 仅 EN 展示; CN/DE/FR/JA/KR 博客聚合入口在各自 nav. 5 个 B2B 主题聚类
+      共 ~25 篇内部链接, 显著提升主题权威与内链密度 (2026-10-18 重新启用) */}
+  {locale === 'en' && (
     <section class="py-20 md:py-28 bg-brand-cream/40 border-y border-border" aria-labelledby="knowledge-hub">
       <div class="container-narrow">
         <div class="flex items-center gap-3 mb-6">
