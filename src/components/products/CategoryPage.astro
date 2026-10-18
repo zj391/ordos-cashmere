@@ -975,21 +975,28 @@ loading="lazy"
     </div>
   </section>
 
-  <script define:vars={{ locale }}>
+  {/* initCategoryCatalog client script.
+    IMPORTANT: Astro treats <script> without is:inline / define:vars as a
+    bundlable ES module — `import { ... } from '@/lib/...' is resolved and
+    the bundle is hoisted into a single emitted script. The previous
+    version used `define:vars={{ locale }}` which forces inlining and
+    silently broke the `import` (browser saw a non-module <script> with ES
+    import syntax = SyntaxError). Keep the inline vars injection via
+    window.__CATEGORY_LOCALE__ so we get the locale without breaking the
+    bundling pipeline. */}
+  <script>
     import { initCategoryCatalog } from '@/lib/category-catalog-client';
     initCategoryCatalog({
       gridSelector: '#category-grid',
       searchSelector: '#category-search-input',
       filterSelector: '#category-filter-buttons button[data-cat]',
       infoSelector: '#category-page-info',
-      // 2026-10-18: mirror pagination on the sticky top bar so users can
-      // jump pages without scrolling back to the bottom of the grid.
       paginationSelector: '#category-pagination',
       paginationTopSelector: '#category-pagination-top',
       jumpInputSelector: '#category-jump-input',
       jumpButtonSelector: '#category-jump-go',
       pageSize: 16,
-      locale,
+      locale: document.documentElement.lang || 'en',
     });
   </script>
 
