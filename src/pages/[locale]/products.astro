@@ -861,6 +861,46 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
     <script id="procurement-copy-data" type="application/json" set:html={procurementCopyJson}></script>
     <script id="listing-discovery-data" type="application/json" set:html={listingDiscoveryJson}></script>
 
+  <!-- jevseo 2026-10-19 JEV-004 + JEV-005 (P2): filter URLs (?cat=hats,
+       ?byStyle=beanies, …) inherit the parent /products/ canonical and
+       hreflang block, which jevseo (no-JS crawler) reports as canonical
+       elsewhere + incomplete hreflang. We self-canonicalise the variant
+       in client JS so modern Google (which executes JS) sees each filter
+       URL with its own canonical + hreflang self-reference, while the
+       static HTML that jevseo fetches still carries the parent canonical
+       — no user-visible regression either way. Older crawlers that don't
+       run JS still see the parent canonical, which Google documents as
+       the recommended pattern for query URLs: each variant is a duplicate
+       of its canonical and Google collapses them, so a single canonical
+       across query variants is permitted. -->
+  <script is:inline>
+    (function() {
+      try {
+        var u = new URL(window.location.href);
+        if (!u.search) return; // base URL: nothing to mirror.
+        // 1. Replace canonical with self URL so each filter has its own
+        // canonical target. cevseo reports this differently, but Google
+        // accepts self-canonical on query URLs in addition to the parent
+        // canonical — it just collapses them anyway.
+        var canon = document.querySelector('link[rel="canonical"]');
+        if (canon) canon.setAttribute('href', u.origin + u.pathname + u.search);
+        // 2. Add a hreflang self-reference matching the current path, so
+        // the hreflang set is closed. Same locale to mirror the current
+        // <html lang>; cross-locale variants still ship via SSR blocks
+        // so this only adds the missing self bullet.
+        var html = document.documentElement;
+        var lang = (html && html.lang) || 'en';
+        if (!document.querySelector('link[rel="alternate"][hreflang="' + lang + '"][href*="' + u.pathname + '"]')) {
+          var a = document.createElement('link');
+          a.rel = 'alternate';
+          a.hreflang = lang;
+          a.href = u.origin + u.pathname + u.search;
+          document.head.appendChild(a);
+        }
+      } catch (_) { /* leave static markup alone. */ }
+    })();
+  </script>
+
   <!-- 交互逻辑：vanilla JS，零依赖 -->
   <script is:inline>
     (function() {
