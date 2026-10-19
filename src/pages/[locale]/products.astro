@@ -138,13 +138,33 @@ const listingDiscovery = LISTING_DISCOVERY_COPY[locale] || LISTING_DISCOVERY_COP
 // 故精简版 categories 仅含 {id, name, description, productCount}（count 直接从 products.length 转）。
 // 663 产品 + 6 分类精简前 gzip 后 ~6 MB，精简后 ~120 KB（98%↓）。
 // 详情页 (/en/products/<id>/) 继续用 getAllProducts() 全量，不受影响。
+// jevseo 2026-10-19 JEV-008 (P3): inline products-data had grown to 518 KB
+// raw / ~90 KB gzipped because each product carried a flat `tags` array of
+// 30+ marketing strings ("Wholesale", "Custom Colors", "Mongolian Cashmere",
+// …) that the listing JS never reads in full. The only consumers in
+// products.astro are:
+//   • card subtitle (line 593) — audience / season filter
+//   • compare modal pattern / season / customisation (1427-29)
+// Those need ~5 tags per product, not 30. Trim `tags` to audience/season/
+// pattern/customization markers, drop the rest. Re-mergeable from
+// product-tags.json on detail pages if needed.
 const LISTING_FIELDS = [
   'id', 'name', 'categoryId', 'categoryName',
-  'material', 'micron', 'images', 'tags',
+  'material', 'micron', 'moq', 'price', 'lead',
+  'images', 'tags',
 ] as const;
+// jevseo 2026-10-19: also patched the silent missing-field bug where the
+// compare modal (line 1422-26) read product.moq / product.price / product.lead
+// but those were never serialised in LISTING_FIELDS, so the column always
+// rendered `—`. Now those three ship per product.
+const LISTING_TAG_KEEP = /women|men|kids|unisex|ladies|girls|boys|outerwear|winter|spring|summer|fall|autumn|FW|AW|SS|year[- ]round|reversible|houndstooth|cable|herringbone|solid|chunky|jacquard|fisherman|custom|color|logo|oem|odm|private label|bespoke/i;
 function pickListFields(p: any) {
   const out: Record<string, unknown> = {};
   for (const k of LISTING_FIELDS) out[k] = p[k];
+  // Trim tags to those the listing UI actually reads.
+  if (Array.isArray(out.tags)) {
+    out.tags = (out.tags as string[]).filter((t) => LISTING_TAG_KEEP.test(t));
+  }
   return out;
 }
 function pickListCategory(c: any) {
