@@ -302,6 +302,13 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
                   src={`/products/mic/${p.image}`}
                   alt={p.name}
                   loading="lazy"
+                  // jevseo 2026-10-19 JEV-007 (P3): 406 listing images lacked
+                  // width/height. The grid uses `aspect-square` so the box
+                  // already reserves layout space, but LCP/CLS scores still
+                  // penalise cards without explicit dimensions. 1000x1000 is
+                  // the published image render area for product card micro.
+                  width={1000}
+                  height={1000}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
