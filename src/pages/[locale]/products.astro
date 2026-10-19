@@ -107,20 +107,6 @@ const CATEGORY_HUBS: Record<string, { slug: string; label: Record<string, string
   yarn: { slug: 'yarn', label: { en: 'Cashmere Yarn & Fiber: Cone, Hank, Knitting & Weaving', cn: '羊绒纱线与纤维：筒纱、绞纱、针织与机织', de: 'Kaschmirgarn & Fasern: Konen, Stränge, Strick- und Webprodukte', fr: 'Fil et fibre de cachemire : cônes, écheveaux, tricot et tissage', ja: 'カシミア糸・繊維：コーン・かせ・編み物・織物', kr: '캐시미어 원사·섬유: 콘·타래·편물·직물' } },
 };
 
-// jevseo 2026-10-19: hubs that have a real Astro page under
-// src/pages/[locale]/products/<slug>.astro. Anything else has to route
-// through ?cat=<id> to avoid generating 404s from catalog-index links
-// (hats=hat-accessories.astro, sweaters=garment-oem.astro,
-//  accessories=accessories-cat.astro, scarves=scarves.astro, yarn=yarn.astro
-//  -> 'blankets' lands on cashmere-blankets slug which has no matching file.)
-const HUB_PATH_HUBS = new Set([
-  'hats-accessories',
-  'garment-oem',
-  'scarves',
-  'accessories-cat',
-  'yarn',
-]);
-
 const LISTING_DISCOVERY_COPY: Record<string, { eyebrow: string; title: string; intro: string; action: string; projectTerms: string }> = {
   en: { eyebrow: 'Browse by product family', title: 'Explore cashmere product types, styles and listed attributes', intro: 'Use stable category pages to compare product families and their listed construction, pattern, material and size attributes. Interactive filters refine this catalog without creating a separate sourcing claim.', action: 'Explore category catalog', projectTerms: 'Project details confirmed in writing' },
   cn: { eyebrow: '按产品系列浏览', title: '探索羊绒产品类型、款式与已列属性', intro: '通过稳定的分类页比较产品系列及其已列出的工艺、图案、材质与尺寸属性。交互筛选只用于缩小当前目录，不构成独立的采购承诺。', action: '查看分类目录', projectTerms: '项目条件书面确认' },
@@ -448,16 +434,8 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
           <div class="catalog-index-heading"><span>{catalogUiCopy.index}</span><span>01–06</span></div>
           <div class="catalog-index-links">
             {categories.map((cat, index) => {
-              // jevseo 2026-10-19 JEV-001 (P1): /<locale>/products/<hub.slug>/ only
-              // resolves for the four categories that own dedicated Astro pages.
-              // For categories without a page (e.g. blankets -> cashmere-blankets slug
-              // never had a corresponding src/pages/[locale]/products/<slug>.astro
-              // route, hence a hard 404) we route through the query-param style
-              // ?cat=<id> which /products already supports. This keeps every link
-              // on this page a working landing experience.
               const hub = CATEGORY_HUBS[cat.id];
-              const hubHref = hub ? (HUB_PATH_HUBS.has(hub.slug) ? `/${locale}/products/${hub.slug}/` : `/${locale}/products?cat=${cat.id}`) : null;
-              return hubHref ? <a href={hubHref}><span>0{index + 1}</span><span>{cat.name}</span><strong>{curatedCountsByCategory[cat.id] || 0}</strong></a> : null;
+              return hub ? <a href={`/${locale}/products/${hub.slug}/`}><span>0{index + 1}</span><span>{cat.name}</span><strong>{curatedCountsByCategory[cat.id] || 0}</strong></a> : null;
             })}
           </div>
           <span class="catalog-index-caption">{catalogUiCopy.explore} <span aria-hidden="true">→</span></span>
