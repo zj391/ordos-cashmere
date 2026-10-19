@@ -80,7 +80,12 @@ export const SEO: Record<Locale, LocaleSEO> = {
     region: 'Global',
     market: 'Global / Europe / North America',
     home: {
-      title: 'Erdos Cashmere — Ordos Cashmere Factory, Yarn & Knitwear Wholesale | DONGXIAO®',
+      // jevseo 2026-10-19 JEV-009 (P3): Google truncates by pixel width,
+      // not character count; 78 chars pushed into truncation territory for
+      // the Western B2B keyword set. Trimmed the verbose "Wholesale |
+      // DONGXIAO®" tail and front-loaded the high-intent term "cashmere
+      // factory" once for stronger CTR on the head term.
+      title: 'Ordos Cashmere Factory | Direct B2B Yarn & Knitwear | DONGXIAO',
       description: 'Erdos cashmere from our Ordos, Inner Mongolia factory. 23+ years direct-from-mill pricing on yarn, scarves, sweaters, hats, accessories. MOQ 50–100 pcs. Request written quote.',
       keywords: ['erdos cashmere', 'erdos clothing', 'erdos cashmere factory', 'erdos cashmere supplier',
         'cashmere manufacturer', 'B2B cashmere supplier', 'Ordos cashmere factory wholesale',
