@@ -270,12 +270,6 @@
       "permanent": true
     }
   ],
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/en/"
-    }
-  ],
   "headers": [
     {
       "source": "/api/(.*)",
