@@ -206,34 +206,16 @@ const groupLabel = (groupKey: string, group: any) => {
           {(() => {
             const feature = (submenusData as any)[item.hasSubmenu]?.feature;
             if (!feature) return null;
-            // jevseo 2026-10-19 JEV-007 (P3): the mega-menu feature card image
-                    // ships dim-less; intrinsic dim varies per product
-                    // (landscape series 1200x900 / vertical series 1200x1500
-                    //  / blankets square 750x750). Looked up via shared table
-                    // so the dim stays correct if /images/menu-editorial/
-                    // assets change later.
-                    const MENU_DIM: Record<string, [number, number]> = {
-                      'menu-hats-material-editorial.webp':      [1200, 900],
-                      'menu-sweaters-editorial.webp':           [1200,1500],
-                      'menu-scarves-editorial.webp':            [1200,1500],
-                      'menu-accessories-craft-editorial.webp':  [1200, 900],
-                      'menu-yarn-editorial.webp':               [1200, 900],
-                      'menu-blankets-editorial.webp':           [ 750, 750],
-                    };
-                    const menuFile = (feature.image || '').split('/').pop() || '';
-                    const menuDims = MENU_DIM[menuFile] || [1200, 900];
-                    return (
-                      <a href={feature.href?.[locale] || feature.href?.en || '#'} class="group/feature block relative overflow-hidden rounded-none bg-brand-cream">
-                        <div class="aspect-[4/3] overflow-hidden">
-                          <img
-                            src={feature.image}
-                            alt={feature.title?.[locale] || feature.title?.en || ''}
-                            width={menuDims[0]}
-                            height={menuDims[1]}
-                            loading="lazy"
-                            class="w-full h-full object-cover transition-transform duration-700 group-hover/feature:scale-105"
-                          />
-                        </div>
+            return (
+              <a href={feature.href?.[locale] || feature.href?.en || '#'} class="group/feature block relative overflow-hidden rounded-none bg-brand-cream">
+                <div class="aspect-[4/3] overflow-hidden">
+                  <img
+                    src={feature.image}
+                    alt={feature.title?.[locale] || feature.title?.en || ''}
+                    loading="lazy"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover/feature:scale-105"
+                  />
+                </div>
                 <div class="p-5 space-y-2">
                   <div class="text-[10px] uppercase tracking-[0.15em] text-muted-foreground font-medium">
                     {feature.eyebrow?.[locale] || feature.eyebrow?.en || ''}
