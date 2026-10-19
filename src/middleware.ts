@@ -21,7 +21,15 @@ export const onRequest = defineMiddleware(async (context, next) => {
   const url = new URL(context.request.url);
   const pathname = url.pathname;
 
-  // (1) Root URL → preferred-locale rewrite
+  // (1) Root URL → preferred-locale redirect (308, client-side).
+  // Earlier revisions used `context.rewrite('/{locale}/')` to avoid the
+  // redirect's 580ms mobile PageSpeed cost. The rewrite worked only when
+  // `[locale]/index.astro` was server-rendered; once it became
+  // prerender=true (cached as static HTML), the SSR rewrite fallback
+  // looked for the page module, found none, and raised
+  // `TypeError: module.page is not a function`. The 308 redirect is the
+  // documented Astro path; the speed cost only matters on root hit which
+  // happens once per session and is offset by the bundled redirect itself.
   if (pathname === '/') {
     const acceptLanguage = context.request.headers.get('accept-language') || '';
     const langCode = acceptLanguage.split(',')[0]?.split('-')[0]?.toLowerCase() || 'en';
@@ -29,7 +37,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
       en: 'en', de: 'de', fr: 'fr', ja: 'ja', ko: 'kr', zh: 'cn',
     };
     const target = localeMap[langCode] || 'en';
-    return context.rewrite(`/${target}/`);
+    return context.redirect(`/${target}/`, 308);
   }
 
   // (2) Admin gating
