@@ -80,6 +80,12 @@ const IMG = {
   hero: '/images/ordos-landscape.webp',
   cashmereFiber: '/images/cashmere-fiber.webp',
 };
+// jevseo 2026-10-19 JEV-007 (P3): intrinsic dims for the hero ken-burns
+// and the cashmere-fiber detail panel — both ship at native aspect ratio.
+const IMG_DIM: Record<string, [number, number]> = {
+  '/images/ordos-landscape.webp':  [1600, 1067],
+  '/images/cashmere-fiber.webp':   [1066, 1600],
+};
 ---
 
 <BaseLayout locale={locale} pageKey="rawMaterial" path="/raw-material">
@@ -99,7 +105,7 @@ const IMG = {
         </div>
       </div>
       <div class="relative aspect-[4/3] lg:aspect-auto overflow-hidden">
-        <img src={IMG.hero} alt="Ordos plateau landscape, Inner Mongolia — high-altitude Albus cashmere goat pasture, 14.5μm fiber source" class="ken-burns absolute inset-0 w-full h-full object-cover opacity-95" decoding="async" loading="eager" fetchpriority="high" />
+        <img src={IMG.hero} alt="Ordos plateau landscape, Inner Mongolia — high-altitude Albus cashmere goat pasture, 14.5μm fiber source" class="ken-burns absolute inset-0 w-full h-full object-cover opacity-95" width={IMG_DIM[IMG.hero]?.[0] || 1600} height={IMG_DIM[IMG.hero]?.[1] || 1067} decoding="async" loading="eager" fetchpriority="high" />
         <div class="absolute inset-0 bg-gradient-to-l from-transparent to-brand-sandwarm/40"></div>
       </div>
     </div>
@@ -120,7 +126,7 @@ const IMG = {
       <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
         <!-- 白绒：大卡 + 真实图 -->
         <div class="md:col-span-7 relative aspect-[4/5] md:aspect-[4/5] overflow-hidden group">
-          <img src={IMG.cashmereFiber} alt="Premium white cashmere fiber detail — 14.5μm grade, dehaired underdown from Inner Mongolia Albus goat, ready for spinning" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" decoding="async" loading="eager" fetchpriority="high" />
+          <img src={IMG.cashmereFiber} alt="Premium white cashmere fiber detail — 14.5μm grade, dehaired underdown from Inner Mongolia Albus goat, ready for spinning" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" width={IMG_DIM[IMG.cashmereFiber]?.[0] || 1066} height={IMG_DIM[IMG.cashmereFiber]?.[1] || 1600} decoding="async" loading="eager" fetchpriority="high" />
           <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/95 via-brand-ink/30 to-transparent"></div>
           <div class="absolute top-6 right-6 font-serif text-7xl text-brand-gold/30 font-light">01</div>
           <div class="absolute bottom-0 left-0 p-8 text-white">

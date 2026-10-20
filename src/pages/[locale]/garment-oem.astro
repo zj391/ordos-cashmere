@@ -70,6 +70,13 @@ const IMG = {
   hero: '/images/knit-shawl.webp',
   process: '/images/cashmere-fiber.webp',
 };
+// jevseo 2026-10-19 JEV-007 (P3): intrinsic dims for the ken-burns hero
+// and process panel. Both are full-bleed inside an aspect-ratio box, so
+// shipping real dim keeps CLS at zero regardless of the destination locale.
+const IMG_DIM: Record<string, [number, number]> = {
+  '/images/knit-shawl.webp':      [1114, 1600],
+  '/images/cashmere-fiber.webp':  [1066, 1600],
+};
 ---
 
 <BaseLayout locale={locale} pageKey="garmentOem" path="/garment-oem">
@@ -88,7 +95,7 @@ const IMG = {
         </div>
       </div>
       <div class="relative aspect-[4/3] lg:aspect-auto overflow-hidden">
-        <img src={IMG.hero} alt="Cashmere garments — finished knitwear, scarves and apparel for a sourcing discussion" class="ken-burns absolute inset-0 w-full h-full object-cover opacity-95" decoding="async" loading="eager" fetchpriority="high" />
+        <img src={IMG.hero} alt="Cashmere garments — finished knitwear, scarves and apparel for a sourcing discussion" class="ken-burns absolute inset-0 w-full h-full object-cover opacity-95" width={IMG_DIM[IMG.hero]?.[0] || 1114} height={IMG_DIM[IMG.hero]?.[1] || 1600} decoding="async" loading="eager" fetchpriority="high" />
         <div class="absolute inset-0 bg-gradient-to-l from-transparent to-brand-sandwarm/40"></div>
       </div>
     </div>

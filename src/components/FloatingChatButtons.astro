@@ -107,10 +107,17 @@ const wechatQrUrl = '/images/wechat-qr.png';
       </p>
       <div class="bg-gray-100 rounded-lg p-4 mb-4">
         <img
-          src={wechatQrUrl}
-          alt="WeChat QR Code"
-          class="w-full max-w-[240px] mx-auto aspect-square object-contain"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+            src={wechatQrUrl}
+            alt="WeChat QR Code"
+            // jevseo 2026-10-19 JEV-007 (P3): QR image declares intrinsic dim
+            // so the 240x240 box reserves space; the public file may be absent
+            // and the onerror fallback hides both this img and the next sibling
+            // button-link, but the dim attribute is harmless when the file is
+            // missing.
+            width={240}
+            height={240}
+            class="w-full max-w-[240px] mx-auto aspect-square object-contain"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
         />
         <div style="display:none;" class="text-sm text-gray-500 p-8">
           WeChat ID: <strong>{SITE_INFO.wechatId}</strong>
