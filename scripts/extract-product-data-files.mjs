@@ -32,7 +32,10 @@ mkdirSync(OUT, { recursive: true });
 // `<script id="X" type="application/json">PAYLOAD</script>` per data
 // block; we only need two of them. The body may include HTML-escaped
 // characters (e.g. the SUB_LABELS dictionary uses &quot; and &amp;).
-const SCRIPT_RE = /<script id="(product-tags-data|sub-labels-data)" type="application/json">([\s\S]*?)<\/script>/g;
+const SCRIPT_RE = new RegExp(
+  '<script id="(product-tags-data|sub-labels-data)" type="application/json">([\\s\\S]*?)<\\/script>',
+  'g',
+);
 // Astro escapes the payload; undo the four characters we expect.
 function unescapeJson(s) {
   return s
