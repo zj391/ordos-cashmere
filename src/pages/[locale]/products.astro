@@ -855,8 +855,15 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
   <script id="products-data" type="application/json" set:html={productsJson}></script>
   <script id="categories-data" type="application/json" set:html={categoriesJson}></script>
   <script id="labels-data" type="application/json" set:html={labelsJson}></script>
-  <script id="product-tags-data" type="application/json" set:html={productTagsJson}></script>
-  <script id="sub-labels-data" type="application/json" set:html={subLabelsJson}></script>
+  <!-- jevseo 2026-10-19 JEV-008 (P3, round 2): productTagsMap + SUB_LABELS
+       are locale-independent (no translation, just an index of which
+       grouping tag each product carries + the multi-locale menu label
+       dictionary). Inline blocks were 88 KB + 9.7 KB respectively;
+       moving them to /data/*.json cuts the prerendered HTML on
+       /en/products/ from 656 KB toward 555 KB and lets the client fetch
+       cache once across page loads. Client JS still owns parsing. -->
+  <link rel="preload" href="/data/products-tags.json" as="fetch" crossorigin="anonymous" />
+  <link rel="preload" href="/data/products-sub-labels.json" as="fetch" crossorigin="anonymous" />
   <script id="group-labels-data" type="application/json" set:html={groupLabelsJson}></script>
     <script id="procurement-copy-data" type="application/json" set:html={procurementCopyJson}></script>
     <script id="listing-discovery-data" type="application/json" set:html={listingDiscoveryJson}></script>
@@ -908,8 +915,19 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
       const products = JSON.parse(document.getElementById('products-data').textContent);
       const categories = JSON.parse(document.getElementById('categories-data').textContent);
       const labels = JSON.parse(document.getElementById('labels-data').textContent);
-      const productTags = JSON.parse(document.getElementById('product-tags-data').textContent);
-      const subLabels = JSON.parse(document.getElementById('sub-labels-data').textContent);
+      // jevseo 2026-10-19 JEV-008 (P3, round 2): productTags + subLabels
+      // moved to /data/*.json to slim the prerendered HTML. Inline tags
+      // still ship for /404 and pre-Astro pages (none in production, but
+      // keep the inline fallback so an old cached HTML without the JSON
+      // file doesn't break the page).
+      const inlineProductTags = document.getElementById('product-tags-data');
+      const inlineSubLabels = document.getElementById('sub-labels-data');
+      const productTagsPromise = inlineProductTags
+        ? Promise.resolve(JSON.parse(inlineProductTags.textContent))
+        : fetch('/data/products-tags.json').then((r) => r.json());
+      const subLabelsPromise = inlineSubLabels
+        ? Promise.resolve(JSON.parse(inlineSubLabels.textContent))
+        : fetch('/data/products-sub-labels.json').then((r) => r.json());
       const groupLabels = JSON.parse(document.getElementById('group-labels-data').textContent);
       const procurementCopy = JSON.parse(document.getElementById('procurement-copy-data').textContent);
       const listingDiscovery = JSON.parse(document.getElementById('listing-discovery-data').textContent);
@@ -921,6 +939,11 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
       let currentPage = 1;
       const procurementFilters = { material: 'all' };
       const comparedIds = new Set();
+      // jevseo 2026-10-19 JEV-008 (P3, round 2): wait for the two JSON
+      // fetches before we do anything that touches productTags / subLabels.
+      // Everything below inside this block reads from the resolved values.
+      Promise.all([productTagsPromise, subLabelsPromise]).then(function ([productTags, subLabels]) {
+
       // 2026-10-15: cross-page compare bridge. PDP's [data-add-to-compare] writes
       // product objects to localStorage; on listing page load we re-hydrate
       // comparedIds from that list so the buyer can immediately click 'Compare'
@@ -1655,6 +1678,7 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
         renderPagination(filtered.length, totalPages);
         render(); // re-render with filters applied
       })();
+      }); // Promise.all([productTags, subLabels])
     })();
   </script>
 
