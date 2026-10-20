@@ -426,6 +426,15 @@ if (!noIndex && faqs && faqs.length > 0) {
     <meta name="generator" content={Astro.generator} />
 
 
+    <!-- jevseo 2026-10-19 (security headers): X-Content-Type-Options,
+         X-Frame-Options, and Referrer-Policy are also set in vercel.json
+         but only attach to SSR function responses; on prerendered HTML
+         the edge layer doesn't emit them. http-equiv meta is the
+         prerender-side equivalent. CSP/frame-ancestors lives at the edge
+         (HSTS in response headers + Vercel default CSP), no duplicate. -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
 
     <!-- TDK -->
 
