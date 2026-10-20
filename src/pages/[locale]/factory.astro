@@ -37,6 +37,21 @@ const { locale: rawLocale } = Astro.params;
 
 const locale = pickLocale(rawLocale);
 
+// jevseo 2026-10-19 JEV-007 (P3): intrinsic dimensions for the factory-page
+// imagery so the CSS aspect-* boxes ship a real dim and CLS scores don't
+// shift once the lazy-loaded WebP arrives. 1600-wide horizontal frames
+// match the editorial-style "page2..page9" assets shipped as part of the
+// factory prospectus. The factory-floor poster is portrait (720x1280).
+const FACTORY_DIM: Record<string, [number, number]> = {
+  '/images/factory/page2-factory-floor.webp':     [1600,  979],
+  '/images/factory/page3-exhibition.webp':        [1600,  979],
+  '/images/factory/page9-colorcard-weaving.webp': [1600, 1384],
+  '/images/factory/page6-menswear.webp':          [1600, 1384],
+  '/images/factory/page5-sets.webp':              [1600, 1384],
+  '/images/factory/page8-accessories.webp':       [1600, 1384],
+  '/images/factory/page7-childrenswear.webp':     [1600, 1384],
+};
+
 
 
 const t: Record<string, Record<string, string>> = {
@@ -258,7 +273,7 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
       <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-5">
         <!-- 大图：车间 -->
         <div class="md:col-span-7 relative aspect-[4/3] overflow-hidden group">
-          <img src="/images/factory/page2-factory-floor.webp" alt="DONGXIAO factory floor - raw material dehairing and spinning workshops" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
+          <img src="/images/factory/page2-factory-floor.webp" alt="DONGXIAO factory floor - raw material dehairing and spinning workshops" width={FACTORY_DIM['/images/factory/page2-factory-floor.webp'][0]} height={FACTORY_DIM['/images/factory/page2-factory-floor.webp'][1]} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
           <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/80 via-transparent to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
             <div class="font-serif text-xl md:text-2xl font-light">{locale === 'cn' ? '原料分梳与纺纱车间' : 'Dehairing & spinning workshops'}</div>
@@ -267,7 +282,7 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
         </div>
         <!-- 小图：展会 -->
         <div class="md:col-span-5 relative aspect-[4/3] md:aspect-auto md:min-h-[280px] overflow-hidden group">
-          <img src="/images/factory/page3-exhibition.webp" alt="DONGXIAO at international cashmere trade exhibitions" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
+          <img src="/images/factory/page3-exhibition.webp" alt="DONGXIAO at international cashmere trade exhibitions" width={FACTORY_DIM['/images/factory/page3-exhibition.webp'][0]} height={FACTORY_DIM['/images/factory/page3-exhibition.webp'][1]} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
           <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/80 via-transparent to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
             <div class="font-serif text-xl md:text-2xl font-light">{locale === 'cn' ? '国际展会' : 'Trade exhibitions'}</div>
@@ -276,7 +291,7 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
         </div>
         <!-- 小图：色卡织造 -->
         <div class="md:col-span-5 relative aspect-[4/3] md:aspect-auto md:min-h-[280px] overflow-hidden group">
-          <img src="/images/factory/page9-colorcard-weaving.webp" alt="Color card and weaving detail - Nm2/26 cashmere yarn range" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
+          <img src="/images/factory/page9-colorcard-weaving.webp" alt="Color card and weaving detail - Nm2/26 cashmere yarn range" width={FACTORY_DIM['/images/factory/page9-colorcard-weaving.webp'][0]} height={FACTORY_DIM['/images/factory/page9-colorcard-weaving.webp'][1]} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
           <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/80 via-transparent to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
             <div class="font-serif text-xl md:text-2xl font-light">{locale === 'cn' ? '色卡与织造细节' : 'Color cards & weaving detail'}</div>
@@ -370,7 +385,7 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         <a href={`/${locale}/products/garment-oem/`} class="group relative aspect-[3/4] overflow-hidden bg-brand-ink">
-          <img src="/images/factory/page6-menswear.webp" alt="Knit garments from DONGXIAO - men's cashmere pullovers and sweaters" class="w-full h-full object-cover opacity-90 group-hover:scale-105 group-hover:opacity-100 transition-opacity transition-transform duration-700" loading="lazy" decoding="async" />
+          <img src="/images/factory/page6-menswear.webp" alt="Knit garments from DONGXIAO - men's cashmere pullovers and sweaters" width={FACTORY_DIM['/images/factory/page6-menswear.webp'][0]} height={FACTORY_DIM['/images/factory/page6-menswear.webp'][1]} class="w-full h-full object-cover opacity-90 group-hover:scale-105 group-hover:opacity-100 transition-opacity transition-transform duration-700" loading="lazy" decoding="async" />
           <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/85 via-brand-ink/10 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-6">
             <div class="font-serif text-xs text-brand-gold/70 mb-1">01</div>
@@ -379,7 +394,7 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
           </div>
         </a>
         <a href={`/${locale}/products/scarves/`} class="group relative aspect-[3/4] overflow-hidden bg-brand-ink">
-          <img src="/images/factory/page5-sets.webp" alt="Woven cashmere scarves and shawls" class="w-full h-full object-cover opacity-90 group-hover:scale-105 group-hover:opacity-100 transition-opacity transition-transform duration-700" loading="lazy" decoding="async" />
+          <img src="/images/factory/page5-sets.webp" alt="Woven cashmere scarves and shawls" width={FACTORY_DIM['/images/factory/page5-sets.webp'][0]} height={FACTORY_DIM['/images/factory/page5-sets.webp'][1]} class="w-full h-full object-cover opacity-90 group-hover:scale-105 group-hover:opacity-100 transition-opacity transition-transform duration-700" loading="lazy" decoding="async" />
           <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/85 via-brand-ink/10 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-6">
             <div class="font-serif text-xs text-brand-gold/70 mb-1">02</div>
@@ -388,7 +403,7 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
           </div>
         </a>
         <a href={`/${locale}/products/accessories-cat/`} class="group relative aspect-[3/4] overflow-hidden bg-brand-ink">
-          <img src="/images/factory/page8-accessories.webp" alt="Cashmere accessories - hats, gloves, throws" class="w-full h-full object-cover opacity-90 group-hover:scale-105 group-hover:opacity-100 transition-opacity transition-transform duration-700" loading="lazy" decoding="async" />
+          <img src="/images/factory/page8-accessories.webp" alt="Cashmere accessories - hats, gloves, throws" width={FACTORY_DIM['/images/factory/page8-accessories.webp'][0]} height={FACTORY_DIM['/images/factory/page8-accessories.webp'][1]} class="w-full h-full object-cover opacity-90 group-hover:scale-105 group-hover:opacity-100 transition-opacity transition-transform duration-700" loading="lazy" decoding="async" />
           <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/85 via-brand-ink/10 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-6">
             <div class="font-serif text-xs text-brand-gold/70 mb-1">03</div>
@@ -397,7 +412,7 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
           </div>
         </a>
         <a href={`/${locale}/products/accessories-cat/`} class="group relative aspect-[3/4] overflow-hidden bg-brand-ink">
-          <img src="/images/factory/page7-childrenswear.webp" alt="DONGXIAO childrenswear - baby and kids cashmere knitwear" class="w-full h-full object-cover opacity-90 group-hover:scale-105 group-hover:opacity-100 transition-opacity transition-transform duration-700" loading="lazy" decoding="async" />
+          <img src="/images/factory/page7-childrenswear.webp" alt="DONGXIAO childrenswear - baby and kids cashmere knitwear" width={FACTORY_DIM['/images/factory/page7-childrenswear.webp'][0]} height={FACTORY_DIM['/images/factory/page7-childrenswear.webp'][1]} class="w-full h-full object-cover opacity-90 group-hover:scale-105 group-hover:opacity-100 transition-opacity transition-transform duration-700" loading="lazy" decoding="async" />
           <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/85 via-brand-ink/10 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-6">
             <div class="font-serif text-xs text-brand-gold/70 mb-1">04</div>
@@ -469,7 +484,7 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
   <!-- ============ 07 预约考察 CTA（背景图） ============ -->
   <section class="relative py-28 md:py-36 overflow-hidden bg-brand-chocolate">
     <div class="absolute inset-0">
-      <img src="/images/factory/page3-exhibition.webp" alt="" aria-hidden="true" class="w-full h-full object-cover opacity-20" loading="lazy" decoding="async" />
+      <img src="/images/factory/page3-exhibition.webp" alt="" aria-hidden="true" width={FACTORY_DIM['/images/factory/page3-exhibition.webp'][0]} height={FACTORY_DIM['/images/factory/page3-exhibition.webp'][1]} class="w-full h-full object-cover opacity-20" loading="lazy" decoding="async" />
       <div class="absolute inset-0 bg-gradient-to-b from-brand-chocolate/70 to-brand-chocolate/90"></div>
     </div>
     <div class="container-narrow relative z-10 text-center">

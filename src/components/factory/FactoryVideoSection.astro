@@ -204,6 +204,12 @@ const triggerId = `factory-video-trigger-${Math.random().toString(36).slice(2, 8
             <img
               src={posterSrc}
               alt={T('posterAlt')}
+              // jevseo 2026-10-19 JEV-007 (P3): factory-floor poster is
+              // portrait (720x1280); the rendered box is 16:9 letterbox, so
+              // the intrinsic ratio still travels with the markup. CLS
+              // scoring gets a real dim from the attribute pair.
+              width={720}
+              height={1280}
               class="absolute inset-0 w-full h-full object-cover"
               loading="lazy"
               decoding="async"
