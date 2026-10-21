@@ -30,10 +30,10 @@ mkdirSync(OUT, { recursive: true });
 
 // Match inline JSON in the prerendered HTML. Astro emits exactly one
 // `<script id="X" type="application/json">PAYLOAD</script>` per data
-// block; we only need two of them. The body may include HTML-escaped
-// characters (e.g. the SUB_LABELS dictionary uses &quot; and &amp;).
+// block. The body may include HTML-escaped characters (e.g. the
+// SUB_LABELS dictionary uses &quot; and &amp;).
 const SCRIPT_RE = new RegExp(
-  '<script id="(product-tags-data|sub-labels-data)" type="application/json">([\\s\\S]*?)<\\/script>',
+  '<script id="(product-tags-data|sub-labels-data|products-data|categories-data|labels-data)" type="application/json">([\\s\\S]*?)</script>',
   'g',
 );
 // Astro escapes the payload; undo the four characters we expect.
@@ -59,33 +59,52 @@ if (!existsSync(EN_PAGE)) {
 const html = readFileSync(EN_PAGE, 'utf8');
 const tagsPayload = [];
 const subLabelsPayload = [];
+const productsPayload = [];
+const categoriesPayload = [];
+const labelsPayload = [];
 for (const m of html.matchAll(SCRIPT_RE)) {
-  if (m[1] === 'product-tags-data') tagsPayload.push(unescapeJson(m[2]));
-  else if (m[1] === 'sub-labels-data') subLabelsPayload.push(unescapeJson(m[2]));
+  const body = unescapeJson(m[2]);
+  if (m[1] === 'product-tags-data') tagsPayload.push(body);
+  else if (m[1] === 'sub-labels-data') subLabelsPayload.push(body);
+  else if (m[1] === 'products-data') productsPayload.push(body);
+  else if (m[1] === 'categories-data') categoriesPayload.push(body);
+  else if (m[1] === 'labels-data') labelsPayload.push(body);
 }
 
-if (tagsPayload.length !== 1 || subLabelsPayload.length !== 1) {
+// Tolerate missing inline blocks for products/categories/labels: as
+// of 2026-10-20 (JEV-008 round 4) those three are NOT inlined — they
+// live only in /data/. The script still extracts whatever is inline
+// (tags + sub-labels today). Empty payload for a key means "skip that
+// file" rather than failing the postbuild.
+if (tagsPayload.length > 1 || subLabelsPayload.length > 1 ||
+    productsPayload.length > 1 || categoriesPayload.length > 1 ||
+    labelsPayload.length > 1) {
   console.error(
-    `[extract-product-data] expected exactly one tags + one sub-labels ` +
-    `block in /en/products/index.html, got ${tagsPayload.length} / ${subLabelsPayload.length}`,
+    `[extract-product-data] expected at most one of each block in ` +
+    `/en/products/index.html, got tags=${tagsPayload.length} sub=${subLabelsPayload.length} ` +
+    `products=${productsPayload.length} categories=${categoriesPayload.length} labels=${labelsPayload.length}`,
   );
   process.exit(1);
 }
 
-const tagsJson = JSON.parse(tagsPayload[0]);
-const subLabelsJson = JSON.parse(subLabelsPayload[0]);
+const TAG_OUT = [];
+if (tagsPayload.length) TAG_OUT.push(['products-tags.json', JSON.parse(tagsPayload[0])]);
+if (subLabelsPayload.length) TAG_OUT.push(['products-sub-labels.json', JSON.parse(subLabelsPayload[0])]);
+if (productsPayload.length) TAG_OUT.push(['products.json', JSON.parse(productsPayload[0])]);
+if (categoriesPayload.length) TAG_OUT.push(['products-categories.json', JSON.parse(categoriesPayload[0])]);
+if (labelsPayload.length) TAG_OUT.push(['products-labels.json', JSON.parse(labelsPayload[0])]);
 
 for (const locale of LOCALES) {
   const dir = join(OUT, locale);
   mkdirSync(dir, { recursive: true });
-  writeFileSync(join(dir, 'products-tags.json'), JSON.stringify(tagsJson));
-  writeFileSync(join(dir, 'products-sub-labels.json'), JSON.stringify(subLabelsJson));
+  for (const [filename, payload] of TAG_OUT) {
+    writeFileSync(join(dir, filename), JSON.stringify(payload));
+  }
 }
 
-const tagsSize = statSync(join(OUT, 'en/products-tags.json')).size;
-const subSize = statSync(join(OUT, 'en/products-sub-labels.json')).size;
-console.log(
-  `[extract-product-data] wrote products-tags.json (${(tagsSize/1024).toFixed(1)} KB) ` +
-  `+ products-sub-labels.json (${(subSize/1024).toFixed(1)} KB) for ${LOCALES.length} locales ` +
-  `(previously inline: ${tagsJson ? '88' : '0'} + 9.7 KB each).`,
-);
+if (TAG_OUT.length === 0) {
+  console.log('[extract-product-data] no inline blocks found — nothing to extract.');
+} else {
+  const names = TAG_OUT.map(([n]) => n).join(', ');
+  console.log(`[extract-product-data] wrote ${TAG_OUT.length} JSONs per locale from inline blocks: ${names}.`);
+}

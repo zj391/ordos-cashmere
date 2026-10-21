@@ -426,12 +426,39 @@ if (!noIndex && faqs && faqs.length > 0) {
     <meta name="generator" content={Astro.generator} />
 
 
-    <!-- jevseo 2026-10-19 (security headers): X-Content-Type-Options,
-         X-Frame-Options, and Referrer-Policy are also set in vercel.json
-         but only attach to SSR function responses; on prerendered HTML
-         the edge layer doesn't emit them. http-equiv meta is the
-         prerender-side equivalent. CSP/frame-ancestors lives at the edge
-         (HSTS in response headers + Vercel default CSP), no duplicate. -->
+    <!-- 2026-10-20 (security headers, round 2):
+       X-Content-Type-Options / X-Frame-Options / Referrer-Policy are set
+       in vercel.json but only attach to SSR function responses. On
+       prerendered HTML files the edge layer serves the static file
+       without invoking any headers config — so http-equiv meta is the
+       prerender-side equivalent for browsers that actually parse them.
+
+       IMPORTANT reality check:
+       - http-equiv "X-Content-Type-Options" (nosniff): NOT browser-parsed.
+         Modern browsers ignore meta http-equiv for X-Content-Type-Options.
+         The only way to ship this on prerendered HTML is a real HTTP
+         header, which means route through SSR or Vercel Edge Middleware.
+       - http-equiv "X-Frame-Options": same — not browser-parsed.
+       - http-equiv "Referrer-Policy": BROWSER-PARSED in modern engines
+         since 2019 (https://caniuse.com/referrer-policy-meta).
+       - http-equiv "Content-Security-Policy": BROWSER-PARSED, applies
+         to all <meta> tags including CSP. Per CSP3 spec if no
+         Content-Security-Policy-Report-Only variant is specified.
+
+       So practically: only Referrer-Policy + CSP via meta have any
+       actual browser effect on prerendered HTML. The other two are
+       cosmetic / document the intent. The audit (jevseo) only inspects
+       real HTTP response headers, so it will still flag this finding —
+       the http-equiv meta doesn't change the security header score.
+
+       To actually clear the jevseo finding we still need an HTTP
+       header. The pragmatic path is to run the route through the
+       SSR function for paths that don't matter for crawler budget
+       (homepage is the only one jevseo crawls at /).
+
+       Leaving the meta block here as documentation and an opt-in
+       defense-in-depth signal that survives even when the
+       Content-Type is wrong. -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />

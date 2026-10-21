@@ -855,17 +855,17 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
   <script id="products-data" type="application/json" set:html={productsJson}></script>
   <script id="categories-data" type="application/json" set:html={categoriesJson}></script>
   <script id="labels-data" type="application/json" set:html={labelsJson}></script>
-  <!-- jevseo 2026-10-19 JEV-008 (P3, round 3): productTags + subLabels
-       also live at /data/<locale>/products-tags.json and
-       .../products-sub-labels.json (built by
-       scripts/extract-product-data-files.mjs) so the data has a
-       secondary URL — useful for AI/agentic crawlers that prefer
-       .json over inline <script type="application/json">. Page HTML
-       still ships them inline for first-paint so cevseo's
-       'images_dimensions' / jevseo 'heavy_html' findings don't move
-       to a worse state by removing the inline copies. -->
+  <!-- jevseo 2026-10-20 JEV-008 (P3): productTags + subLabels + products +
+       categories + labels all ALSO live at /data/<locale>/*.json (built by
+       scripts/extract-product-data-files.mjs) so AI/agentic crawlers that
+       prefer .json over inline <script type="application/json"> have a
+       first-class URL for the catalog dataset. Inline blocks stay for
+       first-paint / no-JS-safety. Preload links are harmless hints. -->
   <link rel="preload" href="/data/products-tags.json" as="fetch" crossorigin="anonymous" />
   <link rel="preload" href="/data/products-sub-labels.json" as="fetch" crossorigin="anonymous" />
+  <link rel="preload" href="/data/products.json" as="fetch" crossorigin="anonymous" />
+  <link rel="preload" href="/data/products-categories.json" as="fetch" crossorigin="anonymous" />
+  <link rel="preload" href="/data/products-labels.json" as="fetch" crossorigin="anonymous" />
   <script id="product-tags-data" type="application/json" set:html={productTagsJson}></script>
   <script id="sub-labels-data" type="application/json" set:html={subLabelsJson}></script>
   <script id="group-labels-data" type="application/json" set:html={groupLabelsJson}></script>
