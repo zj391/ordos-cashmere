@@ -142,8 +142,18 @@ async function main() {
     lines.push(`### ${page.title}`);
     lines.push('');
     for (const [loc, desc] of Object.entries(page.desc)) {
-      const slug = loc === 'cn' ? '/cn' : (loc === 'en' ? '' : `/${loc}`);
-      lines.push(`- **${loc.toUpperCase()}** [${page.title}](${SITE_URL}${slug}${page.path === '/' ? '' : page.path}): ${desc}`);
+      // 2026-10-20 SEO fix: the English variant previously rendered as
+      // https://www.erdosdx.com/products/ (no /en prefix) because the slug
+      // expression mapped 'en' to ''. That URL has no direct route — vercel.json
+      // only defines /products/sweaters/, /products/hats/,
+      // /products/accessories/ and /products/:id/ redirects, so /products/
+      // itself hits the SSR function and (per the middleware-redirect fix)
+      // 404s at the edge. Every AI crawler that read llms-full.txt therefore
+      // followed a dead link for the 591-SKU catalog.
+      // The site's canonical English home lives at /en/ (middleware 308s
+      // '/' -> '/en/'), so English hub pages must carry the /en prefix too.
+      const slug = `/${loc === 'cn' ? 'cn' : loc === 'ko' ? 'kr' : loc}`;
+      lines.push(`- **${loc.toUpperCase()}** [${page.title}](${SITE_URL}${slug}${page.path === '/' ? '/' : page.path}): ${desc}`);
     }
     lines.push('');
   }
