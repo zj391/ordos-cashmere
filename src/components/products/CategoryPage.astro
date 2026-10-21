@@ -601,8 +601,23 @@ const fallbackT = {
   faqs: support.faqs,
   catalog: support.catalog,
 };
+// 2026-10-20: previously `title: \`${topic.heading} | DONGXIAO\`` built
+  // the SEO title from the long-form section heading (75-99 chars), which
+  // landed in the Google truncation zone on all five hub pages and made
+  // them look identical to each other (same shape, different category).
+  // Use the short per-locale `title` we added to categorySeoTopics instead,
+//  falling back to a trimmed heading if a locale is missing the field.
 const t = topic
-  ? { title: `${topic.heading} | DONGXIAO`, description: support.description, keywords: topic.keywords, h1: topic.heading, intro: support.intro, bullets: support.bullets, faqs: support.faqs, catalog: support.catalog }
+  ? {
+      title: topic.title || `${topic.heading} | DONGXIAO`,
+      description: support.description,
+      keywords: topic.keywords,
+      h1: topic.heading,
+      intro: support.intro,
+      bullets: support.bullets,
+      faqs: support.faqs,
+      catalog: support.catalog,
+    }
   : fallbackT;
 if (!t) return new Response('Not Found', { status: 404 });
 
