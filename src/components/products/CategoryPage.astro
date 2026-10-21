@@ -821,10 +821,12 @@ class="card-editorial group block bg-white"
 >
 <div class="aspect-square bg-stone-100 overflow-hidden mb-4">
 <img
-src={resolveCategoryCardImage(p.images[0])}
-alt={p.name}
-class="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-90"
-loading="lazy"
+    src={resolveCategoryCardImage(p.images[0])}
+    alt={p.name}
+    width={800}
+    height={800}
+    class="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-90"
+    loading="lazy"
 />
 </div>
 <h3 class="card-editorial-title">{p.name}</h3>
@@ -871,10 +873,12 @@ class="card-editorial group block bg-white"
 >
 <div class="aspect-square bg-stone-100 overflow-hidden mb-4">
 <img
-src={resolveCategoryCardImage(p.images[0])}
-alt={p.name}
-class="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-90"
-loading="lazy"
+    src={resolveCategoryCardImage(p.images[0])}
+    alt={p.name}
+    width={800}
+    height={800}
+    class="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-90"
+    loading="lazy"
 />
 </div>
 <h3 class="card-editorial-title">{p.name}</h3>
@@ -952,6 +956,16 @@ loading="lazy"
               <img
                 src={resolveCategoryCardImage(p.images[0])}
                 alt={p.name}
+                // jevseo 2026-10-20 JEV-007: 169 product cards per hub page
+                // shipped dim-less. The aspect-square wrapper already reserves
+                // the box, but explicit dimensions are what CLS scoring and
+                // Google's image crawler read. Product micro images render at
+                // 400-750 px square depending on the source asset; 800x800 is
+                // the CSS-box size at the widest grid breakpoint, so the
+                // declared intrinsic ratio is correct regardless of which
+                // source file is picked.
+                width={800}
+                height={800}
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform"
                 loading="lazy"
               />
