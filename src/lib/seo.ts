@@ -96,7 +96,7 @@ export const SEO: Record<Locale, LocaleSEO> = {
         'erdos cashmere clothing', 'ordos cashmere clothing'],
     },
     rawMaterial: {
-      title: 'Raw Cashmere Material Sourcing | White, Brown & Purple Fiber | DONGXIAO®',
+      title: 'Raw Cashmere Material | White, Brown & Purple Fiber',
       description: 'Discuss white, brown or purple cashmere requirements with the intended use, quantity, destination and requested fiber documentation.',
       keywords: ['raw cashmere fiber', 'white cashmere', 'brown cashmere', 'cashmere raw material wholesale',
         'dehaired cashmere', 'combed cashmere',
@@ -114,7 +114,7 @@ export const SEO: Record<Locale, LocaleSEO> = {
       // (12 imp, pos 3, 0% CTR — snippet mismatch on existing yarn-fabric page)。
       // 把这个 phrase 放到 title 前段 + description 中段，确保 Google 抽取 snippet
       // 时能匹配 GSC query。
-      title: 'Worsted Cashmere Yarn for Machine Knitting & Woven Fabric | Ordos Factory | DONGXIAO®',
+      title: 'Worsted Cashmere Yarn for Knitting & Weaving | Ordos Factory',
       description: 'Stock supply worsted 100% cashmere yarn for machine knitting — Erdos cashmere yarn spun at our Ordos, Inner Mongolia factory. 73 yarn configurations across pure cashmere, cashmere-wool, cashmere-silk, cashmere-linen. MOQ 50 kg, FOB Tianjin.',
       keywords: ['erdos cashmere yarn', 'erdos cashmere factory yarn', 'cashmere yarn wholesale',
         'undyed cashmere yarn wholesale', 'greige cashmere yarn', 'raw white cashmere yarn',
@@ -129,7 +129,7 @@ export const SEO: Record<Locale, LocaleSEO> = {
       ],
     },
     garmentOem: {
-      title: 'Erdos Clothing Wholesale — Ordos Cashmere Garment OEM/ODM | DONGXIAO®',
+      title: 'Erdos Cashmere Garment OEM/ODM Wholesale',
       description: 'Erdos clothing wholesale from our Ordos, Inner Mongolia factory. Custom cashmere sweaters, scarves, hats, accessories. Private-label OEM/ODM, MOQ 50 pcs, sample 7–10 days, written quotation.',
       keywords: ['erdos clothing', 'erdos clothing wholesale', 'erdos cashmere garment',
         'erdos cashmere sweater', 'cashmere sweater OEM', 'cashmere garment manufacturer',
@@ -145,7 +145,7 @@ export const SEO: Record<Locale, LocaleSEO> = {
       ],
     },
     factory: {
-      title: 'Factory Strength | 23+ Years Cashmere Production | Ordos Industrial Park',
+      title: 'Factory Strength | 23+ Years Cashmere Production',
       description: '38,000 sqm Ordos factory. 500+ employees. 1,200+ tons annual capacity. ISO 9001, OEKO-TEX, GCS certified. Direct from source, no middleman.',
       keywords: ['cashmere factory', 'Ordos manufacturer', 'ISO certified cashmere', 'OEKO-TEX cashmere',
         'Ordos cashmere factory', 'Mongolian cashmere supplier', 'Inner Mongolia cashmere mill',
@@ -161,7 +161,7 @@ export const SEO: Record<Locale, LocaleSEO> = {
       ],
     },
     ordosOrigin: {
-      title: 'Erdos Cashmere Factory — Ordos Inner Mongolia Origin & Heritage | DONGXIAO®',
+      title: 'Erdos Cashmere Factory — Origin & Heritage',
       description: "Erdos cashmere factory located in Ordos, Inner Mongolia. Discover the world's premium cashmere origin: Albus goat breeding, climate, traceability, and full-chain production from our facility.",
       keywords: ['erdos cashmere factory', 'erdos cashmere', 'Ordos cashmere factory',
         'Inner Mongolia cashmere factory', 'cashmere factory direct from mill',
@@ -186,7 +186,7 @@ export const SEO: Record<Locale, LocaleSEO> = {
       ],
     },
     download: {
-      title: 'Download Center | Catalog, Specs, Certifications | Dongxiao Cashmere',
+      title: 'Download Center | Catalog & Certifications',
       description: 'Download cashmere product catalogs, technical specifications, certifications (ISO, OEKO-TEX, GCS), and factory audit reports. B2B buyers only.',
       keywords: ['cashmere catalog download', 'cashmere certifications', 'factory audit report'],
     },
@@ -210,7 +210,7 @@ export const SEO: Record<Locale, LocaleSEO> = {
     region: 'Germany / EU',
     market: 'Deutschland / EU',
     home: {
-      title: 'Kaschmir Beschaffung | Rohmaterial, Garn, Stoff & Strick | DONGXIAO®',
+      title: 'Kaschmir Beschaffung | Rohmaterial, Garn & Strick',
       description: 'Entdecken Sie Rohmaterial, Garn, Stoff und Strickwaren für die B2B-Beschaffung. Produktreferenz, Menge, Zielort und Spezifikationen werden schriftlich abgestimmt.',
       keywords: ['Kaschmir Hersteller', 'B2B Kaschmir Lieferant', 'Kaschmir Großhandel', 'Ordos Kaschmir', 'Innere Mongolei Kaschmir', 'Kaschmir Garn', 'Kaschmir stricken', 'Kaschmir Erdos', 'Kaschmir Hersteller Ordos', 'Erdos Kaschmir Hersteller', 'Kaschmir Großhandel Deutschland'],
     },
@@ -250,7 +250,7 @@ export const SEO: Record<Locale, LocaleSEO> = {
       keywords: ['Kaschmir Blog', 'B2B Beschaffung'],
     },
     download: {
-      title: 'Download Center | Katalog, Spezifikationen, ISO/OEKO-TEX Zertifikate',
+      title: 'Download Center | Katalog & Zertifikate',
       description: 'Laden Sie Kaschmir-Produktkataloge, technische Spezifikationen, ISO 9001 und OEKO-TEX Zertifikate sowie Fabrik-Auditberichte herunter. Nur für B2B-Käufer.',
       keywords: ['Kaschmir Katalog', 'Kaschmir Zertifikate'],
     },
@@ -272,7 +272,7 @@ export const SEO: Record<Locale, LocaleSEO> = {
     region: 'France / EU',
     market: 'France / UE',
     home: {
-      title: 'Approvisionnement cachemire | Matière, fil, tissu & maille | DONGXIAO®',
+      title: 'Approvisionnement cachemire | Matière, fil & maille',
       description: 'Explorez matière, fil, tissu et maille pour l’approvisionnement B2B. Les conditions sont confirmées par écrit selon le produit, la quantité, la destination et les spécifications.',
       keywords: ['fabricant cachemire', 'fournisseur cachemire B2B', 'cachemire Ordos', 'Mongolie Intérieure cachemire', 'gros cachemire', 'cachemire OEM', 'cachemire Erdos', 'cachemire Ordos fabricant', 'Mongolie Intérieure cachemire fournisseur', 'cachemire France grossiste'],
     },
@@ -297,7 +297,7 @@ export const SEO: Record<Locale, LocaleSEO> = {
       keywords: [...getSeoKeywords('fr', 'factory'), ...getSeoKeywords('fr', 'leadtime')],
     },
     ordosOrigin: {
-      title: 'Origine Cachemire Ordos | Patrimoine Mongolie Intérieure | Traçabilité',
+      title: 'Origine Cachemire Ordos | Traçabilité',
       description: "Découvrez pourquoi Ordos, Mongolie Intérieure est l'origine premium du cachemire mondial. Chèvres Albas, climat, traçabilité de la fibre au produit fini.",
       keywords: getSeoKeywords('fr', 'origin'),
     },
@@ -312,7 +312,7 @@ export const SEO: Record<Locale, LocaleSEO> = {
       keywords: ['blog cachemire'],
     },
     download: {
-      title: 'Centre de Téléchargement | Catalogue, Specs, Certifications ISO/OEKO-TEX',
+      title: 'Centre de Téléchargement | Catalogue & Certifications',
       description: "Téléchargez catalogues produits cachemire, spécifications techniques, certifications ISO 9001 et OEKO-TEX, rapports d'audit usine. Réservé aux acheteurs B2B.",
       keywords: ['catalogue cachemire'],
     },

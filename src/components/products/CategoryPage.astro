@@ -161,7 +161,7 @@ const guides = categoryGuides[catId] || categoryGuides.hats;
 const tdk = {
   scarves: {
     en: {
-      title: 'Wholesale Cashmere Scarves & Wraps | Custom Manufacturer | DONGXIAO®',
+      title: 'Wholesale Cashmere Scarves & Wraps | Custom Made',
       description: 'Wholesale cashmere scarves, wraps, shawls, and ponchos from Ordos factory. 100% pure Inner Mongolian cashmere. Custom logo, private label, MOQ 50pcs. OEM/ODM service for global brands.',
       keywords: ['cashmere scarves wholesale', 'cashmere wraps', 'cashmere shawls manufacturer', 'custom cashmere scarves', 'private label scarves', 'OEM cashmere scarves', 'Mongolian cashmere scarves'],
       h1: 'Wholesale Cashmere Scarves, Wraps & Shawls',
@@ -190,7 +190,7 @@ const tdk = {
       ],
     },
     de: {
-      title: 'Kaschmir-Schals & Tücher Großhandel | Custom Hersteller | DONGXIAO®',
+      title: 'Kaschmir-Schals & Tücher Großhandel | Hersteller',
       description: 'Kaschmir-Schals, Tücher, Shawls und Ponchos aus der Ordos-Fabrik im Großhandel. 100% reines mongolisches Kaschmir. Logo-Druck, Private Label, MOQ 50 Stk.',
       keywords: ['Kaschmir Schals Großhandel', 'Kaschmir Tücher', 'custom Kaschmir Schals', 'private label Schals'],
       h1: 'Kaschmir-Schals, Tücher & Shawls im Großhandel',
@@ -199,7 +199,7 @@ const tdk = {
       faqs: [{ q: 'Was ist die MOQ?', a: '50 Stück pro Modell.' }],
     },
     fr: {
-      title: 'Écharpes & étoles cachemire en gros | Fabricant sur mesure | DONGXIAO®',
+      title: 'Écharpes & étoles cachemire en gros | Fabricant',
       description: 'Écharpes, étoles, châles et ponchos en cachemire de l\'usine d\'Ordos. MOQ 50 pièces.',
       keywords: ['écharpes cachemire gros', 'étoles cachemire', 'fabricant cachemire sur mesure'],
       h1: 'Écharpes, étoles et châles en cachemire',
@@ -357,7 +357,7 @@ const tdk = {
   },
   'hats-accessories': {
     en: {
-      title: 'Cashmere Hats & Beanies Wholesale | Custom Logo | MOQ 50 | DONGXIAO®',
+      title: 'Cashmere Hats & Beanies Wholesale | Custom Logo',
       description: 'Wholesale cashmere hats, beanies, caps and berets direct from Ordos factory. 66 styles. Logo embroidery available. MOQ 50 pcs per style.',
       keywords: ['cashmere hats wholesale', 'cashmere beanies', 'cashmere caps wholesale', 'cashmere berets', 'custom cashmere hats', 'private label hats', 'OEM cashmere hats'],
       h1: 'Cashmere Hats & Beanies Wholesale',
@@ -421,7 +421,7 @@ const tdk = {
   },
   'accessories-cat': {
     en: {
-      title: 'Cashmere Accessories Wholesale | Leggings, Gloves & Socks | DONGXIAO®',
+      title: 'Cashmere Accessories Wholesale | Gloves & Socks',
       description: 'Wholesale cashmere accessories direct from Ordos factory: leggings, thermal pants, tights, gloves, socks and headbands. 78 styles. Logo embroidery available. MOQ 50 pcs per style.',
       keywords: ['cashmere accessories wholesale', 'cashmere leggings wholesale', 'cashmere pants wholesale', 'cashmere tights', 'cashmere long johns', 'cashmere gloves wholesale', 'cashmere socks manufacturer', 'cashmere headbands wholesale'],
       h1: 'Cashmere Accessories Wholesale: Leggings, Gloves & Socks',
@@ -488,48 +488,56 @@ const tdk = {
 // Category hubs carry broad discovery intent. Product detail pages keep the
 // SKU-level name and attributes; this layer names the actual type/style family
 // represented by the catalog rather than repeating commercial promises.
-const categorySeoTopics: Record<string, Record<string, { heading: string; keywords: string[] }>> = {
+// 2026-10-20: added `title` to the topic shape. Previously the object only
+// carried `heading` + `keywords`, but BaseLayout is called with
+// `title={t.title}` where t = topic — so every one of the five /products/<slug>/
+// hub pages fell through to BaseLayout's `pageSEO.title` for pageKey='products',
+// which is the same string on all five. That was the root cause of the
+// jevseo title_duplicate finding on /en/products/hats-accessories,
+// /en/products/garment-oem, /en/products/scarves,
+// /en/products/accessories-cat and /en/products/yarn.
+const categorySeoTopics: Record<string, Record<string, { title?: string; heading: string; keywords: string[] }>> = {
   en: {
-    hats: { heading: 'Cashmere Hats, Beanies, Berets & Caps: Ribbed, Cable Knit & Jacquard Styles', keywords: ['cashmere hats', 'cashmere beanies', 'cashmere berets', 'cashmere caps', 'ribbed cashmere hats', 'cable knit beanies'] },
-    scarves: { heading: 'Cashmere Scarves, Wraps, Shawls & Ponchos: Woven, Printed & Jacquard Styles', keywords: ['cashmere scarves', 'cashmere wraps', 'cashmere shawls', 'cashmere ponchos', 'woven cashmere scarves', 'jacquard cashmere wraps'] },
-    sweaters: { heading: 'Cashmere Sweaters, Turtlenecks, Cardigans & Vests: Crew Neck, V-Neck & Cable Knit Styles', keywords: ['cashmere sweaters', 'cashmere turtleneck', 'turtleneck cashmere sweater', 'cashmere cardigans', 'cashmere vests', 'crew neck cashmere sweaters', 'v neck cashmere cardigans', 'cable knit cashmere'] },
-    accessories: { heading: 'Cashmere Leggings, Gloves, Socks & Knit Accessories: Product Catalog', keywords: ['cashmere leggings', 'cashmere gloves', 'cashmere socks', 'cashmere knit accessories', 'cashmere tights', 'cashmere pants'] },
-    yarn: { heading: 'Cashmere Yarn & Fiber: Worsted, Woollen, Cone, Hank, Knitting & Weaving Product Records', keywords: ['cashmere yarn', 'cashmere fiber', 'worsted cashmere yarn', 'woollen cashmere yarn', 'cashmere yarn cone', 'cashmere yarn hank', 'cashmere knitting yarn', 'cashmere weaving yarn'] },
+    hats: { title: 'Cashmere Hats & Beanies Wholesale | Ordos Factory', heading: 'Cashmere Hats, Beanies, Berets & Caps: Ribbed, Cable Knit & Jacquard Styles', keywords: ['cashmere hats', 'cashmere beanies', 'cashmere berets', 'cashmere caps', 'ribbed cashmere hats', 'cable knit beanies'] },
+    scarves: { title: 'Cashmere Scarves & Shawls Wholesale | Ordos Factory', heading: 'Cashmere Scarves, Wraps, Shawls & Ponchos: Woven, Printed & Jacquard Styles', keywords: ['cashmere scarves', 'cashmere wraps', 'cashmere shawls', 'cashmere ponchos', 'woven cashmere scarves', 'jacquard cashmere wraps'] },
+    sweaters: { title: 'Cashmere Sweaters Wholesale | OEM Knitwear', heading: 'Cashmere Sweaters, Turtlenecks, Cardigans & Vests: Crew Neck, V-Neck & Cable Knit Styles', keywords: ['cashmere sweaters', 'cashmere turtleneck', 'turtleneck cashmere sweater', 'cashmere cardigans', 'cashmere vests', 'crew neck cashmere sweaters', 'v neck cashmere cardigans', 'cable knit cashmere'] },
+    accessories: { title: 'Cashmere Accessories Wholesale | Gloves & Socks', heading: 'Cashmere Leggings, Gloves, Socks & Knit Accessories: Product Catalog', keywords: ['cashmere leggings', 'cashmere gloves', 'cashmere socks', 'cashmere knit accessories', 'cashmere tights', 'cashmere pants'] },
+    yarn: { title: 'Cashmere Yarn & Fiber Wholesale | Cone & Hank', heading: 'Cashmere Yarn & Fiber: Worsted, Woollen, Cone, Hank, Knitting & Weaving Product Records', keywords: ['cashmere yarn', 'cashmere fiber', 'worsted cashmere yarn', 'woollen cashmere yarn', 'cashmere yarn cone', 'cashmere yarn hank', 'cashmere knitting yarn', 'cashmere weaving yarn'] },
   },
   cn: {
-    hats: { heading: '羊绒帽子、毛线帽、贝雷帽与鸭舌帽：罗纹、麻花与提花款式', keywords: ['羊绒帽子', '羊绒毛线帽', '羊绒贝雷帽', '羊绒鸭舌帽', '罗纹羊绒帽', '麻花羊绒帽'] },
-    scarves: { heading: '羊绒围巾、披肩、方巾与斗篷：梭织、印花与提花款式', keywords: ['羊绒围巾', '羊绒披肩', '羊绒方巾', '羊绒斗篷', '梭织羊绒围巾', '提花羊绒披肩'] },
-    sweaters: { heading: '羊绒衫、开衫与背心：圆领、V 领与麻花针织款式', keywords: ['羊绒衫', '羊绒开衫', '羊绒背心', '圆领羊绒衫', 'V领羊绒开衫', '麻花羊绒针织'] },
-    accessories: { heading: '羊绒打底裤、手套、袜子与针织配饰：产品目录', keywords: ['羊绒打底裤', '羊绒手套', '羊绒袜子', '羊绒针织配饰', '羊绒紧身裤', '羊绒长裤'] },
-    yarn: { heading: '羊绒纱线与纤维：筒纱、绞纱、针织与机织产品记录', keywords: ['羊绒纱线', '羊绒纤维', '羊绒筒纱', '羊绒绞纱', '羊绒针织纱', '羊绒机织纱'] },
+    hats: { title: '羊绒帽子批发 | 罗纹·麻花·提花', heading: '羊绒帽子、毛线帽、贝雷帽与鸭舌帽：罗纹、麻花与提花款式', keywords: ['羊绒帽子', '羊绒毛线帽', '羊绒贝雷帽', '羊绒鸭舌帽', '罗纹羊绒帽', '麻花羊绒帽'] },
+    scarves: { title: '羊绒围巾·披肩批发 | 梭织·印花·提花', heading: '羊绒围巾、披肩、方巾与斗篷：梭织、印花与提花款式', keywords: ['羊绒围巾', '羊绒披肩', '羊绒方巾', '羊绒斗篷', '梭织羊绒围巾', '提花羊绒披肩'] },
+    sweaters: { title: '羊绒衫·开衫批发 | 圆领·V领·麻花', heading: '羊绒衫、开衫与背心：圆领、V 领与麻花针织款式', keywords: ['羊绒衫', '羊绒开衫', '羊绒背心', '圆领羊绒衫', 'V领羊绒开衫', '麻花羊绒针织'] },
+    accessories: { title: '羊绒打底裤·手套·袜子批发', heading: '羊绒打底裤、手套、袜子与针织配饰：产品目录', keywords: ['羊绒打底裤', '羊绒手套', '羊绒袜子', '羊绒针织配饰', '羊绒紧身裤', '羊绒长裤'] },
+    yarn: { title: '羊绒纱线·纤维批发 | 筒纱·绞纱', heading: '羊绒纱线与纤维：筒纱、绞纱、针织与机织产品记录', keywords: ['羊绒纱线', '羊绒纤维', '羊绒筒纱', '羊绒绞纱', '羊绒针织纱', '羊绒机织纱'] },
   },
   de: {
-    hats: { heading: 'Kaschmir-Mützen, Beanies, Baskenmützen & Caps: Ripp-, Zopf- und Jacquard-Stile', keywords: ['Kaschmir Mützen', 'Kaschmir Beanies', 'Kaschmir Baskenmützen', 'Kaschmir Caps'] },
-    scarves: { heading: 'Kaschmir-Schals, Wraps, Tücher & Ponchos: Gewebte, bedruckte und Jacquard-Stile', keywords: ['Kaschmir Schals', 'Kaschmir Tücher', 'Kaschmir Ponchos', 'Kaschmir Wraps'] },
-    sweaters: { heading: 'Kaschmir-Pullover, Turtlenecks, Cardigans & Westen: Rundhals-, V-Ausschnitt- und Zopfstile', keywords: ['Kaschmir Pullover', 'Kaschmir Turtleneck', 'Kaschmir Cardigans', 'Kaschmir Westen', 'Zopfstrick Kaschmir'] },
-    accessories: { heading: 'Kaschmir-Leggings, Handschuhe, Socken & Strick-Accessoires: Produktkatalog', keywords: ['Kaschmir Leggings', 'Kaschmir Handschuhe', 'Kaschmir Socken', 'Kaschmir Accessoires'] },
-    yarn: { heading: 'Kaschmirgarn & Fasern: Konen, Stränge sowie Strick- und Webprodukte', keywords: ['Kaschmirgarn', 'Kaschmir Fasern', 'Kaschmir Konen', 'Kaschmir Stränge'] },
+    hats: { title: 'Kaschmir-Mützen & Beanies Großhandel | Ordos', heading: 'Kaschmir-Mützen, Beanies, Baskenmützen & Caps: Ripp-, Zopf- und Jacquard-Stile', keywords: ['Kaschmir Mützen', 'Kaschmir Beanies', 'Kaschmir Baskenmützen', 'Kaschmir Caps'] },
+    scarves: { title: 'Kaschmir-Schals & Tücher Großhandel | Ordos', heading: 'Kaschmir-Schals, Wraps, Tücher & Ponchos: Gewebte, bedruckte und Jacquard-Stile', keywords: ['Kaschmir Schals', 'Kaschmir Tücher', 'Kaschmir Ponchos', 'Kaschmir Wraps'] },
+    sweaters: { title: 'Kaschmir-Pullover & Cardigans Großhandel | Ordos', heading: 'Kaschmir-Pullover, Turtlenecks, Cardigans & Westen: Rundhals-, V-Ausschnitt- und Zopfstile', keywords: ['Kaschmir Pullover', 'Kaschmir Turtleneck', 'Kaschmir Cardigans', 'Kaschmir Westen', 'Zopfstrick Kaschmir'] },
+    accessories: { title: 'Kaschmir-Leggings, Handschuhe & Socken | Ordos', heading: 'Kaschmir-Leggings, Handschuhe, Socken & Strick-Accessoires: Produktkatalog', keywords: ['Kaschmir Leggings', 'Kaschmir Handschuhe', 'Kaschmir Socken', 'Kaschmir Accessoires'] },
+    yarn: { title: 'Kaschmirgarn & Fasern Großhandel | Konen', heading: 'Kaschmirgarn & Fasern: Konen, Stränge sowie Strick- und Webprodukte', keywords: ['Kaschmirgarn', 'Kaschmir Fasern', 'Kaschmir Konen', 'Kaschmir Stränge'] },
   },
   fr: {
-    hats: { heading: 'Bonnets, beanies, bérets et casquettes en cachemire : côtes, torsades et jacquard', keywords: ['bonnets cachemire', 'beanies cachemire', 'bérets cachemire', 'casquettes cachemire'] },
-    scarves: { heading: 'Écharpes, étoles, châles et ponchos en cachemire : tissé, imprimé et jacquard', keywords: ['écharpes cachemire', 'étoles cachemire', 'châles cachemire', 'ponchos cachemire'] },
-    sweaters: { heading: 'Pulls, cardigans et gilets en cachemire : col rond, col V et torsades', keywords: ['pulls cachemire', 'cardigans cachemire', 'gilets cachemire', 'cachemire torsadé'] },
-    accessories: { heading: 'Leggings, gants, chaussettes et accessoires tricotés en cachemire : catalogue', keywords: ['leggings cachemire', 'gants cachemire', 'chaussettes cachemire', 'accessoires cachemire'] },
-    yarn: { heading: 'Fil et fibre de cachemire : cônes, écheveaux, produits de tricot et de tissage', keywords: ['fil cachemire', 'fibre cachemire', 'cône cachemire', 'écheveau cachemire'] },
+    hats: { title: 'Bonnets & Beanies Cachemire en Gros | Ordos', heading: 'Bonnets, beanies, bérets et casquettes en cachemire : côtes, torsades et jacquard', keywords: ['bonnets cachemire', 'beanies cachemire', 'bérets cachemire', 'casquettes cachemire'] },
+    scarves: { title: 'Écharpes & Étoiles Cachemire en Gros | Ordos', heading: 'Écharpes, étoles, châles et ponchos en cachemire : tissé, imprimé et jacquard', keywords: ['écharpes cachemire', 'étoles cachemire', 'châles cachemire', 'ponchos cachemire'] },
+    sweaters: { title: 'Pulls & Cardigans Cachemire en Gros | OEM', heading: 'Pulls, cardigans et gilets en cachemire : col rond, col V et torsades', keywords: ['pulls cachemire', 'cardigans cachemire', 'gilets cachemire', 'cachemire torsadé'] },
+    accessories: { title: 'Leggings, Gants & Chaussettes Cachemire', heading: 'Leggings, gants, chaussettes et accessoires tricotés en cachemire : catalogue', keywords: ['leggings cachemire', 'gants cachemire', 'chaussettes cachemire', 'accessoires cachemire'] },
+    yarn: { title: 'Fil & Fibre de Cachemire en Gros | Cône', heading: 'Fil et fibre de cachemire : cônes, écheveaux, produits de tricot et de tissage', keywords: ['fil cachemire', 'fibre cachemire', 'cône cachemire', 'écheveau cachemire'] },
   },
   ja: {
-    hats: { heading: 'カシミア帽子・ビーニー・ベレー・キャップ：リブ・ケーブル・ジャカードスタイル', keywords: ['カシミア帽子', 'カシミアビーニー', 'カシミアベレー', 'カシミアキャップ'] },
-    scarves: { heading: 'カシミアスカーフ・ストール・ショール・ポンチョ：織り・プリント・ジャカード', keywords: ['カシミアスカーフ', 'カシミアストール', 'カシミアショール', 'カシミアポンチョ'] },
-    sweaters: { heading: 'カシミアセーター・カーディガン・ベスト：クルーネック・Vネック・ケーブルニット', keywords: ['カシミアセーター', 'カシミアカーディガン', 'カシミアベスト', 'カシミアケーブルニット'] },
-    accessories: { heading: 'カシミアレギンス・手袋・靴下・ニットアクセサリー：製品カタログ', keywords: ['カシミアレギンス', 'カシミア手袋', 'カシミア靴下', 'カシミアアクセサリー'] },
-    yarn: { heading: 'カシミア糸・繊維：コーン・かせ・編み物・織物の製品記録', keywords: ['カシミア糸', 'カシミア繊維', 'カシミアコーン', 'カシミアかせ'] },
+    hats: { title: 'カシミア帽子・ビーニー卸売 | オードス工場', heading: 'カシミア帽子・ビーニー・ベレー・キャップ：リブ・ケーブル・ジャカードスタイル', keywords: ['カシミア帽子', 'カシミアビーニー', 'カシミアベレー', 'カシミアキャップ'] },
+    scarves: { title: 'カシミアスカーフ・ショール卸売 | オードス', heading: 'カシミアスカーフ・ストール・ショール・ポンチョ：織り・プリント・ジャカード', keywords: ['カシミアスカーフ', 'カシミアストール', 'カシミアショール', 'カシミアポンチョ'] },
+    sweaters: { title: 'カシミアセーター・ Carmigan 卸売 | OEM', heading: 'カシミアセーター・カーディガン・ベスト：クルーネック・Vネック・ケーブルニット', keywords: ['カシミアセーター', 'カシミアカーディガン', 'カシミアベスト', 'カシミアケーブルニット'] },
+    accessories: { title: 'カシミアレギンス・手袋・靴下卸売', heading: 'カシミアレギンス・手袋・靴下・ニットアクセサリー：製品カタログ', keywords: ['カシミアレギンス', 'カシミア手袋', 'カシミア靴下', 'カシミアアクセサリー'] },
+    yarn: { title: 'カシミア糸・繊維卸売 | コーン・かせ', heading: 'カシミア糸・繊維：コーン・かせ・編み物・織物の製品記録', keywords: ['カシミア糸', 'カシミア繊維', 'カシミアコーン', 'カシミアかせ'] },
   },
   kr: {
-    hats: { heading: '캐시미어 모자·비니·베레·캡: 리브·케이블·자카드 스타일', keywords: ['캐시미어 모자', '캐시미어 비니', '캐시미어 베레', '캐시미어 캡'] },
-    scarves: { heading: '캐시미어 스카프·랩·숄·판초: 직조·프린트·자카드 스타일', keywords: ['캐시미어 스카프', '캐시미어 랩', '캐시미어 숄', '캐시미어 판초'] },
-    sweaters: { heading: '캐시미어 스웨터·가디건·베스트: 크루넥·V넥·케이블 니트 스타일', keywords: ['캐시미어 스웨터', '캐시미어 가디건', '캐시미어 베스트', '캐시미어 케이블 니트'] },
-    accessories: { heading: '캐시미어 레깅스·장갑·양말·니트 액세서리: 제품 카탈로그', keywords: ['캐시미어 레깅스', '캐시미어 장갑', '캐시미어 양말', '캐시미어 액세서리'] },
-    yarn: { heading: '캐시미어 원사·섬유: 콘·타래·편물·직물 제품 기록', keywords: ['캐시미어 원사', '캐시미어 섬유', '캐시미어 콘', '캐시미어 타래'] },
+    hats: { title: '캐시미어 모자·비니 도매 | 오르도스 공장', heading: '캐시미어 모자·비니·베레·캡: 리브·케이블·자카드 스타일', keywords: ['캐시미어 모자', '캐시미어 비니', '캐시미어 베레', '캐시미어 캡'] },
+    scarves: { title: '캐시미어 스카프·숄 도매 | 오르도스', heading: '캐시미어 스카프·랩·숄·판초: 직조·프린트·자카드 스타일', keywords: ['캐시미어 스카프', '캐시미어 랩', '캐시미어 숄', '캐시미어 판초'] },
+    sweaters: { title: '캐시미어 스웨터·가디건 도매 | OEM', heading: '캐시미어 스웨터·가디건·베스트: 크루넥·V넥·케이블 니트 스타일', keywords: ['캐시미어 스웨터', '캐시미어 가디건', '캐시미어 베스트', '캐시미어 케이블 니트'] },
+    accessories: { title: '캐시미어 레깅스·장갑·양말 도매', heading: '캐시미어 레깅스·장갑·양말·니트 액세서리: 제품 카탈로그', keywords: ['캐시미어 레깅스', '캐시미어 장갑', '캐시미어 양말', '캐시미어 액세서리'] },
+    yarn: { title: '캐시미어 원사·섬유 도매 | 콘·타래', heading: '캐시미어 원사·섬유: 콘·타래·편물·직물 제품 기록', keywords: ['캐시미어 원사', '캐시미어 섬유', '캐시미어 콘', '캐시미어 타래'] },
   },
 };
 

@@ -15,7 +15,7 @@ export type CategorySeoEntry = {
 export const CATEGORY_SEO: Record<string, Record<Locale, CategorySeoEntry>> = {
   hats: {
     en: {
-      title: 'Cashmere Hats & Beanies Wholesale | Ordos Knitted Hat Manufacturer | DONGXIAO®',
+      title: 'Cashmere Hats & Beanies Wholesale | Ordos Hat Manufacturer',
       description: 'Wholesale cashmere hats, beanies, berets, caps and headbands. 14–15.5µm Grade A Mongolian cashmere, knit construction. MOQ 50–100, sample 7–10 days. Project terms confirmed in writing.',
       h1: 'Cashmere Hats & Beanies Wholesale',
       intro: 'Browse selected cashmere hats, beanies, berets, headbands and caps from our Ordos facility. Each style is built from Grade A 14–15.5µm Mongolian cashmere, knit on 12–14 gauge machines, with documented origin, micron range and finishing records available per shipment.',
@@ -59,7 +59,7 @@ export const CATEGORY_SEO: Record<string, Record<Locale, CategorySeoEntry>> = {
   },
   sweaters: {
     en: {
-      title: 'Cashmere Sweaters & Knitwear Wholesale | OEM Cardigans & Pullovers | DONGXIAO®',
+      title: 'Cashmere Sweaters Wholesale | OEM Cardigans & Pullovers',
       description: 'Wholesale cashmere sweaters, cardigans, pullovers and vests. V-neck, crew neck, turtleneck, cable knit, 12gg fine gauge to 3gg heavy. Ordos facility, OEM/private label, MOQ 100–200.',
       h1: 'Cashmere Sweaters & Knitwear Wholesale',
       intro: 'Browse cashmere knitwear from our Ordos facility: cardigans, pullovers, vests and turtlenecks in 12–14 gauge fine knit and 3–7gg heavy knit. Available in 100% cashmere, cashmere-merino blends and cashmere-wool combinations. OEM and private label programs supported.',
@@ -103,7 +103,7 @@ export const CATEGORY_SEO: Record<string, Record<Locale, CategorySeoEntry>> = {
   },
   scarves: {
     en: {
-      title: 'Cashmere Scarves, Wraps & Shawls Wholesale | Ordos Manufacturer | DONGXIAO®',
+      title: 'Cashmere Scarves & Shawls Wholesale | Ordos Manufacturer',
       description: 'Wholesale cashmere scarves, shawls, wraps, ponchos and pashminas. 100% Mongolian cashmere, woven and knit constructions. Custom dimensions, Pantone matching, private label. MOQ 50–100.',
       h1: 'Cashmere Scarves, Wraps & Shawls Wholesale',
       intro: 'Browse cashmere scarves, shawls, wraps, ponchos and pashminas from our Ordos facility. Available in woven, knit and printed constructions. Custom dimensions and Pantone color matching available for orders 100+ pieces.',
@@ -147,21 +147,21 @@ export const CATEGORY_SEO: Record<string, Record<Locale, CategorySeoEntry>> = {
   },
   accessories: {
     en: {
-      title: 'Cashmere Accessories Wholesale | Gloves, Socks, Leggings | DONGXIAO®',
+      title: 'Cashmere Accessories Wholesale | Gloves & Socks',
       description: 'Wholesale cashmere gloves, mittens, socks, leggings, pants, hijabs and knit accessories. 14–15.5µm Mongolian cashmere, knit construction. Custom sizes and colors available.',
       h1: 'Cashmere Accessories Wholesale',
       intro: 'Browse cashmere accessories from our Ordos facility: gloves, mittens, socks, leggings, pants, hijabs and knit accessories. Each piece is built from 14–15.5µm Mongolian cashmere with documented construction records.',
       keywords: ['cashmere gloves', 'cashmere socks', 'cashmere leggings', 'cashmere pants', 'cashmere hijabs', 'cashmere accessories wholesale', 'cashmere accessories manufacturer'],
     },
     de: {
-      title: 'Kaschmir-Accessoires Großhandel | Handschuhe, Socken, Leggings | DONGXIAO®',
+      title: 'Kaschmir-Accessoires Großhandel | Handschuhe, Socken',
       description: 'Kaschmir-Handschuhe, Socken, Leggings, Hosen, Hijabs und Strick-Accessoires.',
       h1: 'Kaschmir-Accessoires Großhandel',
       intro: 'Kaschmir-Accessoires aus unserer Ordos-Fabrik.',
       keywords: ['Kaschmir Handschuhe', 'Kaschmir Socken', 'Kaschmir Leggings', 'Kaschmir Großhandel'],
     },
     fr: {
-      title: 'Accessoires en Cachemire en Gros | Gants, Chaussettes, Leggings | DONGXIAO®',
+      title: 'Accessoires en Cachemire en Gros | Gants, Chaussettes',
       description: 'Gants, chaussettes, leggings, pantalons, hijabs en cachemire en gros.',
       h1: 'Accessoires en Cachemire en Gros',
       intro: 'Accessoires en cachemire de notre usine d\'Ordos.',
@@ -191,14 +191,14 @@ export const CATEGORY_SEO: Record<string, Record<Locale, CategorySeoEntry>> = {
   },
   yarn: {
     en: {
-      title: 'Cashmere Yarn & Fiber Wholesale | Cone, Hank, Knitting | DONGXIAO®',
+      title: 'Cashmere Yarn & Fiber Wholesale | Cone & Hank',
       description: 'Wholesale cashmere yarn, fiber, cones and hanks for machine knitting, hand knitting and weaving. 14–15.5µm Grade A Mongolian cashmere. Nm 2/26 to Nm 2/60 counts. Cone 50–150g, Hank 100–500g.',
       h1: 'Cashmere Yarn & Fiber Wholesale',
       intro: 'Browse cashmere yarn and fiber from our Ordos facility: cone yarn, hank yarn, knitting yarn, weaving yarn and undyed raw fiber. Available counts Nm 2/26 to Nm 2/60. Sold by the kg for resale and industrial use.',
       keywords: ['cashmere yarn', 'cashmere fiber', 'cashmere cone yarn', 'cashmere hank', 'cashmere knitting yarn', 'cashmere weaving yarn', 'wholesale cashmere yarn', 'Mongolian cashmere yarn', 'cashmere yarn manufacturer'],
     },
     de: {
-      title: 'Kaschmirgarn & Faser Großhandel | Cone, Hank, Stricken | DONGXIAO®',
+      title: 'Kaschmirgarn Großhandel | Cone & Hank',
       description: 'Großhandel Kaschmirgarn, Faser, Cones und Stränge für Maschinenstricken, Handstricken und Weben.',
       h1: 'Kaschmirgarn & Faser Großhandel',
       intro: 'Kaschmirgarn aus unserer Ordos-Fabrik.',
@@ -235,7 +235,7 @@ export const CATEGORY_SEO: Record<string, Record<Locale, CategorySeoEntry>> = {
   },
   blankets: {
     en: {
-      title: 'Cashmere & Wool Blankets Wholesale | Throws, Baby Blankets | DONGXIAO®',
+      title: 'Cashmere & Wool Blankets Wholesale | Throws',
       description: 'Wholesale cashmere and wool blankets: bed throws, travel blankets, baby blankets. 100% Mongolian cashmere and pure wool in knit and woven constructions. Custom dimensions, Pantone match, private label. MOQ 30–50.',
       h1: 'Cashmere & Wool Blankets Wholesale',
       intro: 'Browse cashmere and wool blankets from our Ordos facility: bed throws, travel blankets, baby blankets and stroller blankets. 100% Mongolian cashmere (14.5–16.5µm) and pure wool variants available. Hand-finished construction, multiple sizes and Pantone color matching supported.',
