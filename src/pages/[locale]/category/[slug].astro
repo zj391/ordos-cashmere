@@ -84,7 +84,17 @@ const ui = t[locale] || t.en;
       url: canonical,
       inLanguage: locale,
       isPartOf: { '@type': 'WebSite', name: 'DONGXIAO Cashmere', url: SITE_URL },
-      about: { '@type': 'Product', name: seo.h1, description: seo.description },
+      // 2026-10-21 SEO: was `about: { '@type': 'Product', name: seo.h1 }`.
+      // Google requires Product nodes to carry offers, review, or
+      // aggregateRating — a category page is not a purchasable SKU, so
+      // there is no offer to declare and adding a fake one would be worse
+      // than the warning. jevseo flagged all 6 /category/<slug>/ pages for
+      // "Product lacks offers, review or aggregateRating". `about` is
+      // schema.org's "what this page is about" slot and accepts any type;
+      // Thing is the semantically correct one here, and the per-SKU
+      // Product nodes with real offers already ship on
+      // /[locale]/products/<id>/.
+      about: { '@type': 'Thing', name: seo.h1, description: seo.description },
     },
     {
       '@context': 'https://schema.org',
