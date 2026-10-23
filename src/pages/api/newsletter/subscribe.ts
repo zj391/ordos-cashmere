@@ -93,6 +93,15 @@ async function _internalHandler(req: VercelLikeRequest, res: VercelLikeResponse)
     return res.status(400).json({ error: 'invalid_email' });
   }
 
+  // 2026-10-23: the newsletter_subscribers table is not present in the
+  // production Supabase project (migration 0005 has not been run there), so
+  // every subscribe POST returned 500 and the footer form was dead for
+  // visitors. The n8n broadcast below is the part that actually matters —
+  // it is what triggers zj's welcome-email and CRM sync workflow — and it
+  // does not need the table. So the DB write is now best-effort: if it
+  // fails we log it and still accept the subscription.
+  let persisted = false;
+  let action: 'subscribed' | 'already_subscribed' = 'subscribed';
   try {
     // 检查重复
     const existing = await sb(
@@ -100,43 +109,46 @@ async function _internalHandler(req: VercelLikeRequest, res: VercelLikeResponse)
     );
 
     if (existing.length > 0) {
-      return res.status(200).json({ ok: true, action: 'already_subscribed', email });
+      action = 'already_subscribed';
+      persisted = true;
+    } else {
+      // 插入
+      await sb('/newsletter_subscribers', {
+        method: 'POST',
+        headers: { 'Prefer': 'return=minimal' },
+        body: JSON.stringify({
+          email,
+          locale,
+          source: 'footer',
+          subscribed_at: new Date().toISOString(),
+        }),
+      });
+      persisted = true;
     }
+  } catch (e: any) {
+    // Table missing or Supabase unreachable — carry on, the broadcast below
+    // is what delivers the lead.
+    console.error('[newsletter-subscribe] persist failed (continuing):', e?.message || e);
+  }
 
-    // 插入
-    const inserted = await sb('/newsletter_subscribers', {
-      method: 'POST',
-      headers: { 'Prefer': 'return=minimal' },
-      body: JSON.stringify({
-        email,
-        locale,
-        source: 'footer',
-        subscribed_at: new Date().toISOString(),
-      }),
-    });
-
-    // 推 n8n 让 zj workflow 触发欢迎邮件 / CRM 同步
-    broadcast({
-      event: 'newsletter_subscribed',
-      data: { email, locale, source: 'footer' },
-    });
+  // 推 n8n 让 zj workflow 触发欢迎邮件 / CRM 同步
+  broadcast({
+    event: 'newsletter_subscribed',
+    data: { email, locale, source: 'footer' },
+  });
 
     // Form submit 用户期望 redirect 回 footer (非 API JSON)
     const accept = String(req.headers['accept'] || '');
     if (accept.includes('text/html')) {
-      // redirect 到首页带 ?newsletter=ok query
+      // redirect 回原页带 ?newsletter=ok query
       const referer = String(req.headers['referer'] || '/');
       const url = new URL(referer);
-      url.searchParams.set('newsletter', 'subscribed');
+      url.searchParams.set('newsletter', action === 'already_subscribed' ? 'already' : 'subscribed');
       res.setHeader('Location', url.toString());
       return res.status(303).end();
     }
 
-    return res.status(200).json({ ok: true, action: 'subscribed', email });
-  } catch (e: any) {
-    console.error('[newsletter-subscribe] error:', e?.message || e);
-    return res.status(500).json({ error: 'fatal', message: String(e?.message || e) });
-  }
+    return res.status(200).json({ ok: true, action, email, persisted });
 }
 
 export const prerender = false;
