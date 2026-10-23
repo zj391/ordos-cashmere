@@ -590,6 +590,16 @@ if (!noIndex && faqs && faqs.length > 0) {
     <!-- Favicon -->
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- 2026-10-23: raster fallbacks. iOS Safari does not read SVG favicons,
+         so without these an iPhone home-screen bookmark captures a page
+         screenshot instead of the mark. PNGs reproduce favicon.svg exactly
+         (viewBox 32x32, #5C3E2A ground, #F5F1EA Georgia "D") so there is no
+         visual difference between the two. icon-192/512 also satisfy the
+         PWA install prompt on Android. -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
 
 
