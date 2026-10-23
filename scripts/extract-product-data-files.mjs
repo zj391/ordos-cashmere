@@ -1,17 +1,25 @@
-// jevseo 2026-10-19 JEV-008 (P3, round 2): productTagsJson + subLabelsJson
-// in src/pages/[locale]/products.astro are 88 KB + 9.7 KB inline JSON
-// blobs. After build we visit each prerendered HTML page and pull those
-// two script bodies back out into /data/*.json so the client can fetch
-// them (preload + crossorigin) instead of fetching them as part of the
-// HTML itself.
+// jevseo 2026-10-23 JEV-008: mirrors the three small inline catalog
+// datasets on /[locale]/products/ out to /data/<locale>/*.json.
+//
+// Scope narrowed from five datasets to three on 2026-10-23. products.json
+// (322 KB) and products-tags.json (86 KB) were the two large blocks; they
+// are now produced directly by Astro endpoints during the build
+// (src/pages/data/[locale]/products.json.ts and products-tags.json.ts) and
+// this script no longer touches them — overwriting the endpoint output
+// here would silently revert to whatever was in the HTML at scrape time.
+//
+// What remains inline is under 10 KB total, which is not worth a network
+// round trip on first paint, so it stays inline for the page and is
+// mirrored here purely so AI/agentic crawlers that prefer .json over
+// <script type="application/json"> have a stable URL for it.
 //
 // Input : .vercel/output/static/<locale>/products/index.html
-// Output: .vercel/output/static/data/<locale>/products-tags.json
-//         .vercel/output/static/data/<locale>/products-sub-labels.json
+// Output: .vercel/output/static/data/<locale>/products-sub-labels.json
+//         .vercel/output/static/data/<locale>/products-categories.json
+//         .vercel/output/static/data/<locale>/products-labels.json
 //
 // Idempotent. Runs after the Astro + fix-endpoint-build pipeline so
-// prerendered HTML exists, before generate-sitemaps so sitemaps can
-// include the static data URLs if desired.
+// prerendered HTML exists, before generate-sitemaps.
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, statSync } from 'node:fs';
 import { join, dirname } from 'node:path';
@@ -33,7 +41,7 @@ mkdirSync(OUT, { recursive: true });
 // block. The body may include HTML-escaped characters (e.g. the
 // SUB_LABELS dictionary uses &quot; and &amp;).
 const SCRIPT_RE = new RegExp(
-  '<script id="(product-tags-data|sub-labels-data|products-data|categories-data|labels-data)" type="application/json">([\\s\\S]*?)</script>',
+  '<script id="(sub-labels-data|categories-data|labels-data)" type="application/json">([\\s\\S]*?)</script>',
   'g',
 );
 // Astro escapes the payload; undo the four characters we expect.
@@ -88,9 +96,7 @@ if (tagsPayload.length > 1 || subLabelsPayload.length > 1 ||
 }
 
 const TAG_OUT = [];
-if (tagsPayload.length) TAG_OUT.push(['products-tags.json', JSON.parse(tagsPayload[0])]);
 if (subLabelsPayload.length) TAG_OUT.push(['products-sub-labels.json', JSON.parse(subLabelsPayload[0])]);
-if (productsPayload.length) TAG_OUT.push(['products.json', JSON.parse(productsPayload[0])]);
 if (categoriesPayload.length) TAG_OUT.push(['products-categories.json', JSON.parse(categoriesPayload[0])]);
 if (labelsPayload.length) TAG_OUT.push(['products-labels.json', JSON.parse(labelsPayload[0])]);
 

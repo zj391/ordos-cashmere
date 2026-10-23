@@ -19,6 +19,7 @@ import { productsListingSchema } from '@/lib/schema';
 import { products as productsData, getRepresentativeProducts, ensureDbOverlay } from '@/data/products';
 import { getProductLabels } from '@/lib/product-labels';
 import { tagAllProducts, PRODUCT_TAG_RULES } from '@/data/product-tags';
+import { buildListingProducts } from '@/lib/catalog-listing-payload';
 import { TAG_PAGES } from '@/data/tag-seo';
 import { HZNZCN_PRODUCTS } from '@/data/hznzcn-products';
 
@@ -148,25 +149,6 @@ const listingDiscovery = LISTING_DISCOVERY_COPY[locale] || LISTING_DISCOVERY_COP
 // Those need ~5 tags per product, not 30. Trim `tags` to audience/season/
 // pattern/customization markers, drop the rest. Re-mergeable from
 // product-tags.json on detail pages if needed.
-const LISTING_FIELDS = [
-  'id', 'name', 'categoryId', 'categoryName',
-  'material', 'micron', 'moq', 'price', 'lead',
-  'images', 'tags',
-] as const;
-// jevseo 2026-10-19: also patched the silent missing-field bug where the
-// compare modal (line 1422-26) read product.moq / product.price / product.lead
-// but those were never serialised in LISTING_FIELDS, so the column always
-// rendered `—`. Now those three ship per product.
-const LISTING_TAG_KEEP = /women|men|kids|unisex|ladies|girls|boys|outerwear|winter|spring|summer|fall|autumn|FW|AW|SS|year[- ]round|reversible|houndstooth|cable|herringbone|solid|chunky|jacquard|fisherman|custom|color|logo|oem|odm|private label|bespoke/i;
-function pickListFields(p: any) {
-  const out: Record<string, unknown> = {};
-  for (const k of LISTING_FIELDS) out[k] = p[k];
-  // Trim tags to those the listing UI actually reads.
-  if (Array.isArray(out.tags)) {
-    out.tags = (out.tags as string[]).filter((t) => LISTING_TAG_KEEP.test(t));
-  }
-  return out;
-}
 function pickListCategory(c: any) {
   return {
     id: c.id,
@@ -175,7 +157,7 @@ function pickListCategory(c: any) {
     productCount: curatedCountsByCategory[c.id] || 0,
   };
 }
-const listProducts = allProducts.map(pickListFields);
+const listProducts = buildListingProducts(allProducts);
 const listCategories = categories.map(pickListCategory);
 const productsJson = JSON.stringify(listProducts);
 const categoriesJson = JSON.stringify(listCategories);
@@ -851,22 +833,21 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
     </section>
   )}
 
-  <!-- 隐藏的 JSON 数据源（vanilla JS 用） -->
-  <script id="products-data" type="application/json" set:html={productsJson}></script>
-  <script id="categories-data" type="application/json" set:html={categoriesJson}></script>
-  <script id="labels-data" type="application/json" set:html={labelsJson}></script>
-  <!-- jevseo 2026-10-20 JEV-008 (P3): productTags + subLabels + products +
-       categories + labels all ALSO live at /data/<locale>/*.json (built by
-       scripts/extract-product-data-files.mjs) so AI/agentic crawlers that
-       prefer .json over inline <script type="application/json"> have a
-       first-class URL for the catalog dataset. Inline blocks stay for
-       first-paint / no-JS-safety. Preload links are harmless hints. -->
+  <!-- jevseo 2026-10-23 JEV-008: products-data (322 KB) and product-tags-data
+       (86 KB) moved out of the HTML. Together they were 66% of the 635 KB
+       document. The catalog page now ships ~216 KB of HTML and fetches both
+       datasets from /data/<locale>/products.json and products-tags.json, which
+       scripts/extract-product-data-files.mjs already writes at build time.
+
+       The three small blocks (categories / labels / sub-labels) stay inline:
+       they total under 10 KB and reading them synchronously keeps the filter
+       chrome from flashing between paint and fetch. -->
+
   <link rel="preload" href="/data/products-tags.json" as="fetch" crossorigin="anonymous" />
   <link rel="preload" href="/data/products-sub-labels.json" as="fetch" crossorigin="anonymous" />
   <link rel="preload" href="/data/products.json" as="fetch" crossorigin="anonymous" />
   <link rel="preload" href="/data/products-categories.json" as="fetch" crossorigin="anonymous" />
   <link rel="preload" href="/data/products-labels.json" as="fetch" crossorigin="anonymous" />
-  <script id="product-tags-data" type="application/json" set:html={productTagsJson}></script>
   <script id="sub-labels-data" type="application/json" set:html={subLabelsJson}></script>
   <script id="group-labels-data" type="application/json" set:html={groupLabelsJson}></script>
     <script id="procurement-copy-data" type="application/json" set:html={procurementCopyJson}></script>
@@ -914,12 +895,29 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
 
   <!-- 交互逻辑：vanilla JS，零依赖 -->
   <script is:inline>
-    (function() {
+    (async function() {
       window.__LOCALE__ = document.documentElement.lang || 'en';
-      const products = JSON.parse(document.getElementById('products-data').textContent);
+
+      // jevseo 2026-10-23 JEV-008: products (322 KB) and productTags (86 KB)
+      // are fetched rather than inlined. Both are already <link rel=preload>ed
+      // above, so in practice the browser has them in cache before this runs
+      // and the await resolves without a network round trip. The skeleton
+      // rendered server-side stays visible until render() paints the grid,
+      // so there is no layout shift — only the card images arrive one tick
+      // later than they used to.
+      const [products, productTags] = await Promise.all([
+        fetch('/data/products.json', { credentials: 'same-origin' }).then((r) => {
+          if (!r.ok) throw new Error('products.json HTTP ' + r.status);
+          return r.json();
+        }),
+        fetch('/data/products-tags.json', { credentials: 'same-origin' }).then((r) => {
+          if (!r.ok) throw new Error('products-tags.json HTTP ' + r.status);
+          return r.json();
+        }),
+      ]);
+
       const categories = JSON.parse(document.getElementById('categories-data').textContent);
       const labels = JSON.parse(document.getElementById('labels-data').textContent);
-      const productTags = JSON.parse(document.getElementById('product-tags-data').textContent);
       const subLabels = JSON.parse(document.getElementById('sub-labels-data').textContent);
       const groupLabels = JSON.parse(document.getElementById('group-labels-data').textContent);
       const procurementCopy = JSON.parse(document.getElementById('procurement-copy-data').textContent);
