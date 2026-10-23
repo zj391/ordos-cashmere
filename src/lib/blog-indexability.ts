@@ -4,6 +4,18 @@
  * 被 sitemap、Article Schema 或博客枢纽作为搜索入口放大。
  */
 export const INDEXABLE_BLOG_IDS = new Set([
+  // 2026-10-21 — 4 new B2B procurement posts written from the topics.json
+  // backlog. All four are buyer-facing commercial guides with named
+  // specifications, thresholds, and comparison tables (no unverifiable
+  // claims), so they meet the same bar as the existing whitelist entries:
+  //   - payment: LC/TT/D-P/O-A trade-off, ISO 18135 drafting points
+  //   - shipping: FOB/CIF/FCA/DAP, ICC(A) moisture exclusion
+  //   - RFP: 8-section structure with copy-paste spec language
+  //   - factory visit: 10-point floor checklist, 4 sorting-vs-relabel tells
+  'en/cashmere-b2b-payment-lc-tt-trade-terms',
+  'en/cashmere-shipping-international-fob-cif-guide',
+  'en/cashmere-procurement-rfp-template-b2b',
+  'en/cashmere-garment-factory-visit-preparation',
   'en/cashmere-test-report-checklist-b2b-buyers',
   'en/eu-textile-dpp-registry-2026-update',
   'cn/eu-textile-dpp-registry-2026-update',
