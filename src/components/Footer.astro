@@ -102,7 +102,7 @@ const resourceLinks = [
 
       <!-- Products -->
       <div>
-        <h2 class="text-sm font-display italic text-copper mb-5 tracking-tight">{fl('footer.products')}</h2>
+        <p class="text-sm font-display italic text-copper mb-5 tracking-tight">{fl('footer.products')}</p>
         <ul class="space-y-2 text-sm">
           {productLinks.map((l) => (
             <li>
@@ -116,7 +116,7 @@ const resourceLinks = [
 
       <!-- Company -->
       <div>
-        <h2 class="text-sm font-display italic text-copper mb-5 tracking-tight">{fl('footer.company')}</h2>
+        <p class="text-sm font-display italic text-copper mb-5 tracking-tight">{fl('footer.company')}</p>
         <ul class="space-y-2 text-sm">
           {companyLinks.map((l) => (
             <li>
@@ -130,7 +130,7 @@ const resourceLinks = [
 
       <!-- Resources -->
       <div>
-        <h2 class="text-sm font-display italic text-copper mb-5 tracking-tight">{fl('footer.resources')}</h2>
+        <p class="text-sm font-display italic text-copper mb-5 tracking-tight">{fl('footer.resources')}</p>
         <ul class="space-y-2 text-sm">
           {resourceLinks.map((l) => (
             <li>
@@ -144,7 +144,7 @@ const resourceLinks = [
 
       <!-- Contact -->
       <div>
-        <h2 class="text-sm font-display italic text-copper mb-5 tracking-tight">{fl('footer.contact')}</h2>
+        <p class="text-sm font-display italic text-copper mb-5 tracking-tight">{fl('footer.contact')}</p>
         <ul class="space-y-2 text-sm text-background/70">
           <li>
             <a href={`https://wa.me/${SITE_INFO.whatsapp.replace(/[^\d]/g, '')}`} class="hover:text-copper transition-colors">
