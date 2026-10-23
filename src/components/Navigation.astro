@@ -196,9 +196,9 @@ const groupLabel = (groupKey: string, group: any) => {
               .filter(([k]) => k !== 'feature')
               .map(([groupKey, group]: [string, any]) => (
               <div class="space-y-4">
-                <h3 class="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary/80 border-b border-border/80 pb-2.5 mb-4">
+                <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary/80 border-b border-border/80 pb-2.5 mb-4">
                   {groupLabel(groupKey, group)}
-                </h3>
+                </p>
                 <ul class="space-y-2">
                   {group.items?.map((sub: any) => (
                     <li>
