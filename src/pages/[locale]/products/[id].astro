@@ -1047,6 +1047,13 @@ const t = {
 // a word boundary. Keep H1, title and Product Schema aligned.
 const pageTitle = t.title;
 
+// 2026-10-24: every product image in the archive is 750x750 (the 2026-10-23
+// batch is converted to WebP at the source resolution, and the earlier ones
+// are 800x800). Declaring the intrinsic box on the main shot and on every
+// gallery thumbnail removes the CLS the jevseo images_dimensions finding
+// reports on all 996 product pages. The gallery grid is 1:1 so the ratio is
+// correct for every asset.
+
 
 
 // === Inquiry cart handoff data (Task 2) ===
@@ -1456,7 +1463,7 @@ const relatedViewAll: Record<Locale, string> = {
 
                       >
 
-                        <img id="main-product-img" src={primaryImage} alt={buildSeoAlt(product)} class="product-main-image w-full h-full object-cover object-[center_top] transition-opacity" decoding="async" loading="eager" />
+                        <img id="main-product-img" src={primaryImage} alt={buildSeoAlt(product)} width={750} height={750} class="product-main-image w-full h-full object-cover object-[center_top] transition-opacity" decoding="async" loading="eager" />
 
                                             </div>
         <!-- Desktop magnifier: keep the zoom view beside the main image, inside
@@ -1493,7 +1500,7 @@ const relatedViewAll: Record<Locale, string> = {
 
                             >
 
-                              <img src={img} alt={`${buildSeoAlt(product)}${kind === 'model' ? ' — real-model wear photo' : ' — detail view ' + (i + 1)}`} class="w-full h-full object-cover" decoding="async" loading="lazy" />
+                              <img src={img} alt={`${buildSeoAlt(product)}${kind === 'model' ? ' — real-model wear photo' : ' — detail view ' + (i + 1)}`} width={750} height={750} class="w-full h-full object-cover" decoding="async" loading="lazy" />
 
                               {kind === 'model' && (
 
