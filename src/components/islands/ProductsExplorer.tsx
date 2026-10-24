@@ -424,6 +424,8 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
                 <img
                   src={`/products/mic/${selectedProduct.images[currentImageIndex]}`}
                   alt={selectedProduct.name}
+                  width={750}
+                  height={750}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -440,6 +442,8 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
                       <img
                         src={`/products/mic/${img}`}
                         alt={`${selectedProduct.name} ${i + 1}`}
+                        width={750}
+                        height={750}
                         className="w-full h-full object-cover"
                       />
                     </button>

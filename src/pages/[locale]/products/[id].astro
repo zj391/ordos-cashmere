@@ -2696,6 +2696,8 @@ const relatedViewAll: Record<Locale, string> = {
                     <img
                       src={rpImg}
                       alt={`${rp.name} — ${rp.categoryName}, ${rp.material}`}
+                      width={750}
+                      height={750}
                       loading="eager"
                       fetchpriority="low"
                       decoding="async"
@@ -2754,7 +2756,7 @@ const relatedViewAll: Record<Locale, string> = {
                 data-related-material-id={rp.id}
               >
                 <div class="aspect-square bg-brand-cream overflow-hidden">
-                  {rpImg && <img src={rpImg} alt={rp.name} loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />}
+                  {rpImg && <img src={rpImg} alt={rp.name} width={750} height={750} loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />}
                 </div>
                 <div class="p-2">
                   <p class="text-[10px] uppercase tracking-wider text-muted-foreground mb-0.5 truncate">{rp.categoryName}</p>
@@ -2794,7 +2796,7 @@ const relatedViewAll: Record<Locale, string> = {
                 data-related-color-id={rp.id}
               >
                 <div class="aspect-square bg-brand-cream overflow-hidden">
-                  {rpImg && <img src={rpImg} alt={rp.name} loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />}
+                  {rpImg && <img src={rpImg} alt={rp.name} width={750} height={750} loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />}
                 </div>
                 <div class="p-2">
                   <p class="text-[10px] uppercase tracking-wider text-muted-foreground mb-0.5 truncate">{rp.categoryName}</p>
