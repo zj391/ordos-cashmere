@@ -773,5 +773,585 @@
   "type": "CREW",
   "neckline": "Crew",
   "note": "Diamond cable"
+ },
+ "DXS-A002-2": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-A003-1": {
+  "type": "VEST",
+  "neckline": "Sleeveless",
+  "note": "High-neck vest"
+ },
+ "DXS-A004-4": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-A005-3": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-A006-3": {
+  "type": "PANTS",
+  "neckline": "Waist",
+  "note": "Trousers"
+ },
+ "DXS-A007-1": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-A008-1": {
+  "type": "PANTS",
+  "neckline": "Waist",
+  "note": "Trousers"
+ },
+ "DXS-A009-1": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Cable"
+ },
+ "DXS-A011-2": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-A012-3": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-A013-1": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Striped"
+ },
+ "DXS-A014-2": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-A015-3": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-A016-2": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Checked"
+ },
+ "DXS-A017-3": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Embroidered"
+ },
+ "DXS-A018-3": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-A019-3": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-A020-1": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Colour-block"
+ },
+ "DXS-A027-1": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Pleated back"
+ },
+ "DXS-A028-2": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Striped"
+ },
+ "DXS-A029-1": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-B001-2": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-B002-2": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-B004-2": {
+  "type": "CREW",
+  "neckline": "Turtleneck",
+  "note": ""
+ },
+ "DXS-B005-2": {
+  "type": "CREW",
+  "neckline": "Turtleneck",
+  "note": ""
+ },
+ "DXS-B006-2": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Embroidered shoulder"
+ },
+ "DXS-B007-2": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-B009-2": {
+  "type": "CREW",
+  "neckline": "Hood",
+  "note": "Hooded"
+ },
+ "DXS-B010-4": {
+  "type": "CREW",
+  "neckline": "Hood",
+  "note": "Hooded"
+ },
+ "DXS-B011-2": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Argyle"
+ },
+ "DXS-B012-2": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Cable"
+ },
+ "DXS-B013-2": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-B014-2": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-B015-2": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-B017-2": {
+  "type": "CREW",
+  "neckline": "Turtleneck",
+  "note": ""
+ },
+ "DXS-B019-2": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-B020-3": {
+  "type": "CREW",
+  "neckline": "Hood",
+  "note": "Hooded cowl"
+ },
+ "DXS-B021-2": {
+  "type": "PANTS",
+  "neckline": "Waist",
+  "note": "Trousers"
+ },
+ "DXS-B022-2": {
+  "type": "PANTS",
+  "neckline": "Waist",
+  "note": "Trousers"
+ },
+ "DXS-J001-2": {
+  "type": "CREW",
+  "neckline": "Turtleneck",
+  "note": ""
+ },
+ "DXS-J002-2": {
+  "type": "CREW",
+  "neckline": "Turtleneck",
+  "note": ""
+ },
+ "DXS-J003-2": {
+  "type": "CREW",
+  "neckline": "Turtleneck",
+  "note": ""
+ },
+ "DXS-J004-2": {
+  "type": "CREW",
+  "neckline": "Turtleneck",
+  "note": ""
+ },
+ "DXS-J005-2": {
+  "type": "CREW",
+  "neckline": "Turtleneck",
+  "note": ""
+ },
+ "DXS-J006-2": {
+  "type": "CREW",
+  "neckline": "Turtleneck",
+  "note": ""
+ },
+ "DXS-R010-2": {
+  "type": "CREW",
+  "neckline": "Turtleneck",
+  "note": ""
+ },
+ "DXS-R011-3": {
+  "type": "DRESS",
+  "neckline": "Crew",
+  "note": "Dress"
+ },
+ "DXS-R012-1": {
+  "type": "CREW",
+  "neckline": "Turtleneck",
+  "note": "Waist-tie"
+ },
+ "DXS-R013-2": {
+  "type": "CREW",
+  "neckline": "Turtleneck",
+  "note": ""
+ },
+ "DXS-R014-3": {
+  "type": "VEST",
+  "neckline": "Sleeveless",
+  "note": "Turtleneck vest"
+ },
+ "DXS-R015-3": {
+  "type": "CREW",
+  "neckline": "Turtleneck",
+  "note": ""
+ },
+ "DXS-R016-3": {
+  "type": "CREW",
+  "neckline": "Turtleneck",
+  "note": ""
+ },
+ "DXS-R017-3": {
+  "type": "CREW",
+  "neckline": "Cowl",
+  "note": ""
+ },
+ "DXS-R018-2": {
+  "type": "PANTS",
+  "neckline": "Waist",
+  "note": "Trousers"
+ },
+ "DXS-R019-3": {
+  "type": "CREW",
+  "neckline": "Turtleneck",
+  "note": ""
+ },
+ "DXS-R021-2": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Cropped"
+ },
+ "DXS-R026-2": {
+  "type": "CREW",
+  "neckline": "Turtleneck",
+  "note": ""
+ },
+ "DXS-R027-2": {
+  "type": "SKIRT",
+  "neckline": "Waist",
+  "note": "Skirt"
+ },
+ "DXS-R028-3": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Cable"
+ },
+ "DXS-R030-4": {
+  "type": "CARDIGAN",
+  "neckline": "Crew",
+  "note": "Colour-block zip"
+ },
+ "DXS-R031-4": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Striped"
+ },
+ "DXS-R033-2": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-R035-6": {
+  "type": "CREW",
+  "neckline": "Turtleneck",
+  "note": ""
+ },
+ "DXS-R039-3": {
+  "type": "CREW",
+  "neckline": "Turtleneck",
+  "note": ""
+ },
+ "DXS-R045-3": {
+  "type": "CARDIGAN",
+  "neckline": "Notched collar",
+  "note": "Shirt collar"
+ },
+ "DXS-X001-4": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-X002-1": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-X003-2": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-X004-1": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Striped"
+ },
+ "DXS-X006-2": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-X007-1": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Striped"
+ },
+ "DXS-X008-2": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Embroidered"
+ },
+ "DXS-X009-2": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Short sleeve"
+ },
+ "DXS-X011-1": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Striped"
+ },
+ "DXS-X012-2": {
+  "type": "SKIRT",
+  "neckline": "Waist",
+  "note": "Skirt"
+ },
+ "DXS-X013-2": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-X014-2": {
+  "type": "VEST",
+  "neckline": "Sleeveless",
+  "note": "Tank"
+ },
+ "DXS-X015-3": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-X017-1": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Striped"
+ },
+ "DXS-X018-4": {
+  "type": "VEST",
+  "neckline": "Sleeveless",
+  "note": "Tank"
+ },
+ "DXS-X023-2": {
+  "type": "WATERMARK",
+  "neckline": "Crew",
+  "note": "Chinese marketing overlay"
+ },
+ "DXS-X043-2": {
+  "type": "WATERMARK",
+  "neckline": "Crew",
+  "note": "Chinese marketing overlay"
+ },
+ "DXS-A1003-2": {
+  "type": "CREW",
+  "neckline": "Turtleneck",
+  "note": ""
+ },
+ "DXS-A1004-3": {
+  "type": "CREW",
+  "neckline": "Turtleneck",
+  "note": ""
+ },
+ "DXS-A1005-4": {
+  "type": "VEST",
+  "neckline": "Sleeveless",
+  "note": "Vest"
+ },
+ "DXS-X1005-2": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Striped"
+ },
+ "DXS-R1006-2": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-R1007-2": {
+  "type": "CREW",
+  "neckline": "Turtleneck",
+  "note": ""
+ },
+ "DXS-A023-2": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Printed"
+ },
+ "DXS-B008-3": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Cable cardigan"
+ },
+ "DXS-R005-3": {
+  "type": "CREW",
+  "neckline": "High neck",
+  "note": ""
+ },
+ "DXS-R022-1": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Colour-block"
+ },
+ "DXS-R023-1": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Contrast sleeve"
+ },
+ "DXS-R024-1": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-R029-4": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-R036-1": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-R037-1": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Ribbed"
+ },
+ "DXS-R038-1": {
+  "type": "CREW",
+  "neckline": "Zip neck",
+  "note": "Half-zip"
+ },
+ "DXS-R040-3 精纺": {
+  "type": "CREW",
+  "neckline": "Zip neck",
+  "note": "Half-zip worsted"
+ },
+ "DXS-R042-3 精纺": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Worsted"
+ },
+ "DXS-R044-2 精纺": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Worsted"
+ },
+ "DXS-X005-3": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-X010-1": {
+  "type": "VEST",
+  "neckline": "Sleeveless",
+  "note": "Tank"
+ },
+ "DXS-X016-8": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-X019-1": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Embroidered"
+ },
+ "DXS-X020-1": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Embroidered"
+ },
+ "DXS-X021-1": {
+  "type": "VEST",
+  "neckline": "Sleeveless",
+  "note": "Tank"
+ },
+ "DXS-X022-1": {
+  "type": "CREW",
+  "neckline": "V-neck",
+  "note": ""
+ },
+ "DXS-X024-1": {
+  "type": "CARDIGAN",
+  "neckline": "V-neck",
+  "note": ""
+ },
+ "DXS-A1001-4": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-R1009-3": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Cable"
+ },
+ "DXS-X1003-2": {
+  "type": "VEST",
+  "neckline": "Sleeveless",
+  "note": "Vest"
+ },
+ "DXS-X1004-6": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-X1006-4": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": "Cable"
+ },
+ "DXS-X1007-3": {
+  "type": "CREW",
+  "neckline": "Crew",
+  "note": ""
+ },
+ "DXS-X1009-3": {
+  "type": "CREW",
+  "neckline": "Mock neck",
+  "note": ""
  }
 }

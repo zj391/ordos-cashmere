@@ -164,10 +164,21 @@ def main():
 
     new_products = []
     skipped = []
+    updated = []
     for s in manifest["styles"]:
         style = s["style"]
         if style in existing:
-            skipped.append(style)
+            # The style is already in the catalogue (the 2026-10-18 DXS batch).
+            # The 2026-10-23 archive carries a fuller photo set for it, so
+            # refresh the image list rather than leaving the older, shorter
+            # set in place. Everything else on the record stays as it is.
+            target = next(p for p in cat["products"] if p["id"] == style)
+            if target.get("images") != s["images"]:
+                target["images"] = s["images"]
+                target["colors"] = [c.title() for c in s.get("colors", [])] or target.get("colors")
+                updated.append(style)
+            else:
+                skipped.append(style)
             continue
         cls = cls_all.get(style)
         if not cls:
@@ -199,7 +210,8 @@ def main():
         })
 
     if args.dry_run:
-        print(f"would add {len(new_products)} to {args.category} (skipped {len(skipped)})")
+        print(f"would add {len(new_products)} to {args.category} "
+              f"(refresh {len(updated)} existing, skip {len(skipped)})")
         for p in new_products[:8]:
             print(f"  {p['id']:16s} {p['name'][:58]}")
             print(f"      tags: {p['tags'][:8]}")
@@ -209,7 +221,8 @@ def main():
     with open(args.catalog, "w", encoding="utf-8") as f:
         json.dump(catalog, f, ensure_ascii=False, indent=2)
 
-    print(f"added {len(new_products)} products to {args.category} (skipped {len(skipped)})")
+    print(f"added {len(new_products)} products to {args.category} "
+          f"(refreshed {len(updated)} existing, skipped {len(skipped)})")
     print(f"category now has {len(cat['products'])} products")
     if skipped:
         print(f"skipped: {skipped[:10]}{'...' if len(skipped) > 10 else ''}")
