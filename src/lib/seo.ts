@@ -86,7 +86,8 @@ export const SEO: Record<Locale, LocaleSEO> = {
       // DONGXIAO®" tail and front-loaded the high-intent term "cashmere
       // factory" once for stronger CTR on the head term.
       title: 'Ordos Cashmere Factory | Direct B2B Yarn & Knitwear | DONGXIAO',
-      description: 'Erdos cashmere from our Ordos, Inner Mongolia factory. 23+ years direct-from-mill pricing on yarn, scarves, sweaters, hats, accessories. MOQ 50–100 pcs. Request written quote.',
+      // Trimmed to fit Google's ~160-char snippet (was 175).
+      description: 'Erdos cashmere from our Ordos, Inner Mongolia factory. 23+ years direct-from-mill pricing on yarn, scarves, sweaters, hats. MOQ 50–100 pcs. Written quote.',
       keywords: ['erdos cashmere', 'erdos clothing', 'erdos cashmere factory', 'erdos cashmere supplier',
         'cashmere manufacturer', 'B2B cashmere supplier', 'Ordos cashmere factory wholesale',
         'Inner Mongolia cashmere manufacturer', 'erdos cashmere direct from mill',
@@ -115,7 +116,11 @@ export const SEO: Record<Locale, LocaleSEO> = {
       // 把这个 phrase 放到 title 前段 + description 中段，确保 Google 抽取 snippet
       // 时能匹配 GSC query。
       title: 'Worsted Cashmere Yarn for Knitting & Weaving | Ordos Factory',
-      description: 'Stock supply worsted 100% cashmere yarn for machine knitting — Erdos cashmere yarn spun at our Ordos, Inner Mongolia factory. 73 yarn configurations across pure cashmere, cashmere-wool, cashmere-silk, cashmere-linen. MOQ 50 kg, FOB Tianjin.',
+      // Trimmed to fit Google's ~160-char snippet (was 240). The GSC query
+      // this page ranks for ("worsted cashmere yarn for machine knitting")
+      // stays in the opening phrase, which is where the snippet is
+      // extracted from.
+      description: 'Worsted cashmere yarn for machine knitting, spun in Ordos, Inner Mongolia. 73 configurations: pure, wool, silk and linen blends. MOQ 50 kg, FOB Tianjin.',
       keywords: ['erdos cashmere yarn', 'erdos cashmere factory yarn', 'cashmere yarn wholesale',
         'undyed cashmere yarn wholesale', 'greige cashmere yarn', 'raw white cashmere yarn',
         'brown cashmere yarn', 'cashmere yarn 2/26NM', 'cashmere yarn 3/68NM',
@@ -130,7 +135,8 @@ export const SEO: Record<Locale, LocaleSEO> = {
     },
     garmentOem: {
       title: 'Erdos Cashmere Garment OEM/ODM Wholesale',
-      description: 'Erdos clothing wholesale from our Ordos, Inner Mongolia factory. Custom cashmere sweaters, scarves, hats, accessories. Private-label OEM/ODM, MOQ 50 pcs, sample 7–10 days, written quotation.',
+      // Trimmed to fit Google's ~160-char snippet (was 190).
+      description: 'Erdos clothing wholesale direct from our Ordos factory. Custom cashmere sweaters, scarves, hats. Private-label OEM/ODM, MOQ 50 pcs, 7-day samples.',
       keywords: ['erdos clothing', 'erdos clothing wholesale', 'erdos cashmere garment',
         'erdos cashmere sweater', 'cashmere sweater OEM', 'cashmere garment manufacturer',
         'private label cashmere', 'custom cashmere knitwear', 'cashmere coat manufacturer',
@@ -162,7 +168,8 @@ export const SEO: Record<Locale, LocaleSEO> = {
     },
     ordosOrigin: {
       title: 'Erdos Cashmere Factory — Origin & Heritage',
-      description: "Erdos cashmere factory located in Ordos, Inner Mongolia. Discover the world's premium cashmere origin: Albus goat breeding, climate, traceability, and full-chain production from our facility.",
+      // Trimmed to fit Google's ~160-char snippet (was 191).
+      description: "Erdos cashmere factory in Ordos, Inner Mongolia — the world's premium cashmere origin. Albus goat breeding, climate, traceability, full-chain production.",
       keywords: ['erdos cashmere factory', 'erdos cashmere', 'Ordos cashmere factory',
         'Inner Mongolia cashmere factory', 'cashmere factory direct from mill',
         'Ordos cashmere origin', 'Inner Mongolia cashmere', 'Albus goat', 'cashmere terroir',
@@ -173,7 +180,8 @@ export const SEO: Record<Locale, LocaleSEO> = {
     },
     contact: {
       title: 'Contact Dongxiao Cashmere | Product & Quote Inquiries',
-      description: 'Contact DONGXIAO Cashmere by WhatsApp, WeChat, email or phone. Include product, quantity, destination and specification requirements for a written sourcing discussion.',
+      // Trimmed to fit Google's ~160-char snippet (was 167).
+      description: 'Contact DONGXIAO Cashmere by WhatsApp, WeChat, email or phone. Send product, quantity, destination and specs for a written sourcing discussion.',
       keywords: ['contact cashmere supplier', 'cashmere inquiry', 'WhatsApp cashmere',
         ...getSeoKeywords('en', 'inquiry'),
       ],
@@ -211,7 +219,8 @@ export const SEO: Record<Locale, LocaleSEO> = {
     market: 'Deutschland / EU',
     home: {
       title: 'Kaschmir Beschaffung | Rohmaterial, Garn & Strick',
-      description: 'Entdecken Sie Rohmaterial, Garn, Stoff und Strickwaren für die B2B-Beschaffung. Produktreferenz, Menge, Zielort und Spezifikationen werden schriftlich abgestimmt.',
+      // Trimmed to fit Google's ~160-char snippet (was 162).
+      description: 'Rohmaterial, Garn, Stoff und Strickwaren für die B2B-Beschaffung. Produktreferenz, Menge, Zielort und Spezifikationen werden schriftlich abgestimmt.',
       keywords: ['Kaschmir Hersteller', 'B2B Kaschmir Lieferant', 'Kaschmir Großhandel', 'Ordos Kaschmir', 'Innere Mongolei Kaschmir', 'Kaschmir Garn', 'Kaschmir stricken', 'Kaschmir Erdos', 'Kaschmir Hersteller Ordos', 'Erdos Kaschmir Hersteller', 'Kaschmir Großhandel Deutschland'],
     },
     rawMaterial: {
@@ -241,7 +250,8 @@ export const SEO: Record<Locale, LocaleSEO> = {
     },
     contact: {
       title: 'Kontakt | Dongxiao Cashmere | WhatsApp +86-156-6185-3999',
-      description: 'Kontaktieren Sie DONGXIAO Cashmere per WhatsApp, WeChat, E-Mail oder Telefon. Nennen Sie Produkt, Menge, Zielort und Spezifikationen für eine schriftliche Beschaffungsabstimmung.',
+      // Trimmed to fit Google's ~160-char snippet (was 178).
+      description: 'Kontaktieren Sie DONGXIAO Cashmere per WhatsApp, WeChat, E-Mail oder Telefon. Nennen Sie Produkt, Menge und Zielort für ein schriftliches Angebot.',
       keywords: ['Kaschmir Kontakt', 'Kaschmir Anfrage'],
     },
     blog: {
@@ -273,7 +283,7 @@ export const SEO: Record<Locale, LocaleSEO> = {
     market: 'France / UE',
     home: {
       title: 'Approvisionnement cachemire | Matière, fil & maille',
-      description: 'Explorez matière, fil, tissu et maille pour l’approvisionnement B2B. Les conditions sont confirmées par écrit selon le produit, la quantité, la destination et les spécifications.',
+      description: 'Matière, fil, tissu et maille pour l’approvisionnement B2B. Les conditions sont confirmées par écrit selon le produit, la quantité et la destination.',
       keywords: ['fabricant cachemire', 'fournisseur cachemire B2B', 'cachemire Ordos', 'Mongolie Intérieure cachemire', 'gros cachemire', 'cachemire OEM', 'cachemire Erdos', 'cachemire Ordos fabricant', 'Mongolie Intérieure cachemire fournisseur', 'cachemire France grossiste'],
     },
     rawMaterial: {
@@ -283,7 +293,7 @@ export const SEO: Record<Locale, LocaleSEO> = {
     },
     yarnFabric: {
       title: "Fil & Tissu Cachemire | Peigné & Cardé | B2B Grossiste | Ordos",
-      description: "Fil et tissu de cachemire premium pour acheteurs B2B. Titres, couleurs, mélanges personnalisés. Directement de la filature d'Ordos, Mongolie Intérieure. Échantillon gratuit.",
+      description: "Fil et tissu de cachemire premium pour acheteurs B2B. Titres, couleurs, mélanges personnalisés. Directement de la filature d'Ordos. Échantillon gratuit.",
       keywords: [...getSeoKeywords('fr', 'yarn'), ...getSeoKeywords('fr', 'pricing')],
     },
     garmentOem: {
@@ -365,7 +375,7 @@ export const SEO: Record<Locale, LocaleSEO> = {
     },
     contact: {
       title: 'お問い合わせ | DONGXIAO カシミア | WhatsApp +86-156-6185-3999',
-      description: 'WhatsApp、WeChat、メール、電話で DONGXIAO カシミアへお問い合わせください。製品、数量、仕向地、必要仕様を記載して書面で調達相談を開始できます。',
+      description: 'WhatsApp、WeChat、メール、電話で DONGXIAO カシミアへお問い合わせください。製品、数量、仕向地を指定して書面で相談できます。',
       keywords: ['カシミア お問い合わせ'],
     },
     blog: {
@@ -407,7 +417,7 @@ export const SEO: Record<Locale, LocaleSEO> = {
     },
     yarnFabric: {
       title: '캐시미어 원사 & 직물 | 소모사 & 방모사 | B2B 도매 | 오르도스 방적',
-      description: 'B2B 바이어를 위한 프리미엄 캐시미어 원사(26/2~48/2) 및 직물. 맞춤 번수·색상·혼방. 오르도스 방적 공장 직송, 무료 샘플 제공.',
+      description: 'B2B 바이어를 위한 프리미엄 캐시미어 원사(26/2~48/2) 및 직물. 맞춤 번수·색상·혼방. 오르도스 방적 공장 직송.',
       keywords: [...getSeoKeywords('kr', 'yarn'), ...getSeoKeywords('kr', 'pricing')],
     },
     garmentOem: {
@@ -427,7 +437,7 @@ export const SEO: Record<Locale, LocaleSEO> = {
     },
     contact: {
       title: '문의 | DONGXIAO 캐시미어 | 제품 및 견적 문의',
-      description: 'WhatsApp, WeChat, 이메일 또는 전화로 DONGXIAO 캐시미어에 문의하세요. 제품, 수량, 목적지, 필요 사양을 포함해 서면 소싱 상담을 시작할 수 있습니다.',
+      description: 'WhatsApp, WeChat, 이메일 또는 전화로 DONGXIAO 캐시미어에 문의하세요. 제품, 수량, 목적지를 포함해 서면 상담을 시작할 수 있습니다.',
       keywords: ['캐시미어 문의'],
     },
     blog: {
