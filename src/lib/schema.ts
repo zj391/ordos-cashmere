@@ -8,6 +8,7 @@
  */
 import { SITE_URL } from './seo';
 import type { Locale } from './i18n';
+import { PRODUCT_COUNT, CATEGORY_COUNT } from './product-count';
 
 export interface BreadcrumbItem {
   name: string;
@@ -241,7 +242,7 @@ export function categoryHubSchema(
 
 /**
  * 2026-09-24 SEO: Product listing page (/[locale]/products/) full catalog schema.
- * This is the entry hub for all 591 SKUs × 6 locales = 3,546 product URLs.
+ * This is the entry hub for every product SKU × 6 locales.
  * Schema.org ItemList (top 50) tells Google this is a paginated catalog with
  * explicit crawl signals (ItemListOrder) so deep products get crawled even when
  * JavaScript-driven filters aren't run.
@@ -259,9 +260,11 @@ export function productsListingSchema(
     '@type': 'CollectionPage',
     '@id': pageUrl,
     name: locale === 'cn' ? '羊绒产品目录' : 'Cashmere Product Catalog',
+    // The count is derived, never hardcoded: the catalogue grew from 591
+    // SKUs to 1,340 and the literal was left behind in the structured data.
     description: locale === 'cn'
-      ? 'B2B 羊绒产品采购目录，含针织帽、围巾、毛衫、配饰、纱线等品类'
-      : 'B2B cashmere wholesale catalog with 591 SKUs across 5 categories',
+      ? `B2B 羊绒产品采购目录，${PRODUCT_COUNT}款产品，含针织帽、围巾、毛衫、配饰、毯子、纱线等品类`
+      : `B2B cashmere wholesale catalog with ${PRODUCT_COUNT} SKUs across ${CATEGORY_COUNT} categories`,
     url: pageUrl,
     inLanguage: locale,
     isPartOf: { '@type': 'WebSite', url: SITE_URL, name: 'DONGXIAO® CASHMERE' },

@@ -18,6 +18,11 @@ export const PRODUCT_COUNT: number = (() => {
   return categories.reduce((total, category) => total + (category.products?.length ?? 0), 0);
 })();
 
+/** Number of categories in the catalogue. */
+export const CATEGORY_COUNT: number = (
+  (productsJson as { categories?: unknown[] }).categories ?? []
+).length;
+
 /**
  * The count formatted for a sentence, e.g. "1,340 products".
  * English uses a thousands separator; other locales in the site copy use a

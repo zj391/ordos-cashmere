@@ -22,11 +22,13 @@ export interface Props {
   module: 'products' | 'news' | 'pages' | 'images' | 'inquiries' | 'seo' | 'contact' | 'banner' | 'cases' | 'downloads' | 'system';
 }
 
+import { PRODUCT_COUNT } from '@/lib/product-count';
+
 const { locale, module } = Astro.props as Props;
 
 const todoByModule: Record<string, string[]> = {
   products: [
-    'List 591 products from products.json (paginated 50/page, sorted by category + name)',
+    `List ${PRODUCT_COUNT} products from products.json (paginated 50/page, sorted by category + name)`,
     'Inline edit form (name, price, MOQ, material, lead time, image URL)',
     'Add / delete product modal (POST /api/admin/products + DELETE /api/admin/products/[id])',
     'Bulk actions: delete selected, export CSV, import from products.json',
