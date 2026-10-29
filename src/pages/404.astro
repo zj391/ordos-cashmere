@@ -18,6 +18,7 @@ import Footer from '@/components/Footer.astro';
 import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
 import { LOCALES, isLocale, pickLocale, type Locale, localePath } from '@/lib/i18n';
+import { PRODUCT_COUNT, formatProductCount } from '@/lib/product-count';
 
 // Detect locale from URL prefix (e.g. /de/xxx → de). Fall back to
 // accept-language header, then 'en'. Works for /de/products/nonexistent
@@ -43,7 +44,7 @@ const locale = detected;
 const popularLinks = {
   en: [
     { href: localePath('en', '/factory'), label: 'Ordos Factory Tour', desc: '23-year B2B source factory — 38,000 m², ISO 9001 + OEKO-TEX' },
-    { href: localePath('en', '/products'), label: 'Browse 591 Cashmere Products', desc: 'Hats, scarves, sweaters, accessories, yarn' },
+    { href: localePath('en', '/products'), label: `Browse ${formatProductCount()} Cashmere Products`, desc: 'Hats, scarves, sweaters, accessories, yarn' },
     { href: localePath('en', '/raw-material'), label: 'Cashmere Raw Material', desc: 'White, brown (qing), purple (zi) dehaired cashmere' },
     { href: localePath('en', '/yarn-fabric'), label: 'Cashmere Yarn & Fabric', desc: '2/26 Nm to 2/60 Nm, worsted & woolen' },
     { href: localePath('en', '/garment-oem'), label: 'Garment OEM / Private Label', desc: 'Full-package OEM/ODM, 100-pc MOQ, 7-day sampling' },
@@ -52,7 +53,7 @@ const popularLinks = {
   ],
   de: [
     { href: localePath('de', '/factory'), label: 'Werksbesichtigung Ordos', desc: '23 Jahre B2B-Quellfabrik — 38.000 m², ISO 9001 + OEKO-TEX' },
-    { href: localePath('de', '/products'), label: '591 Kaschmirprodukte ansehen', desc: 'Mützen, Schals, Pullover, Accessoires, Garn' },
+    { href: localePath('de', '/products'), label: `${formatProductCount()} Kaschmirprodukte ansehen`, desc: 'Mützen, Schals, Pullover, Accessoires, Garn' },
     { href: localePath('de', '/raw-material'), label: 'Kaschmir-Rohmaterial', desc: 'Weiß, Braun (qing), Lila (zi) entgranntes Kaschmir' },
     { href: localePath('de', '/yarn-fabric'), label: 'Kaschmirgarn & Stoff', desc: '2/26 Nm bis 2/60 Nm, Kammgarn & Streichgarn' },
     { href: localePath('de', '/garment-oem'), label: 'Bekleidung-OEM / Private Label', desc: 'Komplettpaket OEM/ODM, MOQ 100 Stk., 7 Tage Bemusterung' },
@@ -61,7 +62,7 @@ const popularLinks = {
   ],
   fr: [
     { href: localePath('fr', '/factory'), label: "Visite d'usine Ordos", desc: "23 ans d'usine source B2B — 38.000 m², ISO 9001 + OEKO-TEX" },
-    { href: localePath('fr', '/products'), label: '591 produits cachemire', desc: 'Bonnets, écharpes, pulls, accessoires, fils' },
+    { href: localePath('fr', '/products'), label: `${formatProductCount()} produits cachemire`, desc: 'Bonnets, écharpes, pulls, accessoires, fils' },
     { href: localePath('fr', '/raw-material'), label: 'Cachemire brut', desc: 'Blanc, brun (qing), violet (zi) dégrillé' },
     { href: localePath('fr', '/yarn-fabric'), label: 'Fil & tissu cachemire', desc: '2/26 Nm à 2/60 Nm, peigné et cardé' },
     { href: localePath('fr', '/garment-oem'), label: 'Vêtement OEM / Private Label', desc: 'Forfait complet OEM/ODM, MOQ 100 pièces, échantillon 7 jours' },
@@ -70,7 +71,7 @@ const popularLinks = {
   ],
   ja: [
     { href: localePath('ja', '/factory'), label: 'オルドス工場見学', desc: '23年B2B源泉工場 — 38,000㎡、ISO 9001 + OEKO-TEX' },
-    { href: localePath('ja', '/products'), label: '591点のカシミア製品', desc: '帽子、マフラー、セーター、アクセサリー、糸' },
+    { href: localePath('ja', '/products'), label: `${formatProductCount()}点のカシミア製品`, desc: '帽子、マフラー、セーター、アクセサリー、糸' },
     { href: localePath('ja', '/raw-material'), label: 'カシミア原料', desc: '白、茶（qing）、紫（zi）分梳カシミア' },
     { href: localePath('ja', '/yarn-fabric'), label: 'カシミア糸・生地', desc: '2/26 Nm～2/60 Nm、梳毛紡績と紡毛紡績' },
     { href: localePath('ja', '/garment-oem'), label: '衣料OEM / プライベートブランド', desc: 'フルパッケージ OEM/ODM、MOQ 100個、7日サンプル' },
@@ -79,7 +80,7 @@ const popularLinks = {
   ],
   kr: [
     { href: localePath('kr', '/factory'), label: '어얼어스 공장 견학', desc: '23년 B2B 원천 공장 — 38,000㎡, ISO 9001 + OEKO-TEX' },
-    { href: localePath('kr', '/products'), label: '591가지 캐시미어 제품', desc: '모자, 스카프, 스웨터, 액세서리, 원사' },
+    { href: localePath('kr', '/products'), label: `${formatProductCount()}가지 캐시미어 제품`, desc: '모자, 스카프, 스웨터, 액세서리, 원사' },
     { href: localePath('kr', '/raw-material'), label: '캐시미어 원료', desc: '흰색, 갈색(qing), 보라색(zi) 분梳理수' },
     { href: localePath('kr', '/yarn-fabric'), label: '캐시미어 원사·직물', desc: '2/26~2/60 Nm, 소면방적과 방면방적' },
     { href: localePath('kr', '/garment-oem'), label: '의류 OEM / 프라이빗 라벨', desc: '풀패키지 OEM/ODM, MOQ 100개, 7일 샘플' },
@@ -88,7 +89,7 @@ const popularLinks = {
   ],
   cn: [
     { href: localePath('cn', '/factory'), label: '鄂尔多斯工厂参观', desc: '23年B2B源头工厂 — 38,000平方米，ISO 9001 + OEKO-TEX' },
-    { href: localePath('cn', '/products'), label: '591款羊绒产品', desc: '帽子、围巾、毛衫、配饰、纱线' },
+    { href: localePath('cn', '/products'), label: `${formatProductCount()}款羊绒产品`, desc: '帽子、围巾、毛衫、配饰、纱线' },
     { href: localePath('cn', '/raw-material'), label: '羊绒原料', desc: '白、青、紫分梳羊绒' },
     { href: localePath('cn', '/yarn-fabric'), label: '羊绒纱线/面料', desc: '2/26 至 2/60 Nm，精纺和粗纺' },
     { href: localePath('cn', '/garment-oem'), label: '成衣代工 / 私牌', desc: '全包 OEM/ODM，MOQ 100件，7天打样' },
@@ -100,12 +101,12 @@ const popularLinks = {
 const links = popularLinks[locale] || popularLinks.en;
 const searchAction = localePath(locale, '/products');
 const copy = {
-  en: { code: '404', heading: "We can't find that page.", intro: 'The page may have moved, or the link is broken. Try one of our most-visited sections below, or jump straight to a quote request — we usually reply within 24 hours.', cta: 'Request a Cashmere Quote', search: 'Search 591 products', searchPh: 'e.g. cashmere hat, MOQ 100, OEM scarf' },
-  de: { code: '404', heading: 'Wir können diese Seite nicht finden.', intro: 'Die Seite wurde möglicherweise verschoben oder der Link ist defekt. Wählen Sie einen unserer meistbesuchten Bereiche, oder fordern Sie direkt ein Angebot an — wir antworten meist innerhalb von 24 Stunden.', cta: 'Kaschmir-Angebot anfordern', search: '591 Produkte durchsuchen', searchPh: 'z.B. Kaschmir-Hut, MOQ 100, OEM-Schal' },
-  fr: { code: '404', heading: 'Nous ne trouvons pas cette page.', intro: "La page a peut-être été déplacée ou le lien est cassé. Essayez une de nos sections les plus visitées ci-dessous, ou demandez directement un devis — nous répondons généralement sous 24 heures.", cta: 'Demander un devis cachemire', search: 'Rechercher 591 produits', searchPh: 'ex. bonnet cachemire, MOQ 100, OEM écharpe' },
-  ja: { code: '404', heading: 'ページが見つかりません。', intro: 'ページが移動したか、リンクが切れている可能性があります。下記の人気セクションからお選びいただくか、直接お問い合わせください — 通常24時間以内にご返信します。', cta: 'カシミア見積もりを依頼', search: '591点を検索', searchPh: '例：カシミア帽子、MOQ 100、OEM マフラー' },
-  kr: { code: '404', heading: '페이지를 찾을 수 없습니다.', intro: '페이지가 이동되었거나 링크가 끊어졌을 수 있습니다. 아래 인기 섹션 중 하나를 선택하시거나 직접 견적 요청을 해주세요 — 보통 24시간 이내에 회신합니다.', cta: '캐시미어 견적 요청', search: '591개 제품 검색', searchPh: '예: 캐시미어 모자, MOQ 100, OEM 스카프' },
-  cn: { code: '404', heading: '找不到该页面。', intro: '页面可能已移动或链接已失效。请从下方热门栏目选择，或直接询价 — 我们通常 24 小时内回复。', cta: '索取羊绒报价', search: '搜索 591 款产品', searchPh: '例：羊绒帽子、MOQ 100、OEM 围巾' },
+  en: { code: '404', heading: "We can't find that page.", intro: 'The page may have moved, or the link is broken. Try one of our most-visited sections below, or jump straight to a quote request — we usually reply within 24 hours.', cta: 'Request a Cashmere Quote', search: `Search ${formatProductCount()} products`, searchPh: 'e.g. cashmere hat, MOQ 100, OEM scarf' },
+  de: { code: '404', heading: 'Wir können diese Seite nicht finden.', intro: 'Die Seite wurde möglicherweise verschoben oder der Link ist defekt. Wählen Sie einen unserer meistbesuchten Bereiche, oder fordern Sie direkt ein Angebot an — wir antworten meist innerhalb von 24 Stunden.', cta: 'Kaschmir-Angebot anfordern', search: `${formatProductCount()} Produkte durchsuchen`, searchPh: 'z.B. Kaschmir-Hut, MOQ 100, OEM-Schal' },
+  fr: { code: '404', heading: 'Nous ne trouvons pas cette page.', intro: "La page a peut-être été déplacée ou le lien est cassé. Essayez une de nos sections les plus visitées ci-dessous, ou demandez directement un devis — nous répondons généralement sous 24 heures.", cta: 'Demander un devis cachemire', search: `Rechercher ${formatProductCount()} produits`, searchPh: 'ex. bonnet cachemire, MOQ 100, OEM écharpe' },
+  ja: { code: '404', heading: 'ページが見つかりません。', intro: 'ページが移動したか、リンクが切れている可能性があります。下記の人気セクションからお選びいただくか、直接お問い合わせください — 通常24時間以内にご返信します。', cta: 'カシミア見積もりを依頼', search: `${formatProductCount()}点を検索`, searchPh: '例：カシミア帽子、MOQ 100、OEM マフラー' },
+  kr: { code: '404', heading: '페이지를 찾을 수 없습니다.', intro: '페이지가 이동되었거나 링크가 끊어졌을 수 있습니다. 아래 인기 섹션 중 하나를 선택하시거나 직접 견적 요청을 해주세요 — 보통 24시간 이내에 회신합니다.', cta: '캐시미어 견적 요청', search: `${formatProductCount()}개 제품 검색`, searchPh: '예: 캐시미어 모자, MOQ 100, OEM 스카프' },
+  cn: { code: '404', heading: '找不到该页面。', intro: '页面可能已移动或链接已失效。请从下方热门栏目选择，或直接询价 — 我们通常 24 小时内回复。', cta: '索取羊绒报价', search: `搜索 ${formatProductCount()} 款产品`, searchPh: '例：羊绒帽子、MOQ 100、OEM 围巾' },
 };
 const t = copy[locale] || copy.en;
 

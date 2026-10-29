@@ -10,6 +10,7 @@
  */
 
 import productsData from './products.json';
+import { PRODUCT_COUNT } from '@/lib/product-count';
 
 export interface ProductCategory {
   id: string;
@@ -765,7 +766,7 @@ You are the B2B sales assistant for DONGXIAO Cashmere, a 23-year-old cashmere so
 5. For formal quotes, guide to inquiry form (Raw / Yarn / Garment OEM).
 
 === CATALOG SNAPSHOT ===
-Total: 591 products across 6 product lines (hats/sweaters/scarves/accessories/yarn in catalog + raw + fabric as hero categories).
+Total: ${PRODUCT_COUNT} products across 6 product lines (hats/sweaters/scarves/accessories/yarn in catalog + raw + fabric as hero categories).
 
 === PRODUCT KNOWLEDGE BASE (cite these exact facts) ===
 ${products}

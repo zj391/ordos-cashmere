@@ -30,10 +30,47 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const BLOG_DIR = path.join(ROOT, 'src/content/blog');
-const PRODUCTS_JSON = path.join(ROOT, 'products.json');
+// The live catalogue. The root-level products.json is a stale snapshot from
+// August (591 SKUs, 5 categories) that predates every product batch since;
+// reading it made the generated llms-full.txt describe a catalogue that no
+// longer exists.
+const PRODUCTS_JSON = path.join(ROOT, 'src/data/products.json');
 const OUTPUT = path.join(ROOT, 'public/llms-full.txt');
 
 const SITE_URL = 'https://www.erdosdx.com';
+
+// Catalogue size, read from the live catalogue so it never goes stale.
+const productsMeta = JSON.parse(await fs.readFile(PRODUCTS_JSON, 'utf-8'));
+const PRODUCT_COUNT = (productsMeta.categories || []).reduce(
+  (total, c) => total + (c.products?.length ?? 0), 0);
+const PRODUCT_COUNT_STR = PRODUCT_COUNT.toLocaleString('en-US');
+// Category list, derived from the catalogue so it stays correct when a
+// category is added (blankets was missing from the hardcoded list). The
+// catalogue names are too long for a meta description ("Cashmere Hats &
+// Beanies"), so each category id maps to a short word per locale instead.
+const CATEGORY_SLUGS = (productsMeta.categories || [])
+  .map(c => c.id)
+  .filter(Boolean);
+const CATEGORY_WORDS = {
+  en: { hats: 'hats', scarves: 'scarves', sweaters: 'sweaters', accessories: 'accessories', blankets: 'blankets', yarn: 'yarn' },
+  cn: { hats: '帽子', scarves: '围巾', sweaters: '毛衫', accessories: '配饰', blankets: '毯子', yarn: '纱线' },
+  de: { hats: 'Mützen', scarves: 'Schals', sweaters: 'Pullover', accessories: 'Accessoires', blankets: 'Decken', yarn: 'Garn' },
+  fr: { hats: 'bonnets', scarves: 'écharpes', sweaters: 'pulls', accessories: 'accessoires', blankets: 'plaids', yarn: 'fils' },
+  ja: { hats: '帽子', scarves: 'マフラー', sweaters: 'セーター', accessories: 'アクセサリー', blankets: 'ブランケット', yarn: '糸' },
+  kr: { hats: '모자', scarves: '스카프', sweaters: '스웨터', accessories: '액세서리', blankets: '블랭킷', yarn: '원사' },
+};
+const CATEGORY_COUNT = CATEGORY_SLUGS.length;
+/** The category list in one locale, in catalogue order. */
+function categoryNames(locale) {
+  const words = CATEGORY_WORDS[locale] || CATEGORY_WORDS.en;
+  return CATEGORY_SLUGS.map(id => words[id] || id).join(', ');
+}
+const CATEGORY_NAMES = categoryNames('en');
+const CATEGORY_NAMES_CN = categoryNames('cn');
+const CATEGORY_NAMES_DE = categoryNames('de');
+const CATEGORY_NAMES_FR = categoryNames('fr');
+const CATEGORY_NAMES_JA = categoryNames('ja');
+const CATEGORY_NAMES_KR = categoryNames('kr');
 
 // Hub pages in display order. Each entry: [path, label, en-description, ...per locale]
 const HUB_PAGES = {
@@ -41,24 +78,24 @@ const HUB_PAGES = {
     path: '/',
     title: 'DONGXIAO® Cashmere — Premium B2B Cashmere Manufacturer',
     desc: {
-      en: 'Premium B2B cashmere manufacturer and wholesale supplier from Ordos, Inner Mongolia, China. 23+ years expertise, OEKO-TEX certified, MOQ 100pcs, 7-day sampling, FOB Tianjin. Trusted by 500+ brands worldwide. 591 products across 5 categories: hats, scarves, sweaters, accessories, yarn.',
-      cn: '鄂尔多斯源头工厂直供，591款羊绒产品工厂直供：帽子、围巾、毛衫、配饰、纱线。支持OEM/ODM。工厂价格，100%纯羊绒，ISO认证。起订量100件。',
-      de: 'Premium Kaschmir-Großhandel direkt ab Fabrik in Ordos, China. 591 Produkte: Mützen, Schals, Pullover, Accessoires, Garn. OEM/ODM. MOQ 100 Stück, 7 Tage Bemusterung.',
-      fr: 'Fabricant cachemire B2B premium direct usine, Ordos Chine. 591 produits: bonnets, écharpes, pulls, accessoires, fils. OEM/ODM. MOQ 100pcs, échantillonnage 7 jours.',
-      ja: 'オルドス工場直販カシミア卸売。591点: 帽子、マフラー、セーター、アクセサリー、糸。OEM/ODM。MOQ 100個、7日サンプル発送。',
-      kr: '어얼어스 공장 직송 캐시미어 도매. 591점: 모자, 스카프, 스웨터, 액세서리, 원사. OEM/ODM. MOQ 100개, 7일 샘플 발송.',
+      en: `Premium B2B cashmere manufacturer and wholesale supplier from Ordos, Inner Mongolia, China. 23+ years expertise, OEKO-TEX certified, MOQ 100pcs, 7-day sampling, FOB Tianjin. Trusted by 500+ brands worldwide. ${PRODUCT_COUNT_STR} products across ${CATEGORY_COUNT} categories: ${CATEGORY_NAMES}.`,
+      cn: `鄂尔多斯源头工厂直供，${PRODUCT_COUNT_STR}款羊绒产品工厂直供：${CATEGORY_NAMES_CN}。支持OEM/ODM。工厂价格，100%纯羊绒，ISO认证。起订量100件。`,
+      de: `Premium Kaschmir-Großhandel direkt ab Fabrik in Ordos, China. ${PRODUCT_COUNT_STR} Produkte: ${CATEGORY_NAMES_DE}. OEM/ODM. MOQ 100 Stück, 7 Tage Bemusterung.`,
+      fr: `Fabricant cachemire B2B premium direct usine, Ordos Chine. ${PRODUCT_COUNT_STR} produits: ${CATEGORY_NAMES_FR}. OEM/ODM. MOQ 100pcs, échantillonnage 7 jours.`,
+      ja: `オルドス工場直販カシミア卸売。${PRODUCT_COUNT_STR}点: ${CATEGORY_NAMES_JA}.OEM/ODM。MOQ 100個、7日サンプル発送。`,
+      kr: `어얼어스 공장 직송 캐시미어 도매. ${PRODUCT_COUNT_STR}점: ${CATEGORY_NAMES_KR}. OEM/ODM. MOQ 100개, 7일 샘플 발송.`,
     },
   },
   products: {
     path: '/products/',
-    title: '591 Cashmere Products Wholesale Catalog',
+    title: `${PRODUCT_COUNT_STR} Cashmere Products Wholesale Catalog`,
     desc: {
-      en: 'Browse 591 wholesale cashmere products: hats, scarves, sweaters, accessories, yarn. Filter by style, material, gauge, audience, pattern.',
-      cn: '浏览591款批发羊绒产品: 帽子、围巾、毛衫、配饰、纱线。',
-      de: '591 Kaschmir-Großhandelsprodukte: Mützen, Schals, Pullover, Accessoires, Garn.',
-      fr: '591 produits cachemire en gros: bonnets, écharpes, pulls, accessoires, fils.',
-      ja: 'カシミア卸売製品591点: 帽子、マフラー、セーター、アクセサリー、糸。',
-      kr: '캐시미어 도매 제품 591점: 모자, 스카프, 스웨터, 액세서리, 원사.',
+      en: `Browse ${PRODUCT_COUNT_STR} wholesale cashmere products: ${CATEGORY_NAMES}. Filter by style, material, gauge, audience, pattern.`,
+      cn: `浏览${PRODUCT_COUNT_STR}款批发羊绒产品: ${CATEGORY_NAMES_CN}。`,
+      de: `${PRODUCT_COUNT_STR} Kaschmir-Großhandelsprodukte: ${CATEGORY_NAMES_DE}.`,
+      fr: `${PRODUCT_COUNT_STR} produits cachemire en gros: ${CATEGORY_NAMES_FR}.`,
+      ja: `カシミア卸売製品${PRODUCT_COUNT_STR}点: ${CATEGORY_NAMES_JA}。`,
+      kr: `캐시미어 도매 제품 ${PRODUCT_COUNT_STR}점: ${CATEGORY_NAMES_KR}.`,
     },
   },
   factory: {
@@ -132,7 +169,7 @@ async function main() {
   lines.push('');
   lines.push('> Premium B2B cashmere manufacturer and wholesale supplier from Ordos, Inner Mongolia, China. 23+ years expertise, OEKO-TEX certified, MOQ 100pcs, 7-day sampling, FOB Tianjin. Trusted by 500+ brands worldwide.');
   lines.push('');
-  lines.push(`This file is the full-text counterpart of /llms.txt. It contains all site pages, the complete 591-product catalog (with materials/micron/MOQ), and every published blog article. Generated ${new Date().toISOString().split('T')[0]}.`);
+  lines.push(`This file is the full-text counterpart of /llms.txt. It contains all site pages, the complete ${PRODUCT_COUNT_STR}-product catalog (with materials/micron/MOQ), and every published blog article. Generated ${new Date().toISOString().split('T')[0]}.`);
   lines.push('');
   lines.push('## Site Map');
   lines.push('');
@@ -159,7 +196,7 @@ async function main() {
   }
 
   // === Product catalog (EN, compact table) ===
-  lines.push('## Product Catalog (591 SKUs)');
+  lines.push(`## Product Catalog (${PRODUCT_COUNT_STR} SKUs)`);
   lines.push('');
   lines.push('Format: `id | name | material | micron | MOQ | lead time | price (USD)`');
   lines.push('');
@@ -167,8 +204,7 @@ async function main() {
   // products.json metadata only — actual products live in Drizzle DB at build
   // time. We surface the catalog summary here; for full product detail, see
   // /en/products/<id>/ on the live site.
-  const productsMeta = JSON.parse(await fs.readFile(PRODUCTS_JSON, 'utf-8'));
-  lines.push(`Total products: see /en/products/ for the full 591-SKU catalog (live, SSR'd from Drizzle DB).`);
+  lines.push(`Total products: see /en/products/ for the full ${PRODUCT_COUNT_STR}-SKU catalog (live, SSR'd from Drizzle DB).`);
   lines.push(`Categories: ${(productsMeta.categories || []).map(c => c.name || c.id).join(', ')}`);
   lines.push('');
 
