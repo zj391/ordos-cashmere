@@ -278,28 +278,53 @@ const prodMeta = productData[locale];
 // with the url.
 type Img = { url: string; w: number; h: number };
 function img(url: string, w: number, h: number): Img { return { url, w, h }; }
+/**
+ * Image dimensions.
+ *
+ * 2026-10-29: the homepage hardcoded width/height on its <img> tags. The
+ * category-card samples were all declared 750x750, but the real assets are
+ * 543x550 (hats), 489x550 (scarves), 400x400 (sweaters, accessories, yarn)
+ * and 750x750 (blankets). A browser reserving a square box for a portrait
+ * image is what made the pictures and their captions sit out of alignment.
+ *
+ * scripts/generate_image_dimensions.py reads the actual pixels from disk
+ * and writes this table, so the numbers can never drift from the assets
+ * again.
+ */
+import imageDimensions from '@/data/image-dimensions.json';
+
+const dim = (url: string): { w: number; h: number } => {
+  const entry = (imageDimensions as Record<string, { w: number; h: number }>)[url];
+  return entry ?? { w: 750, h: 750 };
+};
+
 const IMG: Record<string, Img> = {
   // 原首页模块保留，所有摄影图更换为同一组“雪线静奢”定制图像。
-  heroFiber:        img('/images/editorial-cashmere/editorial-material.webp',       1600, 1200),
-  ordosLandscape:   img('/images/editorial-cashmere/editorial-origin.webp',          1500, 1000),
-  mongoliaGoat:     img('/images/home/mongolia-goat.webp',                            800,  533),
-  knittingMill:     img('/images/home/spinning-mill.webp',                           1599, 1066),
-  craftHand:        img('/images/home/craft-knit-detail.webp',                       1200,  800),
-  shawlEmbroidered: img('/images/home/yarn-basket.webp',                             1066, 1600),
-  scarfDetail:      img('/images/editorial-cashmere/editorial-product-yarn.webp',     1500, 1000),
-  scarvesFolded:    img('/images/editorial-cashmere/editorial-scarves.webp',         1920, 1080),
-  uiHero:           img('/images/editorial-cashmere/editorial-hero.webp',             1920, 1080),
-  uiKnit:           img('/images/editorial-cashmere/editorial-origin-card.webp',       900, 1200),
-  uiMaterial:       img('/images/editorial-cashmere/editorial-product-raw.webp',     2560, 1440),
-  uiCraft:          img('/images/editorial-cashmere/editorial-cta-fiber.webp',        1920, 1080),
-  heroCraft:        img('/images/editorial-cashmere/editorial-craft.webp',            1600, 1200),
-  heroLandscape:    img('/images/editorial-cashmere/editorial-hero-landscape.webp',   1920, 1080),
-  productGarment:   img('/images/editorial-cashmere/editorial-garment-oem.webp',     1920, 1080),
-  blogOrigin:       img('/images/editorial-cashmere/editorial-journal-origin.webp',   1200,  750),
-  blogYarn:         img('/images/editorial-cashmere/editorial-journal-yarn.webp',     1200,  750),
-  blogCraft:        img('/images/editorial-cashmere/editorial-blog-knitting.webp',    1200,  750),
-  uiMark:           img('/images/editorial-cashmere/fiber-mark.png',                   512,  512),
+  heroFiber:        img('/images/editorial-cashmere/editorial-material.webp',       dim('/images/editorial-cashmere/editorial-material.webp').w, dim('/images/editorial-cashmere/editorial-material.webp').h),
+  ordosLandscape:   img('/images/editorial-cashmere/editorial-origin.webp',          dim('/images/editorial-cashmere/editorial-origin.webp').w, dim('/images/editorial-cashmere/editorial-origin.webp').h),
+  mongoliaGoat:     img('/images/home/mongolia-goat.webp',                            dim('/images/home/mongolia-goat.webp').w, dim('/images/home/mongolia-goat.webp').h),
+  knittingMill:     img('/images/home/spinning-mill.webp',                           dim('/images/home/spinning-mill.webp').w, dim('/images/home/spinning-mill.webp').h),
+  craftHand:        img('/images/home/craft-knit-detail.webp',                       dim('/images/home/craft-knit-detail.webp').w, dim('/images/home/craft-knit-detail.webp').h),
+  shawlEmbroidered: img('/images/home/yarn-basket.webp',                             dim('/images/home/yarn-basket.webp').w, dim('/images/home/yarn-basket.webp').h),
+  scarfDetail:      img('/images/editorial-cashmere/editorial-product-yarn.webp',     dim('/images/editorial-cashmere/editorial-product-yarn.webp').w, dim('/images/editorial-cashmere/editorial-product-yarn.webp').h),
+  scarvesFolded:    img('/images/editorial-cashmere/editorial-scarves.webp',         dim('/images/editorial-cashmere/editorial-scarves.webp').w, dim('/images/editorial-cashmere/editorial-scarves.webp').h),
+  uiHero:           img('/images/editorial-cashmere/editorial-hero.webp',             dim('/images/editorial-cashmere/editorial-hero.webp').w, dim('/images/editorial-cashmere/editorial-hero.webp').h),
+  uiKnit:           img('/images/editorial-cashmere/editorial-origin-card.webp',       dim('/images/editorial-cashmere/editorial-origin-card.webp').w, dim('/images/editorial-cashmere/editorial-origin-card.webp').h),
+  uiMaterial:       img('/images/editorial-cashmere/editorial-product-raw.webp',     dim('/images/editorial-cashmere/editorial-product-raw.webp').w, dim('/images/editorial-cashmere/editorial-product-raw.webp').h),
+  uiCraft:          img('/images/editorial-cashmere/editorial-cta-fiber.webp',        dim('/images/editorial-cashmere/editorial-cta-fiber.webp').w, dim('/images/editorial-cashmere/editorial-cta-fiber.webp').h),
+  heroCraft:        img('/images/editorial-cashmere/editorial-craft.webp',            dim('/images/editorial-cashmere/editorial-craft.webp').w, dim('/images/editorial-cashmere/editorial-craft.webp').h),
+  heroLandscape:    img('/images/editorial-cashmere/editorial-hero-landscape.webp',   dim('/images/editorial-cashmere/editorial-hero-landscape.webp').w, dim('/images/editorial-cashmere/editorial-hero-landscape.webp').h),
+  productGarment:   img('/images/editorial-cashmere/editorial-garment-oem.webp',     dim('/images/editorial-cashmere/editorial-garment-oem.webp').w, dim('/images/editorial-cashmere/editorial-garment-oem.webp').h),
+  blogOrigin:       img('/images/editorial-cashmere/editorial-journal-origin.webp',   dim('/images/editorial-cashmere/editorial-journal-origin.webp').w, dim('/images/editorial-cashmere/editorial-journal-origin.webp').h),
+  blogYarn:         img('/images/editorial-cashmere/editorial-journal-yarn.webp',     dim('/images/editorial-cashmere/editorial-journal-yarn.webp').w, dim('/images/editorial-cashmere/editorial-journal-yarn.webp').h),
+  blogCraft:        img('/images/editorial-cashmere/editorial-blog-knitting.webp',    dim('/images/editorial-cashmere/editorial-blog-knitting.webp').w, dim('/images/editorial-cashmere/editorial-blog-knitting.webp').h),
+  uiMark:           img('/images/editorial-cashmere/fiber-mark.png',                   dim('/images/editorial-cashmere/fiber-mark.png').w, dim('/images/editorial-cashmere/fiber-mark.png').h),
 };
+
+// The real size of the sample product image used on each category card.
+// Keyed by category id; falls back to a square box when unknown.
+const CATEGORY_SAMPLE = (imageDimensions as Record<string, any>).__categorySamples ?? {};
+
 ---
 
 <BaseLayout locale={locale} pageKey="home" path="/" schema="home">
@@ -649,13 +674,18 @@ const IMG: Record<string, Img> = {
   </section>
 
   <!-- ============ 为什么选我们（4 个决策因素：原产 + 工厂规模 + 合规 + 项目条款） ============ -->
-  <!-- ============ Why DONGXIAO: 1+3 editorial layout (1 hero + 3 small) ============ -->
-  <!-- 2026-10-14 P1-editorial-3: was a 2x2 grid of 4 equal cards. Now: 1 large
-       "From the Atelier" hero block (left 7/12) + 3 compact right blocks
-       (right 5/12, 3 stacked). Asymmetric magazine layout. -->
+  <!-- ============ Why DONGXIAO: 2x2 equal grid of specimen plates ============ -->
+  <!-- 2026-10-29: restored the 2x2 equal grid that commit 58240f5 replaced
+       with a 1+3 magazine asymmetry (one 7/12 hero block + three compact 5/12
+       blocks). The asymmetric version squeezed the text of reasons 02-04 into
+       a 4/12 column inside the 5/12 sidebar, so the headings wrapped and the
+       paragraphs read as a narrow ribbon next to the image. -->
   <section class="home-craft-section py-24 md:py-36 bg-background">
     <div class="container-narrow">
-      <div class="max-w-3xl mb-20">
+      <div class="max-w-3xl mb-20 relative pl-6 md:pl-8">
+        <!-- Vertical copper rule: the section's spine, tying the heading
+             to the four numbered plates below. -->
+        <div class="absolute left-0 top-1 bottom-1 w-px bg-brand-copper/35" aria-hidden="true"></div>
         <div class="eyebrow mb-8">
           <span class="eyebrow-label">
             {t6('为什么选东霄', 'Why DONGXIAO', 'Warum DONGXIAO', 'Pourquoi', 'なぜ東霄', '왜 동소')}
@@ -664,98 +694,125 @@ const IMG: Record<string, Img> = {
         <h2 class="text-3xl md:text-5xl font-serif font-light leading-[1.1] tracking-[-0.015em]">
           {t6('B2B 买家选鄂尔多斯羊绒厂的四个事实依据', 'Four factual reasons B2B buyers choose our Ordos cashmere factory', 'Vier sachliche Gründe für die Wahl unserer Ordos-Kaschmirfabrik', 'Quatre raisons factuelles de choisir notre usine de cachemire d\u2019Ordos', 'オルドスを選ぶ4つの事実根拠', '오르도스 캐시미어 공장을 선택하는 4가지 사실 근거')}
         </h2>
+        {/* The figure index — the four reasons announced as a plate list
+            before the reader reaches them. */}
+        <p class="mt-6 font-serif italic text-sm text-foreground/45 tracking-wide">
+          {t6('01 原产可追溯 · 02 自有设施 · 03 认证审计 · 04 书面条款', '01 Origin · 02 Facility · 03 Certification · 04 Written terms', '01 Herkunft · 02 Anlage · 03 Zertifizierung · 04 Schriftliche Bedingungen', '01 Origine · 02 Site · 03 Certification · 04 Conditions écrites', '01 産地 · 02 施設 · 03 認証 · 04 書面条件', '01 원산지 · 02 시설 · 03 인증 · 04 서면 조건')}
+        </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-x-10 gap-y-16">
-        {/* Hero reason: Ordos origin, fiber-traceable (1) — 7 cols */}
-        <div class="md:col-span-7 relative">
-          <div class="relative aspect-[4/3] overflow-hidden mb-8">
-            <img src={IMG.mongoliaGoat.url} width={IMG.mongoliaGoat.w} height={IMG.mongoliaGoat.h} alt="Inner Mongolia cashmere goat on Ordos plateau pasture, with combed fiber detail" class="w-full h-full object-cover" decoding="async" loading="lazy" 
+      {/* 2026-10-29: restored the 2x2 equal grid that commit 58240f5 replaced
+          with a 1+3 magazine asymmetry. The asymmetric version squeezed the
+          text of reasons 02-04 into a 4/12 column inside the 5/12 sidebar,
+          so the headings wrapped and the paragraphs read as a narrow ribbon
+          next to the image. Equal cells give every reason the same room.
+
+          The small touches on top of the plain grid:
+            - a hairline rule under each image that doubles as the caption
+              underline and leads the eye to the number
+            - a 1px corner tick in brand copper on the image's far corner,
+              so each photo reads as a mounted plate
+            - a large ghosted serif numeral behind the image, clipped by it
+            - number + reason label on one baseline, so the four reasons can
+              be scanned without reading them */}
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 lg:gap-x-20">
+        {/* Reason 01: Ordos origin, fiber-traceable */}
+        <div class="relative reveal" data-reveal-delay="1">
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img src={IMG.mongoliaGoat.url} width={IMG.mongoliaGoat.w} height={IMG.mongoliaGoat.h} alt="Inner Mongolia cashmere goat on Ordos plateau pasture, with combed fiber detail" class="w-full h-full object-cover" decoding="async" loading="lazy" />
             {/* Large background watermark number */}
             <div class="absolute -bottom-8 -right-2 md:-right-4 font-serif italic text-[180px] md:text-[260px] text-brand-copper/10 leading-none select-none pointer-events-none">
               01
             </div>
+            {/* Corner tick — the "mounted plate" detail */}
+            <span class="specimen-tick" aria-hidden="true"></span>
           </div>
+          {/* Hairline rule under the image */}
+          <div class="specimen-rule" aria-hidden="true"></div>
           <div class="flex items-baseline gap-4 mb-4">
+            <span class="specimen-number">01</span>
             <span class="font-serif italic text-sm text-brand-copper tracking-wide">
               {locale === 'cn' ? '理由 一' : locale === 'ja' ? '理由 一' : locale === 'kr' ? '이유 일' : 'Reason 01'}
             </span>
           </div>
-          <h3 class="font-serif text-3xl md:text-4xl font-light leading-[1.1] tracking-[-0.015em] mb-5">
+          <h3 class="font-serif text-2xl md:text-3xl font-light leading-[1.15] tracking-[-0.015em] mb-4">
             {t6('鄂尔多斯原产可追溯', 'Ordos origin, fiber-traceable', 'Ordos-Herkunft, faser-rückverfolgbar', 'Origine Ordos, fibre traçable', 'オルドス原産地、繊維トレース可能', '오르도스 원산지, 섬유 추적 가능')}
           </h3>
           <p class="text-muted-foreground leading-relaxed max-w-xl">
-            {t6('每批货物附原产地证书与牧民合作社 GPS 坐标（鄂尔多斯工业园区）。可按纤维批次回溯到合作社、采集季与处理厂。', 'Each batch ships with a Certificate of Origin listing the herder cooperative and approximate GPS coordinates of the Ordos plateau source pasture. Traceable back to cooperative, harvest season, and processing plant.', 'Jede Charge wird mit Ursprungszeugnis und ungefähren GPS-Koordinaten der Herkunft ausgeliefert; Rückverfolgbarkeit bis Kooperative, Saison und Verarbeitungswerk.', 'Chaque lot est accompagné d\u2019un certificat d\u2019origine indiquant la coopérative d\u2019éleveurs et les coordonnées GPS approximatives du pâturage d\u2019origine sur le plateau d\u2019Ordos.', '各バッチに原産地証明書とエルドス高原の牧場座標が付属。合作社、採取シーズン、加工工場まで追跡可能。', '각 배치에 원산지 증명서와 목장合作社 GPS 좌표가 첨부되어 合作社, 채집 시기, 가공 공장까지 추적 가능합니다.')}
+            {t6('每批货物附原产地证书与牧民合作社 GPS 坐标（鄂尔多斯工业园区）。可按纤维批次回溯到合作社、采集季与处理厂。', 'Each batch ships with a Certificate of Origin listing the herder cooperative and approximate GPS coordinates of the Ordos plateau source pasture. Traceable back to cooperative, harvest season, and processing plant.', 'Jede Charge wird mit Ursprungszeugnis und ungefähren GPS-Koordinaten der Herkunft ausgeliefert; Rückverfolgbarkeit bis Kooperative, Saison und Verarbeitungswerk.', 'Chaque lot est accompagné d’un certificat d’origine indiquant la coopérative d’éleveurs et les coordonnées GPS approximatives du pâturage d’origine sur le plateau d’Ordos.', '各バッチに原産地証明書とエルドス高原の牧場座標が付属。合作社、採取シーズン、加工工場まで追跡可能。', '각 배치에 원산지 증명서와 목장合作社 GPS 좌표가 첨부되어 合作社, 채집 시기, 가공 공장까지 추적 가능합니다.')}
           </p>
         </div>
 
-        {/* Right column: 3 stacked compact reasons (5 cols) */}
-        <div class="md:col-span-5 space-y-12">
-          {/* Reason 02: 2002-founded */}
-          <div class="relative">
-            <div class="grid grid-cols-12 gap-4">
-              <div class="col-span-4 aspect-square overflow-hidden">
-                <img src={IMG.craftHand.url} width={IMG.craftHand.w} height={IMG.craftHand.h} alt="Cashmere dehairing line and sorting facility at Ordos factory" class="w-full h-full object-cover" decoding="async" loading="lazy" 
-              </div>
-              <div class="col-span-8">
-                <div class="flex items-baseline gap-3 mb-2">
-                  <span class="font-serif italic text-sm text-brand-copper tracking-wide">
-                    {locale === 'cn' ? '理由 二' : locale === 'ja' ? '理由 二' : locale === 'kr' ? '이유 이' : 'Reason 02'}
-                  </span>
-                </div>
-                <h3 class="font-serif text-xl md:text-2xl font-light leading-[1.15] tracking-[-0.015em] mb-3">
-                  {t6('2002 年建厂，38,000㎡ 自有设施', '2002-founded, 38,000 sqm self-owned facility', 'Gegründet 2002, 38.000 m² eigenes Werk', 'Fondée en 2002, usine propre de 38 000 m²', '2002年創業、38,000㎡ 自社施設', '2002년 설립, 38,000㎡ 자체 시설')}
-                </h3>
-                <p class="text-sm text-muted-foreground leading-relaxed">
-                  {t6('23 年历史，鄂尔多斯工业园区 38,000㎡ 自有产权设施，1,200+ 吨/年分梳能力。原产地可参观、可审计。', '23-year operating history with a 38,000 sqm self-owned facility and 1,200+ tons annual dehairing capacity. Site visits and audits are available by appointment.', '23 Jahre Geschichte, 38.000 m² eigenes Werk im Ordos-Industriepark und über 1.200 Tonnen jährliche Kämmkapazität. Werksbesuche und Audits nach Vereinbarung.', '23 ans d\u2019histoire, 38 000 m² en propre dans le parc industriel d\u2019Ordos et plus de 1 200 tonnes/an de capacité de peignage. Visites et audits sur rendez-vous.', '23年業歴、オルドス工業園38,000㎡の自社施設、1,200トン/年のコーム能力。視察・監査は予約で対応。', '23년 업력, 오르도스 산업단지 38,000㎡ 자가 시설, 1,200톤/년 코밍 능력. 방문 및 감사는 예약제.')}
-                </p>
-              </div>
+        {/* Reason 02: 2002-founded */}
+        <div class="relative reveal" data-reveal-delay="2">
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img src={IMG.craftHand.url} width={IMG.craftHand.w} height={IMG.craftHand.h} alt="Cashmere dehairing line and sorting facility at Ordos factory" class="w-full h-full object-cover" decoding="async" loading="lazy" />
+            <div class="absolute -bottom-8 -right-2 md:-right-4 font-serif italic text-[180px] md:text-[260px] text-brand-copper/10 leading-none select-none pointer-events-none">
+              02
             </div>
+            <span class="specimen-tick" aria-hidden="true"></span>
           </div>
+          <div class="specimen-rule" aria-hidden="true"></div>
+          <div class="flex items-baseline gap-4 mb-4">
+            <span class="specimen-number">02</span>
+            <span class="font-serif italic text-sm text-brand-copper tracking-wide">
+              {locale === 'cn' ? '理由 二' : locale === 'ja' ? '理由 二' : locale === 'kr' ? '이유 이' : 'Reason 02'}
+            </span>
+          </div>
+          <h3 class="font-serif text-2xl md:text-3xl font-light leading-[1.15] tracking-[-0.015em] mb-4">
+            {t6('2002 年建厂，38,000㎡ 自有设施', '2002-founded, 38,000 sqm self-owned facility', 'Gegründet 2002, 38.000 m² eigenes Werk', 'Fondée en 2002, usine propre de 38 000 m²', '2002年創業、38,000㎡ 自社施設', '2002년 설립, 38,000㎡ 자체 시설')}
+          </h3>
+          <p class="text-muted-foreground leading-relaxed max-w-xl">
+            {t6('23 年历史，鄂尔多斯工业园区 38,000㎡ 自有产权设施，1,200+ 吨/年分梳能力。原产地可参观、可审计。', '23-year operating history with a 38,000 sqm self-owned facility and 1,200+ tons annual dehairing capacity. Site visits and audits are available by appointment.', '23 Jahre Geschichte, 38.000 m² eigenes Werk im Ordos-Industriepark und über 1.200 Tonnen jährliche Kammkapazität. Werksbesuche und Audits nach Vereinbarung.', '23 ans d’histoire, 38 000 m² en propre dans le parc industriel d’Ordos et plus de 1 200 tonnes/an de capacité de peignage. Visites et audits sur rendez-vous.', '23年業歴、オルドス工業園38,000㎡の自社施設、1,200トン/年のコーム能力。視察・監査は予約で対応。', '23년 업력, 오르도스 산업단지 38,000㎡ 자가 시설, 1,200톤/년 코밍 능력. 방문 및 감사는 예약제.')}
+          </p>
+        </div>
 
-          {/* Reason 03: certs */}
-          <div class="relative">
-            <div class="grid grid-cols-12 gap-4">
-              <div class="col-span-4 aspect-square overflow-hidden">
-                <img src={IMG.shawlEmbroidered.url} width={IMG.shawlEmbroidered.w} height={IMG.shawlEmbroidered.h} alt="Cashmere yarn — natural fiber cones ready for spinning, with quality documentation" class="w-full h-full object-cover" decoding="async" loading="lazy" 
-              </div>
-              <div class="col-span-8">
-                <div class="flex items-baseline gap-3 mb-2">
-                  <span class="font-serif italic text-sm text-brand-copper tracking-wide">
-                    {locale === 'cn' ? '理由 三' : locale === 'ja' ? '理由 三' : locale === 'kr' ? '이유 삼' : 'Reason 03'}
-                  </span>
-                </div>
-                <h3 class="font-serif text-xl md:text-2xl font-light leading-[1.15] tracking-[-0.015em] mb-3">
-                  {t6('OEKO-TEX、ISO 9001、BSCI 已审计', 'OEKO-TEX, ISO 9001, BSCI audited', 'OEKO-TEX, ISO 9001, BSCI auditiert', 'Audité OEKO-TEX, ISO 9001, BSCI', 'OEKO-TEX、ISO 9001、BSCI 監査済み', 'OEKO-TEX, ISO 9001, BSCI 감사 완료')}
-                </h3>
-                <p class="text-sm text-muted-foreground leading-relaxed">
-                  {t6('OEKO-TEX Standard 100、ISO 9001:2015、BSCI、Sedex SMETA 4 支柱审计。证书可下载；按项目可申请 GOTS、RWS。', 'OEKO-TEX Standard 100, ISO 9001:2015, BSCI, and Sedex SMETA 4-pillar audits are on file. Certificates are downloadable; GOTS and RWS are available by project request.', 'OEKO-TEX Standard 100, ISO 9001:2015, BSCI und Sedex SMETA 4-Säulen-Audits liegen vor. Zertifikate sind herunterladbar; GOTS und RWS auf Projektanfrage.', 'Audits OEKO-TEX Standard 100, ISO 9001:2015, BSCI et Sedex SMETA 4 piliers disponibles. Certificats téléchargeables ; GOTS et RWS sur demande projet.', 'OEKO-TEX Standard 100、ISO 9001:2015、BSCI、Sedex SMETA 4本柱監査済み。証明書はダウンロード可。GOTS、RWSは案件ごと対応。', 'OEKO-TEX Standard 100, ISO 9001:2015, BSCI, Sedex SMETA 4대 축 감사 완료. 인증서 다운로드 가능. GOTS, RWS는 프로젝트별 요청 가능.')}
-                </p>
-              </div>
+        {/* Reason 03: certs */}
+        <div class="relative reveal" data-reveal-delay="3">
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img src={IMG.shawlEmbroidered.url} width={IMG.shawlEmbroidered.w} height={IMG.shawlEmbroidered.h} alt="Cashmere yarn — natural fiber cones ready for spinning, with quality documentation" class="w-full h-full object-cover" decoding="async" loading="lazy" />
+            <div class="absolute -bottom-8 -right-2 md:-right-4 font-serif italic text-[180px] md:text-[260px] text-brand-copper/10 leading-none select-none pointer-events-none">
+              03
             </div>
+            <span class="specimen-tick" aria-hidden="true"></span>
           </div>
+          <div class="specimen-rule" aria-hidden="true"></div>
+          <div class="flex items-baseline gap-4 mb-4">
+            <span class="specimen-number">03</span>
+            <span class="font-serif italic text-sm text-brand-copper tracking-wide">
+              {locale === 'cn' ? '理由 三' : locale === 'ja' ? '理由 三' : locale === 'kr' ? '이유 삼' : 'Reason 03'}
+            </span>
+          </div>
+          <h3 class="font-serif text-2xl md:text-3xl font-light leading-[1.15] tracking-[-0.015em] mb-4">
+            {t6('OEKO-TEX、ISO 9001、BSCI 已审计', 'OEKO-TEX, ISO 9001, BSCI audited', 'OEKO-TEX, ISO 9001, BSCI auditiert', 'Audité OEKO-TEX, ISO 9001, BSCI', 'OEKO-TEX、ISO 9001、BSCI 監査済み', 'OEKO-TEX, ISO 9001, BSCI 감사 완료')}
+          </h3>
+          <p class="text-muted-foreground leading-relaxed max-w-xl">
+            {t6('OEKO-TEX Standard 100、ISO 9001:2015、BSCI、Sedex SMETA 4 支柱审计。证书可下载；按项目可申请 GOTS、RWS。', 'OEKO-TEX Standard 100, ISO 9001:2015, BSCI, and Sedex SMETA 4-pillar audits are on file. Certificates are downloadable; GOTS and RWS are available by project request.', 'OEKO-TEX Standard 100, ISO 9001:2015, BSCI und Sedex SMETA 4-Säulen-Audits liegen vor. Zertifikate sind herunterladbar; GOTS und RWS auf Projektanfrage.', 'Audits OEKO-TEX Standard 100, ISO 9001:2015, BSCI et Sedex SMETA 4 piliers disponibles. Certificats téléchargeables ; GOTS et RWS sur demande projet.', 'OEKO-TEX Standard 100、ISO 9001:2015、BSCI、Sedex SMETA 4本柱監査済み。証明書はダウンロード可。GOTS、RWSは案件ごと対応。', 'OEKO-TEX Standard 100, ISO 9001:2015, BSCI, Sedex SMETA 4대 축 감사 완료. 인증서 다운로드 가능. GOTS, RWS는 프로젝트별 요청 가능.')}
+          </p>
+        </div>
 
-          {/* Reason 04: written terms */}
-          <div class="relative">
-            <div class="grid grid-cols-12 gap-4">
-              <div class="col-span-4 aspect-square overflow-hidden">
-                <img src={IMG.knittingMill.url} width={IMG.knittingMill.w} height={IMG.knittingMill.h} alt="Cashmere knitwear production line — written terms per project" class="w-full h-full object-cover" decoding="async" loading="lazy" 
-              </div>
-              <div class="col-span-8">
-                <div class="flex items-baseline gap-3 mb-2">
-                  <span class="font-serif italic text-sm text-brand-copper tracking-wide">
-                    {locale === 'cn' ? '理由 四' : locale === 'ja' ? '理由 四' : locale === 'kr' ? '이유 사' : 'Reason 04'}
-                  </span>
-                </div>
-                <h3 class="font-serif text-xl md:text-2xl font-light leading-[1.15] tracking-[-0.015em] mb-3">
-                  {t6('每项目独立书面条款', 'Written terms per project', 'Schriftliche Bedingungen je Projekt', 'Conditions écrites par projet', '案件ごとに書面条件', '프로젝트별 서면 조건')}
-                </h3>
-                <p class="text-sm text-muted-foreground leading-relaxed">
-                  {t6('无框架协议 — 每一份 PO 收 30% 定金后书面确认条款。按目的地、规模和起订量逐单计算 FOB / CIF / EXW 报价。', 'No framework agreement — each PO is confirmed by 30% deposit and written terms. FOB / CIF / EXW quotes are calculated per PO based on destination, scale, and MOQ.', 'Kein Rahmenvertrag — jede Bestellung wird per 30 % Anzahlung und schriftlich bestätigt. FOB / CIF / EXW Angebote werden pro Bestellung anhand von Zielort, Volumen und MOQ kalkuliert.', 'Pas d\u2019accord-cadre — chaque PO est confirmé par un acompte de 30 % et des conditions écrites. Les cotations FOB / CIF / EXW sont calculées par PO selon destination, volume et MOQ.', '枠組み契約なし — 各 PO は 30% 前払いと書面で確認。FOB / CIF / EXW 見積もりは宛先、規模、MOQ に基づき都度算出。', '프레임워크 계약 없음 — 각 PO는 30% 계약금과 서면 조건 확인. FOB / CIF / EXW 견적은 목적지, 규모, MOQ에 따라 매번 산출.')}
-                </p>
-              </div>
+        {/* Reason 04: written terms */}
+        <div class="relative reveal" data-reveal-delay="4">
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img src={IMG.knittingMill.url} width={IMG.knittingMill.w} height={IMG.knittingMill.h} alt="Cashmere knitwear production line — written terms per project" class="w-full h-full object-cover" decoding="async" loading="lazy" />
+            <div class="absolute -bottom-8 -right-2 md:-right-4 font-serif italic text-[180px] md:text-[260px] text-brand-copper/10 leading-none select-none pointer-events-none">
+              04
             </div>
+            <span class="specimen-tick" aria-hidden="true"></span>
           </div>
+          <div class="specimen-rule" aria-hidden="true"></div>
+          <div class="flex items-baseline gap-4 mb-4">
+            <span class="specimen-number">04</span>
+            <span class="font-serif italic text-sm text-brand-copper tracking-wide">
+              {locale === 'cn' ? '理由 四' : locale === 'ja' ? '理由 四' : locale === 'kr' ? '이유 사' : 'Reason 04'}
+            </span>
+          </div>
+          <h3 class="font-serif text-2xl md:text-3xl font-light leading-[1.15] tracking-[-0.015em] mb-4">
+            {t6('每项目独立书面条款', 'Written terms per project', 'Schriftliche Bedingungen je Projekt', 'Conditions écrites par projet', '案件ごとに書面条件', '프로젝트별 서면 조건')}
+          </h3>
+          <p class="text-muted-foreground leading-relaxed max-w-xl">
+            {t6('无框架协议 — 每一份 PO 收 30% 定金后书面确认条款。按目的地、规模和起订量逐单计算 FOB / CIF / EXW 报价。', 'No framework agreement — each PO is confirmed by 30% deposit and written terms. FOB / CIF / EXW quotes are calculated per PO based on destination, scale, and MOQ.', 'Kein Rahmenvertrag — jede Bestellung wird per 30 % Anzahlung und schriftlich bestätigt. FOB / CIF / EXW Angebote werden pro Bestellung anhand von Zielort, Volumen und MOQ kalkuliert.', 'Pas d’accord-cadre — chaque PO est confirmé par un acompte de 30 % et des conditions écrites. Les cotations FOB / CIF / EXW sont calculées par PO selon destination, volume et MOQ.', '枠組み契約なし — 各 PO は 30% 前払いと書面で確認。FOB / CIF / EXW 見積もりは宛先、規模、MOQ に基づき都度算出。', '프레임워크 계약 없음 — 각 PO는 30% 계약금과 서면 조건 확인. FOB / CIF / EXW 견적은 목적지, 규모, MOQ에 따라 매번 산출.')}
+          </p>
         </div>
       </div>
     </div>
@@ -795,6 +852,14 @@ const IMG: Record<string, Img> = {
           // Pick the first product's first image as a category hero shot
           const heroProduct = cat && cat.products && cat.products[0];
           const heroImg = heroProduct ? homeImg(heroProduct) : '';
+          // 2026-10-29: use the asset's real pixel size. The samples are
+          // 543x550 (hats), 489x550 (scarves), 400x400 (sweaters,
+          // accessories, yarn) and 750x750 (blankets) — declaring them all
+          // 750x750 made the browser reserve a square box for portrait
+          // images, which pushed the caption out of alignment.
+          const sample = CATEGORY_SAMPLE[c.slug];
+          const sampleW = sample?.w ?? 750;
+          const sampleH = sample?.h ?? 750;
           return (
             <a href={categoryHref} class="group relative bg-background flex flex-col justify-between min-h-[280px] md:min-h-[360px] transition-colors duration-300 hover:bg-brand-cream/40 overflow-hidden">
               {/* Top-right: large italic number watermark */}
@@ -807,13 +872,8 @@ const IMG: Record<string, Img> = {
                   <img
                     src={heroImg}
                     alt={`${c.name} — sample product`}
-                    width={750}
-                    height={750}
-                    // jevseo 2026-10-19 JEV-007 (P3): one representative
-                    // sample per category. Source-aspect varies (some
-                    // 400x400, some 489x550, blankets 750x750); the SSR card
-                    // box is square so 750x750 keeps LCP happy without CLS
-                    // shift. JPEG/WebP decoders downsample on the fly.
+                    width={sampleW}
+                    height={sampleH}
                     class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                     loading="lazy"
                     decoding="async"
@@ -845,7 +905,7 @@ const IMG: Record<string, Img> = {
 
       <div class="mt-12 text-center">
         <a href={`/${locale}/products/`} class="font-serif italic text-base text-foreground border-b border-foreground/40 hover:border-brand-copper hover:text-brand-copper pb-0.5 transition-colors">
-          {t6('浏览全部 663 条产品记录 →', 'Browse all 663 product records →', 'Alle 663 Produktdatensätze ansehen →', 'Parcourir les 663 fiches produit →', '663 件の製品記録を見る →', '663개 제품 기록 전체 보기 →')}
+          {t6(`浏览全部 ${allProducts.length} 条产品记录 →`, `Browse all ${allProducts.length} product records →`, `Alle ${allProducts.length} Produktdatensätze ansehen →`, `Parcourir les ${allProducts.length} fiches produit →`, `${allProducts.length} 件の製品記録を見る →`, `${allProducts.length}개 제품 기록 전체 보기 →`)}
         </a>
       </div>
     </div>

@@ -1,0 +1,116 @@
+{
+ "/images/editorial-cashmere/editorial-material.webp": {
+  "w": 1600,
+  "h": 1200
+ },
+ "/images/editorial-cashmere/editorial-origin.webp": {
+  "w": 1500,
+  "h": 1000
+ },
+ "/images/home/mongolia-goat.webp": {
+  "w": 800,
+  "h": 533
+ },
+ "/images/home/spinning-mill.webp": {
+  "w": 1599,
+  "h": 1066
+ },
+ "/images/home/craft-knit-detail.webp": {
+  "w": 1200,
+  "h": 800
+ },
+ "/images/home/yarn-basket.webp": {
+  "w": 1066,
+  "h": 1600
+ },
+ "/images/editorial-cashmere/editorial-product-yarn.webp": {
+  "w": 1500,
+  "h": 1000
+ },
+ "/images/editorial-cashmere/editorial-scarves.webp": {
+  "w": 1920,
+  "h": 1080
+ },
+ "/images/editorial-cashmere/editorial-hero.webp": {
+  "w": 1920,
+  "h": 1080
+ },
+ "/images/editorial-cashmere/editorial-origin-card.webp": {
+  "w": 900,
+  "h": 1200
+ },
+ "/images/editorial-cashmere/editorial-product-raw.webp": {
+  "w": 2560,
+  "h": 1440
+ },
+ "/images/editorial-cashmere/editorial-cta-fiber.webp": {
+  "w": 1920,
+  "h": 1080
+ },
+ "/images/editorial-cashmere/editorial-craft.webp": {
+  "w": 1600,
+  "h": 1200
+ },
+ "/images/editorial-cashmere/editorial-hero-landscape.webp": {
+  "w": 1920,
+  "h": 1080
+ },
+ "/images/editorial-cashmere/editorial-garment-oem.webp": {
+  "w": 1920,
+  "h": 1080
+ },
+ "/images/editorial-cashmere/editorial-journal-origin.webp": {
+  "w": 1200,
+  "h": 750
+ },
+ "/images/editorial-cashmere/editorial-journal-yarn.webp": {
+  "w": 1200,
+  "h": 750
+ },
+ "/images/editorial-cashmere/editorial-blog-knitting.webp": {
+  "w": 1200,
+  "h": 750
+ },
+ "/images/editorial-cashmere/fiber-mark.png": {
+  "w": 512,
+  "h": 512
+ },
+ "__categorySamples": {
+  "hats": {
+   "src": "/products/mic/prod_000_00.webp",
+   "w": 543,
+   "h": 550,
+   "alt": "Cashmere Hats & Beanies — sample product"
+  },
+  "sweaters": {
+   "src": "/products/mic/prod_077_00.webp",
+   "w": 400,
+   "h": 400,
+   "alt": "Cashmere Sweaters & Knitwear — sample product"
+  },
+  "scarves": {
+   "src": "/products/mic/prod_025_00.webp",
+   "w": 489,
+   "h": 550,
+   "alt": "Cashmere Scarves & Wraps — sample product"
+  },
+  "accessories": {
+   "src": "/products/mic/prod_068_00.webp",
+   "w": 400,
+   "h": 400,
+   "alt": "Cashmere Accessories — sample product"
+  },
+  "blankets": {
+   "src": "/products/mic/prod_1640_00.webp",
+   "w": 750,
+   "h": 750,
+   "alt": "Cashmere & Wool Blankets — sample product"
+  },
+  "yarn": {
+   "src": "/products/mic/prod_079_00.webp",
+   "w": 400,
+   "h": 400,
+   "alt": "Cashmere Yarn & Fiber — sample product"
+  }
+ }
+}

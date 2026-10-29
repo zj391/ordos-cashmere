@@ -578,6 +578,47 @@ header.sticky.is-scrolled {
    Luxury editorial system (2026 refresh)
    ============================================================ */
 
+/* ============================================================
+   Specimen plate treatment (2026-10-29)
+   ------------------------------------------------------------
+   The Why DONGXIAO section shows four factory photographs. A plain
+   image with a caption under it reads as a stock photo; framing it
+   like a mounted specimen — a hairline rule below, a corner tick, and
+   the figure number set in the margin — reads as a catalogue plate.
+
+   The corner tick is a 1px L in brand copper that sits ON the image,
+   so the photo looks pinned to the page rather than floating in it.
+   ============================================================ */
+
+/* Hairline rule that separates the plate from its caption */
+.specimen-rule {
+  height: 1px;
+  background: var(--border, #e5e1da);
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* The 1px L in the image's far corner */
+.specimen-tick {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2rem;
+  height: 2rem;
+  border-top: 1px solid rgba(199, 125, 63, 0.45);
+  border-right: 1px solid rgba(199, 125, 63, 0.45);
+  pointer-events: none;
+}
+
+/* Figure number set in the margin, serif, quiet */
+.specimen-number {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 3rem;
+  line-height: 1;
+  font-weight: 300;
+  color: #AD8A5C;
+}
+
 /* Section eyebrow: small red hairline + letterspaced uppercase label */
 .eyebrow {
   display: flex;
