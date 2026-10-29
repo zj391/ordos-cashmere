@@ -34,10 +34,6 @@ export interface CategoryCatalogOptions {
   infoSelector: string;
   /** Selector for the pagination nav container */
   paginationSelector: string;
-  // 2026-10-18: optional top-of-page sticky mirror for pagination (mirrors
-  // products.astro pattern). Renders the same page buttons + count above
-  // the grid so the user can paginate without scrolling back to the bottom.
-  paginationTopSelector?: string;
   /** Selector for the page-jump input */
   jumpInputSelector: string;
   /** Selector for the page-jump Go button */
@@ -107,9 +103,6 @@ export function initCategoryCatalog(opts: CategoryCatalogOptions): void {
   const filterButtons = document.querySelectorAll<HTMLButtonElement>(opts.filterSelector);
   const info = document.querySelector(opts.infoSelector);
   const pagination = document.querySelector(opts.paginationSelector);
-  const paginationTop = opts.paginationTopSelector
-    ? document.querySelector(opts.paginationTopSelector)
-    : null;
   const jumpInput = document.querySelector<HTMLInputElement>(opts.jumpInputSelector);
   const jumpBtn = document.querySelector<HTMLButtonElement>(opts.jumpButtonSelector);
 
@@ -194,7 +187,6 @@ export function initCategoryCatalog(opts: CategoryCatalogOptions): void {
     const lang = locale || document.documentElement.lang || 'en';
     if (totalPages <= 1) {
       pagination.innerHTML = '';
-      if (paginationTop) paginationTop.innerHTML = '';
       if (jumpInput) {
         jumpInput.max = totalPages;
         jumpInput.placeholder = totalPages > 0 ? '1–' + totalPages : '—';
@@ -217,7 +209,6 @@ export function initCategoryCatalog(opts: CategoryCatalogOptions): void {
     }
     html += pageBtnHtml('›', currentPage < totalPages ? currentPage + 1 : null, currentPage === totalPages);
     pagination.innerHTML = html;
-    if (paginationTop) paginationTop.innerHTML = html;
     const wireButtons = (root: Element) => {
       root.querySelectorAll('button[data-page]').forEach((b) => {
         b.addEventListener('click', () => {
@@ -230,7 +221,6 @@ export function initCategoryCatalog(opts: CategoryCatalogOptions): void {
       });
     };
     wireButtons(pagination);
-    if (paginationTop) wireButtons(paginationTop);
 
     if (jumpInput) {
       jumpInput.max = totalPages;

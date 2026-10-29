@@ -932,16 +932,6 @@ class="card-editorial group block bg-white"
         </div>
       </div>
 
-      {/* Top pagination (sticky mirror of bottom; 2026-10-18 — matches /products/ pattern).
-          Gives the user a way to jump pages without scrolling to the bottom.
-          Rendered as a server-side empty container; JS fills the page buttons on init. */}
-      <div id="category-pagination-top-wrap" class="sticky top-16 z-20 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 -mx-4 px-4 sm:-mx-6 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 mb-4 py-3 border-b border-border">
-        <p id="category-page-info-top" class="text-sm text-muted-foreground order-2 sm:order-1">
-          {CAT.showingPage(1, Math.min(16, products.length), products.length)}
-        </p>
-        <nav id="category-pagination-top" class="flex items-center gap-1 order-1 sm:order-2" aria-label={`${CAT.paginationAria} (top)`}></nav>
-      </div>
-
       {/* Product grid (wrapped for client filter/pagination) */}
       <div id="category-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" data-page-size="16">
         {products.map((p) => (
@@ -1029,7 +1019,6 @@ class="card-editorial group block bg-white"
       filterSelector: '#category-filter-buttons button[data-cat]',
       infoSelector: '#category-page-info',
       paginationSelector: '#category-pagination',
-      paginationTopSelector: '#category-pagination-top',
       jumpInputSelector: '#category-jump-input',
       jumpButtonSelector: '#category-jump-go',
       pageSize: 16,
