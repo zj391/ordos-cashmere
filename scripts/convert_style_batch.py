@@ -43,6 +43,8 @@ except ImportError:
     sys.exit("Pillow is required: pip install Pillow")
 
 # Filenames that are a shot of the garment, not a colourway.
+# 新主图 / 新主图B are marketing slides with Chinese copy baked in. They are
+# excluded from the gallery entirely - see sort_key().
 DETAIL_SHOTS = {
     "正", "新主图", "主图", "新主图b", "背", "袖口", "领口", "下摆", "腰部",
     "裤腿", "裤腿口", "裤口", "口袋", "肩部", "面料", "细节", "组合", "穗",
@@ -181,17 +183,23 @@ def is_detail(stem: str) -> bool:
 def sort_key(item):
     """Order the shots so the first one a visitor sees shows the garment.
 
-    Two conventions exist in this photo archive:
-      * styles that ship a 正 / 新主图 / 主图 front shot  -> that shot is the
-        product photo, colour shots follow, detail shots last.
+    Three conventions exist in this photo archive:
+      * 正 / 主图 front shots (the 2详情页 line) are clean product photos and
+        lead the gallery.
       * styles that ship only colour + detail shots (the 3详情页 and 4详情页
         lines) -> the colour shots ARE the full-garment photos, so they lead.
+      * 新主图 in the 5详情页 line is a MARKETING SLIDE: Chinese promotional
+        copy, a red frame, certification logos and a supplier contact strip
+        are baked into the pixels. The colour shots sitting next to it in the
+        same folder are clean product photos, so they lead instead and the
+        marketing slide is dropped entirely rather than shown to a European
+        or American buyer.
 
     A 背面 shot is the back of the garment and a 领口 / 袖口 / 下摆 shot is a
     close-up; neither should be the first image in the gallery.
     """
     stem, path = item
-    if stem in ("正", "新主图", "主图", "新主图B"):
+    if stem in ("正", "主图"):
         return (0, stem)
     if stem == "背":
         # back view is a real product view, better than a detail crop
@@ -199,6 +207,13 @@ def sort_key(item):
     if is_detail(stem):
         return (3, stem)
     return (2, stem)
+
+
+# Files that are never uploaded: marketing slides with Chinese promotional
+# copy, certification logos and supplier contact details baked into the
+# pixels. Shipping them to an international B2B buyer reads as a domestic
+# wholesale listing, not as a factory's own catalogue.
+EXCLUDE_SHOTS = {"新主图", "新主图B", "新主图b"}
 
 
 def collect_images(style_dir: str):
@@ -210,6 +225,8 @@ def collect_images(style_dir: str):
             if ext not in (".jpg", ".jpeg", ".png", ".webp"):
                 continue
             stem = os.path.splitext(f)[0]
+            if stem in EXCLUDE_SHOTS:
+                continue
             found.append((stem, os.path.join(root, f)))
     found.sort(key=sort_key)
     return found
