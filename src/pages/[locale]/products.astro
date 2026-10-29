@@ -14,6 +14,7 @@ import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
 import SEOFaq from '@/components/SEOFaq.astro';
 import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
+import { imageSize } from '@/lib/image-size';
 import { SEO, SITE_INFO } from '@/lib/seo';
 import { productsListingSchema } from '@/lib/schema';
 import { products as productsData, getRepresentativeProducts, ensureDbOverlay } from '@/data/products';
@@ -592,8 +593,12 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
                 })()}
                 loading="lazy"
                 decoding="async"
-                width={400}
-                height={400}
+                width={imageSize((p.images[0].startsWith('/images/') || p.images[0].startsWith('http'))
+                  ? p.images[0]
+                  : `/products/mic/${p.images[0]}`).w}
+                height={imageSize((p.images[0].startsWith('/images/') || p.images[0].startsWith('http'))
+                  ? p.images[0]
+                  : `/products/mic/${p.images[0]}`).h}
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
             )}

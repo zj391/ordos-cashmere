@@ -279,24 +279,15 @@ const prodMeta = productData[locale];
 type Img = { url: string; w: number; h: number };
 function img(url: string, w: number, h: number): Img { return { url, w, h }; }
 /**
- * Image dimensions.
- *
- * 2026-10-29: the homepage hardcoded width/height on its <img> tags. The
- * category-card samples were all declared 750x750, but the real assets are
- * 543x550 (hats), 489x550 (scarves), 400x400 (sweaters, accessories, yarn)
- * and 750x750 (blankets). A browser reserving a square box for a portrait
- * image is what made the pictures and their captions sit out of alignment.
- *
- * scripts/generate_image_dimensions.py reads the actual pixels from disk
- * and writes this table, so the numbers can never drift from the assets
- * again.
+ * Image dimensions come from the generated table, which is read from the
+ * real pixels on disk — the homepage used to hardcode 750x750 for every
+ * category sample, but the assets are 543x550, 489x550, 400x400 and
+ * 750x750, so the browser reserved a box of the wrong shape and the
+ * picture and its caption did not line up.
  */
-import imageDimensions from '@/data/image-dimensions.json';
+import { imageSize } from '@/lib/image-size';
 
-const dim = (url: string): { w: number; h: number } => {
-  const entry = (imageDimensions as Record<string, { w: number; h: number }>)[url];
-  return entry ?? { w: 750, h: 750 };
-};
+const dim = imageSize;
 
 const IMG: Record<string, Img> = {
   // 原首页模块保留，所有摄影图更换为同一组“雪线静奢”定制图像。
@@ -320,10 +311,6 @@ const IMG: Record<string, Img> = {
   blogCraft:        img('/images/editorial-cashmere/editorial-blog-knitting.webp',    dim('/images/editorial-cashmere/editorial-blog-knitting.webp').w, dim('/images/editorial-cashmere/editorial-blog-knitting.webp').h),
   uiMark:           img('/images/editorial-cashmere/fiber-mark.png',                   dim('/images/editorial-cashmere/fiber-mark.png').w, dim('/images/editorial-cashmere/fiber-mark.png').h),
 };
-
-// The real size of the sample product image used on each category card.
-// Keyed by category id; falls back to a square box when unknown.
-const CATEGORY_SAMPLE = (imageDimensions as Record<string, any>).__categorySamples ?? {};
 
 ---
 
@@ -852,14 +839,13 @@ const CATEGORY_SAMPLE = (imageDimensions as Record<string, any>).__categorySampl
           // Pick the first product's first image as a category hero shot
           const heroProduct = cat && cat.products && cat.products[0];
           const heroImg = heroProduct ? homeImg(heroProduct) : '';
-          // 2026-10-29: use the asset's real pixel size. The samples are
-          // 543x550 (hats), 489x550 (scarves), 400x400 (sweaters,
-          // accessories, yarn) and 750x750 (blankets) — declaring them all
-          // 750x750 made the browser reserve a square box for portrait
-          // images, which pushed the caption out of alignment.
-          const sample = CATEGORY_SAMPLE[c.slug];
-          const sampleW = sample?.w ?? 750;
-          const sampleH = sample?.h ?? 750;
+          // 2026-10-29: the asset's real pixel size, looked up in the
+          // generated table. Declaring all of them 750x750 made the browser
+          // reserve a square box for portrait images, which pushed the
+          // caption out of alignment.
+          const sample = imageSize(heroImg);
+          const sampleW = sample.w;
+          const sampleH = sample.h;
           return (
             <a href={categoryHref} class="group relative bg-background flex flex-col justify-between min-h-[280px] md:min-h-[360px] transition-colors duration-300 hover:bg-brand-cream/40 overflow-hidden">
               {/* Top-right: large italic number watermark */}

@@ -270,6 +270,9 @@ const uniqueProductImages = Array.from(new Set(product.images));
 
 // or a product photo filename in /products/<imageDir>/.
 
+/** Real pixel size of an image, looked up in the generated table. */
+import { imageSize } from '@/lib/image-size';
+
 function resolveProductImage(img: string): string {
 
   if (img.startsWith('/images/') || img.startsWith('http')) return img;
@@ -1463,7 +1466,7 @@ const relatedViewAll: Record<Locale, string> = {
 
                       >
 
-                        <img id="main-product-img" src={primaryImage} alt={buildSeoAlt(product)} width={750} height={750} class="product-main-image w-full h-full object-cover object-[center_top] transition-opacity" decoding="async" loading="eager" />
+                        <img id="main-product-img" src={primaryImage} alt={buildSeoAlt(product)} width={imageSize(primaryImage).w} height={imageSize(primaryImage).h} class="product-main-image w-full h-full object-cover object-[center_top] transition-opacity" decoding="async" loading="eager" />
 
                                             </div>
         <!-- Desktop magnifier: keep the zoom view beside the main image, inside
@@ -1500,7 +1503,7 @@ const relatedViewAll: Record<Locale, string> = {
 
                             >
 
-                              <img src={img} alt={`${buildSeoAlt(product)}${kind === 'model' ? ' — real-model wear photo' : ' — detail view ' + (i + 1)}`} width={750} height={750} class="w-full h-full object-cover" decoding="async" loading="lazy" />
+                              <img src={img} alt={`${buildSeoAlt(product)}${kind === 'model' ? ' — real-model wear photo' : ' — detail view ' + (i + 1)}`} width={imageSize(img).w} height={imageSize(img).h} class="w-full h-full object-cover" decoding="async" loading="lazy" />
 
                               {kind === 'model' && (
 
@@ -2696,8 +2699,8 @@ const relatedViewAll: Record<Locale, string> = {
                     <img
                       src={rpImg}
                       alt={`${rp.name} — ${rp.categoryName}, ${rp.material}`}
-                      width={750}
-                      height={750}
+                      width={imageSize(rpImg).w}
+                      height={imageSize(rpImg).h}
                       loading="eager"
                       fetchpriority="low"
                       decoding="async"
@@ -2756,7 +2759,7 @@ const relatedViewAll: Record<Locale, string> = {
                 data-related-material-id={rp.id}
               >
                 <div class="aspect-square bg-brand-cream overflow-hidden">
-                  {rpImg && <img src={rpImg} alt={rp.name} width={750} height={750} loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />}
+                  {rpImg && <img src={rpImg} alt={rp.name} width={imageSize(rpImg).w} height={imageSize(rpImg).h} loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />}
                 </div>
                 <div class="p-2">
                   <p class="text-[10px] uppercase tracking-wider text-muted-foreground mb-0.5 truncate">{rp.categoryName}</p>
@@ -2796,7 +2799,7 @@ const relatedViewAll: Record<Locale, string> = {
                 data-related-color-id={rp.id}
               >
                 <div class="aspect-square bg-brand-cream overflow-hidden">
-                  {rpImg && <img src={rpImg} alt={rp.name} width={750} height={750} loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />}
+                  {rpImg && <img src={rpImg} alt={rp.name} width={imageSize(rpImg).w} height={imageSize(rpImg).h} loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />}
                 </div>
                 <div class="p-2">
                   <p class="text-[10px] uppercase tracking-wider text-muted-foreground mb-0.5 truncate">{rp.categoryName}</p>

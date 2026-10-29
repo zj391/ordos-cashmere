@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
+import { imageSize } from '@/lib/image-size';
 import type { Product, Category } from "@/data/products";
 
 // 轻量摘要（用于卡片列表展示，节省 props 体积）
@@ -302,13 +303,12 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
                   src={`/products/mic/${p.image}`}
                   alt={p.name}
                   loading="lazy"
-                  // jevseo 2026-10-19 JEV-007 (P3): 406 listing images lacked
-                  // width/height. The grid uses `aspect-square` so the box
-                  // already reserves layout space, but LCP/CLS scores still
-                  // penalise cards without explicit dimensions. 1000x1000 is
-                  // the published image render area for product card micro.
-                  width={1000}
-                  height={1000}
+                  // 2026-10-29: the asset's real pixel size, looked up in
+                  // the generated table. The product shots range from
+                  // 271x400 to 800x800, so a fixed square box around a
+                  // portrait image is what misaligned these cards.
+                  width={imageSize(`/products/mic/${p.image}`).w}
+                  height={imageSize(`/products/mic/${p.image}`).h}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
@@ -424,8 +424,8 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
                 <img
                   src={`/products/mic/${selectedProduct.images[currentImageIndex]}`}
                   alt={selectedProduct.name}
-                  width={750}
-                  height={750}
+                  width={imageSize(`/products/mic/${selectedProduct.images[currentImageIndex]}`).w}
+                  height={imageSize(`/products/mic/${selectedProduct.images[currentImageIndex]}`).h}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -442,8 +442,8 @@ export default function ProductsExplorer({ summaries, categories, labels }: Prop
                       <img
                         src={`/products/mic/${img}`}
                         alt={`${selectedProduct.name} ${i + 1}`}
-                        width={750}
-                        height={750}
+                        width={imageSize(`/products/mic/${img}`).w}
+                        height={imageSize(`/products/mic/${img}`).h}
                         className="w-full h-full object-cover"
                       />
                     </button>

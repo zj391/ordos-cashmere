@@ -13,6 +13,7 @@ import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
 import SEOFaq from '@/components/SEOFaq.astro';
 import { LOCALES, isLocale, pickLocale } from '@/lib/i18n';
+import { imageSize } from '@/lib/image-size';
 import { SEO, SITE_URL } from '@/lib/seo';
 import { products as productsData, getCategoryById, getRepresentativeProductsByCategory } from '@/data/products';
 import { getCollection } from 'astro:content';
@@ -823,8 +824,8 @@ class="card-editorial group block bg-white"
 <img
     src={resolveCategoryCardImage(p.images[0])}
     alt={p.name}
-    width={800}
-    height={800}
+    width={imageSize(resolveCategoryCardImage(p.images[0])).w}
+    height={imageSize(resolveCategoryCardImage(p.images[0])).h}
     class="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-90"
     loading="lazy"
 />
@@ -875,8 +876,8 @@ class="card-editorial group block bg-white"
 <img
     src={resolveCategoryCardImage(p.images[0])}
     alt={p.name}
-    width={800}
-    height={800}
+    width={imageSize(resolveCategoryCardImage(p.images[0])).w}
+    height={imageSize(resolveCategoryCardImage(p.images[0])).h}
     class="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-90"
     loading="lazy"
 />
@@ -946,16 +947,13 @@ class="card-editorial group block bg-white"
               <img
                 src={resolveCategoryCardImage(p.images[0])}
                 alt={p.name}
-                // jevseo 2026-10-20 JEV-007: 169 product cards per hub page
-                // shipped dim-less. The aspect-square wrapper already reserves
-                // the box, but explicit dimensions are what CLS scoring and
-                // Google's image crawler read. Product micro images render at
-                // 400-750 px square depending on the source asset; 800x800 is
-                // the CSS-box size at the widest grid breakpoint, so the
-                // declared intrinsic ratio is correct regardless of which
-                // source file is picked.
-                width={800}
-                height={800}
+                // 2026-10-29: the asset's real pixel size. The old comment
+                // here claimed 800x800 was safe "regardless of which source
+                // file is picked" - it is not: the product shots range from
+                // 271x400 to 800x800, so a square box around a portrait
+                // image is what pushed these cards out of alignment.
+                width={imageSize(resolveCategoryCardImage(p.images[0])).w}
+                height={imageSize(resolveCategoryCardImage(p.images[0])).h}
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform"
                 loading="lazy"
               />

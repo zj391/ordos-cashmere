@@ -23,6 +23,7 @@ import Footer from '@/components/Footer.astro';
 import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
 import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
+import { imageSize } from '@/lib/image-size';
 import { HZNZCN_PRODUCTS } from '@/data/hznzcn-products';
 
 export function getStaticPaths() {
@@ -186,6 +187,8 @@ const contactLink = `/${locale}/contact?ref=hznzcn`;
               <img
                 src={p.images[0]}
                 alt={`${p.title} — hznzcn market reference`}
+                width={imageSize(p.images[0]).w}
+                height={imageSize(p.images[0]).h}
                 loading="lazy"
                 decoding="async"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
