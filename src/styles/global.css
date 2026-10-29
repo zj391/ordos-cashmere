@@ -619,6 +619,65 @@ header.sticky.is-scrolled {
   color: #AD8A5C;
 }
 
+/* ============================================================
+   Specification index (2026-10-29)
+   ------------------------------------------------------------
+   Three listed-item groups next to the landscape photo, laid out as
+   a hairline-separated index rather than a bullet list: a number, a
+   label, a dotted leader, and the value. The leader does the work a
+   table of contents does - it ties the label to its value across the
+   full width without either of them having to be long.
+   ============================================================ */
+.spec-index {
+  border-top: 1px solid var(--border, #e5e1da);
+}
+
+.spec-index-row {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--border, #e5e1da);
+}
+
+.spec-index-num {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 1.5rem;
+  line-height: 1;
+  font-weight: 300;
+  color: #AD8A5C;
+  flex: none;
+}
+
+.spec-index-label {
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground, #6b675f));
+  flex: none;
+}
+
+/* The dotted leader that ties the label to its value */
+.spec-index-leader {
+  flex: 1 1 auto;
+  height: 1px;
+  align-self: center;
+  background-image: linear-gradient(
+    to right,
+    var(--border, #e5e1da) 0 3px,
+    transparent 3px 6px
+  );
+  background-size: 6px 1px;
+  background-repeat: repeat-x;
+  opacity: 0.9;
+}
+
+.spec-index-value {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 0.9375rem;
+  color: hsl(var(--foreground, #1c1813));
+  flex: none;
+  letter-spacing: 0.01em;
+}
+
 /* Section eyebrow: small red hairline + letterspaced uppercase label */
 .eyebrow {
   display: flex;
@@ -1333,7 +1392,29 @@ input:focus, select:focus, textarea:focus {
 }
 .home-origin-section .aspect-\[3\/2\], .home-product-section .aspect-\[4\/3\], .home-product-section .aspect-\[16\/10\] { box-shadow: 0 28px 55px -42px rgba(16,25,21,.82); }
 .home-origin-section .aspect-\[3\/2\] { border: 1px solid var(--archive-line); padding: .35rem; background: var(--archive-white); }
-.home-origin-section .home-origin-detail { border: 1px solid var(--archive-line); padding: .35rem; background: var(--archive-white); }
+/* The inset detail photo that overlaps the main landscape image.
+   Its positioning lives here too: the scoped rule in index.astro has a
+   lower specificity (0,1,0) than this selector (0,2,0), so when only the
+   scoped rule declared position:absolute this one silently reset it and
+   the photo collapsed into the layout instead of overlapping. */
+.home-origin-section .home-origin-detail {
+  position: absolute;
+  z-index: 3;
+  right: -34px;
+  top: 32px;
+  width: 154px;
+  height: 194px;
+  overflow: hidden;
+  border: 8px solid #fff;
+  box-shadow: 0 18px 42px rgba(56, 42, 30, .15);
+}
+.home-origin-section .home-origin-detail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(.78) contrast(.96);
+}
 .home-product-section > .container-narrow > div:first-child, .home-catalog-section > .container-narrow > div:first-child, .home-journal-section > .container-narrow > div:first-child {
   border-bottom: 1px solid var(--archive-line);
   padding-bottom: 1.75rem;
