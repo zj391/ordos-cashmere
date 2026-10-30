@@ -26,6 +26,13 @@ export const INDEXABLE_BLOG_IDS = new Set([
   'en/cashmere-b2b-payment-lc-tt-trade-terms',
   'en/cashmere-shipping-international-fob-cif-guide',
   'en/cashmere-procurement-rfp-template-b2b',
+  // 2026-10-30 — CN translation of the RFP template post. The English post
+  // was published on 2026-10-21 but had no Chinese version, so the CN post
+  // that linked to it (cashmere-unsustainable-claim-expert-rebuttal-b2b)
+  // carried a dead link. Same bar as the English original: named test
+  // methods (ISO 18135, GB/T 25262, ISO 2859-1), numeric thresholds
+  // (ΔE ≤ 1.0, AQL 2.5, 480–520 T/m) and comparison tables.
+  'cn/cashmere-procurement-rfp-template-b2b',
   'en/cashmere-garment-factory-visit-preparation',
   'en/cashmere-test-report-checklist-b2b-buyers',
   'en/eu-textile-dpp-registry-2026-update',
