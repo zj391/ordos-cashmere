@@ -836,19 +836,30 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
        (86 KB) moved out of the HTML. Together they were 66% of the 635 KB
        document. The catalog page now ships ~216 KB of HTML and fetches both
        datasets from /data/<locale>/products.json and products-tags.json, which
-       scripts/extract-product-data-files.mjs already writes at build time.
+       the build writes there (the two large ones from the Astro endpoints
+       under src/pages/data/[locale]/, the three small ones from
+       scripts/extract-product-data-files.mjs).
 
        The three small blocks (categories / labels / sub-labels) stay inline:
        they total under 10 KB and reading them synchronously keeps the filter
-       chrome from flashing between paint and fetch. -->
+       chrome from flashing between paint and fetch.
 
-  <link rel="preload" href="/data/products-tags.json" as="fetch" crossorigin="anonymous" />
-  <link rel="preload" href="/data/products-sub-labels.json" as="fetch" crossorigin="anonymous" />
-  <link rel="preload" href="/data/products.json" as="fetch" crossorigin="anonymous" />
-  <link rel="preload" href="/data/products-categories.json" as="fetch" crossorigin="anonymous" />
-  <link rel="preload" href="/data/products-labels.json" as="fetch" crossorigin="anonymous" />
+       Note the locale segment: every dataset lives under /data/<locale>/.
+       There is also a /data/products.json at the root, but that is the
+       public catalogue snapshot for crawlers - a different shape (the
+       raw { company, categories } catalogue, not the flat listing
+       payload this page's JS expects). Fetching it would break the
+       filter, so the locale-scoped path is the one that matters here. -->
+
+  <link rel="preload" href={`/data/${locale}/products-tags.json`} as="fetch" crossorigin="anonymous" />
+  <link rel="preload" href={`/data/${locale}/products-sub-labels.json`} as="fetch" crossorigin="anonymous" />
+  <link rel="preload" href={`/data/${locale}/products.json`} as="fetch" crossorigin="anonymous" />
+  <link rel="preload" href={`/data/${locale}/products-categories.json`} as="fetch" crossorigin="anonymous" />
+  <link rel="preload" href={`/data/${locale}/products-labels.json`} as="fetch" crossorigin="anonymous" />
   <script id="sub-labels-data" type="application/json" set:html={subLabelsJson}></script>
   <script id="group-labels-data" type="application/json" set:html={groupLabelsJson}></script>
+  <script id="categories-data" type="application/json" set:html={categoriesJson}></script>
+  <script id="labels-data" type="application/json" set:html={labelsJson}></script>
     <script id="procurement-copy-data" type="application/json" set:html={procurementCopyJson}></script>
     <script id="listing-discovery-data" type="application/json" set:html={listingDiscoveryJson}></script>
 
@@ -893,9 +904,16 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
   </script>
 
   <!-- 交互逻辑：vanilla JS，零依赖 -->
-  <script is:inline>
+  <script is:inline define:vars={{ pageLocale: locale }}>
     (async function() {
-      window.__LOCALE__ = document.documentElement.lang || 'en';
+      // The locale comes from the build, not from <html lang>. The two are
+      // not the same: <html lang="zh-CN"> for the Chinese site and
+      // lang="ko" for Korean, while the URL segment and the dataset
+      // directory are "cn" and "kr". Reading the lang attribute gave
+      // /data/zh-CN/products.json (404) on the Chinese catalogue and
+      // /data/ko/... (404) on the Korean one, and it also produced
+      // /zh-CN/products/<id>/ links, which do not exist.
+      window.__LOCALE__ = pageLocale;
 
       // jevseo 2026-10-23 JEV-008: products (322 KB) and productTags (86 KB)
       // are fetched rather than inlined. Both are already <link rel=preload>ed
@@ -904,12 +922,13 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
       // rendered server-side stays visible until render() paints the grid,
       // so there is no layout shift — only the card images arrive one tick
       // later than they used to.
+      const dataBase = '/data/' + pageLocale + '/';
       const [products, productTags] = await Promise.all([
-        fetch('/data/products.json', { credentials: 'same-origin' }).then((r) => {
+        fetch(dataBase + 'products.json', { credentials: 'same-origin' }).then((r) => {
           if (!r.ok) throw new Error('products.json HTTP ' + r.status);
           return r.json();
         }),
-        fetch('/data/products-tags.json', { credentials: 'same-origin' }).then((r) => {
+        fetch(dataBase + 'products-tags.json', { credentials: 'same-origin' }).then((r) => {
           if (!r.ok) throw new Error('products-tags.json HTTP ' + r.status);
           return r.json();
         }),
