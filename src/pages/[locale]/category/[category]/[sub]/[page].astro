@@ -1,0 +1,169 @@
+---
+/**
+ * Page 2 and beyond of a classified product listing:
+ * /[locale]/category/<category>/<sub>/<page>/
+ *
+ * The classified pages hold up to 476 products, so they have to
+ * paginate. The pagination is server-rendered with real URLs rather
+ * than a JavaScript pager: these pages exist to be crawled, and a
+ * client-side pager would leave everything past the first page
+ * unindexed.
+ */
+import ClassifiedList from '@/components/products/ClassifiedList.astro';
+import { buildClassificationIndex } from '@/lib/classification';
+import {
+  ATTRIBUTE_RULES,
+  CATEGORY_LABEL,
+  GENDER_LABEL,
+  MATERIAL_LABEL,
+  NECKLINE_LABEL,
+  SEASON_LABEL,
+  SUBTYPE_LABEL,
+  type CategoryId,
+} from '@/data/taxonomy';
+import type { Locale } from '@/lib/i18n';
+
+export const prerender = true;
+
+export const LOCALES: Locale[] = ['en', 'de', 'fr', 'ja', 'kr', 'cn'];
+
+/** The page size has to match the one in ClassifiedList.astro. */
+export const PAGE_SIZE = 48;
+
+/**
+ * Every landing page key, with its products.
+ *
+ * Exported because Astro hoists `export const` into the module scope;
+ * a plain const stays inside the component function and getStaticPaths
+ * cannot reach it.
+ */
+export const CLASSIFIED_PAGES = (() => {
+  const MIN_PRODUCTS = 3;
+  const map = new Map<string, any[]>();
+  for (const [key, list] of buildClassificationIndex()) {
+    if (list.length >= MIN_PRODUCTS) map.set(key, list);
+  }
+  return map;
+})();
+
+export async function getStaticPaths() {
+  const paths: { params: { locale: string; category: string; sub: string; page: string } }[] = [];
+  for (const locale of LOCALES) {
+    for (const [key, list] of CLASSIFIED_PAGES) {
+      const [category, sub] = key.split('/');
+      if (!category || !sub) continue;
+      // The URL segment carries the "cashmere-" prefix, the same slug the
+      // category hubs use, so the classified pages sit inside the hub tree
+      // instead of opening a parallel set of category URLs.
+      const totalPages = Math.ceil(list.length / PAGE_SIZE);
+      for (let p = 2; p <= totalPages; p++) {
+        paths.push({ params: { locale, category: `cashmere-${category}`, sub, page: String(p) } });
+      }
+    }
+  }
+  return paths;
+}
+
+const locale = Astro.params.locale as Locale;
+const category = Astro.params.category as string;
+const sub = Astro.params.sub as string;
+const page = Number(Astro.params.page ?? '2');
+// The URL segment is "cashmere-<id>" - the same slug the category hubs
+// use - so the classified pages sit next to them instead of opening a
+// second, parallel set of category URLs.
+const categoryId = (category.startsWith('cashmere-') ? category.slice('cashmere-'.length) : category) as CategoryId;
+const key = `${categoryId}/${sub}`;
+
+const products = CLASSIFIED_PAGES.get(key);
+if (!products) {
+  return Astro.redirect(`/${locale}/products/`, 301);
+}
+
+const totalPages = Math.max(1, Math.ceil(products.length / PAGE_SIZE));
+if (!Number.isFinite(page) || page < 2 || page > totalPages) {
+  return Astro.redirect(`/${locale}/category/${category}/${sub}/`, 301);
+}
+
+const isSubtype = SUBTYPE_LABEL[sub] !== undefined;
+const attributeRule = ATTRIBUTE_RULES.find((r) => r.id === sub && r.categoryId === categoryId);
+
+const parentLabel = CATEGORY_LABEL[categoryId]?.[locale] ?? CATEGORY_LABEL[categoryId]?.en ?? category;
+const parentHref = `/${locale}/category/cashmere-${categoryId}/`;
+
+let subLabel = '';
+if (isSubtype) {
+  subLabel = SUBTYPE_LABEL[sub]?.[locale] ?? SUBTYPE_LABEL[sub]?.en ?? sub;
+} else if (attributeRule) {
+  const map =
+    attributeRule.attribute === 'neckline'
+      ? NECKLINE_LABEL[attributeRule.value as keyof typeof NECKLINE_LABEL]
+      : attributeRule.attribute === 'gender'
+        ? GENDER_LABEL[attributeRule.value]
+        : attributeRule.attribute === 'material'
+          ? MATERIAL_LABEL[attributeRule.value]
+          : SEASON_LABEL[attributeRule.value];
+  subLabel = map?.[locale] ?? map?.en ?? sub;
+}
+
+const h1 = `${parentLabel} — ${subLabel}`;
+const title = `${subLabel} Wholesale | ${parentLabel} | DONGXIAO® Cashmere`;
+// The label is plural on some pages and singular on others ("V-Neck",
+// "Beanies"), so the noun is chosen by the count rather than appended
+// blindly - "Browse 49 v-neck styles" but "Browse 1 cardigan style".
+const description = `Browse ${products.length} ${subLabel.toLowerCase()} ${products.length === 1 ? 'style' : 'styles'} from our Ordos cashmere factory: 14–15.5µm Grade A Mongolian cashmere, own mill, MOQ from 50 pieces, custom colour and private label, written terms per order.`;
+const keywords = [
+  `${subLabel.toLowerCase()} wholesale`,
+  `cashmere ${subLabel.toLowerCase()}`,
+  `cashmere ${subLabel.toLowerCase()} manufacturer`,
+  `${subLabel.toLowerCase()} supplier`,
+  `bulk cashmere ${subLabel.toLowerCase()}`,
+];
+
+const siblings = Array.from(CLASSIFIED_PAGES.entries())
+  .filter(([k]) => k.startsWith(`${categoryId}/`))
+  .map(([k, list]) => {
+    const s = k.split('/')[1];
+    const isSub = SUBTYPE_LABEL[s] !== undefined;
+    const rule = ATTRIBUTE_RULES.find((r) => r.id === s && r.categoryId === categoryId);
+    let label = '';
+    if (isSub) label = SUBTYPE_LABEL[s]?.[locale] ?? SUBTYPE_LABEL[s]?.en ?? s;
+    else if (rule) {
+      const map =
+        rule.attribute === 'neckline'
+          ? NECKLINE_LABEL[rule.value as keyof typeof NECKLINE_LABEL]
+          : rule.attribute === 'gender'
+            ? GENDER_LABEL[rule.value]
+            : SEASON_LABEL[rule.value];
+      label = map?.[locale] ?? map?.en ?? s;
+    }
+    return { label, href: `/${locale}/category/cashmere-${categoryId}/${s}/`, count: list.length };
+  })
+  .filter((s) => s.label)
+  .sort((a, b) => b.count - a.count);
+
+const breadcrumb = [
+  { label: locale === 'cn' ? '首页' : 'Home', href: `/${locale}/` },
+  { label: locale === 'cn' ? '产品' : 'Products', href: `/${locale}/products/` },
+  { label: parentLabel, href: parentHref },
+  { label: subLabel, href: `/${locale}/category/${category}/${sub}/` },
+  { label: `${locale === 'cn' ? '第' : 'Page '}${page}${locale === 'cn' ? '页' : ''}` },
+];
+---
+
+<ClassifiedList
+  locale={locale}
+  categoryId={category}
+  subSlug={sub}
+  h1={h1}
+  title={title}
+  description={description}
+  keywords={keywords}
+  breadcrumb={breadcrumb}
+  products={products}
+  siblings={siblings}
+  parentHref={parentHref}
+  parentLabel={parentLabel}
+  currentPage={page}
+  totalPages={totalPages}
+  canonicalPath={`/${locale}/category/${category}/${sub}/${page}/`}
+/>

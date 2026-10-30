@@ -1,0 +1,162 @@
+---
+/**
+ * Classified product pages: /[locale]/category/<category>/<sub>/
+ *
+ * These are the pages a buyer reaches when they search for a style
+ * rather than a department: "cashmere V-neck sweaters", "cashmere
+ * cardigans", "cashmere beanies". Before this existed, every
+ * submenu entry pointed at a category hub, so the whole second level of
+ * the navigation landed on the same aggregated listing and a buyer
+ * looking for a V-neck sweater could not get to one.
+ *
+ * The classification itself lives in src/lib/classification.ts, driven
+ * by the rules in src/data/taxonomy.ts.
+ */
+import ClassifiedList from '@/components/products/ClassifiedList.astro';
+import { buildClassificationIndex } from '@/lib/classification';
+import {
+  ATTRIBUTE_RULES,
+  CATEGORY_LABEL,
+  GENDER_LABEL,
+  MATERIAL_LABEL,
+  NECKLINE_LABEL,
+  SEASON_LABEL,
+  SUBTYPE_LABEL,
+  type CategoryId,
+} from '@/data/taxonomy';
+import type { Locale } from '@/lib/i18n';
+
+export const prerender = true;
+
+export const LOCALES: Locale[] = ['en', 'de', 'fr', 'ja', 'kr', 'cn'];
+
+/**
+ * Every landing page key, with its products.
+ *
+ * Astro hoists `export const` into the module scope, so everything
+ * getStaticPaths touches has to live here rather than in a plain const
+ * that stays inside the component function.
+ *
+ * A page needs at least three products to be worth a URL - a landing
+ * page with one style on it is thin content, not a hub.
+ */
+export const CLASSIFIED_PAGES = (() => {
+  const MIN_PRODUCTS = 3;
+  const map = new Map<string, any[]>();
+  for (const [key, list] of buildClassificationIndex()) {
+    if (list.length >= MIN_PRODUCTS) map.set(key, list);
+  }
+  return map;
+})();
+
+export async function getStaticPaths() {
+  const paths: { params: { locale: string; category: string; sub: string } }[] = [];
+  for (const locale of LOCALES) {
+    for (const key of CLASSIFIED_PAGES.keys()) {
+      const [category, sub] = key.split('/');
+      if (!category || !sub) continue;
+      // The URL segment carries the "cashmere-" prefix, the same slug the
+      // category hubs use, so the classified pages sit inside the hub tree
+      // instead of opening a parallel set of category URLs. The key in
+      // CLASSIFIED_PAGES is the taxonomy category id ("sweaters"); the URL
+      // slug is its SEO slug ("cashmere-sweaters").
+      paths.push({ params: { locale, category: `cashmere-${category}`, sub } });
+    }
+  }
+  return paths;
+}
+
+const locale = Astro.params.locale as Locale;
+const category = Astro.params.category as string;
+const sub = Astro.params.sub as string;
+
+// The URL segment is "cashmere-<id>" - the same slug the category hubs
+// use - so the classified pages sit next to them instead of opening a
+// second, parallel set of category URLs.
+const categoryId = (category.startsWith('cashmere-') ? category.slice('cashmere-'.length) : category) as CategoryId;
+const key = `${categoryId}/${sub}`;
+
+const products = CLASSIFIED_PAGES.get(key);
+if (!products) {
+  return Astro.redirect(`/${locale}/products/`, 301);
+}
+const isSubtype = SUBTYPE_LABEL[sub] !== undefined;
+const attributeRule = ATTRIBUTE_RULES.find((r) => r.id === sub && r.categoryId === categoryId);
+
+const parentLabel = CATEGORY_LABEL[categoryId]?.[locale] ?? CATEGORY_LABEL[categoryId]?.en ?? category;
+const parentHref = `/${locale}/category/cashmere-${categoryId}/`;
+
+let subLabel = '';
+if (isSubtype) {
+  subLabel = SUBTYPE_LABEL[sub]?.[locale] ?? SUBTYPE_LABEL[sub]?.en ?? sub;
+} else if (attributeRule) {
+  const map =
+    attributeRule.attribute === 'neckline'
+      ? NECKLINE_LABEL[attributeRule.value as keyof typeof NECKLINE_LABEL]
+      : attributeRule.attribute === 'gender'
+        ? GENDER_LABEL[attributeRule.value]
+        : attributeRule.attribute === 'material'
+          ? MATERIAL_LABEL[attributeRule.value]
+          : SEASON_LABEL[attributeRule.value];
+  subLabel = map?.[locale] ?? map?.en ?? sub;
+}
+
+const h1 = `${parentLabel} — ${subLabel}`;
+const title = `${subLabel} Wholesale | ${parentLabel} | DONGXIAO® Cashmere`;
+// The label is plural on some pages and singular on others ("V-Neck",
+// "Beanies"), so the noun is chosen by the count rather than appended
+// blindly - "Browse 49 v-neck styles" but "Browse 1 cardigan style".
+const description = `Browse ${products.length} ${subLabel.toLowerCase()} ${products.length === 1 ? 'style' : 'styles'} from our Ordos cashmere factory: 14–15.5µm Grade A Mongolian cashmere, own mill, MOQ from 50 pieces, custom colour and private label, written terms per order.`;
+const keywords = [
+  `${subLabel.toLowerCase()} wholesale`,
+  `cashmere ${subLabel.toLowerCase()}`,
+  `cashmere ${subLabel.toLowerCase()} manufacturer`,
+  `${subLabel.toLowerCase()} supplier`,
+  `bulk cashmere ${subLabel.toLowerCase()}`,
+];
+
+/** The sibling pages: the other subtypes and attributes of this category. */
+const siblings = Array.from(CLASSIFIED_PAGES.entries())
+  .filter(([k]) => k.startsWith(`${categoryId}/`))
+  .map(([k, list]) => {
+    const s = k.split('/')[1];
+    const isSub = SUBTYPE_LABEL[s] !== undefined;
+    const rule = ATTRIBUTE_RULES.find((r) => r.id === s && r.categoryId === categoryId);
+    let label = '';
+    if (isSub) label = SUBTYPE_LABEL[s]?.[locale] ?? SUBTYPE_LABEL[s]?.en ?? s;
+    else if (rule) {
+      const map =
+        rule.attribute === 'neckline'
+          ? NECKLINE_LABEL[rule.value as keyof typeof NECKLINE_LABEL]
+          : rule.attribute === 'gender'
+            ? GENDER_LABEL[rule.value]
+            : SEASON_LABEL[rule.value];
+      label = map?.[locale] ?? map?.en ?? s;
+    }
+    return { label, href: `/${locale}/category/cashmere-${categoryId}/${s}/`, count: list.length };
+  })
+  .filter((s) => s.label)
+  .sort((a, b) => b.count - a.count);
+
+const breadcrumb = [
+  { label: locale === 'cn' ? '首页' : 'Home', href: `/${locale}/` },
+  { label: locale === 'cn' ? '产品' : 'Products', href: `/${locale}/products/` },
+  { label: parentLabel, href: parentHref },
+  { label: subLabel },
+];
+---
+
+<ClassifiedList
+  locale={locale}
+  categoryId={category}
+  subSlug={sub}
+  h1={h1}
+  title={title}
+  description={description}
+  keywords={keywords}
+  breadcrumb={breadcrumb}
+  products={products}
+  siblings={siblings}
+  parentHref={parentHref}
+  parentLabel={parentLabel}
+/>

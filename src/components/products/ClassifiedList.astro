@@ -1,0 +1,273 @@
+---
+/**
+ * A classified product listing.
+ *
+ * The category hubs (src/pages/[locale]/category/[slug].astro) list one
+ * category. This component lists a subset - a style within a category
+ * ("cashmere cardigans") or a category filtered by an attribute
+ * ("cashmere V-neck sweaters") - which is how a buyer actually searches
+ * for a garment.
+ *
+ * The products arrive already filtered by src/lib/classification.ts, so
+ * this component only has to lay them out.
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
+import FloatingChatButtons from '@/components/FloatingChatButtons.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
+import { imageSize } from '@/lib/image-size';
+import { SITE_URL } from '@/lib/seo';
+import type { Locale } from '@/lib/i18n';
+
+export interface Props {
+  locale: Locale;
+  /** The category URL slug, e.g. "cashmere-sweaters". */
+  categoryId: string;
+  /** The style or attribute slug, e.g. "v-neck". */
+  subSlug: string;
+  /** The page heading. */
+  h1: string;
+  /** The meta description. */
+  description: string;
+  /** The meta title. */
+  title: string;
+  /** The keyword list. */
+  keywords: string[];
+  /** The breadcrumb trail above the heading. */
+  breadcrumb: { label: string; href?: string }[];
+  /** The products on this page. */
+  products: any[];
+  /** The sibling pages, for the internal-link block. */
+  siblings: { label: string; href: string; count: number }[];
+  /** The parent page, linked from the breadcrumb. */
+  parentHref: string;
+  parentLabel: string;
+  /** The page being shown, for the pagination state. */
+  currentPage?: number;
+  /** The total number of pages. */
+  totalPages?: number;
+  /** The canonical path, for pages 2+. */
+  canonicalPath?: string;
+}
+
+const {
+  locale,
+  categoryId,
+  subSlug,
+  h1,
+  description,
+  title,
+  keywords,
+  breadcrumb,
+  products,
+  siblings,
+  parentHref,
+  parentLabel,
+  currentPage: currentPageProp,
+  totalPages: totalPagesProp,
+  canonicalPath,
+} = Astro.props;
+
+/**
+ * How many products a page shows.
+ *
+ * The catalogue now runs to 1,340 products and the classified pages
+ * hold up to 476 of them, so a page has to paginate. Everything is
+ * rendered server-side: the classified pages are static, and a
+ * JavaScript pager would leave the second half of a page unindexed.
+ */
+const PAGE_SIZE = 48;
+const computedTotalPages = Math.max(1, Math.ceil(products.length / PAGE_SIZE));
+const totalPages = totalPagesProp ?? computedTotalPages;
+const currentPage = currentPageProp ?? 1;
+const pageStart = (currentPage - 1) * PAGE_SIZE;
+const pageProducts = products.slice(pageStart, pageStart + PAGE_SIZE);
+const canonical = canonicalPath
+  ? `${SITE_URL}${canonicalPath}`
+  : `${SITE_URL}/${locale}/category/${categoryId}/${subSlug}/`;
+const pageBase = `/${locale}/category/${categoryId}/${subSlug}`;
+
+const ui = {
+  en: {
+    countLabel: (n: number) => `${n} styles`,
+    quote: 'Request a quotation',
+    related: 'Browse other',
+    backTo: 'All',
+    updated: 'Catalogue updated 30 October 2026',
+    intro: 'Every style below is knitted at our own Ordos facility. Micron, gauge, MOQ and lead time are confirmed per product in writing.',
+  },
+  cn: {
+    countLabel: (n: number) => `${n} 款`,
+    quote: '索取报价',
+    related: '其他分类',
+    backTo: '全部',
+    updated: '目录更新于 2026 年 10 月 30 日',
+    intro: '以下款式均在我们自有鄂尔多斯工厂生产。细度、针数、起订量与交期按产品书面确认。',
+  },
+};
+const t = ui[locale as 'en' | 'cn'] ?? ui.en;
+---
+
+<BaseLayout
+  locale={locale}
+  title={title}
+  description={description}
+  keywords={keywords}
+  canonicalPath={canonicalPath ?? `/${locale}/category/${categoryId}/${subSlug}/`}
+  schema="general"
+  ogImage={`${SITE_URL}/images/home/ordos-origins.webp`}
+  customSchemas={[
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: h1,
+      description,
+      url: canonical,
+      inLanguage: locale,
+      isPartOf: { '@type': 'WebSite', name: 'DONGXIAO Cashmere', url: SITE_URL },
+      about: { '@type': 'Thing', name: h1, description },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/${locale}/` },
+        { '@type': 'ListItem', position: 2, name: 'Products', item: `${SITE_URL}/${locale}/products/` },
+        { '@type': 'ListItem', position: 3, name: parentLabel, item: `${SITE_URL}${parentHref}` },
+        { '@type': 'ListItem', position: 4, name: h1, item: canonical },
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      numberOfItems: products.length,
+      itemListElement: products.slice(0, 50).map((p: any, i: number) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        url: `${SITE_URL}/${locale}/products/${p.id}/`,
+        name: p.name,
+      })),
+    },
+  ]}
+>
+  <Navigation slot="header" locale={locale} currentPath={`/${locale}/category/${categoryId}/${subSlug}/`} />
+
+  <section class="category-hub-hero !bg-brand-cream !text-brand-ink py-14 md:py-20">
+    <div class="container-narrow category-hub-hero-inner">
+      <nav class="category-breadcrumb text-xs text-muted-foreground mb-5" aria-label="Breadcrumb">
+        <ol class="flex flex-wrap items-center gap-2">
+          {breadcrumb.map((b, i) => (
+            <li class="flex items-center gap-2">
+              {i > 0 && <span aria-hidden="true" class="opacity-40">/</span>}
+              {b.href ? (
+                <a href={b.href} class="underline-offset-4 hover:underline">{b.label}</a>
+              ) : (
+                <span aria-current="page">{b.label}</span>
+              )}
+            </li>
+          ))}
+        </ol>
+      </nav>
+      <h1 class="font-display text-4xl md:text-5xl font-light leading-[1.12] max-w-3xl">
+        {h1}
+        {currentPage > 1 && (
+          <span class="text-brand-gold"> · {locale === 'cn' ? `第 ${currentPage} 页` : `Page ${currentPage}`}</span>
+        )}
+      </h1>
+      <p class="mt-5 text-muted-foreground leading-relaxed max-w-2xl">{t.intro}</p>
+      <div class="mt-7 flex flex-wrap items-center gap-5">
+        <span class="font-serif text-2xl text-brand-gold font-light">{t.countLabel(products.length)}</span>
+        <a
+          href={`/${locale}/contact/`}
+          class="inline-flex items-center gap-2 btn-lux"
+        >
+          {t.quote}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-background">
+    <div class="container-narrow">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10">
+        {pageProducts.map((p: any) => {
+          const src = p.images?.[0]?.startsWith('/images/') || p.images?.[0]?.startsWith('http')
+            ? p.images[0]
+            : p.images?.[0]
+              ? `/products/mic/${p.images[0]}`
+              : '';
+          const dim = imageSize(src);
+          return (
+            <a href={`/${locale}/products/${p.id}/`} class="group block">
+              <div class="aspect-square bg-brand-cream overflow-hidden mb-4">
+                {src && (
+                  <img
+                    src={src}
+                    alt={p.name}
+                    width={dim.w}
+                    height={dim.h}
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                )}
+              </div>
+              <h2 class="font-serif text-lg font-light leading-snug mb-1 group-hover:text-brand-chocolate transition-colors line-clamp-2">
+                {p.name}
+              </h2>
+              <p class="text-xs text-muted-foreground">
+                {p.material} {p.micron ? `· ${p.micron}` : ''}
+              </p>
+            </a>
+          );
+        })}
+      </div>
+
+      {totalPages > 1 && (
+        <nav class="mt-14 flex flex-wrap items-center justify-center gap-2" aria-label="Pagination">
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
+            <a
+              href={n === 1 ? `${pageBase}/` : `${pageBase}/${n}/`}
+              aria-label={`${locale === 'cn' ? '第' : 'Page '}${n}${locale === 'cn' ? ' 页' : ''}`}
+              aria-current={n === currentPage ? 'page' : undefined}
+              class={n === currentPage
+                ? 'inline-flex h-9 min-w-9 items-center justify-center border border-brand-copper px-3 font-serif text-sm text-brand-copper'
+                : 'inline-flex h-9 min-w-9 items-center justify-center border border-border px-3 font-serif text-sm text-muted-foreground transition-colors hover:border-brand-copper hover:text-brand-copper'}
+            >
+              {n}
+            </a>
+          ))}
+        </nav>
+      )}
+    </div>
+  </section>
+
+  {siblings.length > 0 && (
+    <section class="py-12 md:py-16 bg-brand-cream/40 border-t border-border/60">
+      <div class="container-narrow">
+        <h2 class="font-display text-2xl md:text-3xl font-light mb-7">{t.related}</h2>
+        <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-3">
+          {siblings.map((s) => (
+            <li>
+              <a
+                href={s.href}
+                class="flex items-baseline justify-between gap-3 py-2 border-b border-border/50 text-sm hover:border-brand-copper transition-colors"
+              >
+                <span>{s.label}</span>
+                <span class="font-serif text-muted-foreground">{s.count}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <Footer slot="footer" locale={locale} />
+  <FloatingChatButtons locale={locale} />
+  <CookieConsent locale={locale} />
+</BaseLayout>

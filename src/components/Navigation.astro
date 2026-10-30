@@ -7,6 +7,7 @@
 import { LOCALES, LOCALE_NAMES, LOCALE_FLAGS, type Locale } from '@/lib/i18n';
 import { localePath } from '@/lib/i18n';
 import submenusData from '@/data/nav-submenus.json';
+import { submenuHref } from '@/data/nav-submenu-pages';
 
 // jevseo 2026-10-19 JEV-007 (P3): intrinsic dimensions for the mega-menu
 // feature-card image in each product category. Landscape series 1200x900,
@@ -49,12 +50,17 @@ const { locale, currentPath = '/', availableLocales } = Astro.props;
 // 历史原因：[category].astro 把 hats 和 accessories 合并到 hats-accessories 单 hub，
 // mega menu 子项要独立 filter 所以走总列表页更直接。
 const productListHref = localePath(locale, '/products');
+// The category hubs. These used to point at the old /products/<slug>/
+// pages, which are the aggregated legacy listings; the classified
+// pages under /category/<slug>/ are the ones the taxonomy builds and
+// the ones that carry the style breakdown.
 const categoryHubHref = {
-  hats: `/${locale}/products/hats-accessories/`,
-  sweaters: `/${locale}/products/garment-oem/`,
-  scarves: `/${locale}/products/scarves/`,
-  accessories: `/${locale}/products/accessories-cat/`,
-  yarn: `/${locale}/products/yarn/`,
+  hats: `/${locale}/category/cashmere-hats/`,
+  sweaters: `/${locale}/category/cashmere-sweaters/`,
+  scarves: `/${locale}/category/cashmere-scarves/`,
+  accessories: `/${locale}/category/cashmere-accessories/`,
+  yarn: `/${locale}/category/cashmere-yarn/`,
+  blankets: `/${locale}/category/cashmere-blankets/`,
 };
 
 const navItems = [
@@ -63,6 +69,7 @@ const navItems = [
   { href: categoryHubHref.scarves, filterHref: `${productListHref}?cat=scarves`, labelKey: 'nav.scarves', hasSubmenu: 'scarves', menuPos: 'center' },
   { href: categoryHubHref.accessories, filterHref: `${productListHref}?cat=accessories`, labelKey: 'nav.accessories', hasSubmenu: 'accessories', menuPos: 'right' },
   { href: categoryHubHref.yarn, filterHref: `${productListHref}?cat=yarn`, labelKey: 'nav.yarn', hasSubmenu: 'yarn', menuPos: 'right' },
+  { href: categoryHubHref.blankets, filterHref: `${productListHref}?cat=blankets`, labelKey: 'nav.blankets', hasSubmenu: 'blankets', menuPos: 'right' },
   { href: localePath(locale, '/raw-material'), labelKey: 'nav.rawMaterial' },
   { href: localePath(locale, '/blog'), labelKey: 'nav.blog' },
   { href: localePath(locale, '/contact'), labelKey: 'nav.contact' },
@@ -86,6 +93,7 @@ const labels: Record<string, Record<string, string>> = {
     'nav.scarves': 'Scarves',
     'nav.accessories': 'Accessories',
     'nav.yarn': 'Yarn', 'nav.products': 'Products', 'nav.rawMaterial': 'Raw Material',
+    'nav.blankets': 'Blankets',
     'nav.yarnFabric': 'Yarn & Fabric', 'nav.garmentOem': 'Garment OEM',
     'nav.ordosOrigin': 'Ordos Origin', 'nav.factory': 'Factory', 'nav.blog': 'Blog',
     'nav.contact': 'Contact', 'nav.menuToggle': 'Menu',
@@ -98,6 +106,7 @@ const labels: Record<string, Record<string, string>> = {
     'nav.scarves': 'Schals',
     'nav.accessories': 'Accessoires',
     'nav.yarn': 'Garn', 'nav.products': 'Produkte', 'nav.rawMaterial': 'Rohmaterial',
+    'nav.blankets': 'Decken',
     'nav.yarnFabric': 'Garn & Stoff', 'nav.garmentOem': 'Bekleidung OEM',
     'nav.ordosOrigin': 'Ordos Herkunft', 'nav.factory': 'Fabrik', 'nav.blog': 'Blog',
     'nav.contact': 'Kontakt', 'nav.menuToggle': 'Menü',
@@ -110,6 +119,7 @@ const labels: Record<string, Record<string, string>> = {
     'nav.scarves': 'Écharpes',
     'nav.accessories': 'Accessoires',
     'nav.yarn': 'Fil', 'nav.products': 'Produits', 'nav.rawMaterial': 'Matière Première',
+    'nav.blankets': 'Plaids',
     'nav.yarnFabric': 'Fil & Tissu', 'nav.garmentOem': 'Vêtement OEM',
     'nav.ordosOrigin': 'Origine Ordos', 'nav.factory': 'Usine', 'nav.blog': 'Blog',
     'nav.contact': 'Contact', 'nav.menuToggle': 'Menu',
@@ -122,6 +132,7 @@ const labels: Record<string, Record<string, string>> = {
     'nav.scarves': 'スカーフ',
     'nav.accessories': 'アクセサリー',
     'nav.yarn': '糸', 'nav.products': '製品', 'nav.rawMaterial': '原料',
+    'nav.blankets': 'ブランケット',
     'nav.yarnFabric': '糸・生地', 'nav.garmentOem': '衣料OEM',
     'nav.ordosOrigin': 'オルドス起源', 'nav.factory': '工場', 'nav.blog': 'ブログ',
     'nav.contact': 'お問い合わせ', 'nav.menuToggle': 'メニュー',
@@ -134,6 +145,7 @@ const labels: Record<string, Record<string, string>> = {
     'nav.scarves': '스카프',
     'nav.accessories': '액세서리',
     'nav.yarn': '실', 'nav.products': '제품', 'nav.rawMaterial': '원료',
+    'nav.blankets': '블랭킷',
     'nav.yarnFabric': '원사·직물', 'nav.garmentOem': '의류 OEM',
     'nav.ordosOrigin': '오르도스 원산지', 'nav.factory': '공장', 'nav.blog': '블로그',
     'nav.contact': '문의', 'nav.menuToggle': '메뉴',
@@ -146,6 +158,7 @@ const labels: Record<string, Record<string, string>> = {
     'nav.scarves': '围巾披肩',
     'nav.accessories': '配饰',
     'nav.yarn': '纱线', 'nav.products': '产品', 'nav.rawMaterial': '羊绒原料',
+    'nav.blankets': '毯子',
     'nav.yarnFabric': '纱线/面料', 'nav.garmentOem': '成衣代工',
     'nav.ordosOrigin': '鄂尔多斯产地', 'nav.factory': '工厂实力', 'nav.blog': '博客',
     'nav.contact': '联系我们', 'nav.menuToggle': '菜单',
@@ -202,13 +215,30 @@ const groupLabel = (groupKey: string, group: any) => {
                 <ul class="space-y-2">
                   {group.items?.map((sub: any) => (
                     <li>
-                      <a
-                        href={`${item.filterHref || item.href}&${groupKey}=${sub.key}`}
-                        rel="nofollow"
-                        class="block text-[13px] text-muted-foreground hover:text-primary transition-colors py-1"
-                      >
-                        {subLabel(sub)}
-                      </a>
+                      {(() => {
+                        // 2026-10-30: the second level now points at real
+                        // static pages. It used to point at
+                        // /products?cat=<c>&<group>=<key> - a query filter
+                        // on one page, so every entry landed on the same
+                        // listing and none of it was indexable.
+                        const href = submenuHref(
+                          locale,
+                          item.hasSubmenu,
+                          groupKey,
+                          sub.key,
+                          item.filterHref || item.href,
+                        );
+                        const isRealPage = href.includes('/category/');
+                        return (
+                          <a
+                            href={href}
+                            rel={isRealPage ? undefined : 'nofollow'}
+                            class="block text-[13px] text-muted-foreground hover:text-primary transition-colors py-1"
+                          >
+                            {subLabel(sub)}
+                          </a>
+                        );
+                      })()}
                     </li>
                   ))}
                 </ul>
