@@ -191,6 +191,19 @@ export const INDEXABLE_BLOG_IDS = new Set([
   'cn/cashmere-b2b-procurement-process-step-by-step',
   'en/cashmere-b2b-inspection-company-third-party',
   'cn/cashmere-b2b-inspection-company-third-party',
+  // 2026-10-30 — 3 timely working notes for the AW26/27 buying cycle.
+  // PPWR: the EU packaging regulation has applied since 12 Aug 2026, so
+  // buyers now ask about packaging in the order conversation (no existing
+  // post covered it — PPWR mentions: 0).
+  // CSRD: the directive was simplified through 2025-26 but value-chain
+  // data collection still reaches tier-1 suppliers (no existing post
+  // covered CSRD — mentions: 0).
+  // Chinese New Year 2027: CNY falls 6 Feb 2027, which governs the
+  // Jan-Feb production and shipping gap for AW26/27 replenishment and
+  // SS27 pre-order booking (only a passing mention existed).
+  'en/eu-ppwr-packaging-rules-cashmere-suppliers-2026',
+  'en/csrd-value-chain-cashmere-supplier-data-2026',
+  'en/chinese-new-year-2027-cashmere-production-calendar',
 ]);
 
 export function getBlogSlugFromId(id: string) {
