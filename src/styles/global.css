@@ -328,11 +328,70 @@ html {
   will-change: auto;
 }
 
-/* 错落延迟（给连续 section 用） */
+/* 错落延迟（给连续 section 用）
+   The homepage staggers up to six items (the six category plates), so the
+   ladder has to go that far - a delay value with no rule means that item
+   lands at 0s and appears before the ones ahead of it. */
 .reveal[data-reveal-delay="1"] { transition-delay: 0.08s; }
 .reveal[data-reveal-delay="2"] { transition-delay: 0.16s; }
 .reveal[data-reveal-delay="3"] { transition-delay: 0.24s; }
 .reveal[data-reveal-delay="4"] { transition-delay: 0.32s; }
+.reveal[data-reveal-delay="5"] { transition-delay: 0.40s; }
+.reveal[data-reveal-delay="6"] { transition-delay: 0.48s; }
+.reveal[data-reveal-delay="7"] { transition-delay: 0.56s; }
+.reveal[data-reveal-delay="8"] { transition-delay: 0.64s; }
+
+/* ============================================================
+   Plate reveal (2026-10-29)
+   ------------------------------------------------------------
+   The plain reveal fades and slides the whole block. A mounted plate
+   should arrive in two movements: the photograph settles first, then
+   the hairline frame is drawn across it. The frame is drawn with
+   clip-path, so it appears to be ruled onto the page rather than
+   simply appearing.
+
+   The frame is deliberately behind the reveal: it only draws once the
+   block it belongs to is visible, which keeps the two in step.
+   ============================================================ */
+.reveal-plate {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity var(--duration-slow) var(--ease-luxury),
+              transform var(--duration-slow) var(--ease-luxury);
+}
+.reveal-plate.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* The frame draws itself left to right, a beat after the photo lands. */
+.reveal-plate .plate-frame,
+.reveal-plate .plate-frame-dark {
+  clip-path: inset(0 100% 0 0);
+  opacity: 0;
+  transition: clip-path 900ms var(--ease-luxury) 180ms,
+              opacity 400ms ease 180ms;
+}
+.reveal-plate.reveal-visible .plate-frame,
+.reveal-plate.reveal-visible .plate-frame-dark {
+  clip-path: inset(0 0 0 0);
+  opacity: 1;
+}
+
+/* The corner tick arrives with a short scale, like a clip being set. */
+.reveal-plate .specimen-tick,
+.reveal-plate .plate-tick-light {
+  transform: scale(0.6);
+  transform-origin: top right;
+  opacity: 0;
+  transition: transform 520ms var(--ease-luxury) 340ms,
+              opacity 320ms ease 340ms;
+}
+.reveal-plate.reveal-visible .specimen-tick,
+.reveal-plate.reveal-visible .plate-tick-light {
+  transform: scale(1);
+  opacity: 1;
+}
 
 /* 从左侧进入（用于左图右文的不对称 section） */
 .reveal-left {
@@ -601,13 +660,14 @@ header.sticky.is-scrolled {
 /* The 1px L in the image's far corner */
 .specimen-tick {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 0.9rem;
+  right: 0.9rem;
   width: 2rem;
   height: 2rem;
   border-top: 1px solid rgba(199, 125, 63, 0.45);
   border-right: 1px solid rgba(199, 125, 63, 0.45);
   pointer-events: none;
+  z-index: 6;
 }
 
 /* Figure number set in the margin, serif, quiet */
@@ -630,6 +690,40 @@ header.sticky.is-scrolled {
    ============================================================ */
 .spec-index {
   border-top: 1px solid var(--border, #e5e1da);
+}
+
+/* A hairline frame set just inside the image, so a photo sits on the
+   page like a mounted plate instead of bleeding off the edge. The
+   Why DONGXIAO specimens use the same corner tick. */
+.plate-frame {
+  position: absolute;
+  inset: 0.75rem;
+  border: 1px solid rgba(255, 253, 248, .28);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* The dark variant, for photos that sit on a light background. */
+.plate-frame-dark {
+  position: absolute;
+  inset: 0.75rem;
+  border: 1px solid rgba(28, 24, 19, .16);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* The corner tick in the light tint, for photos with a dark overlay
+   under the text (the Product Range bento cards). */
+.plate-tick-light {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  width: 2rem;
+  height: 2rem;
+  border-top: 1px solid rgba(255, 253, 248, .42);
+  border-right: 1px solid rgba(255, 253, 248, .42);
+  pointer-events: none;
+  z-index: 6;
 }
 
 .spec-index-row {

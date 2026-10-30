@@ -590,7 +590,7 @@ const IMG: Record<string, Img> = {
       <!-- Bento Grid：左大右小，错落 -->
       <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
         <!-- 原料（大图，左 7 列） -->
-        <a href={`/${locale}/raw-material/`} class="group md:col-span-7 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden bg-gradient-to-br from-brand-ink via-brand-chocolate to-brand-camel hover-lift reveal" data-reveal-delay="1">
+        <a href={`/${locale}/raw-material/`} class="group md:col-span-7 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden bg-gradient-to-br from-brand-ink via-brand-chocolate to-brand-camel hover-lift reveal-plate" data-reveal-delay="1">
           <img src={IMG.uiMaterial.url} width={IMG.uiMaterial.w} height={IMG.uiMaterial.h} alt="" aria-hidden="true" class="home-material-fill absolute inset-0 w-full h-full object-cover" decoding="async" loading="lazy" 
           <!-- 抽象纤维纹理 -->
           <svg class="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
@@ -606,6 +606,10 @@ const IMG: Record<string, Img> = {
           </svg>
           <div class="absolute top-8 right-8 font-serif text-[120px] text-brand-gold/20 font-light leading-none">01</div>
           <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/75 via-brand-ink/25 to-transparent"></div>
+          <span class="plate-tick-light" aria-hidden="true"></span>
+          {/* Corner tick — the same plate mark the specimen photos carry,
+              in the light tint that reads against the dark gradient. */}
+          <span class="plate-tick-light" aria-hidden="true"></span>
           <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
             <div class="flex items-center gap-4 mb-3">
               <span class="text-xs font-display italic text-brand-gold tracking-tight">01 / {t6('原料', 'Material', 'Material', 'Matière', '原料', '원료')}</span>
@@ -628,9 +632,10 @@ const IMG: Record<string, Img> = {
         </a>
 
         <!-- 纱线面料（右小） -->
-        <a href={`/${locale}/products/yarn/`} class="group md:col-span-5 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden hover-lift reveal" data-reveal-delay="2">
+        <a href={`/${locale}/products/yarn/`} class="group md:col-span-5 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden hover-lift reveal-plate" data-reveal-delay="2">
           <img src={IMG.scarfDetail.url} width={IMG.scarfDetail.w} height={IMG.scarfDetail.h} alt="Cashmere yarn and knitwear detail image" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" decoding="async" loading="lazy" 
           <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/75 via-brand-ink/25 to-transparent"></div>
+          <span class="plate-tick-light" aria-hidden="true"></span>
           <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
             <div class="flex items-center gap-4 mb-3">
               <span class="text-xs font-display italic text-brand-gold tracking-tight">02 / {t6('纱线', 'Yarn', 'Garn', 'Fil', '糸', '원사')}</span>
@@ -653,9 +658,10 @@ const IMG: Record<string, Img> = {
         </a>
 
         <!-- 成衣代工（下大） -->
-        <a href={`/${locale}/garment-oem/`} class="group md:col-span-12 relative aspect-[4/3] md:aspect-[21/9] overflow-hidden hover-lift reveal" data-reveal-delay="3">
+        <a href={`/${locale}/garment-oem/`} class="group md:col-span-12 relative aspect-[4/3] md:aspect-[21/9] overflow-hidden hover-lift reveal-plate" data-reveal-delay="3">
           <img src={IMG.productGarment.url} width={IMG.productGarment.w} height={IMG.productGarment.h} alt="Cashmere garment styling image" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" decoding="async" loading="lazy" 
           <div class="absolute inset-0 bg-gradient-to-r from-brand-ink/80 via-brand-ink/35 to-transparent"></div>
+          <span class="plate-tick-light" aria-hidden="true"></span>
           <div class="absolute bottom-0 left-0 p-8 md:p-12 text-white max-w-2xl">
             <div class="flex items-center gap-4 mb-3">
               <span class="text-xs font-display italic text-brand-gold tracking-tight">03 / {t6('成衣', 'Garment', 'Bekleidung', 'Vêtement', '衣料', '의류')}</span>
@@ -730,7 +736,7 @@ const IMG: Record<string, Img> = {
               be scanned without reading them */}
       <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 lg:gap-x-20">
         {/* Reason 01: Ordos origin, fiber-traceable */}
-        <div class="relative reveal" data-reveal-delay="1">
+        <div class="relative reveal-plate" data-reveal-delay="1">
           <div class="relative aspect-[4/3] overflow-hidden">
             <img src={IMG.mongoliaGoat.url} width={IMG.mongoliaGoat.w} height={IMG.mongoliaGoat.h} alt="Inner Mongolia cashmere goat on Ordos plateau pasture, with combed fiber detail" class="w-full h-full object-cover" decoding="async" loading="lazy" />
             {/* Large background watermark number */}
@@ -757,7 +763,7 @@ const IMG: Record<string, Img> = {
         </div>
 
         {/* Reason 02: 2002-founded */}
-        <div class="relative reveal" data-reveal-delay="2">
+        <div class="relative reveal-plate" data-reveal-delay="2">
           <div class="relative aspect-[4/3] overflow-hidden">
             <img src={IMG.craftHand.url} width={IMG.craftHand.w} height={IMG.craftHand.h} alt="Cashmere dehairing line and sorting facility at Ordos factory" class="w-full h-full object-cover" decoding="async" loading="lazy" />
             <div class="absolute -bottom-8 -right-2 md:-right-4 font-serif italic text-[180px] md:text-[260px] text-brand-copper/10 leading-none select-none pointer-events-none">
@@ -781,7 +787,7 @@ const IMG: Record<string, Img> = {
         </div>
 
         {/* Reason 03: certs */}
-        <div class="relative reveal" data-reveal-delay="3">
+        <div class="relative reveal-plate" data-reveal-delay="3">
           <div class="relative aspect-[4/3] overflow-hidden">
             <img src={IMG.shawlEmbroidered.url} width={IMG.shawlEmbroidered.w} height={IMG.shawlEmbroidered.h} alt="Cashmere yarn — natural fiber cones ready for spinning, with quality documentation" class="w-full h-full object-cover" decoding="async" loading="lazy" />
             <div class="absolute -bottom-8 -right-2 md:-right-4 font-serif italic text-[180px] md:text-[260px] text-brand-copper/10 leading-none select-none pointer-events-none">
@@ -805,7 +811,7 @@ const IMG: Record<string, Img> = {
         </div>
 
         {/* Reason 04: written terms */}
-        <div class="relative reveal" data-reveal-delay="4">
+        <div class="relative reveal-plate" data-reveal-delay="4">
           <div class="relative aspect-[4/3] overflow-hidden">
             <img src={IMG.knittingMill.url} width={IMG.knittingMill.w} height={IMG.knittingMill.h} alt="Cashmere knitwear production line — written terms per project" class="w-full h-full object-cover" decoding="async" loading="lazy" />
             <div class="absolute -bottom-8 -right-2 md:-right-4 font-serif italic text-[180px] md:text-[260px] text-brand-copper/10 leading-none select-none pointer-events-none">
@@ -873,7 +879,7 @@ const IMG: Record<string, Img> = {
           const sampleW = sample.w;
           const sampleH = sample.h;
           return (
-            <a href={categoryHref} class="group relative bg-background flex flex-col justify-between min-h-[280px] md:min-h-[360px] transition-colors duration-300 hover:bg-brand-cream/40 overflow-hidden">
+            <a href={categoryHref} class="group relative bg-background flex flex-col justify-between min-h-[280px] md:min-h-[360px] transition-colors duration-300 hover:bg-brand-cream/40 overflow-hidden reveal-plate" data-reveal-delay={i + 1}>
               {/* Top-right: large italic number watermark */}
               <div class="absolute top-6 right-6 font-serif italic text-5xl md:text-6xl text-brand-copper/15 leading-none select-none z-10">
                 {String(i + 1).padStart(2, '0')}
@@ -891,6 +897,12 @@ const IMG: Record<string, Img> = {
                     decoding="async"
                   />
                 )}
+                {/* The corner tick and the hairline frame, the same plate
+                    language as the Why DONGXIAO specimens: the category
+                    cards read as six mounted plates in a grid rather than
+                    six photos with text over them. */}
+                <span class="specimen-tick" aria-hidden="true"></span>
+                <span class="plate-frame" aria-hidden="true"></span>
                 {/* Bottom gradient so text below stays legible */}
                 <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-background via-background/85 to-transparent"></div>
                 <div class="absolute inset-x-0 bottom-0 p-6 md:p-8 z-10">
@@ -1020,9 +1032,12 @@ const IMG: Record<string, Img> = {
               'Cashmere goat on Mongolian pasture',
             ][i] || '';
             return (
-              <a href={`/${locale}/blog/${p.slug}/`} class="group block border border-border overflow-hidden hover:border-brand-gold hover:shadow-lg transition-colors transition-shadow duration-300">
-                <div class="aspect-[16/10] overflow-hidden bg-brand-cream">
+              <a href={`/${locale}/blog/${p.slug}/`} class="group block border border-border overflow-hidden hover:border-brand-gold hover:shadow-lg transition-colors transition-shadow duration-300 reveal-plate" data-reveal-delay={i + 1}>
+                <div class="aspect-[16/10] overflow-hidden bg-brand-cream relative">
                   <img src={blogImg.url} width={blogDim.w} height={blogDim.h} alt={blogAlt} style="object-position: center 60%;" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" decoding="async" loading="lazy" />
+                  {/* The frame in its dark variant - the journal cards sit
+                      on a light background, so the light one would vanish. */}
+                  <span class="plate-frame-dark" aria-hidden="true"></span>
                 </div>
                 <div class="p-6">
                   <div class="text-xs text-muted-foreground tracking-wider mb-3 font-mono">{p.date}</div>

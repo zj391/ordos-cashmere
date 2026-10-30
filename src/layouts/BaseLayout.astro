@@ -792,7 +792,7 @@ if (!noIndex && faqs && faqs.length > 0) {
 
           // 老浏览器兜底：直接全部显示
 
-          document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale')
+          document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-plate')
 
             .forEach(function(el) { el.classList.add('reveal-visible'); });
 
@@ -824,7 +824,7 @@ if (!noIndex && faqs && faqs.length > 0) {
 
         function watch() {
 
-          document.querySelectorAll('.reveal:not(.reveal-visible), .reveal-left:not(.reveal-visible), .reveal-right:not(.reveal-visible), .reveal-scale:not(.reveal-visible)')
+          document.querySelectorAll('.reveal:not(.reveal-visible), .reveal-left:not(.reveal-visible), .reveal-right:not(.reveal-visible), .reveal-scale:not(.reveal-visible), .reveal-plate:not(.reveal-visible)')
 
             .forEach(function(el) { observer.observe(el); });
 
