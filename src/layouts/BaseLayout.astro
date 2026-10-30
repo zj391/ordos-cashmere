@@ -126,12 +126,25 @@ const normalizePath = (p: string): string => {
   const clean = p.startsWith(prefix) ? p.slice(prefix.length) : p;
   return clean.startsWith('/') ? clean : `/${clean}`;
 };
+// 2026-10-30: percent-encode each path segment.
+//
+// Four product IDs carry a Chinese suffix or a space ("DXS-R040-3 精纺",
+// "儿童"). Those went into the canonical and the hreflang block as raw
+// text, so the page told Google its own address was
+// "https://www.erdosdx.com/en/products/DXS-R040-3 精纺/" - a URL with a
+// literal space in it, which is not a valid URL. The page is served at
+// the encoded form, so the canonical has to name the encoded form or
+// the two disagree and the page canonicalises to something else.
+//
+// Only the path is touched - the scheme and host stay as they are.
+const encodePath = (p: string): string =>
+  p.split('/').map((seg) => (seg.includes(':') ? seg : encodeURIComponent(seg))).join('/');
 const cleanPath = normalizePath(path);
 const cleanCanonicalPath = canonicalPath ? normalizePath(canonicalPath) : undefined;
 const canonicalRaw = cleanCanonicalPath
   ? `${SITE_URL}/${locale}${cleanCanonicalPath}`
   : `${SITE_URL}/${locale}${cleanPath}`;
-const canonical = canonicalRaw.endsWith('/') ? canonicalRaw : `${canonicalRaw}/`;
+const canonical = encodePath(canonicalRaw.endsWith('/') ? canonicalRaw : `${canonicalRaw}/`);
 const socialImage = /^https?:\/\//i.test(ogImage) ? ogImage : new URL(ogImage, SITE_URL).toString();
 const socialImageAlt = finalTitle;
 

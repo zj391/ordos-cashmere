@@ -558,10 +558,19 @@ export function generateHreflangs(
   const resolvedLocales = locales.length ? locales : ['en' as Locale];
   const fallbackLocale = resolvedLocales.includes('en') ? 'en' : resolvedLocales[0];
 
+  // 2026-10-30: percent-encode each path segment. Four product IDs carry
+  // a Chinese suffix or a space ("DXS-R040-3 精纺", "儿童"), and a raw
+  // space in a href is not a valid URL - the alternate link pointed at an
+  // address that could not be requested as written.
+  const encodedPath = canonicalPath
+    .split('/')
+    .map((seg) => encodeURIComponent(seg))
+    .join('/');
+
   const list = resolvedLocales.map((locale) => ({
     lang: SEO[locale].hreflang,
-    href: `${SITE_URL}/${locale}${canonicalPath}`,
+    href: `${SITE_URL}/${locale}${encodedPath}`,
   }));
-  list.push({ lang: 'x-default', href: `${SITE_URL}/${fallbackLocale}${canonicalPath}` });
+  list.push({ lang: 'x-default', href: `${SITE_URL}/${fallbackLocale}${encodedPath}` });
   return list;
 }

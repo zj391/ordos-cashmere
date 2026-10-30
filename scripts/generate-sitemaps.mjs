@@ -19,7 +19,7 @@ const LOCALES = ['en', 'de', 'fr', 'ja', 'kr', 'cn'];
 const LOCALE_HREFLANG = { en: 'en', de: 'de', fr: 'fr', ja: 'ja', kr: 'ko', cn: 'zh-CN' };
 const DIST_DIR = path.join(ROOT, 'dist/client');
 const OUTPUT_DIR = DIST_DIR; // write back into dist/
-const I18N_LINK = (path) => LOCALES.map((loc) => ({ lang: LOCALE_HREFLANG[loc], url: `${SITE_URL}/${loc}${path}` }));
+const I18N_LINK = (path) => LOCALES.map((loc) => ({ lang: LOCALE_HREFLANG[loc], locale: loc, url: `${SITE_URL}/${loc}${path}` }));
 
 // 收集真实且可索引的 build URL path（包括各 locale），用于在生成
 // hreflang alt link 时过滤掉不存在或 noindex 的 locale 变体。之前版本
@@ -29,6 +29,24 @@ const BUILT_PATHS = new Set();
 
 function hasNoIndexRobots(html) {
   return /<meta\b(?=[^>]*\bname=["']robots["'])(?=[^>]*\bcontent=["'][^"']*\bnoindex\b[^"']*["'])[^>]*>/i.test(html);
+}
+
+// 2026-10-30: percent-encode each path segment.
+//
+// Four product IDs carry a Chinese suffix or a space ("DXS-R040-3 精纺",
+// "儿童"). Their build directories hold the raw UTF-8 name, so the path
+// this script walks has a literal space and Chinese characters in it.
+// Writing that straight into <loc> produced URLs that are not valid -
+// a raw space is not allowed in a URL, and Google has to guess at the
+// encoding. The pages themselves are reachable at the encoded form, so
+// the sitemap has to list the encoded form too.
+//
+// Only the segments are encoded; the slashes stay as they are.
+function encodePath(p) {
+  return p
+    .split('/')
+    .map((seg) => encodeURIComponent(seg))
+    .join('/');
 }
 
 // Recursively walk dist/client/{locale}/<path>/index.html and return only indexable URL paths.
@@ -73,8 +91,14 @@ async function walkBuiltPages() {
 function classify(path) {
   // 2026-10-18: 新增 DXS-* 系列 ID (大写字母+数字+短横线, e.g. DXS-A003-1)
   // 之前 [a-z0-9-]+ 不允许大写, 导致 48 个新产品 PDP 落到 static bucket.
-  if (path.match(/^\/(en|de|fr|ja|kr|cn)\/products\/[A-Za-z0-9_-]+\/?$/)) return 'products';
-  if (path.match(/^\/(en|de|fr|ja|kr|cn)\/blog\/[A-Za-z0-9_-]+\/?$/)) return 'blog';
+  //
+  // 2026-10-30: four product IDs carry a Chinese suffix or a space
+  // ("DXS-R040-3 精纺", "儿童"). Their directories on disk hold the raw
+  // UTF-8 name, so the path passed in here has a literal space and
+  // Chinese characters, not percent escapes. The class has to accept
+  // both forms, otherwise those pages fall into the static bucket.
+  if (path.match(/^\/(en|de|fr|ja|kr|cn)\/products\/[^/]+\/?$/)) return 'products';
+  if (path.match(/^\/(en|de|fr|ja|kr|cn)\/blog\/[^/]+\/?$/)) return 'blog';
   return 'static';
 }
 
@@ -96,7 +120,10 @@ function pageMeta(path) {
   // and most-linked products live. Long-tail is everything past 250
   // (the highest-ID 30% of each category's stock).
   // 2026-10-18: also support DXS-* prefixed IDs (e.g. DXS-A003-1).
-  const productId = path.match(/\/products\/([A-Za-z]+)-([A-Za-z0-9_-]+)\/?$/);
+  // 2026-10-30: the id may also carry a Chinese suffix or a space
+  // ("DXS-R040-3 精纺"), so the numeric part is read from the front of
+  // the id rather than from the whole match.
+  const productId = path.match(/\/products\/([A-Za-z]+)-([0-9]+)/);
   if (productId) {
     const id = parseInt(productId[2], 10);
     if (Number.isFinite(id) && id <= 150) {
@@ -119,7 +146,7 @@ function pageMeta(path) {
   } else if (path === '/' || /^\/(en|cn|de|fr|ja|kr)?\/?$/.test(path)) {
     priority = 1.0;
     changefreq = 'weekly';
-  } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/blog\/[A-Za-z0-9_-]+\/?$/)) {
+  } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/blog\/[^/]+\/?$/)) {
     priority = 0.8;
   } else if (path.match(/^\/(en|cn|de|fr|ja|kr)\/(scarves|hats-accessories|yarn|garment-oem|fabric|raw-material|products|private-label-cashmere)\/?$/)) {
     priority = 0.9;
@@ -160,7 +187,7 @@ function buildSitemapXml(urls) {
   lines.push('        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"');
   lines.push('        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">');
   for (const path of urls) {
-    const url = SITE_URL + path;
+    const url = SITE_URL + encodePath(path);
     const { priority, changefreq } = pageMeta(path);
     const lastmod = now;
     lines.push('  <url>');
@@ -171,15 +198,21 @@ function buildSitemapXml(urls) {
     const pathWithoutLocale = path.replace(/^\/(en|de|fr|ja|kr|cn)/, '');
     // 8-20: 过滤掉不存在的 locale 变体 hreflang + x-default，避免 sitemap
     // 软 404（指向不存在 HTML，Google 视 sitemap 为低质信号）。
+    //
+    // The lookup uses the raw path (that is how the pages sit on disk)
+    // and the emitted href uses the encoded path (that is the form a
+    // crawler will request). `new URL()` on its own would encode the
+    // href for us but would also encode the lookup key, and the key has
+    // to match the raw name in BUILT_PATHS.
     for (const alt of I18N_LINK(pathWithoutLocale)) {
-      const altPath = new URL(alt.url).pathname;
-      if (BUILT_PATHS.has(altPath)) {
-        lines.push(`    <xhtml:link rel="alternate" hreflang="${alt.lang}" href="${alt.url}"/>`);
+      const altRawPath = `/${alt.locale}${pathWithoutLocale}`;
+      if (BUILT_PATHS.has(altRawPath)) {
+        lines.push(`    <xhtml:link rel="alternate" hreflang="${alt.lang}" href="${SITE_URL}${encodePath(altRawPath)}"/>`);
       }
     }
-    const xDefaultPath = `${SITE_URL}/en${pathWithoutLocale}`;
-    if (BUILT_PATHS.has(new URL(xDefaultPath).pathname)) {
-      lines.push(`    <xhtml:link rel="alternate" hreflang="x-default" href="${xDefaultPath}"/>`);
+    const xDefaultRawPath = `/en${pathWithoutLocale}`;
+    if (BUILT_PATHS.has(xDefaultRawPath)) {
+      lines.push(`    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE_URL}${encodePath(xDefaultRawPath)}"/>`);
     }
     // 2026-08-27: emit <image:image> entries for product pages so Google
     // Images indexes our catalog photos. We do this for ALL 6 locale
@@ -195,7 +228,10 @@ function buildSitemapXml(urls) {
     // Reading the EN HTML file once per product (582 reads total)
     // takes ~1s and reuses cached results.
     // 2026-10-18: also support DXS-* prefixed IDs.
-    if (path.match(/^\/(en|de|fr|ja|kr|cn)\/products\/[A-Za-z]+-[A-Za-z0-9_-]+\/$/)) {
+    // 2026-10-30: the id may carry a Chinese suffix or a space, so the
+    // segment is matched loosely rather than by an explicit character
+    // class.
+    if (path.match(/^\/(en|de|fr|ja|kr|cn)\/products\/[^/]+\/$/)) {
       // All locales share the same product page HTML structure, so
       // extract images from the EN version regardless of which
       // locale we're emitting for.
