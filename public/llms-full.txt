@@ -1167,7 +1167,7 @@ For what to verify about a mill before you send an RFP at all, see our 12-point 
 
 A cashmere B2B buyer choosing between FOB Tianjin and CIF Rotterdam is deciding who carries the cargo insurance, when the risk transfers from the mill to the buyer, and how much of the inland logistics is written into the contract price. This guide compares FOB, CIF, and the two hybrid terms that are more common in cashmere than in most other commodities — FCA and DAP — on the four things that actually change the landed cost: insurance scope, the point where risk transfers, the Incoterms 2020 cost split, and the demurrage exposure that shows up 30 days after the container sails. It also covers the moisture-and-heat damage pattern specific to cashmere yarn and knitwear during the Yangtze-to-Europe leg.
 
-# FOB vs CIF for Cashmere B2B: What B2B Buyers Should Specify (And What We Always Recommend)
+## FOB vs CIF for Cashmere B2B: What B2B Buyers Should Specify (And What We Always Recommend)
 
 A cashmere B2B buyer choosing between FOB Tianjin and CIF Rotterdam is deciding three things: who carries the cargo insurance, when the risk transfers from the mill to the buyer, and how much of the inland logistics is written into the contract price.
 
@@ -7231,7 +7231,7 @@ At DONGXIAO Cashmere, we’re committed to helping you build a successful cashme
 
 Understand cashmere fiber fineness with our practical micron guide. Learn grading, quality control, and sourcing tips for 14.5-19.5μm cashmere.
 
-# Cashmere Fiber Fineness: A Practical Micron Guide for B2B Buyers (14.5-19.5μm)
+## Cashmere Fiber Fineness: A Practical Micron Guide for B2B Buyers (14.5-19.5μm)
 
 When sourcing cashmere, the micron count is arguably the most critical specification—it determines softness, price, and end-use suitability. Yet many buyers struggle to interpret fineness data, especially when comparing suppliers across regions. This guide provides a comprehensive, practical breakdown of cashmere micron ranges, grading standards, and quality control considerations, empowering you to make informed sourcing decisions.
 
@@ -7827,7 +7827,7 @@ Yes. Embroidered logo on the cuff from 100 pairs (most common). Embroidered init
 
 Cashmere hijabs require finer yarn (2/48 to 2/60 Nm) and lighter fabric weight than scarves. A B2B guide to manufacturing cashmere hijabs: MOQ, fabric specs, lead time, and common customization options for the modest fashion market.
 
-# Cashmere Hijab Manufacturing: B2B Guide to MOQ, Fabric Weight, and Lead Time
+## Cashmere Hijab Manufacturing: B2B Guide to MOQ, Fabric Weight, and Lead Time
 
 The modest fashion market is one of the fastest-growing segments in luxury apparel, with cashmere hijabs commanding premium retail prices ($80–300 per piece). For B2B buyers entering this segment, the manufacturing specs differ from standard cashmere scarves — finer yarn, lighter fabric weight, and longer standard lengths.
 
@@ -7935,7 +7935,7 @@ Yes. Woven labels sewn into the end edge from 100 pcs. Embroidered logo from 200
 
 Cashmere leggings are a fast-growing loungewear and athleisure segment. B2B buyer's guide to manufacturing cashmere leggings: yarn selection (2/26 to 2/48 Nm), MOQ, lead time, sizing, and target customer segments.
 
-# Cashmere Leggings Manufacturing: B2B Buyer's Guide
+## Cashmere Leggings Manufacturing: B2B Buyer's Guide
 
 Cashmere leggings are one of the fastest-growing segments in cashmere apparel, with retail prices of $120–350 per pair. They blend the comfort of loungewear with the luxury of cashmere — a high-margin product for B2B buyers targeting premium athleisure and home-wear markets.
 
@@ -8064,7 +8064,7 @@ Yes. Embroidered logo from 200 pieces (most common for leggings). Custom woven l
 
 Cashmere scarves and pashmina shawls are sold as similar products but differ in 8 ways that matter for B2B buyers: micron count, weight, width, weave, hand-feel, price, MOQ, and lead time. A comparison guide for sourcing managers.
 
-# Cashmere Scarf vs Pashmina Shawl: 8 Differences B2B Buyers Need to Know
+## Cashmere Scarf vs Pashmina Shawl: 8 Differences B2B Buyers Need to Know
 
 A cashmere scarf and a pashmina shawl are often sold in the same product display case — but they are not the same product. The price, hand-feel, target customer, and even the manufacturing process differ. Sourcing managers who don't know these differences lose margin on underpriced orders or oversell scarves to customers expecting shawl-grade hand-feel.
 
@@ -8293,7 +8293,7 @@ Yes, from 100 pcs per design per weight. The factory can produce 50g, 90g, 130g,
 
 Cashmere socks are 3x warmer than merino wool socks per gram but cost 5-8x more. A B2B buyer's guide to choosing between cashmere and wool socks for different market segments: warmth, durability, care, price, and target customer.
 
-# Cashmere Socks vs Wool Socks: 7 Differences B2B Buyers Need to Know
+## Cashmere Socks vs Wool Socks: 7 Differences B2B Buyers Need to Know
 
 Cashmere socks and wool socks are sold in the same retail display, but they are different products with different value propositions. A B2B buyer who doesn't know the differences loses margin on underpriced orders or oversells cashmere to customers expecting wool performance.
 
@@ -8435,7 +8435,7 @@ Yes. Woven labels sewn into the cuff interior from 100 pairs. Custom Pantone acr
 
 Cashmere travel wraps are 200x100cm luxury pieces designed for first-class travel and resort wear. B2B guide to manufacturing cashmere travel sets including wrap, eye mask, and socks as a bundled gift or retail collection.
 
-# Cashmere Travel Wrap: B2B Buyer's Guide to Manufacturing Luxury Travel Sets
+## Cashmere Travel Wrap: B2B Buyer's Guide to Manufacturing Luxury Travel Sets
 
 Cashmere travel wraps are a fast-growing segment in luxury travel retail, with first-class airlines, premium hotels, and resort gift shops selling these as both functional accessories and high-margin gifts. A 200×100 cm cashmere travel wrap with matching eye mask and socks sells for $250–500 as a bundle.
 
@@ -8566,7 +8566,7 @@ Approximately 35–45 days total: 5–7 days for lab dip, 25–30 days bulk prod
 
 Discover the top cashmere sweater design trends for Q3-Q4 2026. From sustainable fibers to oversized silhouettes, learn what global B2B buyers are requesting and how to plan your collection.
 
-# 2026 Cashmere Sweater Design Trends: What B2B Buyers Are Asking For (Q3–Q4)
+## 2026 Cashmere Sweater Design Trends: What B2B Buyers Are Asking For (Q3–Q4)
 
 As we move into the second half of 2026, global cashmere buyers are sharpening their focus on designs that balance timeless luxury with modern functionality. Based on our order books and client feedback at DONGXIAO Cashmere—our 23-year-old source factory in Ordos, Inner Mongolia—we’ve identified five key design trends that will define Q3 and Q4 collections. This guide helps importers, brand buyers, and trading companies align their purchasing decisions with what end consumers actually want.
 
@@ -9930,7 +9930,7 @@ Yes — cashmere and merino blends are common in mid-premium knitwear. Typical b
 
 Compare cashmere and mohair for B2B sourcing: cost, fiber feel, durability, and market perception. Get data-driven insights for your next luxury fiber purchase.
 
-# Cashmere vs Mohair: A B2B Comparison of Cost, Feel, and Customer Perception
+## Cashmere vs Mohair: A B2B Comparison of Cost, Feel, and Customer Perception
 
 When sourcing luxury natural fibers, the choice between cashmere and mohair can significantly impact your product's cost, hand-feel, and market positioning. Both fibers originate from goats—cashmere from the undercoat of cashmere goats, and mohair from the Angora goat—but they differ dramatically in texture, durability, and price. For importers and brand buyers, understanding these differences is critical to making informed decisions that align with your target market and margin requirements.
 
@@ -10540,7 +10540,7 @@ Direct import from Ordos offers German B2B buyers significant cost advantages wi
 
 Plan your 2026 cashmere orders with our expert calendar: when to book production, secure raw material, and schedule delivery. Learn lead times, seasonal windows, and tips for B2B buyers.
 
-# 2026 Cashmere Sourcing Calendar: When to Order, Book Production, and Receive Goods
+## 2026 Cashmere Sourcing Calendar: When to Order, Book Production, and Receive Goods
 
 As a global buyer of cashmere products—whether you’re a brand owner, importer, or trading company—timing is everything. The cashmere supply chain is uniquely seasonal, with raw material availability, manufacturing capacity, and shipping windows all influencing your ability to deliver products to market on time. This comprehensive sourcing calendar for 2026 will help you align your purchasing decisions with the industry’s natural rhythm, ensuring you secure the best quality, minimize risks, and optimize your inventory flow.
 
@@ -11825,7 +11825,7 @@ Ready to feel the difference for yourself? [Contact our team](https://www.dongxi
 
 Understand 2026 EU import tariffs on Italian cashmere yarn, how they affect B2B sourcing costs, and strategic alternatives for global buyers. Expert insights from a 23-year Ordos factory.
 
-# Italian Cashmere Yarn Tariffs 2026: EU Import Rules and How It Affects B2B Sourcing
+## Italian Cashmere Yarn Tariffs 2026: EU Import Rules and How It Affects B2B Sourcing
 
 As the global cashmere market evolves, import tariffs and trade regulations are becoming critical factors in B2B sourcing decisions. For buyers who have traditionally relied on Italian cashmere yarn—renowned for its luxury finish and consistent quality—the upcoming 2026 EU import rules will bring significant changes. This article breaks down the tariff landscape, its impact on your supply chain costs, and strategic alternatives to keep your margins healthy.
 
@@ -11934,7 +11934,7 @@ The 2026 EU import rules will make Italian cashmere yarn more expensive and comp
 
 From EAS tags to care symbols, learn the 5 critical labeling specifications every cashmere importer must define with their factory. Avoid compliance issues and returns.
 
-# Cashmere Garment Marking & Labels: 5 Things B2B Buyers Should Specify (EAS + Care)
+## Cashmere Garment Marking & Labels: 5 Things B2B Buyers Should Specify (EAS + Care)
 
 When you order cashmere garments from a factory in Ordos, Inner Mongolia, the last thing you want is a labeling error that triggers customs rejection, retail chargebacks, or consumer confusion. Yet labeling is often the most overlooked part of a B2B apparel order. This guide covers the five critical marking and labeling specifications you must define with your cashmere supplier—before production begins.
 
@@ -13239,7 +13239,7 @@ To de-wrinkle cashmere safely: steam is the preferred method — hang the garmen
 
 Trading companies add 30-40% to cashmere prices. For B2B buyers ordering 500kg+, sourcing direct from the mill cuts out the middleman — but requires different logistics.
 
-# Direct Cashmere Mill, No Middleman: A B2B Guide
+## Direct Cashmere Mill, No Middleman: A B2B Guide
 
 The cashmere industry has a **30-40% middleman tax**. Most B2B buyers in Europe and North America don't buy directly from a Chinese cashmere factory — they buy from a **trading company** in Hong Kong, Istanbul, or Milan that adds 30-40% margin and provides local language support.
 
@@ -13431,7 +13431,7 @@ For new direct buyers, we recommend a **2-step approach**: first order 200-500kg
 
 Launching a private label cashmere brand requires the right factory partner, clear tech packs, and a realistic understanding of MOQ, lead time, and per-unit cost. A practical guide.
 
-# Private Label Cashmere Sweater Manufacturing: Build Your Brand from Ordos
+## Private Label Cashmere Sweater Manufacturing: Build Your Brand from Ordos
 
 Private label cashmere is one of the few B2B product categories where the manufacturing quality directly determines brand perception. A good factory partner makes or breaks a private label business. This guide covers the practical realities of launching your own cashmere brand with an Ordos factory.
 
@@ -13589,7 +13589,7 @@ The trade-off: longer shipping times to Western markets (25-35 days from China v
 
 Custom logo on cashmere scarves and shawls requires the right label technology (woven vs printed vs embroidered) and proper hangtag integration. A B2B buyer's guide to private label accessories.
 
-# Wholesale Cashmere Shawl with Custom Logo: B2B Guide
+## Wholesale Cashmere Shawl with Custom Logo: B2B Guide
 
 A cashmere shawl with your brand's logo is one of the highest-margin private label products you can sell. Retail prices of $150-500 per piece are common, and the production cost is reasonable.
 
@@ -13752,7 +13752,7 @@ Total time: 4-5 weeks from logo file to approved sample shawl.
 
 Choosing the wrong cashmere yarn count can ruin a design. A practical guide to Nm counts, gauge matching, and end-use selection for B2B buyers and product designers.
 
-# Cashmere Yarn Count Explained: 2/26 to 2/60 Nm
+## Cashmere Yarn Count Explained: 2/26 to 2/60 Nm
 
 "100% cashmere yarn" tells you the fiber. The **count** tells you how fine or thick the yarn is, which determines the gauge, hand feel, and end-use of your finished product.
 
@@ -15459,7 +15459,7 @@ We host B2B buyers at our Ordos facility year-round. A typical tour is two days:
 
 Learn how B2B cashmere buyers can verify Ordos origin, avoid mislabeling, and source authentic Inner Mongolian cashmere from trusted factories like DONGXIAO.
 
-# How B2B Cashmere Buyers Can Verify Ordos Origin & Avoid Mislabeling
+## How B2B Cashmere Buyers Can Verify Ordos Origin & Avoid Mislabeling
 
 In the competitive world of luxury cashmere, origin authenticity is not just a marketing claim—it’s a cornerstone of brand trust and product value. For B2B buyers sourcing from China, the term **Ordos cashmere** carries significant weight, representing the finest fibers from Inner Mongolia. However, with rising demand comes increased risk of mislabeling and counterfeit products. This guide provides actionable steps for verifying Ordos origin and ensuring your supply chain is transparent and reliable.
 
