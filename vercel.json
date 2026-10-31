@@ -588,6 +588,186 @@
       "source": "/products/yarn",
       "destination": "/en/category/cashmere-yarn/",
       "permanent": true
+    },
+    {
+      "source": "/en/products/hats/",
+      "destination": "/en/category/cashmere-hats/",
+      "permanent": true
+    },
+    {
+      "source": "/en/products/hats",
+      "destination": "/en/category/cashmere-hats/",
+      "permanent": true
+    },
+    {
+      "source": "/cn/products/hats/",
+      "destination": "/cn/category/cashmere-hats/",
+      "permanent": true
+    },
+    {
+      "source": "/cn/products/hats",
+      "destination": "/cn/category/cashmere-hats/",
+      "permanent": true
+    },
+    {
+      "source": "/de/products/hats/",
+      "destination": "/de/category/cashmere-hats/",
+      "permanent": true
+    },
+    {
+      "source": "/de/products/hats",
+      "destination": "/de/category/cashmere-hats/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/products/hats/",
+      "destination": "/fr/category/cashmere-hats/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/products/hats",
+      "destination": "/fr/category/cashmere-hats/",
+      "permanent": true
+    },
+    {
+      "source": "/ja/products/hats/",
+      "destination": "/ja/category/cashmere-hats/",
+      "permanent": true
+    },
+    {
+      "source": "/ja/products/hats",
+      "destination": "/ja/category/cashmere-hats/",
+      "permanent": true
+    },
+    {
+      "source": "/kr/products/hats/",
+      "destination": "/kr/category/cashmere-hats/",
+      "permanent": true
+    },
+    {
+      "source": "/kr/products/hats",
+      "destination": "/kr/category/cashmere-hats/",
+      "permanent": true
+    },
+    {
+      "source": "/en/products/sweaters/",
+      "destination": "/en/category/cashmere-sweaters/",
+      "permanent": true
+    },
+    {
+      "source": "/en/products/sweaters",
+      "destination": "/en/category/cashmere-sweaters/",
+      "permanent": true
+    },
+    {
+      "source": "/cn/products/sweaters/",
+      "destination": "/cn/category/cashmere-sweaters/",
+      "permanent": true
+    },
+    {
+      "source": "/cn/products/sweaters",
+      "destination": "/cn/category/cashmere-sweaters/",
+      "permanent": true
+    },
+    {
+      "source": "/de/products/sweaters/",
+      "destination": "/de/category/cashmere-sweaters/",
+      "permanent": true
+    },
+    {
+      "source": "/de/products/sweaters",
+      "destination": "/de/category/cashmere-sweaters/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/products/sweaters/",
+      "destination": "/fr/category/cashmere-sweaters/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/products/sweaters",
+      "destination": "/fr/category/cashmere-sweaters/",
+      "permanent": true
+    },
+    {
+      "source": "/ja/products/sweaters/",
+      "destination": "/ja/category/cashmere-sweaters/",
+      "permanent": true
+    },
+    {
+      "source": "/ja/products/sweaters",
+      "destination": "/ja/category/cashmere-sweaters/",
+      "permanent": true
+    },
+    {
+      "source": "/kr/products/sweaters/",
+      "destination": "/kr/category/cashmere-sweaters/",
+      "permanent": true
+    },
+    {
+      "source": "/kr/products/sweaters",
+      "destination": "/kr/category/cashmere-sweaters/",
+      "permanent": true
+    },
+    {
+      "source": "/en/products/accessories/",
+      "destination": "/en/category/cashmere-accessories/",
+      "permanent": true
+    },
+    {
+      "source": "/en/products/accessories",
+      "destination": "/en/category/cashmere-accessories/",
+      "permanent": true
+    },
+    {
+      "source": "/cn/products/accessories/",
+      "destination": "/cn/category/cashmere-accessories/",
+      "permanent": true
+    },
+    {
+      "source": "/cn/products/accessories",
+      "destination": "/cn/category/cashmere-accessories/",
+      "permanent": true
+    },
+    {
+      "source": "/de/products/accessories/",
+      "destination": "/de/category/cashmere-accessories/",
+      "permanent": true
+    },
+    {
+      "source": "/de/products/accessories",
+      "destination": "/de/category/cashmere-accessories/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/products/accessories/",
+      "destination": "/fr/category/cashmere-accessories/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/products/accessories",
+      "destination": "/fr/category/cashmere-accessories/",
+      "permanent": true
+    },
+    {
+      "source": "/ja/products/accessories/",
+      "destination": "/ja/category/cashmere-accessories/",
+      "permanent": true
+    },
+    {
+      "source": "/ja/products/accessories",
+      "destination": "/ja/category/cashmere-accessories/",
+      "permanent": true
+    },
+    {
+      "source": "/kr/products/accessories/",
+      "destination": "/kr/category/cashmere-accessories/",
+      "permanent": true
+    },
+    {
+      "source": "/kr/products/accessories",
+      "destination": "/kr/category/cashmere-accessories/",
+      "permanent": true
     }
   ],
   "headers": [
