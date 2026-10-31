@@ -12,10 +12,6 @@ aiGenerated: true
 sourceTopic: "B2B Cashmere Contract: 7 Clauses We Always Include (Payment, Defect, Lead Time, Force Majeure)"
 language: "cn"
 ---
-# B2B羊绒合同：我们始终包含的7个条款（付款、瑕疵、交期、不可抗力）
-
-# B2B羊绒合同：我们始终包含的7个条款（付款、瑕疵、交期、不可抗力）
-
 当从内蒙古鄂尔多斯——全球首屈一指的羊绒产区——的工厂采购羊绒时，一份精心起草的B2B合同是您的第一道防线。在拥有23年经验的DONGXIAO Cashmere，我们不断完善合同以保护买家和我们的运营。以下是我们在每份协议中包含的七个条款，并附有付款条件、瑕疵限度、交期和不可抗力的实用细节。
 
 ## 1. 付款条款

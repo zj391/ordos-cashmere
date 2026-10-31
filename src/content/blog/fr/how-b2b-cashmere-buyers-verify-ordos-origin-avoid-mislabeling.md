@@ -12,8 +12,6 @@ aiGenerated: true
 sourceTopic: "How B2B cashmere buyers can verify Ordos origin and avoid mislabeling"
 language: "fr"
 ---
-# Comment les acheteurs B2B de cachemire vérifient l'origine d'Ordos et évitent les erreurs d'étiquetage : Guide d'approvisionnement
-
 ## Introduction
 
 Le marché mondial du cachemire est évalué à plus de 4 milliards de dollars, la Mongolie-Intérieure produisant environ 70 % du cachemire brut mondial. Ordos, une ville au cœur de la région, est devenue synonyme de cachemire de qualité supérieure grâce à son climat unique et à sa longue histoire d'élevage de chèvres. Cependant, les erreurs d'étiquetage — où des fibres inférieures sont vendues comme "cachemire d'Ordos" — restent un défi persistant pour les acheteurs B2B.

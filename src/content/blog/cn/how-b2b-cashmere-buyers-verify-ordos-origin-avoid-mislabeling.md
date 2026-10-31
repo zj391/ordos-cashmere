@@ -12,8 +12,6 @@ aiGenerated: true
 sourceTopic: "How B2B cashmere buyers can verify Ordos origin and avoid mislabeling"
 language: "cn"
 ---
-# B2B羊绒买家如何验证鄂尔多斯原产地并避免虚假标签：采购指南
-
 ## 引言
 
 全球羊绒市场价值超过40亿美元，其中内蒙古生产了全球约70%的原料羊绒。位于该地区中心的鄂尔多斯市，因其独特的气候和悠久的山羊养殖历史，已成为优质羊绒的代名词。然而，虚假标签——将劣质纤维冒充为“鄂尔多斯羊绒”销售——仍然是B2B买家面临的持续挑战。

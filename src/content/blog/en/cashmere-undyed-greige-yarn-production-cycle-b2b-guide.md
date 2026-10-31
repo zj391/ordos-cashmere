@@ -12,9 +12,6 @@ aiGenerated: false
 sourceTopic: "Cashmere yarn production: from dehairing to machine-ready cone, B2B buyer's guide"
 language: "en"
 ---
-
-# How Undyed Cashmere Yarn Is Produced: From Dehaired Fiber to Machine-Ready Cone, A B2B Buyer's Guide
-
 If you have ever asked a cashmere supplier for "the yarn price", you have asked the wrong question. The price per kilogram of cashmere yarn depends on three production stages you have not yet seen: which fiber lot you are buying from, whether your yarn is worsted or woolen spun, and how much of the dehaired cashmere your yarn mill actually retained after combing. The same 26/2 Nm cone can cost $42 or $78 per kilo depending on those three answers.
 
 This post walks through the 7 stages that turn raw cashmere fiber into the undyed cones your knitting or weaving line uses. The 7 stages are dehairing, top sorting, scouring, carding, roving, spinning, and winding. Each stage has a yield loss that compounds — by the time the dehaired cashmere enters the spinning frame, only about 30-35% of the raw greasy fiber weight is still on the cone. The remaining 65-70% is noil (short fiber), vegetable matter, suint (sweat salts), and grease that left the fiber at various points along the cycle.

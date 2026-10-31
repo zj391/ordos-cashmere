@@ -12,9 +12,6 @@ aiGenerated: false
 sourceTopic: "Private Label Cashmere MOQ and Budgeting"
 language: "en"
 ---
-
-# Private Label Cashmere: MOQ, Lead Time, and What to Budget for 2026
-
 The MOQ on a private-label cashmere program is not a factory number. It is the sum of three separate minimums: the mill's batch minimum, the dyehouse's colorway minimum, and the trim minimum for labels and packaging.
 
 A buyer asking "what is your MOQ" without specifying those three is asking the wrong question and will get an optimistic answer. This breaks down what actually sets each floor, what a first private-label order realistically costs across four product types, the lead-time components that are usually missing from a quotation, and the four ways buyers end up stuck with MOQ they cannot fill.

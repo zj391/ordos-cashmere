@@ -12,9 +12,6 @@ aiGenerated: false
 sourceTopic: "Vom Tech Pack zur Großproduktion: Wie ein Cashmere-OEM-Projekt wirklich abläuft (7 Phasen, 90 Tage)"
 language: "de"
 ---
-
-# Vom Tech Pack zur Großproduktion: Wie ein Cashmere-OEM-Projekt wirklich abläuft (7 Phasen, 90 Tage)
-
 Wenn ein Markeninhaber uns ein Tech Pack schickt und fragt: *„Wie lange dauert es, bis ich Pullover in meinem Lager habe?"*, ist die Antwort fast immer eine Gegenfrage: *Wie viel davon können wir mit Lager-Garn umsetzen, wie viel von der Silhouette ist neu, und müssen Sie die Bestellung vor Q4 haben?* Diese drei Antworten bestimmen, ob Ihr Cashmere-Garment-OEM-Projekt die Standard-90-Tage durchläuft, sich auf 45-60 Tage komprimieren lässt oder sich auf 120-150 Tage streckt.
 
 Dieser Leitfaden geht die **sieben tatsächlichen Phasen** eines Cashmere-Garment-OEM-Projekts in unserer Ordos-Fabrik durch — was jede Phase produziert, was der Käufer liefert, was parallel laufen kann und was nicht. Wenn Sie eine Private-Label-Cashmere-Pullover, Cardigan, Hoodie oder Accessoire-Linie planen und genau wissen wollen, wo Ihre Kalender-Engpässe liegen, ist der untenstehende Zeitplan Ihre Referenz.

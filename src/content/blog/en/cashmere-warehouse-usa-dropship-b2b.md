@@ -14,9 +14,6 @@ language: "en"
 metaTitle: "Cashmere US Warehouse: 2026 B2B Dropship Guide"
 metaDescription: "Cashmere US warehouse stock, FBA prep, and dropshipping for B2B — pricing, MOQ, lead times, and Ordos-based programs that cut delivery from 30 days to 5."
 ---
-
-# Cashmere US Warehouse & Dropship Programs: 2026 B2B Buyer's Guide
-
 For US-based DTC brands selling cashmere, the gap between a 30-day container ship from Inner Mongolia and a 5-day Prime delivery to a Brooklyn customer is the difference between a thriving brand and a closed Shopify store. Most new cashmere brands don't realize they have a logistics problem until they're three months in, watching customers abandon carts because the estimated delivery says "mid-November" while they're shopping in October. US warehouse stock programs and dropshipping solve this — but only if you understand how they work.
 
 This guide explains the three main fulfillment models US cashmere brands use: US warehouse stock programs (you buy and hold inventory in the US), dropshipping (you don't hold inventory, the supplier ships direct), and FBA prep (you ship to Amazon). We'll cover pricing, MOQ realities, lead times, and how to evaluate an Ordos-based supplier's US program.

@@ -12,9 +12,6 @@ aiGenerated: false
 sourceTopic: "Cashmere Authentication B2B Field Guide"
 language: "en"
 ---
-
-# Cashmere Authentication: A B2B Buyer's Field Guide to Verifying 100% Cashmere at Receiving
-
 The single most common fraud in the cashmere industry in 2026 is the 100% cashmere claim that is actually a blend. The blend is usually 70% cashmere / 30% wool — a soft enough blend that the hand-feel is close to 100% cashmere, the price is meaningfully lower (the wool costs roughly 1/8 of cashmere), and the brand can sell it at the 100% cashmere retail price point with a meaningful margin lift. The blend is illegal under most consumer protection laws and the wool industry has been pushing for stronger enforcement, but the reality is that the fraud is widespread enough that a B2B buyer's receiving QC is the only reliable line of defense.
 
 This page is the field guide for the wholesale receiving team. It covers the 6 most common authentication methods, what each one catches, what each one misses, and how to combine them in a 30-minute receiving inspection. The methods are ordered from cheapest and fastest to most expensive and most accurate; the recommended workflow is to run the cheap methods first, escalate to the expensive methods only when the cheap methods give a suspicious signal.

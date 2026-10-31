@@ -12,9 +12,6 @@ aiGenerated: false
 sourceTopic: "AW 2026-27 Cashmere Knitwear Silhouette Report"
 language: "en"
 ---
-
-# AW 2026-27 Cashmere Knitwear Silhouette Report: 5 Forms B2B Buyers Are Requesting from Ordos
-
 Between April and September 2026, our sample room in Ordos processed 47 distinct development requests for AW 2026-27 cashmere knitwear. This is a 28% increase in development requests versus the same period in 2025, and the silhouettes being requested have shifted meaningfully away from the relaxed "quiet luxury" forms that dominated 2023-2025. This page is a categorized summary of what is actually being developed, with the gauge, yarn count, MOQ, and program-fit notes for each silhouette.
 
 If you are a brand developing an AW 2026-27 cashmere capsule, this is what your peer group is making. If you are a yarn buyer selecting stock for a 2027 program, the gauge and yarn-count notes at the bottom of each silhouette will help you size your forecast.

@@ -12,9 +12,6 @@ aiGenerated: true
 sourceTopic: "Cashmere MOQ for Startups"
 language: "en"
 ---
-
-# Cashmere MOQ for Startups: Why 100 Pieces Is the New 500 (2026 Guide)
-
 When launching a cashmere brand, the most common blocker new entrepreneurs face is the Minimum Order Quantity (MOQ) requirement. A decade ago, 500 pieces per style was industry standard. In 2026, **100 pieces is the new floor** — and some factories, including our 38,000 m² Ordos facility, accept as low as 50 pieces for stock designs in standard colors. This shift has been driven by two forces: B2B demand from DTC startups (Shopify, Etsy, Instagram-native brands) reaching USD 50,000+ in first-year revenue, and Chinese manufacturers automating production lines to handle smaller batches profitably.
 
 ## Why MOQ Exists (and Why It Dropped)

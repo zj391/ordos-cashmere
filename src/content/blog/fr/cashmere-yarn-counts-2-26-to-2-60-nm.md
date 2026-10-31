@@ -12,8 +12,6 @@ aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "fr"
 ---
-# Explication du Titre de Fil Cachemire : De 2/26 à 2/60 Nm — Quel Titre Choisir pour Votre Produit
-
 # Explication du Titrage du Fil de Cachemire : Du 2/26 au 2/60 Nm
 
 « Fil de cachemire 100 % » vous renseigne sur la fibre. Le **titrage** vous indique la finesse ou l'épaisseur du fil, ce qui détermine la jauge, le toucher et l'utilisation finale de votre produit fini.

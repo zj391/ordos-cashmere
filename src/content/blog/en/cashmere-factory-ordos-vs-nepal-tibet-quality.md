@@ -12,9 +12,6 @@ aiGenerated: false
 sourceTopic: "Ordos vs Nepal vs Tibet Cashmere B2B Comparison"
 language: "en"
 ---
-
-# Ordos vs Nepal vs Tibet Cashmere: B2B Quality, Cost, and Lead Time Compared
-
 A B2B buyer asking "where should I source cashmere from" usually gets one of three answers — Ordos (Inner Mongolia), Nepal, or Tibet. Each region produces cashmere commercially, and each has built a distinct reputation: Ordos for bulk-supply reliability and price competitiveness, Nepal for the finest micron and the pashmina tradition, Tibet for high-altitude fiber length. The reality underneath those reputations is more nuanced, and the right choice depends on which of three things you are prioritizing — fiber quality, cost per kilo, or volume flexibility.
 
 This page compares the three regions on the variables a sourcing decision actually depends on: micron range and length (the two fiber parameters that determine quality), color and dye behavior, yield from raw fiber, price per kilo, MOQ and lead time, and end-use suitability. The goal is to give a buyer the framework to pick the right origin for their specific product, not to declare one region universally better.

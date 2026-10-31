@@ -17,9 +17,6 @@ aiGenerated: false
 sourceTopic: "cashmere-mock-neck-wholesale"
 language: "en"
 ---
-
-# Cashmere Mock Neck Sweater Wholesale: B2B Spec, Sizing & MOQ Guide
-
 The cashmere mock neck sits in the small but growing segment between crew neck and full turtleneck. It covers the throat without bunching, layers cleanly under a jacket without bulk, and reads as more polished than a crew without committing to the formality of a full turtleneck. For B2B buyers building FW collections at the $180–340 retail tier, the mock neck has become a quiet best-seller — not as universal as the crew, but with higher average order value.
 
 This guide walks through the mock depth, gauge, sizing, and finishing decisions that determine whether a cashmere mock neck program succeeds.

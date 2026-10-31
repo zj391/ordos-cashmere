@@ -15,9 +15,6 @@ relatedProducts: ["raw_material", "yarn_fabric", "garment_oem"]
 aiGenerated: false
 sourceTopic: "craft-story-manual"
 ---
-
-# From Pasture to Garment: 23 Steps That Turn Ordos Cashmere into a Sweater
-
 Most buyers see a finished cashmere sweater on a shop rail. Few ever see what it took to get there. A single 250-gram pullover carries, hidden inside its soft twist, a year-long journey: combed from a goat on the Albas plateau, sorted in a Mongolian grading room, spun on Italian frames, knitted on a German STOLL machine, washed, mended, pressed, and packed — every step traceable, every step done under one roof.
 
 This is what that journey actually looks like inside our Ordos facility.

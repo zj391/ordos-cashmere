@@ -12,9 +12,6 @@ aiGenerated: false
 sourceTopic: "Cashmere vs Merino for Luxury Knitwear"
 language: "en"
 ---
-
-# Cashmere vs Merino: Why Luxury Brands Pay 8x More (And When Merino Makes More Sense)
-
 Cashmere averages 14.5-16μm at 30-80mm staple length. Merino averages 18-24μm at 70-120mm. That gap explains most of the price difference — but not all of it, and it is not the whole reason a luxury brand specifies cashmere.
 
 This is a mill-side comparison: where cashmere genuinely wins, where merino is the better engineering choice, the cases where a blend beats both pure, and what to write into a spec to get the fiber you actually meant.

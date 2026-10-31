@@ -18,8 +18,6 @@ aiGenerated: true
 sourceTopic: "Chinese New Year 2027 on 6 February, and the production and shipping gap it creates for AW26/27 and SS27 cashmere orders"
 language: "en"
 ---
-# Chinese New Year 2027 and Your Cashmere Delivery Calendar: A Factory Planning Note
-
 **Chinese New Year falls on Saturday 6 February 2027.** In Inner Mongolia — where most of the world's fine cashmere is combed, spun, knitted and finished — that single date governs a shutdown window that typically runs for two to three weeks on either side of it.
 
 If you are placing or planning AW26/27 replenishment now, or booking SS27 production in the next quarter, the February date is not a footnote on your calendar. It is a structural constraint on when goods can physically exist.

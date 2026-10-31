@@ -12,9 +12,6 @@ aiGenerated: false
 sourceTopic: "Du Tech Pack à la Production en Série : Comment un Projet OEM de Vêtements en Cachemire se Déroule Vraiment (7 Étapes, 90 Jours)"
 language: "fr"
 ---
-
-# Du Tech Pack à la Production en Série : Comment un Projet OEM de Vêtements en Cachemire se Déroule Vraiment (7 Étapes, 90 Jours)
-
 Quand un propriétaire de marque nous envoie un tech pack et demande : *« Combien de temps avant que j'aie des pulls dans mon entrepôt ? »*, la réponse est presque toujours une question en retour : *combien pouvons-nous réaliser avec du fil en stock, combien de la silhouette est nouveau, et avez-vous besoin de la commande avant le T4 ?* Ces trois réponses déterminent si votre projet OEM de vêtements en cachemire suit le délai standard de 90 jours, se comprime à 45-60 jours, ou s'étend à 120-150 jours.
 
 Ce guide parcourt les **sept étapes réelles** d'un projet OEM de vêtements en cachemire dans notre usine d'Ordos — ce que chaque étape produit, ce que l'acheteur livre, ce qui peut être traité en parallèle et ce qui ne peut pas. Si vous planifiez une ligne de pulls, cardigans, hoodies ou accessoires en cachemire en marque privée et voulez savoir exactement où se trouvent vos points de pression calendaires, le calendrier ci-dessous est la référence.

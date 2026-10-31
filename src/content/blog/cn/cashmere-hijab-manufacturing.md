@@ -18,9 +18,6 @@ aiGenerated: false
 sourceTopic: "cashmere-hijab-manufacturing"
 language: "cn"
 ---
-
-# 羊绒头巾（Hijab）生产：B2B 采购的起订量、布料克重与货期
-
 Modest fashion（端庄时尚）市场是奢侈品服装增长最快的细分赛道之一，羊绒头巾的零售价可达 80–300 美元/条。对于进入这一赛道的 B2B 采购来说，生产规格与标准羊绒围巾不同 —— 需要更细的纱线、更轻的布料克重、更长的标准长度。
 
 本文基于我们 23 年鄂尔多斯工厂经验，整理羊绒头巾采购需要了解的全部要点。

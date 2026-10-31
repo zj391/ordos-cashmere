@@ -12,8 +12,6 @@ aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "cn"
 ---
-# 羊绒纱线支数详解：2/26至2/60 Nm — 您的产品该选哪种支数
-
 # 羊绒纱线支数详解：从2/26 Nm到2/60 Nm
 
 "100%羊绒纱线"告诉您纤维成分。**支数**则决定了纱线的粗细程度，进而影响成品的针距、手感和最终用途。

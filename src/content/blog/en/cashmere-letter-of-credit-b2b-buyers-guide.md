@@ -14,9 +14,6 @@ language: "en"
 metaTitle: "Cashmere Letter of Credit: B2B Buyer's 2026 Guide"
 metaDescription: "L/C at sight protects your first cashmere order. Required clauses, fees, bank documents, and how an Ordos factory negotiates a USD 50K+ L/C for B2B buyers."
 ---
-
-# Cashmere Letter of Credit Payment: A B2B Buyer's Complete 2026 Guide
-
 If you're placing your first USD 30,000+ cashmere order with a Chinese factory, the payment conversation almost always lands on an **irrevocable Letter of Credit at sight (L/C)**. It protects both sides: the factory gets a bank-guaranteed payment once shipment documents match the L/C terms, and you keep payment leverage until the goods actually leave the port. But L/Cs are also where first-time importers lose money — a mismatched document set, a missing inspection certificate, or a clause the factory can't meet will stop the bank from paying and stall your cargo.
 
 This guide explains how L/Cs work for cashmere specifically, what documents our Ordos facility routinely issues, which clauses B2B buyers should require, and what an L/C typically costs you in fees. We've processed USD 11M+ in L/C transactions over the last three years across 38 countries, so the examples below are real cases, not theory.

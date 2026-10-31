@@ -12,8 +12,6 @@ aiGenerated: true
 sourceTopic: "B2B Color Card Request: What to Send, How to Get Samples, and Timeline Expectations"
 language: "cn"
 ---
-# B2B羊绒色卡申请：如何获取样品及时间周期
-
 ## B2B羊绒色卡申请：需要提供什么、如何获取样品及时间周期预期
 
 当您为批发系列采购羊绒时，色卡不仅仅是一张纸——它是连接您设计愿景与生产现实的桥梁。对于B2B买家而言，向羊绒供应商（如我们东晓羊绒，位于内蒙古鄂尔多斯）申请色卡是至关重要的第一步。但许多进口商会犯下代价高昂的错误：发送含糊的邮件、期待立即收到样品，或者不了解哪些信息能加快流程。

@@ -17,9 +17,6 @@ aiGenerated: false
 sourceTopic: "cashmere-polo-sweater-wholesale"
 language: "en"
 ---
-
-# Cashmere Polo Sweater Wholesale: B2B Style Guide (Polo vs Crew vs Mock Neck Comparison)
-
 Cashmere polo-collar sweaters have become one of the most-requested knit constructions at our Ordos facility over the past two FW seasons. The reason is structural: the polo collar (2–3 button placket, fold-over or ribbed knit collar) occupies a niche between casual and refined that the standard crew neck and the V-neck cardigan don't quite fill. For private-label buyers building collections at the $160–320 retail tier, the polo construction is increasingly a core style — not a one-off curiosity.
 
 This guide compares polo, crew, mock neck, and V-neck constructions so B2B buyers can choose the right collar for their brand positioning.

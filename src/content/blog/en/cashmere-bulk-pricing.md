@@ -17,9 +17,6 @@ relatedProducts: ["garment_oem", "yarn_fabric", "raw_material"]
 aiGenerated: false
 sourceTopic: "cashmere-bulk-pricing"
 ---
-
-# Cashmere Bulk Pricing: How Wholesale Costs Scale by Volume, Gauge, and Grade
-
 Cashmere pricing is rarely as simple as "USD X per piece". A complete wholesale quote depends on **volume**, **gauge**, **ply**, **grade**, **garment construction**, and **lead time**. This guide breaks down each variable so you can budget accurately and negotiate effectively.
 
 ## The pricing formula

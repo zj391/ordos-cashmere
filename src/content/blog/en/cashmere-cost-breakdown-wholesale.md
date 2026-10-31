@@ -16,9 +16,6 @@ relatedProducts: ["garment_oem"]
 aiGenerated: false
 sourceTopic: "cost-breakdown"
 ---
-
-# Why Cashmere Costs USD 8-50 per Piece: A Factory's True Cost Breakdown
-
 "Why does cashmere cost so much?" is the most common question we get from new B2B buyers. The short answer: raw cashmere fiber alone costs USD 50-120 per kg, and a single sweater uses 300-500g of it. But the full picture involves more than just fiber.
 
 Below is a **transparent cost breakdown** of a finished Grade A 14.5μm cashmere sweater, FOB Tianjin, for a 500-piece private label order. We've stripped out our margin so you can see what the actual cost structure looks like.

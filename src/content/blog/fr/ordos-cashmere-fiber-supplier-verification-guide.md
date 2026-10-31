@@ -12,8 +12,6 @@ aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "fr"
 ---
-# Comment vérifier le cachemire d'Ordos : 7 tests que tout acheteur B2B doit effectuer avant de signer un bon de commande
-
 # Comment vérifier le cachemire d'Ordos : 7 tests que tout acheteur B2B devrait effectuer
 
 La fraude sur l'origine dans le commerce du cachemire est réelle. Une enquête sectorielle de 2023 estimait que 25 à 35 % du « cachemire mongol » vendu sur les marchés occidentaux est soit mélangé à des fibres non mongoles, soit traité chimiquement, soit les deux. Pour les acheteurs B2B payant plus de 100 $ par kg pour des fibres premium, cela s'accumule rapidement.

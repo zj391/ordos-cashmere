@@ -12,8 +12,6 @@ aiGenerated: true
 sourceTopic: "OEKO-TEX 100 for Cashmere: What B2B Buyers Actually Need vs Nice-to-Have"
 language: "cn"
 ---
-# OEKO-TEX 100 羊绒认证：B2B买家真正需要的 vs 锦上添花的
-
 ## 引言
 
 在为您的品牌或供应链采购羊绒时，认证不仅仅是徽章——它们是风险管理工具。其中最常被要求的是OEKO-TEX Standard 100，这是一个针对纺织原材料、半成品和成品的全球测试和认证体系。但并非所有OEKO-TEX要求对B2B买家都具有同等重要性。

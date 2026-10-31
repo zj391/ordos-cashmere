@@ -12,11 +12,6 @@ aiGenerated: true
 sourceTopic: "2026 Autumn Cashmere Sweater OEM Order Cutoff Dates"
 language: "en"
 ---
-
-# 2026 Autumn Cashmere Sweater OEM Order Cutoff: Last Booking Dates for Q4 & Holiday Delivery
-
-# 2026 Autumn Cashmere Sweater OEM Order Cutoff: Last Booking Dates for Q4 & Holiday Delivery
-
 Every September, the same email lands in our inbox from buyers across the EU, US, and Japan: *"We need 800 cashmere sweaters in our warehouse by November 20th for Black Friday and holiday pre-orders. Can you still take the order?"* The honest answer is sometimes yes, sometimes no — and the difference comes down to a single number: how many weeks of production are actually left between today and your required delivery date.
 
 This guide publishes the **final order cutoff dates for autumn 2026 production** at our Ordos factory, broken down by product type, MOQ, and decoration complexity. If you are sourcing private-label cashmere sweaters, cardigans, or knit accessories for Q4 2026 / Holiday 2026 / early Q1 2027 delivery, the dates below tell you whether your order is still feasible — and what trade-offs you will face if you book late.

@@ -14,9 +14,6 @@ relatedProducts: ["raw_material", "yarn_fabric"]
 aiGenerated: false
 sourceTopic: "manual"
 ---
-
-# Premium-Kaschmir erkennen: 6 Schlüsselkennzahlen
-
 Beim Kaschmir-Einkauf für eine Modemarke oder Textilfabrik kann der Unterschied zwischen Standard- und Premium-Faser 30–50% Preisunterschied beim fertigen Kleidungsstück bedeuten. Prüfen Sie diese Checkliste vor jeder Bestellung.
 
 ## 1. Feinheit (Mikron)

@@ -12,10 +12,6 @@ aiGenerated: true
 sourceTopic: "B2B Cashmere Contract: 7 Clauses We Always Include (Payment, Defect, Lead Time, Force Majeure)"
 language: "kr"
 ---
-# B2B 캐시미어 계약서: 항상 포함하는 7가지 조항 (결제, 하자, 리드타임, 불가항력)
-
-# B2B 캐시미어 계약서: 항상 포함하는 7가지 조항 (결제, 하자, 리드타임, 불가항력)
-
 세계 최고의 캐시미어 산지인 중국 내몽골 오르도스의 공장에서 캐시미어를 소싱할 때, 잘 작성된 B2B 계약서는 첫 번째 방어선입니다. 23년 경험을 가진 DONGXIAO Cashmere는 구매자와 당사 운영을 모두 보호하기 위해 계약서를 지속적으로 개선해 왔습니다. 다음은 모든 계약에 포함하는 7가지 조항과 결제 조건, 하자 기준, 리드타임, 불가항력에 대한 실무 세부 사항입니다.
 
 ## 1. 결제 조건 조항

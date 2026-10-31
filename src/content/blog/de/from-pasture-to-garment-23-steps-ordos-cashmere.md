@@ -12,8 +12,6 @@ aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "de"
 ---
-# Von der Weide zum Kleidungsstück: 23 Schritte, die Ordos-Kaschmir zu einem Pullover machen
-
 # Von der Weide zum Kleidungsstück: 23 Schritte, aus Ordos-Kaschmir einen Pullover machen
 
 Die meisten Käufer sehen einen fertigen Kaschmirpullover auf einer Kleiderstange im Geschäft. Nur wenige sehen, was nötig war, um dorthin zu gelangen. Ein einziger 250-Gramm-Pullover trägt, verborgen in seiner weichen Drehung, eine einjährige Reise in sich: von einer Ziege auf dem Albas-Plateau gekämmt, in einem mongolischen Sortierraum sortiert, auf italienischen Rahmen gesponnen, auf einer deutschen STOLL-Maschine gestrickt, gewaschen, repariert, gebügelt und verpackt – jeder Schritt nachvollziehbar, jeder Schritt unter einem Dach erledigt.
@@ -135,4 +133,4 @@ Einige wichtige Erkenntnisse:
 
 Wir empfangen B2B-Käufer das ganze Jahr über in unserer Anlage in Ordos. Eine typische Besichtigung dauert zwei Tage: ein Tag in der Entgrattungs- und Spinnlinie, ein Tag in der Strick- und Veredelungsabteilung. Die Reiselogistik ist einfach – Flug nach Baotau (BAV) oder Ordos (DSN), wir organisieren die Abholung, und das Team vor Ort kümmert sich um alles Weitere.
 
-[Fabrikbesichtigung buchen →](/de/kontakt) oder [unseren Katalog 2024 herunterladen](/de/download) für das gesamte Produktsortiment und die Zertifizierungen.
+[Fabrikbesichtigung buchen →](/de/contact) oder [unseren Katalog 2024 herunterladen](/de/download) für das gesamte Produktsortiment und die Zertifizierungen.

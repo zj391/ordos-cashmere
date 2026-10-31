@@ -12,8 +12,6 @@ aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "fr"
 ---
-# Usine de cachemire directe, sans intermédiaire : comment acheter à la source et éviter la marge des sociétés de négoce
-
 # Usine de Cachemire Directe, Sans Intermédiaire : Un Guide B2B
 
 L'industrie du cachemire impose une **taxe d'intermédiaire de 30 à 40 %**. La plupart des acheteurs B2B en Europe et en Amérique du Nord n'achètent pas directement auprès d'une usine de cachemire chinoise — ils achètent auprès d'une **société de négoce** à Hong Kong, Istanbul ou Milan, qui ajoute une marge de 30 à 40 % et propose un support linguistique local.

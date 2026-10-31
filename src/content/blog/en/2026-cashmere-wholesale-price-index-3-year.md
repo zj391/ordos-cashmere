@@ -12,9 +12,6 @@ aiGenerated: false
 sourceTopic: "2026 Cashmere Wholesale Price Index 3-Year Trend"
 language: "en"
 ---
-
-# 2026 Cashmere Wholesale Price Index: A 3-Year Trend Report from an Ordos Factory
-
 Every quarter, a B2B buyer asks us the same three questions: "what is the cashmere market doing, what should I budget for the next order, and is what I am being quoted a fair price?" This page is a longer answer than the email version. It is built from our own transaction data across 2024, 2025, and Q1–Q3 2026, cross-referenced with what we are hearing from raw fiber brokers in Alxa, Xilingol, and the Bayanhot combing market. The data is factory-side (we are a yarn and garment producer, not a trader), so the spread between raw fiber and finished goods is from a real production ledger, not a model.
 
 If you only want the headline numbers, the summary table is in section 4. The rest is for buyers who want to understand what is moving and what is not.

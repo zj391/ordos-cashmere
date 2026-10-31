@@ -12,8 +12,6 @@ aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "fr"
 ---
-# Cashmere certifié OEKO-TEX : Ce que les acheteurs B2B doivent savoir sur les normes de sécurité textile
-
 # Laine de cachemire certifiée OEKO-TEX : Ce que les acheteurs B2B doivent savoir
 
 Le cachemire est une fibre naturelle. Mais le parcours de la chèvre au vêtement implique des **produits chimiques** — agents de dégraissage, teintures, traitements de finition, enzymes anti-bouloches. Certains de ces produits chimiques peuvent laisser des résidus nocifs pour la santé humaine.

@@ -12,8 +12,6 @@ aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "fr"
 ---
-# Du pâturage au vêtement : 23 étapes qui transforment le cachemire d'Ordos en pull
-
 # Du pâturage au vêtement : les 23 étapes qui transforment le cachemire d'Ordos en pull
 
 La plupart des acheteurs voient un pull en cachemire fini sur un cintre en magasin. Peu d'entre eux savent ce qu'il a fallu pour y arriver. Un simple pull de 250 grammes porte, caché dans son doux entrelacs, un voyage d'un an : peigné sur une chèvre du plateau d'Albas, trié dans une salle de classement mongole, filé sur des métiers italiens, tricoté sur une machine allemande STOLL, lavé, reprisé, pressé et emballé — chaque étape traçable, chaque étape réalisée sous un même toit.

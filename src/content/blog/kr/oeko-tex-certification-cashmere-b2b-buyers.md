@@ -12,8 +12,6 @@ aiGenerated: true
 sourceTopic: "OEKO-TEX 100 for Cashmere: What B2B Buyers Actually Need vs Nice-to-Have"
 language: "kr"
 ---
-# 캐시미어 OEKO-TEX 100: B2B 바이어가 실제로 알아야 할 필수 사항 vs 있으면 좋은 사항
-
 ## 소개
 
 브랜드나 공급망을 위해 캐시미어를 소싱할 때, 인증은 단순한 배지가 아니라 위험 관리 도구입니다. 가장 많이 요청되는 인증 중 하나는 OEKO-TEX Standard 100으로, 섬유 원자재, 중간 제품 및 최종 제품에 대한 글로벌 테스트 및 인증 시스템입니다. 그러나 모든 OEKO-TEX 요구사항이 B2B 바이어에게 동일한 중요성을 가지는 것은 아닙니다.

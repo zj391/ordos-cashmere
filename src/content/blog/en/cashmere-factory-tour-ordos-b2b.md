@@ -14,9 +14,6 @@ language: "en"
 metaTitle: "Inside an Ordos Cashmere Factory: B2B Tour Guide"
 metaDescription: "What to expect on an Ordos cashmere factory tour — walkthrough, machinery, QC lab, warehouse, owner interview, plus the 8 red flags to walk away."
 ---
-
-# Inside an Ordos Cashmere Factory: What B2B Buyers Actually See on a Factory Tour
-
 A factory tour is the single highest-ROI hour you can spend before placing a USD 50K+ cashmere order. Email exchanges, sample shipments, and Zoom meetings all help, but walking a facility tells you things no questionnaire reveals: how workers actually behave when the owner isn't looking, whether the dehairing line is calibrated or running 10-year-old settings, whether the warehouse is organized or stuffed floor-to-ceiling. We've hosted 200+ buyers at our Ordos facility over the last decade and walked through 30+ competitor factories as part of industry events. This guide explains what to look for, what questions to ask, and what red flags should send you home.
 
 If you're evaluating a Chinese cashmere supplier for the first time, plan to spend 2-3 days: one full day at the factory, plus 1-2 days visiting fiber suppliers, dye houses, or finishing facilities. The full tour described below fits in one full day with a serious buyer. Most legitimate factories accommodate visits within 2-3 weeks notice — longer lead times or refusal to host are themselves red flags.

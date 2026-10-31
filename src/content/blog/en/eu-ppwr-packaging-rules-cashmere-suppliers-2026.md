@@ -18,8 +18,6 @@ aiGenerated: true
 sourceTopic: "EU Packaging and Packaging Waste Regulation (PPWR) — application from 12 August 2026, implications for apparel and cashmere suppliers"
 language: "en"
 ---
-# EU PPWR Is Live: What the Packaging Rules Mean for Cashmere Suppliers Shipping to Europe
-
 Since **12 August 2026**, the European Union has been operating under a single, directly applicable packaging law: the **Packaging and Packaging Waste Regulation (PPWR), Regulation (EU) 2025/40**. It entered into force on 11 February 2025 and replaced the old Packaging Directive 94/62/EC, which was repealed on the same date the PPWR became applicable.
 
 If you supply cashmere garments, scarves or hats into the European Union, this is not a distant policy question. It is now part of the ordinary commercial conversation between you and your European buyer, and the questions it raises reach back into the factory — into what goes in the polybag, what is printed on the hangtag, how the master carton is sealed, and what evidence you can produce when your buyer asks for it.

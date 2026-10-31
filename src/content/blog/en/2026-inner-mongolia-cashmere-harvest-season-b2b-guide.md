@@ -17,9 +17,6 @@ aiGenerated: true
 sourceTopic: "2026-inner-mongolia-cashmere-harvest-season-b2b-field-guide"
 language: "en"
 ---
-
-# 2026 Inner Mongolia Cashmere Harvest Season: A B2B Buyer's Field Guide from Ordos
-
 Most cashmere market notes focus on **finished yarn price per kg** or **FOB sweater cost**. They say very little about the **pasture side of the calendar** — the months when fiber is actually leaving the goat, when herders are deciding what to keep and what to sell, and when the first bidding window opens for mills and factories in Ordos.
 
 This note is a field-level companion for B2B buyers planning 2026 collections. It is based on what we see every year at our Ordos facility and in conversations with herders, combs, and dehairing mills across Inner Mongolia. **It is not a price forecast** — for indicative price ranges see our [2026 cashmere market report](/en/blog/cashmere-market-report-2026). The goal here is the **timing layer**: what happens on the ground, when, and how a buyer should plan around it.

@@ -17,9 +17,6 @@ aiGenerated: false
 sourceTopic: "cashmere-hoodie-wholesale-guide"
 language: "en"
 ---
-
-# Cashmere Hoodie Wholesale Guide: Knit Gauge, Yarn Count & Construction Specs for B2B Buyers
-
 Cashmere hoodies occupy a specific corner of the cashmere market — too casual for a traditional V-neck cardigan buyer, too refined for an athleisure program. The B2B buyers who do well with cashmere hoodies are usually building one of three product lines: premium athleisure (¥800–2,500 retail), boutique layering pieces ($180–450 retail), or corporate-casual uniform programs (where the hood replaces a formal collar). Each program has different specs, different MOQ requirements, and different risk profiles.
 
 This guide walks through the engineering and sourcing decisions that determine whether a cashmere hoodie program succeeds at your retail tier. It is written from the perspective of an Ordos facility that produces both jacquard cable-knit hoodies and simpler flat-knit hoodies for private-label buyers.

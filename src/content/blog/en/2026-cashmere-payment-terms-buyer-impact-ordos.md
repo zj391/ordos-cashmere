@@ -17,9 +17,6 @@ aiGenerated: true
 sourceTopic: "2026-cashmere-payment-terms-buyer-impact-ordos"
 language: "en"
 ---
-
-# 2026 Cashmere Payment Terms: How T/T, LC, and Open Account Actually Affect Your Order at an Ordos Factory
-
 When a B2B buyer asks a cashmere factory for a quotation, the conversation usually focuses on **micron, ply, gauge, color, and quantity**. Payment terms are often the last item discussed, and sometimes they are not discussed at all — the buyer just sends a PO with the factory's "standard" terms attached and moves on.
 
 This note is for buyers who want to understand what their payment terms **actually do** at the factory side. Not the financial mechanics of letters of credit — those are well-documented elsewhere — but the operational mechanics: which fiber lot is set aside, which knitting slot is allocated, how the production timeline moves, and where the visible (and invisible) risks sit when the payment term is shorter or longer than the production cycle.

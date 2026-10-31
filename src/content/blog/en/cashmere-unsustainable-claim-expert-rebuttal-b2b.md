@@ -44,7 +44,7 @@ The following prompts translate the current industry debate into a usable intern
 | What is the lot-level yield ratio (raw fiber to dehaired fiber)? | Whether the supplier knows what their dehairing line is producing | Compare the ratio against published range; abnormal ratios warrant a question |
 | What is the average fiber diameter and length for the lot? | Whether the supplier is operating at a documented quality level | Compare against the agreed specification in the purchase contract |
 
-For a worked example of how a specification can be structured before sampling, see the site's [cashmere micron guide](/en/blog/cashmere-fiber-fineness-micron-chart-b2b). For an end-to-end sourcing reference, see the [Ordos factory tour](/en/blog/ordos-cashmere-mill-tour-b2b-video).
+For a worked example of how a specification can be structured before sampling, see the site's [cashmere micron guide](/en/blog/cashmere-fiber-fineness-micron-chart-b2b). For an end-to-end sourcing reference, see the [Ordos factory tour](/en/blog/cashmere-factory-tour-ordos-b2b).
 
 ## What "experts push back" actually tells a buyer
 

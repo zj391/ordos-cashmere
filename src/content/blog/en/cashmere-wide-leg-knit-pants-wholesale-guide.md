@@ -17,9 +17,6 @@ aiGenerated: false
 sourceTopic: "cashmere-wide-leg-knit-pants-wholesale"
 language: "en"
 ---
-
-# Cashmere Wide-Leg Knit Pants: B2B Wholesale Guide (Yarn, Gauge, Fit, MOQ)
-
 Knitted cashmere and wool-blend wide-leg pants have moved from a niche product into a serious B2B category over the past three seasons. Wholesale pricing sits at $14–28 per piece for fully fashioned knit trousers, retail markups range from 4–8x, and the programs that succeed share three things: a clear fit block, a deliberate yarn choice, and a strong fabric-story positioning (hand-feel, drape, and recovery).
 
 This guide walks through the engineering and sourcing decisions that determine whether a knit cashmere or wool-blend wide-leg pants program succeeds at your retail tier. It is written from the perspective of an Ordos facility that produces knit trousers as part of its full cashmere collection.

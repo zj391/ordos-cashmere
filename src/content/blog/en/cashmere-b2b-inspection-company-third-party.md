@@ -12,9 +12,6 @@ aiGenerated: false
 sourceTopic: "Third-Party Inspection for Cashmere B2B"
 language: "en"
 ---
-
-# Third-Party Inspection for Cashmere: How to Pick a B2B QC Company (And When It Matters)
-
 A B2B cashmere buyer has three options for pre-shipment quality control: rely on the mill's internal QC, send a buyer's own QC person to the factory, or hire a third-party inspection company. For first orders, large orders (>2,000 pieces), and orders with strict AQL requirements, third-party PSI is the standard recommendation. The question is which company — and what the inspector is actually checking during the 3-5 day on-site visit.
 
 This page covers when third-party PSI is worth the cost, how the four main QC companies (SGS, Bureau Veritas, Intertek, QIMA) differ on price, AQL specialty, and turnaround for cashmere, what the inspector checks during a 1,000-piece knitwear PSI at an Ordos factory, and the 7 defects they typically catch that the mill's internal QC does not. The framework applies whether you are sourcing knitwear, woven fabric, or finished yarn.

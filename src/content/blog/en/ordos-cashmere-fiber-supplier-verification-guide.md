@@ -15,9 +15,6 @@ relatedProducts: ["raw_material"]
 aiGenerated: false
 sourceTopic: "cashmere-verification-guide"
 ---
-
-# How to Verify Ordos Cashmere: 7 Tests Every B2B Buyer Should Run
-
 Origin fraud in the cashmere trade is real. A 2023 industry survey estimated 25-35% of "Mongolian cashmere" sold in Western markets is either blended with non-Mongolian fiber, chemically treated, or both. For B2B buyers paying $100+ per kg for premium fiber, that adds up fast.
 
 This guide covers the 7 tests that separate real Ordos cashmere from clever marketing — most cost under $200 and can be done before your first shipment.

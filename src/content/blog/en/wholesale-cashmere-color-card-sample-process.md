@@ -12,8 +12,6 @@ aiGenerated: true
 sourceTopic: "B2B Color Card Request: What to Send, How to Get Samples, and Timeline Expectations"
 language: "en"
 ---
-# B2B Cashmere Color Card Request: How to Get Samples & Timeline
-
 ## B2B Cashmere Color Card Request: What to Send, How to Get Samples, and Timeline Expectations
 
 When you're sourcing cashmere for a wholesale collection, a color card is not just a piece of paper—it's the bridge between your design vision and production reality. For B2B buyers, requesting a color card from a cashmere supplier like us (DONGXIAO Cashmere, based in Ordos, Inner Mongolia) is a critical first step. But many importers make costly mistakes: they send vague emails, expect instant samples, or don't know what information accelerates the process.

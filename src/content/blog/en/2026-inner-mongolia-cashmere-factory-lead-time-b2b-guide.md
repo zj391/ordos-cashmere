@@ -17,9 +17,6 @@ aiGenerated: true
 sourceTopic: "2026-inner-mongolia-cashmere-factory-lead-time-b2b-guide"
 language: "en"
 ---
-
-# 2026 Inner Mongolia Cashmere Factory Lead Time: A B2B Production Calendar from Ordos
-
 Most B2B buyers plan their cashmere program around the **retail delivery window** — the date a sweater or scarf needs to be in a store for the autumn or holiday season. They then ask a factory: *"Can you hit this date?"* and accept the answer at face value. What they rarely see is the **production calendar behind that answer** — the spinning slots, the dyeing windows, the knitting-program allocation, the finishing capacity, and the inspection slots that have to line up for a yes to be true.
 
 This note is the **factory-side companion** to our [2026 Inner Mongolia cashmere harvest season field guide](/en/blog/2026-inner-mongolia-cashmere-harvest-season-b2b-guide/). Where the harvest guide covers April–August on the pasture side, this one covers September–March inside our Ordos facility. It is written for B2B procurement, brand, and sourcing teams who need to understand **why some lead times are firm and some are not**, and how to plan backward from a retail delivery date with confidence.

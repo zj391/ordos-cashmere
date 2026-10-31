@@ -12,8 +12,6 @@ aiGenerated: true
 sourceTopic: "OEKO-TEX 100 for Cashmere: What B2B Buyers Actually Need vs Nice-to-Have"
 language: "fr"
 ---
-# OEKO-TEX 100 pour le cachemire : Ce que les acheteurs B2B doivent vraiment savoir vs ce qui est agréable à avoir
-
 ## Introduction
 
 Lorsque vous approvisionnez en cachemire pour votre marque ou votre chaîne d'approvisionnement, les certifications sont plus que des badges : ce sont des outils de gestion des risques. Parmi les plus demandées figure OEKO-TEX Standard 100, un système mondial de test et de certification pour les matières premières textiles, les produits intermédiaires et finis. Mais toutes les exigences OEKO-TEX n'ont pas le même poids pour les acheteurs B2B.

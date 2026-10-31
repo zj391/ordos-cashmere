@@ -12,9 +12,6 @@ aiGenerated: false
 sourceTopic: "LC vs TT for Cashmere B2B"
 language: "en"
 ---
-
-# LC vs TT for Cashmere B2B: 4 Payment Methods Compared (When to Use Each)
-
 A B2B cashmere buyer choosing between Letter of Credit, Telegraphic Transfer, Documentary Collection, and Open Account is usually deciding three things at once: how much bank cost they will pay, how much supplier risk they are willing to carry before the goods ship, and how many weeks they are willing to wait after the goods arrive.
 
 This guide compares the four methods on all three axes, gives the order-value thresholds where each one stops making sense, and covers the cashmere-specific failure mode — a mill that ships 3,000 pieces of 19.5μm yarn as 15.5μm against an LC that specified 14.5μm, and what documentation does or does not catch it.

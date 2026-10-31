@@ -12,9 +12,6 @@ aiGenerated: false
 sourceTopic: "Production fil cachemire : Du débourrage au cône prêt à tricoter, guide acheteur B2B"
 language: "fr"
 ---
-
-# Comment le fil de cachemire non teint est produit : De la fibre débourrée au cône prêt à tricoter, Guide pour acheteurs B2B
-
 Si vous avez déjà demandé à un fournisseur de cachemire « le prix du fil », vous avez posé la mauvaise question. Le prix par kilogramme de fil cachemire dépend de trois étapes de production que vous n'avez pas encore vues : de quel lot de fibre vous achetez, si votre fil est filé peigné ou cardé, et combien de cachemire débourré votre filature a réellement retenu après peignage. Le même cône 2/26 Nm peut coûter 42 $ ou 78 $ le kilo selon ces trois réponses.
 
 Cet article passe en revue les 7 étapes qui transforment la fibre de cachemire brute en cônes non teints que votre ligne de tricot ou de tissage utilise. Les 7 étapes sont le débourrage, le tri des rubans, le lavage, le cardage, le boudinage, la filature et le bobinage. Chaque étape a une perte de rendement qui se cumule — au moment où le cachemire débourré entre dans le métier à filer, seulement environ 30-35% du poids de fibre brut d'origine est encore sur le cône. Les 65-70% restants sont des blousses (fibres courtes), des matières végétales, du suint (sels de sueur) et de la graisse qui ont quitté la fibre à différents points du cycle.

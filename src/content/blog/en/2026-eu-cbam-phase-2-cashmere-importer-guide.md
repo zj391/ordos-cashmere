@@ -12,9 +12,6 @@ aiGenerated: false
 sourceTopic: "EU CBAM Phase 2 2026 Cashmere Compliance"
 language: "en"
 ---
-
-# EU CBAM Phase 2 (2026): Cashmere Importers' Practical Compliance Guide
-
 The first 12 months of CBAM's transitional phase (October 2023 through December 2025) were a learning year for everyone — the EU, the importers, and the suppliers. Most of the 2024 import volumes under CBAM were small lots, often below the €50,000 reporting threshold, and most importers filed imperfect reports without consequence. That changed on 1 January 2026 when CBAM Phase 2 began, and the lessons from the transitional phase are now load-bearing for cashmere importers into the EU. This page is what we have learned from our Q1-Q3 2026 EU cashmere shipments, and the actual practice of CBAM compliance for cashmere.
 
 If you are an EU-based brand or importer buying cashmere, garment OEM, yarn, or finished knitwear from us or from any mill, this page is the practical guide. It is not a regulatory summary — for that, the European Commission's CBAM page is the canonical source. This is what we are seeing in actual CBAM declarations for cashmere, what the certificate cost looks like, and what mistakes we are seeing importers make.

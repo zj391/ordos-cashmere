@@ -12,9 +12,6 @@ aiGenerated: true
 sourceTopic: "Cashmere HS Code Guide"
 language: "en"
 ---
-
-# Cashmere HS Code Guide: 5108.20 vs 6110 vs 6202 for B2B Importers (2026)
-
 When importing cashmere from China to the EU, US, or other major markets, the Harmonized System (HS) code you use on your commercial invoice determines your duty rate, your customs broker's paperwork, and whether your shipment gets held for classification review. Getting this wrong can mean 5-12% unexpected duty bills, 2-4 week customs delays, or having to re-export and re-import the shipment with corrected codes.
 
 This guide covers the three HS codes you'll use for 95% of B2B cashmere imports, with the actual duty rates for the EU, US, UK, Japan, and Korea.

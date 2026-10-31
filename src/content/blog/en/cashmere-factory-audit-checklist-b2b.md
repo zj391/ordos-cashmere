@@ -14,9 +14,6 @@ language: "en"
 metaTitle: "Cashmere Factory Audit: 12-Point B2B Checklist"
 metaDescription: "12 verification points B2B cashmere buyers use before signing a PO: fiber origin, dehairing, water/electricity, working hours, ethical flags, remote audit."
 ---
-
-# Cashmere Factory Audit Checklist: 12 Verification Points for B2B Buyers (2026)
-
 Auditing a cashmere factory before your first USD 30K+ order is non-negotiable. The cheapest factory quote often hides the highest risk: fiber sourced from undisclosed origins, untrained workers, missing social compliance certifications, or production capacity that can't actually deliver what was promised. We've been on both sides of factory audits — buyers who came to our 38,000 m² Ordos facility with 30-page questionnaires, and buyers who never visited and learned the hard way.
 
 This checklist is the practical subset of what B2B cashmere buyers should verify. It's not the full ISO 9001 audit (those take 3 days and cost USD 5,000+), but it's the 12 points that catch 90% of the cashmere-specific risks. Use it before your first order, again when renewing annual contracts, and once more if you notice quality drift.

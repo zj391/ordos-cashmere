@@ -17,9 +17,6 @@ relatedProducts: ["garment_oem", "yarn_fabric", "raw_material"]
 aiGenerated: false
 sourceTopic: "cashmere-bulk-pricing"
 ---
-
-# 羊绒批量采购价格：批发成本如何随数量、针数、等级变化
-
 羊绒定价很少像"每件X美元"那么简单。完整批发报价取决于**数量、针数、股数、等级、成衣结构、交期**。本文详细拆解每个变量，帮你准确预算和有效谈判。
 
 ## 定价公式

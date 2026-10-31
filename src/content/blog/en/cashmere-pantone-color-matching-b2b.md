@@ -12,9 +12,6 @@ aiGenerated: true
 sourceTopic: "Cashmere Pantone Color Matching"
 language: "en"
 ---
-
-# Cashmere Pantone Color Matching: How Custom Dyeing Works for B2B Knitwear (2026)
-
 For B2B buyers launching a private-label cashmere collection, brand color is the single most recognizable detail. A Pantone-matched cardigan in your exact coral, a sweater in your brand's midnight navy, a scarf dyed to match your seasonal palette — these are what your retail customers will remember and what your wholesale accounts will reorder. But "Pantone color matching" on cashmere is not the same as on cotton or polyester. The fiber is porous, the dye uptake is uneven if rushed, and minimum order quantities by color can make a "small" Pantone run expensive.
 
 This guide walks through the complete Pantone dyeing workflow for cashmere garments based on our Ordos factory's experience producing 1,200+ custom dye lots per year for 500+ brands across EU, US, Japan, Korea, and Australia. We cover submission format, lab dip lead times, color fastness ratings, MOQ thresholds by color group, and the common pitfalls that turn a 5-day dye lot into a 4-week panic.

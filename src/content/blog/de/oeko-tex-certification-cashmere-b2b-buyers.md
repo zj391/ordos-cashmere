@@ -12,8 +12,6 @@ aiGenerated: true
 sourceTopic: "OEKO-TEX 100 for Cashmere: What B2B Buyers Actually Need vs Nice-to-Have"
 language: "de"
 ---
-# OEKO-TEX 100 für Kaschmir: Was B2B-Käufer wirklich brauchen vs. Nice-to-Have
-
 ## Einleitung
 
 Wenn Sie Kaschmir für Ihre Marke oder Lieferkette beschaffen, sind Zertifizierungen mehr als nur Abzeichen – sie sind Risikomanagement-Tools. Eine der am häufigsten nachgefragten ist der OEKO-TEX Standard 100, ein globales Test- und Zertifizierungssystem für textile Rohstoffe, Zwischen- und Endprodukte. Aber nicht alle OEKO-TEX-Anforderungen haben für B2B-Käufer das gleiche Gewicht.
@@ -126,4 +124,4 @@ Bei DONGXIAO Cashmere sind wir seit 2015 nach OEKO-TEX Standard 100 zertifiziert
 
 **Bereit, zertifizierten Kaschmir zu beziehen?** Kontaktieren Sie unser Team für eine kostenlose Beratung und ein Musterset. Wir helfen Ihnen, die richtige Zertifizierung für Ihre Marktanforderungen zu finden.
 
-[Kontaktieren Sie DONGXIAO Cashmere →](/de/kontakt)
+[Kontaktieren Sie DONGXIAO Cashmere →](/de/contact)

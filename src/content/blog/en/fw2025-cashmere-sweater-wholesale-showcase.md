@@ -17,9 +17,6 @@ aiGenerated: false
 sourceTopic: "fw2025-cashmere-sweater-wholesale-showcase"
 language: "en"
 ---
-
-# FW2025 Cashmere Sweater Wholesale Showcase: 6 Featured Styles from Our Ordos Facility
-
 Each FW2025 season, our Ordos facility produces 600+ unique cashmere sweater styles for private-label buyers across Europe, the US, Japan, and Korea. This guide spotlights six styles that have performed strongly with B2B buyers in Q1-Q2 2025 — covering the range from refined smart-casual to gift-set chunky knit. Pricing, MOQ, lead time, and customization options per style are documented below.
 
 If you are sourcing a private-label cashmere sweater collection for FW2025, these six styles are a representative starting point. Full style listings are available on request.

@@ -18,9 +18,6 @@ aiGenerated: false
 sourceTopic: "cashmere-shipping-import-guide"
 language: "en"
 ---
-
-# Cashmere Shipping & Import Guide: FOB, CIF, Duties, Lead Times, and Documents
-
 This **cashmere import guide** explains how an Ordos order reaches a US or EU warehouse, which documents support clearance, and where landed-cost errors occur. **All freight rates, lead times, and duty figures are indicative 2026 planning ranges—not quotes, tariff rulings, or legal/tax advice. Confirm the current position with a licensed customs broker and forwarder.**
 
 ## Executive Summary

@@ -12,9 +12,6 @@ aiGenerated: false
 sourceTopic: "Cashmere Factory Visit Preparation for B2B Buyers"
 language: "en"
 ---
-
-# Cashmere Factory Visit Checklist: 10 Things B2B Buyers Should Prepare Before Going to Ordos
-
 A cashmere factory visit is the only way to verify claims that no document can prove: whether the sorting operation actually runs on the floor, whether the combing machines are loaded today or next month, whether the lab has a working micronometer or a certificate on the wall.
 
 But most first-time buyers arrive with a spreadsheet of questions and leave without the three observations that matter most. This is the preparation checklist we recommend — what to send 2 weeks ahead so the mill can have the right yarn on the floor, the 10 things to look at in order, the 4 questions that reveal whether a mill runs its own sorting or relabels someone else's work, and the specific red flags in a cashmere facility that are not red flags in any other textile mill.

@@ -12,9 +12,6 @@ aiGenerated: true
 sourceTopic: "Cashmere Sample Policy"
 language: "en"
 ---
-
-# Cashmere Sample Policy for B2B Buyers: Costs, Lead Times, Refunds, and How to Read a Factory's Sample Terms (2026)
-
 For B2B buyers evaluating a new cashmere supplier, the **sample order** is the highest-stakes 100-piece decision you'll make. You're committing cash to test a factory you've never produced with, on a fiber (cashmere) where quality variance is invisible to the untrained eye, for products you'll need to scale to 500-5,000 pieces if the samples work. Most first-time buyers get the sample policy wrong — they pay too much, wait too long, or accept sample terms that don't protect them when bulk order time comes.
 
 This guide walks through everything a B2B buyer should know about cashmere sample policies, based on our factory's experience shipping 800+ sample batches per year to 500+ brands across EU, US, Japan, Korea, and Australia. We cover the typical cost ranges (free vs paid, custom vs stock), realistic lead times by sample type, what should be in writing before you pay a sample fee, and how to structure the bulk-conversion discount that turns your sample cost into a recoverable deposit.

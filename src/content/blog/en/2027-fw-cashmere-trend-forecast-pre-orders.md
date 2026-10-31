@@ -12,9 +12,6 @@ aiGenerated: false
 sourceTopic: "FW 2027 Cashmere Trend Forecast"
 language: "en"
 ---
-
-# FW 2027 Cashmere Trend Forecast: 5 Silhouettes and 3 Colors B2B Buyers Are Booking for 2027
-
 The cashmere market in Q3 2026 is in an unusual position: most of the European and Japanese buyers we work with are booking FW 2027 production now, six months earlier than the historical norm. The reason is a confluence of factors — the 2025-2026 raw fiber correction is over, the EU luxury demand is recovering, and the Ordos dehairing capacity for 2027 is already 60% allocated to repeat orders from 2024-2026 customers. If you want a meaningful allocation in 2027, you are booking in 2026. This is a real-time forecast, not a retrospective.
 
 This page is what we are seeing in our sample room in Q3 2026 — the 5 silhouettes, 3 colors, and 2 material directions that B2B buyers are placing pre-orders against. If you are planning a FW 2027 program and want to align with the market direction rather than guess at it, this is the data we are using to allocate our own 2027 production.

@@ -12,8 +12,6 @@ aiGenerated: true
 sourceTopic: "OEKO-TEX 100 for Cashmere: What B2B Buyers Actually Need vs Nice-to-Have"
 language: "ja"
 ---
-# カシミアのためのOEKO-TEX 100：B2Bバイヤーが実際に必要なものと、あると便利なもの
-
 ## はじめに
 
 ブランドやサプライチェーン向けにカシミアを調達する際、認証は単なるバッジではなく、リスク管理ツールです。最もよく求められる認証の一つがOEKO-TEX Standard 100で、繊維原料、中間製品、最終製品を対象とするグローバルな試験・認証システムです。しかし、すべてのOEKO-TEX要件がB2Bバイヤーにとって同じ重みを持つわけではありません。

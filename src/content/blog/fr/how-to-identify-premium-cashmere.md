@@ -14,9 +14,6 @@ relatedProducts: ["raw_material", "yarn_fabric"]
 aiGenerated: false
 sourceTopic: "manual"
 ---
-
-# Identifier le cachemire premium : 6 indicateurs
-
 Lors du sourcing de cachemire pour une marque de mode ou une filature, la différence entre fibre standard et fibre premium peut signifier un écart de prix de 30 à 50 % sur le produit fini. Utilisez cette checklist avant de signer tout bon de commande.
 
 ## 1. Finesse (Micron)

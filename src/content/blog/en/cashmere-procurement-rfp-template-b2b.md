@@ -12,9 +12,6 @@ aiGenerated: false
 sourceTopic: "Cashmere Procurement RFP for B2B Buyers"
 language: "en"
 ---
-
-# Cashmere Procurement RFP: 8 Sections Every B2B Buyer Should Include (Free Template)
-
 A request for proposal that does not specify fiber diameter, down content, count, gauge, and AQL will return eight quotations that cannot be compared. A B2B cashmere buyer who then picks the lowest one has not saved money — they have shifted the variance into quality claims three weeks after loading.
 
 This is the 8-section RFP structure we use, with the specific cashmere specification language that goes in each section, the four questions that most RFPs forget to ask, and the three ways mills respond to an RFP that is written properly versus one that is not.

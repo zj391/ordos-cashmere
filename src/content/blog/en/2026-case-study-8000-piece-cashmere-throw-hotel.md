@@ -12,9 +12,6 @@ aiGenerated: false
 sourceTopic: "Cashmere Hotel Throw 8000-piece Case Study"
 language: "en"
 ---
-
-# Case Study: 8,000-Piece 100% Cashmere Throw Program for a European Hotel Group (2025-2026)
-
 This page is a real case study of a 2025-2026 program we ran for a European luxury hotel group — 8,000 pieces of 100% cashmere throw, six colorways, four sizes, two production batches, one mid-program design change, and a final delivery that landed two weeks before the property opening. The hotel is not named in this case study (NDA); the program details are factual and the lessons are general enough to apply to any mid-volume B2B cashmere program.
 
 If you are planning a cashmere program of 3,000-15,000 pieces across 2-6 styles and 2-6 colorways, the program structure, the milestone timing, the QC checkpoints, and the cost structure below are a good reference. The case study is in the public domain of program management — it is not customer-specific.

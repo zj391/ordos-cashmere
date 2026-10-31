@@ -12,9 +12,6 @@ aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "fr"
 ---
-
-# Châle cachemire en gros avec logo personnalisé : Guide B2B
-
 Un châle cachemire portant le logo de votre marque est l'un des produits marque blanche à la marge la plus élevée que vous puissiez vendre. Les prix de détail de 150 à 500 USD pièce sont courants, et le coût de production reste raisonnable.
 
 Le défi : **réussir le logo**. Le cachemire est une fibre délicate, et la plupart des techniques de logo utilisées sur le coton ou la laine ne fonctionnent pas sur le cachemire. Ce guide couvre ce qui fonctionne.

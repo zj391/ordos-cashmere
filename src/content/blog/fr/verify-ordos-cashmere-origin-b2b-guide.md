@@ -12,8 +12,6 @@ aiGenerated: true
 sourceTopic: "How B2B cashmere buyers can verify Ordos origin and avoid mislabeling"
 language: "fr"
 ---
-# Comment vérifier l'origine du cachemire d'Ordos : Guide de l'acheteur B2B pour éviter les fausses étiquettes
-
 ## Pourquoi l'origine du cachemire d'Ordos est importante pour les acheteurs B2B
 
 Pour les importateurs mondiaux de cachemire, les acheteurs de marques et les sociétés de négoce, le terme "cachemire d'Ordos" a un poids considérable. Ordos, situé en Mongolie-Intérieure, en Chine, est le plus grand pôle mondial de production de cachemire de haute qualité, représentant plus de 40 % de la production mondiale de cachemire. Le climat unique de la région et les chèvres cachemire indigènes produisent des fibres d'une finesse exceptionnelle — généralement 14 à 16 microns pour le cachemire brut de qualité A — et une longueur de fibre de 34 à 38 mm, donnant un produit final doux, durable et luxueux.

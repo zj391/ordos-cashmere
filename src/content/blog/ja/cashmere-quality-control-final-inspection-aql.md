@@ -12,8 +12,6 @@ aiGenerated: true
 sourceTopic: "Final Inspection AQL for Cashmere Garments: What B2B Buyers Should Insist On"
 language: "ja"
 ---
-# カシミア製品の最終検査AQL：B2Bバイヤーが求めるべき基準
-
 ## はじめに
 
 カシミア製品を調達するB2Bバイヤーにとって、最終検査は不良品、遅延、そしてブランドイメージの毀損を防ぐ最後の砦です。AQL（合格品質水準）は、出荷品が仕様を満たしているかを判断する、国際的に認知されたベンチマークです。契約で明確に定められたAQLがなければ、ブランドの品質約束を果たせない製品を受け取るリスクがあります。

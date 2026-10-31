@@ -15,9 +15,6 @@ relatedProducts: ["garment_oem"]
 aiGenerated: false
 sourceTopic: "small-moq-cashmere"
 ---
-
-# Small MOQ Cashmere Coat Manufacturing: How Boutique Brands Source
-
 Most Chinese cashmere factories quote **200-500 unit minimums**. Boutique brands selling 30-50 coats per season often assume small MOQ is impossible.
 
 It's not. But it requires a different approach.

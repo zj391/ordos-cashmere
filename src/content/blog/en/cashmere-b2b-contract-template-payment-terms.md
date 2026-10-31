@@ -12,10 +12,6 @@ aiGenerated: true
 sourceTopic: "B2B Cashmere Contract: 7 Clauses We Always Include (Payment, Defect, Lead Time, Force Majeure)"
 language: "en"
 ---
-# B2B Cashmere Contract: 7 Clauses We Always Include (Payment, Defect, Lead Time, Force Majeure)
-
-# B2B Cashmere Contract: 7 Clauses We Always Include (Payment, Defect, Lead Time, Force Majeure)
-
 When sourcing cashmere from a factory in Ordos, Inner Mongolia—the world’s premier cashmere region—a well-drafted B2B contract is your first line of defense. At DONGXIAO Cashmere, with 23 years of experience, we’ve refined our contracts to protect both our buyers and our operations. Here are the seven clauses we include in every agreement, with practical details on payment terms, defect limits, lead times, and force majeure.
 
 ## 1. Payment Terms Clause

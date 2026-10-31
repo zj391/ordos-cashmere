@@ -12,9 +12,6 @@ aiGenerated: false
 sourceTopic: "From Tech Pack to Bulk: How a Cashmere Garment OEM Project Actually Works (7 Stages, 90 Days)"
 language: "en"
 ---
-
-# From Tech Pack to Bulk: How a Cashmere Garment OEM Project Actually Works (7 Stages, 90 Days)
-
 When a brand owner emails us a tech pack and asks "how long until I have sweaters in my warehouse?", the answer is almost always a question back: *how much of this can we run with stock yarn, how much of the silhouette is new, and do you need the order before Q4?* Those three answers determine whether your cashmere garment OEM project runs the standard 90 days, compresses to 45-60 days, or stretches to 120-150 days.
 
 This guide walks through the **seven actual stages** of a cashmere garment OEM project at our Ordos factory — what each stage produces, what the buyer delivers, what can be parallel-tracked, and what cannot. If you are planning a private-label cashmere sweater, cardigan, hoodie, or accessory line and want to know exactly where your calendar pressure points are, the timeline below is the reference.

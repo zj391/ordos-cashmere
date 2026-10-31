@@ -16,9 +16,6 @@ relatedProducts: ["garment_oem", "raw_material"]
 aiGenerated: false
 sourceTopic: "oeko-tex-certification-guide"
 ---
-
-# OEKO-TEX Certified Cashmere: What B2B Buyers Need to Know
-
 Cashmere is a natural fiber. But the journey from goat to garment involves **chemicals** — scouring agents, dyes, finishing treatments, anti-pilling enzymes. Some of these chemicals can leave residues that are harmful to human health.
 
 For B2B buyers exporting to the EU, US, or Japan, textile safety certifications are increasingly **legally required or buyer-mandated**. This guide covers what certifications actually mean, which ones matter, and how to verify claims.

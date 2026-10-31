@@ -12,9 +12,6 @@ aiGenerated: false
 sourceTopic: "B2B Cashmere Procurement Step-by-Step"
 language: "en"
 ---
-
-# B2B Cashmere Procurement: 9 Steps From RFQ to Container (Timeline + Checkpoints)
-
 A B2B cashmere order, from the first RFQ to the container loaded at Tianjin port, takes 90 to 150 calendar days for a typical 1,000-5,000 piece program. The variation comes from the 9 steps each order has to pass through and the 5 checkpoints where most orders go wrong — specification drift, color-matching rejection, payment term confusion, pre-shipment inspection failure. Knowing the steps and the checkpoints before you start is the difference between a smooth first order and a six-month delay.
 
 This page walks through the 9 steps in calendar order, what each step actually takes in days at a typical Ordos mill, the 5 checkpoints where orders typically go wrong and how to prevent them, and a sourcing checklist you can copy into your next RFQ. The framework is the same whether you are sourcing raw fiber, finished yarn, woven fabric, or finished garments — the timeline is shorter for upstream products but the checkpoints are similar.

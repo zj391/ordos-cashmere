@@ -15,9 +15,6 @@ targetKeywords:
 geoRegion: "DE"
 language: "en"
 ---
-
-# Cashmere Wholesale Germany: Direct Ordos Import Guide for German B2B Buyers
-
 The German cashmere market imports approximately €120 million annually, primarily from Inner Mongolia and Mongolia. The majority flows through Hamburg, Frankfurt and Munich-based importers, who typically charge 25–40 % markup over factory price.
 
 This guide shows German B2B buyers how to work directly with verified Ordos mills and save €30–80 per kg.

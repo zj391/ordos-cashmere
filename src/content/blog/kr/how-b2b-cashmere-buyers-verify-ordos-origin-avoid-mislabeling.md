@@ -12,8 +12,6 @@ aiGenerated: true
 sourceTopic: "How B2B cashmere buyers can verify Ordos origin and avoid mislabeling"
 language: "kr"
 ---
-# B2B 캐시미어 바이어가 오르도스 원산지를 확인하고 허위 표시를 피하는 방법: 소싱 가이드
-
 ## 소개
 
 글로벌 캐시미어 시장은 40억 달러 이상의 가치를 지니며, 내몽골은 전 세계 원료 캐시미어의 약 70%를 생산합니다. 이 지역의 중심 도시인 오르도스는 독특한 기후와 오랜 염소 사육 역사로 인해 프리미엄 캐시미어의 대명사가 되었습니다. 그러나 열등한 섬유가 "오르도스 캐시미어"로 판매되는 허위 표시는 B2B 바이어에게 지속적인 과제로 남아 있습니다.

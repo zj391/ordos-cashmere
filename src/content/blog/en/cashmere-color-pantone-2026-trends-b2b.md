@@ -12,9 +12,6 @@ aiGenerated: false
 sourceTopic: "Pantone 2026 + Cashmere B2B Color Specification"
 language: "en"
 ---
-
-# Pantone 2026 + Cashmere: Which Colors B2B Buyers Are Specifying for Fall/Winter 2026
-
 Pantone's 2026 color forecasts were published in September 2025 and again at New York Fashion Week in February 2026, and three of the top six FW26/27 colors — Cloud Dancer, Transformative Teal, and Aurora Red — are showing up in our cashmere sampling room roughly twice as often as the next six most-requested colors. The shift is partly aesthetic, but it is also driven by what cashmere fiber can do at the dye bath: a tight fiber-diameter yarn takes saturated color more cleanly than a coarse one, which is why the FW26 palette skews toward the colors that actually perform well on fine-gauge cashmere.
 
 If you are a sourcing manager, brand owner, or designer planning a FW26 or FW27 cashmere collection, this page covers the colors we are seeing most in 2026 briefs, why the natural undyed cashmere palette is making a quiet comeback, and the practical points to confirm with your factory before signing a Pantone-matching dye commitment — MOQ, color-matching tolerance, dye method, and how the same Pantone reference can come out different on different yarn counts.

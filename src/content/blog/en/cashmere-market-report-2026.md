@@ -17,9 +17,6 @@ aiGenerated: false
 sourceTopic: "cashmere-market-report-2026"
 language: "en"
 ---
-
-# 2026 Cashmere Market Report: Raw Fiber Prices, Supply, and Buyer Outlook
-
 Procurement managers planning 2026 collections keep asking the same three questions: what is the raw cashmere price per kg right now, is the China cashmere market still the most balanced source, and what does the cashmere supply chain outlook look like for the next 12 months? This **cashmere market report 2026** synthesizes our factory-sourcing ranges, herder-level conversations, and yarn-mill indications into a buyer-focused view. **Prices below are factory sourcing ranges / indicative ranges from our own quotations and mill surveys between January and July 2026 — they are not financial advice, not a market index, and we strongly encourage you to request a current quote before locking any budget.**
 
 ## Executive Summary

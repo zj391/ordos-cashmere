@@ -12,8 +12,6 @@ aiGenerated: true
 sourceTopic: "Final Inspection AQL for Cashmere Garments: What B2B Buyers Should Insist On"
 language: "kr"
 ---
-# 캐시미어 의류 최종 검사 AQL: B2B 바이어가 반드시 요구해야 할 기준
-
 ## 소개
 
 캐시미어 의류를 소싱하는 B2B 바이어에게 최종 검사는 불량, 지연, 평판 손상에 대한 마지막 방어선입니다. AQL(허용 품질 수준) 기준은 선적물이 사양에 부합하는지 판단하는 글로벌 표준입니다. 계약에 명시된 명확한 AQL 없이는 브랜드의 품질 약속에 미치지 못하는 제품을 받을 위험이 있습니다.

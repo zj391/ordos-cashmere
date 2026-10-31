@@ -12,8 +12,6 @@ aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "de"
 ---
-# OEKO-TEX-zertifiziertes Kaschmir: Was B2B-Käufer über Textilsicherheitsstandards wissen müssen
-
 # OEKO-TEX-zertifiziertes Kaschmir: Was B2B-Käufer wissen müssen
 
 Kaschmir ist eine Naturfaser. Doch der Weg von der Ziege zum Kleidungsstück beinhaltet **Chemikalien** – Waschmittel, Farbstoffe, Veredelungsmittel, Antipilling-Enzyme. Einige dieser Chemikalien können Rückstände hinterlassen, die für die menschliche Gesundheit schädlich sind.

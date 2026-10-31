@@ -12,8 +12,6 @@ aiGenerated: true
 sourceTopic: "OEKO-TEX 100 for Cashmere: What B2B Buyers Actually Need vs Nice-to-Have"
 language: "en"
 ---
-# OEKO-TEX 100 for Cashmere: What B2B Buyers Actually Need vs Nice-to-Have
-
 ## Introduction
 
 When sourcing cashmere for your brand or supply chain, certifications are more than badges—they're risk management tools. Among the most requested is OEKO-TEX Standard 100, a global testing and certification system for textile raw materials, intermediate, and end products. But not all OEKO-TEX requirements carry equal weight for B2B buyers.

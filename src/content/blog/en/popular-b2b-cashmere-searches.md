@@ -12,9 +12,6 @@ aiGenerated: false
 sourceTopic: "Popular B2B Cashmere Searches, Sorted by Long-Tail Demand"
 language: "en"
 ---
-
-# Popular B2B Cashmere Searches, Sorted by Buyer Intent (GSC-Verified, 90-Day Window)
-
 Between July and September 2026, Google sent buyers to our site through 175 distinct search queries — 661 total impressions, ranking from position 1 to 100. The long-tail queries (3+ tokens) account for 80% of impressions but only 22% of clicks, which tells us two things at once: there is real demand for specific cashmere sourcing answers, and most of the demand is not yet being captured by pages on our site or anyone else's.
 
 This post sorts those 175 queries by buyer intent, not alphabetically. The point is to show sourcing teams what their peers are looking for, and to map each cluster to the page on our site (or the blog we are about to publish) that actually solves the underlying problem. If you are running a sourcing query and your target word is here, the linked resource below the section will move you forward.

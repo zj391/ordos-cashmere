@@ -12,9 +12,6 @@ aiGenerated: false
 sourceTopic: "Kaschmirgarn-Produktion: Vom Enthaaren zum maschinenfertigen Cylinder, B2B-Käuferleitfaden"
 language: "de"
 ---
-
-# Wie ungefärbtes Kaschmirgarn hergestellt wird: Von der enthaarten Faser zum maschinenfertigen Cylinder, Ein B2B-Käuferleitfaden
-
 Wenn Sie jemals einen Kaschmir-Lieferanten nach „dem Garnpreis" gefragt haben, haben Sie die falsche Frage gestellt. Der Preis pro Kilogramm Kaschmirgarn hängt von drei Produktionsstufen ab, die Sie noch nicht gesehen haben: aus welcher Fasercharge Sie kaufen, ob Ihr Garn als Kammgarn oder Streichgarn gesponnen wird, und wie viel der enthaarten Kaschmirwolle Ihre Spinnerei nach dem Kämmen tatsächlich behalten hat. Derselbe 2/26 Nm-Cylinder kann je nach diesen drei Antworten 42 $ oder 78 $ pro Kilo kosten.
 
 Dieser Beitrag geht die 7 Stufen durch, die rohe Kaschmirfaser in die ungefärbten Cylinder verwandeln, die Ihre Strick- oder Weblinie verwendet. Die 7 Stufen sind Enthaarung, Top-Sortierung, Wäsche, Kardierung, Vorgarn, Spinnen und Spulen. Jede Stufe hat einen Ertragsverlust, der sich summiert — wenn die enthaarte Kaschmirwolle den Spinnrahmen erreicht, sind nur noch etwa 30-35% des ursprünglichen Rohfasergewichts auf dem Cylinder. Die verbleibenden 65-70% sind Noil (Kurzfaser), Pflanzenreste, Suint (Schweißsalze) und Fett, die die Faser an verschiedenen Stellen im Kreislauf verlassen haben.

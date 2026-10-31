@@ -17,9 +17,6 @@ aiGenerated: false
 sourceTopic: "cashmere-v-neck-cardigan-wholesale"
 language: "en"
 ---
-
-# Cashmere V-Neck Cardigan Wholesale: B2B Gauge & Yarn Count Buying Guide
-
 The V-neck cardigan is the most-requested cashmere knitwear construction at our Ordos facility. It is also the most-variable in spec: V-depth, placket width, button count, button material, and gauge can all shift the final product from a $140 retail casual layer to a $340 retail refined staple. For B2B buyers, getting these specs right at the sample stage is the difference between a successful program and a re-order disaster.
 
 This guide walks through the gauge, yarn count, placket, and finishing decisions that determine whether a cashmere V-neck cardigan program succeeds at your retail tier.

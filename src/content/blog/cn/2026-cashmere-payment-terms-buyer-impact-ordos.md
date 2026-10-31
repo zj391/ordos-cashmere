@@ -17,9 +17,6 @@ aiGenerated: true
 sourceTopic: "2026-cashmere-payment-terms-buyer-impact-ordos"
 language: "cn"
 ---
-
-# 2026 羊绒付款条款:T/T、LC 和 O/A 实际如何影响你在鄂尔多斯工厂的订单
-
 当 B2B 买家向羊绒工厂询价时,讨论通常围绕**细度、股数、针型、颜色、数量**展开。付款条款往往是最后才讨论的,有时甚至不讨论——买家直接把工厂的"标准"条款附在 PO 上就推进了。
 
 本文写给那些想弄清自己付款条款**究竟**在工厂侧起什么作用的买家。不是讲信用证(L/C)的金融机制(那些在其他地方有充分文档),而是讲运营机制:哪一批纤维被预留、哪个针织时段被安排、生产节拍如何变动,以及当付款期比生产周期短或长时,可见的(以及不可见的)风险落在哪里。
@@ -54,7 +51,7 @@ T/T 定金——典型为 PO 确认后付 30%、凭装运前单据付 70%——�
 - **纤维在收到定金时被预留。** 工厂不再把这批纤维卖给其他买家。
 - **针织时段在下一周排产时被分配。** 没有时段竞争。
 - **QC 时段在标准装运前窗口。** 不被推迟。
-- **交期与报价一致。** 买家看到的生产日历就是我们在[交期指南](/zh/blog/2026-inner-mongolia-cashmere-factory-lead-time-b2b-guide/)里描述的那种。
+- **交期与报价一致。** 买家看到的生产日历就是我们在[交期指南](/cn/blog/2026-inner-mongolia-cashmere-factory-lead-time-b2b-guide/)里描述的那种。
 
 对买家而言,T/T 30/70 是**最低风险的交付方案**,定金通常是买家在生产期间唯一的现金流敞口。财务风险由工厂承担——工厂接受这个风险是因为定金覆盖了它的运营资本需求。
 
@@ -140,17 +137,17 @@ O/A 是**对买家最友好、对工厂压力最大**的付款条款。货物凭
 - **没有具体的 2026 银行费或 LC 成本数据。** 银行费、通知行费和 LC 贴现率因银行、国家和项目规模而异。使用你银行公布的费率表和你的贸易金融顾问获取最新数字。
 - **没有"最佳"付款条款的排名。** 对的条款取决于项目规模、贸易历史和现金流重要性——见上文的框架。我们描述结构性权衡;你决定哪个适合你的项目。
 - **没有列出具体的工厂、银行或贸易金融提供商。** 付款条款行为在鄂尔多斯集群以及更广义的中国制造业中是结构性的,不是工厂特定的。
-- **没有货币对冲或外汇风险分析。** 美元、欧元、人民币、日元之间的汇率波动是与付款条款分开的另一议题;我们在[2026 羊绒市场报告](/zh/blog/cashmere-market-report-2026/)中触及,但它值得单独分析。
+- **没有货币对冲或外汇风险分析。** 美元、欧元、人民币、日元之间的汇率波动是与付款条款分开的另一议题;我们在[2026 羊绒市场报告](/cn/blog/cashmere-market-report-2026/)中触及,但它值得单独分析。
 
 ## 下一步
 
-- **生产日历与交期**:[2026 内蒙古羊绒工厂交期 B2B 指南](/zh/blog/2026-inner-mongolia-cashmere-factory-lead-time-b2b-guide/)
-- **牧场侧日历(4–8 月)**:[2026 内蒙古羊绒梳绒季田野指南](/zh/blog/2026-inner-mongolia-cashmere-harvest-season-b2b-guide/)
-- **每件成本拆解**:[2026 羊绒衫批发价目](/zh/blog/wholesale-cashmere-sweater-pricing-b2b-2026/)
-- **价格区间与供应前景**:[2026 羊绒市场报告](/zh/blog/cashmere-market-report-2026/)
-- **运输、海关与进口**:[羊绒运输与进口指南](/zh/blog/cashmere-shipping-import-guide/)
-- **合同与付款条款模板**:[羊绒 B2B 合同模板与付款条款](/zh/blog/cashmere-b2b-contract-template-payment-terms/)
-- **端到端纤维到成衣流程**:[从牧场到成衣:我们鄂尔多斯工厂的 23 个步骤](/zh/blog/from-pasture-to-garment-23-steps-ordos-cashmere/)
+- **生产日历与交期**:[2026 内蒙古羊绒工厂交期 B2B 指南](/cn/blog/2026-inner-mongolia-cashmere-factory-lead-time-b2b-guide/)
+- **牧场侧日历(4–8 月)**:[2026 内蒙古羊绒梳绒季田野指南](/cn/blog/2026-inner-mongolia-cashmere-harvest-season-b2b-guide/)
+- **每件成本拆解**:[2026 羊绒衫批发价目](/cn/blog/wholesale-cashmere-sweater-pricing-b2b-2026/)
+- **价格区间与供应前景**:[2026 羊绒市场报告](/cn/blog/cashmere-market-report-2026/)
+- **运输、海关与进口**:[羊绒运输与进口指南](/cn/blog/cashmere-shipping-import-guide/)
+- **合同与付款条款模板**:[羊绒 B2B 合同模板与付款条款](/cn/blog/cashmere-b2b-contract-template-payment-terms/)
+- **端到端纤维到成衣流程**:[从牧场到成衣:我们鄂尔多斯工厂的 23 个步骤](/cn/blog/from-pasture-to-garment-23-steps-ordos-cashmere/)
 
 如果你的 2026 或 2027 项目涉及付款条款决策,请[向我们询价](https://www.erdosdx.com/cn/contact/),我们会为你的具体项目规模、交期和贸易历史,列出每种条款的运营含义。对的条款,是既匹配你的现金流需求、又不会给生产周期增加不必要摩擦的那一种。
 

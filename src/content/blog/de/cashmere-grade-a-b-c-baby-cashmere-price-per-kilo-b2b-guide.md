@@ -12,9 +12,6 @@ aiGenerated: false
 sourceTopic: "Kaschmir Grade A vs B vs C, Baby-Kaschmir und Preis pro Kilo: B2B-Käuferreferenz"
 language: "de"
 ---
-
-# Kaschmir Grade A vs B vs C, Baby-Kaschmir und Preis pro Kilo: B2B-Käuferreferenz für Luxusmäntel und Strickwaren
-
 Wenn ein B2B-Käufer ein Kaschmir-Angebot sieht, das "Grade A Kaschmir, $42 pro Kilo" lautet, müssen drei Dinge geklärt werden, bevor das Angebot mit dem $38 pro Kilo eines anderen Lieferanten verglichen werden kann: Was "Grade A" in Mikron und Länge bedeutet, ob die Faser ungefärbte Kammzug- oder fertiges Garn ist, und ob die Faser von erwachsenen Ziegen oder Baby-Ziegen (Hircus Kids) stammt. Ohne diese drei Antworten ist der Preisvergleich bedeutungslos.
 
 Dieser Leitfaden behandelt die vier Dinge, die ein Käufer wissen muss, um Kaschmir-Grade-Angebote und Preis-pro-Kilo-Benchmarks korrekt zu lesen: wie Kaschmir von A bis C eingestuft wird, was Baby-Kaschmir anders und teurer macht, wie die typischen 2026-Preisspannen in der Faser-zu-Garment-Lieferkette aussehen, und wie man ein Angebot auf Basis des beanspruchten Grades verhandelt oder prüft.

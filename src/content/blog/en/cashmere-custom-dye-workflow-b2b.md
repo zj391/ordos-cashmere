@@ -14,9 +14,6 @@ language: "en"
 metaTitle: "Cashmere Custom Dye: Pantone-to-Yarn OEM Guide"
 metaDescription: "End-to-end custom cashmere dye workflow — Pantone submission, lab dip, bulk dyeing, color fastness testing. 5 kg to 5,000 kg runs with 4-6 week lead times."
 ---
-
-# Cashmere Custom Dye Workflow: From Pantone to Finished Yarn (B2B OEM Guide)
-
 Custom dyeing is where most cashmere OEM projects either succeed brilliantly or fail expensively. Get the dye process right, and your brand's signature camel coat, signature navy crewneck, or signature off-white scarf sells for years. Get it wrong — wrong Pantone match, poor color fastness, batch-to-batch variation — and you ship product that customers return. This guide walks through the end-to-end custom dye workflow from Pantone code to finished yarn, with specific numbers on lead times, MOQ, cost premiums, and the most common failure modes B2B buyers should plan around.
 
 Most cashmere custom dye work happens at a small number of specialized dye houses in Inner Mongolia, Hebei, and Zhejiang. Our facility partners with two dye houses (one in Ordos, one in Langfang) for 90% of our custom color work. Both follow similar workflows with minor variations in equipment. The process below reflects what you should expect from any serious cashmere dye house, whether you're ordering 100 kg or 10,000 kg.

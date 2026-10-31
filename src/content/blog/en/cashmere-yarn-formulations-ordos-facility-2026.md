@@ -19,9 +19,6 @@ aiGenerated: false
 sourceTopic: "cashmere-yarn-formulations-ordos-facility"
 language: "en"
 ---
-
-# 10 Types of Cashmere Yarn We Make at Our Ordos Facility: 2026 Yarn Formulation Guide
-
 Not all cashmere yarn is created equal — and not all cashmere yarn projects need the same yarn count, fiber blend, or MOQ. At our Ordos facility, we spin ten distinct cashmere yarn formulations across four blend categories. Each formulation has been validated through full-scale production, with stable pricing for 2026 and reliable lead times for repeat orders.
 
 This guide walks through all 10 formulations — yarn count, fiber blend ratio, typical use case, MOQ, and FOB Tianjin wholesale pricing per kilogram — so a private-label buyer or knitwear brand can match the right yarn to their product and retail tier.

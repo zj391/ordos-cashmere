@@ -12,9 +12,6 @@ aiGenerated: false
 sourceTopic: "Cashmere Grade A vs B vs C, Baby Cashmere, and Price Per Kilo: B2B Buyer's Reference"
 language: "en"
 ---
-
-# Cashmere Grade A vs B vs C, Baby Cashmere, and Price Per Kilo: B2B Buyer's Reference for Luxury Coats & Knitwear
-
 When a B2B buyer sees a cashmere quote that says "Grade A cashmere, $42 per kilo", three things need to be clarified before the quote can be compared to another supplier's $38 per kilo: what "Grade A" means in micron and length, whether the fiber is undyed dehaired top or finished yarn, and whether the fiber is from adult goats or baby goats (Hircus kids). Without these three answers, the price comparison is meaningless.
 
 This guide covers the four things a buyer needs to know to read cashmere grade quotes and price-per-kilo benchmarks correctly: how cashmere is graded A through C, what makes baby cashmere different and more expensive, what the typical 2026 price ranges look like across the fiber-to-garment chain, and how to negotiate or audit a quote based on the grade claimed.

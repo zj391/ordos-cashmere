@@ -12,9 +12,6 @@ aiGenerated: false
 sourceTopic: "Beliebte B2B-Cashmere-Suchanfragen, sortiert nach Long-Tail-Demand"
 language: "de"
 ---
-
-# Beliebte B2B-Cashmere-Suchanfragen, sortiert nach Kaufabsicht (GSC-verifiziert, 90-Tage-Fenster)
-
 Zwischen Juli und September 2026 schickte Google Käufer über 175 unterschiedliche Suchanfragen auf unsere Website — 661 Gesamtimpressionen, Positionen von 1 bis 100. Die Long-Tail-Anfragen (3+ Tokens) machen 80% der Impressionen aus, aber nur 22% der Klicks, was uns gleichzeitig zwei Dinge sagt: Es gibt echte Nachfrage nach spezifischen Cashmere-Sourcing-Antworten, und der Großteil dieser Nachfrage wird noch nicht von Seiten auf unserer Website oder irgendjemand anderem erfasst.
 
 Dieser Post sortiert diese 175 Anfragen nach Kaufabsicht, nicht alphabetisch. Der Punkt ist, Sourcing-Teams zu zeigen, was ihre Kollegen suchen, und jeden Cluster auf die Seite unserer Website (oder den Blog, den wir gerade veröffentlichen) zu mappen, die das zugrunde liegende Problem tatsächlich löst. Wenn Sie eine Sourcing-Anfrage ausführen und Ihr Zielwort hier ist, bringt Sie die verlinkte Ressource unter dem Abschnitt weiter.

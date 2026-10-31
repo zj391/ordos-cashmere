@@ -17,9 +17,6 @@ relatedProducts: ["garment_oem", "raw_material"]
 aiGenerated: false
 sourceTopic: "cashmere-scarf-weight-by-climate"
 ---
-
-# How to Choose Cashmere Scarf Weight (GSM) by Climate
-
 Cashmere scarf weight is the single biggest factor in customer satisfaction — and the most common source of returns. A 60g lightweight cashmere scarf is perfect for tropical climates and feels suffocating in arctic winters; a 240g heavyweight cashmere scarf is perfect for Nordic winters and feels unbearable in Mediterranean autumn.
 
 B2B buyers who don't match weight to target climate end up with high return rates and poor reviews. This guide breaks down cashmere scarf weights, GSM ranges, and which weight works best for which climate.

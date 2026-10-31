@@ -19,9 +19,6 @@ aiGenerated: false
 sourceTopic: "cashmere-eu-dpp-compliance"
 language: "en"
 ---
-
-# EU Digital Product Passport for Cashmere Garments: What B2B Exporters Must Prepare Before 2027
-
 If you sell cashmere garments or accessories into the EU — directly to a brand, through a distributor, or via an online marketplace — the Digital Product Passport (DPP) will affect your compliance burden before the end of 2027. This is not a forecast; it is the published timeline of the Ecodesign for Sustainable Products Regulation (ESPR), Regulation (EU) 2024/1781, which entered force on 18 July 2024.
 
 The first DPP delegated act for textiles is scheduled for adoption by the European Commission in Q4 2026, with application beginning 18 months after publication — that puts the realistic go-live for textile DPPs in **mid-to-late 2027**. For B2B cashmere exporters who already work with EU brands on sustainability claims, this is the right time to start preparing the data systems, not when the regulation lands.

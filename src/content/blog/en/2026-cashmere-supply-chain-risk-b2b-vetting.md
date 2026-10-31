@@ -12,9 +12,6 @@ aiGenerated: false
 sourceTopic: "Cashmere Supply Chain Risk B2B Vetting"
 language: "en"
 ---
-
-# 2026 Cashmere Supply Chain Risk: How B2B Buyers Vet Their Ordos Mill
-
 The most expensive lesson in cashmere sourcing in 2026 is the same one buyers have been learning for the last decade: a cashmere sweater at a unit price that is 30% below comparable offers is rarely a bargain. It is usually a supply chain problem you cannot see from the price quote — wrong fiber, wrong origin, wrong dehairing, wrong yarn count, or all four. The fix is a structured supply chain evaluation before the first PO, not a complaint letter after the third rejection.
 
 This page is the supply chain evaluation checklist we walk through with new wholesale clients during their first site visit. It is what an experienced B2B cashmere buyer's QC team would test, in the order they would test it, with the documentation they would request. None of it is proprietary — every item is a known industry standard. The difference is doing all of it, in the right order, with the right person on the supplier side answering.

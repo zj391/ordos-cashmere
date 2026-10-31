@@ -14,9 +14,6 @@ relatedProducts: ["raw_material", "yarn_fabric"]
 aiGenerated: false
 sourceTopic: "manual"
 ---
-
-# How to Identify Premium Cashmere: 6 Key Metrics
-
 When you source cashmere for a fashion brand or textile mill, the difference between commodity fiber and premium fiber can mean 30–50% price gap on the finished garment. Use this checklist before signing any purchase order.
 
 ## 1. Fineness (Micron Count)

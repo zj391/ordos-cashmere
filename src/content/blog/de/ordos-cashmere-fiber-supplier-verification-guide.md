@@ -12,8 +12,6 @@ aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "de"
 ---
-# Echtheit von Ordos-Kaschmir prüfen: 7 Tests, die jeder B2B-Käufer vor der PO-Unterzeichnung durchführen sollte
-
 # So überprüfen Sie Ordos-Kaschmir: 7 Tests, die jeder B2B-Käufer durchführen sollte
 
 Herkunftsbetrug im Kaschmirhandel ist real. Eine Branchenumfrage aus dem Jahr 2023 schätzte, dass 25-35 % des in westlichen Märkten verkauften "Mongolian-Kaschmirs" entweder mit nicht-mongolischen Fasern gemischt, chemisch behandelt oder beides sind. Für B2B-Käufer, die 100 $+ pro kg für Premiumfasern zahlen, summiert sich das schnell.

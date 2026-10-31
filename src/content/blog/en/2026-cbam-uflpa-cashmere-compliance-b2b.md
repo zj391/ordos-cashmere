@@ -12,9 +12,6 @@ aiGenerated: false
 sourceTopic: "EU CBAM and US UFLPA Cashmere Compliance 2026"
 language: "en"
 ---
-
-# EU CBAM & US UFLPA Cashmere Compliance 2026: What Ordos Buyers Need to Document
-
 Two regulatory regimes hit cashmere imports at the same time in 2026, and most B2B buyers we talk to in Q3 are not fully prepared for either. CBAM (the EU's Carbon Border Adjustment Mechanism) finished its transitional phase at the end of 2025 and is now in active enforcement for many imported textile categories. UFLPA (the US Uyghur Forced Labor Prevention Act) has been active since 2022 but the practical documentation burden on apparel importers has materially increased in 2026 as CBP tightened enforcement on small lots that previously slipped through.
 
 This page is a buyer's checklist. We update it quarterly based on what customs actually holds, not what consultants write. If you are seeing something different in your market, we want to hear it — the comment form is open.

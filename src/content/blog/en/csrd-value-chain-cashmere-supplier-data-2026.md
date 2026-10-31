@@ -18,8 +18,6 @@ aiGenerated: true
 sourceTopic: "Corporate Sustainability Reporting Directive (CSRD) and ESRS simplification status as of July 2026, and its knock-on effect on cashmere suppliers"
 language: "en"
 ---
-# CSRD for Cashmere Buyers: How EU Reporting Rules Reach Your Supplier's Data
-
 A European brand buying cashmere knitwear may now ask you a question that has nothing to do with your product: *what is the carbon figure for this order, and can you evidence it?*
 
 That question arrives through the **Corporate Sustainability Reporting Directive (CSRD)** and the **European Sustainability Reporting Standards (ESRS)** that sit underneath it. Neither instrument names a cashmere factory. Both of them nonetheless reach one.

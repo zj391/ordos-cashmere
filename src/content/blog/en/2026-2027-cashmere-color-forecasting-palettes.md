@@ -12,9 +12,6 @@ aiGenerated: false
 sourceTopic: "2026-2027 Cashmere Color Forecasting Palettes"
 language: "en"
 ---
-
-# 2026-2027 Cashmere Color Forecasting: 5 Pantone-Inspired Palettes for FW26 / SS27
-
 Every 12 months we run a color forecasting exercise with the dye-house team in our Ordos facility, looking at the Pantone Fashion Color Report, the Italian Biella spinning-mill color stories, and what is in the sample room from our wholesale clients. This is the FW26 / SS27 summary — 5 palettes, the Pantone references, and what each one means in cashmere terms. These are not predictions of what will sell; they are the palettes we are actively running dye-lots on for FW26 production and SS27 sampling.
 
 If you are a brand building your FW26 capsule or SS27 collection, treat this as a working reference. If you are a yarn buyer selecting stock for a 2027 program, the palettes at the back of this page are the ones to dye-lot now.
