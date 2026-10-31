@@ -1025,13 +1025,21 @@ table { border-color:var(--snow-line); } th { background:var(--snow-mist); color
 @media (max-width:640px) { .section-padding { padding-top:4.5rem; padding-bottom:4.5rem; } h1,h2 { letter-spacing:-.035em; } }
 
 /* 无须改动每页内容结构：以主内容的原生 section/article 层级建立统一的页面节奏。 */
-main > section:first-child:not(.home-enhanced-hero) { position:relative; overflow:hidden; border-bottom:1px solid var(--snow-line); background:linear-gradient(112deg,#f7f3eb 0%,#fbfaf7 58%,#e8dfd2 100%); }
-main > section:first-child:not(.home-enhanced-hero)::after { content:""; position:absolute; right:-8%; top:20%; width:30rem; height:11rem; border-top:1px solid rgba(167,100,50,.36); border-radius:50%; transform:rotate(-12deg); pointer-events:none; }
+/* 2026-10-30: this rule used to set `background`, which beat the page's own
+   `bg-brand-ink` class (specificity 0,2,1 against Tailwind's 0,1,0) and
+   painted a pale gradient over every dark hero. The white text on those
+   heroes then sat on cream and could not be read.
+   `background-image` is used instead: a page that sets a background
+   colour still shows it, and the gradient layers over whatever is
+   there. The dark heroes additionally opt out through
+   .hero-dark, which keeps the gradient off them entirely. */
+main > section:first-child:not(.home-enhanced-hero):not(.hero-dark) { position:relative; overflow:hidden; border-bottom:1px solid var(--snow-line); background-image:linear-gradient(112deg,#f7f3eb 0%,#fbfaf7 58%,#e8dfd2 100%); }
+main > section:first-child:not(.home-enhanced-hero):not(.hero-dark)::after { content:""; position:absolute; right:-8%; top:20%; width:30rem; height:11rem; border-top:1px solid rgba(167,100,50,.36); border-radius:50%; transform:rotate(-12deg); pointer-events:none; }
 main > section:first-child:not(.home-enhanced-hero) h1 { max-width:14ch; font-size:clamp(3rem,6vw,6.25rem); }
 main > section:first-child:not(.home-enhanced-hero) h1 + p { max-width:52rem; color:var(--snow-muted); line-height:1.9; }
 main .home-enhanced-hero h1,main .home-enhanced-hero h2 { color:var(--snow-cream) !important; text-shadow:0 2px 18px rgba(23,21,19,.46); }
 main > section { border-color:var(--snow-line); }
-main > section:nth-child(even):not(.home-enhanced-hero) { background-color:rgba(243,238,229,.48); }
+main > section:nth-child(even):not(.home-enhanced-hero):not(.hero-dark) { background-color:rgba(243,238,229,.48); }
 main article { border-color:var(--snow-line); }
 main article h1, main article h2 { max-width:18ch; }
 main blockquote { border-left:2px solid var(--snow-thread); background:var(--snow-mist); color:var(--snow-ink); font-family:'Cormorant Garamond','Noto Serif SC',serif; font-size:1.25rem; line-height:1.55; padding:1.2rem 1.5rem; }
@@ -1062,10 +1070,10 @@ h3 { color:var(--b2b-ink); letter-spacing:-.018em; }
 .btn-lux-outline { border-color:var(--b2b-line); border-left-color:var(--b2b-line); color:var(--b2b-green); background:rgba(255,255,255,.65); }.btn-lux-outline:hover { border-color:var(--b2b-green); color:var(--b2b-green); }
 input,select,textarea { min-height:2.8rem; border-radius:4px !important; border-color:var(--b2b-line) !important; background:#fff !important; color:var(--b2b-ink) !important; }
 input:focus,select:focus,textarea:focus { border-color:var(--b2b-green) !important; outline:2px solid rgba(37,77,69,.13); }
-main > section:first-child:not(.home-enhanced-hero) { background:linear-gradient(118deg,#f7f8f5 0%,#fcfcfa 56%,#edf1ed 100%); border-bottom-color:var(--b2b-line); }
-main > section:first-child:not(.home-enhanced-hero)::after { border-top-color:rgba(37,77,69,.24); }
-main > section:first-child:not(.home-enhanced-hero) h1 + p { color:var(--b2b-copy); max-width:46rem; }
-main > section:nth-child(even):not(.home-enhanced-hero) { background-color:#f5f7f4; }
+main > section:first-child:not(.home-enhanced-hero):not(.hero-dark) { background-image:linear-gradient(118deg,#f7f8f5 0%,#fcfcfa 56%,#edf1ed 100%); border-bottom-color:var(--b2b-line); }
+main > section:first-child:not(.home-enhanced-hero):not(.hero-dark)::after { border-top-color:rgba(37,77,69,.24); }
+main > section:first-child:not(.home-enhanced-hero):not(.hero-dark) h1 + p { color:var(--b2b-copy); max-width:46rem; }
+main > section:nth-child(even):not(.home-enhanced-hero):not(.hero-dark) { background-color:#f5f7f4; }
 main .home-enhanced-hero h1,main .home-enhanced-hero h2 { color:#fffdf8 !important; }
 #filter-buttons { gap:.55rem; }
 #filter-buttons .filter-btn { min-height:2.5rem; border-radius:999px; border-color:var(--b2b-line); background:#fff; color:#40504c; padding-inline:1rem; font-size:.74rem; letter-spacing:.01em; }
@@ -1298,17 +1306,52 @@ main::after {
 
 /* Shared editorial surfaces — strong division without adding or removing content. */
 main > section { border-color: var(--archive-line); }
-main > section:nth-child(even):not(.home-enhanced-hero) { background: rgba(235,231,222,.54) !important; }
-main > section:nth-child(odd):not(.home-enhanced-hero) { background: transparent; }
-main > section:first-child:not(.home-enhanced-hero) {
-  background: linear-gradient(118deg, #f1eee7 0%, var(--archive-white) 58%, #e6e3d9 100%) !important;
+/* 2026-10-30: this was `background: ... !important` on the even sections.
+   The `background` shorthand plus !important overrode the page's own
+   background colour, so a dark section - the factory hero, the
+   chocolate band on the colour-cards page - was repainted in pale
+   cream and its white text became unreadable.
+
+   It is now `background-color` without !important, and the dark
+   sections opt out with .hero-dark so the alternating rhythm never
+   touches them. */
+main > section:nth-child(even):not(.home-enhanced-hero):not(.hero-dark) { background-color: rgba(235,231,222,.54); }
+main > section:nth-child(odd):not(.home-enhanced-hero):not(.hero-dark) { background-color: transparent; }
+/* 2026-10-30: this was `background: ... !important`, the strongest
+   rule in the file. It repainted every dark hero in the pale archive
+   gradient and left the white text unreadable. It is now
+   background-image without !important, and the dark heroes opt out
+   with .hero-dark. */
+main > section:first-child:not(.home-enhanced-hero):not(.hero-dark) {
+  background-image: linear-gradient(118deg, #f1eee7 0%, var(--archive-white) 58%, #e6e3d9 100%);
 }
-main > section:first-child:not(.home-enhanced-hero)::after {
+main > section:first-child:not(.home-enhanced-hero):not(.hero-dark)::after {
   width: min(37vw, 35rem) !important;
   border-top-color: rgba(179,109,63,.45) !important;
 }
 .container-narrow { max-width: 90rem !important; }
 h1, h2, h3 { color: var(--archive-ink) !important; }
+/* A dark section sets its own heading colour; the global rule above
+   would otherwise repaint its headings dark on dark.
+
+   The global rules are !important and they carry further than the
+   utility classes the markup actually uses: the factory hero writes
+   "text-white" on its H1 and "text-white/80" on its paragraph, and
+   without this the H1 came out dark green and the paragraph grey
+   brown on a near-black background - unreadable in both cases.
+
+   These two rules give the utilities their !important back, scoped
+   to .hero-dark, so a dark section's own text colours hold. Anything
+   without an explicit text colour still inherits the section's
+   colour, which is what the headings want. */
+.hero-dark h1, .hero-dark h2, .hero-dark h3 { color: inherit !important; }
+.hero-dark .text-white { color: #fff !important; }
+.hero-dark .text-white\/30 { color: rgb(255 255 255 / 0.3) !important; }
+.hero-dark .text-white\/50 { color: rgb(255 255 255 / 0.5) !important; }
+.hero-dark .text-white\/60 { color: rgb(255 255 255 / 0.6) !important; }
+.hero-dark .text-white\/70 { color: rgb(255 255 255 / 0.7) !important; }
+.hero-dark .text-white\/75 { color: rgb(255 255 255 / 0.75) !important; }
+.hero-dark .text-white\/80 { color: rgb(255 255 255 / 0.8) !important; }
 h1, h2 { font-family: "Cormorant Garamond", "Noto Serif SC", Georgia, serif; }
 p, li, td { color: var(--archive-copy); }
 .micro-label, .eyebrow > span, .eyebrow-label { color: var(--archive-copper) !important; }
