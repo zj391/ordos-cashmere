@@ -12,7 +12,7 @@ aiGenerated: true
 sourceTopic: "Cashmere Garment Marking and Labels: 5 Things B2B Buyers Should Specify (EAS + Care)"
 language: "cn"
 ---
-# 羊绒服装唛头与标签：B2B买家应明确的5项规格（EAS+洗护）
+## 羊绒服装唛头与标签：B2B买家应明确的5项规格（EAS+洗护）
 
 当您从内蒙古鄂尔多斯的工厂订购羊绒服装时，最不希望遇到的就是标签错误导致海关拒收、零售扣款或消费者困惑。然而，标签往往是B2B服装订单中最容易被忽视的部分。本指南涵盖了在生产开始前，您必须与羊绒供应商明确的五项关键唛头和标签规格。
 

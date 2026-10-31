@@ -12,7 +12,7 @@ aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "cn"
 ---
-# OEKO-TEX认证羊绒：B2B买家须知
+## OEKO-TEX认证羊绒：B2B买家须知
 
 羊绒是天然纤维。但从山羊到成衣的旅程涉及**化学品**——洗涤剂、染料、整理剂、抗起球酶。其中一些化学品可能残留对人体健康有害的物质。
 

@@ -12,7 +12,7 @@ aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "de"
 ---
-# Erklärung der Kaschmir-Garnfeinheit: 2/26 bis 2/60 Nm
+## Erklärung der Kaschmir-Garnfeinheit: 2/26 bis 2/60 Nm
 
 „100 % Kaschmirgarn“ gibt die Faser an. Die **Feinheit** gibt an, wie fein oder dick das Garn ist, was die Maschenweite, die Haptik und den Verwendungszweck Ihres fertigen Produkts bestimmt.
 

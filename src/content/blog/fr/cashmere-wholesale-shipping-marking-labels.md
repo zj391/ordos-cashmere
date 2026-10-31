@@ -12,7 +12,7 @@ aiGenerated: true
 sourceTopic: "Cashmere Garment Marking and Labels: 5 Things B2B Buyers Should Specify (EAS + Care)"
 language: "fr"
 ---
-# Marquage et étiquetage des vêtements en cachemire : 5 choses à spécifier pour les acheteurs B2B (EAS + entretien)
+## Marquage et étiquetage des vêtements en cachemire : 5 choses à spécifier pour les acheteurs B2B (EAS + entretien)
 
 Lorsque vous commandez des vêtements en cachemire auprès d'une usine à Ordos, en Mongolie intérieure, la dernière chose que vous souhaitez est une erreur d'étiquetage qui entraîne un rejet douanier, des pénalités de la part des détaillants ou une confusion chez le consommateur. Pourtant, l'étiquetage est souvent l'aspect le plus négligé d'une commande de vêtements B2B. Ce guide couvre les cinq spécifications de marquage et d'étiquetage critiques que vous devez définir avec votre fournisseur de cachemire—avant le début de la production.
 

@@ -13,7 +13,7 @@ sourceTopic: "translated-from-en"
 language: "de"
 ---
 
-# Kammgarn vs Streichgarn Kaschmirgarn: Welches wählen?
+## Kammgarn vs Streichgarn Kaschmirgarn: Welches wählen?
 
 „100 % Kaschmir" sagt Ihnen die Faserzusammensetzung. Es sagt Ihnen nicht, **wie das Garn gesponnen wurde** — und genau das entscheidet, ob Ihr Pullover glatt und fließend oder weich und locker wirkt.
 

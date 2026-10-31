@@ -13,7 +13,7 @@ sourceTopic: "translated-from-en"
 language: "cn"
 ---
 
-# 羊绒披肩批发定制 Logo：B2B 指南
+## 羊绒披肩批发定制 Logo：B2B 指南
 
 带品牌 Logo 的羊绒披肩是您能销售的最高毛利的贴牌产品之一。零售价 150-500 美元/件很常见，而生产成本可控。
 

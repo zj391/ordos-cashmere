@@ -12,7 +12,7 @@ aiGenerated: true
 sourceTopic: "translated-from-en"
 language: "de"
 ---
-# Von der Weide zum Kleidungsstück: 23 Schritte, aus Ordos-Kaschmir einen Pullover machen
+## Von der Weide zum Kleidungsstück: 23 Schritte, aus Ordos-Kaschmir einen Pullover machen
 
 Die meisten Käufer sehen einen fertigen Kaschmirpullover auf einer Kleiderstange im Geschäft. Nur wenige sehen, was nötig war, um dorthin zu gelangen. Ein einziger 250-Gramm-Pullover trägt, verborgen in seiner weichen Drehung, eine einjährige Reise in sich: von einer Ziege auf dem Albas-Plateau gekämmt, in einem mongolischen Sortierraum sortiert, auf italienischen Rahmen gesponnen, auf einer deutschen STOLL-Maschine gestrickt, gewaschen, repariert, gebügelt und verpackt – jeder Schritt nachvollziehbar, jeder Schritt unter einem Dach erledigt.
 

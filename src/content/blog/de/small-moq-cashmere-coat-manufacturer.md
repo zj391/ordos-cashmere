@@ -13,7 +13,7 @@ sourceTopic: "translated-from-en"
 language: "de"
 ---
 
-# Kleine MOQ Kaschmir-Mantelproduktion: Wie Boutiquen sourcen
+## Kleine MOQ Kaschmir-Mantelproduktion: Wie Boutiquen sourcen
 
 Die meisten chinesischen Kaschmirfabriken nennen **200–500 Stück Mindestmenge**. Boutiquen, die 30–50 Mäntel pro Saison verkaufen, glauben oft, kleine MOQ sei unmöglich.
 

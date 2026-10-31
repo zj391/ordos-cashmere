@@ -13,7 +13,7 @@ sourceTopic: "translated-from-en"
 language: "fr"
 ---
 
-# Fabrication de manteaux cachemire en petits lots : Comment les boutiques s'approvisionnent
+## Fabrication de manteaux cachemire en petits lots : Comment les boutiques s'approvisionnent
 
 La plupart des usines cachemire chinoises annoncent **200 à 500 pièces minimum**. Les boutiques qui vendent 30 à 50 manteaux par saison partent souvent du principe que les petits MOQ sont impossibles.
 

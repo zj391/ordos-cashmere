@@ -16,7 +16,7 @@ geoRegion: "FR"
 language: "de"
 ---
 
-# Kaschmir-Großhandel Frankreich: Direktbezug aus Ordos
+## Kaschmir-Großhandel Frankreich: Direktbezug aus Ordos
 
 Französische Mode importiert jährlich €180 Mio. Kaschmir. Das meiste kommt über Hongkong oder Mailand-Zwischenhändler — mit 30–50 % Aufschlag ohne Mehrwert.
 

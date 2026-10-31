@@ -16,7 +16,7 @@ aiGenerated: false
 sourceTopic: "custom-logo-cashmere"
 ---
 
-# Wholesale Cashmere Shawl with Custom Logo: B2B Guide
+## Wholesale Cashmere Shawl with Custom Logo: B2B Guide
 
 A cashmere shawl with your brand's logo is one of the highest-margin private label products you can sell. Retail prices of $150-500 per piece are common, and the production cost is reasonable.
 

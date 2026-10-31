@@ -12,7 +12,7 @@ aiGenerated: true
 sourceTopic: "Cashmere Garment Marking and Labels: 5 Things B2B Buyers Should Specify (EAS + Care)"
 language: "kr"
 ---
-# 캐시미어 의류 마킹 및 라벨: B2B 바이어가 지정해야 할 5가지 사항 (EAS + 케어)
+## 캐시미어 의류 마킹 및 라벨: B2B 바이어가 지정해야 할 5가지 사항 (EAS + 케어)
 
 내몽골 오르도스의 공장에서 캐시미어 의류를 주문할 때, 세관 거부, 소매점 차지백, 소비자 혼란을 초래하는 라벨링 오류는 가장 피하고 싶은 일입니다. 그런데도 라벨링은 B2B 의류 주문에서 가장 간과되기 쉬운 부분입니다. 이 가이드는 생산 시작 전에 캐시미어 공급업체와 반드시 정의해야 할 5가지 핵심 마킹 및 라벨링 사양을 다룹니다.
 

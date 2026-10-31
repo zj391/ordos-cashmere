@@ -19,7 +19,7 @@ sourceTopic: "cashmere-leggings-manufacturing"
 language: "cn"
 ---
 
-# 羊绒打底裤（Leggings）生产：B2B 采购指南
+## 羊绒打底裤（Leggings）生产：B2B 采购指南
 
 羊绒打底裤是羊绒服装增长最快的细分赛道之一，零售价 120–350 美元/条。它把 loungewear 的舒适与羊绒的奢华融为一体 —— 是面向高端 athleisure 与家居服市场的高毛利产品。
 

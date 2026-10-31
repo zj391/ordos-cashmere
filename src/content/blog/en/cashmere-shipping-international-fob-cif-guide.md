@@ -13,7 +13,7 @@ sourceTopic: "FOB vs CIF for Cashmere B2B"
 language: "en"
 ---
 
-# FOB vs CIF for Cashmere B2B: What B2B Buyers Should Specify (And What We Always Recommend)
+## FOB vs CIF for Cashmere B2B: What B2B Buyers Should Specify (And What We Always Recommend)
 
 A cashmere B2B buyer choosing between FOB Tianjin and CIF Rotterdam is deciding three things: who carries the cargo insurance, when the risk transfers from the mill to the buyer, and how much of the inland logistics is written into the contract price.
 

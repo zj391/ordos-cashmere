@@ -13,7 +13,7 @@ sourceTopic: "translated-from-en"
 language: "fr"
 ---
 
-# Fil cachemire peigné vs cardé : Lequel choisir ?
+## Fil cachemire peigné vs cardé : Lequel choisir ?
 
 « 100 % cachemire » vous indique la composition en fibres. Mais cela ne vous dit pas **comment le fil a été filé** — et c'est ce qui détermine si votre pull sera lisse et fluide, ou doux et volumineux.
 

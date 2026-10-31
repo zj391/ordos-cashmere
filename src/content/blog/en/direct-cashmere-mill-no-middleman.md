@@ -17,7 +17,7 @@ aiGenerated: false
 sourceTopic: "direct-mill-sourcing"
 ---
 
-# Direct Cashmere Mill, No Middleman: A B2B Guide
+## Direct Cashmere Mill, No Middleman: A B2B Guide
 
 The cashmere industry has a **30-40% middleman tax**. Most B2B buyers in Europe and North America don't buy directly from a Chinese cashmere factory — they buy from a **trading company** in Hong Kong, Istanbul, or Milan that adds 30-40% margin and provides local language support.
 

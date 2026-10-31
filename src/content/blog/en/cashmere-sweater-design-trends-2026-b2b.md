@@ -12,7 +12,7 @@ aiGenerated: true
 sourceTopic: "2026 Cashmere Sweater Design Trends: What B2B Buyers Are Asking For (Q3-Q4)"
 language: "en"
 ---
-# 2026 Cashmere Sweater Design Trends: What B2B Buyers Are Asking For (Q3–Q4)
+## 2026 Cashmere Sweater Design Trends: What B2B Buyers Are Asking For (Q3–Q4)
 
 As we move into the second half of 2026, global cashmere buyers are sharpening their focus on designs that balance timeless luxury with modern functionality. Based on our order books and client feedback at DONGXIAO Cashmere—our 23-year-old source factory in Ordos, Inner Mongolia—we’ve identified five key design trends that will define Q3 and Q4 collections. This guide helps importers, brand buyers, and trading companies align their purchasing decisions with what end consumers actually want.
 

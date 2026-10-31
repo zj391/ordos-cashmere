@@ -17,7 +17,7 @@ aiGenerated: false
 sourceTopic: "yarn-count-guide"
 ---
 
-# Cashmere Yarn Count Explained: 2/26 to 2/60 Nm
+## Cashmere Yarn Count Explained: 2/26 to 2/60 Nm
 
 "100% cashmere yarn" tells you the fiber. The **count** tells you how fine or thick the yarn is, which determines the gauge, hand feel, and end-use of your finished product.
 
