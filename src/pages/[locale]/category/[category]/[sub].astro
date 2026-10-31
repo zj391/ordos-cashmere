@@ -15,12 +15,9 @@
 import ClassifiedList from '@/components/products/ClassifiedList.astro';
 import { buildClassificationIndex } from '@/lib/classification';
 import {
+  ATTRIBUTE_LABEL,
   ATTRIBUTE_RULES,
   CATEGORY_LABEL,
-  GENDER_LABEL,
-  MATERIAL_LABEL,
-  NECKLINE_LABEL,
-  SEASON_LABEL,
   SUBTYPE_LABEL,
   type CategoryId,
 } from '@/data/taxonomy';
@@ -90,14 +87,7 @@ let subLabel = '';
 if (isSubtype) {
   subLabel = SUBTYPE_LABEL[sub]?.[locale] ?? SUBTYPE_LABEL[sub]?.en ?? sub;
 } else if (attributeRule) {
-  const map =
-    attributeRule.attribute === 'neckline'
-      ? NECKLINE_LABEL[attributeRule.value as keyof typeof NECKLINE_LABEL]
-      : attributeRule.attribute === 'gender'
-        ? GENDER_LABEL[attributeRule.value]
-        : attributeRule.attribute === 'material'
-          ? MATERIAL_LABEL[attributeRule.value]
-          : SEASON_LABEL[attributeRule.value];
+  const map = ATTRIBUTE_LABEL[attributeRule.attribute]?.[attributeRule.value];
   subLabel = map?.[locale] ?? map?.en ?? sub;
 }
 
@@ -125,12 +115,11 @@ const siblings = Array.from(CLASSIFIED_PAGES.entries())
     let label = '';
     if (isSub) label = SUBTYPE_LABEL[s]?.[locale] ?? SUBTYPE_LABEL[s]?.en ?? s;
     else if (rule) {
-      const map =
-        rule.attribute === 'neckline'
-          ? NECKLINE_LABEL[rule.value as keyof typeof NECKLINE_LABEL]
-          : rule.attribute === 'gender'
-            ? GENDER_LABEL[rule.value]
-            : SEASON_LABEL[rule.value];
+      // The lookup used to be a chain of branches that covered neckline,
+      // gender and season but not material, so a material page in the
+      // sibling list fell through to the season table and showed a
+      // season name.
+      const map = ATTRIBUTE_LABEL[rule.attribute]?.[rule.value];
       label = map?.[locale] ?? map?.en ?? s;
     }
     return { label, href: `/${locale}/category/cashmere-${categoryId}/${s}/`, count: list.length };

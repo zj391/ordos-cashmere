@@ -52,7 +52,16 @@ export type Neckline =
   | 'square-neck'
   | 'waistband';
 
-export type AttributeId = 'neckline' | 'gender' | 'season' | 'material';
+export type AttributeId =
+  | 'neckline'
+  | 'gender'
+  | 'season'
+  | 'material'
+  | 'count'
+  | 'form'
+  | 'pattern'
+  | 'audience'
+  | 'use';
 
 /**
  * Collapse the raw `collar` string into a neckline.
@@ -170,6 +179,103 @@ export function normaliseMaterial(raw: unknown): MaterialFamily | null {
   return null;
 }
 
+/**
+ * The yarn count (Nm) of a product.
+ *
+ * The count is the number a spinner and a knitter order against, and it
+ * is the question buyers ask most often about yarn: "2/26 or 2/60?"
+ * It appears in the product name ("2/26Nm Cashmere Yarn") and, for the
+ * records whose name only states the fibre, in the pattern field
+ * ("Single strand; 2-ply twisted") or the tags.
+ *
+ * The value is returned as it is written - "2/26" - because that is
+ * both the URL segment and the way the industry writes it.
+ */
+export function normaliseCount(raw: unknown): string | null {
+  if (raw === null || raw === undefined) return null;
+  const s = String(raw).trim().toLowerCase();
+  if (!s) return null;
+  // 2/26 Nm, 2/26nm, 2/ 26 Nm, 1/4.3 Nm - the denominator is a
+  // decimal on some counts, so the number pattern has to allow it.
+  const m = s.match(/(\d{1,2})\s*\/\s*(\d{1,3}(?:\.\d+)?)\s*nm/);
+  if (m) return `${m[1]}/${m[2]}`;
+  return null;
+}
+
+/**
+ * The physical form of a yarn: cone, hank or skein.
+ *
+ * A mill quotes a cone and a hank on different terms - a cone is
+ * ready for a machine knitter, a hank for a hand knitter - so this is
+ * a real buying distinction rather than a synonym list.
+ */
+export function normaliseForm(raw: unknown): 'cone' | 'hank' | 'skein' | null {
+  if (raw === null || raw === undefined) return null;
+  const s = String(raw).trim().toLowerCase();
+  if (!s) return null;
+  if (s.includes('cone')) return 'cone';
+  if (s.includes('hank')) return 'hank';
+  if (s.includes('skein')) return 'skein';
+  return null;
+}
+
+/**
+ * The pattern of a woven product.
+ *
+ * Only the patterns that carry a buying decision are recognised:
+ * a buyer who wants printed scarves does not want plain ones, and the
+ * two are priced and sampled differently.
+ */
+export function normalisePattern(raw: unknown): 'printed' | 'solid' | 'tassel' | 'plaid' | 'check' | null {
+  if (raw === null || raw === undefined) return null;
+  const s = String(raw).trim().toLowerCase();
+  if (!s) return null;
+  if (s.includes('plaid') || s.includes('tartan')) return 'plaid';
+  if (s.includes('houndstooth') || s.includes('herringbone')) return 'check';
+  if (s.includes('check')) return 'check';
+  if (s.includes('tassel') || s.includes('fringe')) return 'tassel';
+  if (s.includes('print') || s.includes('jacquard') || s.includes('paisley')) return 'printed';
+  if (s.includes('solid') || s.includes('plain')) return 'solid';
+  return null;
+}
+
+/**
+ * The audience a style is aimed at, read from the product name.
+ *
+ * The gender field on the record is mostly empty - 62 of the 76 hats
+ * carry no gender at all - and where it is filled it says "all" or
+ * "Women" in a way that does not match the name. The name is what the
+ * buyer reads, so it is the field that decides.
+ */
+export function normaliseAudience(raw: unknown): 'women' | 'men' | 'kids' | 'unisex' | null {
+  if (raw === null || raw === undefined) return null;
+  const s = String(raw).trim().toLowerCase();
+  if (!s) return null;
+  if (s.includes('kid') || s.includes('child') || s.includes('baby') || s.includes('infant')) return 'kids';
+  if (s.includes('unisex') || s.includes('men and women') || s.includes('women and men')) return 'unisex';
+  if (s.includes('men') && !s.includes('women')) return 'men';
+  if (s.includes('women') || s.includes('lady') || s.includes('ladies')) return 'women';
+  return null;
+}
+
+/**
+ * The use a style is bought for.
+ *
+ * This is the scarf and hat equivalent of the season field: a buyer
+ * looking for a hijab scarf or a winter hat is asking about use, not
+ * about fibre.
+ */
+export function normaliseUse(raw: unknown): 'hijab' | 'gift' | 'travel' | 'winter' | null {
+  if (raw === null || raw === undefined) return null;
+  const s = String(raw).trim().toLowerCase();
+  if (!s) return null;
+  if (s.includes('hijab')) return 'hijab';
+  if (s.includes('gift')) return 'gift';
+  if (s.includes('travel')) return 'travel';
+  if (s.includes('winter') || s.includes('fw') || s.includes('autumn')) return 'winter';
+  return null;
+}
+
 /** A product subtype: a style within a category. */
 export type SubtypeRule = {
   id: string;
@@ -271,6 +377,12 @@ export const ATTRIBUTE_RULES: AttributeRule[] = [
   { id: 'cashmere-yak', categoryId: 'sweaters', attribute: 'material', value: 'cashmere-yak' },
   { id: 'cashmere-taiji', categoryId: 'sweaters', attribute: 'material', value: 'cashmere-taiji' },
 
+  // Every hat in the catalogue is 100% cashmere, but the page still
+  // answers the question a buyer asks ("pure cashmere hats, not a
+  // blend") and the other material entries in the menu point at the
+  // yarn and scarf equivalents.
+  { id: 'pure-cashmere', categoryId: 'hats', attribute: 'material', value: 'pure-cashmere' },
+
   // Blankets split cleanly on material - 14 wool, 9 cashmere - and
   // that is the question a buyer asks about a blanket.
   { id: 'pure-cashmere', categoryId: 'blankets', attribute: 'material', value: 'pure-cashmere' },
@@ -286,6 +398,57 @@ export const ATTRIBUTE_RULES: AttributeRule[] = [
   { id: 'cashmere-taiji', categoryId: 'yarn', attribute: 'material', value: 'cashmere-taiji' },
   { id: 'pure-wool', categoryId: 'yarn', attribute: 'material', value: 'pure-wool' },
   { id: 'pure-merino', categoryId: 'yarn', attribute: 'material', value: 'pure-merino' },
+
+  // ---- Yarn count ------------------------------------------------------
+  // The count is the first question a knitter asks. Each of these
+  // pages carries at least ten styles, so none of them is thin.
+  { id: '2-26-nm', categoryId: 'yarn', attribute: 'count', value: '2/26' },
+  { id: '2-36-nm', categoryId: 'yarn', attribute: 'count', value: '2/36' },
+  { id: '1-17-nm', categoryId: 'yarn', attribute: 'count', value: '1/17' },
+  { id: '1-4-3-nm', categoryId: 'yarn', attribute: 'count', value: '1/4.3' },
+  { id: '2-16-nm', categoryId: 'yarn', attribute: 'count', value: '2/16' },
+  { id: '3-68-nm', categoryId: 'yarn', attribute: 'count', value: '3/68' },
+  { id: '2-60-nm', categoryId: 'yarn', attribute: 'count', value: '2/60' },
+  { id: '2-80-nm', categoryId: 'yarn', attribute: 'count', value: '2/80' },
+
+  // A cone and a hank are quoted on different terms - a cone is ready
+  // for a machine knitter, a hank for a hand knitter.
+  { id: 'cone', categoryId: 'yarn', attribute: 'form', value: 'cone' },
+
+  // ---- Scarf pattern ---------------------------------------------------
+  // Printed and solid are quoted and sampled differently, so they are
+  // separate pages rather than one "patterns" page.
+  { id: 'printed', categoryId: 'scarves', attribute: 'pattern', value: 'printed' },
+  { id: 'solid', categoryId: 'scarves', attribute: 'pattern', value: 'solid' },
+  { id: 'tassel', categoryId: 'scarves', attribute: 'pattern', value: 'tassel' },
+  { id: 'plaid', categoryId: 'scarves', attribute: 'pattern', value: 'plaid' },
+  { id: 'check', categoryId: 'scarves', attribute: 'pattern', value: 'check' },
+
+  // ---- Audience --------------------------------------------------------
+  // The gender field on the record is mostly empty, so these read the
+  // product name instead. A buyer shopping "cashmere hats for men" is
+  // asking for a page of men's hats, not a filtered catalogue.
+  { id: 'women', categoryId: 'hats', attribute: 'audience', value: 'women' },
+  { id: 'men', categoryId: 'hats', attribute: 'audience', value: 'men' },
+  { id: 'kids', categoryId: 'hats', attribute: 'audience', value: 'kids' },
+  { id: 'unisex', categoryId: 'hats', attribute: 'audience', value: 'unisex' },
+
+  { id: 'women', categoryId: 'scarves', attribute: 'audience', value: 'women' },
+  { id: 'men', categoryId: 'scarves', attribute: 'audience', value: 'men' },
+  { id: 'kids', categoryId: 'scarves', attribute: 'audience', value: 'kids' },
+  { id: 'unisex', categoryId: 'scarves', attribute: 'audience', value: 'unisex' },
+
+  { id: 'women', categoryId: 'accessories', attribute: 'audience', value: 'women' },
+  { id: 'men', categoryId: 'accessories', attribute: 'audience', value: 'men' },
+  { id: 'kids', categoryId: 'accessories', attribute: 'audience', value: 'kids' },
+  { id: 'unisex', categoryId: 'accessories', attribute: 'audience', value: 'unisex' },
+
+  // ---- Use -------------------------------------------------------------
+  // A hijab scarf is bought as a hijab scarf; it is not a sub-style of
+  // the shawl page.
+  { id: 'hijab', categoryId: 'scarves', attribute: 'use', value: 'hijab' },
+  { id: 'winter', categoryId: 'scarves', attribute: 'use', value: 'winter' },
+  { id: 'winter', categoryId: 'hats', attribute: 'use', value: 'winter' },
 ];
 
 /** Localised names for a neckline. */
@@ -362,6 +525,68 @@ export const MATERIAL_LABEL: Record<string, Record<Locale, string>> = {
   'cashmere-taiji': { en: 'Cashmere / Taiji Stone', cn: '羊绒/太基石纤维混纺', de: 'Kaschmir/Taiji-Stein', fr: 'Cachemire/pierre Taiji', ja: 'カシミア/タイジストーン', kr: '캐시미어/타이지스톤' },
   'pure-wool': { en: '100% Wool', cn: '100% 羊毛', de: '100% Wolle', fr: '100% laine', ja: '100% ウール', kr: '100% 울' },
   'pure-merino': { en: '100% Merino', cn: '100% 美利奴羊毛', de: '100% Merino', fr: '100% mérinos', ja: '100% メリノ', kr: '100% 메리노' },
+};
+
+/** Localised names for a yarn count. */
+export const COUNT_LABEL: Record<string, Record<Locale, string>> = {
+  '2/26': { en: '2/26 Nm', cn: '2/26 Nm', de: '2/26 Nm', fr: '2/26 Nm', ja: '2/26 Nm', kr: '2/26 Nm' },
+  '2/36': { en: '2/36 Nm', cn: '2/36 Nm', de: '2/36 Nm', fr: '2/36 Nm', ja: '2/36 Nm', kr: '2/36 Nm' },
+  '1/17': { en: '1/17 Nm', cn: '1/17 Nm', de: '1/17 Nm', fr: '1/17 Nm', ja: '1/17 Nm', kr: '1/17 Nm' },
+  '1/4.3': { en: '1/4.3 Nm', cn: '1/4.3 Nm', de: '1/4.3 Nm', fr: '1/4.3 Nm', ja: '1/4.3 Nm', kr: '1/4.3 Nm' },
+  '2/16': { en: '2/16 Nm', cn: '2/16 Nm', de: '2/16 Nm', fr: '2/16 Nm', ja: '2/16 Nm', kr: '2/16 Nm' },
+  '3/68': { en: '3/68 Nm', cn: '3/68 Nm', de: '3/68 Nm', fr: '3/68 Nm', ja: '3/68 Nm', kr: '3/68 Nm' },
+  '2/60': { en: '2/60 Nm', cn: '2/60 Nm', de: '2/60 Nm', fr: '2/60 Nm', ja: '2/60 Nm', kr: '2/60 Nm' },
+  '2/80': { en: '2/80 Nm', cn: '2/80 Nm', de: '2/80 Nm', fr: '2/80 Nm', ja: '2/80 Nm', kr: '2/80 Nm' },
+};
+
+/** Localised names for a yarn form. */
+export const FORM_LABEL: Record<string, Record<Locale, string>> = {
+  cone: { en: 'Cone Yarn', cn: '筒装纱线', de: 'Kegelgarn', fr: 'Fil en cône', ja: 'コーン糸', kr: '원사 콘' },
+  hank: { en: 'Hank Yarn', cn: '绞纱', de: 'Strangengarn', fr: 'Fil en écheve', ja: 'ハンク糸', kr: '원사 환' },
+  skein: { en: 'Skein Yarn', cn: '绞卷纱', de: 'Strähnengarn', fr: 'Fil en pelote', ja: 'skein 糸', kr: 'skein 원사' },
+};
+
+/** Localised names for a pattern. */
+export const PATTERN_LABEL: Record<string, Record<Locale, string>> = {
+  printed: { en: 'Printed', cn: '印花', de: 'Bedruckt', fr: 'Imprimé', ja: 'プリント', kr: '프린트' },
+  solid: { en: 'Solid Colour', cn: '素色', de: 'Einfarbig', fr: 'Uni', ja: '無地', kr: '단색' },
+  tassel: { en: 'Tasselled', cn: '流苏', de: 'Fransen', fr: 'Frangés', ja: '房飾り', kr: '모짜 장식' },
+  plaid: { en: 'Plaid', cn: '格纹', de: 'Karo', fr: 'Carreaux', ja: 'チェック', kr: '플레이드' },
+  check: { en: 'Checked', cn: '千鸟格', de: 'Karo', fr: 'Damier', ja: '千鳥格子', kr: '체크' },
+};
+
+/** Localised names for an audience bucket. */
+export const AUDIENCE_LABEL: Record<string, Record<Locale, string>> = {
+  women: { en: "Women's", cn: '女装', de: 'Damen', fr: 'Femme', ja: 'ウィメンズ', kr: '여성' },
+  men: { en: "Men's", cn: '男装', de: 'Herren', fr: 'Homme', ja: 'メンズ', kr: '남성' },
+  kids: { en: "Kids'", cn: '童装', de: 'Kinder', fr: 'Enfant', ja: 'キッズ', kr: '키즈' },
+  unisex: { en: 'Unisex', cn: '男女同款', de: 'Unisex', fr: 'Unisexe', ja: 'ユニセックス', kr: '유니섹스' },
+};
+
+/** Localised names for a use bucket. */
+export const USE_LABEL: Record<string, Record<Locale, string>> = {
+  hijab: { en: 'Hijab', cn: '头巾', de: 'Hijab', fr: 'Hijab', ja: 'ヒジャブ', kr: '히자브' },
+  gift: { en: 'Gift', cn: '礼品', de: 'Geschenk', fr: 'Cadeau', ja: 'ギフト', kr: '기프트' },
+  travel: { en: 'Travel', cn: '旅行', de: 'Reise', fr: 'Voyage', ja: 'トラベル', kr: '트래블' },
+  winter: { en: 'Winter', cn: '冬季', de: 'Winter', fr: 'Hiver', ja: '冬', kr: '겨울' },
+};
+
+/**
+ * The label tables, indexed by attribute.
+ *
+ * The page template needs one lookup rather than a chain of branches,
+ * because the number of dimensions grew from four to nine.
+ */
+export const ATTRIBUTE_LABEL: Record<string, Record<string, Record<Locale, string>>> = {
+  neckline: NECKLINE_LABEL,
+  gender: GENDER_LABEL,
+  season: SEASON_LABEL,
+  material: MATERIAL_LABEL,
+  count: COUNT_LABEL,
+  form: FORM_LABEL,
+  pattern: PATTERN_LABEL,
+  audience: AUDIENCE_LABEL,
+  use: USE_LABEL,
 };
 
 /** Localised category names. */

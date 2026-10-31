@@ -9,10 +9,15 @@ import { getAllProducts, type Product } from '@/data/products';
 import {
   ATTRIBUTE_RULES,
   SUBTYPE_RULES,
+  normaliseAudience,
+  normaliseCount,
+  normaliseForm,
   normaliseGender,
   normaliseMaterial,
   normaliseNeckline,
+  normalisePattern,
   normaliseSeason,
+  normaliseUse,
   type AttributeId,
   type CategoryId,
   type Neckline,
@@ -24,6 +29,7 @@ type Classifiable = Product & {
   gender?: string | null;
   season?: string | null;
   material?: string | null;
+  pattern?: string | null;
   tags?: string[];
 };
 
@@ -115,7 +121,22 @@ export function necklineFromName(p: Classifiable): Neckline | null {
   return null;
 }
 
-/** The normalised attribute values of a product. */
+/**
+ * The normalised attribute values of a product.
+ *
+ * The later dimensions read a different field each, because the
+ * catalogue does not carry them uniformly:
+ *
+ *   - count and form come from the name and the pattern field, which
+ *     is where a yarn record states its Nm count and its form
+ *   - pattern comes from the name and the pattern field, with the tags
+ *     as a backstop - the tag list is seeded identically on every
+ *     record of a category, so it only helps when it names a specific
+ *     pattern ("Printed Scarf")
+ *   - audience comes from the name, because the gender field is empty
+ *     on most records and says "all" on the rest
+ *   - use comes from the name and the tags
+ */
 export function attributesOf(p: Classifiable): Partial<Record<AttributeId, string>> {
   const out: Partial<Record<AttributeId, string>> = {};
   const neck = necklineFromName(p) ?? normaliseNeckline(p.collar);
@@ -126,6 +147,26 @@ export function attributesOf(p: Classifiable): Partial<Record<AttributeId, strin
   if (season) out.season = season;
   const material = normaliseMaterial(p.material);
   if (material) out.material = material;
+
+  const name = p.name || '';
+  const patternField = p.pattern || '';
+  const tagText = (p.tags || []).join(' ');
+
+  const count = normaliseCount(`${name} ${patternField}`);
+  if (count) out.count = count;
+
+  const form = normaliseForm(`${name} ${patternField}`);
+  if (form) out.form = form;
+
+  const pattern = normalisePattern(`${name} ${patternField} ${tagText}`);
+  if (pattern) out.pattern = pattern;
+
+  const audience = normaliseAudience(name);
+  if (audience) out.audience = audience;
+
+  const use = normaliseUse(`${name} ${tagText} ${p.season || ''}`);
+  if (use) out.use = use;
+
   return out;
 }
 
