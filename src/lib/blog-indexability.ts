@@ -71,8 +71,8 @@ export const INDEXABLE_BLOG_IDS = new Set([
   'cn/fw2025-cashmere-sweater-wholesale-showcase',
   'en/sourcing-cashmere-from-china-b2b-fw2025-guide',
   'cn/sourcing-cashmere-from-china-b2b-fw2025-guide',
-  // 2026-09-17 — yarn formulations guide: cross-link to /products/yarn/ category page
-  // (yarn-formulas.ts + CategoryPage.astro yarn section are the inbound targets)
+  // 2026-09-17 — yarn formulations guide: cross-link to the yarn category page
+  // (yarn-formulas.ts + the yarn category page are the inbound targets)
   'en/cashmere-yarn-formulations-ordos-facility-2026',
   'cn/cashmere-yarn-formulations-ordos-facility-2026',
   // 2026-09-17 — CN translations for the 8 priority EN-only blog posts (B2B

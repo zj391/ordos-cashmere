@@ -41,7 +41,7 @@ The value of these records is operational clarity. They can help a buyer separat
 
 For a new EU-facing cashmere program, ask the brand or importer: *Which entity places the finished goods on the EU market, and what information will that entity need from its suppliers to support its unsold-goods process?* The answer can be translated into a project-specific documentation list rather than a broad claim about disposal, returns or circularity.
 
-For specification-led discussions, begin with [cashmere garment development](/en/garment-oem/) or [cashmere yarn product records](/en/products/yarn/), then confirm the applicable EU and destination-market requirements in writing.
+For specification-led discussions, begin with [cashmere garment development](/en/garment-oem/) or [cashmere yarn product records](/en/category/cashmere-yarn/), then confirm the applicable EU and destination-market requirements in writing.
 
 ## References
 

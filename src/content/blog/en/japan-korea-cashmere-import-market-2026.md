@@ -87,4 +87,4 @@ For Asia-specific questions about cashmere grading, hand-feel and knit construct
 
 The figures in this note are directional and intended for B2B reference. Actual import volumes, market share and brand activity should be confirmed with the latest trade statistics and current buyer intelligence before being used in commercial planning. For specific buyer introductions or program briefs, contact us through the project inquiry page.
 
-For product-side starting points, see the [cashmere knitwear product records](/en/garment-oem/), [yarn specifications](/en/products/yarn/) and [raw-material sourcing information](/en/raw-material/).
+For product-side starting points, see the [cashmere knitwear product records](/en/garment-oem/), [yarn specifications](/en/category/cashmere-yarn/) and [raw-material sourcing information](/en/raw-material/).

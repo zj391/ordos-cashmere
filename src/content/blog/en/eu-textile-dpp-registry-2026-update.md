@@ -43,7 +43,7 @@ These are procurement controls, not a claim that a product is DPP-ready. The app
 
 For a cashmere yarn, knitwear or accessory program intended for the EU, a useful brief can ask: Which product identifiers are stable through sampling and bulk production? Which material and color records can be linked to the approved style? Which party will own and retain the records? Which details are documented today, and which would require a new process? Agreeing these points in writing creates a clearer working file while the textile delegated act is still pending.
 
-For product-level starting points, see the [cashmere yarn product records](/en/products/yarn/), [raw-material records](/en/raw-material/) and [garment development information](/en/garment-oem/). For an EU program, confirm the applicable legal requirements with qualified legal or compliance advisers before making a market claim.
+For product-level starting points, see the [cashmere yarn product records](/en/category/cashmere-yarn/), [raw-material records](/en/raw-material/) and [garment development information](/en/garment-oem/). For an EU program, confirm the applicable legal requirements with qualified legal or compliance advisers before making a market claim.
 
 ## References
 

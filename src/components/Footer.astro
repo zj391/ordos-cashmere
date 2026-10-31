@@ -34,9 +34,15 @@ const fl = (k: string): string => {
   return raw.replace('{year}', String(new Date().getFullYear()));
 };
 
+// 2026-10-31: the yarn hub moved to /[locale]/category/cashmere-yarn/.
+// The old /products/yarn URL still 200s as a redirect, but every internal
+// link has to point straight at the new URL - a link into a redirect
+// wastes a crawl hop and dilutes the signal for the target page.
+// The /garment-oem page is a separate landing page with its own H1
+// ("Cashmere Garment OEM / ODM") and is intentionally left alone.
 const productLinks = [
   { href: '/raw-material', labelKey: 'nav.rawMaterial' },
-  { href: '/products/yarn', labelKey: 'nav.yarnFabric' },
+  { href: '/category/cashmere-yarn', labelKey: 'nav.yarnFabric' },
   { href: '/garment-oem', labelKey: 'nav.garmentOem' },
   { href: '/factory', labelKey: 'nav.factory' },
   { href: '/ordos-origin', labelKey: 'nav.ordosOrigin' },

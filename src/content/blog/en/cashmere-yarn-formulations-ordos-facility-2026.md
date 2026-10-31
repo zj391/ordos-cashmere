@@ -36,7 +36,7 @@ Our 10 yarn formulations fall into four blend categories:
 
 The pure-cashmere range covers gauge needs from chunky-weaving (1/4.3NM, 1/6.5NM) to fine-worsted (3/68NM). The blend categories address price-tier diversification: cashmere-wool blends sit at the entry-level, cashmere-specialty blends at the mid-to-premium tier, and signature blends (YARK, Taiji Stone) become brand-differentiating SKUs.
 
-Browse the [complete cashmere yarn catalog](/en/products/yarn/) for the 73 stock yarn configurations available across these 10 formulations.
+Browse the [complete cashmere yarn catalog](/en/category/cashmere-yarn/) for the 73 stock yarn configurations available across these 10 formulations.
 
 ## 1. Pure Cashmere 2/26NM (Stock Workhorse)
 

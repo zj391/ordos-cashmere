@@ -1250,7 +1250,16 @@ const breadcrumbSchema = {
 
     { '@type': 'ListItem', position: 2, name: 'Products', item: `${SITE_URL}/${locale}/products/` },
 
-    { '@type': 'ListItem', position: 3, name: displayCategory, item: `${SITE_URL}/${locale}/products/${product.categoryId === 'hats' ? 'hats-accessories' : product.categoryId === 'accessories' ? 'accessories-cat' : product.categoryId === 'sweaters' ? 'garment-oem' : product.categoryId}/` },
+    {
+      // 2026-10-31: the category hub moved to /category/cashmere-<category>/.
+      // The old /products/<slug>/ URLs redirect there, but a breadcrumb
+      // that names the redirect target keeps the two ends of the trail
+      // on the same URL, which is what the schema is for.
+      '@type': 'ListItem',
+      position: 3,
+      name: displayCategory,
+      item: `${SITE_URL}/${locale}/category/cashmere-${product.categoryId}/`,
+    },
 
     { '@type': 'ListItem', position: 4, name: productHeading, item: `${SITE_URL}/${locale}/products/${product.id}/` },
 

@@ -81,32 +81,32 @@
     },
     {
       "source": "/products/sweaters/",
-      "destination": "/en/products/garment-oem/",
+      "destination": "/en/category/cashmere-sweaters/",
       "permanent": true
     },
     {
       "source": "/products/sweaters",
-      "destination": "/en/products/garment-oem/",
+      "destination": "/en/category/cashmere-sweaters/",
       "permanent": true
     },
     {
       "source": "/products/hats/",
-      "destination": "/en/products/hats-accessories/",
+      "destination": "/en/category/cashmere-hats/",
       "permanent": true
     },
     {
       "source": "/products/hats",
-      "destination": "/en/products/hats-accessories/",
+      "destination": "/en/category/cashmere-hats/",
       "permanent": true
     },
     {
       "source": "/products/accessories/",
-      "destination": "/en/products/accessories-cat/",
+      "destination": "/en/category/cashmere-accessories/",
       "permanent": true
     },
     {
       "source": "/products/accessories",
-      "destination": "/en/products/accessories-cat/",
+      "destination": "/en/category/cashmere-accessories/",
       "permanent": true
     },
     {
@@ -267,6 +267,326 @@
     {
       "source": "/cn/products/fabric/(.*)",
       "destination": "/cn/products/",
+      "permanent": true
+    },
+    {
+      "source": "/en/products/hats-accessories/",
+      "destination": "/en/category/cashmere-hats/",
+      "permanent": true
+    },
+    {
+      "source": "/en/products/hats-accessories",
+      "destination": "/en/category/cashmere-hats/",
+      "permanent": true
+    },
+    {
+      "source": "/en/products/garment-oem/",
+      "destination": "/en/category/cashmere-sweaters/",
+      "permanent": true
+    },
+    {
+      "source": "/en/products/garment-oem",
+      "destination": "/en/category/cashmere-sweaters/",
+      "permanent": true
+    },
+    {
+      "source": "/en/products/scarves/",
+      "destination": "/en/category/cashmere-scarves/",
+      "permanent": true
+    },
+    {
+      "source": "/en/products/scarves",
+      "destination": "/en/category/cashmere-scarves/",
+      "permanent": true
+    },
+    {
+      "source": "/en/products/accessories-cat/",
+      "destination": "/en/category/cashmere-accessories/",
+      "permanent": true
+    },
+    {
+      "source": "/en/products/accessories-cat",
+      "destination": "/en/category/cashmere-accessories/",
+      "permanent": true
+    },
+    {
+      "source": "/en/products/yarn/",
+      "destination": "/en/category/cashmere-yarn/",
+      "permanent": true
+    },
+    {
+      "source": "/en/products/yarn",
+      "destination": "/en/category/cashmere-yarn/",
+      "permanent": true
+    },
+    {
+      "source": "/de/products/hats-accessories/",
+      "destination": "/de/category/cashmere-hats/",
+      "permanent": true
+    },
+    {
+      "source": "/de/products/hats-accessories",
+      "destination": "/de/category/cashmere-hats/",
+      "permanent": true
+    },
+    {
+      "source": "/de/products/garment-oem/",
+      "destination": "/de/category/cashmere-sweaters/",
+      "permanent": true
+    },
+    {
+      "source": "/de/products/garment-oem",
+      "destination": "/de/category/cashmere-sweaters/",
+      "permanent": true
+    },
+    {
+      "source": "/de/products/scarves/",
+      "destination": "/de/category/cashmere-scarves/",
+      "permanent": true
+    },
+    {
+      "source": "/de/products/scarves",
+      "destination": "/de/category/cashmere-scarves/",
+      "permanent": true
+    },
+    {
+      "source": "/de/products/accessories-cat/",
+      "destination": "/de/category/cashmere-accessories/",
+      "permanent": true
+    },
+    {
+      "source": "/de/products/accessories-cat",
+      "destination": "/de/category/cashmere-accessories/",
+      "permanent": true
+    },
+    {
+      "source": "/de/products/yarn/",
+      "destination": "/de/category/cashmere-yarn/",
+      "permanent": true
+    },
+    {
+      "source": "/de/products/yarn",
+      "destination": "/de/category/cashmere-yarn/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/products/hats-accessories/",
+      "destination": "/fr/category/cashmere-hats/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/products/hats-accessories",
+      "destination": "/fr/category/cashmere-hats/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/products/garment-oem/",
+      "destination": "/fr/category/cashmere-sweaters/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/products/garment-oem",
+      "destination": "/fr/category/cashmere-sweaters/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/products/scarves/",
+      "destination": "/fr/category/cashmere-scarves/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/products/scarves",
+      "destination": "/fr/category/cashmere-scarves/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/products/accessories-cat/",
+      "destination": "/fr/category/cashmere-accessories/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/products/accessories-cat",
+      "destination": "/fr/category/cashmere-accessories/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/products/yarn/",
+      "destination": "/fr/category/cashmere-yarn/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/products/yarn",
+      "destination": "/fr/category/cashmere-yarn/",
+      "permanent": true
+    },
+    {
+      "source": "/ja/products/hats-accessories/",
+      "destination": "/ja/category/cashmere-hats/",
+      "permanent": true
+    },
+    {
+      "source": "/ja/products/hats-accessories",
+      "destination": "/ja/category/cashmere-hats/",
+      "permanent": true
+    },
+    {
+      "source": "/ja/products/garment-oem/",
+      "destination": "/ja/category/cashmere-sweaters/",
+      "permanent": true
+    },
+    {
+      "source": "/ja/products/garment-oem",
+      "destination": "/ja/category/cashmere-sweaters/",
+      "permanent": true
+    },
+    {
+      "source": "/ja/products/scarves/",
+      "destination": "/ja/category/cashmere-scarves/",
+      "permanent": true
+    },
+    {
+      "source": "/ja/products/scarves",
+      "destination": "/ja/category/cashmere-scarves/",
+      "permanent": true
+    },
+    {
+      "source": "/ja/products/accessories-cat/",
+      "destination": "/ja/category/cashmere-accessories/",
+      "permanent": true
+    },
+    {
+      "source": "/ja/products/accessories-cat",
+      "destination": "/ja/category/cashmere-accessories/",
+      "permanent": true
+    },
+    {
+      "source": "/ja/products/yarn/",
+      "destination": "/ja/category/cashmere-yarn/",
+      "permanent": true
+    },
+    {
+      "source": "/ja/products/yarn",
+      "destination": "/ja/category/cashmere-yarn/",
+      "permanent": true
+    },
+    {
+      "source": "/kr/products/hats-accessories/",
+      "destination": "/kr/category/cashmere-hats/",
+      "permanent": true
+    },
+    {
+      "source": "/kr/products/hats-accessories",
+      "destination": "/kr/category/cashmere-hats/",
+      "permanent": true
+    },
+    {
+      "source": "/kr/products/garment-oem/",
+      "destination": "/kr/category/cashmere-sweaters/",
+      "permanent": true
+    },
+    {
+      "source": "/kr/products/garment-oem",
+      "destination": "/kr/category/cashmere-sweaters/",
+      "permanent": true
+    },
+    {
+      "source": "/kr/products/scarves/",
+      "destination": "/kr/category/cashmere-scarves/",
+      "permanent": true
+    },
+    {
+      "source": "/kr/products/scarves",
+      "destination": "/kr/category/cashmere-scarves/",
+      "permanent": true
+    },
+    {
+      "source": "/kr/products/accessories-cat/",
+      "destination": "/kr/category/cashmere-accessories/",
+      "permanent": true
+    },
+    {
+      "source": "/kr/products/accessories-cat",
+      "destination": "/kr/category/cashmere-accessories/",
+      "permanent": true
+    },
+    {
+      "source": "/kr/products/yarn/",
+      "destination": "/kr/category/cashmere-yarn/",
+      "permanent": true
+    },
+    {
+      "source": "/kr/products/yarn",
+      "destination": "/kr/category/cashmere-yarn/",
+      "permanent": true
+    },
+    {
+      "source": "/cn/products/hats-accessories/",
+      "destination": "/cn/category/cashmere-hats/",
+      "permanent": true
+    },
+    {
+      "source": "/cn/products/hats-accessories",
+      "destination": "/cn/category/cashmere-hats/",
+      "permanent": true
+    },
+    {
+      "source": "/cn/products/garment-oem/",
+      "destination": "/cn/category/cashmere-sweaters/",
+      "permanent": true
+    },
+    {
+      "source": "/cn/products/garment-oem",
+      "destination": "/cn/category/cashmere-sweaters/",
+      "permanent": true
+    },
+    {
+      "source": "/cn/products/scarves/",
+      "destination": "/cn/category/cashmere-scarves/",
+      "permanent": true
+    },
+    {
+      "source": "/cn/products/scarves",
+      "destination": "/cn/category/cashmere-scarves/",
+      "permanent": true
+    },
+    {
+      "source": "/cn/products/accessories-cat/",
+      "destination": "/cn/category/cashmere-accessories/",
+      "permanent": true
+    },
+    {
+      "source": "/cn/products/accessories-cat",
+      "destination": "/cn/category/cashmere-accessories/",
+      "permanent": true
+    },
+    {
+      "source": "/cn/products/yarn/",
+      "destination": "/cn/category/cashmere-yarn/",
+      "permanent": true
+    },
+    {
+      "source": "/cn/products/yarn",
+      "destination": "/cn/category/cashmere-yarn/",
+      "permanent": true
+    },
+    {
+      "source": "/products/scarves/",
+      "destination": "/en/category/cashmere-scarves/",
+      "permanent": true
+    },
+    {
+      "source": "/products/scarves",
+      "destination": "/en/category/cashmere-scarves/",
+      "permanent": true
+    },
+    {
+      "source": "/products/yarn/",
+      "destination": "/en/category/cashmere-yarn/",
+      "permanent": true
+    },
+    {
+      "source": "/products/yarn",
+      "destination": "/en/category/cashmere-yarn/",
       "permanent": true
     }
   ],

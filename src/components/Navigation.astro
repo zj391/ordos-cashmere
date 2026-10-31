@@ -8,6 +8,7 @@ import { LOCALES, LOCALE_NAMES, LOCALE_FLAGS, type Locale } from '@/lib/i18n';
 import { localePath } from '@/lib/i18n';
 import submenusData from '@/data/nav-submenus.json';
 import { submenuHref } from '@/data/nav-submenu-pages';
+import { categoryHubHref as categoryHubHrefFor } from '@/lib/category-hub';
 
 // jevseo 2026-10-19 JEV-007 (P3): intrinsic dimensions for the mega-menu
 // feature-card image in each product category. Landscape series 1200x900,
@@ -54,13 +55,15 @@ const productListHref = localePath(locale, '/products');
 // pages, which are the aggregated legacy listings; the classified
 // pages under /category/<slug>/ are the ones the taxonomy builds and
 // the ones that carry the style breakdown.
+// 2026-10-31: the paths come from src/lib/category-hub.ts so the nav,
+// the footer, the breadcrumb schema and the sitemap cannot drift apart.
 const categoryHubHref = {
-  hats: `/${locale}/category/cashmere-hats/`,
-  sweaters: `/${locale}/category/cashmere-sweaters/`,
-  scarves: `/${locale}/category/cashmere-scarves/`,
-  accessories: `/${locale}/category/cashmere-accessories/`,
-  yarn: `/${locale}/category/cashmere-yarn/`,
-  blankets: `/${locale}/category/cashmere-blankets/`,
+  hats: categoryHubHrefFor(locale, 'hats'),
+  sweaters: categoryHubHrefFor(locale, 'sweaters'),
+  scarves: categoryHubHrefFor(locale, 'scarves'),
+  accessories: categoryHubHrefFor(locale, 'accessories'),
+  yarn: categoryHubHrefFor(locale, 'yarn'),
+  blankets: categoryHubHrefFor(locale, 'blankets'),
 };
 
 const navItems = [

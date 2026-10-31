@@ -301,10 +301,10 @@ async function processNurtureOne(lead: DueLead): Promise<{ ok: boolean; error?: 
 function pickProductLink(inquiryType: string | null): string {
   const t = (inquiryType || '').toLowerCase();
   if (t.includes('raw') || t.includes('material')) return `${SITE_BASE_URL}/en/products/raw-material/`;
-  if (t.includes('yarn') || t.includes('fabric')) return `${SITE_BASE_URL}/en/products/yarn/`;
-  if (t.includes('garment') || t.includes('oem')) return `${SITE_BASE_URL}/en/products/garment-oem/`;
-  if (t.includes('scarf')) return `${SITE_BASE_URL}/en/products/scarves/`;
-  if (t.includes('hat')) return `${SITE_BASE_URL}/en/products/hats-accessories/`;
+  if (t.includes('yarn') || t.includes('fabric')) return `${SITE_BASE_URL}/en/category/cashmere-yarn/`;
+  if (t.includes('garment') || t.includes('oem')) return `${SITE_BASE_URL}/en/category/cashmere-sweaters/`;
+  if (t.includes('scarf')) return `${SITE_BASE_URL}/en/category/cashmere-scarves/`;
+  if (t.includes('hat')) return `${SITE_BASE_URL}/en/category/cashmere-hats/`;
   return `${SITE_BASE_URL}/en/products/`;
 }
 

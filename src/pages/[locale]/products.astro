@@ -109,19 +109,14 @@ const CATEGORY_HUBS: Record<string, { slug: string; label: Record<string, string
   yarn: { slug: 'yarn', label: { en: 'Cashmere Yarn & Fiber: Cone, Hank, Knitting & Weaving', cn: '羊绒纱线与纤维：筒纱、绞纱、针织与机织', de: 'Kaschmirgarn & Fasern: Konen, Stränge, Strick- und Webprodukte', fr: 'Fil et fibre de cachemire : cônes, écheveaux, tricot et tissage', ja: 'カシミア糸・繊維：コーン・かせ・編み物・織物', kr: '캐시미어 원사·섬유: 콘·타래·편물·직물' } },
 };
 
-// jevseo 2026-10-19: hubs that have a real Astro page under
-// src/pages/[locale]/products/<slug>.astro. Anything else has to route
-// through ?cat=<id> to avoid generating 404s from catalog-index links
-// (hats=hat-accessories.astro, sweaters=garment-oem.astro,
-//  accessories=accessories-cat.astro, scarves=scarves.astro, yarn=yarn.astro
-//  -> 'blankets' lands on cashmere-blankets slug which has no matching file.)
-const HUB_PATH_HUBS = new Set([
-  'hats-accessories',
-  'garment-oem',
-  'scarves',
-  'accessories-cat',
-  'yarn',
-]);
+// 2026-10-31: every category now has a real page under
+// /[locale]/category/cashmere-<id>/, so the catalog index links there
+// directly.
+//
+// It used to be a mixed bag: the four categories that had a dedicated
+// Astro page under src/pages/[locale]/products/<slug>.astro linked to
+// that path, and the rest fell back to /products?cat=<id> - a query
+// filter that Google cannot index. Now there is one rule for all six.
 
 const LISTING_DISCOVERY_COPY: Record<string, { eyebrow: string; title: string; intro: string; action: string; projectTerms: string }> = {
   en: { eyebrow: 'Browse by product family', title: 'Explore cashmere product types, styles and listed attributes', intro: 'Use stable category pages to compare product families and their listed construction, pattern, material and size attributes. Interactive filters refine this catalog without creating a separate sourcing claim.', action: 'Explore category catalog', projectTerms: 'Project details confirmed in writing' },
@@ -451,15 +446,11 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
           <div class="catalog-index-heading"><span>{catalogUiCopy.index}</span><span>01–06</span></div>
           <div class="catalog-index-links">
             {categories.map((cat, index) => {
-              // jevseo 2026-10-19 JEV-001 (P1): /<locale>/products/<hub.slug>/ only
-              // resolves for the four categories that own dedicated Astro pages.
-              // For categories without a page (e.g. blankets -> cashmere-blankets slug
-              // never had a corresponding src/pages/[locale]/products/<slug>.astro
-              // route, hence a hard 404) we route through the query-param style
-              // ?cat=<id> which /products already supports. This keeps every link
-              // on this page a working landing experience.
-              const hub = CATEGORY_HUBS[cat.id];
-              const hubHref = hub ? (HUB_PATH_HUBS.has(hub.slug) ? `/${locale}/products/${hub.slug}/` : `/${locale}/products?cat=${cat.id}`) : null;
+              // 2026-10-31: the category hub page for every category.
+              // The old /products/<slug>/ URLs redirect here, so the
+              // links follow the redirect rather than pointing at a
+              // URL that only exists to send the visitor somewhere else.
+              const hubHref = `/${locale}/category/cashmere-${cat.id}/`;
               return hubHref ? <a href={hubHref}><span>0{index + 1}</span><span>{cat.name}</span><strong>{curatedCountsByCategory[cat.id] || 0}</strong></a> : null;
             })}
           </div>
@@ -481,11 +472,11 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
            category page with deeper product records (20+ per family). -->
       <nav class="catalog-all-by-cat mt-3 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-xs uppercase tracking-[0.18em] text-brand-ink" aria-label="Browse all cashmere by category">
         <span class="text-muted-foreground">{labels.allByCategoryLabel || 'Browse all by category:'}</span>
-        <a href={`/${locale}/products/hats-accessories/`} class="hover:text-brand-camel transition-colors">Hats</a>
-        <a href={`/${locale}/products/garment-oem/`} class="hover:text-brand-camel transition-colors">Sweaters</a>
-        <a href={`/${locale}/products/scarves/`} class="hover:text-brand-camel transition-colors">Scarves</a>
-        <a href={`/${locale}/products/accessories-cat/`} class="hover:text-brand-camel transition-colors">Accessories</a>
-        <a href={`/${locale}/products/yarn/`} class="hover:text-brand-camel transition-colors">Yarn</a>
+        <a href={`/${locale}/category/cashmere-hats/`} class="hover:text-brand-camel transition-colors">Hats</a>
+        <a href={`/${locale}/category/cashmere-sweaters/`} class="hover:text-brand-camel transition-colors">Sweaters</a>
+        <a href={`/${locale}/category/cashmere-scarves/`} class="hover:text-brand-camel transition-colors">Scarves</a>
+        <a href={`/${locale}/category/cashmere-accessories/`} class="hover:text-brand-camel transition-colors">Accessories</a>
+        <a href={`/${locale}/category/cashmere-yarn/`} class="hover:text-brand-camel transition-colors">Yarn</a>
       </nav>
       <div class="catalog-controls-shell">
         <div id="filter-buttons" class="catalog-category-rail flex flex-wrap gap-2">

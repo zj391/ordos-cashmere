@@ -27,6 +27,29 @@ const I18N_LINK = (path) => LOCALES.map((loc) => ({ lang: LOCALE_HREFLANG[loc], 
 // Google 公认的 SEO 毒药,会拉低整个 sitemap 信任度)。
 const BUILT_PATHS = new Set();
 
+// 2026-10-31: the real lastmod of each page, read from the built HTML.
+//
+// The sitemap used to stamp every URL with the build time. That is
+// accurate for a prerendered page that has no content of its own, but
+// it tells Google the same thing about 9,000 pages on every deploy -
+// and the site deploys several times a week. A lastmod that changes on
+// every build regardless of the content is a lastmod Google learns to
+// ignore, which costs the signal it is supposed to carry.
+//
+// A blog post states when it was last changed in its own markup
+// (article:modified_time, which the template renders from the
+// frontmatter's updatedDate). Everything else falls back to the build
+// time, because a static page's only real change point is the deploy.
+const PAGE_LASTMOD = new Map();
+
+function readPageLastmod(html) {
+  const m = html.match(/property="article:modified_time"\s+content="([^"]+)"/);
+  if (!m) return null;
+  const d = new Date(m[1]);
+  if (Number.isNaN(d.getTime())) return null;
+  return d.toISOString();
+}
+
 function hasNoIndexRobots(html) {
   return /<meta\b(?=[^>]*\bname=["']robots["'])(?=[^>]*\bcontent=["'][^"']*\bnoindex\b[^"']*["'])[^>]*>/i.test(html);
 }
@@ -81,6 +104,8 @@ async function walkBuiltPages() {
           }
           out.push(urlPath);
           BUILT_PATHS.add(urlPath);
+          const lm = readPageLastmod(html);
+          if (lm) PAGE_LASTMOD.set(urlPath, lm);
         }
       }
     }
@@ -189,7 +214,9 @@ function buildSitemapXml(urls) {
   for (const path of urls) {
     const url = SITE_URL + encodePath(path);
     const { priority, changefreq } = pageMeta(path);
-    const lastmod = now;
+    // The page's own lastmod when it has one (a blog post states when
+    // it was last edited); the build time otherwise.
+    const lastmod = PAGE_LASTMOD.get(path) || now;
     lines.push('  <url>');
     lines.push(`    <loc>${url}</loc>`);
     lines.push(`    <lastmod>${lastmod}</lastmod>`);

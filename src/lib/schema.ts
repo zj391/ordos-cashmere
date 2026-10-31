@@ -9,6 +9,7 @@
 import { SITE_URL } from './seo';
 import type { Locale } from './i18n';
 import { PRODUCT_COUNT, CATEGORY_COUNT } from './product-count';
+import { CATEGORY_HUB_PATH, type HubCategoryId } from './category-hub';
 
 export interface BreadcrumbItem {
   name: string;
@@ -180,10 +181,8 @@ export const SERVICES: Record<Locale, ServiceItem[]> = {
 
 /**
  * 2026-08-19 增: Category hub 页的 CollectionPage + ItemList schema。
- * 用于 /en/products/hats-accessories/ 等 5 个 category hub 页 (6 lang × 5 = 30 个 URL)。
- * 之前这些页面只发 WebPage schema，没有声明自己是"产品集合"型页 — Google 看不到
- * page-type 信号，crawl/index 时归类到普通 hub，影响长尾 query 排名。
- *
+ * 2026-10-31: the hubs moved to /[locale]/category/cashmere-<category>/.
+ * This function now builds that URL from the category id.
  * ItemList 含前 30 个产品 URL（schema.org 官方建议每条 ListItem < 100KB，免得
  * 搜索引擎反感堆叠型 markup）。少于 30 个时按实际数量。
  */
@@ -201,7 +200,7 @@ export function categoryHubSchema(
   hubDescription: string,
   products: CategoryHubProduct[]
 ): Array<Record<string, any>> {
-  const pageUrl = `${SITE_URL}/${locale}/products/${hubSlug}/`;
+  const pageUrl = `${SITE_URL}/${locale}${CATEGORY_HUB_PATH[hubSlug as HubCategoryId] ?? `/category/cashmere-${hubSlug}/`}`;
   const size = products.length;
   const top = products.slice(0, 30);
 

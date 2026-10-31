@@ -4675,7 +4675,7 @@ Our 10 yarn formulations fall into four blend categories:
 
 The pure-cashmere range covers gauge needs from chunky-weaving (1/4.3NM, 1/6.5NM) to fine-worsted (3/68NM). The blend categories address price-tier diversification: cashmere-wool blends sit at the entry-level, cashmere-specialty blends at the mid-to-premium tier, and signature blends (YARK, Taiji Stone) become brand-differentiating SKUs.
 
-Browse the [complete cashmere yarn catalog](/en/products/yarn/) for the 73 stock yarn configurations available across these 10 formulations.
+Browse the [complete cashmere yarn catalog](/en/category/cashmere-yarn/) for the 73 stock yarn configurations available across these 10 formulations.
 
 ## 1. Pure Cashmere 2/26NM (Stock Workhorse)
 
@@ -6895,7 +6895,7 @@ For Asia-specific questions about cashmere grading, hand-feel and knit construct
 
 The figures in this note are directional and intended for B2B reference. Actual import volumes, market share and brand activity should be confirmed with the latest trade statistics and current buyer intelligence before being used in commercial planning. For specific buyer introductions or program briefs, contact us through the project inquiry page.
 
-For product-side starting points, see the [cashmere knitwear product records](/en/garment-oem/), [yarn specifications](/en/products/yarn/) and [raw-material sourcing information](/en/raw-material/).
+For product-side starting points, see the [cashmere knitwear product records](/en/garment-oem/), [yarn specifications](/en/category/cashmere-yarn/) and [raw-material sourcing information](/en/raw-material/).
 
 ---
 
@@ -6935,7 +6935,7 @@ These are procurement controls, not a claim that a product is DPP-ready. The app
 
 For a cashmere yarn, knitwear or accessory program intended for the EU, a useful brief can ask: Which product identifiers are stable through sampling and bulk production? Which material and color records can be linked to the approved style? Which party will own and retain the records? Which details are documented today, and which would require a new process? Agreeing these points in writing creates a clearer working file while the textile delegated act is still pending.
 
-For product-level starting points, see the [cashmere yarn product records](/en/products/yarn/), [raw-material records](/en/raw-material/) and [garment development information](/en/garment-oem/). For an EU program, confirm the applicable legal requirements with qualified legal or compliance advisers before making a market claim.
+For product-level starting points, see the [cashmere yarn product records](/en/category/cashmere-yarn/), [raw-material records](/en/raw-material/) and [garment development information](/en/garment-oem/). For an EU program, confirm the applicable legal requirements with qualified legal or compliance advisers before making a market claim.
 
 ## References
 
@@ -6978,7 +6978,7 @@ The value of these records is operational clarity. They can help a buyer separat
 
 For a new EU-facing cashmere program, ask the brand or importer: *Which entity places the finished goods on the EU market, and what information will that entity need from its suppliers to support its unsold-goods process?* The answer can be translated into a project-specific documentation list rather than a broad claim about disposal, returns or circularity.
 
-For specification-led discussions, begin with [cashmere garment development](/en/garment-oem/) or [cashmere yarn product records](/en/products/yarn/), then confirm the applicable EU and destination-market requirements in writing.
+For specification-led discussions, begin with [cashmere garment development](/en/garment-oem/) or [cashmere yarn product records](/en/category/cashmere-yarn/), then confirm the applicable EU and destination-market requirements in writing.
 
 ## References
 
@@ -7069,7 +7069,7 @@ Use precise questions that a factory, yarn spinner, or trading partner can answe
 - Which destination-market labels are the buyer responsible for approving, and when is artwork locked?
 - If a result falls outside the written tolerance, what re-test, rework, credit, or rejection process applies?
 
-For an RFQ that starts from raw fiber or top, visit [Cashmere Raw Material](/en/raw-material/). For yarn construction and material discussions, use the [Cashmere Yarn Product Records](/en/products/yarn/). For an apparel technical pack, label review, and production sequence, begin with [Cashmere Garment OEM/ODM](/en/garment-oem/).
+For an RFQ that starts from raw fiber or top, visit [Cashmere Raw Material](/en/raw-material/). For yarn construction and material discussions, use the [Cashmere Yarn Product Records](/en/category/cashmere-yarn/). For an apparel technical pack, label review, and production sequence, begin with [Cashmere Garment OEM/ODM](/en/garment-oem/).
 
 ## Final takeaway
 

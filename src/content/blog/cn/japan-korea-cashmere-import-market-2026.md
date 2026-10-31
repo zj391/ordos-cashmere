@@ -87,4 +87,4 @@ language: "cn"
 
 本说明中的数字为方向性数据，供 B2B 参考。实际进口量、市场份额与品牌活动应在商业规划前与最新贸易数据与当前买家情报核对。具体买家引荐或项目简介，请通过项目咨询页面联系我们。
 
-产品侧起点请见[羊绒针织产品记录](/cn/garment-oem/)、[纱线规格](/cn/products/yarn/)与[原材料采购信息](/cn/raw-material/)。
+产品侧起点请见[羊绒针织产品记录](/cn/garment-oem/)、[纱线规格](/cn/category/cashmere-yarn/)与[原材料采购信息](/cn/raw-material/)。
