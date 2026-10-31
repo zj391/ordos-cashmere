@@ -156,9 +156,20 @@ const socialImageAlt = finalTitle;
 // back to the same URL. Without this, the default 6-locale hreflang block
 // would tell crawlers "the same content exists in 6 languages" — a soft-404
 // pattern Google penalizes.
+// 2026-10-31: the hreflang block has to name the same address as the
+// canonical. The category and tag pages pass only `canonicalPath` (their
+// route is a dynamic segment, so `path` would have to be recomputed per
+// page), which left `path` on its '/' default - every alternate on
+// /en/category/cashmere-yarn/ pointed at the homepage instead of the
+// matching category page. That tells Google the six language variants of
+// a category page are all the home page, so the pages compete with the
+// home page instead of consolidating as translations.
+//
+// The canonical is the authoritative address of the page, so the
+// alternates are derived from it.
 const hreflangs = noIndex
   ? [{ lang: LOCALE_HREFLANG[locale], href: canonical }]
-  : generateHreflangs(cleanPath, alternateLocales);
+  : generateHreflangs(cleanCanonicalPath ?? cleanPath, alternateLocales);
 
 
 

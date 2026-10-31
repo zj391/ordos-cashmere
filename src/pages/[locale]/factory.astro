@@ -161,7 +161,18 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
 
 
 
-    <BaseLayout locale={locale} pageKey="factory" path="/factory" noIndex={true}>
+    <!-- 2026-10-31: was noindex since 2026-08-27 ("noindex unverified factory
+         claims"). The numbers on this page are the same SITE_INFO.scale facts
+         the home page, the catalogue and the Organization schema already
+         publish (38,000 sqm, 500+ employees, 1,200t capacity, 50+ export
+         countries, 23+ years) - they are not claims unique to this page, so
+         there was nothing left to withhold. 1,702 internal links point here
+         and the page is the site's main trust page for a buyer who wants to
+         see the factory before sending an RFP. Leaving it out of the index
+         threw that link equity away.
+         The two inconsistencies the page had (22 years vs 23+, and the
+         "Nm2/36/2" count typo) are corrected in the same change. -->
+    <BaseLayout locale={locale} pageKey="factory" path="/factory">
   <Navigation slot="header" locale={locale} currentPath={`/${locale}/factory`} />
 
   <!-- ============ HERO：全屏沉浸式 ============ -->
@@ -211,13 +222,13 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
       {locale === 'cn' ? (
         <div class="max-w-3xl space-y-4 text-muted-foreground leading-relaxed">
           <p>鄂尔多斯市东霄羊绒制品厂成立于 2002 年，位于资源富饶、羊煤土气的内蒙古“鄂尔多斯”市，是一家集自主设计开发、生产、营销、加工于一体的专业化羊绒制品厂。主营产品有纯羊绒、纯羊毛、羊绒/羊毛混纺制品（毛衣、纱线、外衣、围巾、手套、袜子、毯子等）。</p>
-          <p>经过 22 年的发展，现已形成 ODM/OEM 生产加工、来样定做、实体批发、品牌加盟、一件代发、线上线下一体化的综合性经营模式。</p>
+          <p>经过 23 年的发展，现已形成 ODM/OEM 生产加工、来样定做、实体批发、品牌加盟、一件代发、线上线下一体化的综合性经营模式。</p>
           <p>我们以质量求生存、以信誉促发展，凭借品类多、品种全、价格稳定、质量卓越的产品和薄利多销、服务周到的经营理念，赢得广大羊绒客商的一致认可。我们的信念是“诚信合作、互惠互利、共同发展”，愿与每一位客户实现共赢。</p>
         </div>
       ) : (
         <div class="max-w-3xl space-y-4 text-muted-foreground leading-relaxed">
           <p>Erdos Dongxiao Cashmere Products Factory, founded in 2002 in Ordos, Inner Mongolia — a region rich in natural resources — is a professional cashmere factory integrating independent design and development, production, marketing, and processing.</p>
-          <p>Main products include pure cashmere, pure wool, and cashmere/wool blends: sweaters, yarn, coats, scarves, gloves, socks, blankets, and more. After 22 years of growth, we run a full business model — ODM/OEM manufacturing, sample customization, physical wholesale, brand franchise, drop shipping, and online/offline integration.</p>
+          <p>Main products include pure cashmere, pure wool, and cashmere/wool blends: sweaters, yarn, coats, scarves, gloves, socks, blankets, and more. After 23 years of growth, we run a full business model — ODM/OEM manufacturing, sample customization, physical wholesale, brand franchise, drop shipping, and online/offline integration.</p>
           <p>We survive on quality, develop on reputation, and serve with small margins and thoughtful service. Our belief: “Integrity cooperation, mutual benefit, common development.”</p>
         </div>
       )}
@@ -390,7 +401,7 @@ const certs = ['ISO 9001:2015', 'OEKO-TEX®', 'Good Cashmere Standard', 'BSCI', 
           <div class="absolute bottom-0 left-0 right-0 p-6">
             <div class="font-serif text-xs text-brand-gold/70 mb-1">01</div>
             <h3 class="font-serif text-2xl text-white mb-1">{locale === 'cn' ? '针织成衣' : 'Knit Garments'}</h3>
-            <p class="text-sm text-white/75">{locale === 'cn' ? '男装、女装、童装。Nm2/26 至 Nm2/36/2 全支数。' : 'Men\'s, women\'s, children\'s. Nm2/26 to Nm2/36/2.'}</p>
+            <p class="text-sm text-white/75">{locale === 'cn' ? '男装、女装、童装。Nm2/26 至 Nm2/36 全支数。' : 'Men\'s, women\'s, children\'s. Nm2/26 to Nm2/36.'}</p>
           </div>
         </a>
         <a href={`/${locale}/category/cashmere-scarves/`} class="group relative aspect-[3/4] overflow-hidden bg-brand-ink">
