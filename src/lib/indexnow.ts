@@ -79,9 +79,15 @@ export async function submitFullSitemap(): Promise<SubmitResult> {
       return { ok: false, error: `sitemap fetch ${sitemapRes.status}` };
     }
     const sitemapIndex = await sitemapRes.text();
-    // Extract child sitemap URLs from sitemap-index.xml
+    // Extract child sitemap URLs from sitemap-index.xml.
+    // 2026-11-02: the pattern was sitemap-\d+.xml (numeric suffix), but
+    // scripts/generate-sitemaps.mjs produces three NAMED buckets -
+    // sitemap-static.xml, sitemap-blog.xml, sitemap-products.xml. The
+    // numeric pattern matched nothing, so {"all": true} always failed
+    // with "no URLs found in sitemap". The pattern now accepts any
+    // sitemap-*.xml child.
     const childSitemapUrls = Array.from(
-      sitemapIndex.matchAll(/<loc>([^<]+sitemap-\d+\.xml)<\/loc>/g),
+      sitemapIndex.matchAll(/<loc>([^<]*sitemap-[^<]*\.xml)<\/loc>/g),
       (m) => m[1]
     );
 

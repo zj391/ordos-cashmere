@@ -30,7 +30,11 @@ async function _internalHandler(req: VercelLikeRequest, res: VercelLikeResponse)
   try {
     const body = (req.body || {}) as { urls?: string[]; all?: boolean };
 
-    if (body.all) {
+    // 2026-11-02: the admin panel posts to /api/indexnow?full=1, so the
+    // query flag has to be honoured as well as the body's "all".
+    const wantsFull = body.all === true || req.query?.full === '1' || req.query?.full === 'true';
+
+    if (wantsFull) {
       const result = await submitFullSitemap();
       return res.status(result.ok ? 200 : 500).json(result);
     }
@@ -39,8 +43,17 @@ async function _internalHandler(req: VercelLikeRequest, res: VercelLikeResponse)
       return res.status(400).json({ ok: false, error: 'missing_urls_or_all' });
     }
 
-    // Sanity check: only allow our own URLs
-    const cleaned = body.urls.filter((u) => typeof u === 'string' && u.startsWith('https://erdosdx.com'));
+    // Sanity check: only allow our own URLs.
+    // 2026-11-02: this checked for "https://erdosdx.com" (no www), but the
+    // canonical host is www.erdosdx.com - Vercel 308-redirects the apex to
+    // www, and every URL on the site uses www. So every correctly-formed
+    // submission was rejected with no_erdosdx_urls_in_payload and the
+    // endpoint had never actually pushed anything. Both hosts are accepted
+    // now; the apex is normalised to www before it goes out, because
+    // IndexNow validates the submitted URL against the key's host.
+    const cleaned = body.urls
+      .filter((u) => typeof u === 'string' && /^https:\/\/(www\.)?erdosdx\.com\//.test(u))
+      .map((u) => u.replace(/^https:\/\/erdosdx\.com\//, 'https://www.erdosdx.com/'));
     if (cleaned.length === 0) {
       return res.status(400).json({ ok: false, error: 'no_erdosdx_urls_in_payload' });
     }

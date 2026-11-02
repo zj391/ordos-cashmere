@@ -340,7 +340,11 @@ const serverTime = new Date().toISOString().replace('T', ' ').slice(0, 19);
           resultBox.hidden = false;
           output.textContent = 'Submitting...';
           try {
-            var url = '/api/indexnow-submit' + (isFull ? '?full=1' : '');
+            // 2026-11-02: the route is /api/indexnow, not
+            // /api/indexnow-submit - the panel was POSTing to a path
+            // that does not exist and getting a 404 every time.
+            var url = '/api/indexnow';
+            if (isFull) url += '?full=1';
             var res = await fetch(url, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },

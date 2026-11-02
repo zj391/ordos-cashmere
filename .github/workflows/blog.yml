@@ -93,12 +93,16 @@ jobs:
           SLUG=$(ls src/content/blog/en/ | head -1 | sed 's/.md$//')
           # All 6 locales of this new post
           URLS=$(for L in en de fr ja kr cn; do
-            echo "\"https://erdosdx.com/${L}/blog/${SLUG}/\""
+            echo "\"https://www.erdosdx.com/${L}/blog/${SLUG}/\""
           done | paste -sd, -)
           # Wrap in a JSON array
           PAYLOAD="[$URLS]"
           echo "Submitting to IndexNow: $PAYLOAD"
-          curl -sS -X POST "https://erdosdx.com/api/indexnow" \
+          # 2026-11-02: the URL was the bare apex (erdosdx.com), which
+          # Vercel 308-redirects to www. curl does not follow redirects on
+          # POST by default, so the submission never reached the endpoint.
+          # The canonical host is www - use it directly.
+          curl -sS -X POST "https://www.erdosdx.com/api/indexnow" \
             -H "Content-Type: application/json" \
             -d "{\"urls\":${PAYLOAD}}" | tee /tmp/indexnow-resp.json
           STATUS=$(node -e "const r=require('/tmp/indexnow-resp.json');console.log(r.ok?'OK':'FAIL')")

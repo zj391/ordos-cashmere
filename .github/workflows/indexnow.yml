@@ -1,0 +1,105 @@
+name: Daily IndexNow Full Sitemap Ping
+
+# Push the entire sitemap to IndexNow once a day.
+#
+# IndexNow pings Bing, Yandex, DuckDuckGo, Seznam and Naver in one POST.
+# It is the fastest way to get a changed or under-indexed URL re-crawled,
+# and it costs nothing.
+#
+# Why this exists as a separate workflow:
+#   - blog.yml only pings the 6 locale URLs of a newly published post.
+#   - The catalogue grew to 9,199 indexable pages; when a product batch
+#     lands, the new URLs are only discovered by the normal crawl cycle.
+#   - A daily full ping keeps the whole corpus warm in the Bing/IndexNow
+#     queues without waiting for Googlebot.
+#
+# 2026-11-02: the endpoint's URL whitelist only accepted the bare apex
+# host (erdosdx.com), while every URL on the site uses www - so every
+# submission was rejected. The sitemap-name pattern also still expected
+# sitemap-N.xml while the generator emits three named buckets. Both are
+# fixed; before that, this workflow could not have worked.
+#
+# Note on scope: IndexNow is NOT a Google signal. Google does not use
+# IndexNow for crawling. It helps Bing/Yandex, which in turn feed some
+# of the ecosystem's crawl paths. It is a cheap supplement, never a
+# replacement for good internal linking and a clean sitemap.
+
+on:
+  schedule:
+    # Every day at 03:20 UTC (11:20 Beijing). Deliberately off the hour:
+    # every scheduled workflow in this repo shares :00 minutes, and the
+    # runner is busiest on the hour.
+    - cron: '20 3 * * *'
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: 'Max URLs to push (blank = whole sitemap)'
+        required: false
+        default: ''
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Ping IndexNow with the full sitemap
+        env:
+          SITE: 'https://www.erdosdx.com'
+          LIMIT: ${{ inputs.limit }}
+        run: |
+          set -euo pipefail
+
+          echo "==> Fetching sitemap index"
+          INDEX=$(curl -sS --max-time 60 "$SITE/sitemap-index.xml")
+          echo "$INDEX" | grep -o '<loc>[^<]*</loc>' | sed 's/<[^>]*>//g' || true
+
+          # Collect every URL from every child sitemap.
+          TOTAL=0
+          URLS=""
+          for child in $(echo "$INDEX" | grep -o '<loc>[^<]*sitemap-[^<]*\.xml</loc>' | sed 's/<[^>]*>//g'); do
+            echo "==> $child"
+            XML=$(curl -sS --max-time 120 "$child")
+            N=$(echo "$XML" | grep -c '<loc>' || true)
+            echo "    $N URLs"
+            TOTAL=$((TOTAL + N))
+            URLS="$URLS$(echo "$XML" | grep -o '<loc>[^<]*</loc>' | sed 's/<[^>]*>//g')"$'\n'
+          done
+
+          echo "==> Total URLs in sitemap: $TOTAL"
+          if [ "$TOTAL" -eq 0 ]; then
+            echo "::error::sitemap returned no URLs — nothing to submit"
+            exit 1
+          fi
+
+          # The API caps a request at 10,000 URLs, and the sitemap is
+          # 9,199, so this normally fits in one call. Chunk anyway so a
+          # future catalogue growth does not silently start failing.
+          CHUNK=9000
+          i=0
+          n=0
+          while [ "$i" -lt "$TOTAL" ]; do
+            n=$((n + 1))
+            echo "==> Submitting chunk $n"
+            echo "$URLS" | grep -v '^$' | tail -n +$((i + 1)) | head -n "$CHUNK" \
+              | python3 -c 'import json,sys; print(json.dumps({"urls":[l.strip() for l in sys.stdin if l.strip()]}))' \
+              > /tmp/inow-payload.json
+
+            curl -sS --max-time 180 -X POST "$SITE/api/indexnow" \
+              -H "Content-Type: application/json" \
+              --data-binary @/tmp/inow-payload.json \
+              | tee /tmp/inow-resp.json
+            echo
+
+            OK=$(node -e "try{const r=require('/tmp/inow-resp.json');console.log(r.ok?'1':'0')}catch(e){console.log('0')}")
+            if [ "$OK" != "1" ]; then
+              echo "::error::chunk $n was rejected"
+              exit 1
+            fi
+
+            i=$((i + CHUNK))
+            sleep 3
+          done
+
+          echo "==> Done — $TOTAL URLs submitted"
+          echo "::notice title=IndexNow::submitted $TOTAL URLs"
