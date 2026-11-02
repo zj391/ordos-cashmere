@@ -17,7 +17,7 @@ import { LOCALES, type Locale, isLocale, pickLocale } from '@/lib/i18n';
 import { imageSize } from '@/lib/image-size';
 import { SEO, SITE_INFO } from '@/lib/seo';
 import { productsListingSchema } from '@/lib/schema';
-import { products as productsData, getRepresentativeProducts, ensureDbOverlay } from '@/data/products';
+import { products as productsData, getRepresentativeProducts, getAllProducts, ensureDbOverlay } from '@/data/products';
 import { getProductLabels } from '@/lib/product-labels';
 import { tagAllProducts, PRODUCT_TAG_RULES } from '@/data/product-tags';
 import { buildListingProducts } from '@/lib/catalog-listing-payload';
@@ -39,16 +39,40 @@ const locale = pickLocale(rawLocale);
 const allProducts = getRepresentativeProducts();
 const categories = productsData.categories;
 const labels = getProductLabels(locale);
-const curatedCountsByCategory = Object.fromEntries(
-  categories.map((category) => [category.id, allProducts.filter((product) => product.categoryId === category.id).length])
+
+// 2026-11-02: the page used to print three different catalogue sizes.
+// The hero line had a hardcoded "766", the signals row printed
+// allProducts.length, and the filter bar's "Showing N products" is
+// driven by the client-side grid, which renders the FULL catalogue.
+// The category badges also used allProducts.length (the representative
+// subset) while the category hub pages they link to count the full
+// catalogue - so a badge said "76" and the page it opened said "76 of
+// 748" out of a 1,340-record catalogue.
+//
+// Every number the page shows now comes from the full catalogue, which
+// is the same list /data/<locale>/products.json ships to the browser
+// and the same one the category hub pages count. The representative
+// subset is still what the server-rendered cards use, so the first
+// paint stays small, but no number on the page claims the catalogue is
+// smaller than it is.
+const catalogueProducts = getAllProducts();
+const catalogueCount = catalogueProducts.length;
+const catalogueCountsByCategory = Object.fromEntries(
+  categories.map((category) => [category.id, catalogueProducts.filter((product) => product.categoryId === category.id).length])
 );
 
 // 2026-09-24 SEO: emit CollectionPage + ItemList (top 50) so Google has a
 // page-type signal AND crawlable deep links to product URLs even when the
 // JS-driven filter UI never runs.
+// 2026-11-02: the list is built from the FULL catalogue, not the
+// representative subset. numberOfItems was 952 while the schema
+// description said 1,340 SKUs - two different counts in the same
+// JSON-LD block, and the one Google reads for the list size was the
+// wrong one. The top-50 items are unchanged (the representative subset
+// is a subset of the catalogue), but the count is now the real one.
 const listingCatalogSchema = productsListingSchema(
   locale,
-  allProducts.map((p) => ({ id: p.id, name: p.name }))
+  catalogueProducts.map((p) => ({ id: p.id, name: p.name }))
 );
 
 // Pre-tag every product once at build time so URL params (e.g. ?byStyle=beanies)
@@ -150,7 +174,7 @@ function pickListCategory(c: any) {
     id: c.id,
     name: c.name,
     description: c.description,
-    productCount: curatedCountsByCategory[c.id] || 0,
+    productCount: catalogueCountsByCategory[c.id] || 0,
   };
 }
 const listProducts = buildListingProducts(allProducts);
@@ -432,10 +456,14 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
             {labels.title}
           </h1>
           <p class="font-serif italic text-lg md:text-xl text-foreground/70 max-w-2xl leading-relaxed mb-8">
-            {locale === 'cn' ? '766 条产品记录 · 6 大品类 · 内蒙古自有工厂可批量定制。' : locale === 'ja' ? '766件の製品記録 · 6つの製品系列 · 内モンゴル自社工場で大量カスタマイズ可能。' : locale === 'kr' ? '766개 제품 기록 · 6개 제품 계열 · 내몽골 자가 공장에서 대량 맞춤 가능.' : '766 product records · 6 families · Ordos atelier, project-tunable.'}
+            {/* 2026-11-02: the record count was hardcoded as 766 and had
+                drifted from the catalogue - the signals row right below it
+                printed the real number, so the page showed two different
+                totals. It now reads from the same list the page renders. */}
+            {locale === 'cn' ? `${catalogueCount} 条产品记录 · ${categories.length} 大品类 · 内蒙古自有工厂可批量定制。` : locale === 'ja' ? `${catalogueCount}件の製品記録 · ${categories.length}つの製品系列 · 内モンゴル自社工場で大量カスタマイズ可能。` : locale === 'kr' ? `${catalogueCount}개 제품 기록 · ${categories.length}개 제품 계열 · 내몽골 자가 공장에서 대량 맞춤 가능.` : `${catalogueCount} product records · ${categories.length} families · Ordos atelier, project-tunable.`}
           </p>
           <div class="catalog-hero-signals flex flex-wrap gap-x-8 gap-y-2 text-sm text-muted-foreground">
-            <span><strong class="text-foreground">{allProducts.length}</strong> {catalogUiCopy.records}</span>
+            <span><strong class="text-foreground">{catalogueCount}</strong> {catalogUiCopy.records}</span>
             <span><strong class="text-foreground">{categories.length}</strong> {catalogUiCopy.families}</span>
             <span>{locale === 'cn' ? '项目条件书面确认' : 'Project terms confirmed in writing'}</span>
           </div>
@@ -451,7 +479,7 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
               // links follow the redirect rather than pointing at a
               // URL that only exists to send the visitor somewhere else.
               const hubHref = `/${locale}/category/cashmere-${cat.id}/`;
-              return hubHref ? <a href={hubHref}><span>0{index + 1}</span><span>{cat.name}</span><strong>{curatedCountsByCategory[cat.id] || 0}</strong></a> : null;
+              return hubHref ? <a href={hubHref}><span>0{index + 1}</span><span>{cat.name}</span><strong>{catalogueCountsByCategory[cat.id] || 0}</strong></a> : null;
             })}
           </div>
           <span class="catalog-index-caption">{catalogUiCopy.explore} <span aria-hidden="true">→</span></span>
@@ -481,11 +509,11 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
       <div class="catalog-controls-shell">
         <div id="filter-buttons" class="catalog-category-rail flex flex-wrap gap-2">
         <button data-cat="all" class="filter-btn px-4 py-2 text-sm border bg-brand-ink text-brand-cream border-brand-ink transition-colors">
-          {labels.filterAll} ({allProducts.length})
+          {labels.filterAll} ({catalogueCount})
         </button>
         {categories.map((cat) => (
           <button data-cat={cat.id} class="filter-btn px-4 py-2 text-sm border bg-white text-muted-foreground border-border hover:border-brand-ink transition-colors">
-            {cat.name} ({curatedCountsByCategory[cat.id] || 0})
+            {cat.name} ({catalogueCountsByCategory[cat.id] || 0})
           </button>
         ))}
       </div>
@@ -719,7 +747,7 @@ const procurementCopyJson = JSON.stringify(listingFilterCopy);
             <h3 class="font-serif text-lg text-brand-ink mb-2 group-hover:text-brand-copper transition-colors">{cat.name}</h3>
             <p class="text-muted-foreground text-xs leading-relaxed mb-3">{cat.description}</p>
             <p class="text-xs text-brand-copper font-medium tracking-wider">
-              {curatedCountsByCategory[cat.id] || 0} {locale === 'cn' ? '款精选代表款' : 'curated styles'}
+              {catalogueCountsByCategory[cat.id] || 0} {locale === 'cn' ? '款产品记录' : 'product records'}
             </p>
           </div>
         ))}
