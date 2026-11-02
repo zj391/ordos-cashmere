@@ -979,9 +979,17 @@ if (!noIndex && faqs && faqs.length > 0) {
 
           const pct = Math.round((window.scrollY / docH) * 100);
 
-          scrollMarks.forEach(function(_, m) {
+          // 2026-11-02: this was scrollMarks.forEach(function(_, m) {...}),
+          // but scrollMarks is a plain object, not an array - plain objects
+          // have no forEach, so every scroll event threw
+          // "scrollMarks.forEach is not a function" and the scroll depth
+          // was never recorded. Object.keys() gives the same four marks
+          // as the keys, which is what the loop was iterating over.
+          Object.keys(scrollMarks).forEach(function(key) {
 
-            if (pct >= m && !scrollMarks[m]) scrollMarks[m] = true;
+            const m = Number(key);
+
+            if (pct >= m && !scrollMarks[key]) scrollMarks[key] = true;
 
           });
 
