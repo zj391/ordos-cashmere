@@ -127,14 +127,80 @@ const tdk = {
 const t = tdk[locale] || tdk.en;
 const faqs = t.faqs || tdk.en.faqs;
 
-const yarnCopy = locale === 'cn'
-  ? { title: '羊绒纱线规格沟通 | DONGXIAO®', description: '提交目标纱支、用途、颜色、数量、目的地及资料需求，以开展书面纱线采购沟通。', h1: '羊绒纱线规格沟通', intro: '纱线形态、可用规格、颜色与项目条件会因具体需求而异。请提供您的应用场景和规格要求，以书面确认适用范围。', cta: '联系采购团队' }
-  : { title: 'Cashmere Yarn Specification Requests | DONGXIAO®', description: 'Prepare target count, use, colour, quantity, destination and document requirements for a written yarn-sourcing discussion.', h1: 'Cashmere Yarn Specification Requests', intro: 'Yarn construction, available counts, colours and project terms vary by requirement. Share your intended use and specification needs so the applicable scope can be confirmed in writing.', cta: 'Contact our sourcing team' };
+/**
+ * 2026-11-02: the page copy is per locale.
+ *
+ * It used to be a cn / everything-else split, so the German, French,
+ * Japanese and Korean pages all shipped the English title - five pages
+ * with the same <title> competing for the same queries. The six
+ * language versions now each carry their own title, description and
+ * body copy.
+ *
+ * The copy deliberately makes no claim about stock, counts or lead
+ * times that has not been verified (see
+ * docs/seo-specialty-pages-audit-2026-08-25.md).
+ */
+const yarnCopy = {
+  en: { title: 'Cashmere Yarn Specification Requests | DONGXIAO®', description: 'Prepare target count, use, colour, quantity, destination and document requirements for a written yarn-sourcing discussion.', h1: 'Cashmere Yarn Specification Requests', intro: 'Yarn construction, available counts, colours and project terms vary by requirement. Share your intended use and specification needs so the applicable scope can be confirmed in writing.', cta: 'Contact our sourcing team' },
+  cn: { title: '羊绒纱线规格沟通 | DONGXIAO®', description: '提交目标纱支、用途、颜色、数量、目的地及资料需求，以开展书面纱线采购沟通。', h1: '羊绒纱线规格沟通', intro: '纱线形态、可用规格、颜色与项目条件会因具体需求而异。请提供您的应用场景和规格要求，以书面确认适用范围。', cta: '联系采购团队' },
+  de: { title: 'Kaschmirgarn – Spezifikationsanfragen | DONGXIAO®', description: 'Zielstärke, Verwendungszweck, Farbe, Menge, Zielort und Dokumentenanforderungen für eine schriftliche Garnbeschaffungsanfrage vorbereiten.', h1: 'Kaschmirgarn – Spezifikationsanfragen', intro: 'Garnaufbau, verfügbare Stärken, Farben und Projektbedingungen hängen von der Anforderung ab. Teilen Sie Einsatzzweck und Spezifikationsbedarf mit, damit der anwendbare Umfang schriftlich bestätigt werden kann.', cta: 'Kontaktieren Sie unser Beschaffungsteam' },
+  fr: { title: 'Fil de cachemire – Demandes de spécification | DONGXIAO®', description: 'Préparez le numéro cible, l’usage, la couleur, la quantité, la destination et les besoins documentaires pour une discussion écrite d’approvisionnement de fil.', h1: 'Fil de cachemire – Demandes de spécification', intro: 'La construction du fil, les numéros disponibles, les couleurs et les conditions du projet varient selon le besoin. Communiquez votre usage prévu et vos exigences pour que le périmètre applicable soit confirmé par écrit.', cta: 'Contactez notre équipe d’approvisionnement' },
+  ja: { title: 'カシミア糸の仕様相談 | DONGXIAO®', description: '糸の調達に関する書面協議のため、目標番手、用途、色、数量、目的地、書類要件を準備してください。', h1: 'カシミア糸の仕様相談', intro: '糸の構成、供給可能な番手、色，项目条件はご要望によって異なります。用途と仕様要件を書面でお送りいただければ、適用範囲を書面で確認できます。', cta: '調達チームへお問い合わせ' },
+  kr: { title: '캐시미어 원사 사양 상담 | DONGXIAO®', description: '원사 조달의 서면 협의를 위해 목표 번수, 용도, 색상, 수량, 목적지, 서류 요건을 준비하세요.', h1: '캐시미어 원사 사양 상담', intro: '원사 구성, 공급 가능한 번수, 색상, 프로젝트 조건은 요구사항에 따라 달라집니다. 사용 목적과 사양 요청을 서면으로 보내주시면 적용 범위를 서면으로 확인할 수 있습니다.', cta: '조달팀에 문의하기' },
+}[locale];
 
-const yarnProjectFaqs = [
-  { q: locale === 'cn' ? '纱线询盘应包含哪些信息？' : 'What should a yarn inquiry include?', a: locale === 'cn' ? '请提供预期用途、目标纱支或织造要求、颜色、数量、目的地、验货方式和资料范围。' : 'Provide intended use, target count or construction, colour, quantity, destination, inspection approach and document scope.' },
-  { q: locale === 'cn' ? '价格、可用性和交期何时确认？' : 'When are price, availability and lead time confirmed?', a: locale === 'cn' ? '价格、可用性、打样、交期、验货和交付条款将针对具体项目在书面沟通、报价或协议中确认。' : 'Price, availability, sampling, lead time, inspection and delivery terms are confirmed for the specific project in written correspondence, quotation or agreement.' },
-];
+/**
+ * The project FAQs and the closing section, per locale.
+ *
+ * They used to be a cn / everything-else split, so the German,
+ * French, Japanese and Korean pages showed English questions under a
+ * German or Japanese title.
+ */
+const yarnProjectFaqs = {
+  en: [
+    { q: 'What should a yarn inquiry include?', a: 'Provide intended use, target count or construction, colour, quantity, destination, inspection approach and document scope.' },
+    { q: 'When are price, availability and lead time confirmed?', a: 'Price, availability, sampling, lead time, inspection and delivery terms are confirmed for the specific project in written correspondence, quotation or agreement.' },
+  ],
+  cn: [
+    { q: '纱线询盘应包含哪些信息？', a: '请提供预期用途、目标纱支或织造要求、颜色、数量、目的地、验货方式和资料范围。' },
+    { q: '价格、可用性和交期何时确认？', a: '价格、可用性、打样、交期、验货和交付条款将针对具体项目在书面沟通、报价或协议中确认。' },
+  ],
+  de: [
+    { q: 'Was sollte eine Garnanfrage enthalten?', a: 'Geben Sie Einsatzzweck, Zielstärke oder Aufbau, Farbe, Menge, Zielort, Prüfansatz und Dokumentenumfang an.' },
+    { q: 'Wann werden Preis, Verfügbarkeit und Lieferzeit bestätigt?', a: 'Preis, Verfügbarkeit, Muster, Lieferzeit, Prüfung und Lieferbedingungen werden für das jeweilige Projekt in schriftlicher Korrespondenz, Angebot oder Vertrag bestätigt.' },
+  ],
+  fr: [
+    { q: 'Que doit contenir une demande de fil ?', a: 'Indiquez l’usage prévu, le numéro cible ou la construction, la couleur, la quantité, la destination, l’approche de contrôle et le périmètre documentaire.' },
+    { q: 'Quand le prix, la disponibilité et le délai sont-ils confirmés ?', a: 'Les conditions de prix, de disponibilité, d’échantillonnage, de délai, de contrôle et de livraison sont confirmées pour le projet retenu par correspondance écrite, devis ou contrat.' },
+  ],
+  ja: [
+    { q: '糸の問合せには何を含めるべきですか？', a: '用途、目標番手または織構造、色、数量、目的地、検品方法、書類の範囲をお知らせください。' },
+    { q: '価格、供給可否、納期はいつ確認されますか？', a: '価格、供給可否、手直し、納期、検品、納品条件は、該当する案件について書面連絡、見積書または契約により確認されます。' },
+  ],
+  kr: [
+    { q: '원사 문의에는 무엇을 포함해야 하나요?', a: '사용 목적, 목표 번수 또는 편제, 색상, 수량, 목적지, 검수 방식, 서류 범위를 알려주십시오.' },
+    { q: '가격, 공급 가능 여부, 납기는 언제 확정되나요?', a: '가격, 공급 가능 여부, 샘플, 납기, 검수 및 배송 조건은 해당 프로젝트에 대해 서면 통보, 견적 또는 계약으로 확정됩니다.' },
+  ],
+}[locale];
+
+/** The closing call to action, per locale. */
+const yarnCtaHeading = {
+  en: 'Prepare a yarn specification request',
+  cn: '准备纱线规格沟通',
+  de: 'Bereiten Sie eine Garn-Spezifikationsanfrage vor',
+  fr: 'Préparez une demande de spécification de fil',
+  ja: '糸の仕様相談を準備する',
+  kr: '원사 사양 상담을 준비하세요',
+}[locale];
+
+const yarnCtaBody = {
+  en: 'Share intended use, target count, colour, quantity, destination, inspection approach and document needs. Applicable project conditions are confirmed in writing.',
+  cn: '请提供用途、目标纱支、颜色、数量、目的地、验货方式和资料需求；适用项目条件将书面确认。',
+  de: 'Teilen Sie Einsatzzweck, Zielstärke, Farbe, Menge, Zielort, Prüfansatz und Dokumentenanforderungen mit. Anwendbare Projektbedingungen werden schriftlich bestätigt.',
+  fr: 'Communiquez l’usage prévu, le numéro cible, la couleur, la quantité, la destination, l’approche de contrôle et les besoins documentaires. Les conditions du projet applicables sont confirmées par écrit.',
+  ja: '用途、目標番手、色、数量、目的地、検品方法、書類要件をお知らせください。適用されるプロジェクト条件は書面で確認されます。',
+  kr: '사용 목적, 목표 번수, 색상, 수량, 목적지, 검수 방식, 서류 요건을 알려주십시오. 적용되는 프로젝트 조건은 서면으로 확인됩니다.',
+}[locale];
 
 const yarnTypes = [
   { nm: '2/26', use: 'Chunky knit, 5-7 gauge', weight: '~770 dtex', stock: true },
@@ -232,8 +298,8 @@ const yarnSchema = {
 
   <section class="py-16 bg-brand-sandwarm border-y border-border/60">
     <div class="container-narrow text-center">
-      <h2 class="font-display text-3xl font-light mb-4">{locale === 'cn' ? '准备纱线规格沟通' : 'Prepare a yarn specification request'}</h2>
-      <p class="opacity-90 mb-8 max-w-2xl mx-auto">{locale === 'cn' ? '请提供用途、目标纱支、颜色、数量、目的地、验货方式和资料需求；适用项目条件将书面确认。' : 'Share intended use, target count, colour, quantity, destination, inspection approach and document needs. Applicable project conditions are confirmed in writing.'}</p>
+      <h2 class="font-display text-3xl font-light mb-4">{yarnCtaHeading}</h2>
+      <p class="opacity-90 mb-8 max-w-2xl mx-auto">{yarnCtaBody}</p>
       <div class="flex flex-wrap gap-4 justify-center">
         <a href={'/' + locale + '/contact'} class="inline-block px-8 py-3 bg-brand-ink text-brand-cream rounded-none font-medium uppercase tracking-[0.15em] hover:bg-brand-chocolate">{yarnCopy.cta}</a>
         <a href={'/' + locale + '/yarn-fabric'} class="inline-block px-8 py-3 border border-brand-ink/30 rounded-none uppercase tracking-[0.15em] hover:bg-brand-ink hover:text-brand-cream">View Yarn & Fabric Page</a>
