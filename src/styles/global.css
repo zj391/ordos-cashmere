@@ -1497,10 +1497,17 @@ input:focus, select:focus, textarea:focus {
 .home-enhanced-hero .eyebrow::before { background: var(--archive-copper) !important; }
 /* 2026-10-14 P1-editorial: hero changed from dark-bg/full-bleed to
    light-bg/2-column. The old "max-width 13ch, 7.4rem font, dark text" no longer
-   applies — reset to inherit so the per-element Tailwind controls take over. */
+   applies — reset to inherit so the per-element Tailwind controls take over.
+   2026-11-02: font-size: inherit was the wrong reset. The h1 carries
+   Tailwind's text-5xl … 2xl:text-[6.5rem] classes, but this rule's
+   selector (.home-enhanced-hero h1) has the same specificity as
+   Tailwind's single-class utilities and, being later in the cascade,
+   it won — so the heading inherited the parent's font-size, which is
+   unset, and rendered at the browser default 16px. The H1 ended up
+   smaller than the lead paragraph under it. The reset now only
+   touches the properties Tailwind does not set on this element. */
 .home-enhanced-hero h1 {
   max-width: 18ch;
-  font-size: inherit;
   line-height: 1.04;
   letter-spacing: -0.02em;
   color: inherit;
