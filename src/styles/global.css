@@ -1037,7 +1037,16 @@ main > section:first-child:not(.home-enhanced-hero):not(.hero-dark) { position:r
 main > section:first-child:not(.home-enhanced-hero):not(.hero-dark)::after { content:""; position:absolute; right:-8%; top:20%; width:30rem; height:11rem; border-top:1px solid rgba(167,100,50,.36); border-radius:50%; transform:rotate(-12deg); pointer-events:none; }
 main > section:first-child:not(.home-enhanced-hero) h1 { max-width:14ch; font-size:clamp(3rem,6vw,6.25rem); }
 main > section:first-child:not(.home-enhanced-hero) h1 + p { max-width:52rem; color:var(--snow-muted); line-height:1.9; }
-main .home-enhanced-hero h1,main .home-enhanced-hero h2 { color:var(--snow-cream) !important; text-shadow:0 2px 18px rgba(23,21,19,.46); }
+/* 2026-11-02: the home hero is a LIGHT two-column layout - the photo
+   bleeds over the right half, the headings sit on the left over a white
+   ground. The old rule forced the headings to cream (#fff8ec) with a
+   dark text-shadow, which was written for the previous dark full-bleed
+   hero. On the light hero it put near-white text on a white background
+   at a 1.01:1 contrast ratio, so the H1 was invisible. The headings now
+   take the ink colour like every other heading on the page, and the
+   shadow is dropped because it was only there to lift white type off a
+   photograph. */
+main .home-enhanced-hero h1,main .home-enhanced-hero h2 { color:var(--b2b-ink) !important; text-shadow:none; }
 main > section { border-color:var(--snow-line); }
 main > section:nth-child(even):not(.home-enhanced-hero):not(.hero-dark) { background-color:rgba(243,238,229,.48); }
 main article { border-color:var(--snow-line); }
@@ -1074,7 +1083,11 @@ main > section:first-child:not(.home-enhanced-hero):not(.hero-dark) { background
 main > section:first-child:not(.home-enhanced-hero):not(.hero-dark)::after { border-top-color:rgba(37,77,69,.24); }
 main > section:first-child:not(.home-enhanced-hero):not(.hero-dark) h1 + p { color:var(--b2b-copy); max-width:46rem; }
 main > section:nth-child(even):not(.home-enhanced-hero):not(.hero-dark) { background-color:#f5f7f4; }
-main .home-enhanced-hero h1,main .home-enhanced-hero h2 { color:#fffdf8 !important; }
+/* 2026-11-02: this second white-heading rule re-forced the home hero
+   headings to near-white. It has the same selector as the rule above and
+   comes later in the file, so it was the one actually winning. Removed in
+   favour of the ink colour set there. */
+main .home-enhanced-hero h1,main .home-enhanced-hero h2 { color:var(--b2b-ink) !important; }
 #filter-buttons { gap:.55rem; }
 #filter-buttons .filter-btn { min-height:2.5rem; border-radius:999px; border-color:var(--b2b-line); background:#fff; color:#40504c; padding-inline:1rem; font-size:.74rem; letter-spacing:.01em; }
 #filter-buttons .filter-btn:hover,#filter-buttons .filter-btn.bg-brand-ink { border-color:var(--b2b-green); background:var(--b2b-green); color:#fff; }

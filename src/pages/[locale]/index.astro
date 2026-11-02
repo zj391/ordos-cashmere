@@ -472,13 +472,13 @@ const IMG: Record<string, Img> = {
         <!-- 左侧大图（占 7/12） -->
         <div class="lg:col-span-7 relative reveal-left">
           <div class="aspect-[3/2] overflow-hidden hover-zoom">
-            <img src={IMG.ordosLandscape.url} width={IMG.ordosLandscape.w} height={IMG.ordosLandscape.h} alt="Cashmere sourcing landscape image" class="w-full h-full object-cover" decoding="async" loading="lazy" 
+            <img src={IMG.ordosLandscape.url} width={IMG.ordosLandscape.w} height={IMG.ordosLandscape.h} alt="Cashmere sourcing landscape image" class="w-full h-full object-cover" decoding="async" loading="lazy" />
           </div>
           {/* The inset detail photo, overlapping the landscape shot's top
               right corner - it reads as a mounted plate rather than a
               second picture competing with the first. */}
           <div class="home-origin-detail hidden lg:block">
-            <img src={IMG.uiKnit.url} width={IMG.uiKnit.w} height={IMG.uiKnit.h} alt="" aria-hidden="true" decoding="async" loading="lazy" 
+            <img src={IMG.uiKnit.url} width={IMG.uiKnit.w} height={IMG.uiKnit.h} alt="" aria-hidden="true" decoding="async" loading="lazy" />
           </div>
           {/* 浮动小卡（产品路径数量） */}
           <div class="hidden md:block absolute -bottom-12 -right-12 w-48 aspect-square overflow-hidden border-8 border-background shadow-2xl bg-brand-cream flex items-center justify-center">
@@ -591,7 +591,7 @@ const IMG: Record<string, Img> = {
       <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
         <!-- 原料（大图，左 7 列） -->
         <a href={`/${locale}/raw-material/`} class="group md:col-span-7 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden bg-gradient-to-br from-brand-ink via-brand-chocolate to-brand-camel hover-lift reveal-plate" data-reveal-delay="1">
-          <img src={IMG.uiMaterial.url} width={IMG.uiMaterial.w} height={IMG.uiMaterial.h} alt="" aria-hidden="true" class="home-material-fill absolute inset-0 w-full h-full object-cover" decoding="async" loading="lazy" 
+          <img src={IMG.uiMaterial.url} width={IMG.uiMaterial.w} height={IMG.uiMaterial.h} alt="" aria-hidden="true" class="home-material-fill absolute inset-0 w-full h-full object-cover" decoding="async" loading="lazy" />
           <!-- 抽象纤维纹理 -->
           <svg class="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
             <defs>
@@ -605,7 +605,14 @@ const IMG: Record<string, Img> = {
             <rect width="100%" height="100%" fill="url(#fibers-1)"/>
           </svg>
           <div class="absolute top-8 right-8 font-serif text-[120px] text-brand-gold/20 font-light leading-none">01</div>
-          <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/75 via-brand-ink/25 to-transparent"></div>
+          {/* 2026-11-02: the caption sits in the bottom-left corner, and
+              the photo under it is bright (median luminance 182/255 in
+              that region). The old gradient only reached 75% opacity at
+              the very bottom edge, so the white caption had nothing
+              solid to sit on. The scrim is now a solid bottom band with
+              a gradient up into it. */}
+          <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/92 via-brand-ink/55 to-transparent"></div>
+          <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-brand-ink/70 to-transparent"></div>
           <span class="plate-tick-light" aria-hidden="true"></span>
           {/* Corner tick — the same plate mark the specimen photos carry,
               in the light tint that reads against the dark gradient. */}
@@ -633,8 +640,11 @@ const IMG: Record<string, Img> = {
 
         <!-- 纱线面料（右小） -->
         <a href={`/${locale}/category/cashmere-yarn/`} class="group md:col-span-5 relative aspect-[4/3] md:aspect-[16/10] overflow-hidden hover-lift reveal-plate" data-reveal-delay="2">
-          <img src={IMG.scarfDetail.url} width={IMG.scarfDetail.w} height={IMG.scarfDetail.h} alt="Cashmere yarn and knitwear detail image" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" decoding="async" loading="lazy" 
-          <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/75 via-brand-ink/25 to-transparent"></div>
+          <img src={IMG.scarfDetail.url} width={IMG.scarfDetail.w} height={IMG.scarfDetail.h} alt="Cashmere yarn and knitwear detail image" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" decoding="async" loading="lazy" />
+          {/* 2026-11-02: same scrim as the material card - the caption
+              needs a solid dark band, not a 25%-opacity gradient. */}
+          <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/92 via-brand-ink/55 to-transparent"></div>
+          <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-brand-ink/70 to-transparent"></div>
           <span class="plate-tick-light" aria-hidden="true"></span>
           <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
             <div class="flex items-center gap-4 mb-3">
@@ -659,8 +669,13 @@ const IMG: Record<string, Img> = {
 
         <!-- 成衣代工（下大） -->
         <a href={`/${locale}/garment-oem/`} class="group md:col-span-12 relative aspect-[4/3] md:aspect-[21/9] overflow-hidden hover-lift reveal-plate" data-reveal-delay="3">
-          <img src={IMG.productGarment.url} width={IMG.productGarment.w} height={IMG.productGarment.h} alt="Cashmere garment styling image" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" decoding="async" loading="lazy" 
-          <div class="absolute inset-0 bg-gradient-to-r from-brand-ink/80 via-brand-ink/35 to-transparent"></div>
+          <img src={IMG.productGarment.url} width={IMG.productGarment.w} height={IMG.productGarment.h} alt="Cashmere garment styling image" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" decoding="async" loading="lazy" />
+          {/* 2026-11-02: the garment card is a wide 21:9 banner, so its
+              caption block is short and wide. The horizontal gradient
+              ran out to transparent on the right and left the middle
+              of the text column unprotected. */}
+          <div class="absolute inset-0 bg-gradient-to-r from-brand-ink/90 via-brand-ink/60 to-brand-ink/20"></div>
+          <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-brand-ink/70 to-transparent"></div>
           <span class="plate-tick-light" aria-hidden="true"></span>
           <div class="absolute bottom-0 left-0 p-8 md:p-12 text-white max-w-2xl">
             <div class="flex items-center gap-4 mb-3">
@@ -939,8 +954,8 @@ const IMG: Record<string, Img> = {
   <section class="home-final-cta py-20 md:py-28 bg-brand-sandwarm relative overflow-hidden">
     <!-- 背景图：历史针织场景，黑白调性（knittingMill 是 DPLA 公共域图） -->
     <div class="absolute inset-0">
-      <img src={IMG.heroFiber.url} width={IMG.heroFiber.w} height={IMG.heroFiber.h} alt="" aria-hidden="true" class="w-full h-full object-cover opacity-10 grayscale" decoding="async" loading="lazy" 
-      <img src={IMG.uiCraft.url} width={IMG.uiCraft.w} height={IMG.uiCraft.h} alt="" aria-hidden="true" class="home-craft-fill absolute inset-y-0 right-0 h-full w-[46%] object-cover" decoding="async" loading="lazy" 
+      <img src={IMG.heroFiber.url} width={IMG.heroFiber.w} height={IMG.heroFiber.h} alt="" aria-hidden="true" class="w-full h-full object-cover opacity-10 grayscale" decoding="async" loading="lazy" />
+      <img src={IMG.uiCraft.url} width={IMG.uiCraft.w} height={IMG.uiCraft.h} alt="" aria-hidden="true" class="home-craft-fill absolute inset-y-0 right-0 h-full w-[46%] object-cover" decoding="async" loading="lazy" />
       <div class="absolute inset-0 bg-brand-sandwarm/85"></div>
     </div>
     <!-- 装饰纤维纹理 -->
@@ -957,7 +972,7 @@ const IMG: Record<string, Img> = {
       </svg>
     </div>
     <div class="container-narrow relative z-10 text-center max-w-3xl mx-auto reveal">
-      <img src={IMG.uiMark.url} width={IMG.uiMark.w} height={IMG.uiMark.h} alt="" aria-hidden="true" class="home-fiber-mark" decoding="async" loading="lazy" 
+      <img src={IMG.uiMark.url} width={IMG.uiMark.w} height={IMG.uiMark.h} alt="" aria-hidden="true" class="home-fiber-mark" decoding="async" loading="lazy" />
       <div class="inline-block text-xs font-display italic text-copper mb-6 tracking-tight">
         {t6('下一步', 'Next Step', 'Nächster Schritt', 'Étape suivante', '次のステップ', '다음 단계')}
       </div>
@@ -1074,7 +1089,12 @@ const IMG: Record<string, Img> = {
   .home-origin-section { position:relative; }.home-origin-section::after { content:""; position:absolute; right:-45px; bottom:10%; width:248px; height:105px; border-top:1px solid rgba(184,149,106,.38); border-radius:50%; transform:rotate(-20deg); pointer-events:none; }/* .home-origin-detail is styled in global.css - the scoped rule here had
      lower specificity, so the global one reset its position and the inset
      photo collapsed into the layout instead of overlapping the landscape. */
-  .home-product-section { position:relative; }.home-product-section::before { content:""; position:absolute; left:0; top:13%; width:180px; height:210px; opacity:.25; background:repeating-radial-gradient(ellipse at 0 50%, transparent 0 28px, rgba(184,149,106,.58) 29px 30px, transparent 31px 48px); pointer-events:none; }.home-material-fill { opacity:.47; filter:saturate(.62) contrast(.93); transition:transform .9s cubic-bezier(.23,1,.32,1),opacity .45s ease; }.group:hover .home-material-fill { transform:scale(1.055); opacity:.62; }
+  .home-product-section { position:relative; }.home-product-section::before { content:""; position:absolute; left:0; top:13%; width:180px; height:210px; opacity:.25; background:repeating-radial-gradient(ellipse at 0 50%, transparent 0 28px, rgba(184,149,106,.58) 29px 30px, transparent 31px 48px); pointer-events:none; }/* 2026-11-02: the raw-material photo is a very light image - the
+   bottom-left region where the caption sits measures a median luminance
+   of 182/255. At opacity .47 it washed out to near-paper, and the
+   white caption on top of it was unreadable. The image is now opaque
+   enough to carry the dark gradient that the caption needs. */
+.home-material-fill { opacity:.78; filter:saturate(.62) contrast(.93); transition:transform .9s cubic-bezier(.23,1,.32,1),opacity .45s ease; }.group:hover .home-material-fill { transform:scale(1.055); opacity:.86; }
   .home-final-cta::after { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(90deg, rgba(245,240,231,.98) 0%, rgba(245,240,231,.90) 54%, rgba(245,240,231,.62) 100%); }.home-final-cta > .container-narrow { position:relative; z-index:2; }.home-craft-fill { opacity:.16; filter:grayscale(1) sepia(.24) contrast(.9); }.home-fiber-mark { width:44px; height:44px; object-fit:contain; margin:0 auto 22px; opacity:.72; mix-blend-mode:multiply; }
   .home-trust-strip { position:relative; background:#f7f3eb; }.home-trust-strip::after { content:""; position:absolute; right:7%; bottom:-1px; width:230px; height:66px; border-bottom:1px solid rgba(167,100,50,.34); border-radius:50%; transform:rotate(8deg); pointer-events:none; }.home-trust-strip [class*="grid"] > div { position:relative; }.home-trust-strip [class*="grid"] > div::before { content:""; position:absolute; left:-15px; top:5px; width:2px; height:22px; background:#b8956a; opacity:.72; }
   .home-craft-section { position:relative; background:linear-gradient(180deg,#fbfaf7 0%,#f5f0e7 100%); }.home-craft-section::before { content:""; position:absolute; top:6.5rem; left:0; width:17vw; height:1px; background:#b8956a; opacity:.55; }.home-craft-section .hover-zoom { border:1px solid rgba(167,100,50,.16); box-shadow:0 18px 34px -28px rgba(45,40,36,.75); }.home-craft-section h2, .home-craft-section h3, .home-craft-section p, .home-craft-section .eyebrow-label, .home-craft-section [class*="text-5xl"], .home-craft-section .text-muted-foreground { color:#171513 !important; }.home-craft-section h3 { letter-spacing:-.025em; }
