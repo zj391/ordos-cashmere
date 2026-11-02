@@ -461,7 +461,7 @@ export const NECKLINE_LABEL: Record<Neckline, Record<Locale, string>> = {
   'high-neck': { en: 'High Neck', cn: '立领', de: 'Hochkragen', fr: 'Col montant', ja: 'ハイネック', kr: '하이넥' },
   'polo-collar': { en: 'Polo Collar', cn: 'polo领', de: 'Polokragen', fr: 'Col polo', ja: 'ポロ襟', kr: '폴로 칼라' },
   'zip-neck': { en: 'Zip Neck', cn: '拉链领', de: 'Reißverschlusskragen', fr: 'Col zippé', ja: 'ジップネック', kr: '지퍼넥' },
-  hood: { en: 'Hooded', cn: '连帽', de: 'Kapuzenpullover', fr: 'Capuche', ja: 'フード', kr: '후드' },
+  hood: { en: 'Hooded', cn: '连帽', de: 'Mit Kapuze', fr: 'Capuche', ja: 'フード', kr: '후드' },
   sleeveless: { en: 'Sleeveless', cn: '无袖', de: 'Ärmellos', fr: 'Sans manches', ja: 'ノースリーブ', kr: '민소매' },
   'boat-neck': { en: 'Boat Neck', cn: '船领', de: 'Boat Neck', fr: 'Col bateau', ja: 'ボートネック', kr: '보트넥' },
   'off-shoulder': { en: 'Off Shoulder', cn: '露肩', de: 'Off-Shoulder', fr: 'Buste dénudée', ja: 'オフショルダー', kr: '오프숄더' },
@@ -487,7 +487,7 @@ export const SEASON_LABEL: Record<string, Record<Locale, string>> = {
 
 /** Localised names for a subtype. */
 export const SUBTYPE_LABEL: Record<string, Record<Locale, string>> = {
-  sweaters: { en: 'Sweaters', cn: '羊绒衫', de: 'Pullover', fr: 'Pulls', ja: 'セーター', kr: '스웨터' },
+  sweaters: { en: 'Sweaters', cn: '羊绒衫', de: 'Pullover & Strick', fr: 'Pulls & Tricots', ja: 'セーター', kr: '스웨터' },
   cardigans: { en: 'Cardigans', cn: '开衫', de: 'Cardigans', fr: 'Cardigans', ja: 'カーディガン', kr: '가디건' },
   pullovers: { en: 'Pullovers', cn: '套头衫', de: 'Pullover', fr: 'Pulls', ja: 'プルオーバー', kr: '풀오버' },
   turtlenecks: { en: 'Turtlenecks', cn: '高领毛衣', de: 'Turtlenecks', fr: 'Col roulé', ja: ' turtleneck', kr: '터틀넥' },
@@ -552,7 +552,7 @@ export const PATTERN_LABEL: Record<string, Record<Locale, string>> = {
   solid: { en: 'Solid Colour', cn: '素色', de: 'Einfarbig', fr: 'Uni', ja: '無地', kr: '단색' },
   tassel: { en: 'Tasselled', cn: '流苏', de: 'Fransen', fr: 'Frangés', ja: '房飾り', kr: '모짜 장식' },
   plaid: { en: 'Plaid', cn: '格纹', de: 'Karo', fr: 'Carreaux', ja: 'チェック', kr: '플레이드' },
-  check: { en: 'Checked', cn: '千鸟格', de: 'Karo', fr: 'Damier', ja: '千鳥格子', kr: '체크' },
+  check: { en: 'Checked', cn: '千鸟格', de: 'Karo-Muster', fr: 'Damier', ja: '千鳥格子', kr: '체크' },
 };
 
 /** Localised names for an audience bucket. */

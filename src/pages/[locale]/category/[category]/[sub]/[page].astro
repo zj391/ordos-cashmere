@@ -106,7 +106,12 @@ if (isSubtype) {
 }
 
 const h1 = `${parentLabel} — ${subLabel}`;
-const title = `${subLabel} Wholesale | ${parentLabel} | DONGXIAO® Cashmere`;
+// 2026-10-31: the paginated pages all shipped the same title as page 1,
+// so every page of a listing competed with the first one for the same
+// query. The page number goes in the title - the H1 already carried it,
+// the title did not.
+const pageSuffix = locale === 'cn' ? `第 ${page} 页` : locale === 'ja' ? `${page}ページ` : locale === 'kr' ? `${page}페이지` : `Page ${page}`;
+const title = `${subLabel} Wholesale | ${parentLabel} | ${pageSuffix} | DONGXIAO® Cashmere`;
 // The label is plural on some pages and singular on others ("V-Neck",
 // "Beanies"), so the noun is chosen by the count rather than appended
 // blindly - "Browse 49 v-neck styles" but "Browse 1 cardigan style".
