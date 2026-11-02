@@ -457,16 +457,25 @@ function styleFacets(product: ProductTitleInput): string[] {
   return accepted.filter((facet, index, list) => !list.slice(0, index).some((prior) => includesFacet(prior, facet) || includesFacet(facet, prior)));
 }
 
-function titleFacets(product: ProductTitleInput, locale: string): string[] {
+/**
+ * The candidate facets for a product.
+ *
+ * `excludeNameFacets` drops the facets the name already carries - a
+ * title that repeats "100% Cashmere" inside "100% Cashmere Blanket"
+ * spends budget on nothing. The title builder turns it off, because
+ * the name it compares against is the *clipped* one: a name that lost
+ * "100% Cashmere" to the budget needs that facet back.
+ */
+function titleFacets(product: ProductTitleInput, locale: string, excludeNameFacets = true): string[] {
   const name = primaryProductName(product.name);
   const material = clean(product.material);
   const micron = clean(product.micron);
   const facets = [
-    canUseFacet(material) && !includesFacet(name, material) ? materialCompositionFacet(material) || material : '',
+    canUseFacet(material) && !(excludeNameFacets && includesFacet(name, material)) ? materialCompositionFacet(material) || material : '',
     originFacet(product.origin, locale)
       || originFromTags(product.tags, locale)
       || originFromName(name, locale),
-    canUseFacet(micron) && !includesFacet(name, micron) ? micron : '',
+    canUseFacet(micron) && !(excludeNameFacets && includesFacet(name, micron)) ? micron : '',
     patternFromName(name),
     ...styleFacets(product),
     styleFromTags(product.tags),
@@ -540,8 +549,116 @@ export function buildProductH1(product: ProductTitleInput, locale = 'en'): strin
 }
 
 /**
- * `<title>` 以产品主名称开头，后接真实规格和简短品牌尾缀。主名称优先于类别或泛化
- * 促销词，使搜索结果更容易区分具体款式；超长时从末尾的低优先级规格开始裁切。
+ * The separator between the product name and the reference.
+ */
+const REF_SEPARATOR = ' - ';
+/**
+ * The separator between the description part and the category term.
+ */
+const CATEGORY_SEPARATOR = ' — ';
+/**
+ * The separator between the specification facets.
+ */
+const SPEC_SEPARATOR = ' · ';
+
+/**
+ * Cut a value to a hard length.
+ *
+ * clipWords() keeps a value whole when the cut would leave too little
+ * to be useful, which is the right behaviour for a product name but
+ * wrong for a title that has to fit a budget. This always fits.
+ */
+function fitToLength(value: string, max: number): string {
+  if (value.length <= max) return value;
+  if (max <= 1) return value.slice(0, Math.max(1, max));
+  const cut = value.slice(0, max - 1);
+  const boundary = cut.replace(/\s+\S*$/, '').trim();
+  const trimmed = (boundary || cut.trim()).replace(/[.,;:]+$/, '');
+  return trimmed.length >= Math.min(8, max - 1) ? `${trimmed}…` : `${value.slice(0, max - 1)}…`;
+}
+
+/**
+ * Drop the leading words that the category term already carries.
+ *
+ * "Cashmere" and "Custom" repeat what the localised category says
+ * ("Cashmere Sweaters", "Kaschmir-Pullover"), so when the name has to
+ * be clipped they are the first words worth losing - the budget is
+ * better spent on "crew-neck sweater" than on "Cashmere".
+ */
+function stripGenericHead(name: string): string {
+  const stripped = name.replace(
+    /^(?:(?:cashmere|custom|wholesale|designer|luxury|premium)\s+)+/i,
+    '',
+  ).trim();
+  // Never strip the whole name away.
+  return stripped.length >= 6 ? stripped : name;
+}
+
+/**
+ * The specification facets, in the order they are worth budget.
+ *
+ * The order matters when the budget runs out: what is dropped first is
+ * what least often separates two catalogue entries.
+ *
+ *   1. the size - "150×200" is what tells two blankets apart
+ *   2. the weight - the second half of that pair
+ *   3. the micron count - the quality grade a buyer filters on
+ *   4. the material - "100% Cashmere" against a blend
+ *   5. the colour
+ *   6. the construction - cable, ribbed, jacquard
+ *   7. the knit structure - fully fashioned, seamless
+ *   8. the gauge and the yarn count
+ *   9. the audience and the season
+ *  10. the origin - "Inner Mongolia Cashmere" is a brand-level fact
+ *      and a brand-level keyword, so it is the first thing to go
+ */
+function titleSpecFacets(product: ProductTitleInput, locale: string): string[] {
+  // The name filter is off: the builder decides per candidate whether
+  // the *shipped* name still carries the facet.
+  const facets = titleFacets(product, locale, false).filter(Boolean);
+  const rank = (facet: string): number => {
+    if (dimensionFacet(product.sizes) === facet) return 0;
+    if (weightFacet(product.weight_g) === facet) return 1;
+    if (clean(product.micron) === facet) return 2;
+    if (clean(product.material) === facet) return 3;
+    if (colorFacet(product.colors) === facet) return 4;
+    if (knitStructureFacet(product.knitStructure, locale) === facet) return 6;
+    if (gaugeFacet(product.knittingTechnology) === facet) return 7;
+    if (yarnCountFacet(product.sizes) === facet) return 7;
+    if (audienceFacet(product.gender, locale) === facet) return 8;
+    if (seasonFacet(product.season, locale) === facet) return 9;
+    if (originFacet(product.origin, locale) === facet) return 10;
+    return 5;
+  };
+  return [...facets].sort((a, b) => rank(a) - rank(b));
+}
+
+/**
+ * `<title>` for a product page.
+ *
+ * 2026-11-02: the order is
+ *
+ *     name - Ref | category · specs | brand
+ *
+ * The reference comes straight after the name because it is the only
+ * field that tells two catalogue entries with the same name apart
+ * (506 of the 1,340 products share a name), and a search result shows
+ * the first ~60 characters - so the reference has to be inside that
+ * window, not at the end of a 150-character title where it used to be.
+ *
+ * The localised category term follows it because it is the only part
+ * of the title that differs between the six language versions of one
+ * product: the catalogue names are English source strings on every
+ * locale, so without the term the de / fr / ja / kr pages shipped the
+ * English title and competed with the English page for every query.
+ *
+ * The specs come last of the three because they are the only part that
+ * can be dropped: when the budget runs out they give way, never the
+ * reference and never the category term.
+ *
+ * The budget comes from src/lib/product-title-context.ts, which is also
+ * what the collision check and the offline simulator use - so the title
+ * that is measured here is the title that ships.
  */
 export function buildProductSeoTitle(
   product: ProductTitleInput,
@@ -549,39 +666,114 @@ export function buildProductSeoTitle(
   brand = 'DONGXIAO',
   maxLength = 150,
   locale = 'en',
+  /**
+   * The catalogue reference (e.g. "DXE-A011-2").
+   *
+   * 506 products share their `name` with another product and 92 share
+   * one name exactly, so without a discriminator those pages all
+   * shipped the same title. The reference is the only field that tells
+   * them apart - and it is already on the page under "Reference" and in
+   * the Product schema as sku and mpn, so appending it states nothing the
+   * page does not already show.
+   *
+   * The caller passes it only for the products whose title actually
+   * collides with another page's title (see src/lib/product-title-ref.ts).
+   */
+  reference?: string,
 ): string {
   const category = clean(localizedCategory);
   const productName = primaryProductName(product.name) || 'Cashmere Product';
-
-  // 以具体产品名为主体；若产品名未明确类别，则加入类别语境，帮助搜索引擎和采购者识别产品线。
-  const productContext = category && !includesFacet(productName, category) ? category : '';
-  const lowPriority = [productContext, ...titleFacets(product, locale)].filter(Boolean);
+  const fullName = stripGenericHead(productName);
 
   const brandSuffix = brand ? ` | ${brand}` : '';
-  const totalBudget = Math.max(56, maxLength - brandSuffix.length);
+  const refSuffix = reference ? `${REF_SEPARATOR}Ref ${clean(reference)}` : '';
 
-  // 找到最大规格数，使主名称与规格保持完整、可读且不重复。
-  let keepN = lowPriority.length;
-  while (keepN > 0) {
-    const kept = lowPriority.slice(0, keepN);
-    const candidate = `${productName} — ${kept.join(' · ')}`;
-    if (candidate.length <= totalBudget) break;
-    keepN -= 1;
-  }
-  let core = keepN > 0
-    ? `${productName} — ${lowPriority.slice(0, keepN).join(' · ')}`
-    : productName;
+  // The category term only appears when the product name does not
+  // already contain it.
+  const productContext = category && !includesFacet(fullName, category) ? category : '';
 
-  // 仍然过长 → 仅在必要时截产品名，规格仍维持从高到低的目录字段顺序。
-  if (core.length > totalBudget) {
-    const reserved = keepN > 0
-      ? 3 + lowPriority.slice(0, keepN).join(' · ').length
-      : 0;
-    const nameMax = totalBudget - reserved;
-    const trimmed = nameMax > 8 ? clipWords(productName, nameMax) : '';
-    core = keepN > 0
-      ? `${trimmed} — ${lowPriority.slice(0, keepN).join(' · ')}`
-      : trimmed;
+  // The parts that must survive whatever else happens.
+  const reserved =
+    brandSuffix.length +
+    refSuffix.length +
+    (productContext ? productContext.length + CATEGORY_SEPARATOR.length : 0);
+
+  // The specs are what separate two catalogue entries that share a
+  // name, so they are the candidates for the budget that is left.
+  const specs = titleSpecFacets(product, locale);
+
+  const bodyBudget = Math.max(16, maxLength - reserved);
+
+  // The name and the specs compete for one budget, and the decision has
+  // to be made together.
+  //
+  // In two passes the name took its share first and the specs got
+  // whatever was left, which clipped "100% Cashmere Blanket ·
+  // 150×200cm, 870g" down to "100% Cashmere…" and lost the size and
+  // the weight that tell two blankets apart. In the other order the
+  // specs took the budget first and "crew-neck sweater — Grey" lost
+  // its colour.
+  //
+  // So the two are chosen together: every way of clipping the name is
+  // tried, each one is paired with the specs that still fit, and the
+  // combination that keeps the most information wins.
+  //
+  // The scoring weights the name above the specs, because the name is
+  // the product's identity - a title that says "14–15.5µm · 100%
+  // Cashmere" without saying what the product is says nothing. A spec
+  // is worth less than the same number of characters of name, but a
+  // spec that the clipped name lost is worth more than one it still
+  // carries, so it is never counted twice.
+  const candidates: { score: number; name: string; specs: string[] }[] = [];
+
+  // The name can never be longer than the body budget: the category
+  // term and the reference are reserved before it, and the final
+  // fitToLength() would otherwise cut the category term off the end -
+  // which is the one part that must never be clipped, and the one
+  // that keeps the six language versions of a product apart.
+  const maxNameLen = Math.min(fullName.length, bodyBudget);
+
+  for (let cap = maxNameLen; cap >= 12; cap--) {
+    const name = cap >= fullName.length ? fullName : clipWords(fullName, cap);
+    const nameLen = name.replace(/…$/, '').trim().length;
+    if (nameLen < 8) break;
+
+    // The specs that still fit next to this name, in priority order.
+    const chosen: string[] = [];
+    let cost = 0;
+    for (const spec of specs) {
+      if (includesFacet(name, spec)) continue;
+      const add = (chosen.length ? SPEC_SEPARATOR.length + chosen.join(SPEC_SEPARATOR).length : 0)
+        + SPEC_SEPARATOR.length + spec.length;
+      if (name.length + reserved + cost + add > maxLength) continue;
+      chosen.push(spec);
+      cost += add;
+    }
+
+    // The name wins ties, and a spec that the name lost to the
+    // clipping counts for more than one it still carries.
+    const specValue = chosen.reduce((sum, spec) => {
+      const lost = !includesFacet(fullName, spec);
+      return sum + spec.length * (lost ? 0.6 : 0);
+    }, 0);
+    candidates.push({ score: nameLen + specValue, name, specs: chosen });
+
+    // Below 16 characters the name no longer identifies the product,
+    // so the search stops there.
+    if (cap <= 16) break;
   }
-  return `${clipWords(core, totalBudget)}${brandSuffix}`;
+
+  let best = candidates[0];
+  for (const candidate of candidates) {
+    if (candidate.score > best.score) best = candidate;
+  }
+
+  const name = best.name;
+  const kept = best.specs;
+
+  const specPart = kept.length ? `${SPEC_SEPARATOR}${kept.join(SPEC_SEPARATOR)}` : '';
+  const head = `${name}${refSuffix}${productContext ? `${CATEGORY_SEPARATOR}${productContext}` : ''}`;
+  const title = `${head}${specPart}${brandSuffix}`;
+
+  return title.length > maxLength ? fitToLength(title, maxLength) : title;
 }

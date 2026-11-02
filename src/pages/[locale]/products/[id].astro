@@ -46,6 +46,10 @@ import { LOCALES, isLocale, pickLocale } from '@/lib/i18n';
 
 import { SEO, SITE_URL, SITE_INFO } from '@/lib/seo';
 import { buildProductHeading, buildProductH1, buildProductSeoTitle } from '@/lib/product-seo-title';
+import { needsTitleReference, primeTitleReferenceCache } from '@/lib/product-title-ref';
+import { productTitleBrand, productTitleCategory, SEO_TITLE_MAX } from '@/lib/product-title-context';
+
+
 import { SEO_KEYWORDS } from '@/data/seo-keywords';
 import { getBlogSlugFromId, isIndexableBlogPost } from '@/lib/blog-indexability';
 import { getCollection } from 'astro:content';
@@ -86,6 +90,10 @@ const CATEGORY_IMAGE_DIR = {
 
 export async function getStaticPaths() {
   await ensureDbOverlay();
+  // 2026-10-31: the title-reference cache has to be built from the
+  // catalogue as it is after the database overlay - the overlay can
+  // rename a product and add new ones.
+  primeTitleReferenceCache();
   const allProducts = getAllProducts();
   const paths = [];
 
@@ -273,6 +281,19 @@ const uniqueProductImages = Array.from(new Set(product.images));
 /** Real pixel size of an image, looked up in the generated table. */
 import { imageSize } from '@/lib/image-size';
 
+/**
+ * 2026-10-31: the catalogue reference, but only for the products whose
+ * name is shared with another product. 506 of 1,340 products share a
+ * name and 92 share one name exactly, so their pages all shipped the
+ * same title - 1,788 indexable pages with a duplicate title. The
+ * reference is the only field that separates them, and it is already
+ * printed on the page as the Reference and declared as sku/mpn in the
+ * Product schema.
+ */
+const productRef = (id: string): string | undefined =>
+  needsTitleReference(id) ? id : undefined;
+
+
 function resolveProductImage(img: string): string {
 
   if (img.startsWith('/images/') || img.startsWith('http')) return img;
@@ -349,90 +370,28 @@ const cnCategoryNames: Record<string, string> = {
 const LOCALE_CATEGORY_NAMES: Record<string, Record<string, string>> = {
   en: { hats: 'Cashmere Hats & Beanies', sweaters: 'Cashmere Sweaters & Knitwear',
         scarves: 'Cashmere Scarves & Wraps', accessories: 'Cashmere Accessories',
-        yarn: 'Cashmere Yarn' },
+        yarn: 'Cashmere Yarn', blankets: 'Cashmere & Wool Blankets' },
   de: { hats: 'Kaschmir-Hüte & Beanies', sweaters: 'Kaschmir-Pullover & Strick',
         scarves: 'Kaschmir-Schals & Wraps', accessories: 'Kaschmir-Accessoires',
-        yarn: 'Kaschmir-Garn' },
+        yarn: 'Kaschmir-Garn', blankets: 'Kaschmir- & Wolldecken' },
   fr: { hats: 'Bonnets & Beanies Cachemire', sweaters: 'Pulls & Tricots Cachemire',
         scarves: 'Écharpes & Wraps Cachemire', accessories: 'Accessoires Cachemire',
-        yarn: 'Fil de Cachemire' },
+        yarn: 'Fil de Cachemire', blankets: 'Couvertures Cachemire & Laine' },
   ja: { hats: 'カシミアハット・ビーニー', sweaters: 'カシミアニット・セーター',
         scarves: 'カシミアスカーフ・ラップ', accessories: 'カシミアアクセサリー',
-        yarn: 'カシミアヤーン' },
+        yarn: 'カシミアヤーン', blankets: 'カシミアブランケット' },
   kr: { hats: '캐시미어 모자 & 비니', sweaters: '캐시미어 스웨터 & 니트',
         scarves: '캐시미어 스카프 & 랩', accessories: '캐시미어 액세서리',
-        yarn: '캐시미어 원사' },
+        yarn: '캐시미어 원사', blankets: '캐시미어 담요' },
   cn: { hats: '羊绒帽', sweaters: '羊绒衫', scarves: '羊绒围巾',
-        accessories: '羊绒配饰', yarn: '羊绒纱线' },
+        accessories: '羊绒配饰', yarn: '羊绒纱线',
+        blankets: '羊绒毯 & 羊毛毯' },
 };
 
 function localizedCategory(categoryId: string, locale: string, fallback: string): string {
   const map = LOCALE_CATEGORY_NAMES[locale];
   if (map && map[categoryId]) return map[categoryId];
   return fallback;
-}
-
-// B2B buyer-relevant category title modifier. Adds a wholesale /
-// manufacturer / factory-direct prefix to the category name so that
-// <title> tags carry a clear B2B intent signal for search engines.
-// Only used inside buildProductSeoTitle calls; the visible category
-// label in HTML and the JSON-LD `category` field continue to use the
-// unmodified localizedCategory() result.
-//
-// Keep this list SHORT — adding more words eats the 150-char title
-// budget and pushes real spec facets out of the SERP snippet.
-const BUYER_INTENT_PREFIX: Record<string, Record<string, string>> = {
-  en: {
-    hats: 'Wholesale',
-    sweaters: 'Wholesale',
-    scarves: 'Wholesale',
-    accessories: 'Wholesale',
-    yarn: 'Wholesale',
-  },
-  de: {
-    hats: 'Großhandel',
-    sweaters: 'Großhandel',
-    scarves: 'Großhandel',
-    accessories: 'Großhandel',
-    yarn: 'Großhandel',
-  },
-  fr: {
-    hats: 'Grossiste',
-    sweaters: 'Grossiste',
-    scarves: 'Grossiste',
-    accessories: 'Grossiste',
-    yarn: 'Grossiste',
-  },
-  ja: {
-    hats: '卸売り',
-    sweaters: '卸売り',
-    scarves: '卸売り',
-    accessories: '卸売り',
-    yarn: '卸売り',
-  },
-  kr: {
-    hats: '도매',
-    sweaters: '도매',
-    scarves: '도매',
-    accessories: '도매',
-    yarn: '도매',
-  },
-  cn: {
-    hats: '批发',
-    sweaters: '批发',
-    scarves: '批发',
-    accessories: '批发',
-    yarn: '批发',
-  },
-};
-
-function buyerModifiedCategory(categoryId: string, locale: string, baseCategory: string): string {
-  const prefix = BUYER_INTENT_PREFIX[locale]?.[categoryId];
-  if (!prefix) return baseCategory;
-  // Avoid doubling up if the base already contains a wholesale-style word.
-  const lower = baseCategory.toLowerCase();
-  if (/(wholesale|grossist|großhandel|卸売|도매|批发)/i.test(lower)) return baseCategory;
-  return `${prefix} ${baseCategory}`;
 }
 
 
@@ -834,7 +793,7 @@ const tdk = {
       158
     );
     return {
-      title: buildProductSeoTitle(p, buyerModifiedCategory(p.categoryId, locale, localizedCategory(p.categoryId, locale, c))),
+      title: buildProductSeoTitle(p, productTitleCategory(p.categoryId, locale, c), productTitleBrand(locale), SEO_TITLE_MAX[locale] ?? SEO_TITLE_MAX.en, locale, productRef(p.id)),
       description,
       keywords: [
         `${p.name}`,
@@ -878,7 +837,7 @@ const tdk = {
       150
     );
     return {
-      title: buildProductSeoTitle(p, buyerModifiedCategory(p.categoryId, locale, localizedCategory(p.categoryId, locale, categoryName)), '东霄羊绒'),
+      title: buildProductSeoTitle(p, productTitleCategory(p.categoryId, locale, categoryName), productTitleBrand(locale), SEO_TITLE_MAX[locale] ?? SEO_TITLE_MAX.en, locale, productRef(p.id)),
       description,
       keywords: [p.name, `${categoryName}批发`, `${p.material}${categoryName}`, `羊绒代工 ${p.id}`, `OEM ${categoryName}`, '羊绒厂家', '鄂尔多斯羊绒'],
       buyCta: '立即询盘',
@@ -904,7 +863,7 @@ const tdk = {
       158
     );
     return {
-      title: buildProductSeoTitle(p, buyerModifiedCategory(p.categoryId, locale, localizedCategory(p.categoryId, locale, c))),
+      title: buildProductSeoTitle(p, productTitleCategory(p.categoryId, locale, c), productTitleBrand(locale), SEO_TITLE_MAX[locale] ?? SEO_TITLE_MAX.en, locale, productRef(p.id)),
       description,
       keywords: [p.name, `Kaschmir ${c} Großhandel`, `OEM ${c}`, `Kaschmir Hersteller China`, `B2B Cashmere Lieferant`],
       buyCta: 'Anfrage',
@@ -930,7 +889,7 @@ const tdk = {
       158
     );
     return {
-      title: buildProductSeoTitle(p, buyerModifiedCategory(p.categoryId, locale, localizedCategory(p.categoryId, locale, c))),
+      title: buildProductSeoTitle(p, productTitleCategory(p.categoryId, locale, c), productTitleBrand(locale), SEO_TITLE_MAX[locale] ?? SEO_TITLE_MAX.en, locale, productRef(p.id)),
       description,
       keywords: [p.name, `cachemire ${c} gros`, `OEM ${c}`, `fabricant cachemire Chine`, `fournisseur cachemire B2B`],
       buyCta: 'Demande',
@@ -956,7 +915,7 @@ const tdk = {
       150
     );
     return {
-      title: buildProductSeoTitle(p, buyerModifiedCategory(p.categoryId, locale, localizedCategory(p.categoryId, locale, c))),
+      title: buildProductSeoTitle(p, productTitleCategory(p.categoryId, locale, c), productTitleBrand(locale), SEO_TITLE_MAX[locale] ?? SEO_TITLE_MAX.en, locale, productRef(p.id)),
       description,
       keywords: [p.name, `${c}卸売`, `OEM ${c}`, `カシミア 製造 中国`, `B2B カシミア サプライヤー`],
       buyCta: '問い合わせ',
@@ -982,7 +941,7 @@ const tdk = {
       158
     );
     return {
-      title: buildProductSeoTitle(p, buyerModifiedCategory(p.categoryId, locale, localizedCategory(p.categoryId, locale, c))),
+      title: buildProductSeoTitle(p, productTitleCategory(p.categoryId, locale, c), productTitleBrand(locale), SEO_TITLE_MAX[locale] ?? SEO_TITLE_MAX.en, locale, productRef(p.id)),
       description,
       keywords: [p.name, `${c} 도매`, `OEM ${c}`, `캐시미어 제조 중국`, `B2B 캐시미어 공급업체`],
       buyCta: '문의',
@@ -996,7 +955,28 @@ const displayCategory = localizedCategory(product.categoryId, locale, category.n
 const productHeading = buildProductHeading(product, locale);
 const productH1 = buildProductH1(product, locale);
 const baseTdk = (tdk[locale] || tdk.en)(product, displayCategory);
-const titleBrand = locale === 'cn' ? '东霄羊绒' : 'DONGXIAO';
+const titleBrand = productTitleBrand(locale);
+
+/**
+ * 2026-10-31: the SERP title budget.
+ *
+ * The titles were built to a 132-character budget, so 90% of the
+ * indexable pages shipped a title that Google truncates in the search
+ * results - the median was 125 characters. Everything after the cut is
+ * invisible to a buyer, and the truncation point lands in the middle of
+ * the product name, so the differentiator ("Ref DXE-A011-2") was the
+ * part that got cut.
+ *
+ * A search result shows roughly 60 characters of a Latin-script title
+ * and a bit more of a CJK one. The budget is 72 for the Latin locales
+ * and 78 for the CJK ones: enough for the product name and the
+ * localised category term side by side, which is the minimum a title
+ * needs to say what the product is and in which language it is written.
+ * The brand and the reference are reserved first - they are what tells
+ * two otherwise identical products apart - and the specs fill whatever
+ * is left.
+ */
+
 const CATEGORY_KEYWORDS: Record<string, string[]> = {
   hats: ['cashmere hat wholesale', 'cashmere beanie supplier', 'private label cashmere hats', 'cashmere hat manufacturer'],
   scarves: ['cashmere scarf wholesale', 'cashmere shawl supplier', 'custom cashmere scarf', 'cashmere stole manufacturer'],
@@ -1042,7 +1022,7 @@ const safeMetaKeywords = [
 ].filter(Boolean);
 const t = {
   ...baseTdk,
-  title: buildProductSeoTitle(product, buyerModifiedCategory(product.categoryId, locale, displayCategory), titleBrand, 132, locale),
+  title: buildProductSeoTitle(product, productTitleCategory(product.categoryId, locale, displayCategory), titleBrand, SEO_TITLE_MAX[locale] ?? SEO_TITLE_MAX.en, locale, productRef(product.id)),
   description: clip(safeMetaDescription[locale] || safeMetaDescription.en || '', 200),
   keywords: safeMetaKeywords,
 };
